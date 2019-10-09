@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'tillat kudosu',
+        'beatmap_information' => '',
         'delete' => 'slett',
         'deleted' => 'Slettet av :editor :delete_time.',
         'deny_kudosu' => 'avvis kudosu',
@@ -286,6 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

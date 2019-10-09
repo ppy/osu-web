@@ -102,7 +102,7 @@ export class Info extends React.Component
 
 
   renderChart: ->
-    return if !@props.beatmapset.has_scores || @props.beatmap.playcount < 1
+    return if !@props.beatmapset.is_scoreable || @props.beatmap.playcount < 1
 
     unless @_failurePointsChart?
       options =
@@ -214,7 +214,7 @@ export class Info extends React.Component
               '...' if tagsOverload
 
       div className: 'beatmapset-info__box beatmapset-info__box--success-rate',
-        if !@props.beatmapset.has_scores
+        if !@props.beatmapset.is_scoreable
           div className: 'beatmap-success-rate',
             div
               className: 'beatmap-success-rate__empty'

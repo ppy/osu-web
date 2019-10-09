@@ -34,10 +34,10 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => '您確定要撤消此客戶端的權限嗎？',
+        'scopes_title' => '這個應用程式可以:',
+        'owned_by' => '擁有者 :user',
+        'none' => '沒有客戶端',
 
         'revoked' => [
             'false' => '',
@@ -46,8 +46,8 @@ return [
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
+        'id' => '客戶端 ID',
+        'name' => '應用程式名稱',
         'redirect' => '',
         'secret' => '',
     ],
@@ -58,14 +58,23 @@ return [
         'title' => '登入',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
-        'confirm_delete' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => '您確定要刪除此客戶端嗎？',
+        'new' => '新增 OAuth 應用程式',
+        'none' => '沒有客戶端',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => '刪除',
+            'true' => '已刪除',
         ],
     ],
 ];

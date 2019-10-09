@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', e ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Amministratore',
         'back_to_previous' => 'Torna alla posizione precedente',
@@ -37,7 +41,7 @@ return [
         'change' => 'cambia',
         'click_to_copy' => 'clicca per copiare negli appunti',
         'click_to_copy_copied' => 'copiato negli appunti!',
-        'close' => '',
+        'close' => 'Chiudi',
         'collapse' => 'comprimi',
         'delete' => 'Elimina',
         'edit' => 'Modifica',
@@ -59,7 +63,7 @@ return [
         'show_deleted' => 'Mostra eliminati',
         'show_more' => 'mostra altro',
         'show_more_options' => 'mostra più opzioni',
-        'update' => '',
+        'update' => 'Aggiorna',
         'upload_image' => 'carica immagine',
 
         'watch' => [
@@ -77,7 +81,7 @@ return [
         'minute_short_unit' => 'minuto|minuti',
         'minutes' => ':count_delimited minuto|:count_delimited minuti',
         'months' => ':count_delimited mese|:count_delimited mesi',
-        'plus_others' => '',
+        'plus_others' => '+ :count_delimited altro!|+ :count_delimited altri!',
         'post' => ':count_delimited post|:count_delimited post',
         'second_short_unit' => 'secondo|secondi',
         'star_priority' => ':count_delimited stella di priorità|:count_delimited stelle di priorità',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'trascina qui per caricare',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

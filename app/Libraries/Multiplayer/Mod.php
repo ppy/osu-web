@@ -50,6 +50,7 @@ class Mod
     const OSU_GROW = 'GR';
     const OSU_DEFLATE = 'DF';
     const OSU_SPININ = 'SI';
+    const OSU_TRACEABLE = 'TC';
 
     // mania-specific
     const MANIA_KEY1 = '1K';
@@ -130,6 +131,12 @@ class Mod
             self::OSU_GROW,
             self::OSU_DEFLATE,
             self::OSU_SPININ,
+            self::OSU_TRACEABLE,
+        ],
+        [
+            self::HIDDEN,
+            self::OSU_SPININ,
+            self::OSU_TRACEABLE,
         ],
     ];
 
@@ -152,6 +159,7 @@ class Mod
                         self::OSU_GROW,
                         self::OSU_DEFLATE,
                         self::OSU_SPININ,
+                        self::OSU_TRACEABLE,
                     ]
                 ),
 

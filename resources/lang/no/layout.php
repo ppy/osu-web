@@ -27,14 +27,14 @@ return [
         'community' => [
             '_' => '',
 
-            'forum' => '',
+            'forum' => 'Forum',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
+        'close' => 'Lukk (Esc)',
         'fullscreen' => '',
-        'zoom' => '',
+        'zoom' => 'Zoom inn/ut',
         'previous' => '',
         'next' => '',
     ],
@@ -43,7 +43,7 @@ return [
         'home' => [
             '_' => 'hjem',
             'account-edit' => 'instillinger',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Verifisering fullført',
             'friends-index' => 'venner',
             'changelog-index' => 'endringslogg',
             'changelog-build' => 'versjon',
@@ -58,7 +58,7 @@ return [
             'password-reset-index' => 'nullstill passord',
             'search' => 'søk',
             'supportTheGame' => 'støtt spillet',
-            'team' => 'lag',
+            'team' => 'skapere',
         ],
         'help' => [
             '_' => 'hjelp',

@@ -41,4 +41,11 @@ return [
             'default' => 'Versi Inggris',
         ],
     ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
+    ],
 ];

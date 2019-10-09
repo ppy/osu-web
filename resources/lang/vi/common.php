@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', và ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Trở về vị trí trước',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'kéo vào đây để tải lên',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

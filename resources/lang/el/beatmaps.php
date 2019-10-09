@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'επίτρεψε kudosu',
+        'beatmap_information' => '',
         'delete' => 'διαγραφή',
         'deleted' => 'Διαγράφηκε από :editor :delete_time.',
         'deny_kudosu' => 'αρνήσου kudosu',
@@ -141,12 +142,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Δεν υπάρχουν ακόμα downvotes',
+                'up' => 'Δεν υπάρχουν ακόμα upvotes',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Πιο πρόσφατα downvotes',
+                'up' => 'Πιο πρόσφατα upvotes',
             ],
         ],
     ],
@@ -250,14 +251,14 @@ return [
     'status' => [
         'any' => 'Οποιοδήποτε',
         'approved' => 'Approved',
-        'favourites' => '',
+        'favourites' => 'Αγαπημένα',
         'graveyard' => 'Νεκροταφείο',
-        'leaderboard' => '',
+        'leaderboard' => 'Έχει Πίνακα Βαθμολογίας',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'Τα Maps Μου',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Οποιοδήποτε',
@@ -286,6 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

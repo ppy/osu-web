@@ -51,8 +51,7 @@
   }
 
   &--account-edit {
-    display: block;
-    width: @avatar-size--base;
+    min-width: @avatar-size--base;
     padding: 7px 10px;
     text-align: left;
   }
@@ -111,6 +110,21 @@
     margin: 0 5px 5px 0;
     &:hover {
       background-position: calc(50% - (20px - 2px)) 50%;
+    }
+  }
+
+  &--danger {
+    background-color: @red;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @red-light;
+    };
+
+    &[disabled] {
+      background-color: @osu-colour-b3;
+      color: @osu-colour-f1;
     }
   }
 
@@ -292,6 +306,11 @@
     flex: 1 0 auto;
     text-transform: lowercase;
     margin: 0 5px;
+  }
+
+  &--settings-oauth {
+    margin: 0 5px 5px 5px;
+    min-width: 70px;
   }
 
   &--wrap-text {

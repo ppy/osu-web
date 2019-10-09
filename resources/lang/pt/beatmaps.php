@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'permitir kudosu',
+        'beatmap_information' => '',
         'delete' => 'eliminar',
         'deleted' => 'Eliminado por :editor :delete_time.',
         'deny_kudosu' => 'recusar kudosu',
@@ -141,12 +142,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Ainda sem votos negativos',
+                'up' => 'Ainda sem votos positivos',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Últimos votos negativos',
+                'up' => 'Últimos votos positivos',
             ],
         ],
     ],
@@ -286,6 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => 'Link alternativo',
         'NC' => '',
         'NF' => '',
         'NM' => '',

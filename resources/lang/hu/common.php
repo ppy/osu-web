@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', és ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Vissza az előző pozícióra',
@@ -59,7 +63,7 @@ return [
         'show_deleted' => 'Töröltek megjelenítése',
         'show_more' => 'több megjelenítése',
         'show_more_options' => 'további opciók mutatása',
-        'update' => '',
+        'update' => 'Frissítés',
         'upload_image' => 'kép feltöltése',
 
         'watch' => [
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'húzd ide a feltöltéshez',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

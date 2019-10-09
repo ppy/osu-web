@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'дазволіць кудосу',
+        'beatmap_information' => '',
         'delete' => 'выдаліць',
         'deleted' => 'Выдалена :editor а :delete_time.',
         'deny_kudosu' => 'забараніць кудосу',
@@ -286,6 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

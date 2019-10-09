@@ -1,1 +1,1 @@
-[code:1]This is code[/code:1]
+[code:1]This is code&#10;and another line[/code:1]

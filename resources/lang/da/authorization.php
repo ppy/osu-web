@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Automatisk genererede opslag kan ikke redigeres.',
-            'not_owner' => 'Kun ejeren af dette opslag kan redigere det.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Kun ejeren af dette opslag kan redigere det.',
+            'resolved' => '',
+            'system_generated' => 'Automatisk genererede opslag kan ikke redigeres.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Dette beatmap er låst for diskussion.',
         ],

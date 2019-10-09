@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', og ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Vend tilbage til tidligere position',
@@ -37,7 +41,7 @@ return [
         'change' => 'ændre',
         'click_to_copy' => 'klik for at kopiere til udklipsholder',
         'click_to_copy_copied' => 'kopieret til udklipsholder!',
-        'close' => '',
+        'close' => 'Luk',
         'collapse' => '',
         'delete' => 'Slet',
         'edit' => 'Rediger',
@@ -59,7 +63,7 @@ return [
         'show_deleted' => '',
         'show_more' => 'vis mere',
         'show_more_options' => 'vis flere muligheder',
-        'update' => '',
+        'update' => 'Opdatering',
         'upload_image' => 'upload billede',
 
         'watch' => [
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'slip her for at uploade',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
-            'not_owner' => 'Alleen de eigenaar kan deze post bewerken.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Alleen de eigenaar kan deze post bewerken.',
+            'resolved' => '',
+            'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Deze beatmap is vergrendeld voor discussie.',
         ],

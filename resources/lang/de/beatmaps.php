@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu erlauben',
+        'beatmap_information' => '',
         'delete' => 'löschen',
         'deleted' => 'Von :editor gelöscht (:delete_time).',
         'deny_kudosu' => 'kudosu verweigern',
@@ -141,12 +142,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Noch keine Downvotes',
+                'up' => 'Noch keine Upvotes',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Letzte Upvotes',
+                'up' => 'Letzte Upvotes',
             ],
         ],
     ],
@@ -286,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'Spiegel',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Postările generate automat nu pot fi editate.',
-            'not_owner' => 'Doar proprietarul poate edita această postare.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Doar proprietarul poate edita această postare.',
+            'resolved' => '',
+            'system_generated' => 'Postările generate automat nu pot fi editate.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Acest beatmap este blocat pentru discuții.',
         ],

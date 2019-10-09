@@ -17,28 +17,27 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Controllers;
+
 use App\Models\Score\Best\Osu;
 use App\Models\User;
+use Illuminate\Filesystem\Filesystem;
+use Storage;
+use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
 {
     private $score;
     private $user;
 
-    public function setUp()
-    {
-        parent::setUp();
-        $this->user = factory(User::class)->create();
-        $this->score = factory(Osu::class)->create();
-    }
-
     public function testDownload()
     {
         $this
             ->actingAs($this->user)
             ->json(
-                'POST',
-                route('scores.report', ['mode' => 'osu', 'score' => $this->score->getKey()])
+                'GET',
+                route('scores.download', ['mode' => 'osu', 'score' => $this->score->getKey()])
             )
             ->assertSuccessful();
     }
@@ -54,25 +53,23 @@ class ScoresControllerTest extends TestCase
             ->assertStatus(404);
     }
 
-    public function testReport()
+    protected function setUp(): void
     {
-        $this
-            ->actingAs($this->user)
-            ->json(
-                'POST',
-                route('scores.report', ['mode' => 'osu', 'score' => $this->score->getKey()])
-            )
-            ->assertSuccessful();
-    }
+        parent::setUp();
 
-    public function testReportInvalidMode()
-    {
-        $this
-            ->actingAs($this->user)
-            ->json(
-                'POST',
-                route('scores.report', ['mode' => 'nope', 'score' => $this->score->getKey()])
-            )
-            ->assertStatus(404);
+        $this->user = factory(User::class)->create();
+        $this->score = factory(Osu::class)->states('with_replay')->create();
+
+        $replayFile = $this->score->replayFile();
+        $disk = $replayFile->getDiskName();
+        Storage::fake($disk);
+        $replayFile->disk()->put($this->score->getKey(), 'this-is-totally-a-legit-replay');
+
+        // Laravel doesn't remove the directory created for fakes and
+        // Storage::fake() removes the files in the directory when called but leaves the directory there.
+        $this->beforeApplicationDestroyed(function () use ($disk) {
+            $path = storage_path('framework/testing/disks/'.$disk);
+            (new Filesystem)->deleteDirectory($path);
+        });
     }
 }

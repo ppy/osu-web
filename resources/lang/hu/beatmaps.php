@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu engedélyezése',
+        'beatmap_information' => '',
         'delete' => 'törlés',
         'deleted' => 'Eltávolítva :editor által, :delete_time-kor.',
         'deny_kudosu' => 'kudosu megtagadása',
@@ -228,7 +229,7 @@ return [
                 'rating' => 'Értékelés',
                 'plays' => 'Játszások',
                 'relevance' => 'Relevancia',
-                'nominations' => 'Nominálások',
+                'nominations' => 'Nominációk',
             ],
             'supporter_filter_quote' => [
                 '_' => ':filters általi szűrés aktív :link-et igényel',
@@ -254,7 +255,7 @@ return [
         'graveyard' => 'Temető',
         'leaderboard' => 'Van Ranglistája',
         'loved' => 'Loved',
-        'mine' => 'Én mapjaim',
+        'mine' => 'Saját mapjaim',
         'pending' => 'Függőben lévő & WIP',
         'qualified' => 'Kvalifikált',
         'ranked' => 'Rangsorolt',
@@ -286,6 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => 'Mirror',
         'NC' => '',
         'NF' => '',
         'NM' => '',

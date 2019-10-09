@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'povolit kudosu',
+        'beatmap_information' => '',
         'delete' => 'odstranit',
         'deleted' => 'Smazal uživatel :editor v :delete_time.',
         'deny_kudosu' => 'odepřít kudosu',
@@ -286,6 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

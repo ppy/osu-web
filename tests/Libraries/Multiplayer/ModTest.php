@@ -18,12 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests;
+namespace Tests\Libraries\Multiplayer;
 
 use App\Exceptions\InvariantException;
 use App\Libraries\Multiplayer\Mod;
 use App\Libraries\Multiplayer\Ruleset;
-use TestCase;
+use Tests\TestCase;
 
 class ModTest extends TestCase
 {

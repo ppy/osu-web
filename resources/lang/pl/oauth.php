@@ -34,22 +34,22 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Czy na pewno chcesz odebrać uprawnienia temu klientowi?',
+        'scopes_title' => 'Ta aplikacja może:',
+        'owned_by' => 'Należy do :user',
+        'none' => 'Brak klientów',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Odbierz dostęp',
+            'true' => 'Odebrano dostęp',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'secret' => '',
+        'id' => 'Numer ID klienta',
+        'name' => 'Nazwa aplikacji',
+        'redirect' => 'Adres URL wywołań zwrotnych aplikacji',
+        'secret' => 'Klucz klienta',
     ],
 
     'login' => [
@@ -58,14 +58,23 @@ return [
         'title' => 'Logowanie do konta',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
-        'confirm_delete' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Czy na pewno chcesz usunąć tego klienta?',
+        'new' => 'Nowa aplikacja OAuth',
+        'none' => 'Brak klientów',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Usuń',
+            'true' => 'Usunięto',
         ],
     ],
 ];

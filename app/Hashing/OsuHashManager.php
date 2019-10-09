@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,53 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.authorized-client {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+namespace App\Hashing;
 
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #444;
+use Illuminate\Hashing\HashManager;
 
-  &__actions {
-    align-items: flex-start;
-  }
-
-  &__button {
-    .reset-input();
-    .default-text-shadow();
-    .link-white();
-    .link-plain();
-    .center-content();
-    flex: none;
-    margin: 0 10px;
-    padding: 10px 20px;
-    min-width: 100px;
-    border-radius: 10000px;
-
-    background-color: @red;
-
-    &:hover {
-      background-color: @red-light;
-    };
-
-    &--revoked {
-      background-color: #444;
-
-      &:hover {
-        background-color: #444;
-      };
+class OsuHashManager extends HashManager
+{
+    public function createBcryptDriver()
+    {
+        return new OsuHasher;
     }
-  }
-
-  &__name {
-    font-size: @font-size--title-small;
-    margin-bottom: 5px;
-    color: white;
-  }
-
-  &__scopes {
-    margin-top: 12px;
-  }
 }

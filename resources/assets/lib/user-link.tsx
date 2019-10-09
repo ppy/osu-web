@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as React from 'react';
 
 interface Props {
@@ -28,7 +29,7 @@ export class UserLink extends React.PureComponent<Props> {
       <a
         className='js-usercard'
         data-user-id={this.props.user.id}
-        href={laroute.route('users.show', { user: this.props.user.id })}
+        href={route('users.show', { user: this.props.user.id })}
       >
         {this.props.user.username}
       </a>

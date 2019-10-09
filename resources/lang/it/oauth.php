@@ -34,21 +34,21 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Sei sicuro di voler revocare i permessi di questo client?',
+        'scopes_title' => 'Questa applicazione può:',
+        'owned_by' => 'Di :user',
+        'none' => 'Nessun Client',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Revoca Accesso',
+            'true' => 'Accesso Revocato',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
+        'id' => 'Client ID',
+        'name' => 'Nome Applicazione',
+        'redirect' => 'URL di richiamo dell\'applicazione',
         'secret' => '',
     ],
 
@@ -58,14 +58,23 @@ return [
         'title' => 'Accesso account',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
-        'confirm_delete' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Sei sicuro di voler eliminare questo client?',
+        'new' => 'Nuova Applicazione OAuth',
+        'none' => 'Nessun Client',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Elimina',
+            'true' => 'Eliminato',
         ],
     ],
 ];

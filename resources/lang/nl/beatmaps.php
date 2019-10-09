@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu toestaan',
+        'beatmap_information' => '',
         'delete' => 'verwijder',
         'deleted' => 'Verwijderd door :editor :delete_time.',
         'deny_kudosu' => 'kudosu ontzeggen',
@@ -141,12 +142,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Nog geen downvotes',
+                'up' => 'Nog geen upvotes',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Laatste downvotes',
+                'up' => 'Laatste upvotes',
             ],
         ],
     ],
@@ -286,6 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => 'Mirror',
         'NC' => '',
         'NF' => '',
         'NM' => '',

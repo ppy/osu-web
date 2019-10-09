@@ -121,11 +121,11 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'Vennligst skriv en gyldig URL.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Applikasjonsnavn',
+                'redirect' => 'Applikasjonens omdirigeringslenke',
             ],
         ],
     ],
@@ -155,9 +155,9 @@ return [
         'too_long' => 'Overskrider maksimumslengden - kan bare være opp til :limit tegn.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Brukernavn',
+            'user_email' => 'E-postadresse',
+            'password' => 'Passord',
         ],
 
         'change_username' => [
@@ -177,8 +177,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Antall',
+                'cost' => 'Pris',
             ],
         ],
     ],

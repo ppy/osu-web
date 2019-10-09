@@ -120,12 +120,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Het maximum aantal toegestane OAuth toepassingen is overschreden.',
+            'url' => 'Voer een geldige URL in.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Applicatienaam',
+                'redirect' => 'Applicatie Terugbel URL',
             ],
         ],
     ],

@@ -35,19 +35,19 @@ return [
 
     'authorized_clients' => [
         'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
+        'scopes_title' => 'แอปพลิเคชันนี้สามารถ:',
+        'owned_by' => ':user เป็นเจ้าของ',
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'ยกเลิกการเข้าถึง',
+            'true' => 'ยกเลิกการเข้าถึงแล้ว',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
+        'id' => 'ID ของไคลเอนต์',
+        'name' => 'ชื่อแอปพลิเคชัน',
         'redirect' => '',
         'secret' => '',
     ],
@@ -56,6 +56,15 @@ return [
         'download' => 'คลิกที่นี่เพื่อดาวน์โหลดเกมและสร้างบัญชีผู้ใช้',
         'label' => 'อย่างแรก ล็อกอินก่อนนะ',
         'title' => 'ลงชื่อเข้าใช้บัญชี',
+    ],
+
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
     ],
 
     'own_clients' => [

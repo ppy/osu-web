@@ -34,22 +34,22 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Bist du sicher, dass du die Berechtigungen dieses Gerätes widerrufen möchtest?',
+        'scopes_title' => 'Diese Anwendung kann:',
+        'owned_by' => 'Gehört :user',
+        'none' => 'Keine Geräte',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Zugriff widerrufen',
+            'true' => 'Zugriff entfernt',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'secret' => '',
+        'id' => 'Client-ID',
+        'name' => 'Anwendungsname',
+        'redirect' => 'Anwendungs-Callback-URL',
+        'secret' => 'Client Secret',
     ],
 
     'login' => [
@@ -58,14 +58,23 @@ return [
         'title' => 'Konto-Anmeldung',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
-        'confirm_delete' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Bist du sicher, dass du dieses Gerät löschen willst?',
+        'new' => 'Neue OAuth-Anwendung',
+        'none' => 'Keine Geräte',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Löschen',
+            'true' => 'Gelöscht',
         ],
     ],
 ];

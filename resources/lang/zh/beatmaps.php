@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => '给予 kudosu',
+        'beatmap_information' => '',
         'delete' => '删除',
         'deleted' => '被 :editor 于 :delete_time 删除。',
         'deny_kudosu' => '收回 kudosu',
@@ -141,12 +142,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => '还没有差评',
+                'up' => '还没有好评',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => '最新差评',
+                'up' => '最新好评',
             ],
         ],
     ],
@@ -286,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

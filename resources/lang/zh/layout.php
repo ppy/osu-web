@@ -32,11 +32,11 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => '关闭（ESC）',
+        'fullscreen' => '切换全屏',
+        'zoom' => '放大/缩小',
+        'previous' => '前一个（左箭头）',
+        'next' => '后一个（右箭头）',
     ],
 
     'menu' => [

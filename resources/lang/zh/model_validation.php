@@ -64,7 +64,7 @@ return [
         'deleted_parent' => '不能回复已删除的评论。',
 
         'attributes' => [
-            'message' => '',
+            'message' => '消息',
         ],
     ],
 
@@ -120,12 +120,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'OAuth 应用数量超出限制。',
+            'url' => '请输入一个有效的 URL。',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => '应用名称',
+                'redirect' => '应用回调 URL',
             ],
         ],
     ],

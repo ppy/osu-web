@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'разрешить кудосу',
+        'beatmap_information' => 'Страница карты',
         'delete' => 'удалить',
         'deleted' => 'Удалено :editor в :delete_time',
         'deny_kudosu' => 'запретить кудосу',
@@ -141,8 +142,8 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Отрицательных оценок пока нет',
+                'up' => 'Положительных оценок пока нет',
             ],
             'latest' => [
                 'down' => '',
@@ -286,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'Зеркало',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

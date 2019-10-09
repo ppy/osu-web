@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosuを許可',
+        'beatmap_information' => '',
         'delete' => '削除',
         'deleted' => ':editorが:delete_timeに削除',
         'deny_kudosu' => 'kudosuを拒否',
@@ -286,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

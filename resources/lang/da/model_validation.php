@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Besvarelse af slettede kommentar er ikke tilladt.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Beskeden',
         ],
     ],
 
@@ -155,7 +155,7 @@ return [
         'too_long' => 'Overskrider maksimale længde - kan højest være op til :limit karakterer.',
 
         'attributes' => [
-            'username' => '',
+            'username' => 'Brugernavn',
             'user_email' => '',
             'password' => '',
         ],

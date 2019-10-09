@@ -27,7 +27,7 @@ return [
             'instructions' => '點擊愛心前往 osu! 商店',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => '我為什麼要支持osu!? 錢都花到哪兒了?',
 
             'team' => [
                 'title' => '支持團隊',
@@ -38,7 +38,7 @@ return [
                 'description' => '',
             ],
             'featured-artists' => [
-                'title' => '',
+                'title' => '精選藝術家',
                 'description' => '',
                 'link_text' => '',
             ],

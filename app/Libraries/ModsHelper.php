@@ -84,7 +84,13 @@ class ModsHelper
 
         foreach (static::AVAILABLE_MODS as $availableMod) {
             if (in_array($availableMod[1], $mods, true)) {
-                $bitset ^= (1 << $availableMod[0]);
+                $bitset |= (1 << $availableMod[0]);
+
+                if (isset($availableMod[2])) {
+                    foreach ($availableMod[2] as $implicitMod) {
+                        $bitset |= (1 << $implicitMod);
+                    }
+                }
             }
         }
 

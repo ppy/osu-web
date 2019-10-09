@@ -34,22 +34,22 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Apakah anda yakin untuk mencabut izin akses klien ini?',
+        'scopes_title' => 'Aplikasi ini dapat:',
+        'owned_by' => 'Dimiliki oleh :user',
+        'none' => 'Tidak ada klien',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Cabut akses',
+            'true' => 'Akses telah dicabut',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'secret' => '',
+        'id' => 'ID Klien',
+        'name' => 'Nama Aplikasi',
+        'redirect' => 'Application Callback URL',
+        'secret' => 'Client Secret',
     ],
 
     'login' => [
@@ -58,14 +58,23 @@ return [
         'title' => 'Sign-in Akun',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
-        'confirm_delete' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Apakah anda yakin untuk menghapus klien ini?',
+        'new' => 'Aplikasi OAuth anyar',
+        'none' => 'Tidak ada klien',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Hapus',
+            'true' => 'Telah dihapus',
         ],
     ],
 ];

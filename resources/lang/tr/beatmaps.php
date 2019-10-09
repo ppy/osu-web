@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosuya izin ver',
+        'beatmap_information' => '',
         'delete' => 'sil',
         'deleted' => ':editor tarafından :delete_time tarihinde silindi.',
         'deny_kudosu' => 'kudosuyu reddet',
@@ -286,6 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

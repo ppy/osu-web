@@ -20,8 +20,6 @@
 
 namespace App\Libraries\Elasticsearch;
 
-use Cache;
-
 abstract class SearchParams
 {
     /** @var int */
@@ -53,6 +51,13 @@ abstract class SearchParams
      * @return bool true if the parameters are eligible for caching; false, otherwise.
      */
     abstract public function isCacheable() : bool;
+
+    public function blockedUserIds()
+    {
+        $user = auth()->user();
+
+        return $user !== null ? $user->blockedUserIds()->toArray() : [];
+    }
 
     public function isQueryStringTooShort()
     {

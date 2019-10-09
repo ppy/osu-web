@@ -70,8 +70,8 @@ return [
     ],
 
     'oauth' => [
-        'authorized_clients' => 'autoryzowane aplikacje',
-        'own_clients' => '',
+        'authorized_clients' => 'autoryzowane klienty',
+        'own_clients' => 'moje klienty',
         'title' => 'OAuth',
     ],
 

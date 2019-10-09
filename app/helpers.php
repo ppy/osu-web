@@ -63,12 +63,48 @@ function broadcast_notification(...$arguments)
 }
 
 /**
- * Like Cache::remember but always save for one month or 10 * $minutes (whichever is longer)
+ * Like cache_remember_with_fallback but with a mutex that only allows a single process to run the callback.
+ */
+function cache_remember_mutexed(string $key, $seconds, $default, callable $callback)
+{
+    static $oneMonthInSeconds = 30 * 24 * 60 * 60;
+    $fullKey = "{$key}:with_fallback";
+    $data = cache()->get($fullKey);
+
+    if ($data === null || $data['expires_at']->isPast()) {
+        $lockKey = "{$key}:lock";
+        // this is arbitrary, but you've got other problems if it takes more than 5 minutes.
+        // the max is because cache()->add() doesn't work so well with funny values.
+        $lockTime = min(max($seconds, 60), 300);
+
+        // only the first caller that manages to setnx runs this.
+        if (cache()->add($lockKey, 1, $lockTime)) {
+            try {
+                $data = [
+                    'expires_at' => Carbon\Carbon::now()->addSeconds($seconds),
+                    'value' => $callback(),
+                ];
+
+                cache()->put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
+            } catch (Exception $e) {
+                // Log and continue with data from the first ::get.
+                log_error($e);
+            } finally {
+                cache()->forget($lockKey);
+            }
+        }
+    }
+
+    return $data['value'] ?? $default;
+}
+
+/**
+ * Like Cache::remember but always save for one month or 10 * $seconds (whichever is longer)
  * and return old value if failed getting the value after it expires.
  */
-function cache_remember_with_fallback($key, $minutes, $callback)
+function cache_remember_with_fallback($key, $seconds, $callback)
 {
-    static $oneMonthInMinutes = 30 * 24 * 60;
+    static $oneMonthInSeconds = 30 * 24 * 60 * 60;
 
     $fullKey = "{$key}:with_fallback";
 
@@ -77,11 +113,11 @@ function cache_remember_with_fallback($key, $minutes, $callback)
     if ($data === null || $data['expires_at']->isPast()) {
         try {
             $data = [
-                'expires_at' => Carbon\Carbon::now()->addMinutes($minutes),
+                'expires_at' => Carbon\Carbon::now()->addSeconds($seconds),
                 'value' => $callback(),
             ];
 
-            Cache::put($fullKey, $data, max($oneMonthInMinutes, $minutes * 10));
+            Cache::put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
         } catch (Exception $e) {
             // Log and continue with data from the first ::get.
             log_error($e);
@@ -645,12 +681,12 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
         $postIdParamKey = 'end';
     }
 
-    $url = route('forum.topics.show', ['topics' => $topicId, $postIdParamKey => $postId]);
+    $url = route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
 
     return $url;
 }
 
-function wiki_url($page = 'Welcome', $locale = null)
+function wiki_url($page = 'Main_Page', $locale = null)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
@@ -746,7 +782,7 @@ function nav_links()
         'orders-index' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'getWiki' => wiki_url('Welcome'),
+        'getWiki' => wiki_url('Main_Page'),
         'getFaq' => wiki_url('FAQ'),
         'getRules' => wiki_url('Rules'),
         'getSupport' => wiki_url('Help_Centre'),
@@ -763,7 +799,7 @@ function footer_landing_links()
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => route('download'),
-            'wiki' => wiki_url('Welcome'),
+            'wiki' => wiki_url('Main_Page'),
         ],
         'help' => [
             'faq' => wiki_url('FAQ'),
@@ -1119,7 +1155,7 @@ function get_params($input, $namespace, $keys)
 
     $params = [];
 
-    if (is_array($input)) {
+    if (is_array($input) || ($input instanceof ArrayAccess)) {
         foreach ($keys as $keyAndType) {
             $keyAndType = explode(':', $keyAndType);
 

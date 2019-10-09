@@ -135,7 +135,7 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
+                'title' => 'Flere favoritter',
                 'description' => '',
             ],
             'more_friends' => [

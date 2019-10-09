@@ -342,17 +342,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return $this->approved > 0;
     }
 
-    // TODO: remove this and update the coffee side names to match isScoreable.
-    public function hasScores()
-    {
-        return $this->attributes['approved'] > 0;
-    }
-
     public static function latestRankedOrApproved($count = 5)
     {
         // TODO: add filtering by game mode after mode-toggle UI/UX happens
 
-        return Cache::remember("beatmapsets_latest_{$count}", 60, function () use ($count) {
+        return Cache::remember("beatmapsets_latest_{$count}", 3600, function () use ($count) {
             // We union here so mysql can use indexes to speed this up
             $ranked = self::ranked()->active()->orderBy('approved_date', 'desc')->limit($count);
             $approved = self::approved()->active()->orderBy('approved_date', 'desc')->limit($count);
@@ -364,8 +358,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     public static function mostPlayedToday($mode = 'osu', $count = 5)
     {
         // TODO: this only returns based on osu mode plays for now, add other game modes after mode-toggle UI/UX happens
-
-        return Cache::remember("beatmapsets_most_played_today_{$mode}_{$count}", 60, function () use ($mode, $count) {
+        return cache_remember_mutexed("beatmapsets_most_played_today_{$mode}_{$count}", 3600, [], function () use ($count) {
             $counts = Score\Osu::selectRaw('beatmapset_id, count(*) as playcount')
                     ->whereNotIn('beatmapset_id', self::BUNDLED_IDS)
                     ->groupBy('beatmapset_id')

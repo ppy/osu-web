@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', und ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Zur vorherigen Position zurückkehren',
@@ -37,7 +41,7 @@ return [
         'change' => 'ändern',
         'click_to_copy' => 'Zum Speichern in die Zwischenablage klicken',
         'click_to_copy_copied' => 'In die Zwischenablage kopiert!',
-        'close' => '',
+        'close' => 'Schließen',
         'collapse' => 'einklappen',
         'delete' => 'Löschen',
         'edit' => 'Bearbeiten',
@@ -59,7 +63,7 @@ return [
         'show_deleted' => 'Gelöschte anzeigen',
         'show_more' => 'mehr anzeigen',
         'show_more_options' => 'mehr Optionen anzeigen',
-        'update' => '',
+        'update' => 'Aktualisieren',
         'upload_image' => 'bild hochladen',
 
         'watch' => [
@@ -77,7 +81,7 @@ return [
         'minute_short_unit' => 'min.|min.',
         'minutes' => ':count Minute|:count Minuten',
         'months' => ':count monat|:count monate',
-        'plus_others' => '',
+        'plus_others' => '+ :count_delimited anderer!|+ :count_delimited andere!',
         'post' => ':count_delimited Beitrag|:count_delimited Beiträge',
         'second_short_unit' => 'sek.|sek.',
         'star_priority' => ':count_delimited Sternpriorität|:count_delimited Sternprioritäten',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'zum hochladen hier ablegen',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

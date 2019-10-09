@@ -39,5 +39,5 @@ function trans_choice($key, $number, array $replace = [], $locale = null)
         $replace['count_delimited'] = i18n_number_format($number, null, null, $locale);
     }
 
-    return app('translator')->transChoice($key, $number, $replace, $locale);
+    return app('translator')->choice($key, $number, $replace, $locale);
 }

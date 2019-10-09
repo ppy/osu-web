@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', og ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Returner til forrige posisjon',
@@ -37,7 +41,7 @@ return [
         'change' => 'endre',
         'click_to_copy' => 'klikk for å kopiere til utklippstavlen',
         'click_to_copy_copied' => 'kopiert til utklippstavle!',
-        'close' => '',
+        'close' => 'Lukk',
         'collapse' => 'skjul',
         'delete' => 'Slett',
         'edit' => 'Rediger',
@@ -59,7 +63,7 @@ return [
         'show_deleted' => 'Vis slettede',
         'show_more' => 'vis mer',
         'show_more_options' => 'vis flere valg',
-        'update' => '',
+        'update' => 'Oppdater',
         'upload_image' => 'last opp bilde',
 
         'watch' => [
@@ -78,11 +82,11 @@ return [
         'minutes' => '::count_delimited minutt|:count_delimited minutter',
         'months' => '::count_delimited måned|:count_delimited måneder',
         'plus_others' => '',
-        'post' => '',
+        'post' => ':count_delimited innlegg|:count_delimited innlegg',
         'second_short_unit' => 's|s',
         'star_priority' => '',
         'update' => ':count_delimited oppdater|:count_delimited oppdateringer',
-        'view' => '',
+        'view' => ':count_delimited visning|:count_delimited visninger',
         'years' => ':count_delimited år|:count_delimited år',
     ],
 
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'slipp her for å laste opp',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

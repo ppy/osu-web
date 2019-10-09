@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'อนุญาตการให้ค่าชื่อเสียง',
+        'beatmap_information' => '',
         'delete' => 'ลบ',
         'deleted' => 'ถูกลบโดย :editor เมื่อเวลา :delete_time',
         'deny_kudosu' => 'ปฏิเสธการให้ค่าชื่อเสียง',
@@ -141,8 +142,8 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'ยังไม่มีคนโหวตลด',
+                'up' => 'ยังไม่มีคนโหวตเพิ่ม',
             ],
             'latest' => [
                 'down' => '',
@@ -286,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

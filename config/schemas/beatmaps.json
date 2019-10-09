@@ -21,6 +21,24 @@
         "artist_unicode": {
           "type": "text"
         },
+        "beatmaps": {
+          "dynamic": false,
+          "type": "nested",
+          "properties": {
+            "beatmap_id": {
+              "type": "long"
+            },
+            "convert": {
+              "type": "boolean"
+            },
+            "difficultyrating": {
+              "type": "double"
+            },
+            "playmode": {
+              "type": "byte"
+            }
+          }
+        },
         "bpm": {
           "type": "double"
         },

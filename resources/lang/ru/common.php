@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', и ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Администратор',
         'back_to_previous' => 'Возвратить предыдущее состояние',
@@ -37,7 +41,7 @@ return [
         'change' => 'изменить',
         'click_to_copy' => 'нажмите чтобы скопировать',
         'click_to_copy_copied' => 'скопировано!',
-        'close' => '',
+        'close' => 'Закрыть',
         'collapse' => 'свернуть',
         'delete' => 'Удалить',
         'edit' => 'Изменить',
@@ -59,7 +63,7 @@ return [
         'show_deleted' => 'Показать удалённые',
         'show_more' => 'показать больше',
         'show_more_options' => 'показать больше опций',
-        'update' => '',
+        'update' => 'Обновить',
         'upload_image' => 'выбрать файл',
 
         'watch' => [
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'бросьте файл сюда',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

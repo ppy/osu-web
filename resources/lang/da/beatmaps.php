@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'giv kudosu',
+        'beatmap_information' => '',
         'delete' => 'slet',
         'deleted' => 'Slettet af :editor :delete_time.',
         'deny_kudosu' => 'nægt kudosu',
@@ -250,7 +251,7 @@ return [
     'status' => [
         'any' => 'Vilkårlig',
         'approved' => 'Godkendt',
-        'favourites' => '',
+        'favourites' => 'Favoritter',
         'graveyard' => 'Kirkegård',
         'leaderboard' => '',
         'loved' => 'Loved',
@@ -286,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

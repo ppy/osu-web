@@ -20,7 +20,9 @@ import { MessageLengthCounter } from './message-length-counter'
 import { BigButton } from 'big-button'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
+import { ReportReportable } from 'report-reportable'
 import { UserAvatar } from 'user-avatar'
+
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -280,6 +282,17 @@ export class Post extends React.PureComponent
                 'data-method': 'POST'
                 'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.allow_kudosu')
+
+          if @canReport()
+            el ReportReportable,
+              className: "#{bn}__action #{bn}__action--button"
+              reportableId: @props.post.id
+              reportableType: 'beatmapset_discussion_post'
+              user: @props.user
+
+
+  canReport: =>
+    currentUser.id? && @props.post.user_id != currentUser.id
 
 
   clearPermalinkClicked: =>

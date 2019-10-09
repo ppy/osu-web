@@ -25,6 +25,8 @@ return [
     'title' => 'osu! forums',
 
     'covers' => [
+        'edit' => 'Wijzig omslag',
+
         'create' => [
             '_' => 'Stel omslagafbeelding in',
             'button' => 'Afbeelding uploaden',
@@ -59,14 +61,6 @@ return [
         'busy' => 'Markeren als gelezen...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Een poll bewerken zal de huidige resultaten verwijderen!',
-
-        'actions' => [
-            'edit' => 'Bewerk poll',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Will je deze post echt verwijderen?',
         'confirm_restore' => 'Will je deze post echt terugzetten?',
@@ -77,6 +71,12 @@ return [
             'destroy' => 'Verwijder bericht',
             'restore' => 'Herstel bericht',
             'edit' => 'Bewerk bericht',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => 'Nieuw antwoord',
+            ],
         ],
 
         'info' => [
@@ -105,6 +105,7 @@ return [
         'started_by_verbose' => 'gestart door :user',
 
         'create' => [
+            'close' => 'Sluiten',
             'preview' => 'Voorbeeld',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -296,7 +297,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'Poll bewerken',
+                'edit_warning' => 'Een poll bewerken zal de huidige resultaten verwijderen!',
                 'vote' => 'Stem',
+
+                'button' => [
+                    'change_vote' => 'Verander je stem',
+                    'edit' => 'Bewerk poll',
+                    'view_results' => 'Ga naar resultaten',
+                    'vote' => 'Stem',
+                ],
 
                 'detail' => [
                     'end_time' => 'Stemmen eindigt op :time',

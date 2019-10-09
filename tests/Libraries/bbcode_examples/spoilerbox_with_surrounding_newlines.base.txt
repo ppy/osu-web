@@ -1,0 +1,15 @@
+Upper line text.
+[spoilerbox]
+Packed spoilerbox.
+[/spoilerbox]
+Bottom line text.
+
+Prefix text.[spoilerbox]Inline spoilerbox (except it's not).[/spoilerbox]Suffix text.
+
+Upper line text.
+
+[spoilerbox]
+Spoilerbox with blank lines.
+[/spoilerbox]
+
+Bottom line text.
