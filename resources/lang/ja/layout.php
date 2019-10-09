@@ -32,11 +32,11 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
+        'close' => '閉じる (Esc)',
+        'fullscreen' => '全画面表示に切り替え',
+        'zoom' => 'ズームイン/ズームアウト',
         'previous' => '',
-        'next' => '',
+        'next' => '次に行く (右矢印)',
     ],
 
     'menu' => [

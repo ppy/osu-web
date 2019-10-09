@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Otomatik olarak oluşturulmuş gönderiler düzenlenemez.',
-            'not_owner' => 'Gönderileri yalnızca gönderen düzenleyebilir.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Gönderileri yalnızca gönderen düzenleyebilir.',
+            'resolved' => '',
+            'system_generated' => 'Otomatik olarak oluşturulmuş gönderiler düzenlenemez.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Bu beatmap tartışma için kilitlenmiş.',
         ],

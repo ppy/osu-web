@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => '无法编辑自动回复。',
-            'not_owner' => '只有作者可以编辑。',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => '只有作者可以编辑。',
+            'resolved' => '',
+            'system_generated' => '无法编辑自动回复。',
+        ],
+
         'store' => [
             'beatmapset_locked' => '该谱面因需要探讨而被锁定。',
         ],
