@@ -52,12 +52,10 @@ trait BeatmapsetTrait
         return static::on('mysql-readonly')
             ->withoutGlobalScopes()
             ->active()
-            ->with([
-                'beatmaps', // note that the with query will run with the default scopes.
-                'beatmaps.difficulty' => function ($query) {
-                    $query->where('mods', 0);
-                },
-            ]);
+            ->with('beatmaps') // note that the with query will run with the default scopes.
+            ->with(['beatmaps.difficulty' => function ($query) {
+                $query->where('mods', 0);
+            }]);
     }
 
     public static function esSchemaFile()
