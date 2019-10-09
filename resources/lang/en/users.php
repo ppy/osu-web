@@ -167,7 +167,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count_delimited follower|:count_delimited followers',
             'none' => 'none',
             'unranked' => 'No recent plays',
 

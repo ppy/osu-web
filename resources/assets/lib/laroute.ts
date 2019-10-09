@@ -16,46 +16,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.mp-history-events {
-  @_event-max-width: 640px;
+import { forEach } from 'lodash';
+import { Ziggy } from 'ziggy';
+import ziggyRoute from 'ziggy-route';
 
-  .event() {
-    background-color: @osu-colour-b4;
-    max-width: @_event-max-width;
-    margin-left: auto;
-    margin-right: auto;
+interface Attributes {
+  [key: string]: string | number | null | undefined;
+}
+
+export function route(name: string, params?: Attributes | null, absolute?: boolean) {
+  if (params == null) {
+    params = {};
   }
 
-  .event-end() {
-    border-radius: 0 0 @border-radius-base @border-radius-base;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-  }
+  return ziggyRoute(name, params, absolute, Ziggy).toString();
+}
 
-  &__event {
-    .event();
+export function link_to_route(name: string, text: string, params?: Attributes | null, attrs?: Attributes | null) {
+  const url = route(name, params);
 
-    &:first-child,
-    :not(&) + & {
-      padding-top: 20px;
-      border-radius: @border-radius-base @border-radius-base 0 0;
-    }
+  const link = document.createElement('a');
+  link.textContent = text;
+  link.href = url;
 
-    &:last-child {
-      .event-end();
-      padding-bottom: 20px;
-    }
-  }
-
-  &__game {
-    :not(&) + & {
-      &::before {
-        .event();
-        .event-end();
-
-        content: '';
-        display: block;
+  if (attrs != null) {
+    forEach(attrs, (value, key) => {
+      if (value != null) {
+        link.setAttribute(key, value.toString());
       }
-    }
+    });
   }
+
+  return link.outerHTML;
 }

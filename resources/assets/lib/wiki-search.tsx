@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as React from 'react';
 
 export class WikiSearch extends React.Component {
@@ -34,7 +35,7 @@ export class WikiSearch extends React.Component {
       return;
     }
 
-    Turbolinks.visit(laroute.route('search', {
+    Turbolinks.visit(route('search', {
       mode: 'wiki_page',
       query: input.value,
     }));
