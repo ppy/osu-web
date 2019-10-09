@@ -91,7 +91,7 @@ trait BeatmapsetTrait
     {
         $mappings = static::esMappings()['beatmaps']['properties'];
 
-        $beatmapsValues = [];
+        $values = [];
         foreach ($this->beatmaps as $beatmap) {
             $beatmapValues = [];
             foreach ($mappings as $field => $mapping) {
@@ -99,7 +99,7 @@ trait BeatmapsetTrait
             }
 
             $beatmapValues['convert'] = false;
-            $beatmapsValues[] = $beatmapValues;
+            $values[] = $beatmapValues;
 
             if ($beatmap->playmode === Beatmap::MODES['osu']) {
                 foreach (Beatmap::MODES as $modeInt) {
@@ -113,12 +113,12 @@ trait BeatmapsetTrait
                     $convertValues['difficultyrating'] = $diff !== null ? $diff->diff_unified : $beatmap->difficultyrating;
                     $convertValues['playmode'] = $modeInt;
 
-                    $beatmapsValues[] = $convertValues;
+                    $values[] = $convertValues;
                 }
             }
         }
 
-        return $beatmapsValues;
+        return $values;
     }
 
     private function esDifficultiesValues()
