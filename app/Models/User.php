@@ -1310,6 +1310,15 @@ class User extends Model implements AuthenticatableContract
         $this->osu_playmode = Beatmap::modeInt($value);
     }
 
+    public function blockedUserIds()
+    {
+        if (!array_key_exists('blocks', $this->memoized)) {
+            $this->memoized['blocks'] = $this->blocks;
+        }
+
+        return $this->memoized['blocks']->pluck('user_id');
+    }
+
     public function groupBadge()
     {
         if ($this->isBot()) {
