@@ -18,14 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'scores' => [
-        'button' => 'Rapporter Spillresultat',
-        'title' => 'Rapporter :username\'s spillresultat?',
-    ],
+namespace App\Hashing;
 
-    'comment' => [
-        'button' => 'Rapporter',
-        'title' => 'Rapporter :username sin kommentar?',
-    ],
-];
+use Illuminate\Hashing\HashManager;
+
+class OsuHashManager extends HashManager
+{
+    public function createBcryptDriver()
+    {
+        return new OsuHasher;
+    }
+}

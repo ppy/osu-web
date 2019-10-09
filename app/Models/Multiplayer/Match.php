@@ -64,7 +64,7 @@ class Match extends Model
 
     public function hadPlayer(User $user)
     {
-        return Cache::remember("multiplayer_participation_{$this->match_id}_{$user->user_id}", 1, function () use ($user) {
+        return Cache::remember("multiplayer_participation_{$this->match_id}_{$user->user_id}", 60, function () use ($user) {
             return $this->events()->where('user_id', $user->user_id)->whereIn('text', ['CREATE', 'JOIN'])->exists();
         });
     }

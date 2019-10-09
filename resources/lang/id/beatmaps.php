@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'izinkan kudosu',
+        'beatmap_information' => '',
         'delete' => 'hapus',
         'deleted' => 'Dihapus oleh :editor :delete_time.',
         'deny_kudosu' => 'tolak kudosu',

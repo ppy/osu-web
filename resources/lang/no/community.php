@@ -27,15 +27,15 @@ return [
             'instructions' => 'klikk på hjerteknappen for å fortsette til osu!store',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Hvorfor bør jeg støtte osu!? Hvor går pengene hen?',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Støtt skaperene',
+                'description' => 'En liten gruppe mennesker utvikler osu! Din støtte hjelper dem med å, du vet.... overleve.',
             ],
             'infra' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Alle pengebidrag går mot å finansiere servere for å kjøre nettsiden, flerspillerfunksjoner, rangeringslister osv.',
             ],
             'featured-artists' => [
                 'title' => '',
@@ -47,14 +47,14 @@ return [
                 'description' => '',
             ],
             'tournaments' => [
-                'title' => '',
+                'title' => 'Offisielle Turneringer',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => 'Se turneringer &raquo;',
             ],
             'bounty-program' => [
                 'title' => '',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => 'Les mer &raquo;',
             ],
         ],
         'perks' => [
@@ -65,12 +65,12 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
-                'description' => "",
+                'title' => 'Vennerangering',
+                'description' => "Sjekk hvordan du ligger an i forhold til vennene dine på beatmappets rangerinsliste gjennom både spiller og på nettsiden vår.",
             ],
 
             'country_ranking' => [
-                'title' => '',
+                'title' => 'Landsrangering',
                 'description' => '',
             ],
 
@@ -136,7 +136,7 @@ return [
 
             'more_favourites' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Det makimalt antallet beatmaps som du kan legge til å favorittene dine har blitt hevet fra :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => '',

@@ -26,8 +26,8 @@ use Exception;
 
 class Image
 {
-    // in minutes
-    const CACHE_DURATION = 120;
+    // in seconds
+    const CACHE_DURATION = 7200;
 
     public $path;
     public $url;

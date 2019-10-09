@@ -16,6 +16,9 @@ start_notification_server() { (
     yarn serve > server.log 2>&1 &
 ) }
 
+# install latest chrome driver
+php artisan dusk:chrome-driver
+
 # start the headless driver, standalone server, and notification server that the tests use
 google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 php artisan serve > /dev/null 2>&1 &

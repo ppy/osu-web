@@ -58,6 +58,15 @@ return [
         'title' => 'Вход в аккаунт',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => 'Вы уверены, что хотите удалить этого клиента?',
         'new' => 'Новое приложение OAuth',
