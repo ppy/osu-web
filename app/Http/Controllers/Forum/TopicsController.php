@@ -220,8 +220,8 @@ class TopicsController extends Controller
         $postStartId = Request::input('start');
         $postEndId = get_int(Request::input('end'));
         $nthPost = get_int(Request::input('n'));
-        $skipLayout = Request::input('skip_layout') === '1';
-        $showDeleted = Request::input('with_deleted', '1') === '1';
+        $skipLayout = get_bool(Request::input('skip_layout')) ?? false;
+        $showDeleted = get_bool(Request::input('with_deleted')) ?? true;
         $jumpTo = null;
 
         $topic = Topic
