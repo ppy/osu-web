@@ -64,6 +64,7 @@ class CommentBundle
         $this->comment = $options['comment'] ?? null;
         $this->depth = $options['depth'] ?? 2;
         $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
+        $this->includeDeleted = $options['includeDeleted'] ?? true;
     }
 
     public function toArray()
@@ -181,6 +182,10 @@ class CommentBundle
 
         if ($this->includeCommentableMeta) {
             $query->with('commentable');
+        }
+
+        if (!$this->includeDeleted) {
+            $query->whereNull('deleted_at');
         }
 
         if (!$sorted) {

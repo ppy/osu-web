@@ -210,7 +210,7 @@ class User extends Model implements AuthenticatableContract
     const CACHING = [
         'follower_count' => [
             'key' => 'followerCount',
-            'duration' => 720, // 12 hours
+            'duration' => 43200, // 12 hours
         ],
     ];
 
@@ -1310,6 +1310,15 @@ class User extends Model implements AuthenticatableContract
         $this->osu_playmode = Beatmap::modeInt($value);
     }
 
+    public function blockedUserIds()
+    {
+        if (!array_key_exists('blocks', $this->memoized)) {
+            $this->memoized['blocks'] = $this->blocks;
+        }
+
+        return $this->memoized['blocks']->pluck('user_id');
+    }
+
     public function groupBadge()
     {
         if ($this->isBot()) {
@@ -1867,6 +1876,7 @@ class User extends Model implements AuthenticatableContract
     protected function newReportableExtraParams() : array
     {
         return [
+            'reason' => 'Cheating',
             'user_id' => $this->getKey(),
         ];
     }

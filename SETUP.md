@@ -117,7 +117,7 @@ $ bin/update_locales_and_routes_js
 $ yarn run development
 ```
 
-Note that if you use the bundled docker-compose setup, yarn/webpack will be already run in watch mode, and you will only need to run the `lang:js` and `laroute:generate` artisan commands whenever you need to regenerate these helper files.
+Note that if you use the bundled docker-compose setup, yarn/webpack will be already run in watch mode, and you will only need to run the `lang:js` and `ziggy:generate` artisan commands whenever you need to regenerate these helper files.
 
 ## Reset the database + seeding sample data
 

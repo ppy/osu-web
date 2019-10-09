@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => '给予 kudosu',
+        'beatmap_information' => '',
         'delete' => '删除',
         'deleted' => '被 :editor 于 :delete_time 删除。',
         'deny_kudosu' => '收回 kudosu',

@@ -20,6 +20,7 @@
 
 namespace App\Providers;
 
+use App\Hashing\OsuHashManager;
 use App\Http\Middleware\RequireScopes;
 use App\Http\Middleware\StartSession;
 use App\Libraries\MorphMap;
@@ -69,7 +70,13 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\Registrar'
         );
 
-        $this->app->bind('hash', 'App\Hashing\OsuHasher');
+        $this->app->singleton('hash', function ($app) {
+            return new OsuHashManager($app);
+        });
+
+        $this->app->singleton('hash.driver', function ($app) {
+            return $app['hash']->driver();
+        });
 
         $this->app->singleton('OsuAuthorize', function () {
             return new OsuAuthorize();

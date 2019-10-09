@@ -19,6 +19,7 @@
 import { BeatmapsetSearch, SearchResponse } from 'beatmaps/beatmapset-search';
 import ResultSet from 'beatmaps/result-set';
 import { BeatmapsetSearchFilters, BeatmapsetSearchParams } from 'beatmapset-search-filters';
+import { route } from 'laroute';
 import { debounce, intersection, map } from 'lodash';
 import { action, computed, IObjectDidChange, IValueDidChange, Lambda, observable, observe, runInAction } from 'mobx';
 
@@ -174,7 +175,7 @@ export class BeatmapsetSearchController {
   }
 
   private filterChangedSearch() {
-    const url = encodeURI(laroute.route('beatmapsets.index', this.filters.queryParams));
+    const url = encodeURI(route('beatmapsets.index', this.filters.queryParams));
     Turbolinks.controller.advanceHistory(url);
 
     this.search();

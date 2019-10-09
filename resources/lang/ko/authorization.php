@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => '자동으로 생성된 글은 수정할 수 없습니다.',
-            'not_owner' => '본인이 쓴 글만 수정할 수 있습니다.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => '본인이 쓴 글만 수정할 수 있습니다.',
+            'resolved' => '',
+            'system_generated' => '자동으로 생성된 글은 수정할 수 없습니다.',
+        ],
+
         'store' => [
             'beatmapset_locked' => '이 비트맵은 토론을 할 수 없도록 잠겨 있습니다.',
         ],

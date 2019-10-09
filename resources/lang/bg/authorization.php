@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Автоматично създанената публикация не може да бъде редактирана.',
-            'not_owner' => 'Само създателят на публикацията може да я редактира.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Само създателят на публикацията може да я редактира.',
+            'resolved' => '',
+            'system_generated' => 'Автоматично създанената публикация не може да бъде редактирана.',
+        ],
+
         'store' => [
             'beatmapset_locked' => '',
         ],

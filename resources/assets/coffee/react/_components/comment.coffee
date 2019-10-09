@@ -23,7 +23,7 @@ import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, span, textarea } from 'react-dom-factories'
-import { ReportComment } from 'report-comment'
+import { ReportReportable } from 'report-reportable'
 import { Spinner } from 'spinner'
 import { UserAvatar } from 'user-avatar'
 
@@ -284,9 +284,10 @@ export class Comment extends React.PureComponent
   renderReport: =>
     if @props.comment.canReport
       div className: 'comment__row-item',
-        el ReportComment,
+        el ReportReportable,
           className: 'comment__action'
-          comment: @props.comment
+          reportableId: @props.comment.id
+          reportableType: 'comment'
           user: @userFor(@props.comment)
 
 

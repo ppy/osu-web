@@ -32,8 +32,8 @@ trait BeatmapsetTrait
     {
         return array_merge(
             $this->esBeatmapsetValues(),
-            ['beatmaps' => $this->esBeatmapValues()],
-            ['difficulties' => $this->esDifficultyValues()]
+            ['beatmaps' => $this->esBeatmapsValues()],
+            ['difficulties' => $this->esDifficultiesValues()]
         );
     }
 
@@ -52,12 +52,10 @@ trait BeatmapsetTrait
         return static::on('mysql-readonly')
             ->withoutGlobalScopes()
             ->active()
-            ->with([
-                'beatmaps', // note that the with query will run with the default scopes.
-                'beatmaps.difficulty' => function ($query) {
-                    $query->where('mods', 0);
-                },
-            ]);
+            ->with('beatmaps') // note that the with query will run with the default scopes.
+            ->with(['beatmaps.difficulty' => function ($query) {
+                $query->where('mods', 0);
+            }]);
     }
 
     public static function esSchemaFile()
@@ -87,11 +85,11 @@ trait BeatmapsetTrait
         return $values;
     }
 
-    private function esBeatmapValues()
+    private function esBeatmapsValues()
     {
         $mappings = static::esMappings()['beatmaps']['properties'];
 
-        $beatmapsValues = [];
+        $values = [];
         foreach ($this->beatmaps as $beatmap) {
             $beatmapValues = [];
             foreach ($mappings as $field => $mapping) {
@@ -99,7 +97,7 @@ trait BeatmapsetTrait
             }
 
             $beatmapValues['convert'] = false;
-            $beatmapsValues[] = $beatmapValues;
+            $values[] = $beatmapValues;
 
             if ($beatmap->playmode === Beatmap::MODES['osu']) {
                 foreach (Beatmap::MODES as $modeInt) {
@@ -113,15 +111,15 @@ trait BeatmapsetTrait
                     $convertValues['difficultyrating'] = $diff !== null ? $diff->diff_unified : $beatmap->difficultyrating;
                     $convertValues['playmode'] = $modeInt;
 
-                    $beatmapsValues[] = $convertValues;
+                    $values[] = $convertValues;
                 }
             }
         }
 
-        return $beatmapsValues;
+        return $values;
     }
 
-    private function esDifficultyValues()
+    private function esDifficultiesValues()
     {
         $mappings = static::esMappings()['difficulties']['properties'];
 
