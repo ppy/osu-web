@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
 import Message from 'models/chat/message';
@@ -151,7 +152,7 @@ export default class ConversationView extends React.Component<any, any> {
             <StringWithComponent
               pattern={osu.trans('chat.talking_with')}
               // TODO: rework this once the user class situation is resolved
-              mappings={{':name': <a key='user' className='js-usercard' data-user-id={channel.pmTarget} href={laroute.route('users.show', {user: channel.pmTarget})}>{channel.name}</a>}}
+              mappings={{':name': <a key='user' className='js-usercard' data-user-id={channel.pmTarget} href={route('users.show', {user: channel.pmTarget})}>{channel.name}</a>}}
             />
           ) : (
             osu.trans('chat.talking_in', {channel: channel.name})

@@ -41,4 +41,11 @@ return [
             'default' => 'İngilizce sürüm',
         ],
     ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
+    ],
 ];

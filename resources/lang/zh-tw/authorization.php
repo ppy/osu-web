@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => '無法編輯自動回覆。',
-            'not_owner' => '只有作者可以編輯。',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => '只有作者可以編輯。',
+            'resolved' => '',
+            'system_generated' => '無法編輯自動回覆。',
+        ],
+
         'store' => [
             'beatmapset_locked' => '這個圖譜被鎖定討論。',
         ],

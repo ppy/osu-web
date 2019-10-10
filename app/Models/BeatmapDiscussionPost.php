@@ -41,7 +41,7 @@ use DB;
  */
 class BeatmapDiscussionPost extends Model
 {
-    use Validatable;
+    use Validatable, Reportable;
 
     const MESSAGE_LIMIT_TIMELINE = 750;
 
@@ -373,5 +373,13 @@ class BeatmapDiscussionPost extends Model
     {
         $query->withoutTrashed()
             ->whereHas('visibleBeatmapDiscussion');
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'Spam',
+            'user_id' => $this->user_id,
+        ];
     }
 }

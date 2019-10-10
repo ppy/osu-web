@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ' oraz ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Administrator',
         'back_to_previous' => 'Powrót do poprzedniej pozycji',
@@ -60,7 +64,7 @@ return [
         'show_more' => 'pokaż więcej',
         'show_more_options' => 'pokaż więcej opcji',
         'update' => 'Zaktualizuj',
-        'upload_image' => 'prześlij zdjęcie',
+        'upload_image' => 'prześlij obraz',
 
         'watch' => [
             'to_0' => 'Przestań obserwować',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'upuść tutaj, aby przesłać plik',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

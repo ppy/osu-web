@@ -58,6 +58,15 @@ return [
         'title' => '登入',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => '您確定要刪除此客戶端嗎？',
         'new' => '新增 OAuth 應用程式',

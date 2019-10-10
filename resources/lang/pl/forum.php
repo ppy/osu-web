@@ -101,7 +101,7 @@ return [
         'post_reply' => 'Opublikuj',
         'reply_box_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'reply_title_prefix' => 'Odp.',
-        'started_by' => 'przez :user',
+        'started_by' => 'Autor: :user',
         'started_by_verbose' => 'utworzony przez :user',
 
         'create' => [

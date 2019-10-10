@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Automatiskt genererade inlägg kan inte redigeras.',
-            'not_owner' => 'Endast den som la upp inlägget kan redigera inlägget.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Endast den som la upp inlägget kan redigera inlägget.',
+            'resolved' => '',
+            'system_generated' => 'Automatiskt genererade inlägg kan inte redigeras.',
+        ],
+
         'store' => [
             'beatmapset_locked' => '',
         ],

@@ -75,11 +75,9 @@ class NewsController extends Controller
         }
 
         return view('news.show', [
+            'commentBundle' => CommentBundle::forEmbed($post),
             'post' => $post,
-            'postJson' => [
-                'post' => json_item($post, 'NewsPost', ['content', 'navigation']),
-                'comment_bundle' => CommentBundle::forEmbed($post)->toArray(),
-            ],
+            'postJson' => json_item($post, 'NewsPost', ['content', 'navigation']),
         ]);
     }
 
