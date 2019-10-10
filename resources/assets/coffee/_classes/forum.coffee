@@ -226,8 +226,8 @@ class @Forum
   postUrlN: (postN) ->
     url = "#{document.location.pathname}?n=#{postN}"
 
-    if @showDeleted()
-      url += "&with_deleted=#{+@showDeleted()}"
+    if not @showDeleted()
+      url += "&with_deleted=0"
 
     url
 
