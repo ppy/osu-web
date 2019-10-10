@@ -204,10 +204,8 @@ class @Forum
 
 
   toggleDeleted: =>
-    Turbolinks.visit osu.updateQueryString null,
+    Turbolinks.visit osu.updateQueryString @postUrlN(@currentPostPosition),
       with_deleted: +!@showDeleted()
-      n: @currentPostPosition
-
 
   initialScrollTo: =>
     return if location.hash != '' ||
@@ -226,7 +224,12 @@ class @Forum
 
 
   postUrlN: (postN) ->
-    "#{document.location.pathname}?n=#{postN}"
+    url = "#{document.location.pathname}?n=#{postN}"
+
+    if @showDeleted()
+      url += "&with_deleted=#{+@showDeleted()}"
+
+    url
 
 
   showMore: (e) =>
