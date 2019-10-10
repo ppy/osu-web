@@ -27,6 +27,7 @@
     'pageDescription' => $topic->toMetaDescription(),
     'legacyNav' => false,
     'legacyFont' => false,
+    'opghCategory' => "osu! » {{ trans('layout.menu.community.getForum') }}",
 ])
 
 @php

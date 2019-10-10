@@ -20,6 +20,7 @@
     'currentAction' => 'contests',
     'title' => "Contest: {$contestMeta->name}",
     'pageDescription' => strip_tags(markdown($contestMeta->currentDescription())),
+    'opghCategory' => "osu! » {{ trans('layout.menu.community.contests') }}",
 ])
 
 @section('content')

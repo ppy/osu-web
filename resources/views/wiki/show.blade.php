@@ -19,6 +19,7 @@
 @extends('master', [
     'title' => null,
     'titlePrepend' => $page->title(true),
+    'opghCategory' => "osu! » {{ trans('layout.menu.help.getWiki') }}",
 ])
 
 @section('content')

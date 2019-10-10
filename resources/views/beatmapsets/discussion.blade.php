@@ -20,6 +20,7 @@
         'title' => $beatmapset->title,
         'mapper' => $beatmapset->user->username ?? '?',
     ]),
+    'opghCategory' => "osu! » {{ trans('layout.menu.beatmaps._') }}",
 ])
 
 @section('content')

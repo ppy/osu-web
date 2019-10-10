@@ -19,6 +19,7 @@
     // Verification doesn't inherit from App\Controller, thus these variables aren't set. Thus we set them here:
     'currentSection' => 'error',
     'currentAction' => '401',
+    'opghCategory' => "osu! » {{ trans('layout.opengraph.site-name.users') }}",
 ])
 
 @section('content')

@@ -24,6 +24,7 @@
         'mode' => 'forum_post',
     ],
     'titlePrepend' => $forum->forum_name,
+    'opghCategory' => "osu! » {{ trans('layout.menu.community.getForum') }}",
 ])
 
 @section('content')

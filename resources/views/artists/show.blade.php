@@ -20,6 +20,7 @@
     'currentAction' => 'artists',
     'title' => "Featured Artist: $artist->name",
     'pageDescription' => $artist->description,
+    'opghCategory' => "osu! » {{ trans('layout.menu.beatmaps.artists') }}",
 ])
 
 @section('content')

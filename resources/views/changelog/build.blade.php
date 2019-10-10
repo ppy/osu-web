@@ -18,6 +18,7 @@
 @extends('master', [
     'legacyNav' => false,
     'title' => trans('changelog.build.title', ['version' => "{$build['update_stream']['display_name']} {$build['version']}"]),
+    'opghCategory' => "osu! » {{ trans('layout.menu.home.changelog-index') }}",
 ])
 
 @section('content')

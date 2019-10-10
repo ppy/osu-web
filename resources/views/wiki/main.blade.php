@@ -16,7 +16,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-@extends('master')
+@extends('master', [
+    'opghCategory' => "osu! » {{ trans('layout.menu.help.getWiki') }}",
+])
 
 @section('content')
     <div class="osu-layout osu-layout__row">

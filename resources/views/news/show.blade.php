@@ -18,6 +18,7 @@
 @extends('master', [
     'legacyNav' => false,
     'titlePrepend' => $post->title(),
+    'opghCategory' => "osu! » {{ trans('layout.menu.home.news-index') }}",
 ])
 
 @section('content')

@@ -15,7 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', [
+    'opghCategory' => "osu! » {{ trans('layout.menu.community.getForum') }}",
+])
 
 @section('content')
     <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout__row--full">

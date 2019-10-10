@@ -24,6 +24,7 @@
     'title' => trans('users.show.title', ['username' => $user->username]),
     'pageDescription' => trans('users.show.page_description', ['username' => $user->username]),
     'legacyNav' => $legacyNav,
+    'opghCategory' => "osu! » {{ trans('layout.opengraph.site-name.users') }}",
 ])
 
 @section('content')

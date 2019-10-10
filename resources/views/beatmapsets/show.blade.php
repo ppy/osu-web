@@ -27,6 +27,7 @@
     'pageDescription' => $beatmapset->toMetaDescription(),
     'titlePrepend' => "{$beatmapset->artist} - {$beatmapset->title}",
     'extraFooterLinks' => $extraFooterLinks ?? [],
+    'opghCategory' => "osu! » {{ trans('layout.menu.beatmaps._') }}",
 ])
 
 @section('content')

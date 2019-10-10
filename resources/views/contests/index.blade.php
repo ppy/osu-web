@@ -20,6 +20,7 @@
     'currentSection' => 'community',
     'currentAction' => 'contests',
     'title' => "Contests",
+    'opghCategory' => "osu! » {{ trans('layout.menu.community.contests') }}",
 ])
 
 @section('content')

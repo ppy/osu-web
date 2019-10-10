@@ -17,6 +17,7 @@
 --}}
 @extends('master', [
     'legacyNav' => false,
+    'opghCategory' => "osu! » {{ trans('layout.menu.profile.friends') }}",
 ])
 
 @section('content')

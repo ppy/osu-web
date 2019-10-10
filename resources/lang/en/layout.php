@@ -254,6 +254,12 @@ return [
         'reference' => "Just in case, here's a code you can give to support!",
     ],
 
+    'opengraph' => [
+        'site-name' => [
+            'users' => 'users',
+        ],
+    ],
+
     'popup_login' => [
         'login' => [
             'email' => 'email address',

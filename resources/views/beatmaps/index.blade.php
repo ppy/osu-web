@@ -20,6 +20,7 @@
   'currentAction' => 'index',
   'title' => trans('beatmapsets.index.title'),
   'pageDescription' => trans('beatmapsets.index.title'),
+  'opghCategory' => "osu! » {{ trans('layout.menu.beatmaps._') }}",
 ])
 
 @section('content')

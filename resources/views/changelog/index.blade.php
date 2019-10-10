@@ -37,6 +37,7 @@
 @extends('master', [
     'legacyNav' => false,
     'title' => $title,
+    'opghCategory' => "osu! » {{ trans('layout.menu.home.changelog-index') }}",
 ])
 
 @section('content')

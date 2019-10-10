@@ -19,6 +19,7 @@
     'currentSection' => 'community',
     'currentAction' => 'profile',
     'title' => trans('users.posts.title', ['username' => $user->username]),
+    'opghCategory' => "osu! » {{ trans('layout.opengraph.site-name.users') }}",
 ])
 
 @section('content')

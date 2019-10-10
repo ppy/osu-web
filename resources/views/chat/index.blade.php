@@ -20,6 +20,7 @@
     'currentSection' => 'community',
     'legacyNav' => false,
     'title' => trans('chat.title'),
+    'opghCategory' => "osu! » {{ trans('layout.menu.community._') }}",
 ])
 
 @section("content")

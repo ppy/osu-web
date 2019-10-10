@@ -20,6 +20,7 @@
     'legacyNav' => false,
     'pageDescription' => trans('forum.title'),
     'searchParams' => ['mode' => 'forum_post'],
+    'opghCategory' => "osu! » {{ trans('layout.menu.community.getForum') }}",
 ])
 
 @section('content')
