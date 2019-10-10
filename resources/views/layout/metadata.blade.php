@@ -28,6 +28,12 @@
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<meta property="og:title" content="osu!">
+<meta property="og:description" content="{{ trans('layout.defaults.page_description') }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ $opghCategory ?? 'osu!' }}">
+<meta property="og:image" content="config('osu.static') }}/images/layout/osu-logo.png">
+
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
