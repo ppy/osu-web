@@ -18,6 +18,7 @@
 @php
     $legacyNav = $legacyNav ?? true;
     $legacyFont = $legacyFont ?? true;
+    $hasOpengraph = $hasOpengraph ?? false;
 
     if (!isset($title)) {
         $titleTree = [];
