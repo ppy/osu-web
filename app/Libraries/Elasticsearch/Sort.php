@@ -26,7 +26,7 @@ class Sort implements Queryable
     public $field;
     public $order;
 
-    public function __construct(?string $field = null, ?string $order = null, ?array $extras = [])
+    public function __construct(?string $field = null, ?string $order = null, array $extras = [])
     {
         $this->field = $field;
         $this->order = $order;
@@ -51,10 +51,7 @@ class Sort implements Queryable
             return [$this->field];
         }
 
-        $options = ['order' => $this->order];
-        foreach ($this->extras as $key => $value) {
-            $options[$key] = $value;
-        }
+        $options = array_merge(['order' => $this->order], $this->extras);
 
         return [$this->field => $options];
     }
