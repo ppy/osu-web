@@ -89,7 +89,7 @@ class BroadcastNotification implements ShouldQueue
             $this->receiverIds = $this->receiverIds->all();
         }
 
-        $this->receiverIds = array_values(array_diff($this->receiverIds, optional($this->source)->getKey()));
+        $this->receiverIds = array_values(array_diff($this->receiverIds, [optional($this->source)->getKey()]));
         if (empty($this->receiverIds)) {
             return;
         }
