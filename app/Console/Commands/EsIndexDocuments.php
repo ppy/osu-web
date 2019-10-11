@@ -127,15 +127,19 @@ class EsIndexDocuments extends Command
 
             $this->info("{$pretext} {$type} into {$indexName}");
 
+            $options = [
+                'batchSize' => static::BATCH_SIZE,
+                'index' => $indexName,
+            ];
+
             if (!$this->inplace && $type === $first) {
                 // create new index if the first type for this index, otherwise
                 // index in place.
-                $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress) use ($bar) {
+                $type::esIndexIntoNew($options, function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
             } else {
-                $options = ['index' => $indexName];
-                $type::esReindexAll(static::BATCH_SIZE, 0, $options, function ($progress) use ($bar) {
+                $type::esReindexAll($options, function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
             }

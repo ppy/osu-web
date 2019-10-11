@@ -21,12 +21,12 @@
 namespace App\Models\Elasticsearch;
 
 use App\Models\Forum\Forum;
-use App\Traits\EsIndexable;
+use App\Traits\EsModelIndexable;
 use Carbon\Carbon;
 
 trait PostTrait
 {
-    use EsIndexable;
+    use EsModelIndexable;
 
     public function esRouting()
     {
