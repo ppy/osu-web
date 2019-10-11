@@ -15,20 +15,19 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('forum.topics.replace_delete_button', ['countDifference' => -1])
-
-@section('action')
-    if (forum.showDeleted()) {
-        @if (priv_check('ForumModerate', $post->forum)->can())
-            $el.addClass("js-forum-post--hidden");
-        @endif
-    } else {
-        $el.css({
-            minHeight: "0px",
-            height: $el.css("height")
-        }).slideUp(null, function () {
-            $el.remove();
-            osu.pageChange();
-        });
-    }
-@endsection
+<button
+    type="button"
+    class="
+        btn-circle
+        btn-circle--topic-nav
+        btn-circle--yellow
+        {{ $showDeleted ? '' : 'btn-circle--activated' }}
+        js-forum-topic-moderate--toggle-deleted
+    "
+    title="{{ trans('forum.topics.moderate_toggle_deleted.' . ($showDeleted ? 'hide' : 'show')) }}"
+    data-show-deleted="{{ $showDeleted ? 1 : 0 }}"
+>
+    <span class="btn-circle__content">
+        <i class="fa fa-trash"></i>
+    </span>
+</button>
