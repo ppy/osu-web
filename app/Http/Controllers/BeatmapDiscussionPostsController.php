@@ -179,6 +179,12 @@ class BeatmapDiscussionPostsController extends Controller
         $beatmapset = $discussion->beatmapset;
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
+
+        if ($discussion->message_type === 'problem' && $beatmapset->isQualified()) {
+            // TODO: should work out how have the new post notification be able to handle this instead.
+            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM, $post, auth()->user());
+        }
+
         broadcast_notification(Notification::BEATMAPSET_DISCUSSION_POST_NEW, $post, Auth::user());
         (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),

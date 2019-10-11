@@ -24,22 +24,25 @@ use App\Models\Notification;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 
-class NewNotificationEvent extends NotificationEventBase
+class BeatmapsetDiscussionQualifiedProblemNotificationEvent extends NotificationEventBase
 {
     use SerializesModels;
 
     public $notification;
+
+    private $receiverIds;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Notification $notification)
+    public function __construct(Notification $notification, array $receiverIds)
     {
         parent::__construct();
 
         $this->notification = $notification;
+        $this->receiverIds = $receiverIds;
     }
 
     public function broadcastAs()
@@ -54,7 +57,9 @@ class NewNotificationEvent extends NotificationEventBase
      */
     public function broadcastOn()
     {
-        return new Channel($this->notification->channelName());
+        return array_map(function ($userId) {
+            return new Channel("private:user:{$userId}");
+        }, $this->receiverIds);
     }
 
     public function broadcastWith()

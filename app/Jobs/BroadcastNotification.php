@@ -20,12 +20,14 @@
 
 namespace App\Jobs;
 
+use App\Events\BeatmapsetDiscussionQualifiedProblemNotificationEvent;
 use App\Events\NewNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Chat\Channel;
 use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserGroup;
 use App\Traits\NotificationQueue;
 use DB;
 use Exception;
@@ -71,7 +73,7 @@ class BroadcastNotification implements ShouldQueue
         }
 
         try {
-            $this->$function();
+            $eventClass = $this->$function() ?? NewNotificationEvent::class;
         } catch (InvalidNotificationException $_e) {
             return;
         }
@@ -101,7 +103,7 @@ class BroadcastNotification implements ShouldQueue
 
         $notification->save();
 
-        event(new NewNotificationEvent($notification));
+        event(new $eventClass($notification, $this->receiverIds));
 
         if (is_array($this->receiverIds)) {
             DB::transaction(function () use ($notification) {
@@ -148,6 +150,23 @@ class BroadcastNotification implements ShouldQueue
             'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
             'cover_url' => $this->notifiable->coverURL('card'),
         ];
+    }
+
+    private function onBeatmapsetDiscussionQualifiedProblem()
+    {
+        static $notifyGroups = [UserGroup::GROUPS['nat'], UserGroup::GROUPS['bng'], UserGroup::GROUPS['bng_limited']];
+        $this->notifiable = $this->object->beatmapset;
+        $this->receiverIds = UserGroup::whereIn('group_id', $notifyGroups)->distinct()->pluck('user_id')->all();
+
+        $this->params['details'] = [
+            'title' => $this->notifiable->title,
+            'post_id' => $this->object->getKey(),
+            'discussion_id' => $this->object->beatmapDiscussion->getKey(),
+            'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
+            'cover_url' => $this->notifiable->coverURL('card'),
+        ];
+
+        return BeatmapsetDiscussionQualifiedProblemNotificationEvent::class;
     }
 
     private function onBeatmapsetDisqualify()
