@@ -31,7 +31,7 @@
 @if ($hasOpengraph)
     <meta property="og:site_name" content="{{ 'osu! » '.$opghSitename ?? 'osu!' }}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ Request:url() }}">
+    <meta property="og:url" content="{{ Request::url() }}">
     <meta property="og:title" content="{{ $opghTitle }}">
     <meta property="og:description" content="{{ $opghDescription }}">
 
