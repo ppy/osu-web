@@ -34,6 +34,7 @@ use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
 
 class BroadcastNotification implements ShouldQueue
 {
@@ -84,15 +85,13 @@ class BroadcastNotification implements ShouldQueue
             $this->params['details']['username'] = $this->source->username;
         }
 
-        if (is_array($this->receiverIds)) {
-            switch (count($this->receiverIds)) {
-                case 0:
-                    return;
-                case 1:
-                    if ($this->receiverIds[0] === optional($this->source)->getKey()) {
-                        return;
-                    }
-            }
+        if ($this->receiverIds instanceof Collection) {
+            $this->receiverIds = $this->receiverIds->all();
+        }
+
+        $this->receiverIds = array_values(array_diff($this->receiverIds, optional($this->source)->getKey()));
+        if (empty($this->receiverIds)) {
+            return;
         }
 
         $notification = new Notification($this->params);
@@ -105,17 +104,13 @@ class BroadcastNotification implements ShouldQueue
 
         event(new $eventClass($notification, $this->receiverIds));
 
-        if (is_array($this->receiverIds)) {
-            DB::transaction(function () use ($notification) {
-                $receivers = User::whereIn('user_id', $this->receiverIds)->get();
+        DB::transaction(function () use ($notification) {
+            $receivers = User::whereIn('user_id', $this->receiverIds)->get();
 
-                foreach ($receivers as $receiver) {
-                    if ($receiver->getKey() !== optional($this->source)->getKey()) {
-                        $notification->userNotifications()->create(['user_id' => $receiver->getKey()]);
-                    }
-                }
-            });
-        }
+            foreach ($receivers as $receiver) {
+                $notification->userNotifications()->create(['user_id' => $receiver->getKey()]);
+            }
+        });
     }
 
     private function onBeatmapsetDiscussionLock()
