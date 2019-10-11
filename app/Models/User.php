@@ -1182,12 +1182,18 @@ class User extends Model implements AuthenticatableContract
 
     public function blocks()
     {
-        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('foe', true);
+        return $this
+            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
+            ->wherePivot('foe', true)
+            ->default();
     }
 
     public function friends()
     {
-        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('friend', true);
+        return $this
+            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
+            ->wherePivot('friend', true)
+            ->default();
     }
 
     public function channels()
