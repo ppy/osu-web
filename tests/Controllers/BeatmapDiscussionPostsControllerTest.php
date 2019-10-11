@@ -2,6 +2,7 @@
 
 namespace Tests\Controllers;
 
+use App\Events\BeatmapsetDiscussionQualifiedProblemNotificationEvent;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -10,6 +11,7 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserNotification;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
@@ -491,6 +493,38 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->deletePost($reply2, $this->user)->assertStatus(403);
         $this->assertFalse($reply1->fresh()->trashed());
         $this->assertFalse($reply2->fresh()->trashed());
+    }
+
+    /**
+     * @dataProvider problemDataProvider
+     */
+    public function testProblemOnQualifiedBeatmap($updateParams, $assertMethod)
+    {
+        $this->beatmapset->update($updateParams);
+        factory(User::class)->states('bng')->create(); // event doesn't get dispatched if there are no users in the group.
+        Event::fake();
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'problem',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+
+        $assertMethod(BeatmapsetDiscussionQualifiedProblemNotificationEvent::class);
+    }
+
+    public function problemDataProvider()
+    {
+        return [
+            [['approved' => Beatmapset::STATES['qualified'], 'queued_at' => now()], 'Event::assertDispatched'],
+            [['approved' => Beatmapset::STATES['pending']], 'Event::assertNotDispatched'],
+        ];
     }
 
     protected function setUp(): void
