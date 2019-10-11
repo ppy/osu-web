@@ -54,7 +54,7 @@ class BroadcastNotification implements ShouldQueue
             ->all();
     }
 
-    public function __construct($name, $object, $source = null)
+    public function __construct(string $name, $object, ?User $source = null)
     {
         $this->name = $name;
         $this->object = $object;
