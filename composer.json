@@ -35,6 +35,7 @@
     "laravel/framework": "6.*",
     "laravel/helpers": "^1.1",
     "laravel/passport": "*",
+    "laravel/slack-notification-channel": "^2.0",
     "laravel/tinker": "*",
     "laravelcollective/html": "*",
     "league/commonmark": ">=0.16.0",
