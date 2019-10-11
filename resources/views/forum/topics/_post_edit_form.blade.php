@@ -55,6 +55,7 @@
             "
             name="body"
             placeholder="{{ trans('forum.topic.create.placeholder.body') }}"
+            data-blur-on-submit-disable="1"
             required
             {{ $type === 'create' ? 'autofocus' : '' }}
             @if (!$enabled)

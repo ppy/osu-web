@@ -76,7 +76,7 @@ class @ForumTopicReply
 
     @enableFlash() if @getState('sticking') != '1' && currentUser.id?
 
-    @input[0].focus()
+    Timeout.set 0, => @input[0].focus()
 
 
   activateWithReply: (e, data) =>
