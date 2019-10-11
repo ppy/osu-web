@@ -5192,6 +5192,11 @@ is-hotkey@0.1.4:
   resolved "https://registry.yarnpkg.com/is-hotkey/-/is-hotkey-0.1.4.tgz#c34d2c85d6ec8d09a871dcf71931c8067a824c7d"
   integrity sha512-Py+aW4r5mBBY18TGzGz286/gKS+fCQ0Hee3qkaiSmEPiD0PqFpe0wuA3l7rTOUKyeXl8Mxf3XzJxIoTlSv+kxA==
 
+is-hotkey@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/is-hotkey/-/is-hotkey-0.0.3.tgz#3713fea135f86528c87cf39810b3934e45151390"
+  integrity sha512-qpMe/7DxFXs65E3f8u5Zu+3qOXmqlKlAF/cpYlRiPzg1UKC9clzQcwcuf/2RC4WMFhh56DQC+FfK63Qp3lM35w==
+
 is-hotkey@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/is-hotkey/-/is-hotkey-0.1.6.tgz#c214b1ccdcbda46fba4ba93d2de64915db737471"
@@ -8242,6 +8247,14 @@ slash@^1.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
   integrity sha1-xB8vbDn8FtHNF61LXYlhFK5HDVU=
 
+slate-auto-replace@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/slate-auto-replace/-/slate-auto-replace-0.12.1.tgz#c877a66e40f8f27f59b614cbc4b25ce2cd262ed4"
+  integrity sha512-4TBjWk/NKk2ef8FvPM0kYiOY+fClPieqyxAzAa2lpFbUnVX01I9Up4X34d/cmAlyX2jojn5AvBA/GG5xDschBg==
+  dependencies:
+    is-hotkey "^0.0.3"
+    type-of "^2.0.1"
+
 slate-base64-serializer@^0.2.112:
   version "0.2.112"
   resolved "https://registry.yarnpkg.com/slate-base64-serializer/-/slate-base64-serializer-0.2.112.tgz#791d04a0ae7b9796844f068a904e185f2afc91f9"
@@ -8264,10 +8277,8 @@ slate-hotkeys@^0.2.9:
     is-hotkey "0.1.4"
     slate-dev-environment "^0.2.2"
 
-slate-instant-replace@^0.1.11:
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/slate-instant-replace/-/slate-instant-replace-0.1.14.tgz#b914700bbdb5039d46ef2f6f3fe06733287ae1d3"
-  integrity sha512-I3QzFZFEtMe0i+4tyFkXj2RMqhDl4I5+QcjpH1GU33yBu76q/M/yYVUogFiFvb8oT78qqLo12qSTIcl1ZQul7w==
+slate-instant-replace@../slate-instant-replace:
+  version "0.1.12"
 
 slate-plain-serializer@^0.7.11:
   version "0.7.11"

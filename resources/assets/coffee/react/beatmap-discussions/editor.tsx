@@ -19,9 +19,10 @@
 import isHotkey from 'is-hotkey';
 import * as _ from 'lodash';
 import * as React from 'react';
-import { Value } from 'slate';
+import {SchemaProperties, Value} from 'slate';
 import { Editor as SlateEditor } from 'slate';
-import InstantReplace from 'slate-instant-replace';
+import AutoReplace from 'slate-auto-replace';
+// import InstantReplace from 'slate-instant-replace';
 import {
   Editor as SlateReactEditor,
   findDOMNode,
@@ -29,19 +30,68 @@ import {
   RenderInlineProps,
   RenderMarkProps,
 } from 'slate-react';
-import SoftBreak from 'slate-soft-break';
+// import SoftBreak from 'slate-soft-break';
 import EditorDiscussionComponent from './editor-discussion-component';
 
 let initialValue: string = '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[{"object":"text","text":"This is a placeholder."}]}]}}';
 
-const Replacer = (editor: SlateReactEditor, lastWord: string) => {
-  const TIMESTAMP_REGEX = /\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/;
-  if (lastWord.match(TIMESTAMP_REGEX)) {
-    editor.moveFocusBackward(lastWord.length); // select last word
-    editor.unwrapInline('timestamp'); // remove existing timestamps
-    editor.wrapInline({ type: 'timestamp', data: { lastWord } }); // set timestamp inline
-    editor.moveFocusForward(lastWord.length); // deselect it
-  }
+// const Replacer = (editor: SlateReactEditor, lastWord: string) => {
+//   const TIMESTAMP_REGEX = /\b(\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d,)*\d\))?/;
+//   if (lastWord.match(TIMESTAMP_REGEX)) {
+//     editor.moveFocusBackward(lastWord.length); // select last word
+//     editor.unwrapInline('timestamp'); // remove existing timestamps
+//     editor.wrapInline({ type: 'timestamp', data: { lastWord } }); // set timestamp inline
+//     editor.moveFocusForward(lastWord.length); // deselect it
+//     // editor.insertText(' ');
+//   }
+// };
+
+interface MatchesInterface {
+  after: any[];
+  before: any[];
+}
+
+const schema: SchemaProperties = {
+  document: {
+    nodes: [
+      {
+        match: [
+          {type: 'embed'},
+          {type: 'paragraph'},
+          {type: 'timestamp'},
+        ],
+      },
+    ],
+    blocks: {
+      embed: {
+        nodes: (object, match) => {
+          console.log('validlidd', object, match);
+          return true;
+        },
+      },
+      // {
+      //   marks: [],
+      //   nodes: [{
+      //     marks: [],
+      //     match: [{
+      //       object: 'text',
+      //       marks: [],
+      //     }]
+      //   }],
+      // },
+    },
+    inlines: {
+      timestamp: {
+        nodes: [{
+          match: { object: 'text' },
+        }],
+      }
+    },
+    marks: [
+      { type: 'bold' },
+      { type: 'italic' },
+    ],
+  },
 };
 
 export default class Editor extends React.Component<any, any> {
@@ -49,8 +99,28 @@ export default class Editor extends React.Component<any, any> {
   menu = React.createRef<HTMLDivElement>();
   menuBody = React.createRef<HTMLDivElement>();
   plugins = [
-    SoftBreak({ shift: true }),
-    InstantReplace(Replacer),
+    // SoftBreak({ shift: true }),
+    // InstantReplace(Replacer),
+    AutoReplace({
+      trigger: () => true,
+
+      before: /\b((\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d[,|])*\d\))?)/,
+      change: (editor: SlateEditor, e: Event, matches: MatchesInterface) => {
+        console.log('derp', matches);
+        // return editor.insertText('derppp');
+        return editor
+          // .unwrapInline({type: 'timestamp'})
+          .insertInline({ type: 'timestamp', data: { lastWord: matches.before[0] } });
+          // .insertText(matches.before[0]);
+
+        // const lastWord = matches.before[0];
+        // // return editor.setBlocks({ type: 'bold' });
+        // editor.moveFocusBackward(lastWord.length); // select last word
+        // editor.unwrapInline('timestamp'); // remove existing timestamps
+        // editor.wrapInline({ type: 'timestamp', data: { lastWord } }); // set timestamp inline
+        // editor.moveFocusForward(lastWord.length); // deselect it
+      },
+    }),
   ];
 
   constructor(props: {}) {
@@ -82,6 +152,7 @@ export default class Editor extends React.Component<any, any> {
         type: 'embed',
 
         data: {
+          beatmapId: this.props.currentBeatmap.id,
           type,
         },
       });
@@ -92,6 +163,39 @@ export default class Editor extends React.Component<any, any> {
       return;
     }
     this.setState({menuShown: false});
+  }
+
+  test = () => {
+    let output = [];
+    const whee = this.state.value.toJSON().document.nodes;
+
+    whee.forEach((node) => {
+      switch (node.type) {
+        case 'paragraph':
+          let temp = [];
+          node.nodes.forEach((child) => {
+            let marks = [];
+            child.marks.forEach((mark) => {
+              switch (mark.type) {
+                case 'bold':
+                  marks.push('**');
+                  break;
+                case 'italic':
+                  marks.push('*');
+                  break;
+              }
+            });
+            temp.push([marks.join(''), child.text, marks.reverse().join('')].join(''));
+          });
+          output.push(temp.join('') + "\n");
+          break;
+        case 'embed':
+          output.push("[embed goes here]\n");
+          break;
+      }
+    });
+
+    console.log(output.join(''));
   }
 
   log = () => console.log(this.state.value.toJSON());
@@ -138,6 +242,19 @@ export default class Editor extends React.Component<any, any> {
     editor.toggleMark(mark);
   }
 
+  post = () => {
+    const data = this.state.value.toJSON();
+
+    $.ajax(laroute.route('beatmap-discussion-posts.review'),
+      {
+        data: {
+          beatmapset_id: this.props.beatmapset.id,
+          document: JSON.stringify(data),
+        },
+        method: 'POST',
+      });
+  }
+
   render(): React.ReactNode {
     const cssClasses = 'beatmap-discussion-new-float';
     const bn = 'beatmap-discussion-newer';
@@ -159,6 +276,7 @@ export default class Editor extends React.Component<any, any> {
                     renderInline={this.renderInline}
                     renderMark={this.renderMark}
                     ref={this.editor}
+                    schema={schema}
                   />
                   <div className='forum-post-edit__buttons-bar'>
                     <div className='forum-post-edit__buttons forum-post-edit__buttons--toolbar'>
@@ -186,9 +304,9 @@ export default class Editor extends React.Component<any, any> {
                     </div>
                     <div className='forum-post-edit__buttons forum-post-edit__buttons--actions'>
                         <div className='forum-post-edit__button'>
-                            <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>
-                              log
-                          </button>
+                            <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.test}>test</button>
+                            <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
+                          <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
                       </div>
                     </div>
                   </div>
@@ -254,7 +372,7 @@ export default class Editor extends React.Component<any, any> {
       case 'timestamp': {
         return (
           <span className='beatmapset-discussion-message' {...attributes}>
-            <a href={`osu:\/\/edit\/${children}`} className='beatmapset-discussion-message__timestamp'>
+            <a href={`osu:\/\/edit\/${node.data.get('lastWord')}`} className='beatmapset-discussion-message__timestamp'>
               {children}
             </a>
           </span>

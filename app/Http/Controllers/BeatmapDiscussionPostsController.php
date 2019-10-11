@@ -102,6 +102,150 @@ class BeatmapDiscussionPostsController extends Controller
         return $post->beatmapset->defaultDiscussionJson();
     }
 
+    public function review()
+    {
+        $jsonObj = json_decode(request()->input('document'));
+        $output = [];
+
+        try {
+            DB::beginTransaction();
+
+            $beatmapset = Beatmapset
+                ::where('discussion_enabled', true)
+                ->findOrFail(request()->input('beatmapset_id'));
+
+            foreach ($jsonObj->document->nodes as $node) {
+                switch ($node->type) {
+                    case 'embed':
+                        $message = '';
+
+                        foreach ($node->nodes as $child) {
+                            switch ($child->object) {
+                                case 'text':
+                                    $message .= $child->text;
+                                    break;
+
+                                case 'inline':
+                                    if ($child->type === 'timestamp')
+                                        $message .= $child->data->lastWord;
+                                    break;
+                            }
+                        }
+
+                        $discussion = new BeatmapDiscussion([
+                            'beatmapset_id' => $beatmapset->getKey(),
+                            'user_id' => Auth::user()->getKey(),
+                            'resolved' => false,
+                            'message_type' => $node->data->type,
+                            'beatmap_id' => $node->data->beatmapId,
+                        ]);
+                        $discussion->saveOrExplode();
+
+                        $postParams = [
+                            'user_id' => Auth::user()->user_id,
+                            'message' => $message,
+                        ];
+                        $post = new BeatmapDiscussionPost($postParams);
+                        $post->beatmapDiscussion()->associate($discussion);
+                        $post->saveOrExplode();
+
+                        $issues[] = [
+                            'discussion' => $discussion->getKey(),
+                            'post' => $post->getKey(),
+                        ];
+                        break;
+                }
+            }
+
+            foreach ($jsonObj->document->nodes as $node) {
+                switch ($node->type) {
+                    case 'paragraph':
+                        // For paragraphs, we convert the formatting to Markdown
+                        $temp = [];
+                        foreach ($node->nodes as $child) {
+                            $marks = [];
+                            if (isset($child->marks)) {
+                                foreach ($child->marks as $mark) {
+                                    switch ($mark->type) {
+                                        case 'bold':
+                                            $marks[] = '**';
+                                            break;
+                                        case 'italic':
+                                            $marks[] = '*';
+                                            break;
+                                    }
+                                }
+                            }
+
+                            $matches = [];
+                            // Markdown expects no whitespace between marks and word boundaries, so we find and move the whitespace to outside the marks.
+                            $hasWhitespace = preg_match('/^(?:(?<leading>\s+)?(?<body>\S.*\S|\S))(?<trailing>\s+)?$/', $child->text, $matches);
+
+                            // Should always match with the named 'body' group at least (unless the text is just a single space).
+                            if ($hasWhitespace) {
+                                $temp[] = join('', [
+                                    $matches['leading'] ?? '',        // leading whitespace
+                                    join('', $marks),                 // opening marks
+                                    $matches['body'],                 // main text
+                                    join('', array_reverse($marks)),  // closing marks
+                                    $matches['trailing'] ?? ''        // trailing whitespace
+                                ]);
+                            } else {
+                                $temp[] = $child->text;
+                            }
+                        }
+                        $output[] = join('', $temp) . "\n";
+                        break;
+
+                    case 'embed':
+                        // TODO: This.
+//                        $output[] = "%[";
+//                        foreach ($node->nodes as $child) {
+//                            switch ($child->object) {
+//                                case 'text':
+//                                    $output[] = $child->text;
+//                                    break;
+//
+//                                case 'inline':
+//                                    if ($child->type === 'timestamp')
+//                                        $output[] = $child->data->lastWord;
+//                                    break;
+//                            }
+//                        }
+//                        $output[] = "](#{$node->data->beatmapId}/{$node->data->type}/11:22:33)\n";
+                        $discussionId = array_shift($issues)['discussion'];
+                        $output[] = "%[](#{$discussionId})\n";
+                        break;
+                }
+            }
+
+            // create the review post
+            $review = new BeatmapDiscussion([
+                'beatmapset_id' => $beatmapset->getKey(),
+                'user_id' => Auth::user()->getKey(),
+                'resolved' => false,
+                'message_type' => 'review',
+//                'beatmap_id' => $node->data->beatmapId,
+            ]);
+            $review->saveOrExplode();
+
+            $postParams = [
+                'user_id' => Auth::user()->user_id,
+                'message' => join('', $output),
+            ];
+            $post = new BeatmapDiscussionPost($postParams);
+            $post->beatmapDiscussion()->associate($review);
+            $post->saveOrExplode();
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+
+        return join('', $output);
+    }
+
     public function store()
     {
         $discussion = $this->prepareDiscussion(request());
