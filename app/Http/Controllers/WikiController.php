@@ -20,8 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\InvalidSignatureException;
-use App\Jobs\UpdateWiki;
 use App\Libraries\OsuWiki;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
