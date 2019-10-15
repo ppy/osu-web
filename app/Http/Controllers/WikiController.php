@@ -70,17 +70,6 @@ class WikiController extends Controller
         return ujs_redirect(Request::getUri());
     }
 
-    public function updateWebhook()
-    {
-        $signature = 'sha1='.hash_hmac('sha1', request()->getContent(), config('osu.wiki.webhook_secret'));
-
-        if (!hash_equals($signature, request()->header('X-Hub-Signature'))) {
-            throw new InvalidSignatureException;
-        }
-
-        UpdateWiki::dispatch(request()->input('before'), request()->input('after'));
-    }
-
     private function showImage($path)
     {
         $image = (new Wiki\Image($path, Request::url(), Request::header('referer')))->get();

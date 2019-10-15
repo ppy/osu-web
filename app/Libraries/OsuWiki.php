@@ -22,6 +22,7 @@ namespace App\Libraries;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
+use App\Jobs\UpdateWiki;
 use GitHub;
 use Github\Exception\RuntimeException as GithubException;
 
@@ -63,6 +64,11 @@ class OsuWiki
     public static function fetchContent($path)
     {
         return (new static($path))->content();
+    }
+
+    public static function updateFromGithub($data)
+    {
+        dispatch(new UpdateWiki($data['before'], $data['after']));
     }
 
     public static function getUpdatedFiles($old, $new)

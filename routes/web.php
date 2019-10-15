@@ -257,8 +257,6 @@ Route::group(['prefix' => 'help'], function () {
     route_redirect('/', 'wiki.show');
 });
 
-Route::post('wiki-update-webhook', 'WikiController@updateWebhook');
-
 // FIXME: someone split this crap up into proper controllers
 Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
     route_redirect('/', 'store.products.index');

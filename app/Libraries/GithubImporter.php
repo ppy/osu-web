@@ -27,16 +27,20 @@ class GithubImporter
 {
     public $eventType;
     public $data;
+    public $repository;
 
     public function __construct($params)
     {
         $this->data = $params['data'];
         $this->eventType = $params['eventType'];
+        $this->repository = $this->data['repository']['name'];
     }
 
     public function import()
     {
-        if ($this->isMergedPullRequest()) {
+        if ($this->repository === 'osu-wiki' && $this->isMasterPush()) {
+            OsuWiki::updateFromGithub($this->data);
+        } elseif ($this->isMergedPullRequest()) {
             return ChangelogEntry::importFromGithub($this->data);
         } elseif ($this->isNewTag()) {
             return Build::importFromGithubNewTag($this->data);
@@ -54,5 +58,11 @@ class GithubImporter
     {
         return $this->eventType === 'push' &&
             starts_with($this->data['ref'], 'refs/tags/');
+    }
+
+    public function isMasterPush()
+    {
+        return $this->eventType === 'push' &&
+            $this->data['ref'] === 'refs/heads/master';
     }
 }
