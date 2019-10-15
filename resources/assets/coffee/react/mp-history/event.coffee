@@ -18,6 +18,8 @@
 
 import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
+import TimeWithTooltip from 'time-with-tooltip'
+
 el = React.createElement
 
 export class Event extends React.Component
@@ -41,7 +43,7 @@ export class Event extends React.Component
 
     div className: 'mp-history-event',
       div className: 'mp-history-event__time',
-        moment(@props.event.timestamp).format 'LTS'
+        el TimeWithTooltip, dateTime: @props.event.timestamp, format: 'LTS'
       div className: "mp-history-event__type mp-history-event__type--#{event_type}",
         @icons[event_type].map (m) ->
           i key: m, className: m

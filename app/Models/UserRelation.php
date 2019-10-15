@@ -35,12 +35,12 @@ class UserRelation extends Model
 
     public function scopeBlocks($query)
     {
-        return $query->where('foe', true);
+        return $query->where('foe', true)->visible();
     }
 
     public function scopeFriends($query)
     {
-        return $query->where('friend', true);
+        return $query->where('friend', true)->visible();
     }
 
     public function scopeOnline($query)
@@ -50,6 +50,13 @@ class UserRelation extends Model
                 ->from('phpbb_users')
                 ->whereRaw('phpbb_users.user_id = phpbb_zebra.zebra_id')
                 ->whereRaw('phpbb_users.user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
+        });
+    }
+
+    public function scopeVisible($query)
+    {
+        $query->whereHas('target', function ($q) {
+            $q->default();
         });
     }
 

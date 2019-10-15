@@ -91,9 +91,12 @@ class PaypalController extends Controller
         $orderId = Request::input('order_id');
 
         $order = Order::where('user_id', Auth::user()->user_id)->processing()->find($orderId);
-        if ($order) {
-            (new OrderCheckout($order, Order::PROVIDER_PAYPAL))->failCheckout();
+
+        if ($order === null) {
+            return ujs_redirect(route('store.cart.show'));
         }
+
+        (new OrderCheckout($order, Order::PROVIDER_PAYPAL))->failCheckout();
 
         return $this->setAndRedirectCheckoutError($order, trans('store.checkout.declined'));
     }

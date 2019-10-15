@@ -32,6 +32,7 @@ class @Forum
     @_userCanModerateDiv = document.getElementsByClassName('js-forum__topic-user-can-moderate')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
+    @_showDeletedToggle = document.getElementsByClassName('js-forum-topic-moderate--toggle-deleted')
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
 
@@ -44,6 +45,7 @@ class @Forum
     $(document).on 'click', '.js-post-url', @postUrlClick
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
     $(document).on 'keyup', @keyboardNavigation
+    $(document).on 'click', '.js-forum-topic-moderate--toggle-deleted', @toggleDeleted
 
 
   userCanModerate: ->
@@ -65,6 +67,10 @@ class @Forum
   totalPosts: =>
     return null if @_totalPostsDiv.length == 0
     parseInt @_totalPostsDiv[0].dataset.total, 10
+
+
+  showDeleted: =>
+    @_showDeletedToggle[0]?.dataset.showDeleted == "1"
 
 
   setTotalPosts: (n) =>
@@ -197,6 +203,10 @@ class @Forum
     $(post).addClass('js-forum-post--highlighted')
 
 
+  toggleDeleted: =>
+    Turbolinks.visit osu.updateQueryString @postUrlN(@currentPostPosition),
+      with_deleted: +!@showDeleted()
+
   initialScrollTo: =>
     return if location.hash != '' ||
       !window.postJumpTo? ||
@@ -214,7 +224,12 @@ class @Forum
 
 
   postUrlN: (postN) ->
-    "#{document.location.pathname}?n=#{postN}"
+    url = "#{document.location.pathname}?n=#{postN}"
+
+    if not @showDeleted()
+      url += "&with_deleted=0"
+
+    url
 
 
   showMore: (e) =>
@@ -229,6 +244,7 @@ class @Forum
       start: null
       end: null
       skip_layout: 1
+      with_deleted: +@showDeleted()
 
     if mode == 'previous'
       $refPost = $('.js-forum-post').first()

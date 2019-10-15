@@ -127,6 +127,7 @@ $(document).on 'ajax:beforeSend', (e) ->
   for el in form.querySelectorAll('.js-ujs-submit-disable')
     continue if el.disabled
 
+    el.blur() if el.dataset.blurOnSubmitDisable == '1'
     el.disabled = true
     form._ujsSubmitDisabled.push el
 
