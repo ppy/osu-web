@@ -145,7 +145,14 @@ class BeatmapDiscussionPost extends Model
 
     public function beatmapset()
     {
-        return $this->beatmapDiscussion->beatmapset();
+        return $this->hasOneThrough(
+            Beatmapset::class,
+            BeatmapDiscussion::class,
+            'id',
+            'beatmapset_id',
+            'beatmap_discussion_id',
+            'beatmapset_id'
+        )->withTrashed();
     }
 
     public function beatmapDiscussion()

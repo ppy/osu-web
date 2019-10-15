@@ -149,7 +149,7 @@
             'attributes' => ['data-mode' => 'previous'],
             'hidden' => $posts->first()->post_id === $firstPostId,
             'modifiers' => ['forum-topic'],
-            'url' => route('forum.topics.show', ['topic' => $topic, 'end' => ($posts->first()->post_id - 1)]),
+            'url' => route('forum.topics.show', ['topic' => $topic, 'end' => ($posts->first()->post_id - 1), 'with_deleted' => $showDeleted ? '1' : '0']),
         ])
 
         @include('forum.topics._posts')
@@ -159,7 +159,7 @@
             'attributes' => ['data-mode' => 'next'],
             'hidden' => $firstPostPosition + sizeof($posts) - 1 >= $topic->postsCount(),
             'modifiers' => ['forum-topic'],
-            'url' => post_url($topic->topic_id, $posts->last()->post_id + 1, false),
+            'url' => route('forum.topics.show', ['topic' => $topic, 'start' => $posts->last()->post_id + 1, 'with_deleted' => $showDeleted ? '1' : '0']),
         ])
     </div>
 
@@ -205,6 +205,8 @@
                             @include("forum.topics._issue_tag_{$type}")
                         @endforeach
                     @endif
+
+                    @include('forum.topics._moderate_toggle_deleted')
                 @endif
 
                 @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])
