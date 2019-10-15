@@ -37,8 +37,6 @@
 
     @if (isset($opghImage))
         <meta property="og:image" content="{{ $opghImage }}">
-        <meta property="og:image:width" content="128">
-        <meta property="og:image:height" content="128">
     @endif
 @endif
 
