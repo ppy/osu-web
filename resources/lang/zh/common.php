@@ -29,6 +29,10 @@ return [
         'last_word_connector' => '和',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => '管理员',
         'back_to_previous' => '返回上一位置',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => '拖动到此处以上传',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

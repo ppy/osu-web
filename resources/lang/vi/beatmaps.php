@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'cho phép kudosu',
+        'beatmap_information' => '',
         'delete' => 'xóa',
         'deleted' => 'Đã xóa bởi :editor :delete_time.',
         'deny_kudosu' => 'từ chối kudosu',

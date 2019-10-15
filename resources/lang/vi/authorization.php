@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo tự động.',
-            'not_owner' => 'Bài đăng chỉ có thể được chỉnh sửa bởi người đăng.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Bài đăng chỉ có thể được chỉnh sửa bởi người đăng.',
+            'resolved' => '',
+            'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo tự động.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Thảo luận bị khóa cho beatmap này.',
         ],

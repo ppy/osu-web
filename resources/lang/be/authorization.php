@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Немагчыма рэдагаваць аўтаматычна створаны допіс.',
-            'not_owner' => 'Толькі аўтар можа рэдагаваць допіс.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Толькі аўтар можа рэдагаваць допіс.',
+            'resolved' => '',
+            'system_generated' => 'Немагчыма рэдагаваць аўтаматычна створаны допіс.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Гэта бітмапа заблакавана для абмеркавання.',
         ],

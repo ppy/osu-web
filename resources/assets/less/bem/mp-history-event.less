@@ -29,7 +29,7 @@
 
     font-weight: 700;
     font-size: 10px;
-    color: #999;
+    color: @osu-colour-c2;
 
     @media @desktop {
       width: 85px;
@@ -48,27 +48,27 @@
     margin-right: 10px;
 
     &--player-joined {
-      color: @green-dark;
+      color: @osu-colour-green-3;
     }
 
     &--player-left {
-      color: @yellow-dark;
+      color: @osu-colour-orange-3;
     }
 
     &--player-kicked {
-      color: @yellow-dark;
+      color: @osu-colour-orange-3;
     }
 
     &--match-created {
-      color: @green-dark;
+      color: @osu-colour-green-3;
     }
 
     &--match-disbanded {
-      color: @yellow-dark;
+      color: @osu-colour-orange-3;
     }
 
     &--host-changed {
-      color: @green-dark;
+      color: @osu-colour-green-3;
     }
   }
 
@@ -76,12 +76,12 @@
     flex: 1;
     font-size: 12px;
     padding-right: 20px;
+    color: @osu-colour-c1;
   }
 
   &__username {
+    .link-default();
     font-weight: 700;
     font-style: italic;
-
-    color: @blue-text;
   }
 }

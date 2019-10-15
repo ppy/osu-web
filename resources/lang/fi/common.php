@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', ja ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Ylläpitäjä',
         'back_to_previous' => 'Takaisin',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'pudota tähän ladataksesi',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', ve ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Yönetici',
         'back_to_previous' => 'Bir önceki pozisyona dön',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'yüklemek için buraya bırak',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

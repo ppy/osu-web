@@ -26,7 +26,7 @@ return [
 
         'avatar' => [
             'title' => 'Profilbilde',
-            'rules' => '',
+            'rules' => 'Vennligst sørg for at profilbildet ditt følger :link<br/>Dette betyr at det må være <strong>passende for alle aldersgrupper</strong>. d.v.s. ingen nakenhet, upassende språk eller innhold.',
             'rules_link' => '',
         ],
 
@@ -71,7 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'autoriserte applikasjoner',
-        'own_clients' => '',
+        'own_clients' => 'egne klienter',
         'title' => 'OAuth',
     ],
 
@@ -109,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Du kan nå lukke dette vinduet/fanen',
+        'title' => 'Verifisering fullført',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Ugyldig eller utgått verifiseringslenke',
     ],
 ];

@@ -79,7 +79,7 @@ class BlocksController extends Controller
         }
 
         return json_collection(
-            $currentUser->relations()->get(),
+            $currentUser->relations()->visible()->get(),
             'UserRelation'
         );
     }
@@ -99,7 +99,7 @@ class BlocksController extends Controller
         $user->blocks()->detach($block);
 
         return json_collection(
-            $user->relations()->get(),
+            $user->relations()->visible()->get(),
             'UserRelation'
         );
     }

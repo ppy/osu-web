@@ -42,11 +42,11 @@ class ReportCommentTest extends TestCase
     {
         $comment = $this->createComment(factory(User::class)->create());
 
-        $report = $comment->reportBy($this->reporter, [
+        $this->expectException(ValidationException::class);
+
+        $comment->reportBy($this->reporter, [
             'reason' => 'NotAValidReason',
         ]);
-
-        $this->assertSame('Spam', $report->reason);
     }
 
     public function testReportableInstance()

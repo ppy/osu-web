@@ -51,4 +51,18 @@ class ArtistTrack extends Model
     {
         return $this->belongsTo(ArtistAlbum::class);
     }
+
+    public function getCoverUrlAttribute($value)
+    {
+        if (present($value)) {
+            return $value;
+        }
+
+        return $this->album_id ? $this->album->cover_url : $this->artist->cover_url;
+    }
+
+    public function isNew()
+    {
+        return $this->created_at->isAfter(now()->subMonth(1));
+    }
 }

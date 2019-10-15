@@ -58,6 +58,15 @@ return [
         'title' => '계정 로그인',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => '정말로 이 클라이언트를 삭제하시겠어요?',
         'new' => '새 OAuth 애플리케이션',

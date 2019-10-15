@@ -42,11 +42,11 @@ class ReportScoreTest extends TestCase
     {
         $score = Best\Osu::create(['user_id' => factory(User::class)->create()->getKey()]);
 
-        $report = $score->reportBy($this->reporter, [
+        $this->expectException(ValidationException::class);
+
+        $score->reportBy($this->reporter, [
             'reason' => 'NotAValidReason',
         ]);
-
-        $this->assertSame('Cheating', $report->reason);
     }
 
     public function testReportableInstance()

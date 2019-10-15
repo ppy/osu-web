@@ -25,6 +25,7 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Exception;
 
 /**
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionPosts BeatmapDiscussionPost
@@ -527,7 +528,16 @@ class BeatmapDiscussion extends Model
                 if ($vote->score === 0) {
                     $vote->delete();
                 } else {
-                    $vote->save();
+                    try {
+                        $vote->save();
+                    } catch (Exception $e) {
+                        if (is_sql_unique_exception($e)) {
+                            // abort and pretend it's saved correctly
+                            return true;
+                        }
+
+                        throw $e;
+                    }
                 }
 
                 $this->userRecentVotesCount($vote->user, true);
@@ -584,7 +594,7 @@ class BeatmapDiscussion extends Model
         $key = "beatmapDiscussion:{$this->getKey()}:votes:{$user->getKey()}";
 
         if ($increment) {
-            Cache::add($key, 0, 60);
+            Cache::add($key, 0, 3600);
 
             return Cache::increment($key);
         } else {

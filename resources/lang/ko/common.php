@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', 그리고 ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => '관리',
         'back_to_previous' => '이전 위치로 돌아가기',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => '업로드할 파일을 이곳에 끌어놓으세요',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

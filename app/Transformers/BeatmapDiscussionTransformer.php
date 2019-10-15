@@ -86,6 +86,10 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includeVotes(BeatmapDiscussion $discussion)
     {
+        if (!$this->isVisible($discussion)) {
+            return;
+        }
+
         return $this->primitive($discussion->votesSummary());
     }
 

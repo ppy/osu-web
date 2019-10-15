@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', și ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Revino la poziția anterioară',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'dați drumul aici pentru a încărca',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [
