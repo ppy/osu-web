@@ -48,24 +48,13 @@ class UpdateWiki implements ShouldQueue
 
             $object = $this->getObject($file['filename']);
 
-            if ($status === 'added' || $status === 'renamed') {
-                // clearing out the cache for situations where something was cached
-                // even when there was no page in git, eg. an english page for
-                // a specific locale
-                $object->forget();
-
-                $object->get();
-            }
+            $object->forget();
 
             if ($status === 'renamed') {
                 $this->getObject($file['previous_filename'])->forget();
             }
 
-            if ($status === 'removed' || $status === 'modified') {
-                $object->forget();
-            }
-
-            if ($status === 'modified') {
+            if ($status !== 'removed') {
                 $object->get();
             }
         }
