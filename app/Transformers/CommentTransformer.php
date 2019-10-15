@@ -27,20 +27,17 @@ class CommentTransformer extends Fractal\TransformerAbstract
 {
     public function transform(Comment $comment)
     {
-        $message = priv_check('CommentUpdate', $comment)->can()
-            ? $comment->message
-            : null;
-
-        $messageHtml = priv_check('CommentShow', $comment)->can()
-            ? markdown($comment->message)
-            : null;
+        if (priv_check('CommentShow', $comment)->can()) {
+            $message = $comment->message;
+            $messageHtml = markdown($comment->message);
+        }
 
         return [
             'id' => $comment->id,
             'parent_id' => $comment->parent_id,
             'user_id' => $comment->user_id,
-            'message' => $message,
-            'message_html' => $messageHtml,
+            'message' => $message ?? null,
+            'message_html' => $messageHtml ?? null,
             'replies_count' => $comment->replies_count_cache ?? 0,
             'votes_count' => $comment->votes_count_cache ?? 0,
 
