@@ -18,11 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Tests\OAuth;
+namespace Tests\Controllers\OAuth;
 
 use App\Models\OAuth\Client;
 use App\Models\User;
-use TestCase;
+use Tests\TestCase;
 
 class ClientsControllerTest extends TestCase
 {
@@ -30,14 +30,6 @@ class ClientsControllerTest extends TestCase
 
     private $client;
     private $owner;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->owner = factory(User::class)->create();
-        $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
-    }
 
     public function testGuestCannotDeleteClient()
     {
@@ -160,5 +152,13 @@ class ClientsControllerTest extends TestCase
             ['', 'https://nowhere.local'],
             [' ', 'https://nowhere.local'],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->owner = factory(User::class)->create();
+        $this->client = factory(Client::class)->create(['user_id' => $this->owner->getKey()]);
     }
 }

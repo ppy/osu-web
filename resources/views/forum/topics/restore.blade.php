@@ -17,6 +17,8 @@
 --}}
 @extends('forum.topics.replace_delete_button', ['countDifference' => 1])
 
-@section('moderatorAction')
-    $el.removeClass("js-forum-post--hidden");
+@section('action')
+    @if(priv_check('ForumModerate', $post->forum)->can())
+        $el.removeClass("js-forum-post--hidden");
+    @endif
 @endsection

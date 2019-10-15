@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'โพสต์ที่ถูกสร้างขึ้นเองไม่สามารถถูกแก้ไขได้',
-            'not_owner' => 'เฉพาะคนโพสต์เท่านั้นที่สามารถแก้ไขโพสต์',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'เฉพาะคนโพสต์เท่านั้นที่สามารถแก้ไขโพสต์',
+            'resolved' => '',
+            'system_generated' => 'โพสต์ที่ถูกสร้างขึ้นเองไม่สามารถถูกแก้ไขได้',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'beatmap นี้ปิดการสนทนาไว้',
         ],

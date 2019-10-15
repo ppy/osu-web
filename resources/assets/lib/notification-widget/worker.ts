@@ -18,6 +18,7 @@
 
 import NotificationJson from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
+import { route } from 'laroute';
 import { forEach, minBy, orderBy, random } from 'lodash';
 import { computed, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
@@ -255,7 +256,7 @@ export default class Worker {
     const minLoadedId = this.minLoadedId;
     const params = minLoadedId == null ? null : { max_id: minLoadedId - 1 };
 
-    this.xhr.loadMore = $.get(laroute.route('notifications.index', params))
+    this.xhr.loadMore = $.get(route('notifications.index', params))
       .done(this.loadBundle)
       .fail((xhr) => {
         if (xhr.responseJSON != null && xhr.responseJSON.error === 'verification') {
@@ -299,7 +300,7 @@ export default class Worker {
 
     const params = { with_read: true, max_id: maxId };
 
-    this.xhr.refresh = $.get(laroute.route('notifications.index'), params)
+    this.xhr.refresh = $.get(route('notifications.index'), params)
       .always(() => {
         this.refreshing = false;
       }).done((bundleJson: NotificationBundleJson) => {
@@ -329,7 +330,7 @@ export default class Worker {
         data: { ids },
         dataType: 'json',
         method: 'POST',
-        url: laroute.route('notifications.mark-read'),
+        url: route('notifications.mark-read'),
     }).done(() => {
       this.markRead(ids);
     });
@@ -355,7 +356,7 @@ export default class Worker {
 
     Timeout.clear(this.timeout.startWebSocket);
 
-    return this.xhr.startWebSocket = $.get(laroute.route('notifications.endpoint'))
+    return this.xhr.startWebSocket = $.get(route('notifications.endpoint'))
       .done((data: NotificationFeedMetaJson) => {
         this.endpoint = data.url;
         this.connectWebSocket();

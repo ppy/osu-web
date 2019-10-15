@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Nie możesz edytować automatycznie wygenerowanego posta.',
-            'not_owner' => 'Tylko autor posta może go edytować.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Tylko autor posta może go edytować.',
+            'resolved' => '',
+            'system_generated' => 'Nie możesz edytować automatycznie wygenerowanego posta.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało zablokowane.',
         ],

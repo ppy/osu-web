@@ -41,4 +41,11 @@ return [
             'default' => 'Angol verzió',
         ],
     ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
+    ],
 ];

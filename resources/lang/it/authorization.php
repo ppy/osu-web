@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'I post generati automaticamente non possono essere modificati.',
-            'not_owner' => 'Solo l\'autore del post può modificarlo.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Solo l\'autore del post può modificarlo.',
+            'resolved' => '',
+            'system_generated' => 'I post generati automaticamente non possono essere modificati.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Questa beatmap è bloccata per la discussione.',
         ],

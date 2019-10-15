@@ -210,7 +210,7 @@ class User extends Model implements AuthenticatableContract
     const CACHING = [
         'follower_count' => [
             'key' => 'followerCount',
-            'duration' => 720, // 12 hours
+            'duration' => 43200, // 12 hours
         ],
     ];
 
@@ -1183,12 +1183,18 @@ class User extends Model implements AuthenticatableContract
 
     public function blocks()
     {
-        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('foe', true);
+        return $this
+            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
+            ->wherePivot('foe', true)
+            ->default();
     }
 
     public function friends()
     {
-        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('friend', true);
+        return $this
+            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
+            ->wherePivot('friend', true)
+            ->default();
     }
 
     public function channels()
@@ -1309,6 +1315,15 @@ class User extends Model implements AuthenticatableContract
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($value);
+    }
+
+    public function blockedUserIds()
+    {
+        if (!array_key_exists('blocks', $this->memoized)) {
+            $this->memoized['blocks'] = $this->blocks;
+        }
+
+        return $this->memoized['blocks']->pluck('user_id');
     }
 
     public function groupBadge()
@@ -1868,6 +1883,7 @@ class User extends Model implements AuthenticatableContract
     protected function newReportableExtraParams() : array
     {
         return [
+            'reason' => 'Cheating',
             'user_id' => $this->getKey(),
         ];
     }

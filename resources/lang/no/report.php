@@ -25,7 +25,7 @@ return [
     ],
 
     'comment' => [
-        'button' => '',
+        'button' => 'Rapporter',
         'title' => 'Rapporter :username sin kommentar?',
     ],
 ];

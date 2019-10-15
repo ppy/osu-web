@@ -59,6 +59,6 @@ export default class TurbolinksReload {
 
     el.src = src;
     document.body.appendChild(el);
-    this.loaded[src] = true;
+    return this.loaded[src] = true;
   }
 }

@@ -106,7 +106,7 @@ export class Stats extends React.Component
                         width: "#{10 * Math.min 10, value}%"
                 td className: 'beatmap-stats-table__value', valueText
 
-      if @props.beatmapset.has_scores
+      if @props.beatmapset.is_scoreable
         div className: 'beatmapset-stats__row beatmapset-stats__row--rating',
           div className: 'beatmapset-stats__rating-header', osu.trans 'beatmapsets.show.stats.user-rating'
           div className: 'bar--beatmap-rating',
@@ -153,7 +153,7 @@ export class Stats extends React.Component
 
 
   _renderChart: ->
-    return if !@props.beatmapset.has_scores
+    return if !@props.beatmapset.is_scoreable
 
     unless @_ratingChart
       options =

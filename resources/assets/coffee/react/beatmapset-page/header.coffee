@@ -137,12 +137,12 @@ export class Header extends React.Component
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'
-            href: laroute.route 'beatmapsets.index', q: encodeURIComponent(@props.beatmapset.title)
+            href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
             @props.beatmapset.title
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--artist'
-            href: laroute.route 'beatmapsets.index', q: encodeURIComponent(@props.beatmapset.artist)
+            href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
             @props.beatmapset.artist
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
@@ -169,10 +169,6 @@ export class Header extends React.Component
               el BigButton,
                 props:
                   onClick: @toggleFavourite
-                  href:
-                    laroute.route 'beatmapsets.update-favourite',
-                      beatmapset: @props.beatmapset.id
-                      action: favouriteButton.action
                   title: osu.trans "beatmapsets.show.details.#{favouriteButton.action}"
                 modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
                 icon: favouriteButton.icon
@@ -268,8 +264,6 @@ export class Header extends React.Component
 
 
   toggleFavourite: (e) ->
-    e.preventDefault()
-
     if !currentUser.id?
       userLogin.show e.target
     else
