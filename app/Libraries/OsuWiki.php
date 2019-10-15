@@ -78,7 +78,7 @@ class OsuWiki
             ->compare(static::USER, static::REPOSITORY, $old, $new);
 
         return array_filter($diff['files'], function ($file) {
-            return substr($file['filename'], 0, 4) === 'wiki';
+            return starts_with($file['filename'], 'wiki/');
         });
     }
 
