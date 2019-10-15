@@ -25,6 +25,7 @@ use App\Exceptions\GitHubTooLargeException;
 use App\Jobs\UpdateWiki;
 use GitHub;
 use Github\Exception\RuntimeException as GithubException;
+use Illuminate\Support\Str;
 
 class OsuWiki
 {
@@ -106,6 +107,7 @@ class OsuWiki
         }
     }
 
+
     public static function updateFromGithub($data)
     {
         dispatch(new UpdateWiki($data['before'], $data['after']));
@@ -125,6 +127,49 @@ class OsuWiki
         $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
 
         return in_array($extension, static::IMAGE_EXTENSIONS, true);
+    }
+
+    public static function getFileTree($path = 'wiki', $skipNonMarkdown = true, $flatten = false)
+    {
+        $contents = GitHub::repo()
+            ->contents()
+            ->show(static::USER, static::REPOSITORY, $path);
+
+        if ($skipNonMarkdown) {
+            $contents = array_filter($contents, function ($file) {
+                // skipping wiki/shared because there's a bunch of non markdown stuff there
+                if ($file['path'] === 'wiki/shared') {
+                    return false;
+                }
+
+                if ($file['type'] === 'dir') {
+                    return true;
+                }
+
+                return Str::endsWith($file['path'], '.md');
+            });
+        }
+
+        $files = [];
+
+        while (!empty($contents)) {
+            $value = array_shift($contents);
+
+            if ($value['type'] === 'file') {
+                $files[] = $value;
+            } else {
+                $values = static::getFileTree($value['path'], $skipNonMarkdown, $flatten);
+
+                if ($flatten) {
+                    $contents = array_merge($values, $contents);
+                } else {
+                    $value['files'] = $values;
+                    $files[] = $value;
+                }
+            }
+        }
+
+        return $files;
     }
 
     public function __construct($path)

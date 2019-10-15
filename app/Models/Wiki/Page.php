@@ -25,16 +25,18 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\BoolQuery;
-use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
+use App\Traits\EsIndexable;
 use Carbon\Carbon;
 use Exception;
 use Log;
 
 class Page implements WikiObject
 {
+    use EsIndexable;
+
     // in minutes
     const REINDEX_AFTER = 300;
     const VERSION = 1;
@@ -61,14 +63,6 @@ class Page implements WikiObject
     public static function cleanupPath($path)
     {
         return strtolower(str_replace(['-', '/', '_'], ' ', $path));
-    }
-
-    public static function searchIndexConfig($params = [])
-    {
-        return array_merge([
-            'index' => config('osu.elasticsearch.index.wiki_pages'),
-            'type' => 'wiki_page',
-        ], $params);
     }
 
     public static function searchPath($path, $locale)
@@ -98,7 +92,7 @@ class Page implements WikiObject
             ->should($localeQuery)
             ->shouldMatch(1);
 
-        $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), 'wiki_searchpath'))
+        $search = (new BasicSearch(static::esIndexName(), 'wiki_searchpath'))
             ->source('path')
             ->query($query);
 
@@ -135,19 +129,36 @@ class Page implements WikiObject
         $this->defaultSubtitle = array_pop($defaultTitles);
     }
 
+    public static function esIndexName()
+    {
+        return config('osu.elasticsearch.prefix').'wiki_pages';
+    }
+
+    public static function esSchemaFile()
+    {
+    }
+
+    public static function esType()
+    {
+        return 'wiki_pages';
+    }
+
+    public function getEsId()
+    {
+        return $this->pagePath();
+    }
+
     public function editUrl()
     {
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
     }
 
-    public function esIndexDocument()
+    public function toEsJson()
     {
-        $params = static::searchIndexConfig();
-
         if ($this->get() === null) {
             $this->log('index document empty');
 
-            $params['body'] = [
+            $json = [
                 'locale' => null,
                 'page' => null,
                 'page_text' => null,
@@ -155,6 +166,7 @@ class Page implements WikiObject
                 'path_clean' => null,
                 'title' => null,
                 'tags' => [],
+                'layout' => null,
             ];
         } else {
             $this->log('index document');
@@ -164,7 +176,7 @@ class Page implements WikiObject
             $rendererClass = $this->renderer();
             $indexContent = (new $rendererClass($this, $content))->renderIndexable();
 
-            $params['body'] = [
+            $json = [
                 'locale' => $this->locale,
                 'page' => json_encode($this->get()),
                 'page_text' => $indexContent,
@@ -176,21 +188,37 @@ class Page implements WikiObject
             ];
         }
 
-        $params['id'] = $this->pagePath();
-        $params['body']['indexed_at'] = json_time(Carbon::now());
-        $params['body']['version'] = static::VERSION;
-
-        return Es::getClient()->index($params);
+        return array_merge($json, [
+            'indexed_at' => json_time(Carbon::now()),
+            'version' => static::VERSION,
+        ]);
     }
 
-    public function esDeleteDocument()
+    public function esDeleteDocument(array $options = [])
     {
         $this->log('delete document');
 
-        return Es::getClient()->delete(static::searchIndexConfig([
-            'id' => $this->pagePath(),
+        return parent::esDeleteDocument([
             'client' => ['ignore' => 404],
-        ]));
+        ]);
+    }
+
+    public static function esReindexAll(array $options = [], ?callable $progress = null)
+    {
+        $files = OsuWiki::getFileTree('wiki', true, true);
+
+        $count = 0;
+
+        foreach ($files as $file) {
+            $file = OsuWiki::parseGitHubPath($file['path']);
+            $page = new static($file['path'], $file['locale']);
+
+            (new EsIndexDocument($page))->handle();
+
+            if ($progress) {
+                $progress(++$count);
+            }
+        }
     }
 
     /**
@@ -247,7 +275,7 @@ class Page implements WikiObject
             foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
                 $this->locale = $locale;
 
-                $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), 'wiki_page_lookup'))
+                $response = (new BasicSearch(static::esIndexName(), 'wiki_page_lookup'))
                     ->source(['page', 'indexed_at', 'version'])
                     ->query([
                         'term' => [
