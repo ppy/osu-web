@@ -17,6 +17,7 @@
  */
 
 import HeaderV3 from 'header-v3';
+import { route } from 'laroute';
 import * as React from 'react';
 import { UserList } from 'user-list';
 
@@ -31,11 +32,11 @@ export class Main extends React.PureComponent<Props> {
   };
 
   static readonly links = [
-    { title: osu.trans('home.user.title'), url: laroute.route('home') },
-    { title: osu.trans('friends.title_compact'), url: laroute.route('friends.index'), active: true },
-    { title: osu.trans('forum.topic_watches.index.title_compact'), url: laroute.route('forum.topic-watches.index') },
-    { title: osu.trans('beatmapset_watches.index.title_compact'), url: laroute.route('beatmapsets.watches.index') },
-    { title: osu.trans('accounts.edit.title_compact'), url: laroute.route('account.edit') },
+    { title: osu.trans('home.user.title'), url: route('home') },
+    { title: osu.trans('friends.title_compact'), url: route('friends.index'), active: true },
+    { title: osu.trans('forum.topic_watches.index.title_compact'), url: route('forum.topic-watches.index') },
+    { title: osu.trans('beatmapset_watches.index.title_compact'), url: route('beatmapsets.watches.index') },
+    { title: osu.trans('accounts.edit.title_compact'), url: route('account.edit') },
   ];
 
   render() {

@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', og ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Vend tilbage til tidligere position',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'slip her for at uploade',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

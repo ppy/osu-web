@@ -20,6 +20,7 @@
 
 import Enchant from 'enchant'
 import ForumPoll from 'forum-poll'
+import * as laroute from 'laroute'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -37,6 +38,9 @@ window._exported = {
   TurbolinksReload
   WindowVHPatcher
 }
+
+# FIXME: remove once everything imports instead of using global
+window.laroute ?= laroute
 
 # refer to variables.less
 window._styles =

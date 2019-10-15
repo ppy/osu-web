@@ -18,6 +18,7 @@
 
 import { FormErrors } from 'form-errors';
 import { OwnClientJSON } from 'interfaces/own-client-json';
+import { route } from 'laroute';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -60,7 +61,7 @@ export class NewClient extends React.Component {
     $.ajax({
       data: this.state,
       method: 'POST',
-      url: laroute.route('oauth.clients.store'),
+      url: route('oauth.clients.store'),
     }).then((data: OwnClientJSON) => {
       const client = store.updateWithJson(data);
       uiState.account.newClientVisible = false;

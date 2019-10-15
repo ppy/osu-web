@@ -71,7 +71,7 @@ return [
 
             'country_ranking' => [
                 'title' => 'Országos Ranglista',
-                'description' => '',
+                'description' => 'Hódítsd meg az országod mielőtt a világot próbálnád.',
             ],
 
             'mod_filtering' => [

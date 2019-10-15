@@ -26,6 +26,9 @@ use Tests\TestCase;
 
 class BeatmapControllerTest extends TestCase
 {
+    private $user;
+    private $beatmap;
+
     public function testInvalidMode()
     {
         $this->json('GET', route('beatmaps.scores', $this->beatmap), [

@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Automatikusan generált posztot nem lehet szerkeszteni.',
-            'not_owner' => 'Csak a posztoló tudja szerkeszteni a posztot.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Csak a posztoló tudja szerkeszteni a posztot.',
+            'resolved' => '',
+            'system_generated' => 'Automatikusan generált posztot nem lehet szerkeszteni.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Ez a beatmap megbeszélés miatt zárolva.',
         ],

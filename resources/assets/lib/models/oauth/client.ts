@@ -17,6 +17,7 @@
  */
 
 import { ClientJSON } from 'interfaces/client-json';
+import { route } from 'laroute';
 import { action, observable } from 'mobx';
 
 export class Client {
@@ -42,7 +43,7 @@ export class Client {
 
     return $.ajax({
       method: 'DELETE',
-      url: laroute.route('oauth.authorized-clients.destroy', { authorized_client: this.id }),
+      url: route('oauth.authorized-clients.destroy', { authorized_client: this.id }),
     }).then(() => {
       this.revoked = true;
     }).always(() => {

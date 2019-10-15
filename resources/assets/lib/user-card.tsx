@@ -19,6 +19,7 @@
 import { BlockButton } from 'block-button';
 import { FlagCountry } from 'flag-country';
 import { FriendButton } from 'friend-button';
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
@@ -176,7 +177,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     if (this.isUserLoaded) {
       backgroundLink = (
         <a
-          href={laroute.route('users.show', { user: this.user.id })}
+          href={route('users.show', { user: this.user.id })}
           className='user-card__background-container'
         >
           {background}
@@ -196,14 +197,14 @@ export class UserCard extends React.PureComponent<Props, State> {
       <div className='user-card__icons'>
         <a
           className='user-card__icon user-card__icon--flag'
-          href={laroute.route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
+          href={route('rankings', { mode: 'osu', type: 'performance', country: this.user.country_code })}
         >
           <FlagCountry country={this.user.country} modifiers={['full']} />
         </a>
 
         {
           this.props.mode === 'card' && this.user.is_supporter ?
-          <a className='user-card__icon' href={laroute.route('support-the-game')}>
+          <a className='user-card__icon' href={route('support-the-game')}>
             <SupporterIcon modifiers={['user-card']}/>
           </a> : null
         }
@@ -223,7 +224,7 @@ export class UserCard extends React.PureComponent<Props, State> {
 
     return (
       <div className='user-card__icons'>
-        <a className='user-card__icon' href={laroute.route('support-the-game')}>
+        <a className='user-card__icon' href={route('support-the-game')}>
           <SupporterIcon level={this.user.support_level} />
         </a>
       </div>
@@ -239,7 +240,7 @@ export class UserCard extends React.PureComponent<Props, State> {
           this.canMessage ? (
             <a
               className='simple-menu__item js-login-required--click'
-              href={laroute.route('messages.users.show', { user: this.user.id })}
+              href={route('messages.users.show', { user: this.user.id })}
               onClick={dismiss}
             >
               <span className='fas fa-envelope' />

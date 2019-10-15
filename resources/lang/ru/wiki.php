@@ -41,4 +41,11 @@ return [
             'default' => 'на английском языке',
         ],
     ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
+    ],
 ];

@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@foreach (nav_links() as $section => $links)
+@foreach (nav_links_mobile() as $section => $links)
     <li class="navbar-mobile-item dropdown">
         <a
             data-toggle="dropdown"
