@@ -217,13 +217,14 @@ class User extends Model implements AuthenticatableContract
     const INACTIVE_DAYS = 180;
 
     const MAX_FIELD_LENGTHS = [
-        'user_msnm' => 255,
-        'user_twitter' => 255,
-        'user_website' => 200,
         'user_discord' => 37, // max 32char username + # + 4-digit discriminator
         'user_from' => 30,
-        'user_occ' => 30,
         'user_interests' => 30,
+        'user_msnm' => 255,
+        'user_occ' => 30,
+        'user_sig' => 3000,
+        'user_twitter' => 255,
+        'user_website' => 200,
     ];
 
     protected $memoized = [];
