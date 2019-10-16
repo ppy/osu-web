@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Libraries\OsuWiki;
 use App\Libraries\WikiRedirect;
+use App\Models\NewsPost;
 use App\Models\Wiki\Image;
 use App\Models\Wiki\Page;
 use App\Models\Wiki\WikiObject;
@@ -50,7 +51,10 @@ class UpdateWiki implements ShouldQueue
             $object = $this->getObject($file['filename']);
 
             if ($object) {
-                $object->forget();
+                // because otherwise we'd have newsposts being pointlessly removed and readded into the database
+                if (get_class($object) !== 'NewsPost' || (get_class($object) === 'NewsPost' && $status !== 'removed')) {
+                    $object->forget();
+                }
 
                 if ($status === 'renamed') {
                     $this->getObject($file['previous_filename'])->forget();
@@ -68,19 +72,16 @@ class UpdateWiki implements ShouldQueue
      */
     private function getObject($path)
     {
-        $matches = [];
+        $parsed = OsuWiki::parseGithubPath($path);
 
-        // splits github path into wiki path, filename (locale in case of pages), file extension
-        if (preg_match('/^(?:wiki\/)(.*)\/(.*)\.(.{2,})$/', $path, $matches) === 1) {
-            if (OsuWiki::isImage($path)) {
-                $path = $matches[1].'/'.$matches[2].'.'.$matches[3];
-
-                return new Image($path);
-            } else {
-                return new Page($matches[1], $matches[2]);
-            }
-        } elseif ($path === 'wiki/redirect.yaml') {
+        if ($parsed['type'] === 'page') {
+            return new Page($parsed['path'], $parsed['locale']);
+        } elseif ($parsed['type'] === 'image') {
+            return new Image($parsed['path']);
+        } elseif ($parsed['type'] === 'redirect') {
             return new WikiRedirect();
+        } elseif ($parsed['type'] === 'news_post') {
+            return NewsPost::lookupAndSync($parsed['slug']);
         }
     }
 }

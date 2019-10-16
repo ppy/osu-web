@@ -24,6 +24,7 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Commentable;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
+use App\Models\Wiki\WikiObject;
 use App\Traits\CommentableDefaults;
 use Carbon\Carbon;
 use Exception;
@@ -40,7 +41,7 @@ use Exception;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class NewsPost extends Model implements Commentable
+class NewsPost extends Model implements Commentable, WikiObject
 {
     use CommentableDefaults;
 
@@ -268,6 +269,18 @@ class NewsPost extends Model implements Commentable
         $this->hash = $file->data['sha'];
 
         $this->save();
+    }
+
+    public function get()
+    {
+        $this->sync(true);
+
+        return $this;
+    }
+
+    public function forget()
+    {
+        $this->delete();
     }
 
     public function pagePublishedAt()

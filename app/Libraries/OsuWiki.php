@@ -66,6 +66,47 @@ class OsuWiki
         return (new static($path))->content();
     }
 
+    /**
+     * Parses a github repository path of a wiki file,
+     * and returns informations such as type, wiki path and locale.
+     *
+     * @param string $path
+     * @return array[]
+     */
+    public static function parseGithubPath($path)
+    {
+        $matches = [];
+
+        if (starts_with($path, 'wiki/')) {
+            if ($path === 'wiki/redirect.md') {
+                return ['type' => 'redirect'];
+            }
+
+            preg_match('/^(?:wiki\/)(.*)\/(.*)\.(.{2,})$/', $path, $matches);
+
+            if (static::isImage($path)) {
+                return [
+                    'type' => 'image',
+                    'path' => $matches[1].'/'.$matches[2].'.'.$matches[3],
+                ];
+            } else {
+                return [
+                    'type' => 'page',
+                    'locale' => $matches[2],
+                    'path' => $matches[1],
+                ];
+            }
+        } elseif (starts_with($path, 'news/')) {
+            preg_match('/^(?:news\/)(.*)\.(.{2,})$/', $path, $matches);
+
+            return [
+                'type' => 'news_post',
+                'slug' => $matches[1],
+            ];
+        }
+
+    }
+
     public static function updateFromGithub($data)
     {
         dispatch(new UpdateWiki($data['before'], $data['after']));
@@ -77,9 +118,7 @@ class OsuWiki
             ->commits()
             ->compare(static::USER, static::REPOSITORY, $old, $new);
 
-        return array_filter($diff['files'], function ($file) {
-            return starts_with($file['filename'], 'wiki/');
-        });
+        return $diff['files'];
     }
 
     public static function isImage($path)
