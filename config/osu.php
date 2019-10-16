@@ -162,7 +162,6 @@ return [
         'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
 
         'social' => [
-            'facebook' => 'https://facebook.com/osugame',
             'twitter' => '/help/wiki/Twitter',
         ],
         'user' => [

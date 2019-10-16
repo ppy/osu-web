@@ -214,9 +214,6 @@
             <a href="{{ osu_url("social.twitter") }}" class="landing-footer-social__icon landing-footer-social__icon--twitter">
                 <span class="fab fa-twitter"></span>
             </a>
-            <a href="{{ osu_url("social.facebook") }}" class="landing-footer-social__icon landing-footer-social__icon--facebook">
-                <span class="fab fa-facebook"></span>
-            </a>
         </div>
 
         @include('layout.footer', ['modifiers' => ['landing'], 'withLinks' => false])
