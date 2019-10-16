@@ -20,8 +20,8 @@
 
 namespace App\Jobs;
 
-use App\Events\NewPrivateNotificationEvent;
 use App\Events\NewNotificationEvent;
+use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Chat\Channel;
 use App\Models\Follow;
