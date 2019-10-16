@@ -1,0 +1,172 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.beatmap-discussion-newer {
+  @_avatar-size: 45px;
+  @_side-padding: 20px;
+
+  .default-box-shadow();
+  display: flex;
+  background-color: @osu-colour-b4;
+  flex-direction: column;
+
+  &__avatar {
+    flex: none;
+    width: @_avatar-size;
+    height: @_avatar-size;
+  }
+
+  &__content {
+    display: flex;
+    margin: 15px;
+    padding: 15px;
+    flex-direction: column;
+    color: white;
+    background: @osu-colour-b5;
+    .default-border-radius();
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: @osu-colour-b5;
+    padding: 5px @_side-padding;
+    justify-content: space-between;
+
+    @media @mobile {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+
+  &__footer-content {
+    margin: 5px 0;
+    display: flex;
+    flex: none;
+    .default-border-radius();
+
+    &--right {
+      margin: 0 0 5px;
+      justify-content: flex-end;
+      flex: 1 0 auto;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__message {
+    .content-font();
+    color: @osu-colour-f1;
+    flex: 1;
+    padding-left: 10px;
+    font-size: @font-size--title-small-2;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__message-area {
+    color: white;
+    .reset-input();
+    resize: vertical;
+    width: 100%;
+    max-height: 70vh;
+    min-height: 3em;
+
+    flex: 1 0 auto;
+    font-size: @font-size--phone-input;
+
+    &::placeholder {
+      color: @osu-colour-b1;
+    }
+
+    @media @desktop {
+      font-size: inherit;
+    }
+  }
+
+  &__message-counter {
+    font-size: @font-size--normal;
+    text-align: right;
+    margin-top: 5px;
+
+    &--almost-over {
+      color: @yellow-dark;
+    }
+
+    &--over {
+      color: @red;
+      font-weight: 700;
+    }
+  }
+
+  &__notice {
+    background-color: @osu-colour-b5;
+    padding: 5px @_side-padding;
+    color: #fff;
+    font-size: @font-size--normal;
+  }
+
+  &__notice-checkbox {
+    margin: 5px 0 0;
+    text-transform: initial;
+    font-weight: initial;
+  }
+
+  &__notice-link {
+    .link-default();
+  }
+
+  &__timestamp-col {
+    .default-text-shadow();
+    padding: 10px;
+    font-size: @font-size--small-2;
+    color: #fff;
+    background-color: @osu-colour-b3;
+    border-radius: 0 @border-radius-base @border-radius-base 0;
+
+    @media @mobile {
+      flex-grow: 1;
+    }
+
+    &--label {
+      background-color: @osu-colour-b6;
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+      flex-grow: 0;
+    }
+  }
+
+  &__type {
+    color: #999;
+    margin: 0 5px;
+
+    &--active {
+      color: #fff;
+    }
+  }
+
+  &__types {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+}
+
+.DraftEditor-root {
+  width: 100%;
+  color: @osu-colour-c1;
+}

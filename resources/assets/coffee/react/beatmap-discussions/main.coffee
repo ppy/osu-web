@@ -23,9 +23,10 @@ import { ModeSwitcher } from './mode-switcher'
 import { NewDiscussion } from './new-discussion'
 import { BackToTop } from 'back-to-top'
 import * as React from 'react'
-import { div } from 'react-dom-factories'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import { div } from 'react-dom-factories'
+import NewerDiscussion from './newer-discussion'
 
 el = React.createElement
 
@@ -141,8 +142,12 @@ export class Main extends React.PureComponent
       else
         div
           className: 'osu-layout__section osu-layout__section--extra'
-          # TODO: toggle to the review editor instead (when it exists)
-          if @state.currentMode != 'reviews'
+
+          if @state.currentMode == 'reviews'
+            el NewerDiscussion,
+              beatmapset: @state.beatmapset
+              users: @users()
+          else
             el NewDiscussion,
               beatmapset: @state.beatmapset
               currentUser: @state.currentUser
