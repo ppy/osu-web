@@ -93,16 +93,6 @@
             </a>
         </div>
 
-        <div class="nav2__col js-nav-button--item">
-            <a
-                href="{{ osu_url('social.facebook') }}"
-                class="nav-button nav-button--social"
-                title="Facebook"
-            >
-                <span class="fab fa-facebook"></span>
-            </a>
-        </div>
-
         <div class="nav2__col">
             <a
                 href="{{ route('support-the-game') }}"
