@@ -20,38 +20,26 @@
 
 namespace App\Events;
 
-use App\Models\Follow;
+use App\Models\Notification;
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Queue\SerializesModels;
 
-class UserSubscriptionChangeEvent extends NotificationEventBase
+class NewPrivateNotificationEvent extends NewNotificationEvent
 {
-    public $action;
-    public $userId;
-    public $channelName;
+    use SerializesModels;
+
+    private $receiverIds;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($action, $user, $notifiable)
+    public function __construct(Notification $notification, array $receiverIds)
     {
-        parent::__construct();
+        parent::__construct($notification);
 
-        $this->action = $action;
-        $this->userId = $user->getKey();
-
-        // TODO: consolidate BeatmapsetWatch and TopicWatch to Follow and rename $notifiable to $follow.
-        if ($notifiable instanceof Follow) {
-            $subtype = $notifiable->subtype;
-            $notifiable = $notifiable->notifiable;
-        }
-        $this->channelName = static::generateChannelName($notifiable, $subtype ?? null);
-    }
-
-    public function broadcastAs()
-    {
-        return $this->action;
+        $this->receiverIds = $receiverIds;
     }
 
     /**
@@ -61,11 +49,8 @@ class UserSubscriptionChangeEvent extends NotificationEventBase
      */
     public function broadcastOn()
     {
-        return new Channel("user_subscription:{$this->userId}");
-    }
-
-    public function broadcastWith()
-    {
-        return ['channel' => $this->channelName];
+        return array_map(function ($userId) {
+            return new Channel("private:user:{$userId}");
+        }, $this->receiverIds);
     }
 }
