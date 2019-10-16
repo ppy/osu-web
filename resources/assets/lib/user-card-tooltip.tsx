@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
@@ -185,7 +186,7 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
   }
 
   getUser() {
-    const url = laroute.route('users.card', { user: this.props.lookup });
+    const url = route('users.card', { user: this.props.lookup });
 
     return $.ajax({
       dataType: 'json',

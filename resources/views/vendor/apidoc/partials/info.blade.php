@@ -68,5 +68,8 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2019-10-09
+- Ranking API response no longer returns an array at the top level; an object with keys is now returned.
+
 ### 2019-07-18
 - [`User`](#user) now returns counts directly as primitives instead of numbers wrapped in an array.

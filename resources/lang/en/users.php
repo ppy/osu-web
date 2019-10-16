@@ -88,9 +88,6 @@ return [
         'title' => ':username\'s posts',
     ],
 
-    'signup' => [
-        '_' => 'Register',
-    ],
     'anonymous' => [
         'login_link' => 'click to sign in',
         'login_text' => 'sign in',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count_delimited follower|:count_delimited followers',
             'none' => 'none',
             'unranked' => 'No recent plays',
 

@@ -61,9 +61,9 @@ trait TopicTrait
 
     public static function esIndexingQuery()
     {
-        $forumIds = Forum::on('mysql-readonly')->where('enable_indexing', 1)->pluck('forum_id');
+        $forumIds = Forum::on('mysql')->where('enable_indexing', 1)->pluck('forum_id');
 
-        return static::on('mysql-readonly')->withoutGlobalScopes()->whereIn('forum_id', $forumIds);
+        return static::on('mysql')->withoutGlobalScopes()->whereIn('forum_id', $forumIds);
     }
 
     public static function esSchemaFile()

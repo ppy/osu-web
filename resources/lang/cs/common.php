@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', a ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Zpátky na předchozí pozici',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'přetáhněte sem soubor pro nahrání',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

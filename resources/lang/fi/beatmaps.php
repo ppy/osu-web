@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'salli kudosu',
+        'beatmap_information' => '',
         'delete' => 'poista',
         'deleted' => 'Poistanut :editor :delete_time.',
         'deny_kudosu' => 'hylkää kudosu',

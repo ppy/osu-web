@@ -116,6 +116,7 @@ class CommentsController extends Controller
         } else {
             $commentBundle->depth = 0;
             $commentBundle->includeCommentableMeta = true;
+            $commentBundle->includeDeleted = isset($commentable);
 
             $commentPagination = new LengthAwarePaginator(
                 [],
@@ -178,7 +179,7 @@ class CommentsController extends Controller
      *
      * ---
      *
-     * ### Response Formant
+     * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
      *
@@ -223,7 +224,7 @@ class CommentsController extends Controller
      *
      * ---
      *
-     * ### Response Formant
+     * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
      *
@@ -256,7 +257,7 @@ class CommentsController extends Controller
      *
      * ---
      *
-     * ### Response Formant
+     * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
      *
@@ -284,7 +285,7 @@ class CommentsController extends Controller
      *
      * ---
      *
-     * ### Response Formant
+     * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
      *

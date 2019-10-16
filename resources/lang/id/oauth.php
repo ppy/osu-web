@@ -58,6 +58,15 @@ return [
         'title' => 'Sign-in Akun',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => 'Apakah anda yakin untuk menghapus klien ini?',
         'new' => 'Aplikasi OAuth anyar',

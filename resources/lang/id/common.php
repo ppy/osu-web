@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', dan ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Kembali ke posisi sebelumnya',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'letakkan di sini untuk mengunggah',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

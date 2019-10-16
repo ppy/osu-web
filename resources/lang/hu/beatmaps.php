@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu engedélyezése',
+        'beatmap_information' => '',
         'delete' => 'törlés',
         'deleted' => 'Eltávolítva :editor által, :delete_time-kor.',
         'deny_kudosu' => 'kudosu megtagadása',
@@ -286,7 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => '',
+        'MR' => 'Mirror',
         'NC' => '',
         'NF' => '',
         'NM' => '',

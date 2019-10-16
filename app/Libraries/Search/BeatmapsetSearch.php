@@ -50,7 +50,7 @@ class BeatmapsetSearch extends RecordSearch
     {
         static $partialMatchFields = ['artist', 'artist.*', 'artist_unicode', 'creator', 'title', 'title.raw', 'title.*', 'title_unicode', 'tags^0.5'];
 
-        $query = (new BoolQuery());
+        $query = new BoolQuery;
 
         if (present($this->params->queryString)) {
             $terms = explode(' ', $this->params->queryString);
@@ -68,14 +68,24 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         $this->addBlacklistFilter($query);
-        $this->addModeFilter($query);
-        $this->addRecommendedFilter($query);
+        $this->addBlockedUsersFilter($query);
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
         $this->addExtraFilter($query);
-        $this->addRankFilter($query);
         $this->addStatusFilter($query);
-        $this->addPlayedFilter($query);
+
+        $nested = new BoolQuery;
+        $this->addModeFilter($nested);
+        $this->addPlayedFilter($nested);
+        $this->addRankFilter($nested);
+        $this->addRecommendedFilter($nested);
+
+        $query->filter([
+            'nested' => [
+                'path' => 'beatmaps',
+                'query' => $nested->toArray(),
+            ],
+        ]);
 
         return $query;
     }
@@ -107,6 +117,11 @@ class BeatmapsetSearch extends RecordSearch
         $query->filter($bool);
     }
 
+    private function addBlockedUsersFilter($query)
+    {
+        $query->mustNot(['terms' => ['user_id' => $this->params->blockedUserIds()]]);
+    }
+
     private function addExtraFilter($query)
     {
         foreach ($this->params->extra as $val) {
@@ -130,22 +145,21 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addModeFilter($query)
     {
-        if ($this->params->mode !== null) {
-            $modes = [$this->params->mode];
-            if ($this->params->includeConverts && $this->params->mode !== Beatmap::MODES['osu']) {
-                $modes[] = Beatmap::MODES['osu'];
-            }
+        if (!$this->params->includeConverts) {
+            $query->filter(['term' => ['beatmaps.convert' => false]]);
+        }
 
-            $query->filter(['terms' => ['difficulties.playmode' => $modes]]);
+        if ($this->params->mode !== null) {
+            $query->filter(['term' => ['beatmaps.playmode' => $this->params->mode]]);
         }
     }
 
     private function addPlayedFilter($query)
     {
         if ($this->params->playedFilter === 'played') {
-            $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+            $query->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
         } elseif ($this->params->playedFilter === 'unplayed') {
-            $query->mustNot(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+            $query->mustNot(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
         }
     }
 
@@ -155,7 +169,7 @@ class BeatmapsetSearch extends RecordSearch
             return;
         }
 
-        $query->filter(['terms' => ['difficulties.beatmap_id' => $this->getPlayedBeatmapIds($this->params->rank)]]);
+        $query->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds($this->params->rank)]]);
     }
 
     private function addRecommendedFilter($query)
@@ -165,7 +179,7 @@ class BeatmapsetSearch extends RecordSearch
             $difficulty = $this->params->getRecommendedDifficulty();
             $query->filter([
                 'range' => [
-                    'difficulties.difficultyrating' => [
+                    'beatmaps.difficultyrating' => [
                         'gte' => $difficulty - 0.5,
                         'lte' => $difficulty + 0.5,
                     ],

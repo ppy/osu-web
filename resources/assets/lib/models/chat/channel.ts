@@ -49,6 +49,11 @@ export default class Channel {
   }
 
   @computed
+  get exists(): boolean {
+    return this.channelId > 0;
+  }
+
+  @computed
   get pmTarget(): number | undefined {
     if (this.type !== 'PM') {
       return;

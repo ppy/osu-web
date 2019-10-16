@@ -39,16 +39,16 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Seçkin Sanatçılar',
-                'description' => '',
+                'description' => 'Sizin desteğinizle, daha çok müzisyen ile iletişim kurabilir ve onların güzel şarkılarını osu! için lisanslayabiliriz!',
                 'link_text' => '',
             ],
             'ads' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Sizin yardımlarınız oyunu bağımsız; tamamen reklamlardan, sponsorlardan barındırabilir.',
             ],
             'tournaments' => [
                 'title' => 'Resmi Turnuvalar',
-                'description' => '',
+                'description' => 'Oyuna yapacağınız bağışlar resmi osu! Dünya Kupası\'nı sürdürmek (ve ödülleri için) bizim için çok önemlidir.',
                 'link_text' => 'Turnuvaları Keşfet &raquo;',
             ],
             'bounty-program' => [
@@ -61,7 +61,7 @@ return [
             'title' => 'Öyle mi? Neler alacağım?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'oyundan çıkmaya gerek kalmadan beatmaplere kolay ve hızlı ulaşım.',
+                'description' => 'Oyundan çıkmaya gerek kalmadan hızlıca beatmapleri arayıp indirebilirsin.',
             ],
 
             'friend_ranking' => [

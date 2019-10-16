@@ -37,7 +37,7 @@ class WikiRedirect
         if (!array_key_exists('redirect', $this->cache)) {
             $this->cache['redirect'] = Cache::remember(
                 'wiki:redirect',
-                60,
+                3600,
                 function () {
                     try {
                         return Yaml::parse(strip_utf8_bom(OsuWiki::fetchContent('wiki/redirect.yaml')));

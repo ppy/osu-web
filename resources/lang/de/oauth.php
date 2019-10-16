@@ -58,6 +58,15 @@ return [
         'title' => 'Konto-Anmeldung',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => '',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => 'Bist du sicher, dass du dieses Gerät löschen willst?',
         'new' => 'Neue OAuth-Anwendung',

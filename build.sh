@@ -45,7 +45,7 @@ if [ -z "${OSU_SKIP_ASSET_BUILD:-}" ]; then
     ln -snf ~/node_modules node_modules
   fi
 
-  php artisan laroute:generate
+  php artisan ziggy:generate
 
   command -v yarn || npm install -g yarn
   yarn

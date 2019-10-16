@@ -80,30 +80,28 @@
             </div>
         {!! Form::close() !!}
 
-        @if ($withRegister ?? true)
-            <div class="login-box__section login-box__section--register">
-                <h2 class="login-box__row login-box__row--title">
-                    {{ trans('layout.popup_login.register.title') }}
-                </h2>
+        <div class="login-box__section login-box__section--register">
+            <h2 class="login-box__row login-box__row--title">
+                {{ trans('layout.popup_login.register.title') }}
+            </h2>
 
-                <div class="login-box__row">
-                    {{ trans('layout.popup_login.register.info') }}
-                </div>
+            <div class="login-box__row">
+                {{ trans('layout.popup_login.register.info') }}
+            </div>
 
-                <div class="login-box__row login-box__row--actions">
-                    <div class="login-box__action">
-                        <a href="{{ osu_url('user.signup') }}" class="btn-osu-big btn-osu-big--nav-popup">
-                            <div class="btn-osu-big__content">
-                                <span class="btn-osu-big__left">
-                                    {{ trans('users.signup._') }}
-                                </span>
+            <div class="login-box__row login-box__row--actions">
+                <div class="login-box__action">
+                    <a href="{{ route('download') }}" class="btn-osu-big btn-osu-big--nav-popup">
+                        <div class="btn-osu-big__content">
+                            <span class="btn-osu-big__left">
+                                {{ trans('layout.popup_login.register.download') }}
+                            </span>
 
-                                <span class="fas fa-fw fa-child"></span>
-                            </div>
-                        </a>
-                    </div>
+                            <span class="fas fa-fw fa-download"></span>
+                        </div>
+                    </a>
                 </div>
             </div>
-        @endif
+        </div>
     </div>
 </div>

@@ -21,7 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Forespurt side er ennå ikke oversatt til det valgte språket (:language). Viser Engelsk versjon.',
-        'incomplete_or_outdated' => '',
+        'incomplete_or_outdated' => 'Innholdet på denne siden er utdatert eller ikke fullført. Vennligst vurder å oppdatere denne artikkelen om du vil hjelpe oss!',
         'languages' => 'Språk',
         'missing' => 'Forespurt side med ":keyword" kunne ikke bli funnet.',
         'missing_title' => 'Ikke funnet',
@@ -40,5 +40,12 @@ return [
 
             'default' => 'Engelsk versjon',
         ],
+    ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
     ],
 ];

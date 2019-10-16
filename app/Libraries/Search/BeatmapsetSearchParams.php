@@ -98,6 +98,7 @@ class BeatmapsetSearchParams extends SearchParams
             || in_array($this->status, static::STATUSES_NO_CACHE, true)
             || $this->showRecommended
             || $this->playedFilter !== null
+            || !empty($this->blockedUserIds()) // don't cache result if blocking applied, unless filter is moved client-side.
         );
     }
 

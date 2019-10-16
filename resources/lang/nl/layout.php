@@ -32,11 +32,11 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Sluiten (esc)',
+        'fullscreen' => 'Schakelen naar volledig scherm',
+        'zoom' => 'Zoom in/uit',
+        'previous' => 'Vorige (pijl links)',
+        'next' => 'Volgende (pijl rechts)',
     ],
 
     'menu' => [

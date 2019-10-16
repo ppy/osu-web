@@ -20,12 +20,12 @@
 
 return [
     'scores' => [
-        'button' => 'Segnala un punteggio',
-        'title' => 'Vuoi segnalare il punteggio di :username?',
+        'button' => 'Segnala Punteggio',
+        'title' => 'Segnalare il punteggio di :username?',
     ],
 
     'comment' => [
         'button' => 'Segnala',
-        'title' => 'Segnala il commento di :username?',
+        'title' => 'Segnalare il commento di :username?',
     ],
 ];

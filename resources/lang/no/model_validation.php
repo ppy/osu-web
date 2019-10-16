@@ -121,11 +121,11 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'Vennligst skriv en gyldig URL.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Applikasjonsnavn',
+                'redirect' => 'Applikasjonens omdirigeringslenke',
             ],
         ],
     ],
@@ -177,8 +177,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Antall',
+                'cost' => 'Pris',
             ],
         ],
     ],

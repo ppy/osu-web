@@ -19,6 +19,7 @@
 import HeaderV3 from 'header-v3';
 import HeaderTitleTrans from 'interfaces/header-title-trans';
 import NewsPostJson from 'interfaces/news-post-json';
+import { route } from 'laroute';
 import * as React from 'react';
 
 interface Props {
@@ -32,7 +33,7 @@ export default function NewsHeader(props: Props) {
     {
       active: props.section === 'index',
       title: osu.trans('news.index.title.info'),
-      url: laroute.route('news.index'),
+      url: route('news.index'),
     },
   ];
 
@@ -40,7 +41,7 @@ export default function NewsHeader(props: Props) {
     links.push({
       active: true,
       title: props.post.title,
-      url: laroute.route('news.show', {news: props.post.slug}),
+      url: route('news.show', {news: props.post.slug}),
     });
   }
 
