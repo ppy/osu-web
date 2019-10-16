@@ -104,7 +104,6 @@ class OsuWiki
                 'slug' => $matches[1],
             ];
         }
-
     }
 
     public static function updateFromGithub($data)
