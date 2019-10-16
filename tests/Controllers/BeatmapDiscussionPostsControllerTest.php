@@ -2,7 +2,7 @@
 
 namespace Tests\Controllers;
 
-use App\Events\BeatmapsetDiscussionQualifiedProblemNotificationEvent;
+use App\Events\NewPrivateNotificationEvent;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -516,7 +516,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                 ],
             ]);
 
-        $assertMethod(BeatmapsetDiscussionQualifiedProblemNotificationEvent::class);
+        $assertMethod(NewPrivateNotificationEvent::class);
     }
 
     public function problemDataProvider()

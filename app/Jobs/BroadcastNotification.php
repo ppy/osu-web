@@ -20,7 +20,7 @@
 
 namespace App\Jobs;
 
-use App\Events\BeatmapsetDiscussionQualifiedProblemNotificationEvent;
+use App\Events\NewPrivateNotificationEvent;
 use App\Events\NewNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Chat\Channel;
@@ -161,7 +161,7 @@ class BroadcastNotification implements ShouldQueue
             'cover_url' => $this->notifiable->coverURL('card'),
         ];
 
-        return BeatmapsetDiscussionQualifiedProblemNotificationEvent::class;
+        return NewPrivateNotificationEvent::class;
     }
 
     private function onBeatmapsetDisqualify()
