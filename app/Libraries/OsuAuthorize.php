@@ -1520,6 +1520,10 @@ class OsuAuthorize
                 return $prefix.'require_supporter_tag';
             }
         } else {
+            if ($user->canModerate()) {
+                return 'ok';
+            }
+
             if ($user->getKey() !== $page->poster_id) {
                 return $prefix.'not_owner';
             }
