@@ -28,15 +28,15 @@
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-@if ($hasOpengraph)
-    <meta property="og:site_name" content="{{ 'osu! » '.$opghSitename ?? 'osu!' }}">
+@if (isset($opengraph))
+    <meta property="og:site_name" content="{{ 'osu! » '.$opengraph['site_name'] ?? 'osu!' }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ strtok(Request::url(), '?') }}">
-    <meta property="og:title" content="{{ $opghTitle }}">
-    <meta property="og:description" content="{{ $opghDescription }}">
+    <meta property="og:title" content="{{ $opengraph['title'] }}">
+    <meta property="og:description" content="{{ $opengraph['description'] }}">
 
-    @if (isset($opghImage))
-        <meta property="og:image" content="{{ $opghImage }}">
+    @if (isset($opengraph['image']))
+        <meta property="og:image" content="{{ $opengraph['image'] }}">
     @endif
 @endif
 
