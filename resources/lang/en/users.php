@@ -88,9 +88,6 @@ return [
         'title' => ':username\'s posts',
     ],
 
-    'signup' => [
-        '_' => 'Register',
-    ],
     'anonymous' => [
         'login_link' => 'click to sign in',
         'login_text' => 'sign in',
