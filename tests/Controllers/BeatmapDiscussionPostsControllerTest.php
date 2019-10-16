@@ -2,6 +2,7 @@
 
 namespace Tests\Controllers;
 
+use App\Events\NewNotificationEvent;
 use App\Events\NewPrivateNotificationEvent;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -43,6 +44,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
         $this->assertSame($currentNotifications + 1, Notification::count());
         $this->assertSame($currentUserNotifications + 1, UserNotification::count());
+
+        Event::assertDispatched(NewNotificationEvent::class);
+        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
 
     public function testPostStoreNewDiscussionInactiveBeatmapset()
@@ -502,7 +506,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     {
         $this->beatmapset->update($updateParams);
         factory(User::class)->states('bng')->create(); // event doesn't get dispatched if there are no users in the group.
-        Event::fake();
 
         $this
             ->actingAs($this->user)
@@ -530,6 +533,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        Event::fake();
 
         $this->mapper = factory(User::class)->create();
         $this->user = factory(User::class)->create();
