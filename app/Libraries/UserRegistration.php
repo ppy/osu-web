@@ -44,6 +44,21 @@ class UserRegistration
         ], $params));
     }
 
+    public function assertValid()
+    {
+        if (!$this->validateAttributes()) {
+            throw new ValidationException($this->user()->validationErrors());
+        }
+
+        $this->assertValidation(UsernameValidation::validateUsername($this->user->username));
+        $this->assertValidation(UsernameValidation::validateAvailability($this->user->username));
+        $this->assertValidation(UsernameValidation::validateUsersOfUsername($this->user->username));
+
+        if (!$this->user->isValid()) {
+            throw new ValidationException($this->user()->validationErrors());
+        }
+    }
+
     public function save()
     {
         $this->assertValid();
@@ -77,17 +92,6 @@ class UserRegistration
     public function user()
     {
         return $this->user;
-    }
-
-    private function assertValid()
-    {
-        if (!$this->validateAttributes()) {
-            throw new ValidationException($this->user()->validationErrors());
-        }
-
-        $this->assertValidation(UsernameValidation::validateUsername($this->user->username));
-        $this->assertValidation(UsernameValidation::validateAvailability($this->user->username));
-        $this->assertValidation(UsernameValidation::validateUsersOfUsername($this->user->username));
     }
 
     private function assertValidation($errors)

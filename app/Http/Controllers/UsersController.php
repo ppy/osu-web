@@ -32,6 +32,7 @@ use App\Models\User;
 use App\Models\UserNotFound;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
+use Illuminate\Cache\RateLimiter;
 use Request;
 
 class UsersController extends Controller
@@ -47,7 +48,7 @@ class UsersController extends Controller
             'report',
         ]]);
 
-        $this->middleware('throttle:10,60', ['only' => ['store']]);
+        $this->middleware('throttle:60,10', ['only' => ['store']]);
 
         if (is_api_request()) {
             $this->middleware('require-scopes:identify', ['only' => ['me']]);
@@ -131,7 +132,16 @@ class UsersController extends Controller
         $registration = new UserRegistration($params);
 
         try {
+            $registration->assertValid();
+
+            $throttleKey = "registration:{$ip}";
+
+            if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {
+                abort(429);
+            }
+
             $registration->save();
+            app(RateLimiter::class)->hit($throttleKey, 600);
 
             return $registration->user()->fresh()->defaultJson();
         } catch (ValidationException $e) {

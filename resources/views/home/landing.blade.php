@@ -90,13 +90,6 @@
                 >
                     {{ trans("users.login._") }}
                 </a>
-
-                <a
-                    href="{{ osu_url('user.signup') }}"
-                    class="landing-nav__link js-nav-toggle"
-                >
-                    {{ trans("users.signup._") }}
-                </a>
             </div>
         </div>
 
