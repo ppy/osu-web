@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_lock_compact' => 'Discussion was locked',
                 'beatmapset_discussion_post_new' => 'New post on ":title" by :username',
                 'beatmapset_discussion_post_new_compact' => 'New post by :username',
+                'beatmapset_discussion_qualified_problem' => 'Problem reported on qualified beatmap :title',
+                'beatmapset_discussion_qualified_problem_compact' => 'Problem on qualified beatmap',
                 'beatmapset_discussion_unlock' => 'Discussion on ":title" has been unlocked',
                 'beatmapset_discussion_unlock_compact' => 'Discussion was unlocked',
             ],
