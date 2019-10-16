@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Libraries\OsuWiki;
+use App\Libraries\WikiRedirect;
 use App\Models\Wiki\Image;
 use App\Models\Wiki\Page;
 use App\Models\Wiki\WikiObject;
@@ -48,14 +49,16 @@ class UpdateWiki implements ShouldQueue
 
             $object = $this->getObject($file['filename']);
 
-            $object->forget();
+            if ($object) {
+                $object->forget();
 
-            if ($status === 'renamed') {
-                $this->getObject($file['previous_filename'])->forget();
-            }
+                if ($status === 'renamed') {
+                    $this->getObject($file['previous_filename'])->forget();
+                }
 
-            if ($status !== 'removed') {
-                $object->get();
+                if ($status !== 'removed') {
+                    $object->get();
+                }
             }
         }
     }
@@ -68,14 +71,16 @@ class UpdateWiki implements ShouldQueue
         $matches = [];
 
         // splits github path into wiki path, filename (locale in case of pages), file extension
-        preg_match('/^(?:wiki\/)(.*)\/(.*)\.(.{2,})$/', $path, $matches);
+        if (preg_match('/^(?:wiki\/)(.*)\/(.*)\.(.{2,})$/', $path, $matches) === 1) {
+            if (OsuWiki::isImage($path)) {
+                $path = $matches[1].'/'.$matches[2].'.'.$matches[3];
 
-        if (OsuWiki::isImage($path)) {
-            $path = $matches[1].'/'.$matches[2].'.'.$matches[3];
-
-            return new Image($path);
-        } else {
-            return new Page($matches[1], $matches[2]);
+                return new Image($path);
+            } else {
+                return new Page($matches[1], $matches[2]);
+            }
+        } elseif ($path === 'wiki/redirect.yaml') {
+            return new WikiRedirect();
         }
     }
 }
