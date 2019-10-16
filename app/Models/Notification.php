@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use App\Libraries\MorphMap;
-
 class Notification extends Model
 {
     const BEATMAPSET_DISCUSSION_LOCK = 'beatmapset_discussion_lock';
@@ -47,15 +45,6 @@ class Notification extends Model
         'details' => 'array',
     ];
 
-    public static function generateChannelName($notifiable, $subtype)
-    {
-        return 'new:'.
-            MorphMap::getType($notifiable).
-            ':'.
-            $notifiable->getKey().
-            (in_array($subtype, static::SUBTYPES, true) ? ":{$subtype}" : '');
-    }
-
     public function notifiable()
     {
         return $this->morphTo();
@@ -69,13 +58,5 @@ class Notification extends Model
     public function userNotifications()
     {
         return $this->hasMany(UserNotification::class);
-    }
-
-    /**
-     * Doesn't get used for beatmapset_discussion_qualified_problem; channel names there are generated in the event itself.
-     */
-    public function channelName()
-    {
-        return static::generateChannelName($this->notifiable, static::SUBTYPES[$this->name] ?? null);
     }
 }
