@@ -25,6 +25,7 @@ use App\Exceptions\ValidationException;
 use App\Models\User;
 use App\Models\UserGroup;
 use Carbon\Carbon;
+use Datadog;
 use Exception;
 
 class UserRegistration
@@ -60,6 +61,8 @@ class UserRegistration
                     // mystery failure
                     throw new ModelNotSavedException('failed saving model');
                 }
+
+                Datadog::increment('osu.new_account_registrations', 1, ['source' => 'osu-web']);
             });
         } catch (Exception $e) {
             if (is_sql_unique_exception($e)) {

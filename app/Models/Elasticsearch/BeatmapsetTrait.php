@@ -49,7 +49,7 @@ trait BeatmapsetTrait
 
     public static function esIndexingQuery()
     {
-        return static::on('mysql-readonly')
+        return static::on('mysql')
             ->withoutGlobalScopes()
             ->active()
             ->with('beatmaps') // note that the with query will run with the default scopes.

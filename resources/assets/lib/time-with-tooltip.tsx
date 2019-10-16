@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,41 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Elasticsearch;
+import * as moment from 'moment';
+import * as React from 'react';
 
-class Sort implements Queryable
-{
-    public $extras;
-    public $field;
-    public $order;
+export default function TimeWithTooltip({ dateTime, format }: { dateTime: string, format?: string }) {
+  if (format == null) {
+    format = 'll';
+  }
 
-    public function __construct(?string $field = null, ?string $order = null, array $extras = [])
-    {
-        $this->field = $field;
-        $this->order = $order;
-        $this->extras = $extras;
-    }
-
-    public function isBlank()
-    {
-        return $this->field === null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function toArray() : array
-    {
-        if ($this->field === null) {
-            return [];
-        }
-
-        if ($this->order === null) {
-            return [$this->field];
-        }
-
-        $options = array_merge(['order' => $this->order], $this->extras);
-
-        return [$this->field => $options];
-    }
+  return (
+    <time className='js-tooltip-time' dateTime={dateTime} title={dateTime}>
+      {moment(dateTime).format(format)}
+    </time>
+  );
 }

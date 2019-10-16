@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'support the game',
             'team' => 'team',
         ],
+        'profile' => [
+            '_' => 'profile',
+            'friends' => 'friends',
+            'settings' => 'settings',
+        ],
         'help' => [
             '_' => 'help',
             'getFaq' => 'faq',
