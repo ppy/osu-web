@@ -1,0 +1,71 @@
+{
+  "mappings": {
+    "wiki_pages": {
+      "dynamic": false,
+      "properties": {
+        "locale": {
+          "type": "text"
+        },
+        "page": {
+          "type": "text"
+        },
+        "page_text": {
+          "type": "text"
+        },
+        "path": {
+          "type": "text"
+        },
+        "path_clean": {
+          "type": "text"
+        },
+        "title": {
+          "type": "text",
+          "analyzer": "autocomplete",
+          "search_analyzer": "search"
+        },
+        "tags": {
+          "type": "text"
+        },
+        "layout": {
+          "type": "text"
+        },
+        "indexed_at": {
+          "type": "date"
+        },
+        "version": {
+          "type": "byte"
+        }
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "autocomplete": {
+            "tokenizer": "autocomplete",
+            "filter": [
+              "lowercase"
+            ]
+          },
+          "search": {
+            "tokenizer": "lowercase"
+          }
+        },
+        "tokenizer": {
+          "autocomplete": {
+            "type": "edge_ngram",
+            "min_gram": 2,
+            "max_gram": 20,
+            "token_chars": [
+              "letter",
+              "digit"
+            ]
+          }
+        }
+      },
+      "number_of_shards": "1",
+      "number_of_replicas": "1"
+    }
+  }
+}
