@@ -21,17 +21,20 @@
 namespace App\Jobs;
 
 use App\Events\NewNotificationEvent;
+use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Chat\Channel;
 use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserGroup;
 use App\Traits\NotificationQueue;
 use DB;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
 
 class BroadcastNotification implements ShouldQueue
 {
@@ -54,7 +57,7 @@ class BroadcastNotification implements ShouldQueue
             ->all();
     }
 
-    public function __construct($name, $object, $source = null)
+    public function __construct(string $name, $object, ?User $source = null)
     {
         $this->name = $name;
         $this->object = $object;
@@ -71,7 +74,7 @@ class BroadcastNotification implements ShouldQueue
         }
 
         try {
-            $this->$function();
+            $eventClass = $this->$function() ?? NewNotificationEvent::class;
         } catch (InvalidNotificationException $_e) {
             return;
         }
@@ -82,15 +85,13 @@ class BroadcastNotification implements ShouldQueue
             $this->params['details']['username'] = $this->source->username;
         }
 
-        if (is_array($this->receiverIds)) {
-            switch (count($this->receiverIds)) {
-                case 0:
-                    return;
-                case 1:
-                    if ($this->receiverIds[0] === optional($this->source)->getKey()) {
-                        return;
-                    }
-            }
+        if ($this->receiverIds instanceof Collection) {
+            $this->receiverIds = $this->receiverIds->all();
+        }
+
+        $this->receiverIds = array_values(array_diff($this->receiverIds, [optional($this->source)->getKey()]));
+        if (empty($this->receiverIds)) {
+            return;
         }
 
         $notification = new Notification($this->params);
@@ -101,19 +102,15 @@ class BroadcastNotification implements ShouldQueue
 
         $notification->save();
 
-        event(new NewNotificationEvent($notification));
+        event(new $eventClass($notification, $this->receiverIds));
 
-        if (is_array($this->receiverIds)) {
-            DB::transaction(function () use ($notification) {
-                $receivers = User::whereIn('user_id', $this->receiverIds)->get();
+        DB::transaction(function () use ($notification) {
+            $receivers = User::whereIn('user_id', $this->receiverIds)->get();
 
-                foreach ($receivers as $receiver) {
-                    if ($receiver->getKey() !== optional($this->source)->getKey()) {
-                        $notification->userNotifications()->create(['user_id' => $receiver->getKey()]);
-                    }
-                }
-            });
-        }
+            foreach ($receivers as $receiver) {
+                $notification->userNotifications()->create(['user_id' => $receiver->getKey()]);
+            }
+        });
     }
 
     private function onBeatmapsetDiscussionLock()
@@ -148,6 +145,23 @@ class BroadcastNotification implements ShouldQueue
             'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
             'cover_url' => $this->notifiable->coverURL('card'),
         ];
+    }
+
+    private function onBeatmapsetDiscussionQualifiedProblem()
+    {
+        static $notifyGroups = [UserGroup::GROUPS['nat'], UserGroup::GROUPS['bng'], UserGroup::GROUPS['bng_limited']];
+        $this->notifiable = $this->object->beatmapset;
+        $this->receiverIds = UserGroup::whereIn('group_id', $notifyGroups)->distinct()->pluck('user_id')->all();
+
+        $this->params['details'] = [
+            'title' => $this->notifiable->title,
+            'post_id' => $this->object->getKey(),
+            'discussion_id' => $this->object->beatmapDiscussion->getKey(),
+            'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
+            'cover_url' => $this->notifiable->coverURL('card'),
+        ];
+
+        return NewPrivateNotificationEvent::class;
     }
 
     private function onBeatmapsetDisqualify()
