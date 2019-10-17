@@ -20,11 +20,22 @@
 
 namespace App\Events;
 
+use App\Libraries\MorphMap;
+use App\Models\Notification;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 abstract class NotificationEventBase implements ShouldBroadcast
 {
     public $broadcastQueue;
+
+    public static function generateChannelName($notifiable, $subtype)
+    {
+        return 'new:'.
+            MorphMap::getType($notifiable).
+            ':'.
+            $notifiable->getKey().
+            (in_array($subtype, Notification::SUBTYPES, true) ? ":{$subtype}" : '');
+    }
 
     public function __construct()
     {

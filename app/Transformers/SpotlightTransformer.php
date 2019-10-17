@@ -18,28 +18,33 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Middleware;
+namespace App\Transformers;
 
-use Closure;
+use App\Models\Spotlight;
+use League\Fractal;
 
-class StripCookies
+class SpotlightTransformer extends Fractal\TransformerAbstract
 {
-    public function handle($request, Closure $next)
+    protected $availableIncludes = [
+        'participant_count',
+    ];
+
+    public function transform(Spotlight $spotlight)
     {
-        $result = $next($request);
+        return [
+            'end_date' => json_time($spotlight->end_date),
+            'id' => $spotlight->getKey(),
+            'mode_specific' => $spotlight->mode_specific,
+            'name' => $spotlight->name,
+            'start_date' => json_time($spotlight->start_date),
+            'type' => $spotlight->type,
+        ];
+    }
 
-        if (session('_strip_cookies') === true) {
-            session()->forget('_strip_cookies');
-            // strip all cookies from response
-            foreach ($result->headers->getCookies() as $cookie) {
-                $result->headers->removeCookie(
-                    $cookie->getName(),
-                    $cookie->getPath(),
-                    $cookie->getDomain()
-                );
-            }
-        }
+    public function includeParticipantCount(Spotlight $spotlight, Fractal\ParamBag $params)
+    {
+        $mode = $params->get('mode')[0];
 
-        return $result;
+        return $this->primitive($spotlight->participantCount($mode));
     }
 }

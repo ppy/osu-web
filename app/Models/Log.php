@@ -44,6 +44,7 @@ class Log extends Model
     const LOG_USERS = 3;
     const LOG_COMMENT_MOD = 4;
     const LOG_BEATMAPSET_MOD = 5;
+    const LOG_USER_MOD = 6;
 
     protected $table = 'phpbb_log';
     protected $primaryKey = 'log_id';

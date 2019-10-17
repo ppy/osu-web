@@ -32,7 +32,6 @@ class @Forum
     @_userCanModerateDiv = document.getElementsByClassName('js-forum__topic-user-can-moderate')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
-    @_showDeletedToggle = document.getElementsByClassName('js-forum-topic-moderate--toggle-deleted')
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
 
@@ -69,8 +68,13 @@ class @Forum
     parseInt @_totalPostsDiv[0].dataset.total, 10
 
 
+  # null if option not available (not moderator), false/true accordingly otherwise
   showDeleted: =>
-    @_showDeletedToggle[0]?.dataset.showDeleted == "1"
+    toggle = document.querySelector('.js-forum-topic-moderate--toggle-deleted')
+
+    return unless toggle?
+
+    toggle.dataset.showDeleted == '1'
 
 
   setTotalPosts: (n) =>
@@ -226,7 +230,7 @@ class @Forum
   postUrlN: (postN) ->
     url = "#{document.location.pathname}?n=#{postN}"
 
-    if not @showDeleted()
+    if @showDeleted() == false
       url += "&with_deleted=0"
 
     url
