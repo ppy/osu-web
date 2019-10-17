@@ -158,6 +158,7 @@ class BeatmapDiscussionPostsController extends Controller
             $openProblems = $discussion
                 ->beatmapset
                 ->beatmapDiscussions()
+                ->withoutTrashed()
                 ->ofType('problem')
                 ->where(['resolved' => false])
                 ->count();
