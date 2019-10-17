@@ -206,7 +206,7 @@ class Page implements WikiObject
 
     public static function esReindexAll(array $options = [], ?callable $progress = null)
     {
-        $files = OsuWiki::getFileTree('wiki', true, true);
+        $files = OsuWiki::getFileTree('wiki');
 
         $count = 0;
 
