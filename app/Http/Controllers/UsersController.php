@@ -351,7 +351,7 @@ class UsersController extends Controller
             $user = $user->updatePage(request('body'));
 
             if (!$user->is(auth()->user())) {
-                UserAccountHistory::addNote($user, auth()->user());
+                UserAccountHistory::logUserPageModerated($user, auth()->user());
 
                 $this->log([
                     'log_type' => Log::LOG_USER_MOD,
