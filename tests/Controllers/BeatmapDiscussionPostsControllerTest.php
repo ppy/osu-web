@@ -507,6 +507,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->beatmapset->update($updateParams);
         factory(User::class)->states('bng')->create(); // event doesn't get dispatched if there are no users in the group.
 
+        // ensure there's no currently open problems
+        $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
+
         $this
             ->actingAs($this->user)
             ->post(route('beatmap-discussion-posts.store'), [
@@ -520,6 +523,29 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ]);
 
         $assertMethod(NewPrivateNotificationEvent::class);
+    }
+
+    public function testSecondProblemOnQualifiedBeatmapset()
+    {
+        $this->beatmapset->update([
+            'approved' => Beatmapset::STATES['qualified'],
+            'queued_at' => now(),
+        ]);
+        factory(User::class)->states('bng')->create(); // event doesn't get dispatched if there are no users in the group.
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'problem',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+
+        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
 
     public function problemDataProvider()
