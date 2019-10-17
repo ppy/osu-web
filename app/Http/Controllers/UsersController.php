@@ -30,6 +30,7 @@ use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
 use App\Models\User;
+use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
@@ -350,6 +351,8 @@ class UsersController extends Controller
             $user = $user->updatePage(request('body'));
 
             if (!$user->is(auth()->user())) {
+                UserAccountHistory::addNote($user, auth()->user());
+
                 $this->log([
                     'log_type' => Log::LOG_USER_MOD,
                     'log_operation' => 'LOG_USER_PAGE_EDIT',

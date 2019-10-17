@@ -63,6 +63,11 @@ class UserAccountHistory extends Model
         ]);
     }
 
+    public static function logUserPageModerated($user, $actor)
+    {
+        return static::addNote($user, 'User page moderated');
+    }
+
     public static function logUserResetPassword($user)
     {
         return static::addNote($user, 'User forgot and recovered their password.');
