@@ -79,3 +79,13 @@ $factory->state(App\Models\User::class, 'restricted', function (Faker\Generator 
         'user_warnings' => 1,
     ];
 });
+
+$factory->state(App\Models\User::class, 'bng', function (Faker\Generator $faker) {
+    return [
+        'group_id' => App\Models\UserGroup::GROUPS['bng'],
+    ];
+});
+
+$factory->afterCreatingState(App\Models\User::class, 'bng', function ($user, $faker) {
+    $user->userGroups()->create(['group_id' => App\Models\UserGroup::GROUPS['bng']]);
+});

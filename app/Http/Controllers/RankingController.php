@@ -139,7 +139,7 @@ class RankingController extends Controller
 
         $maxResults = $this->maxResults($modeInt);
         $maxPages = ceil($maxResults / static::PAGE_SIZE);
-        $page = clamp(get_int(request('page')), 1, $maxPages);
+        $page = clamp(get_int(request('cursor.page') ?? request('page')), 1, $maxPages);
 
         $stats = $stats->limit(static::PAGE_SIZE)
             ->offset(static::PAGE_SIZE * ($page - 1))
@@ -148,11 +148,18 @@ class RankingController extends Controller
         if (is_api_request()) {
             switch ($type) {
                 case 'country':
-                    return json_collection($stats, 'CountryStatistics', ['country']);
+                    $ranking = json_collection($stats, 'CountryStatistics', ['country']);
 
                 default:
-                    return json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
             }
+
+            return [
+                // TODO: switch to offset?
+                'cursor' => empty($ranking) || ($page >= $maxPages) ? null : ['page' => $page + 1],
+                'ranking' => $ranking,
+                'total' => $maxResults,
+            ];
         }
 
         $scores = new LengthAwarePaginator($stats, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [

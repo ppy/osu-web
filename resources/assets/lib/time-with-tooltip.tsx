@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,28 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Middleware;
+import * as moment from 'moment';
+import * as React from 'react';
 
-use Closure;
+export default function TimeWithTooltip({ dateTime, format }: { dateTime: string, format?: string }) {
+  if (format == null) {
+    format = 'll';
+  }
 
-class StripCookies
-{
-    public function handle($request, Closure $next)
-    {
-        $result = $next($request);
-
-        if (session('_strip_cookies') === true) {
-            session()->forget('_strip_cookies');
-            // strip all cookies from response
-            foreach ($result->headers->getCookies() as $cookie) {
-                $result->headers->removeCookie(
-                    $cookie->getName(),
-                    $cookie->getPath(),
-                    $cookie->getDomain()
-                );
-            }
-        }
-
-        return $result;
-    }
+  return (
+    <time className='js-tooltip-time' dateTime={dateTime} title={dateTime}>
+      {moment(dateTime).format(format)}
+    </time>
+  );
 }

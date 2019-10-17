@@ -57,6 +57,7 @@ export function urlSingular(item: Notification) {
     case 'beatmapset_reset_nominations':
       return route('beatmapsets.discussion', { beatmapset: item.objectId });
     case 'beatmapset_discussion_post_new':
+    case 'beatmapset_discussion_qualified_problem':
       return BeatmapDiscussionHelper.url({
         beatmapId: item.details.beatmapId,
         beatmapsetId: item.objectId,

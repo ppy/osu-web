@@ -25,6 +25,7 @@ use App\Exceptions\ValidationException;
 use App\Models\User;
 use App\Models\UserGroup;
 use Carbon\Carbon;
+use Datadog;
 use Exception;
 
 class UserRegistration
@@ -41,6 +42,21 @@ class UserRegistration
             'user_regdate' => Carbon::now(),
             'user_lastvisit' => Carbon::now(),
         ], $params));
+    }
+
+    public function assertValid()
+    {
+        if (!$this->validateAttributes()) {
+            throw new ValidationException($this->user()->validationErrors());
+        }
+
+        $this->assertValidation(UsernameValidation::validateUsername($this->user->username));
+        $this->assertValidation(UsernameValidation::validateAvailability($this->user->username));
+        $this->assertValidation(UsernameValidation::validateUsersOfUsername($this->user->username));
+
+        if (!$this->user->isValid()) {
+            throw new ValidationException($this->user()->validationErrors());
+        }
     }
 
     public function save()
@@ -60,6 +76,8 @@ class UserRegistration
                     // mystery failure
                     throw new ModelNotSavedException('failed saving model');
                 }
+
+                Datadog::increment('osu.new_account_registrations', 1, ['source' => 'osu-web']);
             });
         } catch (Exception $e) {
             if (is_sql_unique_exception($e)) {
@@ -74,17 +92,6 @@ class UserRegistration
     public function user()
     {
         return $this->user;
-    }
-
-    private function assertValid()
-    {
-        if (!$this->validateAttributes()) {
-            throw new ValidationException($this->user()->validationErrors());
-        }
-
-        $this->assertValidation(UsernameValidation::validateUsername($this->user->username));
-        $this->assertValidation(UsernameValidation::validateAvailability($this->user->username));
-        $this->assertValidation(UsernameValidation::validateUsersOfUsername($this->user->username));
     }
 
     private function assertValidation($errors)

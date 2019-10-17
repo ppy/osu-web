@@ -2,6 +2,8 @@
 
 namespace Tests\Controllers;
 
+use App\Events\NewNotificationEvent;
+use App\Events\NewPrivateNotificationEvent;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -10,6 +12,7 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserNotification;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
@@ -41,6 +44,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
         $this->assertSame($currentNotifications + 1, Notification::count());
         $this->assertSame($currentUserNotifications + 1, UserNotification::count());
+
+        Event::assertDispatched(NewNotificationEvent::class);
+        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }
 
     public function testPostStoreNewDiscussionInactiveBeatmapset()
@@ -493,9 +499,42 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertFalse($reply2->fresh()->trashed());
     }
 
+    /**
+     * @dataProvider problemDataProvider
+     */
+    public function testProblemOnQualifiedBeatmap($updateParams, $assertMethod)
+    {
+        $this->beatmapset->update($updateParams);
+        factory(User::class)->states('bng')->create(); // event doesn't get dispatched if there are no users in the group.
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'problem',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+
+        $assertMethod(NewPrivateNotificationEvent::class);
+    }
+
+    public function problemDataProvider()
+    {
+        return [
+            [['approved' => Beatmapset::STATES['qualified'], 'queued_at' => now()], 'Event::assertDispatched'],
+            [['approved' => Beatmapset::STATES['pending']], 'Event::assertNotDispatched'],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
+
+        Event::fake();
 
         $this->mapper = factory(User::class)->create();
         $this->user = factory(User::class)->create();

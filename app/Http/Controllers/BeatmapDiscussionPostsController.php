@@ -30,7 +30,7 @@ use App\Models\BeatmapsetWatch;
 use App\Models\Notification;
 use Auth;
 use DB;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Request;
 
 class BeatmapDiscussionPostsController extends Controller
@@ -69,20 +69,22 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         $search = BeatmapDiscussionPost::search($params);
-        $posts = new LengthAwarePaginator(
-            $search['query']->with([
-                    'user',
-                    'beatmapset',
-                    'beatmapDiscussion',
-                    'beatmapDiscussion.beatmapset',
-                    'beatmapDiscussion.user',
-                    'beatmapDiscussion.startingPost',
-                ])->get(),
-            $search['query']->realCount(),
+
+        $query = $search['query']->with([
+            'user',
+            'beatmapset',
+            'beatmapDiscussion',
+            'beatmapDiscussion.beatmapset',
+            'beatmapDiscussion.user',
+            'beatmapDiscussion.startingPost',
+        ])->limit($search['params']['limit'] + 1);
+
+        $posts = new Paginator(
+            $query->get(),
             $search['params']['limit'],
             $search['params']['page'],
             [
-                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'path' => Paginator::resolveCurrentPath(),
                 'query' => $search['params'],
             ]
         );
@@ -179,6 +181,12 @@ class BeatmapDiscussionPostsController extends Controller
         $beatmapset = $discussion->beatmapset;
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
+
+        if ($discussion->message_type === 'problem' && $beatmapset->isQualified()) {
+            // TODO: should work out how have the new post notification be able to handle this instead.
+            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM, $post, auth()->user());
+        }
+
         broadcast_notification(Notification::BEATMAPSET_DISCUSSION_POST_NEW, $post, Auth::user());
         (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),
