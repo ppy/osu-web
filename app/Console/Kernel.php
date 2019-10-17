@@ -66,6 +66,9 @@ class Kernel extends ConsoleKernel
         // fix userchannel deletion fail
         Commands\FixMissingUserChannels::class,
 
+        // fix forum display order
+        Commands\FixForumDisplayOrder::class,
+
         Commands\MigrateFreshAllCommand::class,
 
         Commands\OAuthDeleteExpiredTokens::class,
