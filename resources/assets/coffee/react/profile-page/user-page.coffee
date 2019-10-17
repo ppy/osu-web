@@ -26,7 +26,7 @@ el = React.createElement
 export class UserPage extends React.Component
   render: =>
     isBlank = @props.userPage.initialRaw.trim() == ''
-    canEdit = @props.withEdit || window.currentUser.can_moderate || window.currentUser.is_admin
+    canEdit = @props.withEdit || window.currentUser.is_admin
 
     div className: 'page-extra page-extra--userpage',
       el ExtraHeader, name: @props.name, withEdit: @props.withEdit
