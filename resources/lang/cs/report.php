@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Nahlásit skóre',
-        'title' => 'Nahlásit skóre uživatele :username?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Nahlásit',
         'title' => 'Chcete nahlásit komentář od :username?',
+    ],
+
+    'scores' => [
+        'button' => 'Nahlásit skóre',
+        'title' => 'Nahlásit skóre uživatele :username?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

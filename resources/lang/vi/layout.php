@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'ủng hộ osu!',
             'team' => 'team',
         ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
+        ],
         'help' => [
             '_' => 'trợ giúp',
             'getFaq' => 'faq',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Bạn cần một tài khoản. Tại sao bạn lại không có chứ?",
+            'download' => '',
+            'info' => 'Bạn cần một tài khoản. Tại sao bạn lại không có chứ?',
             'title' => "Chưa có tài khoản?",
         ],
     ],

@@ -88,9 +88,6 @@ return [
         'title' => ':username\'s opslag',
     ],
 
-    'signup' => [
-        '_' => 'Registrer',
-    ],
     'anonymous' => [
         'login_link' => 'klik for at logge ind',
         'login_text' => 'log ind',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 følger|:count følgere',
             'none' => '',
             'unranked' => 'Ingen seneste spil',
 

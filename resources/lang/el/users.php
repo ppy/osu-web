@@ -88,9 +88,6 @@ return [
         'title' => 'Δημοσιεύσεις του :username',
     ],
 
-    'signup' => [
-        '_' => 'Εγγραφή',
-    ],
     'anonymous' => [
         'login_link' => 'κάντε κλικ για να συνδεθείτε',
         'login_text' => 'σύνδεση',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 ακόλουθος|:count ακόλουθοι',
             'none' => '',
             'unranked' => 'Κανένα πρόσφατο σκορ',
 

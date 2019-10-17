@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_lock_compact' => 'Discussie is vergrendeld',
                 'beatmapset_discussion_post_new' => ':username plaatste een nieuw bericht in ":title" beatmap discussie.',
                 'beatmapset_discussion_post_new_compact' => 'Nieuw bericht door :username',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" is ontgrendeld voor discussie.',
                 'beatmapset_discussion_unlock_compact' => 'Discussie is ontgrendeld',
             ],

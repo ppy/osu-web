@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_lock_compact' => 'A megbeszélést lezárták',
                 'beatmapset_discussion_post_new' => '',
                 'beatmapset_discussion_post_new_compact' => 'Új poszt :username -tól,-től',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
                 'beatmapset_discussion_unlock' => '',
                 'beatmapset_discussion_unlock_compact' => '',
             ],

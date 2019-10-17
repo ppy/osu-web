@@ -48,7 +48,7 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => '您只能刪除自己的發文。',
             'resolved' => '',
             'system_generated' => '',
         ],

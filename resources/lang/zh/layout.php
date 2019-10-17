@@ -60,6 +60,11 @@ return [
             'supportTheGame' => '支持 osu!',
             'team' => '团队',
         ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
+        ],
         'help' => [
             '_' => '帮助',
             'getFaq' => '常见问题',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "点击下方的注册按钮以成为 osu! 大家庭中的一员！",
+            'download' => '',
+            'info' => '点击下方的注册按钮以成为 osu! 大家庭中的一员！',
             'title' => "没有账号？",
         ],
     ],

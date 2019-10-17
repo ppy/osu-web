@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Eredmény Jelentése',
-        'title' => 'Jelented :username eredményét?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Jelentés',
         'title' => 'Jelented :username hozzászólását?',
+    ],
+
+    'scores' => [
+        'button' => 'Eredmény Jelentése',
+        'title' => 'Jelented :username eredményét?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

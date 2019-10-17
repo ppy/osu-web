@@ -32,11 +32,11 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
+        'close' => 'Bezár (Esc)',
+        'fullscreen' => 'Teljes képernyő be/ki',
         'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'previous' => 'Előző (bal kurzor)',
+        'next' => 'Következő (jobb kurzor)',
     ],
 
     'menu' => [
@@ -59,6 +59,11 @@ return [
             'search' => 'keresés',
             'supportTheGame' => 'támogasd a játékot',
             'team' => 'csapat',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'segítség',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Önnek szüksége van egy fiókra uram. Miért nem rendelkezik még egyel?",
+            'download' => '',
+            'info' => 'Önnek szüksége van egy fiókra uram. Miért nem rendelkezik még egyel?',
             'title' => "Nincs még fiókod?",
         ],
     ],

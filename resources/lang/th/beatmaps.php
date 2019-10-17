@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'อนุญาตการให้ค่าชื่อเสียง',
-        'beatmap_information' => '',
+        'beatmap_information' => 'หน้าบีตแมป',
         'delete' => 'ลบ',
         'deleted' => 'ถูกลบโดย :editor เมื่อเวลา :delete_time',
         'deny_kudosu' => 'ปฏิเสธการให้ค่าชื่อเสียง',
@@ -287,7 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '',
+        'MR' => 'เซิร์ฟเวอร์อื่น',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',
