@@ -40,7 +40,7 @@ reactTurbolinks.register('chat', MainView, () => {
 
     if (channel) {
       initialChannel = channel.channelId;
-    } else {
+    } else if (!target.is(sendTo.target)) {
       channel = Channel.newPM(target);
       channel.moderated = !sendTo.can_message; // TODO: move can_message to a user prop?
       dataStore.channelStore.channels.set(channel.channelId, channel);
