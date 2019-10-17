@@ -195,6 +195,11 @@ class Page implements WikiObject
         ]);
     }
 
+    public static function esCount()
+    {
+        return OsuWiki::getFileCount('wiki');
+    }
+
     public function esDeleteDocument(array $options = [])
     {
         $this->log('delete document');
@@ -206,18 +211,24 @@ class Page implements WikiObject
 
     public static function esReindexAll(array $options = [], ?callable $progress = null)
     {
-        $files = OsuWiki::getFileTree('wiki');
+        $count = 1;
 
-        $count = 0;
+        if ($progress) {
+            $progress($count);
+        }
+
+        $files = OsuWiki::getFileTree('wiki');
 
         foreach ($files as $file) {
             $file = OsuWiki::parseGitHubPath($file['path']);
             $page = new static($file['path'], $file['locale']);
 
-            (new EsIndexDocument($page))->handle();
+            $page->esIndexDocument([
+                'index' => $options['index'] ?? static::esIndexName(),
+            ]);
 
             if ($progress) {
-                $progress(++$count);
+                $progress($count++);
             }
         }
     }

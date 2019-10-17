@@ -25,6 +25,7 @@ use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
+use App\Models\Wiki\Page;
 use Illuminate\Console\Command;
 
 class EsIndexDocuments extends Command
@@ -33,6 +34,7 @@ class EsIndexDocuments extends Command
         'beatmapsets' => [Beatmapset::class],
         'posts' => [Topic::class, Post::class],
         'users' => [User::class],
+        'wiki_pages' => [Page::class],
     ];
 
     const BATCH_SIZE = 1000;
@@ -122,7 +124,7 @@ class EsIndexDocuments extends Command
         $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
 
         foreach ($types as $type) {
-            $count = $type::esIndexingQuery()->count();
+            $count = $type::esCount();
             $bar = $this->output->createProgressBar($count);
 
             $this->info("{$pretext} {$type} into {$indexName}");

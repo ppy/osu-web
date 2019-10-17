@@ -34,6 +34,11 @@ trait EsModelIndexable
         return $this->getKey();
     }
 
+    public static function esCount()
+    {
+        return static::esIndexingQuery()->count();
+    }
+
     public static function esReindexAll(array $options = [], callable $progress = null)
     {
         $batchSize = $options['batchSize'] ?? 1000;

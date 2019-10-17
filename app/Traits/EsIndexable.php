@@ -31,6 +31,8 @@ trait EsIndexable
 
     abstract public static function esType();
 
+    abstract public static function esCount();
+
     abstract public function toEsJson();
 
     /**

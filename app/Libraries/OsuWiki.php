@@ -166,6 +166,17 @@ class OsuWiki
         return $files;
     }
 
+    public static function getFileCount($path = 'wiki', $skipNonMarkdown = true)
+    {
+        $query = 'repo:'.static::USER.'/'.static::REPOSITORY.' path:'.$path;
+
+        if ($skipNonMarkdown) {
+            $query .= ' extension:md';
+        }
+
+        return GitHub::search()->code($query)['total_count'];
+    }
+
     public function __construct($path)
     {
         $this->path = $path;
