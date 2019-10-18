@@ -76,7 +76,7 @@ export class Hype extends React.PureComponent
             text: osu.trans('beatmaps.hype.button')
             icon: 'fas fa-bullhorn'
             props:
-              href: "#{laroute.route 'beatmapsets.discussion',
+              href: "#{route 'beatmapsets.discussion',
                 beatmapset: @props.beatmapset.id
                 beatmap: '-'
                 mode: 'generalAll'
