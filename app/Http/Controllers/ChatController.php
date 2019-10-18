@@ -39,6 +39,11 @@ class ChatController extends Controller
 
     public function index()
     {
+        $sendTo = get_int(request('sendto'));
+        if (auth()->id() === $sendTo) {
+            return ujs_redirect(route('chat.index'));
+        }
+
         // TODO: REMOVE ONCE COMPLETELY LIVE
         $canWebChat = false;
         if (Auth::check()) {
