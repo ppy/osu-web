@@ -110,7 +110,6 @@ class WikiController extends Controller
 
             $response = (new BasicSearch(Page::esIndexName(), 'wiki_search_suggestions'))
                 ->source(['title'])
-                ->size(10)
                 ->highlight($highlight)
                 ->query((new BoolQuery)
                     ->must($langQuery)
@@ -118,7 +117,16 @@ class WikiController extends Controller
                 ->response();
 
             foreach ($response as $hit) {
-                $suggestions[] = strtolower($hit->highlights('title')[0]);
+                if (count($suggestions) === 10) {
+                    break;
+                }
+
+                if (!in_array(strtolower($hit->source('title')), array_column($suggestions, 'clean'))) {
+                    $suggestions[] = [
+                        'html' => strtolower($hit->highlights('title')[0]),
+                        'clean' => strtolower($hit->source('title')),
+                    ];
+                }
             }
         }
 
