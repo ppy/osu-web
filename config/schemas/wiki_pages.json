@@ -21,7 +21,7 @@
         "title": {
           "type": "text",
           "analyzer": "autocomplete",
-          "search_analyzer": "search"
+          "search_analyzer": "standard"
         },
         "tags": {
           "type": "text"
@@ -47,15 +47,12 @@
             "filter": [
               "lowercase"
             ]
-          },
-          "search": {
-            "tokenizer": "lowercase"
           }
         },
         "tokenizer": {
           "autocomplete": {
             "type": "edge_ngram",
-            "min_gram": 2,
+            "min_gram": 1,
             "max_gram": 20,
             "token_chars": [
               "letter",
