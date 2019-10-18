@@ -23,6 +23,7 @@ import { Suggestions, SuggestionJSON } from 'wiki-search-suggestions';
 interface State {
   highlightedSuggestion: number|null;
   suggestions: SuggestionJSON[];
+  originalQuery: string|null;
 }
 
 export class WikiSearch extends React.Component<{}, State> {
@@ -35,6 +36,7 @@ export class WikiSearch extends React.Component<{}, State> {
     this.state = {
       highlightedSuggestion: null,
       suggestions: [],
+      originalQuery: null,
     };
 
     this.xhr = null;
@@ -68,6 +70,16 @@ export class WikiSearch extends React.Component<{}, State> {
       query = input.value;
     }
 
+    if (query == '') {
+      return;
+    }
+
+    this.setState({
+      originalQuery: query,
+    });
+
+    this.resetHighlight();
+
     this.xhr = $.ajax(route('wiki.search-suggestions'), {
       data: {
         query: query,
@@ -81,9 +93,14 @@ export class WikiSearch extends React.Component<{}, State> {
   }
 
   hideSuggestions = () => {
+    if (this.state.originalQuery) {
+      this.updateInput(this.state.originalQuery);
+    }
+
     this.setState({
       highlightedSuggestion: null,
       suggestions: [],
+      originalQuery: null,
     });
   }
 
@@ -195,5 +212,19 @@ export class WikiSearch extends React.Component<{}, State> {
     this.setState({
       highlightedSuggestion: newPosition,
     });
+
+    if (newPosition != null) {
+      this.updateInput(this.state.suggestions[newPosition].clean);
+    } else if (this.state.originalQuery) {
+      this.updateInput(this.state.originalQuery);
+    }
+  }
+
+  updateInput(newQuery: string) {
+    const input = this.input.current;
+
+    if (input) {
+      input.value = newQuery;
+    }
   }
 }
