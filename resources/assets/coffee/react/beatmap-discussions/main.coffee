@@ -83,7 +83,13 @@ export class Main extends React.PureComponent
     @focusNewDiscussion = false
 
 
-  componentDidUpdate: =>
+  componentDidUpdate: (_prevProps, prevState) =>
+    return if prevState.currentBeatmapId == @state.currentBeatmapId &&
+      prevState.currentFilter == @state.currentFilter &&
+      prevState.currentMode == @state.currentMode &&
+      prevState.selectedUserId == @state.selectedUserId &&
+      prevState.showDeleted == @state.showDeleted
+
     Turbolinks.controller.advanceHistory @urlFromState()
 
 
