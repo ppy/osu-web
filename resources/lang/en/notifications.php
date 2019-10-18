@@ -32,10 +32,14 @@ return [
                 'beatmapset_discussion_lock_compact' => 'Discussion was locked',
                 'beatmapset_discussion_post_new' => 'New post on ":title" by :username: ":content"',
                 'beatmapset_discussion_post_new_compact' => 'New post by :username: ":content"',
-                'beatmapset_discussion_qualified_problem' => ':username reported a problem ":title": ":content"',
-                'beatmapset_discussion_qualified_problem_compact' => ':username reported a problem: ":content"',
                 'beatmapset_discussion_unlock' => 'Discussion on ":title" has been unlocked',
                 'beatmapset_discussion_unlock_compact' => 'Discussion was unlocked',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => 'Beatmap problem',
+                'beatmapset_discussion_qualified_problem' => ':username reported a problem ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_compact' => ':username reported a problem: ":content"',
             ],
 
             'beatmapset_state' => [
