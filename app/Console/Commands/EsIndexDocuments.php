@@ -37,6 +37,8 @@ class EsIndexDocuments extends Command
         'wiki_pages' => [Page::class],
     ];
 
+    const DEFAULT_TYPES = ['beatmapsets', 'posts', 'users'];
+
     const BATCH_SIZE = 1000;
 
     /**
@@ -172,7 +174,7 @@ class EsIndexDocuments extends Command
                 }
             }
         } else {
-            $this->groups = array_keys(static::ALLOWED_TYPES);
+            $this->groups = static::DEFAULT_TYPES;
         }
     }
 
