@@ -130,7 +130,10 @@ class WikiController extends Controller
             }
         }
 
-        return response()->json($suggestions);
+        return response()->json([
+            'query' => $queryString,
+            'suggestions' => $suggestions,
+        ]);
     }
 
     private function showImage($path)

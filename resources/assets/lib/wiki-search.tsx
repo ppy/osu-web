@@ -20,6 +20,11 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { Suggestions, SuggestionJSON } from 'wiki-search-suggestions';
 
+interface SuggestionsJSON {
+  suggestions: SuggestionJSON[];
+  query: string;
+}
+
 interface State {
   highlightedSuggestion: number|null;
   suggestions: SuggestionJSON[];
@@ -70,10 +75,6 @@ export class WikiSearch extends React.Component<{}, State> {
       query = input.value;
     }
 
-    if (query == '') {
-      return;
-    }
-
     this.setState({
       originalQuery: query,
     });
@@ -85,10 +86,15 @@ export class WikiSearch extends React.Component<{}, State> {
         query: query,
       },
       method: 'GET',
-    }).done((xhr) => {
-      this.setState({
-        suggestions: xhr
-      });
+    }).done((xhr: SuggestionsJSON) => {
+      const input = this.input.current;
+
+      // in case that an older requests arrives after a newer request
+      if (input && input.value == xhr.query) {
+        this.setState({
+          suggestions: xhr.suggestions
+        });
+      }
     });
   }
 
