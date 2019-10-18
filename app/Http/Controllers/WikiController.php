@@ -20,9 +20,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\OsuWiki;
+use App\Libraries\Search\BasicSearch;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
+use App\Models\Wiki\Page;
 use Request;
 
 class WikiController extends Controller
@@ -66,6 +70,59 @@ class WikiController extends Controller
         (new Wiki\Page($path, $this->locale()))->forget();
 
         return ujs_redirect(Request::getUri());
+    }
+
+    public function suggestions()
+    {
+        $queryString = request('query');
+
+        $suggestions = [];
+
+        if (presence($queryString)) {
+            $langQuery = (new BoolQuery())
+                ->shouldMatch(1)
+                ->should(['constant_score' => [
+                    'boost' => 1000,
+                    'filter' => [
+                        'match' => [
+                            'locale' => $this->locale() ?? App::getLocale(),
+                        ],
+                    ],
+                ]])
+                ->should(['constant_score' => [
+                    'filter' => [
+                        'match' => [
+                            'locale' => config('app.fallback_locale'),
+                        ],
+                    ],
+                ]]);
+
+            $titleQuery = (new BoolQuery())
+                ->must(['match' => [
+                    'title' => [
+                        'query' => $queryString,
+                        'operator' => 'and',
+                    ],
+                ]]);
+
+            $highlight = (new Highlight())
+                ->field('title', ['number_of_fragments' => 0]);
+
+            $response = (new BasicSearch(Page::esIndexName(), 'wiki_search_suggestions'))
+                ->source(['title'])
+                ->size(10)
+                ->highlight($highlight)
+                ->query((new BoolQuery)
+                    ->must($langQuery)
+                    ->must($titleQuery))
+                ->response();
+
+            foreach ($response as $hit) {
+                $suggestions[] = strtolower($hit->highlights('title')[0]);
+            }
+        }
+
+        return response()->json($suggestions);
     }
 
     private function showImage($path)
