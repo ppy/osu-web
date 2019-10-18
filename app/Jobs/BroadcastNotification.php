@@ -139,6 +139,7 @@ class BroadcastNotification implements ShouldQueue
         $this->receiverIds = static::beatmapsetReceiverIds($this->notifiable);
 
         $this->params['details'] = [
+            'content' => $this->object->message,
             'title' => $this->notifiable->title,
             'post_id' => $this->object->getKey(),
             'discussion_id' => $this->object->beatmapDiscussion->getKey(),
@@ -154,6 +155,7 @@ class BroadcastNotification implements ShouldQueue
         $this->receiverIds = UserGroup::whereIn('group_id', $notifyGroups)->distinct()->pluck('user_id')->all();
 
         $this->params['details'] = [
+            'content' => $this->object->message,
             'title' => $this->notifiable->title,
             'post_id' => $this->object->getKey(),
             'discussion_id' => $this->object->beatmapDiscussion->getKey(),
