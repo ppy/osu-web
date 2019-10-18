@@ -16,19 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { SuggestionJSON, SuggestionsJSON } from 'interfaces/wiki-suggestion-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { Suggestions, SuggestionJSON } from 'wiki-search-suggestions';
-
-interface SuggestionsJSON {
-  suggestions: SuggestionJSON[];
-  query: string;
-}
+import { Suggestions } from 'wiki-search-suggestions';
 
 interface State {
   highlightedSuggestion: number|null;
-  suggestions: SuggestionJSON[];
   originalQuery: string|null;
+  suggestions: SuggestionJSON[];
 }
 
 export class WikiSearch extends React.Component<{}, State> {
@@ -40,8 +36,8 @@ export class WikiSearch extends React.Component<{}, State> {
 
     this.state = {
       highlightedSuggestion: null,
-      suggestions: [],
       originalQuery: null,
+      suggestions: [],
     };
 
     this.xhr = null;
@@ -82,17 +78,13 @@ export class WikiSearch extends React.Component<{}, State> {
     this.resetHighlight();
 
     this.xhr = $.ajax(route('wiki.search-suggestions'), {
-      data: {
-        query: query,
-      },
+      data: {query},
       method: 'GET',
     }).done((xhr: SuggestionsJSON) => {
-      const input = this.input.current;
-
       // in case that an older requests arrives after a newer request
-      if (input && input.value == xhr.query) {
+      if (input && input.value === xhr.query) {
         this.setState({
-          suggestions: xhr.suggestions
+          suggestions: xhr.suggestions,
         });
       }
     });
@@ -105,8 +97,8 @@ export class WikiSearch extends React.Component<{}, State> {
 
     this.setState({
       highlightedSuggestion: null,
-      suggestions: [],
       originalQuery: null,
+      suggestions: [],
     });
   }
 
@@ -158,7 +150,7 @@ export class WikiSearch extends React.Component<{}, State> {
   performSearch(query: string) {
     Turbolinks.visit(route('search', {
       mode: 'wiki_page',
-      query: query
+      query,
     }));
   }
 
