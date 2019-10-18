@@ -17,8 +17,10 @@
 ###
 
 import { BigButton } from 'big-button'
+import { route } from 'laroute'
 import * as React from 'react'
-import { div, p, span } from 'react-dom-factories'
+import { a, div, p, span } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
 el = React.createElement
 
 bn = 'beatmapset-hype'
@@ -33,7 +35,19 @@ export class Hype extends React.PureComponent
         p className: "#{bn}__description-row #{bn}__description-row--current",
           osu.trans 'beatmapsets.show.hype.current._',
             status: osu.trans("beatmapsets.show.hype.current.status.#{@props.beatmapset.status}")
-        if @props.beatmapset.status != 'qualified'
+        if @props.beatmapset.status == 'qualified'
+          url = route('beatmapsets.discussion', beatmapset: @props.beatmapset.id, beatmap: '-', mode: 'generalAll')
+          p
+            className: "#{bn}__description-row #{bn}__description-row--action"
+            el StringWithComponent,
+              mappings:
+                ':link': a
+                  href: "#{url}#new"
+                  key: 'link'
+                  osu.trans 'beatmapsets.show.hype.report.link'
+              pattern: osu.trans('beatmapsets.show.hype.report._')
+
+        else
           p
             className: "#{bn}__description-row #{bn}__description-row--action"
             dangerouslySetInnerHTML:
