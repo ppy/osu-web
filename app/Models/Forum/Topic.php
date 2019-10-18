@@ -805,8 +805,7 @@ class Topic extends Model implements AfterCommit
 
     public function allowsDoublePosting() : bool
     {
-        return in_array($this->getKey(), config('osu.forum.double_post_allowed.topic_ids'), true)
-            || in_array($this->forum_id, config('osu.forum.double_post_allowed.forum_ids'), true);
+        return in_array($this->forum_id, config('osu.forum.double_post_allowed_forum_ids'), true);
     }
 
     public function isDoublePostBy(User $user)
