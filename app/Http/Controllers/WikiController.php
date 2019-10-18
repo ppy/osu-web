@@ -121,7 +121,7 @@ class WikiController extends Controller
                     break;
                 }
 
-                if (!in_array(strtolower($hit->source('title')), array_column($suggestions, 'clean'))) {
+                if (!in_array(strtolower($hit->source('title')), array_column($suggestions, 'clean'), true)) {
                     $suggestions[] = [
                         'html' => strtolower($hit->highlights('title')[0]),
                         'clean' => strtolower($hit->source('title')),
