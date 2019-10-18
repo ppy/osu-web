@@ -47,7 +47,7 @@ export class UserPageEditor extends React.PureComponent
 
     LoadingOverlay.show()
 
-    $.ajax laroute.route('account.page'),
+    $.ajax laroute.route('users.page', user: @props.user.id),
       method: 'PUT'
       dataType: 'json'
       data:
