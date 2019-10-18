@@ -36,13 +36,12 @@ export class Hype extends React.PureComponent
           osu.trans 'beatmapsets.show.hype.current._',
             status: osu.trans("beatmapsets.show.hype.current.status.#{@props.beatmapset.status}")
         if @props.beatmapset.status == 'qualified'
-          url = route('beatmapsets.discussion', beatmapset: @props.beatmapset.id, beatmap: '-', mode: 'generalAll')
           p
             className: "#{bn}__description-row #{bn}__description-row--action"
             el StringWithComponent,
               mappings:
                 ':link': a
-                  href: "#{url}#new"
+                  href: @reportUrl()
                   key: 'link'
                   osu.trans 'beatmapsets.show.hype.report.link'
               pattern: osu.trans('beatmapsets.show.hype.report._')
@@ -86,3 +85,17 @@ export class Hype extends React.PureComponent
                   !@props.beatmapset.current_user_attributes.can_hype
                 else
                   false
+
+        if @props.beatmapset.status == 'qualified'
+          div
+            className: "#{bn}__button"
+            title: osu.trans('beatmapsets.show.hype.report.button_title')
+            el BigButton,
+              modifiers: ['full']
+              text: osu.trans('beatmapsets.show.hype.report.button')
+              icon: 'fas fa-exclamation-triangle'
+              props:
+                href: @reportUrl()
+
+  reportUrl: =>
+    "#{route('beatmapsets.discussion', beatmapset: @props.beatmapset.id, beatmap: '-', mode: 'generalAll')}#new"
