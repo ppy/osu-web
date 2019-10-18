@@ -106,7 +106,9 @@ class BeatmapDiscussionPostsController extends Controller
     {
         $discussion = $this->prepareDiscussion(request());
 
-        if (!$discussion->exists) {
+        $newDiscussion = !$discussion->exists;
+
+        if ($newDiscussion) {
             priv_check('BeatmapDiscussionStore', $discussion)->ensureCan();
         }
 
@@ -123,7 +125,7 @@ class BeatmapDiscussionPostsController extends Controller
         $resetNominations = false;
         $disqualify = false;
 
-        if (!$discussion->exists && $discussion->message_type === 'problem') {
+        if ($newDiscussion && $discussion->message_type === 'problem') {
             $resetNominations = $discussion->beatmapset->isPending() &&
                 $discussion->beatmapset->hasNominations() &&
                 priv_check('BeatmapsetResetNominations', $discussion->beatmapset)->can();
@@ -135,16 +137,33 @@ class BeatmapDiscussionPostsController extends Controller
             }
         }
 
-        if ($discussion->exists && $discussion->isDirty('resolved')) {
+        $reopen = false;
+
+        if (!$newDiscussion && $discussion->isDirty('resolved')) {
             if ($discussion->resolved) {
                 priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
                 $events[] = BeatmapsetEvent::ISSUE_RESOLVE;
             } else {
                 priv_check('BeatmapDiscussionReopen', $discussion)->ensureCan();
                 $events[] = BeatmapsetEvent::ISSUE_REOPEN;
+                $reopen = true;
             }
 
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
+        }
+
+        $notifyQualifiedProblem = false;
+
+        if (!$disqualify && $discussion->beatmapset->isQualified() && $discussion->message_type === 'problem') {
+            $openProblems = $discussion
+                ->beatmapset
+                ->beatmapDiscussions()
+                ->withoutTrashed()
+                ->ofType('problem')
+                ->where(['resolved' => false])
+                ->count();
+
+            $notifyQualifiedProblem = $openProblems === 0 && ($newDiscussion || $reopen);
         }
 
         try {
@@ -182,7 +201,7 @@ class BeatmapDiscussionPostsController extends Controller
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
 
-        if ($discussion->message_type === 'problem' && $beatmapset->isQualified()) {
+        if ($notifyQualifiedProblem) {
             // TODO: should work out how have the new post notification be able to handle this instead.
             broadcast_notification(Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM, $post, auth()->user());
         }

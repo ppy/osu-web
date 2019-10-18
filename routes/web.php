@@ -172,7 +172,6 @@ Route::group(['prefix' => 'home'], function () {
         Route::post('cover', 'AccountController@cover')->name('cover');
         Route::put('email', 'AccountController@updateEmail')->name('email');
         Route::put('options', 'AccountController@updateOptions')->name('options');
-        Route::put('page', 'AccountController@updatePage')->name('page');
         Route::put('password', 'AccountController@updatePassword')->name('password');
         Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
         Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
@@ -231,6 +230,9 @@ Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled')
 Route::get('users/{user}/card', 'UsersController@card')->name('users.card');
 
 // extras
+Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
+    Route::put('page', 'UsersController@updatePage')->name('page');
+});
 Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
 Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->name('users.recent-activity');
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
