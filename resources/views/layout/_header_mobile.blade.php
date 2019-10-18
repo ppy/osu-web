@@ -36,7 +36,14 @@
 
                 <div class="navbar-mobile__header-section navbar-mobile__header-section--buttons">
                     @if (Auth::check())
-                        <div class="js-react--notification" data-notification-type="mobile"></div>
+                        <div class="js-react--notification" data-notification-type="mobile">
+                            <div class="nav-button nav-button--mobile">
+                                <span class="notification-icon notification-icon--mobile">
+                                    <i class="fas fa-inbox"></i>
+                                   <span class="notification-icon__count">...</span>
+                                </span>
+                            </div>
+                        </div>
 
                         <a
                             href="{{ route('users.show', Auth::user()->user_id) }}"
