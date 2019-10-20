@@ -42,11 +42,13 @@ class Page
     const TEMPLATES = [
         'markdown_page' => 'wiki.show',
         'main_page' => 'wiki.main',
+        'sitemap_page' => 'wiki.show',
     ];
 
     const RENDERERS = [
         'markdown_page' => App\Libraries\Wiki\MarkdownRenderer::class,
         'main_page' => App\Libraries\Wiki\MainPageRenderer::class,
+        'sitemap_page' => App\Libraries\Wiki\SitemapRenderer::class,
     ];
 
     public $locale;
