@@ -16,6 +16,8 @@ class UsersControllerTest extends TestCase
     {
         config()->set('osu.user.allow_registration', true);
 
+        $previousCount = User::count();
+
         $this
             ->json('POST', route('users.store'), [
                 'user' => [
@@ -28,6 +30,8 @@ class UsersControllerTest extends TestCase
             ])->assertJsonFragment([
                 'username' => 'user1',
             ]);
+
+        $this->assertSame($previousCount + 1, User::count());
     }
 
     public function testStoreWithCountry()
@@ -35,6 +39,8 @@ class UsersControllerTest extends TestCase
         config()->set('osu.user.allow_registration', true);
 
         $country = Country::inRandomOrder()->first() ?? factory(Country::class)->create();
+
+        $previousCount = User::count();
 
         $this
             ->json('POST', route('users.store'), [
@@ -53,6 +59,8 @@ class UsersControllerTest extends TestCase
                     'name' => $country->name,
                 ],
             ]);
+
+        $this->assertSame($previousCount + 1, User::count());
     }
 
     public function testPreviousUsernameShouldRedirect()
