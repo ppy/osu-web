@@ -28,7 +28,9 @@ use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\IpBan;
+use App\Models\Log;
 use App\Models\User;
+use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
@@ -46,6 +48,7 @@ class UsersController extends Controller
             'checkUsernameAvailability',
             'checkUsernameExists',
             'report',
+            'updatePage',
         ]]);
 
         $this->middleware('throttle:60,10', ['only' => ['store']]);
@@ -335,6 +338,31 @@ class UsersController extends Controller
                 'user',
                 'jsonChunks'
             ));
+        }
+    }
+
+    public function updatePage($id)
+    {
+        $user = User::findOrFail($id);
+
+        priv_check('UserPageEdit', $user)->ensureCan();
+
+        try {
+            $user = $user->updatePage(request('body'));
+
+            if (!$user->is(auth()->user())) {
+                UserAccountHistory::logUserPageModerated($user, auth()->user());
+
+                $this->log([
+                    'log_type' => Log::LOG_USER_MOD,
+                    'log_operation' => 'LOG_USER_PAGE_EDIT',
+                    'log_data' => ['id' => $user->getKey()],
+                ]);
+            }
+
+            return ['html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']])];
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
     }
 

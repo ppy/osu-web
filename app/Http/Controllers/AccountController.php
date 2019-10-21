@@ -193,21 +193,6 @@ class AccountController extends Controller
         return $user->defaultJson();
     }
 
-    public function updatePage()
-    {
-        $user = Auth::user();
-
-        priv_check('UserPageEdit', $user)->ensureCan();
-
-        try {
-            $user = $user->updatePage(Request::input('body'));
-
-            return ['html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']])];
-        } catch (ModelNotSavedException $e) {
-            return error_popup($e->getMessage());
-        }
-    }
-
     public function updatePassword()
     {
         $params = get_params(request(), 'user', ['current_password', 'password', 'password_confirmation']);
