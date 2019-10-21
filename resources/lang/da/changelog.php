@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'feed',
     'generic' => 'Fejlrettelser og små forbedringer.',
 
     'build' => [

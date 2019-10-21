@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu 허용하기',
-        'beatmap_information' => '',
+        'beatmap_information' => '비트맵 페이지',
         'delete' => '삭제',
         'deleted' => ':delete_time에 :editor님에 의해 삭제되었습니다',
         'deny_kudosu' => 'kudosu 박탈하기',
@@ -287,7 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '',
+        'MR' => '미러',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => '모드 없음',

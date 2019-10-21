@@ -88,9 +88,6 @@ return [
         'title' => 'публикации :username',
     ],
 
-    'signup' => [
-        '_' => 'Регистрация',
-    ],
     'anonymous' => [
         'login_link' => 'нажмите для входа',
         'login_text' => 'войти',
@@ -167,8 +164,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count подписчик|:count подписчика|:count подписчиков',
-            'none' => '',
+            'none' => 'нет',
             'unranked' => 'Нет недавних игр',
 
             'achievements' => [
@@ -198,13 +194,13 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
+                'title' => 'Обсуждения',
                 'title_longer' => '',
                 'show_more' => '',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
+                'title' => 'События',
+                'title_longer' => 'Недавние события',
                 'show_more' => '',
             ],
             'historical' => [
@@ -397,8 +393,8 @@ return [
             'total_score' => 'Всего очков',
             // modding stats
             'ranked_and_approved_beatmapset_count' => 'Ранкнутые и одобренные карты',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
+            'loved_beatmapset_count' => 'Любимые карты',
+            'unranked_beatmapset_count' => 'На рассмотрении',
             'graveyard_beatmapset_count' => 'Заброшенные карты',
         ],
     ],
@@ -416,7 +412,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Показывать карточками',
+        'list' => 'Показывать списком',
     ],
 ];

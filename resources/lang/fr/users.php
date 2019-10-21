@@ -88,9 +88,6 @@ return [
         'title' => 'Posts de :username',
     ],
 
-    'signup' => [
-        '_' => 'S\'inscrire',
-    ],
     'anonymous' => [
         'login_link' => 'Cliquez pour vous connecter',
         'login_text' => 'Se connecter',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count abonné|:count abonnés',
             'none' => 'aucun',
             'unranked' => 'Aucune partie récente',
 

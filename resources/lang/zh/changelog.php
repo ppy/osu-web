@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => '详细',
     'generic' => '修复已知问题并做了小改动.',
 
     'build' => [

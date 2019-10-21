@@ -88,9 +88,6 @@ return [
         'title' => 'допісаў :username',
     ],
 
-    'signup' => [
-        '_' => 'Рэгістрацыя',
-    ],
     'anonymous' => [
         'login_link' => 'націсніце, каб увайсці',
         'login_text' => 'увайсці',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count падпісчык|:count падпісчыкі|:count падпісчыкаў',
             'none' => '',
             'unranked' => 'Няма нядаўніх гульняў',
 

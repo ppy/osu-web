@@ -171,6 +171,7 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => '',
         'self' => "เดี๋ยว คุณรายงานตัวเองไม่ได้",
     ],
 

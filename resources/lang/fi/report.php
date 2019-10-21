@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Ilmianna pisteet',
-        'title' => 'Ilmiannetaanko käyttäjän :username pisteet?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Reportoi',
         'title' => 'Reportoi :username\'n kommentti?',
+    ],
+
+    'scores' => [
+        'button' => 'Ilmianna pisteet',
+        'title' => 'Ilmiannetaanko käyttäjän :username pisteet?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

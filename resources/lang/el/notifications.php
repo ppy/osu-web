@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_lock_compact' => '',
                 'beatmapset_discussion_post_new' => 'Ο χρήστης:username δημοσίευσε ένα καινούριο μήνυμα στη συζήτηση για το beatmap ":title".',
                 'beatmapset_discussion_post_new_compact' => '',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
                 'beatmapset_discussion_unlock' => 'Η συζήτηση για το beatmap ":title" ξεκλειδώθηκε.',
                 'beatmapset_discussion_unlock_compact' => '',
             ],

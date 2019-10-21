@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Topik telah disematkan dan ditandai sebagai pengumuman',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Post yang Dihapus',
             'total_posts' => 'Jumlah Post',

@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'flux',
     'generic' => 'Corrections de bugs et améliorations mineures.',
 
     'build' => [

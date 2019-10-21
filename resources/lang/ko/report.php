@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => '기록 신고',
-        'title' => ':username님의 기록을 신고하실 건가요?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => '신고',
         'title' => ':username님의 댓글을 신고하실 건가요?',
+    ],
+
+    'scores' => [
+        'button' => '기록 신고',
+        'title' => ':username님의 기록을 신고하실 건가요?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

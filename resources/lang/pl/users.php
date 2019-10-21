@@ -88,9 +88,6 @@ return [
         'title' => 'Posty użytkownika :username',
     ],
 
-    'signup' => [
-        '_' => 'Zarejestruj się',
-    ],
     'anonymous' => [
         'login_link' => 'kliknij, aby się zalogować',
         'login_text' => 'zaloguj się',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count_delimited obserwujący|:count_delimited obserwujących|:count_delimited obserwujących',
             'none' => 'brak',
             'unranked' => 'Brak nowych wyników',
 

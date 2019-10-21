@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'รายงานผลคะแนน',
-        'title' => 'ต้องการรายงานผลคะแนนของ :username หรือไม่?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'รายงาน',
         'title' => 'ต้องการรายงานความคิดเห็นของ :username หรือไม่?',
+    ],
+
+    'scores' => [
+        'button' => 'รายงานผลคะแนน',
+        'title' => 'ต้องการรายงานผลคะแนนของ :username หรือไม่?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

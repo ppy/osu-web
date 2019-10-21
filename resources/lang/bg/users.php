@@ -88,9 +88,6 @@ return [
         'title' => 'публикациите на :username',
     ],
 
-    'signup' => [
-        '_' => 'Регистрация',
-    ],
     'anonymous' => [
         'login_link' => 'щракнете, за да влезете',
         'login_text' => 'вход',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count_delimited последовател|:count_delimited последователи',
             'none' => '',
             'unranked' => 'Няма скорошни данни',
 
