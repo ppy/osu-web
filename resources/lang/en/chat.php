@@ -19,7 +19,6 @@
  */
 
 return [
-    'coming_soon' => 'coming soon',
     'limitation_notice' => 'NOTE: Only people who are using <a href=":lazer_link">osu!lazer</a> or the new website will receive PMs through this system.<br/>If you are unsure, send them a message via the <a href=":oldpm_link">old forum PM page</a> instead.',
     'talking_in' => 'talking in :channel',
     'talking_with' => 'talking with :name',
