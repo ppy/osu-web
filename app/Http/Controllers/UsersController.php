@@ -137,6 +137,10 @@ class UsersController extends Controller
         try {
             $registration->assertValid();
 
+            if (get_bool(request('check'))) {
+                return response(null, 204);
+            }
+
             $throttleKey = "registration:{$ip}";
 
             if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {

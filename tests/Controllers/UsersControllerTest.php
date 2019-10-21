@@ -35,6 +35,30 @@ class UsersControllerTest extends TestCase
     }
 
     /**
+     * Passing check=1 only validates user and not create.
+     */
+    public function testStoreDryRunValid()
+    {
+        config()->set('osu.user.allow_registration', true);
+
+        $previousCount = User::count();
+
+        $this
+            ->json('POST', route('users.store'), [
+                'check' => '1',
+                'user' => [
+                    'username' => 'user1',
+                    'user_email' => 'user1@example.com',
+                    'password' => 'hunter22',
+                ],
+            ], [
+                'HTTP_USER_AGENT' => config('osu.client.user_agent'),
+            ])->assertSuccessful();
+
+        $this->assertSame($previousCount, User::count());
+    }
+
+    /**
      * Invalid parameter returns 422.
      */
     public function testStoreInvalid()
@@ -42,6 +66,21 @@ class UsersControllerTest extends TestCase
         config()->set('osu.user.allow_registration', true);
 
         $previousCount = User::count();
+
+        $this
+            ->json('POST', route('users.store'), [
+                'check' => '1',
+                'user' => [
+                    'username' => '',
+                    'user_email' => 'user1@example.com',
+                    'password' => 'hunter22',
+                ],
+            ], [
+                'HTTP_USER_AGENT' => config('osu.client.user_agent'),
+            ])->assertStatus(422)
+            ->assertJsonFragment([
+                'form_error' => ['user' => ['username' => ['Username is required.']]],
+            ]);
 
         $this
             ->json('POST', route('users.store'), [
