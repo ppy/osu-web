@@ -53,6 +53,8 @@ class CommentTransformer extends Fractal\TransformerAbstract
 
             'edited_at' => json_time($comment->edited_at),
             'edited_by_id' => $comment->edited_by_id,
+
+            'pinned' => $comment->pinned,
         ];
     }
 }
