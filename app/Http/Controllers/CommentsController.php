@@ -251,6 +251,24 @@ class CommentsController extends Controller
         return CommentBundle::forComment($comment)->toArray();
     }
 
+    public function setPinned($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        priv_check('CommentPin', $comment)->ensureCan();
+
+        if (request()->isMethod('post')) {
+            $state = true;
+        } elseif (request()->isMethod('delete')) {
+            $state = false;
+        }
+
+        $comment->pinned = $state;
+        $comment->save();
+
+        return CommentBundle::forComment($comment)->toArray();
+    }
+
     /**
      * Remove Comment vote
      *

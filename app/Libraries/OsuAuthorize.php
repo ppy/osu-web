@@ -972,6 +972,17 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkCommentPin(?User $user, Comment $comment) : string
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->isAdmin()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @param Contest $contest
