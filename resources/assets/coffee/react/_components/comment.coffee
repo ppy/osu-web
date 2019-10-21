@@ -110,6 +110,13 @@ export class Comment extends React.PureComponent
             div className: 'comment__row comment__row--header',
               @renderUsername user
 
+              if @props.comment.pinned
+                span
+                  className: 'comment__row-item  comment__row-item--pinned'
+                  span className: 'fa fa-thumbtack'
+                  ' '
+                  osu.trans 'comments.pinned'
+
               if parent?
                 span
                   className: 'comment__row-item comment__row-item--parent'

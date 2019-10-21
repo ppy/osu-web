@@ -22,6 +22,7 @@ return [
     'deleted' => 'deleted',
     'deleted_count' => ':count_delimited deleted comment|:count_delimited deleted comments',
     'edited' => 'edited :timeago by :user',
+    'pinned' => 'pinned',
     'empty' => 'No comments yet.',
     'load_replies' => 'load replies',
     'replies' => 'Replies',

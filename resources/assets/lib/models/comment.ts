@@ -33,6 +33,7 @@ export class Comment {
   message: string;
   messageHtml: string;
   parentId: number | null;
+  pinned: boolean;
   repliesCount: number;
   updatedAt: string;
   userId: number;
@@ -50,6 +51,7 @@ export class Comment {
     this.message = json.message;
     this.messageHtml = json.message_html;
     this.parentId = json.parent_id;
+    this.pinned = json.pinned;
     this.repliesCount = json.replies_count;
     this.updatedAt = json.updated_at;
     this.userId = json.user_id;
