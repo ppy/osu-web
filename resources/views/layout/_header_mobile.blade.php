@@ -40,7 +40,7 @@
                             <div class="nav-button nav-button--mobile">
                                 <span class="notification-icon notification-icon--mobile">
                                     <i class="fas fa-inbox"></i>
-                                   <span class="notification-icon__count">...</span>
+                                    <span class="notification-icon__count">...</span>
                                 </span>
                             </div>
                         </div>
