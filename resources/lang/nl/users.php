@@ -88,9 +88,6 @@ return [
         'title' => ':username\'s berichten',
     ],
 
-    'signup' => [
-        '_' => 'Registreer',
-    ],
     'anonymous' => [
         'login_link' => 'klik om in te loggen',
         'login_text' => 'log in',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 volger|:count volgers',
             'none' => 'geen',
             'unranked' => 'Geen recente plays',
 

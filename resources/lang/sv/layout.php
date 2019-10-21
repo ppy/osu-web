@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'stötta spelet',
             'team' => 'lag',
         ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
+        ],
         'help' => [
             '_' => 'hjälp',
             'getFaq' => 'faq',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Herrn, du behöver ett konto. Varför har du inte ett redan?",
+            'download' => '',
+            'info' => 'Herrn, du behöver ett konto. Varför har du inte ett redan?',
             'title' => "Har du inte ett konto?",
         ],
     ],

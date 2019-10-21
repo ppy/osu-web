@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => '詳細',
     'generic' => 'バグ修正と細かい調整',
 
     'build' => [

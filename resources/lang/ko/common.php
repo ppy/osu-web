@@ -119,7 +119,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => '검색...',
     ],
 
     'pagination' => [

@@ -88,9 +88,6 @@ return [
         'title' => 'postagens de :username',
     ],
 
-    'signup' => [
-        '_' => 'Registrar',
-    ],
     'anonymous' => [
         'login_link' => 'clique para conectar-se',
         'login_text' => 'conectar-se',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 seguidor|:count seguidores',
             'none' => 'nenhum',
             'unranked' => 'Nada jogado recentemente',
 

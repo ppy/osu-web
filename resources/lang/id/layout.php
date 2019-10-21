@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'dukung permainan ini',
             'team' => 'tim',
         ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
+        ],
         'help' => [
             '_' => 'bantuan',
             'getFaq' => 'faq',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Anda butuh akun. Mengapa Anda belum memilikinya?",
+            'download' => '',
+            'info' => 'Anda butuh akun. Mengapa Anda belum memilikinya?',
             'title' => "Belum memiliki akun?",
         ],
     ],

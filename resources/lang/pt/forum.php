@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'O tópico foi afixado e marcado como uma declaração pública',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Publicações Eliminadas',
             'total_posts' => 'Publicações Totais',

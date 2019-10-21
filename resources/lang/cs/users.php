@@ -88,9 +88,6 @@ return [
         'title' => ':username\'s příspěvky',
     ],
 
-    'signup' => [
-        '_' => 'Registrace',
-    ],
     'anonymous' => [
         'login_link' => 'klikněte pro přihlášení',
         'login_text' => 'přihlásit se',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 sledující |:count followers',
             'none' => '',
             'unranked' => 'Žádné poslední údaje o hraní',
 

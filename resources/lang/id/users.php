@@ -88,9 +88,6 @@ return [
         'title' => 'Postingan :username',
     ],
 
-    'signup' => [
-        '_' => 'Daftar',
-    ],
     'anonymous' => [
         'login_link' => 'klik untuk masuk',
         'login_text' => 'masuk',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count pengikut',
             'none' => 'kosong',
             'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
 

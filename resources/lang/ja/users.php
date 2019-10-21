@@ -88,9 +88,6 @@ return [
         'title' => ':usernameの投稿',
     ],
 
-    'signup' => [
-        '_' => '新規登録',
-    ],
     'anonymous' => [
         'login_link' => 'クリックしてログイン',
         'login_text' => 'ログイン',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count フォロワー',
             'none' => 'なし',
             'unranked' => '最近のプレイはありません',
 

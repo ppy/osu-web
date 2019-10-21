@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosuを許可',
-        'beatmap_information' => '',
+        'beatmap_information' => 'ビートマップページ',
         'delete' => '削除',
         'deleted' => ':editorが:delete_timeに削除',
         'deny_kudosu' => 'kudosuを拒否',
@@ -142,12 +142,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => '反対票はまだありません',
+                'up' => '賛成票はまだありません',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => '最近の反対票',
+                'up' => '最近の賛成票',
             ],
         ],
     ],
@@ -287,7 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '',
+        'MR' => 'ミラー',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

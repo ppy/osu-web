@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Skoru Raporla',
-        'title' => ':username adlı kişinin skoru raporlansın mı?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Rapor Et',
         'title' => ':username adlı kişinin skoru raporlansın mı?',
+    ],
+
+    'scores' => [
+        'button' => 'Skoru Raporla',
+        'title' => ':username adlı kişinin skoru raporlansın mı?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

@@ -22,7 +22,6 @@ return [
     'show' => [
         'fallback_translation' => 'Die angeforderte Seite wurde noch nicht in die ausgewählte Sprache übersetzt (:language). Die englische Version wird angezeigt.',
         'incomplete_or_outdated' => 'Der Inhalt dieser Seite ist unvollständig oder veraltet. Wenn Du helfen kannst, überlege bitte, den Artikel zu aktualisieren!',
-        'languages' => 'Sprachen',
         'missing' => 'Die angeforderte Seite ":keyword" konnte nicht gefunden werden.',
         'missing_title' => 'Nicht gefunden',
         'missing_translation' => 'Die angeforderte Seite konnte für die ausgewählte Sprache nicht gefunden werden.',
@@ -42,10 +41,10 @@ return [
         ],
     ],
     'main' => [
-        'title' => '',
-        'subtitle' => '',
+        'title' => 'Wissensbasis',
+        'subtitle' => 'weil sich osu!pedia langweilig anhört',
     ],
     'search' => [
-        'path' => '',
+        'path' => 'von',
     ],
 ];

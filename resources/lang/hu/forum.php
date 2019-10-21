@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => ':user által indítva',
 
         'create' => [
-            'close' => '',
+            'close' => 'Bezár',
             'preview' => 'Előnézet',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Téma kitűzve és bejelentésnek jelölve',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Törölt posztok',
             'total_posts' => 'Összes poszt',
@@ -305,7 +310,7 @@ return [
                     'change_vote' => '',
                     'edit' => '',
                     'view_results' => '',
-                    'vote' => '',
+                    'vote' => 'Szavaz',
                 ],
 
                 'detail' => [

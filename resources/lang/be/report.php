@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Справаздача выніку',
-        'title' => 'Справаздача выніку :username?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Справаздача',
         'title' => 'Адправіць скаргу на каментарый :username?',
+    ],
+
+    'scores' => [
+        'button' => 'Справаздача выніку',
+        'title' => 'Справаздача выніку :username?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

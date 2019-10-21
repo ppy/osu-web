@@ -48,14 +48,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Du kannst nur deine eigenen Beiträge löschen.',
+            'resolved' => 'Du kannst keinen Beitrag einer gelösten Diskussion löschen.',
+            'system_generated' => 'Automatisch generierter Beitrag kann nicht gelöscht werden.',
         ],
 
         'edit' => [
             'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
-            'resolved' => '',
+            'resolved' => 'Du kannst keinen Beitrag einer gelösten Diskussion bearbeiten.',
             'system_generated' => 'Automatisch erzeugte Beiträge können nicht bearbeitet werden.',
         ],
 

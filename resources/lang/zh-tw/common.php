@@ -30,7 +30,7 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => '全新功能！',
     ],
 
     'buttons' => [
@@ -119,7 +119,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => '搜尋...',
     ],
 
     'pagination' => [
