@@ -24,7 +24,6 @@
     text-align: center;
     font-weight: 300;
     color: @osu-colour-c1;
-
     padding-top: 30px;
   }
 
@@ -37,5 +36,31 @@
     }
 
     padding-top: 45px;
+  }
+
+  &__heading {
+    color: @osu-colour-c1;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+
+    .wiki-main-page-panel & {
+      margin-bottom: 40px;
+    }
+
+    .wiki-main-page-panel--full & {
+      font-size: 30px;
+    }
+  }
+
+  &__paragraph {
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 700;
+    color: @osu-colour-c1;
+  }
+
+  &__link {
+    .link-default();
   }
 }
