@@ -34,13 +34,13 @@
 
         <div class="beatmap-packs js-accordion">
             @foreach ($packs as $pack)
-                <div class="beatmap-pack js-beatmap-pack js-accordion__item" data-pack-id="{{ $pack['pack_id'] }}">
+                <div class="beatmap-pack js-beatmap-pack js-accordion__item" data-pack-id="{{ $pack->getKey() }}">
                     <button type="button" class="beatmap-pack__header js-accordion__item-header">
-                        <div class="beatmap-pack__name">{{ $pack['name'] }}</div>
+                        <div class="beatmap-pack__name">{{ $pack->name }}</div>
                         <div class="beatmap-pack__details">
-                            <span class="beatmap-pack__date">{{ $pack['date']->formatLocalized('%Y-%m-%d') }}</span>
+                            <span class="beatmap-pack__date">{{ $pack->date->formatLocalized('%Y-%m-%d') }}</span>
                             <span class="beatmap-pack__author">by </span>
-                            <span class="beatmap-pack__author beatmap-pack__author--bold">{{ $pack['author'] }}</span>
+                            <span class="beatmap-pack__author beatmap-pack__author--bold">{{ $pack->author }}</span>
                         </div>
                     </button>
                     <div class="beatmap-pack__body js-accordion__item-body"></div>
