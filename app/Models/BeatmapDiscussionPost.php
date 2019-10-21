@@ -41,7 +41,7 @@ use DB;
  */
 class BeatmapDiscussionPost extends Model
 {
-    use Validatable;
+    use Validatable, Reportable;
 
     const MESSAGE_LIMIT_TIMELINE = 750;
 
@@ -145,7 +145,14 @@ class BeatmapDiscussionPost extends Model
 
     public function beatmapset()
     {
-        return $this->beatmapDiscussion->beatmapset();
+        return $this->hasOneThrough(
+            Beatmapset::class,
+            BeatmapDiscussion::class,
+            'id',
+            'beatmapset_id',
+            'beatmap_discussion_id',
+            'beatmapset_id'
+        )->withTrashed();
     }
 
     public function beatmapDiscussion()
@@ -153,9 +160,39 @@ class BeatmapDiscussionPost extends Model
         return $this->belongsTo(BeatmapDiscussion::class);
     }
 
+    public function visibleBeatmapDiscussion()
+    {
+        return $this->beatmapDiscussion()->visible();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Whether a post can be edited/deleted.
+     *
+     * When a discussion is resolved, the posts preceeding the resolution are locked.
+     * Posts after the resolution are not locked, unless the issue is re-opened and resolved again.
+     *
+     * @return bool
+     */
+    public function canEdit()
+    {
+        if ($this->system) {
+            return false;
+        }
+
+        // The only system post type currently implemented is 'resolved', so we're making the assumption
+        // the next system post is always going to be either a resolve or unresolve.
+        // This will have to be changed if more types are added.
+        $systemPost = static::where('system', true)
+            ->where('id', '>', $this->id)
+            ->where('beatmap_discussion_id', $this->beatmap_discussion_id)
+            ->last();
+
+        return $this->getKey() > optional($systemPost)->getKey();
     }
 
     public function validateBeatmapsetDiscussion()
@@ -215,6 +252,10 @@ class BeatmapDiscussionPost extends Model
 
         try {
             return $this->getConnection()->transaction(function () use ($options) {
+                if (!$this->exists) {
+                    $this->beatmapDiscussion->update(['last_post_at' => Carbon::now()]);
+                }
+
                 if (!parent::save($options)) {
                     throw new ModelNotSavedException;
                 }
@@ -294,32 +335,25 @@ class BeatmapDiscussionPost extends Model
 
     public function softDeleteOrExplode($deletedBy)
     {
-        $timestamps = $this->timestamps;
+        DB::transaction(function () use ($deletedBy) {
+            if ($deletedBy->getKey() !== $this->user_id) {
+                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
+            }
 
-        try {
-            DB::transaction(function () use ($deletedBy) {
-                if ($deletedBy->getKey() !== $this->user_id) {
-                    BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
-                }
+            // delete related system post
+            $systemPost = $this->relatedSystemPost();
 
-                // delete related system post
-                $systemPost = $this->relatedSystemPost();
+            if ($systemPost !== null) {
+                $systemPost->softDeleteOrExplode($deletedBy);
+            }
 
-                if ($systemPost !== null) {
-                    $systemPost->softDeleteOrExplode($deletedBy);
-                }
+            $this->fill([
+                'deleted_by_id' => $deletedBy->user_id,
+                'deleted_at' => Carbon::now(),
+            ])->saveOrExplode();
 
-                $this->timestamps = false;
-                $this->fill([
-                    'deleted_by_id' => $deletedBy->user_id,
-                    'deleted_at' => Carbon::now(),
-                ])->saveOrExplode();
-
-                $this->beatmapDiscussion->refreshResolved();
-            });
-        } finally {
-            $this->timestamps = $timestamps;
-        }
+            $this->beatmapDiscussion->refreshResolved();
+        });
     }
 
     public function trashed()
@@ -340,5 +374,19 @@ class BeatmapDiscussionPost extends Model
     public function scopeWithoutSystem($query)
     {
         $query->where('system', '=', false);
+    }
+
+    public function scopeVisible($query)
+    {
+        $query->withoutTrashed()
+            ->whereHas('visibleBeatmapDiscussion');
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'Spam',
+            'user_id' => $this->user_id,
+        ];
     }
 }

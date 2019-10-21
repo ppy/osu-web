@@ -97,6 +97,14 @@
     }
   }
 
+  &__link {
+    .link-default();
+  }
+
+  &__rules {
+    margin-top: 10px;
+  }
+
   &__drop-overlay {
     .full-size();
     .center-content();
@@ -204,6 +212,11 @@
     max-width: @input-width;
     display: block;
     margin-right: 10px;
+
+    &--signature-preview {
+      max-height: @forum-signature-height;
+      overflow: hidden;
+    }
 
     .@{top}--wide & {
       max-width: @input-width-wide;

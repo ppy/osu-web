@@ -21,7 +21,6 @@
 namespace App\Transformers;
 
 use App\Models\User;
-use App\Models\UserGroup;
 use League\Fractal;
 
 class UserCompactTransformer extends Fractal\TransformerAbstract
@@ -29,7 +28,8 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'country',
         'cover',
-        'groups',
+        'group_badge',
+        'support_level',
     ];
 
     public function transform(User $user)
@@ -70,19 +70,13 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeGroups(User $user)
+    public function includeGroupBadge(User $user)
     {
-        return $this->item($user, function ($user) {
-            $groups = [];
+        return $this->primitive($user->groupBadge());
+    }
 
-            foreach ($user->groupIds() as $id) {
-                $name = array_search_null($id, UserGroup::GROUPS);
-                if ($name !== null && $id !== UserGroup::GROUPS['admin']) {
-                    $groups[] = $name;
-                }
-            }
-
-            return $groups;
-        });
+    public function includeSupportLevel(User $user)
+    {
+        return $this->primitive($user->supportLevel());
     }
 }

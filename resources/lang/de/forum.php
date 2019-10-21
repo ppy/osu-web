@@ -25,6 +25,8 @@ return [
     'title' => 'osu! Foren',
 
     'covers' => [
+        'edit' => 'Cover bearbeiten',
+
         'create' => [
             '_' => 'Banner festlegen',
             'button' => 'Bild hochladen',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Neuester Beitrag',
+
+        'index' => [
+            'title' => 'Forum-Startseite',
+        ],
+
         'topics' => [
             'empty' => 'Keine Threads!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Forum als gelesen markieren',
         'forums' => 'Foren als gelesen markieren',
         'busy' => 'Als gelesen markieren...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Beim bearbeiten einer Umfrage, werden die aktuellen Ergebnisse gelöscht!',
-
-        'actions' => [
-            'edit' => 'Umfrage bearbeiten',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'Post löschen',
             'restore' => 'Post wiederherstellen',
             'edit' => 'Post bearbeiten',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => 'Neue Antwort',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'gestartet von :user',
 
         'create' => [
+            'close' => 'Schließen',
             'preview' => 'Vorschau',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -268,6 +275,11 @@ return [
             'to_2_done' => 'Thread wurde angepinnt und als Ankündigung markiert',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Gelöschte Posts',
             'total_posts' => 'Posts insgesamt',
@@ -290,7 +302,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'Umfrage bearbeiten',
+                'edit_warning' => 'Bearbeiten der Umfrage wird die derzeitigen Ergebnisse entfernen!',
                 'vote' => 'Abstimmung',
+
+                'button' => [
+                    'change_vote' => 'Stimme ändern',
+                    'edit' => 'Umfrage bearbeiten',
+                    'view_results' => 'Zu Ergebnissen springen',
+                    'vote' => 'Abstimmen',
+                ],
 
                 'detail' => [
                     'end_time' => 'Abstimmung endet am :time',

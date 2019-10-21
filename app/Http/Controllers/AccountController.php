@@ -23,11 +23,12 @@ namespace App\Http\Controllers;
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\UserVerification;
+use App\Libraries\UserVerificationState;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\OAuth\Client;
+use App\Models\UserAccountHistory;
 use Auth;
-use Illuminate\Http\Request as HttpRequest;
 use Mail;
 use Request;
 
@@ -38,7 +39,9 @@ class AccountController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => [
+            'verifyLink',
+        ]]);
 
         $this->middleware(function ($request, $next) {
             if (Auth::check() && Auth::user()->isSilenced()) {
@@ -54,6 +57,7 @@ class AccountController extends Controller
                 'updatePage',
                 'updatePassword',
                 'verify',
+                'verifyLink',
             ],
         ]);
 
@@ -62,8 +66,11 @@ class AccountController extends Controller
         ]]);
 
         $this->middleware('throttle:60,10', ['only' => [
+            'reissueCode',
             'updateEmail',
             'updatePassword',
+            'verify',
+            'verifyLink',
         ]]);
 
         return parent::__construct();
@@ -110,8 +117,9 @@ class AccountController extends Controller
             ->getIdWithoutKeyPrefix();
 
         $authorizedClients = json_collection(Client::forUser(auth()->user()), 'OAuth\Client', 'user');
+        $ownClients = json_collection(auth()->user()->oauthClients()->where('revoked', false)->get(), 'OAuth\Client');
 
-        return view('accounts.edit', compact('authorizedClients', 'blocks', 'sessions', 'currentSessionId'));
+        return view('accounts.edit', compact('authorizedClients', 'blocks', 'ownClients', 'sessions', 'currentSessionId'));
     }
 
     public function update()
@@ -158,6 +166,8 @@ class AccountController extends Controller
                 Mail::to($address)->send(new UserEmailUpdated($user));
             }
 
+            UserAccountHistory::logUserUpdateEmail($user, $previousEmail);
+
             return response([], 204);
         } else {
             return $this->errorResponse($user);
@@ -171,6 +181,7 @@ class AccountController extends Controller
         $params = get_params(request(), 'user_profile_customization', [
             'comments_sort:string',
             'extras_order:string[]',
+            'ranking_expanded:bool',
         ]);
 
         try {
@@ -180,21 +191,6 @@ class AccountController extends Controller
         }
 
         return $user->defaultJson();
-    }
-
-    public function updatePage()
-    {
-        $user = Auth::user();
-
-        priv_check('UserPageEdit', $user)->ensureCan();
-
-        try {
-            $user = $user->updatePage(Request::input('body'));
-
-            return ['html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']])];
-        } catch (ModelNotSavedException $e) {
-            return error_popup($e->getMessage());
-        }
     }
 
     public function updatePassword()
@@ -213,18 +209,27 @@ class AccountController extends Controller
         }
     }
 
-    public function verify(HttpRequest $request)
+    public function verify()
     {
-        $verification = new UserVerification(Auth::user(), $request);
-
-        return $verification->verify();
+        return UserVerification::fromCurrentRequest()->verify();
     }
 
-    public function reissueCode(HttpRequest $request)
+    public function verifyLink()
     {
-        $verification = new UserVerification(Auth::user(), $request);
+        $state = UserVerificationState::fromVerifyLink(request('key'));
 
-        return $verification->reissue();
+        if ($state === null) {
+            return response()->view('accounts.verification_invalid')->setStatusCode(404);
+        }
+
+        $state->markVerified();
+
+        return view('accounts.verification_completed');
+    }
+
+    public function reissueCode()
+    {
+        return UserVerification::fromCurrentRequest()->reissue();
     }
 
     private function errorResponse($user, $exception = null)

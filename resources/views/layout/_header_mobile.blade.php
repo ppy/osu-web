@@ -36,7 +36,14 @@
 
                 <div class="navbar-mobile__header-section navbar-mobile__header-section--buttons">
                     @if (Auth::check())
-                        <div class="js-react--notification" data-notification-type="mobile"></div>
+                        <div class="js-react--notification" data-notification-type="mobile">
+                            <div class="nav-button nav-button--mobile">
+                                <span class="notification-icon notification-icon--mobile">
+                                    <i class="fas fa-inbox"></i>
+                                    <span class="notification-icon__count">...</span>
+                                </span>
+                            </div>
+                        </div>
 
                         <a
                             href="{{ route('users.show', Auth::user()->user_id) }}"
@@ -78,6 +85,9 @@
 
     @if (Auth::check() && !($currentSection === 'home' && $currentAction === 'search'))
         <form action="{{ route('search') }}" class="navbar-mobile-search">
+            @foreach ($searchParams ?? [] as $name => $value)
+                <input type="hidden" name="{{ $name }}" value="{{ $value }}" />
+            @endforeach
             <input class="navbar-mobile-search__input" name="query" />
             <button class="navbar-mobile-search__icon">
                 <i class="fas fa-search"></i>

@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Innlegg som er automatisk generert kan ikke bli endret.',
-            'not_owner' => 'Bare senderen kan redigere innlegget.',
+        'destroy' => [
+            'not_owner' => 'Du kan bare slette dine egne innlegg.',
+            'resolved' => '',
+            'system_generated' => 'Innlegg som er automatisk generert kan ikke bli slettet.',
         ],
+
+        'edit' => [
+            'not_owner' => 'Bare senderen kan redigere innlegget.',
+            'resolved' => '',
+            'system_generated' => 'Innlegg som er automatisk generert kan ikke bli endret.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Dette beatmappet har blitt låst for diskusjon.',
         ],

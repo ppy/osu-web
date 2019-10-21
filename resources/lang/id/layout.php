@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Rhythm is just a *click* away! Dengan berbagai mode permainan seperti Ouendan/EBA, Taiko, serta level editor yang berfungsi.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Komunitas',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'Tutup (Esc)',
+        'fullscreen' => 'Beralih ke layar penuh',
+        'zoom' => 'Perbesar/perkecil tampilan',
+        'previous' => 'Sebelumnya (arrow left)',
+        'next' => 'Selanjutnya (arrow right)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'beranda',
             'account-edit' => 'pengaturan',
+            'account-verifyLink' => 'Verifikasi Selesai',
             'friends-index' => 'teman',
             'changelog-index' => 'riwayat perubahan',
             'changelog-build' => 'versi',
@@ -42,6 +59,11 @@ return [
             'search' => 'cari',
             'supportTheGame' => 'dukung permainan ini',
             'team' => 'tim',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'bantuan',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Anda butuh akun. Mengapa Anda belum memilikinya?",
+            'download' => '',
+            'info' => 'Anda butuh akun. Mengapa Anda belum memilikinya?',
             'title' => "Belum memiliki akun?",
         ],
     ],

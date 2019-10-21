@@ -25,6 +25,8 @@ return [
     'title' => 'osu! 論壇',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => '新增封面',
             'button' => '上傳圖片',
@@ -42,23 +44,21 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => '沒有主題！',
         ],
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
-    ],
-
-    'poll' => [
-        'edit_warning' => '',
-
-        'actions' => [
-            'edit' => '編輯投票',
-        ],
+        'forum' => '將論壇標為已讀',
+        'forums' => '將論壇標為已讀',
+        'busy' => '標記已讀…',
     ],
 
     'post' => [
@@ -73,9 +73,15 @@ return [
             'edit' => '編輯回覆',
         ],
 
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
+        ],
+
         'info' => [
             'post_count' => ':count_delimited 主題',
-            'topic_starter' => '',
+            'topic_starter' => '主題開啟者',
         ],
     ],
 
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => '由 :user 發起',
 
         'create' => [
+            'close' => '',
             'preview' => '預覽',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -200,7 +207,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => '星級優先',
             'replies' => '回覆數',
             'views' => '瀏覽數',
         ],
@@ -268,6 +275,11 @@ return [
             'to_2_done' => '該主题已置頂並標記為公告',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => '刪除主題',
             'total_posts' => '總主題數量',
@@ -290,7 +302,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => '投票',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => '將於 :time 結束',

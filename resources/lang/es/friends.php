@@ -27,14 +27,9 @@ return [
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Inicio :info',
+            'info' => 'Amigos',
         ],
-    ],
-
-    'state' => [
-      'friends' => 'amigos',
-      'mutual' => 'mutuo',
     ],
 
     'title' => 'Amigos',

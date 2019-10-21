@@ -19,28 +19,39 @@
 {!! Form::open([
     'url' => route('forum.topics.edit-poll', $topic),
     'data-remote' => true,
-    'class' => 'js-forum-poll-edit-save'
+    'data-reload-on-success' => '1',
+    'class' => 'js-forum-poll-edit-save forum-poll'
 ]) !!}
-    <div class="forum-poll__warning">
-        {{ trans('forum.poll.edit_warning') }}
+    <div class="forum-poll__row forum-poll__row--title">
+        <h2 class="forum-poll__title">
+            {{ trans('forum.topics.show.poll.edit') }}
+        </h2>
+
+        <span class="forum-poll__warning">
+            {{ trans('forum.topics.show.poll.edit_warning') }}
+        </span>
     </div>
 
-    @include('forum.topics._create_poll', ['edit' => true])
+    @include('forum.topics._create_poll')
 
-    <div class="forum-poll__row">
-        <button
-            class="btn-osu-lite btn-osu-lite--default js-forum-poll-edit-cancel"
-            type="button"
-        >
-            {{ trans('common.buttons.cancel') }}
-        </button>
+    <div class="forum-poll__row forum-poll__row--buttons">
+        <div class="forum-poll__button">
+            <button
+                class="btn-osu-big btn-osu-big--forum-primary"
+                type="submit"
+                data-disable-with="{{ trans('common.buttons.saving') }}"
+            >
+                {{ trans('common.buttons.save') }}
+            </button>
+        </div>
 
-        <button
-            class="btn-osu-lite btn-osu-lite--default"
-            type="submit"
-            data-disable-with="{{ trans('common.buttons.saving') }}"
-        >
-            {{ trans('common.buttons.save') }}
-        </button>
+        <div class="forum-poll__button">
+            <button
+                class="js-forum-poll--switch-edit btn-osu-big btn-osu-big--forum-secondary"
+                type="button"
+            >
+                {{ trans('common.buttons.cancel') }}
+            </button>
+        </div>
     </div>
 {!! Form::close() !!}

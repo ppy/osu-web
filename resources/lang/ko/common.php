@@ -20,13 +20,17 @@
 
 return [
     'confirmation' => '확실합니까?',
-    'confirmation_unsaved' => '저장되지 않은 정보는 사라집니다. 계속하시겠습니까?',
+    'confirmation_unsaved' => '저장되지 않은 정보는 사라집니다. 계속하시겠어요?',
     'saved' => '저장됨',
 
     'array_and' => [
         'words_connector' => ', ',
         'two_words_connector' => ' 와(과) ',
         'last_word_connector' => ', 그리고 ',
+    ],
+
+    'badges' => [
+        'new' => '',
     ],
 
     'buttons' => [
@@ -37,6 +41,7 @@ return [
         'change' => '변경',
         'click_to_copy' => '클립보드에 복사',
         'click_to_copy_copied' => '클립보드에 복사되었습니다!',
+        'close' => '닫기',
         'collapse' => '축소',
         'delete' => '삭제',
         'edit' => '수정',
@@ -58,6 +63,7 @@ return [
         'show_deleted' => '삭제된 내용 표시',
         'show_more' => '더 보기',
         'show_more_options' => '더 많은 옵션 보기',
+        'update' => '업데이트',
         'upload_image' => '이미지 올리기',
 
         'watch' => [
@@ -75,8 +81,12 @@ return [
         'minute_short_unit' => '분',
         'minutes' => ':count분',
         'months' => ':count달',
+        'plus_others' => '+ :count_delimited 기타!',
+        'post' => ':count_delimited 게시글',
         'second_short_unit' => '초',
+        'star_priority' => ':count_delimited 별 우선 순위',
         'update' => ':count_delimited 업데이트',
+        'view' => ':count_delimited 조회',
         'years' => ':count년',
     ],
 
@@ -106,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => '업로드할 파일을 이곳에 끌어놓으세요',
+    ],
+
+    'input' => [
+        'search' => '검색...',
     ],
 
     'pagination' => [

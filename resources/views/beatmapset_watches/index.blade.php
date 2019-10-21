@@ -40,76 +40,78 @@
                 {{ trans('beatmapset_watches.index.description') }}
             </div>
 
-            <table class="table beatmapset-watches__table">
-                <tr class="beatmapset-watches__row">
-                    <th class="beatmapset-watches__heading"></th>
-                    <th class="beatmapset-watches__heading">
-                        {{ trans('beatmapset_watches.index.table.title') }}
-                    </th>
-                    <th class="beatmapset-watches__heading">
-                        {{ trans('beatmapset_watches.index.table.state') }}
-                    </th>
-                    <th class="beatmapset-watches__heading">
-                        {{ trans('beatmapset_watches.index.table.open_issues') }}
-                    </th>
-                    <th class="beatmapset-watches__heading"></th>
-                </tr>
+            <div class="beatmapset-watches__table-container">
+                <table class="table beatmapset-watches__table">
+                    <tr class="beatmapset-watches__row">
+                        <th class="beatmapset-watches__heading"></th>
+                        <th class="beatmapset-watches__heading">
+                            {{ trans('beatmapset_watches.index.table.title') }}
+                        </th>
+                        <th class="beatmapset-watches__heading">
+                            {{ trans('beatmapset_watches.index.table.state') }}
+                        </th>
+                        <th class="beatmapset-watches__heading">
+                            {{ trans('beatmapset_watches.index.table.open_issues') }}
+                        </th>
+                        <th class="beatmapset-watches__heading"></th>
+                    </tr>
 
-                @if (count($watches) > 0)
-                    @foreach ($watches as $watch)
-                        <tr>
-                            <td class="beatmapset-watches__col beatmapset-watches__col--cover">
-                                <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
-                                    <div
-                                        {!! background_image($watch->beatmapset->coverURL('list'), false) !!}
-                                        class="beatmapset-watches__cover"
-                                    ></div>
-                                </a>
-                            </td>
-                            <td class="beatmapset-watches__col">
-                                <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}" class="beatmapset-watches__link">
-                                    @if ($watch->isRead())
-                                        {{ $watch->beatmapset->title }}
-                                    @else
-                                        <strong>
+                    @if (count($watches) > 0)
+                        @foreach ($watches as $watch)
+                            <tr>
+                                <td class="beatmapset-watches__col beatmapset-watches__col--cover">
+                                    <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
+                                        <div
+                                            {!! background_image($watch->beatmapset->coverURL('list'), false) !!}
+                                            class="beatmapset-watches__cover"
+                                        ></div>
+                                    </a>
+                                </td>
+                                <td class="beatmapset-watches__col">
+                                    <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}" class="beatmapset-watches__link">
+                                        @if ($watch->isRead())
                                             {{ $watch->beatmapset->title }}
-                                        </strong>
-                                    @endif
-                                </a>
-                            </td>
+                                        @else
+                                            <strong>
+                                                {{ $watch->beatmapset->title }}
+                                            </strong>
+                                        @endif
+                                    </a>
+                                </td>
 
-                            <td class="beatmapset-watches__col">
-                                {{ $watch->beatmapset->status() }}
-                            </td>
+                                <td class="beatmapset-watches__col">
+                                    {{ $watch->beatmapset->status() }}
+                                </td>
 
-                            <td class="beatmapset-watches__col">
-                                {{ $watch->beatmapset->beatmapDiscussions()->openIssues()->count() }}
-                            </td>
+                                <td class="beatmapset-watches__col">
+                                    {{ $watch->beatmapset->beatmapDiscussions()->openIssues()->count() }}
+                                </td>
 
-                            <td class="beatmapset-watches__col">
-                                <button class="btn-circle"
-                                    data-remote="true"
-                                    data-method="DELETE"
-                                    data-url="{{ route('beatmapsets.watches.destroy', $watch->beatmapset) }}"
-                                    data-reload-on-success="1"
-                                    data-confirm="{{ trans('common.confirmation') }}"
-                                    title="{{ trans('common.buttons.watch.to_0') }}"
-                                >
-                                    <i class="fas fa-eye-slash"></i>
-                                </button>
+                                <td class="beatmapset-watches__col">
+                                    <button class="btn-circle"
+                                        data-remote="true"
+                                        data-method="DELETE"
+                                        data-url="{{ route('beatmapsets.watches.destroy', $watch->beatmapset) }}"
+                                        data-reload-on-success="1"
+                                        data-confirm="{{ trans('common.confirmation') }}"
+                                        title="{{ trans('common.buttons.watch.to_0') }}"
+                                    >
+                                        <i class="fas fa-eye-slash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="5">
+                                {{ trans('beatmapset_watches.index.table.empty') }}
                             </td>
                         </tr>
-                    @endforeach
-                @else
-                    <tr>
-                        <td colspan="5">
-                            {{ trans('beatmapset_watches.index.table.empty') }}
-                        </td>
-                    </tr>
-                @endif
-            </table>
+                    @endif
+                </table>
+            </div>
 
-            @include('objects._pagination_v0', ['object' => $watches])
+            @include('objects._pagination_v2', ['object' => $watches])
         </div>
     </div>
 @endsection

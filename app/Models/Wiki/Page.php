@@ -39,6 +39,16 @@ class Page
     const REINDEX_AFTER = 300;
     const VERSION = 1;
 
+    const TEMPLATES = [
+        'markdown_page' => 'wiki.show',
+        'main_page' => 'wiki.main',
+    ];
+
+    const RENDERERS = [
+        'markdown_page' => App\Libraries\Wiki\MarkdownRenderer::class,
+        'main_page' => App\Libraries\Wiki\MainPageRenderer::class,
+    ];
+
     public $locale;
     public $requestedLocale;
 
@@ -150,9 +160,9 @@ class Page
             $this->log('index document');
 
             $content = $this->getContent();
-            $indexContent = (new OsuMarkdown('wiki', [
-                'relative_url_root' => wiki_url($this->path),
-            ]))->load($content)->toIndexable();
+
+            $rendererClass = $this->renderer();
+            $indexContent = (new $rendererClass($this, $content))->renderIndexable();
 
             $params['body'] = [
                 'locale' => $this->locale,
@@ -162,6 +172,7 @@ class Page
                 'path_clean' => static::cleanupPath($this->path),
                 'title' => strip_tags($this->title()),
                 'tags' => $this->tags(),
+                'layout' => $this->layout(),
             ];
         }
 
@@ -211,15 +222,20 @@ class Page
         return $this->source;
     }
 
-    public function isOutdated()
+    public function isOutdated() : bool
     {
         return $this->page()['header']['outdated'] ?? false;
     }
 
-    public function isLegalTranslation()
+    public function isLegalTranslation() : bool
     {
-        return $this->locale !== config('app.fallback_locale')
+        return $this->isTranslation()
             && ($this->page()['header']['legal'] ?? false);
+    }
+
+    public function isTranslation() : bool
+    {
+        return $this->locale !== config('app.fallback_locale');
     }
 
     public function page()
@@ -265,9 +281,12 @@ class Page
                     }
 
                     if (present($body)) {
-                        $page = (new OsuMarkdown('wiki', [
-                            'relative_url_root' => wiki_url($this->path),
-                        ]))->load($body)->toArray();
+                        // prefilling the header so layout() works
+                        $this->cache['page']['header'] = OsuMarkdown::parseYamlHeader($body)['header'];
+
+                        $rendererClass = $this->renderer();
+
+                        $page = (new $rendererClass($this, $body))->render();
                     }
                 }
 
@@ -336,6 +355,41 @@ class Page
         }
 
         return presence($this->page()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
+    }
+
+    public function layout()
+    {
+        if ($this->page() === null) {
+            return;
+        }
+
+        return presence($this->page()['header']['layout'] ?? null) ?? 'markdown_page';
+    }
+
+    public function template()
+    {
+        if ($this->page() === null) {
+            return static::TEMPLATES['markdown_page'];
+        }
+
+        if (!array_key_exists($this->layout(), static::TEMPLATES)) {
+            throw new \Exception('Invalid wiki page type');
+        }
+
+        return static::TEMPLATES[$this->layout()];
+    }
+
+    public function renderer()
+    {
+        if ($this->page() === null) {
+            return;
+        }
+
+        if (!array_key_exists($this->layout(), static::RENDERERS)) {
+            throw new \Exception('Invalid wiki page type');
+        }
+
+        return static::RENDERERS[$this->layout()];
     }
 
     private function log($action)

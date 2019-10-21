@@ -18,8 +18,9 @@
 
 import NotificationJson from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
+import { route } from 'laroute';
 import { forEach, minBy, orderBy, random } from 'lodash';
-import { computed, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 
@@ -44,12 +45,24 @@ interface NotificationEventReadJson {
   event: 'read';
 }
 
+interface NotificationEventVerifiedJson {
+  event: 'verified';
+}
+
+interface NotificationFeedMetaJson {
+  url: string;
+}
+
 interface NotificationReadJson {
   ids: number[];
 }
 
 interface TimeoutCollection {
   [key: string]: number;
+}
+
+interface XHRLoadingStateCollection {
+  [key: string]: boolean;
 }
 
 const isNotificationEventLogoutJson = (arg: any): arg is NotificationEventLogoutJson => {
@@ -64,21 +77,23 @@ const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson
   return arg.event === 'read';
 };
 
+const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVerifiedJson => {
+  return arg.event === 'verified';
+};
+
 export default class Worker {
   @observable actualUnreadCount: number = -1;
   @observable hasData: boolean = false;
   @observable hasMore: boolean = true;
-  @observable loadingMore: boolean = false;
   @observable pmNotification = new LegacyPmNotification();
   userId: number | null = null;
   @observable private active: boolean = false;
   private endpoint?: string;
   @observable private items = observable.map<number, Notification>();
-  private needsRefresh = false;
-  private refreshing = false;
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
   private xhr: XHRCollection = {};
+  @observable private xhrLoadingState: XHRLoadingStateCollection = {};
 
   @computed get itemsGroupedByType() {
     const ret: Map<string, Notification[]> = new Map();
@@ -110,6 +125,10 @@ export default class Worker {
     return ret;
   }
 
+  @computed get loadingMore() {
+    return this.isPendingXhr('loadMore');
+  }
+
   @computed get minLoadedId() {
     let ret: null | number = null;
 
@@ -120,6 +139,10 @@ export default class Worker {
     });
 
     return ret;
+  }
+
+  @computed get refreshing() {
+    return this.isPendingXhr('refresh');
   }
 
   @computed get unreadCount() {
@@ -140,19 +163,17 @@ export default class Worker {
 
     if (this.active) {
       this.updatePmNotification();
-      this.loadMore();
+      this.startWebSocket();
       $(document).on('turbolinks:load', this.updatePmNotification);
     }
   }
 
-  connectWebSocket = () => {
+  @action connectWebSocket = () => {
     if (!this.active || this.endpoint == null || this.ws != null) {
       return;
     }
 
-    if (this.timeout.connectWebSocket != null) {
-      clearTimeout(this.timeout.connectWebSocket);
-    }
+    Timeout.clear(this.timeout.connectWebSocket);
 
     const tokenEl = document.querySelector('meta[name=csrf-token]');
 
@@ -161,42 +182,32 @@ export default class Worker {
     }
 
     const token = tokenEl.getAttribute('content');
-    let endpoint = this.endpoint;
-    if (endpoint[0] === '/') {
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      endpoint = `${protocol}//${window.location.host}${endpoint}`;
-    }
-    this.ws = new WebSocket(`${endpoint}?csrf=${token}`);
-    this.ws.onopen = () => this.refresh();
-    this.ws.onclose = this.delayedConnectWebSocket;
-    this.ws.onmessage = this.handleNewEvent;
+    this.ws = new WebSocket(`${this.endpoint}?csrf=${token}`);
+    this.ws.addEventListener('open', () => {
+      if (this.hasData) {
+        this.refresh();
+      } else {
+        this.loadMore();
+      }
+    });
+    this.ws.addEventListener('close', this.reconnectWebSocket);
+    this.ws.addEventListener('message', this.handleNewEvent);
   }
 
-  delayedConnectWebSocket = () => {
-    if (!this.active) {
-      return;
-    }
-
-    this.ws = null;
-    this.timeout.connectWebSocket = window.setTimeout(() => {
-      this.needsRefresh = true;
-      this.connectWebSocket();
-    }, random(5000, 20000));
-  }
-
-  delayedRetryInitialLoadMore = () => {
+  @action delayedRetryInitialLoadMore = () => {
     if (!this.active || this.hasData) {
       return;
     }
 
-    this.timeout.loadMore = window.setTimeout(this.loadMore, 10000);
+    this.timeout.loadMore = Timeout.set(10000, this.loadMore);
   }
 
-  destroy = () => {
+  @action destroy = () => {
     this.active = false;
+    this.hasData = false;
     this.items = observable.map();
     forEach(this.xhr, (xhr) => xhr.abort());
-    forEach(this.timeout, (timeout) => clearTimeout(timeout));
+    forEach(this.timeout, (timeout) => Timeout.clear(timeout));
 
     if (this.ws != null) {
       this.ws.close();
@@ -206,7 +217,7 @@ export default class Worker {
     $(document).off('turbolinks:load', this.updatePmNotification);
   }
 
-  handleNewEvent = (event: MessageEvent) => {
+  @action handleNewEvent = (event: MessageEvent) => {
     let data: any;
 
     try {
@@ -224,6 +235,11 @@ export default class Worker {
       this.actualUnreadCount++;
     } else if (isNotificationEventReadJson(data)) {
       this.markRead(data.data.ids);
+    } else if (isNotificationEventVerifiedJson(data)) {
+      if (!this.hasData) {
+        this.loadMore();
+      }
+      $.publish('user-verification:success');
     }
   }
 
@@ -231,35 +247,38 @@ export default class Worker {
     return this.active;
   }
 
-  loadMore = () => {
-    if (!this.active || !this.hasMore || this.loadingMore) {
+  @action loadBundle = (data: NotificationBundleJson) => {
+    data.notifications.forEach(this.updateFromServer);
+    this.actualUnreadCount = data.unread_count;
+    this.hasMore = data.has_more;
+    this.hasData = true;
+  }
+
+  @action loadMore = () => {
+    if (!this.active || !this.hasMore || this.isPendingXhr('loadMore')) {
       return;
     }
 
-    if (this.timeout.loadMore != null) {
-      clearTimeout(this.timeout.loadMore);
-    }
-
-    this.loadingMore = true;
+    Timeout.clear(this.timeout.loadMore);
 
     const minLoadedId = this.minLoadedId;
     const params = minLoadedId == null ? null : { max_id: minLoadedId - 1 };
 
-    this.xhr.loadMore = $.get(laroute.route('notifications.index', params))
-      .done((bundleJson: NotificationBundleJson) => {
-        bundleJson.notifications.forEach(this.updateFromServer);
-        this.actualUnreadCount = bundleJson.unread_count;
-        this.hasMore = bundleJson.has_more;
-        this.hasData = true;
-        this.endpoint = bundleJson.notification_endpoint;
-        this.connectWebSocket();
-      }).fail(this.delayedRetryInitialLoadMore)
-      .always(() => this.loadingMore = false);
+    this.xhrLoadingState.loadMore = true;
+    this.xhr.loadMore = $.get(route('notifications.index', params))
+      .always(action(() => {
+        this.xhrLoadingState.loadMore = false;
+      })).done(this.loadBundle)
+      .fail(action((xhr: any) => {
+        if (xhr.responseJSON != null && xhr.responseJSON.error === 'verification') {
+          return;
+        }
+        this.delayedRetryInitialLoadMore();
+      }));
   }
 
-  markRead = (ids: number[]) => {
-    // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
-    for (let id of ids) {
+  @action markRead = (ids: number[]) => {
+    for (const id of ids) {
       const item = this.items.get(id);
 
       if (item == null || !item.isRead) {
@@ -272,56 +291,65 @@ export default class Worker {
     }
   }
 
-  refresh = (maxId?: number) => {
-    if (!this.active || this.refreshing || !this.needsRefresh) {
+  @action reconnectWebSocket = () => {
+    if (!this.active) {
       return;
     }
 
-    this.refreshing = true;
+    this.timeout.connectWebSocket = Timeout.set(random(5000, 20000), action(() => {
+      this.ws = null;
+      this.connectWebSocket();
+    }));
+  }
+
+  @action refresh = (maxId?: number) => {
+    if (!this.active || this.refreshing) {
+      return;
+    }
 
     const params = { with_read: true, max_id: maxId };
 
-    this.xhr.refresh = $.get(laroute.route('notifications.index'), params)
-      .always(() => {
-        this.refreshing = false;
-        this.needsRefresh = false;
-      }).done((bundleJson: NotificationBundleJson) => {
+    this.xhrLoadingState.refresh = true;
+    this.xhr.refresh = $.get(route('notifications.index'), params)
+      .always(action(() => {
+        this.xhrLoadingState.refresh = false;
+      })).done((bundleJson: NotificationBundleJson) => {
         const oldestNotification = minBy(bundleJson.notifications, 'id');
         const minLoadedId = this.minLoadedId;
 
-        bundleJson.notifications.forEach(this.updateFromServer);
-        this.actualUnreadCount = bundleJson.unread_count;
-        this.hasMore = bundleJson.has_more;
+        this.loadBundle(bundleJson);
 
         if (bundleJson.has_more &&
           oldestNotification != null &&
           minLoadedId != null &&
           oldestNotification.id > minLoadedId
         ) {
-          this.needsRefresh = true;
           this.refresh(oldestNotification.id - 1);
         }
       });
   }
 
-  sendMarkRead = (ids: number[]) => {
+  @action sendMarkRead = (ids: number[]) => {
     const key = `sendMarkRead:${ids.join(':')}`;
 
-    if (this.xhr[key] != null) {
-      this.xhr[key].abort();
+    if (this.isPendingXhr(key)) {
+      return this.xhr[key];
     }
 
+    this.xhrLoadingState[key] = true;
     return this.xhr[key] = $.ajax({
         data: { ids },
         dataType: 'json',
         method: 'POST',
-        url: laroute.route('notifications.mark-read'),
-    }).done(() => {
+        url: route('notifications.mark-read'),
+    }).always(action(() => {
+      this.xhrLoadingState[key] = false;
+    })).done(() => {
       this.markRead(ids);
     });
   }
 
-  setUserId = (id: number | null) => {
+  @action setUserId = (id: number | null) => {
     if (this.active) {
       this.destroy();
     }
@@ -330,7 +358,27 @@ export default class Worker {
     this.boot();
   }
 
-  updateFromServer = (json: NotificationJson) => {
+  @action startWebSocket = () => {
+    if (this.endpoint != null) {
+      return this.connectWebSocket();
+    }
+
+    if (this.isPendingXhr('startWebSocket')) {
+      return;
+    }
+
+    Timeout.clear(this.timeout.startWebSocket);
+
+    return this.xhr.startWebSocket = $.get(route('notifications.endpoint'))
+      .done(action((data: NotificationFeedMetaJson) => {
+        this.endpoint = data.url;
+        this.connectWebSocket();
+      })).fail(action(() => {
+        this.timeout.startWebSocket = Timeout.set(10000, this.startWebSocket);
+      }));
+  }
+
+  @action updateFromServer = (json: NotificationJson) => {
     const item = new Notification(json.id);
     item.updateFromJson(json);
     this.items.set(item.id, item);
@@ -338,7 +386,7 @@ export default class Worker {
     return item;
   }
 
-  updatePmNotification = () => {
+  @action updatePmNotification = () => {
     let count = currentUser.unread_pm_count;
 
     if (count == null) {
@@ -346,5 +394,9 @@ export default class Worker {
     }
 
     this.pmNotification.details.count = count;
+  }
+
+  private isPendingXhr = (id: string) => {
+    return this.xhrLoadingState[id] === true;
   }
 }

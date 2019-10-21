@@ -36,11 +36,14 @@
     @include('forum.topics._post', [
         'post' => $post,
         'options' => [
-            'deleteLink' => !$isBeatmapsetPost && $withDeleteLink,
-            'editLink' => !$isBeatmapsetPost && priv_check('ForumPostEdit', $post)->can(),
             'postPosition' => $postPosition,
-            'replyLink' => priv_check('ForumTopicReply', $topic)->can(),
             'signature' => $topic->forum->enable_sigs,
+
+            'buttons' => [
+                'delete' => !$isBeatmapsetPost && $withDeleteLink,
+                'edit' => !$isBeatmapsetPost && priv_check('ForumPostEdit', $post)->can(),
+                'quote' => priv_check('ForumTopicReply', $topic)->can(),
+            ],
         ],
     ])
     @php

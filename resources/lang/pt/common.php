@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', e ',
     ],
 
+    'badges' => [
+        'new' => 'NOVOS',
+    ],
+
     'buttons' => [
         'admin' => 'Administrador',
         'back_to_previous' => 'Voltar à posição anterior',
@@ -37,6 +41,7 @@ return [
         'change' => 'mudar',
         'click_to_copy' => 'clica para copiar para o bloco de notas',
         'click_to_copy_copied' => 'copiado para o bloco de notas!',
+        'close' => 'Fechar',
         'collapse' => 'colapsar',
         'delete' => 'Apagar',
         'edit' => 'Editar',
@@ -58,6 +63,7 @@ return [
         'show_deleted' => 'Exibir eliminados',
         'show_more' => 'mostrar mais',
         'show_more_options' => 'mostrar mais opções',
+        'update' => 'Atualizar',
         'upload_image' => 'carregar imagem',
 
         'watch' => [
@@ -75,8 +81,12 @@ return [
         'minute_short_unit' => 'min|mins',
         'minutes' => ':count minuto|:count minutos',
         'months' => ':count mês|:count meses',
+        'plus_others' => '+ :count_delimited outro!|+ :count_delimited outros!',
+        'post' => ':count_delimited publicação|:count_delimited publicações',
         'second_short_unit' => 'seg|segs',
+        'star_priority' => ':count_delimited prioridade estrela|:count_delimited prioridades estrela',
         'update' => ':count_delimited atualização|:count_delimited atualizações',
+        'view' => ':count_delimited visualização|:count_delimited visualizações',
         'years' => ':count ano|:count anos',
     ],
 
@@ -106,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'larga aqui para carregar',
+    ],
+
+    'input' => [
+        'search' => 'pesquisar...',
     ],
 
     'pagination' => [

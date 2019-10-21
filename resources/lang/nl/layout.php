@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Ritme is slechts een *klik* verwijderd!  Met Ouendan/EBA, Taiko en originele spelmodi, en zelfs een volledig functionele level editor.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Community',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'Sluiten (esc)',
+        'fullscreen' => 'Schakelen naar volledig scherm',
+        'zoom' => 'Zoom in/uit',
+        'previous' => 'Vorige (pijl links)',
+        'next' => 'Volgende (pijl rechts)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'start',
             'account-edit' => 'instellingen',
+            'account-verifyLink' => 'Verificatie voltooid',
             'friends-index' => 'vrienden',
             'changelog-index' => 'changelog',
             'changelog-build' => 'versie',
@@ -42,6 +59,11 @@ return [
             'search' => 'zoeken',
             'supportTheGame' => 'ondersteun het spel',
             'team' => 'team',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'hulp',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?",
+            'download' => '',
+            'info' => 'Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?',
             'title' => "Heb je geen account?",
         ],
     ],

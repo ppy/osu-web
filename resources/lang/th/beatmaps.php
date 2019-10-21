@@ -32,7 +32,8 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => 'อนุญาติการให้ค่าชื่อเสียง',
+        'allow_kudosu' => 'อนุญาตการให้ค่าชื่อเสียง',
+        'beatmap_information' => 'หน้าบีตแมป',
         'delete' => 'ลบ',
         'deleted' => 'ถูกลบโดย :editor เมื่อเวลา :delete_time',
         'deny_kudosu' => 'ปฏิเสธการให้ค่าชื่อเสียง',
@@ -41,7 +42,7 @@ return [
         'kudosu_denied' => 'ถูกปฏิเสธการให้ค่าชื่อเสียง',
         'message_placeholder_deleted_beatmap' => 'ระดับความยากนี้ถูกลบแล้วจึงไม่ควรถูกสนทนาถึง',
         'message_placeholder_locked' => 'การสนทนาสำหรับ beatmap นี้ถูกปิดใช้งาน',
-        'message_type_select' => 'เลือกประเภทคอมเม้นต์',
+        'message_type_select' => 'เลือกประเภทคอมเมนต์',
         'reply_notice' => 'กด Enter เพื่อตอบกลับ',
         'reply_placeholder' => 'พิมพ์คำตอบกลับที่นี่',
         'require-login' => 'กรุณาเข้าสู่ระบบเพื่อโพสต์หรือตอบกลับ',
@@ -140,8 +141,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'เห็นด้วยกับการสนทนานี้',
-            'down' => 'ไม่เห็นด้วยกับการสนทนานี้',
+            'none' => [
+                'down' => 'ยังไม่มีคนโหวตลด',
+                'up' => 'ยังไม่มีคนโหวตเพิ่ม',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => 'ไม่เจาะจง',
         'approved' => 'อนุมัติ',
-        'favourites' => '',
+        'favourites' => 'รายการโปรด',
         'graveyard' => 'สุสาน',
-        'leaderboard' => '',
+        'leaderboard' => 'สถิติการจัดลำดับ',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'แมพของฉัน',
         'pending' => 'รอดำเนินการ & WIP',
         'qualified' => 'ผ่านเกณฑ์',
-        'ranked' => '',
+        'ranked' => 'จัดอันดับแล้ว',
     ],
     'genre' => [
         'any' => 'ไม่เจาะจง',
@@ -280,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'เซิร์ฟเวอร์อื่น',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

@@ -62,9 +62,10 @@ class ForumsController extends Controller
             if ($forumId === null) {
                 Forum::markAllAsRead(Auth::user());
             } else {
+                $recursive = get_bool(request('recursive')) ?? false;
                 $forum = Forum::findOrFail($forumId);
                 priv_check('ForumView', $forum)->ensureCan();
-                $forum->markAsRead(Auth::user());
+                $forum->markAsRead(Auth::user(), $recursive);
             }
         }
 

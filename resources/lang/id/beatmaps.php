@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'izinkan kudosu',
+        'beatmap_information' => '',
         'delete' => 'hapus',
         'deleted' => 'Dihapus oleh :editor :delete_time.',
         'deny_kudosu' => 'tolak kudosu',
@@ -140,8 +141,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Berikan vote positif pada untai diskusi ini',
-            'down' => 'Berikan vote negatif pada untai diskusi ini',
+            'none' => [
+                'down' => 'Belum ada downvote',
+                'up' => 'Belum ada upvote',
+            ],
+            'latest' => [
+                'down' => 'Downvotes terbaru',
+                'up' => 'Upvotes terbaru',
+            ],
         ],
     ],
 
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => 'Semua',
         'approved' => 'Approved',
-        'favourites' => '',
+        'favourites' => 'Favorit',
         'graveyard' => 'Graveyard',
-        'leaderboard' => '',
+        'leaderboard' => 'Berpapan Peringkat',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'Map Saya',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Semua',
@@ -280,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'Mirror',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

@@ -25,6 +25,8 @@ return [
     'title' => 'Fóruns osu!',
 
     'covers' => [
+        'edit' => 'Editar capa',
+
         'create' => [
             '_' => 'Colocar imagem de capa',
             'button' => 'Carregar imagem',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Última Publicação',
+
+        'index' => [
+            'title' => 'Índice do Fórum',
+        ],
+
         'topics' => [
             'empty' => 'Sem tópicos!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Marcar o fórum como visto',
         'forums' => 'Marcar os fóruns como vistos',
         'busy' => 'A marcar como visto...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Editar uma sondagem irá remover os resultados atuais!',
-
-        'actions' => [
-            'edit' => 'Editar sondagem',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'Eliminar publicação',
             'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => 'Nova resposta',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'começado por :user',
 
         'create' => [
+            'close' => 'Fechar',
             'preview' => 'Amostra',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -268,6 +275,11 @@ return [
             'to_2_done' => 'O tópico foi afixado e marcado como uma declaração pública',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Publicações Eliminadas',
             'total_posts' => 'Publicações Totais',
@@ -290,7 +302,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'Edição de Sondagem',
+                'edit_warning' => 'Ao editar uma sondagem, isto irá remover os resultados atuais!',
                 'vote' => 'Votar',
+
+                'button' => [
+                    'change_vote' => 'Trocar de voto',
+                    'edit' => 'Editar a sondagem',
+                    'view_results' => 'Ir para os resultados',
+                    'vote' => 'Votar',
+                ],
 
                 'detail' => [
                     'end_time' => 'A sondagem irá terminar em :time',

@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
-            'not_owner' => 'Alleen de eigenaar kan deze post bewerken.',
+        'destroy' => [
+            'not_owner' => 'U kunt alleen uw eigen berichten verwijderen.',
+            'resolved' => 'U kunt een bericht van een opgeloste discussie niet verwijderen.',
+            'system_generated' => 'Automatisch gegenereerd bericht kan niet worden verwijderd.',
         ],
+
+        'edit' => [
+            'not_owner' => 'Alleen de eigenaar kan deze post bewerken.',
+            'resolved' => 'U kunt geen bericht van een opgeloste discussie bewerken.',
+            'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Deze beatmap is vergrendeld voor discussie.',
         ],
@@ -145,7 +153,7 @@ return [
                 'not_owner' => 'Alleen de eigenaar kan de cover bewerken.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Dit forum accepteert geen topic covers.',
             ],
         ],
 

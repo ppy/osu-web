@@ -25,6 +25,8 @@ return [
     'title' => 'ฟอรั่ม osu!',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'ตั้งภาพหน้าปก',
             'button' => 'อัพโหลดรูปภาพ',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'ไม่มีหัวข้อ',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'ทำเครื่องหมายว่าอ่านทั้งหมดแล้ว',
         'forums' => 'ทำเครื่องหมายว่าอ่านทั้งหมดแล้ว',
         'busy' => 'กําลังทำเครื่องหมายว่าอ่านแล้ว...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'การแก้ไขโพลล์จะลบผลลัพท์ทั้งหมด!',
-
-        'actions' => [
-            'edit' => 'แก้ไขโพลล์',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'ลบโพสต์',
             'restore' => 'กู้คืนโพสต์',
             'edit' => 'แก้ไขโพสต์',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => 'ตอบกลับ',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'เริ่มโดย :user',
 
         'create' => [
+            'close' => 'ปิด',
             'preview' => 'Preview',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -268,6 +275,11 @@ return [
             'to_2_done' => 'หัวข้อถูกปักหมุดและตั้งให้เป็นประกาศแล้ว',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Deleted Posts',
             'total_posts' => 'Total Posts',
@@ -290,7 +302,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'แก้ไขโพลล์',
+                'edit_warning' => 'ถ้าแก้ไขโพลล์แล้วผลโหวตจะหายนะ',
                 'vote' => 'Vote',
+
+                'button' => [
+                    'change_vote' => 'เปลี่ยนตัวเลือกโหวต',
+                    'edit' => '',
+                    'view_results' => 'ไปดูผลโหวต',
+                    'vote' => 'โหวต',
+                ],
 
                 'detail' => [
                     'end_time' => 'Polling will end at :time',

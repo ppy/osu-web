@@ -21,7 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Pagina solicitată nu este încă tradusă în limba selectată (:language). Se afișează versiunea în limba engleză.',
-        'languages' => 'Limbi',
+        'incomplete_or_outdated' => 'Conținutul acestei pagini este incomplet sau învechit. Daca poți să ajuti, te rog ia în considerare actualizare acestui articol!',
         'missing' => 'Pagina solicitată ":keyword" nu a putut fi găsită.',
         'missing_title' => 'Nu a fost găsit',
         'missing_translation' => 'Pagina solicitată nu a putut fi găsită pentru limba selectată momentan.',
@@ -39,5 +39,12 @@ return [
 
             'default' => 'versiunea în limba engleză',
         ],
+    ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
     ],
 ];

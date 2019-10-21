@@ -1,7 +1,10 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\Country;
 use App\Models\User;
+use Tests\TestCase;
 
 class UsersControllerTest extends TestCase
 {
@@ -67,7 +70,7 @@ class UsersControllerTest extends TestCase
 
         $this
             ->get(route('users.show', ['user' => $oldUsername]))
-            ->assertRedirect(route('users.show', ['user' => $user->getKey()]));
+            ->assertRedirect(route('users.show', ['user' => $user->getKey(), 'mode' => null]));
     }
 
     public function testPreviousUsernameTakenShouldNotRedirect()
@@ -90,6 +93,6 @@ class UsersControllerTest extends TestCase
 
         $this
             ->get(route('users.show', ['user' => $oldUsername]))
-            ->assertRedirect(route('users.show', ['user' => $user2->getKey()]));
+            ->assertRedirect(route('users.show', ['user' => $user2->getKey(), 'mode' => null]));
     }
 }

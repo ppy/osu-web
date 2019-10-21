@@ -28,11 +28,13 @@ use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\IpBan;
+use App\Models\Log;
 use App\Models\User;
-use App\Models\UsernameChangeHistory;
+use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
+use Illuminate\Cache\RateLimiter;
 use Request;
 
 class UsersController extends Controller
@@ -46,9 +48,10 @@ class UsersController extends Controller
             'checkUsernameAvailability',
             'checkUsernameExists',
             'report',
+            'updatePage',
         ]]);
 
-        $this->middleware('throttle:10,60', ['only' => ['store']]);
+        $this->middleware('throttle:60,10', ['only' => ['store']]);
 
         if (is_api_request()) {
             $this->middleware('require-scopes:identify', ['only' => ['me']]);
@@ -81,7 +84,7 @@ class UsersController extends Controller
 
     public function checkUsernameAvailability()
     {
-        $username = Request::input('username');
+        $username = Request::input('username') ?? '';
 
         $errors = Auth::user()->validateChangeUsername($username);
 
@@ -132,7 +135,16 @@ class UsersController extends Controller
         $registration = new UserRegistration($params);
 
         try {
+            $registration->assertValid();
+
+            $throttleKey = "registration:{$ip}";
+
+            if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {
+                abort(429);
+            }
+
             $registration->save();
+            app(RateLimiter::class)->hit($throttleKey, 600);
 
             return $registration->user()->fresh()->defaultJson();
         } catch (ValidationException $e) {
@@ -184,25 +196,6 @@ class UsersController extends Controller
         return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
     }
 
-    public function report($id)
-    {
-        $user = User::lookup($id, 'id', true);
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
-            return response()->json([], 404);
-        }
-
-        try {
-            $user->reportBy(auth()->user(), [
-                'comments' => trim(request('comments')),
-                'reason' => trim(request('reason')),
-            ]);
-        } catch (ValidationException $e) {
-            return error_popup($e->getMessage());
-        }
-
-        return response(null, 204);
-    }
-
     public function scores($_userId, $type)
     {
         static $mapping = [
@@ -225,9 +218,9 @@ class UsersController extends Controller
         return response($json, is_null($json['error'] ?? null) ? 200 : 504);
     }
 
-    public function me()
+    public function me($mode = null)
     {
-        return self::show(Auth::user()->user_id);
+        return static::show(auth()->user()->user_id, $mode);
     }
 
     public function show($id, $mode = null)
@@ -236,18 +229,7 @@ class UsersController extends Controller
         // If no user is found, search for a previous username
         // only if parameter is not a number (assume number is an id lookup).
 
-        $user = User::lookup($id, null, true);
-
-        if ($user === null) {
-            $change = UsernameChangeHistory::visible()
-                ->where('username_last', $id)
-                ->orderBy('change_id', 'desc')
-                ->first();
-
-            if ($change !== null) {
-                $user = User::lookup($change->user_id, 'id');
-            }
-        }
+        $user = User::lookupWithHistory($id, null, true);
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
             if (is_json_request()) {
@@ -263,7 +245,7 @@ class UsersController extends Controller
 
         $currentMode = $mode ?? $user->playmode;
 
-        if (!array_key_exists($currentMode, Beatmap::MODES)) {
+        if (!Beatmap::isModeValid($currentMode)) {
             abort(404);
         }
 
@@ -283,7 +265,6 @@ class UsersController extends Controller
             'ranked_and_approved_beatmapset_count',
             'replays_watched_counts',
             'statistics.rank',
-            'statistics.scoreRanks',
             'support_level',
             'unranked_beatmapset_count',
             'user_achievements',
@@ -360,6 +341,31 @@ class UsersController extends Controller
         }
     }
 
+    public function updatePage($id)
+    {
+        $user = User::findOrFail($id);
+
+        priv_check('UserPageEdit', $user)->ensureCan();
+
+        try {
+            $user = $user->updatePage(request('body'));
+
+            if (!$user->is(auth()->user())) {
+                UserAccountHistory::logUserPageModerated($user, auth()->user());
+
+                $this->log([
+                    'log_type' => Log::LOG_USER_MOD,
+                    'log_operation' => 'LOG_USER_PAGE_EDIT',
+                    'log_data' => ['id' => $user->getKey()],
+                ]);
+            }
+
+            return ['html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']])];
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
+        }
+    }
+
     private function parsePaginationParams()
     {
         $this->user = User::lookup(Request::route('user'), 'id', true);
@@ -368,7 +374,7 @@ class UsersController extends Controller
         }
 
         $this->mode = Request::route('mode') ?? Request::input('mode') ?? $this->user->playmode;
-        if (!array_key_exists($this->mode, Beatmap::MODES)) {
+        if (!Beatmap::isModeValid($this->mode)) {
             abort(404);
         }
 

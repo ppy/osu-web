@@ -23,7 +23,7 @@ return [
     'deleted_count' => ':count_delimited комментарий удален|:count_delimited комментариев удалено',
     'edited' => ':user отредактировал :timeago',
     'empty' => 'Нет комментариев.',
-    'load_replies' => '',
+    'load_replies' => 'загрузить ответы',
     'replies' => 'Ответы',
     'title' => 'Комментарии',
 

@@ -16,7 +16,8 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $legacyNav ?? ($legacyNav = true);
+    $legacyNav = $legacyNav ?? true;
+    $legacyFont = $legacyFont ?? true;
 
     if (!isset($title)) {
         $titleTree = [];
@@ -39,8 +40,6 @@
     <head>
         @include("layout.metadata")
         <title>{{ $title }}</title>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
     <body
@@ -52,7 +51,16 @@
             {{ $bodyAdditionalClasses ?? '' }}
         "
     >
-        <style>:root {--base-hue: {{ $currentHue }};}</style>
+        <style>
+            :root {
+                @if (!$legacyFont)
+                    --font-default-override: var(--font-default-torus);
+                    --font-content-override: var(--font-content-inter);
+                @endif
+                --base-hue: {{ $currentHue }};
+                --base-hue-deg: {{ $currentHue }}deg;
+            }
+        </style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 

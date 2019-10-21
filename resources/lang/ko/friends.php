@@ -27,14 +27,9 @@ return [
 
     'index' => [
         'title' => [
-            '_' => '',
+            '_' => '메인 :info',
             'info' => '친구',
         ],
-    ],
-
-    'state' => [
-      'friends' => '친구',
-      'mutual' => '서로친구',
     ],
 
     'title' => '친구',

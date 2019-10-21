@@ -5,7 +5,7 @@ set -e
 
 cd "$(dirname "${0}")/.."
 
-php artisan laroute:generate
+php artisan ziggy:generate
 
 yarn run generate-localizations
 # triggers yarn rebuild

@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'vahvistettu ',
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
-            'favourited_count' => '+ 1 muu!|+ :count muuta!',
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
             'loved' => 'rakastettu ',
             'mapped_by' => 'luonut: :mapper',
@@ -45,7 +44,7 @@ return [
             'submitted' => 'julkaistu ',
             'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
             'updated' => 'viimeisin päivitys ',
-            'updated_timeago' => 'viimeksi päivitetty :timeago',
+            'updated_timeago' => 'päivitetty viimeksi :timeago',
 
             'download' => [
                 '_' => 'Lataa',

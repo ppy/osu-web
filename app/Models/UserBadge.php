@@ -24,6 +24,7 @@ namespace App\Models;
  * @property \Carbon\Carbon|null $awarded
  * @property string $description
  * @property string $image
+ * @property string $url
  * @property int $user_id
  */
 class UserBadge extends Model

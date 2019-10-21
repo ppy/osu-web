@@ -28,7 +28,7 @@ export class Scoreboard extends React.PureComponent
   DEFAULT_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO']
   OSU_MODS = DEFAULT_MODS.concat('TD')
   MANIA_KEY_MODS = ['4K', '5K', '6K', '7K', '8K', '9K']
-  MANIA_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
+  MANIA_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', 'MR']
 
   hitTypeMapping: =>
     # mapping of [displayed text, internal name] for each mode
@@ -85,7 +85,7 @@ export class Scoreboard extends React.PureComponent
             type: type
             active: @props.type == type
 
-      if currentUser.is_supporter && @props.hasScores
+      if currentUser.is_supporter && @props.isScoreable
         div className: 'beatmapset-scoreboard__mods-wrapper',
           div className: modsClassName,
             for mod in mods
@@ -112,7 +112,7 @@ export class Scoreboard extends React.PureComponent
               hitTypeMapping: @hitTypeMapping()
               scoreboardType: @props.type
 
-        else if !@props.hasScores
+        else if !@props.isScoreable
           p
             className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
             osu.trans 'beatmapsets.show.scoreboard.no_scores.unranked'

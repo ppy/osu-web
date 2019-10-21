@@ -37,6 +37,11 @@ return [
     'checkout' => [
         'generic' => '结账时发生了一个错误',
     ],
+    'search' => [
+        'default' => '无法获得任何结果，请稍后再试。',
+        'operation_timeout_exception' => '搜索目前比平常较繁忙，稍后再试。',
+    ],
+
     'logged_out' => '你已退出，请登录后再试。',
     'supporter_only' => '要使用此功能，请先成为 osu! Supporter 。',
     'no_restricted_access' => '账户处于限制模式，无法执行该操作。',

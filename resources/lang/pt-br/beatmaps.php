@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'permitir kudosu',
+        'beatmap_information' => 'Página do Beatmap',
         'delete' => 'excluir',
         'deleted' => 'Excluído por :editor às :delete_time.',
         'deny_kudosu' => 'negar kudosu',
@@ -140,8 +141,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Upvote',
-            'down' => 'Downvote',
+            'none' => [
+                'down' => 'Sem votos negativos ainda',
+                'up' => 'Sem votos positivos ainda',
+            ],
+            'latest' => [
+                'down' => 'Últimos votos negativos',
+                'up' => 'Últimos votos positivos',
+            ],
         ],
     ],
 
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => 'Todos',
         'approved' => 'Aprovado',
-        'favourites' => '',
+        'favourites' => 'Favoritos',
         'graveyard' => 'Cemitério',
-        'leaderboard' => '',
+        'leaderboard' => 'Possui Classificações',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'Meus Maps',
         'pending' => 'Pendente & Em Progresso',
         'qualified' => 'Qualificado',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Todos',
@@ -280,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'Espelhar',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'Sem mods',

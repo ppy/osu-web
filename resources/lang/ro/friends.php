@@ -27,14 +27,9 @@ return [
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Acasă :info',
+            'info' => 'Prieteni',
         ],
-    ],
-
-    'state' => [
-      'friends' => 'prieteni',
-      'mutual' => 'comuni',
     ],
 
     'title' => 'Prieteni',

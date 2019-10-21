@@ -1,0 +1,73 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.forum-title {
+  @_top: forum-title;
+  @_stripe-distance: 10px;
+  flex: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    height: 80%;
+    width: 3px;
+    background-color: @osu-colour-p;
+    top: 15%;
+    left: -@_stripe-distance;
+    border-radius: 10000px;
+    display: none;
+  }
+
+  @media @desktop {
+    &::before {
+      display: block;
+    }
+  }
+
+  &--forum {
+    margin: @gutter-v2;
+
+    @media @desktop {
+      margin: 20px @gutter-v2-desktop;
+    }
+  }
+
+  &__description {
+    color: @osu-colour-c2;
+    margin: 0;
+    padding: 0;
+    font-size: @font-size--normal;
+
+    @media @desktop {
+      font-size: @font-size--title-small;
+    }
+  }
+
+  &__name {
+    color: @osu-colour-c1;
+    font-style: normal;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    font-size: @font-size--title-small-4;
+
+    @media @desktop {
+      font-size: @font-size--new-header-title;
+    }
+  }
+}

@@ -52,7 +52,7 @@
                 </div>
             @endif
             <div class="search-result__row search-result__row--paginator">
-                @include('objects._pagination', [
+                @include('objects._pagination_v2', [
                     'object' => $search->getPaginator(['path' => route('search')])->appends(request()->query()),
                     'modifier' => 'search'
                 ])

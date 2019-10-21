@@ -22,8 +22,7 @@ reactTurbolinks.registerPersistent('news-show', Main, true, (container: HTMLElem
   const data = osu.parseJson('json-show');
 
   return {
-    commentBundle: data.comment_bundle,
     container,
-    post: data.post,
+    post: data,
   };
 });

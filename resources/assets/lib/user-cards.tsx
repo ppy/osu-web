@@ -18,11 +18,12 @@
 
 import * as React from 'react';
 import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
-import { UserCard } from 'user-card';
+import { UserCard, ViewMode } from 'user-card';
 
 interface Props {
   modifiers: string[];
   users: User[];
+  viewMode: ViewMode;
 }
 
 export class UserCards extends React.PureComponent<Props> {
@@ -35,6 +36,7 @@ export class UserCards extends React.PureComponent<Props> {
 
   render() {
     const classMods = this.state.activeKey != null ? ['menu-active'] : [];
+    classMods.push(this.props.viewMode);
 
     return (
       <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
@@ -45,7 +47,7 @@ export class UserCards extends React.PureComponent<Props> {
 
               return (
                 <KeyContext.Provider key={user.id} value={user.id}>
-                  <UserCard activated={activated} modifiers={['has-outline', ...this.props.modifiers]} user={user} />
+                  <UserCard activated={activated} mode={this.props.viewMode} modifiers={['has-outline', ...this.props.modifiers]} user={user} />
                 </KeyContext.Provider>
               );
             })

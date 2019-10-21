@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', ve ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Yönetici',
         'back_to_previous' => 'Bir önceki pozisyona dön',
@@ -37,6 +41,7 @@ return [
         'change' => 'değiştir',
         'click_to_copy' => 'panoya kopyalamak için tıklayın',
         'click_to_copy_copied' => 'panoya kopyalandı!',
+        'close' => '',
         'collapse' => 'daraltın',
         'delete' => 'Sil',
         'edit' => 'Düzenle',
@@ -55,14 +60,15 @@ return [
         'search' => 'Arama',
         'see_more' => 'daha fazla',
         'show' => 'göster',
-        'show_deleted' => '',
+        'show_deleted' => 'Silineni göster',
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',
+        'update' => '',
         'upload_image' => 'görsel yükle',
 
         'watch' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'İzlemeyi Bırak',
+            'to_1' => 'İzle',
         ],
     ],
 
@@ -75,8 +81,12 @@ return [
         'minute_short_unit' => 'dk|dk',
         'minutes' => ':count dakika |:count dakika',
         'months' => ':count ay|:count ay',
+        'plus_others' => '',
+        'post' => ':count_delimited gönderi|:count_delimited gönderi',
         'second_short_unit' => 'sn|sn',
-        'update' => '',
+        'star_priority' => '',
+        'update' => ':count_delimited güncelleme|:count_delimited güncellemeler',
+        'view' => '',
         'years' => ':count yıl|:count yıl',
     ],
 
@@ -106,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'yüklemek için buraya bırak',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

@@ -74,13 +74,6 @@ return [
         ],
     ],
 
-    'user' => [
-        'admin' => '管理者',
-        'bng' => 'ノミネーター',
-        'owner' => 'マッパー',
-        'nat' => 'nat',
-    ],
-
     'user_filter' => [
         'everyone' => '全てのユーザー',
         'label' => 'ユーザーで絞り込む',

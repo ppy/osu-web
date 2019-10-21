@@ -88,9 +88,6 @@ return [
         'title' => 'Postingan :username',
     ],
 
-    'signup' => [
-        '_' => 'Daftar',
-    ],
     'anonymous' => [
         'login_link' => 'klik untuk masuk',
         'login_text' => 'masuk',
@@ -149,10 +146,14 @@ return [
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
                     'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggah.',
-                    'restriction_info' => "Layanan untuk mengunggah gambar sampul hanya tersedia untuk <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> saja",
                     'size_info' => 'Ukuran gambar sampul yang optimal selayaknya adalah 2800x620',
                     'too_large' => 'File yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
+
+                    'restriction_info' => [
+                        '_' => 'Layanan unggah tersedia hanya untuk :link',
+                        'link' => 'osu!supporter',
+                    ],
                 ],
             ],
 
@@ -163,7 +164,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count pengikut',
+            'none' => 'kosong',
             'unranked' => 'Tidak ada rekam jejak permainan yang tercatat dalam beberapa waktu ke belakang',
 
             'achievements' => [
@@ -192,6 +193,16 @@ return [
                     'title' => 'Beatmap Pending',
                 ],
             ],
+            'discussions' => [
+                'title' => 'Diskusi',
+                'title_longer' => 'Diskusi Terbaru',
+                'show_more' => 'lihat lebih banyak diskusi',
+            ],
+            'events' => [
+                'title' => 'Aktivitas',
+                'title_longer' => 'Aktivitas Terakhir',
+                'show_more' => 'lihat lebih banyak aktivitas',
+            ],
             'historical' => [
                 'empty' => 'Tidak ada catatan performa terbaru. :(',
                 'title' => 'Historis',
@@ -219,7 +230,6 @@ return [
                 'recent_entries' => 'Riwayat Kudosu Terbaru',
                 'title' => 'Kudosu!',
                 'total' => 'Jumlah Kudosu yang Diperoleh',
-                'total_info' => 'Berdasarkan seberapa banyak kontribusi yang telah dilakukan pengguna terhadap modding beatmap. Lihat <a href="'.osu_url('user.kudosu').'">laman ini</a> untuk informasi lebih lanjut.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +269,11 @@ return [
                         'revoke' => 'Kudosu ditolak oleh :giver untuk posting di :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Berdasarkan seberapa besar kontribusi yang telah dilakukan pengguna dalam moderasi beatmap. Kunjungi :link untuk informasi lebih lanjut.',
+                    'link' => 'laman ini',
+                ],
             ],
             'me' => [
                 'title' => 'saya!',
@@ -267,6 +282,11 @@ return [
                 'empty' => "Pengguna ini belum mendapatkannya. ;_;",
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
+            ],
+            'posts' => [
+                'title' => 'Posting',
+                'title_longer' => 'Postingan Terbaru',
+                'show_more' => 'lihat lebih banyak posting',
             ],
             'recent_activity' => [
                 'title' => 'Terbaru',
@@ -284,6 +304,13 @@ return [
                 'first' => [
                     'title' => 'Peringkat Pertama',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Suara Diberikan (3 bulan terakhir)',
+                'received' => 'Suara Diterima (3 bulan terakhir)',
+                'title' => 'Hak Suara',
+                'title_longer' => 'Pilihan Terbaru',
+                'vote_count' => ':count_delimited pilihan',
             ],
             'account_standing' => [
                 'title' => 'Kondisi Akun',
@@ -335,7 +362,11 @@ return [
             'description' => '<strong>saya!</strong> adalah area pribadi yang dapat dimodifikasi di laman profil Anda.',
             'edit_big' => 'Sunting saya!',
             'placeholder' => 'Ketik konten laman di sini',
-            'restriction_info' => "Anda harus menjadi <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> untuk membuka fitur ini.",
+
+            'restriction_info' => [
+                '_' => 'Kamu harus menjadi seorang :link untuk menggunakan fitur ini.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Berkontribusi sebanyak :link',
@@ -360,6 +391,11 @@ return [
             'score_ranks' => 'Peringkat Skor',
             'total_hits' => 'Jumlah Hit',
             'total_score' => 'Jumlah Skor',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Beatmap Ranked & Approved',
+            'loved_beatmapset_count' => 'Beatmap Loved',
+            'unranked_beatmapset_count' => 'Beatmap Pending',
+            'graveyard_beatmapset_count' => 'Beatmap Graveyarded',
         ],
     ],
 
@@ -373,5 +409,10 @@ return [
     ],
     'verify' => [
         'title' => 'Verifikasi Akun',
+    ],
+
+    'view_mode' => [
+        'card' => 'Tampilan kartu',
+        'list' => 'Tampilan daftar',
     ],
 ];

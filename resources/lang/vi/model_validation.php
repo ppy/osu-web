@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'Cuộc thảo luận đã bị khóa.',
         'first_post' => 'Không thể xóa bài đăng mở đầu.',
+
+        'attributes' => [
+            'message' => 'Tin nhắn',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => 'Difficulty đã chọn không hợp lệ.',
         'invalid_beatmapset_id' => 'Beatmap đã chọn không hợp lệ.',
         'locked' => 'Cuộc thảo luận đã bị khóa.',
+
+        'attributes' => [
+            'message_type' => '',
+            'timestamp' => 'Mốc thời gian',
+        ],
 
         'hype' => [
             'guest' => 'Cần phải đăng nhập để hype.',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Không cho phép trả lời bình luận đã xóa.',
+
+        'attributes' => [
+            'message' => 'Tin nhắn',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'Không cho phép xóa beatmap metadata.',
             'beatmapset_post_no_edit' => 'Không cho phép chỉnh sửa beatmap metadata.',
             'only_quote' => 'Câu trả lời của bạn chỉ có một trích dẫn.',
+
+            'attributes' => [
+                'post_text' => 'Thân bài viết',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => 'Tiêu đề chủ đề',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,11 +106,27 @@ return [
             'minimum_one_selection' => 'Yêu cầu tối thiểu một lựa chọn cho mỗi người dùng.',
             'minimum_two_options' => 'Cần ít nhất hai lựa chọn.',
             'too_many_options' => 'Vượt quá số lượng lựa chọn tối đa.',
+
+            'attributes' => [
+                'title' => 'Tiêu đề bài thăm dò',
+            ],
         ],
 
         'topic_vote' => [
             'required' => 'Chọn một lựa chọn khi đang bỏ phiếu.',
             'too_many' => 'Vượt quá mức cho phép chọn các lựa chọn.',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '',
+            'url' => '',
+
+            'attributes' => [
+                'name' => '',
+                'redirect' => '',
+            ],
         ],
     ],
 
@@ -115,6 +154,12 @@ return [
         'wrong_password_confirmation' => 'Mật khẩu xác nhận không phù hợp.',
         'too_long' => 'Đã vượt quá độ dài tối đa - tối đa :limit kí tự.',
 
+        'attributes' => [
+            'username' => 'Tên người chơi',
+            'user_email' => 'Địa chỉ email',
+            'password' => 'Mật khẩu',
+        ],
+
         'change_username' => [
             'restricted' => 'Bạn không thể đổi tên người dùng khi đang bị hạn chế.',
             'supporter_required' => [
@@ -126,6 +171,16 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => '',
         'self' => "Bạn không thể báo cáo chính mình!",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => 'Số lượng',
+                'cost' => 'Chi phí',
+            ],
+        ],
     ],
 ];

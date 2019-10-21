@@ -25,8 +25,8 @@ return [
         'failed' => '失敗',
         'header' => '多人遊戲',
         'in-progress' => '遊戲中...',
-        'in_progress_spinner_label' => '',
-        'loading-events' => '載入事件..。',
+        'in_progress_spinner_label' => '房間正在進行中',
+        'loading-events' => '正在載入事件...',
         'winner' => ':team 勝利',
 
         'events' => [

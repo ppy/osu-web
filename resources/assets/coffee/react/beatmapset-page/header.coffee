@@ -43,11 +43,11 @@ export class Header extends React.Component
 
     $(target).qtip
       style:
-        classes: 'beatmapset-favourites'
+        classes: 'user-list-popup'
         def: false
         tip: false
       content:
-        text: (event, api) => $('.beatmapset-favourites__template').html()
+        text: (event, api) => $('.user-list-popup__template').html()
       position:
         at: 'right center'
         my: 'left center'
@@ -121,28 +121,28 @@ export class Header extends React.Component
 
             # this content of this div is used as a template for the on-hover/touch above
             div
-              className: 'beatmapset-favourites beatmapset-favourites__template'
+              className: 'user-list-popup user-list-popup__template'
               style:
                 display: 'none'
               @props.beatmapset.recent_favourites.map (user) ->
                 a
                   href: laroute.route('users.show', user: user.id)
-                  className: 'js-usercard beatmapset-favourites__user'
+                  className: 'js-usercard user-list-popup__user'
                   key: user.id
                   'data-user-id': user.id
                   el UserAvatar, user: user, modifiers: ['full']
               if @props.favcount > @favouritesToShow
-                div className: 'beatmapset-favourites__remainder-count',
-                  osu.transChoice 'beatmapsets.show.details.favourited_count', @props.favcount - @favouritesToShow
+                div className: 'user-list-popup__remainder-count',
+                  osu.transChoice 'common.count.plus_others', @props.favcount - @favouritesToShow
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'
-            href: laroute.route 'beatmapsets.index', q: encodeURIComponent(@props.beatmapset.title)
+            href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
             @props.beatmapset.title
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--artist'
-            href: laroute.route 'beatmapsets.index', q: encodeURIComponent(@props.beatmapset.artist)
+            href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
             @props.beatmapset.artist
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
@@ -169,10 +169,6 @@ export class Header extends React.Component
               el BigButton,
                 props:
                   onClick: @toggleFavourite
-                  href:
-                    laroute.route 'beatmapsets.update-favourite',
-                      beatmapset: @props.beatmapset.id
-                      action: favouriteButton.action
                   title: osu.trans "beatmapsets.show.details.#{favouriteButton.action}"
                 modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
                 icon: favouriteButton.icon
@@ -268,8 +264,6 @@ export class Header extends React.Component
 
 
   toggleFavourite: (e) ->
-    e.preventDefault()
-
     if !currentUser.id?
       userLogin.show e.target
     else

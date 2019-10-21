@@ -17,6 +17,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests\Models;
+
 use App\Exceptions\AuthorizationException;
 use App\Models\Beatmap;
 use App\Models\BeatmapMirror;
@@ -25,6 +28,7 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserNotification;
+use Tests\TestCase;
 
 class BeatmapsetTest extends TestCase
 {
@@ -166,6 +170,24 @@ class BeatmapsetTest extends TestCase
         $this->assertFalse($beatmapset->fresh()->isRanked());
         $this->assertSame($notifications, UserNotification::count());
         $this->assertSame($notifications, Notification::count());
+    }
+
+    public function testGlobalScopeActive()
+    {
+        $beatmapset = factory(Beatmapset::class)->states('inactive')->create();
+        $id = $beatmapset->getKey();
+
+        $this->assertNull(Beatmapset::find($id)); // global scope
+        $this->assertNull(Beatmapset::withoutGlobalScopes()->active()->find($id)); // scope still applies after removing global scope
+        $this->assertTrue($beatmapset->is(Beatmapset::withoutGlobalScopes()->find($id))); // no global scopes
+    }
+
+    public function testGlobalScopeSoftDelete()
+    {
+        $beatmapset = factory(Beatmapset::class)->states(['inactive', 'deleted'])->create();
+        $id = $beatmapset->getKey();
+
+        $this->assertNull(Beatmapset::withTrashed()->find($id));
     }
 
     private function createBeatmapset($params = []) : Beatmapset

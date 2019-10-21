@@ -113,7 +113,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'hallinta',
+        'title' => 'yleiskatsaus',
         'news' => [
             'title' => 'Uutiset',
             'error' => 'Virhe ladattaessa uutisia. Kokeile sivun päivittämistä.',

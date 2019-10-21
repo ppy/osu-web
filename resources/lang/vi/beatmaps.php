@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'cho phép kudosu',
+        'beatmap_information' => '',
         'delete' => 'xóa',
         'deleted' => 'Đã xóa bởi :editor :delete_time.',
         'deny_kudosu' => 'từ chối kudosu',
@@ -40,14 +41,14 @@ return [
         'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
         'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
-        'message_placeholder_locked' => '',
+        'message_placeholder_locked' => 'Chức năng bàn luận của beatmap này đã bị vô hiệu hóa.',
         'message_type_select' => 'Chọn Loại Nhận Xét',
         'reply_notice' => 'Nhấn enter để trả lời.',
         'reply_placeholder' => 'Nhập câu trả lời của bạn tại đây',
         'require-login' => 'Hãy đăng nhập để đăng hoặc trả lời',
         'resolved' => 'Đã giải quyết',
         'restore' => 'hoàn lại',
-        'show_deleted' => '',
+        'show_deleted' => 'Hiển thị đã bị xóa',
         'title' => 'Góc Thảo Luận',
 
         'collapse' => [
@@ -62,13 +63,13 @@ return [
 
         'lock' => [
             'button' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Khóa thảo luận',
+                'unlock' => 'Mở khóa thảo luận',
             ],
 
             'prompt' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Lí do khóa',
+                'unlock' => 'Bạn có chắc chắn muốn mở khóa không ?',
             ],
         ],
 
@@ -104,11 +105,11 @@ return [
         ],
 
         'new' => [
-            'pin' => '',
+            'pin' => 'Ghim',
             'timestamp' => 'Mốc thời gian',
             'timestamp_missing' => 'ctrl-c trong chế độ chỉnh sửa (edit mode) và dán trong bài đăng của bạn để thêm một mốc thời gian!',
             'title' => 'Cuộc Thảo Luận Mới',
-            'unpin' => '',
+            'unpin' => 'Bỏ ghim',
         ],
 
         'show' => [
@@ -140,8 +141,14 @@ return [
         ],
 
         'votes' => [
-            'up' => '',
-            'down' => '',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => 'Bất Kì',
         'approved' => 'Được Chấp Nhận',
-        'favourites' => '',
+        'favourites' => 'Yêu thích',
         'graveyard' => 'Graveyard',
-        'leaderboard' => '',
+        'leaderboard' => 'Có danh sách xếp hạng',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'Map của tôi',
         'pending' => 'Đang chờ & WIP',
         'qualified' => 'Qualified',
-        'ranked' => '',
+        'ranked' => 'Đã được xếp hạng',
     ],
     'genre' => [
         'any' => 'Bất Kì',
@@ -280,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

@@ -26,6 +26,7 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\UsernameValidation;
+use App\Models\OAuth\Client;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -70,6 +71,7 @@ use Request;
  * @property int $group_id
  * @property mixed $hide_presence
  * @property \Illuminate\Database\Eloquent\Collection $monthlyPlaycounts UserMonthlyPlaycount
+ * @property \Illuminate\Database\Eloquent\Collection $oauthClients Client
  * @property int $osu_featurevotes
  * @property int $osu_kudosavailable
  * @property int $osu_kudosdenied
@@ -179,7 +181,7 @@ use Request;
 class User extends Model implements AuthenticatableContract
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
-    use HasApiTokens, Authenticatable, Reportable, UserAvatar, UserScoreable, Validatable;
+    use Authenticatable, HasApiTokens, Reportable, UserAvatar, UserScoreable, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -208,20 +210,21 @@ class User extends Model implements AuthenticatableContract
     const CACHING = [
         'follower_count' => [
             'key' => 'followerCount',
-            'duration' => 720, // 12 hours
+            'duration' => 43200, // 12 hours
         ],
     ];
 
     const INACTIVE_DAYS = 180;
 
     const MAX_FIELD_LENGTHS = [
-        'user_msnm' => 255,
-        'user_twitter' => 255,
-        'user_website' => 200,
         'user_discord' => 37, // max 32char username + # + 4-digit discriminator
         'user_from' => 30,
-        'user_occ' => 30,
         'user_interests' => 30,
+        'user_msnm' => 255,
+        'user_occ' => 30,
+        'user_sig' => 3000,
+        'user_twitter' => 255,
+        'user_website' => 200,
     ];
 
     protected $memoized = [];
@@ -460,6 +463,24 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $user->first();
+    }
+
+    public static function lookupWithHistory($usernameOrId, $type = null, $findAll = false)
+    {
+        $user = static::lookup($usernameOrId, $type, $findAll);
+
+        if ($user !== null) {
+            return $user;
+        }
+
+        $change = UsernameChangeHistory::visible()
+            ->where('username_last', $usernameOrId)
+            ->orderBy('change_id', 'desc')
+            ->first();
+
+        if ($change !== null) {
+            return static::lookup($change->user_id, 'id');
+        }
     }
 
     public function getCountryAcronymAttribute($value)
@@ -828,11 +849,7 @@ class User extends Model implements AuthenticatableContract
     public function groupIds()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            if (isset($this->relations['userGroups'])) {
-                $this->memoized[__FUNCTION__] = $this->userGroups->pluck('group_id');
-            } else {
-                $this->memoized[__FUNCTION__] = model_pluck($this->userGroups(), 'group_id');
-            }
+            $this->memoized[__FUNCTION__] = $this->userGroups->pluck('group_id')->toArray();
         }
 
         return $this->memoized[__FUNCTION__];
@@ -1166,12 +1183,18 @@ class User extends Model implements AuthenticatableContract
 
     public function blocks()
     {
-        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('foe', true);
+        return $this
+            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
+            ->wherePivot('foe', true)
+            ->default();
     }
 
     public function friends()
     {
-        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('friend', true);
+        return $this
+            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
+            ->wherePivot('friend', true)
+            ->default();
     }
 
     public function channels()
@@ -1279,6 +1302,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(Changelog::class, 'user_id');
     }
 
+    public function oauthClients()
+    {
+        return $this->hasMany(Client::class, 'user_id');
+    }
+
     public function getPlaymodeAttribute($value)
     {
         return Beatmap::modeStr($this->osu_playmode);
@@ -1287,6 +1315,32 @@ class User extends Model implements AuthenticatableContract
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($value);
+    }
+
+    public function blockedUserIds()
+    {
+        if (!array_key_exists('blocks', $this->memoized)) {
+            $this->memoized['blocks'] = $this->blocks;
+        }
+
+        return $this->memoized['blocks']->pluck('user_id');
+    }
+
+    public function groupBadge()
+    {
+        if ($this->isBot()) {
+            return 'bot';
+        }
+
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $groupNames = $this->userGroups->map->name()->all();
+            array_unshift($groupNames, $this->defaultGroup());
+
+            $badge = array_first(array_intersect(UserGroup::DISPLAY_PRIORITY, $groupNames));
+            $this->memoized[__FUNCTION__] = $badge;
+        }
+
+        return $this->memoized[__FUNCTION__];
     }
 
     public function hasBlocked(self $user)
@@ -1430,7 +1484,7 @@ class User extends Model implements AuthenticatableContract
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count']);
+        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count', 'user_preferences']);
     }
 
     public function supportLength()
@@ -1526,6 +1580,15 @@ class User extends Model implements AuthenticatableContract
             ->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
     }
 
+    public function scopeEagerloadForListing($query)
+    {
+        return $query->with([
+            'country',
+            'supporterTagPurchases',
+            'userProfileCustomization',
+        ]);
+    }
+
     public function checkPassword($password)
     {
         return Hash::check($password, $this->getAuthPassword());
@@ -1594,6 +1657,10 @@ class User extends Model implements AuthenticatableContract
 
     public static function findForLogin($username)
     {
+        if (!present($username)) {
+            return;
+        }
+
         return static::where('username', $username)
             ->orWhere('user_email', '=', strtolower($username))
             ->first();
@@ -1816,6 +1883,7 @@ class User extends Model implements AuthenticatableContract
     protected function newReportableExtraParams() : array
     {
         return [
+            'reason' => 'Cheating',
             'user_id' => $this->getKey(),
         ];
     }

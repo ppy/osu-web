@@ -25,6 +25,8 @@ return [
     'title' => 'osu! forumet',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Velg bannerbilde',
             'button' => 'Last opp bilde',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Siste Innlegg',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Ingen emner!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Marker forum som lest',
         'forums' => 'Marker forumer som lest',
         'busy' => 'Marker som lest...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Redigering av avstemming vil fjerne gjeldene resultater!',
-
-        'actions' => [
-            'edit' => 'Rediger avstemming',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'Slett innlegg',
             'restore' => 'Gjenopprett innlegg',
             'edit' => 'Rediger innlegget',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'startet av :user',
 
         'create' => [
+            'close' => 'Lukk',
             'preview' => 'Forhåndsvisning',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -268,6 +275,11 @@ return [
             'to_2_done' => 'Emne har blitt festet og markert som en kunngjøring',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Slettede innlegg',
             'total_posts' => 'Totalt antall innlegg',
@@ -290,7 +302,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => 'Redigering av en avstemming vil fjerne de gjeldene resultatene!',
                 'vote' => 'Stem',
+
+                'button' => [
+                    'change_vote' => 'Endre stemme',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => 'Stem',
+                ],
 
                 'detail' => [
                     'end_time' => 'Avstemming vil ende om :time',

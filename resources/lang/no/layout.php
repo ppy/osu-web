@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Rytmen er bare et *klikk* unna! Med Ouendan/EBA, Taiko og originale spillmoduser, samt en fullt funskjonell nivåredigerer.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'Lukk (Esc)',
+        'fullscreen' => '',
+        'zoom' => 'Zoom inn/ut',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'hjem',
             'account-edit' => 'instillinger',
+            'account-verifyLink' => 'Verifisering fullført',
             'friends-index' => 'venner',
             'changelog-index' => 'endringslogg',
             'changelog-build' => 'versjon',
@@ -41,7 +58,12 @@ return [
             'password-reset-index' => 'nullstill passord',
             'search' => 'søk',
             'supportTheGame' => 'støtt spillet',
-            'team' => 'lag',
+            'team' => 'skapere',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'hjelp',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Du trenger en konto, min gode mann. Hvorfor har du ikke en allerede?",
+            'download' => '',
+            'info' => 'Du trenger en konto, min gode mann. Hvorfor har du ikke en allerede?',
             'title' => "Har du ikke en konto?",
         ],
     ],

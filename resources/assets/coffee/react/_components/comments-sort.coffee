@@ -16,8 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import { Observer } from 'mobx-react'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div } from 'react-dom-factories'
+
+el = React.createElement
+
+uiState = core.dataStore.uiState
 
 export class CommentsSort extends React.PureComponent
   render: =>
@@ -30,14 +36,15 @@ export class CommentsSort extends React.PureComponent
 
 
   renderButton: (sort) =>
-    className = 'sort__item sort__item--button'
-    className += ' sort__item--active' if sort == (@props.loadingSort ? @props.currentSort)
+    el Observer, null, () =>
+      className = 'sort__item sort__item--button'
+      className += ' sort__item--active' if sort == (uiState.comments.loadingSort ? uiState.comments.currentSort)
 
-    button
-      className: className
-      'data-sort': sort
-      onClick: @setSort
-      osu.trans("sort.#{sort}")
+      button
+        className: className
+        'data-sort': sort
+        onClick: @setSort
+        osu.trans("sort.#{sort}")
 
 
   setSort: (e) =>

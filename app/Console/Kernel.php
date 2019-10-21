@@ -66,7 +66,12 @@ class Kernel extends ConsoleKernel
         // fix userchannel deletion fail
         Commands\FixMissingUserChannels::class,
 
+        // fix forum display order
+        Commands\FixForumDisplayOrder::class,
+
         Commands\MigrateFreshAllCommand::class,
+
+        Commands\OAuthDeleteExpiredTokens::class,
 
         Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
@@ -98,6 +103,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('modding:rank')
             ->cron('*/20 * * * *');
+
+        $schedule->command('oauth:delete-expired-tokens')
+            ->cron('14 1 * * *');
     }
 
     protected function commands()

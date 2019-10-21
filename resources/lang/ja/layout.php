@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - リズムはもう、その指先に！応援団や太鼓をモチーフにしたゲームモード、オリジナルのゲームモード、そしてレベルエディタも備えています。',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'コミュニティ',
+
+            'forum' => 'フォーラム',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '閉じる (Esc)',
+        'fullscreen' => '全画面表示に切り替え',
+        'zoom' => 'ズームイン/ズームアウト',
+        'previous' => '前（左矢印）',
+        'next' => '次へ（右矢印）',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'ホーム',
             'account-edit' => '設定',
+            'account-verifyLink' => '認証が完了しました。',
             'friends-index' => 'フレンド',
             'changelog-index' => '更新履歴',
             'changelog-build' => 'ビルド',
@@ -42,6 +59,11 @@ return [
             'search' => '検索',
             'supportTheGame' => 'ゲームを支援する',
             'team' => 'osu!team',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'ヘルプ',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "アカウントが必要です。作ってみませんか？",
+            'download' => '',
+            'info' => 'アカウントが必要です。作ってみませんか？',
             'title' => "アカウントを持っていませんか？",
         ],
     ],

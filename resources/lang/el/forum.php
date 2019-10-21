@@ -25,6 +25,8 @@ return [
     'title' => 'osu! φόρουμ',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Επιλογή εικόνας εξωφύλλου',
             'button' => 'Ανεβάστε εικόνα',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Δεν υπάρχουν θέματα!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Επισήμανση forum ως αναγνωσμένo',
         'forums' => 'Επισήμανση forum ως αναγνωσμένα',
         'busy' => 'Σήμανση ως αναγνωσμένου...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Η επεξεργασία δημοσκόπησης θα καταργήσει τα τρέχοντα αποτελέσματα!',
-
-        'actions' => [
-            'edit' => 'Επεξεργασία δημοσκόπησης',
-        ],
     ],
 
     'post' => [
@@ -73,9 +73,15 @@ return [
             'edit' => 'Επεξεργασία δημοσίευσης',
         ],
 
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
+        ],
+
         'info' => [
             'post_count' => ':count_delimited δημοσίευση|:count_delimited δημοσιεύσεις',
-            'topic_starter' => '',
+            'topic_starter' => 'Δημιουργός του Θέματος',
         ],
     ],
 
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'ξεκίνησε από :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Προεπισκόπηση',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -268,6 +275,11 @@ return [
             'to_2_done' => 'Το θέμα καρφιτσώθηκε και σημάνθηκε ως ανακοίνωση',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Διαγραμμένες Δημοσιεύσεις',
             'total_posts' => 'Σύνολο Δημοσιεύσεων',
@@ -290,7 +302,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Ψηφίστε',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Η ψηφοφορία θα λήξει στις :time',

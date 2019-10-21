@@ -1,4 +1,20 @@
+// karma-webpack doesn't exit on compile error.
+// This plugin makes it exit on compile error.
+class ExitOnErrorWebpackPlugin {
+  apply(compiler) {
+    compiler.hooks.done.tap('ExitOnErrorWebpackPlugin', (stats) => {
+      if (stats && stats.hasErrors()) {
+        stats.toJson().errors.forEach((error) => {
+          console.error(error);
+        });
+        process.exit(1);
+      }
+    });
+  }
+}
+
 const webpackConfig = require('./webpack.config.js');
+webpackConfig['plugins'].push(new ExitOnErrorWebpackPlugin());
 webpackConfig['mode'] = 'development';
 webpackConfig['devtool'] = 'inline-source-map';
 delete webpackConfig.optimization; // karma doesn't work with splitChunks...or runtimeChunk

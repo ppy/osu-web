@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'approved on ',
             'favourite' => 'Favourite this beatmapset',
-            'favourited_count' => '+ :count_delimited other!|+ :count_delimited others!',
             'logged-out' => 'You need to sign in before downloading any beatmaps!',
             'loved' => 'loved on ',
             'mapped_by' => 'mapped by :mapper',
@@ -75,6 +74,13 @@ return [
                     'qualified' => 'qualified',
                     'wip' => 'work in progress',
                 ],
+            ],
+
+            'report' => [
+                '_' => 'If you find an issue with this beatmap, please report it :link to alert the team.',
+                'button' => 'Report Problem',
+                'button_title' => 'Report a problem on a qualified beatmap.',
+                'link' => 'here',
             ],
         ],
 

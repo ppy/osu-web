@@ -76,6 +76,10 @@ Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
     Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
         Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
     });
+
+    Route::group(['namespace' => 'Beatmapsets'], function () {
+        Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
+    });
 });
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
@@ -84,16 +88,13 @@ Route::post('beatmapsets/{beatmapset}/discussion-unlock', 'BeatmapsetsController
 Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
 Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name('beatmapsets.love');
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
-Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
 Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
-    Route::post('{mode}/{score}/report', 'ScoresController@report')->name('report');
     Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
 });
 
 Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
-Route::post('comments/{comment}/report', 'CommentsController@report')->name('comments.report');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
 Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
@@ -172,10 +173,10 @@ Route::group(['prefix' => 'home'], function () {
         Route::post('cover', 'AccountController@cover')->name('cover');
         Route::put('email', 'AccountController@updateEmail')->name('email');
         Route::put('options', 'AccountController@updateOptions')->name('options');
-        Route::put('page', 'AccountController@updatePage')->name('page');
         Route::put('password', 'AccountController@updatePassword')->name('password');
         Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
         Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
+        Route::get('verify', 'AccountController@verifyLink');
         Route::post('verify', 'AccountController@verify')->name('verify');
         Route::put('/', 'AccountController@update')->name('update');
     });
@@ -183,7 +184,6 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::get('changelog/{stream}/{build}', 'ChangelogController@build')->name('changelog.build');
-    Route::get('changelog/{stream}', 'ChangelogController@stream')->name('changelog.stream');
     Route::post('changelog/github', 'ChangelogController@github');
     Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
     Route::get('download', 'HomeController@getDownload')->name('download');
@@ -202,6 +202,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('news', 'NewsController', ['only' => ['index', 'show', 'store', 'update']]);
     Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+    Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
     Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
 
     Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
@@ -214,9 +215,12 @@ Route::get('legal/{page}', 'LegalController@show')->name('legal');
 
 Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], function () {
     Route::resource('authorized-clients', 'AuthorizedClientsController', ['only' => ['destroy']]);
+    Route::resource('clients', 'ClientsController', ['except' => ['create', 'edit', 'show']]);
 });
 
 Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
+
+Route::resource('reports', 'ReportsController', ['only' => ['store']]);
 
 Route::post('session', 'SessionsController@store')->name('login');
 Route::delete('session', 'SessionsController@destroy')->name('logout');
@@ -227,13 +231,15 @@ Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled')
 Route::get('users/{user}/card', 'UsersController@card')->name('users.card');
 
 // extras
+Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
+    Route::put('page', 'UsersController@updatePage')->name('page');
+});
 Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
 Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->name('users.recent-activity');
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
 Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
-Route::post('users/{user}/report', 'UsersController@report')->name('users.report');
 
 Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
     Route::get('/', 'ModdingHistoryController@index')->name('index');
@@ -310,6 +316,17 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 // API
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
+        Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
+            // TODO: move other beatmapset routes here
+            Route::group(['namespace' => 'Beatmapsets'], function () {
+                Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
+            });
+        });
+
+        Route::apiResource('comments', 'CommentsController');
+        Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
+        Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
+
         Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
             Route::post('new', 'ChatController@newConversation')->name('new');
             Route::get('updates', 'ChatController@updates')->name('updates');
@@ -335,11 +352,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
                 Route::apiResource('{playlist}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
             });
         });
-        Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
 
-        Route::group(['prefix' => 'beatmapsets'], function () {
-            Route::get('favourites', 'API\BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
-        });
+        Route::resource('reports', 'ReportsController', ['only' => ['store']]);
+
+        Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
 
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             // GET /api/v2/scores/:mode/:score_id/download
@@ -369,7 +385,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         Route::resource('friends', 'FriendsController', ['only' => ['index']]);
 
         //  GET /api/v2/me
-        Route::get('me', 'UsersController@me');
+        Route::get('me/{mode?}', 'UsersController@me');
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
 
@@ -393,17 +409,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', 'UsersController@show');
     });
-    // legacy api routes
-    Route::group(['prefix' => 'v1', 'namespace' => 'API'], function () {
-        Route::get('get_match', 'LegacyController@getMatch');
-        Route::get('get_packs', 'LegacyController@getPacks');
-        Route::get('get_user', 'LegacyController@getUser');
-        Route::get('get_user_best', 'LegacyController@getUserBest');
-        Route::get('get_user_recent', 'LegacyController@getUserRecent');
-        Route::get('get_replay', 'LegacyController@getReplay');
-        Route::get('get_scores', 'LegacyController@getScores');
-        Route::get('get_beatmaps', 'LegacyController@getBeatmaps');
-    });
 });
 
 // Callbacks for legacy systems to interact with
@@ -423,6 +428,7 @@ route_redirect('/', 'home');
 
 // redirects go here
 route_redirect('forum/p/{post}', 'forum.posts.show');
+route_redirect('po/{post}', 'forum.posts.show');
 route_redirect('forum/t/{topic}', 'forum.topics.show');
 route_redirect('forum/{forum}', 'forum.forums.show');
 // redirects to beatmapset anyways so there's no point

@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => '给予 kudosu',
+        'beatmap_information' => '谱面信息页',
         'delete' => '删除',
         'deleted' => '被 :editor 于 :delete_time 删除。',
         'deny_kudosu' => '收回 kudosu',
@@ -140,8 +141,14 @@ return [
         ],
 
         'votes' => [
-            'up' => '支持该讨论',
-            'down' => '反对该讨论',
+            'none' => [
+                'down' => '还没有差评',
+                'up' => '还没有好评',
+            ],
+            'latest' => [
+                'down' => '最新差评',
+                'up' => '最新好评',
+            ],
         ],
     ],
 
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => '所有',
         'approved' => 'Approved',
-        'favourites' => '',
+        'favourites' => '收藏夹',
         'graveyard' => '坟图',
-        'leaderboard' => '',
+        'leaderboard' => '计入排名',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => '我的谱面',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => '所有',
@@ -280,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '镜像 Mod',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

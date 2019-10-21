@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'hírfolyam',
     'generic' => 'Hibajavítások és kisebb fejlesztések.',
 
     'build' => [

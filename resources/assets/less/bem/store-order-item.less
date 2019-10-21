@@ -40,24 +40,27 @@
     align-items: center;
     justify-content: space-between;
 
-    flex-wrap: wrap;
+    @media @narrow {
+      flex-direction: column;
+    }
   }
 
   &__options {
     display: flex;
+    align-self: flex-end;
     justify-content: flex-end;
   }
 
   &__quantity {
-    flex: 0 0 100px;
+    min-width: 100px;
   }
 
   &__name {
-    flex: 0 1 auto;
+    align-self: flex-start;
   }
 
   &__subtotal {
-    flex: 0 0 150px;
+    min-width: 150px;
     padding: 0 20px;
   }
 }

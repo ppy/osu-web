@@ -21,7 +21,7 @@
 return [
     'availability' => [
         'disabled' => 'Beatmap นี้ยังไม่สามารถดาวน์โหลดได้',
-        'parts-removed' => 'บางส่วนของ beatmap นี้ถูกลบตามคำขอของผู้สร้าง หรือผู้ถือสิทธิบุคคลสาม',
+        'parts-removed' => 'บางส่วนของ beatmap นี้ถูกลบตามคำขอของผู้แต่งหรือผู้ถือสิทธิ์บุคคลสาม',
         'more-info' => 'เช็คที่นี่เพื่อดูรายละเอียดเพิ่มเติม',
     ],
 
@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'อนุมัติเมื่อ ',
             'favourite' => 'Favourite beatmapset นี้',
-            'favourited_count' => '+1 ผู้อื่น| + :count ผู้อื่น',
             'logged-out' => 'คุณต้องเข้าสู่ระบบก่อนที่จะดาวน์โหลด beatmaps ใด ๆ',
             'loved' => 'loved เมื่อ ',
             'mapped_by' => 'แมพโดย :mapper',
@@ -50,8 +49,8 @@ return [
             'download' => [
                 '_' => 'ดาวน์โหลด',
                 'direct' => 'osu!direct',
-                'no-video' => 'ไม่พร้อม Video',
-                'video' => 'พร้อม Video',
+                'no-video' => 'ไม่มีวิดิโอ',
+                'video' => 'พร้อมวิดิโอ',
             ],
 
             'login_required' => [

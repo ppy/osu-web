@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'tillat kudosu',
+        'beatmap_information' => '',
         'delete' => 'slett',
         'deleted' => 'Slettet av :editor :delete_time.',
         'deny_kudosu' => 'avvis kudosu',
@@ -140,8 +141,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Oppstem denne diskusjonen',
-            'down' => 'Nedstem denne diskusjonen',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => 'Alle',
         'approved' => 'Godkjent',
-        'favourites' => '',
+        'favourites' => 'Favoritter',
         'graveyard' => 'Gravplassert',
-        'leaderboard' => '',
+        'leaderboard' => 'Har Resultatliste',
         'loved' => 'Elsket',
-        'mine' => '',
+        'mine' => 'Mine Maps',
         'pending' => 'Ventende & WIP',
         'qualified' => 'Kvalifisert',
-        'ranked' => '',
+        'ranked' => 'Rangert',
     ],
     'genre' => [
         'any' => 'Alle',
@@ -280,6 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

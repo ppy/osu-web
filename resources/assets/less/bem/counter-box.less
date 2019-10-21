@@ -44,7 +44,7 @@
   .border(.osu-hsla(@osu-colour-b5, 0.25)[@hsla]);
   background-color: @osu-colour-b5;
 
-  color: #fff;
+  color: @osu-colour-c1;
 
   display: inline-flex;
   justify-content: space-between;
@@ -54,12 +54,16 @@
   &:focus,
   &:active {
     text-decoration: none;
-    color: #fff;
+    color: @osu-colour-c1;
   }
 
   &--forum {
     margin: 5px;
+    padding: 0;
     width: 100%;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
   }
 
   &--beatmap-discussions {
@@ -102,6 +106,10 @@
   &__count {
     font-size: @font-size--large;
     font-weight: 300;
+
+    .@{top}--forum & {
+      color: @osu-colour-c2;
+    }
   }
 
   &__line {
@@ -110,10 +118,6 @@
     margin-left: 10px;
 
     .@{top}--deleted & {
-      background-color: @color-deleted;
-    }
-
-    .@{top}--forum-deleted & {
       background-color: @color-deleted;
     }
 
@@ -150,6 +154,10 @@
 
     .@{top}--beatmap-discussions & {
       margin-right: 10px;
+    }
+
+    .@{top}--forum & {
+      font-weight: normal;
     }
   }
 }

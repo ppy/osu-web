@@ -25,6 +25,8 @@ return [
     'title' => 'foros de osu!',
 
     'covers' => [
+        'edit' => 'Editar portada',
+
         'create' => [
             '_' => 'Establecer imagen de portada',
             'button' => 'Subir imagen',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Último mensaje',
+
+        'index' => [
+            'title' => 'Índice del foro',
+        ],
+
         'topics' => [
             'empty' => '¡No hay temas!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Marcar foro como leído',
         'forums' => 'Marcar foros como leídos',
         'busy' => 'Marcando como leído...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Editando una encuesta eliminará los resultados actuales!',
-
-        'actions' => [
-            'edit' => 'Editar encuesta',
-        ],
     ],
 
     'post' => [
@@ -73,9 +73,15 @@ return [
             'edit' => 'Editar publicación',
         ],
 
+        'create' => [
+            'title' => [
+                'reply' => 'Nueva respuesta',
+            ],
+        ],
+
         'info' => [
             'post_count' => ':count_delimited publicación|:count_delimited publicaciones',
-            'topic_starter' => '',
+            'topic_starter' => 'Topic Starter',
         ],
     ],
 
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'iniciado por :user',
 
         'create' => [
+            'close' => 'Cerrar',
             'preview' => 'Previsualizar',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -180,8 +187,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Ocultar los resultados de la encuesta.',
+                'hide_results_info' => 'Solo se mostrarán después de que finalice la encuesta.',
                 'length' => 'Duración de la encuesta',
                 'length_days_suffix' => 'días',
                 'length_info' => 'Deja en blanco para una encuesta sin fin',
@@ -268,6 +275,11 @@ return [
             'to_2_done' => 'El tema ya ha sido fijado y marcado como anuncio',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Publicaciones eliminadas',
             'total_posts' => 'Publicaciones totales',
@@ -290,12 +302,21 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'Editar encuesta',
+                'edit_warning' => '¡Editar una encuesta eliminará los resultados actuales!',
                 'vote' => 'Votar',
+
+                'button' => [
+                    'change_vote' => 'Cambiar voto',
+                    'edit' => 'Editar encuesta',
+                    'view_results' => 'Saltar a resultados',
+                    'vote' => 'Votar',
+                ],
 
                 'detail' => [
                     'end_time' => 'La encuesta terminará el :time',
                     'ended' => 'Encuesta terminada el :time',
-                    'results_hidden' => '',
+                    'results_hidden' => 'Los resultados se mostrarán después de que finalice la encuesta.',
                     'total' => 'Votos totales: :count',
                 ],
             ],

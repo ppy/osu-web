@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', a ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Zpátky na předchozí pozici',
@@ -37,6 +41,7 @@ return [
         'change' => 'změnit',
         'click_to_copy' => 'klikněte pro zkopírování do schránky',
         'click_to_copy_copied' => 'zkopírováno do schránky!',
+        'close' => '',
         'collapse' => 'zabalit',
         'delete' => 'Smazat',
         'edit' => 'Upravit',
@@ -55,14 +60,15 @@ return [
         'search' => 'Hledat',
         'see_more' => 'zobrazit více',
         'show' => 'zobrazit',
-        'show_deleted' => '',
+        'show_deleted' => 'Zobrazit smazané',
         'show_more' => 'zobrazit více',
         'show_more_options' => 'zobrazit více možností',
+        'update' => '',
         'upload_image' => 'nahrát obrázek',
 
         'watch' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Přestat sledovat',
+            'to_1' => 'Sledovat',
         ],
     ],
 
@@ -75,8 +81,12 @@ return [
         'minute_short_unit' => 'min',
         'minutes' => ':count minuta|:count minuty|:count minut',
         'months' => ':count měsíc|:count měsíců',
+        'plus_others' => '',
+        'post' => '',
         'second_short_unit' => 'sek',
-        'update' => '',
+        'star_priority' => '',
+        'update' => ':count_delimited aktualizace|:count_delimited aktualizace',
+        'view' => '',
         'years' => ':count rok|:count let',
     ],
 
@@ -106,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'přetáhněte sem soubor pro nahrání',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

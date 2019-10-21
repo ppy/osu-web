@@ -21,7 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Η σελίδα δεν είναι ακόμα μεταφρασμένη στην επιλεγμένη γλώσσα (:language). Αλλαγή στην Αγγλική έκδοση.',
-        'languages' => 'Γλώσσες',
+        'incomplete_or_outdated' => '',
         'missing' => 'Η σελίδα ":keyword" δεν βρέθηκε.',
         'missing_title' => 'Δεν Βρέθηκε',
         'missing_translation' => 'Η σελίδα που ζητήσατε δεν βρέθηκε για την επιλεγμένη γλώσσα.',
@@ -39,5 +39,12 @@ return [
 
             'default' => 'Αγγλική έκδοση',
         ],
+    ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
     ],
 ];

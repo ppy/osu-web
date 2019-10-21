@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Automatisch erzeugte Beiträge können nicht bearbeitet werden.',
-            'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
+        'destroy' => [
+            'not_owner' => 'Du kannst nur deine eigenen Beiträge löschen.',
+            'resolved' => 'Du kannst keinen Beitrag einer gelösten Diskussion löschen.',
+            'system_generated' => 'Automatisch generierter Beitrag kann nicht gelöscht werden.',
         ],
+
+        'edit' => [
+            'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
+            'resolved' => 'Du kannst keinen Beitrag einer gelösten Diskussion bearbeiten.',
+            'system_generated' => 'Automatisch erzeugte Beiträge können nicht bearbeitet werden.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Diese Beatmap Diskussion ist gesperrt.',
         ],

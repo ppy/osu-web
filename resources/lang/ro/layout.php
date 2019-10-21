@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Ritmul este doar la un *clic* distanță! Cu Ouendan/EBA, Taiko și moduri de joc originale,  precum și un editor de nivel complet funcțional.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'acasă',
             'account-edit' => 'setări',
+            'account-verifyLink' => '',
             'friends-index' => 'prieteni',
             'changelog-index' => 'jurnalul modificărilor',
             'changelog-build' => 'versiune',
@@ -42,6 +59,11 @@ return [
             'search' => 'căutare',
             'supportTheGame' => 'sprijină jocul',
             'team' => 'echipă',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'ajutor',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Ai nevoie de un cont, domnule. De ce nu ai unul deja?",
+            'download' => '',
+            'info' => 'Ai nevoie de un cont, domnule. De ce nu ai unul deja?',
             'title' => "Nu ai un cont?",
         ],
     ],

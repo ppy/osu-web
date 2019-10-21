@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - rytm jest tylko o *klik* stąd! Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Społeczność »',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'Zamknij (Esc)',
+        'fullscreen' => 'Przełącz tryb pełnoekranowy',
+        'zoom' => 'Przybliż/oddal',
+        'previous' => 'Wstecz (strzałka w lewo)',
+        'next' => 'Dalej (strzałka w prawo)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'strona główna',
             'account-edit' => 'ustawienia',
+            'account-verifyLink' => 'Weryfikacja zakończona',
             'friends-index' => 'znajomi',
             'changelog-index' => 'zmiany',
             'changelog-build' => 'kompilacja',
@@ -42,6 +59,11 @@ return [
             'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
             'team' => 'zespół',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'pomoc',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Potrzebujesz konta. Dlaczego by takiego nie stworzyć?",
+            'download' => '',
+            'info' => 'Potrzebujesz konta. Dlaczego by takiego nie stworzyć?',
             'title' => "Nie posiadasz konta?",
         ],
     ],

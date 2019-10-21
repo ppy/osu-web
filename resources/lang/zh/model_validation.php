@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => '讨论被锁定。',
         'first_post' => '无法删除第一个讨论。',
+
+        'attributes' => [
+            'message' => '消息',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => '指定的难度无效。',
         'invalid_beatmapset_id' => '指定的谱面无效。',
         'locked' => '讨论被锁定。',
+
+        'attributes' => [
+            'message_type' => '消息类型',
+            'timestamp' => '时间戳',
+        ],
 
         'hype' => [
             'guest' => '登录后才能推荐',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => '不能回复已删除的评论。',
+
+        'attributes' => [
+            'message' => '消息',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => '不允许删除谱面信息帖。',
             'beatmapset_post_no_edit' => '不允许编辑谱面信息帖。',
             'only_quote' => '你的回复仅包含引用',
+
+            'attributes' => [
+                'post_text' => '帖子主体',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => '主题标题',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,11 +106,27 @@ return [
             'minimum_one_selection' => '每人至少可选一项。',
             'minimum_two_options' => '需要至少两个选项。',
             'too_many_options' => '选项数量超出限制。',
+
+            'attributes' => [
+                'title' => '投票标题',
+            ],
         ],
 
         'topic_vote' => [
             'required' => '至少选择一项以投票',
             'too_many' => '选项数量超出限制。',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => 'OAuth 应用数量超出限制。',
+            'url' => '请输入一个有效的 URL。',
+
+            'attributes' => [
+                'name' => '应用名称',
+                'redirect' => '应用回调 URL',
+            ],
         ],
     ],
 
@@ -115,6 +154,12 @@ return [
         'wrong_password_confirmation' => '重复新密码与新密码不一致。',
         'too_long' => '超出长度限制——最多为 :limit 个字符。',
 
+        'attributes' => [
+            'username' => '用户名',
+            'user_email' => '电子邮件地址',
+            'password' => '密码',
+        ],
+
         'change_username' => [
             'restricted' => '账户受限时不能变更用户名。',
             'supporter_required' => [
@@ -126,6 +171,16 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => '',
         'self' => "无法举报自己",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '数量',
+                'cost' => '价格',
+            ],
+        ],
     ],
 ];

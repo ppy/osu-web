@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosuを許可',
+        'beatmap_information' => 'ビートマップページ',
         'delete' => '削除',
         'deleted' => ':editorが:delete_timeに削除',
         'deny_kudosu' => 'kudosuを拒否',
@@ -73,7 +74,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'これは一般のディスカッションに投稿されます。 この譜面をmodするにはタイムスタンプ（例:　00:12:345）で始まるメッセージを入力してください。',
+            'in_general' => 'これは一般のディスカッションに投稿されます。 このビートマップをmodするにはタイムスタンプ（例：00:12:345）を付けたメッセージを入力してください。',
             'in_timeline' => '複数のタイムスタンプをmodするには、投稿を複数回に分けてください。',
         ],
 
@@ -140,8 +141,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'このディスカッションを支持',
-            'down' => 'このディスカッションを不支持',
+            'none' => [
+                'down' => '反対票はまだありません',
+                'up' => '賛成票はまだありません',
+            ],
+            'latest' => [
+                'down' => '最近の反対票',
+                'up' => '最近の賛成票',
+            ],
         ],
     ],
 
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => '全て',
         'approved' => 'Approved',
-        'favourites' => '',
+        'favourites' => 'お気に入り',
         'graveyard' => 'Graveyard',
-        'leaderboard' => '',
+        'leaderboard' => 'リーダーボード',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'マイマップ',
         'pending' => 'Pending & WIP',
         'qualified' => 'Qualified',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => '全て',
@@ -280,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'ミラー',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

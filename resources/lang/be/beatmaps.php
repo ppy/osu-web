@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'дазволіць кудосу',
+        'beatmap_information' => '',
         'delete' => 'выдаліць',
         'deleted' => 'Выдалена :editor а :delete_time.',
         'deny_kudosu' => 'забараніць кудосу',
@@ -140,8 +141,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Прагаласаваць за гэта абмеркаванне',
-            'down' => 'Прагаласаваць супраць гэтага абмеркавання',
+            'none' => [
+                'down' => '',
+                'up' => '',
+            ],
+            'latest' => [
+                'down' => '',
+                'up' => '',
+            ],
         ],
     ],
 
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => 'Усе',
         'approved' => 'Усхваліныя',
-        'favourites' => '',
+        'favourites' => 'Абраныя',
         'graveyard' => 'Закінутыя',
-        'leaderboard' => '',
+        'leaderboard' => 'З табліца лідараў',
         'loved' => 'Любімыя',
-        'mine' => '',
+        'mine' => 'Мае мапы',
         'pending' => 'Чаканыя і ў працэсе распрацоўкі',
         'qualified' => 'Кваліфікаваныя',
-        'ranked' => '',
+        'ranked' => 'Ранкаваныя',
     ],
     'genre' => [
         'any' => 'Усе',
@@ -280,6 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => '',
         'NC' => '',
         'NF' => '',
         'NM' => '',

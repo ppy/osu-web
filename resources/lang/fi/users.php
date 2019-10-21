@@ -88,9 +88,6 @@ return [
         'title' => 'käyttäjän :username viestit',
     ],
 
-    'signup' => [
-        '_' => 'Rekisteröidy',
-    ],
     'anonymous' => [
         'login_link' => 'kirjaudu sisään napsauttamalla',
         'login_text' => 'kirjaudu sisään',
@@ -149,10 +146,14 @@ return [
                     'button' => 'Lataa kuva',
                     'dropzone' => 'Pudota tiedosto tähän ladataksesi',
                     'dropzone_info' => 'Voit myös lähettää kuvan pudottamalla sen tähän',
-                    'restriction_info' => "Kuvien lähetys käytössä vain <a href='".route('store.products.show', 'supporter-tag')."'target='_blank'>vain Tukijoille</a>",
                     'size_info' => 'Kansikuvan kuuluisi olla 2800x620 pikseliä',
                     'too_large' => 'Lähetetty tiedosto on liian iso.',
                     'unsupported_format' => 'Tiedostomuotoa ei tueta.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -163,7 +164,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 seuraaja |:count seuraajaa',
+            'none' => '',
             'unranked' => 'Ei viimeaikaisia pelejä',
 
             'achievements' => [
@@ -192,6 +193,16 @@ return [
                     'title' => 'Vireillä olevat Beatmapit',
                 ],
             ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'historical' => [
                 'empty' => 'Tuloksia ei löydy. :(',
                 'title' => 'Historialliset',
@@ -219,7 +230,6 @@ return [
                 'recent_entries' => 'Viimeisimmät Kudosut',
                 'title' => 'Kudosu!',
                 'total' => 'Ansaittu Kudosu',
-                'total_info' => 'Perustuu käyttäjän tekemään vaikutukseen beatmappien moderoinnissa. Katso <a href="'.osu_url('user.kudosu').'">tämä sivu</a> saadaksesi lisätietoja.',
 
                 'entry' => [
                     'amount' => ':amount kudosun',
@@ -259,6 +269,11 @@ return [
                         'revoke' => 'Kudosuhylkäys käyttäjältä :giver keskustelussa :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'minä!',
@@ -267,6 +282,11 @@ return [
                 'empty' => "Tämä käyttäjä ei ole saanut vielä yhtäkään. ;_;",
                 'recent' => 'Viimeisin',
                 'title' => 'Mitalit',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Viimeisimmät',
@@ -284,6 +304,13 @@ return [
                 'first' => [
                     'title' => 'Kärkisijat',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Tilin tila',
@@ -335,7 +362,11 @@ return [
             'description' => '<strong>Minä!</strong> on henkilökohtainen alue profiilisivullasi, jota voit muokata.',
             'edit_big' => 'Muokkaa minua!',
             'placeholder' => 'Kirjoita sivun sisältö tähän',
-            'restriction_info' => "Sinun pitää olla <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'> Tukija</a> avataksesi tämän toiminnon.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Mukana toiminnassa :link',
@@ -360,6 +391,11 @@ return [
             'score_ranks' => 'Luokitukset',
             'total_hits' => 'Osumat',
             'total_score' => 'Kokonaispisteet',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -373,5 +409,10 @@ return [
     ],
     'verify' => [
         'title' => 'Tilin vahvistaminen',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

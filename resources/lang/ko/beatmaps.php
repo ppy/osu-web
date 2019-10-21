@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu 허용하기',
+        'beatmap_information' => '비트맵 페이지',
         'delete' => '삭제',
         'deleted' => ':delete_time에 :editor님에 의해 삭제되었습니다',
         'deny_kudosu' => 'kudosu 박탈하기',
@@ -68,7 +69,7 @@ return [
 
             'prompt' => [
                 'lock' => '잠긴 이유',
-                'unlock' => '잠금 해제하시겠습니까?',
+                'unlock' => '잠금 해제하시겠어요?',
             ],
         ],
 
@@ -140,8 +141,14 @@ return [
         ],
 
         'votes' => [
-            'up' => '이 토론을 추천하기',
-            'down' => '이 토론을 비추천하기',
+            'none' => [
+                'down' => '아직 비추천이 없습니다',
+                'up' => '아직 추천이 없습니다',
+            ],
+            'latest' => [
+                'down' => '최근 비추천',
+                'up' => '최근 추천',
+            ],
         ],
     ],
 
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => '모두',
         'approved' => 'Approved',
-        'favourites' => '',
+        'favourites' => '즐겨찾기',
         'graveyard' => 'Graveyard',
-        'leaderboard' => '',
+        'leaderboard' => '리더보드 있음',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => '내 비트맵',
         'pending' => '보류 중 & 작업 중',
         'qualified' => 'Qualified',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => '모두',
@@ -280,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => '미러',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => '모드 없음',

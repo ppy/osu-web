@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Bugünkü aday gösterme sınırınıza ulaştınız, lütfen yarın tekrar deneyin.',
-            'full_bn_required' => '',
-            'full_bn_required_hybrid' => '',
+            'full_bn_required' => 'Bu niteleme oylamasını yapmak için tam bir nominatör olmanız gerekmektedir.',
+            'full_bn_required_hybrid' => 'Birden fazla oyun modu olan beatmap setlerini oylamak için tam bir nominatör olmanız gerekmektedir.',
             'incorrect_state' => 'Bu işlemi gerçekleştirirken hata oluştu, sayfayı yenilemeyi deneyin.',
             'owner' => "Kendi beatmapinizi aday gösteremezsiniz.",
         ],
@@ -47,12 +47,20 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Otomatik olarak oluşturulmuş gönderiler düzenlenemez.',
-            'not_owner' => 'Gönderileri yalnızca gönderen düzenleyebilir.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Gönderileri yalnızca gönderen düzenleyebilir.',
+            'resolved' => '',
+            'system_generated' => 'Otomatik olarak oluşturulmuş gönderiler düzenlenemez.',
+        ],
+
         'store' => [
-            'beatmapset_locked' => '',
+            'beatmapset_locked' => 'Bu beatmap tartışma için kilitlenmiş.',
         ],
     ],
 
@@ -124,7 +132,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'İstenilen foruma erişim gereklidir.',
                 'over' => 'Oylama bitti ve artık oy verilemez.',
-                'play_more' => '',
+                'play_more' => 'Forumda oylama yapmadan önce daha çok oynamanız gerekmektedir.',
                 'voted' => 'Oy değiştirmek yasaktır.',
 
                 'user' => [
@@ -145,7 +153,7 @@ return [
                 'not_owner' => 'Yalnızca başlık sahibi kapağı değiştirebilir.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Bu forum konu kapak fotoğrafları kabul etmemektedir.',
             ],
         ],
 

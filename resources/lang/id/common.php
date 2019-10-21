@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', dan ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Kembali ke posisi sebelumnya',
@@ -37,6 +41,7 @@ return [
         'change' => 'ubah',
         'click_to_copy' => 'klik untuk menyalin',
         'click_to_copy_copied' => 'tersalin!',
+        'close' => 'Tutup',
         'collapse' => 'tutup',
         'delete' => 'Hapus',
         'edit' => 'Sunting',
@@ -58,6 +63,7 @@ return [
         'show_deleted' => 'Tampilkan yang sudah dihapus',
         'show_more' => 'tampilkan lebih banyak',
         'show_more_options' => 'tampilkan pilihan lainnya',
+        'update' => 'Perbarui',
         'upload_image' => 'unggah gambar',
 
         'watch' => [
@@ -75,8 +81,12 @@ return [
         'minute_short_unit' => 'menit|menit',
         'minutes' => ':count menit |:count menit',
         'months' => ':count bulan',
+        'plus_others' => '+ :count_delimited lainnya!',
+        'post' => ':count_delimited kiriman',
         'second_short_unit' => 'detik|detik',
+        'star_priority' => ':count_delimited star priority',
         'update' => ':count_delimited pembaharuan',
+        'view' => ':count_delimited dilihat',
         'years' => ':count tahun',
     ],
 
@@ -106,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'letakkan di sini untuk mengunggah',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

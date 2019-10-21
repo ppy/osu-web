@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! — O ritmo está a um *clique* de distância! Com Ouendan/EBA, Taiko e modos de jogo originais, além de um editor de níveis totalmente funcional.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Comunidade',
+
+            'forum' => 'Fórum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'Fechar (Esc)',
+        'fullscreen' => 'Alternar tela cheia',
+        'zoom' => 'Ampliar/Reduzir',
+        'previous' => 'Anterior (seta esquerda)',
+        'next' => 'Seguinte (seta direita)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'início',
             'account-edit' => 'configurações',
+            'account-verifyLink' => 'Verificação Concluída',
             'friends-index' => 'amigos',
             'changelog-index' => 'registro de alterações',
             'changelog-build' => 'versão',
@@ -42,6 +59,11 @@ return [
             'search' => 'busca',
             'supportTheGame' => 'apoie o jogo',
             'team' => 'time',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'ajuda',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Você precisa de uma conta, senhor. Por que você ainda não tem uma?",
+            'download' => '',
+            'info' => 'Você precisa de uma conta, senhor. Por que você ainda não tem uma?',
             'title' => "Não tem uma conta?",
         ],
     ],

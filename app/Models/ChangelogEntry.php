@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Libraries\OsuWiki;
 use Carbon\Carbon;
 use Exception;
 
@@ -79,8 +80,20 @@ class ChangelogEntry extends Model
     public static function guessCategory($data)
     {
         static $ignored = [
+            'high priority',
             'resolves issue',
+            'size/xs',
+            'size/s',
+            'size/m',
+            'size/l',
+            'size/xl',
+            'size/xxl',
+            'update',
         ];
+
+        if ($data['repository']['full_name'] === OsuWiki::USER.'/'.OsuWiki::REPOSITORY) {
+            return;
+        }
 
         foreach ($data['pull_request']['labels'] as $label) {
             $name = $label['name'];

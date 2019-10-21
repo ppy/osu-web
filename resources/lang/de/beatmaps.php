@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu erlauben',
+        'beatmap_information' => 'Beatmap-Seite',
         'delete' => 'löschen',
         'deleted' => 'Von :editor gelöscht (:delete_time).',
         'deny_kudosu' => 'kudosu verweigern',
@@ -140,8 +141,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Diskussion aufwerten',
-            'down' => 'Diskussion abwerten',
+            'none' => [
+                'down' => 'Noch keine Downvotes',
+                'up' => 'Noch keine Upvotes',
+            ],
+            'latest' => [
+                'down' => 'Letzte Upvotes',
+                'up' => 'Letzte Upvotes',
+            ],
         ],
     ],
 
@@ -149,7 +156,7 @@ return [
         'button' => 'Beatmap hypen!',
         'button_done' => 'Schon gehypt!',
         'confirm' => "Sicher? Dies wird eins deiner letzten :n Hypes verwenden und kann nicht rückgängig gemacht werden.",
-        'explanation' => 'Hype diese Beatmap, um sie für Nominierungen und ranked sichtbarer zu machen!',
+        'explanation' => 'Hype diese Beatmap, um sie für Nominierungen und Ranking sichtbarer zu machen!',
         'explanation_guest' => 'Einloggen und diese Beatmap hypen, um sie für Nominierungen und ranked sichtbarer zu machen!',
         'new_time' => "Um :new_time wirst du deinen nächsten Hype erhalten.",
         'remaining' => 'Du hast noch :remaining Hypes übrig.',
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => 'Alle',
         'approved' => 'Approved',
-        'favourites' => '',
+        'favourites' => 'Favoriten',
         'graveyard' => 'Graveyard',
-        'leaderboard' => '',
+        'leaderboard' => 'Hat Ranglisten',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'Meine Maps',
         'pending' => 'Ausstehend & WIP',
         'qualified' => 'Qualifiziert',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Alle',
@@ -280,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'Spiegel',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

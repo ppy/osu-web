@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', і ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Кіраўнік',
         'back_to_previous' => 'Вярнуцца ў папярэднюю пазіцыю',
@@ -37,6 +41,7 @@ return [
         'change' => 'змяніць',
         'click_to_copy' => 'націсніце, каб скапіяваць',
         'click_to_copy_copied' => 'скапіявана!',
+        'close' => '',
         'collapse' => 'згарнуць',
         'delete' => 'Выдаліць',
         'edit' => 'Рэдагаваць',
@@ -58,6 +63,7 @@ return [
         'show_deleted' => 'Паказ выдаленыя',
         'show_more' => 'паказаць больш',
         'show_more_options' => 'паказаць больш параметраў',
+        'update' => '',
         'upload_image' => 'запампаваць выяву',
 
         'watch' => [
@@ -75,8 +81,12 @@ return [
         'minute_short_unit' => 'хв',
         'minutes' => ':count хвіліна|:count хвіліны |:count хвілін',
         'months' => ':count месяц|:count месяцаў',
+        'plus_others' => '',
+        'post' => '',
         'second_short_unit' => 'сек',
+        'star_priority' => '',
         'update' => ':count_delimited абнаўленне|:count_delimited абнаўленняў',
+        'view' => '',
         'years' => ':count год|:count гады|:count гадоў',
     ],
 
@@ -106,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'каб загрузіць, перацягніце сюды',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

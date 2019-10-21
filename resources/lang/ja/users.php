@@ -88,9 +88,6 @@ return [
         'title' => ':usernameの投稿',
     ],
 
-    'signup' => [
-        '_' => '新規登録',
-    ],
     'anonymous' => [
         'login_link' => 'クリックしてログイン',
         'login_text' => 'ログイン',
@@ -149,10 +146,14 @@ return [
                     'button' => '画像のアップロード',
                     'dropzone' => 'ここにドロップしてアップロード',
                     'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
-                    'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!サポーター</a>のみアップロードできます",
                     'size_info' => '推奨の画像サイズは2800x620です',
                     'too_large' => 'アップロードファイルが大きすぎます。',
                     'unsupported_format' => 'サポートされていないフォーマットです。',
+
+                    'restriction_info' => [
+                        '_' => 'アップロードは :link でのみ可能です',
+                        'link' => 'osu!サポーター',
+                    ],
                 ],
             ],
 
@@ -163,7 +164,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count フォロワー',
+            'none' => 'なし',
             'unranked' => '最近のプレイはありません',
 
             'achievements' => [
@@ -192,6 +193,16 @@ return [
                     'title' => '保留中のビートマップ',
                 ],
             ],
+            'discussions' => [
+                'title' => 'ディスカッション',
+                'title_longer' => '最近のディスカッション',
+                'show_more' => '他のディスカッションを見る',
+            ],
+            'events' => [
+                'title' => 'イベント',
+                'title_longer' => '最近のイベント',
+                'show_more' => '他のイベントを見る',
+            ],
             'historical' => [
                 'empty' => 'パフォーマンスの記録がありません。',
                 'title' => '履歴',
@@ -219,7 +230,6 @@ return [
                 'recent_entries' => '最近のKudosu履歴',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosuの累計獲得数',
-                'total_info' => 'ビートマップModdingなどへの貢献度を表す数値です。詳細は<a href="'.osu_url('user.kudosu').'">このページ</a>を参照して下さい。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +269,11 @@ return [
                         'revoke' => ':postの:giverによるkudosu拒否',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'ユーザーのビートマップモデレーションへの貢献度に基いています。詳細は :link を確認して下さい。',
+                    'link' => 'このページ',
+                ],
             ],
             'me' => [
                 'title' => 'me!',
@@ -267,6 +282,11 @@ return [
                 'empty' => "このユーザーはまだメダルを取得していません。",
                 'recent' => '最新',
                 'title' => 'メダル',
+            ],
+            'posts' => [
+                'title' => '投稿',
+                'title_longer' => '最近の投稿',
+                'show_more' => '他の投稿を見る',
             ],
             'recent_activity' => [
                 'title' => '最近のアクティビティ',
@@ -284,6 +304,13 @@ return [
                 'first' => [
                     'title' => '1位の記録',
                 ],
+            ],
+            'votes' => [
+                'given' => '与えた投票（３ヶ月）',
+                'received' => '受け取った投票（３ヶ月）',
+                'title' => '投票',
+                'title_longer' => '最近の投票',
+                'vote_count' => ':count_delimited 投票',
             ],
             'account_standing' => [
                 'title' => 'アカウントの状態',
@@ -335,7 +362,11 @@ return [
             'description' => '<strong>me!</strong>はプロフィール上で自由に編集できる領域です。',
             'edit_big' => 'me!を編集',
             'placeholder' => 'ここにページの内容を入力',
-            'restriction_info' => "<a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!サポーター</a>限定の機能です。",
+
+            'restriction_info' => [
+                '_' => 'この機能を解除するには:linkする必要があります。',
+                'link' => 'osu!サポーター',
+            ],
         ],
         'post_count' => [
             '_' => 'フォーラム投稿数 :link',
@@ -360,6 +391,11 @@ return [
             'score_ranks' => 'スコアランク',
             'total_hits' => '合計ヒット数',
             'total_score' => '合計スコア',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Ranked & Approvedのビートマップ',
+            'loved_beatmapset_count' => 'Lovedされたビートマップ',
+            'unranked_beatmapset_count' => '保留中のビートマップ',
+            'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
         ],
     ],
 
@@ -373,5 +409,10 @@ return [
     ],
     'verify' => [
         'title' => 'アカウントの認証',
+    ],
+
+    'view_mode' => [
+        'card' => 'カードビュー',
+        'list' => '一覧表示',
     ],
 ];

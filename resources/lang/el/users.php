@@ -88,9 +88,6 @@ return [
         'title' => 'Δημοσιεύσεις του :username',
     ],
 
-    'signup' => [
-        '_' => 'Εγγραφή',
-    ],
     'anonymous' => [
         'login_link' => 'κάντε κλικ για να συνδεθείτε',
         'login_text' => 'σύνδεση',
@@ -149,10 +146,14 @@ return [
                     'button' => 'Ανεβάστε εικόνα',
                     'dropzone' => 'Αφήστε εδώ για να ανεβεί',
                     'dropzone_info' => 'Μπορείτε επίσης να σύρετε την εικόνα σας εδώ για να ανεβεί',
-                    'restriction_info' => "Διαθέσιμη μεταφόρτωση για <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> μόνο",
                     'size_info' => 'Το μέγεθος του εξωφύλλου πρέπει να είναι 2800x620',
                     'too_large' => 'Το αρχείο είναι πολύ μεγάλο.',
                     'unsupported_format' => 'Μη υποστηριζόμενη μορφή.',
+
+                    'restriction_info' => [
+                        '_' => '',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -163,7 +164,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 ακόλουθος|:count ακόλουθοι',
+            'none' => '',
             'unranked' => 'Κανένα πρόσφατο σκορ',
 
             'achievements' => [
@@ -192,6 +193,16 @@ return [
                     'title' => 'Εκκρεμή Beatmaps',
                 ],
             ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'historical' => [
                 'empty' => 'Κανένα ρεκόρ επίδοσης. :(',
                 'title' => 'Ιστορικό',
@@ -219,7 +230,6 @@ return [
                 'recent_entries' => 'Πρόσφατο Ιστορικό Kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Σύνολο Εξασφαλισμένων Kudosu',
-                'total_info' => 'Βασισμένο στο πόσο έχει συνεισφέρει ο χρήστης για τον έλεγχο των beatmap. Δείτε <a href="'.osu_url('user.kudosu').'">αυτήν τη σελίδα</a> για περισσότερες πληροφορίες.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +269,11 @@ return [
                         'revoke' => 'Ο :giver αρνήθηκε τα kudosu για το post :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
             'me' => [
                 'title' => 'me!',
@@ -267,6 +282,11 @@ return [
                 'empty' => "Αυτός ο χρήστης δεν έχει πάρει κανένα ακόμα. ;_;",
                 'recent' => 'Πρόσφατα',
                 'title' => 'Μετάλλια',
+            ],
+            'posts' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Πρόσφατα',
@@ -284,6 +304,13 @@ return [
                 'first' => [
                     'title' => 'Πρώτες Θέσεις',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => '',
+                'title_longer' => '',
+                'vote_count' => '',
             ],
             'account_standing' => [
                 'title' => 'Κατάσταση λογαριασμού',
@@ -335,7 +362,11 @@ return [
             'description' => 'To <strong>me!</strong> είναι μια προσωπική προσαρμόσιμη περιοχή στη σελίδα του προφίλ σας.',
             'edit_big' => 'Επεξεργασία!',
             'placeholder' => 'Γράψτε το περιεχόμενο της σελίδας εδώ',
-            'restriction_info' => "Χρειάζεται να είστε <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> για να ξεκλειδώσετε αυτή τη δυνατότητα.",
+
+            'restriction_info' => [
+                '_' => '',
+                'link' => '',
+            ],
         ],
         'post_count' => [
             '_' => 'Συνεισφορά :link',
@@ -360,6 +391,11 @@ return [
             'score_ranks' => 'Κατάταξη Score',
             'total_hits' => 'Συνολικά Hits',
             'total_score' => 'Συνολική Βαθμολογία',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -373,5 +409,10 @@ return [
     ],
     'verify' => [
         'title' => 'Επαλήθευση του Λογαριασμού',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => '',
     ],
 ];

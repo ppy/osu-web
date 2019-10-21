@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Community',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'Close (Esc)',
+        'fullscreen' => 'Toggle fullscreen',
+        'zoom' => 'Zoom in/out',
+        'previous' => 'Previous (arrow left)',
+        'next' => 'Next (arrow right)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'home',
             'account-edit' => 'settings',
+            'account-verifyLink' => 'Verification Completed',
             'friends-index' => 'friends',
             'changelog-index' => 'changelog',
             'changelog-build' => 'build',
@@ -42,6 +59,11 @@ return [
             'search' => 'search',
             'supportTheGame' => 'support the game',
             'team' => 'team',
+        ],
+        'profile' => [
+            '_' => 'profile',
+            'friends' => 'friends',
+            'settings' => 'settings',
         ],
         'help' => [
             '_' => 'help',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "You need an account, sir. Why don't you have one already?",
+            'download' => 'Download',
+            'info' => 'Download osu! to create your own account!',
             'title' => "Don't have an account?",
         ],
     ],

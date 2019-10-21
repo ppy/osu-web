@@ -53,8 +53,30 @@ export default class User {
     });
   }
 
+  is(user: User | UserJSON) {
+    return user.id === this.id;
+  }
+
   load() {
     // TODO: do automagic loading stuff?
+  }
+
+  /**
+   * Compatibility so existing UserAvatar component can be used as-is.
+   */
+  toJSON() {
+    return {
+      avatar_url: this.avatarUrl,
+      country_code: this.countryCode,
+      id: this.id,
+      is_active: this.isActive,
+      is_bot: this.isBot,
+      is_online: this.isOnline,
+      is_supporter: this.isSupporter,
+      pm_friends_only: this.pmFriendsOnly,
+      profile_colour: this.profileColour,
+      username: this.username,
+    };
   }
 
   @action

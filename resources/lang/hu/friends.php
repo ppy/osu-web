@@ -27,14 +27,9 @@ return [
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Főoldal :info',
+            'info' => 'Barátok',
         ],
-    ],
-
-    'state' => [
-      'friends' => 'barátok',
-      'mutual' => 'kölcsönös',
     ],
 
     'title' => 'Barátok',

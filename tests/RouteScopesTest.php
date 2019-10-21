@@ -17,13 +17,19 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+namespace Tests;
+
+use Request;
+use Route;
+
 class RouteScopesTest extends TestCase
 {
     public function testApiRoutesRequireScope()
     {
         $expected = [
             'api/v2/friends' => ['friends.read'],
-            'api/v2/me' => ['identify'],
+            'api/v2/me/{mode?}' => ['identify'],
         ];
 
         $loaded = [];

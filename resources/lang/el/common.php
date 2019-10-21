@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', και ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Διαχειριστής',
         'back_to_previous' => 'Επιστροφή στην προηγούμενη κατάσταση',
@@ -37,6 +41,7 @@ return [
         'change' => 'κάντε αλλαγές',
         'click_to_copy' => 'κάντε κλικ για να αντιγράψετε στο πρόχειρο',
         'click_to_copy_copied' => 'αντιγράφτηκε στο πρόχειρο!',
+        'close' => '',
         'collapse' => 'σύμπτυξη',
         'delete' => 'Διαγραφή',
         'edit' => 'Επεξεργασία',
@@ -58,6 +63,7 @@ return [
         'show_deleted' => 'Εμφάνιση διαγραμμένου',
         'show_more' => 'εμφάνιση περισσότερων',
         'show_more_options' => 'περισσότερες επιλογές',
+        'update' => '',
         'upload_image' => 'ανεβάστε εικόνα',
 
         'watch' => [
@@ -75,8 +81,12 @@ return [
         'minute_short_unit' => 'λεπτό|λεπτά',
         'minutes' => ':count λεπτό|:count λεπτά',
         'months' => ':count μήνας|:count μήνες',
+        'plus_others' => '',
+        'post' => '',
         'second_short_unit' => 'δευτ.|δευτ.',
+        'star_priority' => '',
         'update' => '',
+        'view' => '',
         'years' => ':count χρόνος|:count χρόνια',
     ],
 
@@ -106,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'αφήστε εδώ για να ανεβάσετε',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

@@ -55,5 +55,10 @@ return [
 
     'starting' => [
         'username' => 'Skriv inn e-postadresse eller brukernavn',
+
+        'support' => [
+            '_' => '',
+            'button' => '',
+        ],
     ],
 ];

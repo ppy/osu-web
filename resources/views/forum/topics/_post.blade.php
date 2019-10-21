@@ -16,104 +16,110 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <?php
-    if (!isset($options['deleteLink'])) { $options['deleteLink'] = false; }
-    if (!isset($options['editLink'])) { $options['editLink'] = false; }
-    if (!isset($options['signature'])) { $options['signature'] = true; }
-    if (!isset($options['replyLink'])) { $options['replyLink'] = false; }
-    if (!isset($options['postPosition'])) { $options['postPosition'] = 1; }
-    if (!isset($options['large'])) {
-        $options['large'] = $options['postPosition'] === ($post->trashed() ? 0 : 1);
+    $options['postPosition'] = $options['postPosition'] ?? 1;
+    $options['signature'] = $options['signature'] ?? true;
+
+    $options['buttons']['delete'] = $options['buttons']['delete'] ?? false;
+    $options['buttons']['edit'] = $options['buttons']['edit'] ?? false;
+    $options['buttons']['quote'] = $options['buttons']['quote'] ?? false;
+
+    $buttons = [];
+
+    foreach (['edit', 'delete', 'quote'] as $buttonType) {
+        if ($options['buttons'][$buttonType]) {
+            $buttons[] = $buttonType;
+        }
     }
+
+    $user = $post->userNormalized();
 ?>
 <div
-    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} osu-page {{ $options['large'] ? '' : 'osu-page--small' }}"
-    data-post-id="{{ $post->post_id }}"
+    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} forum-post"
+    data-post-id="{{ $post->getKey() }}"
     data-post-position="{{ $options["postPosition"] }}"
 >
-    <div class="forum-post">
-        @if ($post->userNormalized()->isSpecial())
-            <div
-                class="forum-post__stripe"
-                style="{{ user_color_style($post->userNormalized()->user_colour, "background-color") }}"
-            ></div>
+    @include('forum.topics._post_info', compact('user'))
+
+    <div class="forum-post__body js-forum-post-edit--container">
+        <div class="forum-post__content forum-post__content--header">
+            <div class="forum-post__header-content">
+                @if (isset($topic) && $topic->topic_poster === $post->poster_id)
+                    <div class="forum-post__header-content-item">
+                        <span class="forum-user-badge">
+                            {{ trans('forum.post.info.topic_starter') }}
+                        </span>
+                    </div>
+                @endif
+
+                <div class="forum-post__header-content-item">
+                    {!! link_to_user($user, null, '', ['forum-post__user']) !!}
+
+                    <a class="link link--default js-post-url" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
+                        {!! timeago($post->post_time) !!}
+                    </a>
+                </div>
+            </div>
+
+            @if (count($buttons) > 0)
+                <div class="forum-post__menu">
+                    @php
+                        $menuId = implode(':', ['forum-post', $post->getKey(), rand()]);
+                    @endphp
+                    <button class="forum-post__menu-button js-click-menu" data-click-menu-target="{{ $menuId }}">
+                        <span class="fas fa-ellipsis-v"></span>
+                    </button>
+
+                    <div
+                        class="simple-menu simple-menu--forum-list js-click-menu"
+                        data-visibility="hidden"
+                        data-click-menu-id="{{ $menuId }}"
+                    >
+                        @foreach ($buttons as $button)
+                            @include("forum.posts._button_{$button}", [
+                                'class' => 'simple-menu__item',
+                                'post' => $post,
+                                'type' => 'menu',
+                            ])
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
+
+        <div class="forum-post__content forum-post__content--main">
+            <div class="forum-post-content {{ $options['contentExtraClasses'] ?? '' }}">
+                {!! $post->bodyHTML() !!}
+            </div>
+        </div>
+
+        @if($post->post_edit_count > 0)
+            <div class="forum-post__content forum-post__content--footer">
+                {!!
+                    trans('forum.post.edited', [
+                        'count' => $post->post_edit_count,
+                        'user' => link_to_user($post->lastEditorNormalized(), null, '', ['link link--default']),
+                        'when' => timeago($post->post_edit_time),
+                    ])
+                !!}
+            </div>
         @endif
 
-        @include("forum.topics._post_info", ["user" => $post->userNormalized()])
-
-        <div class="forum-post__body">
-            <div class="forum-post__content forum-post__content--header">
-                <a class="js-post-url link link--gray" rel="nofollow" href="{{ $post->exists ? route('forum.posts.show', $post->post_id) : '#' }}">
-                    {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
-                </a>
+        @if($options["signature"] !== false && present($post->userNormalized()->user_sig))
+            <div class="forum-post__content forum-post__content--signature hidden-xs">
+                {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
             </div>
+        @endif
 
-            <div class="forum-post__content forum-post__content--main">
-                <div class="forum-post-content {{ $options['contentExtraClasses'] ?? '' }}">
-                    {!! $post->bodyHTML() !!}
+        @if (count($buttons) > 0)
+            <div class="forum-post__actions">
+                <div class="forum-post-actions">
+                    @foreach ($buttons as $button)
+                        <div class="forum-post-actions__action">
+                            @include("forum.posts._button_{$button}", ['post' => $post, 'type' => 'circle'])
+                        </div>
+                    @endforeach
                 </div>
             </div>
-
-            @if($post->post_edit_count > 0)
-                <div class="forum-post__content forum-post__content--footer">
-                    {!!
-                        trans('forum.post.edited', [
-                            'count' => $post->post_edit_count,
-                            'user' => link_to_user($post->lastEditorNormalized(), null, ''),
-                            'when' => timeago($post->post_edit_time),
-                        ])
-                    !!}
-                </div>
-            @endif
-
-            @if($options["signature"] !== false && present($post->userNormalized()->user_sig))
-                <div class="forum-post__content forum-post__content--signature hidden-xs">
-                    {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
-                </div>
-            @endif
-        </div>
-
-        <div class="forum-post__actions">
-            <div class="forum-post-actions">
-                @if ($options['editLink'] === true)
-                    <div class="forum-post-actions__action">
-                        <button
-                            type="button"
-                            class="btn-circle edit-post-link"
-                            title="{{ trans('forum.post.actions.edit') }}"
-                            data-tooltip-position="left center"
-                            data-url="{{ route('forum.posts.edit', $post) }}"
-                            data-remote="1"
-                        >
-                            <span class="btn-circle__content">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                        </button>
-                    </div>
-                @endif
-
-                @if ($options["deleteLink"] === true)
-                    <div class="forum-post-actions__action js-post-delete-toggle">
-                        @include('forum.topics._post_hide_action')
-                    </div>
-                @endif
-
-                @if ($options['replyLink'] === true)
-                    <div class="forum-post-actions__action">
-                        <button
-                            type="button"
-                            class="btn-circle js-forum-topic-reply--quote"
-                            title="{{ trans('forum.topics.actions.reply_with_quote') }}"
-                            data-tooltip-position="left center"
-                            data-url="{{ route('forum.posts.raw', ['id' => $post, 'quote' => 1]) }}"
-                            data-remote="1"
-                        >
-                            <span class="btn-circle__content">
-                                <i class="fas fa-reply"></i>
-                            </span>
-                        </button>
-                    </div>
-                @endif
-            </div>
-        </div>
+        @endif
     </div>
 </div>

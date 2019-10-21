@@ -39,6 +39,11 @@ class NotificationsController extends Controller
         $this->middleware('auth');
     }
 
+    public function endpoint()
+    {
+        return ['url' => $this->endpointUrl()];
+    }
+
     /**
      * Get Notifications
      *
@@ -116,12 +121,12 @@ class NotificationsController extends Controller
 
         $unreadCount = auth()->user()->userNotifications()->where('is_read', false)->count();
 
-        return [
+        return response([
             'has_more' => $hasMore,
             'notifications' => $json,
             'unread_count' => $unreadCount,
-            'notification_endpoint' => config('osu.notification.endpoint'),
-        ];
+            'notification_endpoint' => $this->endpointUrl(),
+        ])->header('Cache-Control', 'no-store');
     }
 
     /**
@@ -154,5 +159,18 @@ class NotificationsController extends Controller
         } else {
             return response(null, 422);
         }
+    }
+
+    private function endpointUrl()
+    {
+        $url = config('osu.notification.endpoint');
+
+        if (($url[0] ?? null) === '/') {
+            $host = request()->getHttpHost();
+            $protocol = request()->secure() ? 'wss' : 'ws';
+            $url = "{$protocol}://{$host}{$url}";
+        }
+
+        return $url;
     }
 }

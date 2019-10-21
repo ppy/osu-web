@@ -88,9 +88,6 @@ return [
         'title' => 'Innleggene til :username',
     ],
 
-    'signup' => [
-        '_' => 'Registrer deg',
-    ],
     'anonymous' => [
         'login_link' => 'klikk for å logge inn',
         'login_text' => 'logg inn',
@@ -99,12 +96,12 @@ return [
     ],
     'logout_confirm' => 'Er du sikker på at du vil logge ut? :(',
     'report' => [
-        'button_text' => 'Anmeld',
+        'button_text' => 'Rapporter',
         'comments' => 'Ytterlige Kommentarer',
         'placeholder' => 'Vennligst angi hva som helst av informasjon som du tror kan være nyttig.',
         'reason' => 'Årsak',
         'thanks' => 'Takk for din anmeldelse!',
-        'title' => 'Anmeld :username?',
+        'title' => 'Rapporter :username?',
 
         'actions' => [
             'send' => 'Send Anmeldelse',
@@ -149,10 +146,14 @@ return [
                     'button' => 'Last opp bilde',
                     'dropzone' => 'Slipp her for å laste opp',
                     'dropzone_info' => 'Du kan også slippe bildet ditt her for å laste det opp',
-                    'restriction_info' => "Opplasting er kun tilgjengelig for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supportere</a>",
                     'size_info' => 'Størrelsen på banneret bør være 2800x620',
                     'too_large' => 'Den opplastede filen er for stor.',
                     'unsupported_format' => 'Formatet støttes ikke.',
+
+                    'restriction_info' => [
+                        '_' => 'Oppdatering er bare tilgjengelig for :link',
+                        'link' => '',
+                    ],
                 ],
             ],
 
@@ -163,7 +164,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 følger|:count følgere',
+            'none' => 'ingen',
             'unranked' => 'Ingen nylige spill',
 
             'achievements' => [
@@ -192,6 +193,16 @@ return [
                     'title' => 'Ventende Beatmaps',
                 ],
             ],
+            'discussions' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
+            'events' => [
+                'title' => '',
+                'title_longer' => '',
+                'show_more' => '',
+            ],
             'historical' => [
                 'empty' => 'Ingen prestasjoner :(',
                 'title' => 'Historikk',
@@ -219,7 +230,6 @@ return [
                 'recent_entries' => 'Nylig Kudosu Historie',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Opptjent',
-                'total_info' => 'Basert på hvor mange bidrag en bruker har gjort til beatmapmoderasjon. Se <a href="'.osu_url('user.kudosu').'">denne siden</a> for mer informasjon.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +269,11 @@ return [
                         'revoke' => 'Nektet kudosu fra :giver for innlegget :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '',
+                    'link' => 'denne siden',
+                ],
             ],
             'me' => [
                 'title' => 'om meg!',
@@ -267,6 +282,11 @@ return [
                 'empty' => "Denne brukeren har ikke fått noen ennå. ;_;",
                 'recent' => 'Nyeste',
                 'title' => 'Medaljer',
+            ],
+            'posts' => [
+                'title' => 'Innlegg',
+                'title_longer' => '',
+                'show_more' => '',
             ],
             'recent_activity' => [
                 'title' => 'Nylige',
@@ -284,6 +304,13 @@ return [
                 'first' => [
                     'title' => 'Førsteplasser',
                 ],
+            ],
+            'votes' => [
+                'given' => '',
+                'received' => '',
+                'title' => 'Stemmer',
+                'title_longer' => 'Nylige stemmer',
+                'vote_count' => ':count_delimited stemme|:count_delimited stemmer',
             ],
             'account_standing' => [
                 'title' => 'Kontostatus',
@@ -335,7 +362,11 @@ return [
             'description' => '<strong>me!</strong> er et personlig egendefinerbart område på profilsiden din.',
             'edit_big' => 'Rediger "om meg!"',
             'placeholder' => 'Skriv sideinnhold her',
-            'restriction_info' => "Du må være en <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> for å låse opp denne funksjonen.",
+
+            'restriction_info' => [
+                '_' => 'Du må være en :link for å låse opp denne funksjonen.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Bidratt med :link',
@@ -360,6 +391,11 @@ return [
             'score_ranks' => 'Poengsum Rangering',
             'total_hits' => 'Totale Treff',
             'total_score' => 'Samlet Poengsum',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Rangerte & Godkjente Beatmaps',
+            'loved_beatmapset_count' => 'Elskede Beatmaps',
+            'unranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => '',
         ],
     ],
 
@@ -373,5 +409,10 @@ return [
     ],
     'verify' => [
         'title' => 'Kontobekreftelse',
+    ],
+
+    'view_mode' => [
+        'card' => '',
+        'list' => 'Listevisning',
     ],
 ];

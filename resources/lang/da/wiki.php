@@ -21,7 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Den anmodede side er endnu ikke blevet oversat til (:language). Viser den engelske version.',
-        'languages' => 'Sprog',
+        'incomplete_or_outdated' => '',
         'missing' => 'Den anmodede side ":keyword" kunne ikke blive fundet.',
         'missing_title' => 'Ikke fundet',
         'missing_translation' => 'Den anmodede side kunne ikke blive fundet på det valgte sprog.',
@@ -39,5 +39,12 @@ return [
 
             'default' => 'Engelsk version',
         ],
+    ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
     ],
 ];

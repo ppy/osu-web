@@ -27,14 +27,9 @@ return [
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Home :info',
+            'info' => 'Vrienden',
         ],
-    ],
-
-    'state' => [
-      'friends' => 'vrienden',
-      'mutual' => 'wederzijdse',
     ],
 
     'title' => 'Vrienden',

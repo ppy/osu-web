@@ -28,13 +28,8 @@ return [
     'index' => [
         'title' => [
             '_' => '',
-            'info' => '',
+            'info' => 'Přátelé',
         ],
-    ],
-
-    'state' => [
-      'friends' => 'přátelé',
-      'mutual' => 'vzájemní',
     ],
 
     'title' => 'Přátelé',

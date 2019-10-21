@@ -21,7 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Vyžadovaná stránka ještě nebyla přeložena do vybraného jazyka (:language). Zobrazuji Anglickou verzi.',
-        'languages' => 'Jazyky',
+        'incomplete_or_outdated' => '',
         'missing' => 'Požadovaná stránka ":keyword" nebyla nalezena.',
         'missing_title' => 'Nenalezeno',
         'missing_translation' => 'Požadovaná stránka nebyla nalezena pro zvolený jazyk.',
@@ -39,5 +39,12 @@ return [
 
             'default' => 'Anglická verze',
         ],
+    ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
     ],
 ];

@@ -88,9 +88,12 @@
 @osu-colour-p: hsl(var(--base-hue), 100%, 50%);
 @osu-colour-h1: hsl(var(--base-hue), 100%, 70%);
 @osu-colour-h2: hsl(var(--base-hue), 50%, 45%);
-@osu-colour-l1: hsl(var(--base-hue), 40%, 70%);
-@osu-colour-l2: hsl(var(--base-hue), 40%, 60%);
-@osu-colour-l3: hsl(var(--base-hue), 40%, 50%);
+@osu-colour-c1: hsl(var(--base-hue), 40%, 100%);
+@osu-colour-c2: hsl(var(--base-hue), 40%, 90%);
+@osu-colour-l1: hsl(var(--base-hue), 40%, 80%);
+@osu-colour-l2: hsl(var(--base-hue), 40%, 75%);
+@osu-colour-l3: hsl(var(--base-hue), 40%, 70%);
+@osu-colour-l4: hsl(var(--base-hue), 40%, 50%);
 @osu-colour-d1: hsl(var(--base-hue), 20%, 35%);
 @osu-colour-d2: hsl(var(--base-hue), 20%, 30%);
 @osu-colour-d3: hsl(var(--base-hue), 20%, 25%);
@@ -109,6 +112,11 @@
 // "Basic" Colour Theme (as of 2019)
 //
 
+// osu!Pink
+@osu-colour-pink-hue: 333;
+@osu-colour-pink-1: hsl(@osu-colour-pink-hue, 100%, 70%);
+@osu-colour-pink-2: hsl(@osu-colour-pink-hue, 80%, 60%);
+@osu-colour-pink-3: hsl(@osu-colour-pink-hue, 60%, 50%);
 // Purple
 @osu-colour-purple-hue: 255;
 @osu-colour-purple-1: hsl(@osu-colour-purple-hue, 100%, 70%);
@@ -119,11 +127,11 @@
 @osu-colour-blue-1: hsl(@osu-colour-blue-hue, 100%, 70%);
 @osu-colour-blue-2: hsl(@osu-colour-blue-hue, 80%, 60%);
 @osu-colour-blue-3: hsl(@osu-colour-blue-hue, 60%, 50%);
-// Mint
-@osu-colour-mint-hue: 125;
-@osu-colour-mint-1: hsl(@osu-colour-mint-hue, 100%, 70%);
-@osu-colour-mint-2: hsl(@osu-colour-mint-hue, 80%, 60%);
-@osu-colour-mint-3: hsl(@osu-colour-mint-hue, 60%, 50%);
+// Green
+@osu-colour-green-hue: 125;
+@osu-colour-green-1: hsl(@osu-colour-green-hue, 100%, 70%);
+@osu-colour-green-2: hsl(@osu-colour-green-hue, 80%, 60%);
+@osu-colour-green-3: hsl(@osu-colour-green-hue, 60%, 50%);
 // Lime
 @osu-colour-lime-hue: 90;
 @osu-colour-lime-1: hsl(@osu-colour-lime-hue, 100%, 70%);
@@ -145,6 +153,7 @@
 // TODO: replace group_colour in phpbb_groups and use that instead?
 //
 @osu-colour-group-bot: @osu-colour-f1; // note: bot badges are inverted, so this is actually the background colour
+@osu-colour-group-ppy: #0066FF;
 @osu-colour-group-dev: #EB47D0;
 @osu-colour-group-gmt: #99EB47;
 @osu-colour-group-nat: #EB8C47;

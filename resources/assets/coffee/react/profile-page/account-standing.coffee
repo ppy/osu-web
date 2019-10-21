@@ -52,7 +52,7 @@ export class AccountStanding extends React.PureComponent
                 duration: osu.timeago endTime.format()
 
       h3
-        className: 'page-extra__title page-extra__title--small'
+        className: 'title title--page-extra-small'
         osu.trans 'users.show.extra.account_standing.recent_infringements.title'
 
       div

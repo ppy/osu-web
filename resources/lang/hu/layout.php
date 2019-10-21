@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Ritmus csak egy *kattintásra*! Quendan/EBA, Taiko és más eredeti játékmódok, emellett egy teljes pálya szerkesztő.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Közösség',
+
+            'forum' => 'Fórum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'Bezár (Esc)',
+        'fullscreen' => 'Teljes képernyő be/ki',
+        'zoom' => '',
+        'previous' => 'Előző (bal kurzor)',
+        'next' => 'Következő (jobb kurzor)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'főoldal',
             'account-edit' => 'beállítások',
+            'account-verifyLink' => 'Sikeres hitelesítés',
             'friends-index' => 'barátok',
             'changelog-index' => 'változtatások',
             'changelog-build' => 'verzió',
@@ -42,6 +59,11 @@ return [
             'search' => 'keresés',
             'supportTheGame' => 'támogasd a játékot',
             'team' => 'csapat',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'segítség',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Önnek szüksége van egy fiókra uram. Miért nem rendelkezik még egyel?",
+            'download' => '',
+            'info' => 'Önnek szüksége van egy fiókra uram. Miért nem rendelkezik még egyel?',
             'title' => "Nincs még fiókod?",
         ],
     ],

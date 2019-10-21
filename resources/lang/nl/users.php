@@ -88,9 +88,6 @@ return [
         'title' => ':username\'s berichten',
     ],
 
-    'signup' => [
-        '_' => 'Registreer',
-    ],
     'anonymous' => [
         'login_link' => 'klik om in te loggen',
         'login_text' => 'log in',
@@ -132,7 +129,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Werd lid op :date',
         'lastvisit' => 'Laatst gezien op :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Momenteel online',
         'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
         'origin_country' => 'Uit :country',
         'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
@@ -149,10 +146,14 @@ return [
                     'button' => 'Upload afbeelding',
                     'dropzone' => 'Drop hier om te uploaden',
                     'dropzone_info' => 'Je kunt je afbeelding ook hier droppen om te uploaden',
-                    'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'Cover grootte moet 2800x620 zijn',
                     'too_large' => 'Het geüploade bestand is te groot.',
                     'unsupported_format' => 'Niet ondersteund formaat.',
+
+                    'restriction_info' => [
+                        '_' => 'Upload beschikbaar alleen voor :link',
+                        'link' => 'osu!supporters',
+                    ],
                 ],
             ],
 
@@ -163,7 +164,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 volger|:count volgers',
+            'none' => 'geen',
             'unranked' => 'Geen recente plays',
 
             'achievements' => [
@@ -192,6 +193,16 @@ return [
                     'title' => 'Afwachtende Beatmaps',
                 ],
             ],
+            'discussions' => [
+                'title' => 'Discussies',
+                'title_longer' => 'Recente discussies',
+                'show_more' => 'zie meer discussies',
+            ],
+            'events' => [
+                'title' => 'Gebeurtenissen',
+                'title_longer' => 'Recente gebeurtenissen',
+                'show_more' => 'meer gebeurtenissen zien',
+            ],
             'historical' => [
                 'empty' => 'Geen prestatiegegevens. :(',
                 'title' => 'Historisch',
@@ -219,7 +230,6 @@ return [
                 'recent_entries' => 'Recente Kudosu Geschiedenis',
                 'title' => 'Kudosu!',
                 'total' => 'Totaal Aantal Kudosu Verdiend',
-                'total_info' => 'Gebaseerd op hoeveel contributie de gebruiker heeft geleverd aan beatmap moderatie. Zie <a href="'.osu_url('user.kudosu').'">deze pagina</a> voor meer informatie.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +269,11 @@ return [
                         'revoke' => 'Kudosu geweigerd door :giver voor :post',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => 'Op basis van hoeveel bijdrage de gebruiker heeft geleverd aan beatmap moderatie. Zie :link voor meer informatie.',
+                    'link' => 'deze pagina',
+                ],
             ],
             'me' => [
                 'title' => 'ik!',
@@ -267,6 +282,11 @@ return [
                 'empty' => "Deze gebruiker heeft er nog geen ;_;",
                 'recent' => 'Recent',
                 'title' => 'Medailles',
+            ],
+            'posts' => [
+                'title' => 'Berichten',
+                'title_longer' => 'Recente berichten',
+                'show_more' => 'bekijk meer berichten',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
@@ -284,6 +304,13 @@ return [
                 'first' => [
                     'title' => 'Eerste Ranks',
                 ],
+            ],
+            'votes' => [
+                'given' => 'Gegeven stemmen (de afgelopen 3 maanden)',
+                'received' => 'Ontvangen stemmen (laatste 3 maanden)',
+                'title' => 'Stemmen',
+                'title_longer' => 'Recente stemmen',
+                'vote_count' => ':count_delimited stemmen|:count_delimited stemmen',
             ],
             'account_standing' => [
                 'title' => 'Account Reputatie',
@@ -335,7 +362,11 @@ return [
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
             'edit_big' => 'Bewerk me!',
             'placeholder' => 'Typ pagina inhoud hier',
-            'restriction_info' => "Je moet een <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> zijn om dit te gebruiken.",
+
+            'restriction_info' => [
+                '_' => 'U moet een :link zijn om deze functie te ontgrendelen.',
+                'link' => 'osu!supporter',
+            ],
         ],
         'post_count' => [
             '_' => 'Plaatste :link',
@@ -360,11 +391,16 @@ return [
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Totaal Aantal Hits',
             'total_score' => 'Totaal Aantal Score',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Gerankte & Goedgekeurde Beatmaps',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'unranked_beatmapset_count' => 'Afwachtende Beatmaps',
+            'graveyard_beatmapset_count' => 'Graveyarded Beatmaps',
         ],
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Alle',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -373,5 +409,10 @@ return [
     ],
     'verify' => [
         'title' => 'Accountverificatie',
+    ],
+
+    'view_mode' => [
+        'card' => 'Kaartweergave',
+        'list' => 'Lijst weergave',
     ],
 ];

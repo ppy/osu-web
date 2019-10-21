@@ -19,7 +19,7 @@
  */
 
 return [
-    'title' => 'Reestablecer Contraseña',
+    'title' => 'Reestablecer contraseña',
 
     'button' => [
         'cancel' => 'Cancelar',
@@ -55,5 +55,10 @@ return [
 
     'starting' => [
         'username' => 'Ingresa correo electrónico o nombre de usuario',
+
+        'support' => [
+            '_' => '¿Necesitas asistencia? Contáctanos a través de nuestro :button.',
+            'button' => 'sistema de soporte',
+        ],
     ],
 ];

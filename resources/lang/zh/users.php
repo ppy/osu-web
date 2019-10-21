@@ -88,9 +88,6 @@ return [
         'title' => ':username 的帖子',
     ],
 
-    'signup' => [
-        '_' => '注册',
-    ],
     'anonymous' => [
         'login_link' => '点击登录',
         'login_text' => '登录',
@@ -149,10 +146,14 @@ return [
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'restriction_info' => "自定义头图只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> 可用",
                     'size_info' => '图片大小最好是 2800x620 像素',
                     'too_large' => '上传的图片过大。',
                     'unsupported_format' => '不支持的格式。',
+
+                    'restriction_info' => [
+                        '_' => '自定义头图只有 :link 可用',
+                        'link' => 'osu! 支持者',
+                    ],
                 ],
             ],
 
@@ -163,7 +164,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '关注者：:count',
+            'none' => '无',
             'unranked' => '最近没有玩过',
 
             'achievements' => [
@@ -192,6 +193,16 @@ return [
                     'title' => 'Pending 的谱面',
                 ],
             ],
+            'discussions' => [
+                'title' => '讨论',
+                'title_longer' => '最近讨论',
+                'show_more' => '查看更多讨论',
+            ],
+            'events' => [
+                'title' => '事件',
+                'title_longer' => '最近事件',
+                'show_more' => '查看更多事件',
+            ],
             'historical' => [
                 'empty' => '没有游戏记录。:(',
                 'title' => '历史记录',
@@ -219,7 +230,6 @@ return [
                 'recent_entries' => '最近 Kudosu 记录',
                 'title' => 'Kudosu!',
                 'total' => '总共获得 kudosu',
-                'total_info' => '取决于你对制谱的贡献如何。查看 <a href="'.osu_url('user.kudosu').'">这个页面</a> 以得到更多信息。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -259,6 +269,11 @@ return [
                         'revoke' => '在帖子 :post 中被 :giver 移除 kudosu ',
                     ],
                 ],
+
+                'total_info' => [
+                    '_' => '取决于你对制谱的贡献如何。查看 :link 获得更多信息。',
+                    'link' => '这个页面',
+                ],
             ],
             'me' => [
                 'title' => '个人介绍',
@@ -267,6 +282,11 @@ return [
                 'empty' => "该用户还没有获得成就。;_;",
                 'recent' => '最近取得',
                 'title' => '成就',
+            ],
+            'posts' => [
+                'title' => '回复',
+                'title_longer' => '最近回复',
+                'show_more' => '查看更多回复',
             ],
             'recent_activity' => [
                 'title' => '最近活动',
@@ -284,6 +304,13 @@ return [
                 'first' => [
                     'title' => '第一名',
                 ],
+            ],
+            'votes' => [
+                'given' => '给予投票（最近三个月）',
+                'received' => '所得投票（最近三个月）',
+                'title' => '投票',
+                'title_longer' => '最近投票',
+                'vote_count' => ':count_delimited 票',
             ],
             'account_standing' => [
                 'title' => '帐号状态',
@@ -335,7 +362,11 @@ return [
             'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
-            'restriction_info' => "需要成为 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> 以解锁该特性.",
+
+            'restriction_info' => [
+                '_' => '你需要成为 :link 才能使用此功能。',
+                'link' => 'osu!支持者',
+            ],
         ],
         'post_count' => [
             '_' => '发表了 :link',
@@ -360,6 +391,11 @@ return [
             'score_ranks' => '得分等级',
             'total_hits' => '总命中次数',
             'total_score' => '总分',
+            // modding stats
+            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved 的谱面',
+            'loved_beatmapset_count' => 'Loved 的谱面',
+            'unranked_beatmapset_count' => 'Pending 的谱面',
+            'graveyard_beatmapset_count' => '坟场里的谱面',
         ],
     ],
 
@@ -373,5 +409,10 @@ return [
     ],
     'verify' => [
         'title' => '账户认证',
+    ],
+
+    'view_mode' => [
+        'card' => '卡片检视',
+        'list' => '列表检视',
     ],
 ];

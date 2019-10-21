@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Le rythme est à un seul *clic* !  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Communauté',
+
+            'forum' => 'Forum',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'Fermer (Échap)',
+        'fullscreen' => 'Plein écran',
+        'zoom' => 'Zoom avant/arrière',
+        'previous' => 'Précédent (flèche gauche)',
+        'next' => 'Suivant (flèche droite)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'accueil',
             'account-edit' => 'paramètres',
+            'account-verifyLink' => 'Vérification terminée',
             'friends-index' => 'amis',
             'changelog-index' => 'notes de MàJ',
             'changelog-build' => 'build',
@@ -42,6 +59,11 @@ return [
             'search' => 'rechercher',
             'supportTheGame' => 'supporter le jeu',
             'team' => 'équipe',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'aide',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Vous avez besoin d'un compte, mon cher. Pourquoi n'en avez vous pas ?",
+            'download' => '',
+            'info' => 'Vous avez besoin d\'un compte, mon cher. Pourquoi n\'en avez vous pas ?',
             'title' => "Vous n'avez pas de compte ?",
         ],
     ],

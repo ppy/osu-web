@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => '自動生成された投稿は編集できません。',
-            'not_owner' => '投稿者のみ編集できます。',
+        'destroy' => [
+            'not_owner' => '自分の投稿のみを削除できます。',
+            'resolved' => '解決済みのディスカッションを削除することはできません。',
+            'system_generated' => '自動生成された投稿は削除できません。',
         ],
+
+        'edit' => [
+            'not_owner' => '投稿者のみ編集できます。',
+            'resolved' => '解決済みのディスカッションを編集することはできません。',
+            'system_generated' => '自動生成された投稿は編集できません。',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'このビートマップはディスカッションのためにロックされています。',
         ],

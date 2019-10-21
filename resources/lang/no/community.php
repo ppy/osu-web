@@ -20,49 +20,63 @@
 
 return [
     'support' => [
-        'header' => [
-            // size in font-size
-            'big_description' => 'Elsker du osu!?<br/>
-                                Støtt utviklingen av osu! :D',
-            'small_description' => '',
-            'support_button' => 'Jeg vil støtte osu!',
+        'convinced' => [
+            'title' => 'Jeg er overbevist! :D',
+            'support' => 'støtt osu!',
+            'gift' => 'eller gi support i gave til andre spillere',
+            'instructions' => 'klikk på hjerteknappen for å fortsette til osu!store',
         ],
+        'why-support' => [
+            'title' => 'Hvorfor bør jeg støtte osu!? Hvor går pengene hen?',
 
-        'dev_quote' => 'osu! er et helt gratis spill å spille, men driften av spillet er definitivt ikke så gratis.
-        Mellom kostnadene å idriftsette serverne og det internasjonale høykvalitets-bredbåndet, tiden brukt for å opprettholde systemet og felleskapet,
-        utgivelse av premier for konkurranser, besvaring på problemstillinger som krever støtte og generelt sett det å gjøre folk glade, osu! forbruker en ganske heftig sum med penger!
-        Åh, og ikke glem faktumet at vi gjør dette uten annonser og uten partnerskap med tullete verktøylinjer og lignende!
-            <br/><br/>osu! er på slutten av dagen i stor grad drevet av meg selv, som du kanskje kjenner best som "peppy".
-            jeg måtte slutte på dagsjobben min for å holde tritt med osu!,
-            og sliter til tider med å opprettholde standardene jeg strever for.
-            Jeg vil gjerne takke personlig til de som har støttet osu! til nå,
-            dette gjelder også like mye til de som fortsetter å støtte dette fantastiske spillet og felleskapet i fremtiden :).',
-
-        'supporter_status' => [
-            'contribution' => 'Takk for støtten sin så langt! Du har bidratt med en total på :dollars over :tags tag kjøp!',
-            'gifted' => ':giftedTags av dine supporter tags ble gitt bort i gave (for en sum av :giftedDollars), hvor sjenerøs!',
-            'not_yet' => "Du har ikke en osu!supporter tag ennå :(",
-            'title' => 'Gjeldende osu!supporter status',
-            'valid_until' => 'Din gjeldende osu!supporter tag gjelder inntil :date!',
-            'was_valid_until' => 'Din osu!supporter tag gjaldt inntil :date.',
-        ],
-
-        'why_support' => [
-            'title' => 'Hvorfor burde jeg støtte osu!?',
-            'blocks' => [
-                'dev' => 'Hovedsakelig utviklet og vedlikeholdt av en fyr i Australia',
-                'time' => 'Det tar så mye tid å vedlikeholde det at det ikke lenger er mulig å kalle det en "hobby".',
-                'ads' => 'Ingen annonser noen steder. <br/><br/>
-                        I motsetning til 99.95% av websider, tjener vi ikke på å skyve ting i ansiktet ditt.',
-                'goodies' => 'Du får noen ekstra godbiter!',
+            'team' => [
+                'title' => 'Støtt skaperene',
+                'description' => 'En liten gruppe mennesker utvikler osu! Din støtte hjelper dem med å, du vet.... overleve.',
+            ],
+            'infra' => [
+                'title' => 'Infrastruktur til servere',
+                'description' => 'Alle pengebidrag går mot å finansiere servere for å kjøre nettsiden, flerspillerfunksjoner, rangeringslister osv.',
+            ],
+            'featured-artists' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => '',
+            ],
+            'ads' => [
+                'title' => '',
+                'description' => '',
+            ],
+            'tournaments' => [
+                'title' => 'Offisielle Turneringer',
+                'description' => 'Hjelp til med å finansiere arrangeringen (og premienepotten) til de offisielle verdensmesterskapsturneringene i osu!',
+                'link_text' => 'Se turneringer &raquo;',
+            ],
+            'bounty-program' => [
+                'title' => '',
+                'description' => '',
+                'link_text' => 'Les mer &raquo;',
             ],
         ],
-
         'perks' => [
             'title' => 'Å? Hva får jeg?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'rask og enkel tilgang til beatmaps uten å forlate spillet.',
+            ],
+
+            'friend_ranking' => [
+                'title' => 'Vennerangering',
+                'description' => "Sjekk hvordan du ligger an i forhold til vennene dine på beatmappets rangerinsliste gjennom både spiller og på nettsiden vår.",
+            ],
+
+            'country_ranking' => [
+                'title' => 'Landsrangering',
+                'description' => '',
+            ],
+
+            'mod_filtering' => [
+                'title' => 'Filterer etter modifiikasjoner',
+                'description' => '',
             ],
 
             'auto_downloads' => [
@@ -82,7 +96,7 @@ return [
 
             'customisation' => [
                 'title' => 'Tilpasning',
-                'description' => 'Tilpass profilen din ved å legge til en fullt tilpassbar brukerside.',
+                'description' => "Tilpass profilen din ved å legge til en fullt tilpassbar brukerside.",
             ],
 
             'beatmap_filters' => [
@@ -120,22 +134,30 @@ return [
                 'description' => 'Evnen til å se landsrangering / vennerangering / modifikasjons-spesifikke rangeringer i spillet.',
             ],
 
-            'feel_special' => [
-                'title' => 'Føl deg spesiell',
-                'description' => 'Den varme og gode følelsen av å gjøre din del slik at osu! kan fortsette å kjøre jevnt, uten problemer!',
+            'more_favourites' => [
+                'title' => 'Flere favoritter',
+                'description' => 'Det makimalt antallet beatmaps som du kan legge til å favorittene dine har blitt hevet fra :normally &rarr; :supporter',
             ],
-
-            'more_to_come' => [
-                'title' => 'Mer kommer',
+            'more_friends' => [
+                'title' => 'Flere venner',
                 'description' => '',
             ],
-        ],
+            'more_beatmaps' => [
+                'title' => 'Last opp flere beatmaps',
+                'description' => 'Antallet ikke-rangerte beatmaps som du kan ha på en gang er beregnet ut ifra en grunnverdi, pluss en tilleggsbonus for hvert rangerte map du har (opp til en satt maksgrense).<br/><br/>Vanligvis vil dette si at du har en grunnverdi på 4 poeng, pluss 1 poeng per rangerte beatmap (maks 2 maps). Med supporter, økes disse verdiene slik at du har en grunnverdi på 8. Deretter vil du få 1 poeng per rangerte beatmap (maks 12 maps).',
+            ],
+            'friend_filtering' => [
+                'title' => '',
+                'description' => '',
+            ],
 
-        'convinced' => [
-            'title' => 'Jeg er overbevist! :D',
-            'support' => 'støtt osu!',
-            'gift' => 'eller gi support i gave til andre spillere',
-            'instructions' => 'klikk på hjerteknappen for å fortsette til osu!store',
+        ],
+        'supporter_status' => [
+            'contribution' => 'Takk for støtten sin så langt! Du har bidratt med en total på :dollars over :tags tag kjøp!',
+            'gifted' => ":giftedTags av dine supporter tags ble gitt bort i gave (for en sum av :giftedDollars), hvor sjenerøs!",
+            'not_yet' => "Du har ikke en osu!supporter tag ennå :(",
+            'valid_until' => 'Din gjeldende osu!supporter tag gjelder inntil :date!',
+            'was_valid_until' => 'Din osu!supporter tag gjaldt inntil :date.',
         ],
     ],
 ];

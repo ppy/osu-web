@@ -27,7 +27,7 @@ return [
         'nominate' => [
             'exhausted' => 'Ai atins limita de nominalizări pentru această zi, te rugăm să încerci din nou mâine.',
             'full_bn_required' => '',
-            'full_bn_required_hybrid' => '',
+            'full_bn_required_hybrid' => 'Trebuie să fi un nominator complet pentru a nominaliza beatmap-uri care au mai mult de un singur mod de joc.',
             'incorrect_state' => 'S-a produs o eroare la efectuarea acestei acțiuni, încearcă să reîmprospătezi pagina.',
             'owner' => "Nu îți poți nominaliza propriul beatmap.",
         ],
@@ -47,12 +47,20 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Postările generate automat nu pot fi editate.',
-            'not_owner' => 'Doar proprietarul poate edita această postare.',
+        'destroy' => [
+            'not_owner' => '',
+            'resolved' => '',
+            'system_generated' => '',
         ],
+
+        'edit' => [
+            'not_owner' => 'Doar proprietarul poate edita această postare.',
+            'resolved' => '',
+            'system_generated' => 'Postările generate automat nu pot fi editate.',
+        ],
+
         'store' => [
-            'beatmapset_locked' => '',
+            'beatmapset_locked' => 'Acest beatmap este blocat pentru discuții.',
         ],
     ],
 
@@ -124,7 +132,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Accesul la forumul solicitat este necesar.',
                 'over' => 'Sondajul s-a încheiat și nu se mai poate vota.',
-                'play_more' => '',
+                'play_more' => 'Trebuie să joci mai mult înainte de a vota pe forum.',
                 'voted' => 'Schimbarea votului nu este permisă.',
 
                 'user' => [

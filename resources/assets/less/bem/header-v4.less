@@ -1,0 +1,121 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.header-v4 {
+  @_top: header-v4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media @desktop {
+    height: 290px;
+  }
+
+  &__bg {
+    margin: auto;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+
+    &::before {
+      .full-size();
+      content: '';
+      background-image: linear-gradient(to right, @osu-colour-d5, transparent 200px, transparent 1000px, @osu-colour-d5 1200px);
+      background-position: center;
+    }
+
+    .@{_top}--forum & {
+      .at2x-simple('/images/headers/forum-topic-covers/forum-cover-category-osu.jpg');
+    }
+
+    .@{_top}--forums-index & {
+      .at2x-simple('/images/headers/forum-index.jpg');
+    }
+  }
+
+  &__bg-container {
+    .full-size();
+    .default-box-shadow();
+    background-color: @osu-colour-d5;
+  }
+
+  &__content {
+    .page-width-default();
+    color: @osu-colour-c1;
+  }
+
+  &__icon {
+    background-image: url('/images/icons/changelog.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    align-self: stretch;
+    width: 40px;
+    margin-right: 10px;
+    flex: none;
+  }
+
+  &__row {
+    padding-top: 0;
+    padding-bottom: 0;
+    .default-gutter-v2();
+    display: flex;
+    align-items: center;
+
+    &--bar {
+      background-color: @osu-colour-d4;
+
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      @media @desktop {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+    }
+
+    &--title {
+      background-color: @osu-colour-d5;
+      font-size: @font-size--large;
+
+      display: none;
+
+      @media @desktop {
+        display: flex;
+      }
+    }
+  }
+
+  &__title {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  &__title-action {
+    color: @osu-colour-h1;
+  }
+
+  &__title-section {
+    font-weight: 600;
+  }
+}

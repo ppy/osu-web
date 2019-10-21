@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Rytmen är bara ett *klick* bort!  Med Ouendan/EBA, Taiko och originala spel lägen, och en full funktionell nivå redigerare.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'hem',
             'account-edit' => 'inställningar',
+            'account-verifyLink' => '',
             'friends-index' => 'vänner',
             'changelog-index' => 'ändringslogg',
             'changelog-build' => 'bygget',
@@ -42,6 +59,11 @@ return [
             'search' => 'sök',
             'supportTheGame' => 'stötta spelet',
             'team' => 'lag',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'hjälp',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Herrn, du behöver ett konto. Varför har du inte ett redan?",
+            'download' => '',
+            'info' => 'Herrn, du behöver ett konto. Varför har du inte ett redan?',
             'title' => "Har du inte ett konto?",
         ],
     ],

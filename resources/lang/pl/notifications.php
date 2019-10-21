@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_lock_compact' => 'Dyskusja została zablokowana',
                 'beatmapset_discussion_post_new' => 'Nowy post dla beatmapy „:title” od użytkownika :username',
                 'beatmapset_discussion_post_new_compact' => 'Nowy post od użytkownika :username',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
                 'beatmapset_discussion_unlock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało odblokowane.',
                 'beatmapset_discussion_unlock_compact' => 'Dyskusja została odblokowana',
             ],
@@ -55,8 +57,8 @@ return [
             'comment' => [
                 '_' => 'Nowy komentarz',
 
-                'comment_new' => ':username komentuje „:content” dla „:title”',
-                'comment_new_compact' => ':username komentuje „:content”',
+                'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
+                'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
             ],
         ],
 
@@ -66,7 +68,7 @@ return [
             'channel' => [
                 '_' => 'Nowa wiadomość',
                 'pm' => [
-                    'channel_message' => ':username pisze „:title”',
+                    'channel_message' => ':username pisze: „:title”',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'od użytkownika :username',
                 ],
@@ -79,8 +81,8 @@ return [
             'comment' => [
                 '_' => 'Nowy komentarz',
 
-                'comment_new' => ':username komentuje „:content” dla „:title”',
-                'comment_new_compact' => ':username komentuje „:content”',
+                'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
+                'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
             ],
         ],
 
@@ -90,8 +92,8 @@ return [
             'comment' => [
                 '_' => 'Nowy komentarz',
 
-                'comment_new' => ':username komentuje „:content” dla „:title”',
-                'comment_new_compact' => ':username komentuje „:content”',
+                'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
+                'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
             ],
         ],
 
@@ -101,7 +103,7 @@ return [
             'forum_topic_reply' => [
                 '_' => 'Nowa odpowiedź na forum',
                 'forum_topic_reply' => 'Użytkownik :username odpowiedział w wątku „:title”',
-                'forum_topic_reply_compact' => ':username odpowiada',
+                'forum_topic_reply_compact' => 'Użytkownik :username odpowiedział',
             ],
         ],
 

@@ -29,6 +29,10 @@ return [
         'last_word_connector' => '和',
     ],
 
+    'badges' => [
+        'new' => '新的',
+    ],
+
     'buttons' => [
         'admin' => '管理员',
         'back_to_previous' => '返回上一位置',
@@ -37,6 +41,7 @@ return [
         'change' => '更改',
         'click_to_copy' => '点击以复制到剪贴板',
         'click_to_copy_copied' => '已经复制到剪贴板！',
+        'close' => '关闭',
         'collapse' => '折叠',
         'delete' => '删除',
         'edit' => '编辑',
@@ -58,6 +63,7 @@ return [
         'show_deleted' => '显示已删除的评论',
         'show_more' => '显示更多',
         'show_more_options' => '显示更多选项',
+        'update' => '更新',
         'upload_image' => '上传图片',
 
         'watch' => [
@@ -75,8 +81,12 @@ return [
         'minute_short_unit' => '分钟',
         'minutes' => ':count 分钟',
         'months' => ':count 个月',
+        'plus_others' => '还有 :count_delimited 人！ | 还有 :count_delimited 人！',
+        'post' => ':count_delimited 篇帖子',
         'second_short_unit' => '秒',
+        'star_priority' => ':count_delimited 个优先星',
         'update' => ':count_delimited 更新',
+        'view' => ':count_delimited 次浏览',
         'years' => ':count_delimited 年',
     ],
 
@@ -106,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => '拖动到此处以上传',
+    ],
+
+    'input' => [
+        'search' => '搜索...',
     ],
 
     'pagination' => [

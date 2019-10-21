@@ -26,8 +26,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次数已达上限，请明天再试。',
-            'full_bn_required' => '您必须是一个完整的提名者，才能执行这一资格提名。',
-            'full_bn_required_hybrid' => '您必须是一个全称提名者，以提名包含多于一个游戏模式的谱图。',
+            'full_bn_required' => '你必须是一位完整提名者才能执行有效提名。',
+            'full_bn_required_hybrid' => '你必须是一位完整提名者，以提名包含多个游戏模式的谱面。',
             'incorrect_state' => '操作出错了，请尝试刷新页面。',
             'owner' => "不能提名自己的谱面。",
         ],
@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => '无法编辑自动回复。',
-            'not_owner' => '只有作者可以编辑。',
+        'destroy' => [
+            'not_owner' => '你只能删除你自己的帖子。',
+            'resolved' => '你不能删除已解决的讨论帖。',
+            'system_generated' => '自动生成的帖子无法删除。',
         ],
+
+        'edit' => [
+            'not_owner' => '只有作者可以编辑。',
+            'resolved' => '你不能编辑已解决讨论里的帖子。',
+            'system_generated' => '无法编辑自动回复。',
+        ],
+
         'store' => [
             'beatmapset_locked' => '该谱面因需要探讨而被锁定。',
         ],

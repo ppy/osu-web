@@ -79,6 +79,11 @@ class Beatmap extends Model
         'mania' => 3,
     ];
 
+    public static function isModeValid(?string $mode)
+    {
+        return array_key_exists($mode, static::MODES);
+    }
+
     public static function modeInt($str)
     {
         return static::MODES[$str] ?? null;
@@ -91,7 +96,7 @@ class Beatmap extends Model
 
     public function beatmapset()
     {
-        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id')->withTrashed();
     }
 
     public function beatmapDiscussions()
@@ -184,7 +189,7 @@ class Beatmap extends Model
     {
         $mode ?? ($mode = $this->mode);
 
-        if (!array_key_exists($mode, static::MODES)) {
+        if (!static::isModeValid($mode)) {
             throw new ScoreRetrievalException(trans('errors.beatmaps.invalid_mode'));
         }
 

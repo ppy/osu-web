@@ -32,24 +32,26 @@ return [
                 'beatmapset_discussion_lock_compact' => 'La discussione è stata bloccata',
                 'beatmapset_discussion_post_new' => 'Nuovo post su ":title" da :username',
                 'beatmapset_discussion_post_new_compact' => 'Nuovo post da :username',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
                 'beatmapset_discussion_unlock' => 'La discussione su ":title" è stata sbloccata',
                 'beatmapset_discussion_unlock_compact' => 'La discussione è stata sbloccata',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Lo stato della beatmap è stato modificato',
-                'beatmapset_disqualify' => '":title" è stato rimosso',
-                'beatmapset_disqualify_compact' => 'La beatmap è stata rimossa',
-                'beatmapset_love' => '":title" è stato promosso ad amato',
-                'beatmapset_love_compact' => 'La beatmap è stato promossa ad amato',
-                'beatmapset_nominate' => '":title" è stato nominato',
+                'beatmapset_disqualify' => '":title" è stata squalificata',
+                'beatmapset_disqualify_compact' => 'La beatmap è stata squalificata',
+                'beatmapset_love' => '":title" è stata promossa tra le amate',
+                'beatmapset_love_compact' => 'La beatmap è stata promossa tra le amate',
+                'beatmapset_nominate' => '":title" è stata nominata',
                 'beatmapset_nominate_compact' => 'La beatmap è stata nominata',
-                'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è stato inserito nella coda di classificazione',
-                'beatmapset_qualify_compact' => 'La beatmap è stata inserita nella coda di classificazione',
-                'beatmapset_rank' => '":title" è stato classificato',
+                'beatmapset_qualify' => '":title" ha ottenuto abbastanza nomine ed è entrata nella coda di classificazione',
+                'beatmapset_qualify_compact' => 'La beatmap è entrata nella coda di classificazione',
+                'beatmapset_rank' => '":title" è stata classificata',
                 'beatmapset_rank_compact' => 'La beatmap è stata classificata',
                 'beatmapset_reset_nominations' => 'La nomina di ":title" è stata reimpostata',
-                'beatmapset_reset_nominations_compact' => 'Nomina reimpostata',
+                'beatmapset_reset_nominations_compact' => 'La nomina è stata reimpostata',
             ],
 
             'comment' => [
@@ -66,7 +68,7 @@ return [
             'channel' => [
                 '_' => 'Nuovo messaggio',
                 'pm' => [
-                    'channel_message' => ':username dice ":title"',
+                    'channel_message' => ':username ha scritto ":title"',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'da :username',
                 ],
@@ -96,7 +98,7 @@ return [
         ],
 
         'forum_topic' => [
-            '_' => 'Argomento del forum',
+            '_' => 'Topic del forum',
 
             'forum_topic_reply' => [
                 '_' => 'Nuova risposta sul forum',

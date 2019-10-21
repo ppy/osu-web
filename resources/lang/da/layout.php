@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Rytmen er kun et *klik* væk!  Med Ouendan/EBA, Taiko og originale spilmodes, såvel som en fuld funktionel beatmap-editor.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => 'Zoom ind/ud',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'hjem',
             'account-edit' => 'indstillinger',
+            'account-verifyLink' => '',
             'friends-index' => 'venner',
             'changelog-index' => 'changelog',
             'changelog-build' => 'byg',
@@ -42,6 +59,11 @@ return [
             'search' => 'søg',
             'supportTheGame' => 'støt spillet',
             'team' => 'team',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'hjælp',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Du skal have en konto, min gode mand! Hvor har du ikke én endnu?",
+            'download' => '',
+            'info' => 'Du skal have en konto, min gode mand! Hvor har du ikke én endnu?',
             'title' => "Har du ikke en konto?",
         ],
     ],

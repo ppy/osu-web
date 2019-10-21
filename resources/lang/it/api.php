@@ -21,7 +21,7 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => '',
+            'empty' => 'Non puoi inviare messaggi vuoti.',
             'limit_exceeded' => 'Stai inviando messaggi troppo velocemente, per favore aspetta un po\' prima di riprovare.',
             'too_long' => 'Il messaggio che vuoi inviare è troppo lungo.',
         ],
@@ -31,7 +31,7 @@ return [
         'identify' => 'Identificarti e leggere il tuo profilo pubblico.',
 
         'friends' => [
-            'read' => 'Vedi chi stai seguendo.',
+            'read' => 'Vedere chi stai seguendo.',
         ],
     ],
 ];

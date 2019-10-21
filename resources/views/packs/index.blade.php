@@ -66,7 +66,7 @@
                 @endforeach
 
                 <div class="beatmap-packs__pager">
-                    @include('objects._pagination', ['object' => $packs])
+                    @include('objects._pagination_v2', ['object' => $packs])
                 </div>
             </div>
         </div>

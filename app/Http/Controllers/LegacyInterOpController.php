@@ -31,6 +31,7 @@ use App\Models\Event;
 use App\Models\Forum;
 use App\Models\NewsPost;
 use App\Models\Notification;
+use App\Models\Score\Best;
 use App\Models\User;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -115,6 +116,8 @@ class LegacyInterOpController extends Controller
 
         Event::generate('achievement', compact('achievement', 'user'));
         broadcast_notification(Notification::USER_ACHIEVEMENT_UNLOCK, $achievement, $user);
+
+        return $achievement->getKey();
     }
 
     public function userBestScoresCheck($id)
@@ -133,6 +136,11 @@ class LegacyInterOpController extends Controller
         $user = User::findOrFail($id);
 
         dispatch(new EsIndexDocument($user));
+
+        foreach (Beatmap::MODES as $modeStr => $modeId) {
+            $class = Best\Model::getClassByString($modeStr);
+            $class::queueIndexingForUser($user);
+        }
 
         return response(null, 204);
     }

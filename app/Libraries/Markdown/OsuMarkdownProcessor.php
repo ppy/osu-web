@@ -21,20 +21,18 @@
 namespace App\Libraries\Markdown;
 
 use League\CommonMark\Block\Element as Block;
-use League\CommonMark\Block\Element\Document;
-use League\CommonMark\DocumentProcessorInterface;
+use League\CommonMark\EnvironmentInterface;
+use League\CommonMark\Event\DocumentParsedEvent;
+use League\CommonMark\Ext\Table as TableExtension;
 use League\CommonMark\Inline\Element as Inline;
-use League\CommonMark\Util\Configuration;
-use League\CommonMark\Util\ConfigurationAwareInterface;
-use Webuni\CommonMark\TableExtension;
 
-class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
+class OsuMarkdownProcessor
 {
     public $firstImage;
     public $title;
     public $toc;
 
-    private $config;
+    private $environment;
     private $event;
     private $node;
     private $previousNode;
@@ -42,19 +40,20 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
     private $listLevel;
     private $tocSlugs;
 
-    public function setConfiguration(Configuration $config)
+    public function __construct(EnvironmentInterface $environment)
     {
-        $this->config = $config;
+        $this->environment = $environment;
     }
 
-    public function processDocument(Document $document)
+    public function onDocumentParsed(DocumentParsedEvent $event)
     {
+        $document = $event->getDocument();
         $walker = $document->walker();
 
-        $fixRelativeUrl = $this->config->getConfig('relative_url_root') !== null;
-        $generateToc = $this->config->getConfig('generate_toc');
-        $recordFirstImage = $this->config->getConfig('record_first_image');
-        $titleFromDocument = $this->config->getConfig('title_from_document');
+        $fixRelativeUrl = $this->environment->getConfig('relative_url_root') !== null;
+        $generateToc = $this->environment->getConfig('generate_toc');
+        $recordFirstImage = $this->environment->getConfig('record_first_image');
+        $titleFromDocument = $this->environment->getConfig('title_from_document');
 
         $this->firstImage = null;
         $this->title = null;
@@ -103,7 +102,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             return;
         }
 
-        $blockClass = $this->config->getConfig('block_name');
+        $blockClass = $this->environment->getConfig('block_name');
 
         switch (get_class($this->node)) {
             case Block\ListBlock::class:
@@ -159,10 +158,14 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
                 $src = substr($src, 2);
             }
 
-            $this->node->setUrl($this->config->getConfig('relative_url_root').'/'.$src);
+            $this->node->setUrl($this->environment->getConfig('relative_url_root').'/'.$src);
         }
     }
 
+    /**
+     * @param \League\CommonMark\Node\Node $node
+     * @return string
+     */
     public function getText($node)
     {
         $text = '';
@@ -221,7 +224,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             return;
         }
 
-        $blockClass = $this->config->getConfig('block_name');
+        $blockClass = $this->environment->getConfig('block_name');
 
         $image = $this->node->children()[0];
         $this->node->data['attributes']['class'] = "{$blockClass}__figure-container";

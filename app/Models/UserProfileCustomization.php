@@ -121,6 +121,16 @@ class UserProfileCustomization extends Model
         $this->setOption('extras_order', static::repairExtrasOrder($value));
     }
 
+    public function getRankingExpandedAttribute()
+    {
+        return $this->options['ranking_expanded'] ?? true;
+    }
+
+    public function setRankingExpandedAttribute($value)
+    {
+        $this->setOption('ranking_expanded', $value);
+    }
+
     public function setOption($key, $value)
     {
         $this->options = array_merge($this->options ?? [], [$key => $value]);

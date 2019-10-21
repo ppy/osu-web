@@ -29,7 +29,7 @@ class UserVerification extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $key;
+    public $keys;
     public $user;
     public $requestCountry;
 
@@ -40,7 +40,7 @@ class UserVerification extends Mailable implements ShouldQueue
      */
     public function __construct($attributes)
     {
-        $this->key = $attributes['key'];
+        $this->keys = $attributes['keys'];
         $this->user = $attributes['user'];
         $this->requestCountry = $attributes['requestCountry'];
     }

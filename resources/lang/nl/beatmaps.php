@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu toestaan',
+        'beatmap_information' => 'Beatmap pagina',
         'delete' => 'verwijder',
         'deleted' => 'Verwijderd door :editor :delete_time.',
         'deny_kudosu' => 'kudosu ontzeggen',
@@ -140,8 +141,14 @@ return [
         ],
 
         'votes' => [
-            'up' => 'Stem deze discussie bij',
-            'down' => 'Stem deze discussie af',
+            'none' => [
+                'down' => 'Nog geen downvotes',
+                'up' => 'Nog geen upvotes',
+            ],
+            'latest' => [
+                'down' => 'Laatste downvotes',
+                'up' => 'Laatste upvotes',
+            ],
         ],
     ],
 
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => 'Alles',
         'approved' => 'Goedgekeurd',
-        'favourites' => '',
+        'favourites' => 'Favorieten',
         'graveyard' => 'Begraafplaats',
-        'leaderboard' => '',
+        'leaderboard' => 'Heeft Ranglijst',
         'loved' => 'Loved',
-        'mine' => '',
+        'mine' => 'Mijn Mappen',
         'pending' => 'Pending & WIP',
         'qualified' => 'Gekwalificeerd',
-        'ranked' => '',
+        'ranked' => 'Ranked',
     ],
     'genre' => [
         'any' => 'Alles',
@@ -280,6 +287,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
+        'MR' => 'Mirror',
         'NC' => '',
         'NF' => '',
         'NM' => '',

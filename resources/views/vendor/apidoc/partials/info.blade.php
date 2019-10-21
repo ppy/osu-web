@@ -16,6 +16,12 @@ Code examples are provided in the dark area to the right, you can use the tabs a
 If you use [Postman](https://getpostman.com), you can [download a collection here](collection.json).
 @endif
 
+# Terms of Use
+
+Use the API for good. Don't overdo it. If in doubt, ask before (ab)using :). _this section may expand as necessary_.
+
+Current rate limit is set at an insanely high 1200 requests per minute, with burst capability of up to 200 beyond that. If you require more, you probably fall into the above category of abuse. If you are doing more than 60 requests a minute, you should probably give [peppy](mailto:pe@ppy.sh) a yell.
+
 # Endpoint
 
 ## Base URL
@@ -54,3 +60,16 @@ osu!api requires a valid token to be included with all API requests in a header 
 <aside class="notice">
 You must replace <code>@{{token}}</code> with your OAuth2 token.
 </aside>
+
+# Changelog
+
+For a full list of changes, see the
+[Changelog on the site]({{ route('changelog.show', ['version' => 'web']) }}).
+
+## Breaking Changes
+
+### 2019-10-09
+- Ranking API response no longer returns an array at the top level; an object with keys is now returned.
+
+### 2019-07-18
+- [`User`](#user) now returns counts directly as primitives instead of numbers wrapped in an array.

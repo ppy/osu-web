@@ -1,40 +1,18 @@
 <?php
 
+namespace Tests\Controllers;
+
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Models\UserGroup;
+use DB;
+use Tests\TestCase;
 
 class BeatmapDiscussionsControllerTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->mapper = factory(User::class)->create();
-        $this->user = factory(User::class)->create();
-        $this->anotherUser = factory(User::class)->create();
-        $this->bngUser = factory(User::class)->create();
-        $this->bngUserGroup($this->bngUser);
-        $this->beatmapset = factory(Beatmapset::class)->create([
-            'user_id' => $this->mapper->user_id,
-            'discussion_enabled' => true,
-            'approved' => Beatmapset::STATES['pending'],
-        ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
-            'user_id' => $this->mapper->user_id,
-        ]));
-        $this->discussion = BeatmapDiscussion::create([
-            'beatmapset_id' => $this->beatmapset->getKey(),
-            'timestamp' => 0,
-            'message_type' => 'problem',
-            'beatmap_id' => $this->beatmap->beatmap_id,
-            'user_id' => $this->user->user_id,
-        ]);
-    }
-
     // normal vote
     public function testPutVoteInitial()
     {
@@ -97,7 +75,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAs($this->bngUser)
-            ->withSession(['verified' => \App\Libraries\UserVerification::VERIFIED])
+            ->withSession(['verified' => true])
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
@@ -181,7 +159,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAs($this->bngUser)
-            ->withSession(['verified' => \App\Libraries\UserVerification::VERIFIED])
+            ->withSession(['verified' => true])
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
@@ -189,6 +167,32 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this->assertSame($currentVotes + 1, BeatmapDiscussionVote::count());
         $this->assertSame($currentScore - 1, $this->currentScore($this->discussion));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->mapper = factory(User::class)->create();
+        $this->user = factory(User::class)->create();
+        $this->anotherUser = factory(User::class)->create();
+        $this->bngUser = factory(User::class)->create();
+        $this->bngUserGroup($this->bngUser);
+        $this->beatmapset = factory(Beatmapset::class)->create([
+            'user_id' => $this->mapper->user_id,
+            'discussion_enabled' => true,
+            'approved' => Beatmapset::STATES['pending'],
+        ]);
+        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
+            'user_id' => $this->mapper->user_id,
+        ]));
+        $this->discussion = BeatmapDiscussion::create([
+            'beatmapset_id' => $this->beatmapset->getKey(),
+            'timestamp' => 0,
+            'message_type' => 'problem',
+            'beatmap_id' => $this->beatmap->beatmap_id,
+            'user_id' => $this->user->user_id,
+        ]);
     }
 
     private function bngUserGroup($user)

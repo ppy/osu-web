@@ -1,0 +1,164 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.forum-post-edit {
+  @_top: forum-post-edit;
+
+  .fancy-scrollbar();
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; // prevent preview overflow in mobile
+  min-width: 0; // prevent image overflow
+
+  &--create {
+    .default-gutter-v2();
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: @osu-colour-b2;
+  }
+
+  &__body {
+    .reset-input();
+    font-family: @font-family-monospace;
+    font-size: @font-size--phone-input;
+    resize: vertical;
+    width: 100%;
+    min-height: 150px;
+    flex: 1 0 auto;
+
+    &:invalid {
+      box-shadow: none; // disable highlight on firefox
+    }
+
+    @media @desktop {
+      min-height: 300px;
+      font-size: @font-size--title-small;
+    }
+
+    .@{_top}[data-state=preview] & {
+      display: none;
+    }
+
+    .@{_top}[data-state=loading-preview] & {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  &__button {
+    margin: 5px;
+
+    &--deactivate {
+      display: none;
+
+      .js-forum-topic-reply[data-state=stick] & {
+        display: block;
+      }
+    }
+
+    &--preview {
+      .@{_top}[data-state=loading-preview] &,
+      .@{_top}[data-state=preview] & {
+        display: none;
+      }
+    }
+
+    &--write {
+      .@{_top}[data-state=write] & {
+        display: none;
+      }
+    }
+  }
+
+  &__buttons {
+    margin: 5px;
+    display: flex;
+
+    &--actions {
+      margin: 0;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    &--toolbar {
+      .@{_top}[data-state=loading-preview] &,
+      .@{_top}[data-state=preview] & {
+        display: none;
+      }
+    }
+  }
+
+  &__buttons-bar {
+    margin: auto -5px -5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media @desktop {
+      flex-direction: row;
+    }
+  }
+
+  &__content {
+    background-color: @osu-colour-b4;
+    border-radius: @border-radius-large;
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; // prevent preview overflow in mobile
+
+    .@{_top}--create & {
+      padding: 20px 20px 10px;
+    }
+  }
+
+  &__header {
+    margin-bottom: 10px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input-title {
+    .reset-input();
+    font-size: @font-size--title;
+    margin-bottom: 10px;
+  }
+
+  &__preview {
+    display: none;
+
+    .@{_top}[data-state=preview] & {
+      display: block;
+      min-height: 0;
+      overflow-y: auto;
+      margin-bottom: 5px;
+    }
+  }
+
+  &__title {
+    font-size: @font-size--title-small;
+    color: @osu-colour-c1;
+    padding: 0;
+    margin: 0;
+    font-style: normal;
+    flex: 1;
+  }
+}

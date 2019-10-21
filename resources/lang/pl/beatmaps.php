@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'zezwól na kudosu',
+        'beatmap_information' => 'Informacje o beatmapie',
         'delete' => 'usuń',
         'deleted' => 'Usunięte przez :editor :delete_time',
         'deny_kudosu' => 'odrzuć kudosu',
@@ -133,15 +134,21 @@ return [
 
         'status-messages' => [
             'approved' => 'Ta beatmapa została zatwierdzona :date!',
-            'graveyard' => "Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez swojego twórcę...",
+            'graveyard' => "Ta beatmapa nie była aktualizowana od :date i trafiła do kategorii porzuconych...",
             'loved' => 'Ta beatmapa otrzymała status ulubionej społeczności :date!',
             'ranked' => 'Ta beatmapa otrzymała status rankingowy :date!',
             'wip' => 'Ważne: Ta beatmapa została oznaczona przez twórcę jako aktualnie rozwijana.',
         ],
 
         'votes' => [
-            'up' => 'Oceń tę dyskusję poztywnie',
-            'down' => 'Oceń tę dyskusję negatywnie',
+            'none' => [
+                'down' => 'Brak negatywnych ocen',
+                'up' => 'Brak pozytywnych ocen',
+            ],
+            'latest' => [
+                'down' => 'Ostatnie negatywne oceny',
+                'up' => 'Ostatnie pozytywne oceny',
+            ],
         ],
     ],
 
@@ -244,14 +251,14 @@ return [
     'status' => [
         'any' => 'Jakikolwiek',
         'approved' => 'Zatwierdzone',
-        'favourites' => '',
+        'favourites' => 'Ulubione',
         'graveyard' => 'Porzucone',
-        'leaderboard' => '',
+        'leaderboard' => 'Z tabelą wyników',
         'loved' => 'Ulubione społeczności',
-        'mine' => '',
+        'mine' => 'Moje beatmapy',
         'pending' => 'Oczekujące i rozwijane',
         'qualified' => 'Zakwalifikowane',
-        'ranked' => '',
+        'ranked' => 'Rankingowe',
     ],
     'genre' => [
         'any' => 'Jakikolwiek',
@@ -280,6 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
+        'MR' => 'Mirror',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'Brak modyfikatorów',

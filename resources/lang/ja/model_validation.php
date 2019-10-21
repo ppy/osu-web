@@ -27,6 +27,10 @@ return [
     'beatmap_discussion_post' => [
         'discussion_locked' => 'ディスカッションはロックされています。',
         'first_post' => '最初の投稿は削除できません。',
+
+        'attributes' => [
+            'message' => 'メッセージ',
+        ],
     ],
 
     'beatmapset_discussion' => [
@@ -36,6 +40,11 @@ return [
         'invalid_beatmap_id' => '無効の難易度が指定されました。',
         'invalid_beatmapset_id' => '無効なビートマップが指定されました。',
         'locked' => 'ディスカッションはロックされています。',
+
+        'attributes' => [
+            'message_type' => 'メッセージタイプ',
+            'timestamp' => 'タイムスタンプ',
+        ],
 
         'hype' => [
             'guest' => 'Hypeするにはログインが必要です。',
@@ -53,6 +62,10 @@ return [
 
     'comment' => [
         'deleted_parent' => '削除されたコメントに返信することはできません。',
+
+        'attributes' => [
+            'message' => 'メッセージ',
+        ],
     ],
 
     'follow' => [
@@ -73,6 +86,16 @@ return [
             'beatmapset_post_no_delete' => 'ビートマップのメタデータ投稿を削除するのは許可されていません。',
             'beatmapset_post_no_edit' => 'ビートマップのメタデータ投稿を編集するのは許可されていません。',
             'only_quote' => 'あなたの返信には引用しかありません。',
+
+            'attributes' => [
+                'post_text' => '本文を送信',
+            ],
+        ],
+
+        'topic' => [
+            'attributes' => [
+                'topic_title' => 'タイトル',
+            ],
         ],
 
         'topic_poll' => [
@@ -83,11 +106,27 @@ return [
             'minimum_one_selection' => '選択数は１が最低の数値です。',
             'minimum_two_options' => '選択肢は最低2つ必要です。',
             'too_many_options' => '選択肢の数が多すぎます。',
+
+            'attributes' => [
+                'title' => '投票タイトル',
+            ],
         ],
 
         'topic_vote' => [
             'required' => '投票する選択肢を選んでください。',
             'too_many' => '許可されている選択肢の選択数を超えました。',
+        ],
+    ],
+
+    'oauth' => [
+        'client' => [
+            'too_many' => '許可されるOAuthアプリケーションの最大数を超えました。',
+            'url' => '有効なURLを入力してください。',
+
+            'attributes' => [
+                'name' => 'アプリケーション名',
+                'redirect' => 'アプリケーションコールバックURL',
+            ],
         ],
     ],
 
@@ -115,6 +154,12 @@ return [
         'wrong_password_confirmation' => 'パスワードの確認が一致しません。',
         'too_long' => '使用文字数の制限を超えています。上限は:limit文字です。',
 
+        'attributes' => [
+            'username' => 'ユーザー名',
+            'user_email' => 'メールアドレス',
+            'password' => 'パスワード',
+        ],
+
         'change_username' => [
             'restricted' => '制限されている間は、ユーザー名を変更することはできません。',
             'supporter_required' => [
@@ -126,6 +171,16 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => '',
         'self' => "自分自身を報告することはできません！",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'quantity' => '数量',
+                'cost' => '価格',
+            ],
+        ],
     ],
 ];

@@ -21,7 +21,7 @@
 return [
     'show' => [
         'fallback_translation' => 'İstenen sayfa, istenilen dile (:language) henüz çevrilmedi. İngilizce sürümü gösteriliyor.',
-        'languages' => 'Diller',
+        'incomplete_or_outdated' => 'Bu sayfadaki içerik tamamlanmamış veya güncel değil. Eğer yardım edebilecekseniz, lütfen makaleyi güncellemeyi bir düşünün!',
         'missing' => 'İstenilen ":keyword" sayfası bulunamadı.',
         'missing_title' => 'Bulunamadı',
         'missing_translation' => 'İstenilen sayfa seçilen dilde bulunamadı.',
@@ -37,7 +37,14 @@ return [
             'legal' => 'Bu çeviri yalnızca kolaylık açısından eklenmiştir. Orijinal :default bu metnin tek yasal olarak bağlayıcı versiyonu olacaktır.',
             'outdated' => 'Bu sayfa orijinal içeriğin güncel olmayan bir çevirisini barındırıyor. En doğru bilgi için :default sayfasını ziyaret edin (ve eğer yardım edebiliyorsanız çeviriyi güncellemeyi bir düşünün)!',
 
-            'default' => 'İngilizce versiyon',
+            'default' => 'İngilizce sürüm',
         ],
+    ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
+    ],
+    'search' => [
+        'path' => '',
     ],
 ];

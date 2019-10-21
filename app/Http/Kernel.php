@@ -40,11 +40,11 @@ class Kernel extends HttpKernel
         Middleware\VerifyCsrfToken::class,
         Middleware\SetLocale::class,
         Middleware\AutologinFromLegacyCookie::class,
+        Middleware\UpdateUserLastvisit::class,
         Middleware\VerifyPrivilegedUser::class,
         Middleware\CheckUserBanStatus::class,
-        Middleware\UpdateUserLastvisit::class,
         Middleware\TurbolinksSupport::class,
-        \ChaseConey\LaravelDatadogHelper\Middleware\LaravelDatadogMiddleware::class,
+        Middleware\DatadogMetrics::class,
     ];
 
     protected $middlewareGroups = [

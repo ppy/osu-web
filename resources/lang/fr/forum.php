@@ -25,6 +25,8 @@ return [
     'title' => 'osu! forum',
 
     'covers' => [
+        'edit' => 'Modifier la couverture',
+
         'create' => [
             '_' => 'Définir la bannière',
             'button' => 'Uploader une image',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => 'Dernier message',
+
+        'index' => [
+            'title' => 'Accueil du forum',
+        ],
+
         'topics' => [
             'empty' => 'Pas de sujets!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Marquer le forum comme lu',
         'forums' => 'Marquer les forums comme lus',
         'busy' => 'Marquer comme lu...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Éditer un sondage supprimera les résultats actuels !',
-
-        'actions' => [
-            'edit' => 'Éditer le sondage',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'Supprimer le post',
             'restore' => 'Restaurer le post',
             'edit' => 'Modifier le post',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => 'Nouvelle réponse',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'suivi par :user',
 
         'create' => [
+            'close' => 'Fermer',
             'preview' => 'Prévisualisation',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -268,6 +275,11 @@ return [
             'to_2_done' => 'Le sujet a été épinglé et marqué en tant qu\'annonce',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Posts Supprimés',
             'total_posts' => 'Total des Posts',
@@ -290,7 +302,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => 'Édition du sondage',
+                'edit_warning' => 'Éditer un sondage supprimera les résultats actuels !',
                 'vote' => 'Voter',
+
+                'button' => [
+                    'change_vote' => 'Changer le vote',
+                    'edit' => 'Éditer le sondage',
+                    'view_results' => 'Passer aux résultats',
+                    'vote' => 'Voter',
+                ],
 
                 'detail' => [
                     'end_time' => 'Le sondage termine à :time',

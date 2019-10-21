@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ' oraz ',
     ],
 
+    'badges' => [
+        'new' => 'NOWE',
+    ],
+
     'buttons' => [
         'admin' => 'Administrator',
         'back_to_previous' => 'Powrót do poprzedniej pozycji',
@@ -37,6 +41,7 @@ return [
         'change' => 'zmień',
         'click_to_copy' => 'kliknij, aby skopiować',
         'click_to_copy_copied' => 'skopiowano do schowka!',
+        'close' => 'Zamknij',
         'collapse' => 'zwiń',
         'delete' => 'Usuń',
         'edit' => 'Edytuj',
@@ -58,7 +63,8 @@ return [
         'show_deleted' => 'Pokaż usunięte',
         'show_more' => 'pokaż więcej',
         'show_more_options' => 'pokaż więcej opcji',
-        'upload_image' => 'prześlij zdjęcie',
+        'update' => 'Zaktualizuj',
+        'upload_image' => 'prześlij obraz',
 
         'watch' => [
             'to_0' => 'Przestań obserwować',
@@ -75,8 +81,12 @@ return [
         'minute_short_unit' => 'min|min|min',
         'minutes' => ':count_delimited minuta|:count_delimited minuty|:count_delimited minut',
         'months' => ':count_delimited miesiąc|:count_delimited miesiące|:count_delimited miesięcy',
+        'plus_others' => '+ jeszcze :count_delimited!',
+        'post' => ':count_delimited post|:count_delimited posty|:count_delimited postów',
         'second_short_unit' => 's|s|s',
+        'star_priority' => ':count_delimited głos|:count_delimited głosy|:count_delimited głosów',
         'update' => ':count_delimited aktualizacja|:count_delimited aktualizacje|:count_delimited aktualizacji',
+        'view' => ':count_delimited wyświetlenie|:count_delimited wyświetlenia|:count_delimited wyświetleń',
         'years' => ':count_delimited rok|:count_delimited lata|:count_delimited lat',
     ],
 
@@ -106,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'upuść tutaj, aby przesłać plik',
+    ],
+
+    'input' => [
+        'search' => 'szukaj...',
     ],
 
     'pagination' => [

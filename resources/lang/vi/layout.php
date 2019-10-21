@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - Chỉ bắt đầu bằng một cái *click* chuột!  Với Ouendan/EBA, Taiko và những chế độ chơi nguyên bản, cũng như một level editor đầy đủ chức năng.',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => 'Cộng đồng',
+
+            'forum' => 'Diễn đàn',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => '',
+        'fullscreen' => '',
+        'zoom' => '',
+        'previous' => '',
+        'next' => '',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'trang chủ',
             'account-edit' => 'cài đặt',
+            'account-verifyLink' => '',
             'friends-index' => 'bạn bè',
             'changelog-index' => 'changelog',
             'changelog-build' => 'build',
@@ -42,6 +59,11 @@ return [
             'search' => 'tìm kiếm',
             'supportTheGame' => 'ủng hộ osu!',
             'team' => 'team',
+        ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
         ],
         'help' => [
             '_' => 'trợ giúp',
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Bạn cần một tài khoản. Tại sao bạn lại không có chứ?",
+            'download' => '',
+            'info' => 'Bạn cần một tài khoản. Tại sao bạn lại không có chứ?',
             'title' => "Chưa có tài khoản?",
         ],
     ],

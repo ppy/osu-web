@@ -23,10 +23,27 @@ return [
         'page_description' => 'osu! - จังหวะนั้นอยู่ห่างแค่คลิกเดียว! ด้วย Ouendan/EBA, Taiko และเกมโหมดดั้งเดิมอีกมากมาย พร้อมทั้งหน้าต่างแก้ไขที่ใช้งานได้อย่างสมบูรณ์',
     ],
 
+    'header' => [
+        'community' => [
+            '_' => '',
+
+            'forum' => '',
+        ],
+    ],
+
+    'gallery' => [
+        'close' => 'ปิด (กด Esc)',
+        'fullscreen' => 'ปรับเป็นเต็มหน้าจอ',
+        'zoom' => 'ซูมเข้า/ออก',
+        'previous' => 'รูปที่แล้ว (กดลูกศรซ้าย)',
+        'next' => 'รูปต่อไป (กดลูกศรขวา)',
+    ],
+
     'menu' => [
         'home' => [
             '_' => 'หน้าแรก',
             'account-edit' => 'การตั้งค่า',
+            'account-verifyLink' => '',
             'friends-index' => 'เพื่อน',
             'changelog-index' => 'บันทึกการเปลี่ยนแปลง',
             'changelog-build' => 'เวอร์ชั่น',
@@ -43,6 +60,11 @@ return [
             'supportTheGame' => 'สนับสนุนเกม',
             'team' => 'ทีม',
         ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
+        ],
         'help' => [
             '_' => 'ช่วยเหลือ',
             'getFaq' => 'คำถามที่ถามบ่อย',
@@ -53,7 +75,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'featured artists',
+            'artists' => 'ศิลปินโดดเด่น',
             'beatmap_discussion_posts-index' => 'โพสต์การสนทนาเกี่ยวกับ Beatmap',
             'beatmap_discussions-index' => 'การสนทนาเกี่ยวกับ Beatmap',
             'beatmapset-watches-index' => 'รายการ Mod ที่ติดตาม',
@@ -190,7 +212,7 @@ return [
             'copyright' => 'ลิขสิทธิ์ (DMCA)',
             'privacy' => 'ความเป็นส่วนตัว',
             'server_status' => 'สถานะของเซิร์ฟเวอร์',
-            'source_code' => 'ซอร์ซโค้ด',
+            'source_code' => 'รหัสต้นฉบับ',
             'terms' => 'เงื่อนไขการใช้บริการ',
         ],
     ],
@@ -246,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "คุณต้องมีบัญชีครับ ทำไมคุณยังไม่มีล่ะ?",
+            'download' => '',
+            'info' => 'คุณต้องมีบัญชีครับ ทำไมคุณยังไม่มีล่ะ?',
             'title' => "ยังไม่มีมีบัญชีเหรอ?",
         ],
     ],

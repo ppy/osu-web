@@ -36,7 +36,6 @@ return [
         'details' => [
             'approved' => 'schváleno:',
             'favourite' => 'Přidat do mých oblíbených',
-            'favourited_count' => '+ 1 ostatní!|+ :count ostatních!',
             'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
             'loved' => 'amorem zasažené:',
             'mapped_by' => 'beatmapu vytvořil :mapper',

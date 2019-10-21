@@ -25,6 +25,8 @@ return [
     'title' => 'osu!-foorumit',
 
     'covers' => [
+        'edit' => '',
+
         'create' => [
             '_' => 'Aseta kansikuva',
             'button' => 'Lataa kuva',
@@ -42,6 +44,12 @@ return [
     ],
 
     'forums' => [
+        'latest_post' => '',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Ei aiheita!',
         ],
@@ -51,14 +59,6 @@ return [
         'forum' => 'Merkitse luetuksi',
         'forums' => 'Merkitse luetuksi',
         'busy' => 'Merkitään luetuksi...',
-    ],
-
-    'poll' => [
-        'edit_warning' => 'Äänestyksen muokkaaminen poistaa tämänhetkiset tulokset!',
-
-        'actions' => [
-            'edit' => 'Muokkaa äänestystä',
-        ],
     ],
 
     'post' => [
@@ -71,6 +71,12 @@ return [
             'destroy' => 'Poista viesti',
             'restore' => 'Palauta viesti',
             'edit' => 'Muokkaa viestiä',
+        ],
+
+        'create' => [
+            'title' => [
+                'reply' => '',
+            ],
         ],
 
         'info' => [
@@ -99,6 +105,7 @@ return [
         'started_by_verbose' => 'aloittanut :user',
 
         'create' => [
+            'close' => '',
             'preview' => 'Esikatselu',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -268,6 +275,11 @@ return [
             'to_2_done' => 'Aihe on kiinnitetty ja merkattu ilmoitukseksi',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Poistetut viestit',
             'total_posts' => 'Vastauksia',
@@ -290,7 +302,16 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Äänestä',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => '',
+                ],
 
                 'detail' => [
                     'end_time' => 'Kysely loppuu :time',

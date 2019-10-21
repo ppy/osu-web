@@ -25,6 +25,7 @@
 
   &__body {
     width: 100%;
+    z-index: 1; // local to its block element
   }
 
   &__menu-bg {
@@ -75,7 +76,7 @@
     background-image: url('/images/layout/nav2-background-hue0.png');
     background-position: bottom center;
     background-repeat: repeat-x;
-    filter: hue-rotate(calc(var(--base-hue) * 1deg)) saturate(0.6);
+    filter: hue-rotate(var(--base-hue-deg)) saturate(0.6);
 
     .@{_top}--restricted & {
       .at2x-simple('/images/layout/nav2-bg/red.png');
