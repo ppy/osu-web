@@ -30,6 +30,7 @@ class @BeatmapPack
 
     $('.js-accordion').on 'beatmappack:clicked', @onClick
     $(@expander).on 'click', (event) =>
+      event.preventDefault()
       $(@el).trigger 'beatmappack:clicked', @packId
 
   onClick: (e, id) =>

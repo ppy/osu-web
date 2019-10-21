@@ -17,12 +17,14 @@
  */
 
 .beatmap-pack {
+  @_top: beatmap-pack;
+
   .default-box-shadow();
   color: white;
   width: 100%;
   margin: 2px 0;
 
-  &.js-accordion__item--expanded {
+  &.js-accordion__item--expanded, &--expanded  {
     .thicker-box-shadow();
     z-index: 1;
   }
@@ -52,14 +54,13 @@
   }
 
   &__header {
-    .reset-input();
-    width: 100%;
+    .link-plain();
+    .link-white();
     padding: @beatmappack-listing--gutter;
     background-color: @osu-colour-b3;
-    cursor: pointer;
     display: flex;
 
-    .js-accordion__item--expanded & {
+    .js-accordion__item--expanded &, .@{_top}--expanded & {
       background-color: @osu-colour-b2;
     }
 
@@ -69,7 +70,7 @@
   }
 
   &__name {
-    .js-accordion__item--expanded & {
+    .js-accordion__item--expanded &, .@{_top}--expanded & {
       font-weight: 600;
     }
   }

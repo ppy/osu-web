@@ -45,18 +45,26 @@ class BeatmapPacksController extends Controller
 
     public function show($idOrTag)
     {
-        if (is_numeric($idOrTag)) {
-            $pack = BeatmapPack::findOrFail($idOrTag);
-        } else {
+        if (!ctype_digit($idOrTag)) {
             $pack = BeatmapPack::where('tag', $idOrTag)->firstOrFail();
+
+            return ujs_redirect(route('packs.show', $pack));
         }
 
-        return ujs_redirect($this->indexLink($pack));
+        $pack = BeatmapPack::findOrFail($idOrTag);
+
+        return view('packs.show', $this->packData($pack));
     }
 
     public function raw($id)
     {
         $pack = BeatmapPack::findOrFail($id);
+
+        return view('packs.raw', $this->packData($pack));
+    }
+
+    private function packData($pack)
+    {
         $mode = Beatmap::modeStr($pack->playmode ?? 0);
 
         $sets = $pack
@@ -65,16 +73,6 @@ class BeatmapPacksController extends Controller
             ->withHasCompleted($pack->playmode ?? 0, Auth::user())
             ->get();
 
-        return view('packs.show', compact('pack', 'sets', 'mode'));
-    }
-
-    private function indexLink(BeatmapPack $pack) : string
-    {
-        $type = $pack->type();
-        $indexInPagination = BeatmapPack::getPacks($type)->get()->search($pack);
-        $page = intdiv($indexInPagination, static::PER_PAGE) + 1;
-
-        return route('packs.index', ['type' => $type, 'page' => $page === 1 ? null : $page])
-            .'#pack-'.$pack->getKey();
+        return compact('pack', 'sets', 'mode');
     }
 }
