@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Тэма была замацавана і пазначана як абвяшчэння',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Выдалена допісаў',
             'total_posts' => 'Агульна допісаў',

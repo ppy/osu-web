@@ -29,6 +29,7 @@ import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
+import core from 'osu-core-singleton';
 import Store from 'stores/store';
 
 export default class ChannelStore extends Store {
@@ -98,6 +99,10 @@ export default class ChannelStore extends Store {
   }
 
   findPM(userId: number): Channel | null {
+    if (userId === core.currentUser.id) {
+      return null;
+    }
+
     // tslint:disable-next-line:prefer-const browsers that support ES6 but not const in for...of
     for (let [, channel] of this.channels) {
       if (channel.type !== 'PM') {

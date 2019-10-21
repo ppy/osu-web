@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => '举报成绩',
-        'title' => '举报 :username 的成绩？',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => '举报',
         'title' => '举报 :username 的评论？',
+    ],
+
+    'scores' => [
+        'button' => '举报成绩',
+        'title' => '举报 :username 的成绩？',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

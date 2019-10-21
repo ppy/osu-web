@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Search;
 
+use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Sort;
 use App\Models\Beatmap;
 use App\Models\Genre;
@@ -163,7 +164,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     {
         // additional options
         static $orderOptions = [
-            'difficulties.difficultyrating' => [
+            'beatmaps.difficultyrating' => [
                 'asc' => ['mode' => 'min'],
                 'desc' => ['mode' => 'max'],
             ],
@@ -172,8 +173,27 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $newSort = [];
         // assign sort modes if any.
         $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
+
+        // use relevant mode when sorting on nested field
+        if (starts_with($sort->field, 'beatmaps.')) {
+            $sortFilter = new BoolQuery;
+
+            if (!$this->includeConverts) {
+                $sortFilter->filter(['term' => ['beatmaps.convert' => false]]);
+            }
+
+            if ($this->mode !== null) {
+                $sortFilter->filter(['term' => ['beatmaps.playmode' => $this->mode]]);
+            }
+
+            $options['nested'] = [
+                'path' => 'beatmaps',
+                'filter' => $sortFilter->toArray(),
+            ];
+        }
+
         if ($options !== []) {
-            $sort->mode = $options['mode'];
+            $sort->extras = $options;
         }
 
         $newSort[] = $sort;
@@ -213,7 +233,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         static $fields = [
             'artist' => 'artist.raw',
             'creator' => 'creator.raw',
-            'difficulty' => 'difficulties.difficultyrating',
+            'difficulty' => 'beatmaps.difficultyrating',
             'favourites' => 'favourite_count',
             'nominations' => 'nominations',
             'plays' => 'play_count',

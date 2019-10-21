@@ -21,7 +21,6 @@
 namespace App\Events;
 
 use App\Models\Follow;
-use App\Models\Notification;
 use Illuminate\Broadcasting\Channel;
 
 class UserSubscriptionChangeEvent extends NotificationEventBase
@@ -47,7 +46,7 @@ class UserSubscriptionChangeEvent extends NotificationEventBase
             $subtype = $notifiable->subtype;
             $notifiable = $notifiable->notifiable;
         }
-        $this->channelName = Notification::generateChannelName($notifiable, $subtype ?? null);
+        $this->channelName = static::generateChannelName($notifiable, $subtype ?? null);
     }
 
     public function broadcastAs()

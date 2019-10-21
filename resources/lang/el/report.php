@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Βαθμολογία έκθεσης',
-        'title' => 'Αναφορά βαθμολογίας του :username;',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Αναφορά',
         'title' => 'Αναφορά του σχολίου του :username;',
+    ],
+
+    'scores' => [
+        'button' => 'Βαθμολογία έκθεσης',
+        'title' => 'Αναφορά βαθμολογίας του :username;',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

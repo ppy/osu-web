@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Chủ đề đã ghim và sẽ đánh dấu là thông báo',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Bài Đăng Đã Bị Xóa',
             'total_posts' => 'Tổng Bài Đăng',

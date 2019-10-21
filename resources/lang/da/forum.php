@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Emnet er blevet pinned og markeret som en meddelelse',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Slettede opslag',
             'total_posts' => 'Opslag i alt',

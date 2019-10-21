@@ -32,11 +32,6 @@ return [
         ],
     ],
 
-    'state' => [
-      'friends' => 'kaverit',
-      'mutual' => 'yhteinen',
-    ],
-
     'title' => 'Kaverit',
     'title_compact' => 'kaverit',
 

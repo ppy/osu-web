@@ -32,11 +32,6 @@ return [
         ],
     ],
 
-    'state' => [
-      'friends' => 'freunde',
-      'mutual' => 'beidseitig',
-    ],
-
     'title' => 'Freunde',
     'title_compact' => 'freunde',
 

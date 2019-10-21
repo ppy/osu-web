@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_lock_compact' => 'La discusión fue cerrada',
                 'beatmapset_discussion_post_new' => 'Nuevo post en ":title" por :username',
                 'beatmapset_discussion_post_new_compact' => 'Nuevo post por :username',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
                 'beatmapset_discussion_unlock' => 'La discusión en ":title" se ha desbloqueado',
                 'beatmapset_discussion_unlock_compact' => 'La discusión se ha desbloqueado',
             ],

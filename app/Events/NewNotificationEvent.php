@@ -20,6 +20,7 @@
 
 namespace App\Events;
 
+use App\Models\Notification;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 
@@ -34,7 +35,7 @@ class NewNotificationEvent extends NotificationEventBase
      *
      * @return void
      */
-    public function __construct($notification)
+    public function __construct(Notification $notification)
     {
         parent::__construct();
 
@@ -53,11 +54,19 @@ class NewNotificationEvent extends NotificationEventBase
      */
     public function broadcastOn()
     {
-        return new Channel($this->notification->channelName());
+        return new Channel($this->channelName());
     }
 
     public function broadcastWith()
     {
         return json_item($this->notification, 'Notification');
+    }
+
+    private function channelName()
+    {
+        return static::generateChannelName(
+            $this->notification->notifiable,
+            Notification::SUBTYPES[$this->notification->name] ?? null
+        );
     }
 }

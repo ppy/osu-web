@@ -58,6 +58,7 @@
                     --font-content-override: var(--font-content-inter);
                 @endif
                 --base-hue: {{ $currentHue }};
+                --base-hue-deg: {{ $currentHue }}deg;
             }
         </style>
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>

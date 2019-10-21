@@ -179,7 +179,7 @@ class CommentsController extends Controller
      *
      * ---
      *
-     * ### Response Formant
+     * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
      *
@@ -224,7 +224,7 @@ class CommentsController extends Controller
      *
      * ---
      *
-     * ### Response Formant
+     * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
      *
@@ -257,7 +257,7 @@ class CommentsController extends Controller
      *
      * ---
      *
-     * ### Response Formant
+     * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
      *
@@ -285,7 +285,7 @@ class CommentsController extends Controller
      *
      * ---
      *
-     * ### Response Formant
+     * ### Response Format
      *
      * Returns [CommentBundle](#commentbundle)
      *

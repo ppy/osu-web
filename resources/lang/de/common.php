@@ -30,7 +30,7 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'NEU',
     ],
 
     'buttons' => [
@@ -119,7 +119,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'suchen...',
     ],
 
     'pagination' => [

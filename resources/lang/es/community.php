@@ -144,7 +144,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Subir más Beatmaps',
-                'description' => '',
+                'description' => 'Se calcula cuántos mapas sin calificar puedes tener a la vez, a partir de un valor base más un bono adicional por cada mapa clasificado que tenga actualmente (hasta un límite).<br/><br/>Normalmente esto es 4 más 1 por mapa clasificado (hasta 2). Con soporte, esto aumenta a 8 más 1 por mapa clasificado (hasta 12).',
             ],
             'friend_filtering' => [
                 'title' => 'Ranking de Amigos',

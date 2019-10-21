@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'sprijină jocul',
             'team' => 'echipă',
         ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
+        ],
         'help' => [
             '_' => 'ajutor',
             'getFaq' => 'întrebări frecvente',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Ai nevoie de un cont, domnule. De ce nu ai unul deja?",
+            'download' => '',
+            'info' => 'Ai nevoie de un cont, domnule. De ce nu ai unul deja?',
             'title' => "Nu ai un cont?",
         ],
     ],

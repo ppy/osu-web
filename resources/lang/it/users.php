@@ -54,14 +54,14 @@ return [
         'show_profile' => 'Visualizza profilo',
         'too_many' => 'Limite blocchi raggiunto.',
         'button' => [
-            'block' => 'blocca',
+            'block' => 'Blocca',
             'unblock' => 'sblocca',
         ],
     ],
 
     'card' => [
         'loading' => 'Caricamento...',
-        'send_message' => 'invia messaggio',
+        'send_message' => 'Invia messaggio',
     ],
 
     'login' => [
@@ -88,9 +88,6 @@ return [
         'title' => 'Post di :username',
     ],
 
-    'signup' => [
-        '_' => 'Registrati',
-    ],
     'anonymous' => [
         'login_link' => 'clicca per accedere',
         'login_text' => 'registrati',
@@ -101,10 +98,10 @@ return [
     'report' => [
         'button_text' => 'Segnala',
         'comments' => 'Ulteriori Commenti',
-        'placeholder' => 'Si prega di fornire qualsiasi informazione che ritieni possa essere utile.',
+        'placeholder' => 'Fornisci qualsiasi informazione che ritieni possa essere utile.',
         'reason' => 'Motivazione',
         'thanks' => 'Grazie per la tua segnalazione!',
-        'title' => 'Segnala :username?',
+        'title' => 'Segnalare :username?',
 
         'actions' => [
             'send' => 'Invia Segnalazione',
@@ -168,7 +165,6 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
         ],
 
         'extra' => [
-            'followers' => ':count_delimited follower|:count_delimited follower',
             'none' => 'nessuno',
             'unranked' => 'Nessuna partita recente',
 

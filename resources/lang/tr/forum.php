@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Başlık sabitlendi ve duyuru olarak işaretlendi',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Silinmiş mesajlar',
             'total_posts' => 'Toplam Mesaj',
