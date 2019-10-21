@@ -92,4 +92,6 @@ composer-installer
 
 /storage/paypal_auth.cache
 
+/storage/clockwork/index
+
 /notification-server/
