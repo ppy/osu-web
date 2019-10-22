@@ -79,6 +79,11 @@ export class Comment {
   }
 
   @computed
+  get canPin() {
+    return currentUser.is_admin;
+  }
+
+  @computed
   get canReport() {
     return currentUser.id != null && this.userId !== currentUser.id;
   }

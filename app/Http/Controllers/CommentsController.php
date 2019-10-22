@@ -266,7 +266,10 @@ class CommentsController extends Controller
         $comment->pinned = $state;
         $comment->save();
 
-        return CommentBundle::forComment($comment)->toArray();
+        $bundle = CommentBundle::forComment($comment);
+        $bundle->includePinned = true;
+
+        return $bundle->toArray();
     }
 
     /**

@@ -102,9 +102,7 @@ export default class UIStateStore extends Store {
       this.comments.topLevelCommentIds = commentBundle.comments.map((x) => x.id);
     }
 
-    if (commentBundle.pinned_comments != null) {
-      this.comments.pinnedCommentIds = commentBundle.pinned_comments.map((x) => x.id);
-    }
+    this.updatePinnedCommentIds(commentBundle);
 
     this.orderedCommentsByParentId = {};
   }
@@ -146,6 +144,11 @@ export default class UIStateStore extends Store {
     }
   }
 
+  @action
+  updateFromCommentUpdated(commentBundle: CommentBundleJSON) {
+    this.updatePinnedCommentIds(commentBundle);
+  }
+
   private orderComments(comments: Comment[]) {
     switch (this.comments.currentSort) {
       case 'old':
@@ -161,6 +164,12 @@ export default class UIStateStore extends Store {
     if (this.orderedCommentsByParentId[parentId] == null) {
       const comments = this.root.commentStore.getRepliesByParentId(parentId);
       this.orderedCommentsByParentId[parentId] = this.orderComments(comments);
+    }
+  }
+
+  private updatePinnedCommentIds(commentBundle: CommentBundleJSON) {
+    if (commentBundle.pinned_comments != null) {
+      this.comments.pinnedCommentIds = commentBundle.pinned_comments.map((x) => x.id);
     }
   }
 }
