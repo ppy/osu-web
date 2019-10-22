@@ -115,7 +115,7 @@ class CommentBundle
         $allComments = $comments->concat($includedComments);
 
         if ($this->includePinned) {
-            $pinnedComments = $this->getComments($this->commentsQuery()->where('pinned', true));
+            $pinnedComments = $this->getComments($this->commentsQuery()->where('pinned', true), true, 'new');
         }
 
         $result = [
@@ -152,9 +152,9 @@ class CommentBundle
         }
     }
 
-    private function getComments($query, $isChildren = true)
+    private function getComments($query, $isChildren = true, $customSort = null)
     {
-        $sort = $this->params->sortDbOptions();
+        $sort = $customSort ? CommentBundleParams::SORTS[$customSort] : $this->params->sortDbOptions();
         $sorted = false;
         $queryLimit = $this->params->limit;
 
