@@ -99,7 +99,7 @@ Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('co
 Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
 
 Route::post('comments/{comment}/setPinned', 'CommentsController@setPinned')->name('comments.pin');
-Route::delete('comments/{comment}/setPinned', 'CommentsController@setPinned')->name('comments.unpin');
+Route::delete('comments/{comment}/setPinned', 'CommentsController@setPinned');
 
 Route::group(['prefix' => 'community'], function () {
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
