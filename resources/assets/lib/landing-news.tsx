@@ -15,27 +15,20 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+import PostJson from 'interfaces/news-post-json';
+import PostItem from 'news-index/post-item';
+import * as React from 'react';
 
-.landing-middle-buttons {
-  padding: 20px;
-  text-align: center;
+interface Props {
+  posts: PostJson[];
+}
 
-  &__button {
-    .default-box-shadow();
-    border-radius: @border-radius-large;
-    margin: 5px;
-    display: inline-block;
-    width: 250px;
-    height: 75px;
-    transition: all 120ms;
-    background-size: cover;
-
-    &:hover {
-      .thicker-box-shadow();
-    }
-
-    &--blog {
-      .at2x-simple('/images/landing/button-blog.png');
-    }
+export class LandingNews extends React.Component<Props, {}> {
+  render() {
+    return (
+      <div className='landing-news'>
+        {this.props.posts.map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing']} key={i}/>)}
+      </div>
+    );
   }
 }

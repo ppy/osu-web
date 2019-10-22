@@ -77,8 +77,10 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
+        $newsLimit = Auth::check() ? NewsPost::DASHBOARD_LIMIT + 1 : NewsPost::LANDING_LIMIT;
+        $news = NewsPost::default()->limit($newsLimit)->get();
+
         if (Auth::check()) {
-            $news = NewsPost::default()->limit(NewsPost::DASHBOARD_LIMIT + 1)->get();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
             $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
             $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
@@ -93,7 +95,9 @@ class HomeController extends Controller
                 'popularBeatmapsetsPlaycount'
             ));
         } else {
-            return view('home.landing', ['stats' => new CurrentStats()]);
+            $news = json_collection($news, 'NewsPost');
+
+            return view('home.landing', ['stats' => new CurrentStats(), 'news' => $news]);
         }
     }
 
