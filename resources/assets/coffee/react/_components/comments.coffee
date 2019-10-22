@@ -54,7 +54,7 @@ export class Comments extends React.PureComponent
         div className: 'comments__content',
           if pinnedComments.length > 0
             div className: "comments__items comments__items--pinned",
-              pinnedComments.map @renderComment
+              pinnedComments.map (c) => @renderComment c, true
 
           div className: 'comments__items comments__items--toolbar',
             el CommentsSort,
@@ -83,7 +83,7 @@ export class Comments extends React.PureComponent
               osu.trans('comments.empty')
 
 
-  renderComment: (comment) =>
+  renderComment: (comment, pinned = false) =>
     return null if comment.isDeleted && !uiState.comments.isShowDeleted
 
     el Comment,
@@ -92,6 +92,7 @@ export class Comments extends React.PureComponent
       depth: 0
       modifiers: @props.modifiers
       showDeleted: uiState.comments.isShowDeleted
+      showReplies: !pinned
 
 
   renderShowDeletedToggle: =>
