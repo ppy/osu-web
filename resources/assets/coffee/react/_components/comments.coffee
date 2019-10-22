@@ -37,6 +37,7 @@ export class Comments extends React.PureComponent
     el Observer, null, () =>
       # TODO: comments should be passed in as props?
       comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
+      pinnedComments = uiState.comments.pinnedCommentIds.map (id) -> store.comments.get(id)
 
       div className: osu.classWithModifiers('comments', @props.modifiers),
         div className: 'u-has-anchor u-has-anchor--no-event',
@@ -51,6 +52,10 @@ export class Comments extends React.PureComponent
             focus: false
             modifiers: @props.modifiers
         div className: 'comments__content',
+          if pinnedComments.length > 0
+            div className: "comments__items comments__items--pinned",
+              pinnedComments.map @renderComment
+
           div className: 'comments__items comments__items--toolbar',
             el CommentsSort,
               modifiers: @props.modifiers
@@ -58,6 +63,7 @@ export class Comments extends React.PureComponent
               div className: 'sort__items',
                 @renderFollowToggle()
                 @renderShowDeletedToggle()
+
           if comments.length > 0
             div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
               comments.map @renderComment
