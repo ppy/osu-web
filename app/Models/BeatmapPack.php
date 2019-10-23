@@ -66,11 +66,6 @@ class BeatmapPack extends Model
         return $this->downloadUrls()[0];
     }
 
-    public function type() : string
-    {
-        return array_search($this->tag[0], static::$tagMappings, true);
-    }
-
     public static function getPacks($type)
     {
         if (!in_array($type, array_keys(static::$tagMappings), true)) {
