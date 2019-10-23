@@ -45,13 +45,15 @@ class BeatmapPacksController extends Controller
 
     public function show($idOrTag)
     {
+        $query = BeatmapPack::default();
+
         if (!ctype_digit($idOrTag)) {
-            $pack = BeatmapPack::where('tag', $idOrTag)->firstOrFail();
+            $pack = $query->where('tag', $idOrTag)->firstOrFail();
 
             return ujs_redirect(route('packs.show', $pack));
         }
 
-        $pack = BeatmapPack::findOrFail($idOrTag);
+        $pack = $query->findOrFail($idOrTag);
 
         return view('packs.show', $this->packData($pack));
     }
