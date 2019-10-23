@@ -39,6 +39,11 @@ export function formatMessage(item: Notification, compact: boolean = false) {
     key += '_compact';
   }
 
+  const emptyKey = `${key}_empty`;
+  if (item.details.content == null && osu.transExists(emptyKey)) {
+    key = emptyKey;
+  }
+
   if (item instanceof LegacyPmNotification) {
     message = osu.transChoice(key, item.details.count, replacements);
   } else {
