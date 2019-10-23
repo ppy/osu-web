@@ -39,6 +39,10 @@
 
   &__box {
     margin: 10px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &--hidden {
       opacity: 0.25;
@@ -60,7 +64,7 @@
   }
 
   &__name {
-    text-align: center;
+    white-space: nowrap;
     color: @osu-colour-l1;
     font-size: 14px;
     margin-top: 5px;
@@ -99,13 +103,8 @@
   }
 
   &__portrait-wrapper {
-    width: 250px;
-    height: 250px;
-
-    &--index {
-      width: 200px;
-      height: 200px;
-    }
+    width: 200px;
+    height: 200px;
   }
 
   &__portrait {
