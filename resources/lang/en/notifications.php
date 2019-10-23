@@ -37,9 +37,9 @@ return [
             ],
 
             'beatmapset_problem' => [
-                '_' => 'Beatmap problem',
-                'beatmapset_discussion_qualified_problem' => ':username reported a problem ":title": ":content"',
-                'beatmapset_discussion_qualified_problem_compact' => ':username reported a problem: ":content"',
+                '_' => 'Qualified Beatmap problem',
+                'beatmapset_discussion_qualified_problem' => 'Reported by :username on ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Reported by :username: ":content"',
             ],
 
             'beatmapset_state' => [
