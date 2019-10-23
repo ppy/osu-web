@@ -44,7 +44,7 @@ class BeatmapPacksController extends Controller
 
     public function show($id)
     {
-        $pack = BeatmapPack::findOrFail($id);
+        $pack = BeatmapPack::default()->findOrFail($id);
         $mode = Beatmap::modeStr($pack->playmode ?? 0);
 
         $sets = $pack
