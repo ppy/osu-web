@@ -53,6 +53,7 @@ Route::group(['prefix' => 'beatmaps'], function () {
     // featured artists
     Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
     Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
+    Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
 });
 Route::get('beatmaps/{beatmap}/scores', 'BeatmapsController@scores')->name('beatmaps.scores');
 Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
