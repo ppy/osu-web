@@ -58,7 +58,7 @@ class BeatmapPacksController extends Controller
 
     public function raw($id)
     {
-        $pack = BeatmapPack::findOrFail($id);
+        $pack = BeatmapPack::default()->findOrFail($id);
 
         return view('packs.raw', $this->packData($pack));
     }
