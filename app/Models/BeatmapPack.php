@@ -54,7 +54,12 @@ class BeatmapPack extends Model
 
         $tag = static::$tagMappings[$type];
 
-        return static::where('tag', 'like', "{$tag}%")->orderBy('pack_id', 'desc');
+        return static::default()->where('tag', 'like', "{$tag}%")->orderBy('pack_id', 'desc');
+    }
+
+    public function scopeDefault($query)
+    {
+        $query->where(['hidden' => false]);
     }
 
     public function items()
