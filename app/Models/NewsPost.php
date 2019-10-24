@@ -24,7 +24,6 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Commentable;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
-use App\Models\Wiki\WikiObject;
 use App\Traits\CommentableDefaults;
 use Carbon\Carbon;
 use Exception;
