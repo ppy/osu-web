@@ -203,7 +203,11 @@ class BeatmapDiscussionPostsController extends Controller
 
         if ($notifyQualifiedProblem) {
             // TODO: should work out how have the new post notification be able to handle this instead.
-            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM, $post, auth()->user());
+            broadcast_notification(
+                $disqualify ? Notification::BEATMAPSET_DISCUSSION_QUALIFIED_DISQUALIFY : Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+                $post,
+                auth()->user()
+            );
         }
 
         broadcast_notification(Notification::BEATMAPSET_DISCUSSION_POST_NEW, $post, Auth::user());
