@@ -534,7 +534,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             'approved' => Beatmapset::STATES['qualified'],
             'queued_at' => now(),
         ]);
-        factory(User::class)->states('bng')->create(); // event doesn't get dispatched if there are no users in the group.
+        $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
+            'name' => 'new_problem_on_qualified_beatmapset',
+        ]);
+        $notificationOption->update(['details' => array_keys(Beatmap::MODES)]);
 
         $this
             ->actingAs($this->user)
