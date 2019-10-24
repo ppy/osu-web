@@ -255,6 +255,22 @@ export default class Editor extends React.Component<any, any> {
       });
   }
 
+  toggleMark = (type: string) => {
+    if (!this.editor.current) {
+      return;
+    }
+
+    this.editor.current.toggleMark(type);
+  }
+
+  toggleItalic = () => {
+    this.toggleMark('italic');
+  }
+
+  toggleBold = () => {
+    this.toggleMark('bold');
+  }
+
   render(): React.ReactNode {
     const cssClasses = 'beatmap-discussion-new-float';
     const bn = 'beatmap-discussion-newer';
@@ -285,6 +301,7 @@ export default class Editor extends React.Component<any, any> {
                               className='btn-circle btn-circle--bbcode'
                               title='Bold'
                               type='button'
+                              onClick={this.toggleBold}
                           >
                               <span className='btn-circle__content'>
                                   <i className='fas fa-bold'/>
@@ -295,6 +312,7 @@ export default class Editor extends React.Component<any, any> {
                               className='btn-circle btn-circle--bbcode'
                               title='Italic'
                               type='button'
+                              onClick={this.toggleItalic}
                           >
                               <span className='btn-circle__content'>
                                   <i className='fas fa-italic'/>
