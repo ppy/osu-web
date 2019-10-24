@@ -41,7 +41,7 @@ use Exception;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class NewsPost extends Model implements Commentable, WikiObject
+class NewsPost extends Model implements Commentable
 {
     use CommentableDefaults;
 
@@ -269,18 +269,6 @@ class NewsPost extends Model implements Commentable, WikiObject
         $this->hash = $file->data['sha'];
 
         $this->save();
-    }
-
-    public function get()
-    {
-        $this->sync(true);
-
-        return $this;
-    }
-
-    public function forget()
-    {
-        $this->delete();
     }
 
     public function pagePublishedAt()
