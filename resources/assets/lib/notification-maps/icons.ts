@@ -22,6 +22,7 @@ interface IconsMap {
 
 export const categoryToIcons: IconsMap = {
   beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment'],
+  beatmapset_problem: ['fas fa-drafting-compass', 'fas fa-exclamation-circle'],
   beatmapset_state: ['fas fa-drafting-compass'],
   channel: ['fas fa-comments'],
   comment: ['fas fa-comment'],
