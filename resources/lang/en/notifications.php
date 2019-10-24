@@ -40,8 +40,10 @@ return [
 
             'beatmapset_problem' => [
                 '_' => 'Qualified Beatmap problem',
+                'beatmapset_discussion_qualified_disqualify' => '":title" has been disqualified by :username:":content"',
                 'beatmapset_discussion_qualified_problem' => 'Reported by :username on ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => 'Reported by :username on ":title"',
+                'beatmapset_discussion_qualified_problem_disqualify' => 'Disqualified by :username: ":content"',
                 'beatmapset_discussion_qualified_problem_compact' => 'Reported by :username: ":content"',
                 'beatmapset_discussion_qualified_problem_compact_empty' => 'Reported by :username',
             ],
