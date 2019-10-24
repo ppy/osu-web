@@ -16,13 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 import PostJson from 'interfaces/news-post-json';
+import { route } from 'laroute';
 import PostItem from 'news-index/post-item';
 import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 
 export function LandingNews({posts}: {posts: PostJson[]}) {
   return (
     <div className='landing-news'>
-      {posts.map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing']} key={i}/>)}
+      <div className='landing-news__posts'>
+        {posts.map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing']} key={i}/>)}
+      </div>
+      <div className='landing-news__link'>
+        <ShowMoreLink
+          hasMore={true}
+          loading={false}
+          hideIcon={true}
+          label={osu.trans('common.buttons.see_more_news')}
+          url={route('news.index')}
+        />
+      </div>
     </div>
   );
 }

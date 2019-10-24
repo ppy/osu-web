@@ -17,13 +17,23 @@
  */
 
 .landing-news {
-  display: flex;
-  flex-direction: column;
+  padding-bottom: 20px;
 
-  @media @desktop {
-    flex-direction: row;
-    margin: -10px;
+  &__posts {
+    display: flex;
+    flex-direction: column;
+
+    @media @desktop {
+      flex-direction: row;
+      margin: -10px;
+    }
+
+    padding: 20px 0;
   }
 
-  padding: 20px 0;
+  &__link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
