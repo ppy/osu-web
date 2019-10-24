@@ -158,17 +158,6 @@ class BroadcastNotification implements ShouldQueue
         $this->assignBeatmapsetDiscussionNotificationDetails();
     }
 
-    private function onBeatmapsetDiscussionQualifiedDisqualify()
-    {
-        static $notifyGroups = [UserGroup::GROUPS['nat'], UserGroup::GROUPS['bng'], UserGroup::GROUPS['bng_limited']];
-        $this->notifiable = $this->object->beatmapset;
-        $this->receiverIds = UserGroup::whereIn('group_id', $notifyGroups)->distinct()->pluck('user_id')->all();
-
-        $this->assignBeatmapsetDiscussionNotificationDetails();
-
-        return NewPrivateNotificationEvent::class;
-    }
-
     private function onBeatmapsetDiscussionQualifiedProblem()
     {
         static $notifyGroups = [UserGroup::GROUPS['nat'], UserGroup::GROUPS['bng'], UserGroup::GROUPS['bng_limited']];
