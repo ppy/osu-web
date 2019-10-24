@@ -505,7 +505,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testProblemOnQualifiedBeatmap($updateParams, $assertMethod)
     {
         $this->beatmapset->update($updateParams);
-        $notificationOption = User::first()->notificationOptions()->firstOrCreate([
+        $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
             'name' => 'new_problem_on_qualified_beatmapset',
         ]);
         $notificationOption->update(['details' => array_keys(Beatmap::MODES)]);
