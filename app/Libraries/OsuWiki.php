@@ -78,7 +78,7 @@ class OsuWiki
         $matches = [];
 
         if (starts_with($path, 'wiki/')) {
-            if ($path === 'wiki/redirect.md') {
+            if ($path === 'wiki/redirect.yaml') {
                 return ['type' => 'redirect'];
             }
 
