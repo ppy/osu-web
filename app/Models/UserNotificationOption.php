@@ -65,7 +65,7 @@ class UserNotificationOption extends Model
 
         $value = $value ?? null;
 
-        $this->attributes['details'] = $value;
+        $this->attributes['details'] = json_encode($value);
     }
 
     public function setNameAttribute($value)
