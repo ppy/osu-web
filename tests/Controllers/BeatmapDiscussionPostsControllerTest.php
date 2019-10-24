@@ -585,12 +585,22 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                 ],
             ]);
 
-        Queue::assertPushed(BroadcastNotification::class, function ($job) use ($queued) {
-            return $job->getName() === $queued;
+        $remaining = $queued;
+        // assertPushed only asserts if any matching job was queued.
+        Queue::assertPushed(BroadcastNotification::class, function ($job) use ($queued, &$remaining) {
+            $inArray = in_array($job->getName(), $queued, true);
+
+            if (($key = array_search($job->getName(), $remaining, true)) !== false) {
+                unset($remaining[$key]);
+            }
+
+            return $inArray;
         });
 
+        $this->assertEmpty(array_values($remaining));
+
         Queue::assertNotPushed(BroadcastNotification::class, function ($job) use ($notQueued) {
-            return $job->getName() === $notQueued;
+            return in_array($job->getName(), $notQueued, true);
         });
     }
 
@@ -605,8 +615,16 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function problemQueueDataProvider()
     {
         return [
-            ['bng', Notification::BEATMAPSET_DISCUSSION_QUALIFIED_DISQUALIFY, Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM],
-            [null, Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM, Notification::BEATMAPSET_DISCUSSION_QUALIFIED_DISQUALIFY],
+            [
+                'bng',
+                [Notification::BEATMAPSET_DISQUALIFY, Notification::BEATMAPSET_DISCUSSION_POST_NEW, Notification::BEATMAPSET_DISCUSSION_QUALIFIED_DISQUALIFY],
+                [Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM],
+            ],
+            [
+                null,
+                [Notification::BEATMAPSET_DISCUSSION_POST_NEW, Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM],
+                [Notification::BEATMAPSET_DISCUSSION_QUALIFIED_DISQUALIFY, Notification::BEATMAPSET_DISQUALIFY]
+            ],
         ];
     }
 
