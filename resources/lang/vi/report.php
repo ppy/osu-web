@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Báo Cáo Điểm',
-        'title' => 'Báo cáo điểm của :username?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Báo cáo',
         'title' => 'Báo cáo bình luận của :username?',
+    ],
+
+    'scores' => [
+        'button' => 'Báo Cáo Điểm',
+        'title' => 'Báo cáo điểm của :username?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

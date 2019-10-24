@@ -48,14 +48,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => '자신의 게시글만 삭제할 수 있습니다.',
+            'resolved' => '해결된 토론의 게시글은 삭제할 수 없습니다.',
+            'system_generated' => '자동으로 생성된 글은 삭제할 수 없습니다.',
         ],
 
         'edit' => [
             'not_owner' => '본인이 쓴 글만 수정할 수 있습니다.',
-            'resolved' => '',
+            'resolved' => '해결된 토론의 게시글은 수정할 수 없습니다.',
             'system_generated' => '자동으로 생성된 글은 수정할 수 없습니다.',
         ],
 

@@ -22,7 +22,6 @@ return [
     'show' => [
         'fallback_translation' => '要求されたページは選択された言語（:language）に翻訳されていません。英語版を表示します。',
         'incomplete_or_outdated' => 'このページのコンテンツは不完全または古いです。これ助けることができる場合は、記事の更新を検討してください！',
-        'languages' => '言語',
         'missing' => '要求されたページ”:keyword”は見つかりませんでした。',
         'missing_title' => 'Not Found',
         'missing_translation' => '要求されたページは選択している言語に翻訳されていません。',
@@ -42,10 +41,10 @@ return [
         ],
     ],
     'main' => [
-        'title' => '',
-        'subtitle' => '',
+        'title' => 'ナレッジベース',
+        'subtitle' => 'なぜなら、osu!pediaは耳障りに聞こえるから',
     ],
     'search' => [
-        'path' => '',
+        'path' => 'から',
     ],
 ];

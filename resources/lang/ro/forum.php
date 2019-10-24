@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Subiectul a fost fixat și marcat ca un anunț',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Postări șterse',
             'total_posts' => 'Total postări',

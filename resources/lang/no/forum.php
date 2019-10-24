@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Emne har blitt festet og markert som en kunngjøring',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Slettede innlegg',
             'total_posts' => 'Totalt antall innlegg',
@@ -298,11 +303,11 @@ return [
 
             'poll' => [
                 'edit' => '',
-                'edit_warning' => '',
+                'edit_warning' => 'Redigering av en avstemming vil fjerne de gjeldene resultatene!',
                 'vote' => 'Stem',
 
                 'button' => [
-                    'change_vote' => '',
+                    'change_vote' => 'Endre stemme',
                     'edit' => '',
                     'view_results' => '',
                     'vote' => 'Stem',

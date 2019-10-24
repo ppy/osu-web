@@ -34,22 +34,22 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
+        'confirm_revoke' => 'このクライアントの認証を無効化しますか？',
+        'scopes_title' => 'このアプリケーションでできること:',
         'owned_by' => '管理者 :user',
         'none' => 'クライアントがありません',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'アクセスを無効化',
+            'true' => 'アクセスが無効化されました',
         ],
     ],
 
     'client' => [
         'id' => 'クライアントID',
         'name' => 'アプリケーション名',
-        'redirect' => '',
-        'secret' => '',
+        'redirect' => 'アプリケーションコールバックURL',
+        'secret' => 'Client Secret',
     ],
 
     'login' => [
@@ -59,17 +59,17 @@ return [
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => '新しいOAuthアプリケーションを登録する',
+        'register' => 'アプリケーションを登録',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'APIを使用すると、:linkに同意したことになります。',
+            'link' => '利用規約',
         ],
     ],
 
     'own_clients' => [
         'confirm_delete' => 'あなたは本当にクライアントを削除しますか？',
-        'new' => '',
+        'new' => '新しいOAuthアプリケーション',
         'none' => 'クライアントがありません',
 
         'revoked' => [

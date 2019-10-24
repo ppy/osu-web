@@ -88,9 +88,6 @@ return [
         'title' => ':username\'s inlägg',
     ],
 
-    'signup' => [
-        '_' => 'Registrera',
-    ],
     'anonymous' => [
         'login_link' => 'klicka för att logga in',
         'login_text' => 'logga in',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 följare|:count följare',
             'none' => '',
             'unranked' => 'Inga senaste spel',
 

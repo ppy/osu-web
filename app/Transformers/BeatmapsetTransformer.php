@@ -95,7 +95,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 'current' => $beatmapset->nominations,
                 'required' => $beatmapset->requiredNominationCount(),
             ],
-            'legacy_thread_url' => $beatmapset->thread_id !== 0 ? osu_url('legacy-forum-thread-prefix').$beatmapset->thread_id : null,
+            'legacy_thread_url' => $beatmapset->thread_id !== 0 ? route('forum.topics.show', $beatmapset->thread_id) : null,
         ];
     }
 

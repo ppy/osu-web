@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'painel de registros',
     'generic' => 'Correção de erros e aperfeiçoamentos.',
 
     'build' => [

@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => '给予 kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => '谱面信息页',
         'delete' => '删除',
         'deleted' => '被 :editor 于 :delete_time 删除。',
         'deny_kudosu' => '收回 kudosu',
@@ -287,7 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '',
+        'MR' => '镜像 Mod',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

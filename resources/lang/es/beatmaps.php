@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'permitir kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Página de Beatmap',
         'delete' => 'eliminar',
         'deleted' => 'Eliminado por :editor :delete_time',
         'deny_kudosu' => 'denegar kudosu',
@@ -287,7 +287,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '',
+        'MR' => 'Espejo',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'Sin mods',

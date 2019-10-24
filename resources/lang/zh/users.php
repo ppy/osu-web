@@ -88,9 +88,6 @@ return [
         'title' => ':username 的帖子',
     ],
 
-    'signup' => [
-        '_' => '注册',
-    ],
     'anonymous' => [
         'login_link' => '点击登录',
         'login_text' => '登录',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '关注者：:count',
             'none' => '无',
             'unranked' => '最近没有玩过',
 

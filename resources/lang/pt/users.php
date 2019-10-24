@@ -88,9 +88,6 @@ return [
         'title' => 'Publicações de :username',
     ],
 
-    'signup' => [
-        '_' => 'Registar',
-    ],
     'anonymous' => [
         'login_link' => 'clica para iniciar sessão',
         'login_text' => 'iniciar sessão',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 seguidor|:count seguidores',
             'none' => 'nenhum',
             'unranked' => 'Nenhuma partida recente',
 

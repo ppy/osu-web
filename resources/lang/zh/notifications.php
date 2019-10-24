@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_lock_compact' => '评论被锁定',
                 'beatmapset_discussion_post_new' => '用户 :username 在 :title 的谱面讨论中发布了新消息。',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主题',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
                 'beatmapset_discussion_unlock' => '谱面 :title 已被解锁以供讨论。',
                 'beatmapset_discussion_unlock_compact' => '评论已解锁',
             ],

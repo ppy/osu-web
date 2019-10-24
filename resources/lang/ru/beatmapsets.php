@@ -43,8 +43,8 @@ return [
             'ranked' => 'ранкнут ',
             'submitted' => 'опубликован ',
             'unfavourite' => 'Удалить из избранного',
-            'updated' => 'обновлён ',
-            'updated_timeago' => 'обновлён :timeago',
+            'updated' => 'обновлена ',
+            'updated_timeago' => 'обновлена :timeago',
 
             'download' => [
                 '_' => 'Скачать',

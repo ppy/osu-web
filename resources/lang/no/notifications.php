@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_lock_compact' => 'Diskusjonen var låst',
                 'beatmapset_discussion_post_new' => ':username la til en ny melding i beatmapdiskusjonen til ":title".',
                 'beatmapset_discussion_post_new_compact' => 'Nytt innlegg av :username',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
                 'beatmapset_discussion_unlock' => 'Beatmappen ":title" har blitt låst opp for diskusjon.',
                 'beatmapset_discussion_unlock_compact' => 'Diskusjon var ulåst',
             ],

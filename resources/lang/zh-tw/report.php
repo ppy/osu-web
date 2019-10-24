@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => '檢舉成績',
-        'title' => '檢舉 :username\'s 的成績？',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => '檢舉',
         'title' => '檢舉 :username\'s 的評論？',
+    ],
+
+    'scores' => [
+        'button' => '檢舉成績',
+        'title' => '檢舉 :username\'s 的成績？',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

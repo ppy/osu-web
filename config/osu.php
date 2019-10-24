@@ -48,8 +48,6 @@ return [
     'chat' => [
         'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
         'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
-        'webchat_enabled_supporter' => get_int(env('CHAT_WEBCHAT_ENABLED_SUPPORTER')) ?? false,
-        'webchat_enabled_all' => get_int(env('CHAT_WEBCHAT_ENABLED_ALL')) ?? false,
         'rate_limits' => [
             'public' => [
                 'limit' => get_int(env('CHAT_PUBLIC_LIMIT')) ?? 1,
@@ -153,7 +151,6 @@ return [
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
-        'legacy-forum-thread-prefix' => '/forum/t/',
         'osx' => 'https://osx.ppy.sh',
         'server_status' => 'https://twitter.com/osustatus',
         'smilies' => '/forum/images/smilies',

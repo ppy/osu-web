@@ -48,14 +48,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Só podes eliminar as tuas próprias publicações.',
+            'resolved' => 'Não podes eliminar uma publicação duma discussão resolvida.',
+            'system_generated' => 'Uma publicação automaticamente gerada não pode ser apagada.',
         ],
 
         'edit' => [
             'not_owner' => 'Só o publicador é que pode editar uma publicação.',
-            'resolved' => '',
+            'resolved' => 'Não podes editar uma publicação duma discussão resolvida.',
             'system_generated' => 'Uma publicação gerada automaticamente não pode ser editada.',
         ],
 

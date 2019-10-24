@@ -60,10 +60,10 @@ return [
 
     'new_client' => [
         'header' => '',
-        'register' => '',
+        'register' => '註冊應用程式',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => '在使用API之前您必須同意 :link.',
+            'link' => '使用條款',
         ],
     ],
 
