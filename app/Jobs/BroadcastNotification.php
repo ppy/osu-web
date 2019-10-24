@@ -118,7 +118,7 @@ class BroadcastNotification implements ShouldQueue
         });
     }
 
-    private function getBeatmapsetDiscussionNotificationDetails()
+    private function assignBeatmapsetDiscussionNotificationDetails()
     {
         $this->params['details'] = [
             'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
@@ -155,7 +155,7 @@ class BroadcastNotification implements ShouldQueue
         $this->notifiable = $this->object->beatmapset;
         $this->receiverIds = static::beatmapsetReceiverIds($this->notifiable);
 
-        $this->getBeatmapsetDiscussionNotificationDetails();
+        $this->assignBeatmapsetDiscussionNotificationDetails();
     }
 
     private function onBeatmapsetDiscussionQualifiedDisqualify()
@@ -164,7 +164,7 @@ class BroadcastNotification implements ShouldQueue
         $this->notifiable = $this->object->beatmapset;
         $this->receiverIds = UserGroup::whereIn('group_id', $notifyGroups)->distinct()->pluck('user_id')->all();
 
-        $this->getBeatmapsetDiscussionNotificationDetails();
+        $this->assignBeatmapsetDiscussionNotificationDetails();
 
         return NewPrivateNotificationEvent::class;
     }
@@ -175,7 +175,7 @@ class BroadcastNotification implements ShouldQueue
         $this->notifiable = $this->object->beatmapset;
         $this->receiverIds = UserGroup::whereIn('group_id', $notifyGroups)->distinct()->pluck('user_id')->all();
 
-        $this->getBeatmapsetDiscussionNotificationDetails();
+        $this->assignBeatmapsetDiscussionNotificationDetails();
 
         return NewPrivateNotificationEvent::class;
     }
