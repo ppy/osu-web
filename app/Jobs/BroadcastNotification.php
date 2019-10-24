@@ -23,11 +23,12 @@ namespace App\Jobs;
 use App\Events\NewNotificationEvent;
 use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
+use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
-use App\Models\UserGroup;
+use App\Models\UserNotificationOption;
 use App\Traits\NotificationQueue;
 use DB;
 use Exception;
@@ -149,9 +150,28 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetDiscussionQualifiedProblem()
     {
-        static $notifyGroups = [UserGroup::GROUPS['nat'], UserGroup::GROUPS['bng'], UserGroup::GROUPS['bng_limited']];
         $this->notifiable = $this->object->beatmapset;
-        $this->receiverIds = UserGroup::whereIn('group_id', $notifyGroups)->distinct()->pluck('user_id')->all();
+        $beatmap = $this->object->beatmap;
+
+        if ($beatmap === null) {
+            $modes = $this->object->beatmapset->playmodes()->all();
+        } else {
+            $modes = [$beatmap->playmode];
+        }
+
+        $modes = array_map(function ($modeInt) {
+            return Beatmap::modeStr($modeInt);
+        }, $modes);
+
+        $this->receiverIds = [];
+
+        $notificationOptions = UserNotificationOption::where(['name' => 'new_problem_on_qualified_beatmapset'])->get();
+
+        foreach ($notificationOptions as $notificationOption) {
+            if (count(array_intersect($notificationOption->details['modes'], $modes)) > 0) {
+                $this->receiverIds[] = $notificationOption->user_id;
+            }
+        }
 
         $this->params['details'] = [
             'title' => $this->notifiable->title,

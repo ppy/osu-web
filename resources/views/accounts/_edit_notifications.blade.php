@@ -42,5 +42,42 @@
                 </label>
             </div>
         </div>
+
+        <div class="account-edit__input-group">
+            <div class="account-edit-entry account-edit-entry--no-label">
+                <div class="account-edit-entry__checkboxes-label">
+                    {{ trans('accounts.notifications.new_problem_on_qualified_beatmapset') }}
+                </div>
+                <form
+                    class="account-edit-entry__checkboxes js-account-edit"
+                    data-account-edit-auto-submit="1"
+                    data-account-edit-type="array"
+                    data-url="{{ route('account.notification-options', [
+                        'name' => 'new_problem_on_qualified_beatmapset',
+                    ]) }}"
+                    data-field="user_notification_option[details]"
+                >
+                    @php
+                        $modes = $notificationOptions['new_problem_on_qualified_beatmapset']['modes'] ?? [];
+                    @endphp
+                    @foreach (App\Models\Beatmap::MODES as $key => $_value)
+                        <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
+                            @include('objects._switch', [
+                                'checked' => in_array($key, $modes, true),
+                                'value' => $key,
+                            ])
+
+                            <span class="account-edit-entry__checkbox-label">
+                                {{ trans("beatmaps.mode.{$key}") }}
+                            </span>
+                        </label>
+                    @endforeach
+
+                    <div class="account-edit-entry__checkboxes-status">
+                        @include('accounts._edit_entry_status')
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

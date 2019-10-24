@@ -505,7 +505,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testProblemOnQualifiedBeatmap($updateParams, $assertMethod)
     {
         $this->beatmapset->update($updateParams);
-        factory(User::class)->states('bng')->create(); // event doesn't get dispatched if there are no users in the group.
+        $notificationOption = User::first()->notificationOptions()->firstOrCreate([
+            'name' => 'new_problem_on_qualified_beatmapset',
+        ]);
+        $notificationOption->update(['details' => array_keys(Beatmap::MODES)]);
 
         // ensure there's no currently open problems
         $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
