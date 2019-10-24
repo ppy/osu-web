@@ -52,6 +52,25 @@ class @AccountEdit
     el.dataset.accountEditState = ''
 
 
+  getValue: (form) ->
+    if form.dataset.accountEditType == 'array'
+      prevValue = null
+
+      value = ['']
+      for checkbox in form.querySelectorAll('input')
+        value.push(checkbox.value) if checkbox.checked
+    else
+      prevValue = form.dataset.lastValue
+
+      input = form.querySelector('.js-account-edit__input')
+      if input.type == 'checkbox'
+        value = input.checked
+      else
+        value = input.value.trim()
+
+    { value, prevValue }
+
+
   saved: (el) =>
     el.dataset.accountEditState = 'saved'
 
@@ -70,23 +89,19 @@ class @AccountEdit
 
 
   update: (form) =>
-    input = form.querySelector('.js-account-edit__input')
-
-    if input.type == 'checkbox'
-      value = input.checked
-    else
-      value = input.value.trim()
-
-    prevValue = form.dataset.lastValue
+    { value, prevValue } = @getValue(form)
 
     return @clearState(form) if value == prevValue
 
     form.dataset.lastValue = value
 
-    form.updating = $.ajax laroute.route('account.update'),
+    url = form.dataset.url ? laroute.route('account.update')
+    field = form.dataset.field ? input.name
+
+    form.updating = $.ajax url,
       method: 'PUT'
       data:
-        "#{input.name}": value
+        "#{field}": value
 
     .done =>
       @saved form
