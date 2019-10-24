@@ -31,7 +31,8 @@ import {
 } from 'slate-react';
 import EditorDiscussionComponent from './editor-discussion-component';
 
-let initialValue: string = '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[{"object":"text","text":"This is a placeholder."}]}]}}';
+const placeholder: string = '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[]}]}}';
+let initialValue: string = placeholder;
 
 const schema: SchemaProperties = {
   blocks: {
@@ -198,6 +199,12 @@ export default class Editor extends React.Component<any, any> {
     editor.toggleMark(mark);
   }
 
+  resetInput = () => {
+    this.setState({
+      value: Value.fromJSON(JSON.parse(placeholder)),
+    });
+  }
+
   post = () => {
     const data = this.state.value.toJSON();
 
@@ -208,7 +215,9 @@ export default class Editor extends React.Component<any, any> {
           document: JSON.stringify(data),
         },
         method: 'POST',
-      });
+      }).then(() => {
+        this.resetInput();
+    });
   }
 
   toggleMark = (type: string) => {
@@ -244,6 +253,7 @@ export default class Editor extends React.Component<any, any> {
                     onChange={this.onChange}
                     onKeyDown={this.onKeyDown}
                     plugins={this.plugins}
+                    placeholder='Placeholder goes here...'
                     renderBlock={this.renderBlock}
                     renderInline={this.renderInline}
                     renderMark={this.renderMark}
