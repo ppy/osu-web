@@ -17,12 +17,11 @@
  */
 
 import isHotkey from 'is-hotkey';
+import * as laroute from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
-import {SchemaProperties, Value} from 'slate';
+import { SchemaProperties, Value } from 'slate';
 import { Editor as SlateEditor } from 'slate';
-import AutoReplace from 'slate-auto-replace';
-// import InstantReplace from 'slate-instant-replace';
 import {
   Editor as SlateReactEditor,
   findDOMNode,
@@ -30,67 +29,47 @@ import {
   RenderInlineProps,
   RenderMarkProps,
 } from 'slate-react';
-// import SoftBreak from 'slate-soft-break';
 import EditorDiscussionComponent from './editor-discussion-component';
 
 let initialValue: string = '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[{"object":"text","text":"This is a placeholder."}]}]}}';
 
-// const Replacer = (editor: SlateReactEditor, lastWord: string) => {
-//   const TIMESTAMP_REGEX = /\b(\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d,)*\d\))?/;
-//   if (lastWord.match(TIMESTAMP_REGEX)) {
-//     editor.moveFocusBackward(lastWord.length); // select last word
-//     editor.unwrapInline('timestamp'); // remove existing timestamps
-//     editor.wrapInline({ type: 'timestamp', data: { lastWord } }); // set timestamp inline
-//     editor.moveFocusForward(lastWord.length); // deselect it
-//     // editor.insertText(' ');
-//   }
-// };
-
-interface MatchesInterface {
-  after: any[];
-  before: any[];
-}
-
 const schema: SchemaProperties = {
-  document: {
-    nodes: [
-      {
-        match: [
-          {type: 'embed'},
-          {type: 'paragraph'},
-          {type: 'timestamp'},
-        ],
-      },
-    ],
-    blocks: {
-      embed: {
-        nodes: (object, match) => {
-          console.log('validlidd', object, match);
-          return true;
-        },
-      },
-      // {
-      //   marks: [],
-      //   nodes: [{
-      //     marks: [],
-      //     match: [{
-      //       object: 'text',
-      //       marks: [],
-      //     }]
-      //   }],
+  blocks: {
+    embed: {
+      // nodes: (object, match) => {
+      //   console.log('validlidd', object, match);
+      //   return true;
       // },
     },
-    inlines: {
-      timestamp: {
-        nodes: [{
-          match: { object: 'text' },
-        }],
-      }
-    },
+    // {
+    //   marks: [],
+    //   nodes: [{
+    //     marks: [],
+    //     match: [{
+    //       object: 'text',
+    //       marks: [],
+    //     }]
+    //   }],
+    // },
+  },
+  document: {
     marks: [
-      { type: 'bold' },
-      { type: 'italic' },
+      {type: 'bold'},
+      {type: 'italic'},
     ],
+    nodes: [{
+      match: [
+        {type: 'embed'},
+        {type: 'paragraph'},
+      ],
+    }],
+  },
+  inlines: {
+    timestamp: {
+      nodes: [{
+        match: { object: 'text' },
+      }],
+    },
   },
 };
 
@@ -98,30 +77,7 @@ export default class Editor extends React.Component<any, any> {
   editor = React.createRef<SlateReactEditor>();
   menu = React.createRef<HTMLDivElement>();
   menuBody = React.createRef<HTMLDivElement>();
-  plugins = [
-    // SoftBreak({ shift: true }),
-    // InstantReplace(Replacer),
-    AutoReplace({
-      trigger: () => true,
-
-      before: /\b((\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d[,|])*\d\))?)/,
-      change: (editor: SlateEditor, e: Event, matches: MatchesInterface) => {
-        console.log('derp', matches);
-        // return editor.insertText('derppp');
-        return editor
-          // .unwrapInline({type: 'timestamp'})
-          .insertInline({ type: 'timestamp', data: { lastWord: matches.before[0] } });
-          // .insertText(matches.before[0]);
-
-        // const lastWord = matches.before[0];
-        // // return editor.setBlocks({ type: 'bold' });
-        // editor.moveFocusBackward(lastWord.length); // select last word
-        // editor.unwrapInline('timestamp'); // remove existing timestamps
-        // editor.wrapInline({ type: 'timestamp', data: { lastWord } }); // set timestamp inline
-        // editor.moveFocusForward(lastWord.length); // deselect it
-      },
-    }),
-  ];
+  plugins = [];
 
   constructor(props: {}) {
     super(props);
@@ -165,38 +121,38 @@ export default class Editor extends React.Component<any, any> {
     this.setState({menuShown: false});
   }
 
-  test = () => {
-    let output = [];
-    const whee = this.state.value.toJSON().document.nodes;
-
-    whee.forEach((node) => {
-      switch (node.type) {
-        case 'paragraph':
-          let temp = [];
-          node.nodes.forEach((child) => {
-            let marks = [];
-            child.marks.forEach((mark) => {
-              switch (mark.type) {
-                case 'bold':
-                  marks.push('**');
-                  break;
-                case 'italic':
-                  marks.push('*');
-                  break;
-              }
-            });
-            temp.push([marks.join(''), child.text, marks.reverse().join('')].join(''));
-          });
-          output.push(temp.join('') + "\n");
-          break;
-        case 'embed':
-          output.push("[embed goes here]\n");
-          break;
-      }
-    });
-
-    console.log(output.join(''));
-  }
+  // test = () => {
+  //   let output = [];
+  //   const whee = this.state.value.toJSON().document.nodes;
+  //
+  //   whee.forEach((node) => {
+  //     switch (node.type) {
+  //       case 'paragraph':
+  //         const temp: string[] = [];
+  //         node.nodes.forEach((child) => {
+  //           let marks: string[] = [];
+  //           child.marks.forEach((mark) => {
+  //             switch (mark.type) {
+  //               case 'bold':
+  //                 marks.push('**');
+  //                 break;
+  //               case 'italic':
+  //                 marks.push('*');
+  //                 break;
+  //             }
+  //           });
+  //           temp.push([marks.join(''), child.text, marks.reverse().join('')].join(''));
+  //         });
+  //         output.push(temp.join('') + '\n');
+  //         break;
+  //       case 'embed':
+  //         output.push('[embed goes here]\n');
+  //         break;
+  //     }
+  //   });
+  //
+  //   console.log(output.join(''));
+  // }
 
   log = () => console.log(this.state.value.toJSON());
 
@@ -322,7 +278,6 @@ export default class Editor extends React.Component<any, any> {
                     </div>
                     <div className='forum-post-edit__buttons forum-post-edit__buttons--actions'>
                         <div className='forum-post-edit__button'>
-                            <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.test}>test</button>
                             <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
                           <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
                       </div>
