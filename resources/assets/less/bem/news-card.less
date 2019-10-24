@@ -37,17 +37,7 @@
   }
 
   &--landing {
-    margin-bottom: 20px;
-
-    @media @desktop {
-      margin-bottom: 0;
-      margin-right: 20px;
-      flex-basis: calc(25% - 15px);
-    }
-
-    &:last-of-type {
-      margin: 0;
-    }
+    margin: 10px;
   }
 
   &__author {
@@ -70,6 +60,10 @@
     padding: 20px 25px;
     display: flex;
     flex-direction: column;
+
+    .@{_top}--landing & {
+      padding: 10px 15px;
+    }
   }
 
   &__main {
@@ -113,6 +107,10 @@
     line-height: 1.2em;
     height: 3.6em;
     overflow: hidden;
+
+    .@{_top}--landing & {
+      display: none;
+    }
   }
 
   &__title {
@@ -125,6 +123,10 @@
 
     .@{_top}--show & {
       font-size: @font-size--title;
+    }
+
+    .@{_top}--landing & {
+      font-size: @font-size--title-small;
     }
   }
 }
