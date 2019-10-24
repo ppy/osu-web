@@ -19,16 +19,10 @@ import PostJson from 'interfaces/news-post-json';
 import PostItem from 'news-index/post-item';
 import * as React from 'react';
 
-interface Props {
-  posts: PostJson[];
-}
-
-export class LandingNews extends React.Component<Props, {}> {
-  render() {
-    return (
-      <div className='landing-news'>
-        {this.props.posts.map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing']} key={i}/>)}
-      </div>
-    );
-  }
+export function LandingNews({posts}: {posts: PostJson[]}) {
+  return (
+    <div className='landing-news'>
+      {posts.map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing']} key={i}/>)}
+    </div>
+  );
 }
