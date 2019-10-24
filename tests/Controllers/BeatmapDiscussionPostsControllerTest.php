@@ -499,6 +499,66 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertFalse($reply2->fresh()->trashed());
     }
 
+    public function testProblemOnQualifiedBeatmapsetWithoutMatchingMode()
+    {
+        $this->beatmapset->update([
+            'approved' => Beatmapset::STATES['qualified'],
+            'queued_at' => now(),
+        ]);
+        $this->beatmapset->beatmaps()->update(['playmode' => Beatmap::MODES['osu']]);
+        $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
+            'name' => 'new_problem_on_qualified_beatmapset',
+        ]);
+        $notificationOption->update(['details' => ['taiko']]);
+
+        // ensure there's no currently open problems
+        $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'problem',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+
+        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+    }
+
+    public function testProblemOnQualifiedBeatmapsetWithMatchingMode()
+    {
+        $this->beatmapset->update([
+            'approved' => Beatmapset::STATES['qualified'],
+            'queued_at' => now(),
+        ]);
+        $this->beatmapset->beatmaps()->update(['playmode' => Beatmap::MODES['osu']]);
+        $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
+            'name' => 'new_problem_on_qualified_beatmapset',
+        ]);
+        $notificationOption->update(['details' => ['osu']]);
+
+        // ensure there's no currently open problems
+        $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'problem',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+
+        Event::assertDispatched(NewPrivateNotificationEvent::class);
+    }
+
     /**
      * @dataProvider problemDataProvider
      */
