@@ -31,7 +31,6 @@ use App\Models\Notification;
 use Auth;
 use DB;
 use Illuminate\Pagination\Paginator;
-use Request;
 
 class BeatmapDiscussionPostsController extends Controller
 {
@@ -198,21 +197,6 @@ class BeatmapDiscussionPostsController extends Controller
                         break;
 
                     case 'embed':
-                        // TODO: This.
-//                        $output[] = "%[";
-//                        foreach ($node->nodes as $child) {
-//                            switch ($child->object) {
-//                                case 'text':
-//                                    $output[] = $child->text;
-//                                    break;
-//
-//                                case 'inline':
-//                                    if ($child->type === 'timestamp')
-//                                        $output[] = $child->data->lastWord;
-//                                    break;
-//                            }
-//                        }
-//                        $output[] = "](#{$node->data->beatmapId}/{$node->data->type}/11:22:33)\n";
                         $discussionId = array_shift($issues)['discussion'];
                         $output[] = "%[](#{$discussionId})\n";
                         break;
@@ -225,15 +209,12 @@ class BeatmapDiscussionPostsController extends Controller
                 'user_id' => Auth::user()->getKey(),
                 'resolved' => false,
                 'message_type' => 'review',
-//                'beatmap_id' => $node->data->beatmapId,
             ]);
             $review->saveOrExplode();
-
-            $postParams = [
+            $post = new BeatmapDiscussionPost([
                 'user_id' => Auth::user()->user_id,
                 'message' => join('', $output),
-            ];
-            $post = new BeatmapDiscussionPost($postParams);
+            ]);
             $post->beatmapDiscussion()->associate($review);
             $post->saveOrExplode();
 
