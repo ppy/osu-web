@@ -96,6 +96,7 @@ class @AccountEdit
     form.dataset.lastValue = value
 
     url = form.dataset.url ? laroute.route('account.update')
+    input = form.querySelector('.js-account-edit__input')
     field = form.dataset.field ? input.name
 
     form.updating = $.ajax url,

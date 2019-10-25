@@ -140,6 +140,7 @@ class BroadcastNotification implements ShouldQueue
         $this->receiverIds = static::beatmapsetReceiverIds($this->notifiable);
 
         $this->params['details'] = [
+            'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
             'title' => $this->notifiable->title,
             'post_id' => $this->object->getKey(),
             'discussion_id' => $this->object->beatmapDiscussion->getKey(),
@@ -174,6 +175,7 @@ class BroadcastNotification implements ShouldQueue
         }
 
         $this->params['details'] = [
+            'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
             'title' => $this->notifiable->title,
             'post_id' => $this->object->getKey(),
             'discussion_id' => $this->object->beatmapDiscussion->getKey(),

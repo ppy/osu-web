@@ -421,6 +421,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
     Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
+    Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
 });
 

@@ -49,8 +49,11 @@ class MigrateFreshAllCommand extends FreshCommand
             return $this->error('User aborted!');
         }
 
-        foreach (array_keys($connections) as $name) {
-            $this->dropAllTables($name);
+        foreach (array_keys($connections) as $database) {
+            $this->warn($database);
+            $this->call('db:wipe', [
+                '--database' => $database,
+            ]);
         }
 
         $this->info('Dropped all tables successfully.');
