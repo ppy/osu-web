@@ -46,19 +46,19 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
                 <div class="account-edit-entry__checkboxes-label">
-                    {{ trans('accounts.notifications.new_problem_on_qualified_beatmapset') }}
+                    {{ trans('accounts.notifications.beatmap_discussion_qualified_problem') }}
                 </div>
                 <form
                     class="account-edit-entry__checkboxes js-account-edit"
                     data-account-edit-auto-submit="1"
                     data-account-edit-type="array"
                     data-url="{{ route('account.notification-options', [
-                        'name' => 'new_problem_on_qualified_beatmapset',
+                        'name' => 'beatmap_discussion_qualified_problem',
                     ]) }}"
                     data-field="user_notification_option[details]"
                 >
                     @php
-                        $modes = $notificationOptions['new_problem_on_qualified_beatmapset']['modes'] ?? [];
+                        $modes = $notificationOptions['beatmap_discussion_qualified_problem']['modes'] ?? [];
                     @endphp
                     @foreach (App\Models\Beatmap::MODES as $key => $_value)
                         <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
