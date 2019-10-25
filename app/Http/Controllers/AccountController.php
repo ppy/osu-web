@@ -194,10 +194,6 @@ class AccountController extends Controller
 
         $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $name]);
 
-        if ($option === null) {
-            abort(422);
-        }
-
         if ($option->update($params)) {
             return response(null, 204);
         } else {
