@@ -34,7 +34,7 @@ class ClientTransformerTest extends TestCase
     public function testRedirectAndSecretVisibleToOwner()
     {
         auth()->setUser($this->owner);
-        $json = json_item($this->client, 'OAuth\Client');
+        $json = json_item($this->client, 'OAuth\Client', ['redirect', 'secret']);
 
         $this->assertSame($this->client->redirect, $json['redirect']);
         $this->assertSame($this->client->secret, $json['secret']);
@@ -44,7 +44,7 @@ class ClientTransformerTest extends TestCase
     {
         $user = factory(User::class)->create();
         auth()->setUser($user);
-        $json = json_item($this->client, 'OAuth\Client');
+        $json = json_item($this->client, 'OAuth\Client', ['redirect', 'secret']);
 
         $this->assertArrayNotHasKey('redirect', $json);
         $this->assertArrayNotHasKey('secret', $json);
