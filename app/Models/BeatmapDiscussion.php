@@ -124,6 +124,14 @@ class BeatmapDiscussion extends Model
             $params['message_types'] = array_keys(static::MESSAGE_TYPES);
         }
 
+        if (isset($rawParams['states'])) {
+            $params['states'] = get_arr($rawParams['states'], 'get_string');
+
+            $query->withBeatmapsetState($params['states']);
+        } else {
+            $params['states'] = array_keys(Beatmapset::STATES);
+        }
+
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
@@ -672,6 +680,21 @@ class BeatmapDiscussion extends Model
                     ->orWhereNull('beatmap_id');
             })
             ->where('resolved', '=', false);
+    }
+
+    public function scopeWithBeatmapsetState($query, $states)
+    {
+        foreach ((array) $states as $state) {
+            $intType = Beatmapset::STATES[$state] ?? null;
+
+            if ($intType !== null) {
+                $intTypes[] = $intType;
+            }
+        }
+
+        $query->whereHas('beatmapset', function ($beatmapsetQuery) use ($intTypes) {
+            $beatmapsetQuery->whereIn('approved', $intTypes);
+        });
     }
 
     public function scopeWithoutTrashed($query)
