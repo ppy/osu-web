@@ -651,6 +651,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             $message = trans('beatmaps.nominations.incorrect_state');
         }
 
+        if ($this->hype < $this->requiredHype()) {
+            $message = trans('beatmaps.nominations.not_enough_hype');
+        }
+
         // check if there are any outstanding issues still
         if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
             $message = trans('beatmaps.nominations.unresolved_issues');
