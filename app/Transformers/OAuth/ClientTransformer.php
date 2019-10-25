@@ -34,7 +34,7 @@ class ClientTransformer extends Fractal\TransformerAbstract
 
     public function transform(Client $client)
     {
-        $array = [
+        return [
             'id' => $client->id,
             'name' => $client->name,
             'password_client' => $client->password_client,
@@ -42,8 +42,6 @@ class ClientTransformer extends Fractal\TransformerAbstract
             'scopes' => $client->scopes,
             'user_id' => $client->user_id,
         ];
-
-        return $array;
     }
 
     public function includeUser(Client $client)
