@@ -58,7 +58,7 @@
                     data-field="user_notification_option[details]"
                 >
                     @php
-                        $modes = $notificationOptions['beatmap_discussion_qualified_problem']['modes'] ?? [];
+                        $modes = $notificationOptions['beatmap_discussion_qualified_problem']->details['modes'] ?? [];
                     @endphp
                     @foreach (App\Models\Beatmap::MODES as $key => $_value)
                         <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
