@@ -55,17 +55,13 @@ class UserNotificationOption extends Model
 
                 $modes = array_values(array_intersect($value, $validModes));
 
-                if (count($modes) === 0) {
-                    $value = null;
-                } else {
-                    $value = compact('modes');
+                if (count($modes) > 0) {
+                    $details = compact('modes');
                 }
             }
         }
 
-        $value = $value ?? null;
-
-        $this->attributes['details'] = json_encode($value);
+        $this->attributes['details'] = isset($details) ? json_encode($details) : null;
     }
 
     public function setNameAttribute($value)
