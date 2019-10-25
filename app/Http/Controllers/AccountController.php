@@ -215,7 +215,6 @@ class AccountController extends Controller
             'comments_sort:string',
             'extras_order:string[]',
             'ranking_expanded:bool',
-            'notify_new_problem_on_qualified_beatmapset:string[]',
         ]);
 
         try {

@@ -131,24 +131,6 @@ class UserProfileCustomization extends Model
         $this->setOption('ranking_expanded', $value);
     }
 
-    public function getNotifyNewProblemOnQualifiedBeatmapsetAttribute()
-    {
-        return $this->options['notify_new_problem_on_qualified_beatmapset'] ?? [];
-    }
-
-    public function setNotifyNewProblemOnQualifiedBeatmapsetAttribute($value)
-    {
-        if (!is_array($value)) {
-            $value = null;
-        } else {
-            $validTypes = array_keys(Beatmap::MODES);
-
-            $value = array_values(array_intersect($value, $validTypes));
-        }
-
-        $this->setOption('notify_new_problem_on_qualified_beatmapset', $value);
-    }
-
     public function setOption($key, $value)
     {
         $this->options = array_merge($this->options ?? [], [$key => $value]);
