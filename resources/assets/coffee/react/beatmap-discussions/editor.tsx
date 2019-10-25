@@ -30,6 +30,7 @@ import {
   RenderMarkProps,
 } from 'slate-react';
 import EditorDiscussionComponent from './editor-discussion-component';
+import EditorPluginTimestamp from './editor-plugin-timestamp';
 
 const placeholder: string = '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[]}]}}';
 let initialValue: string = placeholder;
@@ -78,7 +79,9 @@ export default class Editor extends React.Component<any, any> {
   editor = React.createRef<SlateReactEditor>();
   menu = React.createRef<HTMLDivElement>();
   menuBody = React.createRef<HTMLDivElement>();
-  plugins = [];
+  plugins = [
+    EditorPluginTimestamp(),
+  ];
 
   constructor(props: {}) {
     super(props);
@@ -181,45 +184,6 @@ export default class Editor extends React.Component<any, any> {
   }
 
   onKeyDown = (event: KeyboardEvent, editor: SlateEditor, next: () => any) => {
-    const TS_REGEX = /\b((\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d[,|])*\d\))?)/;
-    console.log(editor, event.key);
-
-    if (event.key === 'Backspace') {
-      // handle breaking timestamps when deleting into them
-      console.log('backspace', editor);
-      editor.moveFocusBackward(1);
-      editor.unwrapInline('timestamp'); // remove existing timestamps
-      editor.moveFocusForward(1);
-
-      return next();
-    }
-
-    let current = editor.value.startText.text;
-
-    // isPrintableChar
-    if (event.key.length === 1) {
-      current += event.key;
-    }
-
-    const matches = current.match(TS_REGEX);
-    if (matches && matches.index !== undefined) {
-      console.log('match', matches, event.key, editor.value.anchorInline ? editor.value.anchorInline.type : null);
-      if (editor.value.anchorInline && editor.value.anchorInline.type === 'timestamp') {
-        return next();
-      }
-
-      event.preventDefault();
-
-      if (event.key.length === 1) {
-        editor.insertText(event.key);
-      }
-
-      editor.moveFocusTo(matches.index);
-      editor.unwrapInline('timestamp'); // remove existing timestamps
-      editor.wrapInline({type: 'timestamp', data: {lastWord: current}}); // set timestamp inline
-      editor.moveFocusForward(matches[0].length + 1); // deselect it
-    }
-
     // don't apply bold/italic marks within embed blocks
     if (editor.value.anchorBlock.type === 'embed') {
       return next();
