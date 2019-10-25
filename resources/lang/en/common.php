@@ -59,7 +59,6 @@ return [
         'saving' => 'Saving...',
         'search' => 'Search',
         'see_more' => 'see more',
-        'see_more_news' => 'see more news',
         'show' => 'show',
         'show_deleted' => 'Show deleted',
         'show_more' => 'show more',

@@ -32,7 +32,7 @@ export function LandingNews({posts}: {posts: PostJson[]}) {
           hasMore={true}
           loading={false}
           hideIcon={true}
-          label={osu.trans('common.buttons.see_more_news')}
+          label={osu.trans('home.landing.see_more_news')}
           url={route('news.index')}
         />
       </div>
