@@ -37,7 +37,7 @@ export default function PostItem({modifiers, post}: {modifiers?: string[], post:
   return (
     <a
       href={route('news.show', {news: post.slug})}
-      className={osu.classWithModifiers('news-card', modifiers || ['index'])}
+      className={osu.classWithModifiers('news-card', modifiers || ['index', 'hover'])}
     >
       {cover}
       <div className='news-card__overlay' />

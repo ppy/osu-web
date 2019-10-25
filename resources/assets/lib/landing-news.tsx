@@ -25,7 +25,7 @@ export function LandingNews({posts}: {posts: PostJson[]}) {
   return (
     <div className='landing-news'>
       <div className='landing-news__posts'>
-        {posts.map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing', 'index']} key={i}/>)}
+        {posts.map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing', 'hover']} key={i}/>)}
       </div>
       <div className='landing-news__link'>
         <ShowMoreLink
