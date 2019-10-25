@@ -41,7 +41,7 @@ class ClientTransformer extends Fractal\TransformerAbstract
             'user_id' => $client->user_id,
         ];
 
-        if ($client->user->is(auth()->user())) {
+        if (auth()->check() && auth()->user()->getKey() === $client->user_id) {
             $array['redirect'] = $client->redirect;
             $array['secret'] = $client->secret;
         }
