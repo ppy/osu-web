@@ -42,6 +42,6 @@ return [
     ],
     'main' => [
         'title' => 'Knowledge Base',
-        'subtitle' => 'the knowledge base of osu!',
+        'subtitle' => 'gather knowledge of osu! all in one place',
     ],
 ];
