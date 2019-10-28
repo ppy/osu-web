@@ -24,7 +24,6 @@ use App\Libraries\CommentBundle;
 use App\Libraries\GithubImporter;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
-use App\Models\Changelog;
 use App\Models\UpdateStream;
 use Cache;
 
