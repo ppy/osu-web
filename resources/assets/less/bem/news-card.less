@@ -36,6 +36,11 @@
     min-height: 150px;
   }
 
+  &--landing {
+    margin: 10px;
+    height: 150px;
+  }
+
   &__author {
     font-size: @font-size--title-small;
     font-weight: 600;
@@ -56,6 +61,10 @@
     padding: 20px 25px;
     display: flex;
     flex-direction: column;
+
+    .@{_top}--landing & {
+      padding: 10px 15px;
+    }
   }
 
   &__main {
@@ -67,7 +76,7 @@
     .full-size-overflow();
     background-image: linear-gradient(to bottom, transparent, .osu-hsla(@osu-colour-b6, 0.5)[@hsla]);
 
-    .@{_top}--index & {
+    .@{_top}--hover & {
       &::after {
         .full-size-overflow();
         content: '';
@@ -99,6 +108,10 @@
     line-height: 1.2em;
     height: 3.6em;
     overflow: hidden;
+
+    .@{_top}--landing & {
+      display: none;
+    }
   }
 
   &__title {
@@ -111,6 +124,10 @@
 
     .@{_top}--show & {
       font-size: @font-size--title;
+    }
+
+    .@{_top}--landing & {
+      font-size: @font-size--title-small;
     }
   }
 }

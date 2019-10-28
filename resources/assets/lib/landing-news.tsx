@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -17,38 +15,27 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+import PostJson from 'interfaces/news-post-json';
+import { route } from 'laroute';
+import PostItem from 'news-index/post-item';
+import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 
-namespace App\Http\Controllers\Store;
-
-use Auth;
-
-class OrdersController extends Controller
-{
-    protected $layout = 'master';
-
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->middleware('auth');
-        $this->middleware('verify-user');
-    }
-
-    public function index()
-    {
-        $orders = Auth::user()
-            ->orders()
-            ->orderBy('order_id', 'desc')
-            ->with('items.product');
-
-        if (request('type') === 'processing') {
-            $orders->where('status', 'processing');
-        } else {
-            $orders->where('status', '<>', 'incart');
-        }
-
-        $orders = $orders->paginate(20);
-
-        return view('store.orders.index', compact('orders'));
-    }
+export function LandingNews({posts}: {posts: PostJson[]}) {
+  return (
+    <div className='landing-news'>
+      <div className='landing-news__posts'>
+        {posts.map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing', 'hover']} key={i}/>)}
+      </div>
+      <div className='landing-news__link'>
+        <ShowMoreLink
+          hasMore={true}
+          loading={false}
+          hideIcon={true}
+          label={osu.trans('home.landing.see_more_news')}
+          url={route('news.index')}
+        />
+      </div>
+    </div>
+  );
 }
