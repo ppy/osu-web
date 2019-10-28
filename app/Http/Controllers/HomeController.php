@@ -27,7 +27,6 @@ use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\NewsPost;
-use App\Models\User;
 use App\Models\UserDonation;
 use Auth;
 use Request;
