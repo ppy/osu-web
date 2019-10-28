@@ -53,12 +53,12 @@
                     data-account-edit-auto-submit="1"
                     data-account-edit-type="array"
                     data-url="{{ route('account.notification-options', [
-                        'name' => 'beatmapset_discussion_qualified_problem',
+                        'name' => App\Models\Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
                     ]) }}"
                     data-field="user_notification_option[details]"
                 >
                     @php
-                        $modes = $notificationOptions['beatmapset_discussion_qualified_problem']->details['modes'] ?? [];
+                        $modes = $notificationOptions[App\Models\Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM]->details['modes'] ?? [];
                     @endphp
                     @foreach (App\Models\Beatmap::MODES as $key => $_value)
                         <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">

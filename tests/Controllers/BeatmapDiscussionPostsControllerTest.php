@@ -507,7 +507,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         ]);
         $this->beatmapset->beatmaps()->update(['playmode' => Beatmap::MODES['osu']]);
         $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
-            'name' => 'beatmapset_discussion_qualified_problem',
+            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
         ]);
         $notificationOption->update(['details' => ['taiko']]);
 
@@ -537,7 +537,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         ]);
         $this->beatmapset->beatmaps()->update(['playmode' => Beatmap::MODES['osu']]);
         $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
-            'name' => 'beatmapset_discussion_qualified_problem',
+            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
         ]);
         $notificationOption->update(['details' => ['osu']]);
 
@@ -566,7 +566,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     {
         $this->beatmapset->update($updateParams);
         $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
-            'name' => 'beatmapset_discussion_qualified_problem',
+            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
         ]);
         $notificationOption->update(['details' => array_keys(Beatmap::MODES)]);
 
@@ -595,7 +595,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             'queued_at' => now(),
         ]);
         $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
-            'name' => 'beatmapset_discussion_qualified_problem',
+            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
         ]);
         $notificationOption->update(['details' => array_keys(Beatmap::MODES)]);
 

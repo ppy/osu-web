@@ -35,7 +35,7 @@ class UserNotificationOption extends Model
     use Validatable;
 
     const VALID_NAMES = [
-        'beatmapset_discussion_qualified_problem',
+        Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
     ];
 
     protected $casts = [
@@ -49,7 +49,7 @@ class UserNotificationOption extends Model
 
     public function setDetailsAttribute($value)
     {
-        if ($this->name === 'beatmapset_discussion_qualified_problem') {
+        if ($this->name === Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM) {
             if (is_array($value)) {
                 $validModes = array_keys(Beatmap::MODES);
 
