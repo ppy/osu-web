@@ -135,6 +135,12 @@ class BeatmapDiscussion extends Model
             $params['states'] = [];
         }
 
+        $params['only_unresolved'] = get_bool($rawParams['only_unresolved'] ?? null) ?? false;
+
+        if ($params['only_unresolved']) {
+            $query->openIssues();
+        }
+
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {

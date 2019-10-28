@@ -81,6 +81,16 @@
                     </div>
                 </div>
 
+                <div class="simple-form__row simple-form__row--no-label">
+                    <label class="simple-form__checkbox">
+                        @include('objects._switch', [
+                            'checked' => $search['params']['only_unresolved'],
+                            'name' => 'only_unresolved',
+                        ])
+                        {{ trans('beatmap_discussions.index.form.only_unresolved') }}
+                    </label>
+                </div>
+
                 @if (priv_check('BeatmapDiscussionModerate')->can())
                     <div class="simple-form__row simple-form__row--no-label">
                         <label class="simple-form__checkbox">
