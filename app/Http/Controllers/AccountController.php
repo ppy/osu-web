@@ -119,7 +119,7 @@ class AccountController extends Controller
             ->getIdWithoutKeyPrefix();
 
         $authorizedClients = json_collection(Client::forUser($user), 'OAuth\Client', 'user');
-        $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), 'OAuth\Client');
+        $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
 
         $notificationOptions = $user->notificationOptions->keyBy('name');
 
