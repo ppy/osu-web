@@ -76,7 +76,7 @@ class BeatmapDiscussion extends Model
 
     const VOTES_TO_SHOW = 50;
 
-    const BEATMAPSET_STATES = ['ranked', 'qualified', 'disqualified', 'pending'];
+    const BEATMAPSET_STATUS = ['all', 'ranked', 'qualified', 'disqualified', 'pending'];
 
     public static function search($rawParams = [])
     {
@@ -126,13 +126,12 @@ class BeatmapDiscussion extends Model
             $params['message_types'] = array_keys(static::MESSAGE_TYPES);
         }
 
-        if (isset($rawParams['states'])) {
-            $params['states'] = get_arr($rawParams['states'], 'get_string');
-            $state = $params['states'][0] ?? null;
+        if (isset($rawParams['status'])) {
+            $params['status'] = $rawParams['status'];
 
-            static::stateQuery($query, $state);
+            static::statusQuery($query, $params['status']);
         } else {
-            $params['states'] = [];
+            $params['status'] = 'all';
         }
 
         $params['only_unresolved'] = get_bool($rawParams['only_unresolved'] ?? null) ?? false;
@@ -156,9 +155,9 @@ class BeatmapDiscussion extends Model
         return ['query' => $query, 'params' => $params];
     }
 
-    public static function stateQuery($query, $state)
+    public static function statusQuery($query, $status)
     {
-        switch ($state) {
+        switch ($status) {
             case 'ranked':
                 // discussions of maps that got ranked.
                 $query->whereHas('beatmapset', function ($beatmapsetQuery) {

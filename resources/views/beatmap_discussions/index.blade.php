@@ -47,19 +47,21 @@
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmap_discussions.index.form.states') }}
+                        {{ trans('beatmap_discussions.index.form.status._') }}
                     </div>
-                    <div class="simple-form__checkboxes-inline">
-                        @foreach (App\Models\BeatmapDiscussion::BEATMAPSET_STATES as $state)
-                            <label class="simple-form__checkbox simple-form__checkbox--inline">
-                                @include('objects._switch', [
-                                    'checked' => in_array($state, $search['params']['states'], true),
-                                    'name' => 'states[]',
-                                    'value' => $state,
-                                ])
-                                {{ trans("beatmaps.discussions.state.{$state}") }}
-                            </label>
-                        @endforeach
+                    <div class="simple-form__select">
+                        <div class="form-select form-select--simple-form">
+                            <select class="form-select__input" name="status">
+                                @foreach (App\Models\BeatmapDiscussion::BEATMAPSET_STATUS as $status)
+                                    <option
+                                        value="{{$status}}"
+                                        {{ $status === $search['params']['status'] ? "selected" : "" }}
+                                    >
+                                        {{ trans("beatmap_discussions.index.form.status.{$status}") }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
 

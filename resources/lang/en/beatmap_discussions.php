@@ -42,6 +42,15 @@ return [
             'types' => 'Message types',
             'username' => 'Username',
 
+            'status' => [
+                '_' => 'Status',
+                'all' => 'All',
+                'disqualified' => 'Disqualified',
+                'qualified' => 'Qualified',
+                'pending' => 'Pending',
+                'ranked' => 'Ranked',
+            ],
+
             'user' => [
                 'label' => 'User',
                 'overview' => 'Activities overview',
