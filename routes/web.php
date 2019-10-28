@@ -53,6 +53,7 @@ Route::group(['prefix' => 'beatmaps'], function () {
     // featured artists
     Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
     Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
+    Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
 });
 Route::get('beatmaps/{beatmap}/scores', 'BeatmapsController@scores')->name('beatmaps.scores');
 Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
@@ -419,6 +420,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
     Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
+    Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
 });
 

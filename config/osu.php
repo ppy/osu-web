@@ -151,7 +151,6 @@ return [
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
-        'legacy-forum-thread-prefix' => '/forum/t/',
         'osx' => 'https://osx.ppy.sh',
         'server_status' => 'https://twitter.com/osustatus',
         'smilies' => '/forum/images/smilies',

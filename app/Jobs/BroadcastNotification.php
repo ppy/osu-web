@@ -64,6 +64,11 @@ class BroadcastNotification implements ShouldQueue
         $this->source = $source;
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
     public function handle()
     {
         $function = camel_case("on_{$this->name}");
@@ -113,6 +118,18 @@ class BroadcastNotification implements ShouldQueue
         });
     }
 
+    private function assignBeatmapsetDiscussionNotificationDetails()
+    {
+        $this->params['details'] = [
+            'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
+            'title' => $this->notifiable->title,
+            'post_id' => $this->object->getKey(),
+            'discussion_id' => $this->object->beatmapDiscussion->getKey(),
+            'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
+            'cover_url' => $this->notifiable->coverURL('card'),
+        ];
+    }
+
     private function onBeatmapsetDiscussionLock()
     {
         $this->receiverIds = static::beatmapsetReceiverIds($this->object);
@@ -138,13 +155,7 @@ class BroadcastNotification implements ShouldQueue
         $this->notifiable = $this->object->beatmapset;
         $this->receiverIds = static::beatmapsetReceiverIds($this->notifiable);
 
-        $this->params['details'] = [
-            'title' => $this->notifiable->title,
-            'post_id' => $this->object->getKey(),
-            'discussion_id' => $this->object->beatmapDiscussion->getKey(),
-            'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
-            'cover_url' => $this->notifiable->coverURL('card'),
-        ];
+        $this->assignBeatmapsetDiscussionNotificationDetails();
     }
 
     private function onBeatmapsetDiscussionQualifiedProblem()
@@ -153,13 +164,7 @@ class BroadcastNotification implements ShouldQueue
         $this->notifiable = $this->object->beatmapset;
         $this->receiverIds = UserGroup::whereIn('group_id', $notifyGroups)->distinct()->pluck('user_id')->all();
 
-        $this->params['details'] = [
-            'title' => $this->notifiable->title,
-            'post_id' => $this->object->getKey(),
-            'discussion_id' => $this->object->beatmapDiscussion->getKey(),
-            'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
-            'cover_url' => $this->notifiable->coverURL('card'),
-        ];
+        $this->assignBeatmapsetDiscussionNotificationDetails();
 
         return NewPrivateNotificationEvent::class;
     }
