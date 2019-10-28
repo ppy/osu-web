@@ -76,6 +76,8 @@ class BeatmapDiscussion extends Model
 
     const VOTES_TO_SHOW = 50;
 
+    const BEATMAPSET_STATES = ['ranked', 'qualified', 'disqualified', 'pending'];
+
     public static function search($rawParams = [])
     {
         $params = [
@@ -126,10 +128,11 @@ class BeatmapDiscussion extends Model
 
         if (isset($rawParams['states'])) {
             $params['states'] = get_arr($rawParams['states'], 'get_string');
+            $state = $params['states'][0] ?? null;
 
-            $query->withBeatmapsetState($params['states']);
+            static::stateQuery($query, $state);
         } else {
-            $params['states'] = array_keys(Beatmapset::STATES);
+            $params['states'] = [];
         }
 
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
@@ -145,6 +148,41 @@ class BeatmapDiscussion extends Model
         }
 
         return ['query' => $query, 'params' => $params];
+    }
+
+    public static function stateQuery($query, $state)
+    {
+        switch ($state) {
+            case 'ranked':
+                // discussions of maps that got ranked.
+                $query->whereHas('beatmapset', function ($beatmapsetQuery) {
+                    $beatmapsetQuery->ranked();
+                });
+
+            break;
+
+            case 'qualified':
+                // discussions of maps currently qualified.
+                $query->whereHas('beatmapset', function ($beatmapsetQuery) {
+                    $beatmapsetQuery->qualified();
+                });
+
+                break;
+            case 'disqualified':
+                // discussions of maps currently disqualifed.
+                $query->whereHas('beatmapset', function ($beatmapsetQuery) {
+                    $beatmapsetQuery->disqualified();
+                });
+
+                break;
+            case 'pending':
+                // discussions of maps that haven't been qualified.
+                $query->whereHas('beatmapset', function ($beatmapsetQuery) {
+                    $beatmapsetQuery->unranked()->where('previous_queue_duration', 0);
+                });
+
+                break;
+        }
     }
 
     public function beatmap()
@@ -680,21 +718,6 @@ class BeatmapDiscussion extends Model
                     ->orWhereNull('beatmap_id');
             })
             ->where('resolved', '=', false);
-    }
-
-    public function scopeWithBeatmapsetState($query, $states)
-    {
-        foreach ((array) $states as $state) {
-            $intType = Beatmapset::STATES[$state] ?? null;
-
-            if ($intType !== null) {
-                $intTypes[] = $intType;
-            }
-        }
-
-        $query->whereHas('beatmapset', function ($beatmapsetQuery) use ($intTypes) {
-            $beatmapsetQuery->whereIn('approved', $intTypes);
-        });
     }
 
     public function scopeWithoutTrashed($query)

@@ -50,7 +50,7 @@
                         {{ trans('beatmap_discussions.index.form.states') }}
                     </div>
                     <div class="simple-form__checkboxes-inline">
-                        @foreach (array_keys(App\Models\Beatmapset::STATES) as $state)
+                        @foreach (App\Models\BeatmapDiscussion::BEATMAPSET_STATES as $state)
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
                                 @include('objects._switch', [
                                     'checked' => in_array($state, $search['params']['states'], true),

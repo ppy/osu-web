@@ -269,6 +269,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return $query->where('approved', '=', self::STATES['qualified']);
     }
 
+    public function scopeDisqualified($query)
+    {
+        // uses the fact that disqualifying sets previous_queue_duration which is otherwise 0.
+        return $query
+            ->where('approved', self::STATES['pending'])
+            ->where('previous_queue_duration', '>', 0);
+    }
+
     public function scopeRankedOrApproved($query)
     {
         return $query->whereIn(
