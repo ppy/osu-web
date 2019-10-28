@@ -1134,6 +1134,8 @@ function deltree($dir)
 function get_param_value($input, $type)
 {
     switch ($type) {
+        case 'any':
+            return $input;
         case 'bool':
             return get_bool($input);
             break;
