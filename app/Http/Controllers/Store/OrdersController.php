@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Models\User;
 use Auth;
 
 class OrdersController extends Controller
