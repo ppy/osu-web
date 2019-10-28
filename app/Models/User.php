@@ -876,6 +876,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UserMonthlyPlaycount::class, 'user_id');
     }
 
+    public function notificationOptions()
+    {
+        return $this->hasMany(UserNotificationOption::class);
+    }
+
     public function replaysWatchedCounts()
     {
         return $this->hasMany(UserReplaysWatchedCount::class, 'user_id');
@@ -1412,6 +1417,11 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->memoized[__FUNCTION__];
+    }
+
+    public function getForeignKey()
+    {
+        return 'user_id';
     }
 
     public function title()
