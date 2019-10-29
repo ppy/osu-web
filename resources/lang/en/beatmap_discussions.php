@@ -43,7 +43,7 @@ return [
             'username' => 'Username',
 
             'status' => [
-                '_' => 'Status',
+                '_' => 'Beatmap Status',
                 'all' => 'All',
                 'disqualified' => 'Disqualified',
                 'qualified' => 'Qualified',
