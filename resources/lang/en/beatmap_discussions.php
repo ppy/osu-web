@@ -46,8 +46,8 @@ return [
                 '_' => 'Beatmap Status',
                 'all' => 'All',
                 'disqualified' => 'Disqualified',
+                'never_qualified' => 'Never Qualified',
                 'qualified' => 'Qualified',
-                'pending' => 'Pending',
                 'ranked' => 'Ranked',
             ],
 

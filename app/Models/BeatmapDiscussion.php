@@ -74,9 +74,8 @@ class BeatmapDiscussion extends Model
     const RESOLVABLE_TYPES = [1, 2];
     const KUDOSUABLE_TYPES = [1, 2];
 
+    const VALID_BEATMAPSET_STATUSES = ['ranked', 'qualified', 'disqualified', 'never_qualified'];
     const VOTES_TO_SHOW = 50;
-
-    const BEATMAPSET_STATUS = ['all', 'ranked', 'qualified', 'disqualified', 'pending'];
 
     public static function search($rawParams = [])
     {
@@ -126,12 +125,13 @@ class BeatmapDiscussion extends Model
             $params['message_types'] = array_keys(static::MESSAGE_TYPES);
         }
 
-        if (isset($rawParams['status'])) {
-            $params['status'] = $rawParams['status'];
 
-            static::statusQuery($query, $params['status']);
-        } else {
-            $params['status'] = 'all';
+        $params['status'] = static::getValidStatus($rawParams['status'] ?? null);
+        if ($params['status']) {
+            $query->whereHas('beatmapset', function ($beatmapsetQuery) use ($params) {
+                $scope = camel_case($params['status']);
+                $beatmapsetQuery->$scope();
+            });
         }
 
         $params['only_unresolved'] = get_bool($rawParams['only_unresolved'] ?? null) ?? false;
@@ -155,38 +155,10 @@ class BeatmapDiscussion extends Model
         return ['query' => $query, 'params' => $params];
     }
 
-    public static function statusQuery($query, $status)
+    private static function getValidStatus($rawParam)
     {
-        switch ($status) {
-            case 'ranked':
-                // discussions of maps that got ranked.
-                $query->whereHas('beatmapset', function ($beatmapsetQuery) {
-                    $beatmapsetQuery->ranked();
-                });
-
-            break;
-
-            case 'qualified':
-                // discussions of maps currently qualified.
-                $query->whereHas('beatmapset', function ($beatmapsetQuery) {
-                    $beatmapsetQuery->qualified();
-                });
-
-                break;
-            case 'disqualified':
-                // discussions of maps currently disqualifed.
-                $query->whereHas('beatmapset', function ($beatmapsetQuery) {
-                    $beatmapsetQuery->disqualified();
-                });
-
-                break;
-            case 'pending':
-                // discussions of maps that haven't been qualified.
-                $query->whereHas('beatmapset', function ($beatmapsetQuery) {
-                    $beatmapsetQuery->unranked()->where('previous_queue_duration', 0);
-                });
-
-                break;
+        if (in_array($rawParam, static::VALID_BEATMAPSET_STATUSES, true)) {
+            return $rawParam;
         }
     }
 

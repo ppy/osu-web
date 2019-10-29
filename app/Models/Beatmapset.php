@@ -277,6 +277,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             ->where('previous_queue_duration', '>', 0);
     }
 
+    public function scopeNeverQualified($query)
+    {
+        return $query->unranked()->where('previous_queue_duration', 0);
+    }
+
     public function scopeRankedOrApproved($query)
     {
         return $query->whereIn(

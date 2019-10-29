@@ -15,6 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $statusOptions = App\Models\BeatmapDiscussion::VALID_BEATMAPSET_STATUSES;
+    array_unshift($statusOptions, 'all');
+@endphp
+
 @extends('master')
 
 {{-- FIXME: move to user modding history --}}
@@ -52,12 +57,12 @@
                     <div class="simple-form__select">
                         <div class="form-select form-select--simple-form">
                             <select class="form-select__input" name="status">
-                                @foreach (App\Models\BeatmapDiscussion::BEATMAPSET_STATUS as $status)
+                                @foreach ($statusOptions as $option)
                                     <option
-                                        value="{{$status}}"
-                                        {{ $status === $search['params']['status'] ? "selected" : "" }}
+                                        value="{{$option}}"
+                                        {{ $option === $search['params']['status'] ? "selected" : "" }}
                                     >
-                                        {{ trans("beatmap_discussions.index.form.status.{$status}") }}
+                                        {{ trans("beatmap_discussions.index.form.status.{$option}") }}
                                     </option>
                                 @endforeach
                             </select>
