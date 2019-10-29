@@ -172,6 +172,7 @@ Route::group(['prefix' => 'home'], function () {
         Route::post('avatar', 'AccountController@avatar')->name('avatar');
         Route::post('cover', 'AccountController@cover')->name('cover');
         Route::put('email', 'AccountController@updateEmail')->name('email');
+        Route::put('notification-options', 'AccountController@updateNotificationOptions')->name('notification-options');
         Route::put('options', 'AccountController@updateOptions')->name('options');
         Route::put('password', 'AccountController@updatePassword')->name('password');
         Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
