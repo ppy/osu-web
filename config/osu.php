@@ -2,6 +2,10 @@
 
 // osu config~
 return [
+    'achievement' => [
+        'icon_prefix' => env('USER_ACHIEVEMENT_ICON_PREFIX', 'https://assets.ppy.sh/user-achievements/'),
+    ],
+
     'avatar' => [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
         'default' => env('DEFAULT_AVATAR', '/images/layout/avatar-guest.png'),
