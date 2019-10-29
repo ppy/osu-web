@@ -76,6 +76,10 @@ services:
     user: ${UID:?err}
     working_dir: /data/osuweb
     command: ['./docker/dependencies/start.sh', 'db:3306']
+  selenium:
+    image: selenium/standalone-chrome:3.141.59-xenon
+    volumes:
+      - /dev/shm:/dev/shm
 
 volumes:
   database:
