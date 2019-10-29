@@ -93,3 +93,5 @@ composer-installer
 /storage/paypal_auth.cache
 
 /notification-server/
+
+docker-compose.override.yml
