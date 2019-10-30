@@ -61,7 +61,9 @@ class ModdingHistoryController extends Controller
 
             $this->searchParams['is_moderator'] = $this->isModerator;
             $this->searchParams['is_kudosu_moderator'] = $this->isKudosuModerator;
-            $this->searchParams['with_deleted'] = $this->isModerator;
+            if (!$this->isModerator) {
+                $this->searchParams['with_deleted'] = false;
+            }
 
             return $next($request);
         });
