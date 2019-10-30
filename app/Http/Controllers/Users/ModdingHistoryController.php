@@ -222,6 +222,7 @@ class ModdingHistoryController extends Controller
         $user = $this->user;
 
         $search = BeatmapDiscussion::search($this->searchParams);
+        unset($search['params']['user']);
         $discussions = new LengthAwarePaginator(
             $search['query']->with([
                     'user',
@@ -247,6 +248,7 @@ class ModdingHistoryController extends Controller
         $user = $this->user;
 
         $search = BeatmapsetEvent::search($this->searchParams);
+        unset($search['params']['user']);
         if ($this->isModerator) {
             $items = $search['query']->with('user')->with(['beatmapset' => function ($query) {
                 $query->withTrashed();
@@ -276,6 +278,7 @@ class ModdingHistoryController extends Controller
         $user = $this->user;
 
         $search = BeatmapDiscussionPost::search($this->searchParams);
+        unset($search['params']['user']);
         $posts = new LengthAwarePaginator(
             $search['query']->with([
                     'user',
@@ -302,6 +305,7 @@ class ModdingHistoryController extends Controller
         $user = $this->user;
 
         $search = BeatmapDiscussionVote::search($this->searchParams);
+        unset($search['params']['user']);
         $votes = new LengthAwarePaginator(
             $search['query']->with([
                     'user',
@@ -330,6 +334,7 @@ class ModdingHistoryController extends Controller
         unset($this->searchParams['user']);
 
         $search = BeatmapDiscussionVote::search($this->searchParams);
+        unset($search['params']['user']);
         $votes = new LengthAwarePaginator(
             $search['query']->with([
                     'user',
