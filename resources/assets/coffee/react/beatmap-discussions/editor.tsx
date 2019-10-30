@@ -228,6 +228,10 @@ export default class Editor extends React.Component<any, any> {
       return;
     }
 
+    if (this.editor.current.value.focusBlock.type === 'embed') {
+      return;
+    }
+
     this.editor.current.toggleMark(type);
   }
 
