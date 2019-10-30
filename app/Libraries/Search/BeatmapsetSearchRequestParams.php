@@ -57,10 +57,6 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $this->user = $user;
         $this->from = $this->pageAsFrom(get_int($request['page']));
 
-        if (is_array($request['cursor'])) {
-            $this->searchAfter = array_values($request['cursor']);
-        }
-
         if ($this->user !== null) {
             $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query']);
 
@@ -85,6 +81,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         $this->parseSortOrder($request['sort']);
+        $this->searchAfter = $this->getSearchAfter($request['cursor']);
 
         // Supporter-only options.
         $this->rank = array_intersect(
@@ -155,6 +152,34 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         return [new Sort('approved_date', $order)];
+    }
+
+    /**
+     * Extract search_after out of cursor param. Cursor values that are not part of the sort are ignored.
+     *
+     * The search_after value passed to elasticsearch needs to be the same length as the number of
+     * sorts given.
+     *
+     * The cursor is reset if the values given in the cursor are missing for the required sorting.
+     */
+    private function getSearchAfter($cursor) : ?array
+    {
+        if (!is_array($cursor)) {
+            return null;
+        }
+
+        $searchAfter = [];
+        /** @var Sort $sort */
+        foreach ($this->sorts as $sort) {
+            $value = $cursor[$sort->field] ?? null;
+            if ($value === null) {
+                return null;
+            }
+
+            $searchAfter[] = $value;
+        }
+
+        return $searchAfter;
     }
 
     /**
