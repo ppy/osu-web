@@ -125,7 +125,7 @@ class BeatmapDiscussion extends Model
             $params['message_types'] = array_keys(static::MESSAGE_TYPES);
         }
 
-        $params['beatmapset_status'] = static::getValidStatus($rawParams['beatmapset_status'] ?? null);
+        $params['beatmapset_status'] = static::getValidBeatmapsetStatus($rawParams['beatmapset_status'] ?? null);
         if ($params['beatmapset_status']) {
             $query->whereHas('beatmapset', function ($beatmapsetQuery) use ($params) {
                 $scope = camel_case($params['beatmapset_status']);
@@ -154,7 +154,7 @@ class BeatmapDiscussion extends Model
         return ['query' => $query, 'params' => $params];
     }
 
-    private static function getValidStatus($rawParam)
+    private static function getValidBeatmapsetStatus($rawParam)
     {
         if (in_array($rawParam, static::VALID_BEATMAPSET_STATUSES, true)) {
             return $rawParam;
