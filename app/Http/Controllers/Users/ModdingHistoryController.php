@@ -41,22 +41,24 @@ class ModdingHistoryController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
+            $userId = request()->route('user');
             $this->isModerator = priv_check('BeatmapDiscussionModerate')->can();
             $this->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
-            $this->user = User::lookupWithHistory(request('user'), null, $this->isModerator, true);
+            $this->user = User::lookupWithHistory($userId, null, $this->isModerator, true);
 
             if ($this->user === null || $this->user->isBot() || !priv_check('UserShow', $this->user)->can()) {
                 return response()->view('users.show_not_found')->setStatusCode(404);
             }
 
-            if ((string) $this->user->user_id !== (string) request('user')) {
+            $this->searchParams = array_merge(request()->query(), ['user' => $this->user->user_id]);
+
+            if ((string) $this->user->user_id !== (string) $userId) {
                 return ujs_redirect(route(
                     $request->route()->getName(),
-                    array_merge(['user' => $this->user->user_id], $request->query())
+                    $this->searchParams
                 ));
             }
 
-            $this->searchParams = array_merge(['user' => $this->user->user_id], request()->query());
             $this->searchParams['is_moderator'] = $this->isModerator;
             $this->searchParams['is_kudosu_moderator'] = $this->isKudosuModerator;
             $this->searchParams['with_deleted'] = $this->isModerator;
