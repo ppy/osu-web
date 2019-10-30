@@ -125,7 +125,6 @@ class BeatmapDiscussion extends Model
             $params['message_types'] = array_keys(static::MESSAGE_TYPES);
         }
 
-
         $params['status'] = static::getValidStatus($rawParams['status'] ?? null);
         if ($params['status']) {
             $query->whereHas('beatmapset', function ($beatmapsetQuery) use ($params) {
