@@ -15,53 +15,27 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+import PostJson from 'interfaces/news-post-json';
+import { route } from 'laroute';
+import PostItem from 'news-index/post-item';
+import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 
-.wiki-main-page {
-  background: @osu-colour-b5;
-
-  &__blurb {
-    .content-font();
-    font-size: 12px;
-    text-align: center;
-    font-weight: 300;
-    color: @osu-colour-c1;
-    padding-top: 30px;
-  }
-
-  &__panels {
-    display: grid;
-    grid-gap: 7px;
-
-    @media @desktop {
-      grid-template-columns: 50% 50%;
-    }
-
-    padding-top: 45px;
-  }
-
-  &__heading {
-    color: @osu-colour-c1;
-    font-size: 20px;
-    font-weight: 300;
-    font-style: normal;
-
-    .wiki-main-page-panel & {
-      margin-bottom: 40px;
-    }
-
-    .wiki-main-page-panel--full & {
-      font-size: 30px;
-    }
-  }
-
-  &__paragraph {
-    font-size: 13px;
-    font-style: italic;
-    font-weight: 700;
-    color: @osu-colour-c1;
-  }
-
-  &__link {
-    .link-default();
-  }
+export function LandingNews({posts}: {posts: PostJson[]}) {
+  return (
+    <div className='landing-news'>
+      <div className='landing-news__posts'>
+        {posts.map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing', 'hover']} key={i}/>)}
+      </div>
+      <div className='landing-news__link'>
+        <ShowMoreLink
+          hasMore={true}
+          loading={false}
+          hideIcon={true}
+          label={osu.trans('home.landing.see_more_news')}
+          url={route('news.index')}
+        />
+      </div>
+    </div>
+  );
 }

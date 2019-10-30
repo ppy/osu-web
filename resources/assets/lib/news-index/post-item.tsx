@@ -21,7 +21,7 @@ import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
 
-export default function PostItem({post}: {post: PostJson}) {
+export default function PostItem({modifiers, post}: {modifiers?: string[], post: PostJson}) {
   let cover;
 
   if (post.first_image != null) {
@@ -37,7 +37,7 @@ export default function PostItem({post}: {post: PostJson}) {
   return (
     <a
       href={route('news.show', {news: post.slug})}
-      className='news-card news-card--index'
+      className={osu.classWithModifiers('news-card', modifiers || ['index', 'hover'])}
     >
       {cover}
       <div className='news-card__overlay' />
