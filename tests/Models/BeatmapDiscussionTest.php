@@ -31,14 +31,12 @@ class BeatmapDiscussionTest extends TestCase
 {
     /**
      * Valid beatmapset status always maps to a scope method sanity test.
+     *
+     * @dataProvider validBeatmapsetStatuses
      */
-    public function testBeatmapsetScopesExist()
+    public function testBeatmapsetScopesExist($scope)
     {
-        foreach (BeatmapDiscussion::VALID_BEATMAPSET_STATUSES as $status) {
-            $scope = camel_case($status);
-            $this->assertInstanceOf(Builder::class, Beatmapset::$scope());
-            $this->addToAssertionCount(1);
-        }
+        $this->assertInstanceOf(Builder::class, Beatmapset::$scope());
     }
 
     public function testMapperPost()
@@ -201,6 +199,13 @@ class BeatmapDiscussionTest extends TestCase
         $discussion->restore($user);
         $discussion = $discussion->fresh();
         $this->assertFalse($discussion->trashed());
+    }
+
+    public function validBeatmapsetStatuses()
+    {
+        return array_map(function ($status) {
+            return [camel_case($status)];
+        }, BeatmapDiscussion::VALID_BEATMAPSET_STATUSES);
     }
 
     private function newDiscussion($beatmapset)
