@@ -152,7 +152,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
-    const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
     public function beatmapDiscussions()
     {
@@ -373,7 +372,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         // TODO: this only returns based on osu mode plays for now, add other game modes after mode-toggle UI/UX happens
         return cache_remember_mutexed("beatmapsets_most_played_today_{$mode}_{$count}", 3600, [], function () use ($count) {
             $counts = Score\Osu::selectRaw('beatmapset_id, count(*) as playcount')
-                    ->whereNotIn('beatmapset_id', self::BUNDLED_IDS)
+                    ->whereNotIn('beatmapset_id', config('osu.beatmapset.client_bundle'))
                     ->groupBy('beatmapset_id')
                     ->orderBy('playcount', 'desc')
                     ->limit($count)
