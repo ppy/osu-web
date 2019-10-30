@@ -23,10 +23,10 @@ import { ModeSwitcher } from './mode-switcher'
 import { NewDiscussion } from './new-discussion'
 import { BackToTop } from 'back-to-top'
 import * as React from 'react'
+import Editor from 'beatmap-discussions/editor'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { div } from 'react-dom-factories'
-import Editor from './editor'
 
 el = React.createElement
 

@@ -57,4 +57,3 @@ export default class EditorDiscussionComponent extends React.Component<any, any>
     );
   }
 }
-
