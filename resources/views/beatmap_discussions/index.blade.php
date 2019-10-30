@@ -52,17 +52,17 @@
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmap_discussions.index.form.status._') }}
+                        {{ trans('beatmap_discussions.index.form.beatmapset_status._') }}
                     </div>
                     <div class="simple-form__select">
                         <div class="form-select form-select--simple-form">
-                            <select class="form-select__input" name="status">
+                            <select class="form-select__input" name="beatmapset_status">
                                 @foreach ($statusOptions as $option)
                                     <option
                                         value="{{$option}}"
-                                        {{ $option === $search['params']['status'] ? "selected" : "" }}
+                                        {{ $option === $search['params']['beatmapset_status'] ? "selected" : "" }}
                                     >
-                                        {{ trans("beatmap_discussions.index.form.status.{$option}") }}
+                                        {{ trans("beatmap_discussions.index.form.beatmapset_status.{$option}") }}
                                     </option>
                                 @endforeach
                             </select>

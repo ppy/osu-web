@@ -42,7 +42,7 @@ return [
             'types' => 'Message types',
             'username' => 'Username',
 
-            'status' => [
+            'beatmapset_status' => [
                 '_' => 'Beatmap Status',
                 'all' => 'All',
                 'disqualified' => 'Disqualified',
