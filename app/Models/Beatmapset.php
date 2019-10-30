@@ -152,7 +152,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
-    const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
     public function beatmapDiscussions()
     {
@@ -267,6 +266,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     public function scopeQualified($query)
     {
         return $query->where('approved', '=', self::STATES['qualified']);
+    }
+
+    public function scopeDisqualified($query)
+    {
+        // uses the fact that disqualifying sets previous_queue_duration which is otherwise 0.
+        return $query
+            ->where('approved', self::STATES['pending'])
+            ->where('previous_queue_duration', '>', 0);
+    }
+
+    public function scopeNeverQualified($query)
+    {
+        return $query->unranked()->where('previous_queue_duration', 0);
     }
 
     public function scopeRankedOrApproved($query)
