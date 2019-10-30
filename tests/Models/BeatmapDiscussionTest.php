@@ -24,10 +24,23 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Tests\TestCase;
 
 class BeatmapDiscussionTest extends TestCase
 {
+    /**
+     * Valid beatmapset status always maps to a scope method sanity test.
+     */
+    public function testBeatmapsetScopesExist()
+    {
+        foreach (BeatmapDiscussion::VALID_BEATMAPSET_STATUSES as $status) {
+            $scope = camel_case($status);
+            $this->assertInstanceOf(Builder::class, Beatmapset::$scope());
+            $this->addToAssertionCount(1);
+        }
+    }
+
     public function testMapperPost()
     {
         $mapper = factory(User::class)->create();
