@@ -66,8 +66,8 @@ export class ReportReportable extends React.PureComponent<Props & React.Detailed
   }
 
   onFormClose = () => {
-    this.props.onFormClose();
     this.setState({ disabled: false, showingForm: false });
+    this.props.onFormClose();
   }
 
   onSubmit = (report: ReportData) => {
