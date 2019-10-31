@@ -20,8 +20,6 @@
 
 namespace App\Libraries\Search;
 
-use Illuminate\Http\Request;
-
 class WikiSearchRequestParams extends WikiSearchParams
 {
     public function __construct(array $request)

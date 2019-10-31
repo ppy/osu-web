@@ -20,8 +20,6 @@
 
 namespace App\Libraries\Search;
 
-use Illuminate\Http\Request;
-
 class UserSearchRequestParams extends UserSearchParams
 {
     public function __construct(array $request)
