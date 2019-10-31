@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Search;
 
+use App\Exceptions\InvariantException;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Sort;
 use App\Models\Beatmap;
@@ -159,8 +160,6 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
      *
      * The search_after value passed to elasticsearch needs to be the same length as the number of
      * sorts given.
-     *
-     * The cursor is reset if the values given in the cursor are missing for the required sorting.
      */
     private function getSearchAfter($cursor) : ?array
     {
@@ -173,7 +172,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         foreach ($this->sorts as $sort) {
             $value = $cursor[$sort->field] ?? null;
             if ($value === null) {
-                return null;
+                throw new InvariantException('Cursor parameters do not match sort parameters.');
             }
 
             $searchAfter[] = $value;
