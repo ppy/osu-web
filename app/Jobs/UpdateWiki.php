@@ -57,7 +57,7 @@ class UpdateWiki implements ShouldQueue
             if ($object instanceof NewsPost) {
                 $object->sync(true);
             } else {
-                $object->forget();
+                $object->forget(true);
 
                 if ($status === 'renamed') {
                     $prevObject = $this->getObject($file['previous_filename']);
@@ -68,7 +68,7 @@ class UpdateWiki implements ShouldQueue
                 }
 
                 if ($status !== 'removed') {
-                    $object->get();
+                    $object->get(true);
                 }
             }
         }

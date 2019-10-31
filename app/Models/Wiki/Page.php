@@ -241,7 +241,7 @@ class Page implements WikiObject
     /**
      * {@inheritdoc}
      */
-    public function get()
+    public function get($synchronous = false)
     {
         if (!array_key_exists('page', $this->cache)) {
             foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
@@ -296,7 +296,13 @@ class Page implements WikiObject
                 $this->cache['page'] = $page;
 
                 if ($fetch && ($index ?? true)) {
-                    dispatch(new EsIndexDocument($this));
+                    $job = new EsIndexDocument($this);
+
+                    if ($synchronous) {
+                        $job->handle();
+                    } else {
+                        dispatch($job);
+                    }
                 }
 
                 if ($page !== null) {
@@ -329,10 +335,17 @@ class Page implements WikiObject
     /**
      * {@inheritdoc}
      */
-    public function forget()
+    public function forget($synchronous = false)
     {
-        dispatch(new EsDeleteDocument($this));
         unset($this->cache['page']);
+
+        $job = new EsDeleteDocument($this);
+
+        if ($synchronous) {
+            $job->handle();
+        } else {
+            dispatch($job);
+        }
     }
 
     public function tags()

@@ -25,10 +25,10 @@ interface WikiObject
     /**
      * Fetches the representation of the object, renders it, and stores it in the cache.
      */
-    public function get();
+    public function get($synchronous = false);
 
     /**
      * Removes the cached version of the object.
      */
-    public function forget();
+    public function forget($synchronous = false);
 }
