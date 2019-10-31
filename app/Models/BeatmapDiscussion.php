@@ -69,6 +69,7 @@ class BeatmapDiscussion extends Model
         'mapper_note' => 3,
         'praise' => 0,
         'hype' => 4,
+        'review' => 5,
     ];
 
     const RESOLVABLE_TYPES = [1, 2];

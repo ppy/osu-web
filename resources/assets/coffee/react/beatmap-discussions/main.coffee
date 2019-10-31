@@ -23,7 +23,10 @@ import { ModeSwitcher } from './mode-switcher'
 import { NewDiscussion } from './new-discussion'
 import { BackToTop } from 'back-to-top'
 import * as React from 'react'
-import { a, div, h1, p } from 'react-dom-factories'
+import { div } from 'react-dom-factories'
+import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
+import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+
 el = React.createElement
 
 export class Main extends React.PureComponent
@@ -148,16 +151,20 @@ export class Main extends React.PureComponent
             stickTo: @modeSwitcherRef
             autoFocus: @focusNewDiscussion
 
-          el Discussions,
-            beatmapset: @state.beatmapset
-            currentBeatmap: @currentBeatmap()
-            currentDiscussions: @currentDiscussions()
-            currentFilter: @state.currentFilter
-            currentUser: @state.currentUser
-            mode: @state.currentMode
-            readPostIds: @state.readPostIds
-            showDeleted: @state.showDeleted
-            users: @users()
+          el DiscussionsContext.Provider,
+            value: @cache.discussions
+            el BeatmapsContext.Provider,
+              value: @cache.beatmaps
+              el Discussions,
+                beatmapset: @state.beatmapset
+                currentBeatmap: @currentBeatmap()
+                currentDiscussions: @currentDiscussions()
+                currentFilter: @state.currentFilter
+                currentUser: @state.currentUser
+                mode: @state.currentMode
+                readPostIds: @state.readPostIds
+                showDeleted: @state.showDeleted
+                users: @users()
 
       el BackToTop
 
