@@ -221,6 +221,11 @@ class BeatmapDiscussion extends Model
 
     public function setMessageTypeAttribute($value)
     {
+        // TODO: remove this when reviews are released
+        if ($value === 'review') {
+            return $this->attributes['message_type'] = null;
+        }
+
         return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
     }
 
