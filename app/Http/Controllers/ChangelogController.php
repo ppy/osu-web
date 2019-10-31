@@ -24,7 +24,6 @@ use App\Libraries\CommentBundle;
 use App\Libraries\GithubImporter;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
-use App\Models\Changelog;
 use App\Models\UpdateStream;
 use Cache;
 
@@ -91,7 +90,18 @@ class ChangelogController extends Controller
     {
         $token = config('osu.changelog.github_token');
 
-        [$algo, $signature] = explode('=', request()->header('X-Hub-Signature'));
+        $signatureHeader = explode('=', request()->header('X-Hub-Signature'));
+
+        if (count($signatureHeader) !== 2) {
+            abort(422, 'invalid signature header');
+        }
+
+        [$algo, $signature] = $signatureHeader;
+
+        if (!in_array($algo, hash_hmac_algos(), true)) {
+            abort(422, 'unknown signature algorithm');
+        }
+
         $hash = hash_hmac($algo, request()->getContent(), $token);
 
         if (!hash_equals((string) $hash, (string) $signature)) {

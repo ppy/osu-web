@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'flöde',
     'generic' => 'Bugg fixar och mindre förbättringar.',
 
     'build' => [

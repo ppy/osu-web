@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Ämne har blivit nålat och markerat som meddelande',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Raderade Inlägg',
             'total_posts' => 'Totala Inlägg',

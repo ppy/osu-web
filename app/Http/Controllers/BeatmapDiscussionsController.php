@@ -23,7 +23,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
 use Auth;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Request;
 
 class BeatmapDiscussionsController extends Controller
@@ -90,17 +90,19 @@ class BeatmapDiscussionsController extends Controller
         }
 
         $search = BeatmapDiscussion::search($params);
-        $discussions = new LengthAwarePaginator(
-            $search['query']->with([
-                    'user',
-                    'beatmapset',
-                    'startingPost',
-                ])->get(),
-            $search['query']->realCount(),
+
+        $query = $search['query']->with([
+            'user',
+            'beatmapset',
+            'startingPost',
+        ])->limit($search['params']['limit'] + 1);
+
+        $discussions = new Paginator(
+            $query->get(),
             $search['params']['limit'],
             $search['params']['page'],
             [
-                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'path' => Paginator::resolveCurrentPath(),
                 'query' => $search['params'],
             ]
         );

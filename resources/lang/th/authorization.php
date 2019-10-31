@@ -48,9 +48,9 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'คุณลบได้แค่โพสต์ของตัวเองเท่านั้น',
             'resolved' => '',
-            'system_generated' => '',
+            'system_generated' => 'โพสต์ที่ระบบสร้างเองจะลบไม่ได้',
         ],
 
         'edit' => [

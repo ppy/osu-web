@@ -88,9 +88,6 @@ return [
         'title' => 'Postările lui :username',
     ],
 
-    'signup' => [
-        '_' => 'Înregistrează-te',
-    ],
     'anonymous' => [
         'login_link' => 'dă clic pentru a te conecta',
         'login_text' => 'conectează-te',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 urmăritor|:count urmăritori',
             'none' => '',
             'unranked' => 'Nu există jocuri recente',
 

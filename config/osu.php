@@ -28,6 +28,7 @@ return [
         'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
     'beatmapset' => [
+        'client_bundle' => array_map('intval', explode(' ', env('BEATMAPSET_CLIENT_BUNDLE', '3756 163112 140662 151878 190390 123593 241526 299224'))),
         'discussion_kudosu_per_user' => get_int(env('BEATMAPSET_DISCUSSION_KUDOSU_PER_USER')) ?? 10,
         'download_limit' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY', 10)),
         'download_limit_supporter' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY_SUPPORTER', 20)),
@@ -48,8 +49,6 @@ return [
     'chat' => [
         'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
         'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
-        'webchat_enabled_supporter' => get_int(env('CHAT_WEBCHAT_ENABLED_SUPPORTER')) ?? false,
-        'webchat_enabled_all' => get_int(env('CHAT_WEBCHAT_ENABLED_ALL')) ?? false,
         'rate_limits' => [
             'public' => [
                 'limit' => get_int(env('CHAT_PUBLIC_LIMIT')) ?? 1,
@@ -153,7 +152,6 @@ return [
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
-        'legacy-forum-thread-prefix' => '/forum/t/',
         'osx' => 'https://osx.ppy.sh',
         'server_status' => 'https://twitter.com/osustatus',
         'smilies' => '/forum/images/smilies',

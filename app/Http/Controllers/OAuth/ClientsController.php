@@ -45,7 +45,7 @@ class ClientsController extends Controller
 
     public function index()
     {
-        return json_collection(auth()->user()->oauthClients()->where('revoked', false)->get(), 'OAuth\Client');
+        return json_collection(auth()->user()->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
     }
 
     public function store()
@@ -67,7 +67,7 @@ class ClientsController extends Controller
             ], 422);
         }
 
-        return json_item($client, 'OAuth\Client');
+        return json_item($client, 'OAuth\Client', ['redirect', 'secret']);
     }
 
     public function update($clientId)
@@ -83,6 +83,6 @@ class ClientsController extends Controller
           ], 422);
         }
 
-        return json_item($client, 'OAuth\Client');
+        return json_item($client, 'OAuth\Client', ['redirect', 'secret']);
     }
 }

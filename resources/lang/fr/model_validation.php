@@ -171,6 +171,7 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => '',
         'self' => "Vous ne pouvez pas vous signaler vous-même !",
     ],
 

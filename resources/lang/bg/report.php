@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Докладвай резултата',
-        'title' => 'Докладване резултата на :username?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Докладвай',
         'title' => 'Докладване коментара на :username?',
+    ],
+
+    'scores' => [
+        'button' => 'Докладвай резултата',
+        'title' => 'Докладване резултата на :username?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

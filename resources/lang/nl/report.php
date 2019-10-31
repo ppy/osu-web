@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Rapporteer Score',
-        'title' => 'Rapporteer :username\'s score?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Rapporteer',
         'title' => 'Rapporteer :username\'s reactie?',
+    ],
+
+    'scores' => [
+        'button' => 'Rapporteer Score',
+        'title' => 'Rapporteer :username\'s score?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

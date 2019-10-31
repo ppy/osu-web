@@ -71,7 +71,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => '認証済みのクライアント',
-        'own_clients' => '',
+        'own_clients' => '自分のクライアント',
         'title' => 'OAuth',
     ],
 

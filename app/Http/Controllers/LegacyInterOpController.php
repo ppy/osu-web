@@ -33,6 +33,7 @@ use App\Models\NewsPost;
 use App\Models\Notification;
 use App\Models\Score\Best;
 use App\Models\User;
+use App\Models\UserStatistics;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
@@ -140,6 +141,18 @@ class LegacyInterOpController extends Controller
         foreach (Beatmap::MODES as $modeStr => $modeId) {
             $class = Best\Model::getClassByString($modeStr);
             $class::queueIndexingForUser($user);
+        }
+
+        return response(null, 204);
+    }
+
+    public function userRecalculateRankedScores($id)
+    {
+        $user = User::findOrFail($id);
+
+        foreach (Beatmap::MODES as $modeStr => $_modeId) {
+            $class = UserStatistics\Model::getClass($modeStr);
+            $class::recalculateRankedScoreForUser($user);
         }
 
         return response(null, 204);

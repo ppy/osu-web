@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_lock_compact' => 'ディスカッションはロックされています。',
                 'beatmapset_discussion_post_new' => ':usernameがビートマップディスカッション":title"に新しいメッセージを投稿しました。',
                 'beatmapset_discussion_post_new_compact' => ':username による新しい投稿',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
                 'beatmapset_discussion_unlock' => 'ビートマップ":title"ディスカッションのためにロック解除されました。',
                 'beatmapset_discussion_unlock_compact' => 'ディスカッションはアンロックされました。',
             ],

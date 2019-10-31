@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'podpoř hru',
             'team' => 'tým',
         ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
+        ],
         'help' => [
             '_' => 'nápověda',
             'getFaq' => 'časté dotazy',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Potřebujete účet, pane. Proč již jeden nemáte?",
+            'download' => '',
+            'info' => 'Potřebujete účet, pane. Proč již jeden nemáte?',
             'title' => "Nemáte účet?",
         ],
     ],
