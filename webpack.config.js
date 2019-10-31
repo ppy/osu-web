@@ -8,6 +8,9 @@
 const path = require('path');
 const currentPath = path.resolve(__dirname);
 const mixPath = path.resolve(currentPath, 'node_modules/laravel-mix');
+const { spawnSync } = require('child_process');
+const Watchpack = require('watchpack');
+const spawnOptions = { stdio: 'inherit' };
 
 require(path.resolve(mixPath, 'src/index'));
 
@@ -32,5 +35,34 @@ Mix.dispatch('init', Mix);
  */
 
 let WebpackConfig = require(path.resolve(mixPath, 'src/builder/WebpackConfig'));
+const config = new WebpackConfig().build();
 
-module.exports = new WebpackConfig().build();
+function configPromise() {
+  return new Promise((resolve) => {
+    const routesFile = path.resolve(__dirname, 'routes/web.php');
+    const langDir = path.resolve(__dirname, 'resources/lang');
+
+    const wp = new Watchpack({
+      // fire an aggregated event after 200ms on changes.
+      aggregateTimeout: 200,
+    });
+
+    wp.watch([routesFile], [langDir]);
+
+    wp.on('aggregated', function (changes, removals) {
+      if (changes.includes(routesFile) || removals.includes(routesFile)) {
+        spawnSync('php', ['artisan', 'ziggy:generate'], spawnOptions);
+      }
+
+      if (changes.includes(langDir) || removals.includes(langDir)) {
+        spawnSync('yarn', ['generate-localizations'], spawnOptions);
+        spawnSync('touch', [path.resolve(__dirname, 'resources/assets/coffee/main.coffee')], spawnOptions);
+      }
+
+      // let webpack run after the first build.
+      resolve(config);
+    });
+  });
+}
+
+module.exports = configPromise;
