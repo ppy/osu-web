@@ -33,7 +33,15 @@ interface Comment {
   id: number;
 }
 
+interface DiscussionMessageType {
+  icon: {[key: string]: string};
+  iconText: {[key: string]: string[]};
+}
+
 interface BeatmapDiscussionHelperClass {
+  messageType: DiscussionMessageType;
+  format(text: string, options?: any): string;
+  formatTimestamp(value: number): string;
   url(options: any, useCurrent?: boolean): string;
 }
 
