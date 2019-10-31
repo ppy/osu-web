@@ -27,7 +27,6 @@ use App\Models\Beatmap;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
@@ -48,7 +47,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         '8' => 'loved',
     ];
 
-    public function __construct(Request $request, ?User $user = null)
+    public function __construct(array $request, ?User $user = null)
     {
         parent::__construct();
 
@@ -56,33 +55,33 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
 
         $this->user = $user;
-        $this->from = $this->pageAsFrom(get_int($request['page']));
+        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
 
         if ($this->user !== null) {
-            $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query']);
+            $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query'] ?? null);
 
-            $status = presence($request['s']);
+            $status = presence($request['s'] ?? null);
             $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
 
-            $this->genre = get_int($request['g']);
-            $this->language = get_int($request['l']);
+            $this->genre = get_int($request['g'] ?? null);
+            $this->language = get_int($request['l'] ?? null);
             $this->extra = array_intersect(
-                explode('.', $request['e']),
+                explode('.', $request['e'] ?? null),
                 $validExtras
             );
 
-            $this->mode = get_int($request['m']);
+            $this->mode = get_int($request['m'] ?? null);
             if (!in_array($this->mode, Beatmap::MODES, true)) {
                 $this->mode = null;
             }
 
-            $generals = explode('.', $request['c']) ?? [];
+            $generals = explode('.', $request['c'] ?? null) ?? [];
             $this->includeConverts = in_array('converts', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
         }
 
-        $this->parseSortOrder($request['sort']);
-        $this->searchAfter = $this->getSearchAfter($request['cursor']);
+        $this->parseSortOrder($request['sort'] ?? null);
+        $this->searchAfter = $this->getSearchAfter($request['cursor'] ?? null);
 
         // Supporter-only options.
         $this->rank = array_intersect(
@@ -90,7 +89,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $validRanks
         );
 
-        $this->playedFilter = $request['played'];
+        $this->playedFilter = $request['played'] ?? null;
         if (!in_array($this->playedFilter, static::PLAYED_STATES, true)) {
             $this->playedFilter = null;
         }
