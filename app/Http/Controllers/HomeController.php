@@ -81,17 +81,16 @@ class HomeController extends Controller
 
         if (Auth::check()) {
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
-            $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
-            $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
-            $popularBeatmapsets = Beatmapset::whereIn('beatmapset_id', $popularBeatmapsetIds)
-                ->orderByField('beatmapset_id', $popularBeatmapsetIds)
+            $popularBeatmapsets = Beatmapset::ranked()
+                ->where('approved_date', '>', now()->subDays(30))
+                ->orderBy('favourite_count', 'DESC')
+                ->limit(5)
                 ->get();
 
             return view('home.user', compact(
                 'newBeatmapsets',
                 'news',
-                'popularBeatmapsets',
-                'popularBeatmapsetsPlaycount'
+                'popularBeatmapsets'
             ));
         } else {
             $news = json_collection($news, 'NewsPost');
