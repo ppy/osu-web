@@ -37,15 +37,18 @@ Mix.dispatch('init', Mix);
 let WebpackConfig = require(path.resolve(mixPath, 'src/builder/WebpackConfig'));
 const config = new WebpackConfig().build();
 
-function configPromise() {
+function configPromise(env, argv) {
   return new Promise((resolve) => {
+    const options = {
+      // fire an aggregated event after 200ms on changes.
+      aggregateTimeout: 200,
+    };
+    // same as webpack-cli's handling
+    if (argv['watch-poll'] === 'true' || argv['watch-poll'] === '') options.poll = true;
+
     const routesFile = path.resolve(__dirname, 'routes/web.php');
     const langDir = path.resolve(__dirname, 'resources/lang');
-
-    const wp = new Watchpack({
-      // fire an aggregated event after 200ms on changes.
-      aggregateTimeout: 200,
-    });
+    const wp = new Watchpack(options);
 
     wp.watch([routesFile], [langDir]);
 
