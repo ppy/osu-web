@@ -22,7 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\UserVerification;
+use App\Libraries\Verification;
 use App\Libraries\UserVerificationState;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
@@ -240,7 +240,7 @@ class AccountController extends Controller
 
     public function verify()
     {
-        return UserVerification::fromCurrentRequest()->verify();
+        return Verification::fromCurrentRequest()->user()->verify();
     }
 
     public function verifyLink()
@@ -258,7 +258,7 @@ class AccountController extends Controller
 
     public function reissueCode()
     {
-        return UserVerification::fromCurrentRequest()->reissue();
+        return Verification::fromCurrentRequest()->user()->reissue();
     }
 
     private function errorResponse($user, $exception = null)

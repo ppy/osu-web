@@ -25,7 +25,7 @@ use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\Country;
 use Mail;
 
-class UserVerification
+class Verification
 {
     private $request;
     private $state;
@@ -35,16 +35,21 @@ class UserVerification
     {
         return new static(
             auth()->user(),
-            request(),
-            UserVerificationState::fromCurrentRequest()
+            request()
         );
     }
 
-    private function __construct($user, $request, $state)
+    private function __construct($user, $request)
     {
         $this->user = $user;
         $this->request = $request;
-        $this->state = $state;
+    }
+
+    public function user()
+    {
+        $this->state = UserVerificationState::fromCurrentRequest();
+
+        return $this;
     }
 
     public function initiate()

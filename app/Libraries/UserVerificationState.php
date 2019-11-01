@@ -20,19 +20,14 @@
 
 namespace App\Libraries;
 
-use App\Events\UserSessionEvent;
-use App\Exceptions\UserVerificationException;
 use App\Libraries\Session\SessionManager;
 use App\Models\LegacySession;
 use App\Models\User;
 
-class UserVerificationState
+class UserVerificationState extends VerificationState
 {
-    protected $user;
-
     private $legacySession = [];
     private $legacySessionQueryWhere;
-    private $session;
 
     public static function fromCurrentRequest()
     {
@@ -73,15 +68,8 @@ class UserVerificationState
     private function __construct($user, $session, $legacySessionQueryWhere)
     {
         $this->legacySessionQueryWhere = $legacySessionQueryWhere;
-        $this->session = $session;
-        $this->user = $user;
 
-        if ($this->session->getId() === session()->getId()) {
-            // Override passed session if it's the same as current session
-            // otherwise the changes here will be overriden when current
-            // session is saved.
-            $this->session = session();
-        }
+        parent::__construct($user, $session);
     }
 
     public function dump()
@@ -95,34 +83,42 @@ class UserVerificationState
 
     public function issue()
     {
+        $keys = parent::issue();
+
         $previousLinkKey = $this->session->get('verification_link_key');
 
         if (present($previousLinkKey)) {
             cache()->forget("verification:{$previousLinkKey}");
         }
 
-        // 1 byte = 2^8 bits = 16^2 bits = 2 hex characters
-        $key = bin2hex(random_bytes(config('osu.user.verification_key_length_hex') / 2));
         $linkKey = bin2hex(random_bytes(32));
-        $expires = now()->addHours(5);
+        $expires = $this->session->get('verification_expire_date');
 
-        $this->session->put('verification_key', $key);
         $this->session->put('verification_link_key', $linkKey);
-        $this->session->put('verification_expire_date', $expires);
-        $this->session->put('verification_tries', 0);
         $this->session->save();
 
         cache()->put("verification:{$linkKey}", $this->dump(), $expires);
 
-        return [
-            'link' => $linkKey,
-            'main' => $key,
-        ];
+        $keys['link'] = $linkKey;
+
+        return $keys;
     }
 
-    public function issued()
+    /**
+     * {@inheritdoc}
+     */
+    protected function onVerified()
     {
-        return present($this->session->get('verification_key'));
+        $this->session->put('verified', true);
+
+        if ($this->legacySession() !== null) {
+            $this->legacySession()->update(['verified' => true]);
+        }
+    }
+
+    public function verificationType()
+    {
+        return 'user';
     }
 
     public function isDone()
@@ -164,50 +160,5 @@ class UserVerificationState
         }
 
         return $this->legacySession['value'];
-    }
-
-    public function markVerified()
-    {
-        $this->session->forget('verification_expire_date');
-        $this->session->forget('verification_tries');
-        $this->session->forget('verification_key');
-        $this->session->put('verified', true);
-        $this->session->save();
-
-        if ($this->legacySession() !== null) {
-            $this->legacySession()->update(['verified' => true]);
-        }
-
-        event(UserSessionEvent::newVerified($this->user->getKey(), $this->session->getKey()));
-    }
-
-    public function verify($inputKey)
-    {
-        if ($this->isDone()) {
-            return;
-        }
-
-        $expireDate = $this->session->get('verification_expire_date');
-        $tries = $this->session->get('verification_tries');
-        $key = $this->session->get('verification_key');
-
-        if (!present($expireDate) || !present($tries) || !present($key)) {
-            throw new UserVerificationException('expired', true);
-        }
-
-        if ($expireDate->isPast()) {
-            throw new UserVerificationException('expired', true);
-        }
-
-        if ($tries > config('osu.user.verification_key_tries_limit')) {
-            throw new UserVerificationException('retries_exceeded', true);
-        }
-
-        if (!hash_equals($key, $inputKey)) {
-            $this->session->put('verification_tries', $tries + 1);
-            $this->session->save();
-
-            throw new UserVerificationException('incorrect_key', false);
-        }
     }
 }

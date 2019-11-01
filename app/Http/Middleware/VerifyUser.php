@@ -20,7 +20,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Libraries\UserVerification;
+use App\Libraries\Verification;
 use Closure;
 use Illuminate\Contracts\Auth\Guard as AuthGuard;
 use Illuminate\Http\Request;
@@ -42,7 +42,7 @@ class VerifyUser
             'home/notifications/endpoint',
             'session',
         ]) && $this->requiresVerification($request)) {
-            $verification = UserVerification::fromCurrentRequest();
+            $verification = Verification::fromCurrentRequest()->user();
 
             if (!$verification->isDone()) {
                 return $verification->initiate();
