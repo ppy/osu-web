@@ -12,6 +12,13 @@ declare module 'back-to-top' {
   }
 }
 
+declare module 'beatmapset-panel' {
+  interface Props {
+    beatmap: BeatmapsetJSON;
+  }
+
+  class BeatmapsetPanel extends React.PureComponent<Props> {}
+}
 declare module 'block-button' {
   interface Props {
     modifiers?: string[];

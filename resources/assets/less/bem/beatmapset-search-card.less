@@ -16,44 +16,50 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.flag-country {
-  .default-box-shadow();
-  .default-border-radius();
+.beatmapset-search-card {
+  .link-plain();
+  .fade-element(120ms);
+  display: flex;
+  border-radius: @border-radius-large;
+  background-color: @osu-colour-b4;
+  font-size: @font-size--normal;
+  height: 40px;
+  line-height: normal;
 
-  height: 20px;
-  width: 30px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
+  &:hover {
+    background-color: @osu-colour-b3;
+  }
 
-  &--full {
+  &__cover {
+    object-fit: cover;
     width: 100%;
-    height: 100%;
-    box-shadow: none;
-    border-radius: 0;
   }
 
-  &--inline {
-    width: 100%;
-    height: auto;
-    padding-bottom: 66.67%;
+  &__cover-container {
+    width: 80px;
+    flex: none;
+    border-radius: @border-radius-large;
+    overflow: hidden;
   }
 
-  &--small-box {
-    width: 19px;
-    height: 13px;
-    border-radius: 0;
-    box-shadow: none;
-    background-color: transparent;
+  &__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
   }
 
-  &--userinfo-small {
-    margin: 0 0 0 8px;
-    box-shadow: none;
+  &__title {
+    font-size: @font-size--title-small-3;
+    color: @osu-colour-c1;
   }
 
-  &--scoreboard {
-    box-shadow: none;
+  &__title-artist {
+    font-size: @font-size--normal;
+  }
+
+  &__extra {
+    color: @osu-colour-c2;
+    font-size: @font-size--normal;
   }
 }
