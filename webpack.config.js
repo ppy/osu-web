@@ -49,6 +49,7 @@ function configPromise(env, argv) {
     const routesFile = path.resolve(__dirname, 'routes/web.php');
     const langDir = path.resolve(__dirname, 'resources/lang');
     const wp = new Watchpack(options);
+    let resolved = false;
 
     wp.watch([routesFile], [langDir]);
 
@@ -59,11 +60,17 @@ function configPromise(env, argv) {
 
       if (changes.includes(langDir) || removals.includes(langDir)) {
         spawnSync('yarn', ['generate-localizations'], spawnOptions);
-        spawnSync('touch', [path.resolve(__dirname, 'resources/assets/coffee/main.coffee')], spawnOptions);
+        // touching the file on first build might cause karma's watchers to fire after tests start.
+        if (resolved) {
+          spawnSync('touch', [path.resolve(__dirname, 'resources/assets/coffee/main.coffee')], spawnOptions);
+        }
       }
 
       // let webpack run after the first build.
-      resolve(config);
+      if (!resolved) {
+        resolved = true;
+        resolve(config);
+      }
     });
   });
 }
