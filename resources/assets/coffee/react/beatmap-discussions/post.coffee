@@ -19,10 +19,10 @@
 import { MessageLengthCounter } from './message-length-counter'
 import { BigButton } from 'big-button'
 import * as React from 'react'
-import { a, button, div, i, span } from 'react-dom-factories'
+import { a, button, div, span } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
 import { ReviewPost } from 'beatmap-discussions/review-post'
-import { UserAvatar } from 'user-avatar'
+import { UserCard } from './user-card'
 
 el = React.createElement
 
@@ -77,8 +77,6 @@ export class Post extends React.PureComponent
       else
         @props.user.group_badge
 
-    topClasses += " #{bn}--#{userBadge}" if userBadge?
-
     div
       className: topClasses
       key: "#{@props.type}-#{@props.post.id}"
@@ -87,40 +85,10 @@ export class Post extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        div
-          className: "#{bn}__user-container"
-
-          div className: "#{bn}__avatar",
-            a
-              className: "#{bn}__user-link"
-              href: laroute.route('users.show', user: @props.user.id)
-              el UserAvatar, user: @props.user, modifiers: ['full-rounded']
-          div
-            className: "#{bn}__user"
-            div
-              className: "#{bn}__user-row"
-              a
-                className: "#{bn}__user-link"
-                href: laroute.route('users.show', user: @props.user.id)
-                span
-                  className: "#{bn}__user-text u-ellipsis-overflow"
-                  @props.user.username
-
-              if !@props.user.is_bot
-                a
-                  className: "#{bn}__user-modding-history-link"
-                  href: laroute.route('users.modding.index', user: @props.user.id)
-                  title: osu.trans('beatmap_discussion_posts.item.modding_history_link')
-                  i className: 'fas fa-align-left'
-
-            div
-              className: "#{bn}__user-badge"
-              if userBadge?
-                div className: "user-group-badge user-group-badge--#{userBadge}"
-
-          div
-            className: "#{bn}__user-stripe"
-
+        if (!@props.hideUserCard)
+          el UserCard,
+            user: @props.user
+            badge: userBadge
         @messageViewer()
         @messageEditor()
 
