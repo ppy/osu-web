@@ -43,6 +43,14 @@ export BeatmapBasicStats = ({beatmapset, beatmap}) ->
         else
           beatmap[stat]
 
+      suffixedValue =
+        if stat == 'total_length'
+          formatDuration value
+        else if value > 1000
+          osu.formatNumberSuffixed(value, 1)
+        else
+          osu.formatNumber(value)
+
       value =
         if stat == 'total_length'
           formatDuration value
@@ -55,8 +63,10 @@ export BeatmapBasicStats = ({beatmapset, beatmap}) ->
         title: osu.trans "beatmapsets.show.stats.#{stat}",
           if stat == 'total_length'
             hit_length: formatDuration(beatmap['hit_length'])
+          else
+            count: value
         div
           className: "#{bn}__entry-icon"
           style:
             backgroundImage: "url(/images/layout/beatmapset-page/#{stat}.svg)"
-        span null, value
+        span null, suffixedValue
