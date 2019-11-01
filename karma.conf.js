@@ -13,7 +13,30 @@ class ExitOnErrorWebpackPlugin {
   }
 }
 
-const webpackConfig = require('./webpack.config.js');
+/**
+ * Blocks until the webpack config is read.
+ */
+function readWebpackConfig() {
+  const sleep = require('deasync').runLoopOnce;
+  const maybeConfig = require('./webpack.config.js');
+  const config = maybeConfig instanceof Function ? maybeConfig() : maybeConfig;
+  if (!(config instanceof Promise)) {
+    return config;
+  }
+
+  let unwrappedConfig;
+  config.then((result) => {
+    unwrappedConfig = result;
+  });
+
+  while (!unwrappedConfig) {
+    sleep();
+  }
+
+  return unwrappedConfig;
+}
+
+webpackConfig = readWebpackConfig();
 webpackConfig['plugins'].push(new ExitOnErrorWebpackPlugin());
 webpackConfig['mode'] = 'development';
 webpackConfig['devtool'] = 'inline-source-map';
