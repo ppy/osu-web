@@ -93,7 +93,7 @@ return [
             '_' => 'рейтинг',
             'index' => 'производительности',
             'performance' => 'performance',
-            'charts' => 'по графикам',
+            'charts' => 'по чартам',
             'score' => 'по очкам',
             'country' => 'по странам',
             'kudosu' => 'кудосу',
