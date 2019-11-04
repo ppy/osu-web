@@ -41,14 +41,14 @@
                     'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(trans('wiki.show.translation.default')).'</a>',
                 ]) !!}
             @else
-                {!! trans('wiki.show.incomplete_or_outdated') !!}
+                {{ trans('wiki.show.incomplete_or_outdated') }}
             @endif
         </div>
     </div>
 @elseif ($page->needsCleanup())
     <div class="wiki-notice">
         <div class="wiki-notice__box">
-            {!! trans('wiki.show.needs_cleanup_or_rewrite') !!}
+            {{ trans('wiki.show.needs_cleanup_or_rewrite') }}
         </div>
     </div>
 @endif
