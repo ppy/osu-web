@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="user-verification">
+<div class="user-verification js-user-verification--type" data-type="{{ $type }}">
     <h1 class="user-verification__row user-verification__row--title">
         {{ trans('user_verification.box.title') }}
     </h1>

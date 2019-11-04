@@ -21,10 +21,12 @@ An action performed on your account from {{ $requestCountry ?? 'unknown country'
 
 Your verification code is: {{ $keys['main'] }}
 You can enter the code with or without spaces.
+@if(array_key_exists('link', $keys))
 
 Alternatively, you can also visit this link below to finish verification:
 
 {{ route('account.verify', ['key' => $keys['link']]) }}
+@endif
 
 If you did not request this, please REPLY IMMEDIATELY as your account may be in danger.
 

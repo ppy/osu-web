@@ -42,6 +42,30 @@ class UserClient extends Model
 
     public $timestamps = false;
 
+    /**
+     * @param int $userId
+     * @param string $hash
+     *
+     * @return UserClient
+     */
+    public static function fromHash($userId, $hash)
+    {
+        $hashes = explode(':', $hash);
+
+        if (count($hashes) < 5) {
+            return;
+        }
+
+        return static::firstOrCreate([
+            'user_id' => $userId,
+            'unique_md5' => hex2bin($hashes[3]),
+            'osu_md5' => hex2bin($hashes[0]),
+        ], [
+            'mac_md5' => hex2bin($hashes[2]),
+            'disk_md5' => hex2bin($hashes[4]),
+        ]);
+    }
+
     public function build()
     {
         return $this->belongsTo(Build::class, 'osu_md5', 'hash');

@@ -39,6 +39,7 @@ class VerifyUser
         if (!$request->is([
             'home/account/reissue-code',
             'home/account/verify',
+            'home/account/verify-client',
             'home/notifications/endpoint',
             'session',
         ]) && $this->requiresVerification($request)) {

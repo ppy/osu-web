@@ -27,16 +27,29 @@ use Mail;
 
 class Verification
 {
+    /** @var \Illuminate\Http\Request */
     private $request;
+
+    /** @var VerificationState */
     private $state;
+
+    /** @var \App\Models\User */
     private $user;
 
     public static function fromCurrentRequest()
     {
-        return new static(
+        $verification = new static(
             auth()->user(),
             request()
         );
+
+        $type = request('type', 'user');
+
+        if ($type === 'user') {
+            return $verification->user();
+        } elseif ($type === 'client') {
+            return $verification->client();
+        }
     }
 
     private function __construct($user, $request)
@@ -52,6 +65,13 @@ class Verification
         return $this;
     }
 
+    public function client()
+    {
+        $this->state = ClientVerificationState::fromCurrentRequest();
+
+        return $this;
+    }
+
     public function initiate()
     {
         // Workaround race condition causing $this->issue() to be called in parallel.
@@ -61,6 +81,7 @@ class Verification
         }
 
         $email = $this->user->user_email;
+        $type = $this->state->verificationType();
 
         if (!$this->state->issued()) {
             $this->issue();
@@ -75,7 +96,7 @@ class Verification
                 ),
             ], 401);
         } else {
-            return response()->view('users.verify', compact('email'));
+            return response()->view('users.verify', compact('email', 'type'));
         }
     }
 

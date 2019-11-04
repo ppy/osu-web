@@ -80,7 +80,6 @@ abstract class VerificationState
         return present($this->session->get('verification_key'));
     }
 
-
     public function markVerified()
     {
         $this->session->forget('verification_expire_date');

@@ -59,6 +59,7 @@ class @UserVerification
     @request =
       $.post laroute.route('account.verify'),
         verification_key: inputKey
+        type: @verificationType()
       .done @success
       .fail @error
 
@@ -80,6 +81,10 @@ class @UserVerification
     @modal?.classList.contains('js-user-verification--active')
 
 
+  verificationType: =>
+    document.getElementsByClassName('js-user-verification--type')[0].dataset.type
+
+
   prepareForRequest: (type) =>
     @request?.abort()
     @setMessage osu.trans("user_verification.box.#{type}"), true
@@ -91,7 +96,8 @@ class @UserVerification
     @prepareForRequest 'issuing'
 
     @request =
-      $.post laroute.route('account.reissue-code')
+      $.post laroute.route('account.reissue-code'),
+        type: @verificationType()
       .done (data) =>
         @setMessage data.message
       .fail @error

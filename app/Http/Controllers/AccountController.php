@@ -22,8 +22,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\Verification;
 use App\Libraries\UserVerificationState;
+use App\Libraries\Verification;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\OAuth\Client;
@@ -240,7 +240,7 @@ class AccountController extends Controller
 
     public function verify()
     {
-        return Verification::fromCurrentRequest()->user()->verify();
+        return Verification::fromCurrentRequest()->verify();
     }
 
     public function verifyLink()
@@ -256,9 +256,18 @@ class AccountController extends Controller
         return view('accounts.verification_completed');
     }
 
+    public function verifyClient()
+    {
+        if (!request()->has('client_hash')) {
+            abort(403);
+        }
+
+        return Verification::fromCurrentRequest()->client()->initiate();
+    }
+
     public function reissueCode()
     {
-        return Verification::fromCurrentRequest()->user()->reissue();
+        return Verification::fromCurrentRequest()->reissue();
     }
 
     private function errorResponse($user, $exception = null)
