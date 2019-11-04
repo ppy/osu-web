@@ -227,6 +227,11 @@ class Page
         return $this->page()['header']['outdated'] ?? false;
     }
 
+    public function needsCleanup() : bool
+    {
+        return $this->page()['header']['needs_cleanup'] ?? false;
+    }
+
     public function isLegalTranslation() : bool
     {
         return $this->isTranslation()

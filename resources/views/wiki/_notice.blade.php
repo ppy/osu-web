@@ -45,4 +45,10 @@
             @endif
         </div>
     </div>
+@elseif ($page->needsCleanup())
+    <div class="wiki-notice">
+        <div class="wiki-notice__box">
+            {!! trans('wiki.show.needs_cleanup_or_rewrite') !!}
+        </div>
+    </div>
 @endif
