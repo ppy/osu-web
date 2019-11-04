@@ -15,8 +15,22 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('users._verify')
+@extends('master', [
+    // Verification doesn't inherit from App\Controller, thus these variables aren't set. Thus we set them here:
+    'currentSection' => $type === 'user' ? 'error' : 'user',
+    'currentAction' => $type === 'user' ? '401' : 'verify_client',
+])
 
-@section('user-verification-box')
-    @include('users._verify_box', compact('email', 'type'))
+@section('content')
+    <div class="osu-layout__row osu-layout__row--page">
+        <h1>{{ trans('users.verify.title.'.$type) }}</h1>
+    </div>
+@endsection
+
+@section('script')
+    @parent
+
+    <script>
+        window.showVerificationModal = true;
+    </script>
 @endsection

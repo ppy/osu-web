@@ -40,6 +40,10 @@ class UserClient extends Model
 
     protected $primaryKeys = ['user_id', 'osu_md5', 'unique_md5'];
 
+    protected $casts = [
+        'verified' => 'boolean',
+    ];
+
     public $timestamps = false;
 
     /**

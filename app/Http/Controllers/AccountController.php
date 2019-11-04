@@ -262,7 +262,13 @@ class AccountController extends Controller
             abort(403);
         }
 
-        return Verification::fromCurrentRequest()->client()->initiate();
+        $verification = Verification::fromCurrentRequest()->client();
+
+        if ($verification->isDone()) {
+            return view('users.client_verification_completed');
+        } else {
+            return $verification->initiate();
+        }
     }
 
     public function reissueCode()

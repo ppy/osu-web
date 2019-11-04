@@ -28,6 +28,8 @@ return [
         'verifying' => 'Verifying...',
         'issuing' => 'Issuing new code...',
 
+        'client_success' => 'Your client has been successfully verified. You can now close this browser tab.',
+
         'info' => [
             'check_spam' => "Make sure to check your spam folder if you can't find the email.",
             'recover' => "If you can't access your email or have forgotten what you used, please follow the :link.",
