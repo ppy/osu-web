@@ -179,7 +179,7 @@ Route::group(['prefix' => 'home'], function () {
         Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
         Route::get('verify', 'AccountController@verifyLink');
         Route::post('verify', 'AccountController@verify')->name('verify');
-        Route::get('verify-client', 'AccountController@verifyClient');
+        Route::get('verify-client', 'AccountController@verifyClient')->name('verify-client');
         Route::put('/', 'AccountController@update')->name('update');
     });
 

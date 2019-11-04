@@ -250,6 +250,10 @@ class SanityTest extends DuskTestCase
     public function bindParams(Browser $browser, \Illuminate\Routing\Route $route)
     {
         $paramOverrides = [
+            'account.verify-client' => [
+                // all hashes are 0123456789abcdef
+                'client_hash' => '30313233343536373839616263646566::30313233343536373839616263646566:30313233343536373839616263646566:30313233343536373839616263646566',
+            ],
             'forum.topics.create' => [
                 'forum_id' => self::$scaffolding['forum']->getKey(),
             ],
