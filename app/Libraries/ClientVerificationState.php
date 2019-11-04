@@ -61,6 +61,8 @@ class ClientVerificationState extends VerificationState
         $client->verified = true;
         $client->save();
 
+        $this->session->forget('client_hash');
+
         $user = UserVerificationState::fromCurrentRequest();
 
         if (!$user->isDone()) {
