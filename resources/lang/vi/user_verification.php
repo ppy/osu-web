@@ -21,7 +21,9 @@
 return [
     'box' => [
         'sent' => 'Một email đã được gửi đến :mail với mã xác thực. Hãy nhập mã.',
-        'title' => 'Xác Thực Tài Khoản',
+        'title' => [
+            'user' => 'Xác Thực Tài Khoản',
+        ],
         'verifying' => 'Đang xác thực...',
         'issuing' => 'Đang lấy mã mới...',
 

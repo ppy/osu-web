@@ -408,7 +408,10 @@ return [
         'saved' => 'User created',
     ],
     'verify' => [
-        'title' => 'Account Verification',
+        'title' => [
+            'user' => 'Account Verification',
+            'client' => 'Client Verification',
+        ],
     ],
 
     'view_mode' => [

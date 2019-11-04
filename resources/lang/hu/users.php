@@ -408,7 +408,9 @@ return [
         'saved' => 'Felhasználó létrehozva',
     ],
     'verify' => [
-        'title' => 'Fiók megerősítése',
+        'title' => [
+            'user' => 'Fiók megerősítése',
+        ],
     ],
 
     'view_mode' => [

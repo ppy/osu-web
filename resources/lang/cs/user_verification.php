@@ -21,7 +21,9 @@
 return [
     'box' => [
         'sent' => 'Na email :mail jsme poslali ověřovací kód. Zadej ho prosím.',
-        'title' => 'Ověření účtu',
+        'title' => [
+            'user' => 'Ověření účtu',
+        ],
         'verifying' => 'Probíhá ověřování...',
         'issuing' => 'Vydávání nového kódu...',
 

@@ -408,7 +408,9 @@ return [
         'saved' => '账户已创建',
     ],
     'verify' => [
-        'title' => '账户认证',
+        'title' => [
+            'user' => '账户认证',
+        ],
     ],
 
     'view_mode' => [

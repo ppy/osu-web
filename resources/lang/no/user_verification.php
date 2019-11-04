@@ -21,7 +21,9 @@
 return [
     'box' => [
         'sent' => 'En e-post har blitt sendt til :mail med en bekreftelseskode. Skriv inn koden.',
-        'title' => 'Kontobekreftelse',
+        'title' => [
+            'user' => 'Kontobekreftelse',
+        ],
         'verifying' => 'Verifiserer...',
         'issuing' => 'Sender ny kode...',
 

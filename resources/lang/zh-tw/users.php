@@ -408,7 +408,9 @@ return [
         'saved' => '帳號已註冊',
     ],
     'verify' => [
-        'title' => '帳號驗證',
+        'title' => [
+            'user' => '帳號驗證',
+        ],
     ],
 
     'view_mode' => [

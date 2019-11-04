@@ -21,7 +21,9 @@
 return [
     'box' => [
         'sent' => 'Na e-mail sme ti poslali overovací kód :mail. Prosím zadaj ho.',
-        'title' => 'Overenie Účtu',
+        'title' => [
+            'user' => 'Overenie Účtu',
+        ],
         'verifying' => 'Overovanie...',
         'issuing' => 'Vydávanie nového kódu...',
 

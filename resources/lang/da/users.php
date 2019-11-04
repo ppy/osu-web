@@ -408,7 +408,9 @@ return [
         'saved' => 'Bruger Oprettet',
     ],
     'verify' => [
-        'title' => 'Kontobekræftelse',
+        'title' => [
+            'user' => 'Kontobekræftelse',
+        ],
     ],
 
     'view_mode' => [

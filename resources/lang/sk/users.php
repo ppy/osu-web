@@ -366,6 +366,8 @@ return [
         'saved' => 'Vytvorený používateľom',
     ],
     'verify' => [
-        'title' => 'Overenie Účtu',
+        'title' => [
+            'user' => 'Overenie Účtu',
+        ],
     ],
 ];

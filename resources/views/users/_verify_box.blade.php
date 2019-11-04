@@ -17,7 +17,7 @@
 --}}
 <div class="user-verification js-user-verification--type" data-type="{{ $type }}">
     <h1 class="user-verification__row user-verification__row--title">
-        {{ trans('user_verification.box.title') }}
+        {{ trans('user_verification.box.title.'.$type) }}
     </h1>
 
     <p class="user-verification__row user-verification__row--info">

@@ -21,7 +21,9 @@
 return [
     'box' => [
         'sent' => 'Eine E-Mail mit einem Bestätigungscode wurde an :mail gesendet. Bitte gib diesen Code ein.',
-        'title' => 'Accountverifizierung',
+        'title' => [
+            'user' => 'Accountverifizierung',
+        ],
         'verifying' => 'Wird überprüft...',
         'issuing' => 'Erstelle einen neuen Code...',
 

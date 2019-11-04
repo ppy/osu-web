@@ -21,7 +21,9 @@
 return [
     'box' => [
         'sent' => 'Un e-mail a fost trimis la :mail cu un cod de verificare. Introdu codul.',
-        'title' => 'Verificarea contului',
+        'title' => [
+            'user' => 'Verificarea contului',
+        ],
         'verifying' => 'Se verifică...',
         'issuing' => 'Se trimite un cod nou...',
 

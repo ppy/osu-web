@@ -408,7 +408,9 @@ return [
         'saved' => '사용자 계정 생성됨',
     ],
     'verify' => [
-        'title' => '계정 인증',
+        'title' => [
+            'user' => '계정 인증',
+        ],
     ],
 
     'view_mode' => [

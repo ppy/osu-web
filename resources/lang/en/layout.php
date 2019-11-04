@@ -152,6 +152,7 @@ return [
             'oauth_login' => 'sign in for oauth',
             'oauth_request' => 'oauth authorisation',
             'settings' => 'Settings',
+            'verify_client' => 'client verification',
         ],
         'store' => [
             '_' => 'store',

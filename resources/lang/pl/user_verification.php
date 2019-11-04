@@ -21,7 +21,9 @@
 return [
     'box' => [
         'sent' => 'E-mail z kodem weryfikacyjnym został wysłany na adres :mail. Wprowadź otrzymany kod.',
-        'title' => 'Weryfikacja konta',
+        'title' => [
+            'user' => 'Weryfikacja konta',
+        ],
         'verifying' => 'Weryfikowanie...',
         'issuing' => 'Tworzenie nowego kodu...',
 

@@ -27,7 +27,7 @@
 
             <div class="oauth-form__row oauth-form__row--title">
                 <div class="oauth-form__logo"></div>
-                <h1 class="oauth-form__title">{{ trans('users.verify.title') }}</h1>
+                <h1 class="oauth-form__title">{{ trans('users.verify.title.user') }}</h1>
             </div>
 
             <div class="oauth-form__row oauth-form__row--verification-completed">

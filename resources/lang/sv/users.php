@@ -408,7 +408,9 @@ return [
         'saved' => 'Användare skapad',
     ],
     'verify' => [
-        'title' => 'Kontoverifiering',
+        'title' => [
+            'user' => 'Kontoverifiering',
+        ],
     ],
 
     'view_mode' => [

@@ -21,7 +21,10 @@
 return [
     'box' => [
         'sent' => 'An email has been sent to :mail with a verification code. Enter the code.',
-        'title' => 'Account Verification',
+        'title' => [
+            'user' => 'Account Verification',
+            'client' => 'Client Verification',
+        ],
         'verifying' => 'Verifying...',
         'issuing' => 'Issuing new code...',
 

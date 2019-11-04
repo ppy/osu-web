@@ -21,7 +21,9 @@
 return [
     'box' => [
         'sent' => 'Un correo electrónico ha sido enviado a :mail con un código de verificación. Ingresa ese código.',
-        'title' => 'Verificación de la Cuenta',
+        'title' => [
+            'user' => 'Verificación de la Cuenta',
+        ],
         'verifying' => 'Verificando..',
         'issuing' => 'Emitiendo nuevo código...',
 

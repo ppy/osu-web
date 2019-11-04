@@ -21,7 +21,9 @@
 return [
     'box' => [
         'sent' => ':mail címre e-mailben hitelesítő kódot küldtünk. Írja be a kódot.',
-        'title' => 'Fiók hitelesítés',
+        'title' => [
+            'user' => 'Fiók hitelesítés',
+        ],
         'verifying' => 'Hitelesítés...',
         'issuing' => 'Új kód kiadása...',
 
