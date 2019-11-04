@@ -171,7 +171,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason ist für diesen Meldungstyp nicht gültig.',
         'self' => "Du kannst dich nicht selbst melden!",
     ],
 

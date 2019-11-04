@@ -25,6 +25,7 @@ return [
         'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
         'title' => 'selamat datang',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'game ritme free-to-win terbaik',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Beatmap Ranked Terbaru',
             'popular' => 'Beatmap yang Sedang Populer',
-            'by' => 'oleh',
-            'plays' => ':count kali dimainkan',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Unduh osu!',

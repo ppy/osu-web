@@ -44,7 +44,4 @@ return [
         'title' => 'ナレッジベース',
         'subtitle' => 'なぜなら、osu!pediaは耳障りに聞こえるから',
     ],
-    'search' => [
-        'path' => 'から',
-    ],
 ];

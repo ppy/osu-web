@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Notificações',
         'topic_auto_subscribe' => 'ativar automaticamente as notificações em novos tópicos de fórum que tenhas criado',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

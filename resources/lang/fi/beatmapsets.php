@@ -75,6 +75,13 @@ return [
                     'wip' => 'keskeneräinen',
                 ],
             ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [

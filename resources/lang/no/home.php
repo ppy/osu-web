@@ -25,6 +25,7 @@ return [
         'peak' => 'Maks, :count påloggede brukere',
         'players' => '<strong>:count</strong> registrerte spillere',
         'title' => 'velkommen',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'det besteste gratis-å-vinne rytmespillet',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Nye Rangerte Beatmaps',
             'popular' => 'Populære Beatmaps',
-            'by' => 'av',
-            'plays' => 'spilt :count ganger',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Last ned osu!',

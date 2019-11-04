@@ -25,9 +25,9 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'ชุมชน',
 
-            'forum' => '',
+            'forum' => 'ฟอรั่ม',
         ],
     ],
 
@@ -43,7 +43,7 @@ return [
         'home' => [
             '_' => 'หน้าแรก',
             'account-edit' => 'การตั้งค่า',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'การตรวจสอบยืนยันเสร็จสมบูรณ์',
             'friends-index' => 'เพื่อน',
             'changelog-index' => 'บันทึกการเปลี่ยนแปลง',
             'changelog-build' => 'เวอร์ชั่น',
@@ -61,9 +61,9 @@ return [
             'team' => 'ทีม',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'โปรไฟล์',
+            'friends' => 'เพื่อน',
+            'settings' => 'การตั้งค่า',
         ],
         'help' => [
             '_' => 'ช่วยเหลือ',
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'ดาวน์โหลด',
             'info' => 'คุณต้องมีบัญชีครับ ทำไมคุณยังไม่มีล่ะ?',
             'title' => "ยังไม่มีมีบัญชีเหรอ?",
         ],
