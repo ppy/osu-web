@@ -351,21 +351,30 @@ class SanityTest extends DuskTestCase
     {
         $verificationExpected = [
             'account.edit',
+            'account.verify-client',
             'store.checkout.show',
             'store.invoice.show',
             'store.orders.index',
         ];
 
+        $isClient = $route->getName() === 'account.verify-client';
+
         if (in_array($route->getName(), $verificationExpected, true)) {
-            $browser->assertSee('Account Verification');
+            $browser->assertSee($isClient ? 'Client Verification' : 'Account Verification');
 
             $verificationCode = self::getVerificationCode();
 
             $browser
                 ->type('.user-verification__key', $verificationCode)
-                ->waitUntilMissing('.user-verification')
-                ->pause(2000) // allows time for dialog hiding transition
-                ->assertDontSee('Account Verification');
+                ->waitUntilMissing('.user-verification__key')
+                ->pause(2000); // allows time for dialog hiding transition
+
+            if ($isClient) {
+                $browser->assertSee('Your client has been successfully verified.');
+            } else {
+                $browser->assertDontSee('Account Verification');
+            }
+
         } else {
             $browser->assertDontSee('Account Verification');
         }
