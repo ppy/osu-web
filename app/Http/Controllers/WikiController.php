@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\OsuWiki;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
 use Request;
@@ -35,16 +36,13 @@ class WikiController extends Controller
             return ujs_redirect(wiki_url());
         }
 
-        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-        $imageExtensions = ['gif', 'jpeg', 'jpg', 'png'];
-
-        if (in_array($extension, $imageExtensions, true)) {
+        if (OsuWiki::isImage($path)) {
             return $this->showImage($path);
         }
 
         $page = new Wiki\Page($path, $this->locale());
 
-        if ($page->page() === null) {
+        if ($page->get() === null) {
             $redirectTarget = (new WikiRedirect())->resolve($path);
             if ($redirectTarget !== null && $redirectTarget !== $path) {
                 return ujs_redirect(wiki_url('').'/'.ltrim($redirectTarget, '/'));
@@ -65,14 +63,14 @@ class WikiController extends Controller
     {
         priv_check('WikiPageRefresh')->ensureCan();
 
-        (new Wiki\Page($path, $this->locale()))->refresh();
+        (new Wiki\Page($path, $this->locale()))->forget();
 
         return ujs_redirect(Request::getUri());
     }
 
     private function showImage($path)
     {
-        $image = (new Wiki\Image($path, Request::url(), Request::header('referer')))->data();
+        $image = (new Wiki\Image($path, Request::url(), Request::header('referer')))->get();
 
         session(['_strip_cookies' => true]);
 

@@ -18,33 +18,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Wiki;
+namespace App\Models\Wiki;
 
-use App\Models\Wiki\Page;
-
-/**
- * @property Page $page
- * @property string $body
- */
-abstract class Renderer
+interface WikiObject
 {
     /**
-     * @param Page $page
-     * @param string $body
+     * Fetches the representation of the object, renders it, and stores it in the cache.
      */
-    public function __construct($page, $body)
-    {
-        $this->page = $page;
-        $this->body = $body;
-    }
+    public function get($synchronous = false);
 
     /**
-     * Renders the {@see App\Models\Wiki\Page::get()} representation of this wiki page.
+     * Removes the cached version of the object.
      */
-    abstract public function render();
-
-    /**
-     * Renders the indexable {@see App\Models\Wiki\Page::get()} representation of this wiki page.
-     */
-    abstract public function renderIndexable();
+    public function forget($synchronous = false);
 }
