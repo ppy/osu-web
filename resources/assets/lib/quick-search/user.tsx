@@ -25,9 +25,6 @@ import { SupporterIcon } from 'supporter-icon';
 export default function User({ user }: { user: User }) {
   const url = route('users.show', { user: user.id });
 
-  const onlineModifier = user.is_online ? 'online' : 'offline';
-  const onlineTitle = osu.trans(`users.status.${user.is_online ? 'online' : 'offline'}`);
-
   return (
     <div className='user-search-card clickable-row'>
       <a className='user-search-card__avatar-container' href={url}>
@@ -35,13 +32,6 @@ export default function User({ user }: { user: User }) {
       </a>
 
       <div className='user-search-card__details'>
-        <div className='user-search-card__col  user-search-card__col--online'>
-          <div
-            className={osu.classWithModifiers('user-search-card__online', [onlineModifier])}
-            title={onlineTitle}
-          />
-        </div>
-
         <div className='user-search-card__col  user-search-card__col--flag'>
           <FlagCountry country={user.country} modifiers={['inline']} />
         </div>
