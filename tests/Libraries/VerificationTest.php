@@ -17,13 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace Tests\Libraries;
 
 use App\Mail\UserVerification;
 use App\Models\User;
 use App\Models\UserClient;
-use Tests\TestCase;
 use Illuminate\Support\Facades\Mail;
+use Tests\TestCase;
 
 class VerificationTest extends TestCase
 {
@@ -40,7 +41,7 @@ class VerificationTest extends TestCase
             ->withSession(['verification_key' => '12345678'])
             ->post(route('account.verify', [
                 'type' => 'user',
-                'verification_key' => '12345678'
+                'verification_key' => '12345678',
             ]))
             ->assertSuccessful();
 
@@ -74,7 +75,7 @@ class VerificationTest extends TestCase
             ])
             ->post(route('account.verify', [
                 'type' => 'user',
-                'verification_key' => '12345678'
+                'verification_key' => '12345678',
             ]))
             ->assertStatus(422)
             ->assertSee('Verification code expired, new verification email sent.');
@@ -146,7 +147,7 @@ class VerificationTest extends TestCase
             ->withSession(['verification_key' => '12345678'])
             ->post(route('account.verify', [
                 'type' => 'client',
-                'verification_key' => '12345678'
+                'verification_key' => '12345678',
             ]))
             ->assertSuccessful()
             // regular website session should also be set to verified if it

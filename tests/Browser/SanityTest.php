@@ -374,7 +374,6 @@ class SanityTest extends DuskTestCase
             } else {
                 $browser->assertDontSee('Account Verification');
             }
-
         } else {
             $browser->assertDontSee('Account Verification');
         }
