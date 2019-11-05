@@ -36,7 +36,7 @@
         <meta property="og:url" content="{{ $canonicalUrl }}">
     @endif
     <meta property="og:title" content="{{ $opengraph['title'] }}">
-    <meta property="og:description" content="{{ $opengraph['description'] }}">
+    <meta property="og:description" content="{{ $pageDescription }}">
 
     @if (isset($opengraph['image']))
         <meta property="og:image" content="{{ $opengraph['image'] }}">
