@@ -176,7 +176,10 @@ class BroadcastNotification implements ShouldQueue
 
         $this->receiverIds = [];
 
-        $notificationOptions = UserNotificationOption::where(['name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM])->get();
+        $notificationOptions = UserNotificationOption
+            ::where(['name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM])
+            ->whereNotNull('details')
+            ->get();
 
         foreach ($notificationOptions as $notificationOption) {
             if (count(array_intersect($notificationOption->details['modes'], $modes)) > 0) {

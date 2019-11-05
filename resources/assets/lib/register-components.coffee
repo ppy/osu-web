@@ -5,7 +5,7 @@ import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import { CountdownTimer } from 'countdown-timer'
 import { FriendButton } from 'friend-button'
-import { LandingNews } from 'landing-news';
+import { LandingNews } from 'landing-news'
 import NotificationWidget from 'notification-widget/main'
 import NotificationWidgetWorker from 'notification-widget/worker'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
@@ -13,7 +13,7 @@ import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
 import { startListening, UserCardTooltip } from 'user-card-tooltip'
 import { UserCards } from 'user-cards'
-import { WikiSearch } from 'wiki-search';
+import { WikiSearch } from 'wiki-search'
 
 window.reactTurbolinks ?= new ReactTurbolinks()
 

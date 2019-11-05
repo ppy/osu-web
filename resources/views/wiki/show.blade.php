@@ -58,15 +58,15 @@
                         {{ trans('wiki.show.toc') }}
                     </h2>
 
-                    @if ($page->page() !== null)
+                    @if ($page->get() !== null)
                         @include('wiki._toc')
                     @endif
                 </div>
             </div>
 
             <div class="wiki-page__content">
-                @if ($page->page() !== null)
-                    {!! $page->page()['output'] !!}
+                @if ($page->get() !== null)
+                    {!! $page->get()['output'] !!}
                 @else
                     <div class="wiki-content">
                         <p>

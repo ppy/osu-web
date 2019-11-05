@@ -37,6 +37,6 @@
         @if (Auth::user() !== null)
             <div class="js-react--wiki-search"></div>
         @endif
-        {!! $page->page()["output"] !!}
+        {!! $page->get()["output"] !!}
     </div>
 @endsection

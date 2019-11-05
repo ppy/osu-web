@@ -18,7 +18,7 @@
 @php
     $currentLevels = [0];
 @endphp
-@foreach ($page->page()['toc'] as $id => $header)
+@foreach ($page->get()['toc'] as $id => $header)
     {{--
         closes previous <ol> tags until the level balances
     --}}
