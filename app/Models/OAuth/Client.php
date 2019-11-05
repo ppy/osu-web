@@ -54,11 +54,6 @@ class Client extends PassportClient
         return $clients;
     }
 
-    public function authCodes()
-    {
-        return $this->hasMany(AuthCode::class, 'client_id');
-    }
-
     public function refreshTokens()
     {
         return $this->hasManyThrough(
@@ -67,11 +62,6 @@ class Client extends PassportClient
             'client_id',
             'access_token_id'
         );
-    }
-
-    public function tokens()
-    {
-        return $this->hasMany(Token::class, 'client_id', 'id');
     }
 
     public function isValid()
