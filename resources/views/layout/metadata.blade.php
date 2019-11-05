@@ -40,6 +40,7 @@
     @if (isset($canonicalUrl))
         <meta property="og:url" content="{{ $canonicalUrl }}">
     @endif
+
     <meta property="og:title" content="{{ $opengraph['title'] }}">
     <meta property="og:description" content="{{ $pageDescription }}">
     <meta property="og:image" content="{{ $opengraph['image'] }}">
