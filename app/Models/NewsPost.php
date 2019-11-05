@@ -125,7 +125,6 @@ class NewsPost extends Model implements Commentable
             if (array_key_exists($post->slug, $latestSlugs)) {
                 if ($latestSlugs[$post->slug] !== $post->hash) {
                     $post->sync(true);
-                } else {
                 }
 
                 unset($latestSlugs[$post->slug]);
