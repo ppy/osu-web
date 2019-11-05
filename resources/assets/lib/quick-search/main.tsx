@@ -38,8 +38,8 @@ interface State {
 const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
 @observer export default class QuickSearch extends React.Component<Props, State> {
-  state = { open: false };
   searchPath = route('search', null, false);
+  state = { open: false };
 
   private inputRef = React.createRef<HTMLInputElement>();
 
