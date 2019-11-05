@@ -33,6 +33,7 @@
     text-transform: none;
     cursor: pointer;
     font-weight: normal;
+    margin: 0;
 
     &--inline {
       flex: none;
@@ -40,7 +41,6 @@
     }
 
     &--overflow {
-      margin: 0;
       padding: 5px 10px;
     }
   }
@@ -198,5 +198,9 @@
       font-size: @font-size--title-small-2;
       font-style: normal;
     }
+  }
+
+  &__select {
+    min-width: 200px;
   }
 }

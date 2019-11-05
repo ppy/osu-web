@@ -39,12 +39,12 @@ abstract class Renderer
     }
 
     /**
-     * Renders the {@see App\Models\Wiki\Page::page()} representation of this wiki page.
+     * Renders the {@see App\Models\Wiki\Page::get()} representation of this wiki page.
      */
     abstract public function render();
 
     /**
-     * Renders the indexable {@see App\Models\Wiki\Page::page()} representation of this wiki page.
+     * Renders the indexable {@see App\Models\Wiki\Page::get()} representation of this wiki page.
      */
     abstract public function renderIndexable();
 }

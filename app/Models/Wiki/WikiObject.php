@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,52 +18,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.wiki-main-page {
-  background: @osu-colour-b5;
+namespace App\Models\Wiki;
 
-  &__blurb {
-    .content-font();
-    font-size: 12px;
-    text-align: center;
-    font-weight: 300;
-    color: @osu-colour-c1;
-    padding-top: 30px;
-  }
+interface WikiObject
+{
+    /**
+     * Fetches the representation of the object, renders it, and stores it in the cache.
+     */
+    public function get($synchronous = false);
 
-  &__panels {
-    display: grid;
-    grid-gap: 7px;
-
-    @media @desktop {
-      grid-template-columns: 50% 50%;
-    }
-
-    padding-top: 45px;
-  }
-
-  &__heading {
-    color: @osu-colour-c1;
-    font-size: 20px;
-    font-weight: 300;
-    font-style: normal;
-
-    .wiki-main-page-panel & {
-      margin-bottom: 40px;
-    }
-
-    .wiki-main-page-panel--full & {
-      font-size: 30px;
-    }
-  }
-
-  &__paragraph {
-    font-size: 13px;
-    font-style: italic;
-    font-weight: 700;
-    color: @osu-colour-c1;
-  }
-
-  &__link {
-    .link-default();
-  }
+    /**
+     * Removes the cached version of the object.
+     */
+    public function forget($synchronous = false);
 }
