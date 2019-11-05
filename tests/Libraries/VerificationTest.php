@@ -143,17 +143,19 @@ class VerificationTest extends TestCase
             ->assertSee('Client Verification')
             ->assertSessionHas('client_hash', $client_hash);
 
-        $this->actingAs($this->user)
+        $response = $this->actingAs($this->user)
             ->withSession(['verification_key' => '12345678'])
             ->post(route('account.verify', [
                 'type' => 'client',
                 'verification_key' => '12345678',
             ]))
             ->assertSuccessful()
-            // regular website session should also be set to verified if it
-            // wasn't previously (eg. never logged in prior to verifying the)
-            // client on this PC/browser)
-            ->assertSessionHas('verified', true);
+            ->assertSessionMissing('client_hash');
+
+        // regular website session should also be set to verified if it
+        // wasn't previously (eg. never logged in prior to verifying the)
+        // client on this PC/browser)
+        $this->assertVerified($response);
 
         $client = UserClient::fromHash($this->user->user_id, $client_hash);
 
