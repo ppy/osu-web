@@ -25,16 +25,22 @@ function readWebpackConfig() {
     return config;
   }
 
-  let unwrappedConfig;
+  let value;
   config.then((result) => {
-    unwrappedConfig = result;
+    value = result;
+  }).catch((error) => {
+    value = error;
   });
 
-  while (!unwrappedConfig) {
+  while (!value) {
     sleep();
   }
 
-  return unwrappedConfig;
+  if (value instanceof Error) {
+    throw value;
+  }
+
+  return value;
 }
 
 webpackConfig = readWebpackConfig();
