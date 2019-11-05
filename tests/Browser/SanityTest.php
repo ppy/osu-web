@@ -414,11 +414,13 @@ class SanityTest extends DuskTestCase
         return $return;
     }
 
-    public static function getVerificationCode()
+    public static function getVerificationCode($link = false)
     {
+        $regex = $link ? '/verify\?key=([0-9a-f]{64})/im' : '/Your verification code is: ([0-9a-f]{8})/im';
+
         $log = file_get_contents('storage/logs/laravel.log');
         $matches = [];
-        $count = preg_match_all('/Your verification code is: ([0-9a-f]{8})/im', $log, $matches);
+        $count = preg_match_all($regex, $log, $matches);
 
         if ($count > 0) {
             return $matches[1][count($matches[1]) - 1];
