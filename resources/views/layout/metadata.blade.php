@@ -37,10 +37,7 @@
     @endif
     <meta property="og:title" content="{{ $opengraph['title'] }}">
     <meta property="og:description" content="{{ $pageDescription }}">
-
-    @if (isset($opengraph['image']))
-        <meta property="og:image" content="{{ $opengraph['image'] }}">
-    @endif
+    <meta property="og:image" content="{{ $opengraph['image'] }}">
 @endif
 
 <meta name="csrf-param" content="_token">
