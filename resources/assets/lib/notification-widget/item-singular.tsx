@@ -18,7 +18,7 @@
 
 import { observer } from 'mobx-react';
 import { nameToIcons } from 'notification-maps/icons';
-import { messageSingular } from 'notification-maps/message';
+import { formatMessage } from 'notification-maps/message';
 import { urlSingular } from 'notification-maps/url';
 import * as React from 'react';
 import Item from './item';
@@ -36,7 +36,7 @@ export default withMarkRead(observer(class ItemSingular extends React.Component<
 
         icons={nameToIcons[this.props.item.name || '']}
         item={this.props.item}
-        message={messageSingular(this.props.item)}
+        message={formatMessage(this.props.item)}
         modifiers={['one']}
         url={urlSingular(this.props.item)}
         withCategory={true}

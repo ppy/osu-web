@@ -48,14 +48,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'U kunt alleen uw eigen berichten verwijderen.',
+            'resolved' => 'U kunt een bericht van een opgeloste discussie niet verwijderen.',
+            'system_generated' => 'Automatisch gegenereerd bericht kan niet worden verwijderd.',
         ],
 
         'edit' => [
             'not_owner' => 'Alleen de eigenaar kan deze post bewerken.',
-            'resolved' => '',
+            'resolved' => 'U kunt geen bericht van een opgeloste discussie bewerken.',
             'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
         ],
 

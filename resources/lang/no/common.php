@@ -81,7 +81,7 @@ return [
         'minute_short_unit' => 'm|m',
         'minutes' => '::count_delimited minutt|:count_delimited minutter',
         'months' => '::count_delimited måned|:count_delimited måneder',
-        'plus_others' => '',
+        'plus_others' => '+ :count_delimited annen!|+ :count_delimited andre!',
         'post' => ':count_delimited innlegg|:count_delimited innlegg',
         'second_short_unit' => 's|s',
         'star_priority' => '',
@@ -119,7 +119,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'søk...',
     ],
 
     'pagination' => [

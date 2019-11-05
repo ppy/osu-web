@@ -275,6 +275,11 @@ return [
             'to_2_done' => '該主题已置頂並標記為公告',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => '刪除主題',
             'total_posts' => '總主題數量',

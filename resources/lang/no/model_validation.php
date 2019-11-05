@@ -108,7 +108,7 @@ return [
             'too_many_options' => 'Overskredet maksimal antall tillatte alternativer.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Avstemmingstittel',
             ],
         ],
 
@@ -120,7 +120,7 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
+            'too_many' => 'Du har nådd grensen for maksimalt antall oAuth-applikasjoner.',
             'url' => 'Vennligst skriv en gyldig URL.',
 
             'attributes' => [
@@ -171,6 +171,7 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => '',
         'self' => "Du kan ikke rapportere deg selv!",
     ],
 

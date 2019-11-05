@@ -28,7 +28,7 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Last ned Beatmap malen',
+        'download' => 'Last ned Beatmapmal',
         'download-na' => 'Beatmap malen er ikke tilgjengelig ennå',
     ],
 

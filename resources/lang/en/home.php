@@ -25,6 +25,7 @@ return [
         'peak' => 'Peak, :count online users',
         'players' => '<strong>:count</strong> registered players',
         'title' => 'welcome',
+        'see_more_news' => 'see more news',
 
         'slogan' => [
             'main' => 'the bestest free-to-win rhythm game',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'New Ranked Beatmaps',
             'popular' => 'Popular Beatmaps',
-            'by' => 'by',
-            'plays' => ':count plays',
+            'by_user' => 'by :user',
         ],
         'buttons' => [
             'download' => 'Download osu!',

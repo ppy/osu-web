@@ -16,26 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.landing-middle-buttons {
-  padding: 20px;
-  text-align: center;
+.landing-news {
+  padding-bottom: 20px;
 
-  &__button {
-    .default-box-shadow();
-    border-radius: @border-radius-large;
-    margin: 5px;
-    display: inline-block;
-    width: 250px;
-    height: 75px;
-    transition: all 120ms;
-    background-size: cover;
+  &__posts {
+    display: flex;
+    flex-direction: column;
+    margin: -10px 0;
 
-    &:hover {
-      .thicker-box-shadow();
+    @media @desktop {
+      flex-direction: row;
+      margin: -10px;
     }
 
-    &--blog {
-      .at2x-simple('/images/landing/button-blog.png');
-    }
+    padding: 20px 0;
+  }
+
+  &__link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }

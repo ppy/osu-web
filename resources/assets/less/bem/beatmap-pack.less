@@ -17,27 +17,16 @@
  */
 
 .beatmap-pack {
+  @_top: beatmap-pack;
+
   .default-box-shadow();
   color: white;
   width: 100%;
   margin: 2px 0;
 
-  &__body {
-    background-color: @osu-colour-b3;
-  }
-
-  &__header {
-    padding: @beatmappack-listing--gutter;
-    background-color: @osu-colour-b3;
-    cursor: pointer;
-
-    .js-accordion__item--expanded & {
-      background-color: @osu-colour-b2;
-    }
-
-    &:hover {
-      background-color: @osu-colour-b2;
-    }
+  &.js-accordion__item--expanded, &--expanded  {
+    .thicker-box-shadow();
+    z-index: 1;
   }
 
   &__author {
@@ -48,22 +37,41 @@
     }
   }
 
+  &__body {
+    background-color: @osu-colour-b3;
+  }
+
   &__date {
     font-size: 90%;
   }
 
-  &__name {
-    &.beatmap-packs__cell {
-      flex-grow: 4;
+  &__details {
+    margin-left: auto;
+    padding-left: @beatmappack-listing--gutter;
+    text-align: right;
+    justify-content: flex-end;
+    color: @osu-colour-c1;
+  }
+
+  &__header {
+    .link-plain();
+    .link-white();
+    padding: @beatmappack-listing--gutter;
+    background-color: @osu-colour-b3;
+    display: flex;
+
+    .js-accordion__item--expanded &, .@{_top}--expanded & {
+      background-color: @osu-colour-b2;
     }
 
-    .js-accordion__item--expanded & {
-      font-weight: 600;
+    &:hover {
+      background-color: @osu-colour-b2;
     }
   }
 
-  &.js-accordion__item--expanded {
-    .thicker-box-shadow();
-    z-index: 1;
+  &__name {
+    .js-accordion__item--expanded &, .@{_top}--expanded & {
+      font-weight: 600;
+    }
   }
 }

@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Пожаловаться',
-        'title' => 'Пожаловаться на игру :username?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Пожаловаться',
         'title' => 'Пожаловать на комментарий :username?',
+    ],
+
+    'scores' => [
+        'button' => 'Пожаловаться',
+        'title' => 'Пожаловаться на игру :username?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

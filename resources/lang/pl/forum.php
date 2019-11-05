@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Wątek został przypięty i oznaczony jako ogłoszenie',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Usunięte posty',
             'total_posts' => 'Wszystkie posty',

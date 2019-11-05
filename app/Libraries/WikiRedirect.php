@@ -44,12 +44,12 @@ class WikiRedirect implements WikiObject
         return $this->cache['redirect'][$this->normalizePath($path)] ?? null;
     }
 
-    public function forget()
+    public function forget($synchronous = false)
     {
         Cache::forget(static::CACHE_KEY);
     }
 
-    public function get()
+    public function get($synchronous = false)
     {
         return Cache::remember(
             static::CACHE_KEY,

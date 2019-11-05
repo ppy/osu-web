@@ -88,9 +88,6 @@ return [
         'title' => 'Innleggene til :username',
     ],
 
-    'signup' => [
-        '_' => 'Registrer deg',
-    ],
     'anonymous' => [
         'login_link' => 'klikk for å logge inn',
         'login_text' => 'logg inn',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 følger|:count følgere',
             'none' => 'ingen',
             'unranked' => 'Ingen nylige spill',
 

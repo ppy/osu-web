@@ -48,14 +48,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Puoi eliminare solo i tuoi post.',
+            'resolved' => 'Non puoi eliminare un post di una discussione risolta.',
+            'system_generated' => 'Non si può eliminare un post generato automaticamente.',
         ],
 
         'edit' => [
             'not_owner' => 'Solo l\'autore del post può modificarlo.',
-            'resolved' => '',
+            'resolved' => 'Non puoi modificare un post di una discussione risolta.',
             'system_generated' => 'I post generati automaticamente non possono essere modificati.',
         ],
 
@@ -66,7 +66,7 @@ return [
 
     'chat' => [
         'blocked' => 'Non puoi inviare messaggi ad un utente che ti sta bloccando o che hai bloccato.',
-        'friends_only' => 'L\'utente sta bloccando messaggi da parte dei non-amici.',
+        'friends_only' => 'L\'utente sta bloccando i messaggi da chi non è nella sua lista amici.',
         'moderated' => 'Quel canale è attualmente moderato.',
         'no_access' => 'Non hai accesso a quel canale.',
         'restricted' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',

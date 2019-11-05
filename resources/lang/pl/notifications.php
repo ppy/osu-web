@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_lock_compact' => 'Dyskusja została zablokowana',
                 'beatmapset_discussion_post_new' => 'Nowy post dla beatmapy „:title” od użytkownika :username',
                 'beatmapset_discussion_post_new_compact' => 'Nowy post od użytkownika :username',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
                 'beatmapset_discussion_unlock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało odblokowane.',
                 'beatmapset_discussion_unlock_compact' => 'Dyskusja została odblokowana',
             ],

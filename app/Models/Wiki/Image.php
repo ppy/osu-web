@@ -50,7 +50,7 @@ class Image implements WikiObject
     /**
      * {@inheritdoc}
      */
-    public function get()
+    public function get($synchronous = false)
     {
         if (!array_key_exists('data', $this->cache)) {
             $this->cache['data'] = cache_remember_with_fallback($this->cacheKeyData(), static::CACHE_DURATION, function () {
@@ -88,7 +88,7 @@ class Image implements WikiObject
     /**
      * {@inheritdoc}
      */
-    public function forget()
+    public function forget($synchronous = false)
     {
         cache_forget_with_fallback($this->cacheKeyData());
         unset($this->cache['data']);

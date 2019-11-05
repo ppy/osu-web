@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
@@ -136,6 +137,10 @@ class UsersController extends Controller
 
         try {
             $registration->assertValid();
+
+            if (get_bool(request('check'))) {
+                return response(null, 204);
+            }
 
             $throttleKey = "registration:{$ip}";
 

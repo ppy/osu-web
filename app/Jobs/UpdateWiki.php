@@ -50,18 +50,25 @@ class UpdateWiki implements ShouldQueue
 
             $object = $this->getObject($file['filename']);
 
-            if ($object) {
-                // because otherwise we'd have newsposts being pointlessly removed and readded into the database
-                if (get_class($object) !== 'NewsPost' || (get_class($object) === 'NewsPost' && $status !== 'removed')) {
-                    $object->forget();
-                }
+            if ($object === null) {
+                continue;
+            }
+
+            if ($object instanceof NewsPost) {
+                $object->sync(true);
+            } else {
+                $object->forget(true);
 
                 if ($status === 'renamed') {
-                    $this->getObject($file['previous_filename'])->forget();
+                    $prevObject = $this->getObject($file['previous_filename']);
+
+                    if ($prevObject) {
+                        $prevObject->forget();
+                    }
                 }
 
                 if ($status !== 'removed') {
-                    $object->get();
+                    $object->get(true);
                 }
             }
         }

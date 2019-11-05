@@ -88,9 +88,6 @@ return [
         'title' => 'โพสต์ทั้งหมดของ:username',
     ],
 
-    'signup' => [
-        '_' => 'สมัครสมาชิก',
-    ],
     'anonymous' => [
         'login_link' => 'คลิกเพื่อลงชื่อเข้าใช้',
         'login_text' => 'ลงชื่อเข้าใช้',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count ผู้ติดตาม',
             'none' => '',
             'unranked' => 'ยังไม่มีการเล่น',
 

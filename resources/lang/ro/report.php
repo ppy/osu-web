@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Raportează Scorul',
-        'title' => 'Raportezi scorul lui :username?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Raportează',
         'title' => 'Raportezi comentariul lui :username?',
+    ],
+
+    'scores' => [
+        'button' => 'Raportează Scorul',
+        'title' => 'Raportezi scorul lui :username?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

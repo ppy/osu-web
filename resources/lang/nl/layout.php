@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'ondersteun het spel',
             'team' => 'team',
         ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
+        ],
         'help' => [
             '_' => 'hulp',
             'getFaq' => 'faq',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?",
+            'download' => '',
+            'info' => 'Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?',
             'title' => "Heb je geen account?",
         ],
     ],
