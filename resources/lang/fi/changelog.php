@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'syöte',
     'generic' => 'Vikojen korjauksia ja pieniä parannuksia.',
 
     'build' => [

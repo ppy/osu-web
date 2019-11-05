@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'lista',
     'generic' => 'Corrección de errores y mejoras menores.',
 
     'build' => [

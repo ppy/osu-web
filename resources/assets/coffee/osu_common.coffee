@@ -70,6 +70,9 @@
 
 
   ajaxError: (xhr) ->
+    return if userLogin.showOnError({}, xhr)
+    return if userVerification.showOnError({}, xhr)
+
     osu.popup osu.xhrErrorMessage(xhr), 'danger'
 
 

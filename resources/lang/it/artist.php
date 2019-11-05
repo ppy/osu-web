@@ -28,8 +28,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmap',
-        'download' => 'Scarica il Template della Mappa',
-        'download-na' => 'Template della Mappa non ancora disponibile',
+        'download' => 'Scarica il Template della Beatmap',
+        'download-na' => 'Template della Beatmap non ancora disponibile',
     ],
 
     'index' => [

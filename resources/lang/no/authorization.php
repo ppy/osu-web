@@ -48,9 +48,9 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Du kan bare slette dine egne innlegg.',
             'resolved' => '',
-            'system_generated' => '',
+            'system_generated' => 'Innlegg som er automatisk generert kan ikke bli slettet.',
         ],
 
         'edit' => [

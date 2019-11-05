@@ -88,9 +88,6 @@ return [
         'title' => 'käyttäjän :username viestit',
     ],
 
-    'signup' => [
-        '_' => 'Rekisteröidy',
-    ],
     'anonymous' => [
         'login_link' => 'kirjaudu sisään napsauttamalla',
         'login_text' => 'kirjaudu sisään',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 seuraaja |:count seuraajaa',
             'none' => '',
             'unranked' => 'Ei viimeaikaisia pelejä',
 

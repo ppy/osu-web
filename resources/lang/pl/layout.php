@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'wspomóż grę',
             'team' => 'zespół',
         ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
+        ],
         'help' => [
             '_' => 'pomoc',
             'getFaq' => 'faq',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Potrzebujesz konta. Dlaczego by takiego nie stworzyć?",
+            'download' => '',
+            'info' => 'Potrzebujesz konta. Dlaczego by takiego nie stworzyć?',
             'title' => "Nie posiadasz konta?",
         ],
     ],

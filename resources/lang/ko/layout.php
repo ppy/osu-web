@@ -60,6 +60,11 @@ return [
             'supportTheGame' => '게임 지원하기',
             'team' => '운영진',
         ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
+        ],
         'help' => [
             '_' => '도움말',
             'getFaq' => 'FAQ',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "계정이 필요합니다, 하나 만들어보시는 건 어때요?",
+            'download' => '',
+            'info' => '계정이 필요합니다, 하나 만들어보시는 건 어때요?',
             'title' => "아직 계정이 없으신가요?",
         ],
     ],

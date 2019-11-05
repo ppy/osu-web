@@ -46,6 +46,22 @@ class BeatmapPack extends Model
     protected $dates = ['date'];
     public $timestamps = false;
 
+    public static function getPacks($type)
+    {
+        if (!in_array($type, array_keys(static::$tagMappings), true)) {
+            return;
+        }
+
+        $tag = static::$tagMappings[$type];
+
+        return static::default()->where('tag', 'like', "{$tag}%")->orderBy('pack_id', 'desc');
+    }
+
+    public function scopeDefault($query)
+    {
+        $query->where(['hidden' => false]);
+    }
+
     public function items()
     {
         return $this->hasMany(BeatmapPackItem::class, 'pack_id');
@@ -64,17 +80,6 @@ class BeatmapPack extends Model
     public function downloadUrl()
     {
         return $this->downloadUrls()[0];
-    }
-
-    public static function getPacks($type)
-    {
-        if (!in_array($type, array_keys(static::$tagMappings), true)) {
-            return;
-        }
-
-        $tag = static::$tagMappings[$type];
-
-        return static::where('tag', 'like', "{$tag}%")->orderBy('pack_id', 'desc');
     }
 
     private function downloadUrls()

@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'feed',
     'generic' => 'Sửa lỗi và một số cải tiến',
 
     'build' => [

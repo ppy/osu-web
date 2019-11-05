@@ -48,14 +48,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Możesz usuwać tylko swoje posty.',
+            'resolved' => 'Nie możesz usunąć posta z rozwiązanej dyskusji.',
+            'system_generated' => 'Nie możesz usunąć automatycznie wygenerowanego posta.',
         ],
 
         'edit' => [
             'not_owner' => 'Tylko autor posta może go edytować.',
-            'resolved' => '',
+            'resolved' => 'Nie możesz edytować posta z rozwiązanej dyskusji.',
             'system_generated' => 'Nie możesz edytować automatycznie wygenerowanego posta.',
         ],
 

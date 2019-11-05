@@ -4,6 +4,7 @@ namespace Tests\Controllers;
 
 use App\Events\NewNotificationEvent;
 use App\Events\NewPrivateNotificationEvent;
+use App\Jobs\BroadcastNotification;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -13,6 +14,7 @@ use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserNotification;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
@@ -499,13 +501,79 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertFalse($reply2->fresh()->trashed());
     }
 
+    public function testProblemOnQualifiedBeatmapsetWithoutMatchingMode()
+    {
+        $this->beatmapset->update([
+            'approved' => Beatmapset::STATES['qualified'],
+            'queued_at' => now(),
+        ]);
+        $this->beatmapset->beatmaps()->update(['playmode' => Beatmap::MODES['osu']]);
+        $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
+            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+        ]);
+        $notificationOption->update(['details' => ['taiko']]);
+
+        // ensure there's no currently open problems
+        $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'problem',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+
+        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+    }
+
+    public function testProblemOnQualifiedBeatmapsetWithMatchingMode()
+    {
+        $this->beatmapset->update([
+            'approved' => Beatmapset::STATES['qualified'],
+            'queued_at' => now(),
+        ]);
+        $this->beatmapset->beatmaps()->update(['playmode' => Beatmap::MODES['osu']]);
+        $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
+            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+        ]);
+        $notificationOption->update(['details' => ['osu']]);
+
+        // ensure there's no currently open problems
+        $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'problem',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+
+        Event::assertDispatched(NewPrivateNotificationEvent::class);
+    }
+
     /**
      * @dataProvider problemDataProvider
      */
     public function testProblemOnQualifiedBeatmap($updateParams, $assertMethod)
     {
         $this->beatmapset->update($updateParams);
-        factory(User::class)->states('bng')->create(); // event doesn't get dispatched if there are no users in the group.
+        $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
+            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+        ]);
+        $notificationOption->update(['details' => array_keys(Beatmap::MODES)]);
+
+        // ensure there's no currently open problems
+        $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
 
         $this
             ->actingAs($this->user)
@@ -522,11 +590,107 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $assertMethod(NewPrivateNotificationEvent::class);
     }
 
+    public function testSecondProblemOnQualifiedBeatmapset()
+    {
+        $this->beatmapset->update([
+            'approved' => Beatmapset::STATES['qualified'],
+            'queued_at' => now(),
+        ]);
+        $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
+            'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+        ]);
+        $notificationOption->update(['details' => array_keys(Beatmap::MODES)]);
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'problem',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+
+        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+    }
+
+    /**
+     * @dataProvider problemQueueDataProvider
+     */
+    public function testProblemOnQualifiedBeatmapQueuesNotification($userStates, $queued, $notQueued)
+    {
+        // ensure there's no currently open problems
+        $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
+        $this->beatmapset->update([
+            'approved' => Beatmapset::STATES['qualified'],
+            'queued_at' => now(),
+        ]);
+
+        // faking prevents jobs from actually running, so events and jobs can't be asserted together.
+        Queue::fake();
+
+        $factory = factory(User::class);
+        if ($userStates !== null) {
+            $factory->states($userStates);
+        }
+
+        $user = $factory->create();
+
+        $this
+            ->actingAs($user)
+            ->withSession(['verified' => true])
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'problem',
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+
+        $remaining = $queued;
+        // assertPushed only asserts if any matching job was queued.
+        Queue::assertPushed(BroadcastNotification::class, function ($job) use ($queued, &$remaining) {
+            $inArray = in_array($job->getName(), $queued, true);
+
+            if (($key = array_search($job->getName(), $remaining, true)) !== false) {
+                unset($remaining[$key]);
+            }
+
+            return $inArray;
+        });
+
+        $this->assertEmpty(array_values($remaining));
+
+        Queue::assertNotPushed(BroadcastNotification::class, function ($job) use ($notQueued) {
+            return in_array($job->getName(), $notQueued, true);
+        });
+    }
+
     public function problemDataProvider()
     {
         return [
             [['approved' => Beatmapset::STATES['qualified'], 'queued_at' => now()], 'Event::assertDispatched'],
             [['approved' => Beatmapset::STATES['pending']], 'Event::assertNotDispatched'],
+        ];
+    }
+
+    public function problemQueueDataProvider()
+    {
+        return [
+            [
+                'bng',
+                [Notification::BEATMAPSET_DISQUALIFY, Notification::BEATMAPSET_DISCUSSION_POST_NEW, Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM],
+                [],
+            ],
+            [
+                null,
+                [Notification::BEATMAPSET_DISCUSSION_POST_NEW, Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM],
+                [Notification::BEATMAPSET_DISQUALIFY],
+            ],
         ];
     }
 

@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu toestaan',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Beatmap pagina',
         'delete' => 'verwijder',
         'deleted' => 'Verwijderd door :editor :delete_time.',
         'deny_kudosu' => 'kudosu ontzeggen',

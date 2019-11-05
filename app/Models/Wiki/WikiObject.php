@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,26 +18,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.landing-middle-buttons {
-  padding: 20px;
-  text-align: center;
+namespace App\Models\Wiki;
 
-  &__button {
-    .default-box-shadow();
-    border-radius: @border-radius-large;
-    margin: 5px;
-    display: inline-block;
-    width: 250px;
-    height: 75px;
-    transition: all 120ms;
-    background-size: cover;
+interface WikiObject
+{
+    /**
+     * Fetches the representation of the object, renders it, and stores it in the cache.
+     */
+    public function get($synchronous = false);
 
-    &:hover {
-      .thicker-box-shadow();
-    }
-
-    &--blog {
-      .at2x-simple('/images/landing/button-blog.png');
-    }
-  }
+    /**
+     * Removes the cached version of the object.
+     */
+    public function forget($synchronous = false);
 }

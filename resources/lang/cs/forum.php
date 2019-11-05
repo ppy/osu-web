@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Téma bylo připnuto a označeno jako oznámení',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Odstraněné příspěvky',
             'total_posts' => 'Celkem příspěvků',

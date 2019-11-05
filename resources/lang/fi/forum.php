@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Aihe on kiinnitetty ja merkattu ilmoitukseksi',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Poistetut viestit',
             'total_posts' => 'Vastauksia',

@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'akış',
     'generic' => 'Hata düzeltmeleri ve küçük geliştirmeler.',
 
     'build' => [

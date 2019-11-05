@@ -30,6 +30,7 @@ class @BeatmapPack
 
     $('.js-accordion').on 'beatmappack:clicked', @onClick
     $(@expander).on 'click', (event) =>
+      event.preventDefault()
       $(@el).trigger 'beatmappack:clicked', @packId
 
   onClick: (e, id) =>
@@ -71,7 +72,7 @@ class @BeatmapPack
 
   # TODO: move out.
   getBeatmapPackItem: (packId) ->
-    $.get laroute.route('packs.show', pack: packId)
+    $.get laroute.route('packs.raw', pack: packId)
 
   slideDown: =>
     @packBody.style.height = ''

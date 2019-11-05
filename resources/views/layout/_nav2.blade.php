@@ -152,7 +152,14 @@
         </div>
 
         @if (Auth::user() !== null)
-            <div class="nav2__col js-react--notification"></div>
+            <div class="nav2__col js-react--notification">
+                <div class="nav-button nav-button--stadium">
+                    <span class="notification-icon">
+                        <i class="fas fa-inbox"></i>
+                        <span class="notification-icon__count">...</span>
+                    </span>
+                </div>
+            </div>
         @endif
 
         <div class="nav2__col nav2__col--avatar">

@@ -88,9 +88,6 @@ return [
         'title' => 'Bài đăng của :username',
     ],
 
-    'signup' => [
-        '_' => 'Đăng kí',
-    ],
     'anonymous' => [
         'login_link' => 'nhấp để đăng nhập',
         'login_text' => 'đăng nhập',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count người theo dõi',
             'none' => 'không có',
             'unranked' => 'Không chơi gần đây',
 

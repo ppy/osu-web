@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'přehled',
     'generic' => 'Opravy chyb a drobná vylepšení.',
 
     'build' => [
