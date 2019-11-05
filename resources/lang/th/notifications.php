@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_lock_compact' => 'การสนทนาได้ถูกล็อกไว้',
                 'beatmapset_discussion_post_new' => ':username ได้เขียนข้อความใหม่ใน ":title" การสนทนาของ beatmap',
                 'beatmapset_discussion_post_new_compact' => 'โพสต์ใหม่โดย :username',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" ได้ถูกเปิดการใช้งานในการสนทนาแล้ว',
                 'beatmapset_discussion_unlock_compact' => 'การสนทนาได้ถูกปลดล๊อค',
             ],

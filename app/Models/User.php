@@ -217,13 +217,14 @@ class User extends Model implements AuthenticatableContract
     const INACTIVE_DAYS = 180;
 
     const MAX_FIELD_LENGTHS = [
-        'user_msnm' => 255,
-        'user_twitter' => 255,
-        'user_website' => 200,
         'user_discord' => 37, // max 32char username + # + 4-digit discriminator
         'user_from' => 30,
-        'user_occ' => 30,
         'user_interests' => 30,
+        'user_msnm' => 255,
+        'user_occ' => 30,
+        'user_sig' => 3000,
+        'user_twitter' => 255,
+        'user_website' => 200,
     ];
 
     protected $memoized = [];
@@ -875,6 +876,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UserMonthlyPlaycount::class, 'user_id');
     }
 
+    public function notificationOptions()
+    {
+        return $this->hasMany(UserNotificationOption::class);
+    }
+
     public function replaysWatchedCounts()
     {
         return $this->hasMany(UserReplaysWatchedCount::class, 'user_id');
@@ -1182,12 +1188,18 @@ class User extends Model implements AuthenticatableContract
 
     public function blocks()
     {
-        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('foe', true);
+        return $this
+            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
+            ->wherePivot('foe', true)
+            ->default();
     }
 
     public function friends()
     {
-        return $this->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')->wherePivot('friend', true);
+        return $this
+            ->belongsToMany(static::class, 'phpbb_zebra', 'user_id', 'zebra_id')
+            ->wherePivot('friend', true)
+            ->default();
     }
 
     public function channels()
@@ -1405,6 +1417,11 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->memoized[__FUNCTION__];
+    }
+
+    public function getForeignKey()
+    {
+        return 'user_id';
     }
 
     public function title()

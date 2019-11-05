@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'oyunu destekle',
             'team' => 'takım',
         ],
+        'profile' => [
+            '_' => '',
+            'friends' => '',
+            'settings' => '',
+        ],
         'help' => [
             '_' => 'yardım',
             'getFaq' => 'sss',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Bir hesaba ihtiyacınız var, efendim. Neden hemen bir tane oluşturmuyorsunuz?",
+            'download' => '',
+            'info' => 'Bir hesaba ihtiyacınız var, efendim. Neden hemen bir tane oluşturmuyorsunuz?',
             'title' => "Hesabın yok mu?",
         ],
     ],

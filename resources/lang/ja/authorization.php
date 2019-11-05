@@ -48,14 +48,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => '自分の投稿のみを削除できます。',
+            'resolved' => '解決済みのディスカッションを削除することはできません。',
+            'system_generated' => '自動生成された投稿は削除できません。',
         ],
 
         'edit' => [
             'not_owner' => '投稿者のみ編集できます。',
-            'resolved' => '',
+            'resolved' => '解決済みのディスカッションを編集することはできません。',
             'system_generated' => '自動生成された投稿は編集できません。',
         ],
 

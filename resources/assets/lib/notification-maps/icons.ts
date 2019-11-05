@@ -22,6 +22,7 @@ interface IconsMap {
 
 export const categoryToIcons: IconsMap = {
   beatmapset_discussion: ['fas fa-drafting-compass', 'fas fa-comment'],
+  beatmapset_problem: ['fas fa-drafting-compass', 'fas fa-exclamation-circle'],
   beatmapset_state: ['fas fa-drafting-compass'],
   channel: ['fas fa-comments'],
   comment: ['fas fa-comment'],
@@ -32,6 +33,7 @@ export const categoryToIcons: IconsMap = {
 export const nameToIcons: IconsMap = {
   beatmapset_discussion_lock: ['fas fa-drafting-compass', 'fas fa-lock'],
   beatmapset_discussion_post_new: ['fas fa-drafting-compass', 'fas fa-comment-medical'],
+  beatmapset_discussion_qualified_problem: ['fas fa-drafting-compass', 'fas fa-exclamation-circle'],
   beatmapset_discussion_unlock: ['fas fa-drafting-compass', 'fas fa-unlock'],
   beatmapset_disqualify: ['fas fa-drafting-compass', 'far fa-times-circle'],
   beatmapset_love: ['fas fa-drafting-compass', 'fas fa-heart'],
@@ -49,6 +51,7 @@ export const nameToIcons: IconsMap = {
 export const nameToIconsCompact: IconsMap = {
   beatmapset_discussion_lock: ['fas fa-lock'],
   beatmapset_discussion_post_new: ['fas fa-comment-medical'],
+  beatmapset_discussion_qualified_problem: ['fas fa-exclamation-circle'],
   beatmapset_discussion_unlock: ['fas fa-unlock'],
   beatmapset_disqualify: ['far fa-times-circle'],
   beatmapset_love: ['fas fa-heart'],

@@ -88,9 +88,6 @@ return [
         'title' => ':username님의 글',
     ],
 
-    'signup' => [
-        '_' => '회원가입',
-    ],
     'anonymous' => [
         'login_link' => '클릭하여 로그인',
         'login_text' => '로그인',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count 팔로워|:count 팔로워',
             'none' => '없음',
             'unranked' => '최근 플레이가 없습니다',
 

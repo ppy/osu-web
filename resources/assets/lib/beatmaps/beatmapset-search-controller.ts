@@ -175,7 +175,7 @@ export class BeatmapsetSearchController {
   }
 
   private filterChangedSearch() {
-    const url = encodeURI(route('beatmapsets.index', this.filters.queryParams));
+    const url = route('beatmapsets.index', this.filters.queryParams);
     Turbolinks.controller.advanceHistory(url);
 
     this.search();

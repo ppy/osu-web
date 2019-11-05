@@ -88,9 +88,6 @@ return [
         'title' => ':username\'in gönderileri',
     ],
 
-    'signup' => [
-        '_' => 'Kayıt Ol',
-    ],
     'anonymous' => [
         'login_link' => 'giriş yapmak için tıklayın',
         'login_text' => 'giriş yap',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 takipçi|:count takipçi',
             'none' => 'hiçbiri',
             'unranked' => 'Son zamanlarda oynamamış',
 

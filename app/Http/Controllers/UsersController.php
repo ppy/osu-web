@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
@@ -28,10 +29,13 @@ use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\IpBan;
+use App\Models\Log;
 use App\Models\User;
+use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
+use Illuminate\Cache\RateLimiter;
 use Request;
 
 class UsersController extends Controller
@@ -45,9 +49,10 @@ class UsersController extends Controller
             'checkUsernameAvailability',
             'checkUsernameExists',
             'report',
+            'updatePage',
         ]]);
 
-        $this->middleware('throttle:10,60', ['only' => ['store']]);
+        $this->middleware('throttle:60,10', ['only' => ['store']]);
 
         if (is_api_request()) {
             $this->middleware('require-scopes:identify', ['only' => ['me']]);
@@ -131,7 +136,20 @@ class UsersController extends Controller
         $registration = new UserRegistration($params);
 
         try {
+            $registration->assertValid();
+
+            if (get_bool(request('check'))) {
+                return response(null, 204);
+            }
+
+            $throttleKey = "registration:{$ip}";
+
+            if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {
+                abort(429);
+            }
+
             $registration->save();
+            app(RateLimiter::class)->hit($throttleKey, 600);
 
             return $registration->user()->fresh()->defaultJson();
         } catch (ValidationException $e) {
@@ -325,6 +343,31 @@ class UsersController extends Controller
                 'user',
                 'jsonChunks'
             ));
+        }
+    }
+
+    public function updatePage($id)
+    {
+        $user = User::findOrFail($id);
+
+        priv_check('UserPageEdit', $user)->ensureCan();
+
+        try {
+            $user = $user->updatePage(request('body'));
+
+            if (!$user->is(auth()->user())) {
+                UserAccountHistory::logUserPageModerated($user, auth()->user());
+
+                $this->log([
+                    'log_type' => Log::LOG_USER_MOD,
+                    'log_operation' => 'LOG_USER_PAGE_EDIT',
+                    'log_data' => ['id' => $user->getKey()],
+                ]);
+            }
+
+            return ['html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']])];
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
     }
 

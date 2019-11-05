@@ -48,6 +48,7 @@ class NewsPost extends Model implements Commentable
     const CACHE_DURATION = 86400;
     const VERSION = 3;
     const DASHBOARD_LIMIT = 8;
+    const LANDING_LIMIT = 4;
 
     protected $casts = [
         'page' => 'array',

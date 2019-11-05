@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Topic is gepint en gemarkeerd als melding',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
+        ],
+
         'show' => [
             'deleted-posts' => 'Verwijderde posts',
             'total_posts' => 'Alle posts',

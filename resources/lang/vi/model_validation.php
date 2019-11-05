@@ -171,6 +171,7 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => '',
         'self' => "Bạn không thể báo cáo chính mình!",
     ],
 

@@ -27,12 +27,14 @@ use League\Fractal;
 class ClientTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
+        'redirect',
+        'secret',
         'user',
     ];
 
     public function transform(Client $client)
     {
-        $array = [
+        return [
             'id' => $client->id,
             'name' => $client->name,
             'password_client' => $client->password_client,
@@ -40,17 +42,33 @@ class ClientTransformer extends Fractal\TransformerAbstract
             'scopes' => $client->scopes,
             'user_id' => $client->user_id,
         ];
-
-        if ($client->user->is(auth()->user())) {
-            $array['redirect'] = $client->redirect;
-            $array['secret'] = $client->secret;
-        }
-
-        return $array;
     }
 
     public function includeUser(Client $client)
     {
         return $this->item($client->user, new UserCompactTransformer);
+    }
+
+    public function includeRedirect(Client $client)
+    {
+        if (!static::isOwnClient($client)) {
+            return;
+        }
+
+        return $this->primitive($client->redirect);
+    }
+
+    public function includeSecret(Client $client)
+    {
+        if (!static::isOwnClient($client)) {
+            return;
+        }
+
+        return $this->primitive($client->secret);
+    }
+
+    private static function isOwnClient(Client $client)
+    {
+        return auth()->check() && auth()->user()->getKey() === $client->user_id;
     }
 }

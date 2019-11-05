@@ -25,8 +25,10 @@ dateFormat = 'LL'
 
 export class BeatmapsetMapping extends React.PureComponent
   render: =>
-    user = @props.user ? @props.beatmapset.user
-
+    user =
+      id: @props.beatmapset.user_id
+      username: @props.beatmapset.creator
+      avatar_url: (@props.user ? @props.beatmapset.user)?.avatar_url
 
     div className: bn,
       if user.id?

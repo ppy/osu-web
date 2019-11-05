@@ -81,7 +81,7 @@ trait UserTrait
         $columns = array_keys((new static())->esFilterFields());
         array_unshift($columns, 'user_id');
 
-        return static::on('mysql-readonly')
+        return static::on('mysql')
             ->withoutGlobalScopes()
             ->with('usernameChangeHistoryPublic')
             ->select($columns);

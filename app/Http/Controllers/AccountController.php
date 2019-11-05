@@ -106,7 +106,9 @@ class AccountController extends Controller
 
     public function edit()
     {
-        $blocks = Auth::user()->blocks()
+        $user = auth()->user();
+
+        $blocks = $user->blocks()
             ->orderBy('username')
             ->get();
 
@@ -116,10 +118,19 @@ class AccountController extends Controller
         $currentSessionId = Request::session()
             ->getIdWithoutKeyPrefix();
 
-        $authorizedClients = json_collection(Client::forUser(auth()->user()), 'OAuth\Client', 'user');
-        $ownClients = json_collection(auth()->user()->oauthClients()->where('revoked', false)->get(), 'OAuth\Client');
+        $authorizedClients = json_collection(Client::forUser($user), 'OAuth\Client', 'user');
+        $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
 
-        return view('accounts.edit', compact('authorizedClients', 'blocks', 'ownClients', 'sessions', 'currentSessionId'));
+        $notificationOptions = $user->notificationOptions->keyBy('name');
+
+        return view('accounts.edit', compact(
+            'authorizedClients',
+            'blocks',
+            'currentSessionId',
+            'notificationOptions',
+            'ownClients',
+            'sessions'
+        ));
     }
 
     public function update()
@@ -174,6 +185,24 @@ class AccountController extends Controller
         }
     }
 
+    public function updateNotificationOptions()
+    {
+        $request = request();
+
+        $name = $request['name'] ?? null;
+        $params = get_params($request, 'user_notification_option', ['details:any']);
+
+        $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $name]);
+
+        if ($option->update($params)) {
+            return response(null, 204);
+        } else {
+            return response(['form_error' => [
+                'user_notification_option' => $option->validationErrors()->all(),
+            ]]);
+        }
+    }
+
     public function updateOptions()
     {
         $user = Auth::user();
@@ -191,21 +220,6 @@ class AccountController extends Controller
         }
 
         return $user->defaultJson();
-    }
-
-    public function updatePage()
-    {
-        $user = Auth::user();
-
-        priv_check('UserPageEdit', $user)->ensureCan();
-
-        try {
-            $user = $user->updatePage(Request::input('body'));
-
-            return ['html' => $user->userPage->bodyHTML(['withoutImageDimensions' => true, 'modifiers' => ['profile-page']])];
-        } catch (ModelNotSavedException $e) {
-            return error_popup($e->getMessage());
-        }
     }
 
     public function updatePassword()

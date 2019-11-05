@@ -27,7 +27,6 @@ use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\NewsPost;
-use App\Models\User;
 use App\Models\UserDonation;
 use Auth;
 use Request;
@@ -77,47 +76,32 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
+        $newsLimit = Auth::check() ? NewsPost::DASHBOARD_LIMIT + 1 : NewsPost::LANDING_LIMIT;
+        $news = NewsPost::default()->limit($newsLimit)->get();
+
         if (Auth::check()) {
-            $news = NewsPost::default()->limit(NewsPost::DASHBOARD_LIMIT + 1)->get();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
-            $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
-            $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
-            $popularBeatmapsets = Beatmapset::whereIn('beatmapset_id', $popularBeatmapsetIds)
-                ->orderByField('beatmapset_id', $popularBeatmapsetIds)
+            $popularBeatmapsets = Beatmapset::ranked()
+                ->where('approved_date', '>', now()->subDays(30))
+                ->orderBy('favourite_count', 'DESC')
+                ->limit(5)
                 ->get();
 
             return view('home.user', compact(
                 'newBeatmapsets',
                 'news',
-                'popularBeatmapsets',
-                'popularBeatmapsetsPlaycount'
+                'popularBeatmapsets'
             ));
         } else {
-            return view('home.landing', ['stats' => new CurrentStats()]);
+            $news = json_collection($news, 'NewsPost');
+
+            return view('home.landing', ['stats' => new CurrentStats(), 'news' => $news]);
         }
     }
 
     public function messageUser($user)
     {
-        // TODO: REMOVE ONCE COMPLETELY LIVE
-        $canWebChat = false;
-        if (Auth::check()) {
-            if (Auth::user()->isPrivileged()) {
-                $canWebChat = true;
-            }
-            if (config('osu.chat.webchat_enabled_supporter') && Auth::user()->isSupporter()) {
-                $canWebChat = true;
-            }
-            if (config('osu.chat.webchat_enabled_all')) {
-                $canWebChat = true;
-            }
-        }
-
-        if (!$canWebChat) {
-            return ujs_redirect("https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u={$user}");
-        } else {
-            return ujs_redirect(route('chat.index', ['sendto' => $user]));
-        }
+        return ujs_redirect(route('chat.index', ['sendto' => $user]));
     }
 
     public function osuSupportPopup()

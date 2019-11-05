@@ -26,10 +26,12 @@ el = React.createElement
 export class UserPage extends React.Component
   render: =>
     isBlank = @props.userPage.initialRaw.trim() == ''
+    canEdit = @props.withEdit || window.currentUser.can_moderate || window.currentUser.is_admin
+
     div className: 'page-extra page-extra--userpage',
       el ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
-      if !@props.userPage.editing && @props.withEdit && !isBlank
+      if !@props.userPage.editing && canEdit && !isBlank
         div className: 'page-extra__actions',
           button
             type: 'button'
@@ -39,7 +41,7 @@ export class UserPage extends React.Component
             span className: 'fas fa-pencil-alt'
 
       if @props.userPage.editing
-        el UserPageEditor, userPage: @props.userPage
+        el UserPageEditor, userPage: @props.userPage, user: @props.user
       else
         div className: 'page-extra__content-overflow-wrapper-outer u-fancy-scrollbar',
           if @props.withEdit && isBlank

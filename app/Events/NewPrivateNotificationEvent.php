@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,26 +18,39 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.landing-middle-buttons {
-  padding: 20px;
-  text-align: center;
+namespace App\Events;
 
-  &__button {
-    .default-box-shadow();
-    border-radius: @border-radius-large;
-    margin: 5px;
-    display: inline-block;
-    width: 250px;
-    height: 75px;
-    transition: all 120ms;
-    background-size: cover;
+use App\Models\Notification;
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Queue\SerializesModels;
 
-    &:hover {
-      .thicker-box-shadow();
+class NewPrivateNotificationEvent extends NewNotificationEvent
+{
+    use SerializesModels;
+
+    private $receiverIds;
+
+    /**
+     * Create a new event instance.
+     *
+     * @return void
+     */
+    public function __construct(Notification $notification, array $receiverIds)
+    {
+        parent::__construct($notification);
+
+        $this->receiverIds = $receiverIds;
     }
 
-    &--blog {
-      .at2x-simple('/images/landing/button-blog.png');
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return Channel|array
+     */
+    public function broadcastOn()
+    {
+        return array_map(function ($userId) {
+            return new Channel("private:user:{$userId}");
+        }, $this->receiverIds);
     }
-  }
 }
