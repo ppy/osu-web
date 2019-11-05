@@ -97,6 +97,9 @@ function configPromise(env, argv) {
       if (!resolved && watches.reduce((value, watched) => value && watched.ranOnce, true)) {
         resolved = true;
         resolve(config);
+        if (!argv.watch) {
+          wp.close();
+        }
       }
     });
   });

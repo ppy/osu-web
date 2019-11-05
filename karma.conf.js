@@ -18,6 +18,10 @@ class ExitOnErrorWebpackPlugin {
  */
 function readWebpackConfig() {
   const argv = require('yargs').argv;
+  if (!argv.singleRun) {
+    argv.watch = true;
+  }
+
   const sleep = require('deasync').runLoopOnce;
   const maybeConfig = require('./webpack.config.js');
   const config = maybeConfig instanceof Function ? maybeConfig(null, argv) : maybeConfig;
