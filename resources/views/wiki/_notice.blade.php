@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@if ($page->page() !== null && $page->locale !== $page->requestedLocale)
+@if ($page->get() !== null && $page->locale !== $page->requestedLocale)
     <div class="wiki-notice">
         <div class="wiki-notice__box">
             {{ trans('wiki.show.fallback_translation', ['language' => locale_name($page->requestedLocale)]) }}
