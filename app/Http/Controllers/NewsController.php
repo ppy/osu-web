@@ -68,9 +68,10 @@ class NewsController extends Controller
             return ujs_redirect(route('news.show', $post->slug));
         }
 
-        $post = NewsPost::lookupAndSync($slug);
+        $post = NewsPost::lookup($slug);
+        $post->sync();
 
-        if ($post === null) {
+        if (!$post->isVisible()) {
             abort(404);
         }
 

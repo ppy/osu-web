@@ -60,19 +60,9 @@ class NewsPost extends Model implements Commentable
 
     private $adjacent = [];
 
-    public static function lookupAndSync($slug)
+    public static function lookup($slug)
     {
-        $post = static::where(['slug' => $slug])->first();
-
-        if ($post === null) {
-            $post = new static(['slug' => $slug]);
-        }
-
-        $post->sync();
-
-        if ($post->page !== null && $post->published_at !== null && $post->published_at->isPast()) {
-            return $post;
-        }
+        return static::firstOrNew(compact('slug'));
     }
 
     public static function pageVersion()
@@ -180,6 +170,11 @@ class NewsPost extends Model implements Commentable
     public function filename()
     {
         return "{$this->slug}.md";
+    }
+
+    public function isVisible()
+    {
+        return $this->page !== null && $this->published_at !== null && $this->published_at->isPast();
     }
 
     public function needsSync()

@@ -88,7 +88,7 @@ class UpdateWiki implements ShouldQueue
         } elseif ($parsed['type'] === 'redirect') {
             return new WikiRedirect();
         } elseif ($parsed['type'] === 'news_post') {
-            return NewsPost::lookupAndSync($parsed['slug']);
+            return NewsPost::lookup($parsed['slug']);
         }
     }
 }
