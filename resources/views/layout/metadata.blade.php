@@ -31,7 +31,10 @@
 @if (isset($opengraph))
     <meta property="og:site_name" content="{{ 'osu! » '.$opengraph['site_name'] ?? 'osu!' }}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ strtok(Request::url(), '?') }}">
+
+    @if (isset($canonicalUrl))
+        <meta property="og:url" content="{{ $canonicalUrl }}">
+    @endif
     <meta property="og:title" content="{{ $opengraph['title'] }}">
     <meta property="og:description" content="{{ $opengraph['description'] }}">
 
