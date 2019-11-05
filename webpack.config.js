@@ -72,6 +72,14 @@ function configPromise(env, argv) {
     // same as webpack-cli's handling
     if (argv['watch-poll'] === 'true' || argv['watch-poll'] === '') options.poll = true;
 
+    if (!argv.watch) {
+      watches.forEach((watched) => {
+        watched.callback();
+      })
+
+      return resolve(config);
+    }
+
     const wp = new Watchpack(options);
     wp.watch(
       watches.filter(x => x.type === 'file').map(x => x.path),
@@ -97,9 +105,6 @@ function configPromise(env, argv) {
       if (!resolved && watches.reduce((value, watched) => value && watched.ranOnce, true)) {
         resolved = true;
         resolve(config);
-        if (!argv.watch) {
-          wp.close();
-        }
       }
     });
   });
