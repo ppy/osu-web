@@ -30,7 +30,14 @@ $type = 'client';
         </h1>
 
         <p class="user-verification__row">
-            {{ trans('user_verification.box.client_success') }}
+            {!! trans('user_verification.box.client_success', [
+                'home_link' => link_to_route(
+                    'home',
+                    trans('user_verification.box.info.home_link'),
+                    [],
+                    ['class' => 'user-verification__link'])]
+                )
+            !!}
         </p>
     </div>
 @endsection

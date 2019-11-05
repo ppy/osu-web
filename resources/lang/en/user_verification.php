@@ -28,7 +28,7 @@ return [
         'verifying' => 'Verifying...',
         'issuing' => 'Issuing new code...',
 
-        'client_success' => 'Your client has been successfully verified. You can now close this browser tab.',
+        'client_success' => 'Your client has been successfully verified. You can now close this window/browser tab, or you can :home_link.',
 
         'info' => [
             'check_spam' => "Make sure to check your spam folder if you can't find the email.",
@@ -37,6 +37,7 @@ return [
             'reissue' => 'You can also :reissue_link or :logout_link.',
             'reissue_link' => 'request another code',
             'logout_link' => 'sign out',
+            'home_link' => 'go home',
         ],
     ],
 
