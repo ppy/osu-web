@@ -24,10 +24,21 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Tests\TestCase;
 
 class BeatmapDiscussionTest extends TestCase
 {
+    /**
+     * Valid beatmapset status always maps to a scope method sanity test.
+     *
+     * @dataProvider validBeatmapsetStatuses
+     */
+    public function testBeatmapsetScopesExist($scope)
+    {
+        $this->assertInstanceOf(Builder::class, Beatmapset::$scope());
+    }
+
     public function testMapperPost()
     {
         $mapper = factory(User::class)->create();
@@ -188,6 +199,13 @@ class BeatmapDiscussionTest extends TestCase
         $discussion->restore($user);
         $discussion = $discussion->fresh();
         $this->assertFalse($discussion->trashed());
+    }
+
+    public function validBeatmapsetStatuses()
+    {
+        return array_map(function ($status) {
+            return [camel_case($status)];
+        }, BeatmapDiscussion::VALID_BEATMAPSET_STATUSES);
     }
 
     private function newDiscussion($beatmapset)
