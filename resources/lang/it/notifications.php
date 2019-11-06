@@ -31,11 +31,19 @@ return [
                 'beatmapset_discussion_lock' => 'La discussione su ":title" è stata bloccata',
                 'beatmapset_discussion_lock_compact' => 'La discussione è stata bloccata',
                 'beatmapset_discussion_post_new' => 'Nuovo post su ":title" da :username',
+                'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => 'Nuovo post da :username',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => '',
                 'beatmapset_discussion_unlock' => 'La discussione su ":title" è stata sbloccata',
                 'beatmapset_discussion_unlock_compact' => 'La discussione è stata sbloccata',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => '',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_empty' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_qualified_problem_compact_empty' => '',
             ],
 
             'beatmapset_state' => [

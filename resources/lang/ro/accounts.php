@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Notificări',
         'topic_auto_subscribe' => '',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

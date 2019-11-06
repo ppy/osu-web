@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Rechercher',
             'deleted' => 'Inclure les discussions supprimées',
+            'only_unresolved' => '',
             'types' => 'Types de message',
             'username' => 'Nom d’utilisateur',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Utilisateur',

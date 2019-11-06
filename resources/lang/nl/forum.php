@@ -276,8 +276,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Toon verwijderde berichten',
+            'hide' => 'Verberg verwijderde berichten',
         ],
 
         'show' => [

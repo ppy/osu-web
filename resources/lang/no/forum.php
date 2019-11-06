@@ -276,8 +276,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Vis slettede innlegg',
+            'hide' => 'Skjul slettede innlegg',
         ],
 
         'show' => [

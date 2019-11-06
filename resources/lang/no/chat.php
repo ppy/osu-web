@@ -19,7 +19,6 @@
  */
 
 return [
-    'coming_soon' => 'kommer snart',
     'limitation_notice' => 'Merk: Bare folk som bruker <a href=":lazer_link">osu!lazer</a> eller den nye nettsiden vil motta direktemeldinger gjennom dette syetemet. <br/>Hvis du er usikker, send dem en melding via <a href=":oldpm_link">private meldinger på den gamle forumsiden</a> isteden.',
     'talking_in' => 'snakker i :channel',
     'talking_with' => 'snakker med :name',

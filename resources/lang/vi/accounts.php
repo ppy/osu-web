@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Thông báo',
         'topic_auto_subscribe' => 'tự động nhận thông báo cho các topic bạn tạo trong forum',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

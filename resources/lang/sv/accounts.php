@@ -27,7 +27,7 @@ return [
         'avatar' => [
             'title' => 'Profilbild',
             'rules' => '',
-            'rules_link' => '',
+            'rules_link' => 'gemenskaps regler',
         ],
 
         'email' => [
@@ -65,13 +65,14 @@ return [
     ],
 
     'notifications' => [
-        'title' => '',
+        'title' => 'Aviseringar',
         'topic_auto_subscribe' => '',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [
         'authorized_clients' => '',
-        'own_clients' => '',
+        'own_clients' => 'egna klienter',
         'title' => '',
     ],
 
@@ -91,10 +92,10 @@ return [
 
     'security' => [
         'current_session' => '',
-        'end_session' => '',
-        'end_session_confirmation' => '',
-        'last_active' => '',
-        'title' => '',
+        'end_session' => 'Avsluta sessionen',
+        'end_session_confirmation' => 'Detta kommer avsluta din session på den valda enheten. Är du säker?',
+        'last_active' => 'Senast aktiv:',
+        'title' => 'Säkerhet',
         'web_sessions' => '',
     ],
 
@@ -109,8 +110,8 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Du kan stänga detta fönstret nu',
+        'title' => 'Verifieringen har blivit slutförd',
     ],
 
     'verification_invalid' => [

@@ -25,6 +25,7 @@ return [
         'peak' => 'Maxim, :count utilizatori online',
         'players' => '<strong>:count</strong> jucători înregistrați',
         'title' => 'bine ai venit',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'cel mai bun joc de ritm free-to-win',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Noi beatmaps clasate',
             'popular' => 'Beatmaps populare',
-            'by' => 'de',
-            'plays' => 'jucat de :count de ori',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Descarcă osu!',

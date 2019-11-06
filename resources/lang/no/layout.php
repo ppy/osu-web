@@ -61,9 +61,9 @@ return [
             'team' => 'skapere',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profil',
+            'friends' => 'venner',
+            'settings' => 'innstillinger',
         ],
         'help' => [
             '_' => 'hjelp',
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Last ned',
             'info' => 'Du trenger en konto, min gode mann. Hvorfor har du ikke en allerede?',
             'title' => "Har du ikke en konto?",
         ],

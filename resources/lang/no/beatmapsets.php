@@ -75,6 +75,13 @@ return [
                     'wip' => 'under konstruksjon',
                 ],
             ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [

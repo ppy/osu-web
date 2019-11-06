@@ -183,6 +183,7 @@ return [
         'nominate' => 'Nominuj',
         'nominate_confirm' => 'Nominować tę beatmapę?',
         'nominated_by' => 'nominowana przez :users',
+        'not_enough_hype' => "",
         'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną wykryte żadne błędy.',
         'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną wykryte żadne błędy.',
         'required_text' => 'Nominacje: :current/:required',

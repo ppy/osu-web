@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Søk',
             'deleted' => 'Inkluder slettede diskusjoner',
+            'only_unresolved' => '',
             'types' => 'Meldingstyper',
             'username' => 'Brukernavn',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Bruker',

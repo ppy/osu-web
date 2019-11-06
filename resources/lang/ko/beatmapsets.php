@@ -75,6 +75,13 @@ return [
                     'wip' => '제작 중',
                 ],
             ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [

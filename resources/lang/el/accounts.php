@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Ειδοποιήσεις',
         'topic_auto_subscribe' => 'αυτόματη ενεργοποίηση ειδοποιήσεων για τα νέα θέματα που δημιουργείτε στο φόρουμ',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

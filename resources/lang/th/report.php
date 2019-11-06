@@ -20,8 +20,8 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'รีพอร์ต',
+        'title' => 'จะรายงานโพสต์ของ :username หรอ ?',
     ],
 
     'comment' => [
@@ -35,7 +35,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'รายงาน',
+        'title' => 'จะรายงาน :username ไหม?',
     ],
 ];
