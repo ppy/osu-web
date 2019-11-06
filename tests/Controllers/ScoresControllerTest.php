@@ -57,19 +57,26 @@ class ScoresControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
-        $this->score = factory(Osu::class)->states('with_replay')->create();
-
-        $replayFile = $this->score->replayFile();
-        $disk = $replayFile->getDiskName();
-        Storage::fake($disk);
-        $replayFile->disk()->put($this->score->getKey(), 'this-is-totally-a-legit-replay');
+        // fake all the replay disks
+        $disks = [];
+        foreach (array_keys(config('filesystems.disks.replays')) as $key) {
+            foreach (array_keys(config("filesystems.disks.replays.{$key}")) as $type) {
+                $disk = "replays.{$key}.{$type}";
+                $disks[] = $disk;
+                Storage::fake($disk);
+            }
+        }
 
         // Laravel doesn't remove the directory created for fakes and
         // Storage::fake() removes the files in the directory when called but leaves the directory there.
-        $this->beforeApplicationDestroyed(function () use ($disk) {
-            $path = storage_path('framework/testing/disks/'.$disk);
-            (new Filesystem)->deleteDirectory($path);
+        $this->beforeApplicationDestroyed(function () use ($disks) {
+            foreach ($disks as $disk) {
+                $path = storage_path('framework/testing/disks/'.$disk);
+                (new Filesystem)->deleteDirectory($path);
+            }
         });
+
+        $this->user = factory(User::class)->create();
+        $this->score = factory(Osu::class)->states('with_replay')->create();
     }
 }
