@@ -122,6 +122,20 @@ class Channel extends Model
         return $this->users()->where('user_id', '<>', $user->user_id)->first();
     }
 
+    /**
+     * @param User $user1
+     * @param User $user2
+     *
+     * @return static
+     */
+    public static function findPMByUsers($user1, $user2)
+    {
+        $userIds = [$user1->getKey(), $user2->getKey()];
+        sort($userIds);
+        $channelName = '#pm_'.implode('-', $userIds);
+        return Channel::where('name', $channelName)->first();
+    }
+
     public function receiveMessage(User $sender, string $content, bool $isAction = false)
     {
         $content = trim($content);
