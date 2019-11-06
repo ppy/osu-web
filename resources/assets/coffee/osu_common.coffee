@@ -214,7 +214,7 @@
 
 
   formatNumberSuffixed: (number, precision, options = {}) ->
-    suffixes = ['', 'k', 'm', 'b', 't', 'qa', 'qi', 'sx', 'sp', 'oc', 'no']
+    suffixes = ['', 'k', 'm', 'b', 't']
     k = 1000
 
     format = (n) ->
