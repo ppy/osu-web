@@ -30,14 +30,7 @@
                 <link>{{ route('news.show', $post->slug) }}</link>
                 <guid isPermaLink="false">{{ atom_id('news', $post->getKey()) }}</guid>
                 <pubDate>{{ $post->published_at->toRfc7231String() }}</pubDate>
-                <description>{!! $post->previewText() !!}</description>
-                @if ($post->firstImage() !== null)
-                    <enclosure
-                        url="{{ $post->firstImage(true) }}"
-                        length="300"
-                        type="image/jpeg"
-                    />
-                @endif
+                <description>{{ $post->bodyHtml() }}</description>
             </item>
         @endforeach
     </channel>
