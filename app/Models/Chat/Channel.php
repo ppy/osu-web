@@ -132,6 +132,7 @@ class Channel extends Model
     {
         $userIds = [$user1->getKey(), $user2->getKey()];
         sort($userIds);
+
         return '#pm_'.implode('-', $userIds);
     }
 
