@@ -20,6 +20,7 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use App\Models\UserReport;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Bus\Queueable;
@@ -36,12 +37,22 @@ class UserReportNotification extends Notification implements ShouldQueue
         RequestOptions::TIMEOUT => 5,
     ];
 
+    private $reporter;
+
+    public function __construct(User $reporter)
+    {
+        $this->reporter = $reporter;
+    }
+
     public function toSlack(UserReport $notifiable) : SlackMessage
     {
+        $user = optional($notifiable->user)->username ?? "User {$notifiable->user_id}";
+        $userUrl = route('users.show', ['user' => $notifiable->user]);
+        $content = "{$this->reporter->username} reported <{$userUrl}|{$user}> for ({$notifiable->reason}): {$notifiable->comments}";
+
         return (new SlackMessage)
             ->http(static::HTTP_OPTIONS)
-            ->error()
-            ->content($notifiable->comments);
+            ->content($content);
     }
 
     public function via($notifiable)

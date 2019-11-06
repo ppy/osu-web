@@ -51,7 +51,7 @@ trait Reportable
             }
 
             $userReport = $this->reportedIn()->create($attributes);
-            $userReport->notify(new UserReportNotification);
+            $userReport->notify(new UserReportNotification($reporter));
 
             return $userReport;
         } catch (PDOException $e) {
