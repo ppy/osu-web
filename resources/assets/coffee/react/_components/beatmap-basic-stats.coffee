@@ -47,7 +47,7 @@ export BeatmapBasicStats = ({beatmapset, beatmap}) ->
         if stat == 'total_length'
           formatDuration value
         else if value > 1000
-          osu.formatNumberSuffixed(value, 1)
+          if value >= Math.pow(10, 15) then '∞' else osu.formatNumberSuffixed(value, 1)
         else
           osu.formatNumber(value)
 
