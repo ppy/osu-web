@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Notifikationer',
         'topic_auto_subscribe' => 'aktiver automatisk notifikationer på nye forum emner du opretter',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

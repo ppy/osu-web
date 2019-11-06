@@ -75,6 +75,13 @@ return [
                     'wip' => '此功能仍在開發中',
                 ],
             ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [

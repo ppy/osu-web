@@ -155,9 +155,9 @@ return [
         'too_long' => 'Liian pitkä - Kirjaimia voi olla enintään :limit.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Käyttäjänimi',
+            'user_email' => 'Sähköpostiosoite',
+            'password' => 'Salasana',
         ],
 
         'change_username' => [

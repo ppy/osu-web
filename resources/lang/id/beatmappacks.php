@@ -39,6 +39,7 @@ return [
     ],
 
     'show' => [
+        'back' => '',
         'download' => 'Unduh',
         'item' => [
             'cleared' => 'telah diselesaikan',

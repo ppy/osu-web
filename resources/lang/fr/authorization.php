@@ -48,14 +48,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Vous ne pouvez uniquement supprimer vos propres messages.',
+            'resolved' => 'Vous ne pouvez pas supprimer un message d\'une discussion résolue.',
+            'system_generated' => 'Les messages automatiquement générés ne peuvent être supprimés.',
         ],
 
         'edit' => [
             'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
-            'resolved' => '',
+            'resolved' => 'Vous ne pouvez pas modifier un message d\'une discussion résolue.',
             'system_generated' => 'Un sujet posté automatiquement ne peut être édité.',
         ],
 

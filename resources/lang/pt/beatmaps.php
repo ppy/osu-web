@@ -183,6 +183,7 @@ return [
         'nominate' => 'Nomear',
         'nominate_confirm' => 'Nomear este beatmap?',
         'nominated_by' => 'nomeado por :users',
+        'not_enough_hype' => "",
         'qualified' => 'Estimado para ser classificado em :date, se não forem encontrados problemas.',
         'qualified_soon' => 'Estimado para ser classificado em breve, se não forem encontrados problemas.',
         'required_text' => 'Nomeações: :current/:required',

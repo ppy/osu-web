@@ -38,6 +38,7 @@ return [
     ],
 
     'show' => [
+        'back' => '',
         'download' => 'Tải Xuống',
         'item' => [
             'cleared' => 'đã chơi',

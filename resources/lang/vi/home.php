@@ -25,6 +25,7 @@ return [
         'peak' => 'Đỉnh điểm, :count người chơi online',
         'players' => '<strong>:count</strong> người chơi đã đăng kí',
         'title' => 'chào mừng',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'game nhịp điệu free-to-win hay nhất',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Beatmap Được Xếp Hạng Mới',
             'popular' => 'Beatmaps Phổ Biến',
-            'by' => 'bởi',
-            'plays' => ':count lần chơi',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Tải Xuống osu!',
