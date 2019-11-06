@@ -52,7 +52,23 @@ class UserReportNotification extends Notification implements ShouldQueue
 
         return (new SlackMessage)
             ->http(static::HTTP_OPTIONS)
-            ->content($content);
+            ->content($content)
+            ->attachment(function ($attachment) use ($notifiable) {
+                $reportable = $notifiable->reportable;
+                $reportableUrl = null;
+                if (method_exists($reportable, 'url')) {
+                    $reportableUrl = $reportable->url();
+                }
+
+                $attachmentContent =
+                    $reportableUrl !== null
+                    ? "<{$reportableUrl}|{$notifiable->reportable_type} {$notifiable->reportable_id}>"
+                    : "{$notifiable->reportable_type} {$notifiable->reportable_id}";
+
+                $attachment
+                    ->color('warning')
+                    ->content("{$attachmentContent}");
+            });
     }
 
     public function via($notifiable)
