@@ -20,8 +20,8 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => '報告',
+        'title' => ':username の投稿を報告しますか？',
     ],
 
     'comment' => [
@@ -35,7 +35,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => '報告',
+        'title' => ':usernameを報告しますか？',
     ],
 ];

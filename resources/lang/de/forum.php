@@ -276,8 +276,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Gelöschte Beiträge anzeigen',
+            'hide' => 'Gelöschte Beiträge ausblenden',
         ],
 
         'show' => [

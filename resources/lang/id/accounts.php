@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Notifikasi',
         'topic_auto_subscribe' => 'hidupkan notifikasi secara otomatis di topik forum baru yang anda buat',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

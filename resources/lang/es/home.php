@@ -25,6 +25,7 @@ return [
         'peak' => ':count usuarios en línea',
         'players' => '<strong>:count</strong> usuarios registrados',
         'title' => 'bienvenido',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'el mejor juego de ritmo gratis',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Nuevos Beatmaps Rankeados',
             'popular' => 'Beatmaps Populares',
-            'by' => 'por',
-            'plays' => ':count veces jugado',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Descargar osu!',

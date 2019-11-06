@@ -20,8 +20,8 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Segnala',
+        'title' => 'Segnalare il post di :username?',
     ],
 
     'comment' => [
@@ -35,7 +35,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Segnala',
+        'title' => 'Segnalare :username?',
     ],
 ];

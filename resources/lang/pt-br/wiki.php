@@ -44,7 +44,4 @@ return [
         'title' => 'Base de Conhecimento',
         'subtitle' => 'porque osu!pédia soa estranho',
     ],
-    'search' => [
-        'path' => 'de',
-    ],
 ];

@@ -276,8 +276,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => '显示已删除的帖子',
+            'hide' => '隐藏已删除的帖子',
         ],
 
         'show' => [

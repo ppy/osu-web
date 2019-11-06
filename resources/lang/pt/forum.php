@@ -276,8 +276,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Mostrar publicações eliminadas',
+            'hide' => 'Ocultar publicações eliminadas',
         ],
 
         'show' => [

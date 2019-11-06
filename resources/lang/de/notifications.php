@@ -31,11 +31,19 @@ return [
                 'beatmapset_discussion_lock' => 'Die Diskussion der Beatmap ":title" wurde gesperrt.',
                 'beatmapset_discussion_lock_compact' => 'Die Diskussion ist gesperrt',
                 'beatmapset_discussion_post_new' => ':username hat eine neue Nachricht in der Diskussion zur Beatmap ":title" gepostet.',
+                'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => 'Neuer Beitrag von :username',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => '',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" wurde zur Diskussion freigegeben.',
                 'beatmapset_discussion_unlock_compact' => 'Die Diskussion ist freigegeben',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => '',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_empty' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_qualified_problem_compact_empty' => '',
             ],
 
             'beatmapset_state' => [

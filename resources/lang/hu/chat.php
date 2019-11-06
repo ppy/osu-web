@@ -19,7 +19,6 @@
  */
 
 return [
-    'coming_soon' => 'hamarosan',
     'limitation_notice' => 'Megjegyzés: Csak az <a href=":lazer_link">osu!lazer-t</a> vagy az új weboldalt használó emberek kapnak PM-eket ezen a rendszeren keresztül.<br/>Ha bizonytalan vagy, inkább a <a href=":oldpm_link">régi fórum PM oldaláról</a> üzenj nekik.',
     'talking_in' => ':channel-ben beszélés',
     'talking_with' => ':name-el beszélés',

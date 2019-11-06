@@ -44,7 +44,4 @@ return [
         'title' => 'Base de Conhecimento',
         'subtitle' => 'porque osu!pedia mete pena',
     ],
-    'search' => [
-        'path' => 'de',
-    ],
 ];

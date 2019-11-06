@@ -183,6 +183,7 @@ return [
         'nominate' => '提名',
         'nominate_confirm' => '確定要提名這張圖譜？',
         'nominated_by' => '被 :users 提名',
+        'not_enough_hype' => "",
         'qualified' => '如果沒有問題，預計將於 :date 被 Ranked 。',
         'qualified_soon' => '如果沒有問題，預計不久將被 Ranked 。',
         'required_text' => '提名數: :current/:required',

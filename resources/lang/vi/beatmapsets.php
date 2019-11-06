@@ -75,6 +75,13 @@ return [
                     'wip' => 'đang thực hiện',
                 ],
             ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [

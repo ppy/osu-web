@@ -18,16 +18,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\OAuth;
+namespace App\Models\Wiki;
 
-use Laravel\Passport\AuthCode as PassportAuthCode;
-
-class AuthCode extends PassportAuthCode
+interface WikiObject
 {
-    public $timestamps = false;
+    /**
+     * Fetches the representation of the object, renders it, and stores it in the cache.
+     */
+    public function get($synchronous = false);
 
-    public function client()
-    {
-        return $this->belongsTo(Client::class);
-    }
+    /**
+     * Removes the cached version of the object.
+     */
+    public function forget($synchronous = false);
 }

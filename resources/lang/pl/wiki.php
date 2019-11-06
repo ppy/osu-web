@@ -20,7 +20,7 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Następująca strona nie jest jeszcze dostępna po polsku, w związku z czym zostanie wyświetlona wersja angielska.',
+        'fallback_translation' => 'Następująca strona nie jest jeszcze dostępna po polsku, w związku z czym wyświetlono wersję angielską.',
         'incomplete_or_outdated' => 'Zawartość tej strony jest niepełna lub przedawniona. Jeżeli chcesz pomóc, zaktualizuj informacje w artykule!',
         'missing' => 'Poszukiwana strona ":keyword" nie została odnaleziona.',
         'missing_title' => 'Nie znaleziono',
@@ -43,8 +43,5 @@ return [
     'main' => [
         'title' => 'osu!wiki',
         'subtitle' => 'oficjalna skarbnica wiedzy o osu!',
-    ],
-    'search' => [
-        'path' => '',
     ],
 ];
