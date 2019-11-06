@@ -26,6 +26,7 @@ use Illuminate\Http\Request;
 
 class AuthApi
 {
+    // TODO: this should be definable per-controller or action.
     public static function skipAuth($request)
     {
         $path = "{$request->decodedPath()}/";
