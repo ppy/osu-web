@@ -47,7 +47,7 @@ class ChatController extends Controller
             $json['target'] = json_item($targetUser, 'UserCompact');
             $json['can_message'] = priv_check('ChatStart', $targetUser)->can();
 
-            $channel = Channel::findPMByUsers(Auth::user(), $targetUser);
+            $channel = Channel::where('name', Channel::getPMName($targetUser, Auth::user()))->first();
 
             if ($channel !== null && !$channel->hasUser(Auth::user())) {
                 $channel->addUser(Auth::user());

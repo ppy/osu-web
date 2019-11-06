@@ -126,14 +126,13 @@ class Channel extends Model
      * @param User $user1
      * @param User $user2
      *
-     * @return static
+     * @return string
      */
-    public static function findPMByUsers($user1, $user2)
+    public static function getPMName($user1, $user2)
     {
         $userIds = [$user1->getKey(), $user2->getKey()];
         sort($userIds);
-        $channelName = '#pm_'.implode('-', $userIds);
-        return self::where('name', $channelName)->first();
+        return '#pm_'.implode('-', $userIds);
     }
 
     public function receiveMessage(User $sender, string $content, bool $isAction = false)
