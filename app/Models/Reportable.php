@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Notifications\UserReportNotification;
 use PDOException;
 
 trait Reportable
@@ -49,7 +50,10 @@ trait Reportable
                 $attributes['reason'] = $params['reason'];
             }
 
-            return $this->reportedIn()->create($attributes);
+            $userReport = $this->reportedIn()->create($attributes);
+            $userReport->notify(new UserReportNotification);
+
+            return $userReport;
         } catch (PDOException $e) {
             // ignore duplicate reports
             if (!is_sql_unique_exception($e)) {
