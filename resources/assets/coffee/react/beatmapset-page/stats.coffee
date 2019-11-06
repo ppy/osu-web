@@ -79,12 +79,7 @@ export class Stats extends React.Component
       div className: 'beatmapset-stats__row beatmapset-stats__row--advanced',
         table className: 'beatmap-stats-table',
           tbody null,
-            stats = 
-              if @props.beatmap.mode == 'taiko'
-                ['drain', 'accuracy', 'stars']
-              else
-                ['cs', 'drain', 'accuracy', 'ar', 'stars']
-            for stat in stats
+            for stat in (if @props.beatmap.mode == 'taiko' then ['drain', 'accuracy', 'stars'] else ['cs', 'drain', 'accuracy', 'ar', 'stars'])
               value =
                 if stat == 'stars'
                   @props.beatmap.difficulty_rating
