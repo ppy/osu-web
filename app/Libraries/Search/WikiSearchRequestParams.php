@@ -20,16 +20,14 @@
 
 namespace App\Libraries\Search;
 
-use Illuminate\Http\Request;
-
 class WikiSearchRequestParams extends WikiSearchParams
 {
-    public function __construct(Request $request)
+    public function __construct(array $request)
     {
         parent::__construct();
 
-        $this->queryString = trim($request['query']);
-        $this->locale = $request['locale'];
-        $this->from = $this->pageAsFrom(get_int($request['page']));
+        $this->queryString = trim($request['query'] ?? null);
+        $this->locale = $request['locale'] ?? null;
+        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
     }
 }

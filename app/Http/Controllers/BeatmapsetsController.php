@@ -262,7 +262,7 @@ class BeatmapsetsController extends Controller
 
     private function getSearchResponse()
     {
-        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
+        $params = new BeatmapsetSearchRequestParams(request()->all(), Auth::user());
         $search = (new BeatmapsetSearchCached($params));
 
         $records = datadog_timing(function () use ($search) {
