@@ -29,21 +29,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 @if (isset($opengraph))
-    @if (isset($opengraph['section']))
-        <meta property="og:site_name" content="{{ 'osu! » '.$opengraph['section'] }}">
-    @else
-        <meta property="og:site_name" content="{{ 'osu!` }}">
-    @endif
+    @php
+        $siteName = 'osu!';
+        if (isset($opengraph['section'])) {
+            $siteName .= ' » '.$opengraph['section'];
+        }
+    @endphp
 
+    <meta property="og:site_name" content="{{ $siteName }}">
     <meta property="og:type" content="website">
-
-    @if (isset($canonicalUrl))
-        <meta property="og:url" content="{{ $canonicalUrl }}">
-    @endif
-
+    <meta property="og:url" content="{{ $canonicalUrl }}">
     <meta property="og:title" content="{{ $opengraph['title'] }}">
-    <meta property="og:description" content="{{ $pageDescription }}">
     <meta property="og:image" content="{{ $opengraph['image'] }}">
+
+    @if (isset($pageDescription))
+        <meta property="og:description" content="{{ $pageDescription }}">
+    @endif
 @endif
 
 <meta name="csrf-param" content="_token">
