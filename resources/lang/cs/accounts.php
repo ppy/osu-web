@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Oznámení',
         'topic_auto_subscribe' => 'automaticky povolit oznámení o nových tématech fóra, které vytvoříte',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

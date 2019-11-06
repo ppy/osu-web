@@ -28,10 +28,10 @@ return [
     ],
 
     'scopes' => [
-        'identify' => '',
+        'identify' => 'Identifiera dig och läsa offentlig data.',
 
         'friends' => [
-            'read' => '',
+            'read' => 'Se vem du följer.',
         ],
     ],
 ];

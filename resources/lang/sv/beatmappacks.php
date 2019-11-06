@@ -39,6 +39,7 @@ return [
     ],
 
     'show' => [
+        'back' => '',
         'download' => 'Ladda ner',
         'item' => [
             'cleared' => 'rensad',

@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => '検索',
             'deleted' => '削除されたディスカッションを含める',
+            'only_unresolved' => '',
             'types' => 'メッセージの種類',
             'username' => 'ユーザー名',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'ユーザー',

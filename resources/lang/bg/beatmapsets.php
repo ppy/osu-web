@@ -75,6 +75,13 @@ return [
                     'wip' => 'работа в процес',
                 ],
             ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [

@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => '通知',
         'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

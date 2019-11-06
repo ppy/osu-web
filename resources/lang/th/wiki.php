@@ -44,7 +44,4 @@ return [
         'title' => '',
         'subtitle' => 'เพราะชื่อ osu!pedia ไม่ค่อยเหมาะเท่าไหร่',
     ],
-    'search' => [
-        'path' => '',
-    ],
 ];

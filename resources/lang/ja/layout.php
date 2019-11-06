@@ -61,9 +61,9 @@ return [
             'team' => 'osu!team',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'プロフィール',
+            'friends' => 'フレンド',
+            'settings' => '設定',
         ],
         'help' => [
             '_' => 'ヘルプ',
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'ダウンロード',
             'info' => 'アカウントが必要です。作ってみませんか？',
             'title' => "アカウントを持っていませんか？",
         ],

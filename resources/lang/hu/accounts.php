@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

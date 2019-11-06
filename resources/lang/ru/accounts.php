@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Уведомления',
         'topic_auto_subscribe' => 'автоматически включать уведомления для тем на форуме, когда вы их создаёте',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

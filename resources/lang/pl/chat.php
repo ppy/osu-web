@@ -19,7 +19,6 @@
  */
 
 return [
-    'coming_soon' => 'już wkrótce',
     'limitation_notice' => 'UWAGA: Tylko użytkownicy, którzy używają <a href=":lazer_link">osu!lazer</a> lub nowej strony osu! otrzymają wiadomości przez ten czat.<br/>Jeżeli nie masz pewności, wyślij wiadomość poprzez <a href=":oldpm_link">stare forum</a>.',
     'talking_in' => 'rozmowa na kanale :channel',
     'talking_with' => 'rozmowa z użytkownikiem :name',

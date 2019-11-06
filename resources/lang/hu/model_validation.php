@@ -43,7 +43,7 @@ return [
 
         'attributes' => [
             'message_type' => 'Üzenet típus',
-            'timestamp' => '',
+            'timestamp' => 'Időbélyeg',
         ],
 
         'hype' => [
