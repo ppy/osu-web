@@ -133,7 +133,7 @@ class Channel extends Model
         $userIds = [$user1->getKey(), $user2->getKey()];
         sort($userIds);
         $channelName = '#pm_'.implode('-', $userIds);
-        return Channel::where('name', $channelName)->first();
+        return self::where('name', $channelName)->first();
     }
 
     public function receiveMessage(User $sender, string $content, bool $isAction = false)
