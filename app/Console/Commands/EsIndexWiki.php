@@ -43,7 +43,7 @@ class EsIndexWiki extends Command
 
             foreach ($response as $hit) {
                 $page = new Page(null, null, $hit->source());
-                if ($page->page() === null) {
+                if ($page->get() === null) {
                     continue;
                 }
 

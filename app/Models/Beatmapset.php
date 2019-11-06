@@ -268,6 +268,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return $query->where('approved', '=', self::STATES['qualified']);
     }
 
+    public function scopeDisqualified($query)
+    {
+        // uses the fact that disqualifying sets previous_queue_duration which is otherwise 0.
+        return $query
+            ->where('approved', self::STATES['pending'])
+            ->where('previous_queue_duration', '>', 0);
+    }
+
+    public function scopeNeverQualified($query)
+    {
+        return $query->unranked()->where('previous_queue_duration', 0);
+    }
+
     public function scopeRankedOrApproved($query)
     {
         return $query->whereIn(
@@ -351,26 +364,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             $approved = self::approved()->active()->orderBy('approved_date', 'desc')->limit($count);
 
             return $ranked->union($approved)->orderBy('approved_date', 'desc')->limit($count)->get();
-        });
-    }
-
-    public static function mostPlayedToday($mode = 'osu', $count = 5)
-    {
-        // TODO: this only returns based on osu mode plays for now, add other game modes after mode-toggle UI/UX happens
-        return cache_remember_mutexed("beatmapsets_most_played_today_{$mode}_{$count}", 3600, [], function () use ($count) {
-            $counts = Score\Osu::selectRaw('beatmapset_id, count(*) as playcount')
-                    ->whereNotIn('beatmapset_id', config('osu.beatmapset.client_bundle'))
-                    ->groupBy('beatmapset_id')
-                    ->orderBy('playcount', 'desc')
-                    ->limit($count)
-                    ->get();
-
-            $mostPlayed = [];
-            foreach ($counts as $value) {
-                $mostPlayed[$value['beatmapset_id']] = $value['playcount'];
-            }
-
-            return $mostPlayed;
         });
     }
 

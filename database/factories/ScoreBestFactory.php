@@ -35,8 +35,7 @@ $factory
         return [
             'replay' => true,
         ];
+    })
+    ->afterCreatingState(App\Models\Score\Best\Osu::class, 'with_replay', function ($score, $faker) {
+        $score->replayFile()->disk()->put($score->getKey(), 'this-is-totally-a-legit-replay');
     });
-    // TODO: uncomment after Laravel 5.6+ upgrade
-    // ->afterCreatingState(App\Models\Score\Best\Osu::class, 'with_replay', function ($score, $faker) {
-    //     $score->replayFile()->disk()->put($score->getKey(), 'this-is-totally-a-legit-replay');
-    // });

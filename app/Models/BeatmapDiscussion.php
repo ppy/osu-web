@@ -74,6 +74,7 @@ class BeatmapDiscussion extends Model
     const RESOLVABLE_TYPES = [1, 2];
     const KUDOSUABLE_TYPES = [1, 2];
 
+    const VALID_BEATMAPSET_STATUSES = ['ranked', 'qualified', 'disqualified', 'never_qualified'];
     const VOTES_TO_SHOW = 50;
 
     public static function search($rawParams = [])
@@ -124,6 +125,20 @@ class BeatmapDiscussion extends Model
             $params['message_types'] = array_keys(static::MESSAGE_TYPES);
         }
 
+        $params['beatmapset_status'] = static::getValidBeatmapsetStatus($rawParams['beatmapset_status'] ?? null);
+        if ($params['beatmapset_status']) {
+            $query->whereHas('beatmapset', function ($beatmapsetQuery) use ($params) {
+                $scope = camel_case($params['beatmapset_status']);
+                $beatmapsetQuery->$scope();
+            });
+        }
+
+        $params['only_unresolved'] = get_bool($rawParams['only_unresolved'] ?? null) ?? false;
+
+        if ($params['only_unresolved']) {
+            $query->openIssues();
+        }
+
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
@@ -137,6 +152,13 @@ class BeatmapDiscussion extends Model
         }
 
         return ['query' => $query, 'params' => $params];
+    }
+
+    private static function getValidBeatmapsetStatus($rawParam)
+    {
+        if (in_array($rawParam, static::VALID_BEATMAPSET_STATUSES, true)) {
+            return $rawParam;
+        }
     }
 
     public function beatmap()

@@ -154,9 +154,11 @@ class @UserVerification
 
 
   showOnError: ({target}, xhr) =>
-    return unless xhr.status == 401 && xhr.responseJSON?.authentication == 'verify'
+    return false unless xhr.status == 401 && xhr.responseJSON?.authentication == 'verify'
 
     @show target, xhr.responseJSON.box
+
+    true
 
 
   # for pages which require authentication
