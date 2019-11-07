@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\EsDeleteDocument;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\Search\BasicSearch;
