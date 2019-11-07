@@ -31,7 +31,7 @@ use App\Models\User;
 class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
     const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'graveyard', 'mine'];
-    const AVAILABLE_EXTRAS = ['video', 'storyboard'];
+    const AVAILABLE_EXTRAS = ['video', 'storyboard', 'bundled'];
     const AVAILABLE_GENERAL = ['recommended', 'converts'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
     const AVAILABLE_RANKS = ['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'];
@@ -65,10 +65,9 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
             $this->genre = get_int($request['g'] ?? null);
             $this->language = get_int($request['l'] ?? null);
-            $this->extra = array_intersect(
-                explode('.', $request['e'] ?? null),
-                $validExtras
-            );
+
+            $extras = explode('.', $request['e'] ?? null);
+            $this->extra = array_intersect($extras, $validExtras);
 
             $this->mode = get_int($request['m'] ?? null);
             if (!in_array($this->mode, Beatmap::MODES, true)) {
@@ -78,6 +77,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $generals = explode('.', $request['c'] ?? null) ?? [];
             $this->includeConverts = in_array('converts', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
+            $this->showBundled = in_array('bundled', $extras, true);
         }
 
         $this->parseSortOrder($request['sort'] ?? null);

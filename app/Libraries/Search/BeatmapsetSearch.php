@@ -72,6 +72,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
         $this->addExtraFilter($query);
+        $this->addBundledFilter($query);
         $this->addStatusFilter($query);
 
         $nested = new BoolQuery;
@@ -126,6 +127,15 @@ class BeatmapsetSearch extends RecordSearch
     {
         foreach ($this->params->extra as $val) {
             $query->filter(['term' => [$val => true]]);
+        }
+    }
+
+    private function addBundledFilter($query)
+    {
+        if ($this->params->showBundled) {
+            $query->filter(['ids' => [
+                'values' => config('osu.beatmapset.client_bundle'),
+            ]]);
         }
     }
 
