@@ -42,6 +42,7 @@ return [
     ],
 
     'show' => [
+        'back' => '',
         'download' => 'Pobierz',
         'item' => [
             'cleared' => 'ukończona',

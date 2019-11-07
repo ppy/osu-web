@@ -25,6 +25,7 @@ return [
         'peak' => 'Csúcsfokon, :count játékos volt elérhető',
         'players' => '<strong>:count</strong> regisztrált játékos',
         'title' => 'üdv',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'a legeslegjobb ingyen játszható ritmusjáték',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Új Rangsorolt Beatmap-ek',
             'popular' => 'Népszerű beatmap-ek',
-            'by' => 'által',
-            'plays' => 'játszva :count alkalommal',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'osu! letöltése',

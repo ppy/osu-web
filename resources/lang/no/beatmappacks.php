@@ -39,6 +39,7 @@ return [
     ],
 
     'show' => [
+        'back' => '',
         'download' => 'Last ned',
         'item' => [
             'cleared' => 'fullført',

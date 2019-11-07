@@ -49,7 +49,7 @@ return [
         'id' => 'Client ID',
         'name' => 'Nome Applicazione',
         'redirect' => 'URL di richiamo dell\'applicazione',
-        'secret' => '',
+        'secret' => 'Client Secret',
     ],
 
     'login' => [

@@ -19,7 +19,6 @@
  */
 
 return [
-    'coming_soon' => 'již brzy',
     'limitation_notice' => 'POZNÁMKA: Pouze lidi, kteří používají <a href=":lazer_link">osu!lazer</a> nebo nový vzhled stránek mohou dostávat soukromé zprávy přes tento systém.<br/>Pokud si tím nejste jistý ani jednou z těchto podmínek, pošlete jim zprávu přes <a href=":oldpm_link">starý systém na fórech</a>.',
     'talking_in' => 'píšete do :channel',
     'talking_with' => 'píšete si s :name',

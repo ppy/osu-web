@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu engedélyezése',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Beatmap Oldal',
         'delete' => 'törlés',
         'deleted' => 'Eltávolítva :editor által, :delete_time-kor.',
         'deny_kudosu' => 'kudosu megtagadása',
@@ -183,6 +183,7 @@ return [
         'nominate' => 'Nominálás',
         'nominate_confirm' => 'Nominálod ezt a beatmapot?',
         'nominated_by' => 'nominálva :users által',
+        'not_enough_hype' => "",
         'qualified' => 'Előreláthatólag :date-kor lesz rangsorolva, ha nem találnak benne problémát.',
         'qualified_soon' => 'Hamarosan rangsorolva lesz, ha nem találnak benne problémát.',
         'required_text' => 'Nominálások: :current/:required',

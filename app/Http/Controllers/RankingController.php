@@ -174,9 +174,11 @@ class RankingController extends Controller
             switch ($type) {
                 case 'country':
                     $ranking = json_collection($stats, 'CountryStatistics', ['country']);
+                    break;
 
                 default:
                     $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    break;
             }
 
             return [

@@ -26,8 +26,8 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Pidä huoli, että avatari ei riko :link.<br/>Tämä tarkoittaa sitä, että kuvan on <strong>sovittava kaikenikäisille</strong>, eli ei alastomuutta tai muita hävyttömyyksiä.',
+            'rules_link' => 'yhteisön sääntöjä',
         ],
 
         'email' => [
@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Ilmoitukset',
         'topic_auto_subscribe' => '',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [
@@ -109,7 +110,7 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
+        'text' => 'Tämän välilehden/ikkunan voi nyt sulkea',
         'title' => '',
     ],
 

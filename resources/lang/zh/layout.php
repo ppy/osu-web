@@ -61,9 +61,9 @@ return [
             'team' => '团队',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => '个人资料',
+            'friends' => '好友',
+            'settings' => '设置',
         ],
         'help' => [
             '_' => '帮助',
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => '下载',
             'info' => '点击下方的注册按钮以成为 osu! 大家庭中的一员！',
             'title' => "没有账号？",
         ],

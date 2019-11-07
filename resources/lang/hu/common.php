@@ -30,7 +30,7 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'ÚJ',
     ],
 
     'buttons' => [
@@ -41,7 +41,7 @@ return [
         'change' => 'változtat',
         'click_to_copy' => 'kattints ide a vágólapra helyezéshez',
         'click_to_copy_copied' => 'vágólapra helyezve!',
-        'close' => '',
+        'close' => 'Bezárás',
         'collapse' => 'összecsuk',
         'delete' => 'Törlés',
         'edit' => 'Szerkesztés',
@@ -119,7 +119,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'keresés...',
     ],
 
     'pagination' => [

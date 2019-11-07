@@ -20,8 +20,8 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Denunciar',
+        'title' => 'Queres denunciar a publicação de :username?',
     ],
 
     'comment' => [
@@ -35,7 +35,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Denunciar',
+        'title' => 'Pretendes denunciar :username?',
     ],
 ];

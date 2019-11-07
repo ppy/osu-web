@@ -31,11 +31,19 @@ return [
                 'beatmapset_discussion_lock' => 'Beatmap ":title" tartışmak için kilitlendi.',
                 'beatmapset_discussion_lock_compact' => 'Tartışma kilitlenmiş',
                 'beatmapset_discussion_post_new' => ':username ":title" beatmapinin tartışmasında yeni mesaj attı.',
+                'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => ':username tarafından yeni gönderi',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => '',
                 'beatmapset_discussion_unlock' => '":title" beatmapinin kilidi tartışmak için açıldı.',
                 'beatmapset_discussion_unlock_compact' => 'Tartışmanın kilidi açılmış',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => '',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_empty' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_qualified_problem_compact_empty' => '',
             ],
 
             'beatmapset_state' => [

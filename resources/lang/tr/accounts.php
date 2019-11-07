@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'bu beatmap için oluşturduğunuz yeni forum konularında bildirimleri otomatik olarak etkinleştirin',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

@@ -152,14 +152,16 @@
 // New group colours (as of 2019)
 // TODO: replace group_colour in phpbb_groups and use that instead?
 //
-@osu-colour-group-bot: @osu-colour-f1; // note: bot badges are inverted, so this is actually the background colour
+@osu-colour-group-bot: @osu-colour-f1; // Note that for bot badges, the colours are inverted. i.e. this is actually the background colour of the badge
 @osu-colour-group-ppy: #0066FF;
 @osu-colour-group-dev: #EB47D0;
 @osu-colour-group-gmt: #99EB47;
 @osu-colour-group-nat: #EB8C47;
 @osu-colour-group-bng: #A347EB;
+@osu-colour-group-bng_limited: @osu-colour-group-bng;
 @osu-colour-group-alumni: #999999;
 @osu-colour-group-support: #EBD047;
+@osu-colour-group-mapper: @osu-colour-blue-1; // Technically this isn't a 'group' colour, but gets used in multiple places...
 
 // Use this instead of fade(colour, amount) - LESS tries to parse the css var as a colour and fails.
 // This is not ideal, but not sure of a better way to do this (without modifying LESS at least)
@@ -167,6 +169,34 @@
   @string: replace("@{colour}", "hsl\(([^,]+), ([^,]+), ([^,]+)\)", "hsla($1, $2, $3, @{alpha})");
   @hsla: ~"@{string}";
 }
+
+// Use this to save having to repeatedly define each group's colour, e.g.:
+//  .user-card {
+//    .osu-group-colours({
+//      &--@{group} {
+//        border-top: 2px solid @@colour;
+//      }
+//    });
+//  }
+//
+// Generates:
+//  .user-card--ppy {
+//    border-top: 2px solid #0066FF;
+//  }
+//  .user-card--bot {
+//    border-top: 2px solid hsl(var(--base-hue), 10%, 60%);
+//  }
+//  .user-card--dev {
+//    ... etc
+.osu-group-colours(@rules) {
+  @groups: ppy, bot, dev, gmt, nat, bng, bng_limited, alumni, support, mapper;
+  each(@groups, {
+    @group: @value;
+    @colour: %('osu-colour-group-%s', @value);
+
+    @rules();
+  })
+};
 
 @pink-text: @pink-dark;
 @green-text: @green-darker;

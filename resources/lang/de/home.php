@@ -25,6 +25,7 @@ return [
         'peak' => 'Maximum, :count Benutzer online',
         'players' => '<strong>:count</strong> registrierte Spieler',
         'title' => 'Willkommen',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'das besteste free-to-play rhythmusspiel',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Neue Ranked Beatmaps',
             'popular' => 'Beliebte Beatmaps',
-            'by' => 'von',
-            'plays' => ':count plays',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'osu! herunterladen',

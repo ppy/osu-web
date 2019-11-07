@@ -20,16 +20,14 @@
 
 namespace App\Libraries\Search;
 
-use Illuminate\Http\Request;
-
 class UserSearchRequestParams extends UserSearchParams
 {
-    public function __construct(Request $request)
+    public function __construct(array $request)
     {
         parent::__construct();
 
-        $this->queryString = presence(trim($request['query']));
-        $this->from = $this->pageAsFrom(get_int($request['page']));
-        $this->recentOnly = get_bool($request['recent_only']);
+        $this->queryString = presence(trim($request['query'] ?? null));
+        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
+        $this->recentOnly = get_bool($request['recent_only'] ?? null);
     }
 }

@@ -38,6 +38,7 @@ return [
     ],
 
     'show' => [
+        'back' => '',
         'download' => 'ดาวน์โหลด',
         'item' => [
             'cleared' => 'ผ่านแล้ว',

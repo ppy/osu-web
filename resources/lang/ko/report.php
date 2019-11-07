@@ -20,22 +20,22 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => '신고',
+        'title' => ':username 님의 글을 신고하실 건가요?',
     ],
 
     'comment' => [
         'button' => '신고',
-        'title' => ':username님의 댓글을 신고하실 건가요?',
+        'title' => ':username 님의 댓글을 신고하실 건가요?',
     ],
 
     'scores' => [
         'button' => '기록 신고',
-        'title' => ':username님의 기록을 신고하실 건가요?',
+        'title' => ':username 님의 기록을 신고하실 건가요?',
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => '신고',
+        'title' => ':username 님을 신고할까요?',
     ],
 ];

@@ -75,6 +75,13 @@ return [
                     'wip' => 'dalam pengerjaan',
                 ],
             ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [
