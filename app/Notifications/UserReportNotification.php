@@ -46,13 +46,8 @@ class UserReportNotification extends Notification implements ShouldQueue
 
     public function toSlack(UserReport $notifiable) : SlackMessage
     {
-        $user = optional($notifiable->user)->username ?? "User {$notifiable->user_id}";
-        $userUrl = route('users.show', ['user' => $notifiable->user]);
-        $content = "{$this->reporter->username} reported <{$userUrl}|{$user}> for ({$notifiable->reason}): {$notifiable->comments}";
-
         return (new SlackMessage)
             ->http(static::HTTP_OPTIONS)
-            ->content($content)
             ->attachment(function ($attachment) use ($notifiable) {
                 $reportable = $notifiable->reportable;
                 $reportableUrl = null;
@@ -60,14 +55,23 @@ class UserReportNotification extends Notification implements ShouldQueue
                     $reportableUrl = $reportable->url();
                 }
 
-                $attachmentContent =
+                $user = optional($notifiable->user)->username ?? "User {$notifiable->user_id}";
+                $userUrl = route('users.show', ['user' => $notifiable->user_id]);
+
+                $reportedText =
                     $reportableUrl !== null
                     ? "<{$reportableUrl}|{$notifiable->reportable_type} {$notifiable->reportable_id}>"
                     : "{$notifiable->reportable_type} {$notifiable->reportable_id}";
 
                 $attachment
                     ->color('warning')
-                    ->content("{$attachmentContent}");
+                    ->content($notifiable->comments)
+                    ->fields([
+                        'Reporter' => "<{$this->reporter->url()}|{$this->reporter->username}>",
+                        'Reported' => $reportedText,
+                        'User' => "<{$userUrl}|{$user}>",
+                        'Reason' => $notifiable->reason,
+                    ]);
             });
     }
 
