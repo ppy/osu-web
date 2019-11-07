@@ -50,7 +50,7 @@ return [
         'banner_text' => 'пользователь добавлен в ваш чёрный список',
         'blocked_count' => 'чёрный список (:count)',
         'hide_profile' => 'скрыть профиль',
-        'not_blocked' => 'Этот пользователь заблокирован.',
+        'not_blocked' => 'Этот пользователь не заблокирован.',
         'show_profile' => 'показать профиль',
         'too_many' => 'Достигнут лимит кол-ва заблокированных.',
         'button' => [
@@ -195,13 +195,13 @@ return [
             ],
             'discussions' => [
                 'title' => 'Обсуждения',
-                'title_longer' => '',
-                'show_more' => '',
+                'title_longer' => 'Недавние дискуссии',
+                'show_more' => 'посмотреть больше обсуждений',
             ],
             'events' => [
                 'title' => 'События',
                 'title_longer' => 'Недавние события',
-                'show_more' => '',
+                'show_more' => 'посмотреть больше событий',
             ],
             'historical' => [
                 'empty' => 'Пока записей нет :(',
@@ -284,9 +284,9 @@ return [
                 'title' => 'Достижения',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Посты',
+                'title_longer' => 'Недавние посты',
+                'show_more' => 'загрузить больше постов',
             ],
             'recent_activity' => [
                 'title' => 'Последняя активность',
@@ -306,11 +306,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Отданные голоса (за 3 месяца)',
+                'received' => 'Полученные голоса (за 3 месяца)',
+                'title' => 'Голоса',
+                'title_longer' => 'Недавние голоса',
+                'vote_count' => 'голосов: :count_delimited|голосов: :count_delimited',
             ],
             'account_standing' => [
                 'title' => 'Состояние аккаунта',

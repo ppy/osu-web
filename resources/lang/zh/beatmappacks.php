@@ -39,6 +39,7 @@ return [
     ],
 
     'show' => [
+        'back' => '',
         'download' => '下载',
         'item' => [
             'cleared' => '玩过',

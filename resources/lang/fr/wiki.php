@@ -41,10 +41,7 @@ return [
         ],
     ],
     'main' => [
-        'title' => '',
-        'subtitle' => '',
-    ],
-    'search' => [
-        'path' => '',
+        'title' => 'Base de connaissances',
+        'subtitle' => 'parce que osu!pedia sonne naze',
     ],
 ];

@@ -20,14 +20,12 @@
 
 namespace App\Http\Controllers\Chat;
 
-use App\Exceptions\API;
+use App\Libraries\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
 use Auth;
-use ChaseConey\LaravelDatadogHelper\Datadog;
-use DB;
 use Request;
 
 /**
@@ -255,56 +253,17 @@ class ChatController extends Controller
      */
     public function newConversation()
     {
-        if (!present(Request::input('target_id')) || !present(Request::input('message')) || get_int(Request::input('target_id')) === Auth::user()->user_id) {
-            abort(422);
-        }
+        $params = request()->all();
 
-        $targetUser = User::lookup(Request::input('target_id'), 'id');
-        if (!$targetUser) {
-            // restricted users should be treated as if they do not exist
-            abort(404);
-        }
-
-        priv_check('ChatStart', $targetUser)->ensureCan();
-
-        $userIds = [Auth::user()->user_id, $targetUser->user_id];
-        sort($userIds);
-        $channelName = '#pm_'.implode('-', $userIds);
-        $channel = Channel::where('name', $channelName)->first();
-
-        if (!$channel) {
-            $channel = DB::transaction(function () use ($targetUser, $channelName) {
-                $channel = new Channel();
-                $channel->name = $channelName;
-                $channel->type = Channel::TYPES['pm'];
-                $channel->description = ''; // description is not nullable
-                $channel->save();
-
-                $channel->addUser(Auth::user());
-                $channel->addUser($targetUser);
-
-                return $channel;
-            });
-        }
-
-        try {
-            $message = $channel->receiveMessage(
-                Auth::user(),
-                Request::input('message'),
-                get_bool(Request::input('is_action', false))
-            );
-        } catch (API\ChatMessageEmptyException $e) {
-            abort(422, $e->getMessage());
-        } catch (API\ChatMessageTooLongException $e) {
-            abort(422, $e->getMessage());
-        } catch (API\ExcessiveChatMessagesException $e) {
-            abort(429, $e->getMessage());
-        }
-
-        Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
+        $message = Chat::sendPrivateMessage(
+            auth()->user(),
+            get_int($params['target_id'] ?? null),
+            presence($params['message'] ?? null),
+            get_bool($params['is_action'] ?? null)
+        );
 
         return [
-            'new_channel_id' => $channel->channel_id,
+            'new_channel_id' => $message->channel_id,
             'message' => json_item(
                 $message,
                 'Chat/Message',

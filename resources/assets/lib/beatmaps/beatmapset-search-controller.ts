@@ -36,7 +36,7 @@ export interface SearchStatus {
 
 export class BeatmapsetSearchController {
   // the list that gets displayed while new searches are loading.
-  @observable currentResultSet!: ResultSet;
+  @observable currentResultSet = new ResultSet();
   @observable filters!: BeatmapsetSearchFilters;
   @observable isExpanded!: boolean;
 
@@ -50,10 +50,7 @@ export class BeatmapsetSearchController {
   private filtersObserver!: Lambda;
   private initialErrorMessage?: string;
 
-  constructor(private beatmapsetSearch: BeatmapsetSearch) {
-    this.restoreStateFromUrl();
-    this.currentResultSet = this.beatmapsetSearch.getResultSet(this.filters);
-  }
+  constructor(private beatmapsetSearch: BeatmapsetSearch) {}
 
   @computed
   get currentBeatmapsetIds() {
@@ -105,6 +102,7 @@ export class BeatmapsetSearchController {
   }
 
   initialize(data: SearchResponse) {
+    this.restoreStateFromUrl();
     this.beatmapsetSearch.initialize(this.filters, data);
     this.initialErrorMessage = data.error;
   }

@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'การแจ้งเตือน',
         'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

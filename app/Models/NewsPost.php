@@ -198,9 +198,23 @@ class NewsPost extends Model implements Commentable
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/news/'.$this->filename();
     }
 
-    public function firstImage()
+    public function firstImage($absolute = false)
     {
-        return $this->page['firstImage'];
+        $url = $this->page['firstImage'];
+
+        if ($url === null) {
+            return;
+        }
+
+        if ($absolute && !starts_with($url, ['https://', 'http://'])) {
+            if ($url[0] === '/') {
+                $url = config('app.url').$url;
+            } else {
+                $url = "{$this->url()}/{$url}";
+            }
+        }
+
+        return $url;
     }
 
     public function newer()

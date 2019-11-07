@@ -30,17 +30,18 @@ class NewsController extends Controller
 
     public function index()
     {
-        $isAtom = request('format') === 'atom';
-        $limit = $isAtom ? 20 : 12;
+        $format = request('format');
+        $isFeed = $format === 'atom' || $format === 'rss';
+        $limit = $isFeed ? 20 : 12;
 
         $search = NewsPost::search(array_merge(['limit' => $limit], request()->all()));
 
         $posts = $search['query']->get();
 
-        if ($isAtom) {
+        if ($isFeed) {
             return response()
-                ->view('news.index-atom', compact('posts'))
-                ->header('Content-Type', 'application/atom+xml');
+                ->view("news.index-{$format}", compact('posts'))
+                ->header('Content-Type', "application/{$format}+xml");
         }
 
         $postsJson = [

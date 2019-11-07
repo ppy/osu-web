@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Търсене',
             'deleted' => 'Включете изтрити дискусии',
+            'only_unresolved' => '',
             'types' => 'Тип съобщения',
             'username' => 'Потребителско име',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Потребител',

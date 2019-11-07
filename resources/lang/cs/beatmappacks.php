@@ -38,6 +38,7 @@ return [
     ],
 
     'show' => [
+        'back' => '',
         'download' => 'Stáhnout',
         'item' => [
             'cleared' => 'splněno',

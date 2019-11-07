@@ -36,7 +36,7 @@
     $currentHue = $currentHue ?? section_to_hue_map($currentSection);
 @endphp
 <!DOCTYPE html>
-<html>
+<html prefix="og: http://ogp.me/ns#">
     <head>
         @include("layout.metadata")
         <title>{{ $title }}</title>

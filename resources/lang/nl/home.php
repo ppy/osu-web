@@ -25,6 +25,7 @@ return [
         'peak' => 'Piek, :count online gebruikers',
         'players' => '<strong>:count</strong> geregistreerde spelers',
         'title' => 'welkom',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'de beste free-to-win rhythm game',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Nieuwe Gerankte Beatmappen',
             'popular' => 'Populaire Beatmaps',
-            'by' => 'door',
-            'plays' => ':count keren gespeeld',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Download osu!',
