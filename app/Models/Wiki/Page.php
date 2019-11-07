@@ -306,11 +306,11 @@ class Page
         }
 
         $source = [
-            'locale' => null,
+            'locale' => $this->locale,
             'page' => null,
             'page_text' => null,
-            'path' => null,
-            'path_clean' => null,
+            'path' => $this->path,
+            'path_clean' => static::cleanupPath($this->path),
             'tags' => [],
             'title' => null,
             'indexed_at' => json_time(now()),
@@ -326,11 +326,8 @@ class Page
             $this->page = $contentRenderer->render();
             $pageIndex = $contentRenderer->renderIndexable();
 
-            $source['locale'] = $this->locale;
             $source['page'] = json_encode($this->page);
             $source['page_text'] = $pageIndex;
-            $source['path'] = $this->path;
-            $source['path_clean'] = static::cleanupPath($this->path);
             $source['title'] = strip_tags($this->title());
             $source['tags'] = $this->tags();
             $source['layout'] = $layout;
