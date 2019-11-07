@@ -16,10 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import NotificationJson from 'interfaces/notification-json';
+import Notification from 'models/notification';
 import { Main } from 'notifications-index/main';
 
 reactTurbolinks.registerPersistent('notifications-index', Main, true, (container: HTMLElement) => {
+  const json: NotificationJson[] = osu.parseJson('json-notifications');
+  const notifications = json.map(Notification.fromJSON);
+
   return {
-    notifications: osu.parseJson('json-notifications'),
+    notifications,
   };
 });

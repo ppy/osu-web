@@ -35,9 +35,15 @@
 
 import HeaderV3 from 'header-v3';
 import { route } from 'laroute';
+import Notification from 'models/notification';
+import { nameToIcons } from 'notification-maps/icons';
+import { formatMessage } from 'notification-maps/message';
+import { urlSingular } from 'notification-maps/url';
+import Item from 'notification-widget/item';
 import * as React from 'react';
 
 interface Props {
+  notifications: Notification[];
 }
 
 export class Main extends React.PureComponent<Props> {
@@ -63,7 +69,30 @@ export class Main extends React.PureComponent<Props> {
             key: 'Notifications',
           }}
         />
+
+        <div className='osu-page osu-page--users'>
+          {this.props.notifications.map(this.renderNotification)}
+        </div>
       </div>
     );
+  }
+
+  renderNotification(notification: Notification) {
+    try {
+      return (
+        <Item
+          icons={nameToIcons[notification.name || '']}
+          item={notification}
+          message={formatMessage(notification)}
+          modifiers={['one']}
+          url={urlSingular(notification)}
+          withCategory={true}
+          withCoverImage={true}
+        />
+      );
+    } catch (error) {
+      console.log(notification);
+      return error.message;
+    }
   }
 }
