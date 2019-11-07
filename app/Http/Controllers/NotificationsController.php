@@ -91,6 +91,12 @@ class NotificationsController extends Controller
      */
     public function index()
     {
+        if (!(is_api_request())) {
+            $notificationsJson = [];
+
+            return view('notifications.index', compact('notificationsJson'));
+        }
+
         $withRead = get_bool(request('with_read')) ?? false;
         $hasMore = false;
         $userNotificationsQuery = auth()
