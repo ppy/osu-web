@@ -21,6 +21,7 @@
       'mapper_note' => 'far fa-sticky-note',
       'praise' => 'fas fa-heart',
       'problem' => 'fas fa-exclamation-circle',
+      'review' => 'fas fa-tasks',
       'suggestion' => 'far fa-circle',
     ];
 @endphp
