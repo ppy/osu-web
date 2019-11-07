@@ -152,9 +152,9 @@ export class Main extends React.PureComponent
             autoFocus: @focusNewDiscussion
 
           el DiscussionsContext.Provider,
-            value: @cache.discussions
+            value: @discussions()
             el BeatmapsContext.Provider,
-              value: @cache.beatmaps
+              value: @beatmaps()
               el Discussions,
                 beatmapset: @state.beatmapset
                 currentBeatmap: @currentBeatmap()
