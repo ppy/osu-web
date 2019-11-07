@@ -30,6 +30,7 @@ return [
     'beatmapset' => [
         'client_bundle' => array_map('intval', explode(' ', env('BEATMAPSET_CLIENT_BUNDLE', '3756 163112 140662 151878 190390 123593 241526 299224'))),
         'discussion_kudosu_per_user' => get_int(env('BEATMAPSET_DISCUSSION_KUDOSU_PER_USER')) ?? 10,
+        'discussion_review_enabled' => get_bool(env('BEATMAPSET_DISCUSSION_REVIEW_ENABLED', false)),
         'download_limit' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY', 10)),
         'download_limit_supporter' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY_SUPPORTER', 20)),
         'es_cache_duration' => 60 * (get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0), // in minutes, converted to seconds
