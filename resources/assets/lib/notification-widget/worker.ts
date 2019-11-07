@@ -233,7 +233,7 @@ export default class Worker {
     const params = minLoadedId == null ? null : { max_id: minLoadedId - 1 };
 
     this.xhrLoadingState.loadMore = true;
-    this.xhr.loadMore = $.get(route('notifications.index', params))
+    this.xhr.loadMore = $.ajax({ url: route('notifications.index', params), dataType: 'json' })
       .always(action(() => {
         this.xhrLoadingState.loadMore = false;
       })).done(this.loadBundle)

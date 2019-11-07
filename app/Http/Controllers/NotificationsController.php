@@ -91,8 +91,17 @@ class NotificationsController extends Controller
      */
     public function index()
     {
-        if (!(is_api_request())) {
-            $notificationsJson = [];
+        if (!is_json_request()) {
+            $userNotifications = auth()
+                ->user()
+                ->userNotifications()
+                ->with('notification.notifiable')
+                ->with('notification.source')
+                ->orderBy('notification_id', 'DESC')
+                ->limit(static::LIMIT)
+                ->get();
+
+            $notificationsJson = json_collection($userNotifications, 'Notification');
 
             return view('notifications.index', compact('notificationsJson'));
         }
