@@ -35,6 +35,15 @@ export class ReviewPost extends React.Component<any> {
     const discussion: BeatmapDiscussion = discussions[props.data.discussion_id];
     const bn = 'beatmap-discussion-review-post-embed';
 
+    if (!discussion) {
+      // this should never happen, but just in case...
+      return (
+        <div className={bn}>
+          <div className={`${bn}__message-container ${bn}__message-container--error`}>[DISCUSSION NOT LOADED]</div>
+        </div>
+      );
+    }
+
     return (
       <div className={bn}>
         <div className={`${bn}__beatmap-icon`}>
