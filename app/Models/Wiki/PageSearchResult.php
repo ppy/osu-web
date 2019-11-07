@@ -29,7 +29,7 @@ class PageSearchResult extends Page
 
     public function __construct(Hit $hit)
     {
-        parent::__construct(null, null, $hit->source());
+        parent::fromEs($hit);
 
         $this->hit = $hit;
     }
