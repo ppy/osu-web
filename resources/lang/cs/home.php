@@ -25,6 +25,7 @@ return [
         'peak' => 'Vrchol, :count online uživatelů',
         'players' => '<strong>:count</strong> registrovaných hráčů',
         'title' => 'vítejte',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'nejlepší free-to-win rytmická hra',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Nově hodnocené beatmapy',
             'popular' => 'Populární Beatmapy',
-            'by' => 'od',
-            'plays' => ':count zahrání',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Stáhnout osu!',

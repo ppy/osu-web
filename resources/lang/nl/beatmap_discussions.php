@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Zoeken',
             'deleted' => 'Verwijderde discussies toevoegen',
+            'only_unresolved' => '',
             'types' => 'Berichttypen',
             'username' => 'Gebruikersnaam',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Gebruiker',

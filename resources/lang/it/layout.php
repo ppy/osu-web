@@ -61,9 +61,9 @@ return [
             'team' => 'team',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profilo',
+            'friends' => 'amici',
+            'settings' => 'impostazioni',
         ],
         'help' => [
             '_' => 'aiuto',
@@ -268,8 +268,8 @@ return [
         ],
 
         'register' => [
-            'download' => '',
-            'info' => 'Ha bisogno di un account, signore. Perchè non ne ha ancora uno?',
+            'download' => 'Scarica',
+            'info' => 'Scarica osu! per creare il tuo account!',
             'title' => "Non hai un account?",
         ],
     ],
@@ -279,7 +279,7 @@ return [
             'account-edit' => 'Impostazioni',
             'friends' => 'Amici',
             'logout' => 'Disconnettiti',
-            'profile' => 'Mio Profilo',
+            'profile' => 'Profilo',
         ],
     ],
 

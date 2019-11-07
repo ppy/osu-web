@@ -20,8 +20,8 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Zgłoś',
+        'title' => 'Zgłosić post użytkownika :username?',
     ],
 
     'comment' => [
@@ -35,7 +35,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Zgłoś',
+        'title' => 'Zgłosić użytkownika :username?',
     ],
 ];

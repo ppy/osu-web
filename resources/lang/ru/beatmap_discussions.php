@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Поиск',
             'deleted' => 'Включая удаленные обсуждения',
+            'only_unresolved' => '',
             'types' => 'Типы сообщений',
             'username' => 'Имя пользователя',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Пользователь',

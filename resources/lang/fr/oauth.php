@@ -59,11 +59,11 @@ return [
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Inscrire une nouvelle application OAuth',
+        'register' => 'Inscrire une application',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'En utilisant cette API vous acceptez :link.',
+            'link' => 'Termes d\'utilisation',
         ],
     ],
 

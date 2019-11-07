@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Passport\AuthorizationController;
+use App\Models\OAuth\Client;
+use App\Models\OAuth\Token;
 use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
@@ -24,6 +26,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         Passport::tokensExpireIn(Carbon::now()->addDays(1));
         Passport::refreshTokensExpireIn(Carbon::now()->addMonths(3));
+
+        Passport::useTokenModel(Token::class);
+        Passport::useClientModel(Client::class);
 
         if ($path = config('services.passport.path')) {
             Passport::keyPath($path);

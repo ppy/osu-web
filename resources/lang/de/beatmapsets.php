@@ -75,6 +75,13 @@ return [
                     'wip' => 'work-in-progress',
                 ],
             ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [

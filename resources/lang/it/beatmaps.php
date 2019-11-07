@@ -183,6 +183,7 @@ return [
         'nominate' => 'Nomina',
         'nominate_confirm' => 'Nominare questa beatmap?',
         'nominated_by' => 'nominata da :users',
+        'not_enough_hype' => "",
         'qualified' => 'La classificazione è prevista per il :date, se non viene trovato alcun problema.',
         'qualified_soon' => 'Sarà rankata a breve, se non viene trovato alcun problema.',
         'required_text' => 'Nomine: :current/:required',

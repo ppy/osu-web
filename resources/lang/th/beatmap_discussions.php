@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'ค้นหา',
             'deleted' => 'รวมการสนทนาที่ถูกลบ',
+            'only_unresolved' => '',
             'types' => 'ชนิดของข้อความ',
             'username' => 'ชื่อผู้ใช้',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'ผู้ใช้',
