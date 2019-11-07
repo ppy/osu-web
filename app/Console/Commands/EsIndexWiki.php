@@ -44,7 +44,7 @@ class EsIndexWiki extends Command
                 $page = Page::fromEs($hit);
                 $page->sync(true);
                 if (!$page->isVisible()) {
-                    (new EsDeleteDocument($page))->handle();
+                    $page->esDeleteDocument();
                 }
 
                 $bar->advance();
