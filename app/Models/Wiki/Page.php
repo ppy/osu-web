@@ -68,10 +68,18 @@ class Page
         ], $params);
     }
 
-    public static function fromSource($source)
+    public static function fromEs($hit)
     {
+        $source = $hit->source();
         $path = $source['path'];
         $locale = $source['locale'];
+
+        if ($path === null || $locale === null) {
+            $pagePath = static::parsePagePath($hit['_id']);
+
+            $path = $pagePath['path'];
+            $locale = $pagePath['locale'];
+        }
 
         $page = new static($path, $locale);
         $page->setSource($source);
@@ -98,6 +106,17 @@ class Page
         }
 
         return $page;
+    }
+
+    public static function parsePagePath($pagePath)
+    {
+        $matches = null;
+        preg_match('#^(?<path>.+)/(?<locale>[^/]+)\.md$#', $pagePath, $matches);
+
+        return [
+            'path' => $matches['path'] ?? null,
+            'locale' => $matches['locale'] ?? null,
+        ];
     }
 
     public static function searchPath($path, $locale)

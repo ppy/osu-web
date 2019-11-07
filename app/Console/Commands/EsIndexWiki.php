@@ -41,7 +41,7 @@ class EsIndexWiki extends Command
             $response = $search->response();
 
             foreach ($response as $hit) {
-                $page = Page::fromSource($hit->source());
+                $page = Page::fromEs($hit);
                 $page->sync(true);
                 if (!$page->isVisible()) {
                     (new EsDeleteDocument($page))->handle();
