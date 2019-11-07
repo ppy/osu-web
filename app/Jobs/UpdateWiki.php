@@ -54,7 +54,7 @@ class UpdateWiki implements ShouldQueue
                 continue;
             }
 
-            if ($object instanceof NewsPost) {
+            if ($object instanceof NewsPost || $object instanceof WikiRedirect) {
                 $object->sync(true);
             } else {
                 $object->forget(true);
