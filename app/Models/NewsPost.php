@@ -60,19 +60,9 @@ class NewsPost extends Model implements Commentable
 
     private $adjacent = [];
 
-    public static function lookupAndSync($slug)
+    public static function lookup($slug)
     {
-        $post = static::where(['slug' => $slug])->first();
-
-        if ($post === null) {
-            $post = new static(['slug' => $slug]);
-        }
-
-        $post->sync();
-
-        if ($post->page !== null && $post->published_at !== null && $post->published_at->isPast()) {
-            return $post;
-        }
+        return static::firstOrNew(compact('slug'));
     }
 
     public static function pageVersion()
@@ -135,7 +125,6 @@ class NewsPost extends Model implements Commentable
             if (array_key_exists($post->slug, $latestSlugs)) {
                 if ($latestSlugs[$post->slug] !== $post->hash) {
                     $post->sync(true);
-                } else {
                 }
 
                 unset($latestSlugs[$post->slug]);
@@ -182,6 +171,11 @@ class NewsPost extends Model implements Commentable
         return "{$this->slug}.md";
     }
 
+    public function isVisible()
+    {
+        return $this->page !== null && $this->published_at !== null && $this->published_at->isPast();
+    }
+
     public function needsSync()
     {
         return $this->page === null ||
@@ -204,9 +198,23 @@ class NewsPost extends Model implements Commentable
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/news/'.$this->filename();
     }
 
-    public function firstImage()
+    public function firstImage($absolute = false)
     {
-        return $this->page['firstImage'];
+        $url = $this->page['firstImage'];
+
+        if ($url === null) {
+            return;
+        }
+
+        if ($absolute && !starts_with($url, ['https://', 'http://'])) {
+            if ($url[0] === '/') {
+                $url = config('app.url').$url;
+            } else {
+                $url = "{$this->url()}/{$url}";
+            }
+        }
+
+        return $url;
     }
 
     public function newer()
