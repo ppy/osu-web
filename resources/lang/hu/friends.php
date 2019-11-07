@@ -32,11 +32,6 @@ return [
         ],
     ],
 
-    'state' => [
-      'friends' => 'barátok',
-      'mutual' => 'kölcsönös',
-    ],
-
     'title' => 'Barátok',
     'title_compact' => 'barátok',
 

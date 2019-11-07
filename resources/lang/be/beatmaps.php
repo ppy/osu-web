@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'дазволіць кудосу',
+        'beatmap_information' => '',
         'delete' => 'выдаліць',
         'deleted' => 'Выдалена :editor а :delete_time.',
         'deny_kudosu' => 'забараніць кудосу',
@@ -182,6 +183,7 @@ return [
         'nominate' => 'Намінаваць',
         'nominate_confirm' => 'Намінаваць гэту бітмапу?',
         'nominated_by' => 'намінавана :users',
+        'not_enough_hype' => "",
         'qualified' => 'Калі больш няма праблем, то бітмапа атрымае статус ракнутой прыблізна :date.',
         'qualified_soon' => 'Калі больш няма праблем, то бітмапа атрымае статус ракнутой вельмі хутка.',
         'required_text' => 'Намінацыі: :current/:required',

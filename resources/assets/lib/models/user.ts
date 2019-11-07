@@ -53,6 +53,10 @@ export default class User {
     });
   }
 
+  is(user: User | UserJSON) {
+    return user.id === this.id;
+  }
+
   load() {
     // TODO: do automagic loading stuff?
   }

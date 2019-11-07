@@ -32,9 +32,9 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
+        'close' => 'Lukk (Esc)',
         'fullscreen' => '',
-        'zoom' => '',
+        'zoom' => 'Zoom inn/ut',
         'previous' => '',
         'next' => '',
     ],
@@ -43,7 +43,7 @@ return [
         'home' => [
             '_' => 'hjem',
             'account-edit' => 'instillinger',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Verifisering fullført',
             'friends-index' => 'venner',
             'changelog-index' => 'endringslogg',
             'changelog-build' => 'versjon',
@@ -58,7 +58,12 @@ return [
             'password-reset-index' => 'nullstill passord',
             'search' => 'søk',
             'supportTheGame' => 'støtt spillet',
-            'team' => 'lag',
+            'team' => 'skapere',
+        ],
+        'profile' => [
+            '_' => 'profil',
+            'friends' => 'venner',
+            'settings' => 'innstillinger',
         ],
         'help' => [
             '_' => 'hjelp',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Du trenger en konto, min gode mann. Hvorfor har du ikke en allerede?",
+            'download' => 'Last ned',
+            'info' => 'Du trenger en konto, min gode mann. Hvorfor har du ikke en allerede?',
             'title' => "Har du ikke en konto?",
         ],
     ],

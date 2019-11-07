@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu erlauben',
+        'beatmap_information' => 'Beatmap-Seite',
         'delete' => 'löschen',
         'deleted' => 'Von :editor gelöscht (:delete_time).',
         'deny_kudosu' => 'kudosu verweigern',
@@ -182,6 +183,7 @@ return [
         'nominate' => 'Nominieren',
         'nominate_confirm' => 'Diese Beatmap nominieren?',
         'nominated_by' => 'Nominiert von :users',
+        'not_enough_hype' => "",
         'qualified' => 'Die Beatmap wird voraussichtlich am :date ranked, wenn keine Probleme gefunden werden.',
         'qualified_soon' => 'Die Beatmap wird bald ranked, wenn keine Probleme gefunden werden.',
         'required_text' => 'Nominierungen: :current/:required',

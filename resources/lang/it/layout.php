@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'sostieni il gioco',
             'team' => 'team',
         ],
+        'profile' => [
+            '_' => 'profilo',
+            'friends' => 'amici',
+            'settings' => 'impostazioni',
+        ],
         'help' => [
             '_' => 'aiuto',
             'getFaq' => 'domande comuni',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Ha bisogno di un account, signore. Perchè non ne ha ancora uno?",
+            'download' => 'Scarica',
+            'info' => 'Scarica osu! per creare il tuo account!',
             'title' => "Non hai un account?",
         ],
     ],
@@ -273,7 +279,7 @@ return [
             'account-edit' => 'Impostazioni',
             'friends' => 'Amici',
             'logout' => 'Disconnettiti',
-            'profile' => 'Mio Profilo',
+            'profile' => 'Profilo',
         ],
     ],
 

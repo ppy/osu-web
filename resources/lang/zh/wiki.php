@@ -22,7 +22,6 @@ return [
     'show' => [
         'fallback_translation' => '请求的页面还没有没有被翻译为选中语言 (:language). 正在显示英文版本.',
         'incomplete_or_outdated' => '此页面的内容不完整或已过时。如果你能帮忙，请一起更新这篇文章！',
-        'languages' => '语言',
         'missing' => '请求的页面未找到',
         'missing_title' => '未找到',
         'missing_translation' => '请求的页面没有当前语言的版本',
@@ -40,5 +39,9 @@ return [
 
             'default' => '英文版本',
         ],
+    ],
+    'main' => [
+        'title' => '知识库',
+        'subtitle' => '因为 osu!pedia 听起来有点酸',
     ],
 ];

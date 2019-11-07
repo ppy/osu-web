@@ -16,8 +16,10 @@ start_notification_server() { (
     yarn serve > server.log 2>&1 &
 ) }
 
-# start the headless driver, standalone server, and notification server that the tests use
-google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+# install latest chrome driver
+php artisan dusk:chrome-driver
+
+# start the standalone server and notification server that the tests use
 php artisan serve > /dev/null 2>&1 &
 start_notification_server
 
@@ -26,7 +28,6 @@ php artisan dusk --verbose
 EXIT_CODE=$?
 
 # 'cleanup'
-pkill google-chrome-stable
 pkill -f "php artisan serve"
 
 exit $EXIT_CODE

@@ -43,7 +43,7 @@ return [
 
         'attributes' => [
             'message_type' => 'Üzenet típus',
-            'timestamp' => '',
+            'timestamp' => 'Időbélyeg',
         ],
 
         'hype' => [
@@ -171,6 +171,7 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => '',
         'self' => "Nem jelentheted magadat!",
     ],
 

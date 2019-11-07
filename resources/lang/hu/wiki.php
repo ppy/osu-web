@@ -22,7 +22,6 @@ return [
     'show' => [
         'fallback_translation' => 'A kért oldal még nem lett lefordítva a kiválasztott (:language) nyelvre. Az angol verzió látható.',
         'incomplete_or_outdated' => 'A tartalom ezen az oldalon befejezetlen vagy elavult. Ha segíteni bírnál ezen, kérlek frissítsd a cikket!',
-        'languages' => 'Nyelvek',
         'missing' => 'Az oldal ":keyword" nem található.',
         'missing_title' => 'Nem Található',
         'missing_translation' => 'A kért oldal nem található a jelenleg kiválasztott nyelven.',
@@ -40,5 +39,9 @@ return [
 
             'default' => 'Angol verzió',
         ],
+    ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
     ],
 ];

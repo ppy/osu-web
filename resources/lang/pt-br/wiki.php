@@ -22,7 +22,6 @@ return [
     'show' => [
         'fallback_translation' => 'A página selecionada ainda não foi traduzida no idioma selecionado (:language). Exibindo a versão em Inglês.',
         'incomplete_or_outdated' => 'O conteúdo nesta página está incompleto ou desatualizado. Se for possível, por favor contribua com a atualização deste artigo!',
-        'languages' => 'Idiomas',
         'missing' => 'A página solicitada ":keyword" não pôde ser encontrada.',
         'missing_title' => 'Não Encontrado',
         'missing_translation' => 'A página solicitada não foi encontrada no idioma selecionado atualmente.',
@@ -40,5 +39,9 @@ return [
 
             'default' => 'Versão em inglês',
         ],
+    ],
+    'main' => [
+        'title' => 'Base de Conhecimento',
+        'subtitle' => 'porque osu!pédia soa estranho',
     ],
 ];

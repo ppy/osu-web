@@ -90,13 +90,6 @@
                 >
                     {{ trans("users.login._") }}
                 </a>
-
-                <a
-                    href="{{ osu_url('user.signup') }}"
-                    class="landing-nav__link js-nav-toggle"
-                >
-                    {{ trans("users.signup._") }}
-                </a>
             </div>
         </div>
 
@@ -180,13 +173,7 @@
         </div>
     </div>
 
-    <div class="osu-page osu-page--landing-buttons">
-        <div class="landing-middle-buttons">
-            <a
-                href="https://blog.ppy.sh/"
-                class="landing-middle-buttons__button landing-middle-buttons__button--blog"
-            ></a>
-        </div>
+    <div class="osu-page js-react--landing-news">
     </div>
 
     <footer class="osu-layout__section osu-layout__section--landing-footer">
@@ -214,9 +201,6 @@
             <a href="{{ osu_url("social.twitter") }}" class="landing-footer-social__icon landing-footer-social__icon--twitter">
                 <span class="fab fa-twitter"></span>
             </a>
-            <a href="{{ osu_url("social.facebook") }}" class="landing-footer-social__icon landing-footer-social__icon--facebook">
-                <span class="fab fa-facebook"></span>
-            </a>
         </div>
 
         @include('layout.footer', ['modifiers' => ['landing'], 'withLinks' => false])
@@ -227,4 +211,8 @@
 
 @section ("script")
     @parent
+
+    <script id="json-posts" type="application/json">
+        {!! json_encode($news) !!}
+    </script>
 @endsection

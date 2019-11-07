@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Denunciar Pontuação',
-        'title' => 'Denunciar a pontuação de :username?',
+    'beatmapset_discussion_post' => [
+        'button' => 'Denunciar',
+        'title' => 'Queres denunciar a publicação de :username?',
     ],
 
     'comment' => [
         'button' => 'Denunciar',
         'title' => 'Denunciar o comentário de :username?',
+    ],
+
+    'scores' => [
+        'button' => 'Denunciar Pontuação',
+        'title' => 'Denunciar a pontuação de :username?',
+    ],
+
+    'user' => [
+        'button' => 'Denunciar',
+        'title' => 'Pretendes denunciar :username?',
     ],
 ];

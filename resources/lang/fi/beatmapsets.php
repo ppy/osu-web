@@ -44,7 +44,7 @@ return [
             'submitted' => 'julkaistu ',
             'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
             'updated' => 'viimeisin päivitys ',
-            'updated_timeago' => 'viimeksi päivitetty :timeago',
+            'updated_timeago' => 'päivitetty viimeksi :timeago',
 
             'download' => [
                 '_' => 'Lataa',
@@ -74,6 +74,13 @@ return [
                     'qualified' => 'hyväksytty',
                     'wip' => 'keskeneräinen',
                 ],
+            ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
             ],
         ],
 

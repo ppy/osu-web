@@ -58,6 +58,15 @@ return [
         'title' => 'Logowanie do konta',
     ],
 
+    'new_client' => [
+        'header' => 'Zarejestruj nową aplikację OAuth',
+        'register' => 'Zarejestruj aplikację',
+        'terms_of_use' => [
+            '_' => 'Korzystając z API, zgadzasz się na :link.',
+            'link' => 'warunki korzystania z usługi',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => 'Czy na pewno chcesz usunąć tego klienta?',
         'new' => 'Nowa aplikacja OAuth',

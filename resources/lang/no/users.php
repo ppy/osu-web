@@ -88,9 +88,6 @@ return [
         'title' => 'Innleggene til :username',
     ],
 
-    'signup' => [
-        '_' => 'Registrer deg',
-    ],
     'anonymous' => [
         'login_link' => 'klikk for å logge inn',
         'login_text' => 'logg inn',
@@ -99,12 +96,12 @@ return [
     ],
     'logout_confirm' => 'Er du sikker på at du vil logge ut? :(',
     'report' => [
-        'button_text' => 'Anmeld',
+        'button_text' => 'Rapporter',
         'comments' => 'Ytterlige Kommentarer',
         'placeholder' => 'Vennligst angi hva som helst av informasjon som du tror kan være nyttig.',
         'reason' => 'Årsak',
         'thanks' => 'Takk for din anmeldelse!',
-        'title' => 'Anmeld :username?',
+        'title' => 'Rapporter :username?',
 
         'actions' => [
             'send' => 'Send Anmeldelse',
@@ -154,7 +151,7 @@ return [
                     'unsupported_format' => 'Formatet støttes ikke.',
 
                     'restriction_info' => [
-                        '_' => '',
+                        '_' => 'Oppdatering er bare tilgjengelig for :link',
                         'link' => '',
                     ],
                 ],
@@ -167,8 +164,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 følger|:count følgere',
-            'none' => '',
+            'none' => 'ingen',
             'unranked' => 'Ingen nylige spill',
 
             'achievements' => [
@@ -276,7 +272,7 @@ return [
 
                 'total_info' => [
                     '_' => '',
-                    'link' => '',
+                    'link' => 'denne siden',
                 ],
             ],
             'me' => [
@@ -288,7 +284,7 @@ return [
                 'title' => 'Medaljer',
             ],
             'posts' => [
-                'title' => '',
+                'title' => 'Innlegg',
                 'title_longer' => '',
                 'show_more' => '',
             ],
@@ -313,8 +309,8 @@ return [
                 'given' => '',
                 'received' => '',
                 'title' => 'Stemmer',
-                'title_longer' => '',
-                'vote_count' => '',
+                'title_longer' => 'Nylige stemmer',
+                'vote_count' => ':count_delimited stemme|:count_delimited stemmer',
             ],
             'account_standing' => [
                 'title' => 'Kontostatus',
@@ -368,8 +364,8 @@ return [
             'placeholder' => 'Skriv sideinnhold her',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Du må være en :link for å låse opp denne funksjonen.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -396,8 +392,8 @@ return [
             'total_hits' => 'Totale Treff',
             'total_score' => 'Samlet Poengsum',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Rangerte & Godkjente Beatmaps',
+            'loved_beatmapset_count' => 'Elskede Beatmaps',
             'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
         ],
@@ -417,6 +413,6 @@ return [
 
     'view_mode' => [
         'card' => '',
-        'list' => '',
+        'list' => 'Listevisning',
     ],
 ];

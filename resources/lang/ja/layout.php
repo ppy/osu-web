@@ -32,11 +32,11 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => '閉じる (Esc)',
+        'fullscreen' => '全画面表示に切り替え',
+        'zoom' => 'ズームイン/ズームアウト',
+        'previous' => '前（左矢印）',
+        'next' => '次へ（右矢印）',
     ],
 
     'menu' => [
@@ -59,6 +59,11 @@ return [
             'search' => '検索',
             'supportTheGame' => 'ゲームを支援する',
             'team' => 'osu!team',
+        ],
+        'profile' => [
+            '_' => 'プロフィール',
+            'friends' => 'フレンド',
+            'settings' => '設定',
         ],
         'help' => [
             '_' => 'ヘルプ',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "アカウントが必要です。作ってみませんか？",
+            'download' => 'ダウンロード',
+            'info' => 'アカウントが必要です。作ってみませんか？',
             'title' => "アカウントを持っていませんか？",
         ],
     ],

@@ -58,6 +58,15 @@ return [
         'title' => '계정 로그인',
     ],
 
+    'new_client' => [
+        'header' => '새 OAuth 애플리케이션 등록',
+        'register' => '애플리케이션 등록',
+        'terms_of_use' => [
+            '_' => 'API를 사용함으로써 :link을 동의하는 것으로 간주됩니다.',
+            'link' => '이용약관',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => '정말로 이 클라이언트를 삭제하시겠어요?',
         'new' => '새 OAuth 애플리케이션',

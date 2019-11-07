@@ -18,16 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\OAuth;
+namespace App\Hashing;
 
-use Laravel\Passport\AuthCode as PassportAuthCode;
+use Illuminate\Hashing\HashManager;
 
-class AuthCode extends PassportAuthCode
+class OsuHashManager extends HashManager
 {
-    public $timestamps = false;
-
-    public function client()
+    public function createBcryptDriver()
     {
-        return $this->belongsTo(Client::class);
+        return new OsuHasher;
     }
 }

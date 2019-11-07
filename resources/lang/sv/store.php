@@ -54,7 +54,7 @@ return [
 
         'has_pending' => [
             '_' => '',
-            'link_text' => '',
+            'link_text' => 'här',
         ],
 
         'pending_checkout' => [
@@ -88,7 +88,7 @@ return [
     'order' => [
         'paid_on' => '',
 
-        'invoice' => '',
+        'invoice' => 'Visa Faktura',
         'no_orders' => '',
         'resume' => '',
 
@@ -110,12 +110,12 @@ return [
         ],
 
         'status' => [
-            'cancelled' => '',
-            'checkout' => '',
-            'delivered' => '',
+            'cancelled' => 'Avbruten',
+            'checkout' => 'Förbereder',
+            'delivered' => 'Levererad',
             'paid' => '',
             'processing' => '',
-            'shipped' => '',
+            'shipped' => 'Skickad',
         ],
     ],
 

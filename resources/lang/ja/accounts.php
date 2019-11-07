@@ -67,11 +67,12 @@ return [
     'notifications' => [
         'title' => '通知',
         'topic_auto_subscribe' => '作成した新しいフォーラムトピックに関する通知を自動的に有効にします',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [
         'authorized_clients' => '認証済みのクライアント',
-        'own_clients' => '',
+        'own_clients' => '自分のクライアント',
         'title' => 'OAuth',
     ],
 

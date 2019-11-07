@@ -58,6 +58,15 @@ return [
         'title' => 'Iniciar sesión',
     ],
 
+    'new_client' => [
+        'header' => 'Registre una nueva aplicación OAuth',
+        'register' => 'Registro de aplicación',
+        'terms_of_use' => [
+            '_' => 'Al usar la API, usted acepta los :link.',
+            'link' => 'Términos de Uso',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => '¿Está seguro que desea borrar este cliente?',
         'new' => 'Nueva aplicación OAuth',

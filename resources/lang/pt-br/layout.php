@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'apoie o jogo',
             'team' => 'time',
         ],
+        'profile' => [
+            '_' => 'perfil',
+            'friends' => 'amigos',
+            'settings' => 'configurações',
+        ],
         'help' => [
             '_' => 'ajuda',
             'getFaq' => 'perguntas frequentes',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Você precisa de uma conta, senhor. Por que você ainda não tem uma?",
+            'download' => 'Download',
+            'info' => 'Baixe o osu! para criar própria conta!',
             'title' => "Não tem uma conta?",
         ],
     ],

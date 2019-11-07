@@ -30,9 +30,9 @@ Timeout.set(0, function () {
 
     var $el = $(".js-forum-post[data-post-id={{ $post->post_id }}]");
 
-    @if (priv_check('ForumModerate', $post->forum)->can())
-        @yield("moderatorAction")
+    @yield("action")
 
+    @if (priv_check('ForumModerate', $post->forum)->can())
         var $toggle;
 
         @foreach (['circle', 'menu'] as $type)
@@ -44,14 +44,6 @@ Timeout.set(0, function () {
             ])) !!});
         @endforeach
         osu.pageChange();
-    @else
-        $el.css({
-            minHeight: "0px",
-            height: $el.css("height")
-        }).slideUp(null, function () {
-            $el.remove();
-            osu.pageChange();
-        });
     @endif
 
     window.forum.setTotalPosts(window.forum.totalPosts() + {{ $countDifference }});

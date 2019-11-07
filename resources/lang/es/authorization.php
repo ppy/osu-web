@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Una publicación generada automáticamente no se puede editar.',
-            'not_owner' => 'Solo el creador puede editar la publicación.',
+        'destroy' => [
+            'not_owner' => 'Solo puedes eliminar tus publicaciones.',
+            'resolved' => 'No puedes eliminar una publicación de una discusión resuelta.',
+            'system_generated' => 'La publicación generada automáticamente no puede ser eliminada.',
         ],
+
+        'edit' => [
+            'not_owner' => 'Solo el creador puede editar la publicación.',
+            'resolved' => 'No puedes editar una publicación de una discusión resuelta.',
+            'system_generated' => 'Una publicación generada automáticamente no se puede editar.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Este beatmap está bloqueado para discusión.',
         ],

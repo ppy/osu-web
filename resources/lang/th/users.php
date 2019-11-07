@@ -88,11 +88,8 @@ return [
         'title' => 'โพสต์ทั้งหมดของ:username',
     ],
 
-    'signup' => [
-        '_' => 'สมัครสมาชิก',
-    ],
     'anonymous' => [
-        'login_link' => 'คลิกเพื่อลงชื่อเข้าใช้',
+        'login_link' => 'คลิก! เพื่อลงชื่อเข้าใช้',
         'login_text' => 'ลงชื่อเข้าใช้',
         'username' => 'ผู้เยี่ยมชม',
         'error' => 'คุณจะต้องเข้าสู่ระบบเพื่อจะกระทำสิ่งนี้',
@@ -167,8 +164,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count ผู้ติดตาม',
-            'none' => '',
+            'none' => 'ไม่มี',
             'unranked' => 'ยังไม่มีการเล่น',
 
             'achievements' => [
@@ -198,14 +194,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
+                'title' => 'การสนทนา',
                 'title_longer' => '',
                 'show_more' => '',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'อีเว้นท์',
+                'title_longer' => 'อีเว้นท์ล่าสุด',
+                'show_more' => 'ดูอีเว้นท์อื่นๆ เพิ่มเติม',
             ],
             'historical' => [
                 'empty' => 'ไม่มี performance ที่บันทึกไว้. :(',
@@ -288,9 +284,9 @@ return [
                 'title' => 'เหรียญตรา',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'โพสต์',
+                'title_longer' => 'โพสต์ล่าสุด',
+                'show_more' => 'ดูโพสต์อื่นๆ เพิ่มเติม',
             ],
             'recent_activity' => [
                 'title' => 'ล่า​สุด',
@@ -310,10 +306,10 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
+                'given' => 'จำนวน Votes ที่ได้ให้ (เมื่อสามเดือนที่แล้ว)',
+                'received' => 'ผลโหวตที่ได้รับ (เมื่อสามเดือนที่แล้ว)',
+                'title' => 'โหวต',
+                'title_longer' => 'โหวตล่าสุด',
                 'vote_count' => '',
             ],
             'account_standing' => [
@@ -368,7 +364,7 @@ return [
             'placeholder' => 'Type page content here',
 
             'restriction_info' => [
-                '_' => '',
+                '_' => 'คุณจำเป็นจะต้อง :link เพื่อที่จะปลดล็อกสิ่งนี้',
                 'link' => '',
             ],
         ],
@@ -397,9 +393,9 @@ return [
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
             'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'loved_beatmapset_count' => 'เลิฟแมพ',
+            'unranked_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
+            'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
         ],
     ],
 

@@ -58,6 +58,15 @@ return [
         'title' => 'Konto-Anmeldung',
     ],
 
+    'new_client' => [
+        'header' => 'Neue OAuth-Anwendung registrieren',
+        'register' => 'Anwendung registrieren',
+        'terms_of_use' => [
+            '_' => 'Durch die Nutzung der API stimmst du den :link zu.',
+            'link' => 'Nutzungsbedingungen',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => 'Bist du sicher, dass du dieses Gerät löschen willst?',
         'new' => 'Neue OAuth-Anwendung',

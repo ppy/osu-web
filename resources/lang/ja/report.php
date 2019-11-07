@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'スコアを報告',
-        'title' => ':username のスコアを報告しますか？',
+    'beatmapset_discussion_post' => [
+        'button' => '報告',
+        'title' => ':username の投稿を報告しますか？',
     ],
 
     'comment' => [
         'button' => '報告',
         'title' => ':usernameのコメントを報告しますか？',
+    ],
+
+    'scores' => [
+        'button' => 'スコアを報告',
+        'title' => ':username のスコアを報告しますか？',
+    ],
+
+    'user' => [
+        'button' => '報告',
+        'title' => ':usernameを報告しますか？',
     ],
 ];

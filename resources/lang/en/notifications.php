@@ -30,10 +30,20 @@ return [
                 '_' => 'Beatmap discussion',
                 'beatmapset_discussion_lock' => 'Discussion on ":title" has been locked',
                 'beatmapset_discussion_lock_compact' => 'Discussion was locked',
-                'beatmapset_discussion_post_new' => 'New post on ":title" by :username',
-                'beatmapset_discussion_post_new_compact' => 'New post by :username',
+                'beatmapset_discussion_post_new' => 'New post on ":title" by :username: ":content"',
+                'beatmapset_discussion_post_new_empty' => 'New post on ":title" by :username',
+                'beatmapset_discussion_post_new_compact' => 'New post by :username: ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'New post by :username',
                 'beatmapset_discussion_unlock' => 'Discussion on ":title" has been unlocked',
                 'beatmapset_discussion_unlock_compact' => 'Discussion was unlocked',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => 'Qualified Beatmap problem',
+                'beatmapset_discussion_qualified_problem' => 'Reported by :username on ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Reported by :username on ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Reported by :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Reported by :username',
             ],
 
             'beatmapset_state' => [

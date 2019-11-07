@@ -101,7 +101,7 @@ return [
         'post_reply' => 'Opublikuj',
         'reply_box_placeholder' => 'Napisz tutaj swoją odpowiedź',
         'reply_title_prefix' => 'Odp.',
-        'started_by' => 'przez :user',
+        'started_by' => 'Autor: :user',
         'started_by_verbose' => 'utworzony przez :user',
 
         'create' => [
@@ -273,6 +273,11 @@ return [
             'to_1_done' => 'Wątek został przypięty',
             'to_2' => 'Przypnij ten wątek i oznacz jako ogłoszenie',
             'to_2_done' => 'Wątek został przypięty i oznaczony jako ogłoszenie',
+        ],
+
+        'moderate_toggle_deleted' => [
+            'show' => 'Pokaż usunięte posty',
+            'hide' => 'Ukryj usunięte posty',
         ],
 
         'show' => [

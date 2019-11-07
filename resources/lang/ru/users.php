@@ -50,7 +50,7 @@ return [
         'banner_text' => 'пользователь добавлен в ваш чёрный список',
         'blocked_count' => 'чёрный список (:count)',
         'hide_profile' => 'скрыть профиль',
-        'not_blocked' => 'Этот пользователь заблокирован.',
+        'not_blocked' => 'Этот пользователь не заблокирован.',
         'show_profile' => 'показать профиль',
         'too_many' => 'Достигнут лимит кол-ва заблокированных.',
         'button' => [
@@ -88,9 +88,6 @@ return [
         'title' => 'публикации :username',
     ],
 
-    'signup' => [
-        '_' => 'Регистрация',
-    ],
     'anonymous' => [
         'login_link' => 'нажмите для входа',
         'login_text' => 'войти',
@@ -167,8 +164,7 @@ return [
         ],
 
         'extra' => [
-            'followers' => ':count подписчик|:count подписчика|:count подписчиков',
-            'none' => '',
+            'none' => 'нет',
             'unranked' => 'Нет недавних игр',
 
             'achievements' => [
@@ -198,14 +194,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Обсуждения',
+                'title_longer' => 'Недавние дискуссии',
+                'show_more' => 'посмотреть больше обсуждений',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'События',
+                'title_longer' => 'Недавние события',
+                'show_more' => 'посмотреть больше событий',
             ],
             'historical' => [
                 'empty' => 'Пока записей нет :(',
@@ -288,9 +284,9 @@ return [
                 'title' => 'Достижения',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Посты',
+                'title_longer' => 'Недавние посты',
+                'show_more' => 'загрузить больше постов',
             ],
             'recent_activity' => [
                 'title' => 'Последняя активность',
@@ -310,11 +306,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Отданные голоса (за 3 месяца)',
+                'received' => 'Полученные голоса (за 3 месяца)',
+                'title' => 'Голоса',
+                'title_longer' => 'Недавние голоса',
+                'vote_count' => 'голосов: :count_delimited|голосов: :count_delimited',
             ],
             'account_standing' => [
                 'title' => 'Состояние аккаунта',
@@ -397,8 +393,8 @@ return [
             'total_score' => 'Всего очков',
             // modding stats
             'ranked_and_approved_beatmapset_count' => 'Ранкнутые и одобренные карты',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
+            'loved_beatmapset_count' => 'Любимые карты',
+            'unranked_beatmapset_count' => 'На рассмотрении',
             'graveyard_beatmapset_count' => 'Заброшенные карты',
         ],
     ],
@@ -416,7 +412,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Показывать карточками',
+        'list' => 'Показывать списком',
     ],
 ];

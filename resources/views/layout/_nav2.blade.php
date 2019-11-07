@@ -93,16 +93,6 @@
             </a>
         </div>
 
-        <div class="nav2__col js-nav-button--item">
-            <a
-                href="{{ osu_url('social.facebook') }}"
-                class="nav-button nav-button--social"
-                title="Facebook"
-            >
-                <span class="fab fa-facebook"></span>
-            </a>
-        </div>
-
         <div class="nav2__col">
             <a
                 href="{{ route('support-the-game') }}"
@@ -162,7 +152,14 @@
         </div>
 
         @if (Auth::user() !== null)
-            <div class="nav2__col js-react--notification"></div>
+            <div class="nav2__col js-react--notification">
+                <div class="nav-button nav-button--stadium">
+                    <span class="notification-icon">
+                        <i class="fas fa-inbox"></i>
+                        <span class="notification-icon__count">...</span>
+                    </span>
+                </div>
+            </div>
         @endif
 
         <div class="nav2__col nav2__col--avatar">

@@ -19,12 +19,22 @@
  */
 
 return [
-    'scores' => [
+    'beatmapset_discussion_post' => [
         'button' => '',
         'title' => '',
     ],
 
     'comment' => [
+        'button' => '',
+        'title' => '',
+    ],
+
+    'scores' => [
+        'button' => '',
+        'title' => '',
+    ],
+
+    'user' => [
         'button' => '',
         'title' => '',
     ],

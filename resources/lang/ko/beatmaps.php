@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu 허용하기',
+        'beatmap_information' => '비트맵 페이지',
         'delete' => '삭제',
         'deleted' => ':delete_time에 :editor님에 의해 삭제되었습니다',
         'deny_kudosu' => 'kudosu 박탈하기',
@@ -182,6 +183,7 @@ return [
         'nominate' => '지명',
         'nominate_confirm' => '이 비트맵을 지명하시겠습니까?',
         'nominated_by' => ':users님이 지명함',
+        'not_enough_hype' => "",
         'qualified' => '문제가 발견되지 않으면 :date에 랭크됩니다.',
         'qualified_soon' => '문제가 발견되지 않으면 곧 랭크됩니다.',
         'required_text' => '지명 수: :current/:required',
@@ -286,7 +288,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '',
+        'MR' => '미러',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => '모드 없음',

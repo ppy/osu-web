@@ -119,6 +119,11 @@ class Beatmap extends Model
         return $this->hasMany(BeatmapDifficultyAttrib::class, 'beatmap_id');
     }
 
+    public function getDifficultyratingAttribute($value)
+    {
+        return round($value, 2);
+    }
+
     public function getModeAttribute()
     {
         return static::modeStr($this->playmode);

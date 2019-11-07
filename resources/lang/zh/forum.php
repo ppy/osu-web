@@ -275,6 +275,11 @@ return [
             'to_2_done' => '该主题已置顶并标记为公告',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '显示已删除的帖子',
+            'hide' => '隐藏已删除的帖子',
+        ],
+
         'show' => [
             'deleted-posts' => '删除主题',
             'total_posts' => '讨论总数',
@@ -304,8 +309,8 @@ return [
                 'button' => [
                     'change_vote' => '更改投票',
                     'edit' => '编辑投票',
-                    'view_results' => '',
-                    'vote' => '',
+                    'view_results' => '直接跳到结果',
+                    'vote' => '投票',
                 ],
 
                 'detail' => [

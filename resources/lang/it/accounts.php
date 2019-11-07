@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Account</strong> Impostazioni',
+        'title' => 'Impostazioni <strong>Account</strong>',
         'title_compact' => 'impostazioni',
         'username' => 'nome utente',
 
@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Notifiche',
         'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic del forum che crei',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [
@@ -84,7 +85,7 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'blocca messaggi privati dei non-amici',
+        'friends_only' => 'blocca messaggi privati da chi non è nella tua lista amici',
         'hide_online' => 'nascondi il tuo stato online',
         'title' => 'Privacy',
     ],

@@ -32,11 +32,11 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Sluiten (esc)',
+        'fullscreen' => 'Schakelen naar volledig scherm',
+        'zoom' => 'Zoom in/uit',
+        'previous' => 'Vorige (pijl links)',
+        'next' => 'Volgende (pijl rechts)',
     ],
 
     'menu' => [
@@ -59,6 +59,11 @@ return [
             'search' => 'zoeken',
             'supportTheGame' => 'ondersteun het spel',
             'team' => 'team',
+        ],
+        'profile' => [
+            '_' => 'profiel',
+            'friends' => 'vrienden',
+            'settings' => 'instellingen',
         ],
         'help' => [
             '_' => 'hulp',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?",
+            'download' => 'Download',
+            'info' => 'Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?',
             'title' => "Heb je geen account?",
         ],
     ],

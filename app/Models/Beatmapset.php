@@ -152,7 +152,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
-    const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
     public function beatmapDiscussions()
     {
@@ -269,6 +268,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return $query->where('approved', '=', self::STATES['qualified']);
     }
 
+    public function scopeDisqualified($query)
+    {
+        // uses the fact that disqualifying sets previous_queue_duration which is otherwise 0.
+        return $query
+            ->where('approved', self::STATES['pending'])
+            ->where('previous_queue_duration', '>', 0);
+    }
+
+    public function scopeNeverQualified($query)
+    {
+        return $query->unranked()->where('previous_queue_duration', 0);
+    }
+
     public function scopeRankedOrApproved($query)
     {
         return $query->whereIn(
@@ -346,32 +358,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     {
         // TODO: add filtering by game mode after mode-toggle UI/UX happens
 
-        return Cache::remember("beatmapsets_latest_{$count}", 60, function () use ($count) {
+        return Cache::remember("beatmapsets_latest_{$count}", 3600, function () use ($count) {
             // We union here so mysql can use indexes to speed this up
             $ranked = self::ranked()->active()->orderBy('approved_date', 'desc')->limit($count);
             $approved = self::approved()->active()->orderBy('approved_date', 'desc')->limit($count);
 
             return $ranked->union($approved)->orderBy('approved_date', 'desc')->limit($count)->get();
-        });
-    }
-
-    public static function mostPlayedToday($mode = 'osu', $count = 5)
-    {
-        // TODO: this only returns based on osu mode plays for now, add other game modes after mode-toggle UI/UX happens
-        return cache_remember_mutexed("beatmapsets_most_played_today_{$mode}_{$count}", 60, [], function () use ($count) {
-            $counts = Score\Osu::selectRaw('beatmapset_id, count(*) as playcount')
-                    ->whereNotIn('beatmapset_id', self::BUNDLED_IDS)
-                    ->groupBy('beatmapset_id')
-                    ->orderBy('playcount', 'desc')
-                    ->limit($count)
-                    ->get();
-
-            $mostPlayed = [];
-            foreach ($counts as $value) {
-                $mostPlayed[$value['beatmapset_id']] = $value['playcount'];
-            }
-
-            return $mostPlayed;
         });
     }
 
@@ -651,6 +643,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             $message = trans('beatmaps.nominations.incorrect_state');
         }
 
+        if ($this->hype < $this->requiredHype()) {
+            $message = trans('beatmaps.nominations.not_enough_hype');
+        }
+
         // check if there are any outstanding issues still
         if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
             $message = trans('beatmaps.nominations.unresolved_issues');
@@ -760,10 +756,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         }
 
         DB::transaction(function () use ($user) {
-            $this->favourites()->where('user_id', $user->user_id)
+            $deleted = $this->favourites()->where('user_id', $user->user_id)
                 ->delete();
 
-            $this->favourite_count = db_unsigned_increment('favourite_count', -1);
+            $this->favourite_count = db_unsigned_increment('favourite_count', -$deleted);
             $this->save();
         });
     }

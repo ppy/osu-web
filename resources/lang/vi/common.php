@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', và ',
     ],
 
+    'badges' => [
+        'new' => 'MỚI',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Trở về vị trí trước',
@@ -37,7 +41,7 @@ return [
         'change' => 'đổi',
         'click_to_copy' => 'click để sao chép vào bộ nhớ tạm',
         'click_to_copy_copied' => 'đã sao chép vào bộ nhớ tạm!',
-        'close' => '',
+        'close' => 'Đóng',
         'collapse' => 'thu lại',
         'delete' => 'Xóa',
         'edit' => 'Chỉnh sửa',
@@ -59,7 +63,7 @@ return [
         'show_deleted' => 'Hiển thị bình luận đã xóa',
         'show_more' => 'hiển thị thêm',
         'show_more_options' => 'hiển thị thêm tùy chọn',
-        'update' => '',
+        'update' => 'Cập nhật',
         'upload_image' => 'tải ảnh lên',
 
         'watch' => [
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'kéo vào đây để tải lên',
+    ],
+
+    'input' => [
+        'search' => 'tìm kiếm...',
     ],
 
     'pagination' => [

@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'tue peliä',
             'team' => 'tiimi',
         ],
+        'profile' => [
+            '_' => 'profiili',
+            'friends' => 'kaverit',
+            'settings' => 'asetukset',
+        ],
         'help' => [
             '_' => 'apua',
             'getFaq' => 'ukk',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Tarvitset käyttäjän hyvä mies. Miksei sinulla ole jo sellaista?",
+            'download' => 'Lataa',
+            'info' => 'Tarvitset käyttäjän hyvä mies. Miksei sinulla ole jo sellaista?',
             'title' => "Eikö sinulla ole vielä käyttäjää?",
         ],
     ],

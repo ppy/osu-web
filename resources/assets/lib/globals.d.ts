@@ -11,8 +11,6 @@ declare var process: Process;
 
 declare var window: Window;
 
-// libraries
-declare var laroute: any;
 // TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
 declare var Turbolinks: TurbolinksStatic;
 
@@ -60,6 +58,7 @@ interface OsuCommon {
   trans: (...args: any[]) => string;
   transArray: (array: any[], key?: string) => string;
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
+  transExists: (key: string, locale?: string) => boolean;
   urlPresence: (url?: string | null) => string;
   uuid: () => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;

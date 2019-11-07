@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Topic has been pinned and marked as announcement',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => 'Show deleted posts',
+            'hide' => 'Hide deleted posts',
+        ],
+
         'show' => [
             'deleted-posts' => 'Deleted Posts',
             'total_posts' => 'Total Posts',

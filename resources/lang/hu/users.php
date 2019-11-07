@@ -88,9 +88,6 @@ return [
         'title' => ':username hozzászólásai',
     ],
 
-    'signup' => [
-        '_' => 'Regisztráció',
-    ],
     'anonymous' => [
         'login_link' => 'kattints a bejelentkezéshez',
         'login_text' => 'bejelentkezés',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '1 követő |:count követő',
             'none' => 'semmi',
             'unranked' => 'Nem játszott mostanában',
 
@@ -369,7 +365,7 @@ return [
 
             'restriction_info' => [
                 '_' => '',
-                'link' => '',
+                'link' => 'osu!támogató',
             ],
         ],
         'post_count' => [

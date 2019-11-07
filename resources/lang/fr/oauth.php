@@ -58,6 +58,15 @@ return [
         'title' => 'Connexion au compte',
     ],
 
+    'new_client' => [
+        'header' => 'Inscrire une nouvelle application OAuth',
+        'register' => 'Inscrire une application',
+        'terms_of_use' => [
+            '_' => 'En utilisant cette API vous acceptez :link.',
+            'link' => 'Termes d\'utilisation',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => 'Êtes-vous sûr de vouloir supprimer ce client ?',
         'new' => 'Nouvelle application OAuth',

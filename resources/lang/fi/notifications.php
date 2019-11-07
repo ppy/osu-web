@@ -31,9 +31,19 @@ return [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_lock_compact' => '',
                 'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => '',
                 'beatmapset_discussion_unlock' => '',
                 'beatmapset_discussion_unlock_compact' => '',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => '',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_empty' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_qualified_problem_compact_empty' => '',
             ],
 
             'beatmapset_state' => [
@@ -61,7 +71,7 @@ return [
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Chat',
 
             'channel' => [
                 '_' => 'Uusi viesti',
@@ -80,7 +90,7 @@ return [
                 '_' => 'Uusi kommentti',
 
                 'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new_compact' => ':username kommentoi ":content"',
             ],
         ],
 
@@ -91,7 +101,7 @@ return [
                 '_' => 'Uusi kommentti',
 
                 'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new_compact' => ':username kommentoi":content"',
             ],
         ],
 

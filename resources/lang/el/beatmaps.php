@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'επίτρεψε kudosu',
+        'beatmap_information' => '',
         'delete' => 'διαγραφή',
         'deleted' => 'Διαγράφηκε από :editor :delete_time.',
         'deny_kudosu' => 'αρνήσου kudosu',
@@ -182,6 +183,7 @@ return [
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Κάντε nominate αυτό το beatmap;',
         'nominated_by' => 'nominated από :users',
+        'not_enough_hype' => "",
         'qualified' => 'Εκτιμάται ότι θα γίνει ranked στις :date, εάν δεν βρεθεί κάποιο πρόβλημα.',
         'qualified_soon' => 'Εκτιμάται ότι θα γίνει ranked σύντομα, εάν δεν βρεθεί κάποιο πρόβλημα.',
         'required_text' => 'Υποψηφιότητες :current/:required',

@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'permite kudosu',
+        'beatmap_information' => '',
         'delete' => 'șterge',
         'deleted' => 'Șters de :editor :delete_time.',
         'deny_kudosu' => 'refuză kudosu',
@@ -182,6 +183,7 @@ return [
         'nominate' => 'Nominalizează',
         'nominate_confirm' => 'Nominalizezi acest beatmap?',
         'nominated_by' => 'nominalizat de :users',
+        'not_enough_hype' => "",
         'qualified' => 'Estimat pentru a fi clasat pe :date, dacă nu sunt găsite probleme.',
         'qualified_soon' => 'Estimat să fie clasat în curând, dacă nu sunt găsite probleme.',
         'required_text' => 'Nominalizări: :current/:required',

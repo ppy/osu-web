@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', e ',
     ],
 
+    'badges' => [
+        'new' => 'NOVOS',
+    ],
+
     'buttons' => [
         'admin' => 'Administrador',
         'back_to_previous' => 'Voltar à posição anterior',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'larga aqui para carregar',
+    ],
+
+    'input' => [
+        'search' => 'pesquisar...',
     ],
 
     'pagination' => [

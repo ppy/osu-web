@@ -44,7 +44,7 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Siste Innlegg',
 
         'index' => [
             'title' => '',
@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => 'startet av :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Lukk',
             'preview' => 'Forhåndsvisning',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Emne har blitt festet og markert som en kunngjøring',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => 'Vis slettede innlegg',
+            'hide' => 'Skjul slettede innlegg',
+        ],
+
         'show' => [
             'deleted-posts' => 'Slettede innlegg',
             'total_posts' => 'Totalt antall innlegg',
@@ -298,14 +303,14 @@ return [
 
             'poll' => [
                 'edit' => '',
-                'edit_warning' => '',
+                'edit_warning' => 'Redigering av en avstemming vil fjerne de gjeldene resultatene!',
                 'vote' => 'Stem',
 
                 'button' => [
-                    'change_vote' => '',
+                    'change_vote' => 'Endre stemme',
                     'edit' => '',
                     'view_results' => '',
-                    'vote' => '',
+                    'vote' => 'Stem',
                 ],
 
                 'detail' => [

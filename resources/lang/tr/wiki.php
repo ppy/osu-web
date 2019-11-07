@@ -22,7 +22,6 @@ return [
     'show' => [
         'fallback_translation' => 'İstenen sayfa, istenilen dile (:language) henüz çevrilmedi. İngilizce sürümü gösteriliyor.',
         'incomplete_or_outdated' => 'Bu sayfadaki içerik tamamlanmamış veya güncel değil. Eğer yardım edebilecekseniz, lütfen makaleyi güncellemeyi bir düşünün!',
-        'languages' => 'Diller',
         'missing' => 'İstenilen ":keyword" sayfası bulunamadı.',
         'missing_title' => 'Bulunamadı',
         'missing_translation' => 'İstenilen sayfa seçilen dilde bulunamadı.',
@@ -40,5 +39,9 @@ return [
 
             'default' => 'İngilizce sürüm',
         ],
+    ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
     ],
 ];

@@ -40,16 +40,16 @@ return [
         'none' => '无授权第三方',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => '撤除访问权限',
+            'true' => '访问权限已被撤除',
         ],
     ],
 
     'client' => [
-        'id' => '',
+        'id' => '客户端 ID',
         'name' => '应用名称',
         'redirect' => '应用回调链接',
-        'secret' => '',
+        'secret' => '客户端密钥',
     ],
 
     'login' => [
@@ -58,10 +58,19 @@ return [
         'title' => '账号登录',
     ],
 
+    'new_client' => [
+        'header' => '注册一个新的 OAuth 应用程序',
+        'register' => '注册应用程序',
+        'terms_of_use' => [
+            '_' => '一旦使用此 API 将视为你已经同意了 :link 。',
+            'link' => '使用条款',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => '你确定想要删除这个客户端？',
         'new' => '新的 OAuth 应用',
-        'none' => '',
+        'none' => '没有客户端',
 
         'revoked' => [
             'false' => '删除',

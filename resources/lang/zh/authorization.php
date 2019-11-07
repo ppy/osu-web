@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => '无法编辑自动回复。',
-            'not_owner' => '只有作者可以编辑。',
+        'destroy' => [
+            'not_owner' => '你只能删除你自己的帖子。',
+            'resolved' => '你不能删除已解决的讨论帖。',
+            'system_generated' => '自动生成的帖子无法删除。',
         ],
+
+        'edit' => [
+            'not_owner' => '只有作者可以编辑。',
+            'resolved' => '你不能编辑已解决讨论里的帖子。',
+            'system_generated' => '无法编辑自动回复。',
+        ],
+
         'store' => [
             'beatmapset_locked' => '该谱面因需要探讨而被锁定。',
         ],

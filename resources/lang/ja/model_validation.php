@@ -120,12 +120,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => '許可されるOAuthアプリケーションの最大数を超えました。',
+            'url' => '有効なURLを入力してください。',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'アプリケーション名',
+                'redirect' => 'アプリケーションコールバックURL',
             ],
         ],
     ],
@@ -171,6 +171,7 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => ':reason はこのテレポートタイプでは無効です。',
         'self' => "自分自身を報告することはできません！",
     ],
 

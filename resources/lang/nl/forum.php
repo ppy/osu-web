@@ -25,7 +25,7 @@ return [
     'title' => 'osu! forums',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Wijzig omslag',
 
         'create' => [
             '_' => 'Stel omslagafbeelding in',
@@ -75,7 +75,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Nieuw antwoord',
             ],
         ],
 
@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => 'gestart door :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Sluiten',
             'preview' => 'Voorbeeld',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Topic is gepint en gemarkeerd als melding',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => 'Toon verwijderde berichten',
+            'hide' => 'Verberg verwijderde berichten',
+        ],
+
         'show' => [
             'deleted-posts' => 'Verwijderde posts',
             'total_posts' => 'Alle posts',
@@ -297,15 +302,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Poll bewerken',
+                'edit_warning' => 'Een poll bewerken zal de huidige resultaten verwijderen!',
                 'vote' => 'Stem',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Verander je stem',
+                    'edit' => 'Bewerk poll',
+                    'view_results' => 'Ga naar resultaten',
+                    'vote' => 'Stem',
                 ],
 
                 'detail' => [

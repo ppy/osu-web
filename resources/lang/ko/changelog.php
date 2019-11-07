@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => '피드',
     'generic' => '버그 수정 및 소소한 사항 개선.',
 
     'build' => [

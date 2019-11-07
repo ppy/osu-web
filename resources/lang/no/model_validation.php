@@ -108,7 +108,7 @@ return [
             'too_many_options' => 'Overskredet maksimal antall tillatte alternativer.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Avstemmingstittel',
             ],
         ],
 
@@ -120,12 +120,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Du har nådd grensen for maksimalt antall oAuth-applikasjoner.',
+            'url' => 'Vennligst skriv en gyldig URL.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Applikasjonsnavn',
+                'redirect' => 'Applikasjonens omdirigeringslenke',
             ],
         ],
     ],
@@ -171,14 +171,15 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => '',
         'self' => "Du kan ikke rapportere deg selv!",
     ],
 
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Antall',
+                'cost' => 'Pris',
             ],
         ],
     ],

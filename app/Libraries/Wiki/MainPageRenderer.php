@@ -60,15 +60,15 @@ class MainPageRenderer extends Renderer
                 continue;
             }
 
-            $blockClass = 'wiki-main-page-panel';
+            $blockClass = 'wiki-main-page';
             $class = '';
 
             switch (get_class($node)) {
                 case Block\Heading::class:
-                    $class = "{$blockClass}__title";
+                    $class = "{$blockClass}__heading";
                     break;
                 case Block\Paragraph::class:
-                    $class = "{$blockClass}__content";
+                    $class = "{$blockClass}__paragraph";
                     break;
                 case Inline\Link::class:
                     $class = "{$blockClass}__link";

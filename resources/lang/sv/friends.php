@@ -21,20 +21,15 @@
 return [
     'buttons' => [
       'add' => 'lägg till vän',
-      'disabled' => '',
+      'disabled' => 'vänner',
       'remove' => 'ta bort vän',
     ],
 
     'index' => [
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'Hem :info',
+            'info' => 'Vänner',
         ],
-    ],
-
-    'state' => [
-      'friends' => 'vänner',
-      'mutual' => 'gemensamma',
     ],
 
     'title' => 'Vänner',

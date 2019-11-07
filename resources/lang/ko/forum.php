@@ -25,7 +25,7 @@ return [
     'title' => 'osu! 포럼',
 
     'covers' => [
-        'edit' => '',
+        'edit' => '커버 수정',
 
         'create' => [
             '_' => '표지 이미지 설정',
@@ -75,7 +75,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => '새로운 회신',
             ],
         ],
 
@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => ':user 님이 시작함',
 
         'create' => [
-            'close' => '',
+            'close' => '닫기',
             'preview' => '미리보기',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -275,6 +275,11 @@ return [
             'to_2_done' => '해당 주제가 고정되고 알림글로 표시됩니다.',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '삭제된 글 표시',
+            'hide' => '삭제된 글 숨기기',
+        ],
+
         'show' => [
             'deleted-posts' => '삭제된 게시글',
             'total_posts' => '총 게시글',
@@ -297,15 +302,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => '투표 수정',
+                'edit_warning' => '투표를 수정하면 현재 결과가 제거됩니다!',
                 'vote' => '투표',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => '추천 변경',
+                    'edit' => '투표 수정',
+                    'view_results' => '결과로 건너뛰기',
+                    'vote' => '투표',
                 ],
 
                 'detail' => [

@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', és ',
     ],
 
+    'badges' => [
+        'new' => 'ÚJ',
+    ],
+
     'buttons' => [
         'admin' => 'Admin',
         'back_to_previous' => 'Vissza az előző pozícióra',
@@ -37,7 +41,7 @@ return [
         'change' => 'változtat',
         'click_to_copy' => 'kattints ide a vágólapra helyezéshez',
         'click_to_copy_copied' => 'vágólapra helyezve!',
-        'close' => '',
+        'close' => 'Bezárás',
         'collapse' => 'összecsuk',
         'delete' => 'Törlés',
         'edit' => 'Szerkesztés',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'húzd ide a feltöltéshez',
+    ],
+
+    'input' => [
+        'search' => 'keresés...',
     ],
 
     'pagination' => [

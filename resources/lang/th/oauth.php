@@ -58,14 +58,23 @@ return [
         'title' => 'ลงชื่อเข้าใช้บัญชี',
     ],
 
+    'new_client' => [
+        'header' => '',
+        'register' => '',
+        'terms_of_use' => [
+            '_' => '',
+            'link' => 'ข้อกำหนดการใช้งาน',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => '',
         'new' => '',
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'ลบ',
+            'true' => 'ถูกลบแล้ว',
         ],
     ],
 ];

@@ -25,7 +25,7 @@ return [
     'title' => 'ฟอรั่ม osu!',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'แก้ไขหน้าปก',
 
         'create' => [
             '_' => 'ตั้งภาพหน้าปก',
@@ -44,7 +44,7 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'โพสต์ล่าสุด',
 
         'index' => [
             'title' => '',
@@ -75,7 +75,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'ตอบกลับ',
             ],
         ],
 
@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => 'เริ่มโดย :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'ปิด',
             'preview' => 'Preview',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'หัวข้อถูกปักหมุดและตั้งให้เป็นประกาศแล้ว',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => 'แสดงโพสต์ที่ถูกลบ',
+            'hide' => 'ซ่อนโพสต์ที่ถูกลบ',
+        ],
+
         'show' => [
             'deleted-posts' => 'Deleted Posts',
             'total_posts' => 'Total Posts',
@@ -297,15 +302,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'แก้ไขโพลล์',
+                'edit_warning' => 'ถ้าแก้ไขโพลล์แล้วผลโหวตจะหายนะ',
                 'vote' => 'Vote',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'เปลี่ยนตัวเลือกโหวต',
+                    'edit' => 'แก้ไขโพลล์',
+                    'view_results' => 'ไปดูผลโหวต',
+                    'vote' => 'โหวต',
                 ],
 
                 'detail' => [

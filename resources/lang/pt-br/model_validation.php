@@ -171,6 +171,7 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => ':reason não é valido para este tipo de denúncia.',
         'self' => "Você não pode se denunciar!",
     ],
 

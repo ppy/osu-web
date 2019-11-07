@@ -67,11 +67,12 @@ return [
     'notifications' => [
         'title' => 'Meldingen',
         'topic_auto_subscribe' => 'automatisch meldingen inschakelen op nieuwe forum onderwerpen die u maakt',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [
         'authorized_clients' => 'autoriseer clients',
-        'own_clients' => '',
+        'own_clients' => 'eigen clients',
         'title' => 'OAuth',
     ],
 

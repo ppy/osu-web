@@ -18,6 +18,7 @@
 
 import AdminMenu from 'admin-menu';
 import PostJson from 'interfaces/news-post-json';
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import NewsHeader from 'news-header';
 import * as React from 'react';
@@ -114,7 +115,7 @@ export default class Main extends React.Component<Props, State> {
                 'data-method': 'post',
                 'data-reload-on-success': '1',
                 'data-remote': true,
-                'data-url': laroute.route('news.store'),
+                'data-url': route('news.store'),
                 'type': 'button',
               },
               text: osu.trans('news.store.button'),
@@ -181,7 +182,7 @@ export default class Main extends React.Component<Props, State> {
 
     this.setState({loading: true});
 
-    $.get(laroute.route('news.index'), search)
+    $.get(route('news.index'), search)
     .done((data) => {
       this.setState(this.newStateFromData(data as PostsJson));
     }).always(() => {

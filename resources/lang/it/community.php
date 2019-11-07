@@ -75,7 +75,7 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => 'Filtrare per Mod',
+                'title' => 'Filtro per Mod',
                 'description' => 'Vuoi associare solo persone che giocano HDHR? Nessun problema!',
             ],
 

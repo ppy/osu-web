@@ -88,9 +88,6 @@ return [
         'title' => ':username 的貼文',
     ],
 
-    'signup' => [
-        '_' => '註冊',
-    ],
     'anonymous' => [
         'login_link' => '點擊登入',
         'login_text' => '登入',
@@ -167,7 +164,6 @@ return [
         ],
 
         'extra' => [
-            'followers' => '關注者：:count',
             'none' => '',
             'unranked' => '近期沒有遊玩記錄',
 

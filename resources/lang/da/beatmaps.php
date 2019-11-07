@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'giv kudosu',
+        'beatmap_information' => '',
         'delete' => 'slet',
         'deleted' => 'Slettet af :editor :delete_time.',
         'deny_kudosu' => 'nægt kudosu',
@@ -182,6 +183,7 @@ return [
         'nominate' => 'Nominér',
         'nominate_confirm' => 'Nominér dette beatmap?',
         'nominated_by' => 'nomineret af :users',
+        'not_enough_hype' => "",
         'qualified' => 'Forventet at blive ranked på :date, hvis ingen problemer bliver fundet.',
         'qualified_soon' => 'Forventet at blive ranked snart, hvis ingen problemer bliver fundet.',
         'required_text' => 'Nomineringer: :current/:required',

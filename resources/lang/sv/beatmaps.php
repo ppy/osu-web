@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'tillåt kudosu',
+        'beatmap_information' => '',
         'delete' => 'radera',
         'deleted' => 'Raderad av :editor :delete_time.',
         'deny_kudosu' => 'neka kudosu',
@@ -47,7 +48,7 @@ return [
         'require-login' => 'Var vänlig logga in för att lägga upp inlägg eller svara',
         'resolved' => 'Löst',
         'restore' => 'återställ',
-        'show_deleted' => '',
+        'show_deleted' => 'Visa borttagna',
         'title' => 'Diskussioner',
 
         'collapse' => [
@@ -62,13 +63,13 @@ return [
 
         'lock' => [
             'button' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'Lås diskussionen',
+                'unlock' => 'Lås upp diskussionen',
             ],
 
             'prompt' => [
                 'lock' => '',
-                'unlock' => '',
+                'unlock' => 'Är du säker på att du vill låsa upp diskussionen?',
             ],
         ],
 
@@ -104,7 +105,7 @@ return [
         ],
 
         'new' => [
-            'pin' => '',
+            'pin' => 'Fäst',
             'timestamp' => 'Tidsstämpel',
             'timestamp_missing' => 'Tryck ctrl-c i redigeringsläget och klistra in ditt meddelande för att lägga till en tidsstämpel!',
             'title' => 'Ny Diskussion',
@@ -182,6 +183,7 @@ return [
         'nominate' => 'Nominera',
         'nominate_confirm' => 'Nominera denna beatmap?',
         'nominated_by' => 'nominerad av :users',
+        'not_enough_hype' => "",
         'qualified' => 'Beräknad tid när den är rankad är :date, om inga fel hittas.',
         'qualified_soon' => 'Beräknat att den rankas snart, om inga fel hittas.',
         'required_text' => 'Nomineringar: :current/:required',
@@ -219,15 +221,15 @@ return [
                 'played' => 'Spelade',
             ],
             'sorting' => [
-                'title' => '',
-                'artist' => '',
-                'difficulty' => '',
-                'favourites' => '',
-                'updated' => '',
-                'ranked' => '',
-                'rating' => '',
-                'plays' => '',
-                'relevance' => '',
+                'title' => 'Titel',
+                'artist' => 'Artist',
+                'difficulty' => 'Svårighetsgrad',
+                'favourites' => 'Favoriter',
+                'updated' => 'Uppdaterad',
+                'ranked' => 'Rankad',
+                'rating' => 'Omdöme',
+                'plays' => 'Spelningar',
+                'relevance' => 'Relevans',
                 'nominations' => '',
             ],
             'supporter_filter_quote' => [
@@ -252,7 +254,7 @@ return [
         'approved' => 'Godkänd',
         'favourites' => '',
         'graveyard' => 'Kyrkogård',
-        'leaderboard' => '',
+        'leaderboard' => 'Har Topplista',
         'loved' => 'Älskad',
         'mine' => '',
         'pending' => 'Pågående & WIP',

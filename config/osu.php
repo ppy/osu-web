@@ -28,10 +28,11 @@ return [
         'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
     'beatmapset' => [
+        'client_bundle' => array_map('intval', explode(' ', env('BEATMAPSET_CLIENT_BUNDLE', '3756 163112 140662 151878 190390 123593 241526 299224'))),
         'discussion_kudosu_per_user' => get_int(env('BEATMAPSET_DISCUSSION_KUDOSU_PER_USER')) ?? 10,
         'download_limit' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY', 10)),
         'download_limit_supporter' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY_SUPPORTER', 20)),
-        'es_cache_duration' => get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0,
+        'es_cache_duration' => 60 * (get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0), // in minutes, converted to seconds
         'favourite_limit' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT', 100)),
         'favourite_limit_supporter' => intval(env('BEATMAPSET_USER_FAVOURITE_LIMIT_SUPPORTER', 1000)),
         'rank_per_day' => get_int(env('BEATMAPSET_RANK_PER_DAY')) ?? 8,
@@ -48,8 +49,6 @@ return [
     'chat' => [
         'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
         'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
-        'webchat_enabled_supporter' => get_int(env('CHAT_WEBCHAT_ENABLED_SUPPORTER')) ?? false,
-        'webchat_enabled_all' => get_int(env('CHAT_WEBCHAT_ENABLED_ALL')) ?? false,
         'rate_limits' => [
             'public' => [
                 'limit' => get_int(env('CHAT_PUBLIC_LIMIT')) ?? 1,
@@ -124,7 +123,7 @@ return [
         'storage' => env('SCORE_REPLAYS_STORAGE', 'local'),
     ],
     'scores' => [
-        'es_cache_duration' => get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5,
+        'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
     ],
     'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
     'static' => env('LEGACY_STATICS_HOST', ''),
@@ -154,7 +153,6 @@ return [
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
-        'legacy-forum-thread-prefix' => '/forum/t/',
         'osx' => 'https://osx.ppy.sh',
         'server_status' => 'https://twitter.com/osustatus',
         'smilies' => '/forum/images/smilies',
@@ -163,14 +161,12 @@ return [
         'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
 
         'social' => [
-            'facebook' => 'https://facebook.com/osugame',
             'twitter' => '/help/wiki/Twitter',
         ],
         'user' => [
             'kudosu' => '/wiki/Kudosu',
             'recover' => '/p/forgot-email',
             'rules' => '/wiki/Osu!:Rules',
-            'signup' => '/p/register',
             'inbox' => '/forum/ucp.php?i=pm&folder=inbox',
         ],
         'rankings' => [
@@ -205,7 +201,7 @@ return [
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
     ],
     'changelog' => [
-        'build_history_interval' => intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)),
+        'build_history_interval' => 60 * intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)), // in minutes, converted to seconds
         'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
         'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
         'github_token' => env('CHANGELOG_GITHUB_TOKEN'),

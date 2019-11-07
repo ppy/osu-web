@@ -23,11 +23,13 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\CountryStatistics;
 use App\Models\Spotlight;
-use App\Models\User;
 use App\Models\UserStatistics;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+/**
+ * @group Ranking
+ */
 class RankingController extends Controller
 {
     protected $section = 'rankings';
@@ -36,7 +38,6 @@ class RankingController extends Controller
 
     const PAGE_SIZE = 50;
     const MAX_RESULTS = 10000;
-    const SPOTLIGHT_MAX_RESULTS = 40;
     const RANKING_TYPES = ['performance', 'charts', 'score', 'country'];
     const SPOTLIGHT_TYPES = ['charts'];
 
@@ -88,6 +89,28 @@ class RankingController extends Controller
         });
     }
 
+    /**
+     * Get Ranking
+     *
+     * Gets the current ranking for the specified type and game mode.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [Ranking Response](#ranking-response)
+     *
+     * ### Route Parameters
+     *
+     * Field  | Status   | Type
+     * -------| ---------| -----------------
+     * mode   | required | [GameMode](#gamemode)
+     * type   | required | [RankingType](#rankingtype)
+     *
+     * @authenticated
+     *
+     * @queryParam spotlight The id of the spotlight if `type` is `charts`
+     */
     public function index($mode, $type)
     {
         if ($type === 'charts') {
@@ -141,7 +164,7 @@ class RankingController extends Controller
 
         $maxResults = $this->maxResults($modeInt);
         $maxPages = ceil($maxResults / static::PAGE_SIZE);
-        $page = clamp(get_int(request('page')), 1, $maxPages);
+        $page = clamp(get_int(request('cursor.page') ?? request('page')), 1, $maxPages);
 
         $stats = $stats->limit(static::PAGE_SIZE)
             ->offset(static::PAGE_SIZE * ($page - 1))
@@ -150,11 +173,20 @@ class RankingController extends Controller
         if (is_api_request()) {
             switch ($type) {
                 case 'country':
-                    return json_collection($stats, 'CountryStatistics', ['country']);
+                    $ranking = json_collection($stats, 'CountryStatistics', ['country']);
+                    break;
 
                 default:
-                    return json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    break;
             }
+
+            return [
+                // TODO: switch to offset?
+                'cursor' => empty($ranking) || ($page >= $maxPages) ? null : ['page' => $page + 1],
+                'ranking' => $ranking,
+                'total' => $maxResults,
+            ];
         }
 
         $scores = new LengthAwarePaginator($stats, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
@@ -175,6 +207,34 @@ class RankingController extends Controller
             $spotlight = Spotlight::findOrFail($chartId);
         }
 
+        if ($spotlight->hasMode($mode)) {
+            $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
+            $scores = $spotlight->ranking($mode);
+
+            if (is_api_request()) {
+                $scores = $scores->with(['user.userProfileCustomization'])->get();
+
+                return [
+                    // transformer can't do nested includes with params properly.
+                    // https://github.com/thephpleague/fractal/issues/239
+                    'beatmapsets' => json_collection($beatmapsets, 'Beatmapset', ['beatmaps']),
+                    'ranking' => json_collection($scores, 'UserStatistics', ['user', 'user.cover', 'user.country']),
+                    'spotlight' => json_item($spotlight, 'Spotlight', ["participant_count:mode({$mode})"]),
+                ];
+            } else {
+                $scores = $scores->get();
+                $scoreCount = $spotlight->participantCount($mode);
+            }
+        } else {
+            if (is_api_request()) {
+                abort(404);
+            }
+
+            $beatmapsets = collect();
+            $scores = collect();
+            $scoreCount = 0;
+        }
+
         $selectOptions = [
             'selected' => $this->optionFromSpotlight($spotlight),
             'options' => $spotlights->map(function ($s) {
@@ -182,36 +242,10 @@ class RankingController extends Controller
             }),
         ];
 
-        if ($spotlight->hasMode($mode)) {
-            $scores = $this->getUserStats($spotlight, $mode)->get();
-            $scoreCount = $spotlight->userStats($mode)->count();
-            $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
-        } else {
-            $scores = collect();
-            $scoreCount = 0;
-            $beatmapsets = collect();
-        }
-
         return view(
             'rankings.charts',
             compact('scores', 'scoreCount', 'selectOptions', 'spotlight', 'beatmapsets')
         );
-    }
-
-    private function getUserStats($spotlight, $mode)
-    {
-        // These models will not have the correct table name set on them
-        // as they get overriden when Laravel hydrates them.
-        return $spotlight->userStats($mode)
-            ->with(['user', 'user.country'])
-            ->whereHas('user', function ($userQuery) {
-                $model = new User;
-                $userQuery
-                    ->from("{$model->getConnection()->getDatabaseName()}.{$model->getTable()}")
-                    ->default();
-            })
-            ->orderBy('ranked_score', 'desc')
-            ->limit(static::SPOTLIGHT_MAX_RESULTS);
     }
 
     private function optionFromSpotlight(Spotlight $spotlight) : array

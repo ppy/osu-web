@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Signaler le score',
-        'title' => 'Signaler le score de :username ?',
+    'beatmapset_discussion_post' => [
+        'button' => 'Signaler',
+        'title' => 'Signaler les messages de :username ?',
     ],
 
     'comment' => [
         'button' => 'Signaler',
         'title' => 'Signaler le commentaire de :username ?',
+    ],
+
+    'scores' => [
+        'button' => 'Signaler le score',
+        'title' => 'Signaler le score de :username ?',
+    ],
+
+    'user' => [
+        'button' => 'Signaler',
+        'title' => 'Signaler :username ?',
     ],
 ];

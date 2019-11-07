@@ -60,6 +60,11 @@ return [
             'supportTheGame' => 'support the game',
             'team' => 'team',
         ],
+        'profile' => [
+            '_' => 'profile',
+            'friends' => 'friends',
+            'settings' => 'settings',
+        ],
         'help' => [
             '_' => 'help',
             'getFaq' => 'faq',
@@ -263,7 +268,8 @@ return [
         ],
 
         'register' => [
-            'info' => "You need an account, sir. Why don't you have one already?",
+            'download' => 'Download',
+            'info' => 'Download osu! to create your own account!',
             'title' => "Don't have an account?",
         ],
     ],

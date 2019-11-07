@@ -67,11 +67,12 @@ return [
     'notifications' => [
         'title' => 'Уведомления',
         'topic_auto_subscribe' => 'автоматически включать уведомления для тем на форуме, когда вы их создаёте',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [
         'authorized_clients' => 'авторизованные клиенты',
-        'own_clients' => '',
+        'own_clients' => 'мои клиенты',
         'title' => 'OAuth',
     ],
 

@@ -42,6 +42,10 @@
     min-height: 150px;
     flex: 1 0 auto;
 
+    &:invalid {
+      box-shadow: none; // disable highlight on firefox
+    }
+
     @media @desktop {
       min-height: 300px;
       font-size: @font-size--title-small;

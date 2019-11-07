@@ -19,13 +19,23 @@
  */
 
 return [
+    'beatmapset_discussion_post' => [
+        'button' => 'Rapportér',
+        'title' => '',
+    ],
+
+    'comment' => [
+        'button' => 'Rapporter',
+        'title' => 'Rapporter :username sin kommentar?',
+    ],
+
     'scores' => [
         'button' => 'Rapporter Spillresultat',
         'title' => 'Rapporter :username\'s spillresultat?',
     ],
 
-    'comment' => [
-        'button' => '',
-        'title' => 'Rapporter :username sin kommentar?',
+    'user' => [
+        'button' => 'Rapportér',
+        'title' => '',
     ],
 ];

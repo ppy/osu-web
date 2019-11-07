@@ -29,6 +29,10 @@ return [
         'last_word_connector' => '、と',
     ],
 
+    'badges' => [
+        'new' => '新規',
+    ],
+
     'buttons' => [
         'admin' => '管理者',
         'back_to_previous' => '直前の状態に戻す',
@@ -37,7 +41,7 @@ return [
         'change' => '変更',
         'click_to_copy' => 'クリックでコピー',
         'click_to_copy_copied' => 'クリップボードにコピーされました！',
-        'close' => '',
+        'close' => '閉じる',
         'collapse' => '折りたたむ',
         'delete' => '削除',
         'edit' => '編集',
@@ -59,7 +63,7 @@ return [
         'show_deleted' => '削除済みを表示',
         'show_more' => '展開する',
         'show_more_options' => '詳細オプションを表示する',
-        'update' => '',
+        'update' => 'アップデート',
         'upload_image' => '画像をアップロード',
 
         'watch' => [
@@ -77,7 +81,7 @@ return [
         'minute_short_unit' => '分',
         'minutes' => ':count_delimited分',
         'months' => ':countヶ月',
-        'plus_others' => '',
+        'plus_others' => '+ :count_delimited',
         'post' => ':count_delimited 投稿',
         'second_short_unit' => '秒',
         'star_priority' => ':count_delimited スタープライオリティ',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'ここにドロップでアップロード',
+    ],
+
+    'input' => [
+        'search' => '検索...',
     ],
 
     'pagination' => [

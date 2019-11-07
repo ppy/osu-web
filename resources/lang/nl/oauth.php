@@ -34,22 +34,22 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Weet u zeker dat u de rechten van deze client wilt intrekken?',
+        'scopes_title' => 'Deze applicatie kan:',
+        'owned_by' => 'Eigendom van :user',
+        'none' => 'Geen clients',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Toegang intrekken',
+            'true' => 'Toegang Ingetrokken',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'secret' => '',
+        'id' => 'Client-ID',
+        'name' => 'Applicatienaam',
+        'redirect' => 'Applicatie Terugbel URL',
+        'secret' => 'Client Secret',
     ],
 
     'login' => [
@@ -58,14 +58,23 @@ return [
         'title' => 'Account aanmelden',
     ],
 
+    'new_client' => [
+        'header' => 'Registreer een nieuwe OAuth applicatie',
+        'register' => 'Registreer applicatie',
+        'terms_of_use' => [
+            '_' => 'Door gebruik te maken van de API gaat u akkoord met de :link.',
+            'link' => 'Gebruiksvoorwaarden',
+        ],
+    ],
+
     'own_clients' => [
-        'confirm_delete' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Weet je zeker dat je deze reactie wilt verwijderen?',
+        'new' => 'Nieuwe OAuth applicatie',
+        'none' => 'Geen clients',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Verwijderen',
+            'true' => 'Verwijderd',
         ],
     ],
 ];

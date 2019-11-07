@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'salli kudosu',
+        'beatmap_information' => '',
         'delete' => 'poista',
         'deleted' => 'Poistanut :editor :delete_time.',
         'deny_kudosu' => 'hylkää kudosu',
@@ -182,6 +183,7 @@ return [
         'nominate' => 'Suosittele',
         'nominate_confirm' => 'Suosittele tätä beatmappia?',
         'nominated_by' => 'suositellut :users',
+        'not_enough_hype' => "",
         'qualified' => 'Arvioidaan hyväksyttävän :date, mikäli ongelmia ei löydy.',
         'qualified_soon' => 'Arvioidaan hyväksyttävän pian, mikäli ongelmia ei löydy.',
         'required_text' => 'Suositukset: :current/:required',

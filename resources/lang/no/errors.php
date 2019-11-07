@@ -38,8 +38,8 @@ return [
         'generic' => 'En feil oppstod under klargjøring av kjøpet ditt.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Kunne ikke hente noen treff. Prøv igjen senere.',
+        'operation_timeout_exception' => 'Søkefunksjonen ser ikke ut til å fungere akkurat nå. Prøv igjen senere.',
     ],
 
     'logged_out' => 'Du har blitt logget ut. Vennligst logg inn og prøv på nytt.',

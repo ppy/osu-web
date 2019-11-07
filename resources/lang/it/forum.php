@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'La discussione è stata fissata e segnata come annuncio',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => 'Mostra post eliminati',
+            'hide' => 'Nascondi post eliminati',
+        ],
+
         'show' => [
             'deleted-posts' => 'Post cancellati',
             'total_posts' => 'Post totali',

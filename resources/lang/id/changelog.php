@@ -19,7 +19,6 @@
  */
 
 return [
-    'feed_title' => 'umpan',
     'generic' => 'Perbaikan bug dan perkembangan kecil',
 
     'build' => [

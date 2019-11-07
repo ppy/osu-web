@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Zgłoś wynik',
-        'title' => 'Zgłosić wynik gracza :username?',
+    'beatmapset_discussion_post' => [
+        'button' => 'Zgłoś',
+        'title' => 'Zgłosić post użytkownika :username?',
     ],
 
     'comment' => [
         'button' => 'Zgłoś',
         'title' => 'Zgłosić komentarz gracza :username?',
+    ],
+
+    'scores' => [
+        'button' => 'Zgłoś wynik',
+        'title' => 'Zgłosić wynik gracza :username?',
+    ],
+
+    'user' => [
+        'button' => 'Zgłoś',
+        'title' => 'Zgłosić użytkownika :username?',
     ],
 ];

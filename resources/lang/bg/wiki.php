@@ -22,7 +22,6 @@ return [
     'show' => [
         'fallback_translation' => 'Страницата все още не е преведена на избрания език (:language). Ще бъде показана на английски език.',
         'incomplete_or_outdated' => '',
-        'languages' => 'Езици',
         'missing' => 'Страницата ":keyword" не беше намерена.',
         'missing_title' => 'Не е намерено',
         'missing_translation' => 'Страницата не е намерена на текущо избрания език.',
@@ -40,5 +39,9 @@ return [
 
             'default' => 'Версия на английски език',
         ],
+    ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
     ],
 ];

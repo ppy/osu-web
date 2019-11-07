@@ -31,9 +31,19 @@ return [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_lock_compact' => '',
                 'beatmapset_discussion_post_new' => ':username har indsendt en ny besked i ":title" beatmap diskussion.',
+                'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => '',
                 'beatmapset_discussion_unlock' => '',
                 'beatmapset_discussion_unlock_compact' => '',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => '',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_empty' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_qualified_problem_compact_empty' => '',
             ],
 
             'beatmapset_state' => [

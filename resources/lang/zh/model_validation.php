@@ -171,6 +171,7 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => ':reason 不符合此报告类型。',
         'self' => "无法举报自己",
     ],
 

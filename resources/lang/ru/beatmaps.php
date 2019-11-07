@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'разрешить кудосу',
+        'beatmap_information' => 'Страница карты',
         'delete' => 'удалить',
         'deleted' => 'Удалено :editor в :delete_time',
         'deny_kudosu' => 'запретить кудосу',
@@ -44,7 +45,7 @@ return [
         'message_type_select' => 'Выбрать тип комментария',
         'reply_notice' => 'Нажмите Enter для ответа.',
         'reply_placeholder' => 'Введите тут ответ',
-        'require-login' => 'Войди для публикации или ответа',
+        'require-login' => 'Чтобы оставить сообщение или ответить, пожалуйста, войдите в аккаунт',
         'resolved' => 'Решено',
         'restore' => 'восстановить',
         'show_deleted' => 'Показать удалённые',
@@ -141,12 +142,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Отрицательных оценок пока нет',
+                'up' => 'Положительных оценок пока нет',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Последние не одобрения',
+                'up' => 'Последние одобрения',
             ],
         ],
     ],
@@ -182,6 +183,7 @@ return [
         'nominate' => 'Номинировать',
         'nominate_confirm' => 'Номинировать эту карту?',
         'nominated_by' => 'номинирована :users',
+        'not_enough_hype' => "",
         'qualified' => 'Если больше нет проблем, то карта получит ранкнутый статус примерно :date.',
         'qualified_soon' => 'Если больше нет проблем, то карта получит ранкнутый статус очень скоро.',
         'required_text' => 'Номинации: :current/:required',
@@ -286,7 +288,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '',
+        'MR' => 'Зеркало',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

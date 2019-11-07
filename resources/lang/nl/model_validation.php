@@ -120,12 +120,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Het maximum aantal toegestane OAuth toepassingen is overschreden.',
+            'url' => 'Voer een geldige URL in.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Applicatienaam',
+                'redirect' => 'Applicatie Terugbel URL',
             ],
         ],
     ],
@@ -171,6 +171,7 @@ return [
     ],
 
     'user_report' => [
+        'reason_not_valid' => ':reason is niet geldig voor dit rapporttype.',
         'self' => "Je kunt jezelf niet rapporteren!",
     ],
 

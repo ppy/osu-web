@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Tópico fixado e marcado como anúncio',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => 'Exibir publicações excluídas',
+            'hide' => 'Ocultar publicações excluídas',
+        ],
+
         'show' => [
             'deleted-posts' => 'Publicações Excluídas',
             'total_posts' => 'Total de publicações',

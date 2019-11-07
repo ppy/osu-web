@@ -29,6 +29,10 @@ return [
         'last_word_connector' => '和',
     ],
 
+    'badges' => [
+        'new' => '新的',
+    ],
+
     'buttons' => [
         'admin' => '管理员',
         'back_to_previous' => '返回上一位置',
@@ -77,7 +81,7 @@ return [
         'minute_short_unit' => '分钟',
         'minutes' => ':count 分钟',
         'months' => ':count 个月',
-        'plus_others' => '',
+        'plus_others' => '还有 :count_delimited 人！ | 还有 :count_delimited 人！',
         'post' => ':count_delimited 篇帖子',
         'second_short_unit' => '秒',
         'star_priority' => ':count_delimited 个优先星',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => '拖动到此处以上传',
+    ],
+
+    'input' => [
+        'search' => '搜索...',
     ],
 
     'pagination' => [

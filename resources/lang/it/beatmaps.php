@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'permetti kudosu',
+        'beatmap_information' => 'Pagina della Beatmap',
         'delete' => 'elimina',
         'deleted' => 'Eliminato da :editor :delete_time.',
         'deny_kudosu' => 'nega kudosu',
@@ -182,6 +183,7 @@ return [
         'nominate' => 'Nomina',
         'nominate_confirm' => 'Nominare questa beatmap?',
         'nominated_by' => 'nominata da :users',
+        'not_enough_hype' => "",
         'qualified' => 'La classificazione è prevista per il :date, se non viene trovato alcun problema.',
         'qualified_soon' => 'Sarà rankata a breve, se non viene trovato alcun problema.',
         'required_text' => 'Nomine: :current/:required',
@@ -286,7 +288,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '',
+        'MR' => 'Mirror',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'Senza Mod',

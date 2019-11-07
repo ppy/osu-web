@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Le sujet a été épinglé et marqué en tant qu\'annonce',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => 'Montrer les messages supprimés',
+            'hide' => 'Masquer les messages supprimés',
+        ],
+
         'show' => [
             'deleted-posts' => 'Posts Supprimés',
             'total_posts' => 'Total des Posts',

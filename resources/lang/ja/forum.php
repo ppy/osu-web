@@ -25,7 +25,7 @@ return [
     'title' => 'osu! フォーラム',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'カバーを編集',
 
         'create' => [
             '_' => 'カバー画像の設定',
@@ -75,7 +75,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => '新規返信',
             ],
         ],
 
@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => '開始したユーザー: :user',
 
         'create' => [
-            'close' => '',
+            'close' => '閉じる',
             'preview' => 'プレビュー',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'ピン付けされてアナウンスメントになりました',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => '削除された投稿を表示',
+            'hide' => '削除された投稿を非表示',
+        ],
+
         'show' => [
             'deleted-posts' => '削除された投稿',
             'total_posts' => '全ての投稿',
@@ -297,15 +302,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => '投票編集',
+                'edit_warning' => '編集中の投票フォームは現在の編集状況が削除されます！',
                 'vote' => '投票',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => '投票を変更する',
+                    'edit' => '投票を編集',
+                    'view_results' => '結果にスキップ',
+                    'vote' => '投票',
                 ],
 
                 'detail' => [

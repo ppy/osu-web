@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosuya izin ver',
+        'beatmap_information' => '',
         'delete' => 'sil',
         'deleted' => ':editor tarafından :delete_time tarihinde silindi.',
         'deny_kudosu' => 'kudosuyu reddet',
@@ -182,6 +183,7 @@ return [
         'nominate' => 'Aday Göster',
         'nominate_confirm' => 'Beatmap aday gösterilsin mi?',
         'nominated_by' => ':users tarafından aday gösterildi',
+        'not_enough_hype' => "",
         'qualified' => 'Eğer bir sorun bulunmazsa, :date tarihinde dereceli olacağı tahmin ediliyor.',
         'qualified_soon' => 'Eğer bir sorun bulunmazsa, yakında dereceli olacağı tahmin ediliyor.',
         'required_text' => 'Aday Göstermeler: :current/:required',

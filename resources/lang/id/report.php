@@ -19,13 +19,23 @@
  */
 
 return [
-    'scores' => [
-        'button' => 'Laporkan Skor',
-        'title' => 'Laporkan skor dari :username?',
+    'beatmapset_discussion_post' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'comment' => [
         'button' => 'Laporkan',
         'title' => 'Laporkan komentar :username?',
+    ],
+
+    'scores' => [
+        'button' => 'Laporkan Skor',
+        'title' => 'Laporkan skor dari :username?',
+    ],
+
+    'user' => [
+        'button' => '',
+        'title' => '',
     ],
 ];

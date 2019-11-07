@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosu toestaan',
+        'beatmap_information' => 'Beatmap pagina',
         'delete' => 'verwijder',
         'deleted' => 'Verwijderd door :editor :delete_time.',
         'deny_kudosu' => 'kudosu ontzeggen',
@@ -141,12 +142,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Nog geen downvotes',
+                'up' => 'Nog geen upvotes',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Laatste downvotes',
+                'up' => 'Laatste upvotes',
             ],
         ],
     ],
@@ -182,6 +183,7 @@ return [
         'nominate' => 'Nomineer',
         'nominate_confirm' => 'Nomineer deze beatmap?',
         'nominated_by' => 'genomineerd door :gebruikers',
+        'not_enough_hype' => "",
         'qualified' => 'Naar schatting gerankt op :date, als er geen problemen optreden.',
         'qualified_soon' => 'Naar schatting binnenkort gerankt, als er geen problemen optreden.',
         'required_text' => 'Nimonaties: :current/:required',
@@ -286,7 +288,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => '',
+        'MR' => 'Mirror',
         'NC' => '',
         'NF' => '',
         'NM' => '',

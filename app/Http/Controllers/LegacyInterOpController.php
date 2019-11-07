@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\EsIndexDocument;
 use App\Jobs\RegenerateBeatmapsetCover;
+use App\Libraries\Chat;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\UserBestScoresCheck;
 use App\Models\Achievement;
@@ -33,6 +34,7 @@ use App\Models\NewsPost;
 use App\Models\Notification;
 use App\Models\Score\Best;
 use App\Models\User;
+use App\Models\UserStatistics;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
@@ -143,6 +145,61 @@ class LegacyInterOpController extends Controller
         }
 
         return response(null, 204);
+    }
+
+    public function userRecalculateRankedScores($id)
+    {
+        $user = User::findOrFail($id);
+
+        foreach (Beatmap::MODES as $modeStr => $_modeId) {
+            $class = UserStatistics\Model::getClass($modeStr);
+            $class::recalculateRankedScoreForUser($user);
+        }
+
+        return response(null, 204);
+    }
+
+    /**
+     * User Send Message
+     *
+     * This endpoint allows you to send Message as a user to another user.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * The sent [ChatMessage](#chatmessage) on success.
+     *
+     * - 403 on:
+     *   - sender not allowed to send message to target
+     * - 404 on:
+     *   - invalid sender/target id
+     *   - target is restricted
+     * - 422 on:
+     *   - missing parameter
+     *   - message is empty
+     *   - message is too long
+     *   - target and sender are the same
+     * - 429 on:
+     *   - too many messages has been sent by the sender
+     *
+     * @bodyParam sender_id integer required id of user sending the message
+     * @bodyParam target_id integer required id of user receiving the message. Must not be restricted
+     * @bodyParam message string required message to send. Empty string is not allowed
+     * @bodyParam is_action boolean required set to true (`1`/`on`/`true`) for `/me` message. Default false
+     */
+    public function userSendMessage()
+    {
+        $params = request()->all();
+
+        $message = Chat::sendPrivateMessage(
+            get_int($params['sender_id'] ?? null),
+            get_int($params['target_id'] ?? null),
+            presence($params['message'] ?? null),
+            get_bool($params['is_action'] ?? null)
+        );
+
+        return json_item($message, 'Chat/Message', ['sender']);
     }
 
     public function userSessionsDestroy($id)

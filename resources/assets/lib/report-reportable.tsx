@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import { Dictionary } from 'lodash';
 import * as React from 'react';
 import { ReportForm } from 'report-form';
@@ -65,8 +66,7 @@ export class ReportReportable extends React.PureComponent<Props & React.Detailed
   }
 
   onFormClose = () => {
-    this.props.onFormClose();
-    this.setState({ disabled: false, showingForm: false });
+    this.setState({ disabled: false, showingForm: false }, this.props.onFormClose);
   }
 
   onSubmit = (report: ReportData) => {
@@ -83,7 +83,7 @@ export class ReportReportable extends React.PureComponent<Props & React.Detailed
       data,
       dataType: 'json',
       type: 'POST',
-      url: laroute.route('reports.store'),
+      url: route('reports.store'),
     };
 
     $.ajax(params).done(() => {

@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'อนุญาตการให้ค่าชื่อเสียง',
+        'beatmap_information' => 'หน้าบีตแมป',
         'delete' => 'ลบ',
         'deleted' => 'ถูกลบโดย :editor เมื่อเวลา :delete_time',
         'deny_kudosu' => 'ปฏิเสธการให้ค่าชื่อเสียง',
@@ -145,8 +146,8 @@ return [
                 'up' => 'ยังไม่มีคนโหวตเพิ่ม',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'ความคิดเห็นด้านลบล่าสุด',
+                'up' => 'ความคิดเห็นด้านบวกล่าสุด',
             ],
         ],
     ],
@@ -182,6 +183,7 @@ return [
         'nominate' => 'เสนอชื่อ',
         'nominate_confirm' => 'เสนอชื่อ Beatmap นี้?',
         'nominated_by' => 'เสนอชื่อโดย :users',
+        'not_enough_hype' => "",
         'qualified' => 'คาดการณ์ว่าจะถูกจัดอันดับในเร็วๆนี้ ถ้าไม่พบปัญหาใดๆ',
         'qualified_soon' => 'คาดการณ์ว่าจะถูกจัดอันดับในเร็วๆนี้ ถ้าไม่พบปัญหาใดๆ',
         'required_text' => 'การเสนอชื่อ: :current/:required',
@@ -286,7 +288,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '',
+        'MR' => 'เซิร์ฟเวอร์อื่น',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

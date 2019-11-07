@@ -15,22 +15,19 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div
-    class="account-edit-entry account-edit-entry--no-label js-account-edit js-account-edit-playstyle"
-    data-playstyle="{{ $field }}"
+<button
+    type="button"
+    class="
+        btn-circle
+        btn-circle--topic-nav
+        btn-circle--yellow
+        {{ $showDeleted ? '' : 'btn-circle--activated' }}
+        js-forum-topic-moderate--toggle-deleted
+    "
+    title="{{ trans('forum.topics.moderate_toggle_deleted.' . ($showDeleted ? 'hide' : 'show')) }}"
+    data-show-deleted="{{ $showDeleted ? 1 : 0 }}"
 >
-    <label class="account-edit-entry__checkbox">
-        @include('objects._switch', [
-            'checked' => in_array($field, auth()->user()->osu_playstyle ?? [], true),
-            'value' => $field,
-        ])
-
-        <span class="account-edit-entry__checkbox-label">
-            {{ trans('accounts.playstyles.'.$field) }}
-        </span>
-
-        <div class="account-edit-entry__checkbox-status">
-            @include('accounts._edit_entry_status')
-        </div>
-    </label>
-</div>
+    <span class="btn-circle__content">
+        <i class="fa fa-trash"></i>
+    </span>
+</button>

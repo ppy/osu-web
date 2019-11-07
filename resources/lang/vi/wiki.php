@@ -22,7 +22,6 @@ return [
     'show' => [
         'fallback_translation' => 'Trang yêu cầu chưa được dịch sang ngôn ngữ đã chọn (:language). Đang hiển thị phiên bản tiếng Anh.',
         'incomplete_or_outdated' => '',
-        'languages' => 'Ngôn ngữ',
         'missing' => 'Không thể tìm thấy trang ":keyword".',
         'missing_title' => 'Không Tìm Thấy',
         'missing_translation' => 'Không thể tìm trang đã yêu cầu cho ngôn ngữ bạn đã chọn.',
@@ -40,5 +39,9 @@ return [
 
             'default' => 'Phiên bản tiếng Anh',
         ],
+    ],
+    'main' => [
+        'title' => '',
+        'subtitle' => '',
     ],
 ];

@@ -33,6 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => '给予 kudosu',
+        'beatmap_information' => '谱面信息页',
         'delete' => '删除',
         'deleted' => '被 :editor 于 :delete_time 删除。',
         'deny_kudosu' => '收回 kudosu',
@@ -182,6 +183,7 @@ return [
         'nominate' => '提名',
         'nominate_confirm' => '提名这张谱面？',
         'nominated_by' => '由 :users 提名',
+        'not_enough_hype' => "",
         'qualified' => '如果没有问题，预计将于 :date 被 Ranked 。',
         'qualified_soon' => '如果没有问题，预计不久将被 Ranked 。',
         'required_text' => '提名数: :current/:required',
@@ -286,7 +288,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '',
+        'MR' => 'Mirror',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

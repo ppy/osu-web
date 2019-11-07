@@ -47,10 +47,18 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
-            'system_generated' => 'Un sujet posté automatiquement ne peut être édité.',
-            'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
+        'destroy' => [
+            'not_owner' => 'Vous ne pouvez uniquement supprimer vos propres messages.',
+            'resolved' => 'Vous ne pouvez pas supprimer un message d\'une discussion résolue.',
+            'system_generated' => 'Les messages automatiquement générés ne peuvent être supprimés.',
         ],
+
+        'edit' => [
+            'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
+            'resolved' => 'Vous ne pouvez pas modifier un message d\'une discussion résolue.',
+            'system_generated' => 'Un sujet posté automatiquement ne peut être édité.',
+        ],
+
         'store' => [
             'beatmapset_locked' => 'Cette beatmap est verrouillée pour la discussion.',
         ],

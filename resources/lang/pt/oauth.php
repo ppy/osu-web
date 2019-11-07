@@ -58,6 +58,15 @@ return [
         'title' => 'Login da Conta',
     ],
 
+    'new_client' => [
+        'header' => 'Registar uma nova aplicação OAuth',
+        'register' => 'Aplicação de registo',
+        'terms_of_use' => [
+            '_' => 'Ao usares a API, estás a aceitar o que está neste :link.',
+            'link' => 'Termos de Uso',
+        ],
+    ],
+
     'own_clients' => [
         'confirm_delete' => 'Tens a certeza que queres eliminar este cliente?',
         'new' => 'Nova Aplicação OAuth',

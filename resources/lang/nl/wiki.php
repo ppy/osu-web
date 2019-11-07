@@ -22,7 +22,6 @@ return [
     'show' => [
         'fallback_translation' => 'De opgevraagde pagina is nog niet vertaald naar de geselecteerde taal (:language). Engelse versie wordt getoond.',
         'incomplete_or_outdated' => 'De inhoud op deze pagina is onvolledig of verouderd. Als je kunt helpen, kun je het artikel bijwerken!',
-        'languages' => 'Talen',
         'missing' => 'Gevraagde pagina ":keyword" kon niet worden gevonden.',
         'missing_title' => 'Niet Gevonden',
         'missing_translation' => 'De opgevraagde pagina kon niet gevonden worden in de geselecteerde taal.',
@@ -40,5 +39,9 @@ return [
 
             'default' => 'Engelse versie',
         ],
+    ],
+    'main' => [
+        'title' => 'Kennisbank',
+        'subtitle' => 'omdat osu!pedia dom klinkt',
     ],
 ];

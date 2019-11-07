@@ -53,6 +53,7 @@ Route::group(['prefix' => 'beatmaps'], function () {
     // featured artists
     Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
     Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
+    Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
 });
 Route::get('beatmaps/{beatmap}/scores', 'BeatmapsController@scores')->name('beatmaps.scores');
 Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
@@ -171,8 +172,8 @@ Route::group(['prefix' => 'home'], function () {
         Route::post('avatar', 'AccountController@avatar')->name('avatar');
         Route::post('cover', 'AccountController@cover')->name('cover');
         Route::put('email', 'AccountController@updateEmail')->name('email');
+        Route::put('notification-options', 'AccountController@updateNotificationOptions')->name('notification-options');
         Route::put('options', 'AccountController@updateOptions')->name('options');
-        Route::put('page', 'AccountController@updatePage')->name('page');
         Route::put('password', 'AccountController@updatePassword')->name('password');
         Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
         Route::resource('sessions', 'Account\SessionsController', ['only' => ['destroy']]);
@@ -231,6 +232,9 @@ Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled')
 Route::get('users/{user}/card', 'UsersController@card')->name('users.card');
 
 // extras
+Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
+    Route::put('page', 'UsersController@updatePage')->name('page');
+});
 Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
 Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->name('users.recent-activity');
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
@@ -415,8 +419,10 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('/regenerate-beatmapset-covers/{beatmapset}', 'LegacyInterOpController@regenerateBeatmapsetCovers');
     Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
+    Route::post('user-send-message', 'LegacyInterOpController@userSendMessage');
     Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
     Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
+    Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
 });
 
@@ -425,6 +431,7 @@ route_redirect('/', 'home');
 
 // redirects go here
 route_redirect('forum/p/{post}', 'forum.posts.show');
+route_redirect('po/{post}', 'forum.posts.show');
 route_redirect('forum/t/{topic}', 'forum.topics.show');
 route_redirect('forum/{forum}', 'forum.forums.show');
 // redirects to beatmapset anyways so there's no point

@@ -70,7 +70,7 @@
 
     padding-right: 15px;
 
-    color: #fff;
+    color: @osu-colour-c1;
 
     @media @desktop {
       font-size: @font-size--title-small;
@@ -90,7 +90,7 @@
 
   &__metadata {
     font-style: italic;
-    color: #ffffff;
+    color: @osu-colour-c1;
     .default-text-shadow;
 
     margin: 0;
@@ -132,9 +132,9 @@
 
   &__player-scores {
     padding: 10px;
-    background-color: #eee;
+    background-color: @osu-colour-b3;
 
-    &--no-teams {
+    &--no-teams, &:last-child {
       border-radius: 0 0 @border-radius-base @border-radius-base;
     }
   }
@@ -143,7 +143,7 @@
     width: 100%;
     height: 125px;
 
-    background-color: #ffffff;
+    background-color: @osu-colour-b2;
 
     margin-bottom: 5px;
 
@@ -160,14 +160,16 @@
     flex-direction: row;
 
     width: 100%;
-    background-color: #eee;
+    background-color: @osu-colour-b3;
 
     @media @desktop {
       justify-content: space-between;
       height: 90px;
     }
 
-    border-radius: 0 0 @border-radius-base @border-radius-base;
+    &:last-child {
+      border-radius: 0 0 @border-radius-base @border-radius-base;
+    }
   }
 
   &__team-score {
@@ -200,12 +202,13 @@
     &--name {
       font-size: 15px;
       font-weight: 600;
+      color: @osu-colour-c1;
     }
 
     &--score {
       font-size: 26px;
       font-style: italic;
-      color: @pink-text;
+      color: @osu-colour-c2;
 
       @media @desktop {
         font-size: 30px;
@@ -218,7 +221,7 @@
     align-items: center;
     justify-content: center;
 
-    background-color: #ddd;
+    background-color: @osu-colour-b4;
 
     min-height: 45px;
     padding: 0 20px;
@@ -230,6 +233,7 @@
     font-size: 18px;
     font-style: italic;
     font-weight: 600;
+    color: @osu-colour-c1;
 
     text-align: center;
 

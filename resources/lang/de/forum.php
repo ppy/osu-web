@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'Thread wurde angepinnt und als Ankündigung markiert',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => 'Gelöschte Beiträge anzeigen',
+            'hide' => 'Gelöschte Beiträge ausblenden',
+        ],
+
         'show' => [
             'deleted-posts' => 'Gelöschte Posts',
             'total_posts' => 'Posts insgesamt',

@@ -29,6 +29,10 @@ return [
         'last_word_connector' => ', і ',
     ],
 
+    'badges' => [
+        'new' => '',
+    ],
+
     'buttons' => [
         'admin' => 'Кіраўнік',
         'back_to_previous' => 'Вярнуцца ў папярэднюю пазіцыю',
@@ -112,6 +116,10 @@ return [
 
     'dropzone' => [
         'target' => 'каб загрузіць, перацягніце сюды',
+    ],
+
+    'input' => [
+        'search' => '',
     ],
 
     'pagination' => [

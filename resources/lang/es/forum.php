@@ -25,7 +25,7 @@ return [
     'title' => 'foros de osu!',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Editar portada',
 
         'create' => [
             '_' => 'Establecer imagen de portada',
@@ -75,7 +75,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Nueva respuesta',
             ],
         ],
 
@@ -105,7 +105,7 @@ return [
         'started_by_verbose' => 'iniciado por :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Cerrar',
             'preview' => 'Previsualizar',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -275,6 +275,11 @@ return [
             'to_2_done' => 'El tema ya ha sido fijado y marcado como anuncio',
         ],
 
+        'moderate_toggle_deleted' => [
+            'show' => 'Enseñar publicaciones eliminadas',
+            'hide' => 'Esconder publicaciones eliminadas',
+        ],
+
         'show' => [
             'deleted-posts' => 'Publicaciones eliminadas',
             'total_posts' => 'Publicaciones totales',
@@ -297,15 +302,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Editar encuesta',
+                'edit_warning' => '¡Editar una encuesta eliminará los resultados actuales!',
                 'vote' => 'Votar',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Cambiar voto',
+                    'edit' => 'Editar encuesta',
+                    'view_results' => 'Saltar a resultados',
+                    'vote' => 'Votar',
                 ],
 
                 'detail' => [
