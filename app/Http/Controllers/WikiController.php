@@ -40,9 +40,10 @@ class WikiController extends Controller
             return $this->showImage($path);
         }
 
-        $page = new Wiki\Page($path, $this->locale());
+        $locale = $this->locale();
+        $page = Wiki\Page::lookupForController($path, $locale);
 
-        if ($page->get() === null) {
+        if (!$page->isVisible()) {
             $redirectTarget = (new WikiRedirect())->resolve($path);
             if ($redirectTarget !== null && $redirectTarget !== $path) {
                 return ujs_redirect(wiki_url('').'/'.ltrim($redirectTarget, '/'));
@@ -56,7 +57,7 @@ class WikiController extends Controller
             $status = 404;
         }
 
-        return response()->view($page->template(), compact('page'), $status ?? 200);
+        return response()->view($page->template(), compact('page', 'locale'), $status ?? 200);
     }
 
     public function update($path)

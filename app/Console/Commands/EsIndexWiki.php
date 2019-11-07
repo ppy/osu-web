@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Jobs\EsDeleteDocument;
-use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\Search\BasicSearch;
@@ -42,14 +41,9 @@ class EsIndexWiki extends Command
             $response = $search->response();
 
             foreach ($response as $hit) {
-                $page = new Page(null, null, $hit->source());
-                if ($page->get() === null) {
-                    continue;
-                }
-
-                if ($page->getContent(true) !== null) {
-                    (new EsIndexDocument($page))->handle();
-                } else {
+                $page = Page::fromSource($hit->source());
+                $page->sync(true);
+                if (!$page->isVisible()) {
                     (new EsDeleteDocument($page))->handle();
                 }
 

@@ -20,23 +20,21 @@
 
 namespace App\Models\Wiki;
 
-use App;
 use App\Exceptions\GitHubNotFoundException;
-use App\Jobs\EsDeleteDocument;
-use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
+use App\Libraries\Wiki\MainPageRenderer;
+use App\Libraries\Wiki\MarkdownRenderer;
 use Carbon\Carbon;
 use Exception;
 use Log;
 
-class Page implements WikiObject
+class Page
 {
-    // in minutes
-    const REINDEX_AFTER = 300;
+    const CACHE_DURATION = 5 * 60 * 60;
     const VERSION = 1;
 
     const TEMPLATES = [
@@ -45,18 +43,17 @@ class Page implements WikiObject
     ];
 
     const RENDERERS = [
-        'markdown_page' => App\Libraries\Wiki\MarkdownRenderer::class,
-        'main_page' => App\Libraries\Wiki\MainPageRenderer::class,
+        'markdown_page' => MarkdownRenderer::class,
+        'main_page' => MainPageRenderer::class,
     ];
 
     public $locale;
-    public $requestedLocale;
+    public $path;
 
-    private $cache = [];
-    private $defaultTitle;
     private $defaultSubtitle;
-
-    private $source; // source document from elasticsearch;
+    private $defaultTitle;
+    private $source;
+    private $page;
 
     public static function cleanupPath($path)
     {
@@ -71,6 +68,38 @@ class Page implements WikiObject
         ], $params);
     }
 
+    public static function fromSource($source)
+    {
+        $path = $source['path'];
+        $locale = $source['locale'];
+
+        $page = new static($path, $locale);
+        $page->setSource($source);
+
+        return $page;
+    }
+
+    public static function lookup($path, $locale)
+    {
+        $page = new static($path, $locale);
+        $page->esFetch();
+
+        return $page;
+    }
+
+    public static function lookupForController($path, $locale)
+    {
+        $page = static::lookup($path, $locale);
+        $page->sync();
+
+        if (!$page->isVisible() && $page->isTranslation()) {
+            $page = static::lookup($path, config('app.fallback_locale'));
+            $page->sync();
+        }
+
+        return $page;
+    }
+
     public static function searchPath($path, $locale)
     {
         $searchPath = static::cleanupPath($path);
@@ -80,7 +109,7 @@ class Page implements WikiObject
                 'boost' => 1000,
                 'filter' => [
                     'match' => [
-                        'locale' => $locale ?? App::getLocale(),
+                        'locale' => $locale ?? app()->getLocale(),
                     ],
                 ],
             ]],
@@ -117,17 +146,9 @@ class Page implements WikiObject
         }
     }
 
-    public function __construct($path, $locale, $esCache = null)
+    public function __construct($path, $locale)
     {
-        $this->source = $esCache;
-        if ($esCache !== null) {
-            $path = $esCache['path'];
-            $locale = $esCache['locale'];
-            $this->cache['page'] = json_decode($esCache['page'], true);
-        }
-
         $this->path = OsuWiki::cleanPath($path);
-        $this->requestedLocale = $locale;
         $this->locale = $locale;
 
         $defaultTitles = explode('/', str_replace('_', ' ', $this->path));
@@ -140,49 +161,6 @@ class Page implements WikiObject
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
     }
 
-    public function esIndexDocument()
-    {
-        $params = static::searchIndexConfig();
-
-        if ($this->get() === null) {
-            $this->log('index document empty');
-
-            $params['body'] = [
-                'locale' => null,
-                'page' => null,
-                'page_text' => null,
-                'path' => null,
-                'path_clean' => null,
-                'title' => null,
-                'tags' => [],
-            ];
-        } else {
-            $this->log('index document');
-
-            $content = $this->getContent();
-
-            $rendererClass = $this->renderer();
-            $indexContent = (new $rendererClass($this, $content))->renderIndexable();
-
-            $params['body'] = [
-                'locale' => $this->locale,
-                'page' => json_encode($this->get()),
-                'page_text' => $indexContent,
-                'path' => $this->path,
-                'path_clean' => static::cleanupPath($this->path),
-                'title' => strip_tags($this->title()),
-                'tags' => $this->tags(),
-                'layout' => $this->layout(),
-            ];
-        }
-
-        $params['id'] = $this->pagePath();
-        $params['body']['indexed_at'] = json_time(Carbon::now());
-        $params['body']['version'] = static::VERSION;
-
-        return Es::getClient()->index($params);
-    }
-
     public function esDeleteDocument()
     {
         $this->log('delete document');
@@ -193,44 +171,56 @@ class Page implements WikiObject
         ]));
     }
 
-    /**
-     * Gets the markdown content for the page from Github.
-     *
-     * @param bool $force Force any cached value to refresh.
-     * @return string|null
-     */
-    public function getContent(bool $force = false)
+    public function esIndexDocument()
     {
-        $key = "content_{$this->locale}";
-        if (!array_key_exists($key, $this->cache) || $force) {
-            try {
-                $this->log('fetch');
-
-                $this->cache[$key] = OsuWiki::fetchContent('wiki/'.$this->pagePath());
-            } catch (GitHubNotFoundException $e) {
-                $this->log('not found');
-
-                $this->cache[$key] = null;
-            }
+        if ($this->page === null) {
+            $this->log('index document empty');
+        } else {
+            $this->log('index document');
         }
 
-        return $this->cache[$key];
+        return Es::getClient()->index(static::searchIndexConfig([
+            'id' => $this->pagePath(),
+            'body' => $this->source,
+        ]));
     }
 
-    public function getSource()
+    public function esFetch()
     {
-        return $this->source;
+        $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), 'wiki_page_lookup'))
+            ->source(['page', 'indexed_at', 'version'])
+            ->query([
+                'term' => [
+                    '_id' => $this->pagePath(),
+                ],
+            ])
+            ->response();
+
+        if ($response->total() > 0) {
+            $this->setSource($response[0]->source());
+        }
     }
 
-    public function isOutdated() : bool
+    public function get()
     {
-        return $this->get()['header']['outdated'] ?? false;
+        return $this->page;
+    }
+
+    public function hasParent()
+    {
+        return $this->parentPath() !== null
+            && static::lookup($this->parentPath(), $this->locale)->isVisible();
     }
 
     public function isLegalTranslation() : bool
     {
         return $this->isTranslation()
-            && ($this->get()['header']['legal'] ?? false);
+            && ($this->page['header']['legal'] ?? false);
+    }
+
+    public function isOutdated() : bool
+    {
+        return $this->page['header']['outdated'] ?? false;
     }
 
     public function isTranslation() : bool
@@ -238,91 +228,36 @@ class Page implements WikiObject
         return $this->locale !== config('app.fallback_locale');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function get($synchronous = false)
+    public function isVisible()
     {
-        if (!array_key_exists('page', $this->cache)) {
-            foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
-                $this->locale = $locale;
+        return $this->page !== null;
+    }
 
-                $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), 'wiki_page_lookup'))
-                    ->source(['page', 'indexed_at', 'version'])
-                    ->query([
-                        'term' => [
-                            '_id' => $this->pagePath(),
-                        ],
-                    ])
-                    ->response();
+    public function layout($layout = null)
+    {
+        $layout = presence($layout)
+            ?? presence($this->page['header']['layout'] ?? null)
+            ?? 'markdown_page';
 
-                $page = null;
-                $fetch = true;
-
-                if ($response->total() > 0) {
-                    $result = $response[0]->source();
-                    $expired = Carbon
-                        ::parse($result['indexed_at'])
-                        ->addMinutes(static::REINDEX_AFTER)
-                        ->isPast();
-                    $wrongVersion = $result['version'] !== static::VERSION;
-                    $fetch = $expired || $wrongVersion;
-
-                    if (!$fetch) {
-                        $pageString = $result['page'] ?? null;
-                        $page = json_decode($pageString, true);
-                    }
-                }
-
-                if ($fetch) {
-                    try {
-                        $body = $this->getContent();
-                    } catch (Exception $e) {
-                        $body = null;
-                        $index = false;
-                        log_error($e);
-                    }
-
-                    if (present($body)) {
-                        // prefilling the header so layout() works
-                        $this->cache['page']['header'] = OsuMarkdown::parseYamlHeader($body)['header'];
-
-                        $rendererClass = $this->renderer();
-
-                        $page = (new $rendererClass($this, $body))->render();
-                    }
-                }
-
-                $this->cache['page'] = $page;
-
-                if ($fetch && ($index ?? true)) {
-                    $job = new EsIndexDocument($this);
-
-                    if ($synchronous) {
-                        $job->handle();
-                    } else {
-                        dispatch($job);
-                    }
-                }
-
-                if ($page !== null) {
-                    break;
-                }
-            }
+        if (!array_key_exists($layout, static::RENDERERS)) {
+            throw new Exception('Invalid wiki page type');
         }
 
-        return $this->cache['page'];
+        return $layout;
+    }
+
+    public function needsSync()
+    {
+        return $this->source === null
+            || Carbon::parse($this->source['indexed_at'])
+                ->addSeconds(static::CACHE_DURATION)
+                ->isPast()
+            || $this->source['version'] !== static::VERSION;
     }
 
     public function pagePath()
     {
         return $this->path.'/'.$this->locale.'.md';
-    }
-
-    public function hasParent()
-    {
-        return $this->parentPath() !== null
-            && (new static($this->parentPath(), $this->requestedLocale))->get() !== null;
     }
 
     public function parentPath()
@@ -332,84 +267,104 @@ class Page implements WikiObject
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function forget($synchronous = false)
+    public function setSource($source)
     {
-        unset($this->cache['page']);
+        $this->source = $source;
+        $page = $source['page'] ?? null;
 
-        $job = new EsDeleteDocument($this);
-
-        if ($synchronous) {
-            $job->handle();
-        } else {
-            dispatch($job);
+        if ($page !== null) {
+            $this->page = json_decode($source['page'], true);
         }
+    }
+
+    public function subtitle()
+    {
+        if ($this->page === null) {
+            return;
+        }
+
+        return presence($this->page['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
+    }
+
+    public function sync($force = false)
+    {
+        if (!$force && !$this->needsSync()) {
+            return;
+        }
+
+        try {
+            $this->log('fetch');
+
+            $content = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+        } catch (GitHubNotFoundException $e) {
+            $this->log('not found');
+        } catch (Exception $e) {
+            // log and do nothing
+            log_error($e);
+
+            return;
+        }
+
+        $source = [
+            'locale' => null,
+            'page' => null,
+            'page_text' => null,
+            'path' => null,
+            'path_clean' => null,
+            'tags' => [],
+            'title' => null,
+            'indexed_at' => json_time(now()),
+            'version' => static::VERSION,
+        ];
+
+        if (isset($content)) {
+            $layout = OsuMarkdown::parseYamlHeader($content)['header']['layout'] ?? null;
+            $layout = $this->layout($layout);
+            $rendererClass = static::RENDERERS[$layout];
+            $contentRenderer = (new $rendererClass($this, $content));
+
+            $this->page = $contentRenderer->render();
+            $pageIndex = $contentRenderer->renderIndexable();
+
+            $source['locale'] = $this->locale;
+            $source['page'] = json_encode($this->page);
+            $source['page_text'] = $pageIndex;
+            $source['path'] = $this->path;
+            $source['path_clean'] = static::cleanupPath($this->path);
+            $source['title'] = strip_tags($this->title());
+            $source['tags'] = $this->tags();
+            $source['layout'] = $layout;
+        }
+
+        $this->source = $source;
+        $this->esIndexDocument();
     }
 
     public function tags()
     {
-        return $this->get()['header']['tags'] ?? [];
+        return $this->page['header']['tags'] ?? [];
+    }
+
+    public function template()
+    {
+        return $this->page === null
+            ? static::TEMPLATES['markdown_page']
+            : static::TEMPLATES[$this->layout()];
     }
 
     public function title($withSubtitle = false)
     {
-        if ($this->get() === null) {
+        if ($this->page === null) {
             return trans('wiki.show.missing_title');
         }
 
-        $title = presence($this->get()['header']['title'] ?? null) ?? $this->defaultTitle;
+        $title = presence($this->page['header']['title'] ?? null) ?? $this->defaultTitle;
 
         if ($withSubtitle && present($this->subtitle())) {
             $title = $this->subtitle().' / '.$title;
         }
 
         return $title;
-    }
-
-    public function subtitle()
-    {
-        if ($this->get() === null) {
-            return;
-        }
-
-        return presence($this->get()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
-    }
-
-    public function layout()
-    {
-        if ($this->get() === null) {
-            return;
-        }
-
-        return presence($this->get()['header']['layout'] ?? null) ?? 'markdown_page';
-    }
-
-    public function template()
-    {
-        if ($this->get() === null) {
-            return static::TEMPLATES['markdown_page'];
-        }
-
-        if (!array_key_exists($this->layout(), static::TEMPLATES)) {
-            throw new \Exception('Invalid wiki page type');
-        }
-
-        return static::TEMPLATES[$this->layout()];
-    }
-
-    public function renderer()
-    {
-        if ($this->get() === null) {
-            return;
-        }
-
-        if (!array_key_exists($this->layout(), static::RENDERERS)) {
-            throw new \Exception('Invalid wiki page type');
-        }
-
-        return static::RENDERERS[$this->layout()];
     }
 
     private function log($action)
