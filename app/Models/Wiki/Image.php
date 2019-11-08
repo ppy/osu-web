@@ -24,73 +24,91 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuWiki;
 use Exception;
 
-class Image implements WikiObject
+class Image
 {
-    // in seconds
-    const CACHE_DURATION = 7200;
+    const CACHE_DURATION = 2 * 60 * 60;
 
     public $path;
-    public $url;
-    public $referrer;
 
-    private $cache = [];
+    private $cache;
 
-    public function __construct($path, $url = null, $referrer = null)
+    public static function lookupForController($path, $url = null, $referrer = null)
+    {
+        $url = presence($url);
+        $referrer = presence($referrer);
+        $image = (new static($path))->sync();
+
+        if (!$image->isVisible()) {
+            if ($url !== null && $referrer !== null && starts_with($url, $referrer)) {
+                $newPath = 'shared/'.substr($url, strlen($referrer));
+
+                return (new static($newPath))->sync();
+            }
+        }
+
+        return $image;
+    }
+
+    public function __construct($path)
     {
         $this->path = OsuWiki::cleanPath($path);
-        $this->url = presence($this->url);
-        $this->referrer = presence($this->referrer);
+        $this->cache = cache()->get($this->cacheKeyData());
     }
 
     public function cacheKeyData()
     {
-        return 'wiki:image:data:'.$this->path;
+        return 'wiki:image:data:v2:'.$this->path;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function get($synchronous = false)
+    public function get()
     {
-        if (!array_key_exists('data', $this->cache)) {
-            $this->cache['data'] = cache_remember_with_fallback($this->cacheKeyData(), static::CACHE_DURATION, function () {
-                try {
-                    $data = OsuWiki::fetchContent('wiki/'.$this->path);
-                    $type = image_type_to_mime_type(
-                        read_image_properties_from_string($data)[2] ?? null
-                    );
+        return $this->cache['data'] ?? null;
+    }
 
-                    return compact('data', 'type');
-                } catch (Exception $e) {
-                    if ($e instanceof GitHubNotFoundException) {
-                        // try alternative path
-                        if (
-                            $this->url !== null &&
-                            $this->referrer !== null &&
-                            starts_with($this->url, $this->referrer)
-                        ) {
-                            $newPath = 'shared/'.substr($this->url, strlen($this->referrer));
+    public function isVisible()
+    {
+        return $this->get() !== null;
+    }
 
-                            return (new static($newPath))->get();
-                        }
-                        // return nothing otherwise
-                    } else {
-                        // throw everything else
-                        throw $e;
-                    }
-                }
-            });
+    public function needsSync()
+    {
+        return $this->cache === null
+            || ($this->cache['cached_at'] + static::CACHE_DURATION) < time();
+    }
+
+    public function sync($force = false)
+    {
+        if (!$force && !$this->needsSync()) {
+            return $this;
         }
 
-        return $this->cache['data'];
-    }
+        $lock = cache()->lock($this->cacheKeyData().':lock', 300);
 
-    /**
-     * {@inheritdoc}
-     */
-    public function forget($synchronous = false)
-    {
-        cache_forget_with_fallback($this->cacheKeyData());
-        unset($this->cache['data']);
+        if (!$lock->get()) {
+            return $this;
+        }
+
+        try {
+            $content = OsuWiki::fetchContent('wiki/'.$this->path);
+            $type = image_type_to_mime_type(
+                read_image_properties_from_string($content)[2] ?? null
+            );
+
+            $data = compact('content', 'type');
+        } catch (GitHubNotFoundException $e) {
+            // do nothing and cache empty data
+        } catch (Exception $e) {
+            log_error($e);
+
+            return $this;
+        }
+
+        $this->cache = [
+            'data' => $data ?? null,
+            'cached_at' => time(),
+        ];
+        cache()->put($this->cacheKeyData(), $this->cache);
+
+        return $this;
     }
 }
