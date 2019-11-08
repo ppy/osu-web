@@ -94,6 +94,7 @@ return [
             'success-rate' => 'Success Rate',
             'tags' => 'Tags',
             'unranked' => 'Unranked beatmap',
+            'convert' => 'Sorry, we don\'t store difficulty data for converted beatmaps.',
         ],
 
         'scoreboard' => [

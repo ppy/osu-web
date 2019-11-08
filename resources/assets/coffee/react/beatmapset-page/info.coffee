@@ -214,42 +214,41 @@ export class Info extends React.Component
               '...' if tagsOverload
 
       div className: 'beatmapset-info__box beatmapset-info__box--success-rate',
-        if !@props.beatmapset.is_scoreable
+        if @props.beatmap.playcount > 0
+          percentage = _.round((@props.beatmap.passcount / @props.beatmap.playcount) * 100, 1)
+          div className: 'beatmap-success-rate',
+            h3
+              className: 'beatmap-success-rate__header'
+              osu.trans 'beatmapsets.show.info.success-rate'
+
+            div className: 'bar bar--beatmap-success-rate',
+              div
+                className: 'bar__fill'
+                style:
+                  width: "#{percentage}%"
+
+            div
+              className: 'beatmap-success-rate__percentage'
+              title: "#{osu.formatNumber(@props.beatmap.passcount)} / #{osu.formatNumber(@props.beatmap.playcount)}"
+              'data-tooltip-position': 'bottom center'
+              style:
+                marginLeft: "#{percentage}%"
+              "#{percentage}%"
+
+            h3
+              className: 'beatmap-success-rate__header'
+              osu.trans 'beatmapsets.show.info.points-of-failure'
+
+            div
+              className: 'beatmap-success-rate__chart'
+              ref: 'chartArea'
+        else
           div className: 'beatmap-success-rate',
             div
               className: 'beatmap-success-rate__empty'
-              osu.trans 'beatmapsets.show.info.unranked'
-        else
-          if @props.beatmap.playcount > 0
-            percentage = _.round((@props.beatmap.passcount / @props.beatmap.playcount) * 100, 1)
-            div className: 'beatmap-success-rate',
-              h3
-                className: 'beatmap-success-rate__header'
-                osu.trans 'beatmapsets.show.info.success-rate'
+              osu.trans 'beatmapsets.show.info.no_scores'
 
-              div className: 'bar bar--beatmap-success-rate',
-                div
-                  className: 'bar__fill'
-                  style:
-                    width: "#{percentage}%"
-
-              div
-                className: 'beatmap-success-rate__percentage'
-                title: "#{osu.formatNumber(@props.beatmap.passcount)} / #{osu.formatNumber(@props.beatmap.playcount)}"
-                'data-tooltip-position': 'bottom center'
-                style:
-                  marginLeft: "#{percentage}%"
-                "#{percentage}%"
-
-              h3
-                className: 'beatmap-success-rate__header'
-                osu.trans 'beatmapsets.show.info.points-of-failure'
-
-              div
-                className: 'beatmap-success-rate__chart'
-                ref: 'chartArea'
-          else
-            div className: 'beatmap-success-rate',
-              div
-                className: 'beatmap-success-rate__empty'
-                osu.trans 'beatmapsets.show.info.no_scores'
+        if !@props.beatmapset.is_scoreable || @props.beatmap.convert
+          div
+            className: 'beatmap-success-rate__empty'
+            osu.trans "beatmapsets.show.info.#{if !@props.beatmapset.is_scoreable then 'unranked' else 'convert'}"

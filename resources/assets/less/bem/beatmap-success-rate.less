@@ -39,9 +39,19 @@
   }
 
   &__empty {
+    position: absolute;
+    left: 0;
+    top: 0;
+
     .center-content();
+    text-align: center;
     flex: 1;
-    margin: 20px 0;
+    padding: 20px;
+
+    background-color: @osu-colour-b4;
+
+    width: 100%;
+    height: 100%;
   }
 
   &__header {
