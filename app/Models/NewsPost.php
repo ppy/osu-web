@@ -251,11 +251,20 @@ class NewsPost extends Model implements Commentable
             return;
         }
 
+        $path = "news/{$this->filename()}";
+        $pathMissingKey = "osu_wiki:not_found:{$path}";
+
+        if (!$force && cache()->get($pathMissingKey) !== null) {
+            return $this;
+        }
+
         try {
-            $file = new OsuWiki("news/{$this->filename()}");
+            $file = new OsuWiki($path);
         } catch (GitHubNotFoundException $e) {
             if ($this->exists) {
                 $this->update(['published_at' => null]);
+            } else {
+                cache()->put($pathMissingKey, 1, 300);
             }
 
             return;
