@@ -16,30 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
-import ItemProps from './item-props';
-
-interface State {
-  markingAsRead: boolean;
-}
-
 export interface WithMarkReadProps {
   markingAsRead: boolean;
   markRead: () => void;
-}
-
-export function withMarkRead(Component: React.ComponentType<ItemProps & WithMarkReadProps>) {
-  return class extends React.Component<ItemProps, State> {
-    state = {
-      markingAsRead: false,
-    };
-
-    render() {
-      return (
-        <Component
-          {...this.props}
-        />
-      );
-    }
-  };
 }

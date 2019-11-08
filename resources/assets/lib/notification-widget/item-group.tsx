@@ -25,13 +25,14 @@ import * as React from 'react';
 import Item from './item';
 import ItemCompact from './item-compact';
 import ItemProps from './item-props';
-import { withMarkRead, WithMarkReadProps } from './with-mark-read';
+import { WithMarkReadProps } from './with-mark-read';
 
 interface State {
   expanded: boolean;
 }
 
-export default withMarkRead(observer(class ItemGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
+@observer
+export default class ItemGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
   state = {
     expanded: false,
   };
@@ -84,7 +85,7 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
   private renderItem = (item: Notification) => {
     return (
       <div className='notification-popup-item-group__item' key={item.id}>
-        <ItemCompact item={item} items={[item]} worker={this.props.worker} />
+        <ItemCompact item={item} items={[item]} worker={this.props.worker} markRead={this.props.markRead} markingAsRead={this.props.markingAsRead} />
       </div>
     );
   }
@@ -100,4 +101,4 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
   private toggleExpand = () => {
     this.setState({ expanded: !this.state.expanded });
   }
-}));
+}

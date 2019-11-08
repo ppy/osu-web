@@ -33,7 +33,8 @@ interface Props extends WithMarkReadProps {
   withCoverImage: boolean;
 }
 
-export default observer(class Item extends React.Component<Props> {
+@observer
+export default class Item extends React.Component<Props> {
   render() {
     return (
       <div className={this.blockClass()} onClick={this.handleContainerClick}>
@@ -166,4 +167,4 @@ export default observer(class Item extends React.Component<Props> {
       />
     );
   }
-});
+}

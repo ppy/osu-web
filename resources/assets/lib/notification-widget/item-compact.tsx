@@ -23,9 +23,10 @@ import { urlSingular } from 'notification-maps/url';
 import * as React from 'react';
 import Item from './item';
 import ItemProps from './item-props';
-import { withMarkRead, WithMarkReadProps } from './with-mark-read';
+import { WithMarkReadProps } from './with-mark-read';
 
-export default withMarkRead(observer(class ItemCompact extends React.Component<ItemProps & WithMarkReadProps> {
+@observer
+export default class ItemCompact extends React.Component<ItemProps & WithMarkReadProps> {
   render() {
     return (
       <Item
@@ -46,4 +47,4 @@ export default withMarkRead(observer(class ItemCompact extends React.Component<I
   private handleMarkAsRead = () => {
     this.props.item.markAsRead();
   }
-}));
+}

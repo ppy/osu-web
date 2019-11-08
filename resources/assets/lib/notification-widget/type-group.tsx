@@ -25,7 +25,7 @@ import { Spinner } from 'spinner';
 import ItemGroup from './item-group';
 import ItemProps from './item-props';
 import ItemSingular from './item-singular';
-import { withMarkRead, WithMarkReadProps } from './with-mark-read';
+import { WithMarkReadProps } from './with-mark-read';
 
 interface State {
   markingAsRead: boolean;
@@ -33,7 +33,8 @@ interface State {
 
 const bn = 'notification-type-group';
 
-export default withMarkRead(observer(class TypeGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
+@observer
+export default class TypeGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
 
   render() {
     if (this.props.items.length === 0) {
@@ -99,7 +100,7 @@ export default withMarkRead(observer(class TypeGroup extends React.Component<Ite
 
       items.push((
         <div className={`${bn}__item`} key={key}>
-          <Component item={value[0]} items={value} worker={this.props.worker} />
+          <Component item={value[0]} items={value} worker={this.props.worker} markRead={this.props.markRead} markingAsRead={this.props.markingAsRead} />
         </div>
       ));
     });
@@ -149,4 +150,4 @@ export default withMarkRead(observer(class TypeGroup extends React.Component<Ite
       </span>
     );
   }
-}));
+}
