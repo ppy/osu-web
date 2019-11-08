@@ -115,7 +115,7 @@ export default observer(class Item extends React.Component<Props> {
       return null;
     }
 
-    if (this.props.markingAsRead) {
+    if (this.props.item.isMarkingAsRead) {
       return (
         <div className='notification-popup-item__read-button'>
           <Spinner />

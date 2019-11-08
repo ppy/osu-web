@@ -41,7 +41,7 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
       <div className='notification-popup-item-group'>
         <Item
           canMarkRead={this.props.canMarkRead}
-          markRead={this.props.markRead}
+          markRead={this.handleMarkAsRead}
           markReadFallback={this.props.markReadFallback}
           markingAsRead={this.props.markingAsRead}
 
@@ -57,6 +57,10 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
         {this.renderItems()}
       </div>
     );
+  }
+
+  private handleMarkAsRead = () => {
+    this.props.items.forEach((item) => item.markAsRead());
   }
 
   private renderExpandButton() {

@@ -30,7 +30,7 @@ export default withMarkRead(observer(class ItemCompact extends React.Component<I
     return (
       <Item
         canMarkRead={this.props.canMarkRead}
-        markRead={this.props.markRead}
+        markRead={this.handleMarkAsRead}
         markReadFallback={this.props.markReadFallback}
         markingAsRead={this.props.markingAsRead}
 
@@ -43,5 +43,9 @@ export default withMarkRead(observer(class ItemCompact extends React.Component<I
         withCoverImage={false}
       />
     );
+  }
+
+  private handleMarkAsRead = () => {
+    this.props.item.markAsRead();
   }
 }));

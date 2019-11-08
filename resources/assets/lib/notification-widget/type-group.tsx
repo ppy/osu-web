@@ -34,6 +34,7 @@ interface State {
 const bn = 'notification-type-group';
 
 export default withMarkRead(observer(class TypeGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
+
   render() {
     if (this.props.items.length === 0) {
       return null;
@@ -57,6 +58,10 @@ export default withMarkRead(observer(class TypeGroup extends React.Component<Ite
         </div>
       </div>
     );
+  }
+
+  private handleMarkAllAsRead = () => {
+    this.props.items.forEach((item) => item.markAsRead());
   }
 
   private renderItems() {
@@ -123,7 +128,7 @@ export default withMarkRead(observer(class TypeGroup extends React.Component<Ite
       <button
         className={markAllReadClass}
         type='button'
-        onClick={this.props.markRead}
+        onClick={this.handleMarkAllAsRead}
       >
         {markingAsReadSpinner}
         {osu.trans('notifications.mark_all_read')}
