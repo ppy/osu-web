@@ -21,15 +21,17 @@ import * as React from 'react';
 
 interface Props {
   label?: string;
-  modifiers: string[];
+  showIcon: boolean;
   value: string;
+  valueAsUrl: boolean;
 }
 
 const bn = 'click-to-copy';
 
 export default class ClickToCopy extends React.Component<Props, {}> {
   static defaultProps = {
-    modifiers: [],
+    showIcon: false,
+    valueAsUrl: false,
   };
 
   // TODO: figure out if possible to use the qtip typescript types
@@ -72,16 +74,16 @@ export default class ClickToCopy extends React.Component<Props, {}> {
 
     return (
       <a
-        className={osu.classWithModifiers(bn, this.props.modifiers)}
+        className={bn}
         data-tooltip-pin-position={true}
         data-tooltip-position='bottom center'
         data-tooltip-hide-events='mouseleave'
-        href='#'
+        href={this.props.valueAsUrl ? this.props.value : '#'}
         onClick={this.click}
         title={osu.trans('common.buttons.click_to_copy')}
       >
         {this.props.label || this.props.value}
-        <i className={`fas fa-paste ${bn}__icon`}/>
+        {this.props.showIcon && <i className={`fas fa-paste ${bn}__icon`}/>}
       </a>
     );
   }

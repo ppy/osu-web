@@ -48,7 +48,7 @@ export class Links extends React.PureComponent
     discord: (val) ->
       icon: 'fab fa-discord'
       text:
-        el ClickToCopy, value: val, modifiers: ['profile-header-extra']
+        el ClickToCopy, value: val, showIcon: true
     interests: ->
       icon: 'far fa-heart'
     skype: (val) ->
