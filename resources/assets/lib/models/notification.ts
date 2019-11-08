@@ -19,6 +19,7 @@
 import NotificationJson from 'interfaces/notification-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import { debounce } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import { categoryGroupKey, nameToCategory } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
@@ -63,16 +64,8 @@ export default class Notification {
   @action
   markAsRead() {
     if (!this.canMarkRead) { return; }
-
     this.isMarkingAsRead = true;
-
-    return $.ajax({
-        data: { ids: [this.id] },
-        dataType: 'json',
-        method: 'POST',
-        url: route('notifications.mark-read'),
-    }).always(action(() => this.isMarkingAsRead = false))
-    .done(action(() => this.isRead = true));
+    queueMarkAsRead(this);
   }
 
   updateFromJson = (json: NotificationJson) => {
@@ -91,4 +84,44 @@ export default class Notification {
       });
     }
   }
+}
+
+const queued = new Map<number, Notification>();
+const debounced = debounce(sendQueuedMarkAsRead, 500);
+
+function queueMarkAsRead(notification: Notification) {
+  if (notification.canMarkRead) {
+    if (!queued.has(notification.id)) {
+      queued.set(notification.id, notification);
+    }
+  }
+
+  debounced();
+}
+
+function sendQueuedMarkAsRead() {
+  const ids = Array.from(queued.keys());
+  if (ids.length === 0) { return; }
+
+  return $.ajax({
+    data: { ids },
+    dataType: 'json',
+    method: 'POST',
+    url: route('notifications.mark-read'),
+  }).then(() => {
+    for (const id of ids) {
+      const notification = queued.get(id);
+      if (notification) {
+        notification.isRead = true;
+      }
+    }
+  }).always(() => {
+    for (const id of ids) {
+      const notification = queued.get(id);
+      if (notification) {
+        notification.isMarkingAsRead = false;
+        queued.delete(id);
+      }
+    }
+  });
 }
