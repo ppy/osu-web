@@ -97,12 +97,10 @@ class Page
 
     public static function lookupForController($path, $locale)
     {
-        $page = static::lookup($path, $locale);
-        $page->sync();
+        $page = static::lookup($path, $locale)->sync();
 
         if (!$page->isVisible() && $page->isTranslation()) {
-            $page = static::lookup($path, config('app.fallback_locale'));
-            $page->sync();
+            $page = static::lookup($path, config('app.fallback_locale'))->sync();
         }
 
         return $page;
@@ -308,7 +306,7 @@ class Page
     public function sync($force = false)
     {
         if (!$force && !$this->needsSync()) {
-            return;
+            return $this;
         }
 
         try {
@@ -321,7 +319,7 @@ class Page
             // log and do nothing
             log_error($e);
 
-            return;
+            return $this;
         }
 
         $source = [
@@ -354,6 +352,8 @@ class Page
 
         $this->source = $source;
         $this->esIndexDocument();
+
+        return $this;
     }
 
     public function tags()

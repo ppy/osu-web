@@ -248,7 +248,7 @@ class NewsPost extends Model implements Commentable
     public function sync($force = false)
     {
         if (!$force && !$this->needsSync()) {
-            return;
+            return $this;
         }
 
         try {
@@ -258,11 +258,11 @@ class NewsPost extends Model implements Commentable
                 $this->update(['published_at' => null]);
             }
 
-            return;
+            return $this;
         } catch (Exception $e) {
             log_error($e);
 
-            return;
+            return $this;
         }
 
         $rawPage = $file->content();
@@ -277,6 +277,8 @@ class NewsPost extends Model implements Commentable
         $this->hash = $file->data['sha'];
 
         $this->save();
+
+        return $this;
     }
 
     public function pagePublishedAt()
