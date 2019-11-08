@@ -30,14 +30,6 @@ class WikiRedirect
 
     private $cache;
 
-    public static function withSync()
-    {
-        $redirect = new static;
-        $redirect->sync();
-
-        return $redirect;
-    }
-
     public function __construct()
     {
         $this->fetchCache();
@@ -72,14 +64,14 @@ class WikiRedirect
     public function sync($force = false)
     {
         if (!$force && !$this->needsSync()) {
-            return;
+            return $this;
         }
 
         $lock = cache()->lock(static::CACHE_KEY.':lock', 300);
 
         // only one process may sync at once
         if (!$lock->get()) {
-            return;
+            return $this;
         }
 
         try {
@@ -87,7 +79,7 @@ class WikiRedirect
         } catch (Exception $e) {
             log_error($e);
 
-            return;
+            return $this;
         } finally {
             $lock->release();
         }
@@ -97,5 +89,7 @@ class WikiRedirect
             'cached_at' => time(),
         ];
         cache()->put(static::CACHE_KEY, $this->cache);
+
+        return $this;
     }
 }

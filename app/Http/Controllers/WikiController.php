@@ -43,7 +43,7 @@ class WikiController extends Controller
         $page = new Wiki\Page($path, $this->locale());
 
         if ($page->get() === null) {
-            $redirectTarget = WikiRedirect::withSync()->resolve($path);
+            $redirectTarget = (new WikiRedirect)->sync()->resolve($path);
             if ($redirectTarget !== null && $redirectTarget !== $path) {
                 return ujs_redirect(wiki_url('').'/'.ltrim($redirectTarget, '/'));
             }
