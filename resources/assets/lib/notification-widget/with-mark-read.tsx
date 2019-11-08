@@ -49,25 +49,14 @@ export function withMarkRead(Component: React.ComponentType<ItemProps & WithMark
     render() {
       return (
         <Component
-          canMarkRead={this.canMarkRead()}
-          markRead={this.markRead}
           markReadFallback={this.markReadFallback}
-          markingAsRead={this.state.markingAsRead}
           {...this.props}
         />
       );
     }
 
-    private canMarkRead = () => {
-      return this.props.item.id > 0;
-    }
-
     private markRead = () => {
       if (this.state.markingAsRead) {
-        return;
-      }
-
-      if (!this.canMarkRead()) {
         return;
       }
 

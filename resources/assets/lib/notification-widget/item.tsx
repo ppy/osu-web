@@ -111,7 +111,7 @@ export default observer(class Item extends React.Component<Props> {
   }
 
   private renderMarkAsReadButton() {
-    if (!this.props.canMarkRead) {
+    if (!this.props.item.canMarkRead) {
       return null;
     }
 

@@ -34,6 +34,10 @@ export default class Notification {
   objectType?: string;
   sourceUserId?: number;
 
+  @computed get canMarkRead() {
+    return this.id > 0;
+  }
+
   @computed get category() {
     return nameToCategory[this.name || ''];
   }
@@ -58,6 +62,8 @@ export default class Notification {
 
   @action
   markAsRead() {
+    if (!this.canMarkRead) { return; }
+
     this.isMarkingAsRead = true;
 
     return $.ajax({
