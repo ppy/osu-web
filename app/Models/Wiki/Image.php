@@ -101,6 +101,8 @@ class Image
             log_error($e);
 
             return $this;
+        } finally {
+            $lock->release();
         }
 
         $this->cache = [
