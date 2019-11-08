@@ -29,12 +29,14 @@ import { WithMarkReadProps } from './with-mark-read';
 
 interface State {
   expanded: boolean;
+  markingAsRead: boolean;
 }
 
 @observer
 export default class ItemGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
   state = {
     expanded: false,
+    markingAsRead: false,
   };
 
   render() {
@@ -42,9 +44,7 @@ export default class ItemGroup extends React.Component<ItemProps & WithMarkReadP
       <div className='notification-popup-item-group'>
         <Item
           markRead={this.handleMarkAsRead}
-          // FIXME: group markingAsRead state
-          markingAsRead={this.props.markingAsRead}
-
+          markingAsRead={this.state.markingAsRead}
           expandButton={this.renderExpandButton()}
           icons={categoryToIcons[this.props.item.category || '']}
           item={this.props.item}
@@ -60,7 +60,9 @@ export default class ItemGroup extends React.Component<ItemProps & WithMarkReadP
   }
 
   private handleMarkAsRead = () => {
-    this.props.items.forEach((item) => item.markAsRead());
+    this.setState({ markingAsRead: true });
+    const xhrs = this.props.items.map((item) => item.markAsRead());
+    Promise.all(xhrs).then(() => this.setState({ markingAsRead: false }));
   }
 
   private renderExpandButton() {
@@ -85,7 +87,7 @@ export default class ItemGroup extends React.Component<ItemProps & WithMarkReadP
   private renderItem = (item: Notification) => {
     return (
       <div className='notification-popup-item-group__item' key={item.id}>
-        <ItemCompact item={item} items={[item]} worker={this.props.worker} markRead={this.props.markRead} markingAsRead={this.props.markingAsRead} />
+        <ItemCompact item={item} items={[item]} worker={this.props.worker} />
       </div>
     );
   }

@@ -32,7 +32,6 @@ export default class ItemSingular extends React.Component<ItemProps & WithMarkRe
       <Item
         markRead={this.handleMarkAsRead}
         markingAsRead={this.props.item.isMarkingAsRead}
-
         icons={nameToIcons[this.props.item.name || '']}
         item={this.props.item}
         message={formatMessage(this.props.item)}

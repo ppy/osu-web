@@ -100,7 +100,7 @@ export default class TypeGroup extends React.Component<ItemProps & WithMarkReadP
 
       items.push((
         <div className={`${bn}__item`} key={key}>
-          <Component item={value[0]} items={value} worker={this.props.worker} markRead={this.props.markRead} markingAsRead={this.props.markingAsRead} />
+          <Component item={value[0]} items={value} worker={this.props.worker} />
         </div>
       ));
     });

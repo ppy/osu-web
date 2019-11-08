@@ -31,8 +31,6 @@ export default class ItemCompact extends React.Component<ItemProps & WithMarkRea
     return (
       <Item
         markRead={this.handleMarkAsRead}
-        markingAsRead={this.props.item.isMarkingAsRead}
-
         icons={nameToIconsCompact[this.props.item.name || '']}
         item={this.props.item}
         message={formatMessage(this.props.item, true)}

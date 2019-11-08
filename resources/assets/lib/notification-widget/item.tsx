@@ -61,7 +61,9 @@ export default class Item extends React.Component<Props> {
   private handleContainerClick = (event: React.SyntheticEvent) => {
     if (osu.isClickable(event.target as HTMLElement)) { return; }
 
-    this.props.markRead();
+    if (this.props.markRead != null) {
+      this.props.markRead();
+    }
   }
 
   private renderCategory() {
@@ -122,7 +124,7 @@ export default class Item extends React.Component<Props> {
       return null;
     }
 
-    if (this.props.item.isMarkingAsRead) {
+    if (this.props.markingAsRead != null ? this.props.markingAsRead : this.props.item.isMarkingAsRead) {
       return (
         <div className='notification-popup-item__read-button'>
           <Spinner />
