@@ -71,17 +71,17 @@ export function withMarkRead(Component: React.ComponentType<ItemProps & WithMark
         return;
       }
 
-      this.setState({ markingAsRead: true });
-      const ids = this.props.items.map((i) => i.id);
+      // this.setState({ markingAsRead: true });
+      // const ids = this.props.items.map((i) => i.id);
 
-      this.props.worker.sendMarkRead(ids)
-      .fail(() => {
-        if (!this.isComponentMounted) {
-          return;
-        }
+      this.props.items.forEach((notification) => notification.markAsRead());
+      // .fail(() => {
+      //   if (!this.isComponentMounted) {
+      //     return;
+      //   }
 
-        this.setState({ markingAsRead: false });
-      });
+      //   this.setState({ markingAsRead: false });
+      // });
     }
 
     private markReadFallback = (event: React.MouseEvent<HTMLElement>) => {

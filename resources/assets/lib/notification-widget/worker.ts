@@ -325,26 +325,6 @@ export default class Worker {
       });
   }
 
-  @action sendMarkRead = (ids: number[]) => {
-    const key = `sendMarkRead:${ids.join(':')}`;
-
-    if (this.isPendingXhr(key)) {
-      return this.xhr[key];
-    }
-
-    this.xhrLoadingState[key] = true;
-    return this.xhr[key] = $.ajax({
-        data: { ids },
-        dataType: 'json',
-        method: 'POST',
-        url: route('notifications.mark-read'),
-    }).always(action(() => {
-      this.xhrLoadingState[key] = false;
-    })).done(() => {
-      this.markRead(ids);
-    });
-  }
-
   @action setUserId = (id: number | null) => {
     if (this.active) {
       this.destroy();

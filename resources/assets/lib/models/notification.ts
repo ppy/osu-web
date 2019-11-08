@@ -17,8 +17,9 @@
  */
 
 import NotificationJson from 'interfaces/notification-json';
+import { route } from 'laroute';
 import * as _ from 'lodash';
-import { computed, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { categoryGroupKey, nameToCategory } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
 
@@ -26,7 +27,8 @@ export default class Notification {
   createdAtJson?: string;
   details?: any;
   id: number;
-  @observable isRead: boolean = false;
+  @observable isMarkingAsRead = false;
+  @observable isRead = false;
   name?: string;
   objectId?: number;
   objectType?: string;
@@ -46,6 +48,25 @@ export default class Notification {
 
   constructor(id: number) {
     this.id = id;
+  }
+
+  static fromJSON(json: NotificationJson): Notification {
+    const obj = new Notification(json.id);
+    obj.updateFromJson(json);
+    return obj;
+  }
+
+  @action
+  markAsRead() {
+    this.isMarkingAsRead = true;
+
+    return $.ajax({
+        data: { ids: [this.id] },
+        dataType: 'json',
+        method: 'POST',
+        url: route('notifications.mark-read'),
+    }).always(action(() => this.isMarkingAsRead = false))
+    .done(action(() => this.isRead = true));
   }
 
   updateFromJson = (json: NotificationJson) => {
