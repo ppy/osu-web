@@ -24,10 +24,8 @@ interface State {
 }
 
 export interface WithMarkReadProps {
-  canMarkRead: boolean;
   markingAsRead: boolean;
   markRead: () => void;
-  markReadFallback: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export function withMarkRead(Component: React.ComponentType<ItemProps & WithMarkReadProps>) {
@@ -36,47 +34,12 @@ export function withMarkRead(Component: React.ComponentType<ItemProps & WithMark
       markingAsRead: false,
     };
 
-    private isComponentMounted = false;
-
-    componentDidMount() {
-      this.isComponentMounted = true;
-    }
-
-    componentWillUnmount() {
-      this.isComponentMounted = false;
-    }
-
     render() {
       return (
         <Component
-          markReadFallback={this.markReadFallback}
           {...this.props}
         />
       );
-    }
-
-    private markRead = () => {
-      if (this.state.markingAsRead) {
-        return;
-      }
-
-      // this.setState({ markingAsRead: true });
-      // const ids = this.props.items.map((i) => i.id);
-
-      this.props.items.forEach((notification) => notification.markAsRead());
-      // .fail(() => {
-      //   if (!this.isComponentMounted) {
-      //     return;
-      //   }
-
-      //   this.setState({ markingAsRead: false });
-      // });
-    }
-
-    private markReadFallback = (event: React.MouseEvent<HTMLElement>) => {
-      if (!osu.isClickable(event.target as HTMLElement)) {
-        this.markRead();
-      }
     }
   };
 }

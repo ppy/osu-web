@@ -41,7 +41,6 @@ export default withMarkRead(observer(class ItemGroup extends React.Component<Ite
       <div className='notification-popup-item-group'>
         <Item
           markRead={this.handleMarkAsRead}
-          markReadFallback={this.props.markReadFallback}
           // FIXME: group markingAsRead state
           markingAsRead={this.props.markingAsRead}
 

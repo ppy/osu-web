@@ -30,7 +30,6 @@ export default withMarkRead(observer(class ItemCompact extends React.Component<I
     return (
       <Item
         markRead={this.handleMarkAsRead}
-        markReadFallback={this.props.markReadFallback}
         markingAsRead={this.props.item.isMarkingAsRead}
 
         icons={nameToIconsCompact[this.props.item.name || '']}

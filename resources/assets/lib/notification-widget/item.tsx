@@ -36,7 +36,7 @@ interface Props extends WithMarkReadProps {
 export default observer(class Item extends React.Component<Props> {
   render() {
     return (
-      <div className={this.blockClass()} onClick={this.props.markReadFallback}>
+      <div className={this.blockClass()} onClick={this.handleContainerClick}>
         {this.renderCover()}
         <div className='notification-popup-item__main'>
           <div className='notification-popup-item__content'>
@@ -55,6 +55,12 @@ export default observer(class Item extends React.Component<Props> {
 
   private blockClass() {
     return `clickable-row ${osu.classWithModifiers('notification-popup-item', [...this.props.modifiers, this.props.item.category])}`;
+  }
+
+  private handleContainerClick = (event: React.SyntheticEvent) => {
+    if (osu.isClickable(event.target as HTMLElement)) { return; }
+
+    this.props.markRead();
   }
 
   private renderCategory() {
