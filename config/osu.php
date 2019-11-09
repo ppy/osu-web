@@ -199,6 +199,9 @@ return [
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
     ],
+    'user_report_notification' => [
+        'endpoint' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT')),
+    ],
     'changelog' => [
         'build_history_interval' => 60 * intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)), // in minutes, converted to seconds
         'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
