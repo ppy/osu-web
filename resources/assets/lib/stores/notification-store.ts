@@ -57,8 +57,6 @@ export default class NotificationStore {
       this.notifications.set(notification.id, notification);
     }
 
-    notification.updateFromJson(json);
-
-    return notification;
+    return notification.updateFromJson(json);
   }
 }

@@ -83,6 +83,8 @@ export default class Notification {
         this.details[_.camelCase(key)] = value;
       });
     }
+
+    return this;
   }
 }
 
