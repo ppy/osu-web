@@ -36,10 +36,7 @@
 import HeaderV3 from 'header-v3';
 import { route } from 'laroute';
 import Notification from 'models/notification';
-import { nameToIcons } from 'notification-maps/icons';
-import { formatMessage } from 'notification-maps/message';
-import { urlSingular } from 'notification-maps/url';
-import Item from 'notification-widget/item';
+import ItemSingular from 'notification-widget/item-singular';
 import * as React from 'react';
 
 interface Props {
@@ -77,17 +74,12 @@ export class Main extends React.PureComponent<Props> {
     );
   }
 
-  renderNotification(notification: Notification) {
+  renderNotification = (notification: Notification) => {
     try {
       return (
-        <Item
-          icons={nameToIcons[notification.name || '']}
+        <ItemSingular
           item={notification}
-          message={formatMessage(notification)}
-          modifiers={['one']}
-          url={urlSingular(notification)}
-          withCategory={true}
-          withCoverImage={true}
+          items={this.props.notifications}
         />
       );
     } catch (error) {
