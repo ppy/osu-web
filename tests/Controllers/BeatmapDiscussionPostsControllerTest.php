@@ -31,6 +31,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
+            ->withSession(['verified' => true])
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -59,6 +60,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
+            ->withSession(['verified' => true])
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -78,6 +80,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->mapper)
+            ->withSession(['verified' => true])
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -125,6 +128,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
+            ->withSession(['verified' => true])
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -147,6 +151,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
+            ->withSession(['verified' => true])
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmap_discussion_id' => $this->beatmapDiscussion->id,
                 'beatmap_discussion_post' => [
@@ -269,6 +274,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
+            ->withSession(['verified' => true])
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->otherBeatmapset->beatmapset_id,
                 'beatmap_discussion_post' => [
@@ -518,6 +524,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
+            ->withSession(['verified' => true])
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -548,6 +555,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
+            ->withSession(['verified' => true])
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -577,6 +585,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this
             ->actingAs($this->user)
+            ->withSession(['verified' => true])
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -744,7 +753,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
     private function putPost(string $message, BeatmapDiscussionPost $post, ?User $user = null)
     {
-        return ($user === null ? $this : $this->actingAs($user))
+        return ($user === null ? $this : $this->actingAs($user)->withSession(['verified' => true]))
             ->put(route('beatmap-discussion-posts.update', $post->id), [
                 'beatmap_discussion_post' => [
                     'message' => $message,
