@@ -132,7 +132,6 @@ export default class Main extends React.Component<Props> {
             <TypeGroup
               item={value[0]}
               items={value}
-              worker={this.props.worker}
             />
           </div>
         ),
