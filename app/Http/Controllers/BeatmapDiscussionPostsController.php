@@ -40,6 +40,10 @@ class BeatmapDiscussionPostsController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('verify-user', ['only' => [
+            'store',
+            'update',
+        ]]);
 
         return parent::__construct();
     }
