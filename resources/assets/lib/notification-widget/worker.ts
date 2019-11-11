@@ -23,6 +23,7 @@ import { forEach, minBy, orderBy, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
+import NotificationStore from 'stores/notification-store';
 
 interface NotificationBundleJson {
   has_more: boolean;
@@ -81,15 +82,15 @@ const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVeri
   return arg.event === 'verified';
 };
 
+const store = new NotificationStore();
+
 export default class Worker {
-  @observable actualUnreadCount: number = -1;
   @observable hasData: boolean = false;
   @observable hasMore: boolean = true;
   @observable pmNotification = new LegacyPmNotification();
   userId: number | null = null;
   @observable private active: boolean = false;
   private endpoint?: string;
-  @observable private items = observable.map<number, Notification>();
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
   private xhr: XHRCollection = {};
@@ -98,7 +99,7 @@ export default class Worker {
   @computed get itemsGroupedByType() {
     const ret: Map<string, Notification[]> = new Map();
 
-    const sortedItems = orderBy([...this.items.values()], ['id'], ['desc']);
+    const sortedItems = orderBy([...store.notifications.values()], ['id'], ['desc']);
     sortedItems.unshift(this.pmNotification);
 
     sortedItems.forEach((item) => {
@@ -128,7 +129,7 @@ export default class Worker {
   @computed get minLoadedId() {
     let ret: null | number = null;
 
-    this.items.forEach((item) => {
+    store.notifications.forEach((item) => {
       if (item.id > 0 && (ret == null || item.id < ret)) {
         ret = item.id;
       }
@@ -142,7 +143,7 @@ export default class Worker {
   }
 
   @computed get unreadCount() {
-    let ret = this.actualUnreadCount;
+    let ret = store.unreadCount;
 
     if (typeof this.pmNotification.details === 'object'
       && typeof this.pmNotification.details.count === 'number'
@@ -201,7 +202,7 @@ export default class Worker {
   @action destroy = () => {
     this.active = false;
     this.hasData = false;
-    this.items = observable.map();
+    store.flushStore();
     forEach(this.xhr, (xhr) => xhr.abort());
     forEach(this.timeout, (timeout) => Timeout.clear(timeout));
 
@@ -228,7 +229,7 @@ export default class Worker {
       this.destroy();
     } else if (isNotificationEventNewJson(data)) {
       this.updateFromServer(data.data);
-      this.actualUnreadCount++;
+      store.unreadCount++;
     } else if (isNotificationEventReadJson(data)) {
       this.markRead(data.data.ids);
     } else if (isNotificationEventVerifiedJson(data)) {
@@ -245,7 +246,7 @@ export default class Worker {
 
   @action loadBundle = (data: NotificationBundleJson) => {
     data.notifications.forEach(this.updateFromServer);
-    this.actualUnreadCount = data.unread_count;
+    store.unreadCount = data.unread_count;
     this.hasMore = data.has_more;
     this.hasData = true;
   }
@@ -274,17 +275,7 @@ export default class Worker {
   }
 
   @action markRead = (ids: number[]) => {
-    for (const id of ids) {
-      const item = this.items.get(id);
-
-      if (item == null || !item.isRead) {
-        this.actualUnreadCount--;
-      }
-
-      if (item != null) {
-        item.isRead = true;
-      }
-    }
+    store.markAsRead(ids);
   }
 
   @action reconnectWebSocket = () => {
@@ -355,11 +346,7 @@ export default class Worker {
   }
 
   @action updateFromServer = (json: NotificationJson) => {
-    const item = new Notification(json.id);
-    item.updateFromJson(json);
-    this.items.set(item.id, item);
-
-    return item;
+    return store.updateWithJson(json);
   }
 
   @action updatePmNotification = () => {
