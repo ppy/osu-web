@@ -19,7 +19,7 @@
 import NotificationJson from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, observable } from 'mobx';
+import { action, observable, runInAction } from 'mobx';
 import Notification from 'models/notification';
 import Store from 'stores/store';
 
@@ -37,21 +37,6 @@ export default class NotificationStore extends Store {
 
   get(id: number) {
     this.notifications.get(id);
-  }
-
-  @action
-  markAsRead(ids: number[]) {
-    for (const id of ids) {
-      const item = this.notifications.get(id);
-
-      if (item == null || !item.isRead) {
-        this.unreadCount--;
-      }
-
-      if (item != null) {
-        item.isRead = true;
-      }
-    }
   }
 
   @action
@@ -75,21 +60,35 @@ export default class NotificationStore extends Store {
       method: 'POST',
       url: route('notifications.mark-read'),
     }).then(() => {
-      for (const id of ids) {
-        const notification = this.queued.get(id);
-        if (notification) {
-          notification.isRead = true;
-        }
-      }
+      runInAction(() => {
+        this.updateMarkedAsRead(ids);
+      });
     }).always(() => {
-      for (const id of ids) {
-        const notification = this.queued.get(id);
-        if (notification) {
-          notification.isMarkingAsRead = false;
-          this.queued.delete(id);
+      runInAction(() => {
+        for (const id of ids) {
+          const notification = this.queued.get(id);
+          if (notification) {
+            notification.isMarkingAsRead = false;
+            this.queued.delete(id);
+          }
         }
-      }
+      });
     });
+  }
+
+  @action
+  updateMarkedAsRead(ids: number[]) {
+    for (const id of ids) {
+      const item = this.notifications.get(id);
+
+      if (item == null || !item.isRead) {
+        this.unreadCount--;
+      }
+
+      if (item != null) {
+        item.isRead = true;
+      }
+    }
   }
 
   @action

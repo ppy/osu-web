@@ -275,7 +275,7 @@ export default class Worker {
   }
 
   @action markRead = (ids: number[]) => {
-    store.markAsRead(ids);
+    store.updateMarkedAsRead(ids);
   }
 
   @action reconnectWebSocket = () => {
