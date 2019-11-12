@@ -154,6 +154,11 @@ class Comment extends Model
         return $this->validationErrors()->isEmpty();
     }
 
+    public function url()
+    {
+        return route('comments.show', ['comment' => $this->getKey()]);
+    }
+
     public function validationErrorsTranslationPrefix()
     {
         return 'comment';

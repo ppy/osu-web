@@ -1876,6 +1876,11 @@ class User extends Model implements AuthenticatableContract
         return $this->validationErrors()->isEmpty();
     }
 
+    public function url()
+    {
+        return route('users.show', ['user' => $this->getKey()]);
+    }
+
     public function validationErrorsTranslationPrefix()
     {
         return 'user';
