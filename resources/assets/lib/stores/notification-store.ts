@@ -29,6 +29,7 @@ export default class NotificationStore extends Store {
 
   private debouncedSendQueued = debounce(this.sendQueued, 500);
   private queued = new Map<number, Notification>();
+  private queuedXhr?: JQuery.jqXHR;
 
   @action
   flushStore() {
@@ -43,7 +44,9 @@ export default class NotificationStore extends Store {
   markAsRead(notifications: Notification[]) {
     notifications.forEach((notification) => this.queueMarkAsRead(notification));
 
-    return this.debouncedSendQueued.flush();
+    this.debouncedSendQueued.flush();
+
+    return this.queuedXhr!;
   }
 
   @action
@@ -61,12 +64,14 @@ export default class NotificationStore extends Store {
     const ids = [...this.queued.keys()];
     if (ids.length === 0) { return; }
 
-    return $.ajax({
+    this.queuedXhr = $.ajax({
       data: { ids },
       dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),
-    }).then(() => {
+    });
+
+    this.queuedXhr.then(() => {
       runInAction(() => {
         this.updateMarkedAsRead(ids);
       });
@@ -81,6 +86,8 @@ export default class NotificationStore extends Store {
         }
       });
     });
+
+    return this.queuedXhr;
   }
 
   @action

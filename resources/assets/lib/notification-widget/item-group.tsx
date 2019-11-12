@@ -62,7 +62,10 @@ export default class ItemGroup extends React.Component<ItemProps & WithMarkReadP
 
   private handleMarkAsRead = () => {
     this.setState({ markingAsRead: true });
-    core.dataStore.notificationStore.markAsRead(this.props.items);
+    core.dataStore.notificationStore.markAsRead(this.props.items)
+    .always(() => {
+      this.setState({ markingAsRead: false });
+    });
   }
 
   private renderExpandButton() {
