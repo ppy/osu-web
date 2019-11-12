@@ -59,11 +59,16 @@ class UserNotificationOption extends Model
     {
         $details = $this->details ?? [];
 
+        if (!is_array($value)) {
+            $value = null;
+        }
+
         if ($this->name === static::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM) {
             if (is_array($value['modes'] ?? null)) {
+                $modes = array_filter($value['modes'], 'is_string');
                 $validModes = array_keys(Beatmap::MODES);
 
-                $details['modes'] = array_values(array_intersect($value['modes'], $validModes));
+                $details['modes'] = array_values(array_intersect($modes, $validModes));
             }
         }
 
