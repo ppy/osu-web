@@ -27,7 +27,7 @@ export default class NotificationStore extends Store {
   @observable notifications = new Map<number, Notification>();
   @observable unreadCount = 0;
 
-  private debounced = debounce(this.sendQueuedMarkAsRead, 500);
+  private debouncedSendQueued = debounce(this.sendQueued, 500);
   private queued = new Map<number, Notification>();
 
   @action
@@ -40,6 +40,13 @@ export default class NotificationStore extends Store {
   }
 
   @action
+  markAsRead(notifications: Notification[]) {
+    notifications.forEach((notification) => this.queueMarkAsRead(notification));
+
+    return this.debouncedSendQueued.flush();
+  }
+
+  @action
   queueMarkAsRead(notification: Notification) {
     if (notification.canMarkRead) {
       if (!this.queued.has(notification.id)) {
@@ -47,10 +54,10 @@ export default class NotificationStore extends Store {
       }
     }
 
-    this.debounced();
+    this.debouncedSendQueued();
   }
 
-  sendQueuedMarkAsRead() {
+  sendQueued() {
     const ids = [...this.queued.keys()];
     if (ids.length === 0) { return; }
 

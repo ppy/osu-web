@@ -21,6 +21,7 @@ import Notification from 'models/notification';
 import { categoryToIcons } from 'notification-maps/icons';
 import { messageGroup } from 'notification-maps/message';
 import { urlGroup } from 'notification-maps/url';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import Item from './item';
 import ItemCompact from './item-compact';
@@ -61,8 +62,7 @@ export default class ItemGroup extends React.Component<ItemProps & WithMarkReadP
 
   private handleMarkAsRead = () => {
     this.setState({ markingAsRead: true });
-    const xhrs = this.props.items.map((item) => item.markAsRead());
-    Promise.all(xhrs).then(() => this.setState({ markingAsRead: false }));
+    core.dataStore.notificationStore.markAsRead(this.props.items);
   }
 
   private renderExpandButton() {
