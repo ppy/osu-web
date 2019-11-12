@@ -23,7 +23,7 @@ import { forEach, minBy, orderBy, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
-import NotificationStore from 'stores/notification-store';
+import core from 'osu-core-singleton';
 
 interface NotificationBundleJson {
   has_more: boolean;
@@ -82,7 +82,7 @@ const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVeri
   return arg.event === 'verified';
 };
 
-const store = new NotificationStore();
+const store = core.dataStore.notificationStore;
 
 export default class Worker {
   @observable hasData: boolean = false;

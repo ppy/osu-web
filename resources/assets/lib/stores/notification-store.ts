@@ -19,8 +19,9 @@
 import NotificationJson from 'interfaces/notification-json';
 import { action, observable } from 'mobx';
 import Notification from 'models/notification';
+import Store from 'stores/store';
 
-export default class NotificationStore {
+export default class NotificationStore extends Store {
   @observable notifications = new Map<number, Notification>();
   @observable unreadCount = 0;
 
