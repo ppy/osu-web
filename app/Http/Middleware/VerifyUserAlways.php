@@ -31,6 +31,10 @@ class VerifyUserAlways extends VerifyUser
 
     public function requiresVerification($request)
     {
+        if (!in_array($request->getMethod(), ['GET', 'HEAD', 'OPTIONS'], true)) {
+            return true;
+        }
+
         $user = auth()->user();
         $isRequired = static::isRequired($user);
 
