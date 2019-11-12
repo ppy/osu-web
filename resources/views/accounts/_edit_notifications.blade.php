@@ -85,7 +85,7 @@
                 <div class="account-edit-entry__checkboxes-label">
                     {{ trans('accounts.notifications.mail._') }}
                 </div>
-                <div class="account-edit-entry__checkboxes">
+                <div class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical">
                     @foreach (App\Models\UserNotificationOption::HAS_MAIL_NOTIFICATION as $name)
                         <label
                             class="account-edit-entry__checkbox account-edit-entry__checkbox--inline js-account-edit"
