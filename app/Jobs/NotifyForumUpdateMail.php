@@ -55,7 +55,7 @@ class NotifyForumUpdateMail implements ShouldQueue
 
         $options = UserNotificationOption
             ::whereIn('user_id', $watches->pluck('user_id'))
-            ->where(['name' => UserNotificationOption::FORUM_TOPIC_NEW_REPLY])
+            ->where(['name' => UserNotificationOption::FORUM_TOPIC_REPLY])
             ->get()
             ->keyBy('user_id');
 
