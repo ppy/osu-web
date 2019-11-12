@@ -64,7 +64,7 @@ class WikiController extends Controller
     {
         priv_check('WikiPageRefresh')->ensureCan();
 
-        (new Wiki\Page($path, $this->locale()))->forget();
+        (new Wiki\Page($path, $this->locale()))->sync(true);
 
         return ujs_redirect(Request::getUri());
     }
