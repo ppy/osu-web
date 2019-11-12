@@ -52,6 +52,7 @@ export default class NotificationStore extends Store {
   @action
   queueMarkAsRead(notification: Notification) {
     if (notification.canMarkRead) {
+      notification.isMarkingAsRead = true;
       if (!this.queued.has(notification.id)) {
         this.queued.set(notification.id, notification);
       }

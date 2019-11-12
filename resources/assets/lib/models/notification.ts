@@ -62,8 +62,6 @@ export default class Notification {
 
   @action
   markAsRead() {
-    if (!this.canMarkRead) { return; }
-    this.isMarkingAsRead = true;
     core.dataStore.notificationStore.queueMarkAsRead(this);
   }
 

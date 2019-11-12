@@ -20,6 +20,7 @@ import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import ItemGroup from './item-group';
@@ -62,7 +63,7 @@ export default class TypeGroup extends React.Component<ItemProps & WithMarkReadP
   }
 
   private handleMarkAllAsRead = () => {
-    this.props.items.forEach((item) => item.markAsRead());
+    core.dataStore.notificationStore.markAsRead(this.props.items);
   }
 
   private renderItems() {
