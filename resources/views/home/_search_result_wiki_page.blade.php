@@ -17,7 +17,6 @@
 --}}
 @foreach ($search->data() as $entry)
     @php
-        $source = $entry->getSource();
         $url = wiki_url($entry->path, $entry->locale);
     @endphp
     <div class="search-result-entry">
