@@ -17,6 +17,8 @@
  */
 
 import NotificationJson from 'interfaces/notification-json';
+import { route } from 'laroute';
+import { debounce } from 'lodash';
 import { action, observable } from 'mobx';
 import Notification from 'models/notification';
 import Store from 'stores/store';
@@ -24,6 +26,9 @@ import Store from 'stores/store';
 export default class NotificationStore extends Store {
   @observable notifications = new Map<number, Notification>();
   @observable unreadCount = 0;
+
+  private debounced = debounce(this.sendQueuedMarkAsRead, 500);
+  private queued = new Map<number, Notification>();
 
   @action
   flushStore() {
@@ -47,6 +52,44 @@ export default class NotificationStore extends Store {
         item.isRead = true;
       }
     }
+  }
+
+  @action
+  queueMarkAsRead(notification: Notification) {
+    if (notification.canMarkRead) {
+      if (!this.queued.has(notification.id)) {
+        this.queued.set(notification.id, notification);
+      }
+    }
+
+    this.debounced();
+  }
+
+  sendQueuedMarkAsRead() {
+    const ids = [...this.queued.keys()];
+    if (ids.length === 0) { return; }
+
+    return $.ajax({
+      data: { ids },
+      dataType: 'json',
+      method: 'POST',
+      url: route('notifications.mark-read'),
+    }).then(() => {
+      for (const id of ids) {
+        const notification = this.queued.get(id);
+        if (notification) {
+          notification.isRead = true;
+        }
+      }
+    }).always(() => {
+      for (const id of ids) {
+        const notification = this.queued.get(id);
+        if (notification) {
+          notification.isMarkingAsRead = false;
+          this.queued.delete(id);
+        }
+      }
+    });
   }
 
   @action
