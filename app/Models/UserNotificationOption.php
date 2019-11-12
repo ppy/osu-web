@@ -35,8 +35,16 @@ class UserNotificationOption extends Model
     use Validatable;
 
     const VALID_NAMES = [
-        Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+        self::BEATMAPSET_MODDING,
+        self::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+        self::FORUM_TOPIC_REPLY,
     ];
+
+    const BEATMAPSET_MODDING = 'beatmapset:modding';
+    const BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM = Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM;
+    const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
+
+    const HAS_MAIL_NOTIFICATION = [self::BEATMAPSET_MODDING, self::FORUM_TOPIC_REPLY];
 
     protected $casts = [
         'details' => 'array',
@@ -49,19 +57,27 @@ class UserNotificationOption extends Model
 
     public function setDetailsAttribute($value)
     {
-        if ($this->name === Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM) {
-            if (is_array($value)) {
+        $details = $this->details ?? [];
+
+        if ($this->name === static::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM) {
+            if (is_array($value['modes'] ?? null)) {
                 $validModes = array_keys(Beatmap::MODES);
 
-                $modes = array_values(array_intersect($value, $validModes));
-
-                if (count($modes) > 0) {
-                    $details = compact('modes');
-                }
+                $details['modes'] = array_values(array_intersect($value['modes'], $validModes));
             }
         }
 
-        $this->attributes['details'] = isset($details) ? json_encode($details) : null;
+        if ($this->hasMailNotification()) {
+            if (isset($value['mail'])) {
+                $details['mail'] = get_bool($value['mail'] ?? null);
+            }
+        }
+
+        if (!empty($details)) {
+            $detailsString = json_encode($details);
+        }
+
+        $this->attributes['details'] = $detailsString ?? null;
     }
 
     public function setNameAttribute($value)
@@ -71,6 +87,11 @@ class UserNotificationOption extends Model
         }
 
         $this->attributes['name'] = $value;
+    }
+
+    public function hasMailNotification()
+    {
+        return in_array($this->name, static::HAS_MAIL_NOTIFICATION, true);
     }
 
     public function isValid()
