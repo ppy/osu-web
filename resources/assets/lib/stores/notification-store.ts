@@ -72,6 +72,8 @@ export default class NotificationStore extends Store {
       url: route('notifications.mark-read'),
     });
 
+    ids.forEach((id) => this.queued.delete(id));
+
     this.queuedXhr.then(() => {
       runInAction(() => {
         this.updateMarkedAsRead(ids);
@@ -82,7 +84,6 @@ export default class NotificationStore extends Store {
           const notification = this.queued.get(id);
           if (notification) {
             notification.isMarkingAsRead = false;
-            this.queued.delete(id);
           }
         }
       });
