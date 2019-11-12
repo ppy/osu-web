@@ -28,7 +28,7 @@ export default class NotificationStore extends Store {
   @observable unreadCount = 0;
 
   private debouncedSendQueued = debounce(this.sendQueued, 500);
-  private queued = new Map<number, Notification>();
+  private queued = new Set<number>();
   private queuedXhr?: JQuery.jqXHR;
 
   @action
@@ -53,16 +53,14 @@ export default class NotificationStore extends Store {
   queueMarkAsRead(notification: Notification) {
     if (notification.canMarkRead) {
       notification.isMarkingAsRead = true;
-      if (!this.queued.has(notification.id)) {
-        this.queued.set(notification.id, notification);
-      }
+      this.queued.add(notification.id);
     }
 
     this.debouncedSendQueued();
   }
 
   sendQueued() {
-    const ids = [...this.queued.keys()];
+    const ids = [...this.queued];
     if (ids.length === 0) { return; }
 
     this.queuedXhr = $.ajax({
@@ -81,8 +79,8 @@ export default class NotificationStore extends Store {
     }).always(() => {
       runInAction(() => {
         for (const id of ids) {
-          const notification = this.queued.get(id);
-          if (notification) {
+          const notification = this.notifications.get(id);
+          if (notification != null) {
             notification.isMarkingAsRead = false;
           }
         }
