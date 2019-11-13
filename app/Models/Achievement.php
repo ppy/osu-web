@@ -63,6 +63,6 @@ class Achievement extends Model
 
     public function iconUrl()
     {
-        return '/images/badges/user-achievements/'.e($this->slug).'.png';
+        return config('osu.achievement.icon_prefix').e($this->slug).'.png';
     }
 }
