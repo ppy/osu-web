@@ -33,11 +33,8 @@ class VerifyUserAlways extends VerifyUser
     {
         $user = auth()->user();
 
-        if ($user !== null && !in_array($request->getMethod(), ['GET', 'HEAD', 'OPTIONS'], true)) {
-            return true;
-        }
-
-        $isRequired = static::isRequired($user);
+        $isWriteRequest = !in_array($request->getMethod(), ['GET', 'HEAD', 'OPTIONS'], true);
+        $isRequired = $isWriteRequest || static::isRequired($user);
 
         if ($user !== null && session()->get('requires_verification') !== $isRequired) {
             session()->put('requires_verification', $isRequired);
