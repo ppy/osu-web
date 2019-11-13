@@ -17,12 +17,13 @@
  */
 
 import NotificationJson from 'interfaces/notification-json';
-import Notification from 'models/notification';
 import { Main } from 'notifications-index/main';
+import core from 'osu-core-singleton';
 
 reactTurbolinks.registerPersistent('notifications-index', Main, true, (container: HTMLElement) => {
   const json: NotificationJson[] = osu.parseJson('json-notifications');
-  const notifications = json.map(Notification.fromJSON);
+  const store = core.dataStore.notificationStore;
+  const notifications = json.map(store.updateWithJson.bind(store));
 
   return {
     notifications,

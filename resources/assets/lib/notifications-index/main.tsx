@@ -35,6 +35,7 @@
 
 import HeaderV3 from 'header-v3';
 import { route } from 'laroute';
+import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import ItemSingular from 'notification-widget/item-singular';
 import * as React from 'react';
@@ -43,7 +44,8 @@ interface Props {
   notifications: Notification[];
 }
 
-export class Main extends React.PureComponent<Props> {
+@observer
+export class Main extends React.Component<Props> {
   static defaultProps = {
     user: currentUser,
   };
@@ -80,6 +82,7 @@ export class Main extends React.PureComponent<Props> {
         <ItemSingular
           item={notification}
           items={this.props.notifications}
+          key={notification.id}
         />
       );
     } catch (error) {

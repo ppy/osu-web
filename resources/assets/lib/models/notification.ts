@@ -56,8 +56,7 @@ export default class Notification {
 
   static fromJSON(json: NotificationJson): Notification {
     const obj = new Notification(json.id);
-    obj.updateFromJson(json);
-    return obj;
+    return obj.updateFromJson(json);
   }
 
   @action
