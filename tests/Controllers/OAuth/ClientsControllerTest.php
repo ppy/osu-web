@@ -43,8 +43,7 @@ class ClientsControllerTest extends TestCase
     public function testCanDeleteOwnClient()
     {
         $this
-            ->actingAs($this->owner)
-            ->withSession(['verified' => true])
+            ->actingAsVerified($this->owner)
             ->json('DELETE', route('oauth.clients.destroy', ['client' => $this->client->getKey()]))
             ->assertSuccessful();
 
@@ -56,8 +55,7 @@ class ClientsControllerTest extends TestCase
         $user = factory(User::class)->create();
 
         $this
-            ->actingAs($user)
-            ->withSession(['verified' => true])
+            ->actingAsVerified($user)
             ->json('DELETE', route('oauth.clients.destroy', ['client' => $this->client->getKey()]))
             ->assertStatus(404);
 
@@ -74,8 +72,7 @@ class ClientsControllerTest extends TestCase
         $count = Client::count();
 
         $response = $this
-            ->actingAs($this->owner)
-            ->withSession(['verified' => true])
+            ->actingAsVerified($this->owner)
             ->json('POST', route('oauth.clients.store'), $data)
             ->assertSuccessful()
             ->getOriginalContent();
@@ -110,8 +107,7 @@ class ClientsControllerTest extends TestCase
         $count = Client::count();
 
         $this
-            ->actingAs($this->owner)
-            ->withSession(['verified' => true])
+            ->actingAsVerified($this->owner)
             ->json('POST', route('oauth.clients.store'), $data)
             ->assertStatus(422);
 
@@ -130,8 +126,7 @@ class ClientsControllerTest extends TestCase
         ];
 
         $this
-            ->actingAs($this->owner)
-            ->withSession(['verified' => true])
+            ->actingAsVerified($this->owner)
             ->json('PUT', route('oauth.clients.update', ['client' => $id]), $data)
             ->assertSuccessful();
 
