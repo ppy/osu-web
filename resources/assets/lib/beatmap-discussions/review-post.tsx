@@ -18,55 +18,14 @@
 
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
-import { BeatmapIcon } from '../beatmap-icon';
-import { BeatmapsContext } from './beatmaps-context';
-import { DiscussionsContext } from './discussions-context';
+import * as MarkdownEmbedTokenizer from './markdown-embed-tokenizer';
+import { ReviewPostEmbed } from './review-post-embed';
 
-interface EmbedProps {
-  data: {
-    discussion_id: number;
-  };
+interface Props {
+  message: string;
 }
 
-export class ReviewPost extends React.Component<any> {
-  embedRenderer = (props: EmbedProps) => {
-    const discussions = React.useContext(DiscussionsContext);
-    const beatmaps = React.useContext(BeatmapsContext);
-    const discussion: BeatmapDiscussion = discussions[props.data.discussion_id];
-    const bn = 'beatmap-discussion-review-post-embed';
-
-    if (!discussion) {
-      // this should never happen, but just in case...
-      return (
-        <div className={bn}>
-          <div className={`${bn}__message-container ${bn}__message-container--error`}>[DISCUSSION NOT LOADED]</div>
-        </div>
-      );
-    }
-
-    return (
-      <div className={bn}>
-        <div className={`${bn}__beatmap-icon`}>
-          {discussion.beatmap_id &&
-            <BeatmapIcon
-              beatmap={beatmaps[discussion.beatmap_id]}
-            />
-          }
-        </div>
-        <div className={`${bn}__timestamp`}>
-          <div className={`${bn}__icons-container`}>
-            <div className={`${bn}__icon`}>
-              <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${discussion.message_type}`}><i className={BeatmapDiscussionHelper.messageType.icon[discussion.message_type]} /></span>
-            </div>
-            <div className={`${bn}__timestamp-text`}>{discussion.timestamp ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp) : 'general'}</div>
-          </div>
-        </div>
-        <div className={`${bn}__stripe`} />
-        <div className={`${bn}__message-container`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format(discussion.posts[0].message)}} />
-      </div>
-    );
-  }
-
+export class ReviewPost extends React.Component<Props> {
   render() {
     return (
       <div className='beatmap-discussion-review-post'>
@@ -78,11 +37,11 @@ export class ReviewPost extends React.Component<any> {
             'paragraph',
           ]}
           plugins={[
-            require('./markdown-embed-tokenizer'),
+            MarkdownEmbedTokenizer,
           ]}
           source={this.props.message}
           renderers={{
-            embed: this.embedRenderer,
+            embed: ReviewPostEmbed,
             paragraph: (props) => <div className='beatmap-discussion-review-post__block' {...props}/>,
           }}
         />
