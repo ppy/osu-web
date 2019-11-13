@@ -36,20 +36,12 @@
 import HeaderV3 from 'header-v3';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
-import Notification from 'models/notification';
-import ItemSingular from 'notification-widget/item-singular';
+import TypeGroup from 'notification-widget/type-group';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 
-interface Props {
-  notifications: Notification[];
-}
-
 @observer
-export class Main extends React.Component<Props> {
-  static defaultProps = {
-    user: currentUser,
-  };
-
+export class Main extends React.Component {
   static readonly links = [
     { title: 'All', url: route('notifications.index'), active: true },
     { title: 'Profile', url: route('notifications.index') },
@@ -70,24 +62,32 @@ export class Main extends React.Component<Props> {
         />
 
         <div className='osu-page osu-page--users'>
-          {this.props.notifications.map(this.renderNotification)}
+          {this.renderTypeGroups()}
         </div>
       </div>
     );
   }
 
-  renderNotification = (notification: Notification) => {
-    try {
-      return (
-        <ItemSingular
-          item={notification}
-          items={this.props.notifications}
-          key={notification.id}
-        />
+  renderTypeGroups() {
+    const items: React.ReactNode[] = [];
+
+    core.dataStore.notificationStore.itemsGroupedByType.forEach((value, key) => {
+      if (value.length === 0) {
+        return;
+      }
+
+      items.push(
+        (
+          <div key={key} className='notification-popup__item'>
+            <TypeGroup
+              item={value[0]}
+              items={value}
+            />
+          </div>
+        ),
       );
-    } catch (error) {
-      console.log(notification);
-      return error.message;
-    }
+    });
+
+    return items;
   }
 }
