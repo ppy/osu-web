@@ -19,6 +19,7 @@
 'use strict';
 
 window.currentLocale = 'en';
+window.fallbackLocale = 'en';
 // stub all the things
 window.currentUser = {};
 
