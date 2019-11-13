@@ -52,10 +52,10 @@ class Image
     public function __construct($path)
     {
         $this->path = OsuWiki::cleanPath($path);
-        $this->cache = cache()->get($this->cacheKeyData());
+        $this->cache = cache()->get($this->cacheKey());
     }
 
-    public function cacheKeyData()
+    public function cacheKey()
     {
         return 'wiki:image:data:v2:'.$this->path;
     }
@@ -82,7 +82,7 @@ class Image
             return $this;
         }
 
-        $lock = cache()->lock($this->cacheKeyData().':lock', 300);
+        $lock = cache()->lock($this->cacheKey().':lock', 300);
 
         if (!$lock->get()) {
             return $this;
@@ -109,7 +109,7 @@ class Image
             'data' => $data ?? null,
             'cached_at' => time(),
         ];
-        cache()->put($this->cacheKeyData(), $this->cache);
+        cache()->put($this->cacheKey(), $this->cache);
 
         return $this;
     }
