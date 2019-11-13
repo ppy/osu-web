@@ -18,18 +18,47 @@
 
 import NotificationJson from 'interfaces/notification-json';
 import { route } from 'laroute';
-import { debounce } from 'lodash';
-import { action, observable, runInAction } from 'mobx';
+import { debounce, orderBy } from 'lodash';
+import { action, computed, observable, runInAction } from 'mobx';
+import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import Store from 'stores/store';
 
 export default class NotificationStore extends Store {
   @observable notifications = new Map<number, Notification>();
+  @observable pmNotification = new LegacyPmNotification();
   @observable unreadCount = 0;
 
   private debouncedSendQueued = debounce(this.sendQueued, 500);
   private queued = new Set<number>();
   private queuedXhr?: JQuery.jqXHR;
+
+  @computed
+  get itemsGroupedByType() {
+    const ret: Map<string, Notification[]> = new Map();
+
+    const sortedItems = orderBy([...this.notifications.values()], ['id'], ['desc']);
+    sortedItems.unshift(this.pmNotification);
+
+    sortedItems.forEach((item) => {
+      const key = item.displayType;
+
+      if (key == null) {
+        return;
+      }
+
+      let groupedItems = ret.get(key);
+
+      if (groupedItems == null) {
+        groupedItems = [];
+        ret.set(key, groupedItems);
+      }
+
+      groupedItems.push(item);
+    });
+
+    return ret;
+  }
 
   @action
   flushStore() {

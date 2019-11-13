@@ -18,6 +18,7 @@
 
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import TypeGroup from './type-group';
@@ -119,7 +120,7 @@ export default class Main extends React.Component<Props> {
   private renderTypeGroup() {
     const items: React.ReactNode[] = [];
 
-    this.props.worker.itemsGroupedByType.forEach((value, key) => {
+    core.dataStore.notificationStore.itemsGroupedByType.forEach((value, key) => {
       const unreadCount = value.filter((v) => !v.isRead).length;
 
       if (unreadCount === 0) {
