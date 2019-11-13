@@ -27,9 +27,9 @@ interface Props {
   showTitle?: boolean;
 }
 
-export const BeatmapIcon: FunctionComponent<Props> = ({beatmap, overrideVersion, showTitle, modifier}) => {
+export const BeatmapIcon: FunctionComponent<Props> = ({beatmap, overrideVersion, showTitle = true, modifier}) => {
   const difficultyRating = overrideVersion || BeatmapHelper.getDiffRating(beatmap.difficulty_rating);
-  const showTooltip = showTitle || !overrideVersion;
+  const showTooltip = showTitle && overrideVersion == null;
   const mode = beatmap.convert ? 'osu' : beatmap.mode;
 
   let className = `beatmap-icon beatmap-icon--${difficultyRating} beatmap-icon--${modifier}`;
