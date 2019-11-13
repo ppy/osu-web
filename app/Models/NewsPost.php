@@ -248,21 +248,30 @@ class NewsPost extends Model implements Commentable
     public function sync($force = false)
     {
         if (!$force && !$this->needsSync()) {
-            return;
+            return $this;
+        }
+
+        $path = "news/{$this->filename()}";
+        $pathMissingKey = "osu_wiki:not_found:{$path}";
+
+        if (!$force && cache()->get($pathMissingKey) !== null) {
+            return $this;
         }
 
         try {
-            $file = new OsuWiki("news/{$this->filename()}");
+            $file = new OsuWiki($path);
         } catch (GitHubNotFoundException $e) {
             if ($this->exists) {
                 $this->update(['published_at' => null]);
+            } else {
+                cache()->put($pathMissingKey, 1, 300);
             }
 
-            return;
+            return $this;
         } catch (Exception $e) {
             log_error($e);
 
-            return;
+            return $this;
         }
 
         $rawPage = $file->content();
@@ -277,6 +286,8 @@ class NewsPost extends Model implements Commentable
         $this->hash = $file->data['sha'];
 
         $this->save();
+
+        return $this;
     }
 
     public function pagePublishedAt()

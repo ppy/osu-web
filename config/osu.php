@@ -2,6 +2,10 @@
 
 // osu config~
 return [
+    'achievement' => [
+        'icon_prefix' => env('USER_ACHIEVEMENT_ICON_PREFIX', 'https://assets.ppy.sh/user-achievements/'),
+    ],
+
     'avatar' => [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
         'default' => env('DEFAULT_AVATAR', '/images/layout/avatar-guest.png'),
@@ -76,6 +80,7 @@ return [
     ],
     'forum' => [
         'admin_forum_id' => get_int(env('ADMIN_FORUM_ID')) ?? 28,
+        'double_post_allowed_forum_ids' => array_map('intval', explode(' ', env('DOUBLE_POST_ALLOWED_FORUM_IDS', '52 68 84 114'))),
         'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')) ?? 4,
         'feature_topic_small_star_min' => get_int(env('FEATURE_TOPIC_SMALL_STAR_MIN')) ?? 1000,
         'help_forum_id' => get_int(env('HELP_FORUM_ID')) ?? 5,
@@ -182,6 +187,7 @@ return [
     ],
     'user' => [
         'allow_registration' => get_bool(env('ALLOW_REGISTRATION', false)),
+        'inactive_days_verification' => get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180,
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
@@ -198,6 +204,9 @@ return [
         ],
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
+    ],
+    'user_report_notification' => [
+        'endpoint' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT')),
     ],
     'changelog' => [
         'build_history_interval' => 60 * intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)), // in minutes, converted to seconds
