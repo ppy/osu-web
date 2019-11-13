@@ -56,7 +56,8 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
         <div className={`${bn}__icons-container`}>
           <div className={`${bn}__icon`}>
             <span
-              className={`beatmap-discussion-message-type beatmap-discussion-message-type--${discussion.message_type}`}>
+              className={`beatmap-discussion-message-type beatmap-discussion-message-type--${discussion.message_type}`}
+            >
               <i className={BeatmapDiscussionHelper.messageType.icon[discussion.message_type]}/>
             </span>
           </div>
@@ -72,4 +73,4 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
       />
     </div>
   );
-}
+};
