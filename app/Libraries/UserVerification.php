@@ -33,11 +33,18 @@ class UserVerification
 
     public static function fromCurrentRequest()
     {
-        return new static(
-            auth()->user(),
-            request(),
-            UserVerificationState::fromCurrentRequest()
-        );
+        $verification = request()->attributes->get('user-verification');
+
+        if ($verification === null) {
+            $verification = new static(
+                auth()->user(),
+                request(),
+                UserVerificationState::fromCurrentRequest()
+            );
+            request()->attributes->set('user-verification', $verification);
+        }
+
+        return $verification;
     }
 
     private function __construct($user, $request, $state)
