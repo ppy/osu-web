@@ -91,7 +91,7 @@ export class Discussion extends React.PureComponent
       if @props.discussion.message_type == 'review'
         div className: "#{bn}__discussion",
           div className: reviewHeaderClasses,
-            div className: "beatmap-discussion-post__content",
+            div className: "#{bn}__discussion-header",
               el UserCard,
                 user: user
                 badge: badge
