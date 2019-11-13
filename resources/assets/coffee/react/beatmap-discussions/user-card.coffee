@@ -25,6 +25,7 @@ export class UserCard extends React.PureComponent
   render: =>
     topClasses = bn
     topClasses += " #{bn}--#{@props.badge}" if @props.badge?
+    hideStripe = @props.hideStripe ? false
 
     div
       className: topClasses
@@ -57,6 +58,6 @@ export class UserCard extends React.PureComponent
           if @props.badge?
             div className: "user-group-badge user-group-badge--#{@props.badge}"
 
-      if (!@props.hideStripe?)
+      if (!hideStripe)
         div
           className: "#{bn}__user-stripe"

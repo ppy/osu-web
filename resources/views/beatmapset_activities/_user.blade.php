@@ -24,6 +24,7 @@
     if (isset($badge)) {
         $topClasses .= " {$bn}--{$badge}";
     }
+    $hideStripe = $hideStripe ?? false;
 @endphp
 
 <div class="{{$topClasses}}">
@@ -53,7 +54,7 @@
             @endif
         </div>
     </div>
-    @if (!isset($hideStripe))
+    @if (!$hideStripe)
         <div class="{{$bn}}__user-stripe"></div>
     @endif
 </div>
