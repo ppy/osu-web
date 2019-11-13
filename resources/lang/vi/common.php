@@ -30,7 +30,7 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'MỚI',
     ],
 
     'buttons' => [
@@ -41,7 +41,7 @@ return [
         'change' => 'đổi',
         'click_to_copy' => 'click để sao chép vào bộ nhớ tạm',
         'click_to_copy_copied' => 'đã sao chép vào bộ nhớ tạm!',
-        'close' => '',
+        'close' => 'Đóng',
         'collapse' => 'thu lại',
         'delete' => 'Xóa',
         'edit' => 'Chỉnh sửa',
@@ -63,7 +63,7 @@ return [
         'show_deleted' => 'Hiển thị bình luận đã xóa',
         'show_more' => 'hiển thị thêm',
         'show_more_options' => 'hiển thị thêm tùy chọn',
-        'update' => '',
+        'update' => 'Cập nhật',
         'upload_image' => 'tải ảnh lên',
 
         'watch' => [
@@ -119,7 +119,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'tìm kiếm...',
     ],
 
     'pagination' => [

@@ -120,7 +120,9 @@ export default class Main extends React.Component<Props> {
     const items: React.ReactNode[] = [];
 
     this.props.worker.itemsGroupedByType.forEach((value, key) => {
-      if (value.length === 0) {
+      const unreadCount = value.filter((v) => !v.isRead).length;
+
+      if (unreadCount === 0) {
         return;
       }
 

@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Caută',
             'deleted' => 'Include discuțiile șterse',
+            'only_unresolved' => '',
             'types' => 'Tipuri de mesaje',
             'username' => 'Nume de utilizator',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Utilizator',

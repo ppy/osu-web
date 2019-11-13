@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Nachrichten',
         'topic_auto_subscribe' => 'aktiviere Nachrichten automatisch bei neue Forum Themen die du erstellst',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

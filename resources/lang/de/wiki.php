@@ -44,7 +44,4 @@ return [
         'title' => 'Wissensbasis',
         'subtitle' => 'weil sich osu!pedia langweilig anhört',
     ],
-    'search' => [
-        'path' => 'von',
-    ],
 ];

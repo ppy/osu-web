@@ -20,7 +20,7 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
+        'button' => 'Rapportér',
         'title' => '',
     ],
 
@@ -35,7 +35,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
+        'button' => 'Rapportér',
         'title' => '',
     ],
 ];

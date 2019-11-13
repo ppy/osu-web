@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Апавяшчэнні',
         'topic_auto_subscribe' => 'аўтаматычна ўключаць апавяшчэнні для вашых тэм з форума',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

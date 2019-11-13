@@ -25,6 +25,7 @@ return [
         'peak' => '最高オンライン数:count',
         'players' => '累計登録者数<strong>:count</strong>人',
         'title' => 'ようこそ！',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => '基本無料で最高のリズムゲーム',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => '最新のRankedビートマップ',
             'popular' => '人気のビートマップ',
-            'by' => 'by',
-            'plays' => ':count plays',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'osu!をダウンロード',

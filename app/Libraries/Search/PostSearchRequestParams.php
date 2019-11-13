@@ -21,18 +21,17 @@
 namespace App\Libraries\Search;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class PostSearchRequestParams extends PostSearchParams
 {
-    public function __construct(Request $request, User $user)
+    public function __construct(array $request, User $user)
     {
         parent::__construct();
 
-        $this->queryString = presence(trim($request['query']));
-        $this->from = $this->pageAsFrom(get_int($request['page']));
+        $this->queryString = presence(trim($request['query'] ?? null));
+        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
         $this->userId = $user->getKey();
-        $this->forumId = get_int($request['forum_id']);
-        $this->includeSubforums = get_bool($request['forum_children']);
+        $this->forumId = get_int($request['forum_id'] ?? null);
+        $this->includeSubforums = get_bool($request['forum_children'] ?? null);
     }
 }

@@ -68,4 +68,41 @@ class CommentsControllerTest extends TestCase
 
         $this->assertSame($currentComments + 1, $beatmapset->comments()->count());
     }
+
+    public function testApiUnauthenticatedUserCanViewIndex()
+    {
+        $this
+            ->json('GET', route('api.comments.index'))
+            ->assertSuccessful();
+    }
+
+    public function testApiUnauthenticatedUserCanViewComment()
+    {
+        $comment = factory(Comment::class)->create();
+
+        $this
+            ->json('GET', route('api.comments.show', ['comment' => $comment->getKey()]))
+            ->assertSuccessful();
+    }
+
+    /**
+     * @dataProvider apiRequiresAuthenticationDataProvider
+     */
+    public function testApiRequiresAuthentication($method, $routeName)
+    {
+        $this
+            ->json($method, route("api.{$routeName}", ['comment' => 1]))
+            ->assertUnauthorized();
+    }
+
+    public function apiRequiresAuthenticationDataProvider()
+    {
+        return [
+            ['DELETE', 'comments.vote'],
+            ['POST', 'comments.vote'],
+            ['POST', 'comments.store'],
+            ['PUT', 'comments.update'],
+            ['DELETE', 'comments.destroy'],
+        ];
+    }
 }

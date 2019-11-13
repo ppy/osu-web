@@ -183,6 +183,7 @@ return [
         'nominate' => '지명',
         'nominate_confirm' => '이 비트맵을 지명하시겠습니까?',
         'nominated_by' => ':users님이 지명함',
+        'not_enough_hype' => "",
         'qualified' => '문제가 발견되지 않으면 :date에 랭크됩니다.',
         'qualified_soon' => '문제가 발견되지 않으면 곧 랭크됩니다.',
         'required_text' => '지명 수: :current/:required',
