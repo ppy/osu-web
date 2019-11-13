@@ -779,6 +779,16 @@ class User extends Model implements AuthenticatableContract
         return $this->user_lastvisit > Carbon::now()->subMonth();
     }
 
+    /*
+     * almost like !isActive but different duration
+     *
+     * @return bool
+     */
+    public function isInactive(): bool
+    {
+        return $this->user_lastvisit->addDays(config('osu.user.inactive_days_verification'))->isPast();
+    }
+
     public function isOnline()
     {
         return !$this->hide_presence

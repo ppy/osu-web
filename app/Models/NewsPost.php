@@ -248,7 +248,7 @@ class NewsPost extends Model implements Commentable
     public function sync($force = false)
     {
         if (!$force && !$this->needsSync()) {
-            return;
+            return $this;
         }
 
         $path = "news/{$this->filename()}";
@@ -267,11 +267,11 @@ class NewsPost extends Model implements Commentable
                 cache()->put($pathMissingKey, 1, 300);
             }
 
-            return;
+            return $this;
         } catch (Exception $e) {
             log_error($e);
 
-            return;
+            return $this;
         }
 
         $rawPage = $file->content();
@@ -286,6 +286,8 @@ class NewsPost extends Model implements Commentable
         $this->hash = $file->data['sha'];
 
         $this->save();
+
+        return $this;
     }
 
     public function pagePublishedAt()
