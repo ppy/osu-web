@@ -31,10 +31,11 @@ export class ReviewPost extends React.Component<Props> {
       <div className='beatmap-discussion-review-post'>
         <ReactMarkdown
           allowedTypes={[
-            'text',
             'emphasis',
-            'strong',
+            'link',
             'paragraph',
+            'strong',
+            'text',
           ]}
           plugins={[
             MarkdownEmbedTokenizer,
