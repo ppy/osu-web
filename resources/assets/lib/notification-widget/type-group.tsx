@@ -36,6 +36,9 @@ const bn = 'notification-type-group';
 
 @observer
 export default class TypeGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
+  state = {
+    markingAsRead: false,
+  };
 
   render() {
     if (this.props.items.length === 0) {
@@ -63,7 +66,11 @@ export default class TypeGroup extends React.Component<ItemProps & WithMarkReadP
   }
 
   private handleMarkAllAsRead = () => {
-    core.dataStore.notificationStore.markAsRead(this.props.items);
+    this.setState({ markingAsRead: true });
+    core.dataStore.notificationStore.markAsRead(this.props.items)
+    .always(() => {
+      this.setState({ markingAsRead: false });
+    });
   }
 
   private renderItems() {
@@ -101,7 +108,7 @@ export default class TypeGroup extends React.Component<ItemProps & WithMarkReadP
 
       items.push((
         <div className={`${bn}__item`} key={key}>
-          <Component item={value[0]} items={value} />
+          <Component item={value[0]} items={value} markingAsRead={this.state.markingAsRead} />
         </div>
       ));
     });
@@ -117,7 +124,7 @@ export default class TypeGroup extends React.Component<ItemProps & WithMarkReadP
     let markAllReadClass = `${bn}__clear-all`;
     let markingAsReadSpinner: React.ReactNode = null;
 
-    if (this.props.markingAsRead) {
+    if (this.state.markingAsRead) {
       markingAsReadSpinner = (
         <span className={`${bn}__clear-all-spinner`}>
           <Spinner />
