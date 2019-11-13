@@ -28,7 +28,7 @@
                 @if (present($page->subtitle()))
                     <h2 class="osu-page-header__title osu-page-header__title--small">
                         @if ($page->hasParent())
-                            <a class="osu-page-header__link" href="{{ wiki_url($page->parentPath(), $page->requestedLocale) }}">
+                            <a class="osu-page-header__link" href="{{ wiki_url($page->parentPath(), $locale) }}">
                                 {{ $page->subtitle() }}
                             </a>
                         @else
@@ -38,7 +38,7 @@
                 @endif
 
                 <h1 class="osu-page-header__title osu-page-header__title--main">
-                    <a class="osu-page-header__link osu-page-header__link--plain" href="{{ wiki_url($page->path, $page->requestedLocale) }}">
+                    <a class="osu-page-header__link osu-page-header__link--plain" href="{{ wiki_url($page->path, $locale) }}">
                         {{ $page->title() }}
                     </a>
                 </h1>
