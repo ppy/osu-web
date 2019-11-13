@@ -64,6 +64,7 @@ export class Discussion extends React.PureComponent
     topClasses += " #{bn}--deleted" if @props.discussion.deleted_at?
     topClasses += " #{bn}--timeline" if @props.discussion.timestamp?
     topClasses += " #{bn}--preview" if @props.preview
+    topClasses += " #{bn}--review" if @props.discussion.message_type == 'review'
 
     lineClasses = "#{bn}__line"
     lineClasses += " #{bn}__line--resolved" if @props.discussion.resolved
@@ -76,9 +77,8 @@ export class Discussion extends React.PureComponent
     user = @props.users[@props.discussion.user_id]
     badge = if user.id == @props.beatmapset.user_id then 'mapper' else user.group_badge
 
-    reviewHeaderClasses = "#{bn}__top #{bn}__top--review"
-    reviewHeaderClasses += " #{bn}__top--#{badge}" if badge?
-    reviewHeaderClasses += " #{bn}__top--unread" unless _.includes(@props.readPostIds, firstPost.id) || @isOwner(firstPost) || @props.preview
+    topClasses += " #{bn}--unread" unless _.includes(@props.readPostIds, firstPost.id) || @isOwner(firstPost) || @props.preview
+    topClasses += " #{bn}--#{badge}" if badge?
 
     div
       className: topClasses
@@ -88,9 +88,9 @@ export class Discussion extends React.PureComponent
       div className: "#{bn}__timestamp hidden-xs",
         @timestamp()
 
-      if @props.discussion.message_type == 'review'
+      div className: "#{bn}__compact",
         div className: "#{bn}__discussion",
-          div className: reviewHeaderClasses,
+          div className: "#{bn}__top",
             div className: "#{bn}__discussion-header",
               el UserCard,
                 user: user
@@ -101,7 +101,7 @@ export class Discussion extends React.PureComponent
             @post firstPost, 'discussion', true
           @postFooter() if !@props.preview
           div className: lineClasses
-      else
+      div className: "#{bn}__full",
         div className: "#{bn}__discussion",
           div className: "#{bn}__top",
             @post firstPost, 'discussion'
@@ -110,23 +110,31 @@ export class Discussion extends React.PureComponent
           div className: lineClasses
 
   postButtons: =>
-    div className: "#{bn}__actions",
-      ['up', 'down'].map (type) =>
-        div
-          key: type
-          type: type
-          className: "#{bn}__action"
-          onMouseOver: @showVoters
-          onTouchStart: @showVoters
-          @displayVote type
-          @voterList type
+    div className: "#{bn}__actions-container",
+      div className: "#{bn}__actions",
+        if @props.parentDiscussion?
+          a
+            href: BeatmapDiscussionHelper.url({discussion: @props.parentDiscussion})
+            key: 'parent'
+            className: "#{bn}__link-to-parent",
+            i className: 'fas fa-tasks'
 
-      button
-        className: "#{bn}__action #{bn}__action--with-line"
-        onClick: @toggleExpand
-        div
-          className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
-          i className: 'fas fa-chevron-down'
+        ['up', 'down'].map (type) =>
+          div
+            key: type
+            type: type
+            className: "#{bn}__action"
+            onMouseOver: @showVoters
+            onTouchStart: @showVoters
+            @displayVote type
+            @voterList type
+
+        button
+          className: "#{bn}__action #{bn}__action--with-line"
+          onClick: @toggleExpand
+          div
+            className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
+            i className: 'fas fa-chevron-down'
 
 
   postFooter: =>

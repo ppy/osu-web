@@ -30,16 +30,45 @@
     overflow: hidden;
   }
 
-  &__actions {
-    flex: none;
-
-    display: flex;
-    justify-content: flex-end;
-
-    height: @beatmap-discussion--avatar-size;
-    margin: 10px;
-    margin-right: 0;
+  &__compact,
+  &__full {
+    flex: 1;
   }
+
+  &__compact {
+    display: none;
+
+    @media @mobile {
+      display: block;
+    }
+
+    .@{_top}--review & {
+      display: block;
+    }
+  }
+
+  &__full {
+    display: block;
+
+    @media @mobile {
+      display: none;
+    }
+
+    .@{_top}--review & {
+      display: none;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
+
+  &__actions-container {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    }
 
   &__action {
     .reset-input();
@@ -74,7 +103,8 @@
   }
 
   &__discussion-header {
-    padding: 10px 15px;
+    padding-top: 10px;
+    padding-left: 15px;
   }
 
   &__expanded {
@@ -94,6 +124,16 @@
     &--resolved {
       background-color: @osu-colour-lime-3;
     }
+  }
+
+  &__link-to-parent {
+    padding: 10px;
+    padding-right: 15px;
+    color: @osu-colour-f1;
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+    .link-plain();
   }
 
   &__replies {
@@ -130,18 +170,9 @@
   &__top {
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
     background-color: @osu-colour-b3;
 
-    @media @desktop {
-      flex-direction: row;
-    }
-
-    &--review {
-      flex-direction: row;
-    }
-
-    &--unread {
+    .@{_top}--unread & {
       &::before {
         .full-size();
         content: ' ';
@@ -150,9 +181,8 @@
       }
     }
 
-    // group colours
     .osu-group-colours({
-      &--@{group} {
+      .@{_top}--review.@{_top}--@{group} & {
         border-top: 2px solid @@colour;
       }
     });

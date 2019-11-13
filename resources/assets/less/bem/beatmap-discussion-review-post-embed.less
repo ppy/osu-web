@@ -30,6 +30,17 @@
     padding: 10px;
   }
 
+  &__link-to-parent {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    color: @osu-colour-f1;
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+    .link-plain();
+  }
+
   &__message-container {
     flex: 1;
     margin: 10px 10px 10px 0;
@@ -56,7 +67,7 @@
 
   &__stripe {
     align-self: stretch;
-    background-color: @osu-colour-b5;
+    background-color: @osu-colour-b4;
     border-radius: 1px;
     flex: none;
     width: 2px;

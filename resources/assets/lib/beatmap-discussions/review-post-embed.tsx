@@ -47,30 +47,24 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
     <div className={bn}>
       <div className={`${bn}__beatmap-icon`}>
         {discussion.beatmap_id &&
-        <BeatmapIcon
+          <BeatmapIcon
             beatmap={beatmaps[discussion.beatmap_id]}
-        />
+          />
         }
       </div>
       <div className={`${bn}__timestamp`}>
         <div className={`${bn}__icons-container`}>
           <div className={`${bn}__icon`}>
-            <span
-              className={`beatmap-discussion-message-type beatmap-discussion-message-type--${discussion.message_type}`}
-            >
-              <i className={BeatmapDiscussionHelper.messageType.icon[discussion.message_type]}/>
-            </span>
+            <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${discussion.message_type}`}><i className={BeatmapDiscussionHelper.messageType.icon[discussion.message_type]} /></span>
           </div>
-          <div className={`${bn}__timestamp-text`}>
-              {discussion.timestamp ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp) : 'general'}
-            </div>
+          <div className={`${bn}__timestamp-text`}>{discussion.timestamp ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp) : 'general'}</div>
         </div>
       </div>
-      <div className={`${bn}__stripe`}/>
-      <div
-        className={`${bn}__message-container`}
-        dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format(discussion.posts[0].message)}}
-      />
+      <div className={`${bn}__stripe`} />
+      <div className={`${bn}__message-container`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format(discussion.posts[0].message)}} />
+      {discussion.parent_id &&
+        <a href={BeatmapDiscussionHelper.url({discussion})} className={`${bn}__link-to-parent`}><i className='fas fa-external-link-alt'/></a>
+      }
     </div>
   );
 };

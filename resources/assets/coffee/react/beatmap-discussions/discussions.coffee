@@ -23,7 +23,6 @@ import { a, button, div, i, p, span } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-discussions'
-lp = 'beatmaps.discussions'
 
 sortPresets =
   updated_at:
@@ -169,6 +168,9 @@ export class Discussions extends React.PureComponent
     visible = @props.currentDiscussions.byFilter[@props.currentFilter][@props.mode][discussion.id]?
     className += ' u-hide-by-height' unless visible
 
+    if discussion.parent_id?
+      parentDiscussion = _.find(@props.currentDiscussions.generalAll, {id: discussion.parent_id});
+
     div
       key: discussion.id
       className: className
@@ -182,6 +184,7 @@ export class Discussions extends React.PureComponent
         isTimelineVisible: @isTimelineVisible()
         visible: visible
         showDeleted: @props.showDeleted
+        parentDiscussion: parentDiscussion
 
 
   changeSort: (e) =>
