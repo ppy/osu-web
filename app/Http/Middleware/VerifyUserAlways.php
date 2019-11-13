@@ -22,11 +22,11 @@ namespace App\Http\Middleware;
 
 use App\Events\UserSessionEvent;
 
-class VerifyPrivilegedUser extends VerifyUser
+class VerifyUserAlways extends VerifyUser
 {
     public static function isRequired($user)
     {
-        return $user !== null && $user->isPrivileged();
+        return $user !== null && ($user->isPrivileged() || $user->isInactive());
     }
 
     public function requiresVerification($request)
