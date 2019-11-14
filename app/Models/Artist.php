@@ -80,4 +80,9 @@ class Artist extends Model
 
         return in_array($this->id, self::$memoized['recentlyUpdatedArtists'], true);
     }
+
+    public function url()
+    {
+        return route('artists.show', $this);
+    }
 }
