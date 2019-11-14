@@ -20,6 +20,12 @@
     'currentAction' => 'artists',
     'title' => "Featured Artist: $artist->name",
     'pageDescription' => $artist->description,
+    'canonicalUrl' => $artist->url(),
+    'opengraph' => [
+        'title' => $artist->name,
+        'section' => trans('layout.menu.beatmaps.artists'),
+        'image' => $artist->cover_url,
+    ],
 ])
 
 @section('content')
