@@ -43,7 +43,9 @@ class AuthServiceProvider extends ServiceProvider
         // those set in routes/web.php.
         Route::group(['prefix' => 'oauth', 'as' => 'oauth.'], function () {
             Route::post('token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken')->middleware('throttle')->name('passport.token');
-            Route::get('authorize', AuthorizationController::class.'@authorize')->middleware(['web'])->name('authorizations.authorize');
+            Route::get('authorize', AuthorizationController::class.'@authorize')
+                ->middleware(['web', 'verify-user'])
+                ->name('authorizations.authorize');
         });
 
         Passport::tokensCan([
