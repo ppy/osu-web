@@ -82,6 +82,7 @@ export class Main extends React.Component {
             <TypeGroup
               item={value[0]}
               items={value}
+              showRead={true}
             />
           </div>
         ),
