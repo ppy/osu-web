@@ -28,6 +28,7 @@ class AchievementTransformer extends Fractal\TransformerAbstract
     public function transform(Achievement $achievement)
     {
         return [
+            'icon_url' => $achievement->iconUrl(),
             'id' => $achievement->achievement_id,
             'name' => $achievement->name,
             'grouping' => $achievement->grouping,
