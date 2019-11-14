@@ -115,10 +115,6 @@ export default class Worker {
         ret.set(key, groupedItems);
       }
 
-      if (item.isRead) {
-        return;
-      }
-
       groupedItems.push(item);
     });
 
