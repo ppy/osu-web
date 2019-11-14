@@ -41,8 +41,11 @@ class VerifyUserAlways extends VerifyUser
             return false;
         }
 
-        $isWriteRequest = !in_array($request->getMethod(), ['GET', 'HEAD', 'OPTIONS'], true);
-        $isRequired = $isWriteRequest || static::isRequired($user);
+        $isPostAction = config('osu.user.post_action_verification')
+            ? !in_array($request->getMethod(), ['GET', 'HEAD', 'OPTIONS'], true)
+            : false;
+
+        $isRequired = $isPostAction || static::isRequired($user);
 
         if (session()->get('requires_verification') !== $isRequired) {
             session()->put('requires_verification', $isRequired);
