@@ -99,6 +99,18 @@
 
     .@{_top}--highlighted & {
       .thicker-box-shadow();
+      &::after {
+        .full-size();
+        content: ' ';
+        background: fade(white, 15%);
+        pointer-events: none;
+        opacity: 0.5;
+        animation: flash .5s;
+        @keyframes flash {
+          0% { opacity: 1; }
+          100% { opacity: 0.5; }
+        }
+      }
     }
   }
 
