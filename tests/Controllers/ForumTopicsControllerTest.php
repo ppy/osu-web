@@ -34,7 +34,7 @@ class ForumTopicsControllerTest extends TestCase
 
         // fail because no plays =)
         $this
-            ->actingAs($user)
+            ->actingAsVerified($user)
             ->post(route('forum.topics.reply', $topic->topic_id), [
                 'body' => 'This is test reply',
             ])
@@ -49,7 +49,7 @@ class ForumTopicsControllerTest extends TestCase
         app()->make('OsuAuthorize')->cacheReset();
 
         $this
-            ->actingAs($user)
+            ->actingAsVerified($user)
             ->post(route('forum.topics.reply', $topic->topic_id), [
                 'body' => 'This is test reply',
             ])
@@ -95,7 +95,7 @@ class ForumTopicsControllerTest extends TestCase
 
         // fail because no plays =)
         $this
-            ->actingAs($user)
+            ->actingAsVerified($user)
             ->post(route('forum.topics.store', ['forum_id' => $forum->forum_id]), [
                 'title' => 'Test post',
                 'body' => 'This is test post',
@@ -111,7 +111,7 @@ class ForumTopicsControllerTest extends TestCase
         app()->make('OsuAuthorize')->cacheReset();
 
         $this
-            ->actingAs($user)
+            ->actingAsVerified($user)
             ->post(route('forum.topics.store', ['forum_id' => $forum->forum_id]), [
                 'title' => 'Test post',
                 'body' => 'This is test post',
@@ -140,7 +140,7 @@ class ForumTopicsControllerTest extends TestCase
         $newTitle = 'A different title';
 
         $this
-            ->actingAs($user)
+            ->actingAsVerified($user)
             ->put(route('forum.topics.update', $topic), [
                 'forum_topic' => [
                     'topic_title' => $newTitle,
@@ -164,7 +164,7 @@ class ForumTopicsControllerTest extends TestCase
         ]);
 
         $this
-            ->actingAs($user)
+            ->actingAsVerified($user)
             ->put(route('forum.topics.update', $topic), [
                 'forum_topic' => [
                     'topic_title' => null,
