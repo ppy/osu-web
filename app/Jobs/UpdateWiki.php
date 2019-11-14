@@ -54,7 +54,7 @@ class UpdateWiki implements ShouldQueue
                 continue;
             }
 
-            if ($object instanceof NewsPost || $object instanceof Page) {
+            if ($object instanceof NewsPost || $object instanceof Page || $object instanceof Image) {
                 if ($status === 'renamed') {
                     optional($this->getObject($file['previous_filename']))->sync(true);
                 }

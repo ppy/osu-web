@@ -31,10 +31,23 @@ class VerifyUserAlways extends VerifyUser
 
     public function requiresVerification($request)
     {
-        $user = auth()->user();
-        $isRequired = static::isRequired($user);
+        if (is_api_request()) {
+            return false;
+        }
 
-        if ($user !== null && session()->get('requires_verification') !== $isRequired) {
+        $user = auth()->user();
+
+        if ($user === null) {
+            return false;
+        }
+
+        $isPostAction = config('osu.user.post_action_verification')
+            ? !in_array($request->getMethod(), ['GET', 'HEAD', 'OPTIONS'], true)
+            : false;
+
+        $isRequired = $isPostAction || static::isRequired($user);
+
+        if (session()->get('requires_verification') !== $isRequired) {
             session()->put('requires_verification', $isRequired);
             session()->save();
             event(UserSessionEvent::newVerificationRequirementChange($user->getKey(), $isRequired));

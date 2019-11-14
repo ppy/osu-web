@@ -193,13 +193,6 @@ if (process.env.SENTRY_RELEASE == 1) {
   );
 }
 
-// use polling if watcher is bugged.
-if (process.env.WEBPACK_POLL == 1) {
-  webpackConfig['watchOptions'] = {
-    poll: true
-  };
-}
-
 mix
 .webpackConfig(webpackConfig)
 .js([
