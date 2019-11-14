@@ -141,6 +141,7 @@ interface BeatmapDiscussion {
   message_type: string;
   parent_id: number | null;
   posts: BeatmapDiscussionPost[];
+  resolved: boolean;
   timestamp: number | null;
 }
 

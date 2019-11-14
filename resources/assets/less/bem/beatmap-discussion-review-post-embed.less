@@ -15,8 +15,8 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 .beatmap-discussion-review-post-embed {
+  @_top: beatmap-discussion-review-post-embed;
   display: flex;
   overflow: hidden;
   background-color: @osu-colour-b2;
@@ -72,5 +72,12 @@
     flex: none;
     width: 2px;
     margin: 10px;
+
+    .@{_top}--praise & {
+      background-color: @osu-colour-blue-3;
+    }
+    .@{_top}--resolved & {
+      background-color: @osu-colour-lime-3;
+    }
   }
 }

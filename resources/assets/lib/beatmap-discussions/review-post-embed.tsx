@@ -34,6 +34,13 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
   const discussion: BeatmapDiscussion = discussions[data.discussion_id];
   const bn = 'beatmap-discussion-review-post-embed';
 
+  const additionalClasses = [];
+  if (discussion.message_type === 'praise') {
+    additionalClasses.push('praise');
+  } else if (discussion.resolved) {
+    additionalClasses.push('resolved');
+  }
+
   if (!discussion) {
     // this should never happen, but just in case...
     return (
@@ -44,7 +51,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
   }
 
   return (
-    <div className={bn}>
+    <div className={osu.classWithModifiers(bn, additionalClasses)}>
       <div className={`${bn}__beatmap-icon`}>
         {discussion.beatmap_id &&
           <BeatmapIcon
