@@ -28,6 +28,10 @@ import ItemProps from './item-props';
 import ItemSingular from './item-singular';
 import { WithMarkReadProps } from './with-mark-read';
 
+interface Props {
+  showRead: boolean;
+}
+
 interface State {
   markingAsRead: boolean;
 }
@@ -35,10 +39,22 @@ interface State {
 const bn = 'notification-type-group';
 
 @observer
-export default class TypeGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
+export default class TypeGroup extends React.Component<ItemProps & Props & WithMarkReadProps, State> {
+  static defaultProps = {
+    showRead: false,
+  };
+
   state = {
     markingAsRead: false,
   };
+
+  get unreadCount() {
+    if (this.props.showRead) {
+      return this.props.items.length;
+    }
+
+    return this.props.items.filter((i) => !i.isRead).length;
+  }
 
   render() {
     if (this.props.items.length === 0) {
@@ -90,7 +106,7 @@ export default class TypeGroup extends React.Component<ItemProps & WithMarkReadP
         categoryGroup.set(key, groupedItems);
       }
 
-      if (item.isRead) {
+      if (!this.props.showRead && item.isRead) {
         return;
       }
 
@@ -150,11 +166,9 @@ export default class TypeGroup extends React.Component<ItemProps & WithMarkReadP
       return null;
     }
 
-    const unreadCount = this.props.items.filter((i) => !i.isRead).length;
-
     return (
       <span className={`${bn}__count`}>
-        {osu.formatNumber(unreadCount)}
+        {osu.formatNumber(this.unreadCount)}
       </span>
     );
   }
