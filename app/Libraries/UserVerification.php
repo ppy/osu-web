@@ -33,7 +33,7 @@ class UserVerification
 
     public static function fromCurrentRequest()
     {
-        static $verification;
+        $verification = request()->attributes->get('user_verification');
 
         if ($verification === null) {
             $verification = new static(
@@ -41,6 +41,7 @@ class UserVerification
                 request(),
                 UserVerificationState::fromCurrentRequest()
             );
+            request()->attributes->set('user_verification', $verification);
         }
 
         return $verification;

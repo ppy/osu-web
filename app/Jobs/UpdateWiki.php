@@ -54,26 +54,10 @@ class UpdateWiki implements ShouldQueue
                 continue;
             }
 
-            if ($object instanceof NewsPost || $object instanceof Page || $object instanceof WikiRedirect) {
-                if ($status === 'renamed') {
-                    optional($this->getObject($file['previous_filename']))->sync(true);
-                }
-                $object->sync(true);
-            } else {
-                $object->forget(true);
-
-                if ($status === 'renamed') {
-                    $prevObject = $this->getObject($file['previous_filename']);
-
-                    if ($prevObject) {
-                        $prevObject->forget();
-                    }
-                }
-
-                if ($status !== 'removed') {
-                    $object->get(true);
-                }
+            if ($status === 'renamed') {
+                optional($this->getObject($file['previous_filename']))->sync(true);
             }
+            $object->sync(true);
         }
     }
 

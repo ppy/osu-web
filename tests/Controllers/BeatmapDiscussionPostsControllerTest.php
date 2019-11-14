@@ -101,8 +101,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng']]);
 
         $this
-            ->actingAs($this->user)
-            ->withSession(['verified' => true])
+            ->actingAsVerified($this->user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -639,8 +638,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $user = $factory->create();
 
         $this
-            ->actingAs($user)
-            ->withSession(['verified' => true])
+            ->actingAsVerified($user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -729,8 +727,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     private function postResolveDiscussion(bool $resolved, User $user)
     {
         return $this
-            ->actingAs($user)
-            ->withSession(['verified' => true])
+            ->actingAsVerified($user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmap_discussion_id' => $this->beatmapDiscussion->id,
                 'beatmap_discussion' => [
