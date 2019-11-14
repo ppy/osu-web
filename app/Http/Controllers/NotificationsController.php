@@ -92,14 +92,7 @@ class NotificationsController extends Controller
     public function index()
     {
         if (!is_json_request()) {
-            $userNotifications = auth()
-                ->user()
-                ->userNotifications()
-                ->with('notification.notifiable')
-                ->with('notification.source')
-                ->orderBy('notification_id', 'DESC')
-                ->limit(static::LIMIT)
-                ->get();
+            $userNotifications = $this->getUserNotifications();
 
             $notificationsJson = json_collection($userNotifications, 'Notification');
 
@@ -187,5 +180,19 @@ class NotificationsController extends Controller
         }
 
         return $url;
+    }
+
+    private function getUserNotifications()
+    {
+        return auth()
+                ->user()
+                ->userNotifications()
+                ->whereHas('notification', function ($notificationQuery) {
+                    $notificationQuery->where('created_at', '<', now()->subDays(30));
+                })
+                ->with('notification.notifiable')
+                ->with('notification.source')
+                ->orderBy('notification_id', 'DESC')
+                ->get();
     }
 }
