@@ -21,7 +21,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentScore = $this->currentScore($this->discussion);
 
         $this
-            ->actingAs($this->user)
+            ->actingAsVerified($this->user)
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
@@ -118,7 +118,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentScore = $this->currentScore($this->discussion);
 
         $this
-            ->actingAs($this->anotherUser)
+            ->actingAsVerified($this->anotherUser)
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '0'],
             ])
@@ -140,7 +140,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentScore = $this->currentScore($this->discussion);
 
         $this
-            ->actingAs($this->anotherUser)
+            ->actingAsVerified($this->anotherUser)
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
