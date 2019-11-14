@@ -46,23 +46,16 @@ class UpdateWiki implements ShouldQueue
         $files = OsuWiki::getUpdatedFiles($this->oldHash, $this->newHash);
 
         foreach ($files as $file) {
-            $status = $file['status'];
-
-            $object = $this->getObject($file['filename']);
-
-            if ($object === null) {
-                continue;
-            }
-
-            if ($status === 'renamed') {
+            if ($file['status'] === 'renamed') {
                 optional($this->getObject($file['previous_filename']))->sync(true);
             }
-            $object->sync(true);
+
+            optional($this->getObject($file['filename']))->sync(true);
         }
     }
 
     /**
-     * @return WikiObject
+     * @return WikiObject|null
      */
     private function getObject($path)
     {

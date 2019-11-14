@@ -20,10 +20,11 @@
 
 namespace App\Libraries;
 
+use App\Models\Wiki\WikiObject;
 use Exception;
 use Symfony\Component\Yaml\Yaml;
 
-class WikiRedirect
+class WikiRedirect implements WikiObject
 {
     const CACHE_DURATION = 1 * 60 * 60;
     const CACHE_KEY = 'wiki:redirect:v2';
