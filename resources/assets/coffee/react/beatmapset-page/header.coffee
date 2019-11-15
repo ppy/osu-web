@@ -62,7 +62,6 @@ export class Header extends React.Component
         effect: -> $(this).fadeTo(250, 0)
 
   render: ->
-    dateFormat = 'MMM D, YYYY'
     favouriteButton =
       if @props.hasFavourited
         action: 'unfavourite'
