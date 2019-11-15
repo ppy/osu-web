@@ -676,24 +676,6 @@ class User extends Model implements AuthenticatableContract
         $this->attributes['osu_subscriptionexpiry'] = optional($value)->startOfDay();
     }
 
-    // return a user's API details
-
-    public function getApiDetails($user = null)
-    {
-        return $this->api;
-    }
-
-    public function getApiKey()
-    {
-        return $this->api->api_key;
-    }
-
-    public function setApiKey($key)
-    {
-        $this->api->api_key = $key;
-        $this->api->save();
-    }
-
     /*
     |--------------------------------------------------------------------------
     | Permission Checker Functions
