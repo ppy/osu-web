@@ -24,7 +24,7 @@ class @BeatmapDiscussionHelper
   @MAX_LENGTH_TIMELINE: 750
 
 
-  @MODES = ['events', 'general', 'generalAll', 'timeline']
+  @MODES = ['events', 'general', 'generalAll', 'timeline', 'reviews']
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
 
 
@@ -61,13 +61,16 @@ class @BeatmapDiscussionHelper
 
 
   @discussionMode: (discussion) ->
-    if discussion.beatmap_id?
-      if discussion.timestamp?
-        'timeline'
-      else
-        'general'
+    if discussion.message_type == 'review'
+      'reviews'
     else
-      'generalAll'
+      if discussion.beatmap_id?
+        if discussion.timestamp?
+          'timeline'
+        else
+          'general'
+      else
+        'generalAll'
 
 
   @format: (text, options = {}) =>
