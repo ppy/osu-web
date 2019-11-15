@@ -97,9 +97,11 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
       <div className={`${bn}__stripe`} />
       <div className={`${bn}__body`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format(discussion.posts[0].message)}} />
       {discussion.parent_id &&
-        <a href={BeatmapDiscussionHelper.url({discussion})} className={`${bn}__link-to-parent`}>
-            <i className='fas fa-external-link-alt'/>
-        </a>
+        <div className={`${bn}__link`}>
+          <a href={BeatmapDiscussionHelper.url({discussion})} className={`${bn}__link-text`}>
+              <i className='fas fa-external-link-alt'/>
+          </a>
+        </div>
       }
     </div>
   );

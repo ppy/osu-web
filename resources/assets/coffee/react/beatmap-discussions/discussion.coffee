@@ -116,7 +116,7 @@ export class Discussion extends React.PureComponent
           a
             href: BeatmapDiscussionHelper.url({discussion: @props.parentDiscussion})
             key: 'parent'
-            className: "#{bn}__link-to-parent",
+            className: "#{bn}__link-to-child",
             i className: 'fas fa-tasks'
 
         ['up', 'down'].map (type) =>
