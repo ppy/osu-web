@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NotificationReadEvent;
+use App\Libraries\MorphMap;
 use App\Models\Notification;
 use Carbon\Carbon;
 
@@ -101,19 +102,27 @@ class NotificationsController extends Controller
             return [
                 'cursor' => $lastNotification !== null ? ['id' => $lastNotification->getKey()] : null,
                 'notifications' => json_collection($userNotifications, 'Notification'),
+                'total'
             ];
-
         }
 
-        if (!is_json_request()) {
-            $userNotifications = $this->getUserNotifications();
-            $lastNotification = $userNotifications->last();
+        if (true) {
+            $groupedNotifications = $this->getGroupedNotifications();
+            $notificationsJson = [];
 
-            $notificationsJson = [
-                'cursor' => $lastNotification !== null ? ['id' => $lastNotification->getKey()] : null,
-                'notifications' => json_collection($userNotifications, 'Notification'),
-            ];
+            foreach ($groupedNotifications as $name => $builder) {
+                $total = $builder->count();
+                $notifications = $builder->limit(10)->get();
+                $last = $notifications->last();
 
+                $notificationsJson[] = [
+                    'cursor' => $last !== null ? ['id' => $last->getKey()] : null,
+                    'name' => $name,
+                    'notifications' => json_collection($notifications, 'Notification'),
+                    'total' => $total,
+                ];
+            }
+            return $notificationsJson;
             return view('notifications.index', compact('notificationsJson'));
         }
 
@@ -198,6 +207,22 @@ class NotificationsController extends Controller
         }
 
         return $url;
+    }
+
+    private function getGroupedNotifications()
+    {
+        $groups = [];
+        foreach (MorphMap::MAP as $_key => $value) {
+            $groups[$value] = Notification::whereHas('userNotifications', function ($q) {
+                $q->where('user_id', auth()->user()->getKey());
+            })
+            ->where('notifiable_type', $value)
+            ->with('notifiable')
+            ->with('source')
+            ->orderBy('id', 'DESC');
+        }
+
+        return $groups;
     }
 
     private function getUserNotifications($after = null)
