@@ -16,28 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussion-message-type {
-  &--hype {
-    color: @beatmap-discussion--color-hype;
-  }
+import * as React from 'react';
 
-  &--mapper-note {
-    color: @beatmap-discussion--color-mapper-note;
-  }
-
-  &--praise {
-    color: @beatmap-discussion--color-praise;
-  }
-
-  &--problem {
-    color: @beatmap-discussion--color-problem;
-  }
-
-  &--review {
-    color: @beatmap-discussion--color-review;
-  }
-
-  &--suggestion {
-    color: @beatmap-discussion--color-suggestion;
-  }
-}
+export const BeatmapsContext = React.createContext([]);
