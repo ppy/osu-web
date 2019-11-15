@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NotificationReadEvent;
+use App\Models\Notification;
 use Carbon\Carbon;
 
 /**
@@ -92,17 +93,26 @@ class NotificationsController extends Controller
      */
     public function index()
     {
-        if (request('after') !== null) {
-            $after = Carbon::parse(get_int(request('after')));
+        if (request('id') !== null) {
+            $after = get_int(request('id'));
             $userNotifications = $this->getUserNotifications($after);
+            $lastNotification = $userNotifications->last();
 
-            return json_collection($userNotifications, 'Notification');
+            return [
+                'cursor' => $lastNotification !== null ? ['id' => $lastNotification->getKey()] : null,
+                'notifications' => json_collection($userNotifications, 'Notification'),
+            ];
+
         }
 
         if (!is_json_request()) {
             $userNotifications = $this->getUserNotifications();
+            $lastNotification = $userNotifications->last();
 
-            $notificationsJson = json_collection($userNotifications, 'Notification');
+            $notificationsJson = [
+                'cursor' => $lastNotification !== null ? ['id' => $lastNotification->getKey()] : null,
+                'notifications' => json_collection($userNotifications, 'Notification'),
+            ];
 
             return view('notifications.index', compact('notificationsJson'));
         }
@@ -190,23 +200,20 @@ class NotificationsController extends Controller
         return $url;
     }
 
-    private function getUserNotifications(?Carbon $after = null)
+    private function getUserNotifications($after = null)
     {
-        return auth()
-                ->user()
-                ->userNotifications()
-                ->whereHas('notification', function ($notificationQuery) use ($after) {
-                    if ($after === null) {
-                        $notificationQuery->where('created_at', '<', now()->subDays(30));
-                    } else {
-                        $notificationQuery
-                            ->where('created_at', '>', $after)
-                            ->limit(10);
-                    }
-                })
-                ->with('notification.notifiable')
-                ->with('notification.source')
-                ->orderBy('notification_id', 'DESC')
-                ->get();
+        $notifications = Notification::whereHas('userNotifications', function ($q) {
+            $q->where('user_id', auth()->user()->getKey());
+        })
+        ->with('notifiable')
+        ->with('source')
+        ->orderBy('id', 'DESC')
+        ->limit(10);
+
+        if ($after !== null) {
+            $notifications->where('id', '<', $after);
+        }
+
+        return $notifications->get();
     }
 }

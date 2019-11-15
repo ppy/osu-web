@@ -119,14 +119,15 @@ export class Main extends React.Component<{}, State> {
 
   @action
   loadMore = () => {
-    const after = core.dataStore.notificationStore.nextTimestamp;
-    const params = { after };
+    const cursor = core.dataStore.notificationStore.cursor;
+    const data = cursor || {};
 
-    $.ajax({ url: route('notifications.index', params), dataType: 'json' })
+    $.ajax({ url: route('notifications.index'), dataType: 'json', data })
     .then(this.loadBundle);
   }
 
   @action loadBundle = (data: any) => {
-    data.forEach((json) => core.dataStore.notificationStore.updateWithJson(json));
+    data.notifications.forEach((json) => core.dataStore.notificationStore.updateWithJson(json));
+    core.dataStore.notificationStore.cursor = data.cursor;
   }
 }

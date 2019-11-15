@@ -127,6 +127,7 @@ export default class Worker {
   }
 
   boot = () => {
+    return;
     this.active = this.userId != null;
 
     if (this.active) {

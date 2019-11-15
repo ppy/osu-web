@@ -21,9 +21,10 @@ import { Main } from 'notifications-index/main';
 import core from 'osu-core-singleton';
 
 reactTurbolinks.registerPersistent('notifications-index', Main, true, (container: HTMLElement) => {
-  const json: NotificationJson[] = osu.parseJson('json-notifications');
+  const json = osu.parseJson('json-notifications');
   const store = core.dataStore.notificationStore;
-  json.forEach((item) => store.updateWithJson(item));
+  json.notifications.forEach((item) => store.updateWithJson(item));
+  store.cursor = json.cursor;
 
   return {};
 });
