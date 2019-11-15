@@ -87,7 +87,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
               messageTypeIcon()
             }
         </div>
-        <div className={`${bn}__timestamp`}>
+        <div>
           {discussion.beatmap_id &&
             messageTypeIcon()
           }
