@@ -127,7 +127,6 @@ export default class Worker {
   }
 
   boot = () => {
-    return;
     this.active = this.userId != null;
 
     if (this.active) {
@@ -234,7 +233,7 @@ export default class Worker {
     const params = minLoadedId == null ? null : { max_id: minLoadedId - 1 };
 
     this.xhrLoadingState.loadMore = true;
-    this.xhr.loadMore = $.ajax({ url: route('notifications.index', params), dataType: 'json' })
+    this.xhr.loadMore = $.ajax({ url: route('notifications.unread', params), dataType: 'json' })
       .always(action(() => {
         this.xhrLoadingState.loadMore = false;
       })).done(this.loadBundle)
@@ -269,7 +268,7 @@ export default class Worker {
     const params = { with_read: true, max_id: maxId };
 
     this.xhrLoadingState.refresh = true;
-    this.xhr.refresh = $.get(route('notifications.index'), params)
+    this.xhr.refresh = $.get(route('notifications.unread'), params)
       .always(action(() => {
         this.xhrLoadingState.refresh = false;
       })).done((bundleJson: NotificationBundleJson) => {

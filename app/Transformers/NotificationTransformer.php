@@ -39,7 +39,7 @@ class NotificationTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $notification->getKey(),
             'name' => $notification->name,
-            'created_at' => json_time($notification->created_at),
+            'created_at' => json_time($object->created_at),
             'object_type' => $notification->notifiable_type,
             'object_id' => $notification->notifiable_id,
             'source_user_id' => $notification->source_user_id,

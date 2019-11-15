@@ -92,40 +92,8 @@ class NotificationsController extends Controller
      *   "notification_endpoint": "wss://notify.ppy.sh"
      * }
      */
-    public function index()
+    public function unread()
     {
-        if (request('id') !== null) {
-            $after = get_int(request('id'));
-            $userNotifications = $this->getUserNotifications($after);
-            $lastNotification = $userNotifications->last();
-
-            return [
-                'cursor' => $lastNotification !== null ? ['id' => $lastNotification->getKey()] : null,
-                'notifications' => json_collection($userNotifications, 'Notification'),
-                'total'
-            ];
-        }
-
-        if (true) {
-            $groupedNotifications = $this->getGroupedNotifications();
-            $notificationsJson = [];
-
-            foreach ($groupedNotifications as $name => $builder) {
-                $total = $builder->count();
-                $notifications = $builder->limit(10)->get();
-                $last = $notifications->last();
-
-                $notificationsJson[] = [
-                    'cursor' => $last !== null ? ['id' => $last->getKey()] : null,
-                    'name' => $name,
-                    'notifications' => json_collection($notifications, 'Notification'),
-                    'total' => $total,
-                ];
-            }
-            return $notificationsJson;
-            return view('notifications.index', compact('notificationsJson'));
-        }
-
         $withRead = get_bool(request('with_read')) ?? false;
         $hasMore = false;
         $userNotificationsQuery = auth()
@@ -162,6 +130,41 @@ class NotificationsController extends Controller
             'unread_count' => $unreadCount,
             'notification_endpoint' => $this->endpointUrl(),
         ])->header('Cache-Control', 'no-store');
+    }
+
+    public function index()
+    {
+        if (request('id') !== null) {
+            $after = get_int(request('id'));
+            $userNotifications = $this->getUserNotifications($after);
+            $lastNotification = $userNotifications->last();
+
+            return [
+                'cursor' => $lastNotification !== null ? ['id' => $lastNotification->getKey()] : null,
+                'notifications' => json_collection($userNotifications, 'Notification'),
+                'total'
+            ];
+        }
+
+        if (true) {
+            $groupedNotifications = $this->getGroupedNotifications();
+            $notificationsJson = [];
+
+            foreach ($groupedNotifications as $name => $builder) {
+                $total = $builder->count();
+                $notifications = $builder->limit(10)->get();
+                $last = $notifications->last();
+
+                $notificationsJson[] = [
+                    'cursor' => $last !== null ? ['id' => $last->getKey()] : null,
+                    'name' => $name,
+                    'notifications' => json_collection($notifications, 'Notification'),
+                    'total' => $total,
+                ];
+            }
+            return $notificationsJson;
+            return view('notifications.index', compact('notificationsJson'));
+        }
     }
 
     /**
