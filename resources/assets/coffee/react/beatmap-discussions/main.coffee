@@ -48,6 +48,7 @@ export class Main extends React.PureComponent
 
     if !@restoredState
       beatmapset = props.initial.beatmapset
+      reviewsEnabled = props.initial.reviews_enabled ? false
       showDeleted = true
       readPostIds = []
 
@@ -55,7 +56,7 @@ export class Main extends React.PureComponent
         for post in discussion.posts ? []
           readPostIds.push post.id
 
-      @state = {beatmapset, currentUser, readPostIds, showDeleted}
+      @state = {beatmapset, currentUser, readPostIds, reviewsEnabled, showDeleted}
 
     # Current url takes priority over saved state.
     query = @queryFromLocation(@state.beatmapset.discussions)
@@ -127,6 +128,7 @@ export class Main extends React.PureComponent
         currentBeatmap: @currentBeatmap()
         currentDiscussions: @currentDiscussions()
         currentFilter: @state.currentFilter
+        reviewsEnabled: @state.reviewsEnabled
 
       if @state.currentMode == 'events'
         div

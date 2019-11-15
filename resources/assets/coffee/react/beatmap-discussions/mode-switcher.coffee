@@ -26,6 +26,9 @@ export class ModeSwitcher extends React.PureComponent
 
 
   render: =>
+    modes = ['generalAll', 'general', 'timeline', 'events']
+    modes.unshift('reviews') if @props.reviewsEnabled
+
     [
       div
         className: 'page-extra-tabs-before'
@@ -38,7 +41,7 @@ export class ModeSwitcher extends React.PureComponent
 
         div className: 'osu-page',
           ul className: 'page-mode page-mode--page-extra-tabs',
-            for mode in ['reviews', 'generalAll', 'general', 'timeline', 'events']
+            for mode in modes
               li
                 key: mode
                 className: 'page-mode__item'
