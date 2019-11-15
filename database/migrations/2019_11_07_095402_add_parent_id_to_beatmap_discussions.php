@@ -28,7 +28,6 @@ class AddParentIdToBeatmapDiscussions extends Migration
     {
         Schema::table('beatmap_discussions', function (Blueprint $table) {
             $table->dropColumn('parent_id');
-            $table->dropIndex('parent_id');
         });
     }
 }
