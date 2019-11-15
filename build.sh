@@ -45,11 +45,8 @@ if [ -z "${OSU_SKIP_ASSET_BUILD:-}" ]; then
     ln -snf ~/node_modules node_modules
   fi
 
-  php artisan ziggy:generate
-
   command -v yarn || npm install -g yarn
   yarn
-  yarn run generate-localizations
   yarn run production
 else
   echo "OSU_SKIP_ASSET_BUILD set, skipping javascript asset build."
