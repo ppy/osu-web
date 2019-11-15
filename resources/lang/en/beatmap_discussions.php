@@ -84,6 +84,11 @@ return [
         ],
     ],
 
+    'timestamp_display' => [
+        'general' => 'general',
+        'general_all' => 'general (all)',
+    ],
+
     'user_filter' => [
         'everyone' => 'Everyone',
         'label' => 'Filter by user',

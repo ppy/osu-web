@@ -29,17 +29,10 @@ interface Props {
 }
 
 export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
+  const bn = 'beatmap-discussion-review-post-embed';
   const discussions = React.useContext(DiscussionsContext);
   const beatmaps = React.useContext(BeatmapsContext);
-  const discussion: BeatmapDiscussion = discussions[data.discussion_id];
-  const bn = 'beatmap-discussion-review-post-embed';
-
-  const additionalClasses = [];
-  if (discussion.message_type === 'praise') {
-    additionalClasses.push('praise');
-  } else if (discussion.resolved) {
-    additionalClasses.push('resolved');
-  }
+  const discussion = discussions[data.discussion_id];
 
   if (!discussion) {
     // this should never happen, but just in case...
@@ -50,27 +43,63 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
     );
   }
 
-  return (
-    <div className={osu.classWithModifiers(bn, additionalClasses)}>
-      <div className={`${bn}__beatmap-icon`}>
-        {discussion.beatmap_id &&
-          <BeatmapIcon
-            beatmap={beatmaps[discussion.beatmap_id]}
-          />
+  const additionalClasses = [];
+  if (discussion.message_type === 'praise') {
+    additionalClasses.push('praise');
+  } else if (discussion.resolved) {
+    additionalClasses.push('resolved');
+  }
+
+  const hasBeatmap = discussion.beatmap_id !== null;
+  if (!hasBeatmap) {
+    additionalClasses.push('general-all');
+  }
+
+  const messageTypeIcon = () => {
+    return (
+      <div className={`beatmap-discussion-message-type beatmap-discussion-message-type--${discussion.message_type}`}><i className={BeatmapDiscussionHelper.messageType.icon[discussion.message_type]} /></div>
+    );
+  };
+
+  const timestamp = () => {
+    return (
+      <div className={`${bn}__timestamp-text`}>
+        {
+          discussion.timestamp
+            ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
+            : osu.trans(`beatmap_discussions.timestamp_display.${hasBeatmap ? 'general' : 'general_all'}`)
         }
       </div>
-      <div className={`${bn}__timestamp`}>
-        <div className={`${bn}__icons-container`}>
-          <div className={`${bn}__icon`}>
-            <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${discussion.message_type}`}><i className={BeatmapDiscussionHelper.messageType.icon[discussion.message_type]} /></span>
-          </div>
-          <div className={`${bn}__timestamp-text`}>{discussion.timestamp ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp) : 'general'}</div>
+    );
+  };
+
+  return (
+    <div className={osu.classWithModifiers(bn, additionalClasses)}>
+      <div className={`${bn}__meta`}>
+        <div className={`${bn}__icon`}>
+          {/* if there's no associated beatmap, show the issue type icon here... otherwise show it below */}
+            {discussion.beatmap_id &&
+              <BeatmapIcon
+                beatmap={beatmaps[discussion.beatmap_id]}
+              />
+            }
+            {!discussion.beatmap_id &&
+              messageTypeIcon()
+            }
+        </div>
+        <div className={`${bn}__timestamp`}>
+          {discussion.beatmap_id &&
+            messageTypeIcon()
+          }
+          {timestamp()}
         </div>
       </div>
       <div className={`${bn}__stripe`} />
-      <div className={`${bn}__message-container`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format(discussion.posts[0].message)}} />
+      <div className={`${bn}__body`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format(discussion.posts[0].message)}} />
       {discussion.parent_id &&
-        <a href={BeatmapDiscussionHelper.url({discussion})} className={`${bn}__link-to-parent`}><i className='fas fa-external-link-alt'/></a>
+        <a href={BeatmapDiscussionHelper.url({discussion})} className={`${bn}__link-to-parent`}>
+            <i className='fas fa-external-link-alt'/>
+        </a>
       }
     </div>
   );
