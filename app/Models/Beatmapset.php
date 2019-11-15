@@ -155,7 +155,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function beatmapDiscussions()
     {
-        return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
+        return $this
+            ->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id')
+            // TODO: remove this when reviews are released
+            ->hideReviews();
     }
 
     public function recentFavourites($limit = 50)
