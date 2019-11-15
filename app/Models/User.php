@@ -427,12 +427,6 @@ class User extends Model implements AuthenticatableContract
         return (new ChangeUsername($this, $username, $type))->validate();
     }
 
-    // verify that an api key is correct
-    public function verify($key)
-    {
-        return $this->api->api_key === $key;
-    }
-
     public static function lookup($usernameOrId, $type = null, $findAll = false)
     {
         if (!present($usernameOrId)) {
