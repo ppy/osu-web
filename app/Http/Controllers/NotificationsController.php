@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NotificationReadEvent;
+use Carbon\Carbon;
 
 /**
  * @group Notification
@@ -91,6 +92,13 @@ class NotificationsController extends Controller
      */
     public function index()
     {
+        if (request('after') !== null) {
+            $after = Carbon::parse(get_int(request('after')));
+            $userNotifications = $this->getUserNotifications($after);
+
+            return json_collection($userNotifications, 'Notification');
+        }
+
         if (!is_json_request()) {
             $userNotifications = $this->getUserNotifications();
 
@@ -182,13 +190,19 @@ class NotificationsController extends Controller
         return $url;
     }
 
-    private function getUserNotifications()
+    private function getUserNotifications(?Carbon $after = null)
     {
         return auth()
                 ->user()
                 ->userNotifications()
-                ->whereHas('notification', function ($notificationQuery) {
-                    $notificationQuery->where('created_at', '<', now()->subDays(30));
+                ->whereHas('notification', function ($notificationQuery) use ($after) {
+                    if ($after === null) {
+                        $notificationQuery->where('created_at', '<', now()->subDays(30));
+                    } else {
+                        $notificationQuery
+                            ->where('created_at', '>', $after)
+                            ->limit(10);
+                    }
                 })
                 ->with('notification.notifiable')
                 ->with('notification.source')

@@ -35,19 +35,29 @@
 
 import HeaderV3 from 'header-v3';
 import { route } from 'laroute';
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import TypeGroup from 'notification-widget/type-group';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
+
+interface State {
+  loadingMore: boolean;
+}
 
 @observer
-export class Main extends React.Component {
+export class Main extends React.Component<{}, State> {
   static readonly links = [
     { title: 'All', url: route('notifications.index'), active: true },
     { title: 'Profile', url: route('notifications.index') },
     { title: 'Beatmaps', url: route('notifications.index') },
     { title: 'Forum', url: route('notifications.index') },
   ];
+
+  readonly state = {
+    loadingMore: false,
+  };
 
   render() {
     return (
@@ -63,7 +73,22 @@ export class Main extends React.Component {
 
         <div className='osu-page osu-page--users'>
           {this.renderTypeGroups()}
+
+          {this.renderShowMoreButton()}
         </div>
+      </div>
+    );
+  }
+
+  renderShowMoreButton() {
+    return (
+      <div className='notification-popup__show-more'>
+        <ShowMoreLink
+          callback={this.loadMore}
+          hasMore={true}
+          loading={this.state.loadingMore}
+          modifiers={['t-greysky']}
+        />
       </div>
     );
   }
@@ -90,5 +115,18 @@ export class Main extends React.Component {
     });
 
     return items;
+  }
+
+  @action
+  loadMore = () => {
+    const after = core.dataStore.notificationStore.nextTimestamp;
+    const params = { after };
+
+    $.ajax({ url: route('notifications.index', params), dataType: 'json' })
+    .then(this.loadBundle);
+  }
+
+  @action loadBundle = (data: any) => {
+    data.forEach((json) => core.dataStore.notificationStore.updateWithJson(json));
   }
 }

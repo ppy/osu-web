@@ -25,6 +25,7 @@ import Notification from 'models/notification';
 import Store from 'stores/store';
 
 export default class NotificationStore extends Store {
+  @observable nextTimestamp: number | null = null;
   @observable notifications = new Map<number, Notification>();
   @observable pmNotification = new LegacyPmNotification();
   @observable unreadCount = 0;
@@ -50,6 +51,11 @@ export default class NotificationStore extends Store {
       let groupedItems = ret.get(key);
 
       if (groupedItems == null) {
+        if (item.createdAtJson) {
+          // the first item of the last group should be the earliest top level notification
+          this.nextTimestamp = Math.floor(Date.parse(item.createdAtJson) / 1000);
+        }
+
         groupedItems = [];
         ret.set(key, groupedItems);
       }
