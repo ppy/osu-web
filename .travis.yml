@@ -57,7 +57,7 @@ install:
 
   # elasticsearch setup (part 2)
   # wait until es server is up
-  - wget -q --waitretry=1 --retry-connrefused -T 60 -O - http://127.0.0.1:9200
+  - wget -q --waitretry=10 --retry-connrefused -T 60 -O - http://127.0.0.1:9200
   - php artisan es:create-search-blacklist
   - php artisan es:index-documents --yes
 
@@ -89,7 +89,6 @@ jobs:
         - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
       script:
         - yarn
-        - bin/update_locales_and_routes_js
         - yarn karma start --single-run --browsers ChromeHeadless
 
     - name: apidoc

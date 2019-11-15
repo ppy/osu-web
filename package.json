@@ -44,12 +44,15 @@
     "remark-parse": "^7.0.1",
     "require-dir": "^1.2.0",
     "shopify-buy": "^2.6.1",
+    "terser-webpack-plugin": "^1.4.1",
     "timeago": "^1.5.0",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "turbolinks": "^5.1.1",
     "typescript": "~3.5.3",
     "unified": "^8.4.2",
     "url-polyfill": "^1.1.6",
+    "watchpack": "^1.6.0",
+    "webpack": "^4.41.2",
     "webpack-sentry-plugin": "^2.0.2"
   },
   "devDependencies": {
@@ -62,6 +65,7 @@
     "coffee-loader": "^0.9.0",
     "coffeescript": "^1.12.6",
     "cross-env": "^5.2.0",
+    "deasync": "^0.1.15",
     "glob": "^7.1.3",
     "import-glob-loader": "^1.1.0",
     "imports-loader": "^0.8.0",

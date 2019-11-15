@@ -54,7 +54,10 @@ class UpdateWiki implements ShouldQueue
                 continue;
             }
 
-            if ($object instanceof NewsPost) {
+            if ($object instanceof NewsPost || $object instanceof Page || $object instanceof Image) {
+                if ($status === 'renamed') {
+                    optional($this->getObject($file['previous_filename']))->sync(true);
+                }
                 $object->sync(true);
             } else {
                 $object->forget(true);
@@ -82,7 +85,7 @@ class UpdateWiki implements ShouldQueue
         $parsed = OsuWiki::parseGithubPath($path);
 
         if ($parsed['type'] === 'page') {
-            return new Page($parsed['path'], $parsed['locale']);
+            return Page::lookup($parsed['path'], $parsed['locale']);
         } elseif ($parsed['type'] === 'image') {
             return new Image($parsed['path']);
         } elseif ($parsed['type'] === 'redirect') {
