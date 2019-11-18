@@ -1429,11 +1429,6 @@ class User extends Model implements AuthenticatableContract
         return $this->memoized[__FUNCTION__];
     }
 
-    public function getForeignKey()
-    {
-        return 'user_id';
-    }
-
     public function title()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
