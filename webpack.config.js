@@ -19,24 +19,6 @@ Mix.paths.setRootPath(currentPath);
 let ComponentFactory = require(path.resolve(mixPath, 'src/components/ComponentFactory'));
 new ComponentFactory().installAll();
 
-require(Mix.paths.mix());
-
-/**
- * Just in case the user needs to hook into this point
- * in the build process, we'll make an announcement.
- */
-
-Mix.dispatch('init', Mix);
-
-/**
- * Now that we know which build tasks are required by the
- * user, we can dynamically create a configuration object
- * for Webpack. And that's all there is to it. Simple!
- */
-
-let WebpackConfig = require(path.resolve(mixPath, 'src/builder/WebpackConfig'));
-const config = new WebpackConfig().build();
-
 const routesFile = path.resolve(__dirname, 'routes/web.php');
 const langDir = path.resolve(__dirname, 'resources/lang');
 
@@ -63,6 +45,14 @@ const watches = [
   },
 ]
 
+function buildConfig() {
+  require(Mix.paths.mix());
+  Mix.dispatch('init', Mix);
+  const WebpackConfig = require(path.resolve(mixPath, 'src/builder/WebpackConfig'));
+
+  return new WebpackConfig().build();
+}
+
 function configPromise(env, argv) {
   return new Promise((resolve) => {
     const options = {
@@ -77,7 +67,7 @@ function configPromise(env, argv) {
         watched.callback();
       })
 
-      return resolve(config);
+      return resolve(buildConfig());
     }
 
     const wp = new Watchpack(options);
@@ -104,7 +94,7 @@ function configPromise(env, argv) {
       // let webpack run after the first build.
       if (!resolved && watches.reduce((value, watched) => value && watched.ranOnce, true)) {
         resolved = true;
-        resolve(config);
+        resolve(buildConfig());
       }
     });
   });

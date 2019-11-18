@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,12 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Wiki;
+import * as React from 'react';
 
-interface WikiObject
-{
-    /**
-     * Fetches the representation of the object, renders it, and stores it in the cache.
-     */
-    public function sync($force = false);
-}
+export const BeatmapsContext = React.createContext([]);

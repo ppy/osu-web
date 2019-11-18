@@ -236,6 +236,10 @@ mix
 
 // include locales in manifest
 const locales = glob.sync('resources/assets/build/locales/*.js');
+if (locales.length === 0) {
+  throw new Error('missing locale files.');
+}
+
 for (const locale of locales) {
   mix.scripts([locale], `public/js/locales/${path.basename(locale)}`);
 }

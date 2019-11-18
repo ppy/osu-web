@@ -16,28 +16,50 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussion-message-type {
-  &--hype {
-    color: @beatmap-discussion--color-hype;
+.beatmap-discussion-review-post-embed {
+  display: flex;
+  overflow: hidden;
+  background-color: @osu-colour-b2;
+  .default-box-shadow();
+  .default-border-radius();
+  flex: 1;
+  margin: 5px 0;
+  min-height: 40px;
+
+  &__beatmap-icon {
+    padding: 10px;
   }
 
-  &--mapper-note {
-    color: @beatmap-discussion--color-mapper-note;
+  &__message-container {
+    flex: 1;
+    margin: 10px 10px 10px 0;
+    min-width: 0;
+
+    &--error {
+      margin: 10px;
+      text-align: center;
+    }
   }
 
-  &--praise {
-    color: @beatmap-discussion--color-praise;
+  &__timestamp {
+    margin: 5px 0;
+    min-width: 50px;
   }
 
-  &--problem {
-    color: @beatmap-discussion--color-problem;
+  &__timestamp-text {
+    color: @osu-colour-f1;
+    font-size: 9px;
+    // To prevent the height being included when calculating vertical center
+    // position of the icons.
+    height: 0;
   }
 
-  &--review {
-    color: @beatmap-discussion--color-review;
-  }
-
-  &--suggestion {
-    color: @beatmap-discussion--color-suggestion;
+  &__stripe {
+    align-self: stretch;
+    background-color: @osu-colour-b5;
+    border-radius: 1px;
+    flex: none;
+    width: 2px;
+    margin: 10px;
   }
 }
