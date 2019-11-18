@@ -321,7 +321,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this->putPost('', $post)
             ->assertViewIs('users.login')
-            ->assertStatus(200);
+            ->assertStatus(401);
 
         $this->assertSame($initialMessage, $post->fresh()->message);
     }
@@ -439,7 +439,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this->deletePost($reply)
             ->assertViewIs('users.login')
-            ->assertStatus(200);
+            ->assertStatus(401);
 
         $this->assertFalse($reply->fresh()->trashed());
     }
