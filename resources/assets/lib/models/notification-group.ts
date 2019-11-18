@@ -17,14 +17,29 @@
  */
 
 import { NotificationGroupJson } from 'interfaces/notification-bundle-json';
-import { Main } from 'notifications-index/main';
-import core from 'osu-core-singleton';
+import { action, observable } from 'mobx';
+import Notification from 'models/notification';
 
-reactTurbolinks.registerPersistent('notifications-index', Main, true, (container: HTMLElement) => {
-  const bundle = osu.parseJson('json-notifications') as NotificationGroupJson[];
-  const store = core.dataStore.notificationStore;
+export default class NotificationGroup {
+  @observable cursor: JSON | null = null;
+  @observable notifications = new Map<number, Notification>();
+  @observable total = 0;
 
-  bundle.forEach((json) => store.updateWithGroupJson(json));
+  constructor(public name: string) {}
 
-  return {};
-});
+  @action
+  appendWithJson(json: NotificationGroupJson) {
+    this.cursor = json.cursor;
+    this.total = json.total;
+
+    for (const item of json.notifications) {
+      let notification = this.notifications.get(item.id);
+      if (notification == null) {
+        notification = new Notification(item.id);
+        this.notifications.set(item.id, notification);
+      }
+
+      notification.updateFromJson(item);
+    }
+  }
+}

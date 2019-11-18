@@ -34,15 +34,18 @@
  */
 
 import HeaderV3 from 'header-v3';
+import { NotificationGroupJson } from 'interfaces/notification-bundle-json';
 import { route } from 'laroute';
-import { action } from 'mobx';
+import { action, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
+import NotificationGroup from 'models/notification-group';
 import TypeGroup from 'notification-widget/type-group';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 
 interface State {
+  group: null | 'beatmapset' | 'build' | 'channel' | 'forum_topic' | 'news_post' | 'user';
   loadingMore: boolean;
 }
 
@@ -50,12 +53,16 @@ interface State {
 export class Main extends React.Component<{}, State> {
   static readonly links = [
     { title: 'All', url: route('notifications.index'), active: true },
-    { title: 'Profile', url: route('notifications.index') },
-    { title: 'Beatmaps', url: route('notifications.index') },
-    { title: 'Forum', url: route('notifications.index') },
+    { title: 'Profile', url: route('notifications.index', { group: 'user' }) },
+    { title: 'Beatmaps', url: route('notifications.index', { group: 'beatmapset' }) },
+    { title: 'Forum', url: route('notifications.index', { group: 'forum_topic' }) },
+    { title: 'News', url: route('notifications.index', { group: 'news_post' }) },
+    { title: 'Build', url: route('notifications.index', { group: 'build' }) },
+    { title: 'Chat', url: route('notifications.index', { group: 'channel' }) },
   ];
 
   readonly state = {
+    group: this.groupFromUrl,
     loadingMore: false,
   };
 
@@ -73,19 +80,19 @@ export class Main extends React.Component<{}, State> {
 
         <div className='osu-page osu-page--users'>
           {this.renderTypeGroups()}
-
-          {this.renderShowMoreButton()}
         </div>
       </div>
     );
   }
 
-  renderShowMoreButton() {
+  renderShowMoreButton(group: NotificationGroup) {
+    if (this.state.group == null) { return null; }
+
     return (
       <div className='notification-popup__show-more'>
         <ShowMoreLink
           callback={this.loadMore}
-          hasMore={true}
+          hasMore={group.cursor != null && group.total > group.notifications.size}
           loading={this.state.loadingMore}
           modifiers={['t-greysky']}
         />
@@ -93,41 +100,72 @@ export class Main extends React.Component<{}, State> {
     );
   }
 
-  renderTypeGroups() {
-    const items: React.ReactNode[] = [];
+  renderTypeGroup(group: NotificationGroup, key: string) {
+    if (group.total === 0) {
+      return;
+    }
 
-    core.dataStore.notificationStore.itemsGroupedByType.forEach((value, key) => {
-      if (value.length === 0) {
-        return;
+    const notification = group.notifications.values().next().value;
+    if (notification == null) {
+      return;
+    }
+
+    return (
+      <React.Fragment key={key}>
+        <div className='notification-popup__item'>
+          <TypeGroup
+            item={notification}
+            items={[...group.notifications.values()]}
+          />
+        </div>
+        {this.renderShowMoreButton(group)}
+      </React.Fragment>
+    );
+  }
+
+  renderTypeGroups() {
+    const nodes: React.ReactNode[] = [];
+    const params = new URLSearchParams(location.search);
+
+    for (const [key, group] of core.dataStore.notificationStore.groups) {
+      if (params.has('group') && params.get('group') !== key) {
+        continue;
       }
 
-      items.push(
-        (
-          <div key={key} className='notification-popup__item'>
-            <TypeGroup
-              item={value[0]}
-              items={value}
-              showRead={true}
-            />
-          </div>
-        ),
-      );
-    });
+      nodes.push(this.renderTypeGroup(group, key));
+    }
 
-    return items;
+    return nodes;
   }
 
   @action
   loadMore = () => {
-    const cursor = core.dataStore.notificationStore.cursor;
-    const data = cursor || {};
+    if (this.state.group == null) { return; }
+    const cursor = core.dataStore.notificationStore.groups.get(this.state.group)?.cursor;
+
+    if (cursor == null) { return; }
+    const data = { cursor, group: this.state.group };
 
     $.ajax({ url: route('notifications.index'), dataType: 'json', data })
-    .then(this.loadBundle);
+    .then((response: NotificationGroupJson[]) => {
+      runInAction(() => {
+        response.forEach((json) => core.dataStore.notificationStore.updateWithGroupJson(json));
+      });
+    });
   }
 
-  @action loadBundle = (data: any) => {
-    data.notifications.forEach((json) => core.dataStore.notificationStore.updateWithJson(json));
-    core.dataStore.notificationStore.cursor = data.cursor;
+  private getAllowedQueryStringValue<T>(allowed: T[], value: unknown) {
+    const casted = value as T;
+    if (allowed.indexOf(casted) > -1) {
+      return casted;
+    }
+
+    return allowed[0];
+  }
+
+  private get groupFromUrl() {
+    const url = new URL(location.href);
+
+    return this.getAllowedQueryStringValue([null, 'beatmapset', 'build', 'channel', 'forum_topic', 'news_post', 'user'], url.searchParams.get('group'));
   }
 }

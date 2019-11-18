@@ -16,16 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { NotificationGroupJson } from 'interfaces/notification-bundle-json';
 import NotificationJson from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { debounce, orderBy } from 'lodash';
 import { action, computed, observable, runInAction } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
+import NotificationGroup from 'models/notification-group';
 import Store from 'stores/store';
 
 export default class NotificationStore extends Store {
   cursor: JSON | null = null;
+  @observable groups = new Map<string, NotificationGroup>();
   @observable notifications = new Map<number, Notification>();
   @observable pmNotification = new LegacyPmNotification();
   @observable unreadCount = 0;
@@ -133,6 +136,20 @@ export default class NotificationStore extends Store {
         item.isRead = true;
       }
     }
+  }
+
+  @action
+  updateWithGroupJson(json: NotificationGroupJson) {
+    let group = this.groups.get(json.name);
+
+    if (group == null) {
+      group = new NotificationGroup(json.name);
+      this.groups.set(json.name, group);
+    }
+
+    group.appendWithJson(json);
+
+    json.notifications.forEach((item) => this.updateWithJson(item));
   }
 
   @action
