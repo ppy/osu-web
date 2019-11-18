@@ -44,7 +44,7 @@ class WikiController extends Controller
         $page = Wiki\Page::lookupForController($path, $locale);
 
         if (!$page->isVisible()) {
-            $redirectTarget = (new WikiRedirect())->resolve($path);
+            $redirectTarget = (new WikiRedirect)->sync()->resolve($path);
             if ($redirectTarget !== null && $redirectTarget !== $path) {
                 return ujs_redirect(wiki_url('').'/'.ltrim($redirectTarget, '/'));
             }

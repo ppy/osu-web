@@ -32,7 +32,7 @@ use Carbon\Carbon;
 use Exception;
 use Log;
 
-class Page
+class Page implements WikiObject
 {
     const CACHE_DURATION = 5 * 60 * 60;
     const VERSION = 1;
