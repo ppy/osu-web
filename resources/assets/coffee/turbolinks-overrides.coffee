@@ -42,7 +42,7 @@ $(document).on 'click', 'a[href^="#"]', (e) ->
 # Reference: https://github.com/turbolinks/turbolinks/issues/179
 Turbolinks.HttpRequest::requestLoaded = ->
   @endRequest =>
-    if 200 <= @xhr.status < 300 || @xhr.status in [403, 404, 500]
+    if 200 <= @xhr.status < 300 || @xhr.status in [401, 403, 404, 500]
       @delegate.requestCompletedWithResponse(@xhr.responseText, @xhr.getResponseHeader("Turbolinks-Location"))
     else
       @failed = true

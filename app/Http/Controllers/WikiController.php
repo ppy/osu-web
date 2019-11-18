@@ -44,7 +44,7 @@ class WikiController extends Controller
         $page = Wiki\Page::lookupForController($path, $locale);
 
         if (!$page->isVisible()) {
-            $redirectTarget = (new WikiRedirect())->resolve($path);
+            $redirectTarget = (new WikiRedirect)->sync()->resolve($path);
             if ($redirectTarget !== null && $redirectTarget !== $path) {
                 return ujs_redirect(wiki_url('').'/'.ltrim($redirectTarget, '/'));
             }
@@ -71,16 +71,16 @@ class WikiController extends Controller
 
     private function showImage($path)
     {
-        $image = (new Wiki\Image($path, Request::url(), Request::header('referer')))->get();
+        $image = Wiki\Image::lookupForController($path, Request::url(), Request::header('referer'));
 
         request()->attributes->set('strip_cookies', true);
 
-        if ($image === null) {
+        if (!$image->isVisible()) {
             return response('Not found', 404);
         }
 
-        return response($image['data'], 200)
-            ->header('Content-Type', $image['type'])
+        return response($image->get()['content'], 200)
+            ->header('Content-Type', $image->get()['type'])
             // 10 years max-age
             ->header('Cache-Control', 'max-age=315360000, public');
     }

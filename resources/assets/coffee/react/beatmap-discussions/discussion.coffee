@@ -22,6 +22,7 @@ import { SystemPost } from './system-post'
 import * as React from 'react'
 import { button, div, i, span, a } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
+import { UserCard } from './user-card'
 
 el = React.createElement
 
@@ -70,6 +71,15 @@ export class Discussion extends React.PureComponent
     lastResolvedState = false
     @_resolvedSystemPostId = null
 
+    firstPost = @props.discussion.starting_post || @props.discussion.posts[0]
+
+    user = @props.users[@props.discussion.user_id]
+    badge = if user.id == @props.beatmapset.user_id then 'mapper' else user.group_badge
+
+    reviewHeaderClasses = "#{bn}__top #{bn}__top--review"
+    reviewHeaderClasses += " #{bn}__top--#{badge}" if badge?
+    reviewHeaderClasses += " #{bn}__top--unread" unless _.includes(@props.readPostIds, firstPost.id) || @isOwner(firstPost) || @props.preview
+
     div
       className: topClasses
       'data-id': @props.discussion.id
@@ -78,51 +88,67 @@ export class Discussion extends React.PureComponent
       div className: "#{bn}__timestamp hidden-xs",
         @timestamp()
 
-      div className: "#{bn}__discussion",
-        div className: "#{bn}__top",
-          @post @props.discussion.starting_post || @props.discussion.posts[0], 'discussion'
+      if @props.discussion.message_type == 'review'
+        div className: "#{bn}__discussion",
+          div className: reviewHeaderClasses,
+            div className: "#{bn}__discussion-header",
+              el UserCard,
+                user: user
+                badge: badge
+                hideStripe: true
+            @postButtons() if !@props.preview
+          div className: "#{bn}__review-wrapper",
+            @post firstPost, 'discussion', true
+          @postFooter() if !@props.preview
+          div className: lineClasses
+      else
+        div className: "#{bn}__discussion",
+          div className: "#{bn}__top",
+            @post firstPost, 'discussion'
+            @postButtons() if !@props.preview
+          @postFooter() if !@props.preview
+          div className: lineClasses
 
-          if !@props.preview
-            div className: "#{bn}__actions",
-              ['up', 'down'].map (type) =>
-                div
-                  key: type
-                  type: type
-                  className: "#{bn}__action"
-                  onMouseOver: @showVoters
-                  onTouchStart: @showVoters
-                  @displayVote type
-                  @voterList type
+  postButtons: =>
+    div className: "#{bn}__actions",
+      ['up', 'down'].map (type) =>
+        div
+          key: type
+          type: type
+          className: "#{bn}__action"
+          onMouseOver: @showVoters
+          onTouchStart: @showVoters
+          @displayVote type
+          @voterList type
 
-              button
-                className: "#{bn}__action #{bn}__action--with-line"
-                onClick: @toggleExpand
-                div
-                  className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
-                  i className: 'fas fa-chevron-down'
+      button
+        className: "#{bn}__action #{bn}__action--with-line"
+        onClick: @toggleExpand
+        div
+          className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
+          i className: 'fas fa-chevron-down'
 
-        if !@props.preview
-          div
-            className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
-            div
-              className: "#{bn}__replies"
-              for reply in @props.discussion.posts.slice(1)
-                continue unless @isVisible(reply)
-                if reply.system && reply.message.type == 'resolved'
-                  currentResolvedState = reply.message.value
-                  continue if lastResolvedState == currentResolvedState
-                  lastResolvedState = currentResolvedState
 
-                @post reply, 'reply'
+  postFooter: =>
+    div
+      className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
+      div
+        className: "#{bn}__replies"
+        for reply in @props.discussion.posts.slice(1)
+          continue unless @isVisible(reply)
+          if reply.system && reply.message.type == 'resolved'
+            currentResolvedState = reply.message.value
+            continue if lastResolvedState == currentResolvedState
+            lastResolvedState = currentResolvedState
 
-            if @canBeRepliedTo()
-              el NewReply,
-                currentUser: @props.currentUser
-                beatmapset: @props.beatmapset
-                currentBeatmap: @props.currentBeatmap
-                discussion: @props.discussion
+          @post reply, 'reply'
 
-        div className: lineClasses
+      if @canBeRepliedTo()
+        el NewReply,
+          currentUser: @props.currentUser
+          beatmapset: @props.beatmapset
+          currentBeatmap: @props.currentBeatmap
+          discussion: @props.discussion
 
 
   displayVote: (type) =>
@@ -258,7 +284,7 @@ export class Discussion extends React.PureComponent
     (!@props.discussion.beatmap_id? || !@props.currentBeatmap.deleted_at?)
 
 
-  post: (post, type) =>
+  post: (post, type, hideUserCard) =>
     return if !post.id?
 
     elementName = if post.system then SystemPost else Post
@@ -286,6 +312,7 @@ export class Discussion extends React.PureComponent
       canBeDeleted: canBeDeleted
       canBeRestored: canModeratePosts
       currentUser: @props.currentUser
+      hideUserCard: hideUserCard
 
 
   resolvedSystemPostId: =>

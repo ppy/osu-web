@@ -30,7 +30,7 @@ class CommentsControllerTest extends TestCase
         $currentNotifications = Notification::count();
 
         $this
-            ->actingAs($user)
+            ->actingAsVerified($user)
             ->post(route('comments.store'), [
                 'comment' => [
                     'commentable_type' => $commentableType,
@@ -57,7 +57,7 @@ class CommentsControllerTest extends TestCase
         $currentComments = $beatmapset->comments()->count();
 
         $this
-            ->actingAs($user)
+            ->actingAsVerified($user)
             ->post(route('comments.store'), [
                 'comment' => [
                     'parent_id' => $parent->getKey(),

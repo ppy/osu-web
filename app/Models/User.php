@@ -427,12 +427,6 @@ class User extends Model implements AuthenticatableContract
         return (new ChangeUsername($this, $username, $type))->validate();
     }
 
-    // verify that an api key is correct
-    public function verify($key)
-    {
-        return $this->api->api_key === $key;
-    }
-
     public static function lookup($usernameOrId, $type = null, $findAll = false)
     {
         if (!present($usernameOrId)) {
@@ -674,24 +668,6 @@ class User extends Model implements AuthenticatableContract
     {
         // strip time component
         $this->attributes['osu_subscriptionexpiry'] = optional($value)->startOfDay();
-    }
-
-    // return a user's API details
-
-    public function getApiDetails($user = null)
-    {
-        return $this->api;
-    }
-
-    public function getApiKey()
-    {
-        return $this->api->api_key;
-    }
-
-    public function setApiKey($key)
-    {
-        $this->api->api_key = $key;
-        $this->api->save();
     }
 
     /*

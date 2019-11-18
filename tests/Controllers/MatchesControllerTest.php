@@ -66,7 +66,7 @@ class MatchesControllerTest extends TestCase
         $this
             ->get($this->privateMatchRoute)
             ->assertSeeText('Please login to continue')
-            ->assertStatus(200);
+            ->assertStatus(401);
     }
 
     public function testPrivateMatchLoggedInNotParticipated() // Access Denied
