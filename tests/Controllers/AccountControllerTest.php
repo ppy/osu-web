@@ -21,7 +21,7 @@ class AccountControllerTest extends TestCase
         $newOrder = UserProfileCustomization::SECTIONS;
         seeded_shuffle($newOrder);
 
-        $this->actingAs($this->user())
+        $this->actingAsVerified($this->user())
             ->json('PUT', route('account.options'), [
                 'order' => $newOrder,
             ])
@@ -35,7 +35,7 @@ class AccountControllerTest extends TestCase
         $newOrderWithDuplicate = $newOrder;
         $newOrderWithDuplicate[] = $newOrder[0];
 
-        $this->actingAs($this->user())
+        $this->actingAsVerified($this->user())
             ->json('PUT', route('account.options'), [
                 'order' => $newOrderWithDuplicate,
             ])
@@ -49,7 +49,7 @@ class AccountControllerTest extends TestCase
         $newOrderWithInvalid = $newOrder;
         $newOrderWithInvalid[] = 'test';
 
-        $this->actingAs($this->user())
+        $this->actingAsVerified($this->user())
             ->json('PUT', route('account.options'), [
                 'order' => $newOrderWithInvalid,
             ])

@@ -30,7 +30,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
         $this
-            ->actingAs($this->user)
+            ->actingAsVerified($this->user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -58,7 +58,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         ]);
 
         $this
-            ->actingAs($this->user)
+            ->actingAsVerified($this->user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -77,7 +77,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($this->mapper)
+            ->actingAsVerified($this->mapper)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -123,7 +123,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($this->user)
+            ->actingAsVerified($this->user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -145,7 +145,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($this->user)
+            ->actingAsVerified($this->user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmap_discussion_id' => $this->beatmapDiscussion->id,
                 'beatmap_discussion_post' => [
@@ -267,7 +267,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
 
         $this
-            ->actingAs($this->user)
+            ->actingAsVerified($this->user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->otherBeatmapset->beatmapset_id,
                 'beatmap_discussion_post' => [
@@ -321,7 +321,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this->putPost('', $post)
             ->assertViewIs('users.login')
-            ->assertStatus(200);
+            ->assertStatus(401);
 
         $this->assertSame($initialMessage, $post->fresh()->message);
     }
@@ -439,7 +439,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this->deletePost($reply)
             ->assertViewIs('users.login')
-            ->assertStatus(200);
+            ->assertStatus(401);
 
         $this->assertFalse($reply->fresh()->trashed());
     }
@@ -546,7 +546,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
 
         $this
-            ->actingAs($this->user)
+            ->actingAsVerified($this->user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -575,7 +575,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
 
         $this
-            ->actingAs($this->user)
+            ->actingAsVerified($this->user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
                 'beatmap_discussion' => [
@@ -720,7 +720,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
     private function deletePost(BeatmapDiscussionPost $post, ?User $user = null)
     {
-        return ($user === null ? $this : $this->actingAs($user))
+        return ($user === null ? $this : $this->actingAsVerified($user))
             ->delete(route('beatmap-discussion-posts.destroy', $post->id));
     }
 
@@ -741,7 +741,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
     private function putPost(string $message, BeatmapDiscussionPost $post, ?User $user = null)
     {
-        return ($user === null ? $this : $this->actingAs($user))
+        return ($user === null ? $this : $this->actingAsVerified($user))
             ->put(route('beatmap-discussion-posts.update', $post->id), [
                 'beatmap_discussion_post' => [
                     'message' => $message,

@@ -117,6 +117,7 @@ class @BeatmapDiscussionHelper
       mapperNote: 'far fa-sticky-note'
       praise: 'fas fa-heart'
       problem: 'fas fa-exclamation-circle'
+      review: 'fas fa-tasks'
       suggestion: 'far fa-circle'
 
     # used for svg since it doesn't seem to have ::before pseudo-element
