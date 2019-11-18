@@ -134,37 +134,34 @@ class NotificationsController extends Controller
 
     public function index()
     {
-        if (request('id') !== null) {
-            $after = get_int(request('id'));
-            $userNotifications = $this->getUserNotifications($after);
-            $lastNotification = $userNotifications->last();
+        $group = presence(request('group'));
+        $groupedNotifications = $this->getGroupedNotifications($group);
+        $notificationsJson = [];
 
-            return [
-                'cursor' => $lastNotification !== null ? ['id' => $lastNotification->getKey()] : null,
-                'notifications' => json_collection($userNotifications, 'Notification'),
-                'total'
+        foreach ($groupedNotifications as $name => $builder) {
+            $total = $builder->count();
+
+            $id = get_int(request('cursor.id'));
+            if ($id !== null) {
+                $builder->where('id', '<', $id);
+            }
+
+            $notifications = $builder->limit(10)->get();
+            $last = $notifications->last();
+
+            $notificationsJson[] = [
+                'cursor' => $last !== null ? ['id' => $last->getKey()] : null,
+                'name' => $name,
+                'notifications' => json_collection($notifications, 'Notification'),
+                'total' => $total,
             ];
         }
 
-        if (true) {
-            $groupedNotifications = $this->getGroupedNotifications();
-            $notificationsJson = [];
-
-            foreach ($groupedNotifications as $name => $builder) {
-                $total = $builder->count();
-                $notifications = $builder->limit(10)->get();
-                $last = $notifications->last();
-
-                $notificationsJson[] = [
-                    'cursor' => $last !== null ? ['id' => $last->getKey()] : null,
-                    'name' => $name,
-                    'notifications' => json_collection($notifications, 'Notification'),
-                    'total' => $total,
-                ];
-            }
+        if (is_json_request()) {
             return $notificationsJson;
-            return view('notifications.index', compact('notificationsJson'));
         }
+
+        return view('notifications.index', compact('notificationsJson'));
     }
 
     /**
@@ -212,10 +209,14 @@ class NotificationsController extends Controller
         return $url;
     }
 
-    private function getGroupedNotifications()
+    private function getGroupedNotifications(string $group = null)
     {
         $groups = [];
         foreach (MorphMap::MAP as $_key => $value) {
+            if ($group !== null && $group !== $value) {
+                continue;
+            }
+
             $groups[$value] = Notification::whereHas('userNotifications', function ($q) {
                 $q->where('user_id', auth()->user()->getKey());
             })
