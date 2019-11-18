@@ -73,7 +73,7 @@ class WikiController extends Controller
     {
         $image = Wiki\Image::lookupForController($path, Request::url(), Request::header('referer'));
 
-        session(['_strip_cookies' => true]);
+        request()->attributes->set('strip_cookies', true);
 
         if (!$image->isVisible()) {
             return response('Not found', 404);
