@@ -1004,152 +1004,126 @@ class User extends Model implements AuthenticatableContract
 
     public function statisticsOsu()
     {
-        return $this->statistics('osu', true);
+        return $this->hasOne(UserStatistics\Osu::class);
     }
 
     public function statisticsFruits()
     {
-        return $this->statistics('fruits', true);
+        return $this->hasOne(UserStatistics\Fruits::class);
     }
 
     public function statisticsMania()
     {
-        return $this->statistics('mania', true);
+        return $this->hasOne(UserStatistics\Mania::class);
     }
 
     public function statisticsTaiko()
     {
-        return $this->statistics('taiko', true);
+        return $this->hasOne(UserStatistics\Taiko::class);
     }
 
-    public function statistics($mode, $returnQuery = false)
+    public function statistics(string $mode, bool $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
+        if (!Beatmap::isModeValid($mode)) {
             return;
         }
 
-        $mode = studly_case($mode);
+        $relation = 'statistics'.studly_case($mode);
 
-        if ($returnQuery === true) {
-            return $this->hasOne("App\Models\UserStatistics\\{$mode}", 'user_id');
-        } else {
-            $relation = "statistics{$mode}";
-
-            return $this->$relation;
-        }
+        return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
     public function scoresOsu()
     {
-        return $this->scores('osu', true);
+        return $this->hasMany(Score\Osu::class, 'user_id')->default();
     }
 
     public function scoresFruits()
     {
-        return $this->scores('fruits', true);
+        return $this->hasMany(Score\Fruits::class, 'user_id')->default();
     }
 
     public function scoresMania()
     {
-        return $this->scores('mania', true);
+        return $this->hasMany(Score\Mania::class, 'user_id')->default();
     }
 
     public function scoresTaiko()
     {
-        return $this->scores('taiko', true);
+        return $this->hasMany(Score\Taiko::class, 'user_id')->default();
     }
 
-    public function scores($mode, $returnQuery = false)
+    public function scores(string $mode, bool $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
+        if (!Beatmap::isModeValid($mode)) {
             return;
         }
 
-        $mode = studly_case($mode);
+        $relation = 'scores'.studly_case($mode);
 
-        if ($returnQuery === true) {
-            return $this->hasMany("App\Models\Score\\{$mode}", 'user_id')->default();
-        } else {
-            $relation = "scores{$mode}";
-
-            return $this->$relation;
-        }
+        return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
     public function scoresFirstOsu()
     {
-        return $this->scoresFirst('osu', true);
+        return $this->belongsToMany(Score\Best\Osu::class, 'osu_leaders', 'user_id', 'score_id')->default();
     }
 
     public function scoresFirstFruits()
     {
-        return $this->scoresFirst('fruits', true);
+        return $this->belongsToMany(Score\Best\Fruits::class, 'osu_leaders_fruits', 'user_id', 'score_id')->default();
     }
 
     public function scoresFirstMania()
     {
-        return $this->scoresFirst('mania', true);
+        return $this->belongsToMany(Score\Best\Mania::class, 'osu_leaders_mania', 'user_id', 'score_id')->default();
     }
 
     public function scoresFirstTaiko()
     {
-        return $this->scoresFirst('taiko', true);
+        return $this->belongsToMany(Score\Best\Taiko::class, 'osu_leaders_taiko', 'user_id', 'score_id')->default();
     }
 
-    public function scoresFirst($mode, $returnQuery = false)
+    public function scoresFirst(string $mode, bool $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
+        if (!Beatmap::isModeValid($mode)) {
             return;
         }
 
-        $casedMode = studly_case($mode);
+        $relation = 'scoresFirst'.studly_case($mode);
 
-        if ($returnQuery === true) {
-            $suffix = $mode === 'osu' ? '' : "_{$mode}";
-
-            return $this->belongsToMany("App\Models\Score\Best\\{$casedMode}", "osu_leaders{$suffix}", 'user_id', 'score_id')->default();
-        } else {
-            $relation = "scoresFirst{$casedMode}";
-
-            return $this->$relation;
-        }
+        return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
     public function scoresBestOsu()
     {
-        return $this->scoresBest('osu', true);
+        return $this->hasMany(Score\Best\Osu::class, 'user_id')->default();
     }
 
     public function scoresBestFruits()
     {
-        return $this->scoresBest('fruits', true);
+        return $this->hasMany(Score\Best\Fruits::class, 'user_id')->default();
     }
 
     public function scoresBestMania()
     {
-        return $this->scoresBest('mania', true);
+        return $this->hasMany(Score\Best\Mania::class, 'user_id')->default();
     }
 
     public function scoresBestTaiko()
     {
-        return $this->scoresBest('taiko', true);
+        return $this->hasMany(Score\Best\Taiko::class, 'user_id')->default();
     }
 
-    public function scoresBest($mode, $returnQuery = false)
+    public function scoresBest(string $mode, bool $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
+        if (!Beatmap::isModeValid($mode)) {
             return;
         }
 
-        $mode = studly_case($mode);
+        $relation = 'scoresBest'.studly_case($mode);
 
-        if ($returnQuery === true) {
-            return $this->hasMany("App\Models\Score\Best\\{$mode}", 'user_id')->default();
-        } else {
-            $relation = "scoresBest{$mode}";
-
-            return $this->$relation;
-        }
+        return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
     public function userProfileCustomization()
