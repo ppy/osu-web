@@ -19,6 +19,9 @@ use Tests\TestCase;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
 {
+    private $minimumLastPlayed;
+    private $user;
+
     public function testPostStoreNewDiscussion()
     {
         $currentDiscussions = BeatmapDiscussion::count();
@@ -29,17 +32,37 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $otherUser = factory(User::class)->create();
         $this->beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
+        $this->user->statisticsOsu->update(['last_played' => $this->minimumLastPlayed->subDays(2)]);
+
+        $params = [
+            'beatmapset_id' => $this->beatmapset->beatmapset_id,
+            'beatmap_discussion' => [
+                'message_type' => 'praise',
+            ],
+            'beatmap_discussion_post' => [
+                'message' => 'Hello',
+            ],
+        ];
+
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmap-discussion-posts.store'), [
-                'beatmapset_id' => $this->beatmapset->beatmapset_id,
-                'beatmap_discussion' => [
-                    'message_type' => 'praise',
-                ],
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
+            ->post(route('beatmap-discussion-posts.store'), $params)
+            ->assertStatus(403);
+
+        $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts, BeatmapDiscussionPost::count());
+        $this->assertSame($currentNotifications, Notification::count());
+        $this->assertSame($currentUserNotifications, UserNotification::count());
+
+        Event::assertNotDispatched(NewNotificationEvent::class);
+        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+
+        $this->user->statisticsOsu->update(['last_played' => $this->minimumLastPlayed]);
+        app()->make('OsuAuthorize')->cacheReset();
+
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmap-discussion-posts.store'), $params)
             ->assertStatus(200);
 
         $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
@@ -176,6 +199,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng']]);
+        $user->statisticsOsu()->create(['last_played' => $this->minimumLastPlayed]);
         $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
@@ -191,6 +215,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testPostStoreNewReplyReopenByOtherUser()
     {
         $user = factory(User::class)->create();
+        $user->statisticsOsu()->create(['last_played' => $this->minimumLastPlayed]);
         $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
@@ -636,6 +661,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         }
 
         $user = $factory->create();
+        $user->statisticsOsu()->create(['last_played' => $this->minimumLastPlayed]);
 
         $this
             ->actingAsVerified($user)
@@ -698,8 +724,14 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         Event::fake();
 
+        $this->minimumLastPlayed = now()->subDays(config('osu.user.min_last_played_days_for_posting') - 1);
+
         $this->mapper = factory(User::class)->create();
+        $this->mapper->statisticsOsu()->create(['last_played' => $this->minimumLastPlayed]);
+
         $this->user = factory(User::class)->create();
+        $this->user->statisticsOsu()->create(['last_played' => $this->minimumLastPlayed]);
+
         $this->beatmapset = factory(Beatmapset::class)->create([
             'user_id' => $this->mapper->getKey(),
         ]);
