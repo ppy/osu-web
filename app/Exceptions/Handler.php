@@ -120,7 +120,7 @@ class Handler extends ExceptionHandler
             return response(['authentication' => 'basic'], 401);
         }
 
-        return response()->view('users.login');
+        return response()->view('users.login')->setStatusCode(401);
     }
 
     private function exceptionMessage($e)
