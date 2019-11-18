@@ -42,7 +42,7 @@ class ArtistAlbum extends Model
 
     public function tracks()
     {
-        return $this->hasMany(ArtistTrack::class, 'album_id', 'id');
+        return $this->hasMany(ArtistTrack::class, 'album_id');
     }
 
     public function isNew()

@@ -91,7 +91,7 @@ class Changelog extends Model
 
     public function updateStream()
     {
-        return $this->hasOne(UpdateStream::class, 'stream_id', 'stream_id');
+        return $this->belongsTo(UpdateStream::class, 'stream_id');
     }
 
     public function gameBuild()

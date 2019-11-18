@@ -873,17 +873,17 @@ class User extends Model implements AuthenticatableContract
 
     public function badges()
     {
-        return $this->hasMany(UserBadge::class, 'user_id');
+        return $this->hasMany(UserBadge::class);
     }
 
     public function githubUsers()
     {
-        return $this->hasMany(GithubUser::class, 'user_id');
+        return $this->hasMany(GithubUser::class);
     }
 
     public function monthlyPlaycounts()
     {
-        return $this->hasMany(UserMonthlyPlaycount::class, 'user_id');
+        return $this->hasMany(UserMonthlyPlaycount::class);
     }
 
     public function notificationOptions()
@@ -893,7 +893,7 @@ class User extends Model implements AuthenticatableContract
 
     public function replaysWatchedCounts()
     {
-        return $this->hasMany(UserReplaysWatchedCount::class, 'user_id');
+        return $this->hasMany(UserReplaysWatchedCount::class);
     }
 
     public function reportedIn()
@@ -908,42 +908,42 @@ class User extends Model implements AuthenticatableContract
 
     public function userGroups()
     {
-        return $this->hasMany(UserGroup::class, 'user_id');
+        return $this->hasMany(UserGroup::class);
     }
 
     public function beatmapDiscussionVotes()
     {
-        return $this->hasMany(BeatmapDiscussionVote::class, 'user_id');
+        return $this->hasMany(BeatmapDiscussionVote::class);
     }
 
     public function beatmapDiscussions()
     {
-        return $this->hasMany(BeatmapDiscussion::class, 'user_id');
+        return $this->hasMany(BeatmapDiscussion::class);
     }
 
     public function beatmapsets()
     {
-        return $this->hasMany(Beatmapset::class, 'user_id');
+        return $this->hasMany(Beatmapset::class);
     }
 
     public function beatmapsetWatches()
     {
-        return $this->hasMany(BeatmapsetWatch::class, 'user_id');
+        return $this->hasMany(BeatmapsetWatch::class);
     }
 
     public function beatmaps()
     {
-        return $this->hasManyThrough(Beatmap::class, Beatmapset::class, 'user_id');
+        return $this->hasManyThrough(Beatmap::class, Beatmapset::class);
     }
 
     public function clients()
     {
-        return $this->hasMany(UserClient::class, 'user_id');
+        return $this->hasMany(UserClient::class);
     }
 
     public function favourites()
     {
-        return $this->hasMany(FavouriteBeatmapset::class, 'user_id');
+        return $this->hasMany(FavouriteBeatmapset::class);
     }
 
     public function favouriteBeatmapsets()
@@ -959,7 +959,7 @@ class User extends Model implements AuthenticatableContract
 
     public function beatmapsetNominations()
     {
-        return $this->hasMany(BeatmapsetEvent::class, 'user_id')->where('type', BeatmapsetEvent::NOMINATE);
+        return $this->hasMany(BeatmapsetEvent::class)->where('type', BeatmapsetEvent::NOMINATE);
     }
 
     public function beatmapsetNominationsToday()
@@ -969,22 +969,22 @@ class User extends Model implements AuthenticatableContract
 
     public function beatmapPlaycounts()
     {
-        return $this->hasMany(BeatmapPlaycount::class, 'user_id');
+        return $this->hasMany(BeatmapPlaycount::class);
     }
 
     public function apiKey()
     {
-        return $this->hasOne(ApiKey::class, 'user_id');
+        return $this->hasOne(ApiKey::class);
     }
 
     public function profileBanners()
     {
-        return $this->hasMany(ProfileBanner::class, 'user_id');
+        return $this->hasMany(ProfileBanner::class);
     }
 
     public function storeAddresses()
     {
-        return $this->hasMany(Store\Address::class, 'user_id');
+        return $this->hasMany(Store\Address::class);
     }
 
     public function rank()
@@ -994,7 +994,7 @@ class User extends Model implements AuthenticatableContract
 
     public function rankHistories()
     {
-        return $this->hasMany(RankHistory::class, 'user_id');
+        return $this->hasMany(RankHistory::class);
     }
 
     public function country()
@@ -1031,7 +1031,7 @@ class User extends Model implements AuthenticatableContract
         $mode = studly_case($mode);
 
         if ($returnQuery === true) {
-            return $this->hasOne("App\Models\UserStatistics\\{$mode}", 'user_id');
+            return $this->hasOne("App\Models\UserStatistics\\{$mode}");
         } else {
             $relation = "statistics{$mode}";
 
@@ -1068,7 +1068,7 @@ class User extends Model implements AuthenticatableContract
         $mode = studly_case($mode);
 
         if ($returnQuery === true) {
-            return $this->hasMany("App\Models\Score\\{$mode}", 'user_id')->default();
+            return $this->hasMany("App\Models\Score\\{$mode}")->default();
         } else {
             $relation = "scores{$mode}";
 
@@ -1144,7 +1144,7 @@ class User extends Model implements AuthenticatableContract
         $mode = studly_case($mode);
 
         if ($returnQuery === true) {
-            return $this->hasMany("App\Models\Score\Best\\{$mode}", 'user_id')->default();
+            return $this->hasMany("App\Models\Score\Best\\{$mode}")->default();
         } else {
             $relation = "scoresBest{$mode}";
 
@@ -1154,12 +1154,12 @@ class User extends Model implements AuthenticatableContract
 
     public function userProfileCustomization()
     {
-        return $this->hasOne(UserProfileCustomization::class, 'user_id');
+        return $this->hasOne(UserProfileCustomization::class);
     }
 
     public function accountHistories()
     {
-        return $this->hasMany(UserAccountHistory::class, 'user_id');
+        return $this->hasMany(UserAccountHistory::class);
     }
 
     public function userPage()
@@ -1169,17 +1169,17 @@ class User extends Model implements AuthenticatableContract
 
     public function userAchievements()
     {
-        return $this->hasMany(UserAchievement::class, 'user_id');
+        return $this->hasMany(UserAchievement::class);
     }
 
     public function userNotifications()
     {
-        return $this->hasMany(UserNotification::class, 'user_id');
+        return $this->hasMany(UserNotification::class);
     }
 
     public function usernameChangeHistory()
     {
-        return $this->hasMany(UsernameChangeHistory::class, 'user_id');
+        return $this->hasMany(UsernameChangeHistory::class);
     }
 
     public function usernameChangeHistoryPublic()
@@ -1193,7 +1193,7 @@ class User extends Model implements AuthenticatableContract
 
     public function relations()
     {
-        return $this->hasMany(UserRelation::class, 'user_id');
+        return $this->hasMany(UserRelation::class);
     }
 
     public function blocks()
@@ -1214,19 +1214,12 @@ class User extends Model implements AuthenticatableContract
 
     public function channels()
     {
-        return $this->hasManyThrough(
-            Chat\Channel::class,
-            Chat\UserChannel::class,
-            'user_id',
-            'channel_id',
-            'user_id',
-            'channel_id'
-        );
+        return $this->hasManyThrough(Chat\Channel::class, Chat\UserChannel::class);
     }
 
     public function follows()
     {
-        return $this->hasMany(Follow::class, 'user_id');
+        return $this->hasMany(Follow::class);
     }
 
     public function maxBlocks()
@@ -1279,12 +1272,12 @@ class User extends Model implements AuthenticatableContract
 
     public function events()
     {
-        return $this->hasMany(Event::class, 'user_id');
+        return $this->hasMany(Event::class);
     }
 
     public function beatmapsetRatings()
     {
-        return $this->hasMany(BeatmapsetUserRating::class, 'user_id');
+        return $this->hasMany(BeatmapsetUserRating::class);
     }
 
     public function givenKudosu()
@@ -1304,7 +1297,7 @@ class User extends Model implements AuthenticatableContract
 
     public function supporterTagPurchases()
     {
-        return $this->hasMany(UserDonation::class, 'user_id');
+        return $this->hasMany(UserDonation::class);
     }
 
     public function forumPosts()
@@ -1314,12 +1307,12 @@ class User extends Model implements AuthenticatableContract
 
     public function changelogs()
     {
-        return $this->hasMany(Changelog::class, 'user_id');
+        return $this->hasMany(Changelog::class);
     }
 
     public function oauthClients()
     {
-        return $this->hasMany(Client::class, 'user_id');
+        return $this->hasMany(Client::class);
     }
 
     public function getPlaymodeAttribute($value)
