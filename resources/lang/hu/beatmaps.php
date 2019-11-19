@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Nominálás Visszaállítása',
             'praise' => 'Dicséret',
             'problem' => 'Probléma',
+            'review' => '',
             'suggestion' => 'Javaslat',
         ],
 

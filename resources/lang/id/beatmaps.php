@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Hilangkan Status Nominasi',
             'praise' => 'Pujian',
             'problem' => 'Masalah',
+            'review' => '',
             'suggestion' => 'Saran',
         ],
 
@@ -183,7 +184,7 @@ return [
         'nominate' => 'Nominasi',
         'nominate_confirm' => 'Nominasikan beatmap ini?',
         'nominated_by' => 'dinominasikan oleh :users',
-        'not_enough_hype' => "",
+        'not_enough_hype' => "Beatmap tidak memiliki hype yang cukup.",
         'qualified' => 'Diperkirakan akan berstatus Ranked pada :date jika tidak ada masalah yang ditemukan.',
         'qualified_soon' => 'Diperkirakan akan segera berstatus Ranked jika tidak ada masalah yang ditemukan.',
         'required_text' => 'Nominasi: :current/:required',

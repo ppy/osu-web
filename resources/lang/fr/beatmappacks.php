@@ -39,7 +39,7 @@ return [
     ],
 
     'show' => [
-        'back' => '',
+        'back' => 'Retour à la liste',
         'download' => 'Télécharger',
         'item' => [
             'cleared' => 'terminé',

@@ -25,7 +25,7 @@ return [
         'peak' => 'Pico, :count utilizadores online',
         'players' => '<strong>:count</strong> jogadores registados',
         'title' => 'bem-vindo',
-        'see_more_news' => '',
+        'see_more_news' => 'ver mais notícias',
 
         'slogan' => [
             'main' => 'o melhor jogo de ritmo grátis',
@@ -131,7 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Novos Beatmaps Classificados',
             'popular' => 'Beatmaps Populares',
-            'by_user' => '',
+            'by_user' => 'por :user',
         ],
         'buttons' => [
             'download' => 'Transfere o osu!',

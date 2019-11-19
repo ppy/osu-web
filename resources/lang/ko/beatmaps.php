@@ -91,6 +91,7 @@ return [
             'nomination_reset' => '지명 초기화',
             'praise' => '칭찬',
             'problem' => '문제',
+            'review' => '',
             'suggestion' => '제안',
         ],
 
@@ -183,7 +184,7 @@ return [
         'nominate' => '지명',
         'nominate_confirm' => '이 비트맵을 지명하시겠습니까?',
         'nominated_by' => ':users님이 지명함',
-        'not_enough_hype' => "",
+        'not_enough_hype' => "Hype 수가 부족합니다.",
         'qualified' => '문제가 발견되지 않으면 :date에 랭크됩니다.',
         'qualified_soon' => '문제가 발견되지 않으면 곧 랭크됩니다.',
         'required_text' => '지명 수: :current/:required',
