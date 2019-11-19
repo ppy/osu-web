@@ -19,12 +19,21 @@
 import NotificationJson from 'interfaces/notification-json';
 
 export interface NotificationBundleJson {
-  notificationGroups: NotificationGroupJson[];
+  notificationGroups: NotificationTypeGroupJson[];
 }
 
 export interface NotificationGroupJson {
-  cursor: JSON;
+  cursor: JSON | null;
   name: string;
   notifications: NotificationJson[];
+  object_id: number;
+  object_type: string;
+  total: number;
+}
+
+export interface NotificationTypeGroupJson {
+  cursor: JSON | null;
+  name: string;
+  notificationGroups: NotificationGroupJson[];
   total: number;
 }

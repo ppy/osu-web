@@ -34,7 +34,7 @@
  */
 
 import HeaderV3 from 'header-v3';
-import { NotificationGroupJson } from 'interfaces/notification-bundle-json';
+import { NotificationTypeGroupJson } from 'interfaces/notification-bundle-json';
 import { route } from 'laroute';
 import { action, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -147,7 +147,7 @@ export class Main extends React.Component<{}, State> {
     const data = { cursor, group: this.state.group };
 
     $.ajax({ url: route('notifications.index'), dataType: 'json', data })
-    .then((response: NotificationGroupJson[]) => {
+    .then((response: NotificationTypeGroupJson[]) => {
       runInAction(() => {
         response.forEach((json) => core.dataStore.notificationStore.updateWithGroupJson(json));
       });

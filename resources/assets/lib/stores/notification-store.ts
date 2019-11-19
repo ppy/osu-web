@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationGroupJson } from 'interfaces/notification-bundle-json';
+import { NotificationTypeGroupJson } from 'interfaces/notification-bundle-json';
 import NotificationJson from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { debounce, orderBy } from 'lodash';
@@ -139,7 +139,7 @@ export default class NotificationStore extends Store {
   }
 
   @action
-  updateWithGroupJson(json: NotificationGroupJson) {
+  updateWithGroupJson(json: NotificationTypeGroupJson) {
     let group = this.groups.get(json.name);
 
     if (group == null) {
@@ -149,7 +149,7 @@ export default class NotificationStore extends Store {
 
     group.appendWithJson(json);
 
-    json.notifications.forEach((item) => this.updateWithJson(item));
+    // json.notificationGroups.forEach((group) => this.updateWithJson(item));
   }
 
   @action

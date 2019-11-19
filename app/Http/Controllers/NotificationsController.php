@@ -24,6 +24,7 @@ use App\Events\NotificationReadEvent;
 use App\Libraries\MorphMap;
 use App\Models\Notification;
 use Carbon\Carbon;
+use DB;
 
 /**
  * @group Notification
@@ -135,24 +136,18 @@ class NotificationsController extends Controller
     public function index()
     {
         $group = presence(request('group'));
-        $groupedNotifications = $this->getGroupedNotifications($group);
+        $groupedNotifications = $this->getNotificationsByTypeGroup($group);
+
         $notificationsJson = [];
-
-        foreach ($groupedNotifications as $name => $builder) {
-            $total = $builder->count();
-
-            $id = get_int(request('cursor.id'));
-            if ($id !== null) {
-                $builder->where('id', '<', $id);
-            }
-
-            $notifications = $builder->limit(10)->get();
-            $last = $notifications->last();
+        $keys = collect($groupedNotifications)->keyBy('object_type')->keys();
+        foreach ($keys as $key) {
+            $total = $this->getTotalNotificationCount($key);
+            $groups = collect($groupedNotifications)->filter(function ($x) use ($key) { return $x['object_type'] === $key; });
 
             $notificationsJson[] = [
-                'cursor' => $last !== null ? ['id' => $last->getKey()] : null,
-                'name' => $name,
-                'notifications' => json_collection($notifications, 'Notification'),
+                'cursor' => null, // TODO: fix cursor
+                'name' => $key,
+                'notificationGroups' => $groups->values(),
                 'total' => $total,
             ];
         }
@@ -209,24 +204,61 @@ class NotificationsController extends Controller
         return $url;
     }
 
-    private function getGroupedNotifications(string $group = null)
+    private function getTotalNotificationCount(string $group)
     {
-        $groups = [];
+        return Notification::whereHas('userNotifications', function ($q) {
+            $q->where('user_id', auth()->user()->getKey());
+        })
+        ->where('notifiable_type', $group)
+        ->count();
+    }
+
+    private function getNotificationsByTypeGroup(string $typeGroup = null)
+    {
+        $typeGroups = [];
         foreach (MorphMap::MAP as $_key => $value) {
-            if ($group !== null && $group !== $value) {
+            if ($typeGroup !== null && $typeGroup !== $value) {
                 continue;
             }
 
-            $groups[$value] = Notification::whereHas('userNotifications', function ($q) {
+            $topLevel = Notification::whereHas('userNotifications', function ($q) {
                 $q->where('user_id', auth()->user()->getKey());
             })
             ->where('notifiable_type', $value)
-            ->with('notifiable')
-            ->with('source')
-            ->orderBy('id', 'DESC');
+            ->groupBy('name', 'notifiable_id')
+            ->orderBy('id', 'DESC')
+            ->select(DB::raw('MAX(id) as id'), DB::raw('COUNT(*) as total'), 'name', 'notifiable_id')
+            ->limit(5)
+            ->get();
+
+            $subNotifications = $topLevel->map(function ($row) use ($value) {
+                $n = Notification::whereHas('userNotifications', function ($q) {
+                    $q->where('user_id', auth()->user()->getKey());
+                })
+                ->where('id', '<=', $row->id)
+                ->where('notifiable_id', $row->notifiable_id)
+                ->where('notifiable_type', $value)
+                ->where('name', $row->name)
+                ->orderBy('id', 'desc')
+                ->limit(5)
+                ->get();
+
+                $n->total = $row->total;
+
+                return $n;
+            });
+
+            foreach ($subNotifications as $sub) {
+                $typeGroups[] = [
+                    'object_type' => optional($sub->first())->notifiable_type,
+                    'object_id' => optional($sub->first())->notifiable_id,
+                    'notifications' => json_collection($sub, 'Notification'),
+                    'total' =>  $sub->total,
+                ];
+            }
         }
 
-        return $groups;
+        return $typeGroups;
     }
 
     private function getUserNotifications($after = null)
