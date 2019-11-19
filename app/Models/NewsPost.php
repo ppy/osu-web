@@ -40,7 +40,7 @@ use Exception;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class NewsPost extends Model implements Commentable
+class NewsPost extends Model implements Commentable, Wiki\WikiObject
 {
     use CommentableDefaults;
 
