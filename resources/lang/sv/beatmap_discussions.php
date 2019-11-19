@@ -44,7 +44,7 @@ return [
 
             'beatmapset_status' => [
                 '_' => '',
-                'all' => '',
+                'all' => 'Alla',
                 'disqualified' => '',
                 'never_qualified' => '',
                 'qualified' => '',

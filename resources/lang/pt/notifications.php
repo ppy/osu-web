@@ -31,19 +31,19 @@ return [
                 'beatmapset_discussion_lock' => 'O beatmap ":title" foi bloqueado para discussão.',
                 'beatmapset_discussion_lock_compact' => 'A discussão foi encerrada',
                 'beatmapset_discussion_post_new' => ':username publicou uma nova mensagem na discussão do beatmap ":title".',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => 'Nova publicação em ":title" por :username',
                 'beatmapset_discussion_post_new_compact' => 'Nova publicação por :username',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nova publicação por :username',
                 'beatmapset_discussion_unlock' => 'O beatmap ":title" foi desbloqueado para discussão.',
                 'beatmapset_discussion_unlock_compact' => 'A discussão foi aberta',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Problema do Beatmap Qualificado',
+                'beatmapset_discussion_qualified_problem' => 'Exposto por :username em ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Exposto por :username em ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Exposto por :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Exposto por :username',
             ],
 
             'beatmapset_state' => [

@@ -25,7 +25,7 @@ return [
         'peak' => 'Pic, :count joueurs connectés',
         'players' => '<strong>:count</strong> joueurs inscrits',
         'title' => 'bienvenue',
-        'see_more_news' => '',
+        'see_more_news' => 'voir plus de nouvelles',
 
         'slogan' => [
             'main' => 'le meilleur jeu de rythme free-to-win',
@@ -131,7 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Nouvelles Beatmaps Approuvées',
             'popular' => 'Beatmaps Populaires',
-            'by_user' => '',
+            'by_user' => 'par :user',
         ],
         'buttons' => [
             'download' => 'Télécharger osu!',

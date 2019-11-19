@@ -61,9 +61,9 @@ return [
             'team' => 'tim',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profil',
+            'friends' => 'teman',
+            'settings' => 'pengaturan',
         ],
         'help' => [
             '_' => 'bantuan',
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Unduh',
             'info' => 'Anda butuh akun. Mengapa Anda belum memilikinya?',
             'title' => "Belum memiliki akun?",
         ],

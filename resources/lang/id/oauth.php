@@ -60,10 +60,10 @@ return [
 
     'new_client' => [
         'header' => '',
-        'register' => '',
+        'register' => 'Daftarkan aplikasi',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'Dengan menggunakan API kami Anda menyetujui :link berikut.',
+            'link' => 'Syarat Penggunaan',
         ],
     ],
 

@@ -34,7 +34,7 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
+        'confirm_revoke' => 'Biztosan vissza akarod vonni ezen kliens jogait?',
         'scopes_title' => '',
         'owned_by' => '',
         'none' => '',
@@ -47,9 +47,9 @@ return [
 
     'client' => [
         'id' => '',
-        'name' => '',
+        'name' => 'Alkalmazás neve',
         'redirect' => '',
-        'secret' => '',
+        'secret' => 'Ügyfél titkos kódja',
     ],
 
     'login' => [
@@ -60,21 +60,21 @@ return [
 
     'new_client' => [
         'header' => '',
-        'register' => '',
+        'register' => 'Regisztráld az alkalmazásodat',
         'terms_of_use' => [
             '_' => '',
-            'link' => '',
+            'link' => 'Felhasználási feltételek',
         ],
     ],
 
     'own_clients' => [
         'confirm_delete' => '',
-        'new' => '',
-        'none' => '',
+        'new' => 'Új OAuth alkalmazás',
+        'none' => 'Nincs Kliens',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Törlés',
+            'true' => 'Törölve',
         ],
     ],
 ];

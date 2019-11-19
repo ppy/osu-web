@@ -31,19 +31,19 @@ return [
                 'beatmapset_discussion_lock' => 'Diskusi untuk beatmap ":title" telah ditutup.',
                 'beatmapset_discussion_lock_compact' => 'Diskusi beatmap telah dikunci',
                 'beatmapset_discussion_post_new' => ':username menulis pesan baru pada laman diskusi beatmap ":title".',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => 'Postingan baru di ":title" oleh :username',
                 'beatmapset_discussion_post_new_compact' => 'Postingan baru dari :username',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Postingan baru oleh :username',
                 'beatmapset_discussion_unlock' => 'Diskusi untuk beatmap ":title" telah dibuka kembali.',
                 'beatmapset_discussion_unlock_compact' => 'Diskusi beatmap telah dibuka',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Masalah pada Beatmap Qualified',
+                'beatmapset_discussion_qualified_problem' => 'Dilaporkan oleh :username pada ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Dilaporkan oleh :username pada ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Dilaporkan oleh :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Dilaporkan oleh :username',
             ],
 
             'beatmapset_state' => [

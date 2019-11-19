@@ -77,10 +77,10 @@ return [
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => 'Jika kamu menemukan masalah di beatmap ini, mohon laporkan kepada tim melewati tautan :link berikut.',
+                'button' => 'Lapokan Masalah',
+                'button_title' => 'Laporkan permasalahan yang ada di beatmap yang sudah qualified.',
+                'link' => 'disini',
             ],
         ],
 

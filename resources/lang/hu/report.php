@@ -20,8 +20,8 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Jelentés',
+        'title' => 'Jelented :username hozzászólását?',
     ],
 
     'comment' => [
@@ -35,7 +35,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Jelentés',
+        'title' => ':username jelentése?',
     ],
 ];
