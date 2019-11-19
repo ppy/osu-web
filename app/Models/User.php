@@ -1310,11 +1310,7 @@ class User extends Model implements AuthenticatableContract
 
     public function blockedUserIds()
     {
-        if (!array_key_exists('blocks', $this->memoized)) {
-            $this->memoized['blocks'] = $this->blocks;
-        }
-
-        return $this->memoized['blocks']->pluck('user_id');
+        return $this->blocks->pluck('user_id');
     }
 
     public function groupBadge()
@@ -1336,20 +1332,12 @@ class User extends Model implements AuthenticatableContract
 
     public function hasBlocked(self $user)
     {
-        if (!array_key_exists('blocks', $this->memoized)) {
-            $this->memoized['blocks'] = $this->blocks;
-        }
-
-        return $this->memoized['blocks']->where('user_id', $user->user_id)->count() > 0;
+        return $this->blocks->where('user_id', $user->user_id)->count() > 0;
     }
 
     public function hasFriended(self $user)
     {
-        if (!array_key_exists('friends', $this->memoized)) {
-            $this->memoized['friends'] = $this->friends;
-        }
-
-        return $this->memoized['friends']->where('user_id', $user->user_id)->count() > 0;
+        return $this->friends->where('user_id', $user->user_id)->count() > 0;
     }
 
     public function hasFavourited($beatmapset)
