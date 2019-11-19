@@ -36,6 +36,7 @@ return [
     ],
 
     'show' => [
+        'back' => '',
         'download' => 'İndir',
         'item' => [
             'cleared' => 'geçildi',

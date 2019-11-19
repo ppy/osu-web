@@ -67,12 +67,13 @@ return [
     'notifications' => [
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'bu beatmap için oluşturduğunuz yeni forum konularında bildirimleri otomatik olarak etkinleştirin',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [
         'authorized_clients' => 'istek yetkilendirildi',
         'own_clients' => '',
-        'title' => 'Otomatik bağlantı',
+        'title' => 'OAuth',
     ],
 
     'playstyles' => [

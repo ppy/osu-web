@@ -169,7 +169,7 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Erreicht am :date',
-                'locked' => 'Gesperrt',
+                'locked' => 'Noch nicht freigeschaltet',
                 'title' => 'Erfolge',
             ],
             'beatmaps' => [

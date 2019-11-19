@@ -25,6 +25,7 @@ return [
         'peak' => 'Peak, :count online brugere',
         'players' => '<strong>:count</strong> registrerede brugere',
         'title' => 'velkommen',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'Det bedste gratis rytmespil',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Nye Rangerede Beatmaps',
             'popular' => 'Populære Beatmaps',
-            'by' => 'af',
-            'plays' => ':count afspilninger',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Hent osu!',

@@ -15,6 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $statusOptions = App\Models\BeatmapDiscussion::VALID_BEATMAPSET_STATUSES;
+    array_unshift($statusOptions, 'all');
+@endphp
+
 @extends('master')
 
 {{-- FIXME: move to user modding history --}}
@@ -47,10 +52,34 @@
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
+                        {{ trans('beatmap_discussions.index.form.beatmapset_status._') }}
+                    </div>
+                    <div class="simple-form__select">
+                        <div class="form-select form-select--simple-form">
+                            <select class="form-select__input" name="beatmapset_status">
+                                @foreach ($statusOptions as $option)
+                                    <option
+                                        value="{{$option}}"
+                                        {{ $option === $search['params']['beatmapset_status'] ? "selected" : "" }}
+                                    >
+                                        {{ trans("beatmap_discussions.index.form.beatmapset_status.{$option}") }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="simple-form__row">
+                    <div class="simple-form__label">
                         {{ trans('beatmap_discussions.index.form.types') }}
                     </div>
                     <div class="simple-form__checkboxes-inline">
                         @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $messageType)
+                            {{-- TODO: remove this when reviews are released --}}
+                            @if (!config('osu.beatmapset.discussion_review_enabled') && $messageType === 'review')
+                                @continue
+                            @endif
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
                                 @include('objects._switch', [
                                     'checked' => in_array($messageType, $search['params']['message_types'], true),
@@ -61,6 +90,16 @@
                             </label>
                         @endforeach
                     </div>
+                </div>
+
+                <div class="simple-form__row simple-form__row--no-label">
+                    <label class="simple-form__checkbox">
+                        @include('objects._switch', [
+                            'checked' => $search['params']['only_unresolved'],
+                            'name' => 'only_unresolved',
+                        ])
+                        {{ trans('beatmap_discussions.index.form.only_unresolved') }}
+                    </label>
                 </div>
 
                 @if (priv_check('BeatmapDiscussionModerate')->can())

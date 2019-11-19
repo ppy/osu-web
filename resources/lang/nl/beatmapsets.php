@@ -75,6 +75,13 @@ return [
                     'wip' => 'werk in uitvoering',
                 ],
             ],
+
+            'report' => [
+                '_' => 'Als u een probleem met deze beatmap vindt, rapporteer deze dan :link om het team te waarschuwen.',
+                'button' => 'Rapporteer Probleem',
+                'button_title' => 'Meld een probleem op een gekwalificeerde beatmap.',
+                'link' => 'hier',
+            ],
         ],
 
         'info' => [

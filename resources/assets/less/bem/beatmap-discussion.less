@@ -73,6 +73,10 @@
     }
   }
 
+  &__discussion-header {
+    padding: 10px 15px;
+  }
+
   &__expanded {
     display: flex;
     flex-direction: column;
@@ -107,6 +111,10 @@
     margin: 5px 0;
   }
 
+  &__review-wrapper {
+    background: @osu-colour-b3;
+  }
+
   &__timestamp {
     flex: none;
 
@@ -128,5 +136,25 @@
     @media @desktop {
       flex-direction: row;
     }
+
+    &--review {
+      flex-direction: row;
+    }
+
+    &--unread {
+      &::before {
+        .full-size();
+        content: ' ';
+        background-color: @blue-darker;
+        width: 5px;
+      }
+    }
+
+    // group colours
+    .osu-group-colours({
+      &--@{group} {
+        border-top: 2px solid @@colour;
+      }
+    });
   }
 }

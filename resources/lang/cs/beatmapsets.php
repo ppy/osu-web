@@ -75,6 +75,13 @@ return [
                     'wip' => 'rozpracované',
                 ],
             ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [

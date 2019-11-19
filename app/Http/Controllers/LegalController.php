@@ -43,8 +43,9 @@ class LegalController extends Controller
                 abort(404);
         }
 
-        return view('wiki.show', [
-            'page' => new Wiki\Page($path, $this->locale()),
-        ]);
+        $locale = $this->locale();
+        $page = Wiki\Page::lookupForController($path, $locale);
+
+        return view('wiki.show', compact('locale', 'page'));
     }
 }

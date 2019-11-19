@@ -75,6 +75,13 @@ return [
                     'wip' => 'work-in-progress',
                 ],
             ],
+
+            'report' => [
+                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, bitte melde es :link, um das Team zu informieren.',
+                'button' => 'Problem melden',
+                'button_title' => 'Melde ein Problem auf qualifizierten Beatmaps.',
+                'link' => 'hier',
+            ],
         ],
 
         'info' => [

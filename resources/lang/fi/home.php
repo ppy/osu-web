@@ -25,6 +25,7 @@ return [
         'peak' => 'Huipussaan :count käyttäjää paikalla',
         'players' => '<strong>:count</strong> rekisteröitynyttä pelaajaa',
         'title' => 'tervetuloa',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'parastakin parempi ilmainen rytmipeli',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Uudet Hyväksytyt Beatmapit',
             'popular' => 'Suositut Beatmapit',
-            'by' => 'luonut',
-            'plays' => ':count pelikertaa',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Lataa osu!',

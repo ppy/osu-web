@@ -22,19 +22,19 @@ return [
     'pinned_topics' => 'Temas Fijados',
     'slogan' => "es peligroso jugar solo.",
     'subforums' => 'Subforos',
-    'title' => 'foros de osu!',
+    'title' => 'Foros',
 
     'covers' => [
         'edit' => 'Editar portada',
 
         'create' => [
             '_' => 'Establecer imagen de portada',
-            'button' => 'Subir imagen',
-            'info' => 'El tamaño de la portada debe ser de: dimensions. También puedes soltar tu imagen aquí para subirla.',
+            'button' => 'Subir portada',
+            'info' => 'El tamaño de la portada debe ser de :dimensions. También puedes soltar tu imagen aquí para subirla.',
         ],
 
         'destroy' => [
-            '_' => 'Eliminar imagen de portada',
+            '_' => 'Eliminar portada',
             'confirm' => '¿Estás seguro de que quieres eliminar la imagen de portada?',
         ],
     ],
@@ -276,8 +276,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Mostrar publicaciones eliminadas',
+            'hide' => 'Ocultar publicaciones eliminadas',
         ],
 
         'show' => [
@@ -289,8 +289,8 @@ return [
                 'do' => 'Apoyar esta solicitud',
 
                 'info' => [
-                    '_' => 'Esto es un :feature_request. Sugerencias pueden ser votadas por :supporters.',
-                    'feature_request' => 'sugerir una idea',
+                    '_' => 'Esta es una :feature_request. Las solicitudes de características pueden ser votadas por :supporters.',
+                    'feature_request' => 'solicitud de característica',
                     'supporters' => 'colaboradores',
                 ],
 

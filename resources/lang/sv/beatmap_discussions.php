@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Sök',
             'deleted' => 'Inkludera raderade diskussioner',
+            'only_unresolved' => '',
             'types' => 'Typ av meddelande',
             'username' => 'Användarnamn',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => 'Alla',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Användare',

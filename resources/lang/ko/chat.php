@@ -19,7 +19,6 @@
  */
 
 return [
-    'coming_soon' => '곧 출시 예정',
     'limitation_notice' => '참고: <a href=":lazer_link">osu!lazer</a> 나 새 웹사이트를 쓰는 유저만 이 시스템을 통해서 PM을 받습니다.<br/>상대방이 사용하는지에 대한 여부가 불확실하다면, <a href=":oldpm_link">예전 포럼 PM 페이지</a>에서 메시지를 보내세요.',
     'talking_in' => ':channel에서 대화 중',
     'talking_with' => ':name님과 대화 중',

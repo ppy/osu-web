@@ -76,6 +76,10 @@ export default withMarkRead(observer(class TypeGroup extends React.Component<Ite
         categoryGroup.set(key, groupedItems);
       }
 
+      if (item.isRead) {
+        return;
+      }
+
       groupedItems.push(item);
     });
 
@@ -132,9 +136,11 @@ export default withMarkRead(observer(class TypeGroup extends React.Component<Ite
       return null;
     }
 
+    const unreadCount = this.props.items.filter((i) => !i.isRead).length;
+
     return (
       <span className={`${bn}__count`}>
-        {osu.formatNumber(this.props.items.length)}
+        {osu.formatNumber(unreadCount)}
       </span>
     );
   }

@@ -39,6 +39,7 @@ return [
     ],
 
     'show' => [
+        'back' => 'Volver al listado',
         'download' => 'Descargar',
         'item' => [
             'cleared' => 'procesado',

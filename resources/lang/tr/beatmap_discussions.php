@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Ara',
             'deleted' => 'Silinmiş tartışmaları içer',
+            'only_unresolved' => 'Sadece çözülmemiş tartışmaları göster',
             'types' => 'Mesaj türü',
             'username' => 'Kullanıcı adı',
+
+            'beatmapset_status' => [
+                '_' => 'Beatmap durumu',
+                'all' => 'Tümü',
+                'disqualified' => 'Diskalifiye edildi',
+                'never_qualified' => 'Nitelikli Değildi',
+                'qualified' => 'Nitelikli',
+                'ranked' => 'Dereceli',
+            ],
 
             'user' => [
                 'label' => 'Kullanıcı',

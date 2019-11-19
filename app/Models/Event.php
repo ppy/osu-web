@@ -275,10 +275,7 @@ class Event extends Model
         }
 
         return [
-            'achievement' => [
-                'slug' => $achievement->slug,
-                'name' => $achievement->name,
-            ],
+            'achievement' => json_item($achievement, 'Achievement'),
             'user' => $this->arrayUser($matches),
         ];
     }

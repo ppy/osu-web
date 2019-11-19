@@ -276,8 +276,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Montrer les messages supprimés',
+            'hide' => 'Masquer les messages supprimés',
         ],
 
         'show' => [
