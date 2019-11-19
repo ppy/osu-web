@@ -136,27 +136,19 @@ class NotificationsController extends Controller
     public function index()
     {
         $group = presence(request('group'));
-        $groupedNotifications = $this->getNotificationsByTypeGroup($group);
+        [$types, $stacks, $notifications] = $this->getNotificationsByType($group);
 
-        $notificationsJson = [];
-        $keys = collect($groupedNotifications)->keyBy('object_type')->keys();
-        foreach ($keys as $key) {
-            $total = $this->getTotalNotificationCount($key);
-            $groups = collect($groupedNotifications)->filter(function ($x) use ($key) { return $x['object_type'] === $key; });
-
-            $notificationsJson[] = [
-                'cursor' => null, // TODO: fix cursor
-                'name' => $key,
-                'notificationGroups' => $groups->values(),
-                'total' => $total,
-            ];
-        }
+        $bundleJson = [
+            'notifications' => $notifications,
+            'stacks' => $stacks,
+            'types' => $types,
+        ];
 
         if (is_json_request()) {
-            return $notificationsJson;
+            return $bundleJson;
         }
 
-        return view('notifications.index', compact('notificationsJson'));
+        return view('notifications.index', compact('bundleJson'));
     }
 
     /**
@@ -204,22 +196,27 @@ class NotificationsController extends Controller
         return $url;
     }
 
-    private function getTotalNotificationCount(string $group)
+    private function getTotalNotificationCount(string $type)
     {
         return Notification::whereHas('userNotifications', function ($q) {
             $q->where('user_id', auth()->user()->getKey());
         })
-        ->where('notifiable_type', $group)
+        ->where('notifiable_type', $type)
         ->count();
     }
 
-    private function getNotificationsByTypeGroup(string $typeGroup = null)
+    private function getNotificationsByType(string $type = null)
     {
-        $typeGroups = [];
+        $types = [];
+        $stacks = [];
+        $notifications = collect();
+
         foreach (MorphMap::MAP as $_key => $value) {
-            if ($typeGroup !== null && $typeGroup !== $value) {
+            if ($type !== null && $type !== $value) {
                 continue;
             }
+
+            $typeCursor = null;
 
             $topLevel = Notification::whereHas('userNotifications', function ($q) {
                 $q->where('user_id', auth()->user()->getKey());
@@ -231,7 +228,7 @@ class NotificationsController extends Controller
             ->limit(5)
             ->get();
 
-            $subNotifications = $topLevel->map(function ($row) use ($value) {
+            $notificationStacks = $topLevel->map(function ($row) use ($value) {
                 $n = Notification::whereHas('userNotifications', function ($q) {
                     $q->where('user_id', auth()->user()->getKey());
                 })
@@ -248,17 +245,29 @@ class NotificationsController extends Controller
                 return $n;
             });
 
-            foreach ($subNotifications as $sub) {
-                $typeGroups[] = [
-                    'object_type' => optional($sub->first())->notifiable_type,
-                    'object_id' => optional($sub->first())->notifiable_id,
-                    'notifications' => json_collection($sub, 'Notification'),
-                    'total' =>  $sub->total,
+            foreach ($notificationStacks as $stack) {
+                $last = $stack->last();
+                // ordering means this gets overriden to the smallest value when not null.
+                $typeCursor = optional($last)->id;
+
+                $stacks[] = [
+                    'cursor' => $last !== null ? ['id' => $last->id] : null,
+                    'object_type' => optional($stack->first())->notifiable_type,
+                    'object_id' => optional($stack->first())->notifiable_id,
+                    'total' =>  $stack->total,
                 ];
+
+                $notifications = $notifications->concat(json_collection($stack, 'Notification'));
             }
+
+            $types[] = [
+                'cursor' => $typeCursor,
+                'name' => $value,
+                'total' => $this->getTotalNotificationCount($value),
+            ];
         }
 
-        return $typeGroups;
+        return [$types, $stacks, $notifications];
     }
 
     private function getUserNotifications($after = null)

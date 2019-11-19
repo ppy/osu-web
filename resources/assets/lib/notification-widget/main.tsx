@@ -40,6 +40,7 @@ export default class Main extends React.Component<Props> {
   }
 
   render() {
+    return null;
     if (!this.props.worker.isActive()) {
       return null;
     }

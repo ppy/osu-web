@@ -16,21 +16,23 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationTypeGroupJson } from 'interfaces/notification-bundle-json';
+import { NotificationBundleJson, NotificationTypeJson } from 'interfaces/notification-bundle-json';
 import NotificationJson from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { debounce, orderBy } from 'lodash';
 import { action, computed, observable, runInAction } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
-import NotificationGroup from 'models/notification-group';
+import NotificationStack, { idFromJson } from 'models/notification-stack';
+import NotificationType from 'models/notification-type';
 import Store from 'stores/store';
 
 export default class NotificationStore extends Store {
   cursor: JSON | null = null;
-  @observable groups = new Map<string, NotificationGroup>();
   @observable notifications = new Map<number, Notification>();
   @observable pmNotification = new LegacyPmNotification();
+  @observable stacks = new Map<string, NotificationStack>();
+  @observable types = new Map<string, NotificationType>();
   @observable unreadCount = 0;
 
   private debouncedSendQueued = debounce(this.sendQueued, 500);
@@ -139,15 +141,47 @@ export default class NotificationStore extends Store {
   }
 
   @action
-  updateWithGroupJson(json: NotificationTypeGroupJson) {
-    let group = this.groups.get(json.name);
+  updateWithBundle(bundle: NotificationBundleJson) {
+    bundle.types.forEach((json) => {
+      let type = this.types.get(json.name);
+      if (type == null) {
+        type = new NotificationType(json.name);
+        this.types.set(type.name, type);
+      }
+      type.updateWithJson(json);
+    });
+
+    bundle.stacks.forEach((json) => {
+      let stack = this.stacks.get(idFromJson(json));
+      if (stack == null) {
+        stack = new NotificationStack(json.object_id, json.object_type);
+        this.stacks.set(stack.id, stack);
+      }
+      stack.updateWithJson(json);
+      this.types.get(stack.objectType)?.stacks.set(stack.id, stack);
+    });
+
+    bundle.notifications.forEach((json) => {
+      let notification = this.notifications.get(json.id);
+      if (notification == null) {
+        notification = new Notification(json.id);
+        this.notifications.set(notification.id, notification);
+      }
+      notification.updateFromJson(json);
+      this.stacks.get(notification.stackId)?.notifications.set(notification.id, notification);
+    });
+  }
+
+  @action
+  updateWithGroupJson(json: NotificationTypeJson) {
+    let group = this.types.get(json.name);
 
     if (group == null) {
-      group = new NotificationGroup(json.name);
-      this.groups.set(json.name, group);
+      group = new NotificationType(json.name);
+      this.types.set(json.name, group);
     }
 
-    group.appendWithJson(json);
+    // group.appendWithJson(json);
 
     // json.notificationGroups.forEach((group) => this.updateWithJson(item));
   }

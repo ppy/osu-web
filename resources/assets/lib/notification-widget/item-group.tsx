@@ -27,6 +27,11 @@ import Item from './item';
 import ItemCompact from './item-compact';
 import ItemProps from './item-props';
 import { WithMarkReadProps } from './with-mark-read';
+import NotificationStack from 'models/notification-stack';
+
+interface Props {
+  stack: NotificationStack;
+}
 
 interface State {
   expanded: boolean;
@@ -34,24 +39,25 @@ interface State {
 }
 
 @observer
-export default class ItemGroup extends React.Component<ItemProps & WithMarkReadProps, State> {
+export default class ItemGroup extends React.Component<Props & WithMarkReadProps, State> {
   state = {
     expanded: false,
     markingAsRead: false,
   };
 
   render() {
+    const item = this.props.stack.first!;
     return (
       <div className='notification-popup-item-group'>
         <Item
           markRead={this.handleMarkAsRead}
           markingAsRead={this.props.markingAsRead || this.state.markingAsRead}
           expandButton={this.renderExpandButton()}
-          icons={categoryToIcons[this.props.item.category || '']}
-          item={this.props.item}
-          message={messageGroup(this.props.item)}
+          icons={categoryToIcons[item.category || '']}
+          item={item}
+          message={messageGroup(item)}
           modifiers={['group']}
-          url={urlGroup(this.props.item)}
+          url={urlGroup(item)}
           withCategory={true}
           withCoverImage={true}
         />
@@ -62,10 +68,10 @@ export default class ItemGroup extends React.Component<ItemProps & WithMarkReadP
 
   private handleMarkAsRead = () => {
     this.setState({ markingAsRead: true });
-    core.dataStore.notificationStore.markAsRead(this.props.items)
-    .always(() => {
-      this.setState({ markingAsRead: false });
-    });
+    // core.dataStore.notificationStore.markAsRead(this.props.items)
+    // .always(() => {
+    //   this.setState({ markingAsRead: false });
+    // });
   }
 
   private renderExpandButton() {
@@ -77,7 +83,7 @@ export default class ItemGroup extends React.Component<ItemProps & WithMarkReadP
       >
         <span className='show-more-link__label'>
           <span className='show-more-link__label-text'>
-            {osu.transChoice('common.count.update', this.props.items.length)}
+            {osu.transChoice('common.count.update', this.props.stack.total)}
           </span>
           <span className='show-more-link__label-icon'>
             <span className={`fas fa-angle-${this.state.expanded ? 'up' : 'down'}`} />
@@ -100,7 +106,9 @@ export default class ItemGroup extends React.Component<ItemProps & WithMarkReadP
       return null;
     }
 
-    return <div className='notification-popup-item-group__items'>{this.props.items.map(this.renderItem)}</div>;
+    const notifications = [...this.props.stack.notifications.values()];
+
+    return <div className='notification-popup-item-group__items'>{notifications.map(this.renderItem)}</div>;
   }
 
   private toggleExpand = () => {

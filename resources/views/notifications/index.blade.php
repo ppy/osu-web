@@ -27,7 +27,7 @@
     @parent
 
     <script id="json-notifications" type="application/json">
-        {!! json_encode($notificationsJson) !!}
+        {!! json_encode($bundleJson) !!}
     </script>
 
     @include('layout._extra_js', ['src' => 'js/react/notifications-index.js'])

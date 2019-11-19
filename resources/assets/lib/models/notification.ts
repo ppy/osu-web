@@ -50,6 +50,10 @@ export default class Notification {
     return displayType(this);
   }
 
+  @computed get stackId() {
+    return `${this.objectType}-${this.objectId}`;
+  }
+
   constructor(id: number) {
     this.id = id;
   }

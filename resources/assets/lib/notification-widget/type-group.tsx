@@ -20,6 +20,7 @@ import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
+import NotificationType from 'models/notification-type';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Spinner } from 'spinner';
@@ -30,6 +31,7 @@ import { WithMarkReadProps } from './with-mark-read';
 
 interface Props {
   showRead: boolean;
+  type: NotificationType;
 }
 
 interface State {
@@ -39,7 +41,7 @@ interface State {
 const bn = 'notification-type-group';
 
 @observer
-export default class TypeGroup extends React.Component<ItemProps & Props & WithMarkReadProps, State> {
+export default class TypeGroup extends React.Component<Props & WithMarkReadProps, State> {
   static defaultProps = {
     showRead: false,
   };
@@ -50,24 +52,24 @@ export default class TypeGroup extends React.Component<ItemProps & Props & WithM
 
   get unreadCount() {
     if (this.props.showRead) {
-      return this.props.items.length;
+      return this.props.type.total;
     }
 
+    return 0;
+    // TODO fix unread count
     return this.props.items.filter((i) => !i.isRead).length;
   }
 
   render() {
-    if (this.props.items.length === 0) {
+    if (this.props.type.stacks.size === 0) {
       return null;
     }
-
-    const item = this.props.items[0];
 
     return (
       <div className={bn}>
         <div className={`${bn}__header`}>
           <div className={`${bn}__type`}>
-            {osu.trans(`notifications.item.${item.displayType}._`)}
+            {osu.trans(`notifications.item.${this.props.type.name}._`)}
 
             {this.renderNotificationCount()}
           </div>
@@ -75,7 +77,7 @@ export default class TypeGroup extends React.Component<ItemProps & Props & WithM
           {this.renderMarkAllReadButton()}
         </div>
         <div className={`${bn}__items`}>
-          {this.renderItems()}
+          {this.renderStacks()}
         </div>
       </div>
     );
@@ -83,59 +85,49 @@ export default class TypeGroup extends React.Component<ItemProps & Props & WithM
 
   private handleMarkAllAsRead = () => {
     this.setState({ markingAsRead: true });
-    core.dataStore.notificationStore.markAsRead(this.props.items)
-    .always(() => {
-      this.setState({ markingAsRead: false });
-    });
+    // core.dataStore.notificationStore.markAsRead(this.props.items)
+    // .always(() => {
+    //   this.setState({ markingAsRead: false });
+    // });
   }
 
-  private renderItems() {
-    const categoryGroup: Map<string, Notification[]> = new Map();
+  private renderStacks() {
+    const nodes: React.ReactNode[] = [];
 
-    this.props.items.forEach((item) => {
-      const key = item.categoryGroupKey;
-
-      if (key == null) {
+    this.props.type.stacks.forEach((stack) => {
+      const item = stack.first;
+      if (item == null) {
         return;
       }
 
-      let groupedItems = categoryGroup.get(key);
+      const Component = stack.isSingle ? ItemSingular : ItemGroup;
+      const items = [...stack.notifications.values()];
+      const params = {
+        items,
+        markingAsRead: this.state.markingAsRead,
+      };
 
-      if (groupedItems == null) {
-        groupedItems = [];
-        categoryGroup.set(key, groupedItems);
+      if (stack.isSingle) {
+        params['item'] = item;
+      } else {
+        params['stack'] = stack;
       }
 
-      if (!this.props.showRead && item.isRead) {
-        return;
-      }
-
-      groupedItems.push(item);
-    });
-
-    const items: React.ReactNode[] = [];
-
-    categoryGroup.forEach((value, key) => {
-      if (value.length === 0) {
-        return;
-      }
-
-      const Component = value.length === 1 ? ItemSingular : ItemGroup;
-
-      items.push((
-        <div className={`${bn}__item`} key={key}>
-          <Component item={value[0]} items={value} markingAsRead={this.state.markingAsRead} />
+      nodes.push((
+        <div className={`${bn}__item`} key={stack.id}>
+          <Component {...params} />
         </div>
       ));
     });
 
-    return items;
+    return nodes;
   }
 
   private renderMarkAllReadButton() {
-    if (this.props.items[0].id < 0) {
-      return null;
-    }
+    // TODO: no button for legacy pm type group
+    // if (this.props.items[0].id < 0) {
+    //   return null;
+    // }
 
     let markAllReadClass = `${bn}__clear-all`;
     let markingAsReadSpinner: React.ReactNode = null;
@@ -162,9 +154,10 @@ export default class TypeGroup extends React.Component<ItemProps & Props & WithM
   }
 
   private renderNotificationCount() {
-    if (this.props.items.length === 1 && this.props.items[0] instanceof LegacyPmNotification) {
-      return null;
-    }
+    // TODO: legacy pm type group
+    // if (this.props.items.length === 1 && this.props.items[0] instanceof LegacyPmNotification) {
+    //   return null;
+    // }
 
     return (
       <span className={`${bn}__count`}>

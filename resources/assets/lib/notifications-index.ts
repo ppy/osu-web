@@ -16,15 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationTypeGroupJson } from 'interfaces/notification-bundle-json';
+import { NotificationBundleJson } from 'interfaces/notification-bundle-json';
 import { Main } from 'notifications-index/main';
 import core from 'osu-core-singleton';
 
 reactTurbolinks.registerPersistent('notifications-index', Main, true, (container: HTMLElement) => {
-  const bundle = osu.parseJson('json-notifications') as NotificationTypeGroupJson[];
-  const store = core.dataStore.notificationStore;
-
-  bundle.forEach((json) => store.updateWithGroupJson(json));
+  const bundle = osu.parseJson('json-notifications') as NotificationBundleJson;
+  core.dataStore.notificationStore.updateWithBundle(bundle);
 
   return {};
 });
