@@ -365,7 +365,7 @@ return [
 
             'restriction_info' => [
                 '_' => '',
-                'link' => '',
+                'link' => 'osu!támogató',
             ],
         ],
         'post_count' => [

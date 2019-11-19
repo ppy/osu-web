@@ -19,7 +19,6 @@
  */
 
 return [
-    'coming_soon' => 'prossimamente',
     'limitation_notice' => 'NOTA: Solamente gli utenti che utilizzano <a href=":lazer_link">osu!lazer</a> o il nuovo sito web riceveranno messaggi privati tramite questo sistema.<br/>Se non sei sicuro, invia un messaggio dalla <a href=":oldpm_link">pagina dei messaggi privati del vecchio forum</a>.',
     'talking_in' => 'parlando in :channel',
     'talking_with' => 'parlando con :name',

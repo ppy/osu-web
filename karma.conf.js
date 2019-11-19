@@ -13,7 +13,41 @@ class ExitOnErrorWebpackPlugin {
   }
 }
 
-const webpackConfig = require('./webpack.config.js');
+/**
+ * Blocks until the webpack config is read.
+ */
+function readWebpackConfig() {
+  const argv = require('yargs').argv;
+  if (!argv.singleRun) {
+    argv.watch = true;
+  }
+
+  const sleep = require('deasync').runLoopOnce;
+  const maybeConfig = require('./webpack.config.js');
+  const config = maybeConfig instanceof Function ? maybeConfig(null, argv) : maybeConfig;
+  if (!(config instanceof Promise)) {
+    return config;
+  }
+
+  let value;
+  config.then((result) => {
+    value = result;
+  }).catch((error) => {
+    value = error;
+  });
+
+  while (!value) {
+    sleep();
+  }
+
+  if (value instanceof Error) {
+    throw value;
+  }
+
+  return value;
+}
+
+webpackConfig = readWebpackConfig();
 webpackConfig['plugins'].push(new ExitOnErrorWebpackPlugin());
 webpackConfig['mode'] = 'development';
 webpackConfig['devtool'] = 'inline-source-map';

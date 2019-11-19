@@ -25,6 +25,7 @@ return [
         'peak' => 'Пик, :count активных игроков',
         'players' => 'зарегистрировано <strong>:count</strong> игроков',
         'title' => 'добро пожаловать',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'лучшая бесплатная ритм-игра',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Последние ранкнутые карты',
             'popular' => 'Популярные карты',
-            'by' => 'от',
-            'plays' => 'сыгран :count раз',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Скачать osu!',

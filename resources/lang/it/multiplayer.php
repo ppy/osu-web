@@ -55,9 +55,9 @@ return [
 
         'team-types' => [
             'head-to-head' => 'Testa a Testa',
-            'tag-coop' => 'Tag Cooperativo',
-            'team-vs' => 'VS a squadre',
-            'tag-team-vs' => 'Tag VS a Squadre',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'A Squadre',
+            'tag-team-vs' => 'Tag a Squadre',
         ],
 
         'teams' => [

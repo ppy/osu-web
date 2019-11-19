@@ -276,8 +276,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => '삭제된 글 표시',
+            'hide' => '삭제된 글 숨기기',
         ],
 
         'show' => [
@@ -309,8 +309,8 @@ return [
                 'button' => [
                     'change_vote' => '추천 변경',
                     'edit' => '투표 수정',
-                    'view_results' => '',
-                    'vote' => '',
+                    'view_results' => '결과로 건너뛰기',
+                    'vote' => '투표',
                 ],
 
                 'detail' => [

@@ -19,12 +19,11 @@
  */
 
 return [
-    'coming_soon' => '',
     'limitation_notice' => '',
-    'talking_in' => '',
-    'talking_with' => '',
-    'title_compact' => '',
-    'title' => '',
+    'talking_in' => 'pratar i :channel',
+    'talking_with' => 'pratar med :name',
+    'title_compact' => 'chatt',
+    'title' => 'Chatt',
     'cannot_send' => [
         'channel' => '',
         'user' => '',
@@ -38,8 +37,8 @@ return [
     ],
     'input' => [
         'disabled' => '',
-        'placeholder' => '',
-        'send' => '',
+        'placeholder' => 'skriv ett meddelande...',
+        'send' => 'Skicka',
     ],
     'no-conversations' => [
         'howto' => "",

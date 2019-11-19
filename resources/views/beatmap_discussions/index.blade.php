@@ -76,6 +76,10 @@
                     </div>
                     <div class="simple-form__checkboxes-inline">
                         @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $messageType)
+                            {{-- TODO: remove this when reviews are released --}}
+                            @if (!config('osu.beatmapset.discussion_review_enabled') && $messageType === 'review')
+                                @continue
+                            @endif
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
                                 @include('objects._switch', [
                                     'checked' => in_array($messageType, $search['params']['message_types'], true),

@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
+            'only_unresolved' => '',
             'types' => 'Rodzaj wiadomości',
             'username' => 'Nazwa użytkownika',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Użytkownik',

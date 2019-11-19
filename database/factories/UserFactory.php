@@ -51,7 +51,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'user_id' => $userid,
         'user_password' => $password,
         'user_email' => $faker->safeEmail,
-        'user_lastvisit' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
+        'user_lastvisit' => time(),
         'user_posts' => rand(1, 500),
         'user_warnings' => 0,
         'user_type' => 0,
@@ -74,18 +74,24 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->state(App\Models\User::class, 'restricted', function (Faker\Generator $faker) {
-    return [
-        'user_warnings' => 1,
-    ];
-});
-
 $factory->state(App\Models\User::class, 'bng', function (Faker\Generator $faker) {
     return [
         'group_id' => App\Models\UserGroup::GROUPS['bng'],
     ];
 });
 
+$factory->state(App\Models\User::class, 'restricted', function (Faker\Generator $faker) {
+    return [
+        'user_warnings' => 1,
+    ];
+});
+
 $factory->afterCreatingState(App\Models\User::class, 'bng', function ($user, $faker) {
     $user->userGroups()->create(['group_id' => App\Models\UserGroup::GROUPS['bng']]);
+});
+
+$factory->afterCreatingState(App\Models\User::class, 'silenced', function ($user, $faker) {
+    $user->accountHistories()->save(
+        factory(App\Models\UserAccountHistory::class)->states('silence')->make()
+    );
 });

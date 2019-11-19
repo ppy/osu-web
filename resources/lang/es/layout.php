@@ -61,9 +61,9 @@ return [
             'team' => 'equipo',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'perfil',
+            'friends' => 'amigos',
+            'settings' => 'ajustes',
         ],
         'help' => [
             '_' => 'ayuda',
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Descargar',
             'info' => 'Necesita una cuenta, señor. ¿Por qué aún no tiene una?',
             'title' => "¿No tienes una cuenta?",
         ],

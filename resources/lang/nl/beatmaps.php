@@ -183,6 +183,7 @@ return [
         'nominate' => 'Nomineer',
         'nominate_confirm' => 'Nomineer deze beatmap?',
         'nominated_by' => 'genomineerd door :gebruikers',
+        'not_enough_hype' => "",
         'qualified' => 'Naar schatting gerankt op :date, als er geen problemen optreden.',
         'qualified_soon' => 'Naar schatting binnenkort gerankt, als er geen problemen optreden.',
         'required_text' => 'Nimonaties: :current/:required',

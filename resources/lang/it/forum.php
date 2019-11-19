@@ -276,8 +276,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Mostra post eliminati',
+            'hide' => 'Nascondi post eliminati',
         ],
 
         'show' => [

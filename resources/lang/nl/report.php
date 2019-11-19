@@ -20,8 +20,8 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Rapporteer',
+        'title' => 'Rapporteer :username\'s bericht?',
     ],
 
     'comment' => [
@@ -35,7 +35,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Rapporteer',
+        'title' => 'Rapporteer :username?',
     ],
 ];

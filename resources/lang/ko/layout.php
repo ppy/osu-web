@@ -61,9 +61,9 @@ return [
             'team' => '운영진',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => '프로필',
+            'friends' => '친구',
+            'settings' => '설정',
         ],
         'help' => [
             '_' => '도움말',
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => '다운로드',
             'info' => '계정이 필요합니다, 하나 만들어보시는 건 어때요?',
             'title' => "아직 계정이 없으신가요?",
         ],
