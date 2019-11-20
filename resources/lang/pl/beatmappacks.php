@@ -42,7 +42,7 @@ return [
     ],
 
     'show' => [
-        'back' => '',
+        'back' => 'Powrót do listy',
         'download' => 'Pobierz',
         'item' => [
             'cleared' => 'ukończona',

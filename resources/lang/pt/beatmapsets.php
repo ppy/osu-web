@@ -77,10 +77,10 @@ return [
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => 'Se encontrares um problema com este beatmap, por favor transmite-o :link para avisar a equipa.',
+                'button' => 'Relatar Problema',
+                'button_title' => 'Relatar um problema num beatmap qualificado.',
+                'link' => 'aqui',
             ],
         ],
 

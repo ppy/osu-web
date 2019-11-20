@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Nominierung zurücksetzen',
             'praise' => 'Loben',
             'problem' => 'Problem',
+            'review' => '',
             'suggestion' => 'Vorschlag',
         ],
 
@@ -183,7 +184,7 @@ return [
         'nominate' => 'Nominieren',
         'nominate_confirm' => 'Diese Beatmap nominieren?',
         'nominated_by' => 'Nominiert von :users',
-        'not_enough_hype' => "",
+        'not_enough_hype' => "Nicht ausreichend Hype vorhanden.",
         'qualified' => 'Die Beatmap wird voraussichtlich am :date ranked, wenn keine Probleme gefunden werden.',
         'qualified_soon' => 'Die Beatmap wird bald ranked, wenn keine Probleme gefunden werden.',
         'required_text' => 'Nominierungen: :current/:required',

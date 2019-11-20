@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => 'Pesquisar',
             'deleted' => 'Incluir discussões eliminadas',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Mostrar apenas as discussões não resolvidas',
             'types' => 'Tipos de mensagem',
             'username' => 'Nome de utilizador',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Estado do Beatmap',
+                'all' => 'Todos',
+                'disqualified' => 'Desqualificado',
+                'never_qualified' => 'Nunca Qualificado',
+                'qualified' => 'Qualificado',
+                'ranked' => 'Classificado',
             ],
 
             'user' => [

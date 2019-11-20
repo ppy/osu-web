@@ -427,12 +427,6 @@ class User extends Model implements AuthenticatableContract
         return (new ChangeUsername($this, $username, $type))->validate();
     }
 
-    // verify that an api key is correct
-    public function verify($key)
-    {
-        return $this->api->api_key === $key;
-    }
-
     public static function lookup($usernameOrId, $type = null, $findAll = false)
     {
         if (!present($usernameOrId)) {
@@ -676,24 +670,6 @@ class User extends Model implements AuthenticatableContract
         $this->attributes['osu_subscriptionexpiry'] = optional($value)->startOfDay();
     }
 
-    // return a user's API details
-
-    public function getApiDetails($user = null)
-    {
-        return $this->api;
-    }
-
-    public function getApiKey()
-    {
-        return $this->api->api_key;
-    }
-
-    public function setApiKey($key)
-    {
-        $this->api->api_key = $key;
-        $this->api->save();
-    }
-
     /*
     |--------------------------------------------------------------------------
     | Permission Checker Functions
@@ -777,6 +753,16 @@ class User extends Model implements AuthenticatableContract
     public function isActive()
     {
         return $this->user_lastvisit > Carbon::now()->subMonth();
+    }
+
+    /*
+     * almost like !isActive but different duration
+     *
+     * @return bool
+     */
+    public function isInactive(): bool
+    {
+        return $this->user_lastvisit->addDays(config('osu.user.inactive_days_verification'))->isPast();
     }
 
     public function isOnline()
@@ -1324,11 +1310,7 @@ class User extends Model implements AuthenticatableContract
 
     public function blockedUserIds()
     {
-        if (!array_key_exists('blocks', $this->memoized)) {
-            $this->memoized['blocks'] = $this->blocks;
-        }
-
-        return $this->memoized['blocks']->pluck('user_id');
+        return $this->blocks->pluck('user_id');
     }
 
     public function groupBadge()
@@ -1350,20 +1332,12 @@ class User extends Model implements AuthenticatableContract
 
     public function hasBlocked(self $user)
     {
-        if (!array_key_exists('blocks', $this->memoized)) {
-            $this->memoized['blocks'] = $this->blocks;
-        }
-
-        return $this->memoized['blocks']->where('user_id', $user->user_id)->count() > 0;
+        return $this->blocks->where('user_id', $user->user_id)->count() > 0;
     }
 
     public function hasFriended(self $user)
     {
-        if (!array_key_exists('friends', $this->memoized)) {
-            $this->memoized['friends'] = $this->friends;
-        }
-
-        return $this->memoized['friends']->where('user_id', $user->user_id)->count() > 0;
+        return $this->friends->where('user_id', $user->user_id)->count() > 0;
     }
 
     public function hasFavourited($beatmapset)
