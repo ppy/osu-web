@@ -229,6 +229,11 @@ class Page implements WikiObject
             && static::lookup($this->parentPath(), $this->locale)->isVisible();
     }
 
+    public function needsCleanup() : bool
+    {
+        return $this->page['header']['needs_cleanup'] ?? false;
+    }
+
     public function isLegalTranslation() : bool
     {
         return $this->isTranslation()
