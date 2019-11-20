@@ -1042,22 +1042,22 @@ class User extends Model implements AuthenticatableContract
 
     public function scoresFirstOsu()
     {
-        return $this->belongsToMany(Score\Best\Osu::class, 'osu_leaders', 'user_id', 'score_id')->default();
+        return $this->belongsToMany(Score\Best\Osu::class, 'osu_leaders')->default();
     }
 
     public function scoresFirstFruits()
     {
-        return $this->belongsToMany(Score\Best\Fruits::class, 'osu_leaders_fruits', 'user_id', 'score_id')->default();
+        return $this->belongsToMany(Score\Best\Fruits::class, 'osu_leaders_fruits')->default();
     }
 
     public function scoresFirstMania()
     {
-        return $this->belongsToMany(Score\Best\Mania::class, 'osu_leaders_mania', 'user_id', 'score_id')->default();
+        return $this->belongsToMany(Score\Best\Mania::class, 'osu_leaders_mania')->default();
     }
 
     public function scoresFirstTaiko()
     {
-        return $this->belongsToMany(Score\Best\Taiko::class, 'osu_leaders_taiko', 'user_id', 'score_id')->default();
+        return $this->belongsToMany(Score\Best\Taiko::class, 'osu_leaders_taiko')->default();
     }
 
     public function scoresFirst(string $mode, bool $returnQuery = false)
