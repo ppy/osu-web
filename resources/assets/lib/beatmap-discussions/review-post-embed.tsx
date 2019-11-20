@@ -38,7 +38,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
     // this should never happen, but just in case...
     return (
       <div className={bn}>
-        <div className={`${bn}__message-container ${bn}__message-container--error`}>[DISCUSSION NOT LOADED]</div>
+        <div className={`${bn}__error`}>[DISCUSSION NOT LOADED]</div>
       </div>
     );
   }
