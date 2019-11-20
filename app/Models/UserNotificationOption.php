@@ -40,7 +40,7 @@ class UserNotificationOption extends Model
         self::FORUM_TOPIC_REPLY,
     ];
 
-    const BEATMAPSET_MODDING = 'beatmapset:modding';
+    const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
     const BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM = Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM;
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
 
