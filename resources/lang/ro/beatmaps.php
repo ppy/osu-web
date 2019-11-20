@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Resetați nominalizarea',
             'praise' => 'Laudă',
             'problem' => 'Problemă',
+            'review' => '',
             'suggestion' => 'Sugestie',
         ],
 

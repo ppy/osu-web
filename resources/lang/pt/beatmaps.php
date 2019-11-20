@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Reiniciar Nomeação',
             'praise' => 'Glorificar',
             'problem' => 'Problema',
+            'review' => '',
             'suggestion' => 'Sugestão',
         ],
 
@@ -183,7 +184,7 @@ return [
         'nominate' => 'Nomear',
         'nominate_confirm' => 'Nomear este beatmap?',
         'nominated_by' => 'nomeado por :users',
-        'not_enough_hype' => "",
+        'not_enough_hype' => "Não há hype suficiente.",
         'qualified' => 'Estimado para ser classificado em :date, se não forem encontrados problemas.',
         'qualified_soon' => 'Estimado para ser classificado em breve, se não forem encontrados problemas.',
         'required_text' => 'Nomeações: :current/:required',

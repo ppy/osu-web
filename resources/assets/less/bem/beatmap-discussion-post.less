@@ -104,12 +104,16 @@
     margin: 0 -5px;
   }
 
-  &__avatar-container {
-    margin-right: 10px;
+  &__avatar {
     flex: none;
-    display: flex;
-    flex-direction: column;
     width: @beatmap-discussion--avatar-size;
+    height: @beatmap-discussion--avatar-size;
+    margin-bottom: 5px;
+
+    @media @desktop {
+      margin-right: 10px;
+      margin-bottom: 0;
+    }
   }
 
   &__content {

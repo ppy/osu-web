@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Сбросить номинацию',
             'praise' => 'Хвала',
             'problem' => 'Проблема',
+            'review' => '',
             'suggestion' => 'Запрос',
         ],
 
@@ -183,7 +184,7 @@ return [
         'nominate' => 'Номинировать',
         'nominate_confirm' => 'Номинировать эту карту?',
         'nominated_by' => 'номинирована :users',
-        'not_enough_hype' => "",
+        'not_enough_hype' => "Недостаточно хайпа.",
         'qualified' => 'Если больше нет проблем, то карта получит ранкнутый статус примерно :date.',
         'qualified_soon' => 'Если больше нет проблем, то карта получит ранкнутый статус очень скоро.',
         'required_text' => 'Номинации: :current/:required',

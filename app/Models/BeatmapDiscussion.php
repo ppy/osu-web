@@ -184,7 +184,7 @@ class BeatmapDiscussion extends Model
 
     public function visibleBeatmapset()
     {
-        return $this->belongsTo(Beatmapset::class, 'beatmapset_id', 'beatmapset_id');
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public function beatmapDiscussionPosts()

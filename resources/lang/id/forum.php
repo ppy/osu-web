@@ -276,8 +276,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Tampilkan postingan yang telah dihapus',
+            'hide' => 'Sembunyikan postingan yang telah dihapus',
         ],
 
         'show' => [
