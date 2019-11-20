@@ -82,7 +82,7 @@
                 </button>
 
                 <a
-                    href="{{ $cancelUrl }}"
+                    href="{{ $cancelUrl ?? route('home') }}"
                     class="oauth-form__button oauth-form__button--cancel"
                 >
                     {{ trans('common.buttons.cancel') }}

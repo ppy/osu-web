@@ -52,17 +52,15 @@ class AuthorizationController extends PassportAuthorizationController
         view()->share('currentSection', 'user');
 
         if (!auth()->check()) {
-            $cancelUrl = request('redirect_uri');
+            $cancelUrl = presence(request('redirect_uri'));
 
-            if (present($cancelUrl)) {
+            if ($cancelUrl !== null) {
                 // Breaks when url contains hash ("#").
                 $separator = strpos($cancelUrl, '?') === false ? '?' : '&';
                 $cancelUrl .= "{$separator}error=access_denied";
-            } else {
-                $cancelUrl = route('home');
             }
 
-            return view('passport::login', [
+            return view('sessions.login', [
                 'cancelUrl' => $cancelUrl,
                 'currentAction' => 'oauth_login',
             ]);
