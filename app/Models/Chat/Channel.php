@@ -56,7 +56,7 @@ class Channel extends Model
 
     public function messages()
     {
-        return $this->hasMany(Message::class, 'channel_id');
+        return $this->hasMany(Message::class);
     }
 
     public function filteredMessages()
