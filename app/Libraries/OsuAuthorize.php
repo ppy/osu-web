@@ -1175,7 +1175,6 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
-        $this->ensureRecentlyPlayed($user);
 
         $plays = $user->playCount();
         $posts = $user->user_posts;
@@ -1186,6 +1185,8 @@ class OsuAuthorize
                 return $prefix.'too_many_help_posts';
             }
         } else {
+            $this->ensureRecentlyPlayed($user);
+
             if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
                 return $prefix.'play_more';
             }
