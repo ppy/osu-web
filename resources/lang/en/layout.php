@@ -44,6 +44,7 @@ return [
             '_' => 'home',
             'account-edit' => 'settings',
             'account-verifyLink' => 'Verification Completed',
+            'client_verifications-create' => 'osu! client verification',
             'friends-index' => 'friends',
             'changelog-index' => 'changelog',
             'changelog-build' => 'build',
