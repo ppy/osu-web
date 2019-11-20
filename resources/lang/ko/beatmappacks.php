@@ -39,6 +39,7 @@ return [
     ],
 
     'show' => [
+        'back' => '목록으로 돌아가기',
         'download' => '다운로드',
         'item' => [
             'cleared' => '클리어한 맵',

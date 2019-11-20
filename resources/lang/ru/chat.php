@@ -19,7 +19,6 @@
  */
 
 return [
-    'coming_soon' => 'уже скоро',
     'limitation_notice' => 'ВНИМАНИЕ: Ваше сообщение смогут прочитать только в <a href=":lazer_link">osu!lazer</a>, или через эту систему ЛС на сайте.<br/>Если вы неуверены, отправьте сообщение через <a href=":oldpm_link">старую систему на форуме</a>.',
     'talking_in' => 'чат в :channel',
     'talking_with' => 'чат с :name',

@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Keresés',
             'deleted' => 'Törölt beszélgetések mellékelése',
+            'only_unresolved' => '',
             'types' => 'Üzenettípusok',
             'username' => 'Felhasználónév',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => 'Mind',
+                'disqualified' => 'Diszkvalifikálva',
+                'never_qualified' => 'Minősítetlen',
+                'qualified' => 'Minősített',
+                'ranked' => 'Rangsorolt',
+            ],
 
             'user' => [
                 'label' => 'Felhasználó',

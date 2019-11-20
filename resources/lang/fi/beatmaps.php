@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Nollaa Suositus',
             'praise' => 'Kehu',
             'problem' => 'Ongelma',
+            'review' => '',
             'suggestion' => 'Ehdotus',
         ],
 
@@ -183,6 +184,7 @@ return [
         'nominate' => 'Suosittele',
         'nominate_confirm' => 'Suosittele tätä beatmappia?',
         'nominated_by' => 'suositellut :users',
+        'not_enough_hype' => "",
         'qualified' => 'Arvioidaan hyväksyttävän :date, mikäli ongelmia ei löydy.',
         'qualified_soon' => 'Arvioidaan hyväksyttävän pian, mikäli ongelmia ei löydy.',
         'required_text' => 'Suositukset: :current/:required',

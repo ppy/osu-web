@@ -27,6 +27,9 @@ use App\Models\UserStatistics;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+/**
+ * @group Ranking
+ */
 class RankingController extends Controller
 {
     protected $section = 'rankings';
@@ -86,6 +89,28 @@ class RankingController extends Controller
         });
     }
 
+    /**
+     * Get Ranking
+     *
+     * Gets the current ranking for the specified type and game mode.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [Ranking Response](#ranking-response)
+     *
+     * ### Route Parameters
+     *
+     * Field  | Status   | Type
+     * -------| ---------| -----------------
+     * mode   | required | [GameMode](#gamemode)
+     * type   | required | [RankingType](#rankingtype)
+     *
+     * @authenticated
+     *
+     * @queryParam spotlight The id of the spotlight if `type` is `charts`
+     */
     public function index($mode, $type)
     {
         if ($type === 'charts') {
@@ -149,9 +174,11 @@ class RankingController extends Controller
             switch ($type) {
                 case 'country':
                     $ranking = json_collection($stats, 'CountryStatistics', ['country']);
+                    break;
 
                 default:
                     $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    break;
             }
 
             return [

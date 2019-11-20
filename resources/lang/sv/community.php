@@ -27,7 +27,7 @@ return [
             'instructions' => 'klicka på hjärtat för att gå till osu!store',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Varför ska jag stötta osu!? Var tar pengarna vägen?',
 
             'team' => [
                 'title' => '',
@@ -47,7 +47,7 @@ return [
                 'description' => '',
             ],
             'tournaments' => [
-                'title' => '',
+                'title' => 'Officiella turneringar',
                 'description' => '',
                 'link_text' => '',
             ],
@@ -139,7 +139,7 @@ return [
                 'description' => '',
             ],
             'more_friends' => [
-                'title' => '',
+                'title' => 'Flera vänner',
                 'description' => '',
             ],
             'more_beatmaps' => [

@@ -61,9 +61,9 @@ return [
             'team' => 'team',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profiel',
+            'friends' => 'vrienden',
+            'settings' => 'instellingen',
         ],
         'help' => [
             '_' => 'hulp',
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Download',
             'info' => 'Je hebt een account nodig, meneer. Waarom heeft u er niet al eentje?',
             'title' => "Heb je geen account?",
         ],

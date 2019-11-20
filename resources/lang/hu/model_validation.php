@@ -43,7 +43,7 @@ return [
 
         'attributes' => [
             'message_type' => 'Üzenet típus',
-            'timestamp' => '',
+            'timestamp' => 'Időbélyeg',
         ],
 
         'hype' => [
@@ -121,10 +121,10 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'Kérjük adjon meg egy helyes URL-t.',
 
             'attributes' => [
-                'name' => '',
+                'name' => 'Alkalmazás neve',
                 'redirect' => '',
             ],
         ],

@@ -39,6 +39,7 @@ return [
     ],
 
     'show' => [
+        'back' => '',
         'download' => 'Изтегли',
         'item' => [
             'cleared' => 'преминат',

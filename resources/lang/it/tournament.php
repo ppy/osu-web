@@ -21,7 +21,7 @@
 return [
     'index' => [
         'none_running' => 'Non ci sono tornei in corso in questo momento, prova a vedere più tardi!',
-        'registration_period' => 'Registrazione da :start a :end',
+        'registration_period' => 'Registrazione: :start - :end',
 
         'header' => [
             'subtitle' => 'Una lista di tutti i tornei attivi e ufficialmente riconosciuti',
@@ -39,25 +39,25 @@ return [
     ],
 
     'show' => [
-        'banner' => 'Supporta la tua squadra',
-        'entered' => 'Sei stato iscritto in questo torneo. <br><br>Nota che questo non vuol dire che tu sia stato automaticamente assegnato a una squadra.<br><br>Ulteriori informazioni verranno spedite via email in vicinanza della data del torneo, quindi per favore assicurati che l\'email associata al tuo account di osu! sia valida!',
-        'info_page' => 'Informazioni',
+        'banner' => 'Supporta la Tua Squadra',
+        'entered' => 'Sei iscritto in questo torneo.<br><br>Nota però che questo <b>non</b> significa che sei già stato assegnato ad una squadra.<br><br>Ti verranno inviate ulteriori informazioni via email in vicinanza della data del torneo, quindi assicurati che l\'email del tuo account osu! sia valida!',
+        'info_page' => 'Pagina delle Informazioni',
         'login_to_register' => 'Si prega di :login per visualizzare i dettagli di registrazione!',
         'not_yet_entered' => 'Non sei registrato in questo torneo.',
-        'rank_too_low' => 'Siamo spiacenti, la tua posizione in classifica non soddisfa i i requisiti di questo torneo!',
+        'rank_too_low' => 'Mi spiace, il tuo rank non soddisfa i requisiti di questo torneo!',
         'registration_ends' => 'Le iscrizioni chiudono il :date',
 
         'button' => [
-            'cancel' => 'Annulla iscrizione',
-            'register' => 'Mi iscrivo!',
+            'cancel' => 'Annulla Iscrizione',
+            'register' => 'Iscrivimi!',
         ],
 
         'state' => [
             'before_registration' => 'Le iscrizioni per questo torneo non sono ancora aperte.',
-            'ended' => 'Questo torneo è terminato. Controllare la pagina di informazioni per vedere i risultati.',
-            'registration_closed' => 'Le iscrizioni per questo torneo sono terminate. Controllare la pagina di informazioni per gli ultimi aggiornamenti.',
-            'running' => 'Questo torneo è attualmente in corso. Controllare la pagina di informazioni per avere più dettagli.',
+            'ended' => 'Questo torneo è terminato. Controlla la pagina delle informazioni per vedere i risultati.',
+            'registration_closed' => 'Le iscrizioni per questo torneo sono terminate. Controlla la pagina delle informazioni per gli ultimi aggiornamenti.',
+            'running' => 'Questo torneo è attualmente in corso. Controlla la pagina delle informazioni per avere più dettagli.',
         ],
     ],
-    'tournament_period' => ':start a :end',
+    'tournament_period' => ':start - :end',
 ];

@@ -171,7 +171,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason はこのテレポートタイプでは無効です。',
         'self' => "自分自身を報告することはできません！",
     ],
 
