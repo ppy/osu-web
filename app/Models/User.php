@@ -1214,7 +1214,14 @@ class User extends Model implements AuthenticatableContract
 
     public function channels()
     {
-        return $this->hasManyThrough(Chat\Channel::class, Chat\UserChannel::class);
+        return $this->hasManyThrough(
+            Chat\Channel::class,
+            Chat\UserChannel::class,
+            'user_id',
+            'channel_id',
+            'user_id',
+            'channel_id'
+        );
     }
 
     public function follows()
