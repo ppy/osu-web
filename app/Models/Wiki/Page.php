@@ -231,7 +231,7 @@ class Page implements WikiObject
 
     public function needsCleanup() : bool
     {
-        return $this->page()['header']['needs_cleanup'] ?? false;
+        return $this->page['header']['needs_cleanup'] ?? false;
     }
 
     public function isLegalTranslation() : bool
