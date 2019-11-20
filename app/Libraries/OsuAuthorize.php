@@ -704,6 +704,7 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
+        $this->ensureRecentlyPlayed($user);
 
         if ($target->hasBlocked($user) || $user->hasBlocked($target)) {
             return $prefix.'blocked';
@@ -728,6 +729,7 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
+        $this->ensureRecentlyPlayed($user);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
             return $prefix.'no_access';
