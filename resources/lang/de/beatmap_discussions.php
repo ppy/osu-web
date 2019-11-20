@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => 'Suche',
             'deleted' => 'Gelöschte Diskussionen einbeziehen',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Nur ungelöste Diskussionen anzeigen',
             'types' => 'Nachrichtentyp',
             'username' => 'Benutzername',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Beatmap-Status',
+                'all' => 'Alle',
+                'disqualified' => 'Disqualifiziert',
+                'never_qualified' => 'Nie Qualifiziert',
+                'qualified' => 'Qualifiziert',
+                'ranked' => 'Ranked',
             ],
 
             'user' => [

@@ -39,7 +39,7 @@ return [
     ],
 
     'show' => [
-        'back' => '',
+        'back' => 'Kembali ke daftar beatmap',
         'download' => 'Unduh',
         'item' => [
             'cleared' => 'telah diselesaikan',

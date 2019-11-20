@@ -24,7 +24,7 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuWiki;
 use Exception;
 
-class Image
+class Image implements WikiObject
 {
     const CACHE_DURATION = 2 * 60 * 60;
 

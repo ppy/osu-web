@@ -131,7 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Új Rangsorolt Beatmap-ek',
             'popular' => 'Népszerű beatmap-ek',
-            'by_user' => '',
+            'by_user' => ':user által',
         ],
         'buttons' => [
             'download' => 'osu! letöltése',
