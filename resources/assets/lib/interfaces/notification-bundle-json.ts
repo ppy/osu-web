@@ -26,6 +26,7 @@ export interface NotificationBundleJson {
 
 export interface NotificationStackJson {
   cursor: JSON | null;
+  name: string;
   object_id: number;
   object_type: string;
   total: number;

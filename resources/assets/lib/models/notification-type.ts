@@ -16,9 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationTypeJson } from 'interfaces/notification-bundle-json';
+import { NotificationBundleJson, NotificationTypeJson } from 'interfaces/notification-bundle-json';
+import { route } from 'laroute';
 import { action, observable } from 'mobx';
 import NotificationStack from 'models/notification-stack';
+import core from 'osu-core-singleton';
 
 export type Name = null | 'beatmapset' | 'build' | 'channel' | 'forum_topic' | 'news_post' | 'user';
 const names: Name[] = [null, 'beatmapset', 'build', 'channel', 'forum_topic', 'news_post', 'user'];
@@ -34,10 +36,24 @@ export function getValidName(value: unknown) {
 
 export default class NotificationType {
   @observable cursor: JSON | null = null;
+  @observable isLoading = false;
   @observable stacks = new Map<string, NotificationStack>();
   @observable total = 0;
 
   constructor(public name: string) {}
+
+  @action
+  loadMore() {
+    if (this.cursor == null) { return; }
+    const data = { cursor: this.cursor, group: this.name };
+
+    $.ajax({ url: route('notifications.index'), dataType: 'json', data })
+    .then(action((response: NotificationBundleJson) => {
+      core.dataStore.notificationStore.updateWithBundle(response);
+    })).always(action(() => {
+      this.isLoading = false;
+    }));
+  }
 
   @action
   updateWithJson(json: NotificationTypeJson) {

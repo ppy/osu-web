@@ -136,7 +136,22 @@ class NotificationsController extends Controller
     public function index()
     {
         $group = presence(request('group'));
-        [$types, $stacks, $notifications] = $this->getNotificationsByType($group);
+        $objectId = get_int(presence(request('cursor.object_id')));
+        $objectType = presence(request('cursor.object_type'));
+        $name = presence(request('cursor.name'));
+        $cursor = get_int(request('cursor.id'));
+
+        if ($objectId && $objectType && $name) {
+            [$stack, $total] = $this->getNotificationStack($objectType, $objectId, $name, $cursor);
+            $stacks = $this->stackToResponse($stack, $total);
+
+            return [
+                'notifications' => json_collection($stack, 'Notification'),
+                'stacks' => $stacks != null ? [$stacks] : [],
+            ];
+        }
+
+        [$types, $stacks, $notifications] = $this->getNotificationsByType($group, $cursor);
 
         $bundleJson = [
             'notifications' => $notifications,
@@ -205,7 +220,49 @@ class NotificationsController extends Controller
         ->count();
     }
 
-    private function getNotificationsByType(string $type = null)
+    private function getNotificationStack(string $objectType, int $objectId, string $name, ?int $cursor = null, ?int $id = null)
+    {
+        $stack = Notification::whereHas('userNotifications', function ($q) {
+            $q->where('user_id', auth()->user()->getKey());
+        })
+        ->where('notifiable_id', $objectId)
+        ->where('notifiable_type', $objectType)
+        ->where('name', $name);
+
+        $total = $stack->count();
+
+        $stack = $stack->orderBy('id', 'desc')->limit(5);
+
+        if ($cursor !== null) {
+            $stack->where('id', '<', $cursor);
+        }
+
+        return [$stack->get(), $total];
+    }
+
+    private function stackToResponse($stack, $total) {
+        $last = $stack->last();
+        if ($last === null) {
+            return;
+        }
+
+        $cursor = [
+            'id' => $last->id,
+            'object_type' => $last->notifiable_type,
+            'object_id' => $last->notifiable_id,
+            'name' => $last->name,
+        ];
+
+        return [
+            'cursor' => $cursor,
+            'name' => $last->name,
+            'object_type' => $last->notifiable_type,
+            'object_id' => $last->notifiable_id,
+            'total' => $total,
+        ];
+    }
+
+    private function getNotificationsByType(?string $type = null, ?int $cursor = null)
     {
         $types = [];
         $stacks = [];
@@ -224,44 +281,29 @@ class NotificationsController extends Controller
             ->where('notifiable_type', $value)
             ->groupBy('name', 'notifiable_id')
             ->orderBy('id', 'DESC')
-            ->select(DB::raw('MAX(id) as id'), DB::raw('COUNT(*) as total'), 'name', 'notifiable_id')
-            ->limit(5)
-            ->get();
+            ->select(DB::raw('MAX(id) as id'), 'name', 'notifiable_id');
 
-            $notificationStacks = $topLevel->map(function ($row) use ($value) {
-                $n = Notification::whereHas('userNotifications', function ($q) {
-                    $q->where('user_id', auth()->user()->getKey());
-                })
-                ->where('id', '<=', $row->id)
-                ->where('notifiable_id', $row->notifiable_id)
-                ->where('notifiable_type', $value)
-                ->where('name', $row->name)
-                ->orderBy('id', 'desc')
-                ->limit(5)
-                ->get();
+            if ($cursor !== null) {
+                $topLevel->where('id', '<', $cursor);
+            }
 
-                $n->total = $row->total;
+            $topLevel = $topLevel->limit(5)->get();
 
-                return $n;
+            $notificationStacks = $topLevel->map(function ($row) use ($cursor, $value) {
+                // pass cursor in as all the notifications in the stack should be older.
+                return $this->getNotificationStack($value, $row->notifiable_id, $row->name, $cursor);
             });
 
-            foreach ($notificationStacks as $stack) {
-                $last = $stack->last();
+            foreach ($notificationStacks as [$stack, $total]) {
                 // ordering means this gets overriden to the smallest value when not null.
-                $typeCursor = optional($last)->id;
-
-                $stacks[] = [
-                    'cursor' => $last !== null ? ['id' => $last->id] : null,
-                    'object_type' => optional($stack->first())->notifiable_type,
-                    'object_id' => optional($stack->first())->notifiable_id,
-                    'total' =>  $stack->total,
-                ];
+                $typeCursor = optional($stack->last())->id;
+                $stacks[] = $this->stackToResponse($stack, $total);
 
                 $notifications = $notifications->concat(json_collection($stack, 'Notification'));
             }
 
             $types[] = [
-                'cursor' => $typeCursor,
+                'cursor' => $typeCursor !== null ? ['id' => $typeCursor] : null,
                 'name' => $value,
                 'total' => $this->getTotalNotificationCount($value),
             ];

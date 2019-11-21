@@ -16,12 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationStackJson } from 'interfaces/notification-bundle-json';
+import { NotificationBundleJson, NotificationStackJson } from 'interfaces/notification-bundle-json';
+import { route } from 'laroute';
 import { action, computed, observable } from 'mobx';
 import Notification from 'models/notification';
+import core from 'osu-core-singleton';
 
 export default class NotificationStack {
   @observable cursor: JSON | null = null;
+  @observable isLoading = false;
   @observable notifications = new Map<number, Notification>();
   @observable total = 0;
 
@@ -32,7 +35,7 @@ export default class NotificationStack {
 
   @computed
   get id() {
-    return `${this.objectType}-${this.objectId}`;
+    return `${this.objectType}-${this.objectId}-${this.name}`;
   }
 
   @computed
@@ -40,7 +43,21 @@ export default class NotificationStack {
     return this.notifications.size === 1;
   }
 
-  constructor(public objectId: number, public objectType: string) {}
+  constructor(public objectId: number, public objectType: string, public name: string) {}
+
+  @action
+  loadMore() {
+    if (this.cursor == null) { return; }
+
+    this.isLoading = true;
+    const data = { cursor: this.cursor };
+    $.ajax({ url: route('notifications.index'), dataType: 'json', data })
+    .then(action((response: NotificationBundleJson) => {
+      core.dataStore.notificationStore.updateWithBundle(response);
+    })).always(action(() => {
+      this.isLoading = false;
+    }));
+  }
 
   @action
   updateWithJson(json: NotificationStackJson) {
@@ -50,5 +67,5 @@ export default class NotificationStack {
 }
 
 export function idFromJson(json: NotificationStackJson) {
-  return `${json.object_type}-${json.object_id}`;
+  return `${json.object_type}-${json.object_id}-${json.name}`;
 }

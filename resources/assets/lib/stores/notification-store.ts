@@ -142,7 +142,7 @@ export default class NotificationStore extends Store {
 
   @action
   updateWithBundle(bundle: NotificationBundleJson) {
-    bundle.types.forEach((json) => {
+    bundle.types?.forEach((json) => {
       let type = this.types.get(json.name);
       if (type == null) {
         type = new NotificationType(json.name);
@@ -151,17 +151,17 @@ export default class NotificationStore extends Store {
       type.updateWithJson(json);
     });
 
-    bundle.stacks.forEach((json) => {
+    bundle.stacks?.forEach((json) => {
       let stack = this.stacks.get(idFromJson(json));
       if (stack == null) {
-        stack = new NotificationStack(json.object_id, json.object_type);
+        stack = new NotificationStack(json.object_id, json.object_type, json.name);
         this.stacks.set(stack.id, stack);
       }
       stack.updateWithJson(json);
       this.types.get(stack.objectType)?.stacks.set(stack.id, stack);
     });
 
-    bundle.notifications.forEach((json) => {
+    bundle.notifications?.forEach((json) => {
       let notification = this.notifications.get(json.id);
       if (notification == null) {
         notification = new Notification(json.id);

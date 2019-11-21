@@ -34,9 +34,8 @@
  */
 
 import HeaderV3 from 'header-v3';
-import { NotificationTypeJson } from 'interfaces/notification-bundle-json';
 import { route } from 'laroute';
-import { action, runInAction } from 'mobx';
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import NotificationType, { getValidName, Name as NotificationTypeName } from 'models/notification-type';
 import TypeGroup from 'notification-widget/type-group';
@@ -136,17 +135,8 @@ export class Main extends React.Component<{}, State> {
   @action
   loadMore = () => {
     if (this.state.type == null) { return; }
-    const cursor = core.dataStore.notificationStore.types.get(this.state.type)?.cursor;
-
-    if (cursor == null) { return; }
-    const data = { cursor, group: this.state.type };
-
-    $.ajax({ url: route('notifications.index'), dataType: 'json', data })
-    .then((response: NotificationTypeJson[]) => {
-      runInAction(() => {
-        response.forEach((json) => core.dataStore.notificationStore.updateWithGroupJson(json));
-      });
-    });
+    const type = core.dataStore.notificationStore.types.get(this.state.type);
+    type?.loadMore();
   }
 
   private get typeNameFromUrl() {

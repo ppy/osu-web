@@ -51,7 +51,7 @@ export default class Notification {
   }
 
   @computed get stackId() {
-    return `${this.objectType}-${this.objectId}`;
+    return `${this.objectType}-${this.objectId}-${this.name}`;
   }
 
   constructor(id: number) {

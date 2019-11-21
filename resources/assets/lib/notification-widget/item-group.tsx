@@ -28,6 +28,7 @@ import ItemCompact from './item-compact';
 import ItemProps from './item-props';
 import { WithMarkReadProps } from './with-mark-read';
 import NotificationStack from 'models/notification-stack';
+import { ShowMoreLink } from 'show-more-link';
 
 interface Props {
   stack: NotificationStack;
@@ -74,6 +75,10 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
     // });
   }
 
+  private handleShowMore = () => {
+    this.props.stack.loadMore();
+  }
+
   private renderExpandButton() {
     return (
       <button
@@ -93,7 +98,7 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
     );
   }
 
-  private renderItem = (item: Notification) => {
+  private renderItem(item: Notification) {
     return (
       <div className='notification-popup-item-group__item' key={item.id}>
         <ItemCompact item={item} items={[item]} />
@@ -108,7 +113,28 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
 
     const notifications = [...this.props.stack.notifications.values()];
 
-    return <div className='notification-popup-item-group__items'>{notifications.map(this.renderItem)}</div>;
+    return (
+      <div className='notification-popup-item-group__items'>
+        {notifications.map(this.renderItem)}
+        {this.renderShowMore()}
+      </div>
+    )
+  }
+
+  private renderShowMore() {
+    const stack = this.props.stack;
+    if (stack.cursor == null) { return null; }
+
+    return (
+      <div className='notification-popup__show-more'>
+        <ShowMoreLink
+          callback={this.handleShowMore}
+          hasMore={stack.cursor != null}
+          loading={stack.isLoading}
+          modifiers={['t-greysky']}
+        />
+      </div>
+    );
   }
 
   private toggleExpand = () => {
