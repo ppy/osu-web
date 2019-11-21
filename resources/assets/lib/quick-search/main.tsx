@@ -43,6 +43,10 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
   private inputRef = React.createRef<HTMLInputElement>();
 
+  private get isSearchPage() {
+    return document.location.pathname === this.searchPath;
+  }
+
   componentDidUpdate = (prevProps: Props, prevState: State) => {
     if (this.inputRef.current != null && prevState.open !== this.state.open && this.state.open) {
       this.inputRef.current.selectionStart = 0;
@@ -80,10 +84,6 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return this.props.worker.searchResult[mode].total;
   }
 
-  private isSearchPage = () => {
-    return document.location.pathname === this.searchPath;
-  }
-
   private renderBeatmapsets() {
     if (this.props.worker.searchResult == null) {
       return null;
@@ -119,7 +119,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   }
 
   private renderModal = () => {
-    if (!this.state.open || this.isSearchPage()) {
+    if (!this.state.open || this.isSearchPage) {
       return null;
     }
 
@@ -314,7 +314,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
       event.preventDefault();
     }
 
-    if (this.isSearchPage()) {
+    if (this.isSearchPage) {
       $('.js-search--input').focus();
 
       return;
