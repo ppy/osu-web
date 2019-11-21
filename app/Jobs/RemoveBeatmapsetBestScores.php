@@ -32,7 +32,7 @@ use Illuminate\Queue\SerializesModels;
 class RemoveBeatmapsetBestScores implements ShouldQueue
 {
     use Queueable, SerializesModels;
-    public $timeout = 600;
+    public $timeout = 3600;
     public $beatmapset;
     public $maxScoreIds = null;
 
@@ -77,13 +77,14 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
             ]);
 
             $class = static::scoreClass($mode);
-            $table = (new $class)->getTable();
-            $class::whereIn('beatmap_id', $beatmapIds)
-                ->orderBy('score_id')
-                ->where('score_id', '<=', $this->maxScoreIds[$mode] ?? 0)
-                ->chunkById(100, function ($scores) {
-                    $scores->each->delete();
-                });
+            // Just delete until no more matching rows.
+            $query = $class::whereIn('beatmap_id', $beatmapIds)->where('score_id', '<=', $this->maxScoreIds[$mode] ?? 0)->limit(1000);
+            $scores = $query->get();
+
+            while ($scores->count() > 0) {
+                $scores->each->delete();
+                $scores = $query->get();
+            }
         }
     }
 }
