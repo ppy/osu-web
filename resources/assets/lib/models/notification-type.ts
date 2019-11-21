@@ -45,10 +45,16 @@ export default class NotificationType {
   @action
   loadMore() {
     if (this.cursor == null) { return; }
-    const data = { cursor: this.cursor, group: this.name };
 
-    $.ajax({ url: route('notifications.index'), dataType: 'json', data })
-    .then(action((response: NotificationBundleJson) => {
+    this.isLoading = true;
+
+    const params = {
+      data: { cursor: this.cursor, group: this.name },
+      dataType: 'json',
+      url: route('notifications.index'),
+    };
+
+    $.ajax(params).then(action((response: NotificationBundleJson) => {
       core.dataStore.notificationStore.updateWithBundle(response);
     })).always(action(() => {
       this.isLoading = false;

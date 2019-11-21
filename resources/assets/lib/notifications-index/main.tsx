@@ -41,7 +41,6 @@ import NotificationType, { getValidName, Name as NotificationTypeName } from 'mo
 import TypeGroup from 'notification-widget/type-group';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
 
 interface State {
   loadingMore: boolean;
@@ -84,37 +83,8 @@ export class Main extends React.Component<{}, State> {
     );
   }
 
-  renderShowMoreButton(type: NotificationType) {
-    if (this.state.type == null) { return null; }
-
-    return (
-      <div className='notification-popup__show-more'>
-        <ShowMoreLink
-          callback={this.loadMore}
-          hasMore={type.cursor != null}
-          loading={this.state.loadingMore}
-          modifiers={['t-greysky']}
-        />
-      </div>
-    );
-  }
-
   renderType(type: NotificationType) {
-    if (type.total === 0 || type.stacks.size === 0) {
-      return;
-    }
-
-    return (
-      <React.Fragment key={type.name}>
-        <div className='notification-popup__item'>
-          <TypeGroup
-            showRead={true}
-            type={type}
-          />
-        </div>
-        {this.renderShowMoreButton(type)}
-      </React.Fragment>
-    );
+    return <TypeGroup key={type.name} hasMore={this.state.type != null} showRead={true} type={type} />;
   }
 
   renderTypes() {
@@ -130,13 +100,6 @@ export class Main extends React.Component<{}, State> {
     }
 
     return nodes;
-  }
-
-  @action
-  loadMore = () => {
-    if (this.state.type == null) { return; }
-    const type = core.dataStore.notificationStore.types.get(this.state.type);
-    type?.loadMore();
   }
 
   private get typeNameFromUrl() {

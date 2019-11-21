@@ -28,8 +28,11 @@ import ItemGroup from './item-group';
 import ItemProps from './item-props';
 import ItemSingular from './item-singular';
 import { WithMarkReadProps } from './with-mark-read';
+import { ShowMoreLink } from 'show-more-link';
+import { action } from 'mobx';
 
 interface Props {
+  hasMore: boolean;
   showRead: boolean;
   type: NotificationType;
 }
@@ -43,6 +46,7 @@ const bn = 'notification-type-group';
 @observer
 export default class TypeGroup extends React.Component<Props & WithMarkReadProps, State> {
   static defaultProps = {
+    hasMore: true,
     showRead: false,
   };
 
@@ -61,25 +65,31 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
   }
 
   render() {
-    if (this.props.type.stacks.size === 0) {
+    const type = this.props.type;
+    if (type.total === 0 || type.stacks.size === 0) {
       return null;
     }
 
     return (
-      <div className={bn}>
-        <div className={`${bn}__header`}>
-          <div className={`${bn}__type`}>
-            {osu.trans(`notifications.item.${this.props.type.name}._`)}
+      <>
+        <div className='notification-popup__item'>
+          <div className={bn}>
+            <div className={`${bn}__header`}>
+              <div className={`${bn}__type`}>
+                {osu.trans(`notifications.item.${this.props.type.name}._`)}
 
-            {this.renderNotificationCount()}
+                {this.renderNotificationCount()}
+              </div>
+
+              {this.renderMarkAllReadButton()}
+            </div>
+            <div className={`${bn}__items`}>
+              {this.renderStacks()}
+            </div>
           </div>
-
-          {this.renderMarkAllReadButton()}
         </div>
-        <div className={`${bn}__items`}>
-          {this.renderStacks()}
-        </div>
-      </div>
+        {this.renderShowMore()}
+      </>
     );
   }
 
@@ -89,6 +99,27 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
     // .always(() => {
     //   this.setState({ markingAsRead: false });
     // });
+  }
+
+  @action
+  private handleShowMore = () => {
+    this.props.type.loadMore();
+  }
+
+  private renderShowMore() {
+    if (!this.props.hasMore) { return null; }
+    const type = this.props.type;
+
+    return (
+      <div className='notification-popup__show-more'>
+        <ShowMoreLink
+          callback={this.handleShowMore}
+          hasMore={type.cursor != null}
+          loading={type.isLoading}
+          modifiers={['t-greysky']}
+        />
+      </div>
+    );
   }
 
   private renderStacks() {
