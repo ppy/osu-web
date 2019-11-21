@@ -18,7 +18,7 @@
 
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import { route } from 'laroute';
-import { Cancelable, debounce } from 'lodash';
+import { debounce } from 'lodash';
 import { action, observable } from 'mobx';
 
 export type ResultMode = 'beatmapset' | 'forum_post' | 'user' | 'wiki_page';
@@ -47,14 +47,10 @@ export default class Worker {
   @observable searching = false;
   @observable searchResult: SearchResult | null = null;
 
-  private debouncedSearch: (() => void) & Cancelable;
+  private debouncedSearch = debounce(this.search, 500);
   private xhr: JQueryXHR | null = null;
 
-  constructor() {
-    this.debouncedSearch = debounce(this.search, 500);
-  }
-
-  @action search = () => {
+  @action search() {
     if (this.query.length === 0) {
       this.reset();
 
@@ -71,12 +67,12 @@ export default class Worker {
     }));
   }
 
-  @action updateQuery = (newQuery: string) => {
+  @action updateQuery(newQuery: string) {
     this.query = newQuery;
     this.debouncedSearch();
   }
 
-  @action private reset = () => {
+  @action private reset() {
     this.debouncedSearch.cancel();
     if (this.xhr != null) {
       this.xhr.abort();
