@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
+use App\Models\User;
 use Auth;
 use Illuminate\Pagination\Paginator;
 use Request;
@@ -92,13 +93,16 @@ class BeatmapDiscussionsController extends Controller
         $search = BeatmapDiscussion::search($params);
 
         $query = $search['query']->with([
-            'user',
+            'beatmap',
+            'beatmapDiscussionVotes',
             'beatmapset',
             'startingPost',
         ])->limit($search['params']['limit'] + 1);
 
-        $discussions = new Paginator(
-            $query->get(),
+        $discussions = $query->get();
+
+        $paginator = new Paginator(
+            $discussions,
             $search['params']['limit'],
             $search['params']['page'],
             [
@@ -107,7 +111,68 @@ class BeatmapDiscussionsController extends Controller
             ]
         );
 
-        return view('beatmap_discussions.index', compact('discussions', 'search'));
+        // TODO: remove this when reviews are released
+        $related_discussions = [];
+        if (config('osu.beatmapset.discussion_review_enabled')) {
+            $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
+                ->with([
+                    'beatmap',
+                    'beatmapDiscussionVotes',
+                    'beatmapset',
+                    'startingPost',
+                ]);
+
+            if ($isModerator) {
+                $children->visibleWithTrashed();
+            } else {
+                $children->visible();
+            }
+
+            $related_discussions = $children->get();
+        }
+
+        $discussionUserIds = [];
+        foreach ($discussions->merge($related_discussions) as $discussion) {
+            $discussionUserIds[] = $discussion->user_id;
+            $discussionUserIds[] = $discussion->startingPost->last_editor_id;
+        }
+
+        $userIdSources = [
+            $discussionUserIds,
+        ];
+
+        $userIds = [];
+
+        foreach ($userIdSources as $source) {
+            $userIds = array_merge($userIds, $source);
+        }
+
+        $userIds = array_values(array_filter(array_unique($userIds)));
+
+        $users = User::whereIn('user_id', $userIds)
+            ->with('userGroups')
+            ->default()
+            ->get();
+
+        $jsonChunks = [
+            'discussions' => json_collection(
+                $discussions,
+                'BeatmapDiscussion',
+                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
+            ),
+            'related-discussions' => json_collection(
+                $related_discussions,
+                'BeatmapDiscussion',
+                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
+            ),
+            'users' => json_collection(
+                $users,
+                'UserCompact',
+                ['group_badge']
+            ),
+        ];
+
+        return view('beatmap_discussions.index', compact('jsonChunks', 'search', 'paginator'));
     }
 
     public function restore($id)

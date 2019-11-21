@@ -200,6 +200,7 @@ mix
 ], 'js/app.js')
 .js(...reactComponentSet('artist-page'))
 .js(...reactComponentSet('beatmap-discussions'))
+.js(...reactComponentSet('beatmap-discussions-history'))
 .js(...reactComponentSet('beatmapset-page'))
 .js(...reactComponentSet('changelog-build'))
 .js(...reactComponentSet('changelog-index'))

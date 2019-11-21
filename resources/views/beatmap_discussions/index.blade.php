@@ -26,10 +26,6 @@
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
         <div class="beatmapset-activities">
-            @if (isset($user))
-                <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
-            @endif
-
             <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
 
             <form class="simple-form simple-form--search-box">
@@ -128,13 +124,23 @@
                 </div>
             </form>
 
-            <div class="beatmap-discussions__discussion">
-                @foreach ($discussions as $discussion)
-                    @include('beatmap_discussions._item', compact('discussion'))
-                @endforeach
+            <div class="js-react--beatmap-discussions-history osu-layout osu-layout--full">
+                <div style="display: flex; flex: 1; justify-content: center; padding: 20px;">{!! spinner() !!}</div>
             </div>
 
-            @include('objects._pagination_simple', ['object' => $discussions])
+            @include('objects._pagination_simple', ['object' => $paginator])
         </div>
     </div>
+@endsection
+
+@section ("script")
+    @parent
+
+    @foreach ($jsonChunks as $name => $data)
+        <script id="json-{{$name}}" type="application/json">
+            {!! json_encode($data) !!}
+        </script>
+    @endforeach
+
+    @include('layout._extra_js', ['src' => 'js/react/beatmap-discussions-history.js'])
 @endsection
