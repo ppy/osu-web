@@ -47,7 +47,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return document.location.pathname === this.searchPath;
   }
 
-  componentDidUpdate = (prevProps: Props, prevState: State) => {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (this.inputRef.current != null && prevState.open !== this.state.open && this.state.open) {
       this.inputRef.current.selectionStart = 0;
       this.inputRef.current.selectionEnd = this.inputRef.current.value.length;
@@ -76,7 +76,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     );
   }
 
-  private count = (mode: ResultMode) => {
+  private count(mode: ResultMode) {
     if (this.props.worker.searchResult === null) {
       return 0;
     }
@@ -118,7 +118,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     );
   }
 
-  private renderModal = () => {
+  private renderModal() {
     if (!this.state.open || this.isSearchPage) {
       return null;
     }
@@ -241,7 +241,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     );
   }
 
-  private renderResultLink = (mode: ResultMode) => {
+  private renderResultLink(mode: ResultMode) {
     let key = 'quick_search.result.';
 
     key += otherModes.includes(mode) ? 'title' : 'more';
