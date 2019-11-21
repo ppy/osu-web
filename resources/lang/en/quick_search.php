@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,44 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.flag-country {
-  .default-box-shadow();
-  .default-border-radius();
+return [
+    'mode' => [
+        'beatmapset' => 'Beatmap',
+        'forum_post' => 'Forum',
+        'other' => 'Other',
+        'user' => 'Player',
+        'wiki_page' => 'Wiki',
+    ],
 
-  height: 20px;
-  width: 30px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-
-  &--full {
-    width: 100%;
-    height: 100%;
-    box-shadow: none;
-    border-radius: 0;
-  }
-
-  &--inline {
-    width: 100%;
-    height: auto;
-    padding-bottom: 66.67%;
-  }
-
-  &--small-box {
-    width: 19px;
-    height: 13px;
-    border-radius: 0;
-    box-shadow: none;
-    background-color: transparent;
-  }
-
-  &--userinfo-small {
-    margin: 0 0 0 8px;
-    box-shadow: none;
-  }
-
-  &--scoreboard {
-    box-shadow: none;
-  }
-}
+    'result' => [
+        'empty' => 'No results',
+        'empty_for' => 'No results for :modes',
+        'more' => 'More :mode Search Results',
+        'title' => ':mode Search Results',
+    ],
+];
