@@ -146,5 +146,15 @@ return [
             'nominations' => 'Nominations',
             'playcount' => 'Playcount',
         ],
+
+        'status' => [
+            'ranked' => 'ranked',
+            'approved' => 'approved',
+            'loved' => 'loved',
+            'qualified' => 'qualified',
+            'wip' => 'wip',
+            'pending' => 'pending',
+            'graveyard' => 'graveyard',
+        ],
     ],
 ];
