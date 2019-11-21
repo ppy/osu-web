@@ -265,7 +265,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
           </span>
         </div>
         <div className='search-result-more__arrow'>
-          <span className='fas fa-angle-double-right' />
+          <span className='fas fa-angle-right' />
         </div>
       </a>
     );
