@@ -19,7 +19,7 @@
  */
 
 return [
-    'login' => [
+    'create' => [
         'download' => 'Click here to download the game and create an account',
         'label' => 'First, let\'s sign into your account!',
         'title' => 'Account Sign-in',
