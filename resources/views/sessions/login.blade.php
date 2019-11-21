@@ -30,11 +30,11 @@
 
             <div class="dialog-form__row dialog-form__row--title">
                 <div class="dialog-form__logo"></div>
-                <h1 class="dialog-form__title">{{ trans('oauth.login.title') }}</h1>
+                <h1 class="dialog-form__title">{{ trans('sessions.login.title') }}</h1>
             </div>
 
             <div class="dialog-form__row dialog-form__row--label">
-                {{ trans('oauth.login.label') }}
+                {{ trans('sessions.login.label') }}
             </div>
 
             <div class="dialog-form__row dialog-form__row--input">
@@ -69,7 +69,7 @@
             <div class="dialog-form__row dialog-form__row--extra-link">
                 {{ trans('layout.popup_login.register.title') }}
                 <a href="{{ route('download') }}" class="dialog-form__extra-link">
-                    {{ trans('oauth.login.download') }}
+                    {{ trans('sessions.login.download') }}
                 </a>
             </div>
 
