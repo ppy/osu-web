@@ -84,6 +84,12 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return this.props.worker.searchResult[mode].total;
   }
 
+  private onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      this.props.worker.debouncedSearch.flush();
+    }
+  }
+
   private renderBeatmapsets() {
     if (this.props.worker.searchResult == null) {
       return null;
@@ -138,6 +144,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
                 placeholder={osu.trans('home.search.placeholder')}
                 value={this.props.worker.query}
                 onChange={this.updateQuery}
+                onKeyDown={this.onInputKeyDown}
               />
             </div>
 

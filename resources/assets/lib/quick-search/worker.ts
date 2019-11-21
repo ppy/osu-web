@@ -43,11 +43,11 @@ interface SearchResultUser extends SearchResultSummary {
 }
 
 export default class Worker {
+  debouncedSearch = debounce(this.search, 500);
   @observable query = '';
   @observable searching = false;
   @observable searchResult: SearchResult | null = null;
 
-  private debouncedSearch = debounce(this.search, 500);
   private xhr: JQueryXHR | null = null;
 
   @action search() {
