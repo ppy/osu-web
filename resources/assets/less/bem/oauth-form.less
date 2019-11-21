@@ -36,17 +36,17 @@
     margin: 5px 5px;
     min-width: 160px;
     border-radius: 10000px;
-    background-color: @blue-darker;
+    background-color: @osu-colour-blue-3;
 
     .link-hover({
-      background-color: @blue-dark;
+      background-color: @osu-colour-blue-2;
     });
 
     &--cancel {
-      background-color: @red;
+      background-color: @osu-colour-red-3;
 
       .link-hover({
-        background-color: @red-light;
+        background-color: @osu-colour-red-2;
       });
     }
   }
@@ -64,7 +64,7 @@
   }
 
   &__dialog {
-    background-color: @osu-colour-b5;
+    background-color: @osu-colour-b4;
     border-radius: @border-radius-large;
     width: 500px;
     max-width: 100%;
@@ -74,7 +74,7 @@
 
   &__extra-link {
     .reset-input();
-    .link-blue-dark();
+    .link-default();
     cursor: pointer;
     display: inline;
 
@@ -93,9 +93,14 @@
     .reset-input();
     .default-border-radius();
     width: 100%;
-    background-color: #222;
+    background-color: @osu-colour-b5;
     padding: 15px 20px;
     font-size: @font-size--title-small-3;
+
+    &::placeholder {
+      color: @osu-colour-b1;
+      opacity: 1;
+    }
   }
 
   &__logo {
