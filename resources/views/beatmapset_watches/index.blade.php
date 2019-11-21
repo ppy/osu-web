@@ -80,7 +80,7 @@
                                 </td>
 
                                 <td class="beatmapset-watches__col">
-                                    {{ $watch->beatmapset->status() }}
+                                    {{ trans('beatmapsets.show.status.#{$watch->beatmapset->status()}') }}
                                 </td>
 
                                 <td class="beatmapset-watches__col">
