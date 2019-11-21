@@ -44,7 +44,4 @@ return [
         'title' => '',
         'subtitle' => '',
     ],
-    'search' => [
-        'path' => '',
-    ],
 ];

@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Obnovit nominace',
             'praise' => 'Chválit',
             'problem' => 'Problém',
+            'review' => '',
             'suggestion' => 'Návrh',
         ],
 
@@ -183,6 +184,7 @@ return [
         'nominate' => 'Nominovat',
         'nominate_confirm' => 'Nominovat tuto beatmapu?',
         'nominated_by' => 'nominováno od :users',
+        'not_enough_hype' => "",
         'qualified' => 'Předpokládané datum zhodnocení této mapy je :date, pokud se nenaleznou žádné chyby.',
         'qualified_soon' => 'Již brzy bude tato mapa hodnocená, pokud se nenaleznou žádné chyby.',
         'required_text' => 'Nominace: :current/:required',

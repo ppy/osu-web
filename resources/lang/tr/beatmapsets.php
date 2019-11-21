@@ -75,6 +75,13 @@ return [
                     'wip' => 'yapım aşamasında',
                 ],
             ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [

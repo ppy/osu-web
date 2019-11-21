@@ -57,6 +57,14 @@ function beatmap_timestamp_format($ms)
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
 }
 
+/**
+ * Allows using both html-safe and non-safe text inside `{{ }}` directive.
+ */
+function blade_safe($html)
+{
+    return new Illuminate\Support\HtmlString($html);
+}
+
 function broadcast_notification(...$arguments)
 {
     return (new App\Jobs\BroadcastNotification(...$arguments))->dispatch();

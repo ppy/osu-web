@@ -23,7 +23,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "История редактирования карт пользователя :user",
-        'title_compact' => 'Моддинги',
+        'title_compact' => 'Моддинг',
 
         'discussions' => [
             'title_recent' => 'Недавно начатые дискуссии',
@@ -50,7 +50,7 @@ return [
         'banner_text' => 'пользователь добавлен в ваш чёрный список',
         'blocked_count' => 'чёрный список (:count)',
         'hide_profile' => 'скрыть профиль',
-        'not_blocked' => 'Этот пользователь заблокирован.',
+        'not_blocked' => 'Этот пользователь не заблокирован.',
         'show_profile' => 'показать профиль',
         'too_many' => 'Достигнут лимит кол-ва заблокированных.',
         'button' => [
@@ -78,7 +78,7 @@ return [
         'forgot' => 'Забыли свой пароль?',
         'beta' => [
             'main' => 'Доступ к бета-версии ограничен.',
-            'small' => '(саппортеры получат доступ позже)',
+            'small' => '(владельцы osu!supporter получат доступ позже)',
         ],
 
         'here' => 'тут', // this is substituted in when generating a link above. change it to suit the language.
@@ -133,7 +133,7 @@ return [
         'missingtext' => 'Возможно, вы сделали опечатку! (или игрок заблокирован)',
         'origin_country' => 'Проживает в :country',
         'page_description' => 'osu! - Всё, что вы хотели знать о :username!',
-        'previous_usernames' => 'также известен как',
+        'previous_usernames' => 'ранее известный как',
         'plays_with' => 'Играет с :devices',
         'title' => "Профиль :username",
 
@@ -142,9 +142,9 @@ return [
                 'button' => 'Сменить обложку профиля',
                 'defaults_info' => 'Больше вариантов в недалёком будущем',
                 'upload' => [
-                    'broken_file' => 'Не удалось обработать изображение. Попробуй ещё раз.',
+                    'broken_file' => 'Не удалось обработать изображение. Проверьте загруженное изображение и попробуйте снова.',
                     'button' => 'Загрузить изображение',
-                    'dropzone' => 'Брось изображение сюда для загрузки',
+                    'dropzone' => 'Перетащите для загрузки',
                     'dropzone_info' => 'Вы также можете перетащить изображение сюда для загрузки',
                     'size_info' => 'Размер обложки должен быть равен 2800x620',
                     'too_large' => 'Загруженное изображение слишком большое.',
@@ -152,7 +152,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Загрузка доступна только для :link',
-                        'link' => 'osu!supporters',
+                        'link' => 'приобретшим тег osu!supporter',
                     ],
                 ],
             ],
@@ -187,7 +187,7 @@ return [
                     'title' => 'Любимые карты',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ранкнутые и одобренные карты',
+                    'title' => 'Рейтинговые и одобренные карты',
                 ],
                 'unranked' => [
                     'title' => 'На рассмотрении',
@@ -195,13 +195,13 @@ return [
             ],
             'discussions' => [
                 'title' => 'Обсуждения',
-                'title_longer' => '',
-                'show_more' => '',
+                'title_longer' => 'Недавние обсуждения',
+                'show_more' => 'посмотреть больше обсуждений',
             ],
             'events' => [
                 'title' => 'События',
                 'title_longer' => 'Недавние события',
-                'show_more' => '',
+                'show_more' => 'посмотреть больше событий',
             ],
             'historical' => [
                 'empty' => 'Пока записей нет :(',
@@ -217,7 +217,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'точность: :percentage',
-                    'title' => 'Последние игры (24ч)',
+                    'title' => 'Последние игры (за сутки)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'История просмотров реплеев',
@@ -284,9 +284,9 @@ return [
                 'title' => 'Достижения',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Посты',
+                'title_longer' => 'Недавние посты',
+                'show_more' => 'загрузить больше постов',
             ],
             'recent_activity' => [
                 'title' => 'Последняя активность',
@@ -294,7 +294,7 @@ return [
             'top_ranks' => [
                 'download_replay' => 'Скачать повтор',
                 'empty' => 'Пока рекордов нет :(',
-                'not_ranked' => 'Очки производительности выдаются только за ранкнутые карты.',
+                'not_ranked' => 'Очки производительности выдаются только за прохождение рейтинговых карт.',
                 'pp_weight' => 'взвешено: :percentage',
                 'title' => 'Рейтинги',
 
@@ -306,11 +306,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Отданные голоса (за 3 месяца)',
+                'received' => 'Полученные голоса (за 3 месяца)',
+                'title' => 'Голоса',
+                'title_longer' => 'Недавние голоса',
+                'vote_count' => 'голосов: :count_delimited|голосов: :count_delimited',
             ],
             'account_standing' => [
                 'title' => 'Состояние аккаунта',
@@ -365,7 +365,7 @@ return [
 
             'restriction_info' => [
                 '_' => 'Для использования этой функции нужен :link.',
-                'link' => 'osu!supporter',
+                'link' => 'тег osu!supporter',
             ],
         ],
         'post_count' => [
@@ -392,7 +392,7 @@ return [
             'total_hits' => 'Всего попаданий',
             'total_score' => 'Всего очков',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ранкнутые и одобренные карты',
+            'ranked_and_approved_beatmapset_count' => 'Рейтинговые и одобренные карты',
             'loved_beatmapset_count' => 'Любимые карты',
             'unranked_beatmapset_count' => 'На рассмотрении',
             'graveyard_beatmapset_count' => 'Заброшенные карты',

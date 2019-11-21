@@ -44,7 +44,7 @@ export class AchievementBadge extends React.PureComponent
         alt: @props.achievement.name
         className: 'badge-achievement__image'
         onMouseOver: @onMouseOver
-        src: @iconUrl()
+        src: @props.achievement.icon_url
 
       div
         className: 'hidden'
@@ -58,7 +58,7 @@ export class AchievementBadge extends React.PureComponent
               el Img2x,
                 alt: @props.achievement.name
                 className: 'badge-achievement__image'
-                src: @iconUrl()
+                src: @props.achievement.icon_url
           div
             className: 'tooltip-achievement__grouping'
             @props.achievement.grouping
@@ -142,7 +142,3 @@ export class AchievementBadge extends React.PureComponent
           height: 20
 
     $(elem).qtip options, event
-
-
-  iconUrl: =>
-    "/images/badges/user-achievements/#{@props.achievement.slug}.png"

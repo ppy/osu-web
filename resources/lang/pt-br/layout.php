@@ -61,9 +61,9 @@ return [
             'team' => 'time',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'perfil',
+            'friends' => 'amigos',
+            'settings' => 'configurações',
         ],
         'help' => [
             '_' => 'ajuda',
@@ -268,8 +268,8 @@ return [
         ],
 
         'register' => [
-            'download' => '',
-            'info' => 'Você precisa de uma conta, senhor. Por que você ainda não tem uma?',
+            'download' => 'Download',
+            'info' => 'Baixe o osu! para criar própria conta!',
             'title' => "Não tem uma conta?",
         ],
     ],

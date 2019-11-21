@@ -38,7 +38,7 @@ return [
                 'description' => '',
             ],
             'featured-artists' => [
-                'title' => '',
+                'title' => 'ศิลปินโดดเด่น',
                 'description' => '',
                 'link_text' => '',
             ],

@@ -20,8 +20,8 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Rapor Et',
+        'title' => ':username adlı kişinin postu raporlansın mı?',
     ],
 
     'comment' => [
@@ -35,7 +35,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Rapor Et',
+        'title' => ':username adlı kişi rapor edilsim mi?',
     ],
 ];

@@ -22,17 +22,9 @@
 ])
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page">
+    <div class="osu-layout__row osu-layout__row--page js-user-verification--on-load">
         <h1>{{ trans('users.verify.title') }}</h1>
     </div>
-@endsection
-
-@section('script')
-    @parent
-
-    <script>
-        window.showVerificationModal = true;
-    </script>
 @endsection
 
 @section('user-verification-box')

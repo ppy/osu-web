@@ -140,7 +140,7 @@ class Build extends Model implements Commentable
 
     public function propagationHistories()
     {
-        return $this->hasMany(BuildPropagationHistory::class, 'build_id');
+        return $this->hasMany(BuildPropagationHistory::class);
     }
 
     public function scopePropagationHistory($query)

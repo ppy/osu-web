@@ -69,6 +69,7 @@ class BeatmapDiscussion extends Model
         'mapper_note' => 3,
         'praise' => 0,
         'hype' => 4,
+        'review' => 5,
     ];
 
     const RESOLVABLE_TYPES = [1, 2];
@@ -151,6 +152,11 @@ class BeatmapDiscussion extends Model
             });
         }
 
+        // TODO: remove this when reviews are released
+        if (!config('osu.beatmapset.discussion_review_enabled')) {
+            $query->hideReviews();
+        }
+
         return ['query' => $query, 'params' => $params];
     }
 
@@ -178,7 +184,7 @@ class BeatmapDiscussion extends Model
 
     public function visibleBeatmapset()
     {
-        return $this->belongsTo(Beatmapset::class, 'beatmapset_id', 'beatmapset_id');
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public function beatmapDiscussionPosts()
@@ -220,6 +226,11 @@ class BeatmapDiscussion extends Model
 
     public function setMessageTypeAttribute($value)
     {
+        // TODO: remove this when reviews are released
+        if (!config('osu.beatmapset.discussion_review_enabled') && $value === 'review') {
+            return $this->attributes['message_type'] = null;
+        }
+
         return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
     }
 
@@ -705,6 +716,14 @@ class BeatmapDiscussion extends Model
     {
         $query->visibleWithTrashed()
             ->withoutTrashed();
+    }
+
+    // TODO: remove this when reviews are released
+    public function scopeHideReviews($query)
+    {
+        if (!config('osu.beatmapset.discussion_review_enabled')) {
+            $query->where('message_type', '<>', static::MESSAGE_TYPES['review']);
+        }
     }
 
     public function scopeVisibleWithTrashed($query)

@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'accorder le kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Page de la beatmap',
         'delete' => 'supprimer',
         'deleted' => 'Supprimé par :editor :delete_time.',
         'deny_kudosu' => 'refuser le kudosu',
@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Réinitialiser la nomination',
             'praise' => 'Hommage',
             'problem' => 'Problème',
+            'review' => '',
             'suggestion' => 'Suggestion',
         ],
 
@@ -183,6 +184,7 @@ return [
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer cette beatmap ?',
         'nominated_by' => 'nominée par :users',
+        'not_enough_hype' => "Il n'y a pas assez de hype.",
         'qualified' => 'La map sera classée le :date environ, si aucun problème n\'est trouvé.',
         'qualified_soon' => 'Beatmap bientôt classée, si aucun problème n\'est trouvé.',
         'required_text' => 'Nominations: :current/:required',

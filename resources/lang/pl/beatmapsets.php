@@ -75,6 +75,13 @@ return [
                     'wip' => 'rozwijana',
                 ],
             ],
+
+            'report' => [
+                '_' => 'Jeżeli znajdziesz problem z tą beatmapą, zgłoś go :link, aby powiadomić zespół.',
+                'button' => 'Zgłoś problem',
+                'button_title' => 'Zgłoś problem z zakwalifikowaną beatmapą.',
+                'link' => 'tutaj',
+            ],
         ],
 
         'info' => [

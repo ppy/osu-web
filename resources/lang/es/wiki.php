@@ -42,9 +42,6 @@ return [
     ],
     'main' => [
         'title' => 'Base de Conocimientos',
-        'subtitle' => 'porque osu!pedia suena cojo',
-    ],
-    'search' => [
-        'path' => 'desde',
+        'subtitle' => 'porque osu!pedia suena aburrido',
     ],
 ];
