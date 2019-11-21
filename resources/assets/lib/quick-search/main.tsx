@@ -43,10 +43,6 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
   private inputRef = React.createRef<HTMLInputElement>();
 
-  constructor(props: Props) {
-    super(props);
-  }
-
   componentDidUpdate = (prevProps: Props, prevState: State) => {
     if (this.inputRef.current != null && prevState.open !== this.state.open && this.state.open) {
       this.inputRef.current.selectionStart = 0;
