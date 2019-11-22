@@ -24,6 +24,8 @@ import { ShowMoreLink } from 'show-more-link';
 import TypeGroup from './type-group';
 import Worker from './worker';
 
+const store = core.dataStore.notificationStore;
+
 interface Props {
   type?: string;
   worker: Worker;
@@ -78,9 +80,9 @@ export default class Main extends React.Component<Props, State> {
             data-visibility='hidden'
           >
             <div className='notification-popup__scroll-container'>
-              {this.renderTypeGroup()}
+              {this.renderTypeGroups()}
 
-              {this.renderShowMoreButton()}
+              {/* {this.renderShowMoreButton()} */}
             </div>
           </div>
         </div>
@@ -131,34 +133,23 @@ export default class Main extends React.Component<Props, State> {
     );
   }
 
-  private renderTypeGroup() {
+  private renderTypeGroups() {
     if (this.state.hasError) {
       return;
     }
 
-    const items: React.ReactNode[] = [];
+    const nodes: React.ReactNode[] = [];
 
-    core.dataStore.notificationStore.itemsGroupedByType.forEach((value, key) => {
-      const unreadCount = value.filter((v) => !v.isRead).length;
-
-      if (unreadCount === 0) {
+    store.types.forEach((type) => {
+      if (type.unreadCount === 0) {
         return;
       }
 
-      items.push(
-        (
-          <div key={key} className='notification-popup__item'>
-            <TypeGroup
-              item={value[0]}
-              items={value}
-            />
-          </div>
-        ),
-      );
+      nodes.push(<TypeGroup key={type.name} showRead={false} type={type} />);
     });
 
-    if (items.length === 0) {
-      items.push(this.props.worker.hasMore ? (
+    if (nodes.length === 0) {
+      nodes.push(this.props.worker.hasMore ? (
         <div key='empty-with-more' className='notification-popup__empty-with-more' />
       ) : (
         <p key='empty' className='notification-popup__empty'>
@@ -167,7 +158,7 @@ export default class Main extends React.Component<Props, State> {
       ));
     }
 
-    return items;
+    return nodes;
   }
 
   private unreadCount() {

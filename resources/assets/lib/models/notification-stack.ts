@@ -43,6 +43,11 @@ export default class NotificationStack {
     return this.notifications.size === 1;
   }
 
+  @computed
+  get unreadCount() {
+    return [...this.notifications.values()].filter((x) => !x.isRead).length;
+  }
+
   constructor(public objectId: number, public objectType: string, public name: string) {}
 
   @action

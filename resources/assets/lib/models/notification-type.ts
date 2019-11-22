@@ -18,7 +18,7 @@
 
 import { NotificationBundleJson, NotificationTypeJson } from 'interfaces/notification-bundle-json';
 import { route } from 'laroute';
-import { action, observable } from 'mobx';
+import { action, observable, computed } from 'mobx';
 import NotificationStack from 'models/notification-stack';
 import core from 'osu-core-singleton';
 
@@ -41,6 +41,13 @@ export default class NotificationType {
   @observable total = 0;
 
   constructor(public name: string) {}
+
+  @computed
+  get unreadCount() {
+    return [...this.stacks.values()].reduce((prev, stack) => {
+      return prev + stack.unreadCount;
+    }, 0);
+  }
 
   @action
   loadMore() {

@@ -29,7 +29,7 @@ import ItemProps from './item-props';
 import ItemSingular from './item-singular';
 import { WithMarkReadProps } from './with-mark-read';
 import { ShowMoreLink } from 'show-more-link';
-import { action } from 'mobx';
+import { action, computed } from 'mobx';
 
 interface Props {
   hasMore: boolean;
@@ -54,19 +54,14 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
     markingAsRead: false,
   };
 
-  get unreadCount() {
-    if (this.props.showRead) {
-      return this.props.type.total;
-    }
-
-    return 0;
-    // TODO fix unread count
-    return this.props.items.filter((i) => !i.isRead).length;
+  @computed
+  get count() {
+    return this.props.showRead ? this.props.type.total : this.props.type.unreadCount;
   }
 
   render() {
     const type = this.props.type;
-    if (type.total === 0 || type.stacks.size === 0) {
+    if (this.count === 0 || type.stacks.size === 0) {
       return null;
     }
 
@@ -192,7 +187,7 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
 
     return (
       <span className={`${bn}__count`}>
-        {osu.formatNumber(this.unreadCount)}
+        {osu.formatNumber(this.count)}
       </span>
     );
   }

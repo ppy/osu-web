@@ -173,20 +173,6 @@ export default class NotificationStore extends Store {
   }
 
   @action
-  updateWithGroupJson(json: NotificationTypeJson) {
-    let group = this.types.get(json.name);
-
-    if (group == null) {
-      group = new NotificationType(json.name);
-      this.types.set(json.name, group);
-    }
-
-    // group.appendWithJson(json);
-
-    // json.notificationGroups.forEach((group) => this.updateWithJson(item));
-  }
-
-  @action
   updateWithJson(json: NotificationJson) {
     let notification = this.notifications.get(json.id);
 
