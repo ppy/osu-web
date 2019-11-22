@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Events\NotificationReadEvent;
 use App\Libraries\MorphMap;
 use App\Models\Notification;
+use App\Models\UserNotification;
 use Carbon\Carbon;
 use DB;
 
@@ -222,12 +223,11 @@ class NotificationsController extends Controller
 
     private function getNotificationStack(string $objectType, int $objectId, string $name, ?int $cursor = null, ?int $id = null)
     {
-        $stack = Notification::whereHas('userNotifications', function ($q) {
-            $q->where('user_id', auth()->user()->getKey());
-        })
-        ->where('notifiable_id', $objectId)
-        ->where('notifiable_type', $objectType)
-        ->where('name', $name);
+        $stack = auth()->user()->userNotifications()->with('notification')->whereHas('notification', function ($q) use ($objectId, $objectType, $name) {
+            $q->where('notifiable_id', $objectId)
+                ->where('notifiable_type', $objectType)
+                ->where('name', $name);
+        });
 
         $total = $stack->count();
 
@@ -246,6 +246,7 @@ class NotificationsController extends Controller
             return;
         }
 
+        $last = $last instanceof UserNotification ? $last->notification : $last;
         $cursor = [
             'id' => $last->id,
             'object_type' => $last->notifiable_type,
