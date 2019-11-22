@@ -136,6 +136,7 @@ class NotificationsController extends Controller
 
     public function index()
     {
+        $unread = get_bool(request('unread'));
         $group = presence(request('group'));
         $objectId = get_int(presence(request('cursor.object_id')));
         $objectType = presence(request('cursor.object_type'));
@@ -143,7 +144,7 @@ class NotificationsController extends Controller
         $cursor = get_int(request('cursor.id'));
 
         if ($objectId && $objectType && $name) {
-            [$stack, $total] = $this->getNotificationStack($objectType, $objectId, $name, $cursor);
+            [$stack, $total] = $this->getNotificationStack($objectType, $objectId, $name, $cursor, $unread);
             $stacks = $this->stackToResponse($stack, $total);
 
             return [
@@ -152,7 +153,7 @@ class NotificationsController extends Controller
             ];
         }
 
-        [$types, $stacks, $notifications] = $this->getNotificationsByType($group, $cursor);
+        [$types, $stacks, $notifications] = $this->getNotificationsByType($group, $cursor, $unread);
 
         $bundleJson = [
             'notifications' => $notifications,
@@ -221,13 +222,17 @@ class NotificationsController extends Controller
         ->count();
     }
 
-    private function getNotificationStack(string $objectType, int $objectId, string $name, ?int $cursor = null, ?int $id = null)
+    private function getNotificationStack(string $objectType, int $objectId, string $name, ?int $cursor = null, ?bool $unread = false)
     {
         $stack = auth()->user()->userNotifications()->with('notification')->whereHas('notification', function ($q) use ($objectId, $objectType, $name) {
             $q->where('notifiable_id', $objectId)
                 ->where('notifiable_type', $objectType)
                 ->where('name', $name);
         });
+
+        if ($unread) {
+            $stack->where('is_read', false);
+        }
 
         $total = $stack->count();
 
@@ -263,7 +268,7 @@ class NotificationsController extends Controller
         ];
     }
 
-    private function getNotificationsByType(?string $type = null, ?int $cursor = null)
+    private function getNotificationsByType(?string $type = null, ?int $cursor = null, ?bool $unread = false)
     {
         $types = [];
         $stacks = [];
@@ -276,8 +281,11 @@ class NotificationsController extends Controller
 
             $typeCursor = null;
 
-            $topLevel = Notification::whereHas('userNotifications', function ($q) {
+            $topLevel = Notification::whereHas('userNotifications', function ($q) use ($unread) {
                 $q->where('user_id', auth()->user()->getKey());
+                if ($unread) {
+                    $q->where('is_read', false);
+                }
             })
             ->where('notifiable_type', $value)
             ->groupBy('name', 'notifiable_id')
