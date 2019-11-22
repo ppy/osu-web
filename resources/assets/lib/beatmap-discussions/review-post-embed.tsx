@@ -65,7 +65,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
     return (
       <div className={`${bn}__timestamp-text`}>
         {
-          discussion.timestamp
+          discussion.timestamp !== null
             ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
             : osu.trans(`beatmap_discussions.timestamp_display.${hasBeatmap ? 'general' : 'general_all'}`)
         }
