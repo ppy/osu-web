@@ -26,7 +26,7 @@ class StartSession extends BaseStartSession
 {
     protected function sessionConfigured()
     {
-        if (session('_skip')) {
+        if (request()->attributes->get('skip_session')) {
             return false;
         }
 

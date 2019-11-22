@@ -77,10 +77,10 @@ return [
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => '이 비트맵에서 문제를 찾으셨다면 :link에서 저희에게 신고해 주세요.',
+                'button' => '문제 보고',
+                'button_title' => 'Qualified 비트맵의 문제를 신고합니다.',
+                'link' => '여기',
             ],
         ],
 

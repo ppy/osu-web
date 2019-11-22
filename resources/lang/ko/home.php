@@ -25,7 +25,7 @@ return [
         'peak' => '최다 동시 접속자 수: :count명',
         'players' => '가입된 플레이어: <strong>:count</strong>명',
         'title' => '환영합니다',
-        'see_more_news' => '',
+        'see_more_news' => '뉴스 더 보기',
 
         'slogan' => [
             'main' => '최고의 무료 리듬 게임',
@@ -131,7 +131,7 @@ return [
         'beatmaps' => [
             'new' => '새로 Ranked된 비트맵',
             'popular' => '인기 비트맵',
-            'by_user' => '',
+            'by_user' => ':user 님이 만듬',
         ],
         'buttons' => [
             'download' => 'osu! 다운로드',

@@ -86,7 +86,7 @@ class Order extends Model
 
     public function items()
     {
-        return $this->hasMany(OrderItem::class, 'order_id');
+        return $this->hasMany(OrderItem::class);
     }
 
     public function address()
@@ -96,7 +96,7 @@ class Order extends Model
 
     public function payments()
     {
-        return $this->hasMany(Payment::class, 'order_id');
+        return $this->hasMany(Payment::class);
     }
 
     public function user()

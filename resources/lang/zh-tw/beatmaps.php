@@ -91,6 +91,7 @@ return [
             'nomination_reset' => '重置提名',
             'praise' => '讚',
             'problem' => '問題',
+            'review' => '',
             'suggestion' => '建議',
         ],
 

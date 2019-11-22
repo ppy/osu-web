@@ -157,6 +157,7 @@ interface User {
   country_code?: string;
   cover: Cover;
   default_group: string;
+  group_badge?: string;
   id: number;
   is_active: boolean;
   is_bot: boolean;

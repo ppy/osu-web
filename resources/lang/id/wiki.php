@@ -41,7 +41,7 @@ return [
         ],
     ],
     'main' => [
-        'title' => '',
-        'subtitle' => '',
+        'title' => 'Knowledge Base',
+        'subtitle' => 'karena osu!pedia terdengar membosankan',
     ],
 ];

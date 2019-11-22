@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Adaylığı Sıfırla',
             'praise' => 'Övgü',
             'problem' => 'Sorun',
+            'review' => '',
             'suggestion' => 'Öneri',
         ],
 
@@ -142,8 +143,8 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Henüz negatif oy yok',
+                'up' => 'Henüz pozitif oy yok',
             ],
             'latest' => [
                 'down' => '',
@@ -288,7 +289,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => '',
+        'MR' => 'Ayna',
         'NC' => '',
         'NF' => '',
         'NM' => '',

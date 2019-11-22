@@ -23,7 +23,7 @@ bn = 'beatmap-discussion-user-card'
 
 export class UserCard extends React.PureComponent
   render: =>
-    additionalClasses = @props.additionalClasses? || []
+    additionalClasses = @props.additionalClasses ? []
     additionalClasses.push(@props.badge) if @props.badge?
     hideStripe = @props.hideStripe ? false
 

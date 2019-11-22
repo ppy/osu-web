@@ -67,7 +67,7 @@ class BeatmapPack extends Model
 
     public function items()
     {
-        return $this->hasMany(BeatmapPackItem::class, 'pack_id');
+        return $this->hasMany(BeatmapPackItem::class);
     }
 
     public function beatmapsets()

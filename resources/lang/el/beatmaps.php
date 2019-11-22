@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Αλλαγή Υποψηφιότητας',
             'praise' => 'Έπαινος',
             'problem' => 'Πρόβλημα',
+            'review' => '',
             'suggestion' => 'Πρόταση',
         ],
 
