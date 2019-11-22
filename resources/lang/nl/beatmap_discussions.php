@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => 'Zoeken',
             'deleted' => 'Verwijderde discussies toevoegen',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Alleen niet-afgehandelde discussies weergeven',
             'types' => 'Berichttypen',
             'username' => 'Gebruikersnaam',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Beatmap status',
+                'all' => 'Alle',
+                'disqualified' => 'Gediskwalificeerd',
+                'never_qualified' => 'Nooit gekwalificeerd',
+                'qualified' => 'Gekwalificeerd',
+                'ranked' => 'Ranked',
             ],
 
             'user' => [

@@ -22,21 +22,21 @@ return [
     'beatmapset_discussion_post' => [
         'button' => 'Reportar
 ',
-        'title' => '¿Reportar el comentario de :nombre del usuario?',
+        'title' => '¿Reportar la publicación de :username?',
     ],
 
     'comment' => [
         'button' => 'Reportar',
-        'title' => '¿Quieres reportar el comentario de :nombre del usuario?',
+        'title' => '¿Reportar el comentario de :username?',
     ],
 
     'scores' => [
-        'button' => 'Valoración del reporte',
-        'title' => '¿Mostrar valoración de :nombre del usuario?',
+        'button' => 'Reportar puntuación',
+        'title' => '¿Reportar la puntuación de :username?',
     ],
 
     'user' => [
         'button' => 'Reportar',
-        'title' => '¿Reportar :nombre del usuario?',
+        'title' => '¿Reportar :username?',
     ],
 ];

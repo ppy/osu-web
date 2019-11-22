@@ -65,12 +65,12 @@ class Tournament extends Model
 
     public function profileBanners()
     {
-        return $this->hasMany(ProfileBanner::class, 'tournament_id');
+        return $this->hasMany(ProfileBanner::class);
     }
 
     public function registrations()
     {
-        return $this->hasMany(TournamentRegistration::class, 'tournament_id');
+        return $this->hasMany(TournamentRegistration::class);
     }
 
     public function product()

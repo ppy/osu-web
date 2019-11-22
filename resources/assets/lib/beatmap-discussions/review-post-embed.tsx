@@ -65,7 +65,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
     return (
       <div className={`${bn}__timestamp-text`}>
         {
-          discussion.timestamp
+          discussion.timestamp !== null
             ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
             : osu.trans(`beatmap_discussions.timestamp_display.${hasBeatmap ? 'general' : 'general_all'}`)
         }
@@ -98,7 +98,11 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
       <div className={`${bn}__body`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format((discussion.starting_post || discussion.posts[0]).message)}} />
       {discussion.parent_id &&
         <div className={`${bn}__link`}>
-          <a href={BeatmapDiscussionHelper.url({discussion})} className={`${bn}__link-text`}>
+          <a
+              href={BeatmapDiscussionHelper.url({discussion})}
+              className={`${bn}__link-text`}
+              title={osu.trans('beatmap_discussions.review.go_to_child')}
+          >
               <i className='fas fa-external-link-alt'/>
           </a>
         </div>

@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Thiết Lập Lại Đề Cử',
             'praise' => 'Khen Ngợi',
             'problem' => 'Vấn Đề',
+            'review' => '',
             'suggestion' => 'Đề Nghị',
         ],
 

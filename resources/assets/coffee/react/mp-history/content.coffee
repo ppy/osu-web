@@ -66,7 +66,7 @@ export class Content extends React.PureComponent
   render: =>
     div className: 'osu-layout__row osu-layout__row--page-mp-history',
       if @props.hasPrevious
-        div className: 'mp-history-content__show-more-box',
+        div className: 'mp-history-content',
           if @props.loadingPrevious
             el Spinner
           else
@@ -100,7 +100,7 @@ export class Content extends React.PureComponent
                 key: event.id
 
       if @props.hasNext
-        div className: 'mp-history-content__show-more-box',
+        div className: 'mp-history-content',
           if @props.isAutoloading
             div className: 'mp-history-content__spinner',
               div

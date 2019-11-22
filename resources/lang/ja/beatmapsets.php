@@ -77,10 +77,10 @@ return [
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => 'ビートマップに問題を見つけた場合、:link からチームに報告してください。',
+                'button' => '問題を報告する',
+                'button_title' => 'Qualifiedビートマップの問題を報告。',
+                'link' => 'ここ',
             ],
         ],
 

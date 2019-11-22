@@ -194,7 +194,7 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
+                'title' => 'Hozzászólások',
                 'title_longer' => '',
                 'show_more' => '',
             ],
@@ -412,7 +412,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Kártya nézet',
+        'list' => 'Lista nézet',
     ],
 ];

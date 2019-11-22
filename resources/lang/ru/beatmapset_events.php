@@ -33,14 +33,14 @@ return [
         'issue_resolve' => 'Проблема :discussion отмечена как решенная.',
         'kudosu_allow' => 'Кудосу из отзыва :discussion были удалены.',
         'kudosu_deny' => 'Отзыву :discussion отказано в кудосу.',
-        'kudosu_gain' => 'Отзыву :discussion от :user получило достаточно голосов для получения кудосу.',
-        'kudosu_lost' => 'Отзыву :discussion от :user потеряло голоса и присуждённые кудосу были удалены.',
+        'kudosu_gain' => 'Отзыв :discussion от :user получил достаточно голосов для получения кудосу.',
+        'kudosu_lost' => 'Отзыв :discussion от :user потерял голоса и присуждённые кудосу были удалены.',
         'kudosu_recalculate' => 'Кудосу за отзыв :discussion были пересчитаны.',
         'love' => 'Добавлено :user в любимое',
         'nominate' => 'Номинирована :user.',
         'nomination_reset' => 'Из-за новой проблемы в :discussion статус номинации был сброшен.',
         'qualify' => 'Эта карта была номинирована достаточное количество раз для квалификации.',
-        'rank' => 'Ранкнута.',
+        'rank' => 'Рейтинговая.',
     ],
 
     'index' => [
@@ -60,10 +60,10 @@ return [
 
     'type' => [
         'approve' => 'Одобрено',
-        'discussion_delete' => 'Удаление дискуссии',
-        'discussion_post_delete' => 'Удаление ответов в дискуссии',
-        'discussion_post_restore' => 'Восстановление ответов в дискуссии',
-        'discussion_restore' => 'Восстановление дискуссии',
+        'discussion_delete' => 'Удаление обсуждения',
+        'discussion_post_delete' => 'Удаление ответов в обсуждении',
+        'discussion_post_restore' => 'Восстановление ответов в обсуждении',
+        'discussion_restore' => 'Восстановление обсуждения',
         'disqualify' => 'Дисквалификация',
         'issue_reopen' => 'Возобновление обсуждения',
         'issue_resolve' => 'Обсуждение решения',

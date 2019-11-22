@@ -42,6 +42,6 @@ return [
     ],
     'main' => [
         'title' => 'Base de Conocimientos',
-        'subtitle' => 'porque osu!pedia suena cojo',
+        'subtitle' => 'porque osu!pedia suena aburrido',
     ],
 ];

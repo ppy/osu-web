@@ -175,7 +175,7 @@ class @BeatmapDiscussionHelper
     params.mode = mode ? @DEFAULT_MODE
 
     params.beatmap =
-      if !beatmapId? || params.mode in ['events', 'generalAll']
+      if !beatmapId? || params.mode in ['events', 'generalAll', 'reviews']
         @DEFAULT_BEATMAP_ID
       else
         beatmapId

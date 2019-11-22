@@ -64,7 +64,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'De um hype se você se divertiu jogando este map para ajudá-lo no processo de <strong>Raqueamento</strong>.',
+            'action' => 'Dê um hype se você se divertiu jogando este map para ajudá-lo no processo de <strong>Ranqueamento</strong>.',
 
             'current' => [
                 '_' => 'Este map está atualmente :status.',
@@ -77,10 +77,10 @@ return [
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => 'Se você encontrar um problema com este beatmap, por favor reporte-o :link para alertar a equipe.',
+                'button' => 'Reportar Problema',
+                'button_title' => 'Relatar um problema em um beatmap qualificado.',
+                'link' => 'aqui',
             ],
         ],
 
