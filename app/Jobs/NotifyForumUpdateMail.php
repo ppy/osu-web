@@ -21,6 +21,7 @@
 namespace App\Jobs;
 
 use App\Mail\ForumNewReply;
+use App\Models\UserNotificationOption;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -52,10 +53,20 @@ class NotifyForumUpdateMail implements ShouldQueue
             ->with('user', 'topic')
             ->get();
 
+        $options = UserNotificationOption
+            ::whereIn('user_id', $watches->pluck('user_id'))
+            ->where(['name' => UserNotificationOption::FORUM_TOPIC_REPLY])
+            ->get()
+            ->keyBy('user_id');
+
         foreach ($watches as $watch) {
             $user = $watch->user;
 
             if (!present($user->user_email)) {
+                continue;
+            }
+
+            if (($options[$user->getKey()]->details['mail'] ?? true) !== true) {
                 continue;
             }
 

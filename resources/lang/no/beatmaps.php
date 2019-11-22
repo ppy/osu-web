@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Tilbakestill Nominasjon',
             'praise' => 'Ros',
             'problem' => 'Problem',
+            'review' => '',
             'suggestion' => 'Forslag',
         ],
 

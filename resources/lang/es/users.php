@@ -54,8 +54,8 @@ return [
         'show_profile' => 'mostrar perfil',
         'too_many' => 'Límite de bloqueos alcanzado.',
         'button' => [
-            'block' => 'bloquear',
-            'unblock' => 'desbloquear',
+            'block' => 'Bloquear',
+            'unblock' => 'Desbloquear',
         ],
     ],
 
@@ -96,7 +96,7 @@ return [
     ],
     'logout_confirm' => '¿Estás seguro de que quieres cerrar la sesión? :(',
     'report' => [
-        'button_text' => 'reportar',
+        'button_text' => 'Reportar',
         'comments' => 'Comentarios Adicionales',
         'placeholder' => 'Por favor proporcione cualquier información que usted cree que podría ser útil.',
         'reason' => 'Razón',
@@ -187,7 +187,7 @@ return [
                     'title' => 'Beatmaps Amados',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Rankeados y Aprobados',
+                    'title' => 'Beatmaps Clasificados y Aprobados',
                 ],
                 'unranked' => [
                     'title' => 'Beatmaps Pendientes',
@@ -229,7 +229,7 @@ return [
                 'available_info' => "Los kudosu se puede cambiar por estrellas kudosu, lo que ayudará a que tu beatmap reciba más atención. Este es el número de kudosus que aún has intercambiado.",
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
-                'total' => 'Kudosu Total Obtenido',
+                'total' => 'Total de Kudosu obtenido',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -336,7 +336,7 @@ return [
         ],
 
         'header_title' => [
-            '_' => 'Información del jugador :info',
+            '_' => ':info del jugador',
             'info' => 'Información',
         ],
 
@@ -392,7 +392,7 @@ return [
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps Rankeados y Aprobados',
+            'ranked_and_approved_beatmapset_count' => 'Beatmaps Clasificados y Aprobados',
             'loved_beatmapset_count' => 'Beatmaps Amados',
             'unranked_beatmapset_count' => 'Beatmaps Pendientes',
             'graveyard_beatmapset_count' => 'Beatmaps Abandonados',

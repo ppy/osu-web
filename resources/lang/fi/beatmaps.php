@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Nollaa Suositus',
             'praise' => 'Kehu',
             'problem' => 'Ongelma',
+            'review' => '',
             'suggestion' => 'Ehdotus',
         ],
 

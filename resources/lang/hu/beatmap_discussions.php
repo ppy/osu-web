@@ -44,11 +44,11 @@ return [
 
             'beatmapset_status' => [
                 '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                'all' => 'Mind',
+                'disqualified' => 'Diszkvalifikálva',
+                'never_qualified' => 'Minősítetlen',
+                'qualified' => 'Minősített',
+                'ranked' => 'Rangsorolt',
             ],
 
             'user' => [

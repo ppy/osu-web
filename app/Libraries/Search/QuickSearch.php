@@ -23,16 +23,25 @@ namespace App\Libraries\Search;
 class QuickSearch extends MultiSearch
 {
     const MODES = [
-        'user' => [
-            'type' => UserSearch::class,
-            'paramsType' => UserSearchParams::class,
-            'size' => 5,
-            'options' => ['recentOnly' => true],
-        ],
         'beatmapset' => [
             'type' => BeatmapsetSearch::class,
-            'paramsType' => BeatmapsetSearchParams::class,
+            'paramsType' => BeatmapsetSearchRequestParams::class,
             'size' => 5,
+        ],
+        'forum_post' => [
+            'type' => ForumSearch::class,
+            'paramsType' => ForumSearchRequestParams::class,
+            'size' => 0,
+        ],
+        'user' => [
+            'type' => UserSearch::class,
+            'paramsType' => UserSearchRequestParams::class,
+            'size' => 5,
+        ],
+        'wiki_page' => [
+            'type' => WikiSearch::class,
+            'paramsType' => WikiSearchRequestParams::class,
+            'size' => 0,
         ],
     ];
 }

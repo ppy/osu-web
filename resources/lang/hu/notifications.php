@@ -71,7 +71,7 @@ return [
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Csevegés',
 
             'channel' => [
                 '_' => 'Új üzenet',
@@ -84,7 +84,7 @@ return [
         ],
 
         'build' => [
-            '_' => '',
+            '_' => 'Változtatások',
 
             'comment' => [
                 '_' => 'Új hozzászólás',

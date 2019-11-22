@@ -25,10 +25,5 @@ interface WikiObject
     /**
      * Fetches the representation of the object, renders it, and stores it in the cache.
      */
-    public function get($synchronous = false);
-
-    /**
-     * Removes the cached version of the object.
-     */
-    public function forget($synchronous = false);
+    public function sync($force = false);
 }

@@ -45,12 +45,12 @@ class Match extends Model
 
     public function games()
     {
-        return $this->hasMany(Game::class, 'match_id');
+        return $this->hasMany(Game::class);
     }
 
     public function events()
     {
-        return $this->hasMany(Event::class, 'match_id');
+        return $this->hasMany(Event::class);
     }
 
     public function currentGame()

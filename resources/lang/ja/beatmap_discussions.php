@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => '検索',
             'deleted' => '削除されたディスカッションを含める',
-            'only_unresolved' => '',
+            'only_unresolved' => '未解決のディスカッションのみ表示',
             'types' => 'メッセージの種類',
             'username' => 'ユーザー名',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'ビートマップ ステータス',
+                'all' => '全て',
+                'disqualified' => 'Disqualified',
+                'never_qualified' => 'Never Qualified',
+                'qualified' => 'Qualified',
+                'ranked' => 'Ranked',
             ],
 
             'user' => [

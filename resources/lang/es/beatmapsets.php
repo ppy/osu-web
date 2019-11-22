@@ -40,8 +40,8 @@ return [
             'loved' => 'amado el ',
             'mapped_by' => 'mapeado por :mapper',
             'qualified' => 'calificado el ',
-            'ranked' => 'clasificado en ',
-            'submitted' => 'enviado en ',
+            'ranked' => 'clasificado el ',
+            'submitted' => 'enviado el ',
             'unfavourite' => 'Desmarcar como favorito este beatmapset',
             'updated' => 'última actualización en ',
             'updated_timeago' => 'actualizado por última vez el :timeago',
@@ -77,10 +77,10 @@ return [
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => 'Si encuentras un problema con este beatmap, por favor repórtalo :link para alertar al equipo.',
+                'button' => 'Reportar un problema',
+                'button_title' => 'Informe de un problema en un beatmap calificado.',
+                'link' => 'aquí',
             ],
         ],
 
