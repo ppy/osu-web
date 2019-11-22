@@ -115,8 +115,8 @@ export class Discussion extends React.PureComponent
         if @props.parentDiscussion?
           a
             href: BeatmapDiscussionHelper.url({discussion: @props.parentDiscussion})
-            key: 'parent'
-            className: "#{bn}__link-to-child",
+            title: osu.trans('beatmap_discussions.review.go_to_parent')
+            className: "#{bn}__link-to-parent",
             i className: 'fas fa-tasks'
 
         ['up', 'down'].map (type) =>
