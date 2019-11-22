@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'deleted',
+        'none_found' => 'No discussions matching that search criteria were found.',
         'title' => 'Beatmap Discussions',
 
         'form' => [
