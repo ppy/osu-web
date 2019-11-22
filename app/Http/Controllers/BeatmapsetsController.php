@@ -134,6 +134,7 @@ class BeatmapsetsController extends Controller
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
+            'reviews_enabled' => config('osu.beatmapset.discussion_review_enabled'),
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());

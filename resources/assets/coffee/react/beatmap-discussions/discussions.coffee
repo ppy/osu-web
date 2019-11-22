@@ -60,6 +60,7 @@ export class Discussions extends React.PureComponent
         generalAll: 'updated_at'
         general: 'updated_at'
         timeline: 'timeline'
+        reviews: 'updated_at'
 
 
   render: =>
@@ -169,7 +170,7 @@ export class Discussions extends React.PureComponent
     className += ' u-hide-by-height' unless visible
 
     if discussion.parent_id?
-      parentDiscussion = _.find(@props.currentDiscussions.generalAll, {id: discussion.parent_id})
+      parentDiscussion = _.find(@props.currentDiscussions.reviews, {id: discussion.parent_id})
 
     div
       key: discussion.id
