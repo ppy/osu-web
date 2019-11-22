@@ -30,6 +30,7 @@ import ItemSingular from './item-singular';
 import { WithMarkReadProps } from './with-mark-read';
 import { ShowMoreLink } from 'show-more-link';
 import { action, computed } from 'mobx';
+import NotificationStack from 'models/notification-stack';
 
 interface Props {
   hasMore: boolean;
@@ -57,6 +58,11 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
   @computed
   get count() {
     return this.props.showRead ? this.props.type.total : this.props.type.unreadCount;
+  }
+
+  @computed
+  get stacks() {
+    return this.props.showRead ? this.props.type.stacks : this.props.type.unreadStacks;
   }
 
   render() {
@@ -118,30 +124,34 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
   }
 
   private renderStacks() {
+    const { showRead, type } = this.props;
     const nodes: React.ReactNode[] = [];
 
-    this.props.type.stacks.forEach((stack) => {
-      const item = stack.first;
-      if (item == null) {
+    const stacks = showRead ? type.stacks : type.unreadStacks;
+    stacks.forEach((stack: NotificationStack) => {
+      const first = showRead ? stack.first : stack.firstUnread;
+      if (first == null) {
         return;
       }
 
-      const Component = stack.isSingle ? ItemSingular : ItemGroup;
-      const items = [...stack.notifications.values()];
+      const isSingle = showRead ? stack.isSingle : stack.unreadCount === 1;
+      const items = showRead ? [...stack.notifications.values()] : stack.unreadNotifications;
       const params = {
         items,
         markingAsRead: this.state.markingAsRead,
+        showRead: this.props.showRead,
       };
 
-      if (stack.isSingle) {
-        params['item'] = item;
+      let component;
+      if (isSingle) {
+        component = <ItemSingular item={first} {...params} />;
       } else {
-        params['stack'] = stack;
+        component = <ItemGroup stack={stack} {...params} />;
       }
 
       nodes.push((
         <div className={`${bn}__item`} key={stack.id}>
-          <Component {...params} />
+          {component}
         </div>
       ));
     });

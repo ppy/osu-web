@@ -29,8 +29,14 @@ export default class NotificationStack {
   @observable total = 0;
 
   @computed
-  get first(): Notification | undefined {
-    return this.notifications.values().next().value;
+  get first() {
+    return this.notifications.values().next().value as Notification | undefined;
+  }
+
+  @computed
+  get firstUnread() {
+    // array accessor doesn't declare undefined type return.
+    return this.unreadNotifications[0] as Notification | undefined;
   }
 
   @computed
@@ -45,7 +51,12 @@ export default class NotificationStack {
 
   @computed
   get unreadCount() {
-    return [...this.notifications.values()].filter((x) => !x.isRead).length;
+    return this.unreadNotifications.length;
+  }
+
+  @computed
+  get unreadNotifications() {
+    return [...this.notifications.values()].filter((x) => !x.isRead);
   }
 
   constructor(public objectId: number, public objectType: string, public name: string) {}

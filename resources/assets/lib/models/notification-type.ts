@@ -49,6 +49,11 @@ export default class NotificationType {
     }, 0);
   }
 
+  @computed
+  get unreadStacks() {
+    return [...this.stacks.values()].filter((x) => x.unreadCount > 0);
+  }
+
   @action
   loadMore() {
     if (this.cursor == null) { return; }

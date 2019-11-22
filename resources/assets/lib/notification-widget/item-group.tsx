@@ -31,6 +31,7 @@ import NotificationStack from 'models/notification-stack';
 import { ShowMoreLink } from 'show-more-link';
 
 interface Props {
+  showRead: boolean;
   stack: NotificationStack;
 }
 
@@ -41,7 +42,11 @@ interface State {
 
 @observer
 export default class ItemGroup extends React.Component<Props & WithMarkReadProps, State> {
-  state = {
+  static defaultProps = {
+    showRead: false,
+  };
+
+  readonly state = {
     expanded: false,
     markingAsRead: false,
   };
@@ -80,6 +85,8 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
   }
 
   private renderExpandButton() {
+    const count = this.props.showRead ? this.props.stack.total : this.props.stack.unreadCount;
+
     return (
       <button
         type='button'
@@ -88,7 +95,7 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
       >
         <span className='show-more-link__label'>
           <span className='show-more-link__label-text'>
-            {osu.transChoice('common.count.update', this.props.stack.total)}
+            {osu.transChoice('common.count.update', count)}
           </span>
           <span className='show-more-link__label-icon'>
             <span className={`fas fa-angle-${this.state.expanded ? 'up' : 'down'}`} />
