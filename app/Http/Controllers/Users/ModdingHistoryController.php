@@ -234,31 +234,6 @@ class ModdingHistoryController extends Controller
         ));
     }
 
-    public function discussions()
-    {
-        $user = $this->user;
-
-        $search = BeatmapDiscussion::search($this->searchParams);
-        $discussions = new LengthAwarePaginator(
-            $search['query']->with([
-                    'user',
-                    'beatmapset',
-                    'startingPost',
-                ])->get(),
-            $search['query']->realCount(),
-            $search['params']['limit'],
-            $search['params']['page'],
-            [
-                'path' => LengthAwarePaginator::resolveCurrentPath(),
-                'query' => $search['params'],
-            ]
-        );
-
-        $showUserSearch = false;
-
-        return view('beatmap_discussions.index', compact('discussions', 'search', 'user', 'showUserSearch'));
-    }
-
     public function events()
     {
         $user = $this->user;
