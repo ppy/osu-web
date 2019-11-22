@@ -157,7 +157,7 @@ export class Post extends React.PureComponent
         ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
 
     div className: "#{bn}__message-container #{'hidden' if @state.editing}",
-      if @props.discussion.message_type == 'review'
+      if @props.discussion.message_type == 'review' && @props.type == 'discussion'
         div
           className: "#{bn}__message"
           ref: (el) => @messageBody = el
