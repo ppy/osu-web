@@ -14,8 +14,6 @@ class UsersControllerTest extends TestCase
      */
     public function testStore()
     {
-        config()->set('osu.user.allow_registration', true);
-
         $previousCount = User::count();
 
         $this
@@ -39,8 +37,6 @@ class UsersControllerTest extends TestCase
      */
     public function testStoreDryRunValid()
     {
-        config()->set('osu.user.allow_registration', true);
-
         $previousCount = User::count();
 
         $this
@@ -63,8 +59,6 @@ class UsersControllerTest extends TestCase
      */
     public function testStoreInvalid()
     {
-        config()->set('osu.user.allow_registration', true);
-
         $previousCount = User::count();
 
         $this
@@ -101,8 +95,6 @@ class UsersControllerTest extends TestCase
 
     public function testStoreWithCountry()
     {
-        config()->set('osu.user.allow_registration', true);
-
         $country = Country::inRandomOrder()->first() ?? factory(Country::class)->create();
 
         $previousCount = User::count();
@@ -133,8 +125,6 @@ class UsersControllerTest extends TestCase
      */
     public function testStoreLoggedIn()
     {
-        config()->set('osu.user.allow_registration', true);
-
         $user = factory(User::class)->create();
 
         $previousCount = User::count();
