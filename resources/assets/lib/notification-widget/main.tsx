@@ -24,8 +24,6 @@ import { ShowMoreLink } from 'show-more-link';
 import TypeGroup from './type-group';
 import Worker from './worker';
 
-const store = core.dataStore.notificationStore;
-
 interface Props {
   type?: string;
   worker: Worker;
@@ -41,13 +39,8 @@ export default class Main extends React.Component<Props, State> {
     hasError: false,
   };
 
-  private menuId: string;
-
-  constructor(props: Props) {
-    super(props);
-
-    this.menuId = `nav-notification-popup-${osu.uuid()}`;
-  }
+  private menuId = `nav-notification-popup-${osu.uuid()}`;
+  private readonly store = core.dataStore.unreadNotificationStackStore;
 
   static getDerivedStateFromError(error: Error) {
     // tslint:disable-next-line: no-console
@@ -82,7 +75,7 @@ export default class Main extends React.Component<Props, State> {
             <div className='notification-popup__scroll-container'>
               {this.renderTypeGroups()}
 
-              {/* {this.renderShowMoreButton()} */}
+              {this.renderShowMoreButton()}
             </div>
           </div>
         </div>
@@ -140,7 +133,7 @@ export default class Main extends React.Component<Props, State> {
 
     const nodes: React.ReactNode[] = [];
 
-    store.types.forEach((type) => {
+    this.store.types.forEach((type) => {
       if (type.unreadCount === 0) {
         return;
       }

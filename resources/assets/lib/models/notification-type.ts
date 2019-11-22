@@ -18,7 +18,7 @@
 
 import { NotificationBundleJson, NotificationTypeJson } from 'interfaces/notification-bundle-json';
 import { route } from 'laroute';
-import { action, observable, computed } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import NotificationStack from 'models/notification-stack';
 import core from 'osu-core-singleton';
 
@@ -39,6 +39,8 @@ export default class NotificationType {
   @observable isLoading = false;
   @observable stacks = new Map<string, NotificationStack>();
   @observable total = 0;
+
+  private readonly store = core.dataStore.notificationStackStore;
 
   constructor(public name: string) {}
 
@@ -67,7 +69,7 @@ export default class NotificationType {
     };
 
     $.ajax(params).then(action((response: NotificationBundleJson) => {
-      core.dataStore.notificationStore.updateWithBundle(response);
+      this.store.updateWithBundle(response);
     })).always(action(() => {
       this.isLoading = false;
     }));

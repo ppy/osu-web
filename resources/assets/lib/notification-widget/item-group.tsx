@@ -18,17 +18,15 @@
 
 import { observer } from 'mobx-react';
 import Notification from 'models/notification';
+import NotificationStack from 'models/notification-stack';
 import { categoryToIcons } from 'notification-maps/icons';
 import { messageGroup } from 'notification-maps/message';
 import { urlGroup } from 'notification-maps/url';
-import core from 'osu-core-singleton';
 import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 import Item from './item';
 import ItemCompact from './item-compact';
-import ItemProps from './item-props';
 import { WithMarkReadProps } from './with-mark-read';
-import NotificationStack from 'models/notification-stack';
-import { ShowMoreLink } from 'show-more-link';
 
 interface Props {
   showRead: boolean;
@@ -125,7 +123,7 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
         {notifications.map(this.renderItem)}
         {this.renderShowMore()}
       </div>
-    )
+    );
   }
 
   private renderShowMore() {

@@ -16,13 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationBundleJson } from 'interfaces/notification-bundle-json';
-import { Main } from 'notifications-index/main';
-import core from 'osu-core-singleton';
+import NotificationStackStore from './notification-stack-store';
 
-reactTurbolinks.registerPersistent('notifications-index', Main, true, (container: HTMLElement) => {
-  const bundle = osu.parseJson('json-notifications') as NotificationBundleJson;
-  core.dataStore.notificationStackStore.updateWithBundle(bundle);
-
-  return {};
-});
+export default class UnreadNotificationStackStore extends NotificationStackStore {
+}

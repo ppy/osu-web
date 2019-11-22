@@ -17,20 +17,16 @@
  */
 
 import * as _ from 'lodash';
+import { action, computed } from 'mobx';
 import { observer } from 'mobx-react';
-import LegacyPmNotification from 'models/legacy-pm-notification';
-import Notification from 'models/notification';
+import NotificationStack from 'models/notification-stack';
 import NotificationType from 'models/notification-type';
-import core from 'osu-core-singleton';
 import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 import { Spinner } from 'spinner';
 import ItemGroup from './item-group';
-import ItemProps from './item-props';
 import ItemSingular from './item-singular';
 import { WithMarkReadProps } from './with-mark-read';
-import { ShowMoreLink } from 'show-more-link';
-import { action, computed } from 'mobx';
-import NotificationStack from 'models/notification-stack';
 
 interface Props {
   hasMore: boolean;

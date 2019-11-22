@@ -28,6 +28,8 @@ export default class NotificationStack {
   @observable notifications = new Map<number, Notification>();
   @observable total = 0;
 
+  private readonly store = core.dataStore.notificationStackStore;
+
   @computed
   get first() {
     return this.notifications.values().next().value as Notification | undefined;
@@ -69,7 +71,7 @@ export default class NotificationStack {
     const data = { cursor: this.cursor };
     $.ajax({ url: route('notifications.index'), dataType: 'json', data })
     .then(action((response: NotificationBundleJson) => {
-      core.dataStore.notificationStore.updateWithBundle(response);
+      this.store.updateWithBundle(response);
     })).always(action(() => {
       this.isLoading = false;
     }));

@@ -35,7 +35,6 @@
 
 import HeaderV3 from 'header-v3';
 import { route } from 'laroute';
-import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import NotificationType, { getValidName, Name as NotificationTypeName } from 'models/notification-type';
 import TypeGroup from 'notification-widget/type-group';
@@ -64,6 +63,8 @@ export class Main extends React.Component<{}, State> {
     type: this.typeNameFromUrl,
   };
 
+  private readonly store = core.dataStore.notificationStackStore;
+
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
@@ -91,7 +92,7 @@ export class Main extends React.Component<{}, State> {
     const nodes: React.ReactNode[] = [];
     const params = new URLSearchParams(location.search);
 
-    for (const [, type] of core.dataStore.notificationStore.types) {
+    for (const [, type] of this.store.types) {
       if (params.has('group') && params.get('group') !== type.name) {
         continue;
       }
