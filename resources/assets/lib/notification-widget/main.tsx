@@ -29,14 +29,28 @@ interface Props {
   worker: Worker;
 }
 
+interface State {
+  hasError: boolean;
+}
+
 @observer
-export default class Main extends React.Component<Props> {
+export default class Main extends React.Component<Props, State> {
+  readonly state = {
+    hasError: false,
+  };
+
   private menuId: string;
 
   constructor(props: Props) {
     super(props);
 
     this.menuId = `nav-notification-popup-${osu.uuid()}`;
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    // tslint:disable-next-line: no-console
+    console.error(error);
+    return { hasError: true };
   }
 
   render() {
@@ -101,7 +115,7 @@ export default class Main extends React.Component<Props> {
   }
 
   private renderShowMoreButton() {
-    if (!this.props.worker.hasMore) {
+    if (!this.props.worker.hasMore || this.state.hasError) {
       return;
     }
 
@@ -118,6 +132,10 @@ export default class Main extends React.Component<Props> {
   }
 
   private renderTypeGroup() {
+    if (this.state.hasError) {
+      return;
+    }
+
     const items: React.ReactNode[] = [];
 
     core.dataStore.notificationStore.itemsGroupedByType.forEach((value, key) => {
