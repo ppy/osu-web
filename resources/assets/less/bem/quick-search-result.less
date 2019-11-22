@@ -16,52 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussion-vote {
-  @top: beatmap-discussion-vote;
-  @_default-color: @osu-colour-f1;
-  .reset-input();
-  .fade-element(100ms);
-
+.quick-search-result {
+  .default-gutter();
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
   display: flex;
-  margin-right: 10px;
-  font-size: 12px;
+  flex-direction: column;
 
-  &--up {
-    &, &:hover {
-      color: @osu-colour-lime-3;
-    }
-  }
-
-  &--down {
-    &, &:hover {
-      color: @osu-colour-orange-2;
-    }
-  }
-
-  &--inactive {
-    color: @_default-color;
-  }
-
-  // overrides the other stuff
-  &[disabled] {
-    color: @osu-colour-b1;
-    background-color: @osu-colour-b3;
-    cursor: default;
-
-    &:hover {
-      color: @osu-colour-b1;
-    }
-  }
-
-  &__count {
-    padding-left: 5px;
-    color: white;
-    .@{top}--inactive & {
-      color: @_default-color;
-    }
-
-    .@{top}[disabled] & {
-      color: @osu-colour-b1;
-    }
+  &__item {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    flex: none;
   }
 }

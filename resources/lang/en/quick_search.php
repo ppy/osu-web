@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,52 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussion-vote {
-  @top: beatmap-discussion-vote;
-  @_default-color: @osu-colour-f1;
-  .reset-input();
-  .fade-element(100ms);
+return [
+    'mode' => [
+        'beatmapset' => 'Beatmap',
+        'forum_post' => 'Forum',
+        'other' => 'Other',
+        'user' => 'Player',
+        'wiki_page' => 'Wiki',
+    ],
 
-  display: flex;
-  margin-right: 10px;
-  font-size: 12px;
-
-  &--up {
-    &, &:hover {
-      color: @osu-colour-lime-3;
-    }
-  }
-
-  &--down {
-    &, &:hover {
-      color: @osu-colour-orange-2;
-    }
-  }
-
-  &--inactive {
-    color: @_default-color;
-  }
-
-  // overrides the other stuff
-  &[disabled] {
-    color: @osu-colour-b1;
-    background-color: @osu-colour-b3;
-    cursor: default;
-
-    &:hover {
-      color: @osu-colour-b1;
-    }
-  }
-
-  &__count {
-    padding-left: 5px;
-    color: white;
-    .@{top}--inactive & {
-      color: @_default-color;
-    }
-
-    .@{top}[disabled] & {
-      color: @osu-colour-b1;
-    }
-  }
-}
+    'result' => [
+        'empty' => 'No results',
+        'empty_for' => 'No results for :modes',
+        'more' => 'More :mode Search Results',
+        'title' => ':mode Search Results',
+    ],
+];

@@ -16,52 +16,50 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussion-vote {
-  @top: beatmap-discussion-vote;
-  @_default-color: @osu-colour-f1;
-  .reset-input();
-  .fade-element(100ms);
-
+.beatmapset-search-card {
+  .link-plain();
+  .fade-element(120ms);
   display: flex;
-  margin-right: 10px;
-  font-size: 12px;
+  border-radius: @border-radius-large;
+  background-color: @osu-colour-b4;
+  font-size: @font-size--normal;
+  height: 40px;
+  line-height: normal;
 
-  &--up {
-    &, &:hover {
-      color: @osu-colour-lime-3;
-    }
-  }
-
-  &--down {
-    &, &:hover {
-      color: @osu-colour-orange-2;
-    }
-  }
-
-  &--inactive {
-    color: @_default-color;
-  }
-
-  // overrides the other stuff
-  &[disabled] {
-    color: @osu-colour-b1;
+  &:hover {
     background-color: @osu-colour-b3;
-    cursor: default;
-
-    &:hover {
-      color: @osu-colour-b1;
-    }
   }
 
-  &__count {
-    padding-left: 5px;
-    color: white;
-    .@{top}--inactive & {
-      color: @_default-color;
-    }
+  &__cover {
+    object-fit: cover;
+    width: 100%;
+  }
 
-    .@{top}[disabled] & {
-      color: @osu-colour-b1;
-    }
+  &__cover-container {
+    width: 80px;
+    flex: none;
+    border-radius: @border-radius-large;
+    overflow: hidden;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+  }
+
+  &__title {
+    font-size: @font-size--title-small-3;
+    color: @osu-colour-c1;
+  }
+
+  &__title-artist {
+    font-size: @font-size--normal;
+  }
+
+  &__extra {
+    color: @osu-colour-c2;
+    font-size: @font-size--normal;
   }
 }

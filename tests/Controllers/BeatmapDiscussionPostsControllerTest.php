@@ -510,7 +510,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
             'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
         ]);
-        $notificationOption->update(['details' => ['taiko']]);
+        $notificationOption->update(['details' => ['modes' => ['taiko']]]);
 
         // ensure there's no currently open problems
         $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
@@ -540,7 +540,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
             'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
         ]);
-        $notificationOption->update(['details' => ['osu']]);
+        $notificationOption->update(['details' => ['modes' => ['osu']]]);
 
         // ensure there's no currently open problems
         $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
@@ -569,7 +569,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
             'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
         ]);
-        $notificationOption->update(['details' => array_keys(Beatmap::MODES)]);
+        $notificationOption->update(['details' => ['modes' => array_keys(Beatmap::MODES)]]);
 
         // ensure there's no currently open problems
         $this->beatmapset->beatmapDiscussions()->ofType('problem')->update(['resolved' => true]);
@@ -598,7 +598,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
             'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
         ]);
-        $notificationOption->update(['details' => array_keys(Beatmap::MODES)]);
+        $notificationOption->update(['details' => ['modes' => array_keys(Beatmap::MODES)]]);
 
         $this
             ->actingAs($this->user)
