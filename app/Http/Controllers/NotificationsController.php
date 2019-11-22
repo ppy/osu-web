@@ -96,47 +96,17 @@ class NotificationsController extends Controller
      */
     public function unread()
     {
-        $withRead = get_bool(request('with_read')) ?? false;
-        $hasMore = false;
-        $userNotificationsQuery = auth()
-            ->user()
-            ->userNotifications()
-            ->with('notification.notifiable')
-            ->with('notification.source')
-            ->orderBy('notification_id', 'DESC')
-            ->limit(static::LIMIT);
+        $this->unread = true;
+        $response = $this->index();
+        $response['notification_endpoint'] = $this->endpointUrl();
+        $response['unread_count'] = auth()->user()->userNotifications()->where('is_read', false)->count();
 
-        if (!$withRead) {
-            $userNotificationsQuery->where('is_read', false);
-        }
-
-        $maxId = get_int(request('max_id'));
-        if (isset($maxId)) {
-            $userNotificationsQuery->where('notification_id', '<=', $maxId);
-        }
-
-        $userNotifications = $userNotificationsQuery->get();
-
-        if ($userNotifications->count() === static::LIMIT) {
-            $hasMore = true;
-            $userNotifications->pop();
-        }
-
-        $json = json_collection($userNotifications, 'Notification');
-
-        $unreadCount = auth()->user()->userNotifications()->where('is_read', false)->count();
-
-        return response([
-            'has_more' => $hasMore,
-            'notifications' => $json,
-            'unread_count' => $unreadCount,
-            'notification_endpoint' => $this->endpointUrl(),
-        ])->header('Cache-Control', 'no-store');
+        return response($response)->header('Cache-Control', 'no-store');
     }
 
     public function index()
     {
-        $unread = get_bool(request('unread'));
+        $unread = $this->unread ?? get_bool(request('unread'));
         $group = presence(request('group'));
         $objectId = get_int(presence(request('cursor.object_id')));
         $objectType = presence(request('cursor.object_type'));
@@ -213,10 +183,13 @@ class NotificationsController extends Controller
         return $url;
     }
 
-    private function getTotalNotificationCount(string $type)
+    private function getTotalNotificationCount(string $type, ?bool $unread = false)
     {
-        return Notification::whereHas('userNotifications', function ($q) {
+        return Notification::whereHas('userNotifications', function ($q) use ($unread) {
             $q->where('user_id', auth()->user()->getKey());
+            if ($unread) {
+                $q->where('is_read', false);
+            }
         })
         ->where('notifiable_type', $type)
         ->count();
@@ -298,9 +271,9 @@ class NotificationsController extends Controller
 
             $topLevel = $topLevel->limit(5)->get();
 
-            $notificationStacks = $topLevel->map(function ($row) use ($cursor, $value) {
+            $notificationStacks = $topLevel->map(function ($row) use ($cursor, $value, $unread) {
                 // pass cursor in as all the notifications in the stack should be older.
-                return $this->getNotificationStack($value, $row->notifiable_id, $row->name, $cursor);
+                return $this->getNotificationStack($value, $row->notifiable_id, $row->name, $cursor, $unread);
             });
 
             foreach ($notificationStacks as [$stack, $total]) {
@@ -314,7 +287,7 @@ class NotificationsController extends Controller
             $types[] = [
                 'cursor' => $typeCursor !== null ? ['id' => $typeCursor] : null,
                 'name' => $value,
-                'total' => $this->getTotalNotificationCount($value),
+                'total' => $this->getTotalNotificationCount($value, $unread),
             ];
         }
 

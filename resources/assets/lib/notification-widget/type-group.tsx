@@ -17,7 +17,7 @@
  */
 
 import * as _ from 'lodash';
-import { action, computed } from 'mobx';
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import NotificationStack from 'models/notification-stack';
 import NotificationType from 'models/notification-type';
@@ -29,8 +29,6 @@ import ItemSingular from './item-singular';
 import { WithMarkReadProps } from './with-mark-read';
 
 interface Props {
-  hasMore: boolean;
-  showRead: boolean;
   type: NotificationType;
 }
 
@@ -42,28 +40,13 @@ const bn = 'notification-type-group';
 
 @observer
 export default class TypeGroup extends React.Component<Props & WithMarkReadProps, State> {
-  static defaultProps = {
-    hasMore: true,
-    showRead: false,
-  };
-
   state = {
     markingAsRead: false,
   };
 
-  @computed
-  get count() {
-    return this.props.showRead ? this.props.type.total : this.props.type.unreadCount;
-  }
-
-  @computed
-  get stacks() {
-    return this.props.showRead ? this.props.type.stacks : this.props.type.unreadStacks;
-  }
-
   render() {
     const type = this.props.type;
-    if (this.count === 0 || type.stacks.size === 0) {
+    if (type.total === 0 || type.stacks.size === 0) {
       return null;
     }
 
@@ -104,8 +87,8 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
   }
 
   private renderShowMore() {
-    if (!this.props.hasMore) { return null; }
     const type = this.props.type;
+    if (type.cursor == null) { return null; }
 
     return (
       <div className='notification-popup__show-more'>
@@ -120,22 +103,21 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
   }
 
   private renderStacks() {
-    const { showRead, type } = this.props;
+    const type = this.props.type;
     const nodes: React.ReactNode[] = [];
 
-    const stacks = showRead ? type.stacks : type.unreadStacks;
+    const stacks = type.stacks;
     stacks.forEach((stack: NotificationStack) => {
-      const first = showRead ? stack.first : stack.firstUnread;
+      const first = stack.first;
       if (first == null) {
         return;
       }
 
-      const isSingle = showRead ? stack.isSingle : stack.unreadCount === 1;
-      const items = showRead ? [...stack.notifications.values()] : stack.unreadNotifications;
+      const isSingle = stack.isSingle;
+      const items = [...stack.notifications.values()];
       const params = {
         items,
         markingAsRead: this.state.markingAsRead,
-        showRead: this.props.showRead,
       };
 
       let component;
@@ -193,7 +175,7 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
 
     return (
       <span className={`${bn}__count`}>
-        {osu.formatNumber(this.count)}
+        {osu.formatNumber(this.props.type.total)}
       </span>
     );
   }

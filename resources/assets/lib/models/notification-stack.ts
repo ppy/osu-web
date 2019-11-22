@@ -32,13 +32,11 @@ export default class NotificationStack {
 
   @computed
   get first() {
-    return this.notifications.values().next().value as Notification | undefined;
-  }
+    if (this.filter == null) {
+      return this.notifications.values().next().value as Notification | undefined;
+    }
 
-  @computed
-  get firstUnread() {
-    // array accessor doesn't declare undefined type return.
-    return this.unreadNotifications[0] as Notification | undefined;
+    return [...this.notifications.values()].filter(this.filter)[0];
   }
 
   @computed
@@ -51,17 +49,11 @@ export default class NotificationStack {
     return this.notifications.size === 1;
   }
 
-  @computed
-  get unreadCount() {
-    return this.unreadNotifications.length;
-  }
-
-  @computed
-  get unreadNotifications() {
-    return [...this.notifications.values()].filter((x) => !x.isRead);
-  }
-
-  constructor(public objectId: number, public objectType: string, public name: string) {}
+  constructor(
+    readonly objectId: number,
+    readonly objectType: string,
+    readonly name: string,
+    protected readonly filter?: (notification: Notification) => boolean) {}
 
   @action
   loadMore() {

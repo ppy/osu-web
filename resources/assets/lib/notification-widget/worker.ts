@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { NotificationBundleJson } from 'interfaces/notification-bundle-json';
 import NotificationJson from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
 import { route } from 'laroute';
@@ -23,10 +24,8 @@ import { forEach, minBy, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import core from 'osu-core-singleton';
 
-interface NotificationBundleJson {
-  has_more: boolean;
+interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;
-  notifications: NotificationJson[];
   unread_count: number;
 }
 
@@ -80,14 +79,14 @@ const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVeri
   return arg.event === 'verified';
 };
 
-const store = core.dataStore.notificationStore;
-
 export default class Worker {
   @observable hasData: boolean = false;
   @observable hasMore: boolean = true;
   userId: number | null = null;
   @observable private active: boolean = false;
   private endpoint?: string;
+  private readonly notificationStore = core.dataStore.notificationStore;
+  private readonly store = core.dataStore.unreadNotificationStackStore;
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
   private xhr: XHRCollection = {};
@@ -98,6 +97,7 @@ export default class Worker {
   }
 
   @computed get minLoadedId() {
+    return null;
     let ret: null | number = null;
 
     store.notifications.forEach((item) => {
@@ -114,11 +114,11 @@ export default class Worker {
   }
 
   @computed get unreadCount() {
-    let ret = store.unreadCount;
+    let ret = this.notificationStore.unreadCount;
 
-    if (typeof store.pmNotification.details === 'object'
-      && typeof store.pmNotification.details.count === 'number'
-      && store.pmNotification.details.count > 0
+    if (typeof this.notificationStore.pmNotification.details === 'object'
+      && typeof this.notificationStore.pmNotification.details.count === 'number'
+      && this.notificationStore.pmNotification.details.count > 0
     ) {
       ret++;
     }
@@ -173,7 +173,7 @@ export default class Worker {
   @action destroy = () => {
     this.active = false;
     this.hasData = false;
-    store.flushStore();
+    this.store.flushStore();
     forEach(this.xhr, (xhr) => xhr.abort());
     forEach(this.timeout, (timeout) => Timeout.clear(timeout));
 
@@ -199,8 +199,8 @@ export default class Worker {
     if (isNotificationEventLogoutJson(data)) {
       this.destroy();
     } else if (isNotificationEventNewJson(data)) {
-      this.updateFromServer(data.data);
-      store.unreadCount++;
+      this.notificationStore.updateWithJson(data.data);
+      this.notificationStore.unreadCount++;
     } else if (isNotificationEventReadJson(data)) {
       this.markRead(data.data.ids);
     } else if (isNotificationEventVerifiedJson(data)) {
@@ -215,10 +215,9 @@ export default class Worker {
     return this.active;
   }
 
-  @action loadBundle = (data: NotificationBundleJson) => {
-    data.notifications.forEach(this.updateFromServer);
-    store.unreadCount = data.unread_count;
-    this.hasMore = data.has_more;
+  @action loadBundle = (data: NotificationBootJson) => {
+    this.store.updateWithBundle(data);
+    this.notificationStore.unreadCount = data.unread_count;
     this.hasData = true;
   }
 
@@ -233,6 +232,7 @@ export default class Worker {
     const params = minLoadedId == null ? null : { max_id: minLoadedId - 1 };
 
     this.xhrLoadingState.loadMore = true;
+
     this.xhr.loadMore = $.ajax({ url: route('notifications.unread', params), dataType: 'json' })
       .always(action(() => {
         this.xhrLoadingState.loadMore = false;
@@ -246,7 +246,7 @@ export default class Worker {
   }
 
   @action markRead = (ids: number[]) => {
-    store.updateMarkedAsRead(ids);
+    this.notificationStore.updateMarkedAsRead(ids);
   }
 
   @action reconnectWebSocket = () => {
@@ -261,30 +261,7 @@ export default class Worker {
   }
 
   @action refresh = (maxId?: number) => {
-    if (!this.active || this.refreshing) {
-      return;
-    }
-
-    const params = { with_read: true, max_id: maxId };
-
-    this.xhrLoadingState.refresh = true;
-    this.xhr.refresh = $.get(route('notifications.unread'), params)
-      .always(action(() => {
-        this.xhrLoadingState.refresh = false;
-      })).done((bundleJson: NotificationBundleJson) => {
-        const oldestNotification = minBy(bundleJson.notifications, 'id');
-        const minLoadedId = this.minLoadedId;
-
-        this.loadBundle(bundleJson);
-
-        if (bundleJson.has_more &&
-          oldestNotification != null &&
-          minLoadedId != null &&
-          oldestNotification.id > minLoadedId
-        ) {
-          this.refresh(oldestNotification.id - 1);
-        }
-      });
+    // TODO: implement updating existing (and newer?) notifications.
   }
 
   @action setUserId = (id: number | null) => {
@@ -317,7 +294,7 @@ export default class Worker {
   }
 
   @action updateFromServer = (json: NotificationJson) => {
-    return store.updateWithJson(json);
+    return this.notificationStore.updateWithJson(json);
   }
 
   @action updatePmNotification = () => {
@@ -327,7 +304,7 @@ export default class Worker {
       count = 0;
     }
 
-    store.pmNotification.details.count = count;
+    this.notificationStore.pmNotification.details.count = count;
   }
 
   private isPendingXhr = (id: string) => {

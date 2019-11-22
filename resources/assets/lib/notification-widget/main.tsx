@@ -18,6 +18,7 @@
 
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
+import { NotificationContext } from 'notifications-context';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
@@ -54,7 +55,7 @@ export default class Main extends React.Component<Props, State> {
     }
 
     return (
-      <>
+      <NotificationContext.Provider value={{ showRead: false }}>
         <button
           className={this.buttonClass()}
           data-click-menu-target={this.menuId}
@@ -79,7 +80,7 @@ export default class Main extends React.Component<Props, State> {
             </div>
           </div>
         </div>
-      </>
+      </NotificationContext.Provider>
     );
   }
 
@@ -134,11 +135,11 @@ export default class Main extends React.Component<Props, State> {
     const nodes: React.ReactNode[] = [];
 
     this.store.types.forEach((type) => {
-      if (type.unreadCount === 0) {
+      if (type.total === 0) {
         return;
       }
 
-      nodes.push(<TypeGroup key={type.name} showRead={false} type={type} />);
+      nodes.push(<TypeGroup key={type.name} type={type} />);
     });
 
     if (nodes.length === 0) {

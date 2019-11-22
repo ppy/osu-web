@@ -18,7 +18,7 @@
 
 import { NotificationBundleJson, NotificationTypeJson } from 'interfaces/notification-bundle-json';
 import { route } from 'laroute';
-import { action, computed, observable } from 'mobx';
+import { action, observable } from 'mobx';
 import NotificationStack from 'models/notification-stack';
 import core from 'osu-core-singleton';
 
@@ -42,19 +42,7 @@ export default class NotificationType {
 
   private readonly store = core.dataStore.notificationStackStore;
 
-  constructor(public name: string) {}
-
-  @computed
-  get unreadCount() {
-    return [...this.stacks.values()].reduce((prev, stack) => {
-      return prev + stack.unreadCount;
-    }, 0);
-  }
-
-  @computed
-  get unreadStacks() {
-    return [...this.stacks.values()].filter((x) => x.unreadCount > 0);
-  }
+  constructor(readonly name: string) {}
 
   @action
   loadMore() {

@@ -29,7 +29,6 @@ import ItemCompact from './item-compact';
 import { WithMarkReadProps } from './with-mark-read';
 
 interface Props {
-  showRead: boolean;
   stack: NotificationStack;
 }
 
@@ -40,10 +39,6 @@ interface State {
 
 @observer
 export default class ItemGroup extends React.Component<Props & WithMarkReadProps, State> {
-  static defaultProps = {
-    showRead: false,
-  };
-
   readonly state = {
     expanded: false,
     markingAsRead: false,
@@ -83,7 +78,7 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
   }
 
   private renderExpandButton() {
-    const count = this.props.showRead ? this.props.stack.total : this.props.stack.unreadCount;
+    const count = this.props.stack.total;
 
     return (
       <button

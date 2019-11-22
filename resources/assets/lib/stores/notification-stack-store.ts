@@ -24,8 +24,8 @@ import NotificationType from 'models/notification-type';
 import Store from 'stores/store';
 
 export default class NotificationStackStore extends Store {
-  @observable stacks = new Map<string, NotificationStack>();
-  @observable types = new Map<string, NotificationType>();
+  @observable readonly stacks = new Map<string, NotificationStack>();
+  @observable readonly types = new Map<string, NotificationType>();
   protected readonly notifications = this.root.notificationStore.notifications;
 
   @action

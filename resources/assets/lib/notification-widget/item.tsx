@@ -18,6 +18,7 @@
 
 import { observer } from 'mobx-react';
 import Notification from 'models/notification';
+import { NotificationContext } from 'notifications-context';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { WithMarkReadProps } from './with-mark-read';
@@ -35,7 +36,10 @@ interface Props extends WithMarkReadProps {
 
 @observer
 export default class Item extends React.Component<Props> {
+  static contextType = NotificationContext;
   render() {
+    if (!this.context.showRead && this.props.item.isRead) { return null; }
+
     return (
       <div className={this.blockClass()} onClick={this.handleContainerClick}>
         {this.renderCover()}

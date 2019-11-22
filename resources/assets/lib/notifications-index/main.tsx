@@ -85,7 +85,7 @@ export class Main extends React.Component<{}, State> {
   }
 
   renderType(type: NotificationType) {
-    return <TypeGroup key={type.name} hasMore={this.state.type != null} showRead={true} type={type} />;
+    return <TypeGroup key={type.name} type={type} />;
   }
 
   renderTypes() {
