@@ -28,6 +28,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'country',
         'cover',
+        'current_mode_rank',
         'group_badge',
         'support_level',
     ];
@@ -68,6 +69,11 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
                 'id' => $profileCustomization ? $profileCustomization->cover()->id() : null,
             ];
         });
+    }
+
+    public function includeCurrentModeRank(User $user)
+    {
+        return $this->primitive($user->statistics(Auth::user()->playmode)->rank ?? false);
     }
 
     public function includeGroupBadge(User $user)
