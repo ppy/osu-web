@@ -78,7 +78,7 @@ return [
 
             'disqualify' => [
                 '_' => 'If you find an issue with this beatmap, please disqualify it :link.',
-                'button_title' => 'Disqualify a qualified beatmap.'
+                'button_title' => 'Disqualify a qualified beatmap.',
             ],
 
             'report' => [
