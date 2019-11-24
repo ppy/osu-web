@@ -29,7 +29,7 @@ class UserScoreTransformer extends Fractal\TransformerAbstract
     {
         $pp = [];
         if (is_subclass_of($score, 'App\Models\Score\Best\Model')) {
-            $pp = ['pp' => round($score->pp, 4)];
+            $pp = ['pp' => $score->pp];
         }
 
         return array_merge([
