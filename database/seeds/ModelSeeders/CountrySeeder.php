@@ -185,7 +185,7 @@ class CountrySeeder extends Seeder
             ['acronym' => 'MF', 'name' => 'Saint Martin', 'display' => 0],
             ['acronym' => 'MG', 'name' => 'Madagascar', 'display' => 1],
             ['acronym' => 'MH', 'name' => 'Marshall Islands', 'display' => 0],
-            ['acronym' => 'MK', 'name' => 'Macedonia, the Former Yugoslav Republic of', 'display' => 1],
+            ['acronym' => 'MK', 'name' => 'North Macedonia', 'display' => 1],
             ['acronym' => 'ML', 'name' => 'Mali', 'display' => 0],
             ['acronym' => 'MM', 'name' => 'Myanmar', 'display' => 1],
             ['acronym' => 'MN', 'name' => 'Mongolia', 'display' => 1],
