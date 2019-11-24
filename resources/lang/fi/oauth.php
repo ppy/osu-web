@@ -73,7 +73,7 @@ return [
         'none' => '',
 
         'revoked' => [
-            'false' => '',
+            'false' => 'Poista',
             'true' => '',
         ],
     ],

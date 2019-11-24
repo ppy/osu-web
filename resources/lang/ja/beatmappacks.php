@@ -38,6 +38,7 @@ return [
     ],
 
     'show' => [
+        'back' => 'リストに戻る',
         'download' => 'ダウンロード',
         'item' => [
             'cleared' => '消去しました',

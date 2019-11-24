@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Powiadomienia',
         'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',
+        'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
     ],
 
     'oauth' => [

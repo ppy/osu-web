@@ -46,8 +46,8 @@ return [
         ],
 
         'title' => [
-            '_' => 'Lista de cambios :info',
-            'info' => 'Listando',
+            '_' => ':info de cambios',
+            'info' => 'Lista',
         ],
     ],
 

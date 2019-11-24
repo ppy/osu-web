@@ -73,8 +73,8 @@ return [
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'ลบ',
+            'true' => 'ถูกลบแล้ว',
         ],
     ],
 ];

@@ -25,6 +25,7 @@ return [
         'peak' => 'Peak, :count online users',
         'players' => 'มีผู้เล่นลงทะเบียนแล้ว <strong>:count</strong> คน',
         'title' => 'ยินดีต้อนรับ',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'เกมดนตรีเล่นฟรีที่เริศที่สุดในสามโลก',
@@ -71,7 +72,7 @@ return [
         'user' => [
             'more' => ':count more player search results',
             'more_simple' => 'See more player search results',
-            'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
+            'more_hidden' => 'ผลลัพธ์การค้นหาผู้เล่นจำกัดไว้ที่ :max คน ถ้าไม่เจอให้ลองเปลี่ยนคำค้นใหม่',
             'title' => 'ผู้เล่น',
         ],
 
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Ranked Beatmaps อันใหม่',
             'popular' => 'บีตแมปยอดฮิต',
-            'by' => 'โดย',
-            'plays' => ':count plays',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'ดาวน์โหลด osu!',

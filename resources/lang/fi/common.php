@@ -30,7 +30,7 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'UUSI',
     ],
 
     'buttons' => [
@@ -41,7 +41,7 @@ return [
         'change' => 'vaihda',
         'click_to_copy' => 'kopioi leikepöydälle',
         'click_to_copy_copied' => 'kopioitu leikepöydälle!',
-        'close' => '',
+        'close' => 'Sulje',
         'collapse' => 'kutista',
         'delete' => 'Poista',
         'edit' => 'Muokkaa',
@@ -63,7 +63,7 @@ return [
         'show_deleted' => 'Näytä poistetut',
         'show_more' => 'näytä lisää',
         'show_more_options' => 'näytä lisävaihtoehtoja',
-        'update' => '',
+        'update' => 'Päivitä',
         'upload_image' => 'lataa kuva',
 
         'watch' => [

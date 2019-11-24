@@ -48,14 +48,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Kamu tidak dapat menghapus postingan milikmu sendiri.',
+            'resolved' => 'Kamu tidak dapat menghapus konten dari postingan yang sudah ditutup.',
+            'system_generated' => 'Postingan yang dibuat otomatis tidak dapat dihapus.',
         ],
 
         'edit' => [
             'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
-            'resolved' => '',
+            'resolved' => 'Kamu tidak dapat mengubah postingan yang sudah ditutup.',
             'system_generated' => 'Kiriman yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
 

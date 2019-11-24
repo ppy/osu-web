@@ -308,7 +308,7 @@ class BBCodeForDB
         return preg_replace_callback(
             "#\[youtube\](.+?)\[/youtube\]#",
             function ($m) {
-                $videoId = $this->extraEscapes($m[1]);
+                $videoId = preg_replace('/\?.*/', '', $this->extraEscapes($m[1]));
 
                 return "[youtube:{$this->uid}]{$videoId}[/youtube:{$this->uid}]";
             },

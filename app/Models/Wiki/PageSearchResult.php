@@ -27,11 +27,12 @@ class PageSearchResult extends Page
     /** @var Hit */
     private $hit;
 
-    public function __construct(Hit $hit)
+    public static function fromEs($hit)
     {
-        parent::__construct(null, null, $hit->source());
+        $page = parent::fromEs($hit);
+        $page->hit = $hit;
 
-        $this->hit = $hit;
+        return $page;
     }
 
     public function highlightedTitle()

@@ -137,7 +137,7 @@ class PasswordResetController extends Controller
             return trans('password_reset.error.contact_support');
         }
 
-        if ($user->isPrivileged()) {
+        if ($user->isPrivileged() && $user->user_password !== '') {
             return trans('password_reset.error.is_privileged');
         }
 

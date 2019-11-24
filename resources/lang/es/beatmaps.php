@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Reiniciar Nominación',
             'praise' => 'Elogio',
             'problem' => 'Problema',
+            'review' => '',
             'suggestion' => 'Sugerencia',
         ],
 
@@ -136,7 +137,7 @@ return [
             'approved' => '¡Este beatmap fue aprobado el :date!',
             'graveyard' => "Este beatmap no se ha actualizado desde el :date y muy probablemente haya sido abandonado por el creador...",
             'loved' => '¡Este Beatmap fue agregado a Amados el :date!',
-            'ranked' => '¡Este Beatmap fue rankeado el :date!',
+            'ranked' => '¡Este beatmap fue clasificado el :date!',
             'wip' => 'Nota: Este Beatmap fue marcado como trabajo en proceso por el creador.',
         ],
 
@@ -183,6 +184,7 @@ return [
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este Beatmap?',
         'nominated_by' => 'nominado por :users',
+        'not_enough_hype' => "No hay suficiente hype.",
         'qualified' => 'Se estima que será rankeado el :date, si no se encuentra ningún problema.',
         'qualified_soon' => 'Se estima que será rankeado pronto, si no se encuentra ningún problema.',
         'required_text' => 'Nominaciones: :current/:required',
@@ -225,7 +227,7 @@ return [
                 'difficulty' => 'Dificultad',
                 'favourites' => 'Favoritos',
                 'updated' => 'Actualizado',
-                'ranked' => 'Ranked',
+                'ranked' => 'Tiempo clasificado',
                 'rating' => 'Calificación',
                 'plays' => 'Veces jugado',
                 'relevance' => 'Relevancia',

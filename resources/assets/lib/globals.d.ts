@@ -23,6 +23,7 @@ declare var userVerification: any;
 
 // external (to typescript) classes
 declare var BeatmapsetFilter: any;
+declare var BeatmapHelper: BeatmapHelperInterface;
 declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
 declare var Timeout: any;
@@ -32,7 +33,15 @@ interface Comment {
   id: number;
 }
 
+interface DiscussionMessageType {
+  icon: {[key: string]: string};
+  iconText: {[key: string]: string[]};
+}
+
 interface BeatmapDiscussionHelperClass {
+  messageType: DiscussionMessageType;
+  format(text: string, options?: any): string;
+  formatTimestamp(value: number): string;
   url(options: any, useCurrent?: boolean): string;
 }
 
@@ -68,6 +77,10 @@ interface OsuCommon {
   updateQueryString(url: string | null, params: { [key: string]: string | undefined }): string;
 }
 
+interface BeatmapHelperInterface {
+  getDiffRating(rating: number): string;
+}
+
 interface Country {
   code?: string;
   name?: string;
@@ -87,6 +100,56 @@ interface Score {
   user_id: number;
 }
 
+interface BeatmapFailTimesArray {
+  exit: number[];
+  fail: number[];
+}
+
+// TODO: incomplete
+interface Beatmap {
+  accuracy: number;
+  ar: number;
+  beatmapset_id: number;
+  convert: boolean | null;
+  count_circles: number;
+  count_sliders: number;
+  count_spinners: number;
+  count_total: number;
+  cs: number;
+  deleted_at: string | null;
+  difficulty_rating: number;
+  drain: number;
+  failtimes?: BeatmapFailTimesArray;
+  hit_length: number;
+  id: number;
+  last_updated: string;
+  mode: string;
+  mode_int: number;
+  passcount: number;
+  playcount: number;
+  ranked: number;
+  status: string;
+  total_length: number;
+  url: string;
+  version: string;
+}
+
+// TODO: incomplete
+interface BeatmapDiscussion {
+  beatmap_id: number | null;
+  beatmapset_id: number;
+  message_type: string;
+  parent_id: number | null;
+  posts: BeatmapDiscussionPost[];
+  resolved: boolean;
+  timestamp: number | null;
+}
+
+// TODO: incomplete
+interface BeatmapDiscussionPost {
+  message: string;
+}
+
 // TODO: should look at combining with the other User.ts at some point.
 interface User {
   avatar_url?: string;
@@ -94,6 +157,7 @@ interface User {
   country_code?: string;
   cover: Cover;
   default_group: string;
+  group_badge?: string;
   id: number;
   is_active: boolean;
   is_bot: boolean;

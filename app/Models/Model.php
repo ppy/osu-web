@@ -34,6 +34,15 @@ abstract class Model extends BaseModel
     protected $connection = 'mysql';
     protected $guarded = [];
 
+    public function getForeignKey()
+    {
+        if ($this->primaryKey === null || $this->primaryKey === 'id') {
+            return parent::getForeignKey();
+        }
+
+        return $this->primaryKey;
+    }
+
     public function getMacros()
     {
         $macros = $this->macros ?? [];

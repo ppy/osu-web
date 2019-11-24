@@ -31,11 +31,19 @@ return [
                 'beatmapset_discussion_lock' => 'ビートマップ":title"ディスカッションのためにロックされています。',
                 'beatmapset_discussion_lock_compact' => 'ディスカッションはロックされています。',
                 'beatmapset_discussion_post_new' => ':usernameがビートマップディスカッション":title"に新しいメッセージを投稿しました。',
+                'beatmapset_discussion_post_new_empty' => ':username による「:title」への新しい投稿',
                 'beatmapset_discussion_post_new_compact' => ':username による新しい投稿',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => ':username による新しい投稿',
                 'beatmapset_discussion_unlock' => 'ビートマップ":title"ディスカッションのためにロック解除されました。',
                 'beatmapset_discussion_unlock_compact' => 'ディスカッションはアンロックされました。',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => 'Qualifiedビートマップの問題',
+                'beatmapset_discussion_qualified_problem' => ':username による「:title」への報告： :content',
+                'beatmapset_discussion_qualified_problem_empty' => ':usernameによる「:title」への報告',
+                'beatmapset_discussion_qualified_problem_compact' => ':username による報告： :content',
+                'beatmapset_discussion_qualified_problem_compact_empty' => ':username による報告',
             ],
 
             'beatmapset_state' => [

@@ -134,6 +134,7 @@ class BeatmapsetsController extends Controller
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
+            'reviews_enabled' => config('osu.beatmapset.discussion_review_enabled'),
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
@@ -262,7 +263,7 @@ class BeatmapsetsController extends Controller
 
     private function getSearchResponse()
     {
-        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
+        $params = new BeatmapsetSearchRequestParams(request()->all(), Auth::user());
         $search = (new BeatmapsetSearchCached($params));
 
         $records = datadog_timing(function () use ($search) {

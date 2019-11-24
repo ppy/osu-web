@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => '검색',
             'deleted' => '삭제된 토론 포함',
+            'only_unresolved' => '미해결 토론만 보기',
             'types' => '메시지 종류',
             'username' => '사용자 이름',
+
+            'beatmapset_status' => [
+                '_' => '비트맵 상태',
+                'all' => '전체',
+                'disqualified' => 'Disqualified',
+                'never_qualified' => 'Qualified 된 적 없음',
+                'qualified' => 'Qualified',
+                'ranked' => 'Ranked',
+            ],
 
             'user' => [
                 'label' => '사용자',

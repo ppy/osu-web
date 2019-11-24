@@ -30,7 +30,7 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'NEW',
     ],
 
     'buttons' => [
