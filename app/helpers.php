@@ -359,6 +359,23 @@ function log_error($exception)
     }
 }
 
+function logout()
+{
+    auth()->logout();
+
+    // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
+    unset($_COOKIE['phpbb3_2cjk5_sid']);
+    unset($_COOKIE['phpbb3_2cjk5_sid_check']);
+    setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
+    setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
+    setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.osu.ppy.sh');
+    setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.osu.ppy.sh');
+
+    cleanup_cookies();
+
+    session()->invalidate();
+}
+
 function markdown($input, $preset = 'default')
 {
     static $converter;
@@ -386,23 +403,6 @@ function osu_url($key)
     }
 
     return $url;
-}
-
-function logout()
-{
-    auth()->logout();
-
-    // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
-    unset($_COOKIE['phpbb3_2cjk5_sid']);
-    unset($_COOKIE['phpbb3_2cjk5_sid_check']);
-    setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
-    setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
-    setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.osu.ppy.sh');
-    setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.osu.ppy.sh');
-
-    cleanup_cookies();
-
-    session()->invalidate();
 }
 
 function pack_str($str)
