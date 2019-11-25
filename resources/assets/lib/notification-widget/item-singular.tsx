@@ -17,26 +17,33 @@
  */
 
 import { observer } from 'mobx-react';
+import NotificationStack from 'models/notification-stack';
 import { nameToIcons } from 'notification-maps/icons';
 import { formatMessage } from 'notification-maps/message';
 import { urlSingular } from 'notification-maps/url';
 import * as React from 'react';
 import Item from './item';
-import ItemProps from './item-props';
 import { WithMarkReadProps } from './with-mark-read';
 
+interface Props {
+  stack: NotificationStack;
+}
+
 @observer
-export default class ItemSingular extends React.Component<ItemProps & WithMarkReadProps> {
+export default class ItemSingular extends React.Component<Props & WithMarkReadProps> {
   render() {
+    const item = this.props.stack.first;
+    if (item == null) { return null; }
+
     return (
       <Item
         markRead={this.handleMarkAsRead}
-        markingAsRead={this.props.item.isMarkingAsRead}
-        icons={nameToIcons[this.props.item.name || '']}
-        item={this.props.item}
-        message={formatMessage(this.props.item)}
+        markingAsRead={item.isMarkingAsRead}
+        icons={nameToIcons[item.name || '']}
+        item={item}
+        message={formatMessage(item)}
         modifiers={['one']}
-        url={urlSingular(this.props.item)}
+        url={urlSingular(item)}
         withCategory={true}
         withCoverImage={true}
       />
@@ -44,6 +51,6 @@ export default class ItemSingular extends React.Component<ItemProps & WithMarkRe
   }
 
   private handleMarkAsRead = () => {
-    this.props.item.markAsRead();
+    this.props.stack.markAsRead(this.props.stack.first);
   }
 }

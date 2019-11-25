@@ -86,14 +86,9 @@ export default class NotificationStore extends Store {
   @action
   updateMarkedAsRead(ids: number[]) {
     for (const id of ids) {
-      const item = this.notifications.get(id);
-
-      if (item == null || !item.isRead) {
-        this.unreadCount--;
-      }
-
-      if (item != null) {
-        item.isRead = true;
+      const notification = this.notifications.get(id);
+      if (notification != null) {
+        notification.isRead = true;
       }
     }
   }

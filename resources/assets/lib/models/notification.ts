@@ -63,11 +63,6 @@ export default class Notification {
     return obj.updateFromJson(json);
   }
 
-  @action
-  markAsRead() {
-    core.dataStore.notificationStore.queueMarkAsRead(this);
-  }
-
   updateFromJson = (json: NotificationJson) => {
     this.createdAtJson = json.created_at;
     this.isRead = json.is_read;

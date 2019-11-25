@@ -98,10 +98,10 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
     );
   }
 
-  private renderItem(item: Notification) {
+  private renderItem = (item: Notification) => {
     return (
       <div className='notification-popup-item-group__item' key={item.id}>
-        <ItemCompact item={item} items={[item]} />
+        <ItemCompact item={item} stack={this.props.stack} />
       </div>
     );
   }

@@ -29,6 +29,7 @@ import NotificationStackStore from './notification-stack-store';
 import NotificationStore from './notification-store';
 import OwnClientStore from './own-client-store';
 import UIStateStore from './ui-state-store';
+import UnreadNotificationStackStore from './unread-notification-stack-store';
 import UserStore from './user-store';
 
 export default class RootDataStore {
@@ -56,7 +57,7 @@ export default class RootDataStore {
     this.channelStore = new ChannelStore(this, dispatcher);
     this.notificationStore = new NotificationStore(this, dispatcher);
     this.notificationStackStore = new NotificationStackStore(this, dispatcher);
-    this.unreadNotificationStackStore = new NotificationStackStore(this, dispatcher);
+    this.unreadNotificationStackStore = new UnreadNotificationStackStore(this, dispatcher);
     this.ownClientStore = new OwnClientStore(this, dispatcher);
     this.userStore = new UserStore(this, dispatcher);
   }

@@ -40,7 +40,7 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
     bundle.stacks?.forEach((json) => {
       let stack = this.stacks.get(idFromJson(json));
       if (stack == null) {
-        stack = new NotificationStack(json.object_id, json.object_type, json.name, this.unreadFilter);
+        stack = new NotificationStack(json.object_id, json.object_type, json.name);
         this.stacks.set(stack.id, stack);
       }
       stack.updateWithJson(json);
@@ -54,7 +54,9 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
         this.notifications.set(notification.id, notification);
       }
       notification.updateFromJson(json);
-      this.stacks.get(notification.stackId)?.notifications.set(notification.id, notification);
+      if (!notification.isRead) {
+        this.stacks.get(notification.stackId)?.notifications.set(notification.id, notification);
+      }
     });
   }
 }

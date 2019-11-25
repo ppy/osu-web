@@ -122,7 +122,7 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
 
       let component;
       if (isSingle) {
-        component = <ItemSingular item={first} {...params} />;
+        component = <ItemSingular stack={stack} {...params} />;
       } else {
         component = <ItemGroup stack={stack} {...params} />;
       }

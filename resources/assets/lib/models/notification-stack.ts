@@ -18,7 +18,7 @@
 
 import { NotificationBundleJson, NotificationStackJson } from 'interfaces/notification-bundle-json';
 import { route } from 'laroute';
-import { action, computed, observable } from 'mobx';
+import { action, computed, observable, observe, runInAction } from 'mobx';
 import Notification from 'models/notification';
 import core from 'osu-core-singleton';
 
@@ -32,11 +32,7 @@ export default class NotificationStack {
 
   @computed
   get first() {
-    if (this.filter == null) {
-      return this.notifications.values().next().value as Notification | undefined;
-    }
-
-    return [...this.notifications.values()].filter(this.filter)[0];
+    return this.notifications.values().next().value as Notification | undefined;
   }
 
   @computed
@@ -53,7 +49,7 @@ export default class NotificationStack {
     readonly objectId: number,
     readonly objectType: string,
     readonly name: string,
-    protected readonly filter?: (notification: Notification) => boolean) {}
+  ) {}
 
   @action
   loadMore() {
@@ -67,6 +63,24 @@ export default class NotificationStack {
     })).always(action(() => {
       this.isLoading = false;
     }));
+  }
+
+  @action
+  markAsRead(notification?: Notification) {
+    // not from this stack, ignore.
+    if (notification == null || this.notifications.get(notification.id) == null) { return; }
+    const disposer = observe(notification, 'isRead', (change) => {
+      runInAction(() => {
+        if (change.newValue === true && change.newValue !== change.oldValue) {
+          this.notifications.delete(notification.id);
+          core.dataStore.notificationStore.unreadCount--;
+          this.total--;
+        }
+        disposer();
+      });
+    });
+
+    core.dataStore.notificationStore.queueMarkAsRead(notification);
   }
 
   @action
