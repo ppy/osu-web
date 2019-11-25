@@ -63,7 +63,7 @@ abstract class Controller extends BaseController
 
     protected function login($user, $remember = false)
     {
-        $this->cleanupCookies();
+        cleanup_cookies();
 
         session()->flush();
         session()->regenerateToken();
