@@ -590,6 +590,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hide_presence ? null : $this->user_lastvisit;
     }
 
+    public function isLoginBlocked()
+    {
+        return $this->user_email === null;
+    }
+
     public function isSpecial()
     {
         return $this->user_id !== null && present($this->user_colour);
@@ -1599,7 +1604,7 @@ class User extends Model implements AuthenticatableContract
 
         $validAuth = $user === null
             ? false
-            : $user->checkPassword($password);
+            : !$user->isLoginBlocked() && $user->checkPassword($password);
 
         if (!$validAuth) {
             LoginAttempt::failedAttempt($ip, $user);

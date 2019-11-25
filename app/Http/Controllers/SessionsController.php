@@ -67,7 +67,7 @@ class SessionsController extends Controller
     public function destroy()
     {
         if (Auth::check()) {
-            $this->logout();
+            logout();
         }
 
         return [];
