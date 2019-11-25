@@ -23,6 +23,7 @@ namespace App\Libraries;
 use App\Exceptions\UserVerificationException;
 use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\Country;
+use Datadog;
 use Mail;
 
 class UserVerification
@@ -45,6 +46,15 @@ class UserVerification
         }
 
         return $verification;
+    }
+
+    public static function logAttempt(string $source, bool $success, string $reason = null) : void
+    {
+        Datadog::increment(
+            config('datadog-halper.prefix_web').'verification.attempt',
+            1,
+            compact('source', 'success', 'reason')
+        );
     }
 
     private function __construct($user, $request, $state)
@@ -129,12 +139,16 @@ class UserVerification
         try {
             $this->state->verify($key);
         } catch (UserVerificationException $e) {
+            static::logAttempt('input', false, $e->getMessage());
+
             if ($e->shouldReissue()) {
                 $this->issue();
             }
 
             return error_popup($e->getMessage());
         }
+
+        static::logAttempt('input', true);
 
         return $this->markVerifiedAndRespond();
     }
