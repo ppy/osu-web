@@ -53,7 +53,11 @@ class UserVerification
         Datadog::increment(
             config('datadog-halper.prefix_web').'verification.attempt',
             1,
-            compact('source', 'success', 'reason')
+            [
+                'reason' => $reason,
+                'source' => $source,
+                'success' => (int) $success,
+            ]
         );
     }
 
