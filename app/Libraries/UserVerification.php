@@ -139,7 +139,7 @@ class UserVerification
         try {
             $this->state->verify($key);
         } catch (UserVerificationException $e) {
-            static::logAttempt('input', false, $e->getMessage());
+            static::logAttempt('input', false, $e->reasonKey());
 
             if ($e->shouldReissue()) {
                 $this->issue();
