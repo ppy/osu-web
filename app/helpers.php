@@ -152,7 +152,7 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
     return $class;
 }
 
-function cleanupCookies()
+function cleanup_cookies()
 {
     $domain = config('session.domain') === null ? request()->getHttpHost() : null;
     foreach (['locale', 'osu_session', 'XSRF-TOKEN'] as $key) {
@@ -400,7 +400,7 @@ function logout()
     setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.osu.ppy.sh');
     setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.osu.ppy.sh');
 
-    cleanupCookies();
+    cleanup_cookies();
 
     session()->invalidate();
 }
