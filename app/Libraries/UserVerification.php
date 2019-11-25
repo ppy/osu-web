@@ -48,16 +48,12 @@ class UserVerification
         return $verification;
     }
 
-    public static function logAttempt(string $source, bool $success, string $reason = null) : void
+    public static function logAttempt(string $source, string $type, string $reason = null) : void
     {
         Datadog::increment(
             config('datadog-helper.prefix_web').'.verification.attempt',
             1,
-            [
-                'reason' => $reason,
-                'source' => $source,
-                'success' => (int) $success,
-            ]
+            compact('reason', 'source', 'success')
         );
     }
 
@@ -79,6 +75,8 @@ class UserVerification
         $email = $this->user->user_email;
 
         if (!$this->state->issued()) {
+            static::logAttempt('input', 'new');
+
             $this->issue();
         }
 
@@ -143,7 +141,7 @@ class UserVerification
         try {
             $this->state->verify($key);
         } catch (UserVerificationException $e) {
-            static::logAttempt('input', false, $e->reasonKey());
+            static::logAttempt('input', 'fail', $e->reasonKey());
 
             if ($e->shouldReissue()) {
                 $this->issue();
@@ -152,7 +150,7 @@ class UserVerification
             return error_popup($e->getMessage());
         }
 
-        static::logAttempt('input', true);
+        static::logAttempt('input', 'success');
 
         return $this->markVerifiedAndRespond();
     }
