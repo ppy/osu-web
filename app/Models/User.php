@@ -1613,7 +1613,7 @@ class User extends Model implements AuthenticatableContract
         }
     }
 
-    public static function findForLogin($username)
+    public static function findForLogin($username, $allowEmail = false)
     {
         if (!present($username)) {
             return;
@@ -1621,7 +1621,7 @@ class User extends Model implements AuthenticatableContract
 
         $query = static::where('username', $username);
 
-        if (config('osu.user.allow_email_login')) {
+        if (config('osu.user.allow_email_login') || $allowEmail) {
             $query->orWhere('user_email', strtolower($username));
         }
 
