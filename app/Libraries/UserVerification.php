@@ -89,8 +89,12 @@ class UserVerification
     public function issue()
     {
         $user = $this->user;
-        $email = $user->user_email;
         $to = $user->user_email;
+
+        if (!present($to)) {
+            return;
+        }
+
         $keys = $this->state->issue();
 
         $requestCountry = Country
