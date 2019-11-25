@@ -38,7 +38,7 @@ interface Props extends WithMarkReadProps {
 export default class Item extends React.Component<Props> {
   static contextType = NotificationContext;
   render() {
-    if (!this.context.showRead && this.props.item.isRead) { return null; }
+    // if (!this.context.showRead && this.props.item.isRead) { return null; }
 
     return (
       <div className={this.blockClass()} onClick={this.handleContainerClick}>

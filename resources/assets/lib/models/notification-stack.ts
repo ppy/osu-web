@@ -28,11 +28,12 @@ export default class NotificationStack {
   @observable notifications = new Map<number, Notification>();
   @observable total = 0;
 
+  @observable private lastNotification: Notification | null = null;
   private readonly store = core.dataStore.notificationStackStore;
 
   @computed
   get first() {
-    return this.notifications.values().next().value as Notification | undefined;
+    return this.notifications.values().next().value ?? this.lastNotification;
   }
 
   @computed
@@ -41,8 +42,13 @@ export default class NotificationStack {
   }
 
   @computed
+  get hasVisibleNotifiations() {
+    return this.notifications.size > 0;
+  }
+
+  @computed
   get isSingle() {
-    return this.notifications.size === 1;
+    return this.total === 1;
   }
 
   constructor(
@@ -50,6 +56,22 @@ export default class NotificationStack {
     readonly objectType: string,
     readonly name: string,
   ) {}
+
+  @action
+  add(notification: Notification) {
+    this.notifications.set(notification.id, notification);
+  }
+
+  @action
+  remove(notification: Notification) {
+    if (this.notifications.size === 1) {
+      // doesn't matter if the notification that's being removed doesn't actually exist in the stack,
+      // this can still be set.
+      this.lastNotification = this.notifications.values().next().value;
+    }
+
+    this.notifications.delete(notification.id);
+  }
 
   @action
   loadMore() {
@@ -72,7 +94,7 @@ export default class NotificationStack {
     const disposer = observe(notification, 'isRead', (change) => {
       runInAction(() => {
         if (change.newValue === true && change.newValue !== change.oldValue) {
-          this.notifications.delete(notification.id);
+          this.remove(notification);
           core.dataStore.notificationStore.unreadCount--;
           this.total--;
         }
@@ -81,6 +103,11 @@ export default class NotificationStack {
     });
 
     core.dataStore.notificationStore.queueMarkAsRead(notification);
+  }
+
+  @action
+  markStackAsRead() {
+    // TODO
   }
 
   @action

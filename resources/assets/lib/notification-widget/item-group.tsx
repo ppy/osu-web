@@ -20,7 +20,6 @@ import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import NotificationStack from 'models/notification-stack';
 import { categoryToIcons } from 'notification-maps/icons';
-import { messageGroup } from 'notification-maps/message';
 import { urlGroup } from 'notification-maps/url';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
@@ -45,16 +44,18 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
   };
 
   render() {
-    const item = this.props.stack.first!;
+    const item = this.props.stack.first;
+    if (item == null) { return null; }
+
     return (
       <div className='notification-popup-item-group'>
         <Item
           markRead={this.handleMarkAsRead}
           markingAsRead={this.props.markingAsRead || this.state.markingAsRead}
           expandButton={this.renderExpandButton()}
-          icons={categoryToIcons[item.category || '']}
+          icons={categoryToIcons[item.category]}
           item={item}
-          message={messageGroup(item)}
+          message={item.messageGroup}
           modifiers={['group']}
           url={urlGroup(item)}
           withCategory={true}
@@ -67,6 +68,7 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
 
   private handleMarkAsRead = () => {
     this.setState({ markingAsRead: true });
+    this.props.stack.markStackAsRead();
     // core.dataStore.notificationStore.markAsRead(this.props.items)
     // .always(() => {
     //   this.setState({ markingAsRead: false });

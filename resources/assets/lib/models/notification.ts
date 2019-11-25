@@ -17,11 +17,10 @@
  */
 
 import NotificationJson from 'interfaces/notification-json';
-import * as _ from 'lodash';
-import { action, computed, observable } from 'mobx';
+import { camelCase, forEach } from 'lodash';
+import { computed, observable } from 'mobx';
 import { categoryGroupKey, nameToCategory } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
-import core from 'osu-core-singleton';
 
 export default class Notification {
   createdAtJson?: string;
@@ -50,6 +49,21 @@ export default class Notification {
     return displayType(this);
   }
 
+  @computed get messageGroup() {
+    if (this.objectType === 'channel') {
+      const replacements = {
+        title: this.details.title,
+        username: this.details.username,
+      };
+
+      const key = `notifications.item.${this.objectType}.${this.category}.${this.details.type}.${this.name}_group`;
+
+      return osu.trans(key, replacements);
+    }
+
+    return this.details.title;
+  }
+
   @computed get stackId() {
     return `${this.objectType}-${this.objectId}-${this.name}`;
   }
@@ -74,8 +88,8 @@ export default class Notification {
     this.details = {};
 
     if (typeof json.details === 'object') {
-      _.forEach(json.details, (value, key) => {
-        this.details[_.camelCase(key)] = value;
+      forEach(json.details, (value, key) => {
+        this.details[camelCase(key)] = value;
       });
     }
 

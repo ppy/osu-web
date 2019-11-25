@@ -52,18 +52,3 @@ export function formatMessage(item: Notification, compact: boolean = false) {
 
   return message;
 }
-
-export function messageGroup(item: Notification) {
-  if (item.objectType === 'channel') {
-    const replacements = {
-      title: item.details.title,
-      username: item.details.username,
-    };
-
-    const key = `notifications.item.${item.objectType}.${item.category}.${item.details.type}.${item.name}_group`;
-
-    return osu.trans(key, replacements);
-  }
-
-  return item.details.title;
-}

@@ -64,6 +64,11 @@ export default class NotificationType {
   }
 
   @action
+  markTypeAsRead() {
+    // TODO
+  }
+
+  @action
   updateWithJson(json: NotificationTypeJson) {
     this.cursor = json.cursor;
     this.total = json.total;

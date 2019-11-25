@@ -75,6 +75,7 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
 
   private handleMarkAllAsRead = () => {
     this.setState({ markingAsRead: true });
+    this.props.type.markTypeAsRead();
     // core.dataStore.notificationStore.markAsRead(this.props.items)
     // .always(() => {
     //   this.setState({ markingAsRead: false });
@@ -102,36 +103,37 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
     );
   }
 
+  private renderStack = (stack: NotificationStack) => {
+    const isSingle = stack.isSingle;
+    const params = {
+      markingAsRead: this.state.markingAsRead,
+    };
+
+    let component;
+    if (isSingle) {
+      component = <ItemSingular stack={stack} {...params} />;
+    } else {
+      component = <ItemGroup stack={stack} {...params} />;
+    }
+
+    return (
+      <div className={`${bn}__item`} key={stack.id}>
+        {component}
+      </div>
+    );
+  }
+
   private renderStacks() {
     const type = this.props.type;
     const nodes: React.ReactNode[] = [];
 
     const stacks = type.stacks;
     stacks.forEach((stack: NotificationStack) => {
-      const first = stack.first;
-      if (first == null) {
+      if (stack.total === 0) {
         return;
       }
 
-      const isSingle = stack.isSingle;
-      const items = [...stack.notifications.values()];
-      const params = {
-        items,
-        markingAsRead: this.state.markingAsRead,
-      };
-
-      let component;
-      if (isSingle) {
-        component = <ItemSingular stack={stack} {...params} />;
-      } else {
-        component = <ItemGroup stack={stack} {...params} />;
-      }
-
-      nodes.push((
-        <div className={`${bn}__item`} key={stack.id}>
-          {component}
-        </div>
-      ));
+      nodes.push(this.renderStack(stack));
     });
 
     return nodes;
