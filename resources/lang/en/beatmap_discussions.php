@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'View Review Post',
+        'go_to_child' => 'View Discussion',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marked as resolved by :user',
             'false' => 'Reopened by :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'general',
+        'general_all' => 'general (all)',
     ],
 
     'user_filter' => [

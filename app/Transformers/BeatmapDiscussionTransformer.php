@@ -47,6 +47,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'user_id' => $discussion->user_id,
             'deleted_by_id' => $discussion->deleted_by_id,
             'message_type' => $discussion->message_type,
+            'parent_id' => $discussion->parent_id,
             'timestamp' => $discussion->timestamp,
             'resolved' => $discussion->resolved,
             'can_be_resolved' => $discussion->canBeResolved(),

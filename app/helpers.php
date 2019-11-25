@@ -152,6 +152,16 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
     return $class;
 }
 
+function cleanup_cookies()
+{
+    $domain = config('session.domain') === null ? request()->getHttpHost() : null;
+    foreach (['locale', 'osu_session', 'XSRF-TOKEN'] as $key) {
+        // TODO: maybe also remove keys on parents - if setting on
+        //       a.b.c.d.e then remove on .b.c.d.e, .b.c.d, etc.
+        setcookie($key, '', 1, '/', $domain);
+    }
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $uid = uniqid($stat);
@@ -347,6 +357,23 @@ function log_error($exception)
     if (config('sentry.dsn')) {
         Sentry::captureException($exception);
     }
+}
+
+function logout()
+{
+    auth()->logout();
+
+    // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
+    unset($_COOKIE['phpbb3_2cjk5_sid']);
+    unset($_COOKIE['phpbb3_2cjk5_sid_check']);
+    setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
+    setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
+    setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.osu.ppy.sh');
+    setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.osu.ppy.sh');
+
+    cleanup_cookies();
+
+    session()->invalidate();
 }
 
 function markdown($input, $preset = 'default')
