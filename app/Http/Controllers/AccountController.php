@@ -248,9 +248,12 @@ class AccountController extends Controller
         $state = UserVerificationState::fromVerifyLink(request('key'));
 
         if ($state === null) {
+            UserVerification::logAttempt('link', false, 'incorrect_key');
+
             return response()->view('accounts.verification_invalid')->setStatusCode(404);
         }
 
+        UserVerification::logAttempt('link', true);
         $state->markVerified();
 
         return view('accounts.verification_completed');
