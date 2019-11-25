@@ -70,6 +70,10 @@ class SessionsController extends Controller
             logout();
         }
 
+        if (get_bool(request('redirect_home'))) {
+            return ujs_redirect(route('home'));
+        }
+
         return [];
     }
 }
