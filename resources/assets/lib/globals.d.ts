@@ -139,7 +139,9 @@ interface BeatmapDiscussion {
   beatmap_id: number | null;
   beatmapset_id: number;
   message_type: string;
+  parent_id: number | null;
   posts: BeatmapDiscussionPost[];
+  resolved: boolean;
   timestamp: number | null;
 }
 
@@ -155,6 +157,7 @@ interface User {
   country_code?: string;
   cover: Cover;
   default_group: string;
+  group_badge?: string;
   id: number;
   is_active: boolean;
   is_bot: boolean;

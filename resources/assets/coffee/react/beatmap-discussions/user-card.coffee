@@ -23,12 +23,12 @@ bn = 'beatmap-discussion-user-card'
 
 export class UserCard extends React.PureComponent
   render: =>
-    topClasses = bn
-    topClasses += " #{bn}--#{@props.badge}" if @props.badge?
+    additionalClasses = @props.additionalClasses ? []
+    additionalClasses.push(@props.badge) if @props.badge?
     hideStripe = @props.hideStripe ? false
 
     div
-      className: topClasses
+      className: osu.classWithModifiers(bn, additionalClasses)
 
       div className: "#{bn}__avatar",
         a

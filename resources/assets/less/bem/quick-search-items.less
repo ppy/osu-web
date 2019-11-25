@@ -16,12 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussion-review-post {
-  &__block {
-    margin-bottom: 10px;
+.quick-search-items {
+  display: flex;
+  flex-direction: column;
+  margin: 9px -1px -1px;
+
+  &--empty {
+    color: @osu-colour-c2;
+    font-size: @font-size--title-small-3;
   }
 
-  &__link {
-    .link-default();
+  &__item {
+    margin: 1px 0;
   }
 }

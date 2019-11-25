@@ -1614,9 +1614,13 @@ class User extends Model implements AuthenticatableContract
             return;
         }
 
-        return static::where('username', $username)
-            ->orWhere('user_email', '=', strtolower($username))
-            ->first();
+        $query = static::where('username', $username);
+
+        if (config('osu.user.allow_email_login')) {
+            $query->orWhere('user_email', strtolower($username));
+        }
+
+        return $query->first();
     }
 
     public static function findForPassport($username)
