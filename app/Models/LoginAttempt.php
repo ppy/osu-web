@@ -39,19 +39,12 @@ class LoginAttempt extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    public static function isLocked($ip)
+    public static function appendFailedIds($user, $state)
     {
-        $record = static::find($ip);
+        $userId = static::getUserId($user);
+        $newFailedId = DB::getPdo()->quote("{$userId}($state)");
 
-        if ($record === null) {
-            return false;
-        }
-
-        if ($record->unique_ids > 50) {
-            return true;
-        }
-
-        return $record->failed_attempts > config('osu.user.max_login_attempts');
+        return DB::raw("CONCAT(failed_ids, ',', {$newFailedId})");
     }
 
     public static function findOrDefault($ip)
@@ -69,6 +62,34 @@ class LoginAttempt extends Model
                 return static::findOrDefault($ip);
             }
         }
+    }
+
+    public static function getUserId($user)
+    {
+        return optional($user)->getKey() ?? 0;
+    }
+
+    public static function hashInvalidPassword($password)
+    {
+        // The goal is just to allow vaguely matching password - for
+        // example when trying same password - to be excluded from being
+        // counted as additional attempt.
+        return substr(sha1(sha1($password, true)), 0, 20);
+    }
+
+    public static function isLocked($ip)
+    {
+        $record = static::find($ip);
+
+        if ($record === null) {
+            return false;
+        }
+
+        if ($record->unique_ids > 50) {
+            return true;
+        }
+
+        return $record->failed_attempts > config('osu.user.max_login_attempts');
     }
 
     public static function logAttempt($ip, $user, $type, $password = null)
@@ -129,27 +150,6 @@ class LoginAttempt extends Model
         $updates['failed_ids'] = static::appendFailedIds($user, 'success');
 
         static::where('ip', $ip)->update($updates);
-    }
-
-    public static function appendFailedIds($user, $state)
-    {
-        $userId = static::getUserId($user);
-        $newFailedId = DB::getPdo()->quote("{$userId}($state)");
-
-        return DB::raw("CONCAT(failed_ids, ',', {$newFailedId})");
-    }
-
-    public static function hashInvalidPassword($password)
-    {
-        // The goal is just to allow vaguely matching password - for
-        // example when trying same password - to be excluded from being
-        // counted as additional attempt.
-        return substr(sha1(sha1($password, true)), 0, 20);
-    }
-
-    public static function getUserId($user)
-    {
-        return optional($user)->getKey() ?? 0;
     }
 
     public function containsUser($user, $state = null)
