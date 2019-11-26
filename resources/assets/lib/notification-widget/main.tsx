@@ -21,7 +21,6 @@ import { observer } from 'mobx-react';
 import { NotificationContext } from 'notifications-context';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
 import TypeGroup from './type-group';
 import Worker from './worker';
 
@@ -75,8 +74,6 @@ export default class Main extends React.Component<Props, State> {
           >
             <div className='notification-popup__scroll-container'>
               {this.renderTypeGroups()}
-
-              {this.renderShowMoreButton()}
             </div>
           </div>
         </div>
@@ -108,23 +105,6 @@ export default class Main extends React.Component<Props, State> {
     }
 
     return ret;
-  }
-
-  private renderShowMoreButton() {
-    if (!this.props.worker.hasMore || this.state.hasError) {
-      return;
-    }
-
-    return (
-      <div className='notification-popup__show-more'>
-        <ShowMoreLink
-          callback={this.props.worker.loadMore}
-          hasMore={this.props.worker.hasMore}
-          loading={this.props.worker.loadingMore}
-          modifiers={['t-greysky']}
-        />
-      </div>
-    );
   }
 
   private renderTypeGroups() {
