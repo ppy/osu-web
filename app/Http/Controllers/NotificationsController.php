@@ -33,6 +33,7 @@ use DB;
 class NotificationsController extends Controller
 {
     const LIMIT = 51;
+    const STACK_LIMIT = 5;
 
     protected $section = 'community';
     protected $actionPrefix = 'notifications_';
@@ -233,7 +234,7 @@ class NotificationsController extends Controller
 
         $total = $stack->count();
 
-        $stack = $stack->orderBy('id', 'desc')->limit(5);
+        $stack = $stack->orderBy('id', 'desc')->limit(static::STACK_LIMIT);
 
         if ($cursor !== null) {
             $stack->where('id', '<', $cursor);
@@ -257,7 +258,7 @@ class NotificationsController extends Controller
         ];
 
         return [
-            'cursor' => $cursor,
+            'cursor' => $stack->count() < static::STACK_LIMIT ? null : $cursor,
             'name' => $last->name,
             'object_type' => $last->notifiable_type,
             'object_id' => $last->notifiable_id,
@@ -293,7 +294,7 @@ class NotificationsController extends Controller
                 $topLevel->where('id', '<', $cursor);
             }
 
-            $topLevel = $topLevel->limit(5)->get();
+            $topLevel = $topLevel->limit(static::STACK_LIMIT)->get();
 
             $notificationStacks = $topLevel->map(function ($row) use ($cursor, $value, $unread) {
                 // pass cursor in as all the notifications in the stack should be older.
