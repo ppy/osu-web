@@ -34,6 +34,8 @@ class SessionsControllerTest extends TestCase
             'username' => $user->username,
             'password' => $password,
         ])->assertSuccessful();
+
+        $this->assertAuthenticated();
     }
 
     public function testCreateInactiveUser()
@@ -46,6 +48,8 @@ class SessionsControllerTest extends TestCase
             'username' => $user->username,
             'password' => $password,
         ])->assertSuccessful();
+
+        $this->assertAuthenticated();
 
         $this->get(route('home'))->assertStatus(401);
     }
@@ -65,6 +69,7 @@ class SessionsControllerTest extends TestCase
             'CF_IPCOUNTRY' => '__',
         ])->assertStatus(302);
 
+        $this->assertGuest();
         $this->assertSame('', $user->fresh()->user_password);
     }
 }
