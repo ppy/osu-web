@@ -127,7 +127,7 @@ class PasswordResetController extends Controller
 
     private function issue($username)
     {
-        $user = User::findForLogin($username);
+        $user = User::findForLogin($username, true);
 
         if ($user === null) {
             return trans('password_reset.error.user_not_found');

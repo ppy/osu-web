@@ -25,6 +25,7 @@ use App\Http\Middleware\RequireScopes;
 use App\Http\Middleware\StartSession;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
+use App\Libraries\OsuCookieJar;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
@@ -91,6 +92,14 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(RequireScopes::class, function () {
             return new RequireScopes;
+        });
+
+        $this->app->singleton('cookie', function ($app) {
+            $config = $app->make('config')->get('session');
+
+            return (new OsuCookieJar)->setDefaultPathAndDomain(
+                $config['path'], $config['domain'], $config['secure'], $config['same_site'] ?? null
+            );
         });
 
         // The middleware breaks without this. Not sure why.

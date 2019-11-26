@@ -53,7 +53,7 @@ class UserVerification
         Datadog::increment(
             config('datadog-helper.prefix_web').'.verification.attempts',
             1,
-            compact('reason', 'source', 'success')
+            compact('reason', 'source', 'type')
         );
     }
 
