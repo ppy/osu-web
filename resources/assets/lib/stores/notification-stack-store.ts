@@ -37,7 +37,7 @@ export default class NotificationStackStore extends Store {
   }
 
   @action
-  loadMore(cursor: JSON context: NotificationContextData) {
+  loadMore(cursor: JSON, context: NotificationContextData) {
     const params = {
       data: { cursor, unread: context.unreadOnly },
       dataType: 'json',

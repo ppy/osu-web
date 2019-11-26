@@ -16,12 +16,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import Dispatcher from 'dispatcher';
 import NotificationJson from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, observable, runInAction } from 'mobx';
+import { action, observable, runInAction, autorun } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
+import RootDataStore from 'stores/root-data-store';
 import Store from 'stores/store';
 
 export default class NotificationStore extends Store {
@@ -85,11 +87,18 @@ export default class NotificationStore extends Store {
 
   @action
   updateMarkedAsRead(ids: number[]) {
+    const notifications: Notification[] = [];
+    // FIXME: map doesn't work?
     for (const id of ids) {
       const notification = this.notifications.get(id);
       if (notification != null) {
         notification.isRead = true;
+        notifications.push(notification);
       }
+    }
+
+    if (notifications.length > 0) {
+      this.root.notificationsRead = notifications;
     }
   }
 

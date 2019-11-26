@@ -16,7 +16,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import Dispatcher from 'dispatcher';
+import { autorun } from 'mobx';
+import core from 'osu-core-singleton';
 import NotificationStackStore from './notification-stack-store';
+import RootDataStore from './root-data-store';
 
 export default class UnreadNotificationStackStore extends NotificationStackStore {
+  constructor(protected root: RootDataStore, protected dispatcher: Dispatcher) {
+    super(root, dispatcher);
+
+    autorun(() => {
+      this.root.notificationsRead.forEach((notification) => {
+        const stack = this.stacks.get(notification.stackId);
+        if (stack?.remove(notification)) {
+          core.dataStore.notificationStore.unreadCount--;
+          stack.total--;
+        }
+      });
+    });
+  }
 }

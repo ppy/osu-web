@@ -81,18 +81,7 @@ export default class NotificationStack {
   markAsRead(notification?: Notification) {
     // not from this stack, ignore.
     if (notification == null || this.notifications.get(notification.id) == null) { return; }
-    const disposer = observe(notification, 'isRead', (change) => {
-      runInAction(() => {
-        if (change.newValue === true && change.newValue !== change.oldValue) {
-          this.remove(notification);
-          core.dataStore.notificationStore.unreadCount--;
-          this.total--;
-        }
-        disposer();
-      });
-    });
-
-    core.dataStore.notificationStore.queueMarkAsRead(notification);
+    this.rootStore.notificationStore.queueMarkAsRead(notification);
   }
 
   @action
@@ -108,7 +97,7 @@ export default class NotificationStack {
       this.lastNotification = this.notifications.values().next().value;
     }
 
-    this.notifications.delete(notification.id);
+    return this.notifications.delete(notification.id);
   }
 
   @action
