@@ -21,6 +21,7 @@ import Notification from 'models/notification';
 import NotificationStack from 'models/notification-stack';
 import { categoryToIcons } from 'notification-maps/icons';
 import { urlGroup } from 'notification-maps/url';
+import { NotificationContext } from 'notifications-context';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import Item from './item';
@@ -38,6 +39,7 @@ interface State {
 
 @observer
 export default class ItemGroup extends React.Component<Props & WithMarkReadProps, State> {
+  static readonly contextType = NotificationContext;
   readonly state = {
     expanded: false,
     markingAsRead: false,
@@ -76,7 +78,7 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
   }
 
   private handleShowMore = () => {
-    this.props.stack.loadMore();
+    this.props.stack.loadMore(this.context);
   }
 
   private renderExpandButton() {

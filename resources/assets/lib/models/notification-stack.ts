@@ -20,7 +20,9 @@ import { NotificationBundleJson, NotificationStackJson } from 'interfaces/notifi
 import { route } from 'laroute';
 import { action, computed, observable, observe, runInAction } from 'mobx';
 import Notification from 'models/notification';
+import { NotificationContextData } from 'notifications-context';
 import core from 'osu-core-singleton';
+import NotificationStackStore from 'stores/notification-stack-store';
 
 export default class NotificationStack {
   @observable cursor: JSON | null = null;
@@ -29,7 +31,7 @@ export default class NotificationStack {
   @observable total = 0;
 
   @observable private lastNotification: Notification | null = null;
-  private readonly store = core.dataStore.notificationStackStore;
+  private readonly rootStore = core.dataStore;
 
   @computed
   get first() {
@@ -52,6 +54,7 @@ export default class NotificationStack {
   }
 
   constructor(
+    private readonly store: NotificationStackStore,
     readonly objectId: number,
     readonly objectType: string,
     readonly name: string,
@@ -63,26 +66,13 @@ export default class NotificationStack {
   }
 
   @action
-  remove(notification: Notification) {
-    if (this.notifications.size === 1) {
-      // doesn't matter if the notification that's being removed doesn't actually exist in the stack,
-      // this can still be set.
-      this.lastNotification = this.notifications.values().next().value;
-    }
-
-    this.notifications.delete(notification.id);
-  }
-
-  @action
-  loadMore() {
+  loadMore(context: NotificationContextData) {
     if (this.cursor == null) { return; }
 
     this.isLoading = true;
-    const data = { cursor: this.cursor };
-    $.ajax({ url: route('notifications.index'), dataType: 'json', data })
-    .then(action((response: NotificationBundleJson) => {
-      this.store.updateWithBundle(response);
-    })).always(action(() => {
+
+    this.store.loadMore(this.cursor, context)
+    .always(action(() => {
       this.isLoading = false;
     }));
   }
@@ -108,6 +98,17 @@ export default class NotificationStack {
   @action
   markStackAsRead() {
     // TODO
+  }
+
+  @action
+  remove(notification: Notification) {
+    if (this.notifications.size === 1) {
+      // doesn't matter if the notification that's being removed doesn't actually exist in the stack,
+      // this can still be set.
+      this.lastNotification = this.notifications.values().next().value;
+    }
+
+    this.notifications.delete(notification.id);
   }
 
   @action

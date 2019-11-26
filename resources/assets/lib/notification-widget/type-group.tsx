@@ -21,6 +21,7 @@ import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import NotificationStack from 'models/notification-stack';
 import NotificationType from 'models/notification-type';
+import { NotificationContext } from 'notifications-context';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import { Spinner } from 'spinner';
@@ -40,6 +41,8 @@ const bn = 'notification-type-group';
 
 @observer
 export default class TypeGroup extends React.Component<Props & WithMarkReadProps, State> {
+  static readonly contextType = NotificationContext;
+
   state = {
     markingAsRead: false,
   };
@@ -84,7 +87,7 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
 
   @action
   private handleShowMore = () => {
-    this.props.type.loadMore();
+    this.props.type.loadMore(this.context);
   }
 
   private renderShowMore() {

@@ -107,7 +107,7 @@ class NotificationsController extends Controller
     public function index()
     {
         $unread = $this->unread ?? get_bool(request('unread'));
-        $group = presence(request('group'));
+        $type = presence(request('type'));
         $objectId = get_int(presence(request('cursor.object_id')));
         $objectType = presence(request('cursor.object_type'));
         $name = presence(request('cursor.name'));
@@ -123,7 +123,7 @@ class NotificationsController extends Controller
             ];
         }
 
-        [$types, $stacks, $notifications] = $this->getNotificationsByType($group, $cursor, $unread);
+        [$types, $stacks, $notifications] = $this->getNotificationsByType($type, $cursor, $unread);
 
         $bundleJson = [
             'notifications' => $notifications,
@@ -278,14 +278,19 @@ class NotificationsController extends Controller
 
             foreach ($notificationStacks as [$stack, $total]) {
                 // ordering means this gets overriden to the smallest value when not null.
-                $typeCursor = optional($stack->last())->id;
-                $stacks[] = $this->stackToResponse($stack, $total);
+                if ($stack->last() !== null) {
+                    $typeCursor = [
+                        'id' => $stack->last()->id,
+                        'type' => $type,
+                    ];
+                }
 
+                $stacks[] = $this->stackToResponse($stack, $total);
                 $notifications = $notifications->concat(json_collection($stack, 'Notification'));
             }
 
             $types[] = [
-                'cursor' => $typeCursor !== null ? ['id' => $typeCursor] : null,
+                'cursor' => $typeCursor,
                 'name' => $value,
                 'total' => $this->getTotalNotificationCount($value, $unread),
             ];

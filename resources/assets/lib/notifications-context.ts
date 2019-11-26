@@ -18,4 +18,8 @@
 
 import { createContext } from 'react';
 
-export const NotificationContext = createContext({ showRead: true });
+export interface NotificationContextData {
+  unreadOnly: boolean;
+}
+
+export const NotificationContext = createContext<NotificationContextData>({ unreadOnly: false });

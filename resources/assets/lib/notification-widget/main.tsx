@@ -55,7 +55,7 @@ export default class Main extends React.Component<Props, State> {
     }
 
     return (
-      <NotificationContext.Provider value={{ showRead: false }}>
+      <NotificationContext.Provider value={{ unreadOnly: true }}>
         <button
           className={this.buttonClass()}
           data-click-menu-target={this.menuId}

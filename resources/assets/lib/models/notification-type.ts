@@ -20,7 +20,10 @@ import { NotificationBundleJson, NotificationTypeJson } from 'interfaces/notific
 import { route } from 'laroute';
 import { action, observable } from 'mobx';
 import NotificationStack from 'models/notification-stack';
+import { NotificationContextData } from 'notifications-context';
 import core from 'osu-core-singleton';
+import { ContainerContext } from 'stateful-activation-context';
+import NotificationStackStore from 'stores/notification-stack-store';
 
 export type Name = null | 'beatmapset' | 'build' | 'channel' | 'forum_topic' | 'news_post' | 'user';
 const names: Name[] = [null, 'beatmapset', 'build', 'channel', 'forum_topic', 'news_post', 'user'];
@@ -40,25 +43,15 @@ export default class NotificationType {
   @observable stacks = new Map<string, NotificationStack>();
   @observable total = 0;
 
-  private readonly store = core.dataStore.notificationStackStore;
-
-  constructor(readonly name: string) {}
+  constructor(private readonly store: NotificationStackStore, readonly name: string) {}
 
   @action
-  loadMore() {
+  loadMore(context: NotificationContextData) {
     if (this.cursor == null) { return; }
 
     this.isLoading = true;
-
-    const params = {
-      data: { cursor: this.cursor, group: this.name },
-      dataType: 'json',
-      url: route('notifications.index'),
-    };
-
-    $.ajax(params).then(action((response: NotificationBundleJson) => {
-      this.store.updateWithBundle(response);
-    })).always(action(() => {
+    this.store.loadMore(this.cursor, context)
+    .always(action(() => {
       this.isLoading = false;
     }));
   }

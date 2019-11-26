@@ -17,10 +17,12 @@
  */
 
 import { NotificationBundleJson } from 'interfaces/notification-bundle-json';
+import { route } from 'laroute';
 import { action, observable } from 'mobx';
 import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType from 'models/notification-type';
+import { NotificationContextData } from 'notifications-context';
 import Store from 'stores/store';
 
 export default class NotificationStackStore extends Store {
@@ -35,11 +37,24 @@ export default class NotificationStackStore extends Store {
   }
 
   @action
+  loadMore(cursor: JSON context: NotificationContextData) {
+    const params = {
+      data: { cursor, unread: context.unreadOnly },
+      dataType: 'json',
+      url: route('notifications.index'),
+    };
+
+    return $.ajax(params).then(action((response: NotificationBundleJson) => {
+      this.updateWithBundle(response);
+    }));
+  }
+
+  @action
   updateWithBundle(bundle: NotificationBundleJson) {
     bundle.types?.forEach((json) => {
       let type = this.types.get(json.name);
       if (type == null) {
-        type = new NotificationType(json.name);
+        type = new NotificationType(this, json.name);
         this.types.set(type.name, type);
       }
       type.updateWithJson(json);
@@ -48,7 +63,7 @@ export default class NotificationStackStore extends Store {
     bundle.stacks?.forEach((json) => {
       let stack = this.stacks.get(idFromJson(json));
       if (stack == null) {
-        stack = new NotificationStack(json.object_id, json.object_type, json.name);
+        stack = new NotificationStack(this, json.object_id, json.object_type, json.name);
         this.stacks.set(stack.id, stack);
       }
       stack.updateWithJson(json);
