@@ -1607,10 +1607,12 @@ class User extends Model implements AuthenticatableContract
             : !$user->isLoginBlocked() && $user->checkPassword($password);
 
         if (!$validAuth) {
-            LoginAttempt::failedAttempt($ip, $user);
+            LoginAttempt::logAttempt($ip, $user, 'fail', $password);
 
             return trans('users.login.failed');
         }
+
+        LoginAttempt::logLoggedIn($ip, $user);
     }
 
     public static function findForLogin($username, $allowEmail = false)

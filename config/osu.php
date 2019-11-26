@@ -196,6 +196,7 @@ return [
         'verification_key_tries_limit' => 8,
         'max_friends' => 250,
         'max_friends_supporter' => 500,
+        'max_login_attempts' => get_int(env('USER_MAX_LOGIN_ATTEMPTS')) ?? 10,
         'max_multiplayer_rooms' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS')) ?? 1,
         'max_multiplayer_rooms_supporter' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS_SUPPORTER')) ?? 5,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
