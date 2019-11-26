@@ -41,7 +41,7 @@
                 <input
                     class="oauth-form__input js-login-form-input"
                     name="username"
-                    placeholder="{{ trans('layout.popup_login.login.email') }}"
+                    placeholder="{{ trans('layout.popup_login.login.username') }}"
                     required
                     autofocus
                 />

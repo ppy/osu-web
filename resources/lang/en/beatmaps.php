@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'History',
             'general' => 'General :scope',
+            'reviews' => 'Reviews',
             'timeline' => 'Timeline',
             'scopes' => [
                 'general' => 'This difficulty',

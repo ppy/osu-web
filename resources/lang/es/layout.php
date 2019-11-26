@@ -45,7 +45,7 @@ return [
             'account-edit' => 'ajustes',
             'account-verifyLink' => 'Verificación Completada',
             'friends-index' => 'amigos',
-            'changelog-index' => 'lista de Cambios',
+            'changelog-index' => 'listado de cambios',
             'changelog-build' => 'compilación',
             'getDownload' => 'descargar',
             'getIcons' => 'iconos',
@@ -53,8 +53,8 @@ return [
             'index' => 'panel',
             'legal-show' => 'información',
             'messages-index' => 'mensajes',
-            'news-index' => 'noticias',
-            'news-show' => 'noticias',
+            'news-index' => 'novedades',
+            'news-show' => 'novedades',
             'password-reset-index' => 'reestablecer contraseña',
             'search' => 'buscar',
             'supportTheGame' => 'apoya el juego',
@@ -269,7 +269,7 @@ return [
 
         'register' => [
             'download' => 'Descargar',
-            'info' => 'Necesita una cuenta, señor. ¿Por qué aún no tiene una?',
+            'info' => '¡Descargue osu! para crear su propia cuenta!',
             'title' => "¿No tienes una cuenta?",
         ],
     ],

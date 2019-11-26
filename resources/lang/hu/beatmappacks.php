@@ -38,7 +38,7 @@ Mivel az összes szám .zip és/vagy .osz kiterjesztésű, ezért a következő 
     ],
 
     'show' => [
-        'back' => '',
+        'back' => 'Vissza a listához',
         'download' => 'Letöltés',
         'item' => [
             'cleared' => 'lejátszott',

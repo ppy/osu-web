@@ -71,12 +71,12 @@ class Game extends Model
 
     public function scores()
     {
-        return $this->hasMany(Score::class, 'game_id');
+        return $this->hasMany(Score::class);
     }
 
     public function events()
     {
-        return $this->hasMany(Event::class, 'game_id');
+        return $this->hasMany(Event::class);
     }
 
     public function match()

@@ -26,7 +26,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatár',
-            'rules' => '',
+            'rules' => 'Kérjük, ellenőrizze, hogy az avatár illeszkedik-e ehhez :link.<br/>Ez azt jelenti, hogy <strong>minden korosztály számára alkalmasnak kell lennie</strong>. Vagyis nincs meztelenség, mások számára elfogadhatatlan vagy szuggesztív tartalom.',
             'rules_link' => 'a közösségi szabályok',
         ],
 
@@ -72,7 +72,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'felhatalmazott kliensek',
-        'own_clients' => '',
+        'own_clients' => 'külső alkalmazások',
         'title' => 'OAuth',
     ],
 

@@ -39,7 +39,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Artistas Destacados',
-                'description' => '¡Con tu soporte podemos acercarnos a mas artistas increíbles y licenciar mas músicas geniales para usar en osu!',
+                'description' => 'Con su apoyo, podemos acercarnos a artistas aún más impresionantes y licenciar más música para su uso en osu!',
                 'link_text' => 'Ver la lista actual &raquo;',
             ],
             'ads' => [
@@ -53,12 +53,12 @@ return [
             ],
             'bounty-program' => [
                 'title' => 'Programa de Bounty de Código Abierto',
-                'description' => 'Apoyar a los colaboradores de la comunidad que han dado su tiempo y esfuerzo para ayudar a hacer osu!.',
+                'description' => 'Apoye a los contribuyentes de la comunidad que han dado su tiempo y esfuerzo para ayudar a hacer que osu! sea mejor.',
                 'link_text' => 'Descubre más &raquo;',
             ],
         ],
         'perks' => [
-            'title' => '¿Oh? ¡¿Qué obtengo?!',
+            'title' => '¡Genial! ¿Qué beneficios obtengo?',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => 'acceso rápido y sencillo para buscar Beatmaps sin salir del juego.',

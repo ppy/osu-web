@@ -32,11 +32,11 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Kapat (Esc)',
+        'fullscreen' => 'Tam ekrana geç',
+        'zoom' => 'Yakınlaştır/Uzaklaştır',
+        'previous' => 'Bir önceki (sol ok)',
+        'next' => 'Bir sonraki (sağ ok)',
     ],
 
     'menu' => [
@@ -61,9 +61,9 @@ return [
             'team' => 'takım',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profil',
+            'friends' => 'arkadaşlar',
+            'settings' => 'ayarlar',
         ],
         'help' => [
             '_' => 'yardım',
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'İndir',
             'info' => 'Bir hesaba ihtiyacınız var, efendim. Neden hemen bir tane oluşturmuyorsunuz?',
             'title' => "Hesabın yok mu?",
         ],

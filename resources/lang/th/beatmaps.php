@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'รีเซทการเสนอชื่อ',
             'praise' => 'ชื่นชม',
             'problem' => 'ข้อผิดพลาด',
+            'review' => '',
             'suggestion' => 'ข้อเสนอแนะ',
         ],
 

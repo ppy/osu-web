@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Obnovit nominace',
             'praise' => 'Chválit',
             'problem' => 'Problém',
+            'review' => '',
             'suggestion' => 'Návrh',
         ],
 

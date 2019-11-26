@@ -25,7 +25,7 @@ return [
         'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
         'title' => 'witaj',
-        'see_more_news' => '',
+        'see_more_news' => 'zobacz więcej aktualności',
 
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
@@ -131,7 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Nowe rankingowe beatmapy',
             'popular' => 'Popularne beatmapy',
-            'by_user' => '',
+            'by_user' => 'autorstwa :user',
         ],
         'buttons' => [
             'download' => 'Pobierz osu!',
