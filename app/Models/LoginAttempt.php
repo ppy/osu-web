@@ -76,7 +76,7 @@ class LoginAttempt extends Model
         $state = $type;
 
         if ($password !== null) {
-            $state .= ':'.static::hashPassword($password);
+            $state .= ':'.static::hashInvalidPassword($password);
         }
 
         $record = static::findOrDefault($ip);
@@ -139,7 +139,7 @@ class LoginAttempt extends Model
         return DB::raw("CONCAT(failed_ids, ',', {$newFailedId})");
     }
 
-    public static function hashPassword($password)
+    public static function hashInvalidPassword($password)
     {
         // The goal is just to allow vaguely matching password - for
         // example when trying same password - to be excluded from being
