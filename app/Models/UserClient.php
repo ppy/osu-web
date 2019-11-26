@@ -46,6 +46,7 @@ class UserClient extends Model
 
     protected $primaryKeys = ['user_id', 'osu_md5', 'unique_md5'];
 
+    public $incrementing = false;
     public $timestamps = false;
 
     public static function lookupOrNew($userId, $hash)
