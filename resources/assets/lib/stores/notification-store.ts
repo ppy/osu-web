@@ -25,6 +25,9 @@ import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import RootDataStore from 'stores/root-data-store';
 import Store from 'stores/store';
+import NotificationStack from 'models/notification-stack';
+import NotificationStackStore from './notification-stack-store';
+import NotificationType from 'models/notification-type';
 
 export default class NotificationStore extends Store {
   @observable notifications = new Map<number, Notification>();
@@ -52,6 +55,37 @@ export default class NotificationStore extends Store {
     }
 
     this.debouncedSendQueued();
+  }
+
+  queueMarkStackAsRead(stack: NotificationStack) {
+    stack.isMarkingAsRead = true;
+    $.ajax({
+      data: {
+        stack: {
+          name: stack.name,
+          object_id: stack.objectId,
+          object_type: stack.objectType,
+
+        },
+      },
+      dataType: 'json',
+      method: 'POST',
+      url: route('notifications.mark-read'),
+    })
+    .then(action(() => this.root.notificationsRead.stack = stack))
+    .always(action(() => stack.isMarkingAsRead = false));
+  }
+
+  queueMarkTypeAsRead(type: NotificationType) {
+    type.isMarkingAsRead = true;
+    $.ajax({
+      data: { type: type.name },
+      dataType: 'json',
+      method: 'POST',
+      url: route('notifications.mark-read'),
+    })
+    .then(action(() => this.root.notificationsRead.type = type))
+    .always(action(() => type.isMarkingAsRead = false));
   }
 
   sendQueued() {
@@ -98,7 +132,7 @@ export default class NotificationStore extends Store {
     }
 
     if (notifications.length > 0) {
-      this.root.notificationsRead = notifications;
+      this.root.notificationsRead.notifications = notifications;
     }
   }
 

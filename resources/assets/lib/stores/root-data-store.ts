@@ -33,6 +33,8 @@ import UnreadNotificationStackStore from './unread-notification-stack-store';
 import UserStore from './user-store';
 
 import Notification from 'models/notification';
+import NotificationStack from 'models/notification-stack';
+import NotificationType from 'models/notification-type';
 
 export default class RootDataStore {
   beatmapsetSearch: BeatmapsetSearch;
@@ -48,7 +50,11 @@ export default class RootDataStore {
   unreadNotificationStackStore: NotificationStackStore;
   userStore: UserStore;
 
-  @observable notificationsRead: Notification[] = [];
+  @observable notificationsRead = {
+    notifications: [] as Notification[],
+    stack: null as NotificationStack | null,
+    type: null as NotificationType | null,
+  };
 
   constructor(dispatcher: Dispatcher) {
     // TODO: needs re-re-refactoring

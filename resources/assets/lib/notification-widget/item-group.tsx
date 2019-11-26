@@ -34,7 +34,6 @@ interface Props {
 
 interface State {
   expanded: boolean;
-  markingAsRead: boolean;
 }
 
 @observer
@@ -42,7 +41,6 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
   static readonly contextType = NotificationContext;
   readonly state = {
     expanded: false,
-    markingAsRead: false,
   };
 
   render() {
@@ -53,7 +51,7 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
       <div className='notification-popup-item-group'>
         <Item
           markRead={this.handleMarkAsRead}
-          markingAsRead={this.props.markingAsRead || this.state.markingAsRead}
+          markingAsRead={this.props.markingAsRead || this.props.stack.isMarkingAsRead}
           expandButton={this.renderExpandButton()}
           icons={categoryToIcons[item.category]}
           item={item}
@@ -69,12 +67,7 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
   }
 
   private handleMarkAsRead = () => {
-    this.setState({ markingAsRead: true });
     this.props.stack.markStackAsRead();
-    // core.dataStore.notificationStore.markAsRead(this.props.items)
-    // .always(() => {
-    //   this.setState({ markingAsRead: false });
-    // });
   }
 
   private handleShowMore = () => {

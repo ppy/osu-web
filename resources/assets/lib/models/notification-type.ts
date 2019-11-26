@@ -16,13 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationBundleJson, NotificationTypeJson } from 'interfaces/notification-bundle-json';
-import { route } from 'laroute';
+import { NotificationTypeJson } from 'interfaces/notification-bundle-json';
 import { action, observable } from 'mobx';
 import NotificationStack from 'models/notification-stack';
 import { NotificationContextData } from 'notifications-context';
 import core from 'osu-core-singleton';
-import { ContainerContext } from 'stateful-activation-context';
 import NotificationStackStore from 'stores/notification-stack-store';
 
 export type Name = null | 'beatmapset' | 'build' | 'channel' | 'forum_topic' | 'news_post' | 'user';
@@ -40,6 +38,7 @@ export function getValidName(value: unknown) {
 export default class NotificationType {
   @observable cursor: JSON | null = null;
   @observable isLoading = false;
+  @observable isMarkingAsRead = false;
   @observable stacks = new Map<string, NotificationStack>();
   @observable total = 0;
 
@@ -58,7 +57,7 @@ export default class NotificationType {
 
   @action
   markTypeAsRead() {
-    // TODO
+    core.dataStore.notificationStore.queueMarkTypeAsRead(this);
   }
 
   @action

@@ -16,9 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationBundleJson, NotificationStackJson } from 'interfaces/notification-bundle-json';
-import { route } from 'laroute';
-import { action, computed, observable, observe, runInAction } from 'mobx';
+import { NotificationStackJson } from 'interfaces/notification-bundle-json';
+import { action, computed, observable } from 'mobx';
 import Notification from 'models/notification';
 import { NotificationContextData } from 'notifications-context';
 import core from 'osu-core-singleton';
@@ -27,6 +26,7 @@ import NotificationStackStore from 'stores/notification-stack-store';
 export default class NotificationStack {
   @observable cursor: JSON | null = null;
   @observable isLoading = false;
+  @observable isMarkingAsRead = false;
   @observable notifications = new Map<number, Notification>();
   @observable total = 0;
 
@@ -86,7 +86,7 @@ export default class NotificationStack {
 
   @action
   markStackAsRead() {
-    // TODO
+    this.rootStore.notificationStore.queueMarkStackAsRead(this);
   }
 
   @action

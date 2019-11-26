@@ -158,8 +158,32 @@ class NotificationsController extends Controller
     public function markRead()
     {
         $user = auth()->user();
-        $ids = get_params(request()->all(), null, ['ids:int[]'])['ids'] ?? [];
-        $itemsQuery = $user->userNotifications()->whereIn('notification_id', $ids);
+        $params = get_params(request()->all(), null, [
+            'stack.name:string',
+            'stack.object_id:int',
+            'stack.object_type:string',
+            'type:string',
+            'ids:int[]'
+        ]);
+
+        $type = $params['type'] ?? null;
+        $stack = $params['stack'] ?? [];
+        $ids = get_params($params, null, ['ids:int[]'])['ids'] ?? [];
+
+        if (present($type)) {;
+            $itemsQuery = $user->userNotifications()->whereHas('notification', function ($query) use ($type) {
+                $query->where('notifiable_type', $type);
+            });
+        } else if (!empty($stack)) {
+            $itemsQuery = $user->userNotifications()->whereHas('notification', function ($query) use ($stack) {
+                $query
+                    ->where('notifiable_type', $stack['object_type'])
+                    ->where('notifiable_id', $stack['object_id'])
+                    ->where('name', $stack['name']);
+            });
+        } else {
+            $itemsQuery = $user->userNotifications()->whereIn('notification_id', $ids);
+        }
 
         if ($itemsQuery->update(['is_read' => true])) {
             event(new NotificationReadEvent($user->getKey(), $ids));

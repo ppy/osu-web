@@ -17,7 +17,7 @@
  */
 
 import Dispatcher from 'dispatcher';
-import { autorun } from 'mobx';
+import { autorun, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 import NotificationStackStore from './notification-stack-store';
 import RootDataStore from './root-data-store';
@@ -27,12 +27,37 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
     super(root, dispatcher);
 
     autorun(() => {
-      this.root.notificationsRead.forEach((notification) => {
+      this.root.notificationsRead.notifications.forEach((notification) => {
         const stack = this.stacks.get(notification.stackId);
-        if (stack?.remove(notification)) {
-          core.dataStore.notificationStore.unreadCount--;
-          stack.total--;
-        }
+        runInAction(() => {
+          if (stack?.remove(notification)) {
+            core.dataStore.notificationStore.unreadCount--;
+            stack.total--;
+          }
+        });
+      });
+    });
+
+    autorun(() => {
+      if (this.root.notificationsRead.stack == null) { return; }
+      const stack = this.stacks.get(this.root.notificationsRead.stack.id);
+      if (stack == null) { return; }
+
+      runInAction(() => {
+        core.dataStore.notificationStore.unreadCount -= stack.total;
+        this.stacks.delete(stack.id);
+        this.types.get(stack.objectType)?.stacks.delete(stack.id);
+      });
+    });
+
+    autorun(() => {
+      if (this.root.notificationsRead.type == null) { return; }
+      const type = this.types.get(this.root.notificationsRead.type.name);
+      if (type == null) { return; }
+
+      runInAction(() => {
+        core.dataStore.notificationStore.unreadCount -= type.total;
+        this.types.delete(type.name);
       });
     });
   }
