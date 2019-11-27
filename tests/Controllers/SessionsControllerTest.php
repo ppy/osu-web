@@ -74,7 +74,7 @@ class SessionsControllerTest extends TestCase
         $this->assertSame('', $user->fresh()->user_password);
     }
 
-    public function testCreateWrongPassword()
+    public function testLoginWrongPassword()
     {
         $password = 'password1';
         $user = factory(User::class)->create(compact('password'));
@@ -93,7 +93,7 @@ class SessionsControllerTest extends TestCase
         $this->assertSame(1, $record->total_attempts);
     }
 
-    public function testCreateWrongPasswordTwiceDifferent()
+    public function testLoginWrongPasswordTwiceDifferent()
     {
         $password = 'password1';
         $user = factory(User::class)->create(compact('password'));
@@ -117,7 +117,7 @@ class SessionsControllerTest extends TestCase
         $this->assertSame(2, $record->total_attempts);
     }
 
-    public function testCreateWrongPasswordTwiceSame()
+    public function testLoginWrongPasswordTwiceSame()
     {
         $password = 'password1';
         $wrongPassword = 'password2';
@@ -142,7 +142,7 @@ class SessionsControllerTest extends TestCase
         $this->assertSame(1, $record->total_attempts);
     }
 
-    public function testCreateWrongPasswordExtraFailedOnAnotherUser()
+    public function testLoginWrongPasswordExtraFailedOnAnotherUser()
     {
         $password = 'password1';
         $ip = '127.0.0.1';
