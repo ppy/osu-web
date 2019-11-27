@@ -272,6 +272,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+        $this->ensureRecentlyPlayed($user);
 
         if ($discussion->message_type === 'mapper_note') {
             if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->canModerate() && !$user->isBNG()) {
@@ -461,6 +462,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+        $this->ensureRecentlyPlayed($user);
 
         if ($user->canModerate()) {
             return 'ok';
@@ -702,6 +704,7 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
+        $this->ensureRecentlyPlayed($user);
 
         if ($target->hasBlocked($user) || $user->hasBlocked($target)) {
             return $prefix.'blocked';
@@ -726,6 +729,7 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
+        $this->ensureRecentlyPlayed($user);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
             return $prefix.'no_access';
@@ -924,6 +928,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+        $this->ensureRecentlyPlayed($user);
 
         return 'ok';
     }
@@ -1180,6 +1185,8 @@ class OsuAuthorize
                 return $prefix.'too_many_help_posts';
             }
         } else {
+            $this->ensureRecentlyPlayed($user);
+
             if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
                 return $prefix.'play_more';
             }
@@ -1634,5 +1641,26 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @throws AuthorizationException
+     */
+    public function ensureRecentlyPlayed(?User $user) : void
+    {
+        if ($user === null) {
+            return;
+        }
+
+        $days = config('osu.user.min_last_played_days_for_posting');
+
+        if ($days <= 0) {
+            return;
+        }
+
+        if ($user->lastPlayed()->addDays($days)->isPast()) {
+            throw new AuthorizationException('play_more');
+        }
     }
 }

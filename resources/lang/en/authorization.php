@@ -19,6 +19,12 @@
  */
 
 return [
+    'play_more' => 'Please play ranked map to post',
+    'require_login' => 'Please sign in to proceed.',
+    'restricted' => "Can't do that while restricted.",
+    'silenced' => "Can't do that while silenced.",
+    'unauthorized' => 'Access denied.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Can not undo hyping.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Only admin can view this forum.',
         ],
     ],
-
-    'require_login' => 'Please sign in to proceed.',
-
-    'unauthorized' => 'Access denied.',
-
-    'silenced' => "Can't do that while silenced.",
-
-    'restricted' => "Can't do that while restricted.",
 
     'user' => [
         'page' => [

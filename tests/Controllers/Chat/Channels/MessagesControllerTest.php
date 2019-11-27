@@ -354,6 +354,9 @@ class MessagesControllerTest extends TestCase
         parent::setUp();
 
         $this->user = factory(User::class)->create();
+        $minimumLastPlayed = now()->subDays(config('osu.user.min_last_played_days_for_posting') - 1);
+        $this->user->statisticsOsu()->create(['last_played' => $minimumLastPlayed]);
+
         $this->anotherUser = factory(User::class)->create();
         $this->restrictedUser = factory(User::class)->states('restricted')->create();
         $this->silencedUser = factory(User::class)->states('silenced')->create();
