@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use Auth;
 
 class GroupsController extends Controller
 {
@@ -30,8 +31,10 @@ class GroupsController extends Controller
     public function show($id)
     {
         $group = Group::visible()->findOrFail($id);
+        $currentMode = studly_case(Auth::user()->playmode ?? 'osu')
 
         $users = $group->users()
+            ->with('statistics'.$currentMode)
             ->eagerloadForListing()
             ->default()
             ->orderBy('username', 'asc')
