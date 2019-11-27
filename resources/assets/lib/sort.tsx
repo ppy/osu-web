@@ -42,7 +42,7 @@ export class Sort extends React.PureComponent<Props> {
         >
           {value === 'rank'
             ? <span>
-                <i className={`fas fa-extra-${currentUser.playmode}`} /> {osu.trans('sort.rank')}
+                <i className={`fas fa-extra-mode-${currentUser.playmode || 'osu'}`} /> {osu.trans('sort.rank')}
               </span>
             : osu.trans(`sort.${value}`)
           }

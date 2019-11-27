@@ -41,7 +41,7 @@ interface State {
 }
 
 function rankSortDescending(x: User, y: User) {
-  if (x.current_mode_rank && y.current_mode_rank) {
+  if (x.current_mode_rank != null && y.current_mode_rank != null) {
     return x.current_mode_rank - y.current_mode_rank;
   } else {
     return -1;

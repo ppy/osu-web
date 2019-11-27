@@ -52,7 +52,7 @@ class FriendsController extends Controller
     public function index()
     {
         $currentUser = Auth::user();
-        $currentMode = ucfirst($currentUser->playmode);
+        $currentMode = studly_case($currentUser->playmode);
 
         $friends = $currentUser
             ->friends()
