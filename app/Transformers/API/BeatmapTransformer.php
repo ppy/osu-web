@@ -53,7 +53,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
           'artist' => $beatmap->beatmapset->artist,
           'title' => $beatmap->beatmapset->title,
           'creator' => $beatmap->beatmapset->creator,
-          'bpm' => $beatmap->beatmapset->bpm,
+          'bpm' => $beatmap->bpm,
           'source' => $beatmap->beatmapset->source,
           'tags' => $beatmap->beatmapset->tags,
           'genre_id' => $beatmap->beatmapset->genre_id,
