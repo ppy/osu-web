@@ -18,7 +18,6 @@
 
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
-import { ValueDisplay } from 'value-display'
 import { Discussion } from "../beatmap-discussions/discussion"
 el = React.createElement
 

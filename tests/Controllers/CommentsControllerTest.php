@@ -14,6 +14,8 @@ class CommentsControllerTest extends TestCase
     public function testStore()
     {
         $user = factory(User::class)->create();
+        $minimumLastPlayed = now()->subDays(config('osu.user.min_last_played_days_for_posting') - 1);
+        $user->statisticsOsu()->create(['last_played' => $minimumLastPlayed->subDays(2)]);
         $otherUser = factory(User::class)->create();
 
         $beatmapset = factory(Beatmapset::class)->create();
@@ -23,21 +25,29 @@ class CommentsControllerTest extends TestCase
             'subtype' => 'comment',
         ]);
 
-        $commentableType = 'beatmapset';
-        $commentableId = $beatmapset->getKey();
-
         $currentComments = Comment::count();
         $currentNotifications = Notification::count();
 
+        $params = ['comment' => [
+            'commentable_type' => 'beatmapset',
+            'commentable_id' => $beatmapset->getKey(),
+            'message' => 'Hello.',
+        ]];
+
         $this
             ->actingAsVerified($user)
-            ->post(route('comments.store'), [
-                'comment' => [
-                    'commentable_type' => $commentableType,
-                    'commentable_id' => $commentableId,
-                    'message' => 'Hello.',
-                ],
-            ])
+            ->post(route('comments.store'), $params)
+            ->assertStatus(403);
+
+        $this->assertSame($currentComments, Comment::count());
+        $this->assertSame($currentNotifications, Notification::count());
+
+        $user->statisticsOsu->update(['last_played' => $minimumLastPlayed]);
+        app()->make('OsuAuthorize')->cacheReset();
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('comments.store'), $params)
             ->assertStatus(200);
 
         $this->assertSame($currentComments + 1, Comment::count());
@@ -47,6 +57,8 @@ class CommentsControllerTest extends TestCase
     public function testStoreReply()
     {
         $user = factory(User::class)->create();
+        $minimumLastPlayed = now()->subDays(config('osu.user.min_last_played_days_for_posting') - 1);
+        $user->statisticsOsu()->create(['last_played' => $minimumLastPlayed->subDays(2)]);
 
         $beatmapset = factory(Beatmapset::class)->create();
         $parent = $beatmapset->comments()->create([
@@ -54,16 +66,26 @@ class CommentsControllerTest extends TestCase
             'message' => 'Hello.',
         ]);
 
+        $params = ['comment' => [
+            'parent_id' => $parent->getKey(),
+            'message' => 'This is a reply.',
+        ]];
+
         $currentComments = $beatmapset->comments()->count();
 
         $this
             ->actingAsVerified($user)
-            ->post(route('comments.store'), [
-                'comment' => [
-                    'parent_id' => $parent->getKey(),
-                    'message' => 'This is a reply.',
-                ],
-            ])
+            ->post(route('comments.store'), $params)
+            ->assertStatus(403);
+
+        $this->assertSame($currentComments, $beatmapset->comments()->count());
+
+        $user->statisticsOsu->update(['last_played' => $minimumLastPlayed]);
+        app()->make('OsuAuthorize')->cacheReset();
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('comments.store'), $params)
             ->assertStatus(200);
 
         $this->assertSame($currentComments + 1, $beatmapset->comments()->count());

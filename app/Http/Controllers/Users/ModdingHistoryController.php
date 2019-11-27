@@ -94,6 +94,25 @@ class ModdingHistoryController extends Controller
 
         $discussions['items'] = $discussions['query']->get();
 
+        // TODO: remove this when reviews are released
+        if (config('osu.beatmapset.discussion_review_enabled')) {
+            $children = BeatmapDiscussion::whereIn('parent_id', $discussions['items']->pluck('id'))
+                ->with([
+                    'beatmap',
+                    'beatmapDiscussionVotes',
+                    'beatmapset',
+                    'startingPost',
+                ]);
+
+            if ($this->isModerator) {
+                $children->visibleWithTrashed();
+            } else {
+                $children->visible();
+            }
+
+            $discussions['items'] = $discussions['items']->merge($children->get());
+        }
+
         $posts = BeatmapDiscussionPost::search($this->searchParams);
         $posts['query']->with([
             'beatmapDiscussion.beatmap',
@@ -190,7 +209,7 @@ class ModdingHistoryController extends Controller
             'discussions' => json_collection(
                 $discussions['items'],
                 'BeatmapDiscussion',
-                ['starting_post', 'beatmapset', 'current_user_attributes']
+                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
             ),
             'events' => json_collection(
                 $events['items'],
