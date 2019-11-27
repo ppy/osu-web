@@ -25,7 +25,7 @@ use Tests\TestCase;
 
 class SessionsControllerTest extends TestCase
 {
-    public function testCreate()
+    public function testLogin()
     {
         $password = 'password1';
         $user = factory(User::class)->create(compact('password'));
@@ -38,7 +38,7 @@ class SessionsControllerTest extends TestCase
         $this->assertAuthenticated();
     }
 
-    public function testCreateInactiveUser()
+    public function testLoginInactiveUser()
     {
         $password = 'password1';
         $user = factory(User::class)->create(compact('password'));
@@ -54,7 +54,7 @@ class SessionsControllerTest extends TestCase
         $this->get(route('home'))->assertStatus(401);
     }
 
-    public function testCreateInactiveUserDifferentCountry()
+    public function testLoginInactiveUserDifferentCountry()
     {
         $password = 'password1';
         $user = factory(User::class)->create(compact('password'));
