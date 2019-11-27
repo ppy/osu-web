@@ -49,7 +49,14 @@ class AppServiceProvider extends ServiceProvider
 
         Queue::after(function (JobProcessed $event) {
             if (config('datadog-helper.enabled')) {
-                Datadog::increment(config('datadog-helper.prefix_web').'.queue.run', 1, ['queue' => $event->job->getQueue()]);
+                Datadog::increment(
+                    config('datadog-helper.prefix_web').'.queue.run',
+                    1,
+                    [
+                        'job' => $event->job->resolveName(),
+                        'queue' => $event->job->getQueue(),
+                    ]
+                );
             }
         });
     }

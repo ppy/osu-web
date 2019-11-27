@@ -18,35 +18,32 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Account;
+namespace Tests\Models;
 
-use App\Http\Controllers\Controller;
-use Auth;
-use Request;
+use App\Models\User;
+use Tests\TestCase;
 
-class SessionsController extends Controller
+class UserTest extends TestCase
 {
-    public function __construct()
+    public function testEmailLoginDisabled()
     {
-        $this->middleware('auth');
-        $this->middleware('verify-user');
+        config()->set('osu.user.allow_email_login', false);
+        factory(User::class)->create([
+            'username' => 'test',
+            'user_email' => 'test@example.org',
+        ]);
 
-        return parent::__construct();
+        $this->assertNull(User::findForLogin('test@example.org'));
     }
 
-    public function destroy($id)
+    public function testEmailLoginEnabled()
     {
-        if (!Auth::check()) {
-            abort(403);
-        }
+        config()->set('osu.user.allow_email_login', true);
+        $user = factory(User::class)->create([
+            'username' => 'test',
+            'user_email' => 'test@example.org',
+        ]);
 
-        if (Request::session()->isCurrentSession($id)) {
-            // current session
-            logout();
-        } else {
-            Request::session()->destroyUserSession($id);
-        }
-
-        return response([], 204);
+        $this->assertTrue($user->is(User::findForLogin('test@example.org')));
     }
 }
