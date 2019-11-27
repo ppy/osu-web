@@ -74,7 +74,7 @@ class LoginAttempt extends Model
         // The goal is just to allow vaguely matching password - for
         // example when trying same password - to be excluded from being
         // counted as additional attempt.
-        return substr(sha1(sha1($password, true)), 0, 20);
+        return substr(sha1('osu_unique_'.md5($password)), 8, 12);
     }
 
     public static function isLocked($ip)
