@@ -24,7 +24,6 @@ import { formatMessage } from 'notification-maps/message';
 import { urlSingular } from 'notification-maps/url';
 import * as React from 'react';
 import Item from './item';
-import ItemProps from './item-props';
 import { WithMarkReadProps } from './with-mark-read';
 
 interface Props {

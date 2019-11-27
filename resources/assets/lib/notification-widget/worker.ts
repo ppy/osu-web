@@ -20,7 +20,7 @@ import { NotificationBundleJson } from 'interfaces/notification-bundle-json';
 import NotificationJson from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
 import { route } from 'laroute';
-import { forEach, minBy, random } from 'lodash';
+import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import core from 'osu-core-singleton';
 
@@ -94,19 +94,6 @@ export default class Worker {
 
   @computed get loadingMore() {
     return this.isPendingXhr('loadMore');
-  }
-
-  @computed get minLoadedId() {
-    return null;
-    let ret: null | number = null;
-
-    store.notifications.forEach((item) => {
-      if (item.id > 0 && (ret == null || item.id < ret)) {
-        ret = item.id;
-      }
-    });
-
-    return ret;
   }
 
   @computed get refreshing() {
@@ -228,12 +215,9 @@ export default class Worker {
 
     Timeout.clear(this.timeout.loadMore);
 
-    const minLoadedId = this.minLoadedId;
-    const params = minLoadedId == null ? null : { max_id: minLoadedId - 1 };
-
     this.xhrLoadingState.loadMore = true;
 
-    this.xhr.loadMore = $.ajax({ url: route('notifications.unread', params), dataType: 'json' })
+    this.xhr.loadMore = $.ajax({ url: route('notifications.unread'), dataType: 'json' })
       .always(action(() => {
         this.xhrLoadingState.loadMore = false;
       })).done(this.loadBundle)
@@ -260,7 +244,7 @@ export default class Worker {
     }));
   }
 
-  @action refresh = (maxId?: number) => {
+  @action refresh = () => {
     // TODO: implement updating existing (and newer?) notifications.
   }
 
@@ -291,10 +275,6 @@ export default class Worker {
       })).fail(action(() => {
         this.timeout.startWebSocket = Timeout.set(10000, this.startWebSocket);
       }));
-  }
-
-  @action updateFromServer = (json: NotificationJson) => {
-    return this.notificationStore.updateWithJson(json);
   }
 
   @action updatePmNotification = () => {
