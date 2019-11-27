@@ -142,6 +142,7 @@ interface BeatmapDiscussion {
   parent_id: number | null;
   posts: BeatmapDiscussionPost[];
   resolved: boolean;
+  starting_post: BeatmapDiscussionPost;
   timestamp: number | null;
 }
 
