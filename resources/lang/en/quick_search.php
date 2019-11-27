@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,12 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussion-review-post {
-  &__block {
-    margin-bottom: 10px;
-  }
+return [
+    'mode' => [
+        'beatmapset' => 'Beatmap',
+        'forum_post' => 'Forum',
+        'other' => 'Other',
+        'user' => 'Player',
+        'wiki_page' => 'Wiki',
+    ],
 
-  &__link {
-    .link-default();
-  }
-}
+    'result' => [
+        'empty' => 'No results',
+        'empty_for' => 'No results for :modes',
+        'more' => 'More :mode Search Results',
+        'title' => ':mode Search Results',
+    ],
+];
