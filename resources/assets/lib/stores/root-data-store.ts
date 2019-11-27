@@ -25,11 +25,9 @@ import ChannelStore from './channel-store';
 import ClientStore from './client-store';
 import CommentStore from './comment-store';
 import CommentableMetaStore from './commentable-meta-store';
-import NotificationStackStore from './notification-stack-store';
 import NotificationStore from './notification-store';
 import OwnClientStore from './own-client-store';
 import UIStateStore from './ui-state-store';
-import UnreadNotificationStackStore from './unread-notification-stack-store';
 import UserStore from './user-store';
 
 import Notification from 'models/notification';
@@ -43,11 +41,9 @@ export default class RootDataStore {
   clientStore: ClientStore;
   commentableMetaStore: CommentableMetaStore;
   commentStore: CommentStore;
-  notificationStackStore: NotificationStackStore;
   notificationStore: NotificationStore;
   ownClientStore: OwnClientStore;
   uiState: UIStateStore;
-  unreadNotificationStackStore: NotificationStackStore;
   userStore: UserStore;
 
   @observable notificationsRead = {
@@ -66,8 +62,6 @@ export default class RootDataStore {
     this.commentStore = new CommentStore(this, dispatcher);
     this.channelStore = new ChannelStore(this, dispatcher);
     this.notificationStore = new NotificationStore(this, dispatcher);
-    this.notificationStackStore = new NotificationStackStore(this, dispatcher);
-    this.unreadNotificationStackStore = new UnreadNotificationStackStore(this, dispatcher);
     this.ownClientStore = new OwnClientStore(this, dispatcher);
     this.userStore = new UserStore(this, dispatcher);
   }

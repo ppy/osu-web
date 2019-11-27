@@ -86,7 +86,7 @@ export default class Worker {
   @observable private active: boolean = false;
   private endpoint?: string;
   private readonly notificationStore = core.dataStore.notificationStore;
-  private readonly store = core.dataStore.unreadNotificationStackStore;
+  private readonly store = core.dataStore.notificationStore.unreadStacks;
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
   private xhr: XHRCollection = {};

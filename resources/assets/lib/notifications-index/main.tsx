@@ -63,7 +63,7 @@ export class Main extends React.Component<{}, State> {
     type: this.typeNameFromUrl,
   };
 
-  private readonly store = core.dataStore.notificationStackStore;
+  private readonly store = core.dataStore.notificationStore.stacks;
 
   render() {
     return (

@@ -16,23 +16,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Dispatcher from 'dispatcher';
 import NotificationJson from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, observable, runInAction, autorun } from 'mobx';
+import { action, observable, runInAction } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
-import RootDataStore from 'stores/root-data-store';
-import Store from 'stores/store';
 import NotificationStack from 'models/notification-stack';
-import NotificationStackStore from './notification-stack-store';
 import NotificationType from 'models/notification-type';
+import Store from 'stores/store';
+import NotificationStackStore from './notification-stack-store';
+import UnreadNotificationStackStore from './unread-notification-stack-store';
 
 export default class NotificationStore extends Store {
   @observable notifications = new Map<number, Notification>();
   @observable pmNotification = new LegacyPmNotification();
+  readonly stacks = new NotificationStackStore(this.root, this.dispatcher);
   @observable unreadCount = 0;
+  readonly unreadStacks = new UnreadNotificationStackStore(this.root, this.dispatcher);
 
   private debouncedSendQueued = debounce(this.sendQueued, 500);
   private queued = new Set<number>();

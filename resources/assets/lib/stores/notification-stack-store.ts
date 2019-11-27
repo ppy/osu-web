@@ -28,7 +28,10 @@ import Store from 'stores/store';
 export default class NotificationStackStore extends Store {
   @observable readonly stacks = new Map<string, NotificationStack>();
   @observable readonly types = new Map<string, NotificationType>();
-  protected readonly notifications = this.root.notificationStore.notifications;
+
+  get notifications() {
+    return this.root.notificationStore.notifications;
+  }
 
   @action
   flushStore() {

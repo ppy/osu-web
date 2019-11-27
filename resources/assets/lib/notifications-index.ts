@@ -22,7 +22,7 @@ import core from 'osu-core-singleton';
 
 reactTurbolinks.registerPersistent('notifications-index', Main, true, (container: HTMLElement) => {
   const bundle = osu.parseJson('json-notifications') as NotificationBundleJson;
-  core.dataStore.notificationStackStore.updateWithBundle(bundle);
+  core.dataStore.notificationStore.stacks.updateWithBundle(bundle);
 
   return {};
 });

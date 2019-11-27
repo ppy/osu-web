@@ -40,7 +40,7 @@ export default class Main extends React.Component<Props, State> {
   };
 
   private menuId = `nav-notification-popup-${osu.uuid()}`;
-  private readonly store = core.dataStore.unreadNotificationStackStore;
+  private readonly store = core.dataStore.notificationStore.unreadStacks;
 
   static getDerivedStateFromError(error: Error) {
     // tslint:disable-next-line: no-console
