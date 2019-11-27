@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,12 +18,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussion-review-post {
-  &__block {
-    margin-bottom: 10px;
-  }
+namespace App\Mail;
 
-  &__link {
-    .link-default();
-  }
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+
+class UserForceReactivation extends Mailable implements ShouldQueue
+{
+    private $user;
+    private $reason;
+
+    public function __construct($attributes)
+    {
+        $this->user = $attributes['user'];
+        $this->reason = $attributes['reason'];
+    }
+
+    public function build()
+    {
+        return $this
+            ->text(view('emails.user_force_reactivation', [
+                'reason' => $this->reason,
+                'user' => $this->user,
+            ]))->subject(trans('users.force_reactivation.email.subject'));
+    }
 }

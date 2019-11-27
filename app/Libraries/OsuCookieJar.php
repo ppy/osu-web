@@ -18,35 +18,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Account;
+namespace App\Libraries;
 
-use App\Http\Controllers\Controller;
-use Auth;
-use Request;
+use Illuminate\Cookie\CookieJar;
+use Symfony\Component\HttpFoundation\Cookie;
 
-class SessionsController extends Controller
+class OsuCookieJar extends CookieJar
 {
-    public function __construct()
+    public function queueForget($name, $path = null, $domain = null)
     {
-        $this->middleware('auth');
-        $this->middleware('verify-user');
+        $domain = $domain ?? $this->domain;
+        $path = $path ?? $this->path;
 
-        return parent::__construct();
-    }
+        // Don't use $this->make as it can't set empty domain.
+        // Protip:
+        // - when using 'domain', browser sets '.domain'
+        // - when using '.domain', browser sets '.domain'
+        // - when using '', browser sets 'domain'
+        $cookie = new Cookie($name, '', 1, $path, $domain);
 
-    public function destroy($id)
-    {
-        if (!Auth::check()) {
-            abort(403);
-        }
-
-        if (Request::session()->isCurrentSession($id)) {
-            // current session
-            logout();
-        } else {
-            Request::session()->destroyUserSession($id);
-        }
-
-        return response([], 204);
+        // Don't use $this->queue as it doesn't handle duplicate cookies
+        // with same name and path but different domain.
+        $this->queued["{$domain}:{$name}"][$path] = $cookie;
     }
 }

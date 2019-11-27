@@ -139,7 +139,10 @@ interface BeatmapDiscussion {
   beatmap_id: number | null;
   beatmapset_id: number;
   message_type: string;
+  parent_id: number | null;
   posts: BeatmapDiscussionPost[];
+  resolved: boolean;
+  starting_post: BeatmapDiscussionPost;
   timestamp: number | null;
 }
 

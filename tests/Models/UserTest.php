@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,12 +18,32 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussion-review-post {
-  &__block {
-    margin-bottom: 10px;
-  }
+namespace Tests\Models;
 
-  &__link {
-    .link-default();
-  }
+use App\Models\User;
+use Tests\TestCase;
+
+class UserTest extends TestCase
+{
+    public function testEmailLoginDisabled()
+    {
+        config()->set('osu.user.allow_email_login', false);
+        factory(User::class)->create([
+            'username' => 'test',
+            'user_email' => 'test@example.org',
+        ]);
+
+        $this->assertNull(User::findForLogin('test@example.org'));
+    }
+
+    public function testEmailLoginEnabled()
+    {
+        config()->set('osu.user.allow_email_login', true);
+        $user = factory(User::class)->create([
+            'username' => 'test',
+            'user_email' => 'test@example.org',
+        ]);
+
+        $this->assertTrue($user->is(User::findForLogin('test@example.org')));
+    }
 }
