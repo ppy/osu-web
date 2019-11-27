@@ -306,11 +306,15 @@ class NotificationsController extends Controller
                 if ($stack->last() !== null) {
                     $typeCursor = [
                         'id' => $stack->last()->id,
-                        'type' => $type,
+                        'type' => $value,
                     ];
                 }
 
-                $stacks[] = $this->stackToResponse($stack, $total);
+                $response = $this->stackToResponse($stack, $total);
+                if ($response !== null) {
+                    $stacks[] = $response;
+                }
+
                 $notifications = $notifications->concat(json_collection($stack, 'Notification'));
             }
 
