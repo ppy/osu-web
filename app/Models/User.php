@@ -1659,6 +1659,29 @@ class User extends Model implements AuthenticatableContract
         return $this->memoized[__FUNCTION__];
     }
 
+    public function lastPlayed()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $unionQuery = null;
+
+            foreach (Beatmap::MODES as $key => $_value) {
+                $query = $this->statistics($key, true)->select('last_played');
+
+                if ($unionQuery === null) {
+                    $unionQuery = $query;
+                } else {
+                    $unionQuery->unionAll($query);
+                }
+            }
+
+            $lastPlayed = $unionQuery->get()->max('last_played') ?? 0;
+
+            $this->memoized[__FUNCTION__] = Carbon::parse($lastPlayed);
+        }
+
+        return $this->memoized[__FUNCTION__];
+    }
+
     /**
      * User's previous usernames
      *

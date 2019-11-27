@@ -24,18 +24,18 @@
 ])
 
 @section('content')
-    <div class="oauth-form">
-        <div class="oauth-form__dialog">
+    <div class="dialog-form">
+        <div class="dialog-form__dialog">
             <div
-                class="oauth-form__row oauth-form__row--header"
+                class="dialog-form__row dialog-form__row--header"
                 style="background-image: url('{{ $user->profileCustomization()->cover()->url() }}')"
             >
-                <div class="oauth-form__header-overlay"></div>
+                <div class="dialog-form__header-overlay"></div>
                 <a
-                    class="oauth-form__user-header"
+                    class="dialog-form__user-header"
                     href="{{ route('users.show', ['user' => $user->getKey()]) }}"
                 >
-                    <div class="oauth-form__user-avatar">
+                    <div class="dialog-form__user-avatar">
                         <div
                             class="avatar avatar--full-circle"
                             style="background-image: url('{{ $user->user_avatar }}')"
@@ -46,23 +46,23 @@
                 </a>
             </div>
 
-            <div class="oauth-form__row oauth-form__row--title">
-                <div class="oauth-form__logo"></div>
-                <h1 class="oauth-form__title">{{ trans('oauth.authorise.title') }}</h1>
+            <div class="dialog-form__row dialog-form__row--title">
+                <div class="dialog-form__logo"></div>
+                <h1 class="dialog-form__title">{{ trans('oauth.authorise.title') }}</h1>
             </div>
 
-            <div class="oauth-form__row oauth-form__row--label">
-                <h2 class="oauth-form__client-name">
+            <div class="dialog-form__row dialog-form__row--label">
+                <h2 class="dialog-form__client-name">
                     {{ $client->name }}
                 </h2>
-                <p class="oauth-form__client-request">
+                <p class="dialog-form__client-request">
                     {{ trans('oauth.authorise.request') }}
                 </p>
             </div>
 
             @if (count($scopes) > 0)
-                <div class="oauth-form__row oauth-form__row--scopes">
-                    <p class="oauth-form__scopes-title">
+                <div class="dialog-form__row dialog-form__row--scopes">
+                    <p class="dialog-form__scopes-title">
                         {{ trans('oauth.authorise.scopes_title') }}
                     </p>
 
@@ -78,7 +78,7 @@
                 </div>
             @endif
 
-            <div class="oauth-form__row oauth-form__row--wrong-user">
+            <div class="dialog-form__row dialog-form__row--wrong-user">
                 {!! trans('oauth.authorise.wrong_user._', [
                     'user' => e($user->username),
                     'logout_link' => link_to_route(
@@ -86,7 +86,7 @@
                         trans('oauth.authorise.wrong_user.logout_link'),
                         [],
                         [
-                            'class' => 'oauth-form__extra-link',
+                            'class' => 'dialog-form__extra-link',
                             'data-confirm' => trans('users.logout_confirm'),
                             'data-method' => 'DELETE',
                             'data-reload-on-success' => '1',
@@ -95,7 +95,7 @@
                     ),
                 ]) !!}
             </div>
-            <div class="oauth-form__row oauth-form__row--buttons">
+            <div class="dialog-form__row dialog-form__row--buttons">
                 {!! Form::open([
                     'url' => '/oauth/authorize',
                     'method' => 'POST',
@@ -103,7 +103,7 @@
                     <input type="hidden" name="state" value="{{ $request->state }}" />
                     <input type="hidden" name="client_id" value="{{ $client->id }}" />
 
-                    <button class="oauth-form__button">
+                    <button class="dialog-form__button">
                         {{ trans('oauth.authorise.authorise') }}
                     </button>
                 {!! Form::close() !!}
@@ -116,7 +116,7 @@
                     <input type="hidden" name="client_id" value="{{ $client->id }}" />
 
                     <button
-                        class="oauth-form__button oauth-form__button--cancel"
+                        class="dialog-form__button dialog-form__button--cancel"
                     >
                         {{ trans('common.buttons.cancel') }}
                     </button>
