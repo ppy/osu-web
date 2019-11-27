@@ -113,15 +113,17 @@ class LoginAttempt extends Model
         ];
 
         $isUserVerification = $type === 'verify';
+        $userRecorded = $record->containsUser($user);
+        $newRecord = $record->failed_attempts === 0;
 
-        if ($record->containsUser($user)) {
-            if (!$isUserVerification) {
-                $updates['failed_attempts'] = db_unsigned_increment('failed_attempts', 1);
-            }
-        } else {
+        if (!$userRecorded) {
             $updates['unique_ids'] = db_unsigned_increment('unique_ids', 1);
+        }
 
-            if (!$isUserVerification) {
+        if (!$isUserVerification) {
+            if ($userRecorded || $newRecord) {
+                $updates['failed_attempts'] = db_unsigned_increment('failed_attempts', 1);
+            } else {
                 $updates['failed_attempts'] = DB::raw('GREATEST(1, LEAST(20000, failed_attempts)) * 3');
             }
         }
