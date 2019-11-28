@@ -101,9 +101,8 @@ class UserVerification
     public function issue()
     {
         $user = $this->user;
-        $to = $user->user_email;
 
-        if (!present($to)) {
+        if (!present($user->user_email)) {
             return;
         }
 
@@ -114,7 +113,7 @@ class UserVerification
             ->pluck('name')
             ->first();
 
-        Mail::to($to)
+        Mail::to($user)
             ->queue(new UserVerificationMail(
                 compact('keys', 'user', 'requestCountry')
             ));
