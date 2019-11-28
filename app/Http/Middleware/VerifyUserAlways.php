@@ -21,6 +21,7 @@
 namespace App\Http\Middleware;
 
 use App\Events\UserSessionEvent;
+use App\Libraries\UserVerificationState;
 
 class VerifyUserAlways extends VerifyUser
 {
@@ -40,6 +41,8 @@ class VerifyUserAlways extends VerifyUser
         if ($user === null) {
             return false;
         }
+
+        $user->setVerificationState(UserVerificationState::fromCurrentRequest());
 
         $isPostAction = config('osu.user.post_action_verification')
             ? !in_array($request->getMethod(), ['GET', 'HEAD', 'OPTIONS'], true)

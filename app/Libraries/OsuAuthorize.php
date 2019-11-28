@@ -21,6 +21,7 @@
 namespace App\Libraries;
 
 use App\Exceptions\AuthorizationException;
+use App\Exceptions\VerificationRequiredException;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -272,7 +273,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
-        $this->ensureRecentlyPlayed($user);
+        $this->ensureHasPlayed($user);
 
         if ($discussion->message_type === 'mapper_note') {
             if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->canModerate() && !$user->isBNG()) {
@@ -462,7 +463,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
-        $this->ensureRecentlyPlayed($user);
+        $this->ensureHasPlayed($user);
 
         if ($user->canModerate()) {
             return 'ok';
@@ -704,7 +705,7 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
-        $this->ensureRecentlyPlayed($user);
+        $this->ensureHasPlayed($user);
 
         if ($target->hasBlocked($user) || $user->hasBlocked($target)) {
             return $prefix.'blocked';
@@ -729,7 +730,7 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
-        $this->ensureRecentlyPlayed($user);
+        $this->ensureHasPlayed($user);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
             return $prefix.'no_access';
@@ -928,7 +929,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
-        $this->ensureRecentlyPlayed($user);
+        $this->ensureHasPlayed($user);
 
         return 'ok';
     }
@@ -1185,7 +1186,7 @@ class OsuAuthorize
                 return $prefix.'too_many_help_posts';
             }
         } else {
-            $this->ensureRecentlyPlayed($user);
+            $this->ensureHasPlayed($user);
 
             if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
                 return $prefix.'play_more';
@@ -1647,20 +1648,24 @@ class OsuAuthorize
      * @param User|null $user
      * @throws AuthorizationException
      */
-    public function ensureRecentlyPlayed(?User $user) : void
+    public function ensureHasPlayed(?User $user) : void
     {
         if ($user === null) {
             return;
         }
 
-        $days = config('osu.user.min_last_played_days_for_posting');
+        $minPlays = config('osu.user.min_plays_for_posting');
 
-        if ($days <= 0) {
+        if ($user->playCount() >= $minPlays) {
             return;
         }
 
-        if ($user->lastPlayed()->addDays($days)->isPast()) {
-            throw new AuthorizationException('play_more');
+        $verificationState = $user->getVerificationState();
+
+        if (optional($verificationState)->isDone()) {
+            return;
         }
+
+        throw new VerificationRequiredException;
     }
 }

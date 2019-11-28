@@ -238,6 +238,8 @@ class User extends Model implements AuthenticatableContract
     private $emailConfirmation = null;
     private $validateEmailConfirmation = false;
 
+    private $verificationState;
+
     public function getAuthPassword()
     {
         return $this->user_password;
@@ -1759,6 +1761,11 @@ class User extends Model implements AuthenticatableContract
             ->with('beatmaps');
     }
 
+    public function getVerificationState()
+    {
+        return $this->verificationState;
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();
@@ -1868,6 +1875,13 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->isValid() && parent::save($options);
+    }
+
+    public function setVerificationState($state)
+    {
+        $this->verificationState = $state;
+
+        return $this;
     }
 
     protected function newReportableExtraParams() : array
