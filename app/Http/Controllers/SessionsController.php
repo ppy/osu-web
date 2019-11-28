@@ -86,10 +86,6 @@ class SessionsController extends Controller
             return ujs_redirect(route('home'));
         }
 
-        if (get_bool(request('redirect_home'))) {
-            return ujs_redirect(route('home'));
-        }
-
         return [];
     }
 }
