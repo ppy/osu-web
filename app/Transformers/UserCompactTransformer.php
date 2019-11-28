@@ -21,7 +21,6 @@
 namespace App\Transformers;
 
 use App\Models\User;
-use Auth;
 use League\Fractal;
 
 class UserCompactTransformer extends Fractal\TransformerAbstract
@@ -74,7 +73,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
 
     public function includeCurrentModeRank(User $user)
     {
-        return $this->primitive($user->statistics(Auth::user()->playmode ?? 'osu')->globalRank() ?? null);
+        return $this->primitive($user->statistics(auth()->user()->playmode ?? 'osu')->globalRank() ?? null);
     }
 
     public function includeGroupBadge(User $user)
