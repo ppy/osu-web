@@ -42,7 +42,7 @@
                 <input
                     class="login-box__form-input js-login-form-input js-nav2--autofocus"
                     name="username"
-                    placeholder="{{ trans('layout.popup_login.login.email') }}"
+                    placeholder="{{ trans('layout.popup_login.login.username') }}"
                     required
                 />
                 <input

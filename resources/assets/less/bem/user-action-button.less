@@ -73,6 +73,13 @@
     font-weight: bold;
   }
 
+  &--quick-search {
+    height: 100%;
+    width: 30px;
+    font-size: 8px; // icon size
+    border-radius: 10000px;
+  }
+
   &--right-margin {
     margin-right: 10px;
   }
@@ -114,5 +121,9 @@
   &__icon-container {
     .center-content();
     width: 50px;
+
+    .@{_top}--quick-search & {
+      width: 100%;
+    }
   }
 }

@@ -64,6 +64,22 @@ return [
         'send_message' => 'Send message',
     ],
 
+    'force_reactivation' => [
+        'email' => [
+            'subject' => 'osu! Account Reactivation Required',
+
+            'content' => [
+                'main' => 'Your account is suspected to have been compromised, has recent suspicious activity or a VERY weak password. As a result, we require you to set a new password. Please make sure to choose a SECURE password.',
+                'reason' => 'Reason',
+                'perform_reset' => 'You can perform the reset from :url',
+            ],
+        ],
+
+        'reason' => [
+            'inactive_different_country' => "Your account hasn't been used in a long time.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Sign in',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
