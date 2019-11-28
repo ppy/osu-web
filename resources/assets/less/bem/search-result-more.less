@@ -1,0 +1,55 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.search-result-more {
+  .link-plain();
+  .fade-element(120ms);
+  border-radius: @border-radius-large;
+  background-color: @osu-colour-b4;
+  height: 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  color: @osu-colour-c1;
+  font-size: @font-size--title-small-3;
+
+  &:hover {
+    background-color: @osu-colour-b2;
+    color: @osu-colour-c1;
+  }
+
+  &:focus, &:active {
+    color: @osu-colour-c1;
+  }
+
+  &__arrow {
+    flex: none;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__count {
+    padding: 2px 10px;
+    font-size: @font-size--normal;
+    background-color: @osu-colour-b3;
+    border-radius: 10000px;
+    margin-left: 20px;
+  }
+}

@@ -89,6 +89,12 @@
     flex: none;
     width: 2px;
 
+    .beatmap-discussion-post--discussion & {
+      @media @mobile {
+        display: none;
+      }
+    }
+
     .osu-group-colours({
       .@{_top}--@{group} & {
         background-color: @@colour;

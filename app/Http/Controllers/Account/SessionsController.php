@@ -42,7 +42,7 @@ class SessionsController extends Controller
 
         if (Request::session()->isCurrentSession($id)) {
             // current session
-            $this->logout();
+            logout();
         } else {
             Request::session()->destroyUserSession($id);
         }
