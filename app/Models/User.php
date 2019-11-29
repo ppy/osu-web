@@ -238,7 +238,7 @@ class User extends Model implements AuthenticatableContract
     private $emailConfirmation = null;
     private $validateEmailConfirmation = false;
 
-    private $verificationState;
+    private $isSessionVerified;
 
     public function getAuthPassword()
     {
