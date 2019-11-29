@@ -240,6 +240,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     private $emailConfirmation = null;
     private $validateEmailConfirmation = false;
 
+    private $isSessionVerified;
+
     public function getAuthPassword()
     {
         return $this->user_password;
@@ -1771,6 +1773,18 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             ->loved()
             ->active()
             ->with('beatmaps');
+    }
+
+    public function isSessionVerified()
+    {
+        return $this->isSessionVerified;
+    }
+
+    public function markSessionVerified()
+    {
+        $this->isSessionVerified = true;
+
+        return $this;
     }
 
     public function isValid()

@@ -20,7 +20,7 @@
 
 namespace App\Exceptions;
 
-use App;
+use App\Libraries\UserVerification;
 use Auth;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
@@ -50,6 +50,7 @@ class Handler extends ExceptionHandler
         // local
         AuthorizationException::class,
         SilencedException::class,
+        VerificationRequiredException::class,
 
         // oauth
         \League\OAuth2\Server\Exception\OAuthServerException::class,
@@ -95,6 +96,10 @@ class Handler extends ExceptionHandler
             return $e->getResponse();
         }
 
+        if ($e instanceof VerificationRequiredException) {
+            return $this->unverified();
+        }
+
         if ($e instanceof AuthenticationException) {
             return $this->unauthenticated($request, $e);
         }
@@ -121,6 +126,11 @@ class Handler extends ExceptionHandler
         }
 
         return response()->view('users.login')->setStatusCode(401);
+    }
+
+    protected function unverified()
+    {
+        return UserVerification::fromCurrentRequest()->initiate();
     }
 
     private function exceptionMessage($e)
