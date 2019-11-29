@@ -38,6 +38,7 @@ use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
@@ -62,6 +63,7 @@ use Request;
  * @property string $country_acronym
  * @property mixed $current_password
  * @property mixed $displayed_last_visit
+ * @property string $email
  * @property \Illuminate\Database\Eloquent\Collection $events Event
  * @property \Illuminate\Database\Eloquent\Collection $favourites FavouriteBeatmapset
  * @property \Illuminate\Database\Eloquent\Collection $forumPosts Forum\Post
@@ -178,7 +180,7 @@ use Request;
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
  */
-class User extends Model implements AuthenticatableContract
+class User extends Model implements AuthenticatableContract, HasLocalePreference
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
     use Authenticatable, HasApiTokens, Reportable, UserAvatar, UserScoreable, Validatable;
@@ -484,6 +486,11 @@ class User extends Model implements AuthenticatableContract
         return presence($value);
     }
 
+    public function getEmailAttribute()
+    {
+        return $this->user_email;
+    }
+
     public function getUserFromAttribute($value)
     {
         return presence(html_entity_decode_better($value));
@@ -502,6 +509,11 @@ class User extends Model implements AuthenticatableContract
     public function setUserInterestsAttribute($value)
     {
         $this->attributes['user_interests'] = e($value);
+    }
+
+    public function getUserLangAttribute($value)
+    {
+        return get_valid_locale($value);
     }
 
     public function getUserOccAttribute($value)
@@ -1865,6 +1877,11 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->validationErrors()->isEmpty();
+    }
+
+    public function preferredLocale()
+    {
+        return $this->user_lang;
     }
 
     public function url()
