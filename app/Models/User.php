@@ -1761,9 +1761,16 @@ class User extends Model implements AuthenticatableContract
             ->with('beatmaps');
     }
 
-    public function getVerificationState()
+    public function isSessionVerified()
     {
-        return $this->verificationState;
+        return $this->isSessionVerified;
+    }
+
+    public function markSessionVerified()
+    {
+        $this->isSessionVerified = true;
+
+        return $this;
     }
 
     public function isValid()
@@ -1875,13 +1882,6 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->isValid() && parent::save($options);
-    }
-
-    public function setVerificationState($state)
-    {
-        $this->verificationState = $state;
-
-        return $this;
     }
 
     protected function newReportableExtraParams() : array

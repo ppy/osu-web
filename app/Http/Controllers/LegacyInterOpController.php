@@ -192,8 +192,10 @@ class LegacyInterOpController extends Controller
     {
         $params = request()->all();
 
+        $sender = User::findOrFail($params['sender_id'] ?? null)->markSessionVerified();
+
         $message = Chat::sendPrivateMessage(
-            get_int($params['sender_id'] ?? null),
+            $sender,
             get_int($params['target_id'] ?? null),
             presence($params['message'] ?? null),
             get_bool($params['is_action'] ?? null)
