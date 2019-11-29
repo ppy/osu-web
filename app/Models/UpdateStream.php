@@ -41,21 +41,17 @@ class UpdateStream extends Model
 
     public function builds()
     {
-        return $this->hasMany(Build::class, 'stream_id', 'stream_id');
+        return $this->hasMany(Build::class);
     }
 
     public function changelogs()
     {
-        return $this->hasMany(Changelog::class, 'stream_id', 'stream_id');
+        return $this->hasMany(Changelog::class);
     }
 
     public function changelogEntries()
     {
-        return $this->hasManyThrough(
-            ChangelogEntry::class, // target class
-            Repository::class, // bridge class
-            'stream_id' // column name in bridge linking to this
-        );
+        return $this->hasManyThrough(ChangelogEntry::class, Repository::class);
     }
 
     public function scopeWhereHasBuilds($query)

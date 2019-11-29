@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Pokaż tylko nierozwiązane dyskusje',
             'types' => 'Rodzaj wiadomości',
             'username' => 'Nazwa użytkownika',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Status beatmapy',
+                'all' => 'Wszystkie',
+                'disqualified' => 'Zdyskwalifikowana',
+                'never_qualified' => 'Nigdy nie zakwalifikowana',
+                'qualified' => 'Zakwalifikowana',
+                'ranked' => 'Rankingowa',
             ],
 
             'user' => [

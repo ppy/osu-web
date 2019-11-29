@@ -45,8 +45,6 @@ class Kernel extends ConsoleKernel
         Commands\UserForumStatSyncCommand::class,
         Commands\BeatmapsetsHypeSyncCommand::class,
 
-        // parsing html with regexp
-        Commands\StoreCheckOrderTrackingStatus::class,
         Commands\StoreCleanupStaleOrders::class,
         Commands\StoreExpireProducts::class,
 
@@ -91,9 +89,6 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('store:expire-products')
             ->hourly();
-
-        $schedule->command('store:tracking')
-            ->cron('0 0,8,16 * * *');
 
         $schedule->command('builds:update-propagation-history')
             ->everyThirtyMinutes();

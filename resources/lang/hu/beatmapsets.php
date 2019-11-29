@@ -78,9 +78,9 @@ return [
 
             'report' => [
                 '_' => '',
-                'button' => '',
+                'button' => 'Probléma jelentése',
                 'button_title' => '',
-                'link' => '',
+                'link' => 'itt',
             ],
         ],
 

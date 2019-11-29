@@ -25,7 +25,7 @@ return [
         'peak' => 'Picco, :count utenti online',
         'players' => '<strong>:count</strong> utenti registrati',
         'title' => 'benvenuto',
-        'see_more_news' => '',
+        'see_more_news' => 'guarda più notizie',
 
         'slogan' => [
             'main' => 'il miglior gioco di ritmo free-to-win',
@@ -131,7 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Nuove Beatmap Classificate',
             'popular' => 'Beatmap Popolari',
-            'by_user' => '',
+            'by_user' => 'di :user',
         ],
         'buttons' => [
             'download' => 'Scarica osu!',

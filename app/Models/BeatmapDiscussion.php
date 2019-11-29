@@ -184,7 +184,7 @@ class BeatmapDiscussion extends Model
 
     public function visibleBeatmapset()
     {
-        return $this->belongsTo(Beatmapset::class, 'beatmapset_id', 'beatmapset_id');
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public function beatmapDiscussionPosts()
@@ -285,7 +285,7 @@ class BeatmapDiscussion extends Model
         }
 
         $beatmapsetKudosuGranted = (int) KudosuHistory
-            ::whereIn('kudosuable_type', [static::class, $this->getMorphClass()])
+            ::where('kudosuable_type', $this->getMorphClass())
             ->whereIn('kudosuable_id',
                 static
                     ::where('kudosu_denied', '=', false)

@@ -129,6 +129,12 @@ abstract class Model extends BaseModel
             $this->s_rank_count = 0;
             $this->sh_rank_count = 0;
             $this->a_rank_count = 0;
+
+            $this->accuracy_total = 0;
+            $this->accuracy_count = 0;
+            $this->accuracy = 0;
+            $this->rank = 0;
+            $this->rank_score = 0;
         }
 
         return parent::__construct($attributes);

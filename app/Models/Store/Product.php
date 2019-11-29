@@ -73,17 +73,17 @@ class Product extends Model
 
     public function masterProduct()
     {
-        return $this->belongsTo(self::class, 'master_product_id', 'product_id');
+        return $this->belongsTo(static::class, 'master_product_id');
     }
 
     public function variations()
     {
-        return $this->hasMany(static::class, 'master_product_id', 'product_id');
+        return $this->hasMany(static::class, 'master_product_id');
     }
 
     public function notificationRequests()
     {
-        return $this->hasMany(NotificationRequest::class, 'product_id');
+        return $this->hasMany(NotificationRequest::class);
     }
 
     public function inStock($quantity = 1, $includeVariations = false)

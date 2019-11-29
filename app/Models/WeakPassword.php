@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use DB;
-
 /**
  * @property mixed $hash
  */
@@ -34,17 +32,11 @@ class WeakPassword extends Model
 
     public static function add($string)
     {
-        $md5 = md5(strtolower($string));
-
-        static::create([
-            'hash' => DB::raw("UNHEX('{$md5}')"),
-        ]);
+        static::create(['hash' => md5(strtolower($string), true)]);
     }
 
     public static function check($string)
     {
-        return static
-            ::whereRaw('hash = UNHEX(?)', md5(strtolower($string)))
-            ->exists();
+        return static::where(['hash' => md5(strtolower($string), true)])->exists();
     }
 }

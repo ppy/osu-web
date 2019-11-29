@@ -43,6 +43,7 @@ export class ReviewPost extends React.Component<Props> {
           source={this.props.message}
           renderers={{
             embed: ReviewPostEmbed,
+            link: (props) => <a className='beatmap-discussion-review-post__link' rel='nofollow' {...props}/>,
             paragraph: (props) => <div className='beatmap-discussion-review-post__block' {...props}/>,
           }}
         />

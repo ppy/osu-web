@@ -30,7 +30,7 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'YENİ',
     ],
 
     'buttons' => [
@@ -41,7 +41,7 @@ return [
         'change' => 'değiştir',
         'click_to_copy' => 'panoya kopyalamak için tıklayın',
         'click_to_copy_copied' => 'panoya kopyalandı!',
-        'close' => '',
+        'close' => 'Kapat',
         'collapse' => 'daraltın',
         'delete' => 'Sil',
         'edit' => 'Düzenle',
@@ -63,7 +63,7 @@ return [
         'show_deleted' => 'Silineni göster',
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',
-        'update' => '',
+        'update' => 'Güncelle',
         'upload_image' => 'görsel yükle',
 
         'watch' => [

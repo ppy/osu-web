@@ -56,7 +56,7 @@ class Room extends Model
 
     public function channel()
     {
-        return $this->hasOne(Channel::class, 'channel_id', 'channel_id');
+        return $this->belongsTo(Channel::class, 'channel_id');
     }
 
     public function host()
@@ -66,12 +66,12 @@ class Room extends Model
 
     public function playlist()
     {
-        return $this->hasMany(PlaylistItem::class, 'room_id');
+        return $this->hasMany(PlaylistItem::class);
     }
 
     public function scores()
     {
-        return $this->hasMany(RoomScore::class, 'room_id');
+        return $this->hasMany(RoomScore::class);
     }
 
     public function scopeActive($query)

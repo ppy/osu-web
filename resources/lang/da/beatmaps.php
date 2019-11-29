@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'nulstil Nominering',
             'praise' => 'Hyldest',
             'problem' => 'Problem',
+            'review' => '',
             'suggestion' => 'Forslag',
         ],
 

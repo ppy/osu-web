@@ -78,6 +78,11 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'View Review Post',
+        'go_to_child' => 'View Discussion',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marked as resolved by :user',

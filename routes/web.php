@@ -182,6 +182,7 @@ Route::group(['prefix' => 'home'], function () {
         Route::put('/', 'AccountController@update')->name('update');
     });
 
+    Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');
     Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::get('changelog/{stream}/{build}', 'ChangelogController@build')->name('changelog.build');
