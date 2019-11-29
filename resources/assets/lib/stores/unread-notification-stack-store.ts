@@ -17,12 +17,14 @@
  */
 
 import Dispatcher from 'dispatcher';
-import { autorun, runInAction } from 'mobx';
-import core from 'osu-core-singleton';
+import { NotificationBundleJson } from 'interfaces/notification-json';
+import { action, autorun, observable, runInAction } from 'mobx';
 import NotificationStackStore from './notification-stack-store';
 import RootDataStore from './root-data-store';
 
 export default class UnreadNotificationStackStore extends NotificationStackStore {
+  @observable total = 0;
+
   constructor(protected root: RootDataStore, protected dispatcher: Dispatcher) {
     super(root, dispatcher);
 
@@ -31,7 +33,7 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
         const stack = this.stacks.get(notification.stackId);
         runInAction(() => {
           if (stack?.remove(notification)) {
-            core.dataStore.notificationStore.unreadCount--;
+            this.total--;
             stack.total--;
           }
         });
@@ -44,7 +46,7 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
       if (stack == null) { return; }
 
       runInAction(() => {
-        core.dataStore.notificationStore.unreadCount -= stack.total;
+        this.total -= stack.total;
         this.stacks.delete(stack.id);
         this.types.get(stack.objectType)?.stacks.delete(stack.id);
       });
@@ -56,9 +58,18 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
       if (type == null) { return; }
 
       runInAction(() => {
-        core.dataStore.notificationStore.unreadCount -= type.total;
+        this.total -= type.total;
         this.types.delete(type.name);
       });
     });
+  }
+
+  @action
+  updateWithBundle(bundle: NotificationBundleJson) {
+    super.updateWithBundle(bundle);
+
+    if (bundle.unread_count != null) {
+      this.total = bundle.unread_count;
+    }
   }
 }

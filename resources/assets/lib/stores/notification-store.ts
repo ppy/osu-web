@@ -32,7 +32,6 @@ export default class NotificationStore extends Store {
   @observable notifications = new Map<number, Notification>();
   @observable pmNotification = new LegacyPmNotification();
   readonly stacks = new NotificationStackStore(this.root, this.dispatcher);
-  @observable unreadCount = 0;
   readonly unreadStacks = new UnreadNotificationStackStore(this.root, this.dispatcher);
 
   private debouncedSendQueued = debounce(this.sendQueued, 500);

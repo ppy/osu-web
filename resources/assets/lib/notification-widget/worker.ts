@@ -25,7 +25,6 @@ import core from 'osu-core-singleton';
 
 interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;
-  unread_count: number;
 }
 
 interface NotificationEventLogoutJson {
@@ -100,7 +99,7 @@ export default class Worker {
   }
 
   @computed get unreadCount() {
-    let ret = this.notificationStore.unreadCount;
+    let ret = this.store.total;
 
     if (typeof this.notificationStore.pmNotification.details === 'object'
       && typeof this.notificationStore.pmNotification.details.count === 'number'
@@ -186,7 +185,7 @@ export default class Worker {
       this.destroy();
     } else if (isNotificationEventNewJson(data)) {
       this.notificationStore.updateWithJson(data.data);
-      this.notificationStore.unreadCount++;
+      this.store.total++;
     } else if (isNotificationEventReadJson(data)) {
       this.markRead(data.data.ids);
     } else if (isNotificationEventVerifiedJson(data)) {
@@ -203,7 +202,6 @@ export default class Worker {
 
   @action loadBundle = (data: NotificationBootJson) => {
     this.store.updateWithBundle(data);
-    this.notificationStore.unreadCount = data.unread_count;
     this.hasData = true;
   }
 

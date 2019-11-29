@@ -31,6 +31,7 @@ export interface NotificationBundleJson {
   notifications?: NotificationJson[];
   stacks?: NotificationStackJson[];
   types?: NotificationTypeJson[];
+  unread_count?: number;
 }
 
 export interface NotificationStackJson {
