@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationBundleJson } from 'interfaces/notification-bundle-json';
+import { NotificationBundleJson } from 'interfaces/notification-json';
 import { Main } from 'notifications-index/main';
 import core from 'osu-core-singleton';
 

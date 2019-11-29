@@ -26,3 +26,22 @@ export default interface NotificationJson {
   object_type: string;
   source_user_id?: number;
 }
+
+export interface NotificationBundleJson {
+  notifications?: NotificationJson[];
+  stacks?: NotificationStackJson[];
+  types?: NotificationTypeJson[];
+}
+
+export interface NotificationStackJson {
+  cursor: JSON | null;
+  name: string;
+  object_id: number;
+  object_type: string;
+  total: number;
+}
+export interface NotificationTypeJson {
+  cursor: JSON | null;
+  name: string;
+  total: number;
+}

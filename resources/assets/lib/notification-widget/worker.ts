@@ -16,8 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationBundleJson } from 'interfaces/notification-bundle-json';
-import NotificationJson from 'interfaces/notification-json';
+import NotificationJson, { NotificationBundleJson } from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
 import { route } from 'laroute';
 import { forEach, random } from 'lodash';

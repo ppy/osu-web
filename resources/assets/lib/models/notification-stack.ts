@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationStackJson } from 'interfaces/notification-bundle-json';
+import { NotificationStackJson } from 'interfaces/notification-json';
 import { action, computed, observable } from 'mobx';
 import Notification from 'models/notification';
 import { NotificationContextData } from 'notifications-context';
