@@ -15,16 +15,22 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-Hi {{ $donor->username }},
+{!! trans('common.email.hello', ['user' => $donor->username]) !!}
 
-Thanks a lot for your {{ $continued ? 'continued ': '' }}support towards osu!.
-It is thanks to people like you that osu! is able to keep the game and community running smoothly without any advertisements or forced payments.
-{{ $isGift ? 'Your giftee(s)' : 'You' }} will now have access to osu!direct and many other supporter benefits{{ !$isGift ? ' for '.$duration : '' }}.
-More new supporter benefits will appear over time, as well!
+{!! trans('fulfillments.mail.donation_thanks.content.support._', [
+    'support' => trans('fulfillments.mail.donation_thanks.content.support.'.($continued ? 'repeat' : 'first')),
+]) !!}
+{!! trans('fulfillments.mail.donation_thanks.content.keep_free') !!}
+{!! trans('fulfillments.mail.donation_thanks.content.benefit.'.($isGift ? 'gift' : 'self'), [
+    'duration' => $duration,
+]) !!}
+{!! trans('fulfillments.mail.donation_thanks.content.benefit_more') !!}
 
-Your support keeps osu! running for around {{ $minutes }} minutes! It may not seem like much, but it all adds up :).
+{!! trans('fulfillments.mail.donation_thanks.content.keep_running', [
+    'minutes' => trans_choice('common.count.minutes', $minutes),
+]) !!}
 
-If you have any questions or feedback, don't hesitate to reply to this mail; I'll get back to you as soon as possible!
+{!! trans('fulfillments.mail.donation_thanks.content.feedback') !!}
 
-Regards,
+{!! trans('common.email.closing') !!}
 Dean Herbert (peppy)

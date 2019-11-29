@@ -30,6 +30,11 @@ return [
 
     'email' => [
         'subject' => 'osu! account recover',
+
+        'content' => [
+            'code' => 'Your verification code is:',
+            'requested' => 'Either you or someone pretending to be you has requested a password reset on your osu! account.',
+        ],
     ],
 
     'error' => [

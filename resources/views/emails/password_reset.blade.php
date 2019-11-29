@@ -15,12 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-Hi {{ $user->username }},
+{!! trans('common.email.hello', ['user' => $user->username]) !!}
 
-Either you or someone pretending to be you has requested a password reset on your osu! account.
+{!! trans('password_reset.email.content.requested') !!}
 
-Your verification code is: {{ $key }}
+{!! trans('password_reset.email.content.code') !!} {{ $key }}
 
-Please reply to this email IMMEDIATELY if you did not request this change.
+{!! trans('common.email.report') !!}
 
 @include('emails._signature')

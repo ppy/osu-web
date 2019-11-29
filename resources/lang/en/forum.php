@@ -91,6 +91,16 @@ return [
         'total_posts' => ':posts_count posts total',
     ],
 
+    'reply' => [
+        'email' => [
+            'content' => [
+                'link' => 'Jump straight to the latest reply using the following link:',
+                'new_reply' => 'Just letting you know that there has been a new reply in ":title" since your last visit.',
+                'unsubscribe' => 'If you no longer wish to watch this topic, you can either click the "Unsubscribe topic" link found at the bottom of the topic above, or from topic subscriptions management page:',
+            ],
+        ],
+    ],
+
     'topic' => [
         'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',

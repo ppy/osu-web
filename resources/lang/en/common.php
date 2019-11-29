@@ -119,7 +119,9 @@ return [
     ],
 
     'email' => [
+        'closing' => 'Regards,',
         'hello' => 'Hi :user,',
+        'report' => 'Please reply to this email IMMEDIATELY if you did not request this change.',
     ],
 
     'input' => [

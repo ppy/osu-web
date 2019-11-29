@@ -37,6 +37,18 @@ return [
 
     'email' => [
         'subject' => 'osu! account verification',
+
+        'content' => [
+            'code' => 'Your verification code is:',
+            'code_hint' => 'You can enter the code with or without spaces.',
+            'link' => 'Alternatively, you can also visit this link below to finish verification:',
+            'report' => 'If you did not request this, please REPLY IMMEDIATELY as your account may be in danger.',
+
+            'action_from' => [
+                '_' => 'An action performed on your account from :country requires verification.',
+                'unknown_country' => 'unknown country',
+            ],
+        ],
     ],
 
     'errors' => [
