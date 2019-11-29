@@ -1660,9 +1660,7 @@ class OsuAuthorize
             return;
         }
 
-        $verificationState = $user->getVerificationState();
-
-        if (optional($verificationState)->isDone()) {
+        if ($user->isSessionVerified()) {
             return;
         }
 
