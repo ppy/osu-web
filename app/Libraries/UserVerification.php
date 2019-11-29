@@ -23,6 +23,7 @@ namespace App\Libraries;
 use App\Exceptions\UserVerificationException;
 use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\Country;
+use App\Models\LoginAttempt;
 use Datadog;
 use Mail;
 
@@ -108,6 +109,8 @@ class UserVerification
 
         $keys = $this->state->issue();
 
+        LoginAttempt::logAttempt($this->request->getClientIp(), $this->user, 'verify');
+
         $requestCountry = Country
             ::where('acronym', request_country($this->request))
             ->pluck('name')
@@ -145,6 +148,10 @@ class UserVerification
             $this->state->verify($key);
         } catch (UserVerificationException $e) {
             static::logAttempt('input', 'fail', $e->reasonKey());
+
+            if ($e->reasonKey() === 'incorrect_key') {
+                LoginAttempt::logAttempt($this->request->getClientIp(), $this->user, 'verify-mismatch', $key);
+            }
 
             if ($e->shouldReissue()) {
                 $this->issue();
