@@ -16,41 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import NotificationJson, { NotificationBundleJson } from 'interfaces/notification-json';
+import { NotificationBundleJson } from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
 import { route } from 'laroute';
 import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
+import {
+  NotificationEventLogoutJson,
+  NotificationEventNewJson,
+  NotificationEventReadJson,
+  NotificationEventVerifiedJson,
+} from 'notifications/notification-events';
 import core from 'osu-core-singleton';
 
 interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;
 }
 
-interface NotificationEventLogoutJson {
-  event: 'logout';
-}
-
-interface NotificationEventNewJson {
-  data: NotificationJson;
-  event: 'new';
-}
-
-interface NotificationEventReadJson {
-  data: NotificationReadJson;
-  event: 'read';
-}
-
-interface NotificationEventVerifiedJson {
-  event: 'verified';
-}
-
 interface NotificationFeedMetaJson {
   url: string;
-}
-
-interface NotificationReadJson {
-  ids: number[];
 }
 
 interface TimeoutCollection {
@@ -184,10 +168,10 @@ export default class Worker {
     if (isNotificationEventLogoutJson(data)) {
       this.destroy();
     } else if (isNotificationEventNewJson(data)) {
-      this.notificationStore.updateWithJson(data.data);
-      this.store.total++;
+      this.notificationStore.handleNotificationEventNew(data);
+      this.store.handleNotificationEventNew(data);
     } else if (isNotificationEventReadJson(data)) {
-      this.markRead(data.data.ids);
+      this.store.handleNotificationEventRead(data);
     } else if (isNotificationEventVerifiedJson(data)) {
       if (!this.hasData) {
         this.loadMore();
@@ -224,10 +208,6 @@ export default class Worker {
         }
         this.delayedRetryInitialLoadMore();
       }));
-  }
-
-  @action markRead = (ids: number[]) => {
-    this.notificationStore.updateMarkedAsRead(ids);
   }
 
   @action reconnectWebSocket = () => {

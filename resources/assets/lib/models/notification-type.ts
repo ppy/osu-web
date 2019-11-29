@@ -61,6 +61,13 @@ export default class NotificationType {
   }
 
   @action
+  removeStack(stack: NotificationStack) {
+    const exists = this.stacks.delete(stack.id);
+    if (exists) this.total -= stack.total;
+    return exists;
+  }
+
+  @action
   updateWithJson(json: NotificationTypeJson) {
     this.cursor = json.cursor;
     this.total = json.total;

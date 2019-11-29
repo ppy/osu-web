@@ -60,6 +60,10 @@ export default class NotificationStack {
     readonly name: string,
   ) {}
 
+  get type() {
+    return this.objectType;
+  }
+
   @action
   add(notification: Notification) {
     this.notifications.set(notification.id, notification);
@@ -97,7 +101,9 @@ export default class NotificationStack {
       this.lastNotification = this.notifications.values().next().value;
     }
 
-    return this.notifications.delete(notification.id);
+    const existed = this.notifications.delete(notification.id);
+    if (existed) this.total--;
+    return existed;
   }
 
   @action

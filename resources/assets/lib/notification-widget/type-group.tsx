@@ -77,6 +77,49 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
     this.props.type.loadMore(this.context);
   }
 
+  private renderMarkAllReadButton() {
+    // TODO: no button for legacy pm type group
+    // if (this.props.items[0].id < 0) {
+    //   return null;
+    // }
+
+    let markAllReadClass = `${bn}__clear-all`;
+    let markingAsReadSpinner: React.ReactNode = null;
+
+    if (this.props.type.isMarkingAsRead) {
+      markingAsReadSpinner = (
+        <span className={`${bn}__clear-all-spinner`}>
+          <Spinner />
+        </span>
+      );
+      markAllReadClass += ` ${bn}__clear-all--disabled`;
+    }
+
+    return (
+      <button
+        className={markAllReadClass}
+        type='button'
+        onClick={this.handleMarkAllAsRead}
+      >
+        {markingAsReadSpinner}
+        {osu.trans('notifications.mark_all_read')}
+      </button>
+    );
+  }
+
+  private renderNotificationCount() {
+    // TODO: legacy pm type group
+    // if (this.props.items.length === 1 && this.props.items[0] instanceof LegacyPmNotification) {
+    //   return null;
+    // }
+
+    return (
+      <span className={`${bn}__count`}>
+        {osu.formatNumber(this.props.type.total)}
+      </span>
+    );
+  }
+
   private renderShowMore() {
     const type = this.props.type;
     if (type.cursor == null) { return null; }
@@ -127,48 +170,5 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
     });
 
     return nodes;
-  }
-
-  private renderMarkAllReadButton() {
-    // TODO: no button for legacy pm type group
-    // if (this.props.items[0].id < 0) {
-    //   return null;
-    // }
-
-    let markAllReadClass = `${bn}__clear-all`;
-    let markingAsReadSpinner: React.ReactNode = null;
-
-    if (this.props.type.isMarkingAsRead) {
-      markingAsReadSpinner = (
-        <span className={`${bn}__clear-all-spinner`}>
-          <Spinner />
-        </span>
-      );
-      markAllReadClass += ` ${bn}__clear-all--disabled`;
-    }
-
-    return (
-      <button
-        className={markAllReadClass}
-        type='button'
-        onClick={this.handleMarkAllAsRead}
-      >
-        {markingAsReadSpinner}
-        {osu.trans('notifications.mark_all_read')}
-      </button>
-    );
-  }
-
-  private renderNotificationCount() {
-    // TODO: legacy pm type group
-    // if (this.props.items.length === 1 && this.props.items[0] instanceof LegacyPmNotification) {
-    //   return null;
-    // }
-
-    return (
-      <span className={`${bn}__count`}>
-        {osu.formatNumber(this.props.type.total)}
-      </span>
-    );
   }
 }

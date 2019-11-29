@@ -16,52 +16,53 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Dispatcher from 'dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
-import { action, autorun, observable, runInAction } from 'mobx';
+import { action, observable } from 'mobx';
+import {
+  NotificationEventNewJson,
+  NotificationEventReadJson,
+  NotificationEventStackRead,
+  NotificationEventTypeRead,
+} from 'notifications/notification-events';
 import NotificationStackStore from './notification-stack-store';
-import RootDataStore from './root-data-store';
 
 export default class UnreadNotificationStackStore extends NotificationStackStore {
   @observable total = 0;
 
-  constructor(protected root: RootDataStore, protected dispatcher: Dispatcher) {
-    super(root, dispatcher);
+  @action
+  handleNotificationEventNew(event: NotificationEventNewJson) {
+    this.total++;
+  }
 
-    autorun(() => {
-      this.root.notificationsRead.notifications.forEach((notification) => {
-        const stack = this.stacks.get(notification.stackId);
-        runInAction(() => {
-          if (stack?.remove(notification)) {
-            this.total--;
-            stack.total--;
-          }
-        });
-      });
-    });
+  @action
+  handleNotificationEventRead(event: NotificationEventReadJson) {
+    this.markAsRead(event.data.ids);
+  }
 
-    autorun(() => {
-      if (this.root.notificationsRead.stack == null) { return; }
-      const stack = this.stacks.get(this.root.notificationsRead.stack.id);
-      if (stack == null) { return; }
+  @action
+  handleNotificationEventStackRead(event: NotificationEventStackRead) {
+    const { name, object_id, object_type } = event.data;
+    const id = `${object_type}-${object_id}-${name}`;
+    const stack = this.stacks.get(id);
+    if (stack == null) return;
 
-      runInAction(() => {
-        this.total -= stack.total;
-        this.stacks.delete(stack.id);
-        this.types.get(stack.objectType)?.stacks.delete(stack.id);
-      });
-    });
+    stack.notifications.forEach((notification) => notification.isRead = true);
+    this.stacks.delete(id);
+    this.total -= stack.total;
 
-    autorun(() => {
-      if (this.root.notificationsRead.type == null) { return; }
-      const type = this.types.get(this.root.notificationsRead.type.name);
-      if (type == null) { return; }
+    const type = this.types.get(stack.type);
+    if (type == null) return;
+    type.removeStack(stack);
+  }
 
-      runInAction(() => {
-        this.total -= type.total;
-        this.types.delete(type.name);
-      });
-    });
+  @action
+  handleNotificationEventTypeRead(event: NotificationEventTypeRead) {
+    const type = this.types.get(event.data.name);
+    if (type == null) return;
+
+    type.stacks.forEach((stack) => stack.notifications.forEach((notification) => notification.isRead = true));
+    this.types.delete(event.data.name);
+    this.total -= type.total;
   }
 
   @action
@@ -70,6 +71,26 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
     if (bundle.unread_count != null) {
       this.total = bundle.unread_count;
+    }
+  }
+
+  @action
+  private markAsRead(ids: number[]) {
+    for (const id of ids) {
+      const notification = this.notifications.get(id);
+      if (notification == null || notification.isRead) continue;
+
+      notification.isRead = true;
+      this.total--;
+
+      const stack = this.stacks.get(notification.stackId);
+      if (stack == null) continue;
+
+      stack.remove(notification);
+
+      const type = this.types.get(stack.type);
+      if (type == null) continue;
+      type.total--;
     }
   }
 }

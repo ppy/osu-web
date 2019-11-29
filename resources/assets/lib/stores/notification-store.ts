@@ -19,11 +19,12 @@
 import NotificationJson from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action, observable, runInAction } from 'mobx';
+import { action, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import NotificationStack from 'models/notification-stack';
 import NotificationType from 'models/notification-type';
+import { NotificationEventNewJson } from 'notifications/notification-events';
 import Store from 'stores/store';
 import NotificationStackStore from './notification-stack-store';
 import UnreadNotificationStackStore from './unread-notification-stack-store';
@@ -47,6 +48,23 @@ export default class NotificationStore extends Store {
     this.notifications.get(id);
   }
 
+  getMany(ids: number[]) {
+    const notifications = [] as Notification[];
+    for (const id of ids) {
+      const notification = this.notifications.get(id);
+      if (notification != null) {
+        notifications.push(notification);
+      }
+    }
+
+    return notifications;
+  }
+
+  @action
+  handleNotificationEventNew(event: NotificationEventNewJson) {
+    this.updateWithJson(event.data);
+  }
+
   @action
   queueMarkAsRead(notification: Notification) {
     if (notification.canMarkRead) {
@@ -58,21 +76,23 @@ export default class NotificationStore extends Store {
   }
 
   queueMarkStackAsRead(stack: NotificationStack) {
+    const stackData = {
+      name: stack.name,
+      object_id: stack.objectId,
+      object_type: stack.objectType,
+    };
+
     stack.isMarkingAsRead = true;
+
     $.ajax({
       data: {
-        stack: {
-          name: stack.name,
-          object_id: stack.objectId,
-          object_type: stack.objectType,
-
-        },
+        stack: stackData,
       },
       dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),
     })
-    .then(action(() => this.root.notificationsRead.stack = stack))
+    .then(action(() => this.unreadStacks.handleNotificationEventStackRead({ data: stackData, event: 'notification.stack.read' })))
     .always(action(() => stack.isMarkingAsRead = false));
   }
 
@@ -84,7 +104,7 @@ export default class NotificationStore extends Store {
       method: 'POST',
       url: route('notifications.mark-read'),
     })
-    .then(action(() => this.root.notificationsRead.type = type))
+    .then(action(() => this.unreadStacks.handleNotificationEventTypeRead({ data: { name: type.name }, event: 'notification.type.read' })))
     .always(action(() => type.isMarkingAsRead = false));
   }
 
@@ -101,43 +121,14 @@ export default class NotificationStore extends Store {
 
     ids.forEach((id) => this.queued.delete(id));
 
-    this.queuedXhr.then(() => {
-      runInAction(() => {
-        this.updateMarkedAsRead(ids);
-      });
-    }).always(() => {
-      runInAction(() => {
-        for (const id of ids) {
-          const notification = this.notifications.get(id);
-          if (notification != null) {
-            notification.isMarkingAsRead = false;
-          }
-        }
-      });
-    });
+    this.queuedXhr
+    .then(action(() => this.unreadStacks.handleNotificationEventRead({ data: { ids }, event: 'read'})))
+    .always(action(() => this.getMany(ids).forEach((notification) => notification.isMarkingAsRead = false)));
 
     return this.queuedXhr;
   }
 
-  @action
-  updateMarkedAsRead(ids: number[]) {
-    const notifications: Notification[] = [];
-    // FIXME: map doesn't work?
-    for (const id of ids) {
-      const notification = this.notifications.get(id);
-      if (notification != null) {
-        notification.isRead = true;
-        notifications.push(notification);
-      }
-    }
-
-    if (notifications.length > 0) {
-      this.root.notificationsRead.notifications = notifications;
-    }
-  }
-
-  @action
-  updateWithJson(json: NotificationJson) {
+  private updateWithJson(json: NotificationJson) {
     let notification = this.notifications.get(json.id);
 
     if (notification == null) {

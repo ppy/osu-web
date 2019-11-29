@@ -19,7 +19,7 @@
 import { BeatmapsetSearch } from 'beatmaps/beatmapset-search';
 import Dispatcher from 'dispatcher';
 import { CommentBundleJSON } from 'interfaces/comment-json';
-import { action, observable } from 'mobx';
+import { action } from 'mobx';
 import { BeatmapsetStore } from './beatmapset-store';
 import ChannelStore from './channel-store';
 import ClientStore from './client-store';
@@ -29,10 +29,6 @@ import NotificationStore from './notification-store';
 import OwnClientStore from './own-client-store';
 import UIStateStore from './ui-state-store';
 import UserStore from './user-store';
-
-import Notification from 'models/notification';
-import NotificationStack from 'models/notification-stack';
-import NotificationType from 'models/notification-type';
 
 export default class RootDataStore {
   beatmapsetSearch: BeatmapsetSearch;
@@ -45,12 +41,6 @@ export default class RootDataStore {
   ownClientStore: OwnClientStore;
   uiState: UIStateStore;
   userStore: UserStore;
-
-  @observable notificationsRead = {
-    notifications: [] as Notification[],
-    stack: null as NotificationStack | null,
-    type: null as NotificationType | null,
-  };
 
   constructor(dispatcher: Dispatcher) {
     // TODO: needs re-re-refactoring
