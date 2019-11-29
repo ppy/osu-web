@@ -101,7 +101,7 @@ class SupporterTagFulfillment extends OrderFulfiller
         );
 
         if (present($donor->user_email)) {
-            Mail::to($donor->user_email)
+            Mail::to($donor)
                 ->queue(new \App\Mail\DonationThanks($donor, $totalDuration, $donationTotal, $isGift, $this->continued));
         } else {
             Log::warning("User ({$$donor->getKey()}) does not have an email address set!");
@@ -112,7 +112,7 @@ class SupporterTagFulfillment extends OrderFulfiller
             Event::generate('userSupportGift', ['user' => $giftee, 'date' => $this->order->paid_at]);
 
             if (present($giftee->user_email)) {
-                Mail::to($giftee->user_email)
+                Mail::to($giftee)
                     ->queue(new \App\Mail\SupporterGift($donor, $giftee, $value['duration']));
             } else {
                 Log::warning("User ({$giftee->getKey()}) does not have an email address set!");

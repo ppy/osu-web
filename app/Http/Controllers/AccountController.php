@@ -174,7 +174,7 @@ class AccountController extends Controller
                 $addresses[] = $previousEmail;
             }
             foreach ($addresses as $address) {
-                Mail::to($address)->send(new UserEmailUpdated($user));
+                Mail::to($address)->locale($user->preferredLocale())->send(new UserEmailUpdated($user));
             }
 
             UserAccountHistory::logUserUpdateEmail($user, $previousEmail);
@@ -229,7 +229,7 @@ class AccountController extends Controller
 
         if ($user->update($params) === true) {
             if (present($user->user_email)) {
-                Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
+                Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
             return response([], 204);
