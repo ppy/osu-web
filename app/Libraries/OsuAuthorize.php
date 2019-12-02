@@ -21,7 +21,6 @@
 namespace App\Libraries;
 
 use App\Exceptions\AuthorizationException;
-use App\Exceptions\VerificationRequiredException;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -1664,6 +1663,6 @@ class OsuAuthorize
             return;
         }
 
-        throw new VerificationRequiredException;
+        throw new AuthorizationException('require_verification');
     }
 }
