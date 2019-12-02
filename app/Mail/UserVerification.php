@@ -53,7 +53,7 @@ class UserVerification extends Mailable implements ShouldQueue
     public function build()
     {
         return $this
-            ->text(view('emails.user_verification'))
+            ->text('emails.user_verification')
             ->subject(trans('user_verification.email.subject'));
     }
 }
