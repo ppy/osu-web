@@ -49,7 +49,7 @@ class UserPasswordUpdated extends Mailable implements ShouldQueue
     public function build()
     {
         return $this
-            ->text(view('emails.user_password_updated'))
+            ->text('emails.user_password_updated')
             ->subject(trans('accounts.update_password.email_subject'));
     }
 }
