@@ -22,6 +22,7 @@ import { action, observable } from 'mobx';
 import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType from 'models/notification-type';
+import { nameToCategory } from 'notification-maps/category';
 import { NotificationContextData } from 'notifications-context';
 import Store from 'stores/store';
 
@@ -72,7 +73,7 @@ export default class NotificationStackStore extends Store {
   private updateWithStackJson(json: NotificationStackJson) {
     let stack = this.stacks.get(idFromJson(json));
     if (stack == null) {
-      stack = new NotificationStack(this, json.object_id, json.object_type, json.name);
+      stack = new NotificationStack(this, json.object_id, json.object_type, nameToCategory[json.name]);
       this.stacks.set(stack.id, stack);
     }
     stack.updateWithJson(json);

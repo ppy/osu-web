@@ -19,6 +19,7 @@
 import { NotificationStackJson } from 'interfaces/notification-json';
 import { action, computed, observable } from 'mobx';
 import Notification from 'models/notification';
+import { nameToCategory } from 'notification-maps/category';
 import { NotificationContextData } from 'notifications-context';
 import core from 'osu-core-singleton';
 import NotificationStackStore from 'stores/notification-stack-store';
@@ -39,13 +40,13 @@ export default class NotificationStack {
   }
 
   @computed
-  get id() {
-    return `${this.objectType}-${this.objectId}-${this.name}`;
+  get hasVisibleNotifiations() {
+    return this.notifications.size > 0;
   }
 
   @computed
-  get hasVisibleNotifiations() {
-    return this.notifications.size > 0;
+  get id() {
+    return `${this.objectType}-${this.objectId}-${this.category}`;
   }
 
   @computed
@@ -53,16 +54,24 @@ export default class NotificationStack {
     return this.total === 1;
   }
 
-  constructor(
-    private readonly store: NotificationStackStore,
-    readonly objectId: number,
-    readonly objectType: string,
-    readonly name: string,
-  ) {}
+  get jsonNotificationId() {
+    return {
+      category: this.category,
+      object_id: this.objectId,
+      object_type: this.objectType,
+    };
+  }
 
   get type() {
     return this.objectType;
   }
+
+  constructor(
+    private readonly store: NotificationStackStore,
+    readonly objectId: number,
+    readonly objectType: string,
+    readonly category: string,
+  ) {}
 
   @action
   add(notification: Notification) {
@@ -114,5 +123,5 @@ export default class NotificationStack {
 }
 
 export function idFromJson(json: NotificationStackJson) {
-  return `${json.object_type}-${json.object_id}-${json.name}`;
+  return `${json.object_type}-${json.object_id}-${nameToCategory[json.name]}`;
 }

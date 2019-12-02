@@ -51,7 +51,7 @@ interface NotificationsReadJson {
 }
 
 interface NotificationStackRead {
-  name: string;
+  category: string;
   object_id: number;
   object_type: string;
 }

@@ -108,14 +108,14 @@ class NotificationsController extends Controller
     public function index()
     {
         $unread = $this->unread ?? get_bool(request('unread'));
-        $type = presence(request('type'));
+        $type = presence(request('type')) ?? presence(request('cursor.type'));
         $objectId = get_int(presence(request('cursor.object_id')));
         $objectType = presence(request('cursor.object_type'));
-        $name = presence(request('cursor.name'));
+        $category = presence(request('cursor.category'));
         $cursor = get_int(request('cursor.id'));
 
-        if ($objectId && $objectType && $name) {
-            [$stack, $total] = $this->getNotificationStack($objectType, $objectId, $name, $cursor, $unread);
+        if ($objectId && $objectType && $category) {
+            [$stack, $total] = $this->getNotificationStack($objectType, $objectId, $category, $cursor, $unread);
             $stacks = $this->stackToResponse($stack, $total);
 
             return [
@@ -160,7 +160,7 @@ class NotificationsController extends Controller
     {
         $user = auth()->user();
         $params = get_params(request()->all(), null, [
-            'stack.name:string',
+            'stack.category:string',
             'stack.object_id:int',
             'stack.object_type:string',
             'type:string',
@@ -177,10 +177,12 @@ class NotificationsController extends Controller
             });
         } else if (!empty($stack)) {
             $itemsQuery = $user->userNotifications()->whereHas('notification', function ($query) use ($stack) {
+                $names = Notification::namesInCategory($stack['category']);
+
                 $query
                     ->where('notifiable_type', $stack['object_type'])
                     ->where('notifiable_id', $stack['object_id'])
-                    ->where('name', $stack['name']);
+                    ->whereIn('name', $names);
             });
         } else {
             $itemsQuery = $user->userNotifications()->whereIn('notification_id', $ids);
@@ -220,12 +222,13 @@ class NotificationsController extends Controller
         ->count();
     }
 
-    private function getNotificationStack(string $objectType, int $objectId, string $name, ?int $cursor = null, ?bool $unread = false)
+    private function getNotificationStack(string $objectType, int $objectId, string $category, ?int $cursor = null, ?bool $unread = false)
     {
-        $stack = auth()->user()->userNotifications()->with('notification')->whereHas('notification', function ($q) use ($objectId, $objectType, $name) {
+        $stack = auth()->user()->userNotifications()->with('notification')->whereHas('notification', function ($q) use ($objectId, $objectType, $category) {
+            $names = Notification::namesInCategory($category);
             $q->where('notifiable_id', $objectId)
                 ->where('notifiable_type', $objectType)
-                ->where('name', $name);
+                ->whereIn('name', $names);
         });
 
         if ($unread) {
@@ -254,7 +257,7 @@ class NotificationsController extends Controller
             'id' => $last->id,
             'object_type' => $last->notifiable_type,
             'object_id' => $last->notifiable_id,
-            'name' => $last->name,
+            'category' => Notification::nameToCategory($last->name),
         ];
 
         return [
@@ -272,7 +275,8 @@ class NotificationsController extends Controller
         $stacks = [];
         $notifications = collect();
 
-        foreach (MorphMap::MAP as $_key => $value) {
+        foreach (Notification::NOTIFIABLE_CLASSES as $class) {
+            $value = MorphMap::getType($class);
             if ($type !== null && $type !== $value) {
                 continue;
             }
@@ -297,8 +301,9 @@ class NotificationsController extends Controller
             $topLevel = $topLevel->limit(static::STACK_LIMIT)->get();
 
             $notificationStacks = $topLevel->map(function ($row) use ($cursor, $value, $unread) {
+                $category = Notification::nameToCategory($row->name);
                 // pass cursor in as all the notifications in the stack should be older.
-                return $this->getNotificationStack($value, $row->notifiable_id, $row->name, $cursor, $unread);
+                return $this->getNotificationStack($value, $row->notifiable_id, $category, $cursor, $unread);
             });
 
             foreach ($notificationStacks as [$stack, $total]) {

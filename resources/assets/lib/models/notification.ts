@@ -49,6 +49,10 @@ export default class Notification {
     return displayType(this);
   }
 
+  get jsonNotificationId() {
+    return this.id;
+  }
+
   @computed get messageGroup() {
     if (this.objectType === 'channel') {
       const replacements = {
@@ -65,7 +69,7 @@ export default class Notification {
   }
 
   @computed get stackId() {
-    return `${this.objectType}-${this.objectId}-${this.name}`;
+    return `${this.objectType}-${this.objectId}-${this.category}`;
   }
 
   constructor(id: number) {

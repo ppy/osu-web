@@ -42,6 +42,10 @@ export default class NotificationType {
   @observable stacks = new Map<string, NotificationStack>();
   @observable total = 0;
 
+  get jsonNotificationId() {
+    return { name: this.name };
+  }
+
   constructor(private readonly store: NotificationStackStore, readonly name: string) {}
 
   @action

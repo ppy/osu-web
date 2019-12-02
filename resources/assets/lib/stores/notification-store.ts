@@ -69,30 +69,24 @@ export default class NotificationStore extends Store {
   queueMarkAsRead(notification: Notification) {
     if (notification.canMarkRead) {
       notification.isMarkingAsRead = true;
-      this.queued.add(notification.id);
+      this.queued.add(notification.jsonNotificationId);
     }
 
     this.debouncedSendQueued();
   }
 
   queueMarkStackAsRead(stack: NotificationStack) {
-    const stackData = {
-      name: stack.name,
-      object_id: stack.objectId,
-      object_type: stack.objectType,
-    };
-
     stack.isMarkingAsRead = true;
 
     $.ajax({
       data: {
-        stack: stackData,
+        stack: stack.jsonNotificationId,
       },
       dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),
     })
-    .then(action(() => this.unreadStacks.handleNotificationEventStackRead({ data: stackData, event: 'notification.stack.read' })))
+    .then(action(() => this.unreadStacks.handleNotificationEventStackRead({ data: stack.jsonNotificationId, event: 'notification.stack.read' })))
     .always(action(() => stack.isMarkingAsRead = false));
   }
 
@@ -104,7 +98,7 @@ export default class NotificationStore extends Store {
       method: 'POST',
       url: route('notifications.mark-read'),
     })
-    .then(action(() => this.unreadStacks.handleNotificationEventTypeRead({ data: { name: type.name }, event: 'notification.type.read' })))
+    .then(action(() => this.unreadStacks.handleNotificationEventTypeRead({ data: type.jsonNotificationId, event: 'notification.type.read' })))
     .always(action(() => type.isMarkingAsRead = false));
   }
 

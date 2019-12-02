@@ -41,8 +41,8 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
   @action
   handleNotificationEventStackRead(event: NotificationEventStackRead) {
-    const { name, object_id, object_type } = event.data;
-    const id = `${object_type}-${object_id}-${name}`;
+    const { category, object_id, object_type } = event.data;
+    const id = `${object_type}-${object_id}-${category}`;
     const stack = this.stacks.get(id);
     if (stack == null) return;
 
