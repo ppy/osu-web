@@ -16,19 +16,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import Dispatcher from 'dispatcher';
 import NotificationJson, { NotificationBundleJson, NotificationStackJson, NotificationTypeJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { action, observable } from 'mobx';
+import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType from 'models/notification-type';
 import { nameToCategory } from 'notification-maps/category';
 import { NotificationContextData } from 'notifications-context';
+import RootDataStore from 'stores/root-data-store';
 import Store from 'stores/store';
 
 export default class NotificationStackStore extends Store {
   @observable readonly stacks = new Map<string, NotificationStack>();
   @observable readonly types = new Map<string, NotificationType>();
+
+  constructor(protected root: RootDataStore, protected dispatcher: Dispatcher) {
+    super(root, dispatcher);
+
+    this.addLegacyPm();
+  }
 
   get notifications() {
     return this.root.notificationStore.notifications;
@@ -38,6 +47,7 @@ export default class NotificationStackStore extends Store {
   flushStore() {
     this.stacks.clear();
     this.types.clear();
+    this.addLegacyPm();
   }
 
   @action
@@ -58,6 +68,21 @@ export default class NotificationStackStore extends Store {
     bundle.types?.forEach((json) => this.updateWithTypeJson(json));
     bundle.stacks?.forEach((json) => this.updateWithStackJson(json));
     bundle.notifications?.forEach((json) => this.updateWithNotificationJson(json));
+  }
+
+  @action
+  private addLegacyPm() {
+    const notification = new LegacyPmNotification();
+    const stack = new NotificationStack(this, notification.id, notification.objectType, notification.category);
+    const type = new NotificationType(this, notification.name);
+
+    stack.add(notification);
+    stack.total = 1;
+    this.stacks.set(stack.id, stack);
+
+    type.stacks.set(stack.id, stack);
+    type.total = 1;
+    this.types.set(type.name, type);
   }
 
   private updateWithNotificationJson(json: NotificationJson) {

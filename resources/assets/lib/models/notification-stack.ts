@@ -32,7 +32,6 @@ export default class NotificationStack {
   @observable total = 0;
 
   @observable private lastNotification: Notification | null = null;
-  private readonly rootStore = core.dataStore;
 
   @computed
   get first() {
@@ -41,7 +40,7 @@ export default class NotificationStack {
 
   @computed
   get hasVisibleNotifiations() {
-    return this.notifications.size > 0;
+    return this.notifications.size > 0 || this.objectType === 'legacy_pm';
   }
 
   @computed
@@ -64,6 +63,10 @@ export default class NotificationStack {
 
   get type() {
     return this.objectType;
+  }
+
+  private get rootStore() {
+    return core.dataStore;
   }
 
   constructor(

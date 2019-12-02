@@ -41,7 +41,7 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
 
   render() {
     const type = this.props.type;
-    if (type.total === 0 || type.stacks.size === 0) {
+    if (!type.hasVisibleNotifications) {
       return null;
     }
 
@@ -78,10 +78,7 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
   }
 
   private renderMarkAllReadButton() {
-    // TODO: no button for legacy pm type group
-    // if (this.props.items[0].id < 0) {
-    //   return null;
-    // }
+    if (this.props.type.name === 'legacy_pm') return null;
 
     let markAllReadClass = `${bn}__clear-all`;
     let markingAsReadSpinner: React.ReactNode = null;
@@ -108,10 +105,7 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
   }
 
   private renderNotificationCount() {
-    // TODO: legacy pm type group
-    // if (this.props.items.length === 1 && this.props.items[0] instanceof LegacyPmNotification) {
-    //   return null;
-    // }
+    if (this.props.type.name === 'legacy_pm') return null;
 
     return (
       <span className={`${bn}__count`}>
@@ -162,9 +156,7 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
 
     const stacks = type.stacks;
     stacks.forEach((stack: NotificationStack) => {
-      if (stack.total === 0) {
-        return;
-      }
+      if (!stack.hasVisibleNotifiations) return;
 
       nodes.push(this.renderStack(stack));
     });

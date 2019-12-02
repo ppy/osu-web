@@ -17,7 +17,7 @@
  */
 
 import { NotificationTypeJson } from 'interfaces/notification-json';
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import NotificationStack from 'models/notification-stack';
 import { NotificationContextData } from 'notifications-context';
 import core from 'osu-core-singleton';
@@ -41,6 +41,10 @@ export default class NotificationType {
   @observable isMarkingAsRead = false;
   @observable stacks = new Map<string, NotificationStack>();
   @observable total = 0;
+
+  @computed get hasVisibleNotifications() {
+    return (this.total > 0 && this.stacks.size > 0) || this.name === 'legacy_pm';
+  }
 
   get jsonNotificationId() {
     return { name: this.name };

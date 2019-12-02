@@ -115,7 +115,7 @@ export default class Main extends React.Component<Props, State> {
     const nodes: React.ReactNode[] = [];
 
     this.store.types.forEach((type) => {
-      if (type.total === 0) {
+      if (!type.hasVisibleNotifications) {
         return;
       }
 
