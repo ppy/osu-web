@@ -65,7 +65,7 @@ class ForceReactivation
         UserClient::where('user_id', $userId)->update(['verified' => false]);
 
         if (!$waitingActivation && present($this->user->user_email)) {
-            Mail::to($this->user->user_email)->send(new UserForceReactivation([
+            Mail::to($this->user)->send(new UserForceReactivation([
                 'user' => $this->user,
                 'reason' => $this->reason,
             ]));

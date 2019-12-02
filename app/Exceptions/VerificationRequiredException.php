@@ -18,40 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Mail;
+namespace App\Exceptions;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
+use Exception;
 
-class PasswordReset extends Mailable implements ShouldQueue
+class VerificationRequiredException extends Exception
 {
-    use Queueable, SerializesModels;
-
-    public $user;
-    public $key;
-
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($attributes)
+    public function getStatusCode()
     {
-        $this->user = $attributes['user'];
-        $this->key = $attributes['key'];
-    }
-
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this
-            ->text(view('emails.password_reset'))
-            ->subject(trans('password_reset.email.subject'));
+        return 401;
     }
 }
