@@ -1185,11 +1185,11 @@ class OsuAuthorize
                 return $prefix.'too_many_help_posts';
             }
         } else {
-            $this->ensureHasPlayed($user);
-
             if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
                 return $prefix.'play_more';
             }
+
+            $this->ensureHasPlayed($user);
         }
 
         return 'ok';
