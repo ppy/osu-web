@@ -104,10 +104,16 @@ export default class NotificationStore extends Store {
 
   sendQueued() {
     const ids = [...this.queued];
-    if (ids.length === 0) { return; }
+    const notifications: any[] = [];
+    for (const id of ids) {
+      const notification = this.notifications.get(id);
+      if (notification != null) notifications.push(notification.jsonNotificationId);
+    }
+
+    if (notifications.length === 0) { return; }
 
     this.queuedXhr = $.ajax({
-      data: { ids },
+      data: { notifications },
       dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),
@@ -116,7 +122,7 @@ export default class NotificationStore extends Store {
     ids.forEach((id) => this.queued.delete(id));
 
     this.queuedXhr
-    .then(action(() => this.unreadStacks.handleNotificationEventRead({ data: { ids }, event: 'read'})))
+    .then(action(() => this.unreadStacks.handleNotificationEventRead({ data: notifications, event: 'read'})))
     .always(action(() => this.getMany(ids).forEach((notification) => notification.isMarkingAsRead = false)));
 
     return this.queuedXhr;

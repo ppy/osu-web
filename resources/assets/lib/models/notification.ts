@@ -50,7 +50,12 @@ export default class Notification {
   }
 
   get jsonNotificationId() {
-    return this.id;
+    return {
+      category: this.category,
+      id: this.id,
+      object_id: this.objectId,
+      object_type: this.objectType,
+    }
   }
 
   @computed get messageGroup() {

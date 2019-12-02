@@ -23,6 +23,7 @@ import {
   NotificationEventReadJson,
   NotificationEventStackRead,
   NotificationEventTypeRead,
+  NotificationReadJson,
 } from 'notifications/notification-events';
 import NotificationStackStore from './notification-stack-store';
 
@@ -36,7 +37,7 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
   @action
   handleNotificationEventRead(event: NotificationEventReadJson) {
-    this.markAsRead(event.data.ids);
+    this.markAsRead(event.data);
   }
 
   @action
@@ -75,22 +76,27 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
   }
 
   @action
-  private markAsRead(ids: number[]) {
-    for (const id of ids) {
-      const notification = this.notifications.get(id);
-      if (notification == null || notification.isRead) continue;
+  private markAsRead(json: NotificationReadJson[]) {
+    for (const read of json) {
+      const notification = this.notifications.get(read.id);
+      const stack = this.stacks.get(notification?.stackId ?? '');
+      const type = this.types.get(stack?.type ?? '');
 
-      notification.isRead = true;
+      if (notification != null) {
+        if (!notification.isRead) {
+          this.total--;
+          stack?.remove(notification);
+          if (type != null) type.total--;
+
+          notification.isRead = true;
+        }
+
+        continue;
+      }
+
       this.total--;
-
-      const stack = this.stacks.get(notification.stackId);
-      if (stack == null) continue;
-
-      stack.remove(notification);
-
-      const type = this.types.get(stack.type);
-      if (type == null) continue;
-      type.total--;
+      if (type != null) type.total--;
+      if (stack != null) stack.total--;
     }
   }
 }

@@ -28,7 +28,7 @@ export interface NotificationEventNewJson {
 }
 
 export interface NotificationEventReadJson {
-  data: NotificationsReadJson;
+  data: NotificationReadJson[];
   event: 'read';
 }
 
@@ -46,8 +46,11 @@ export interface NotificationEventVerifiedJson {
   event: 'verified';
 }
 
-interface NotificationsReadJson {
-  ids: number[];
+export interface NotificationReadJson {
+  category: string;
+  id: number;
+  object_id: number;
+  object_type: string;
 }
 
 interface NotificationStackRead {
