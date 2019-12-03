@@ -21,6 +21,7 @@
 namespace App\Libraries;
 
 use App\Exceptions\AuthorizationException;
+use App\Exceptions\VerificationRequiredException;
 use Illuminate\Auth\AuthenticationException;
 
 class AuthorizationResult
@@ -52,6 +53,11 @@ class AuthorizationResult
             ends_with($this->rawMessage(), '.require_login');
     }
 
+    public function requireVerification()
+    {
+        return $this->rawMessage() === 'require_verification';
+    }
+
     public function message()
     {
         if ($this->can()) {
@@ -69,6 +75,8 @@ class AuthorizationResult
 
         if ($this->requireLogin()) {
             $class = AuthenticationException::class;
+        } elseif ($this->requireVerification()) {
+            $class = VerificationRequiredException::class;
         } else {
             $class = AuthorizationException::class;
         }
