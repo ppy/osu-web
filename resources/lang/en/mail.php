@@ -22,7 +22,7 @@ return [
     'beatmapset_update_notice' => [
         'new' => 'Just letting you know that there has been a new update in beatmap ":title" since your last visit.',
         'subject' => 'New update for beatmap ":title"',
-        'unwatch' => 'If you no longer wish to watch this beatmap, you can either click the "Unwatch" link found in the page above, or from the modding watchlist page:',  
+        'unwatch' => 'If you no longer wish to watch this beatmap, you can either click the "Unwatch" link found in the page above, or from the modding watchlist page:',
         'visit' => 'Visit the discussion page here:',
     ],
 
