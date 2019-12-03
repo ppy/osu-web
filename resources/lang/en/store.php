@@ -79,21 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'We received your osu!store order!',
-
-            'content' => [
-                'prepare_shipping' => 'We have received your payment and are preparing your order for shipping. It may take a few days for us to send it out, depending on the quantity of orders. You can follow the progress of your order here, including tracking details where available:',
-                'processing' => 'We have received your payment and are currently processing your order. You can follow the progress of your order here:',
-                'questions' => "If you have any questions, don't hesitate to reply to this email.",
-                'shipping' => 'Shipping',
-                'thank_you' => 'Thanks for your osu!store order!',
-                'total' => 'Total',
-            ],
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Order placed :date',
 

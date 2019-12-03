@@ -16,27 +16,27 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-{!! trans('common.email.hello', ['user' => $order->user->username]) !!}
+{!! trans('mail.common.hello', ['user' => $order->user->username]) !!}
 
-{!! trans('store.mail.payment_completed.content.thank_you') !!}
+{!! trans('mail.store_payment_completed.thank_you') !!}
 
 @foreach ($order->items as $item)
 {!! i18n_number_format($item->quantity) !!} x {!! $item->getDisplayName() !!} ({!! currency($item->subtotal()) !!})
 @endforeach
 
 @if ($order->shipping > 0)
-{!! trans('store.mail.payment_completed.content.shipping') !!} ({{ currency($order->shipping) }})
+{!! trans('mail.store_payment_completed.shipping') !!} ({{ currency($order->shipping) }})
 @endif
-{!! trans('store.mail.payment_completed.content.total') !!} ({{ currency($order->getTotal()) }})
+{!! trans('mail.store_payment_completed.total') !!} ({{ currency($order->getTotal()) }})
 
 @if ($order->requiresShipping())
-{!! trans('store.mail.payment_completed.content.prepare_shipping') !!}
+{!! trans('mail.store_payment_completed.prepare_shipping') !!}
 @else
-{!! trans('store.mail.payment_completed.content.processing') !!}
+{!! trans('mail.store_payment_completed.processing') !!}
 @endif
 {!! route('store.invoice.show', $order) !!}
 
-{!! trans('store.mail.payment_completed.content.questions') !!}
+{!! trans('mail.store_payment_completed.questions') !!}
 
-{!! trans('common.email.closing') !!}
+{!! trans('mail.common.closing') !!}
 The osu!store team

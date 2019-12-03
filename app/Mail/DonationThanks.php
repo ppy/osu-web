@@ -64,6 +64,6 @@ class DonationThanks extends Mailable implements ShouldQueue
                 config('store.mail.donation_thanks.sender_address'),
                 config('store.mail.donation_thanks.sender_name')
             )
-            ->subject(trans('fulfillments.mail.donation_thanks.subject'));
+            ->subject(trans('mail.donation_thanks.subject'));
     }
 }

@@ -18,29 +18,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Mail;
+return [
+    'beatmapset_update_notice' => [
+        'subject' => 'Ny uppdatering för beatmap ":title"',
+    ],
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
+    'donation_thanks' => [
+        'subject' => 'Tack, osu! <3 dig',
+    ],
 
-class UserForceReactivation extends Mailable implements ShouldQueue
-{
-    private $user;
-    private $reason;
+    'forum_new_reply' => [
+        'subject' => '[osu!] Nytt svar på ämne ":title"',
+    ],
 
-    public function __construct($attributes)
-    {
-        $this->user = $attributes['user'];
-        $this->reason = $attributes['reason'];
-    }
+    'password_reset' => [
+        'subject' => 'osu! konto återhämtning',
+    ],
 
-    public function build()
-    {
-        return $this
-            ->text('emails.user_force_reactivation')
-            ->with([
-                'reason' => $this->reason,
-                'user' => $this->user,
-            ])->subject(trans('mail.user_force_reactivation.subject'));
-    }
-}
+    'store_payment_completed' => [
+        'subject' => 'Vi har tagit emot din osu!store-beställning!',
+    ],
+
+    'user_email_updated' => [
+        'subject' => 'bekräfta ändrad osu! e-postadress',
+    ],
+
+    'user_password_updated' => [
+        'subject' => 'bekräfta ändrat osu! lösenord',
+    ],
+
+    'user_verification' => [
+        'subject' => 'osu! kontobekräftelse',
+    ],
+];

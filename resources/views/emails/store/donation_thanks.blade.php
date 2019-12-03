@@ -15,22 +15,22 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-{!! trans('common.email.hello', ['user' => $donor->username]) !!}
+{!! trans('mail.common.hello', ['user' => $donor->username]) !!}
 
-{!! trans('fulfillments.mail.donation_thanks.content.support._', [
-    'support' => trans('fulfillments.mail.donation_thanks.content.support.'.($continued ? 'repeat' : 'first')),
+{!! trans('mail.donation_thanks.support._', [
+    'support' => trans('mail.donation_thanks.support.'.($continued ? 'repeat' : 'first')),
 ]) !!}
-{!! trans('fulfillments.mail.donation_thanks.content.keep_free') !!}
-{!! trans('fulfillments.mail.donation_thanks.content.benefit.'.($isGift ? 'gift' : 'self'), [
+{!! trans('mail.donation_thanks.keep_free') !!}
+{!! trans('mail.donation_thanks.benefit.'.($isGift ? 'gift' : 'self'), [
     'duration' => $duration,
 ]) !!}
-{!! trans('fulfillments.mail.donation_thanks.content.benefit_more') !!}
+{!! trans('mail.donation_thanks.benefit_more') !!}
 
-{!! trans('fulfillments.mail.donation_thanks.content.keep_running', [
+{!! trans('mail.donation_thanks.keep_running', [
     'minutes' => trans_choice('common.count.minutes', $minutes),
 ]) !!}
 
-{!! trans('fulfillments.mail.donation_thanks.content.feedback') !!}
+{!! trans('mail.donation_thanks.feedback') !!}
 
-{!! trans('common.email.closing') !!}
+{!! trans('mail.common.closing') !!}
 Dean Herbert (peppy)

@@ -15,12 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-{!! trans('common.email.hello', ['user' => $user->username]) !!}
+{!! trans('mail.common.hello', ['user' => $user->username]) !!}
 
-{!! trans('password_reset.email.content.requested') !!}
+{!! trans('mail.password_reset.requested') !!}
 
-{!! trans('password_reset.email.content.code') !!} {{ $key }}
+{!! trans('mail.password_reset.code') !!} {{ $key }}
 
-{!! trans('common.email.report') !!}
+{!! trans('email.common.report') !!}
 
 @include('emails._signature')

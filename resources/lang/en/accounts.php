@@ -106,27 +106,11 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! email change confirmation',
         'update' => 'update',
-
-        'email' => [
-            'content' => [
-                'changed_to' => 'This is a confirmation email to inform you that your osu! email address has been changed to: ":email".',
-                'check' => 'Please ensure that you received this email at your new address to prevent losing access your osu! account in the future.',
-                'sent' => 'For security reasons, this email has been sent both to your new and old email address.',
-            ],
-        ],
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! password change confirmation',
         'update' => 'update',
-
-        'email' => [
-            'content' => [
-                'confirmation' => 'This is just a confirmation that your osu! password has been changed.',
-            ],
-        ],
     ],
 
     'verification_completed' => [

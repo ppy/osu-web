@@ -18,29 +18,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Mail;
+return [
+    'beatmapset_update_notice' => [
+        'subject' => 'Nová aktualizácia pre beatmapu ":title"',
+    ],
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
+    'donation_thanks' => [
+        'subject' => 'Díky, osu! ťa <3luje',
+    ],
 
-class UserForceReactivation extends Mailable implements ShouldQueue
-{
-    private $user;
-    private $reason;
+    'forum_new_reply' => [
+        'subject' => '[osu!] Nová odpoveď na tému ":title"',
+    ],
 
-    public function __construct($attributes)
-    {
-        $this->user = $attributes['user'];
-        $this->reason = $attributes['reason'];
-    }
+    'password_reset' => [
+        'subject' => 'obnovenie osu! účtu',
+    ],
 
-    public function build()
-    {
-        return $this
-            ->text('emails.user_force_reactivation')
-            ->with([
-                'reason' => $this->reason,
-                'user' => $this->user,
-            ])->subject(trans('mail.user_force_reactivation.subject'));
-    }
-}
+    'store_payment_completed' => [
+        'subject' => 'Obdržali sme tvoju osu!store objednávku!',
+    ],
+
+    'user_email_updated' => [
+        'subject' => 'potvrdenie zmeny osu! emailu',
+    ],
+
+    'user_password_updated' => [
+        'subject' => 'potvrdenie zmeny osu! hesla',
+    ],
+
+    'user_verification' => [
+        'subject' => 'overenie osu! účtu',
+    ],
+];

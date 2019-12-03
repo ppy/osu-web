@@ -15,19 +15,19 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-{!! trans('common.email.hello', ['user' => $user->username]) !!}
+{!! trans('mail.common.hello', ['user' => $user->username]) !!}
 
-{!! trans('user_verification.email.content.action_from._', [
-    'country' => $requestCountry ?? trans('user_verification.email.content.action_from.unknown_country'),
+{!! trans('mail.user_verification.action_from._', [
+    'country' => $requestCountry ?? trans('mail.user_verification.action_from.unknown_country'),
 ]) !!}
 
-{!! trans('user_verification.email.content.code') !!} {{ $keys['main'] }}
-{!! trans('user_verification.email.content.code_hint') !!}
+{!! trans('mail.user_verification.code') !!} {{ $keys['main'] }}
+{!! trans('mail.user_verification.code_hint') !!}
 
-{!! trans('user_verification.email.content.link') !!}
+{!! trans('mail.user_verification.link') !!}
 
 {{ route('account.verify', ['key' => $keys['link']]) }}
 
-{!! trans('user_verification.email.content.report') !!}
+{!! trans('mail.user_verification.report') !!}
 
 @include('emails._signature')

@@ -15,14 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-{!! trans('common.email.hello', ['user' => $giftee->username]) !!}
+{!! trans('mail.common.hello', ['user' => $giftee->username]) !!}
 
-{!! trans('fulfillments.mail.supporter_gift.content.gifted') !!}
-{!! trans('fulfillments.mail.supporter_gift.content.duration', ['duration' => $duration]) !!}
-{!! trans('fulfillments.mail.supporter_gift.content.features') !!}
+{!! trans('mail.supporter_gift.gifted') !!}
+{!! trans('mail.supporter_gift.duration', ['duration' => $duration]) !!}
+{!! trans('mail.supporter_gift.features') !!}
 {!! route('support-the-game') !!}
-{!! trans('fulfillments.mail.supporter_gift.content.anonymous_gift') !!}
-{!! trans('fulfillments.mail.supporter_gift.content.anonymous_gift_maybe_not') !!}
+{!! trans('mail.supporter_gift.anonymous_gift') !!}
+{!! trans('mail.supporter_gift.anonymous_gift_maybe_not') !!}
 
-{!! trans('common.email.closing') !!}
+{!! trans('email.common.closing') !!}
 osu! Management

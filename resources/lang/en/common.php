@@ -118,12 +118,6 @@ return [
         'target' => 'drop here to upload',
     ],
 
-    'email' => [
-        'closing' => 'Regards,',
-        'hello' => 'Hi :user,',
-        'report' => 'Please reply to this email IMMEDIATELY if you did not request this change.',
-    ],
-
     'input' => [
         'search' => 'search...',
     ],
