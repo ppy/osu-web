@@ -17,6 +17,7 @@
  */
 
 import NotificationJson from 'interfaces/notification-json';
+import { NotificationIdentity } from 'notifications/notification-identity';
 
 export interface NotificationEventLogoutJson {
   event: 'logout';
@@ -28,37 +29,42 @@ export interface NotificationEventNewJson {
 }
 
 export interface NotificationEventReadJson {
-  data: NotificationReadJson[];
+  data: { notification_ids: NotificationReadJson[] };
   event: 'read';
 }
 
-export interface NotificationEventStackRead {
-  data: NotificationStackRead;
-  event: 'notification.stack.read';
+export interface NotificationEventRead {
+  data: NotificationIdentity;
+  event: 'read';
 }
 
-export interface NotificationEventTypeRead {
-  data: NotificationTypeRead;
-  event: 'notification.type.read';
-}
+// export interface NotificationEventStackRead {
+//   data: NotificationStackRead;
+//   event: 'notification.stack.read';
+// }
+
+// export interface NotificationEventTypeRead {
+//   data: NotificationTypeRead;
+//   event: 'notification.type.read';
+// }
 
 export interface NotificationEventVerifiedJson {
   event: 'verified';
 }
 
 export interface NotificationReadJson {
-  category: string;
-  id: number;
-  object_id: number;
+  category?: string;
+  id?: number;
+  object_id?: number;
   object_type: string;
 }
 
-interface NotificationStackRead {
-  category: string;
-  object_id: number;
-  object_type: string;
-}
+// interface NotificationStackRead {
+//   category: string;
+//   object_id: number;
+//   object_type: string;
+// }
 
-interface NotificationTypeRead {
-  name: string;
-}
+// interface NotificationTypeRead {
+//   name: string;
+// }

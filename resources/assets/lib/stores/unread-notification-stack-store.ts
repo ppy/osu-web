@@ -18,52 +18,34 @@
 
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { action, observable } from 'mobx';
-import {
-  NotificationEventNewJson,
-  NotificationEventReadJson,
-  NotificationEventStackRead,
-  NotificationEventTypeRead,
-  NotificationReadJson,
-} from 'notifications/notification-events';
+import { NotificationEventRead } from 'notifications/notification-events';
+import { NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
 import NotificationStackStore from './notification-stack-store';
 
 export default class UnreadNotificationStackStore extends NotificationStackStore {
   @observable total = 0;
 
   @action
-  handleNotificationEventNew(event: NotificationEventNewJson) {
+  handleNotificationEventNew() {
     this.total++;
   }
 
   @action
-  handleNotificationEventRead(event: NotificationEventReadJson) {
-    this.markAsRead(event.data);
-  }
+  handleNotificationEventRead(event: NotificationEventRead) {
+    const identityType = resolveIdentityType(event.data);
+    switch (identityType) {
+      case 'type':
+        this.handleType(event.data);
+        break;
 
-  @action
-  handleNotificationEventStackRead(event: NotificationEventStackRead) {
-    const { category, object_id, object_type } = event.data;
-    const id = `${object_type}-${object_id}-${category}`;
-    const stack = this.stacks.get(id);
-    if (stack == null) return;
+      case 'stack':
+        this.handleStack(event.data);
+        break;
 
-    stack.notifications.forEach((notification) => notification.isRead = true);
-    this.stacks.delete(id);
-    this.total -= stack.total;
-
-    const type = this.types.get(stack.type);
-    if (type == null) return;
-    type.removeStack(stack);
-  }
-
-  @action
-  handleNotificationEventTypeRead(event: NotificationEventTypeRead) {
-    const type = this.types.get(event.data.name);
-    if (type == null) return;
-
-    type.stacks.forEach((stack) => stack.notifications.forEach((notification) => notification.isRead = true));
-    this.types.delete(event.data.name);
-    this.total -= type.total;
+      case 'notification':
+        this.handleNotification(event.data);
+        break;
+    }
   }
 
   @action
@@ -75,28 +57,47 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
     }
   }
 
-  @action
-  private markAsRead(json: NotificationReadJson[]) {
-    for (const read of json) {
-      const notification = this.notifications.get(read.id);
-      const stack = this.stacks.get(notification?.stackId ?? '');
-      const type = this.types.get(stack?.type ?? '');
+  private handleNotification(identity: NotificationIdentity) {
+    if (resolveIdentityType(identity) !== 'notification') return;
 
-      if (notification != null) {
-        if (!notification.isRead) {
-          this.total--;
-          stack?.remove(notification);
-          if (type != null) type.total--;
+    const notification = this.getNotification(identity);
+    const stack = this.getStack(identity);
+    const type = this.getType(identity);
 
-          notification.isRead = true;
-        }
+    if (notification != null) {
+      if (!notification.isRead) {
+        this.total--;
+        stack?.remove(notification);
+        if (type != null) type.total--;
 
-        continue;
+        notification.isRead = true;
       }
-
-      this.total--;
-      if (type != null) type.total--;
-      if (stack != null) stack.total--;
     }
+
+    this.total--;
+    if (type != null) type.total--;
+    if (stack != null) stack.total--;
+  }
+
+  private handleStack(identity: NotificationIdentity) {
+    const stack = this.getStack(identity);
+    if (stack == null) return;
+
+    stack.notifications.forEach((notification) => notification.isRead = true);
+    this.stacks.delete(resolveStackId(identity));
+    this.total -= stack.total;
+
+    const type = this.getType(identity);
+    if (type == null) return;
+    type.removeStack(stack);
+  }
+
+  private handleType(identity: NotificationIdentity) {
+    const type = this.getType(identity);
+    if (type == null) return;
+
+    type.stacks.forEach((stack) => stack.notifications.forEach((notification) => notification.isRead = true));
+    this.types.delete(identity.objectType);
+    this.total -= type.total;
   }
 }

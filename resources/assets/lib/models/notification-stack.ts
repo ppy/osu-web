@@ -19,12 +19,14 @@
 import { NotificationStackJson } from 'interfaces/notification-json';
 import { action, computed, observable } from 'mobx';
 import Notification from 'models/notification';
-import { nameToCategory } from 'notification-maps/category';
+import { categoryFromName } from 'notification-maps/category';
 import { NotificationContextData } from 'notifications-context';
+import { NotificationIdentity } from 'notifications/notification-identity';
+import NotificationReadable from 'notifications/notification-readable';
 import core from 'osu-core-singleton';
 import NotificationStackStore from 'stores/notification-stack-store';
 
-export default class NotificationStack {
+export default class NotificationStack implements NotificationReadable {
   @observable cursor: JSON | null = null;
   @observable isLoading = false;
   @observable isMarkingAsRead = false;
@@ -53,11 +55,11 @@ export default class NotificationStack {
     return this.total === 1;
   }
 
-  get jsonNotificationId() {
+  get identity(): NotificationIdentity {
     return {
       category: this.category,
-      object_id: this.objectId,
-      object_type: this.objectType,
+      objectId: this.objectId,
+      objectType: this.objectType,
     };
   }
 
@@ -75,6 +77,11 @@ export default class NotificationStack {
     readonly objectType: string,
     readonly category: string,
   ) {}
+
+  static fromJson(json: NotificationStackJson, store: NotificationStackStore) {
+    const obj = new NotificationStack(store, json.object_id, json.object_type, categoryFromName(name));
+    return obj.updateWithJson(json);
+  }
 
   @action
   add(notification: Notification) {
@@ -97,12 +104,12 @@ export default class NotificationStack {
   markAsRead(notification?: Notification) {
     // not from this stack, ignore.
     if (notification == null || this.notifications.get(notification.id) == null) { return; }
-    this.rootStore.notificationStore.queueMarkAsRead(notification);
+    this.rootStore.notificationStore.queueMarkNotificationAsRead(notification);
   }
 
   @action
   markStackAsRead() {
-    this.rootStore.notificationStore.queueMarkStackAsRead(this);
+    this.rootStore.notificationStore.queueMarkAsRead(this);
   }
 
   @action
@@ -126,5 +133,5 @@ export default class NotificationStack {
 }
 
 export function idFromJson(json: NotificationStackJson) {
-  return `${json.object_type}-${json.object_id}-${nameToCategory[json.name]}`;
+  return `${json.object_type}-${json.object_id}-${categoryFromName(json.name)}`;
 }

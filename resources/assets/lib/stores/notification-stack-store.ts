@@ -26,6 +26,7 @@ import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType from 'models/notification-type';
 import { nameToCategory } from 'notification-maps/category';
 import { NotificationContextData } from 'notifications-context';
+import { NotificationIdentity, resolveStackId } from 'notifications/notification-identity';
 import RootDataStore from 'stores/root-data-store';
 import Store from 'stores/store';
 
@@ -48,6 +49,18 @@ export default class NotificationStackStore extends Store {
     this.stacks.clear();
     this.types.clear();
     this.addLegacyPm();
+  }
+
+  getNotification(identitiy: NotificationIdentity) {
+    return this.notifications.get(identitiy.id ?? 0);
+  }
+
+  getStack(identity: NotificationIdentity) {
+    return this.stacks.get(resolveStackId(identity));
+  }
+
+  getType(identity: NotificationIdentity) {
+    return this.types.get(identity.objectType);
   }
 
   @action
@@ -88,10 +101,12 @@ export default class NotificationStackStore extends Store {
   private updateWithNotificationJson(json: NotificationJson) {
     let notification = this.notifications.get(json.id);
     if (notification == null) {
-      notification = new Notification(json.id);
+      notification = Notification.fromJson(json);
       this.notifications.set(notification.id, notification);
+    } else {
+      notification.updateFromJson(json);
     }
-    notification.updateFromJson(json);
+
     this.stacks.get(notification.stackId)?.notifications.set(notification.id, notification);
   }
 

@@ -24,9 +24,12 @@ import { action, computed, observable } from 'mobx';
 import {
   NotificationEventLogoutJson,
   NotificationEventNewJson,
+  NotificationEventRead,
   NotificationEventReadJson,
   NotificationEventVerifiedJson,
+  NotificationReadJson,
 } from 'notifications/notification-events';
+import { NotificationIdentity } from 'notifications/notification-identity';
 import core from 'osu-core-singleton';
 
 interface NotificationBootJson extends NotificationBundleJson {
@@ -60,6 +63,15 @@ const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson
 const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVerifiedJson => {
   return arg.event === 'verified';
 };
+
+function jsonToIndentity(json: NotificationReadJson): NotificationIdentity {
+  return {
+    category: json.category,
+    id: json.id,
+    objectId: json.object_id,
+    objectType: json.object_type,
+  };
+}
 
 export default class Worker {
   @observable hasData: boolean = false;
@@ -155,24 +167,28 @@ export default class Worker {
   }
 
   @action handleNewEvent = (event: MessageEvent) => {
-    let data: any;
+    let eventData: any;
 
     try {
-      data = JSON.parse(event.data);
+      eventData = JSON.parse(event.data);
     } catch {
       console.debug('Failed parsing data:', event.data);
 
       return;
     }
 
-    if (isNotificationEventLogoutJson(data)) {
+    if (isNotificationEventLogoutJson(eventData)) {
       this.destroy();
-    } else if (isNotificationEventNewJson(data)) {
-      this.notificationStore.handleNotificationEventNew(data);
-      this.store.handleNotificationEventNew(data);
-    } else if (isNotificationEventReadJson(data)) {
-      this.store.handleNotificationEventRead(data);
-    } else if (isNotificationEventVerifiedJson(data)) {
+    } else if (isNotificationEventNewJson(eventData)) {
+      this.notificationStore.handleNotificationEventNew(eventData);
+      this.store.handleNotificationEventNew();
+    } else if (isNotificationEventReadJson(eventData)) {
+      const events = eventData.data.notification_ids.map((json) => {
+        return { data: jsonToIndentity(json), event: 'read' } as NotificationEventRead;
+      });
+
+      events.forEach((notificationEvent) => this.store.handleNotificationEventRead(notificationEvent));
+    } else if (isNotificationEventVerifiedJson(eventData)) {
       if (!this.hasData) {
         this.loadMore();
       }

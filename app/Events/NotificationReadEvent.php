@@ -35,7 +35,7 @@ class NotificationReadEvent extends NotificationEventBase
      *
      * @return void
      */
-    public function __construct($userId, $notificationIds)
+    public function __construct($userId, array $notificationIds)
     {
         parent::__construct();
 
@@ -60,6 +60,7 @@ class NotificationReadEvent extends NotificationEventBase
 
     public function broadcastWith()
     {
-        return ['ids' => $this->notificationIds];
+        // passing plain array causes laravel to use the array index as stringified key names.
+        return ['notification_ids' => $this->notificationIds];
     }
 }

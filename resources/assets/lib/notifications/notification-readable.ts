@@ -16,16 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { observable } from 'mobx';
-import Notification from './notification';
+import { NotificationIdentity } from 'notifications/notification-identity';
 
-export default class LegacyPmNotification extends Notification {
-  @observable details = { count: 0 };
-  isRead = false;
-  name = 'legacy_pm';
-  objectId = -1;
-
-  constructor() {
-    super(-1, 'legacy_pm');
-  }
+export default interface NotificationReadable {
+  identity: NotificationIdentity;
+  isMarkingAsRead: boolean;
 }

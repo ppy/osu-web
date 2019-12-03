@@ -20,6 +20,8 @@ import { NotificationTypeJson } from 'interfaces/notification-json';
 import { action, computed, observable } from 'mobx';
 import NotificationStack from 'models/notification-stack';
 import { NotificationContextData } from 'notifications-context';
+import { NotificationIdentity } from 'notifications/notification-identity';
+import NotificationReadable from 'notifications/notification-readable';
 import core from 'osu-core-singleton';
 import NotificationStackStore from 'stores/notification-stack-store';
 
@@ -35,7 +37,7 @@ export function getValidName(value: unknown) {
   return names[0];
 }
 
-export default class NotificationType {
+export default class NotificationType implements NotificationReadable {
   @observable cursor: JSON | null = null;
   @observable isLoading = false;
   @observable isMarkingAsRead = false;
@@ -46,11 +48,18 @@ export default class NotificationType {
     return (this.total > 0 && this.stacks.size > 0) || this.name === 'legacy_pm';
   }
 
-  get jsonNotificationId() {
-    return { name: this.name };
+  get identity(): NotificationIdentity {
+    return {
+      objectType: this.name,
+    };
   }
 
   constructor(private readonly store: NotificationStackStore, readonly name: string) {}
+
+  static fromJson(json: NotificationTypeJson, store: NotificationStackStore) {
+    const obj = new NotificationType(store, json.name);
+    obj.updateWithJson(json);
+  }
 
   @action
   loadMore(context: NotificationContextData) {
@@ -65,7 +74,7 @@ export default class NotificationType {
 
   @action
   markTypeAsRead() {
-    core.dataStore.notificationStore.queueMarkTypeAsRead(this);
+    core.dataStore.notificationStore.queueMarkAsRead(this);
   }
 
   @action

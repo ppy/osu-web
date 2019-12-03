@@ -22,9 +22,9 @@ import { debounce } from 'lodash';
 import { action, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
-import NotificationStack from 'models/notification-stack';
-import NotificationType from 'models/notification-type';
 import { NotificationEventNewJson } from 'notifications/notification-events';
+import { NotificationIdentity, toJson } from 'notifications/notification-identity';
+import NotificationReadable from 'notifications/notification-readable';
 import Store from 'stores/store';
 import NotificationStackStore from './notification-stack-store';
 import UnreadNotificationStackStore from './unread-notification-stack-store';
@@ -66,54 +66,41 @@ export default class NotificationStore extends Store {
   }
 
   @action
-  queueMarkAsRead(notification: Notification) {
+  queueMarkAsRead(readable: NotificationReadable) {
+    readable.isMarkingAsRead = true;
+
+    $.ajax({
+      data: toJson(readable.identity),
+      dataType: 'json',
+      method: 'POST',
+      url: route('notifications.mark-read'),
+    })
+    .then(action(() => this.unreadStacks.handleNotificationEventRead({ data: readable.identity, event: 'read' })))
+    .always(action(() => readable.isMarkingAsRead = false));
+  }
+
+  @action
+  queueMarkNotificationAsRead(notification: Notification) {
     if (notification.canMarkRead) {
       notification.isMarkingAsRead = true;
-      this.queued.add(notification.jsonNotificationId);
+      this.queued.add(notification.id);
     }
 
     this.debouncedSendQueued();
   }
 
-  queueMarkStackAsRead(stack: NotificationStack) {
-    stack.isMarkingAsRead = true;
-
-    $.ajax({
-      data: {
-        stack: stack.jsonNotificationId,
-      },
-      dataType: 'json',
-      method: 'POST',
-      url: route('notifications.mark-read'),
-    })
-    .then(action(() => this.unreadStacks.handleNotificationEventStackRead({ data: stack.jsonNotificationId, event: 'notification.stack.read' })))
-    .always(action(() => stack.isMarkingAsRead = false));
-  }
-
-  queueMarkTypeAsRead(type: NotificationType) {
-    type.isMarkingAsRead = true;
-    $.ajax({
-      data: { type: type.name },
-      dataType: 'json',
-      method: 'POST',
-      url: route('notifications.mark-read'),
-    })
-    .then(action(() => this.unreadStacks.handleNotificationEventTypeRead({ data: type.jsonNotificationId, event: 'notification.type.read' })))
-    .always(action(() => type.isMarkingAsRead = false));
-  }
-
   sendQueued() {
     const ids = [...this.queued];
-    const notifications: any[] = [];
+    const identities: NotificationIdentity[] = [];
     for (const id of ids) {
       const notification = this.notifications.get(id);
-      if (notification != null) notifications.push(notification.jsonNotificationId);
+      if (notification != null) identities.push(notification.identity);
     }
 
-    if (notifications.length === 0) { return; }
+    if (identities.length === 0) { return; }
 
     this.queuedXhr = $.ajax({
-      data: { notifications },
+      data: { notification_ids: identities.map(toJson) },
       dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),
@@ -122,20 +109,25 @@ export default class NotificationStore extends Store {
     ids.forEach((id) => this.queued.delete(id));
 
     this.queuedXhr
-    .then(action(() => this.unreadStacks.handleNotificationEventRead({ data: notifications, event: 'read'})))
+    .then(action(() => {
+      identities.forEach((identity) => this.unreadStacks.handleNotificationEventRead({ data: identity , event: 'read' }));
+    }))
     .always(action(() => this.getMany(ids).forEach((notification) => notification.isMarkingAsRead = false)));
 
     return this.queuedXhr;
   }
 
   private updateWithJson(json: NotificationJson) {
+    // TODO: push out updates to all the stacks as well?
     let notification = this.notifications.get(json.id);
 
     if (notification == null) {
-      notification = new Notification(json.id);
+      notification = Notification.fromJson(json);
       this.notifications.set(notification.id, notification);
+    } else {
+      return notification.updateFromJson(json);
     }
 
-    return notification.updateFromJson(json);
+    return notification;
   }
 }

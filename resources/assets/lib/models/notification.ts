@@ -21,16 +21,15 @@ import { camelCase, forEach } from 'lodash';
 import { computed, observable } from 'mobx';
 import { categoryGroupKey, nameToCategory } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
+import { NotificationIdentity } from 'notifications/notification-identity';
 
 export default class Notification {
   createdAtJson?: string;
   details?: any;
-  id: number;
   @observable isMarkingAsRead = false;
   @observable isRead = false;
   name?: string;
   objectId?: number;
-  objectType?: string;
   sourceUserId?: number;
 
   @computed get canMarkRead() {
@@ -38,7 +37,7 @@ export default class Notification {
   }
 
   @computed get category() {
-    return nameToCategory[this.name || ''];
+    return nameToCategory[this.name ?? ''];
   }
 
   @computed get categoryGroupKey() {
@@ -49,13 +48,13 @@ export default class Notification {
     return displayType(this);
   }
 
-  get jsonNotificationId() {
+  get identity(): NotificationIdentity {
     return {
       category: this.category,
       id: this.id,
-      object_id: this.objectId,
-      object_type: this.objectType,
-    }
+      objectId: this.objectId,
+      objectType: this.objectType,
+    };
   }
 
   @computed get messageGroup() {
@@ -77,12 +76,10 @@ export default class Notification {
     return `${this.objectType}-${this.objectId}-${this.category}`;
   }
 
-  constructor(id: number) {
-    this.id = id;
-  }
+  constructor(readonly id: number, readonly objectType: string) {}
 
-  static fromJSON(json: NotificationJson): Notification {
-    const obj = new Notification(json.id);
+  static fromJson(json: NotificationJson): Notification {
+    const obj = new Notification(json.id, json.object_type);
     return obj.updateFromJson(json);
   }
 
@@ -91,7 +88,6 @@ export default class Notification {
     this.isRead = json.is_read;
     this.name = json.name;
     this.objectId = json.object_id;
-    this.objectType = json.object_type;
     this.sourceUserId = json.source_user_id;
 
     this.details = {};
