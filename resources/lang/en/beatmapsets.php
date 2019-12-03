@@ -148,13 +148,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'ranked',
-            'approved' => 'approved',
-            'loved' => 'loved',
-            'qualified' => 'qualified',
-            'wip' => 'wip',
-            'pending' => 'pending',
-            'graveyard' => 'graveyard',
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
+            'qualified' => 'Qualified',
+            'wip' => 'WIP',
+            'pending' => 'Pending',
+            'graveyard' => 'Graveyard',
         ],
     ],
 ];
