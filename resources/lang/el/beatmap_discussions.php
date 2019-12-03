@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Αναζήτηση',
             'deleted' => 'Συμπεριλάμβανε διαγραμμένες συζητήσεις',
+            'only_unresolved' => '',
             'types' => 'Τύποι μηνυμάτων',
             'username' => 'Όνομα χρήστη',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Χρήστης',

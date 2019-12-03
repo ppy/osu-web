@@ -45,6 +45,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
+        $this->middleware('guest', ['only' => 'store']);
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
             'checkUsernameExists',
@@ -185,7 +186,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $search = (new PostSearch(new PostSearchRequestParams(request(), $user)))
+        $search = (new PostSearch(new PostSearchRequestParams(request()->all(), $user)))
             ->size(50);
 
         return view('users.posts', compact('search', 'user'));

@@ -20,19 +20,17 @@
 
 namespace App\Libraries\Search;
 
-use Illuminate\Http\Request;
-
 class ForumSearchRequestParams extends ForumSearchParams
 {
-    public function __construct(Request $request)
+    public function __construct(array $request)
     {
         parent::__construct();
 
-        $this->queryString = presence(trim($request['query']));
-        $this->from = $this->pageAsFrom(get_int($request['page']));
-        $this->includeSubforums = get_bool($request['forum_children']) ?? false;
-        $this->username = presence(trim($request['username']));
-        $this->forumId = get_int($request['forum_id']);
-        $this->topicId = get_int($request['topic_id']);
+        $this->queryString = presence(trim($request['query'] ?? null));
+        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
+        $this->includeSubforums = get_bool($request['forum_children'] ?? false);
+        $this->username = presence(trim($request['username'] ?? null));
+        $this->forumId = get_int($request['forum_id'] ?? null);
+        $this->topicId = get_int($request['topic_id'] ?? null);
     }
 }

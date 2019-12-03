@@ -44,7 +44,4 @@ return [
         'title' => '知识库',
         'subtitle' => '因为 osu!pedia 听起来有点酸',
     ],
-    'search' => [
-        'path' => '自',
-    ],
 ];

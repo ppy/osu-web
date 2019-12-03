@@ -354,13 +354,12 @@ class MessagesControllerTest extends TestCase
         parent::setUp();
 
         $this->user = factory(User::class)->create();
+        $minPlays = config('osu.user.min_plays_for_posting');
+        $this->user->statisticsOsu()->create(['playcount' => $minPlays]);
+
         $this->anotherUser = factory(User::class)->create();
         $this->restrictedUser = factory(User::class)->states('restricted')->create();
-        // TODO: convert $this->silencedUser to use afterCreatingState after upgrading to Laraval 5.6
-        $this->silencedUser = factory(User::class)->create();
-        $this->silencedUser->accountHistories()->save(
-            factory(\App\Models\UserAccountHistory::class)->states('silence')->make()
-        );
+        $this->silencedUser = factory(User::class)->states('silenced')->create();
         $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
         $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
         $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();

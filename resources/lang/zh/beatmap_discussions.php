@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => '搜索',
             'deleted' => '包含已经删除的讨论',
+            'only_unresolved' => '',
             'types' => '评论类型',
             'username' => '用户名',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => '用户',

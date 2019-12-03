@@ -16,6 +16,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+interface BeatmapsetCovers {
+  card: string;
+  cover: string;
+  list: string;
+  slimcover: string;
+}
+
 export interface BeatmapsetJSON extends JSON {
+  artist: string;
+  covers: BeatmapsetCovers;
+  creator: string;
   id: number;
+  title: string;
+  user_id: number;
 }

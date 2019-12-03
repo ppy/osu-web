@@ -171,7 +171,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason is niet geldig voor dit rapporttype.',
         'self' => "Je kunt jezelf niet rapporteren!",
     ],
 

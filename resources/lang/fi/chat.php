@@ -19,7 +19,6 @@
  */
 
 return [
-    'coming_soon' => 'tulossa pian',
     'limitation_notice' => 'HUOMAA: Vain käyttäjät jotka käyttävät <a href=":lazer_link">osu!lazeria</a> tai uutta nettisivua saavat yksityisviestejä tämän järjestelmän kautta.<br/>Lähetä viesti <a href=":oldpm_link"> vanhalta yksityisviestisivulta</a>, jos olet epävarma.',
     'talking_in' => 'keskustellaan kanavalla :channel',
     'talking_with' => 'keskustellaan käyttäjän :name kanssa',

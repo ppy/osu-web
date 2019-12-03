@@ -39,6 +39,7 @@ return [
     ],
 
     'show' => [
+        'back' => '',
         'download' => 'Lataa',
         'item' => [
             'cleared' => 'läpäisty',

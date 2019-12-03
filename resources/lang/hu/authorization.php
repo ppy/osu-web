@@ -48,9 +48,9 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Csak a saját posztjaidat tudod törölni.',
             'resolved' => '',
-            'system_generated' => '',
+            'system_generated' => 'Az automatikusan generált posztok nem törölhetőek.',
         ],
 
         'edit' => [

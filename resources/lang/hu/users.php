@@ -194,7 +194,7 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
+                'title' => 'Hozzászólások',
                 'title_longer' => '',
                 'show_more' => '',
             ],
@@ -365,7 +365,7 @@ return [
 
             'restriction_info' => [
                 '_' => '',
-                'link' => '',
+                'link' => 'osu!támogató',
             ],
         ],
         'post_count' => [
@@ -412,7 +412,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Kártya nézet',
+        'list' => 'Lista nézet',
     ],
 ];

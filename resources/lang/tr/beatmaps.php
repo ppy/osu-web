@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Adaylığı Sıfırla',
             'praise' => 'Övgü',
             'problem' => 'Sorun',
+            'review' => '',
             'suggestion' => 'Öneri',
         ],
 
@@ -142,8 +143,8 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Henüz negatif oy yok',
+                'up' => 'Henüz pozitif oy yok',
             ],
             'latest' => [
                 'down' => '',
@@ -183,6 +184,7 @@ return [
         'nominate' => 'Aday Göster',
         'nominate_confirm' => 'Beatmap aday gösterilsin mi?',
         'nominated_by' => ':users tarafından aday gösterildi',
+        'not_enough_hype' => "",
         'qualified' => 'Eğer bir sorun bulunmazsa, :date tarihinde dereceli olacağı tahmin ediliyor.',
         'qualified_soon' => 'Eğer bir sorun bulunmazsa, yakında dereceli olacağı tahmin ediliyor.',
         'required_text' => 'Aday Göstermeler: :current/:required',
@@ -287,7 +289,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => '',
+        'MR' => 'Ayna',
         'NC' => '',
         'NF' => '',
         'NM' => '',

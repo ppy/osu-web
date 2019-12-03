@@ -15,16 +15,46 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-{{-- FIXME: THE STYLES --}}
-<div class="beatmap-discussion-post__user-container">
-    <a class="beatmap-discussion-post__user-link" href="{{ route('users.modding.index', $user) }}">
+@php
+    // this is pretty much a php conversion of beatmap-discussions/user-card.coffee
+    $topClasses = $bn = 'beatmap-discussion-user-card';
+    if (isset($user)) {
+        $badge = $user->groupBadge();
+    }
+    if (isset($badge)) {
+        $topClasses .= " {$bn}--{$badge}";
+    }
+    $hideStripe = $hideStripe ?? false;
+@endphp
 
-    </a>
-    <div class="beatmap-discussion-post__avatar">
-        <div class="avatar avatar--full-rounded" style="background-image: url('{{$user->user_avatar}}');"></div>
+<div class="{{$topClasses}}">
+    <div class="{{$bn}}__avatar">
+        <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
+            @if ($user)
+                <div class="avatar avatar--full-rounded" style="background-image: url({{$user->user_avatar}})"></div>
+            @else
+                <div class="avatar avatar--full-rounded avatar--guest"></div>
+            @endif
+        </a>
     </div>
-    <div class="beatmap-discussion-post__user">
-        <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($user) !!}</span>
-        {!! $slot ?? null !!}
+    <div class="{{$bn}}__user">
+        <div class="{{$bn}}__user-row">
+            <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
+                <span class="{{$bn}}__user-text u-ellipsis-overflow">{{$user->username}}</span>
+            </a>
+            @if (!$user->is_bot)
+                <a class="{{$bn}}__user-modding-history-link" href="{{route('users.modding.index', $user)}}" title="{{trans('beatmap_discussion_posts.item.modding_history_link')}}">
+                    <i class='fas fa-align-left'></i>
+                </a>
+            @endif
+        </div>
+        <div class="{{$bn}}__user-badge">
+            @if (isset($badge))
+                <div class="user-group-badge user-group-badge--{{$badge}}"></div>
+            @endif
+        </div>
     </div>
+    @if (!$hideStripe)
+        <div class="{{$bn}}__user-stripe"></div>
+    @endif
 </div>

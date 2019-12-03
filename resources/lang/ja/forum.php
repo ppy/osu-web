@@ -276,8 +276,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => '削除された投稿を表示',
+            'hide' => '削除された投稿を非表示',
         ],
 
         'show' => [

@@ -26,11 +26,13 @@ use Illuminate\Http\Request;
 
 class AuthApi
 {
+    // TODO: this should be definable per-controller or action.
     public static function skipAuth($request)
     {
         $path = "{$request->decodedPath()}/";
 
-        return starts_with($path, 'api/v2/changelog/');
+        return starts_with($path, 'api/v2/changelog/')
+            || (starts_with($path, 'api/v2/comments/') && $request->isMethod('GET'));
     }
 
     public function handle(Request $request, Closure $next)

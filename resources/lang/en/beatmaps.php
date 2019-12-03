@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Reset Nomination',
             'praise' => 'Praise',
             'problem' => 'Problem',
+            'review' => 'Review',
             'suggestion' => 'Suggestion',
         ],
 
         'mode' => [
             'events' => 'History',
             'general' => 'General :scope',
+            'reviews' => 'Reviews',
             'timeline' => 'Timeline',
             'scopes' => [
                 'general' => 'This difficulty',

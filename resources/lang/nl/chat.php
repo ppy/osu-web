@@ -19,7 +19,6 @@
  */
 
 return [
-    'coming_soon' => 'binnenkort beschikbaar',
     'limitation_notice' => 'ATTENTIE: Alleen mensen die <a href=":lazer_link">osu!lazer</a> of de nieuwe site gebruiken zullen PMs via dit systeem krijgen.<br/> Als jij niet zeker bent of dit het geval is, stuur dan een bericht via <a href=":oldpm_link">old forum PM page</a>.',
     'talking_in' => 'praten in :channel',
     'talking_with' => 'aan het praten met :name',

@@ -28,7 +28,7 @@
                 @if (present($page->subtitle()))
                     <h2 class="osu-page-header__title osu-page-header__title--small">
                         @if ($page->hasParent())
-                            <a class="osu-page-header__link" href="{{ wiki_url($page->parentPath(), $page->requestedLocale) }}">
+                            <a class="osu-page-header__link" href="{{ wiki_url($page->parentPath(), $locale) }}">
                                 {{ $page->subtitle() }}
                             </a>
                         @else
@@ -38,7 +38,7 @@
                 @endif
 
                 <h1 class="osu-page-header__title osu-page-header__title--main">
-                    <a class="osu-page-header__link osu-page-header__link--plain" href="{{ wiki_url($page->path, $page->requestedLocale) }}">
+                    <a class="osu-page-header__link osu-page-header__link--plain" href="{{ wiki_url($page->path, $locale) }}">
                         {{ $page->title() }}
                     </a>
                 </h1>
@@ -58,15 +58,15 @@
                         {{ trans('wiki.show.toc') }}
                     </h2>
 
-                    @if ($page->page() !== null)
+                    @if ($page->get() !== null)
                         @include('wiki._toc')
                     @endif
                 </div>
             </div>
 
             <div class="wiki-page__content">
-                @if ($page->page() !== null)
-                    {!! $page->page()['output'] !!}
+                @if ($page->get() !== null)
+                    {!! $page->get()['output'] !!}
                 @else
                     <div class="wiki-content">
                         <p>

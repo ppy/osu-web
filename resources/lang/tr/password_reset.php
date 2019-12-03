@@ -58,7 +58,7 @@ return [
 
         'support' => [
             '_' => '',
-            'button' => '',
+            'button' => 'Destek Sistemi',
         ],
     ],
 ];

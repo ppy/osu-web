@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Пошук',
             'deleted' => 'Уключаючы выдаленыя абмеркаванні',
+            'only_unresolved' => '',
             'types' => 'Тыпы памедамленняў',
             'username' => 'Імя карыстальніка',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Карыстальнік',

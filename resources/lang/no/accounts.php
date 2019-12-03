@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => 'Varsler',
         'topic_auto_subscribe' => 'aktiver automatiske varslinger på nye forum emner som du lager',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

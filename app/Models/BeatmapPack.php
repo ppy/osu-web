@@ -23,6 +23,7 @@ namespace App\Models;
 /**
  * @property string $author
  * @property \Carbon\Carbon $date
+ * @property bool $hidden
  * @property \Illuminate\Database\Eloquent\Collection $items BeatmapPackItem
  * @property string $name
  * @property int $pack_id
@@ -42,6 +43,8 @@ class BeatmapPack extends Model
 
     protected $table = 'osu_beatmappacks';
     protected $primaryKey = 'pack_id';
+
+    protected $casts = ['hidden' => 'boolean'];
 
     protected $dates = ['date'];
     public $timestamps = false;
@@ -64,7 +67,7 @@ class BeatmapPack extends Model
 
     public function items()
     {
-        return $this->hasMany(BeatmapPackItem::class, 'pack_id');
+        return $this->hasMany(BeatmapPackItem::class);
     }
 
     public function beatmapsets()
