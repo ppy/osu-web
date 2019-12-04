@@ -33,7 +33,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import HeaderV3 from 'header-v3';
+import HeaderV4 from 'header-v4';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import NotificationType, { getValidName, Name as NotificationTypeName } from 'models/notification-type';
@@ -68,13 +68,11 @@ export class Main extends React.Component<{}, State> {
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
-        <HeaderV3
+        <HeaderV4
           links={Main.links}
+          section='Notifications'
+          subSection='History'
           theme='users'
-          titleTrans={{
-            info: 'History',
-            key: 'Notifications',
-          }}
         />
 
         <div className='osu-page osu-page--users'>
