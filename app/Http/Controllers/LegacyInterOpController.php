@@ -38,6 +38,7 @@ use App\Models\User;
 use App\Models\UserStatistics;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use stdClass;
 
 class LegacyInterOpController extends Controller
 {
@@ -179,7 +180,7 @@ class LegacyInterOpController extends Controller
 
         $users = User::whereIn('user_id', $userIds)->get()->keyBy('user_id');
 
-        $results = [];
+        $results = new stdClass;
         foreach ($params as $id => $messageParams) {
             try {
                 if (!is_array($messageParams)) {
@@ -210,10 +211,10 @@ class LegacyInterOpController extends Controller
                 ];
             }
 
-            $results[$id] = $result;
+            $results->$id = $result;
         }
 
-        return $results;
+        return response()->json($results);
     }
 
     public function userBestScoresCheck($id)
