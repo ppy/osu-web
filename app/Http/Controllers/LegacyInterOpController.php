@@ -135,12 +135,9 @@ class LegacyInterOpController extends Controller
      * Map of <id> and its result.
      *
      * Result contains:
-     * - success (boolean)
-     * - data: Either id of sent message or error data (see below)
-     *
-     * Error data contains:
-     * - code: status code (see below)
-     * - message: a bit more detailed error message (may be empty)
+     * - status: status code. 200 if success. See below for list of error codes
+     * - id: id of message being sent
+     * - error: Message of the error (if any)
      *
      * Error status codes:
      * - 403:
@@ -201,16 +198,15 @@ class LegacyInterOpController extends Controller
                 );
 
                 $result = [
-                    'success' => true,
-                    'data' => $message->getKey(),
+                    'status' => 200,
+                    'id' => $message->getKey(),
+                    'error' => null,
                 ];
             } catch (Exception $e) {
                 $result = [
-                    'success' => false,
-                    'data' => [
-                        'code' => ExceptionHandler::statusCode($e),
-                        'message' => ExceptionHandler::exceptionMessage($e),
-                    ],
+                    'status' => ExceptionHandler::statusCode($e),
+                    'id' => null,
+                    'error' => ExceptionHandler::exceptionMessage($e),
                 ];
             }
 
