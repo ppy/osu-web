@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\Handler as ExceptionHandler;
 use App\Jobs\EsIndexDocument;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Chat;
@@ -202,6 +203,103 @@ class LegacyInterOpController extends Controller
         );
 
         return json_item($message, 'Chat/Message', ['sender']);
+    }
+
+    /**
+     * User Batch Send Message
+     *
+     * This endpoint allows you to send Message as a user to another user.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Map of <id> and its result.
+     *
+     * Result contains:
+     * - success (boolean)
+     * - data: Either sent [ChatMessage](#chatmessage) or error data (see below)
+     *
+     * Error data contains:
+     * - code: status code (see below)
+     * - message: a bit more detailed error message (may be empty)
+     *
+     * Error status codes:
+     * - 403:
+     *   - sender not allowed to send message to target
+     * - 404:
+     *   - invalid sender/target id
+     *   - target is restricted
+     * - 422:
+     *   - missing parameter
+     *   - message is empty
+     *   - message is too long
+     *   - target and sender are the same
+     * - 429:
+     *   - too many messages has been sent by the sender
+     *
+     * @bodyParam messages[<id>][sender_id] integer required id of user sending the message
+     * @bodyParam messages[<id>][target_id] integer required id of user receiving the message. Must not be restricted
+     * @bodyParam messages[<id>][message] string required message to send. Empty string is not allowed
+     * @bodyParam messages[<id>][is_action] boolean required set to true (`1`/`on`/`true`) for `/me` message. Default false
+     */
+    public function userBatchSendMessage()
+    {
+        $params = request('messages');
+
+        $userIds = [];
+        foreach ($params as $messageParams) {
+            if (!is_array($messageParams)) {
+                continue;
+            }
+
+            if (isset($messageParams['sender_id'])) {
+                $userIds[$messageParams['sender_id']] = true;
+            }
+            if (isset($messageParams['target_id'])) {
+                $userIds[$messageParams['target_id']] = true;
+            }
+        }
+        $userIds = array_keys($userIds);
+
+        $users = User::whereIn('user_id', $userIds)->get()->keyBy('user_id');
+
+        $results = [];
+        foreach ($params as $id => $messageParams) {
+            try {
+                if (!is_array($messageParams)) {
+                    abort(422);
+                }
+
+                if (!isset($messageParams['sender_id']) || !isset($messageParams['target_id'])) {
+                    abort(422);
+                }
+
+                $message = Chat::sendPrivateMessage(
+                    optional($users[$messageParams['sender_id']] ?? null)->markSessionVerified(),
+                    $users[$messageParams['target_id']] ?? null,
+                    presence($messageParams['message'] ?? null),
+                    get_bool($messageParams['is_action'] ?? null)
+                );
+
+                $result = [
+                    'success' => true,
+                    'data' => json_item($message, 'Chat/Message', ['sender']),
+                ];
+            } catch (Exception $e) {
+                $result = [
+                    'success' => false,
+                    'data' => [
+                        'code' => ExceptionHandler::statusCode($e),
+                        'message' => ExceptionHandler::exceptionMessage($e),
+                    ],
+                ];
+            }
+
+            $results[$id] = $result;
+        }
+
+        return $results;
     }
 
     public function userSessionsDestroy($id)
