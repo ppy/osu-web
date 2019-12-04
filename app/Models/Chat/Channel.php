@@ -137,7 +137,7 @@ class Channel extends Model
         }
 
         $key = "message_throttle:{$sender->user_id}:{$keySuffix}";
-        $now = Carbon::now();
+        $now = now();
 
         // This works by keeping a sorted set of when the last messages were sent by the user (per message type).
         // The timestamp of the message is used as the score, which allows for zremrangebyscore to cull old messages
@@ -149,7 +149,7 @@ class Channel extends Model
             ->expire($key, $window)
             ->exec();
 
-        if (count($sent) > $limit) {
+        if (count($sent) >= $limit) {
             throw new API\ExcessiveChatMessagesException(trans('api.error.chat.limit_exceeded'));
         }
 
