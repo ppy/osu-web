@@ -119,7 +119,7 @@ export default class Main extends React.Component<Props, State> {
         return;
       }
 
-      nodes.push(<TypeGroup key={type.name} type={type} />);
+      nodes.push(<TypeGroup key={type.name} type={type} canShowMore={false} />);
     });
 
     if (nodes.length === 0) {

@@ -30,6 +30,7 @@ import ItemSingular from './item-singular';
 import { WithMarkReadProps } from './with-mark-read';
 
 interface Props {
+  canShowMore: boolean;
   type: NotificationType;
 }
 
@@ -38,6 +39,9 @@ const bn = 'notification-type-group';
 @observer
 export default class TypeGroup extends React.Component<Props & WithMarkReadProps> {
   static readonly contextType = NotificationContext;
+  static readonly defaultProps = {
+    canShowMore: true,
+  };
 
   render() {
     const type = this.props.type;
@@ -116,7 +120,7 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
 
   private renderShowMore() {
     const type = this.props.type;
-    if (type.cursor == null) { return null; }
+    if (!this.props.canShowMore || type.cursor == null) return null;
 
     return (
       <div className='notification-popup__show-more'>
