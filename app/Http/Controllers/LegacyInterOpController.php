@@ -136,7 +136,7 @@ class LegacyInterOpController extends Controller
      *
      * Result contains:
      * - success (boolean)
-     * - data: Either sent [ChatMessage](#chatmessage) or error data (see below)
+     * - data: Either id of sent message or error data (see below)
      *
      * Error data contains:
      * - code: status code (see below)
@@ -202,7 +202,7 @@ class LegacyInterOpController extends Controller
 
                 $result = [
                     'success' => true,
-                    'data' => json_item($message, 'Chat/Message', ['sender']),
+                    'data' => $message->getKey(),
                 ];
             } catch (Exception $e) {
                 $result = [
