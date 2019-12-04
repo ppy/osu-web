@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
@@ -120,7 +121,15 @@ export default class TypeGroup extends React.Component<Props & WithMarkReadProps
 
   private renderShowMore() {
     const type = this.props.type;
-    if (!this.props.canShowMore || type.cursor == null) return null;
+    if (type.cursor == null) return null;
+
+    if (!this.props.canShowMore) {
+      return (
+        <a className={`${bn}__show-more-link`} href={route('notifications.index', { type: this.props.type.name })}>
+          See more notifications
+        </a>
+      );
+    }
 
     return (
       <div className='notification-popup__show-more'>
