@@ -50,12 +50,12 @@ interface State {
 export class Main extends React.Component<{}, State> {
   static readonly links = [
     { title: 'All', url: route('notifications.index'), active: true },
-    { title: 'Profile', url: route('notifications.index', { group: 'user' }) },
-    { title: 'Beatmaps', url: route('notifications.index', { group: 'beatmapset' }) },
-    { title: 'Forum', url: route('notifications.index', { group: 'forum_topic' }) },
-    { title: 'News', url: route('notifications.index', { group: 'news_post' }) },
-    { title: 'Build', url: route('notifications.index', { group: 'build' }) },
-    { title: 'Chat', url: route('notifications.index', { group: 'channel' }) },
+    { title: 'Profile', url: route('notifications.index', { type: 'user' }) },
+    { title: 'Beatmaps', url: route('notifications.index', { type: 'beatmapset' }) },
+    { title: 'Forum', url: route('notifications.index', { type: 'forum_topic' }) },
+    { title: 'News', url: route('notifications.index', { type: 'news_post' }) },
+    { title: 'Build', url: route('notifications.index', { type: 'build' }) },
+    { title: 'Chat', url: route('notifications.index', { type: 'channel' }) },
   ];
 
   readonly state = {
@@ -93,7 +93,7 @@ export class Main extends React.Component<{}, State> {
     const params = new URLSearchParams(location.search);
 
     for (const [, type] of this.store.types) {
-      if (params.has('group') && params.get('group') !== type.name) {
+      if (params.has('type') && params.get('type') !== type.name) {
         continue;
       }
 
@@ -106,6 +106,6 @@ export class Main extends React.Component<{}, State> {
   private get typeNameFromUrl() {
     const url = new URL(location.href);
 
-    return getValidName(url.searchParams.get('group'));
+    return getValidName(url.searchParams.get('type'));
   }
 }
