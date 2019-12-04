@@ -123,88 +123,6 @@ class LegacyInterOpController extends Controller
         return $achievement->getKey();
     }
 
-    public function userBestScoresCheck($id)
-    {
-        $user = User::findOrFail($id);
-
-        foreach (Beatmap::MODES as $mode => $_v) {
-            (new UserBestScoresCheck($user))->run($mode);
-        }
-
-        return ['success' => true];
-    }
-
-    public function userIndex($id)
-    {
-        $user = User::findOrFail($id);
-
-        dispatch(new EsIndexDocument($user));
-
-        foreach (Beatmap::MODES as $modeStr => $modeId) {
-            $class = Best\Model::getClassByString($modeStr);
-            $class::queueIndexingForUser($user);
-        }
-
-        return response(null, 204);
-    }
-
-    public function userRecalculateRankedScores($id)
-    {
-        $user = User::findOrFail($id);
-
-        foreach (Beatmap::MODES as $modeStr => $_modeId) {
-            $class = UserStatistics\Model::getClass($modeStr);
-            $class::recalculateRankedScoreForUser($user);
-        }
-
-        return response(null, 204);
-    }
-
-    /**
-     * User Send Message
-     *
-     * This endpoint allows you to send Message as a user to another user.
-     *
-     * ---
-     *
-     * ### Response Format
-     *
-     * The sent [ChatMessage](#chatmessage) on success.
-     *
-     * - 403 on:
-     *   - sender not allowed to send message to target
-     * - 404 on:
-     *   - invalid sender/target id
-     *   - target is restricted
-     * - 422 on:
-     *   - missing parameter
-     *   - message is empty
-     *   - message is too long
-     *   - target and sender are the same
-     * - 429 on:
-     *   - too many messages has been sent by the sender
-     *
-     * @bodyParam sender_id integer required id of user sending the message
-     * @bodyParam target_id integer required id of user receiving the message. Must not be restricted
-     * @bodyParam message string required message to send. Empty string is not allowed
-     * @bodyParam is_action boolean required set to true (`1`/`on`/`true`) for `/me` message. Default false
-     */
-    public function userSendMessage()
-    {
-        $params = request()->all();
-
-        $sender = User::findOrFail($params['sender_id'] ?? null)->markSessionVerified();
-
-        $message = Chat::sendPrivateMessage(
-            $sender,
-            get_int($params['target_id'] ?? null),
-            presence($params['message'] ?? null),
-            get_bool($params['is_action'] ?? null)
-        );
-
-        return json_item($message, 'Chat/Message', ['sender']);
-    }
-
     /**
      * User Batch Send Message
      *
@@ -300,6 +218,88 @@ class LegacyInterOpController extends Controller
         }
 
         return $results;
+    }
+
+    public function userBestScoresCheck($id)
+    {
+        $user = User::findOrFail($id);
+
+        foreach (Beatmap::MODES as $mode => $_v) {
+            (new UserBestScoresCheck($user))->run($mode);
+        }
+
+        return ['success' => true];
+    }
+
+    public function userIndex($id)
+    {
+        $user = User::findOrFail($id);
+
+        dispatch(new EsIndexDocument($user));
+
+        foreach (Beatmap::MODES as $modeStr => $modeId) {
+            $class = Best\Model::getClassByString($modeStr);
+            $class::queueIndexingForUser($user);
+        }
+
+        return response(null, 204);
+    }
+
+    public function userRecalculateRankedScores($id)
+    {
+        $user = User::findOrFail($id);
+
+        foreach (Beatmap::MODES as $modeStr => $_modeId) {
+            $class = UserStatistics\Model::getClass($modeStr);
+            $class::recalculateRankedScoreForUser($user);
+        }
+
+        return response(null, 204);
+    }
+
+    /**
+     * User Send Message
+     *
+     * This endpoint allows you to send Message as a user to another user.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * The sent [ChatMessage](#chatmessage) on success.
+     *
+     * - 403 on:
+     *   - sender not allowed to send message to target
+     * - 404 on:
+     *   - invalid sender/target id
+     *   - target is restricted
+     * - 422 on:
+     *   - missing parameter
+     *   - message is empty
+     *   - message is too long
+     *   - target and sender are the same
+     * - 429 on:
+     *   - too many messages has been sent by the sender
+     *
+     * @bodyParam sender_id integer required id of user sending the message
+     * @bodyParam target_id integer required id of user receiving the message. Must not be restricted
+     * @bodyParam message string required message to send. Empty string is not allowed
+     * @bodyParam is_action boolean required set to true (`1`/`on`/`true`) for `/me` message. Default false
+     */
+    public function userSendMessage()
+    {
+        $params = request()->all();
+
+        $sender = User::findOrFail($params['sender_id'] ?? null)->markSessionVerified();
+
+        $message = Chat::sendPrivateMessage(
+            $sender,
+            get_int($params['target_id'] ?? null),
+            presence($params['message'] ?? null),
+            get_bool($params['is_action'] ?? null)
+        );
+
+        return json_item($message, 'Chat/Message', ['sender']);
     }
 
     public function userSessionsDestroy($id)
