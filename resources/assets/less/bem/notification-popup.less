@@ -40,9 +40,25 @@
   }
 
   &__show-more {
+    font-size: smaller;
     margin-top: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__expand {
+    margin-left: 10px;
+  }
+
+  &__collapse {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__mark-as-read {
+    width: 40px;
+    // background-color: @osu-colour-b2;
   }
 
   &__empty-with-more {

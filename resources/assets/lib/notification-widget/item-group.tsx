@@ -27,6 +27,7 @@ import { ShowMoreLink } from 'show-more-link';
 import Item from './item';
 import ItemCompact from './item-compact';
 import { WithMarkReadProps } from './with-mark-read';
+import { Spinner } from 'spinner';
 
 interface Props {
   stack: NotificationStack;
@@ -68,6 +69,10 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
 
   private handleMarkAsRead = () => {
     this.props.stack.markStackAsRead();
+  }
+
+  private handleShowLess = () => {
+    this.setState({ expanded: false });
   }
 
   private handleShowMore = () => {
@@ -113,8 +118,51 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
     return (
       <div className='notification-popup-item-group__items'>
         {notifications.map(this.renderItem)}
-        {this.renderShowMore()}
+        <div className='notification-popup__show-more'>
+          <div className='notification-popup__expand'>
+            {this.renderShowMore()}
+          </div>
+          <div className='notification-popup__collapse'>
+            {this.renderShowLess()}
+            <div className='notification-popup__mark-as-read'>
+              {this.renderMarkAsReadButton()}
+            </div>
+          </div>
+        </div>
+
       </div>
+    );
+  }
+
+  private renderMarkAsReadButton() {
+    if (this.props.stack.isMarkingAsRead) {
+      return (
+        <div className='notification-popup-item__read-button'>
+          <Spinner />
+        </div>
+      );
+    } else {
+      return (
+        <button
+          type='button'
+          className='notification-popup-item__read-button'
+          onClick={this.handleMarkAsRead}
+        >
+          <span className='fas fa-times' />
+        </button>
+      );
+    }
+  }
+
+  private renderShowLess() {
+    return (
+      <ShowMoreLink
+        callback={this.handleShowLess}
+        direction='up'
+        hasMore={true}
+        label='Show Less'
+        modifiers={['notification-group']}
+      />
     );
   }
 
@@ -123,14 +171,12 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
     if (stack.cursor == null) { return null; }
 
     return (
-      <div className='notification-popup__show-more'>
-        <ShowMoreLink
-          callback={this.handleShowMore}
-          hasMore={stack.cursor != null}
-          loading={stack.isLoading}
-          modifiers={['t-greysky']}
-        />
-      </div>
+      <ShowMoreLink
+        callback={this.handleShowMore}
+        hasMore={stack.cursor != null}
+        loading={stack.isLoading}
+        modifiers={['notification-group']}
+      />
     );
   }
 
