@@ -76,7 +76,9 @@ export class Main extends React.Component<{}, State> {
         />
 
         <div className='osu-page osu-page--users'>
-          {this.renderTypes()}
+          <div className='notification-index'>
+            {this.renderTypes()}
+          </div>
         </div>
       </div>
     );
