@@ -26,7 +26,6 @@ use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\Notification;
 use App\Models\User;
-use App\Models\UserGroup;
 use App\Models\UserNotification;
 use Tests\TestCase;
 
@@ -92,7 +91,7 @@ class BeatmapsetTest extends TestCase
         $this->fillNominationsExceptLast($beatmapset, 'bng');
 
         $nominator = factory(User::class)->create();
-        $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
+        $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng_limited')->getKey()]);
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
         $beatmapset->nominate($nominator);
@@ -105,7 +104,7 @@ class BeatmapsetTest extends TestCase
         $this->fillNominationsExceptLast($beatmapset, 'nat');
 
         $nominator = factory(User::class)->create();
-        $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
+        $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng_limited')->getKey()]);
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
         $beatmapset->nominate($nominator);
@@ -118,7 +117,7 @@ class BeatmapsetTest extends TestCase
         $this->fillNominationsExceptLast($beatmapset, 'bng_limited');
 
         $nominator = factory(User::class)->create();
-        $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
+        $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng_limited')->getKey()]);
 
         $this->expectException(AuthorizationException::class);
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
@@ -222,7 +221,7 @@ class BeatmapsetTest extends TestCase
     private function fillNominationsExceptLast(Beatmapset $beatmapset, string $group)
     {
         $user = factory(User::class)->create();
-        $user->userGroups()->create(['group_id' => UserGroup::GROUPS[$group]]);
+        $user->userGroups()->create(['group_id' => app('groups')->byIdentifier($group)->getKey()]);
         $beatmapset->nominate($user);
 
         $count = $beatmapset->requiredNominationCount() - $beatmapset->currentNominationCount() - 1;

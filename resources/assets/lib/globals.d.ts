@@ -151,6 +151,15 @@ interface BeatmapDiscussionPost {
   message: string;
 }
 
+interface Group {
+  id: number;
+  identifier: string;
+  name: string;
+  short_name: string;
+  mobile_name: string;
+  description: string;
+}
+
 // TODO: should look at combining with the other User.ts at some point.
 interface User {
   avatar_url?: string;
@@ -158,7 +167,7 @@ interface User {
   country_code?: string;
   cover: Cover;
   default_group: string;
-  group_badge?: string;
+  group_badge?: Group;
   id: number;
   is_active: boolean;
   is_bot: boolean;

@@ -23,6 +23,7 @@ namespace App\Providers;
 use App\Hashing\OsuHashManager;
 use App\Http\Middleware\RequireScopes;
 use App\Http\Middleware\StartSession;
+use App\Libraries\Groups;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
 use App\Libraries\OsuCookieJar;
@@ -77,6 +78,10 @@ class AppServiceProvider extends ServiceProvider
             'Illuminate\Contracts\Auth\Registrar',
             'App\Services\Registrar'
         );
+
+        $this->app->singleton('groups', function () {
+            return new Groups;
+        });
 
         $this->app->singleton('hash', function ($app) {
             return new OsuHashManager($app);

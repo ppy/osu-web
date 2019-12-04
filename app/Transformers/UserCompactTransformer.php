@@ -40,7 +40,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             'profile_colour' => $user->user_colour,
             'avatar_url' => $user->user_avatar,
             'country_code' => $user->country_acronym,
-            'default_group' => $user->defaultGroup(),
+            'default_group' => $user->defaultGroup()->identifier,
             'is_active' => $user->isActive(),
             'is_bot' => $user->isBot(),
             'is_online' => $user->isOnline(),
@@ -72,7 +72,11 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
 
     public function includeGroupBadge(User $user)
     {
-        return $this->primitive($user->groupBadge());
+        $badge = $user->groupBadge();
+
+        if (isset($badge)) {
+            return $this->item($badge, new GroupTransformer);
+        }
     }
 
     public function includeSupportLevel(User $user)

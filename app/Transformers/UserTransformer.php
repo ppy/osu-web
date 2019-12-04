@@ -180,7 +180,11 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeGroupBadge(User $user)
     {
-        return $this->primitive($user->groupBadge());
+        $badge = $user->groupBadge();
+
+        if (isset($badge)) {
+            return $this->item($badge, new GroupTransformer);
+        }
     }
 
     public function includeIsAdmin(User $user)

@@ -701,17 +701,17 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function isNAT()
     {
-        return $this->isGroup(UserGroup::GROUPS['nat']);
+        return $this->isGroup(app('groups')->byIdentifier('nat'));
     }
 
     public function isAdmin()
     {
-        return $this->isGroup(UserGroup::GROUPS['admin']);
+        return $this->isGroup(app('groups')->byIdentifier('admin'));
     }
 
     public function isGMT()
     {
-        return $this->isGroup(UserGroup::GROUPS['gmt']);
+        return $this->isGroup(app('groups')->byIdentifier('gmt'));
     }
 
     public function isBNG()
@@ -721,42 +721,42 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function isFullBN()
     {
-        return $this->isGroup(UserGroup::GROUPS['bng']);
+        return $this->isGroup(app('groups')->byIdentifier('bng'));
     }
 
     public function isLimitedBN()
     {
-        return $this->isGroup(UserGroup::GROUPS['bng_limited']);
+        return $this->isGroup(app('groups')->byIdentifier('bng_limited'));
     }
 
     public function isDev()
     {
-        return $this->isGroup(UserGroup::GROUPS['dev']);
+        return $this->isGroup(app('groups')->byIdentifier('dev'));
     }
 
     public function isMod()
     {
-        return $this->isGroup(UserGroup::GROUPS['mod']);
+        return $this->isGroup(app('groups')->byIdentifier('mod'));
     }
 
     public function isAlumni()
     {
-        return $this->isGroup(UserGroup::GROUPS['alumni']);
+        return $this->isGroup(app('groups')->byIdentifier('alumni'));
     }
 
     public function isRegistered()
     {
-        return $this->isGroup(UserGroup::GROUPS['default']);
+        return $this->isGroup(app('groups')->byIdentifier('default'));
     }
 
     public function isProjectLoved()
     {
-        return $this->isGroup(UserGroup::GROUPS['loved']);
+        return $this->isGroup(app('groups')->byIdentifier('loved'));
     }
 
     public function isBot()
     {
-        return $this->group_id === UserGroup::GROUPS['bot'];
+        return $this->group_id === app('groups')->byIdentifier('bot')->getKey();
     }
 
     public function hasSupported()
@@ -844,11 +844,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
      */
     public function defaultGroup()
     {
-        if ($this->group_id === UserGroup::GROUPS['admin']) {
-            return 'default';
+        $groups = app('groups');
+
+        if ($this->group_id === $groups->byIdentifier('admin')->getKey()) {
+            return $groups->byIdentifier('default');
         }
 
-        return array_search_null($this->group_id, UserGroup::GROUPS) ?? 'default';
+        return $groups->byId($this->group_id) ?? $groups->byIdentifier('default');
     }
 
     public function groupIds()
@@ -863,7 +865,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     // check if a user is in a specific group, by ID
     public function isGroup($group)
     {
-        return in_array($group, $this->groupIds(), true);
+        return in_array($group->getKey(), $this->groupIds(), true);
     }
 
     public function badges()
@@ -1309,15 +1311,16 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function groupBadge()
     {
         if ($this->isBot()) {
-            return 'bot';
+            return app('groups')->byIdentifier('bot');
         }
 
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            $groupNames = $this->userGroups->map->name()->all();
-            array_unshift($groupNames, $this->defaultGroup());
+            $ids = $this->groupIds();
+            array_unshift($ids, $this->defaultGroup()->getKey());
 
-            $badge = array_first(array_intersect(UserGroup::DISPLAY_PRIORITY, $groupNames));
-            $this->memoized[__FUNCTION__] = $badge;
+            $idOrder = app('groups')->all()->where('group_type', 1)->pluck('group_id')->all();
+            $badge = array_first(array_intersect($idOrder, $ids));
+            $this->memoized[__FUNCTION__] = app('groups')->byId($badge);
         }
 
         return $this->memoized[__FUNCTION__];

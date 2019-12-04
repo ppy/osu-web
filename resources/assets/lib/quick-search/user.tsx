@@ -49,7 +49,7 @@ export default function User({ user }: { user: User }) {
 
         {user.group_badge == null ? null : (
           <div className='user-search-card__col user-search-card__col--icon'>
-            <div className={`user-group-badge user-group-badge--${user.group_badge}`} />
+            <div className={`user-group-badge user-group-badge--${user.group_badge.identifier}`} />
           </div>
         )}
 
