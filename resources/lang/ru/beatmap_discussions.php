@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => 'Поиск',
             'deleted' => 'Включая удаленные обсуждения',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Показать только нерешённые обсуждения',
             'types' => 'Типы сообщений',
             'username' => 'Имя пользователя',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Статус карты',
+                'all' => 'Все',
+                'disqualified' => 'Дисквалифицирована',
+                'never_qualified' => 'Никогда не квалифицирована',
+                'qualified' => 'Квалифицирована',
+                'ranked' => 'Рейтинговая',
             ],
 
             'user' => [

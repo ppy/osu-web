@@ -172,7 +172,7 @@ class Forum extends Model
 
     public function topics()
     {
-        return $this->hasMany(Topic::class, 'forum_id');
+        return $this->hasMany(Topic::class);
     }
 
     public function parentForum()
@@ -192,7 +192,7 @@ class Forum extends Model
 
     public function cover()
     {
-        return $this->hasOne(ForumCover::class, 'forum_id');
+        return $this->hasOne(ForumCover::class);
     }
 
     public function scopeDisplayList($query)

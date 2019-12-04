@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,28 +16,40 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Middleware;
+.search-result-more {
+  .link-plain();
+  .fade-element(120ms);
+  border-radius: @border-radius-large;
+  background-color: @osu-colour-b4;
+  height: 40px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  color: @osu-colour-c1;
+  font-size: @font-size--title-small-3;
 
-use App\Events\UserSessionEvent;
+  &:hover {
+    background-color: @osu-colour-b2;
+    color: @osu-colour-c1;
+  }
 
-class VerifyPrivilegedUser extends VerifyUser
-{
-    public static function isRequired($user)
-    {
-        return $user !== null && $user->isPrivileged();
-    }
+  &:focus, &:active {
+    color: @osu-colour-c1;
+  }
 
-    public function requiresVerification($request)
-    {
-        $user = auth()->user();
-        $isRequired = static::isRequired($user);
+  &__arrow {
+    flex: none;
+  }
 
-        if ($user !== null && session()->get('requires_verification') !== $isRequired) {
-            session()->put('requires_verification', $isRequired);
-            session()->save();
-            event(UserSessionEvent::newVerificationRequirementChange($user->getKey(), $isRequired));
-        }
+  &__content {
+    flex: 1;
+  }
 
-        return $isRequired;
-    }
+  &__count {
+    padding: 2px 10px;
+    font-size: @font-size--normal;
+    background-color: @osu-colour-b3;
+    border-radius: 10000px;
+    margin-left: 20px;
+  }
 }

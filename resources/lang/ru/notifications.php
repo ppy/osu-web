@@ -31,19 +31,19 @@ return [
                 'beatmapset_discussion_lock' => 'Карта ":title" заблокирована для обсуждений.',
                 'beatmapset_discussion_lock_compact' => 'Обсуждение было заблокировано',
                 'beatmapset_discussion_post_new' => ':username опубликовал новое сообщение в обсуждениях карты ":title".',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => 'Новый пост в ":title" от :username',
                 'beatmapset_discussion_post_new_compact' => 'Новый пост от :username',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Новый пост от :username',
                 'beatmapset_discussion_unlock' => 'Карта ":title" разблокирована для обсуждений.',
                 'beatmapset_discussion_unlock_compact' => 'Обсуждение было разблокировано',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Проблема с квалифицированной картой',
+                'beatmapset_discussion_qualified_problem' => 'Жалоба от :username на ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Жалоба от :username на ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Жалоба от :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Жалоба от :username',
             ],
 
             'beatmapset_state' => [

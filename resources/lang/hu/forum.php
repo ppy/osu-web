@@ -25,7 +25,7 @@ return [
     'title' => 'osu! fórumok',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Borító szerkesztése',
 
         'create' => [
             '_' => 'Borítókép megadása',
@@ -75,7 +75,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Új válasz',
             ],
         ],
 
@@ -308,7 +308,7 @@ return [
 
                 'button' => [
                     'change_vote' => '',
-                    'edit' => '',
+                    'edit' => 'Kérdőív szerkesztése',
                     'view_results' => '',
                     'vote' => 'Szavaz',
                 ],

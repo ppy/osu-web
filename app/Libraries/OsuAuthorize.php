@@ -272,6 +272,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
 
         if ($discussion->message_type === 'mapper_note') {
             if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->canModerate() && !$user->isBNG()) {
@@ -461,6 +462,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
 
         if ($user->canModerate()) {
             return 'ok';
@@ -702,6 +704,7 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
+        $this->ensureHasPlayed($user);
 
         if ($target->hasBlocked($user) || $user->hasBlocked($target)) {
             return $prefix.'blocked';
@@ -726,6 +729,7 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
+        $this->ensureHasPlayed($user);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
             return $prefix.'no_access';
@@ -924,6 +928,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
 
         return 'ok';
     }
@@ -1183,6 +1188,8 @@ class OsuAuthorize
             if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
                 return $prefix.'play_more';
             }
+
+            $this->ensureHasPlayed($user);
         }
 
         return 'ok';
@@ -1634,5 +1641,28 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @throws AuthorizationException
+     */
+    public function ensureHasPlayed(?User $user) : void
+    {
+        if ($user === null) {
+            return;
+        }
+
+        $minPlays = config('osu.user.min_plays_for_posting');
+
+        if ($user->playCount() >= $minPlays) {
+            return;
+        }
+
+        if ($user->isSessionVerified()) {
+            return;
+        }
+
+        throw new AuthorizationException('require_verification');
     }
 }
