@@ -152,12 +152,12 @@ interface BeatmapDiscussionPost {
 }
 
 interface Group {
+  description: string;
   id: number;
   identifier: string;
+  mobile_name: string;
   name: string;
   short_name: string;
-  mobile_name: string;
-  description: string;
 }
 
 // TODO: should look at combining with the other User.ts at some point.
