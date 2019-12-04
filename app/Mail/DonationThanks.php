@@ -58,7 +58,7 @@ class DonationThanks extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->text(i18n_view('emails.store.donation_thanks'))
+        return $this->text('emails.store.donation_thanks')
             ->with($this->params)
             ->from(
                 config('store.mail.donation_thanks.sender_address'),

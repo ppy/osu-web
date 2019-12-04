@@ -49,7 +49,7 @@ class UserEmailUpdated extends Mailable implements ShouldQueue
     public function build()
     {
         return $this
-            ->text(i18n_view('emails.user_email_updated'))
+            ->text('emails.user_email_updated')
             ->subject(trans('accounts.update_email.email_subject'));
     }
 }
