@@ -164,6 +164,11 @@ class LegacyInterOpController extends Controller
         $params = request('messages');
 
         $userIds = [];
+
+        if (!is_array($params)) {
+            abort(422, '"messages" parameter must be a list');
+        }
+
         foreach ($params as $messageParams) {
             if (!is_array($messageParams)) {
                 continue;
