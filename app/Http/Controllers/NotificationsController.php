@@ -33,7 +33,8 @@ use DB;
 class NotificationsController extends Controller
 {
     const LIMIT = 51;
-    const STACK_LIMIT = 5;
+    const PER_STACK_LIMIT = 5;
+    const STACK_LIMIT = 50;
 
     protected $section = 'notifications';
     protected $actionPrefix = 'notifications_';
@@ -255,7 +256,7 @@ class NotificationsController extends Controller
 
         $total = $stack->count();
 
-        $stack = $stack->orderBy('id', 'desc')->limit(static::STACK_LIMIT);
+        $stack = $stack->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
 
         if ($cursor !== null) {
             $stack->where('id', '<', $cursor);
@@ -279,7 +280,7 @@ class NotificationsController extends Controller
         ];
 
         return [
-            'cursor' => $stack->count() < static::STACK_LIMIT ? null : $cursor,
+            'cursor' => $stack->count() < static::PER_STACK_LIMIT ? null : $cursor,
             'name' => $last->name,
             'object_type' => $last->notifiable_type,
             'object_id' => $last->notifiable_id,
