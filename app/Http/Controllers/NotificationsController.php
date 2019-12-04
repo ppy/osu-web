@@ -35,7 +35,7 @@ class NotificationsController extends Controller
     const LIMIT = 51;
     const STACK_LIMIT = 5;
 
-    protected $section = 'community';
+    protected $section = 'notifications';
     protected $actionPrefix = 'notifications_';
 
     public function __construct()

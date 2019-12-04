@@ -72,10 +72,10 @@ export class Main extends React.Component<{}, State> {
           links={Main.links}
           section='Notifications'
           subSection='History'
-          theme='users'
+          theme='notifications'
         />
 
-        <div className='osu-page osu-page--users'>
+        <div className='osu-page osu-page--generic-compact'>
           <div className='notification-index'>
             {this.renderTypes()}
           </div>
