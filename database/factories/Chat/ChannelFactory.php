@@ -17,6 +17,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use App\Models\Chat\Channel;
+use App\Models\Multiplayer\Match;
 
 $factory->define(Channel::class, function (Faker\Generator $faker) {
     return [
@@ -35,4 +36,13 @@ $factory->state(Channel::class, 'private', function (Faker\Generator $faker) {
 
 $factory->state(Channel::class, 'pm', function (Faker\Generator $faker) {
     return ['type' => Channel::TYPES['pm']];
+});
+
+$factory->state(Channel::class, 'tourney', function (Faker\Generator $faker) {
+    $match = factory(Match::class)->states('tourney')->create();
+
+    return [
+        'name' => "#mp_{$match->match_id}",
+        'type' => Channel::TYPES['temporary']
+    ];
 });
