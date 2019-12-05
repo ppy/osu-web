@@ -22,6 +22,7 @@ namespace App\Models\Chat;
 
 use App\Events\UserSubscriptionChangeEvent;
 use App\Exceptions\API;
+use App\Models\Multiplayer\Match;
 use App\Models\Notification;
 use App\Models\User;
 use Carbon\Carbon;
@@ -113,6 +114,24 @@ class Channel extends Model
     public function isGroup()
     {
         return $this->type === self::TYPES['group'];
+    }
+
+    public function isBanchoMultiplayerChat()
+    {
+        return $this->type === self::TYPES['temporary'] && starts_with($this->name, '#mp_');
+    }
+
+    public function getMatchIdAttribute()
+    {
+        // TODO: add lazer mp support?
+        if ($this->isBanchoMultiplayerChat()) {
+            return intval(str_replace('#mp_', '', $this->name));
+        }
+    }
+
+    public function multiplayerMatch()
+    {
+        return $this->belongsTo(Match::class, 'match_id');
     }
 
     public function pmTargetFor(User $user)
