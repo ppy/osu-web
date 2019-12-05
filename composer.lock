@@ -990,6 +990,67 @@
             "time": "2019-07-14T18:58:38+00:00"
         },
         {
+            "name": "filp/whoops",
+            "version": "2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "cde50e6720a39fdacb240159d3eea6865d51fd96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/cde50e6720a39fdacb240159d3eea6865d51fd96",
+                "reference": "cde50e6720a39fdacb240159d3eea6865d51fd96",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9 || ^7.0",
+                "psr/log": "^1.0.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9 || ^1.0",
+                "phpunit/phpunit": "^4.8.35 || ^5.7",
+                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+                "whoops/soap": "Formats errors as SOAP responses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filipe Dobreira",
+                    "role": "Developer",
+                    "homepage": "https://github.com/filp"
+                }
+            ],
+            "description": "php error handling for cool kids",
+            "homepage": "https://filp.github.io/whoops/",
+            "keywords": [
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "throwable",
+                "whoops"
+            ],
+            "time": "2019-08-07T09:00:00+00:00"
+        },
+        {
             "name": "firebase/php-jwt",
             "version": "v5.0.0",
             "source": {
@@ -3433,40 +3494,41 @@
         },
         {
             "name": "mpociot/laravel-apidoc-generator",
-            "version": "3.17.1",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mpociot/laravel-apidoc-generator.git",
-                "reference": "009d7603bf40262e37be329872c99a9ba97471c8"
+                "reference": "672c4f26c807a09b0d56205f68578f5c5266e376"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mpociot/laravel-apidoc-generator/zipball/009d7603bf40262e37be329872c99a9ba97471c8",
-                "reference": "009d7603bf40262e37be329872c99a9ba97471c8",
+                "url": "https://api.github.com/repos/mpociot/laravel-apidoc-generator/zipball/672c4f26c807a09b0d56205f68578f5c5266e376",
+                "reference": "672c4f26c807a09b0d56205f68578f5c5266e376",
                 "shasum": ""
             },
             "require": {
-                "fzaninotto/faker": "~1.8",
-                "illuminate/console": "^5.5|^6.0",
-                "illuminate/routing": "^5.5|^6.0",
-                "illuminate/support": "^5.5|^6.0",
+                "fzaninotto/faker": "^1.8",
+                "illuminate/console": "^5.7|^6.0",
+                "illuminate/routing": "^5.7|^6.0",
+                "illuminate/support": "^5.7|^6.0",
                 "league/flysystem": "^1.0",
                 "mpociot/documentarian": "^0.3.0",
                 "mpociot/reflection-docblock": "^1.0.1",
-                "php": ">=7.0.0",
-                "ramsey/uuid": "^3.8"
+                "nunomaduro/collision": "^3.0",
+                "php": ">=7.2.0",
+                "ramsey/uuid": "^3.8",
+                "symfony/var-exporter": "^4.0"
             },
             "require-dev": {
-                "dingo/api": "2.0.0-alpha1",
+                "dingo/api": "^2.3.0",
                 "league/fractal": "^0.17.0",
                 "mockery/mockery": "^1.2.0",
-                "orchestra/testbench": "3.5.* || 3.6.* || 3.7.*",
-                "phpstan/phpstan": "^0.9.0 || ^0.10.0 || ^0.11.15",
-                "phpunit/phpunit": "^6.0.0 || ^7.4.0"
+                "orchestra/testbench": "^3.7.0 || ^4.0",
+                "phpstan/phpstan": "^0.11.15",
+                "phpunit/phpunit": "^7.5.0"
             },
             "suggest": {
-                "league/fractal": "Required for transformers support",
-                "nunomaduro/collision": "For better reporting of errors that are thrown when generating docs"
+                "league/fractal": "Required for transformers support"
             },
             "type": "library",
             "extra": {
@@ -3474,6 +3536,9 @@
                     "providers": [
                         "Mpociot\\ApiDoc\\ApiDocGeneratorServiceProvider"
                     ]
+                },
+                "branch-alias": {
+                    "dev-v4": "4.x-dev"
                 }
             },
             "autoload": {
@@ -3498,7 +3563,7 @@
                 "documentation",
                 "laravel"
             ],
-            "time": "2019-09-12T22:34:17+00:00"
+            "time": "2019-11-25T21:07:05+00:00"
         },
         {
             "name": "mpociot/reflection-docblock",
@@ -3721,6 +3786,70 @@
                 "php"
             ],
             "time": "2019-09-01T07:51:21+00:00"
+        },
+        {
+            "name": "nunomaduro/collision",
+            "version": "v3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nunomaduro/collision.git",
+                "reference": "af42d339fe2742295a54f6fdd42aaa6f8c4aca68"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/af42d339fe2742295a54f6fdd42aaa6f8c4aca68",
+                "reference": "af42d339fe2742295a54f6fdd42aaa6f8c4aca68",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^2.1.4",
+                "jakub-onderka/php-console-highlighter": "0.3.*|0.4.*",
+                "php": "^7.1",
+                "symfony/console": "~2.8|~3.3|~4.0"
+            },
+            "require-dev": {
+                "laravel/framework": "5.8.*",
+                "nunomaduro/larastan": "^0.3.0",
+                "phpstan/phpstan": "^0.11",
+                "phpunit/phpunit": "~8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NunoMaduro\\Collision\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "Cli error handling for console/command-line PHP applications.",
+            "keywords": [
+                "artisan",
+                "cli",
+                "command-line",
+                "console",
+                "error",
+                "handling",
+                "laravel",
+                "laravel-zero",
+                "php",
+                "symfony"
+            ],
+            "time": "2019-03-07T21:35:13+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -7659,67 +7788,6 @@
                 "webdriver"
             ],
             "time": "2019-06-13T08:02:18+00:00"
-        },
-        {
-            "name": "filp/whoops",
-            "version": "2.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/filp/whoops.git",
-                "reference": "cde50e6720a39fdacb240159d3eea6865d51fd96"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/cde50e6720a39fdacb240159d3eea6865d51fd96",
-                "reference": "cde50e6720a39fdacb240159d3eea6865d51fd96",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.5.9 || ^7.0",
-                "psr/log": "^1.0.1"
-            },
-            "require-dev": {
-                "mockery/mockery": "^0.9 || ^1.0",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0"
-            },
-            "suggest": {
-                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
-                "whoops/soap": "Formats errors as SOAP responses"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Whoops\\": "src/Whoops/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Filipe Dobreira",
-                    "role": "Developer",
-                    "homepage": "https://github.com/filp"
-                }
-            ],
-            "description": "php error handling for cool kids",
-            "homepage": "https://filp.github.io/whoops/",
-            "keywords": [
-                "error",
-                "exception",
-                "handling",
-                "library",
-                "throwable",
-                "whoops"
-            ],
-            "time": "2019-08-07T09:00:00+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
