@@ -43,6 +43,6 @@ $factory->state(Channel::class, 'tourney', function (Faker\Generator $faker) {
 
     return [
         'name' => "#mp_{$match->match_id}",
-        'type' => Channel::TYPES['temporary']
+        'type' => Channel::TYPES['temporary'],
     ];
 });

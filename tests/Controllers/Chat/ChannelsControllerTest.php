@@ -174,6 +174,7 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonFragment(['channel_id' => $this->tourneyChannel->channel_id]);
     }
+
     //endregion
 
     //region PUT /chat/channels/[channel_id]/mark-as-read/[message_id] - Mark Channel as Read
