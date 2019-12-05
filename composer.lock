@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e884b6cb3a2f2507e59c529dad00cbc4",
+    "content-hash": "02bb833c32fa008e6a328e7532e07357",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -92,16 +92,16 @@
         },
         {
             "name": "chaseconey/laravel-datadog-helper",
-            "version": "dev-laravel-6",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nanaya/laravel-datadog-helper.git",
-                "reference": "8474d1f98ccb32451c406ecef114b986cebebfb9"
+                "url": "https://github.com/chaseconey/laravel-datadog-helper.git",
+                "reference": "60125f22075d2a6fa2900810674b5016294bdc6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nanaya/laravel-datadog-helper/zipball/8474d1f98ccb32451c406ecef114b986cebebfb9",
-                "reference": "8474d1f98ccb32451c406ecef114b986cebebfb9",
+                "url": "https://api.github.com/repos/chaseconey/laravel-datadog-helper/zipball/60125f22075d2a6fa2900810674b5016294bdc6e",
+                "reference": "60125f22075d2a6fa2900810674b5016294bdc6e",
                 "shasum": ""
             },
             "require": {
@@ -130,19 +130,7 @@
                     "ChaseConey\\LaravelDatadogHelper\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "ChaseConey\\LaravelDatadogHelper\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ],
-                "format": [
-                    "phpcbf --standard=psr2 src/"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -160,10 +148,7 @@
                 "chaseconey",
                 "laravel-datadog-helper"
             ],
-            "support": {
-                "source": "https://github.com/nanaya/laravel-datadog-helper/tree/laravel-6"
-            },
-            "time": "2019-09-25T07:33:26+00:00"
+            "time": "2019-11-01T20:26:14+00:00"
         },
         {
             "name": "clue/stream-filter",
@@ -9594,7 +9579,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "chaseconey/laravel-datadog-helper": 20,
         "maknz/slack": 20,
         "tightenco/ziggy": 20
     },

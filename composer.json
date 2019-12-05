@@ -11,10 +11,6 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/nanaya/laravel-datadog-helper"
-    },
-    {
-      "type": "vcs",
       "url": "https://github.com/nanaya/slack-php"
     },
     {
@@ -27,7 +23,7 @@
     }
   ],
   "require": {
-    "chaseconey/laravel-datadog-helper": "dev-laravel-6",
+    "chaseconey/laravel-datadog-helper": ">=1.2.0",
     "doctrine/dbal": "*",
     "egulias/email-validator": "*",
     "elasticsearch/elasticsearch": ">=6.0, <6.6",
