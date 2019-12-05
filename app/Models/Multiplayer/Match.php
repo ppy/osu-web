@@ -38,7 +38,7 @@ class Match extends Model
     protected $primaryKey = 'match_id';
     protected $hidden = ['private', 'keep_forever'];
     protected $casts = [
-        'keep_forever' => 'boolean'
+        'keep_forever' => 'boolean',
     ];
     protected $dates = [
         'start_time',
