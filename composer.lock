@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "765866703776348862a662ea63dd43e1",
+    "content-hash": "e884b6cb3a2f2507e59c529dad00cbc4",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2938,15 +2938,15 @@
             "authors": [
                 {
                     "name": "Colin O'Dell",
-                    "role": "Lead Developer",
                     "email": "colinodell@gmail.com",
-                    "homepage": "https://www.colinodell.com"
+                    "homepage": "https://www.colinodell.com",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Nick Cernis",
-                    "role": "Original Author",
                     "email": "nick@cern.is",
-                    "homepage": "http://modernnerd.net"
+                    "homepage": "http://modernnerd.net",
+                    "role": "Original Author"
                 }
             ],
             "description": "An HTML-to-markdown conversion helper for PHP",
@@ -7364,23 +7364,23 @@
         },
         {
             "name": "xsolla/xsolla-sdk-php",
-            "version": "v4.0.2",
+            "version": "v4.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/xsolla/xsolla-sdk-php.git",
-                "reference": "3b6ec623bd3548d9e152d93a12f35c754bf34fa9"
+                "url": "https://github.com/nanaya/xsolla-sdk-php.git",
+                "reference": "75f94f22b7f9e1efc76bddcf4d62936e36607a5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xsolla/xsolla-sdk-php/zipball/3b6ec623bd3548d9e152d93a12f35c754bf34fa9",
-                "reference": "3b6ec623bd3548d9e152d93a12f35c754bf34fa9",
+                "url": "https://api.github.com/repos/nanaya/xsolla-sdk-php/zipball/75f94f22b7f9e1efc76bddcf4d62936e36607a5c",
+                "reference": "75f94f22b7f9e1efc76bddcf4d62936e36607a5c",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "~6.0",
-                "php": ">=7.1.3 <7.3",
+                "php": ">=7.1.3",
                 "symfony/http-foundation": "~2.3 || ~3.0 || ~4.0"
             },
             "require-dev": {
@@ -7395,7 +7395,11 @@
                     "Xsolla\\SDK\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Xsolla\\SDK\\Tests\\": "tests"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -7408,7 +7412,13 @@
                 "sdk",
                 "xsolla"
             ],
-            "time": "2018-12-04T11:42:48+00:00"
+            "support": {
+                "email": "integration@xsolla.com",
+                "issues": "https://github.com/xsolla/xsolla-sdk-php/issues",
+                "docs": "http://developers.xsolla.com",
+                "source": "https://github.com/xsolla/xsolla-sdk-php/releases"
+            },
+            "time": "2019-12-03T09:19:37+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
