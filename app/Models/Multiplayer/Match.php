@@ -37,6 +37,9 @@ class Match extends Model
 {
     protected $primaryKey = 'match_id';
     protected $hidden = ['private', 'keep_forever'];
+    protected $casts = [
+        'keep_forever' => 'boolean'
+    ];
     protected $dates = [
         'start_time',
         'end_time',
@@ -67,6 +70,13 @@ class Match extends Model
         return Cache::remember("multiplayer_participation_{$this->match_id}_{$user->user_id}", 60, function () use ($user) {
             return $this->events()->where('user_id', $user->user_id)->whereIn('text', ['CREATE', 'JOIN'])->exists();
         });
+    }
+
+    public function isTournamentMatch()
+    {
+        // keep_forever is being re-purposed to mark matches as 'tournament matches' (which will allow for public-read of chat and what-not)
+
+        return $this->keep_forever;
     }
 
     public function currentPlayers()
