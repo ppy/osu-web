@@ -75,7 +75,6 @@ class Match extends Model
     public function isTournamentMatch()
     {
         // keep_forever is being re-purposed to mark matches as 'tournament matches' (which will allow for public-read of chat and what-not)
-
         return $this->keep_forever;
     }
 

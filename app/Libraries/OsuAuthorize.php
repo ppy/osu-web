@@ -793,7 +793,7 @@ class OsuAuthorize
         $this->ensureCleanRecord($user, $prefix);
 
         // allow joining of 'tournament' matches (for lazer/tournament client)
-        if ($channel->isBanchoMultiplayerChat() && $channel->multiplayerMatch && $channel->multiplayerMatch->isTournamentMatch()) {
+        if (optional($channel->multiplayerMatch)->isTournamentMatch()) {
             return 'ok';
         }
 

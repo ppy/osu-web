@@ -121,7 +121,7 @@ class Channel extends Model
         return $this->type === self::TYPES['temporary'] && starts_with($this->name, '#mp_');
     }
 
-    public function getMatchIdAttribute($value)
+    public function getMatchIdAttribute()
     {
         // TODO: add lazer mp support?
         if ($this->isBanchoMultiplayerChat()) {
@@ -131,7 +131,7 @@ class Channel extends Model
 
     public function multiplayerMatch()
     {
-        return $this->belongsTo(Match::class, 'match_id', 'match_id');
+        return $this->belongsTo(Match::class, 'match_id');
     }
 
     public function pmTargetFor(User $user)
