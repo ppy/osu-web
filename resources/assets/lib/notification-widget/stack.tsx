@@ -37,7 +37,7 @@ const bn = 'notification-type-group';
 @observer
 export default class Stack extends React.Component<Props> {
   render() {
-    if (!this.props.stack.hasVisibleNotifiations) {
+    if (!this.props.stack.hasVisibleNotifications) {
       return null;
     }
 

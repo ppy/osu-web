@@ -115,7 +115,7 @@ export default class Main extends React.Component<Props, State> {
     const nodes: React.ReactNode[] = [];
 
     this.store.stacks.forEach((stack) => {
-      if (!stack.hasVisibleNotifiations) {
+      if (!stack.hasVisibleNotifications) {
         return;
       }
 

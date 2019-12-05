@@ -41,7 +41,7 @@ export default class NotificationStack implements NotificationReadable {
   }
 
   @computed
-  get hasVisibleNotifiations() {
+  get hasVisibleNotifications() {
     return this.notifications.size > 0 || this.objectType === 'legacy_pm';
   }
 
