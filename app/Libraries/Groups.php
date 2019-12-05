@@ -60,7 +60,6 @@ class Groups
                 'group_name' => $id,
                 'group_desc' => $id,
                 'short_name' => $id,
-                'mobile_name' => $id,
             ]);
 
             $this->reset();
