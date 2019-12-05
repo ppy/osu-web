@@ -36,7 +36,7 @@ class MessagesControllerTest extends TestCase
         self::$faker = Faker\Factory::create();
     }
 
-    //region GET /chat/channels/[channel_id] - Get Channel Messages (public)
+    //region GET /chat/channels/[channel_id]/messages - Get Channel Messages (public)
     public function testChannelShowPublicWhenGuest() // fail
     {
         $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->publicChannel->channel_id]))
@@ -66,7 +66,7 @@ class MessagesControllerTest extends TestCase
 
     //endregion
 
-    //region GET /chat/channels/[channel_id] - Get Channel Messages (tourney)
+    //region GET /chat/channels/[channel_id]/messages - Get Channel Messages (tourney)
     public function testChannelShowTourneyWhenGuest() // fail
     {
         $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->tourneyChannel->channel_id]))
@@ -96,7 +96,7 @@ class MessagesControllerTest extends TestCase
 
     //endregion
 
-    //region GET /chat/channels/[channel_id] - Get Channel Messages (private)
+    //region GET /chat/channels/[channel_id]/messages - Get Channel Messages (private)
     public function testChannelShowPrivateWhenGuest() // fail
     {
         $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->privateChannel->channel_id]))
@@ -124,7 +124,7 @@ class MessagesControllerTest extends TestCase
 
     //endregion
 
-    //region GET /chat/channels/[channel_id] - Get Channel Messages (pm)
+    //region GET /chat/channels/[channel_id]/messages - Get Channel Messages (pm)
     public function testChannelShowPMWhenGuest() // fail
     {
         $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->pmChannel->channel_id]))
