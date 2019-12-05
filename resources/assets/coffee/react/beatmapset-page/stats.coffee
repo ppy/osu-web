@@ -56,12 +56,10 @@ export class Stats extends React.Component
       ratingsPositive += count if rating >= 6 && rating <= 10
 
     ratingsAll = ratingsPositive + ratingsNegative
-    stats = if @props.beatmap.mode == 'taiko'
-              ['drain', 'accuracy', 'stars']
-            else if @props.beatmap.mode == 'mania'
-              ['cs', 'drain', 'accuracy', 'stars']
-            else
-              ['cs', 'drain', 'accuracy', 'ar', 'stars']
+    stats = switch @props.beatmap.mode
+              when 'taiko' then ['drain', 'accuracy', 'stars']
+              when 'mania' then ['cs', 'drain', 'accuracy', 'stars']
+              else ['cs', 'drain', 'accuracy', 'ar', 'stars']
 
     div className: 'beatmapset-stats',
       a
