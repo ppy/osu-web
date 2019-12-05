@@ -39,8 +39,10 @@ import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { getValidName, Name as NotificationTypeName } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
+import { NotificationContext } from 'notifications-context';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 
 interface State {
   loadingMore: boolean;
@@ -49,6 +51,8 @@ interface State {
 
 @observer
 export class Main extends React.Component<{}, State> {
+  static readonly contextType = NotificationContext;
+
   readonly links = [
     { title: 'All', url: route('notifications.index'), type: null },
     { title: 'Profile', url: route('notifications.index', { type: 'user' }), type: 'user' },
@@ -89,11 +93,27 @@ export class Main extends React.Component<{}, State> {
             <div className='notification-popup__item'>
               <div className='notification-type-group__items'>
                 {this.renderStacks()}
+                {this.renderShowMore()}
               </div>
             </div>
           </div>
         </div>
       </div>
+    );
+  }
+
+  renderShowMore() {
+    // TODO: fix typing
+    const type = this.store.types.get(this.state.type as string);
+    if (type == null) return null;
+
+    return (
+      <ShowMoreLink
+        callback={this.handleShowMore}
+        hasMore={type.cursor != null}
+        loading={type.isLoading}
+        modifiers={['notification-group']}
+      />
     );
   }
 
@@ -110,5 +130,11 @@ export class Main extends React.Component<{}, State> {
     const type = (event.target as HTMLAnchorElement).dataset.type as NotificationTypeName;
     this.setState({ type });
     event.preventDefault();
+  }
+
+  private handleShowMore = () => {
+    // TODO: fix typing
+    const type = this.store.types.get(this.state.type as string);
+    type?.loadMore(this.context);
   }
 }
