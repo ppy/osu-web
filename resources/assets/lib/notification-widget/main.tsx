@@ -20,8 +20,8 @@ import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import { NotificationContext } from 'notifications-context';
 import core from 'osu-core-singleton';
-import * as React from 'react';
-import TypeGroup from './type-group';
+import * as React from 'react'
+import Stack from './stack';
 import Worker from './worker';
 
 interface Props {
@@ -114,12 +114,12 @@ export default class Main extends React.Component<Props, State> {
 
     const nodes: React.ReactNode[] = [];
 
-    this.store.types.forEach((type) => {
-      if (!type.hasVisibleNotifications) {
+    this.store.stacks.forEach((stack) => {
+      if (!stack.hasVisibleNotifiations) {
         return;
       }
 
-      nodes.push(<TypeGroup key={type.name} type={type} canShowMore={false} />);
+      nodes.push(<Stack key={stack.id} stack={stack} />);
     });
 
     if (nodes.length === 0) {

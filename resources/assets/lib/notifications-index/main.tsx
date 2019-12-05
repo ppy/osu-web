@@ -37,7 +37,7 @@ import HeaderV4 from 'header-v4';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import NotificationType, { getValidName, Name as NotificationTypeName } from 'models/notification-type';
-import TypeGroup from 'notification-widget/type-group';
+import Stack from 'notification-widget/stack';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
@@ -48,8 +48,8 @@ interface State {
 
 @observer
 export class Main extends React.Component<{}, State> {
-  static readonly links = [
-    { title: 'All', url: route('notifications.index'), active: true },
+  readonly links = [
+    { title: 'All', url: route('notifications.index') },
     { title: 'Profile', url: route('notifications.index', { type: 'user' }) },
     { title: 'Beatmaps', url: route('notifications.index', { type: 'beatmapset' }) },
     { title: 'Forum', url: route('notifications.index', { type: 'forum_topic' }) },
@@ -65,11 +65,17 @@ export class Main extends React.Component<{}, State> {
 
   private readonly store = core.dataStore.notificationStore.stacks;
 
+  private get typeNameFromUrl() {
+    const url = new URL(location.href);
+
+    return getValidName(url.searchParams.get('type'));
+  }
+
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
         <HeaderV4
-          links={Main.links}
+          links={this.links}
           section='Notifications'
           subSection='History'
           theme='notifications'
@@ -77,35 +83,23 @@ export class Main extends React.Component<{}, State> {
 
         <div className='osu-page osu-page--generic-compact'>
           <div className='notification-index'>
-            {this.renderTypes()}
+            <div className='notification-popup__item'>
+              <div className='notification-type-group__items'>
+                {this.renderStacks()}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 
-  renderType(type: NotificationType) {
-    return <TypeGroup key={type.name} type={type} canShowMore={this.state.type != null} />;
-  }
-
-  renderTypes() {
+  renderStacks() {
     const nodes: React.ReactNode[] = [];
-    const params = new URLSearchParams(location.search);
-
-    for (const [, type] of this.store.types) {
-      if (params.has('type') && params.get('type') !== type.name) {
-        continue;
-      }
-
-      nodes.push(this.renderType(type));
+    for (const [, stack] of this.store.stacks) {
+      nodes.push(<Stack key={stack.id} stack={stack} />);
     }
 
     return nodes;
-  }
-
-  private get typeNameFromUrl() {
-    const url = new URL(location.href);
-
-    return getValidName(url.searchParams.get('type'));
   }
 }
