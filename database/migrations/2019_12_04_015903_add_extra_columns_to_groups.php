@@ -16,7 +16,6 @@ class AddExtraColumnsToGroups extends Migration
         Schema::table('phpbb_groups', function (Blueprint $table) {
             $table->string('identifier')->nullable();
             $table->string('short_name')->nullable();
-            $table->string('mobile_name')->nullable();
             $table->integer('display_order')->default(0);
             $table->string('colour')->nullable();
         });
@@ -32,7 +31,6 @@ class AddExtraColumnsToGroups extends Migration
         Schema::table('phpbb_groups', function (Blueprint $table) {
             $table->dropColumn('identifier');
             $table->dropColumn('short_name');
-            $table->dropColumn('mobile_name');
             $table->dropColumn('display_order');
             $table->dropColumn('colour');
         });
