@@ -25,7 +25,6 @@ use App\Models\User;
 use App\Transformers\Multiplayer\EventTransformer;
 use App\Transformers\Multiplayer\MatchTransformer;
 use App\Transformers\UserCompactTransformer;
-use Request;
 
 class MatchesController extends Controller
 {
