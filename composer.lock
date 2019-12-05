@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02bb833c32fa008e6a328e7532e07357",
+    "content-hash": "0dae0740b9d6f88f6dc3cab985498a15",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -7361,16 +7361,16 @@
         },
         {
             "name": "tightenco/ziggy",
-            "version": "dev-osuweb",
+            "version": "v0.8.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nanaya/ziggy.git",
-                "reference": "a007f490e347500f208e30f105888f1dbbdd638b"
+                "url": "https://github.com/tightenco/ziggy.git",
+                "reference": "4c4b29bc658153f0771b0a145173ce83a7b6b885"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nanaya/ziggy/zipball/a007f490e347500f208e30f105888f1dbbdd638b",
-                "reference": "a007f490e347500f208e30f105888f1dbbdd638b",
+                "url": "https://api.github.com/repos/tightenco/ziggy/zipball/4c4b29bc658153f0771b0a145173ce83a7b6b885",
+                "reference": "4c4b29bc658153f0771b0a145173ce83a7b6b885",
                 "shasum": ""
             },
             "require": {
@@ -7393,11 +7393,7 @@
                     "Tightenco\\Ziggy\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tightenco\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -7412,10 +7408,7 @@
                 }
             ],
             "description": "Generates a Blade directive exporting all of your named Laravel routes. Also provides a nice route() helper function in JavaScript.",
-            "support": {
-                "source": "https://github.com/nanaya/ziggy/tree/osuweb"
-            },
-            "time": "2019-10-07T10:36:15+00:00"
+            "time": "2019-10-18T22:42:36+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -9579,8 +9572,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "maknz/slack": 20,
-        "tightenco/ziggy": 20
+        "maknz/slack": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
