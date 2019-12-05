@@ -16,8 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationReadJson } from 'notifications/notification-events';
-
 export type NotificationIdentityType = 'notification' | 'type' | 'stack';
 
 export interface NotificationIdentity {
@@ -25,6 +23,13 @@ export interface NotificationIdentity {
   id?: number;
   objectId?: number;
   objectType: string;
+}
+
+export interface NotificationIdentityJson {
+  category?: string;
+  id?: number;
+  object_id?: number;
+  object_type: string;
 }
 
 export function resolveStackId(identity: NotificationIdentity) {
@@ -43,7 +48,16 @@ export function resolveIdentityType(identity: NotificationIdentity): Notificatio
   }
 }
 
-export function toJson(identity: NotificationIdentity): NotificationReadJson {
+export function fromJson(json: NotificationIdentityJson): NotificationIdentity {
+  return {
+    category: json.category,
+    id: json.id,
+    objectId: json.object_id,
+    objectType: json.object_type,
+  };
+}
+
+export function toJson(identity: NotificationIdentity): NotificationIdentityJson {
   // TODO: object from iterating only interface keys and snake casing them would be nice.
   return {
     category: identity.category,

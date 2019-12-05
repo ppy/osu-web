@@ -27,9 +27,8 @@ import {
   NotificationEventRead,
   NotificationEventReadJson,
   NotificationEventVerifiedJson,
-  NotificationReadJson,
 } from 'notifications/notification-events';
-import { NotificationIdentity } from 'notifications/notification-identity';
+import { fromJson } from 'notifications/notification-identity';
 import core from 'osu-core-singleton';
 
 interface NotificationBootJson extends NotificationBundleJson {
@@ -63,15 +62,6 @@ const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson
 const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVerifiedJson => {
   return arg.event === 'verified';
 };
-
-function jsonToIndentity(json: NotificationReadJson): NotificationIdentity {
-  return {
-    category: json.category,
-    id: json.id,
-    objectId: json.object_id,
-    objectType: json.object_type,
-  };
-}
 
 export default class Worker {
   @observable hasData: boolean = false;
@@ -184,7 +174,7 @@ export default class Worker {
       this.store.handleNotificationEventNew();
     } else if (isNotificationEventReadJson(eventData)) {
       const events = eventData.data.notification_ids.map((json) => {
-        return { data: jsonToIndentity(json), event: 'read' } as NotificationEventRead;
+        return { data: fromJson(json), event: 'read' } as NotificationEventRead;
       });
 
       events.forEach((notificationEvent) => this.store.handleNotificationEventRead(notificationEvent));
