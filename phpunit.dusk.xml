@@ -18,7 +18,4 @@
             <directory suffix=".php">./app</directory>
         </whitelist>
     </filter>
-    <php>
-        <env name="GROUP_CREATE_IF_MISSING" value="true"/>
-    </php>
 </phpunit>

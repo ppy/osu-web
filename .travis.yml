@@ -67,6 +67,8 @@ jobs:
       script: ./bin/phpunit
 
     - name: browser tests
+      env:
+        - GROUP_CREATE_IF_MISSING=true
       script: ./bin/run_dusk.sh
 
     - name: tslint
