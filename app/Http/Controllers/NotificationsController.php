@@ -294,58 +294,49 @@ class NotificationsController extends Controller
         $stacks = [];
         $notifications = collect();
 
+        $topLevel = Notification::whereHas('userNotifications', function ($q) use ($unread) {
+            $q->where('user_id', auth()->user()->getKey());
+            if ($unread) {
+                $q->where('is_read', false);
+            }
+        })
+        ->groupBy('name', 'notifiable_type', 'notifiable_id')
+        ->orderBy('id', 'DESC')
+        ->select(DB::raw('MAX(id) as id'), 'name', 'notifiable_type', 'notifiable_id');
+
+        if ($type !== null) {
+            $topLevel->where('notifiable_type', $type);
+        }
+
+        if ($cursor !== null) {
+            $topLevel->where('id', '<', $cursor);
+        }
+
+        $topLevel = $topLevel->limit(static::STACK_LIMIT)->get();
+
+        $min = null;
+        $notificationStacks = $topLevel->map(function ($row) use ($cursor, &$min, $unread) {
+            $min = $row->id;
+            $category = Notification::nameToCategory($row->name);
+            // pass cursor in as all the notifications in the stack should be older.
+            return $this->getNotificationStack($row->notifiable_type, $row->notifiable_id, $category, $cursor, $unread);
+        });
+
+        foreach ($notificationStacks as [$stack, $total]) {
+            $response = $this->stackToResponse($stack, $total);
+            if ($response !== null) {
+                $stacks[] = $response;
+            }
+
+            $notifications = $notifications->concat(json_collection($stack, 'Notification'));
+        }
+
         foreach (Notification::NOTIFIABLE_CLASSES as $class) {
-            $value = MorphMap::getType($class);
-            if ($type !== null && $type !== $value) {
-                continue;
-            }
-
-            $typeCursor = null;
-
-            $topLevel = Notification::whereHas('userNotifications', function ($q) use ($unread) {
-                $q->where('user_id', auth()->user()->getKey());
-                if ($unread) {
-                    $q->where('is_read', false);
-                }
-            })
-            ->where('notifiable_type', $value)
-            ->groupBy('name', 'notifiable_id')
-            ->orderBy('id', 'DESC')
-            ->select(DB::raw('MAX(id) as id'), 'name', 'notifiable_id');
-
-            if ($cursor !== null) {
-                $topLevel->where('id', '<', $cursor);
-            }
-
-            $topLevel = $topLevel->limit(static::STACK_LIMIT)->get();
-
-            $notificationStacks = $topLevel->map(function ($row) use ($cursor, $value, $unread) {
-                $category = Notification::nameToCategory($row->name);
-                // pass cursor in as all the notifications in the stack should be older.
-                return $this->getNotificationStack($value, $row->notifiable_id, $category, $cursor, $unread);
-            });
-
-            foreach ($notificationStacks as [$stack, $total]) {
-                // ordering means this gets overriden to the smallest value when not null.
-                if ($stack->last() !== null) {
-                    $typeCursor = [
-                        'id' => $stack->last()->id,
-                        'type' => $value,
-                    ];
-                }
-
-                $response = $this->stackToResponse($stack, $total);
-                if ($response !== null) {
-                    $stacks[] = $response;
-                }
-
-                $notifications = $notifications->concat(json_collection($stack, 'Notification'));
-            }
-
+            $name = MorphMap::getType($class);
             $types[] = [
-                'cursor' => $typeCursor,
-                'name' => $value,
-                'total' => $this->getTotalNotificationCount($value, $unread),
+                'cursor' => $min !== null ? ['type' => $name, 'id' => $min] : null,
+                'name' => $name,
+                'total' => $this->getTotalNotificationCount($name, $unread),
             ];
         }
 
