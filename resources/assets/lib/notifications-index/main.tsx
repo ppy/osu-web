@@ -35,8 +35,9 @@
 
 import HeaderV4 from 'header-v4';
 import { route } from 'laroute';
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
-import NotificationType, { getValidName, Name as NotificationTypeName } from 'models/notification-type';
+import { getValidName, Name as NotificationTypeName } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -49,13 +50,13 @@ interface State {
 @observer
 export class Main extends React.Component<{}, State> {
   readonly links = [
-    { title: 'All', url: route('notifications.index') },
-    { title: 'Profile', url: route('notifications.index', { type: 'user' }) },
-    { title: 'Beatmaps', url: route('notifications.index', { type: 'beatmapset' }) },
-    { title: 'Forum', url: route('notifications.index', { type: 'forum_topic' }) },
-    { title: 'News', url: route('notifications.index', { type: 'news_post' }) },
-    { title: 'Build', url: route('notifications.index', { type: 'build' }) },
-    { title: 'Chat', url: route('notifications.index', { type: 'channel' }) },
+    { title: 'All', url: route('notifications.index'), type: null },
+    { title: 'Profile', url: route('notifications.index', { type: 'user' }), type: 'user' },
+    { title: 'Beatmaps', url: route('notifications.index', { type: 'beatmapset' }), type: 'beatmapset' },
+    { title: 'Forum', url: route('notifications.index', { type: 'forum_topic' }), type: 'forum_topic' },
+    { title: 'News', url: route('notifications.index', { type: 'news_post' }), type: 'news_post' },
+    { title: 'Build', url: route('notifications.index', { type: 'build' }), type: 'build' },
+    { title: 'Chat', url: route('notifications.index', { type: 'channel' }), type: 'channel' },
   ];
 
   readonly state = {
@@ -65,6 +66,7 @@ export class Main extends React.Component<{}, State> {
 
   private readonly store = core.dataStore.notificationStore.stacks;
 
+  @computed
   private get typeNameFromUrl() {
     const url = new URL(location.href);
 
@@ -76,6 +78,7 @@ export class Main extends React.Component<{}, State> {
       <div className='osu-layout osu-layout--full'>
         <HeaderV4
           links={this.links}
+          onLinkClick={this.handleLinkClick}
           section='Notifications'
           subSection='History'
           theme='notifications'
@@ -96,10 +99,16 @@ export class Main extends React.Component<{}, State> {
 
   renderStacks() {
     const nodes: React.ReactNode[] = [];
-    for (const [, stack] of this.store.stacks) {
+    for (const stack of this.store.stacksOfType(this.state.type)) {
       nodes.push(<Stack key={stack.id} stack={stack} />);
     }
 
     return nodes;
+  }
+
+  private handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const type = (event.target as HTMLAnchorElement).dataset.type as NotificationTypeName;
+    this.setState({ type });
+    event.preventDefault();
   }
 }

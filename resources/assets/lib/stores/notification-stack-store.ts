@@ -23,7 +23,7 @@ import { action, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
-import NotificationType from 'models/notification-type';
+import NotificationType, { Name as NotificationTypeName  } from 'models/notification-type';
 import { nameToCategory } from 'notification-maps/category';
 import { NotificationContextData } from 'notifications-context';
 import { NotificationIdentity, resolveStackId } from 'notifications/notification-identity';
@@ -74,6 +74,19 @@ export default class NotificationStackStore extends Store {
     return $.ajax(params).then(action((response: NotificationBundleJson) => {
       this.updateWithBundle(response);
     }));
+  }
+
+  /**
+   * A generator that returns stacks of a specified notifiable type.
+   * Because this is neither computed nor observable, in order to use this within an observer,
+   * another observable value should be observed in render.
+   *
+   * @param type the notifiable type of the notification
+   */
+  *stacksOfType(type: NotificationTypeName) {
+    for (const [, stack] of this.stacks) {
+      if (type == null || stack.type === type) yield stack;
+    }
   }
 
   @action

@@ -22,6 +22,7 @@ import * as React from 'react';
 interface Props {
   backgroundImage?: string;
   links?: HeaderLink[];
+  onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   section: string;
   subSection: string;
   theme?: string;
@@ -71,7 +72,7 @@ export default class HeaderV4 extends React.Component<Props> {
     const items = this.props.links?.map((link) => {
       return (
         <li className='header-nav-v4__item' key={`${link.url}-${link.title}`}>
-          <a className='header-nav-v4__link' href={link.url}>
+          <a className='header-nav-v4__link' href={link.url} data-type={link.type} onClick={this.props.onLinkClick}>
             {link.title}
           </a>
         </li>

@@ -16,15 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { route } from 'laroute';
 import * as _ from 'lodash';
-import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import NotificationStack from 'models/notification-stack';
-import { NotificationContext } from 'notifications-context';
 import * as React from 'react';
-import { ShowMoreLink } from 'show-more-link';
-import { Spinner } from 'spinner';
 import ItemGroup from './item-group';
 import ItemSingular from './item-singular';
 
