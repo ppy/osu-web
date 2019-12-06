@@ -70,7 +70,6 @@ class UserNotification extends Model
         }
     }
 
-
     public function notification()
     {
         return $this->belongsTo(Notification::class);
