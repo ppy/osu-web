@@ -22,6 +22,7 @@ namespace App\Models\Chat;
 
 use App\Models\User;
 use App\Models\UserRelation;
+use DB;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -52,6 +53,16 @@ class UserChannel extends Model
     public function channel()
     {
         return $this->belongsTo(Channel::class, 'channel_id');
+    }
+
+    public function markAsRead($message_id = null)
+    {
+        $maxId = get_int($message_id ?? Message::where('channel_id', $this->channel_id)->max('message_id'));
+
+        // this prevents the read marker from going backwards
+        $this->update(['last_read_id' => DB::raw("GREATEST(COALESCE(last_read_id, 0), $maxId)")]);
+
+        // TODO: notification clearing goes here
     }
 
     public static function presenceForUser(User $user)

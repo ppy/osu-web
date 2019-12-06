@@ -23,7 +23,6 @@ namespace App\Http\Controllers\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use Auth;
-use DB;
 
 /**
  * @group Chat
@@ -161,12 +160,12 @@ class ChannelsController extends Controller
      */
     public function markAsRead($channel_id, $message_id)
     {
-        $userChannelQuery = UserChannel::where(['user_id' => Auth::user()->user_id, 'channel_id' => $channel_id]);
-        $userChannel = $userChannelQuery->firstOrFail();
-        $message_id = get_int($message_id);
-
-        // this prevents the read marker going backwards
-        $userChannelQuery->update(['last_read_id' => DB::raw("GREATEST(COALESCE(last_read_id, 0), $message_id)")]);
+        UserChannel::where([
+            'user_id' => Auth::user()->user_id,
+            'channel_id' => $channel_id
+        ])
+        ->firstOrFail()
+        ->markAsRead(get_int($message_id));
 
         return response([], 204);
     }
