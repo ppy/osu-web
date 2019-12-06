@@ -27,7 +27,7 @@ class NotificationReadEvent extends NotificationEventBase
 {
     use SerializesModels;
 
-    public $notificationIds;
+    public $params;
     public $userId;
 
     /**
@@ -35,11 +35,11 @@ class NotificationReadEvent extends NotificationEventBase
      *
      * @return void
      */
-    public function __construct($userId, $notificationIds)
+    public function __construct($userId, array $params)
     {
         parent::__construct();
 
-        $this->notificationIds = $notificationIds;
+        $this->params = $params;
         $this->userId = $userId;
     }
 
@@ -60,6 +60,6 @@ class NotificationReadEvent extends NotificationEventBase
 
     public function broadcastWith()
     {
-        return ['ids' => $this->notificationIds];
+        return $this->params;
     }
 }
