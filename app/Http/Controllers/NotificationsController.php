@@ -171,6 +171,19 @@ class NotificationsController extends Controller
         return $this->markReadByIds($ids);
     }
 
+    private function endpointUrl()
+    {
+        $url = config('osu.notification.endpoint');
+
+        if (($url[0] ?? null) === '/') {
+            $host = request()->getHttpHost();
+            $protocol = request()->secure() ? 'wss' : 'ws';
+            $url = "{$protocol}://{$host}{$url}";
+        }
+
+        return $url;
+    }
+
     private function markReadByIds($ids)
     {
         $user = auth()->user();
@@ -217,18 +230,5 @@ class NotificationsController extends Controller
         }
 
         return response(null, 422);
-    }
-
-    private function endpointUrl()
-    {
-        $url = config('osu.notification.endpoint');
-
-        if (($url[0] ?? null) === '/') {
-            $host = request()->getHttpHost();
-            $protocol = request()->secure() ? 'wss' : 'ws';
-            $url = "{$protocol}://{$host}{$url}";
-        }
-
-        return $url;
     }
 }
