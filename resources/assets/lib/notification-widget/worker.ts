@@ -41,7 +41,7 @@ interface NotificationEventNewJson {
 }
 
 interface NotificationEventReadJson {
-  data: NotificationReadJson;
+  data: NotificationIdsReadJson;
   event: 'read';
 }
 
@@ -53,7 +53,7 @@ interface NotificationFeedMetaJson {
   url: string;
 }
 
-interface NotificationReadJson {
+interface NotificationIdsReadJson {
   ids: number[];
 }
 
