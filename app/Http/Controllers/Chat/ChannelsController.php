@@ -162,7 +162,7 @@ class ChannelsController extends Controller
     {
         UserChannel::where([
             'user_id' => Auth::user()->user_id,
-            'channel_id' => $channel_id
+            'channel_id' => $channel_id,
         ])
         ->firstOrFail()
         ->markAsRead(get_int($message_id));
