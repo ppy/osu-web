@@ -23,6 +23,7 @@ import { forEach, minBy, orderBy, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
+import { fromJson, NotificationIdentityJson, NotificationIdentity } from 'notifications/notification-identity';
 
 interface NotificationBundleJson {
   has_more: boolean;
@@ -41,7 +42,7 @@ interface NotificationEventNewJson {
 }
 
 interface NotificationEventReadJson {
-  data: NotificationIdsReadJson;
+  data: NotificationIdsJson | NotificationIdentityJson;
   event: 'read';
 }
 
@@ -53,7 +54,7 @@ interface NotificationFeedMetaJson {
   url: string;
 }
 
-interface NotificationIdsReadJson {
+interface NotificationIdsJson {
   ids: number[];
 }
 
@@ -79,6 +80,10 @@ const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson
 
 const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVerifiedJson => {
   return arg.event === 'verified';
+};
+
+const isNotificationIdentityJson = (arg: any): arg is NotificationIdentityJson => {
+  return arg.category != null;
 };
 
 export default class Worker {
@@ -230,7 +235,7 @@ export default class Worker {
       this.updateFromServer(data.data);
       this.actualUnreadCount++;
     } else if (isNotificationEventReadJson(data)) {
-      this.markRead(data.data.ids);
+      this.markRead(data.data);
     } else if (isNotificationEventVerifiedJson(data)) {
       if (!this.hasData) {
         this.loadMore();
@@ -273,17 +278,11 @@ export default class Worker {
       }));
   }
 
-  @action markRead = (ids: number[]) => {
-    for (const id of ids) {
-      const item = this.items.get(id);
-
-      if (item == null || !item.isRead) {
-        this.actualUnreadCount--;
-      }
-
-      if (item != null) {
-        item.isRead = true;
-      }
+  @action markRead = (data: NotificationIdsJson | NotificationIdentityJson) => {
+    if (isNotificationIdentityJson(data)) {
+      this.markReadByIdentifier(data);
+    } else {
+      this.marksReadByIds(data.ids);
     }
   }
 
@@ -334,14 +333,14 @@ export default class Worker {
 
     this.xhrLoadingState[key] = true;
     return this.xhr[key] = $.ajax({
-        data: { ids },
-        dataType: 'json',
-        method: 'POST',
-        url: route('notifications.mark-read'),
+      data : { ids },
+      dataType: 'json',
+      method: 'POST',
+      url: route('notifications.mark-read'),
     }).always(action(() => {
       this.xhrLoadingState[key] = false;
     })).done(() => {
-      this.markRead(ids);
+      this.marksReadByIds(ids);
     });
   }
 
@@ -394,5 +393,44 @@ export default class Worker {
 
   private isPendingXhr = (id: string) => {
     return this.xhrLoadingState[id] === true;
+  }
+
+  private markReadByIdentifier(json: NotificationIdentityJson) {
+    const identity = fromJson(json);
+    for (const [, notification] of this.items) {
+      if (this.match(notification, identity)) {
+        if (!notification.isRead) {
+          this.actualUnreadCount--;
+          notification.isRead = true;
+        }
+      }
+    }
+  }
+
+  private marksReadByIds(ids: number[]) {
+    for (const id of ids) {
+      const item = this.items.get(id);
+
+      if (item == null || !item.isRead) {
+        this.actualUnreadCount--;
+      }
+
+      if (item != null) {
+        item.isRead = true;
+      }
+    }
+  }
+
+  private match(notification: Notification, identity: NotificationIdentity) {
+    // partial check, ignore invalid combinations
+    if (identity.objectType !== notification.objectType) return false;
+    if (identity.objectId != null) {
+      if (identity.objectId !== notification.objectId) return false;
+      if (identity.category != null) {
+        if (identity.category !== notification.category) return false;
+      }
+    }
+
+    return true;
   }
 }

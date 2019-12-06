@@ -200,7 +200,6 @@ class NotificationsController extends Controller
     {
         $user = auth()->user();
         $category = presence($params['category'] ?? null);
-        $id = $params['id'] ?? null;
         $objectId = $params['object_id'] ?? null;
         $objectType = presence($params['object_type'] ?? null);
 
@@ -224,7 +223,7 @@ class NotificationsController extends Controller
         );
 
         if ($itemsQuery->update(['is_read' => true])) {
-            event(new NotificationReadEvent($user->getKey(), [$params]));
+            event(new NotificationReadEvent($user->getKey(), null, $params));
 
             return response(null, 204);
         }
