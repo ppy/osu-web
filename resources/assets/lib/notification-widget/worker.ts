@@ -23,7 +23,7 @@ import { forEach, minBy, orderBy, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
-import { fromJson, NotificationIdentityJson, NotificationIdentity } from 'notifications/notification-identity';
+import { fromJson, NotificationIdentity, NotificationIdentityJson } from 'notifications/notification-identity';
 
 interface NotificationBundleJson {
   has_more: boolean;
