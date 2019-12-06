@@ -285,9 +285,9 @@ export default class Worker {
 
   @action markRead = (data: NotificationIdsJson | NotificationReadJson) => {
     if (isNotificationReadJson(data)) {
-      this.markReadByIdentifier(data);
+      this.markReadByIdentity(data);
     } else {
-      this.marksReadByIds(data.ids);
+      this.markReadByIds(data.ids);
     }
   }
 
@@ -345,7 +345,7 @@ export default class Worker {
     }).always(action(() => {
       this.xhrLoadingState[key] = false;
     })).done(() => {
-      this.marksReadByIds(ids);
+      this.markReadByIds(ids);
     });
   }
 
@@ -400,7 +400,7 @@ export default class Worker {
     return this.xhrLoadingState[id] === true;
   }
 
-  private markReadByIdentifier(json: NotificationReadJson) {
+  private markReadByIdentity(json: NotificationReadJson) {
     const identity = fromJson(json.notification);
     this.actualUnreadCount -= json.read_count;
 
@@ -413,7 +413,7 @@ export default class Worker {
     }
   }
 
-  private marksReadByIds(ids: number[]) {
+  private markReadByIds(ids: number[]) {
     for (const id of ids) {
       const item = this.items.get(id);
 
