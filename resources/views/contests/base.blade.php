@@ -20,6 +20,12 @@
     'currentAction' => 'contests',
     'title' => "Contest: {$contestMeta->name}",
     'pageDescription' => strip_tags(markdown($contestMeta->currentDescription())),
+    'canonicalUrl' => $contestMeta->url(),
+    'opengraph' => [
+        'title' => $contestMeta->name,
+        'section' =>  trans('layout.menu.community.contests'),
+        'image' => $contestMeta->header_url,
+    ],
 ])
 
 @section('content')
