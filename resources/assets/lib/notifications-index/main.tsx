@@ -104,14 +104,13 @@ export class Main extends React.Component<{}, State> {
 
   renderShowMore() {
     // TODO: fix typing
-    const type = this.store.types.get(this.state.type as string);
-    if (type == null) return null;
+    const type = this.store.getType({ objectType: this.state.type as string });
 
     return (
       <ShowMoreLink
         callback={this.handleShowMore}
-        hasMore={type.cursor != null}
-        loading={type.isLoading}
+        hasMore={type?.cursor != null}
+        loading={type?.isLoading}
         modifiers={['notification-group']}
       />
     );

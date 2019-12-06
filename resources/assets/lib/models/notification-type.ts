@@ -66,6 +66,7 @@ export default class NotificationType implements NotificationReadable {
     if (this.cursor == null) { return; }
 
     this.isLoading = true;
+
     this.store.loadMore(this.cursor, context)
     .always(action(() => {
       this.isLoading = false;

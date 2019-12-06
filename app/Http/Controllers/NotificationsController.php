@@ -234,7 +234,7 @@ class NotificationsController extends Controller
 
         $last = $last instanceof UserNotification ? $last->notification : $last;
         $cursor = [
-            'id' => $last->id,
+            'id' => $last->max_id,
             'object_type' => $last->notifiable_type,
             'object_id' => $last->notifiable_id,
             'category' => Notification::nameToCategory($last->name),
@@ -262,8 +262,8 @@ class NotificationsController extends Controller
             }
         })
         ->groupBy('name', 'notifiable_type', 'notifiable_id')
-        ->orderBy('id', 'DESC')
-        ->select(DB::raw('MAX(id) as id'), 'name', 'notifiable_type', 'notifiable_id');
+        ->orderBy('max_id', 'DESC')
+        ->select(DB::raw('MAX(id) as max_id'), 'name', 'notifiable_type', 'notifiable_id');
 
         if ($type !== null) {
             $topLevel->where('notifiable_type', $type);
@@ -277,7 +277,7 @@ class NotificationsController extends Controller
 
         $min = null;
         $notificationStacks = $topLevel->map(function ($row) use ($cursor, &$min, $unread) {
-            $min = $row->id;
+            $min = $row->max_id;
             $category = Notification::nameToCategory($row->name);
             // pass cursor in as all the notifications in the stack should be older.
             return $this->getNotificationStack($row->notifiable_type, $row->notifiable_id, $category, $cursor, $unread);
@@ -294,10 +294,21 @@ class NotificationsController extends Controller
 
         foreach (Notification::NOTIFIABLE_CLASSES as $class) {
             $name = MorphMap::getType($class);
+            if ($type !== null && $type !== $name) {
+                continue;
+            };
+
             $types[] = [
                 'cursor' => $min !== null ? ['type' => $name, 'id' => $min] : null,
                 'name' => $name,
                 'total' => $this->getTotalNotificationCount($name, $unread),
+            ];
+        }
+
+        if ($type === null) {
+            $types[] = [
+                'cursor' => $min !== null ? ['type' => null, 'id' => $min] : null,
+                'name' => null,
             ];
         }
 
