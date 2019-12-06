@@ -20,8 +20,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\NotificationReadEvent;
-use App\Models\Notification;
+use App\Models\UserNotification;
 
 /**
  * @group Notification
@@ -160,15 +159,17 @@ class NotificationsController extends Controller
 
         $ids = $params['ids'] ?? [];
 
-        if (empty($ids)) {
-            return $this->markReadByNotificationIdentifier($params);
-        }
-
         if (!is_array($ids)) {
             return response(null, 422);
         }
 
-        return $this->markReadByIds($ids);
+        if (empty($ids)) {
+            return UserNotification::markAsReadByNotificationIdentifier(auth()->user(), $params);
+        }
+
+        UserNotification::markAsReadByIds(auth()->user(), $ids);
+
+        return response(null, 204);
     }
 
     private function endpointUrl()
@@ -182,49 +183,5 @@ class NotificationsController extends Controller
         }
 
         return $url;
-    }
-
-    private function markReadByIds($ids)
-    {
-        $user = auth()->user();
-        if ($user->userNotifications()->whereIn('notification_id', $ids)->update(['is_read' => true])) {
-            event(new NotificationReadEvent($user->getKey(), $ids));
-
-            return response(null, 204);
-        }
-
-        return response(null, 422);
-    }
-
-    private function markReadByNotificationIdentifier($params)
-    {
-        $user = auth()->user();
-        $category = presence($params['category'] ?? null);
-        $objectId = $params['object_id'] ?? null;
-        $objectType = presence($params['object_type'] ?? null);
-
-        if ($objectType === null) {
-            response(null, 422);
-        }
-
-        $itemsQuery = $user
-            ->userNotifications()
-            ->where('is_read', false)
-            ->whereHas('notification', function ($query) use ($category, $objectId, $objectType) {
-                $query->where('notifiable_type', $objectType);
-
-                if ($objectId !== null && $category !== null) {
-                    $names = Notification::namesInCategory($category);
-                    $query
-                        ->where('notifiable_id', $objectId)
-                        ->whereIn('name', $names);
-                }
-            }
-        );
-
-        $count = $itemsQuery->update(['is_read' => true]);
-        event(new NotificationReadEvent($user->getKey(), null, ['notification' => $params, 'read_count' => $count]));
-
-        return response(null, 204);
     }
 }

@@ -20,11 +20,53 @@
 
 namespace App\Models;
 
+use App\Events\NotificationReadEvent;
+use App\Exceptions\InvariantException;
+
 class UserNotification extends Model
 {
     protected $casts = [
         'is_read' => 'boolean',
     ];
+
+    public static function markAsReadByIds(User $user, $ids)
+    {
+        if ($user->userNotifications()->whereIn('notification_id', $ids)->update(['is_read' => true])) {
+            event(new NotificationReadEvent($user->getKey(), $ids));
+        }
+    }
+
+    public static function markAsReadByNotificationIdentifier(User $user, $params)
+    {
+        $category = presence($params['category'] ?? null);
+        $objectId = $params['object_id'] ?? null;
+        $objectType = presence($params['object_type'] ?? null);
+
+        if ($objectType === null) {
+            throw new InvariantException('object_type is required.');
+        }
+
+        $itemsQuery = $user
+            ->userNotifications()
+            ->where('is_read', false)
+            ->whereHas('notification', function ($query) use ($category, $objectId, $objectType) {
+                $query->where('notifiable_type', $objectType);
+
+                if ($objectId !== null && $category !== null) {
+                    $names = Notification::namesInCategory($category);
+                    $query
+                        ->where('notifiable_id', $objectId)
+                        ->whereIn('name', $names);
+                }
+            }
+        );
+
+        $count = $itemsQuery->update(['is_read' => true]);
+        if ($count > 0) {
+            event(new NotificationReadEvent($user->getKey(), null, ['notification' => $params, 'read_count' => $count]));
+        }
+    }
+
 
     public function notification()
     {
