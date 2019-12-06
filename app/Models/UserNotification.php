@@ -22,6 +22,7 @@ namespace App\Models;
 
 use App\Events\NotificationReadEvent;
 use App\Exceptions\InvariantException;
+use DB;
 
 class UserNotification extends Model
 {
@@ -46,20 +47,22 @@ class UserNotification extends Model
             throw new InvariantException('object_type is required.');
         }
 
-        $itemsQuery = $user
-            ->userNotifications()
-            ->where('is_read', false)
-            ->whereHas('notification', function ($query) use ($category, $objectId, $objectType) {
-                $query->where('notifiable_type', $objectType);
+        $tableName = (new static)->getTable();
+        $notifications = Notification::where('notifiable_type', $objectType);
+        if ($objectId !== null && $category !== null) {
+            $names = Notification::namesInCategory($category);
+            $notifications
+                ->where('notifiable_id', $objectId)
+                ->whereIn('name', $names);
+        }
 
-                if ($objectId !== null && $category !== null) {
-                    $names = Notification::namesInCategory($category);
-                    $query
-                        ->where('notifiable_id', $objectId)
-                        ->whereIn('name', $names);
-                }
-            }
-        );
+        // force mysql optimizer to optimize properly with a fake multi-table update
+        // https://dev.mysql.com/doc/refman/8.0/en/subquery-optimization.html
+        $itemsQuery = $user->getConnection()
+            ->table(DB::raw("{$tableName}, (SELECT 1) dummy"))
+            ->where('user_id', $user->getKey())
+            ->where('is_read', false)
+            ->whereIn('notification_id', $notifications->select('id'));
 
         $count = $itemsQuery->update(['is_read' => true]);
         if ($count > 0) {
