@@ -33,7 +33,7 @@ class UserNotification extends Model
     public static function markAsReadByIds(User $user, $ids)
     {
         if ($user->userNotifications()->whereIn('notification_id', $ids)->update(['is_read' => true])) {
-            event(new NotificationReadEvent($user->getKey(), $ids));
+            event(new NotificationReadEvent($user->getKey(), ['ids' => $ids]));
         }
     }
 
@@ -66,7 +66,7 @@ class UserNotification extends Model
 
         $count = $itemsQuery->update(['is_read' => true]);
         if ($count > 0) {
-            event(new NotificationReadEvent($user->getKey(), null, ['notification' => $params, 'read_count' => $count]));
+            event(new NotificationReadEvent($user->getKey(), ['notification' => $params, 'read_count' => $count]));
         }
     }
 
