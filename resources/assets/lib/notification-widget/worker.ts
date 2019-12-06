@@ -429,14 +429,14 @@ export default class Worker {
 
   private match(notification: Notification, identity: NotificationIdentity) {
     // partial check, ignore invalid combinations
-    if (identity.objectType !== notification.objectType) return false;
-    if (identity.objectId != null) {
-      if (identity.objectId !== notification.objectId) return false;
-      if (identity.category != null) {
-        if (identity.category !== notification.category) return false;
+    if (identity.category == null || identity.category === notification.category) {
+      if (identity.objectId == null || identity.objectId === notification.objectId) {
+        if (identity.objectType === notification.objectType) {
+          return true;
+        }
       }
     }
 
-    return true;
+    return false;
   }
 }
