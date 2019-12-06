@@ -306,4 +306,9 @@ class Contest extends Model
             new UserContestEntryTransformer
         );
     }
+
+    public function url()
+    {
+        return route('contests.show', $this->id);
+    }
 }
