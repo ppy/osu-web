@@ -194,7 +194,7 @@ export class Header extends React.Component
             @renderLoginButton()
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
-          div className: 'beatmapset-status beatmapset-status--show', @props.beatmapset.status
+          div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.beatmapset.status}")
           el Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
