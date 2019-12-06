@@ -222,12 +222,9 @@ class NotificationsController extends Controller
             }
         );
 
-        if ($itemsQuery->update(['is_read' => true])) {
-            event(new NotificationReadEvent($user->getKey(), null, $params));
+        $count = $itemsQuery->update(['is_read' => true]);
+        event(new NotificationReadEvent($user->getKey(), null, ['notification' => $params, 'read_count' => $count]));
 
-            return response(null, 204);
-        }
-
-        return response(null, 422);
+        return response(null, 204);
     }
 }

@@ -42,7 +42,7 @@ interface NotificationEventNewJson {
 }
 
 interface NotificationEventReadJson {
-  data: NotificationIdsJson | NotificationIdentityJson;
+  data: NotificationIdsJson | NotificationReadJson;
   event: 'read';
 }
 
@@ -56,6 +56,11 @@ interface NotificationFeedMetaJson {
 
 interface NotificationIdsJson {
   ids: number[];
+}
+
+interface NotificationReadJson {
+  notification: NotificationIdentityJson;
+  read_count: number;
 }
 
 interface TimeoutCollection {
@@ -82,8 +87,8 @@ const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVeri
   return arg.event === 'verified';
 };
 
-const isNotificationIdentityJson = (arg: any): arg is NotificationIdentityJson => {
-  return arg.category != null;
+const isNotificationReadJson = (arg: any): arg is NotificationReadJson => {
+  return arg.read_count != null;
 };
 
 export default class Worker {
@@ -278,8 +283,8 @@ export default class Worker {
       }));
   }
 
-  @action markRead = (data: NotificationIdsJson | NotificationIdentityJson) => {
-    if (isNotificationIdentityJson(data)) {
+  @action markRead = (data: NotificationIdsJson | NotificationReadJson) => {
+    if (isNotificationReadJson(data)) {
       this.markReadByIdentifier(data);
     } else {
       this.marksReadByIds(data.ids);
@@ -333,7 +338,7 @@ export default class Worker {
 
     this.xhrLoadingState[key] = true;
     return this.xhr[key] = $.ajax({
-      data : { ids },
+      data: { ids },
       dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),
@@ -395,12 +400,13 @@ export default class Worker {
     return this.xhrLoadingState[id] === true;
   }
 
-  private markReadByIdentifier(json: NotificationIdentityJson) {
-    const identity = fromJson(json);
+  private markReadByIdentifier(json: NotificationReadJson) {
+    const identity = fromJson(json.notification);
+    this.actualUnreadCount -= json.read_count;
+
     for (const [, notification] of this.items) {
       if (this.match(notification, identity)) {
         if (!notification.isRead) {
-          this.actualUnreadCount--;
           notification.isRead = true;
         }
       }
