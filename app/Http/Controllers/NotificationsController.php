@@ -157,17 +157,11 @@ class NotificationsController extends Controller
             'object_type:string',
         ]);
 
-        $ids = $params['ids'] ?? [];
-
-        if (!is_array($ids)) {
-            return response(null, 422);
+        if (isset($params['ids'])) {
+            UserNotification::markAsReadByIds(auth()->user(), $params['ids']);
+        } else {
+            UserNotification::markAsReadByNotificationIdentifier(auth()->user(), $params);
         }
-
-        if (empty($ids)) {
-            return UserNotification::markAsReadByNotificationIdentifier(auth()->user(), $params);
-        }
-
-        UserNotification::markAsReadByIds(auth()->user(), $ids);
 
         return response(null, 204);
     }
