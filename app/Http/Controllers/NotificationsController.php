@@ -195,16 +195,20 @@ class NotificationsController extends Controller
             response(null, 422);
         }
 
-        $itemsQuery = $user->userNotifications()->whereHas('notification', function ($query) use ($category, $objectId, $objectType) {
-            $query->where('notifiable_type', $objectType);
+        $itemsQuery = $user
+            ->userNotifications()
+            ->where('is_read', false)
+            ->whereHas('notification', function ($query) use ($category, $objectId, $objectType) {
+                $query->where('notifiable_type', $objectType);
 
-            if ($objectId !== null && $category !== null) {
-                $names = Notification::namesInCategory($category);
-                $query
-                    ->where('notifiable_id', $objectId)
-                    ->whereIn('name', $names);
+                if ($objectId !== null && $category !== null) {
+                    $names = Notification::namesInCategory($category);
+                    $query
+                        ->where('notifiable_id', $objectId)
+                        ->whereIn('name', $names);
+                }
             }
-        });
+        );
 
         if ($itemsQuery->update(['is_read' => true])) {
             event(new NotificationReadEvent($user->getKey(), [$params]));
