@@ -163,13 +163,13 @@ class NotificationsController extends Controller
         $params = get_params(request()->all(), null, [
             'category:string',
             'id:int',
-            'notification_ids:any',
+            'notifications:any',
             'object_id:int',
             'object_type:string',
         ]);
 
-        if (isset($params['ids'])) {
-            UserNotification::markAsReadByIds(auth()->user(), $params['notification_ids']);
+        if (isset($params['notifications'])) {
+            UserNotification::markAsReadByIds(auth()->user(), $params['notifications']);
         } else {
             UserNotification::markAsReadByNotificationIdentifier(auth()->user(), $params);
         }

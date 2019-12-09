@@ -100,7 +100,7 @@ export default class NotificationStore extends Store {
     if (identities.length === 0) { return; }
 
     this.queuedXhr = $.ajax({
-      data: { notification_ids: identities.map(toJson) },
+      data: { notifications: identities.map(toJson) },
       dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),
