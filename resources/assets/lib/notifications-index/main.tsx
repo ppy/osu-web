@@ -54,13 +54,13 @@ export class Main extends React.Component<{}, State> {
   static readonly contextType = NotificationContext;
 
   readonly links = [
-    { title: 'All', url: route('notifications.index'), type: null },
-    { title: 'Profile', url: route('notifications.index', { type: 'user' }), type: 'user' },
-    { title: 'Beatmaps', url: route('notifications.index', { type: 'beatmapset' }), type: 'beatmapset' },
-    { title: 'Forum', url: route('notifications.index', { type: 'forum_topic' }), type: 'forum_topic' },
-    { title: 'News', url: route('notifications.index', { type: 'news_post' }), type: 'news_post' },
-    { title: 'Build', url: route('notifications.index', { type: 'build' }), type: 'build' },
-    { title: 'Chat', url: route('notifications.index', { type: 'channel' }), type: 'channel' },
+    { title: 'All', url: route('notifications.index'), data: { 'data-type': null }},
+    { title: 'Profile', url: route('notifications.index', { type: 'user' }), data: { 'data-type': 'user' }},
+    { title: 'Beatmaps', url: route('notifications.index', { type: 'beatmapset' }), data: { 'data-type': 'beatmapset' }},
+    { title: 'Forum', url: route('notifications.index', { type: 'forum_topic' }), data: { 'data-type': 'forum_topic' }},
+    { title: 'News', url: route('notifications.index', { type: 'news_post' }), data: { 'data-type': 'news_post' }},
+    { title: 'Build', url: route('notifications.index', { type: 'build' }), data: { 'data-type': 'build' }},
+    { title: 'Chat', url: route('notifications.index', { type: 'channel' }), data: { 'data-type': 'channel' }},
   ];
 
   readonly state = {
