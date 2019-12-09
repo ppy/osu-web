@@ -95,7 +95,7 @@ class MarkNotificationsRead implements ShouldQueue
         $userNotifications->update(['is_read' => true]);
 
         if (!empty($notificationIds)) {
-            event(new NotificationReadEvent($this->user->getKey(), $notificationIds));
+            event(new NotificationReadEvent($this->user->getKey(), ['ids' => $notificationIds]));
         }
     }
 }
