@@ -23,7 +23,7 @@
     'canonicalUrl' => $contestMeta->url(),
     'opengraph' => [
         'title' => $contestMeta->name,
-        'section' =>  trans('layout.menu.community.contests'),
+        'section' => trans('layout.menu.community.contests'),
         'image' => $contestMeta->header_url,
     ],
 ])
