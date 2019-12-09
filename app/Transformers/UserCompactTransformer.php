@@ -73,7 +73,8 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
 
     public function includeCurrentModeRank(User $user)
     {
-        return $this->primitive($user->statistics(auth()->user()->playmode ?? 'osu')->globalRank() ?? null);
+        $currentModeStatistics = $user->statistics(auth()->user()->playmode ?? 'osu');
+        return $this->primitive($currentModeStatistics ? $currentModeStatistics->globalRank() : null);
     }
 
     public function includeGroupBadge(User $user)
