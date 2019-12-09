@@ -29,6 +29,8 @@ use App\Libraries\UserBestScoresCheck;
 use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\Chat\Message;
+use App\Models\Chat\UserChannel;
 use App\Models\Event;
 use App\Models\Forum;
 use App\Models\NewsPost;
@@ -122,6 +124,50 @@ class LegacyInterOpController extends Controller
         broadcast_notification(Notification::USER_ACHIEVEMENT_UNLOCK, $achievement, $user);
 
         return $achievement->getKey();
+    }
+
+    /**
+     * User Batch Mark-As-Read (for Chat Channels)
+     *
+     * This endpoint allows you to mark channels as read for users in bulk
+     *
+     * ---
+     *
+     * ### Response Format
+     * empty
+     *
+     * @bodyParam pairs[<id>][user_id] integer required id of user to mark as read for
+     * @bodyParam pairs[<id>][channel_id] integer required id of channel to mark as read
+     */
+    public function userBatchMarkChannelAsRead()
+    {
+        $pairs = request('pairs');
+
+        if (!is_array($pairs)) {
+            abort(422, '"pairs" parameter must be a list');
+        }
+
+        $channelMax = [];
+
+        foreach ($pairs as $pair) {
+            if (!is_array($pair) || !isset($pair['user_id']) || !isset($pair['channel_id'])) {
+                continue;
+            }
+
+            $channelId = get_int($pair['channel_id']);
+            $userId = get_int($pair['user_id']);
+
+            // cache the max message_id of each channel for the duration of this batch
+            $channelMax[$channelId] = $channelMax[$channelId] ??
+                Message::where('channel_id', $channelId)->max('message_id');
+
+            optional(
+                UserChannel::where([
+                    'user_id' => $userId,
+                    'channel_id' => $channelId,
+                ])->first()
+            )->markAsRead($channelMax[$channelId]);
+        }
     }
 
     /**
