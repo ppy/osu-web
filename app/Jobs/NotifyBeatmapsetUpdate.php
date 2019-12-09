@@ -84,7 +84,7 @@ class NotifyBeatmapsetUpdate implements ShouldQueue
                 continue;
             }
 
-            Mail::to($user->user_email)
+            Mail::to($user)
                 ->queue(new BeatmapsetUpdateNotice([
                     'watch' => $watch,
                 ]));

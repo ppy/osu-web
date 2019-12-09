@@ -36,7 +36,7 @@ class MessagesControllerTest extends TestCase
         self::$faker = Faker\Factory::create();
     }
 
-    //region GET /chat/channels/[channel_id] - Get Channel Messages (public)
+    //region GET /chat/channels/[channel_id]/messages - Get Channel Messages (public)
     public function testChannelShowPublicWhenGuest() // fail
     {
         $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->publicChannel->channel_id]))
@@ -66,7 +66,37 @@ class MessagesControllerTest extends TestCase
 
     //endregion
 
-    //region GET /chat/channels/[channel] - Get Channel Messages (private)
+    //region GET /chat/channels/[channel_id]/messages - Get Channel Messages (tourney)
+    public function testChannelShowTourneyWhenGuest() // fail
+    {
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->tourneyChannel->channel_id]))
+            ->assertStatus(401);
+    }
+
+    public function testChannelShowTourneyWhenUnjoined() // fail
+    {
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->tourneyChannel->channel_id]))
+            ->assertStatus(404);
+    }
+
+    public function testChannelShowTourneyWhenJoined() // success
+    {
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
+                'channel' => $this->tourneyChannel->channel_id,
+                'user' => $this->user->user_id,
+            ]));
+
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->tourneyChannel->channel_id]))
+            ->assertStatus(200);
+        // TODO: Add check for messages being present?
+    }
+
+    //endregion
+
+    //region GET /chat/channels/[channel_id]/messages - Get Channel Messages (private)
     public function testChannelShowPrivateWhenGuest() // fail
     {
         $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->privateChannel->channel_id]))
@@ -94,7 +124,7 @@ class MessagesControllerTest extends TestCase
 
     //endregion
 
-    //region GET /chat/channels/[channel] - Get Channel Messages (pm)
+    //region GET /chat/channels/[channel_id]/messages - Get Channel Messages (pm)
     public function testChannelShowPMWhenGuest() // fail
     {
         $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->pmChannel->channel_id]))
@@ -308,6 +338,26 @@ class MessagesControllerTest extends TestCase
             ->assertStatus(404);
     }
 
+    public function testChannelSendWhenTourney() // fail
+    {
+        $message = self::$faker->sentence();
+
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
+                'channel' => $this->tourneyChannel->channel_id,
+                'user' => $this->user->user_id,
+            ]));
+
+        $this->actAsScopedUser($this->user, ['*']);
+
+        $this->json(
+                'POST',
+                route('api.chat.channels.messages.store', ['channel' => $this->tourneyChannel->channel_id]),
+                ['message' => $message]
+            )
+            ->assertStatus(403);
+    }
+
     public function testChannelSendWhenSilencedToPM() // fail
     {
         $pmChannel = factory(Chat\Channel::class)->states('pm')->create();
@@ -354,8 +404,8 @@ class MessagesControllerTest extends TestCase
         parent::setUp();
 
         $this->user = factory(User::class)->create();
-        $minimumLastPlayed = now()->subDays(config('osu.user.min_last_played_days_for_posting') - 1);
-        $this->user->statisticsOsu()->create(['last_played' => $minimumLastPlayed]);
+        $minPlays = config('osu.user.min_plays_for_posting');
+        $this->user->statisticsOsu()->create(['playcount' => $minPlays]);
 
         $this->anotherUser = factory(User::class)->create();
         $this->restrictedUser = factory(User::class)->states('restricted')->create();
@@ -363,5 +413,6 @@ class MessagesControllerTest extends TestCase
         $this->publicChannel = factory(Chat\Channel::class)->states('public')->create();
         $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
         $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();
+        $this->tourneyChannel = factory(Chat\Channel::class)->states('tourney')->create();
     }
 }

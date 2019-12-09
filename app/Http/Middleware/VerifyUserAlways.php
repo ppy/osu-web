@@ -21,6 +21,7 @@
 namespace App\Http\Middleware;
 
 use App\Events\UserSessionEvent;
+use App\Libraries\UserVerificationState;
 
 class VerifyUserAlways extends VerifyUser
 {
@@ -31,14 +32,20 @@ class VerifyUserAlways extends VerifyUser
 
     public function requiresVerification($request)
     {
+        $user = auth()->user();
+
         if (is_api_request()) {
+            optional($user)->markSessionVerified();
+
             return false;
         }
 
-        $user = auth()->user();
-
         if ($user === null) {
             return false;
+        }
+
+        if (UserVerificationState::fromCurrentRequest()->isDone()) {
+            $user->markSessionVerified();
         }
 
         $isPostAction = config('osu.user.post_action_verification')

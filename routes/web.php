@@ -423,6 +423,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::post('user-send-message', 'LegacyInterOpController@userSendMessage');
+    Route::post('user-batch-send-message', 'LegacyInterOpController@userBatchSendMessage');
     Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
     Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
     Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');

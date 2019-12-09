@@ -18,38 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Mail;
+namespace App\Exceptions;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
+use Exception;
 
-class UserEmailUpdated extends Mailable implements ShouldQueue
+class VerificationRequiredException extends Exception
 {
-    use Queueable, SerializesModels;
-
-    public $user;
-
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($user)
+    public function getStatusCode()
     {
-        $this->user = $user;
-    }
-
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this
-            ->text('emails.user_email_updated')
-            ->subject(trans('accounts.update_email.email_subject'));
+        return 401;
     }
 }

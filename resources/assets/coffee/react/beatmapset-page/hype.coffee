@@ -31,7 +31,7 @@ export class Hype extends React.PureComponent
       div className: "#{bn}__box #{bn}__box--description",
         div className: "#{bn}__description-row #{bn}__description-row--status",
           div className: 'beatmapset-status beatmapset-status--hype',
-            @props.beatmapset.status
+            osu.trans("beatmapsets.show.status.#{@props.beatmapset.status}")
         p className: "#{bn}__description-row #{bn}__description-row--current",
           osu.trans 'beatmapsets.show.hype.current._',
             status: osu.trans("beatmapsets.show.hype.current.status.#{@props.beatmapset.status}")

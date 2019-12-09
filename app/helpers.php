@@ -609,17 +609,6 @@ function error_popup($message, $statusCode = 422)
     return response(['error' => $message], $statusCode);
 }
 
-function i18n_view($view)
-{
-    $localViewPath = sprintf('%s-%s', $view, App::getLocale());
-
-    if (view()->exists($localViewPath)) {
-        return $localViewPath;
-    } else {
-        return sprintf('%s-%s', $view, config('app.fallback_locale'));
-    }
-}
-
 function is_api_request()
 {
     return request()->is('api/*');
@@ -842,10 +831,12 @@ function nav_links_mobile()
 {
     $links = [];
 
-    $links['profile'] = [
-        'friends' => route('friends.index'),
-        'settings' => route('account.edit'),
-    ];
+    if (Auth::check()) {
+        $links['profile'] = [
+            'friends' => route('friends.index'),
+            'settings' => route('account.edit'),
+        ];
+    }
 
     return array_merge($links, nav_links());
 }
