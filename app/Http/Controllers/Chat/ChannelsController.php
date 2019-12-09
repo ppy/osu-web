@@ -158,14 +158,14 @@ class ChannelsController extends Controller
      *
      * @response 204
      */
-    public function markAsRead($channel_id, $message_id)
+    public function markAsRead($channelId, $messageId)
     {
         UserChannel::where([
             'user_id' => Auth::user()->user_id,
-            'channel_id' => $channel_id,
+            'channel_id' => $channelId,
         ])
         ->firstOrFail()
-        ->markAsRead(get_int($message_id));
+        ->markAsRead(get_int($messageId));
 
         return response([], 204);
     }
