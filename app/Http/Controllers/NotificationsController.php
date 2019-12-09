@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Events\NotificationReadEvent;
 use App\Libraries\MorphMap;
+use App\Libraries\NotificationsBundle;
 use App\Models\Notification;
 use App\Models\UserNotification;
 use Carbon\Carbon;
@@ -98,8 +99,9 @@ class NotificationsController extends Controller
      */
     public function unread()
     {
-        $this->unread = true;
-        $response = $this->index();
+        $bundle = new NotificationsBundle(auth()->user(), request()->all(), true);
+        $response = $bundle->toArray();
+
         $response['notification_endpoint'] = $this->endpointUrl();
         $response['unread_count'] = auth()->user()->userNotifications()->where('is_read', false)->count();
 
@@ -108,30 +110,8 @@ class NotificationsController extends Controller
 
     public function index()
     {
-        $unread = $this->unread ?? get_bool(request('unread'));
-        $type = presence(request('type')) ?? presence(request('cursor.type'));
-        $objectId = get_int(presence(request('cursor.object_id')));
-        $objectType = presence(request('cursor.object_type'));
-        $category = presence(request('cursor.category'));
-        $cursor = get_int(request('cursor.id'));
-
-        if ($objectId && $objectType && $category) {
-            [$stack, $total] = $this->getNotificationStack($objectType, $objectId, $category, $cursor, $unread);
-            $stacks = $this->stackToResponse($stack, $total);
-
-            return [
-                'notifications' => json_collection($stack, 'Notification'),
-                'stacks' => $stacks != null ? [$stacks] : [],
-            ];
-        }
-
-        [$types, $stacks, $notifications] = $this->getNotificationsByType($type, $cursor, $unread);
-
-        $bundleJson = [
-            'notifications' => $notifications,
-            'stacks' => $stacks,
-            'types' => $types,
-        ];
+        $bundle = new NotificationsBundle(auth()->user(), request()->all());
+        $bundleJson = $bundle->toArray();
 
         if (is_json_request()) {
             return $bundleJson;
@@ -188,147 +168,5 @@ class NotificationsController extends Controller
         }
 
         return $url;
-    }
-
-    private function getTotalNotificationCount(string $type, ?bool $unread = false)
-    {
-        return Notification::whereHas('userNotifications', function ($q) use ($unread) {
-            $q->where('user_id', auth()->user()->getKey());
-            if ($unread) {
-                $q->where('is_read', false);
-            }
-        })
-        ->where('notifiable_type', $type)
-        ->count();
-    }
-
-    private function getNotificationStack(string $objectType, int $objectId, string $category, ?int $cursor = null, ?bool $unread = false)
-    {
-        $stack = auth()->user()->userNotifications()->with('notification')->whereHas('notification', function ($q) use ($objectId, $objectType, $category) {
-            $names = Notification::namesInCategory($category);
-            $q->where('notifiable_id', $objectId)
-                ->where('notifiable_type', $objectType)
-                ->whereIn('name', $names);
-        });
-
-        if ($unread) {
-            $stack->where('is_read', false);
-        }
-
-        $total = $stack->count();
-
-        $stack = $stack->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
-
-        if ($cursor !== null) {
-            $stack->where('id', '<', $cursor);
-        }
-
-        return [$stack->get(), $total];
-    }
-
-    private function stackToResponse($stack, $total) {
-        $last = $stack->last();
-        if ($last === null) {
-            return;
-        }
-
-        $last = $last instanceof UserNotification ? $last->notification : $last;
-        $cursor = [
-            'id' => $last->max_id,
-            'object_type' => $last->notifiable_type,
-            'object_id' => $last->notifiable_id,
-            'category' => Notification::nameToCategory($last->name),
-        ];
-
-        return [
-            'cursor' => $stack->count() < static::PER_STACK_LIMIT ? null : $cursor,
-            'name' => $last->name,
-            'object_type' => $last->notifiable_type,
-            'object_id' => $last->notifiable_id,
-            'total' => $total,
-        ];
-    }
-
-    private function getNotificationsByType(?string $type = null, ?int $cursor = null, ?bool $unread = false)
-    {
-        $types = [];
-        $stacks = [];
-        $notifications = collect();
-
-        $topLevel = Notification::whereHas('userNotifications', function ($q) use ($unread) {
-            $q->where('user_id', auth()->user()->getKey());
-            if ($unread) {
-                $q->where('is_read', false);
-            }
-        })
-        ->groupBy('name', 'notifiable_type', 'notifiable_id')
-        ->orderBy('max_id', 'DESC')
-        ->select(DB::raw('MAX(id) as max_id'), 'name', 'notifiable_type', 'notifiable_id');
-
-        if ($type !== null) {
-            $topLevel->where('notifiable_type', $type);
-        }
-
-        if ($cursor !== null) {
-            $topLevel->where('id', '<', $cursor);
-        }
-
-        $topLevel = $topLevel->limit(static::STACK_LIMIT)->get();
-
-        $min = null;
-        $notificationStacks = $topLevel->map(function ($row) use ($cursor, &$min, $unread) {
-            $min = $row->max_id;
-            $category = Notification::nameToCategory($row->name);
-            // pass cursor in as all the notifications in the stack should be older.
-            return $this->getNotificationStack($row->notifiable_type, $row->notifiable_id, $category, $cursor, $unread);
-        });
-
-        foreach ($notificationStacks as [$stack, $total]) {
-            $response = $this->stackToResponse($stack, $total);
-            if ($response !== null) {
-                $stacks[] = $response;
-            }
-
-            $notifications = $notifications->concat(json_collection($stack, 'Notification'));
-        }
-
-        foreach (Notification::NOTIFIABLE_CLASSES as $class) {
-            $name = MorphMap::getType($class);
-            if ($type !== null && $type !== $name) {
-                continue;
-            };
-
-            $types[] = [
-                'cursor' => $min !== null ? ['type' => $name, 'id' => $min] : null,
-                'name' => $name,
-                'total' => $this->getTotalNotificationCount($name, $unread),
-            ];
-        }
-
-        if ($type === null) {
-            $types[] = [
-                'cursor' => $min !== null ? ['type' => null, 'id' => $min] : null,
-                'name' => null,
-            ];
-        }
-
-        return [$types, $stacks, $notifications];
-    }
-
-    private function getUserNotifications($after = null)
-    {
-        $notifications = Notification::whereHas('userNotifications', function ($q) {
-            $q->where('user_id', auth()->user()->getKey());
-        })
-        ->with('notifiable')
-        ->with('source')
-        ->orderBy('id', 'DESC')
-        ->limit(10);
-
-        if ($after !== null) {
-            $notifications->where('id', '<', $after);
-        }
-
-        return $notifications->get();
     }
 }
