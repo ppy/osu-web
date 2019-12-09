@@ -27,7 +27,7 @@ class NotificationReadEvent extends NotificationEventBase
 {
     use SerializesModels;
 
-    public $notificationIds;
+    public $params;
     public $userId;
 
     /**
@@ -35,11 +35,11 @@ class NotificationReadEvent extends NotificationEventBase
      *
      * @return void
      */
-    public function __construct($userId, array $notificationIds)
+    public function __construct($userId, array $params)
     {
         parent::__construct();
 
-        $this->notificationIds = $notificationIds;
+        $this->params = $params;
         $this->userId = $userId;
     }
 
@@ -60,7 +60,6 @@ class NotificationReadEvent extends NotificationEventBase
 
     public function broadcastWith()
     {
-        // passing plain array causes laravel to use the array index as stringified key names.
-        return ['notification_ids' => $this->notificationIds];
+        return $this->params;
     }
 }

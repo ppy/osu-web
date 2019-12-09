@@ -159,7 +159,6 @@ class NotificationsController extends Controller
      */
     public function markRead()
     {
-        $user = auth()->user();
         // TODO: params validation
         $params = get_params(request()->all(), null, [
             'category:string',
@@ -169,51 +168,13 @@ class NotificationsController extends Controller
             'object_type:string',
         ]);
 
-        $notificationIds = $params['notification_ids'] ?? [];
-        if (empty($notificationIds)) {
-            $category = presence($params['category'] ?? null);
-            $id = $params['id'] ?? null;
-            $objectId = $params['object_id'] ?? null;
-            $objectType = presence($params['object_type'] ?? null);
-
-            if ($objectType === null) {
-                response(null, 422);
-            }
-
-            $itemsQuery = $user->userNotifications()->whereHas('notification', function ($query) use ($category, $objectId, $objectType) {
-                $query->where('notifiable_type', $objectType);
-
-                if ($objectId !== null && $category !== null) {
-                    $names = Notification::namesInCategory($category);
-                    $query
-                        ->where('notifiable_id', $objectId)
-                        ->whereIn('name', $names);
-                }
-            });
-
-            if ($itemsQuery->update(['is_read' => true])) {
-                event(new NotificationReadEvent($user->getKey(), [$params]));
-
-                return response(null, 204);
-            } else {
-                return response(null, 422);
-            }
-        }
-
-        if (!is_array($notificationIds)) {
-            return response(null, 422);
-        }
-
-        // TODO: validate schema
-        $ids = collect($notificationIds)->pluck('id');
-        // the non-id fields are ignored in the query for performance.
-        if ($user->userNotifications()->whereIn('notification_id', $ids)->update(['is_read' => true])) {
-            event(new NotificationReadEvent($user->getKey(), $notificationIds));
-
-            return response(null, 204);
+        if (isset($params['ids'])) {
+            UserNotification::markAsReadByIds(auth()->user(), $params['notification_ids']);
         } else {
-            return response(null, 422);
+            UserNotification::markAsReadByNotificationIdentifier(auth()->user(), $params);
         }
+
+        return response(null, 204);
     }
 
     private function endpointUrl()

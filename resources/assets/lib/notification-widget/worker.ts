@@ -173,7 +173,7 @@ export default class Worker {
       this.notificationStore.handleNotificationEventNew(eventData);
       this.store.handleNotificationEventNew();
     } else if (isNotificationEventReadJson(eventData)) {
-      const events = eventData.data.notification_ids.map((json) => {
+      const events = eventData.data.notifications.map((json) => {
         return { data: fromJson(json), event: 'read' } as NotificationEventRead;
       });
 

@@ -29,7 +29,10 @@ export interface NotificationEventNewJson {
 }
 
 export interface NotificationEventReadJson {
-  data: { notification_ids: NotificationIdentityJson[] };
+  data: {
+    notifications: NotificationIdentityJson[],
+    read_count: number,
+  };
   event: 'read';
 }
 
