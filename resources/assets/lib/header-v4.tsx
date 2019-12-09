@@ -21,14 +21,19 @@ import * as React from 'react';
 
 interface Props {
   backgroundImage?: string;
-  links?: HeaderLink[];
+  links: HeaderLink[];
+  onLinkClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   section: string;
   subSection: string;
   theme?: string;
 }
 
 export default class HeaderV4 extends React.Component<Props> {
-  static defaultProps = { links: [] };
+  static defaultProps = {
+    links: [],
+    // tslint:disable-next-line: no-empty
+    onLinkClick: () => {},
+  };
 
   render(): React.ReactNode {
     let classNames = 'header-v4';
@@ -68,10 +73,10 @@ export default class HeaderV4 extends React.Component<Props> {
   }
 
   private renderLinks() {
-    const items = this.props.links?.map((link) => {
+    const items = this.props.links.map((link) => {
       return (
         <li className='header-nav-v4__item' key={`${link.url}-${link.title}`}>
-          <a className='header-nav-v4__link' href={link.url}>
+          <a className='header-nav-v4__link' href={link.url} onClick={this.props.onLinkClick}>
             {link.title}
           </a>
         </li>
