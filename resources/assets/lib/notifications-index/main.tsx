@@ -127,9 +127,23 @@ export class Main extends React.Component<{}, State> {
   }
 
   private handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const type = (event.target as HTMLAnchorElement).dataset.type as NotificationTypeName;
-    this.setState({ type });
     event.preventDefault();
+
+    const type = ((event.target as HTMLAnchorElement).dataset.type ?? null) as NotificationTypeName;
+    this.setState({ type }, () => {
+      const href = (() => {
+        if (type == null) {
+          const url = new URL(window.location.href);
+          url.searchParams.delete('type');
+
+          return url.href;
+        } else {
+          return osu.updateQueryString(null, { type });
+        }
+      })();
+
+      Turbolinks.controller.advanceHistory(href);
+    });
   }
 
   private handleShowMore = () => {
