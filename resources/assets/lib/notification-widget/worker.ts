@@ -24,7 +24,6 @@ import { action, computed, observable } from 'mobx';
 import {
   NotificationEventLogoutJson,
   NotificationEventNewJson,
-  NotificationEventRead,
   NotificationEventReadJson,
   NotificationEventVerifiedJson,
 } from 'notifications/notification-events';
@@ -173,11 +172,12 @@ export default class Worker {
       this.notificationStore.handleNotificationEventNew(eventData);
       this.store.handleNotificationEventNew();
     } else if (isNotificationEventReadJson(eventData)) {
-      const events = eventData.data.notifications.map((json) => {
-        return { data: fromJson(json), event: 'read' } as NotificationEventRead;
-      });
+      const notificationEvent = {
+        data: eventData.data.notifications.map((json) => fromJson(json)),
+        readCount: eventData.data.read_count,
+      };
 
-      events.forEach((notificationEvent) => this.store.handleNotificationEventRead(notificationEvent));
+      this.store.handleNotificationEventRead(notificationEvent);
     } else if (isNotificationEventVerifiedJson(eventData)) {
       if (!this.hasData) {
         this.loadMore();

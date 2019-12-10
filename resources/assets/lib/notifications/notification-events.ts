@@ -37,8 +37,8 @@ export interface NotificationEventReadJson {
 }
 
 export interface NotificationEventRead {
-  data: NotificationIdentity;
-  event: 'read';
+  data: NotificationIdentity[];
+  readCount: number;
 }
 
 export interface NotificationEventVerifiedJson {

@@ -21,4 +21,5 @@ import { NotificationIdentity } from 'notifications/notification-identity';
 export default interface NotificationReadable {
   identity: NotificationIdentity;
   isMarkingAsRead: boolean;
+  total: number;
 }

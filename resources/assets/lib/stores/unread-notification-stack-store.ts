@@ -32,20 +32,31 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
   @action
   handleNotificationEventRead(event: NotificationEventRead) {
-    const identityType = resolveIdentityType(event.data);
+    // identity types currently aren't mixed in the event,
+    // so readCount can be applied for the whole group.
+    if (event.data.length === 0) return;
+    const first = event.data[0];
+    const identityType = resolveIdentityType(first);
+
     switch (identityType) {
       case 'type':
-        this.handleType(event.data);
+        const type = this.getType(first);
+        if (type != null) type.total -= event.readCount;
+        event.data.forEach(this.handleType);
         break;
 
       case 'stack':
-        this.handleStack(event.data);
+        const stack = this.getStack(first);
+        if (stack != null) stack.total -= event.readCount;
+        event.data.forEach(this.handleStack);
         break;
 
       case 'notification':
-        this.handleNotification(event.data);
+        event.data.forEach(this.handleNotification);
         break;
     }
+
+    this.total -= event.readCount;
   }
 
   @action
@@ -57,7 +68,7 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
     }
   }
 
-  private handleNotification(identity: NotificationIdentity) {
+  private handleNotification = (identity: NotificationIdentity) => {
     if (resolveIdentityType(identity) !== 'notification') return;
 
     const notification = this.getNotification(identity);
@@ -66,38 +77,42 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
     if (notification != null) {
       if (!notification.isRead) {
-        this.total--;
         stack?.remove(notification);
         if (type != null) type.total--;
 
         notification.isRead = true;
       }
-    }
+    } else {
+      // notification may not have been loaded yet.
 
-    this.total--;
-    if (type != null) type.total--;
-    if (stack != null) stack.total--;
+      // not known anywhere, skip
+      if (stack == null || type == null) return;
+
+      // notification is past cursor, update counts
+      if (identity.id < stack.cursor?.id) {
+        stack.total--;
+        type.total--;
+      }
+    }
   }
 
-  private handleStack(identity: NotificationIdentity) {
+  private handleStack = (identity: NotificationIdentity) => {
     const stack = this.getStack(identity);
     if (stack == null) return;
 
     stack.notifications.forEach((notification) => notification.isRead = true);
     this.stacks.delete(resolveStackId(identity));
-    this.total -= stack.total;
 
     const type = this.getType(identity);
     if (type == null) return;
     type.removeStack(stack);
   }
 
-  private handleType(identity: NotificationIdentity) {
+  private handleType = (identity: NotificationIdentity) => {
     const type = this.getType(identity);
     if (type == null) return;
 
     type.stacks.forEach((stack) => stack.notifications.forEach((notification) => notification.isRead = true));
     this.types.delete(identity.objectType);
-    this.total -= type.total;
   }
 }
