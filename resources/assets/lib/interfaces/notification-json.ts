@@ -28,7 +28,6 @@ export default interface NotificationJson {
 }
 
 export interface NotificationBundleJson {
-  cursor: JSON | null;
   notifications?: NotificationJson[];
   stacks?: NotificationStackJson[];
   types?: NotificationTypeJson[];

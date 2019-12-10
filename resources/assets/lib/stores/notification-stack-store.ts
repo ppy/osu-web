@@ -26,12 +26,11 @@ import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType, { Name as NotificationTypeName  } from 'models/notification-type';
 import { nameToCategory } from 'notification-maps/category';
 import { NotificationContextData } from 'notifications-context';
-import { NotificationIdentity, resolveStackId } from 'notifications/notification-identity';
+import { NotificationIdentity, resolveStackId, toJson } from 'notifications/notification-identity';
 import RootDataStore from 'stores/root-data-store';
 import Store from 'stores/store';
 
 export default class NotificationStackStore extends Store {
-  @observable cursor: JSON | null = null;
   @observable readonly stacks = new Map<string, NotificationStack>();
   @observable readonly types = new Map<string, NotificationType>();
 
@@ -65,11 +64,16 @@ export default class NotificationStackStore extends Store {
   }
 
   @action
-  loadMore(cursor: JSON, context: NotificationContextData) {
+  loadMore(identity: NotificationIdentity, cursor: JSON, context: NotificationContextData) {
+    const urlParams = toJson(identity);
+    delete urlParams.id; // ziggy doesn't set the query string if id property exists.
+
+    const url = route('notifications.index', urlParams);
+
     const params = {
       data: { cursor, unread: context.unreadOnly },
       dataType: 'json',
-      url: route('notifications.index'),
+      url,
     };
 
     return $.ajax(params).then(action((response: NotificationBundleJson) => {
@@ -95,10 +99,6 @@ export default class NotificationStackStore extends Store {
     bundle.types?.forEach((json) => this.updateWithTypeJson(json));
     bundle.stacks?.forEach((json) => this.updateWithStackJson(json));
     bundle.notifications?.forEach((json) => this.updateWithNotificationJson(json));
-
-    if (bundle.cursor != null) {
-      this.cursor = bundle.cursor;
-    }
   }
 
   @action

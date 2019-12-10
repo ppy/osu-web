@@ -94,7 +94,7 @@ export default class NotificationStack implements NotificationReadable {
 
     this.isLoading = true;
 
-    this.store.loadMore(this.cursor, context)
+    this.store.loadMore(this.identity, this.cursor, context)
     .always(action(() => {
       this.isLoading = false;
     }));
