@@ -32,7 +32,7 @@
                         'href' => osu_url('user.rules'),
                     ], trans('users.disabled.reasons.tos.community_rules')),
                     'tos' => tag('a', [
-                        'href' => osu_url('legal.terms'),
+                        'href' => route('legal', 'terms'),
                     ], trans('users.disabled.reasons.tos.tos')),
                 ]) !!}
             </li>
