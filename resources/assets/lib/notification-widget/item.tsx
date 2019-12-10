@@ -37,6 +37,7 @@ interface Props extends WithMarkReadProps {
 @observer
 export default class Item extends React.Component<Props> {
   static contextType = NotificationContext;
+
   render() {
     return (
       <div className={this.blockClass()} onClick={this.handleContainerClick}>
@@ -57,7 +58,12 @@ export default class Item extends React.Component<Props> {
   }
 
   private blockClass() {
-    return `clickable-row ${osu.classWithModifiers('notification-popup-item', [...this.props.modifiers, this.props.item.category])}`;
+    const modifiers = [...this.props.modifiers, this.props.item.category];
+    if (this.props.item.isRead) {
+      modifiers.push('read');
+    }
+
+    return `clickable-row ${osu.classWithModifiers('notification-popup-item', modifiers)}`;
   }
 
   private handleContainerClick = (event: React.SyntheticEvent) => {
