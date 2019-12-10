@@ -33,6 +33,12 @@
     }
   }
 
+  &--users {
+    @media @desktop {
+      min-height: 320px;
+    }
+  }
+
   &__bg {
     margin: auto;
     width: 100%;
@@ -69,6 +75,11 @@
 
     .@{_top}--supporter & {
       opacity: 0.2;
+      .at2x-simple('/images/headers/supporter.jpg');
+    }
+
+    .@{_top}--users & {
+      opacity: 1;
       .at2x-simple('/images/headers/supporter.jpg');
     }
   }
@@ -131,6 +142,23 @@
       @media @desktop {
         display: flex;
       }
+    }
+
+    .@{_top}--users & {
+      .default-gutter();
+    }
+  }
+
+  &__spinner {
+    .center-content();
+    .full-size();
+    font-size: 60px;
+    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
+    color: @osu-colour-c1;
+    display: none;
+
+    @media @desktop {
+      display: flex;
     }
   }
 
