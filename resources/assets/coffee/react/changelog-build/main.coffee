@@ -30,7 +30,7 @@ export class Main extends React.PureComponent
 
 
   render: =>
-    div null,
+    el React.Fragment, null,
       div className: 'header-v3 header-v3--changelog',
         div className: 'header-v3__bg'
         div className: 'header-v3__overlay'
