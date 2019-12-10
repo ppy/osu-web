@@ -222,10 +222,17 @@ class LegacyInterOpController extends Controller
 
         $userIds = [];
 
-        foreach ($params as $messageParams) {
+        foreach ($params as $key => $messageParams) {
             if (!is_array($messageParams)) {
                 continue;
             }
+
+            $messageParams = get_params($messageParams, null, [
+                'sender_id:int',
+                'target_id:int',
+                'message:string',
+                'is_action:bool',
+            ]);
 
             if (isset($messageParams['sender_id'])) {
                 $userIds[$messageParams['sender_id']] = true;
@@ -233,7 +240,10 @@ class LegacyInterOpController extends Controller
             if (isset($messageParams['target_id'])) {
                 $userIds[$messageParams['target_id']] = true;
             }
+
+            $params[$key] = $messageParams;
         }
+
         $userIds = array_keys($userIds);
 
         $users = User::whereIn('user_id', $userIds)->get()->keyBy('user_id');
@@ -252,7 +262,7 @@ class LegacyInterOpController extends Controller
                     optional($users[$messageParams['sender_id']] ?? null)->markSessionVerified(),
                     $users[$messageParams['target_id']] ?? null,
                     presence($messageParams['message'] ?? null),
-                    get_bool($messageParams['is_action'] ?? null)
+                    $messageParams['is_action'] ?? null
                 );
 
                 $result = [
