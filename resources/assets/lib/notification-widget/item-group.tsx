@@ -24,10 +24,9 @@ import { urlGroup } from 'notification-maps/url';
 import { NotificationContext } from 'notifications-context';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
+import { Spinner } from 'spinner';
 import Item from './item';
 import ItemCompact from './item-compact';
-import { WithMarkReadProps } from './with-mark-read';
-import { Spinner } from 'spinner';
 
 interface Props {
   stack: NotificationStack;
@@ -38,7 +37,7 @@ interface State {
 }
 
 @observer
-export default class ItemGroup extends React.Component<Props & WithMarkReadProps, State> {
+export default class ItemGroup extends React.Component<Props, State> {
   static readonly contextType = NotificationContext;
   readonly state = {
     expanded: false,
@@ -52,7 +51,7 @@ export default class ItemGroup extends React.Component<Props & WithMarkReadProps
       <div className='notification-popup-item-group'>
         <Item
           markRead={this.handleMarkAsRead}
-          markingAsRead={this.props.markingAsRead || this.props.stack.isMarkingAsRead}
+          markingAsRead={this.props.stack.isMarkingAsRead}
           expandButton={this.renderExpandButton()}
           icons={categoryToIcons[item.category]}
           item={item}

@@ -24,7 +24,6 @@ import { formatMessage } from 'notification-maps/message';
 import { urlSingular } from 'notification-maps/url';
 import * as React from 'react';
 import Item from './item';
-import { WithMarkReadProps } from './with-mark-read';
 
 interface Props {
   item: Notification;
@@ -32,7 +31,7 @@ interface Props {
 }
 
 @observer
-export default class ItemCompact extends React.Component<Props & WithMarkReadProps> {
+export default class ItemCompact extends React.Component<Props> {
   render() {
     return (
       <Item

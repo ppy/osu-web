@@ -23,14 +23,13 @@ import { formatMessage } from 'notification-maps/message';
 import { urlSingular } from 'notification-maps/url';
 import * as React from 'react';
 import Item from './item';
-import { WithMarkReadProps } from './with-mark-read';
 
 interface Props {
   stack: NotificationStack;
 }
 
 @observer
-export default class ItemSingular extends React.Component<Props & WithMarkReadProps> {
+export default class ItemSingular extends React.Component<Props> {
   render() {
     const item = this.props.stack.first;
     if (item == null) { return null; }
