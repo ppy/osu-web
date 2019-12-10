@@ -27,6 +27,12 @@
     height: 290px;
   }
 
+  &--supporter {
+    @media @desktop {
+      min-height: 450px;
+    }
+  }
+
   &__bg {
     margin: auto;
     width: 100%;
@@ -59,6 +65,11 @@
 
     .@{_top}--news & {
       .at2x-simple('/images/headers/news.png');
+    }
+
+    .@{_top}--supporter & {
+      opacity: 0.2;
+      .at2x-simple('/images/headers/supporter.jpg');
     }
   }
 
