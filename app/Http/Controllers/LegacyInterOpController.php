@@ -210,6 +210,12 @@ class LegacyInterOpController extends Controller
     {
         $params = request('messages');
 
+        $results = new stdClass;
+
+        if (!isset($params)) {
+            return response()->json($results);
+        }
+
         if (!is_array($params)) {
             abort(422, '"messages" parameter must be a list');
         }
@@ -232,7 +238,6 @@ class LegacyInterOpController extends Controller
 
         $users = User::whereIn('user_id', $userIds)->get()->keyBy('user_id');
 
-        $results = new stdClass;
         foreach ($params as $id => $messageParams) {
             try {
                 if (!is_array($messageParams)) {
