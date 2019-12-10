@@ -36,14 +36,4 @@ return [
         'read' => 'Read',
         'unread' => 'Unread',
     ],
-
-    'update_notice' => [
-        'email' => [
-            'content' => [
-                'opening' => 'Just letting you know that there has been a new update in beatmap ":title" since your last visit.',
-                'unwatch' => 'If you no longer wish to watch this beatmap, you can either click the "Unwatch" link found in the page above, or from the modding watchlist page:',
-                'visit' => 'Visit the discussion page here:',
-            ],
-        ],
-    ],
 ];
