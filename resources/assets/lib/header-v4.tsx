@@ -74,15 +74,15 @@ export default class HeaderV4 extends React.Component<Props> {
 
   private renderLinks() {
     const items = this.props.links.map((link) => {
-      const modifiers = [];
+      const linkModifiers = [];
       if (link.active) {
-        modifiers.push('active');
+        linkModifiers.push('active');
       }
 
       return (
         <li className='header-nav-v4__item' key={`${link.url}-${link.title}`}>
           <a
-            className={osu.classWithModifiers('header-nav-v4__link', modifiers)}
+            className={osu.classWithModifiers('header-nav-v4__link', linkModifiers)}
             href={link.url}
             onClick={this.props.onLinkClick}
           >
