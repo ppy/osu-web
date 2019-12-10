@@ -17,6 +17,7 @@
 ###
 
 import { Comment } from 'comment'
+import HeaderV4 from 'header-v4'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
@@ -41,13 +42,13 @@ export class Main extends React.Component
 
 
   render: =>
-    div null,
-      div className: 'header-v3 header-v3--comments',
-        div className: 'header-v3__bg'
-        div className: 'header-v3__overlay'
-        div className: 'osu-page osu-page--header-v3',
-          @renderHeaderTitle()
-          @renderHeaderTabs()
+    el React.Fragment, null,
+      el HeaderV4,
+        links: @headerLinks()
+        linksBreadcrumb: true
+        theme: 'comments'
+        section: osu.trans 'comments.index.title._', info: ''
+        subSection: osu.trans 'comments.index.title.info'
 
       el Observer, null, () =>
         comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
@@ -65,20 +66,10 @@ export class Main extends React.Component
           div ref: @pagination
 
 
-  renderHeaderTabs: =>
-    div className: 'page-mode-v2 page-mode-v2--comments',
-      span
-        className: 'page-mode-v2__link page-mode-v2__link--active'
-        osu.trans 'comments.index.title.info'
-
-
-  renderHeaderTitle: =>
-    div className: 'osu-page-header-v3 osu-page-header-v3--comments',
-      div className: 'osu-page-header-v3__title',
-        div className: 'osu-page-header-v3__title-icon',
-          div className: 'osu-page-header-v3__icon'
-        h1
-          className: 'osu-page-header-v3__title-text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'comments.index.title._',
-              info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('comments.index.title.info')}</span>"
+  headerLinks: ->
+    [
+      {
+        title: osu.trans 'comments.index.title.info'
+        url: laroute.route('comments.index')
+      }
+    ]
