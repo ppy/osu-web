@@ -38,6 +38,7 @@ use App\Models\Notification;
 use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserStatistics;
+use Datadog;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use stdClass;
@@ -261,6 +262,10 @@ class LegacyInterOpController extends Controller
                     'error' => ExceptionHandler::exceptionMessage($e),
                 ];
             }
+
+            Datadog::increment(config('datadog-helper.prefix_web').'.chat.batch', 1, [
+                'status' => $result['status'],
+            ]);
 
             $results->$id = $result;
         }
