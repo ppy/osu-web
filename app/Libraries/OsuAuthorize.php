@@ -272,6 +272,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
 
         if ($discussion->message_type === 'mapper_note') {
             if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->canModerate() && !$user->isBNG()) {
@@ -461,6 +462,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
 
         if ($user->canModerate()) {
             return 'ok';
@@ -702,6 +704,7 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
+        $this->ensureHasPlayed($user);
 
         if ($target->hasBlocked($user) || $user->hasBlocked($target)) {
             return $prefix.'blocked';
@@ -726,9 +729,14 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
+        $this->ensureHasPlayed($user);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
             return $prefix.'no_access';
+        }
+
+        if ($channel->moderated) {
+            return $prefix.'moderated';
         }
 
         if ($channel->isPM()) {
@@ -738,8 +746,9 @@ class OsuAuthorize
             }
         }
 
-        if ($channel->moderated) {
-            return $prefix.'moderated';
+        // TODO: add actual permission checks for bancho multiplayer games?
+        if ($channel->isBanchoMultiplayerChat()) {
+            return $prefix.'no_access';
         }
 
         return 'ok';
@@ -783,42 +792,9 @@ class OsuAuthorize
 
         $this->ensureCleanRecord($user, $prefix);
 
-        // FIXME: needs further check before allowing other types.
-        if (false) {
-            switch ($channel->type) {
-                case Channel::TYPES['public']:
-                    return 'ok';
-
-                case Channel::TYPES['private']:
-                    $commonGroupIds = array_intersect(
-                        $user->groupIds(),
-                        $channel->allowed_groups
-                    );
-
-                    if (count($commonGroupIds) > 0) {
-                        return 'ok';
-                    }
-                    break;
-
-                case Channel::TYPES['spectator']:
-                case Channel::TYPES['temporary']: // this and the comparisons below are needed until bancho is updated to use the new channel types
-                    if (starts_with($channel->name, '#spect_')) {
-                        return 'ok';
-                    }
-
-                    if (starts_with($channel->name, '#mp_')) {
-                        $matchId = intval(str_replace('#mp_', '', $channel->name));
-
-                        if (in_array($user->user_id, Match::findOrFail($matchId)->currentPlayers(), true)) {
-                            return 'ok';
-                        }
-                    }
-                    break;
-
-                case Channel::TYPES['multiplayer']:
-                    return 'ok';
-                break;
-            }
+        // allow joining of 'tournament' matches (for lazer/tournament client)
+        if (optional($channel->multiplayerMatch)->isTournamentMatch()) {
+            return 'ok';
         }
 
         return $prefix.'no_access';
@@ -924,6 +900,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
 
         return 'ok';
     }
@@ -1183,6 +1160,8 @@ class OsuAuthorize
             if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
                 return $prefix.'play_more';
             }
+
+            $this->ensureHasPlayed($user);
         }
 
         return 'ok';
@@ -1634,5 +1613,28 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @throws AuthorizationException
+     */
+    public function ensureHasPlayed(?User $user) : void
+    {
+        if ($user === null) {
+            return;
+        }
+
+        $minPlays = config('osu.user.min_plays_for_posting');
+
+        if ($user->playCount() >= $minPlays) {
+            return;
+        }
+
+        if ($user->isSessionVerified()) {
+            return;
+        }
+
+        throw new AuthorizationException('require_verification');
     }
 }

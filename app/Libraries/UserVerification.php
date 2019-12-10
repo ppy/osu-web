@@ -23,6 +23,8 @@ namespace App\Libraries;
 use App\Exceptions\UserVerificationException;
 use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\Country;
+use App\Models\LoginAttempt;
+use Datadog;
 use Mail;
 
 class UserVerification
@@ -47,6 +49,15 @@ class UserVerification
         return $verification;
     }
 
+    public static function logAttempt(string $source, string $type, string $reason = null) : void
+    {
+        Datadog::increment(
+            config('datadog-helper.prefix_web').'.verification.attempts',
+            1,
+            compact('reason', 'source', 'type')
+        );
+    }
+
     private function __construct($user, $request, $state)
     {
         $this->user = $user;
@@ -65,6 +76,8 @@ class UserVerification
         $email = $this->user->user_email;
 
         if (!$this->state->issued()) {
+            static::logAttempt('input', 'new');
+
             $this->issue();
         }
 
@@ -89,16 +102,21 @@ class UserVerification
     public function issue()
     {
         $user = $this->user;
-        $email = $user->user_email;
-        $to = $user->user_email;
+
+        if (!present($user->user_email)) {
+            return;
+        }
+
         $keys = $this->state->issue();
+
+        LoginAttempt::logAttempt($this->request->getClientIp(), $this->user, 'verify');
 
         $requestCountry = Country
             ::where('acronym', request_country($this->request))
             ->pluck('name')
             ->first();
 
-        Mail::to($to)
+        Mail::to($user)
             ->queue(new UserVerificationMail(
                 compact('keys', 'user', 'requestCountry')
             ));
@@ -129,12 +147,20 @@ class UserVerification
         try {
             $this->state->verify($key);
         } catch (UserVerificationException $e) {
+            static::logAttempt('input', 'fail', $e->reasonKey());
+
+            if ($e->reasonKey() === 'incorrect_key') {
+                LoginAttempt::logAttempt($this->request->getClientIp(), $this->user, 'verify-mismatch', $key);
+            }
+
             if ($e->shouldReissue()) {
                 $this->issue();
             }
 
             return error_popup($e->getMessage());
         }
+
+        static::logAttempt('input', 'success');
 
         return $this->markVerifiedAndRespond();
     }

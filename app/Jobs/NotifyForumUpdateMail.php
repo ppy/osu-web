@@ -82,7 +82,7 @@ class NotifyForumUpdateMail implements ShouldQueue
                 continue;
             }
 
-            Mail::to($user->user_email)->queue(new ForumNewReply([
+            Mail::to($user)->queue(new ForumNewReply([
                 'topic' => $this->topic,
                 'user' => $user,
             ]));

@@ -38,7 +38,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
     // this should never happen, but just in case...
     return (
       <div className={bn}>
-        <div className={`${bn}__message-container ${bn}__message-container--error`}>[DISCUSSION NOT LOADED]</div>
+        <div className={`${bn}__error`}>[DISCUSSION NOT LOADED]</div>
       </div>
     );
   }
@@ -95,7 +95,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
         </div>
       </div>
       <div className={`${bn}__stripe`} />
-      <div className={`${bn}__body`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format(discussion.posts[0].message)}} />
+      <div className={`${bn}__body`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format((discussion.starting_post || discussion.posts[0]).message)}} />
       {discussion.parent_id &&
         <div className={`${bn}__link`}>
           <a
