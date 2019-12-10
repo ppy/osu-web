@@ -35,8 +35,14 @@ class UserNotification extends Model
         // TODO: validate schema
         $ids = collect($identities)->pluck('id');
 
-        if ($user->userNotifications()->whereIn('notification_id', $ids)->update(['is_read' => true])) {
-            event(new NotificationReadEvent($user->getKey(), ['notifications' => $identities]));
+        $count = $user
+            ->userNotifications()
+            ->where('is_read', false)
+            ->whereIn('notification_id', $ids)
+            ->update(['is_read' => true]);
+
+        if ($count > 0) {
+            event(new NotificationReadEvent($user->getKey(), ['notifications' => $identities, 'read_count' => $count]));
         }
     }
 
