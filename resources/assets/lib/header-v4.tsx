@@ -22,7 +22,8 @@ import * as React from 'react';
 interface Props {
   backgroundImage?: string;
   links: HeaderLink[];
-  onLinkClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  linksBreadcrumb?: boolean;
+  onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   section: string;
   subSection: string;
   theme?: string;
@@ -31,8 +32,7 @@ interface Props {
 export default class HeaderV4 extends React.Component<Props> {
   static defaultProps = {
     links: [],
-    // tslint:disable-next-line: no-empty
-    onLinkClick: () => {},
+    linksBreadcrumb: false,
   };
 
   render(): React.ReactNode {
@@ -74,19 +74,33 @@ export default class HeaderV4 extends React.Component<Props> {
 
   private renderLinks() {
     const items = this.props.links.map((link) => {
+      const modifiers = [];
+      if (link.active) {
+        modifiers.push('active');
+      }
+
       return (
         <li className='header-nav-v4__item' key={`${link.url}-${link.title}`}>
-          <a className='header-nav-v4__link' href={link.url} onClick={this.props.onLinkClick}>
+          <a
+            className={osu.classWithModifiers('header-nav-v4__link', modifiers)}
+            href={link.url}
+            onClick={this.props.onLinkClick}
+          >
             {link.title}
           </a>
         </li>
       );
     });
 
+    const List = this.props.linksBreadcrumb ? 'ol' : 'ul';
+
+    const modifiers = [];
+    modifiers.push(this.props.linksBreadcrumb ? 'breadcrumb' : 'list');
+
     return (
-      <ol className='header-nav-v4'>
+      <List className={osu.classWithModifiers('header-nav-v4', modifiers)}>
         {items}
-      </ol>
+      </List>
     );
   }
 }
