@@ -20,6 +20,7 @@ import { Build } from 'build'
 import { ChangelogHeaderStreams } from 'changelog-header-streams'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
+import HeaderV4 from 'header-v4'
 import * as React from 'react'
 import { a, div, h1, h2, i, li, ol, p, span } from 'react-dom-factories'
 el = React.createElement
@@ -31,12 +32,12 @@ export class Main extends React.PureComponent
 
   render: =>
     el React.Fragment, null,
-      div className: 'header-v3 header-v3--changelog',
-        div className: 'header-v3__bg'
-        div className: 'header-v3__overlay'
-        div className: 'osu-page osu-page--header-v3',
-          @renderHeaderTitle()
-          @renderHeaderTabs()
+      el HeaderV4,
+        theme: 'changelog'
+        links: @headerLinks()
+        linksBreadcrumb: true
+        section: osu.trans 'changelog.index.title._', info: ''
+        subSection: @props.build.update_stream.display_name
 
       div className: 'osu-page osu-page--changelog',
         el ChangelogHeaderStreams, updateStreams: @props.updateStreams, currentStreamId: @props.build.update_stream.id
@@ -82,35 +83,6 @@ export class Main extends React.PureComponent
                 modifiers: ['changelog']
 
 
-  renderHeaderTabs: =>
-    ol className: 'page-mode-v2 page-mode-v2--breadcrumbs page-mode-v2--changelog',
-      li
-        className: 'page-mode-v2__item'
-        a
-          href: laroute.route('changelog.index')
-          className: 'page-mode-v2__link'
-          osu.trans 'changelog.index.title.info'
-      li
-        className: 'page-mode-v2__item'
-        span
-          className: 'page-mode-v2__link page-mode-v2__link--active'
-          @props.build.update_stream.display_name
-          ' '
-          @props.build.display_version
-
-
-  renderHeaderTitle: =>
-    div className: 'osu-page-header-v3 osu-page-header-v3--changelog',
-      div className: 'osu-page-header-v3__title',
-        div className: 'osu-page-header-v3__title-icon',
-          div className: 'osu-page-header-v3__icon'
-        h1
-          className: 'osu-page-header-v3__title-text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'changelog.index.title._',
-              info: "<span class='osu-page-header-v3__title-highlight'>#{@props.build.update_stream.display_name}</span>"
-
-
   renderSupporterPromo: =>
     div className: 'supporter-promo',
       div className: 'supporter-promo__pippi',
@@ -128,3 +100,16 @@ export class Main extends React.PureComponent
                 link: "<a href='#{laroute.route('support-the-game')}' class='supporter-promo__link'>#{osu.trans('changelog.support.text_1_link')}</a>"
           p className: 'supporter-promo__text supporter-promo__text--small',
             osu.trans('changelog.support.text_2')
+
+
+  headerLinks: =>
+    [
+      {
+        url: laroute.route('changelog.index')
+        title: osu.trans 'changelog.index.title.info'
+      }
+      {
+        url: Url.changelogBuild @props.build
+        title: "#{@props.build.update_stream.display_name} #{@props.build.display_version}"
+      }
+    ]
