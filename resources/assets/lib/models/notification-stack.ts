@@ -21,13 +21,14 @@ import { action, computed, observable } from 'mobx';
 import Notification from 'models/notification';
 import { categoryFromName } from 'notification-maps/category';
 import { NotificationContextData } from 'notifications-context';
+import { NotificationCursor } from 'notifications/notification-cursor';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import core from 'osu-core-singleton';
 import NotificationStackStore from 'stores/notification-stack-store';
 
 export default class NotificationStack implements NotificationReadable {
-  @observable cursor: JSON | null = null;
+  @observable cursor: NotificationCursor | null = null;
   @observable isLoading = false;
   @observable isMarkingAsRead = false;
   @observable notifications = new Map<number, Notification>();

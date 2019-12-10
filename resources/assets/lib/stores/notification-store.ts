@@ -75,7 +75,7 @@ export default class NotificationStore extends Store {
       method: 'POST',
       url: route('notifications.mark-read'),
     })
-    .then(action(() => this.unreadStacks.handleNotificationEventRead({ data: [readable.identity], readCount: readable.total })))
+    .then(action(() => this.unreadStacks.handleNotificationEventRead({ data: [readable.identity], readCount: 0 })))
     .always(action(() => readable.isMarkingAsRead = false));
   }
 
@@ -110,7 +110,7 @@ export default class NotificationStore extends Store {
 
     this.queuedXhr
     .then(action(() => {
-      this.unreadStacks.handleNotificationEventRead({ data: identities, readCount: identities.length });
+      this.unreadStacks.handleNotificationEventRead({ data: identities, readCount: 0 });
     }))
     .always(action(() => this.getMany(ids).forEach((notification) => notification.isMarkingAsRead = false)));
 

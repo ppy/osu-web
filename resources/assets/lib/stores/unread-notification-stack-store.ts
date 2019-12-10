@@ -40,23 +40,17 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
     switch (identityType) {
       case 'type':
-        const type = this.getType(first);
-        if (type != null) type.total -= event.readCount;
-        event.data.forEach(this.handleType);
+        event.data.forEach((identity) => this.handleType(identity, event.readCount));
         break;
 
       case 'stack':
-        const stack = this.getStack(first);
-        if (stack != null) stack.total -= event.readCount;
-        event.data.forEach(this.handleStack);
+        event.data.forEach((identity) => this.handleStack(identity, event.readCount));
         break;
 
       case 'notification':
         event.data.forEach(this.handleNotification);
         break;
     }
-
-    this.total -= event.readCount;
   }
 
   @action
@@ -86,31 +80,43 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
       // notification may not have been loaded yet.
 
       // not known anywhere, skip
-      if (stack == null || type == null) return;
+      if (stack == null || type == null || identity.id == null) return;
 
       // notification is past cursor, update counts
-      if (identity.id < stack.cursor?.id) {
+      if (identity.id < (stack.cursor?.id ?? 0)) {
         stack.total--;
         type.total--;
       }
     }
   }
 
-  private handleStack = (identity: NotificationIdentity) => {
+  private handleStack(identity: NotificationIdentity, readCount: number) {
     const stack = this.getStack(identity);
-    if (stack == null) return;
+    if (stack == null) {
+      this.total -= readCount;
+      return;
+    }
+
+    this.total -= stack.total;
 
     stack.notifications.forEach((notification) => notification.isRead = true);
     this.stacks.delete(resolveStackId(identity));
 
     const type = this.getType(identity);
     if (type == null) return;
+
     type.removeStack(stack);
+    type.total -= stack.total;
   }
 
-  private handleType = (identity: NotificationIdentity) => {
+  private handleType(identity: NotificationIdentity, readCount: number) {
     const type = this.getType(identity);
-    if (type == null) return;
+    if (type == null) {
+      this.total -= readCount;
+      return;
+    }
+
+    this.total -= type.total;
 
     type.stacks.forEach((stack) => stack.notifications.forEach((notification) => notification.isRead = true));
     this.types.delete(identity.objectType);

@@ -16,35 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { NotificationCursor } from 'notifications/notification-cursor';
-
-export default interface NotificationJson {
-  created_at?: string;
-  details: any;
-  id: number;
-  is_read: boolean;
-  name: string;
-  object_id: number;
-  object_type: string;
-  source_user_id?: number;
-}
-
-export interface NotificationBundleJson {
-  notifications?: NotificationJson[];
-  stacks?: NotificationStackJson[];
-  types?: NotificationTypeJson[];
-  unread_count?: number;
-}
-
-export interface NotificationStackJson {
-  cursor: NotificationCursor | null;
-  name: string;
-  object_id: number;
-  object_type: string;
-  total: number;
-}
-export interface NotificationTypeJson {
-  cursor: NotificationCursor | null;
-  name: string;
-  total: number;
+export interface NotificationCursor extends JSON {
+  id: number | null;
 }
