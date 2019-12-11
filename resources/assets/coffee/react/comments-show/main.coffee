@@ -38,7 +38,6 @@ export class Main extends React.PureComponent
           linksBreadcrumb: true
           theme: 'comments'
           section: osu.trans 'comments.show.title._', info: ''
-          subSection: ''
 
         div className: 'osu-page osu-page--comment',
           el Comment,

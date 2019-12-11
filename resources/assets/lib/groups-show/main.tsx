@@ -37,7 +37,6 @@ export class Main extends React.PureComponent<Props> {
         <HeaderV4
           theme='users'
           section={this.props.group.group_name}
-          subSection=''
         />
 
         <div className='osu-page osu-page--users'>
