@@ -55,7 +55,7 @@ export class Main extends React.PureComponent
           url: laroute.route('comments.index')
         }
         {
-          title: osu.trans 'comments.show.title.info'
+          title: osu.trans 'comments.show.title._'
           url: laroute.route('comments.show', @comment)
         }
     ]

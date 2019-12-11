@@ -46,7 +46,7 @@ return [
         ],
 
         'title' => [
-            '_' => 'Changelog :info',
+            '_' => 'Changelog',
             'info' => 'Listing',
         ],
     ],

@@ -50,7 +50,7 @@ return [
 
     'index' => [
         'title' => [
-            '_' => 'Comments :info',
+            '_' => 'Comments',
             'info' => 'Listing',
         ],
     ],
@@ -64,7 +64,6 @@ return [
     'show' => [
         'title' => [
             '_' => 'Comments',
-            'info' => 'Comments',
         ],
     ],
 ];
