@@ -20,7 +20,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\NotificationReadEvent;
+use App\Models\UserNotification;
 
 /**
  * @group Notification
@@ -148,17 +148,22 @@ class NotificationsController extends Controller
      */
     public function markRead()
     {
-        $user = auth()->user();
-        $ids = get_params(request()->all(), null, ['ids:int[]'])['ids'] ?? [];
-        $itemsQuery = $user->userNotifications()->whereIn('notification_id', $ids);
+        // TODO: params validation
+        $params = get_params(request()->all(), null, [
+            'category:string',
+            'id:int',
+            'ids:int[]',
+            'object_id:int',
+            'object_type:string',
+        ]);
 
-        if ($itemsQuery->update(['is_read' => true])) {
-            event(new NotificationReadEvent($user->getKey(), $ids));
-
-            return response(null, 204);
+        if (isset($params['ids'])) {
+            UserNotification::markAsReadByIds(auth()->user(), $params['ids']);
         } else {
-            return response(null, 422);
+            UserNotification::markAsReadByNotificationIdentifier(auth()->user(), $params);
         }
+
+        return response(null, 204);
     }
 
     private function endpointUrl()

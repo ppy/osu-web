@@ -43,12 +43,12 @@ class Chat
 
             if ($target === null) {
                 // restricted users should be treated as if they do not exist
-                abort(404);
+                abort(404, 'target user not found');
             }
         }
 
         if ($target->is($sender)) {
-            abort(422);
+            abort(422, "can't send message to same user");
         }
 
         priv_check_user($sender, 'ChatStart', $target)->ensureCan();
@@ -91,13 +91,13 @@ class Chat
         }
 
         if (!present($message) || !is_string($message)) {
-            abort(422);
+            abort(422, "can't send empty message");
         }
 
         if ($channel->isPM()) {
             // restricted users should be treated as if they do not exist
             if (optional($channel->pmTargetFor($sender))->isRestricted()) {
-                abort(404);
+                abort(404, 'target user not found');
             }
         }
 

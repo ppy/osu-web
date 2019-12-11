@@ -5,8 +5,7 @@ cache:
     - vendor
   yarn: true
 
-dist: xenial
-sudo: false
+dist: bionic
 
 language: php
 

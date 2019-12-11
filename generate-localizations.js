@@ -22,7 +22,6 @@ const { spawnSync } = require('child_process');
 const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
-const mkdirp = require('mkdirp');
 
 const buildPath = path.resolve(__dirname, 'resources/assets/build');
 const localesPath = path.resolve(buildPath, 'locales');
@@ -72,7 +71,7 @@ function writeTranslations(languages)
 
 // Remove previous existing files and ensure directory exists.
 glob.sync(path.resolve(localesPath, '*.js')).forEach(fs.unlinkSync);
-mkdirp.sync(localesPath);
+fs.mkdirSync(localesPath, {recursive: true});
 
 generateTranslations();
 writeTranslations(extractLanguages());

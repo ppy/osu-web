@@ -111,7 +111,7 @@ export class BeatmapsetPanel extends React.PureComponent
             if beatmapset.storyboard
               div className: 'beatmapset-panel__extra-icon',
                 i className: 'fas fa-image fa-fw'
-            div className: 'beatmapset-status', beatmapset.status
+            div className: 'beatmapset-status', osu.trans("beatmapsets.show.status.#{beatmapset.status}")
 
           div className: 'beatmapset-panel__title-artist-box',
             div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',

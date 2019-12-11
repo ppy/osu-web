@@ -72,6 +72,7 @@ return [
 
     'login' => [
         '_' => 'Sign in',
+        'email_login_disabled' => 'Signing in with email is currently disabled. Please use username instead.',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
         'username' => 'Username',
         'password' => 'Password',

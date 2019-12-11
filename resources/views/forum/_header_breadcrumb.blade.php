@@ -38,7 +38,7 @@
         ];
     }
 @endphp
-<ol class="header-nav-v4 js-header--main">
+<ol class="header-nav-v4 header-nav-v4--breadcrumb js-header--main">
     @foreach ($tree as $url => $name)
         <li class="header-nav-v4__item">
             <a href="{{ $url }}" class="header-nav-v4__link">
