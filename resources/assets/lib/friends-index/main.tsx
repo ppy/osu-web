@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import HeaderV3 from 'header-v3';
+import HeaderV4 from 'header-v4';
 import { route } from 'laroute';
 import * as React from 'react';
 import { UserList } from 'user-list';
@@ -42,14 +42,12 @@ export class Main extends React.PureComponent<Props> {
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
-        <HeaderV3
+        <HeaderV4
           backgroundImage={this.props.user.cover.url}
           links={Main.links}
           theme='users'
-          titleTrans={{
-            info: osu.trans('friends.index.title.info'),
-            key: 'friends.index.title._',
-          }}
+          section={osu.trans('friends.index.title._', { info: '' })}
+          subSection={osu.trans('friends.index.title.info')}
         />
 
         <div className='osu-page osu-page--users'>

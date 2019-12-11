@@ -154,11 +154,24 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
 
 function cleanup_cookies()
 {
-    $domain = config('session.domain') === null ? request()->getHttpHost() : null;
+    $host = request()->getHttpHost();
+    $domains = [$host, ''];
+
+    $hostParts = explode('.', $host);
+
+    while (count($hostParts) > 1) {
+        array_shift($hostParts);
+        $domains[] = implode('.', $hostParts);
+    }
+
+    // remove duplicates and current session domain
+    $sessionDomain = presence(ltrim(config('session.domain'), '.')) ?? '';
+    $domains = array_diff(array_unique($domains), [$sessionDomain]);
+
     foreach (['locale', 'osu_session', 'XSRF-TOKEN'] as $key) {
-        // TODO: maybe also remove keys on parents - if setting on
-        //       a.b.c.d.e then remove on .b.c.d.e, .b.c.d, etc.
-        setcookie($key, '', 1, '/', $domain);
+        foreach ($domains as $domain) {
+            cookie()->queueForget($key, null, $domain);
+        }
     }
 }
 
@@ -364,12 +377,11 @@ function logout()
     auth()->logout();
 
     // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
-    unset($_COOKIE['phpbb3_2cjk5_sid']);
-    unset($_COOKIE['phpbb3_2cjk5_sid_check']);
-    setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
-    setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
-    setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.osu.ppy.sh');
-    setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.osu.ppy.sh');
+    foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
+        foreach (['ppy.sh', 'osu.ppy.sh', ''] as $domain) {
+            cookie()->queueForget($key, null, $domain);
+        }
+    }
 
     cleanup_cookies();
 
@@ -597,17 +609,6 @@ function error_popup($message, $statusCode = 422)
     return response(['error' => $message], $statusCode);
 }
 
-function i18n_view($view)
-{
-    $localViewPath = sprintf('%s-%s', $view, App::getLocale());
-
-    if (view()->exists($localViewPath)) {
-        return $localViewPath;
-    } else {
-        return sprintf('%s-%s', $view, config('app.fallback_locale'));
-    }
-}
-
 function is_api_request()
 {
     return request()->is('api/*');
@@ -830,10 +831,12 @@ function nav_links_mobile()
 {
     $links = [];
 
-    $links['profile'] = [
-        'friends' => route('friends.index'),
-        'settings' => route('account.edit'),
-    ];
+    if (Auth::check()) {
+        $links['profile'] = [
+            'friends' => route('friends.index'),
+            'settings' => route('account.edit'),
+        ];
+    }
 
     return array_merge($links, nav_links());
 }

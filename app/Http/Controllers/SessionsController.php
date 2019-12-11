@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\User\ForceReactivation;
 use App\Models\User;
 use Auth;
 use Request;
@@ -39,19 +40,35 @@ class SessionsController extends Controller
 
     public function store()
     {
-        $ip = Request::getClientIp();
-        $username = trim(Request::input('username'));
-        $password = Request::input('password');
-        $remember = Request::input('remember') === 'yes';
+        $request = request();
+        $params = get_params($request->all(), null, ['username:string', 'password:string', 'remember:bool']);
+        $username = trim($params['username'] ?? null);
+        $password = $params['password'] ?? null;
+        $remember = $params['remember'] ?? false;
 
         if (!present($username) || !present($password)) {
             abort(422);
         }
 
+        $ip = $request->getClientIp();
+
         $user = User::findForLogin($username);
-        $authError = User::attemptLogin($user, $password, $ip);
+
+        if ($user === null && strpos($username, '@') !== false && !config('osu.user.allow_email_login')) {
+            $authError = trans('users.login.email_login_disabled');
+        } else {
+            $authError = User::attemptLogin($user, $password, $ip);
+        }
 
         if ($authError === null) {
+            $forceReactivation = new ForceReactivation($user, $request);
+
+            if ($forceReactivation->isRequired()) {
+                $forceReactivation->run();
+
+                return ujs_redirect(route('password-reset'));
+            }
+
             $this->login($user, $remember);
 
             return [

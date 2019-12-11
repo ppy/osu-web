@@ -118,16 +118,16 @@ return [
         'cluster' => false,
 
         'default' => [
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'port' => 6379,
-            'database' => 0,
+            'host' => presence(env('REDIS_HOST')) ?? '127.0.0.1',
+            'port' => get_int(env('REDIS_PORT')) ?? 6379,
+            'database' => get_int(env('REDIS_DB')) ?? 0,
             'persistent' => true,
         ],
 
         'notification' => [
-            'host' => env('NOTIFICATION_REDIS_HOST', '127.0.0.1'),
+            'host' => presence(env('NOTIFICATION_REDIS_HOST')) ?? '127.0.0.1',
             'port' => get_int(env('NOTIFICATION_REDIS_PORT')) ?? 6379,
-            'database' => 0,
+            'database' => get_int(env('NOTIFICATION_REDIS_DB')) ?? 0,
             'persistent' => true,
         ],
 

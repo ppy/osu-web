@@ -38,6 +38,7 @@ use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
@@ -62,6 +63,7 @@ use Request;
  * @property string $country_acronym
  * @property mixed $current_password
  * @property mixed $displayed_last_visit
+ * @property string $email
  * @property \Illuminate\Database\Eloquent\Collection $events Event
  * @property \Illuminate\Database\Eloquent\Collection $favourites FavouriteBeatmapset
  * @property \Illuminate\Database\Eloquent\Collection $forumPosts Forum\Post
@@ -178,7 +180,7 @@ use Request;
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
  */
-class User extends Model implements AuthenticatableContract
+class User extends Model implements AuthenticatableContract, HasLocalePreference
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
     use Authenticatable, HasApiTokens, Reportable, UserAvatar, UserScoreable, Validatable;
@@ -237,6 +239,8 @@ class User extends Model implements AuthenticatableContract
 
     private $emailConfirmation = null;
     private $validateEmailConfirmation = false;
+
+    private $isSessionVerified;
 
     public function getAuthPassword()
     {
@@ -482,6 +486,11 @@ class User extends Model implements AuthenticatableContract
         return presence($value);
     }
 
+    public function getEmailAttribute()
+    {
+        return $this->user_email;
+    }
+
     public function getUserFromAttribute($value)
     {
         return presence(html_entity_decode_better($value));
@@ -500,6 +509,11 @@ class User extends Model implements AuthenticatableContract
     public function setUserInterestsAttribute($value)
     {
         $this->attributes['user_interests'] = e($value);
+    }
+
+    public function getUserLangAttribute($value)
+    {
+        return get_valid_locale($value);
     }
 
     public function getUserOccAttribute($value)
@@ -1607,10 +1621,12 @@ class User extends Model implements AuthenticatableContract
             : !$user->isLoginBlocked() && $user->checkPassword($password);
 
         if (!$validAuth) {
-            LoginAttempt::failedAttempt($ip, $user);
+            LoginAttempt::logAttempt($ip, $user, 'fail', $password);
 
             return trans('users.login.failed');
         }
+
+        LoginAttempt::logLoggedIn($ip, $user);
     }
 
     public static function findForLogin($username, $allowEmail = false)
@@ -1654,6 +1670,29 @@ class User extends Model implements AuthenticatableContract
             }
 
             $this->memoized[__FUNCTION__] = $unionQuery->get()->sum('playcount');
+        }
+
+        return $this->memoized[__FUNCTION__];
+    }
+
+    public function lastPlayed()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $unionQuery = null;
+
+            foreach (Beatmap::MODES as $key => $_value) {
+                $query = $this->statistics($key, true)->select('last_played');
+
+                if ($unionQuery === null) {
+                    $unionQuery = $query;
+                } else {
+                    $unionQuery->unionAll($query);
+                }
+            }
+
+            $lastPlayed = $unionQuery->get()->max('last_played') ?? 0;
+
+            $this->memoized[__FUNCTION__] = Carbon::parse($lastPlayed);
         }
 
         return $this->memoized[__FUNCTION__];
@@ -1734,6 +1773,18 @@ class User extends Model implements AuthenticatableContract
             ->loved()
             ->active()
             ->with('beatmaps');
+    }
+
+    public function isSessionVerified()
+    {
+        return $this->isSessionVerified;
+    }
+
+    public function markSessionVerified()
+    {
+        $this->isSessionVerified = true;
+
+        return $this;
     }
 
     public function isValid()
@@ -1826,6 +1877,11 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->validationErrors()->isEmpty();
+    }
+
+    public function preferredLocale()
+    {
+        return $this->user_lang;
     }
 
     public function url()

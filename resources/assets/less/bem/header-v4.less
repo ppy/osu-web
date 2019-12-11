@@ -36,6 +36,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.5;
+    .at2x-simple('/images/headers/generic.jpg');
 
     &::before {
       .full-size();
@@ -50,6 +51,10 @@
 
     .@{_top}--forums-index & {
       .at2x-simple('/images/headers/forum-index.jpg');
+    }
+
+    .@{_top}--news & {
+      .at2x-simple('/images/headers/news.png');
     }
   }
 
@@ -73,6 +78,10 @@
     width: 40px;
     margin-right: 10px;
     flex: none;
+
+    .@{_top}--news & {
+      background-image: url('/images/icons/news.svg');
+    }
   }
 
   &__row {
@@ -84,14 +93,6 @@
 
     &--bar {
       background-color: @osu-colour-d4;
-
-      padding-top: 10px;
-      padding-bottom: 10px;
-
-      @media @desktop {
-        padding-top: 15px;
-        padding-bottom: 15px;
-      }
     }
 
     &--title {
@@ -113,6 +114,7 @@
 
   &__title-action {
     color: @osu-colour-h1;
+    margin-left: 10px;
   }
 
   &__title-section {
