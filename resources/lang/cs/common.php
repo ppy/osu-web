@@ -30,7 +30,7 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'NOVÝ',
     ],
 
     'buttons' => [
@@ -41,7 +41,7 @@ return [
         'change' => 'změnit',
         'click_to_copy' => 'klikněte pro zkopírování do schránky',
         'click_to_copy_copied' => 'zkopírováno do schránky!',
-        'close' => '',
+        'close' => 'Zavřít',
         'collapse' => 'zabalit',
         'delete' => 'Smazat',
         'edit' => 'Upravit',
@@ -63,7 +63,7 @@ return [
         'show_deleted' => 'Zobrazit smazané',
         'show_more' => 'zobrazit více',
         'show_more_options' => 'zobrazit více možností',
-        'update' => '',
+        'update' => 'Aktualizovat',
         'upload_image' => 'nahrát obrázek',
 
         'watch' => [
@@ -119,7 +119,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'hledat...',
     ],
 
     'pagination' => [

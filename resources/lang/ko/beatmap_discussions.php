@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => ':user님이 토론을 끝마쳤습니다',
             'false' => ':user님이 토론을 재개했습니다',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

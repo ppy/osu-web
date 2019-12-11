@@ -25,6 +25,7 @@ return [
         'missing' => 'La page demandée n\'a pas pu être trouvée.',
         'missing_title' => 'Non Trouvée',
         'missing_translation' => 'La page demandée n\'a pas pu être trouvée pour la langue sélectionnée actuellement',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Rechercher des pages existantes pour :link.',
         'toc' => 'Contenu',
 

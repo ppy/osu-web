@@ -28,10 +28,6 @@ return [
         'start' => 'Začít',
     ],
 
-    'email' => [
-        'subject' => 'obnovení osu! účtu',
-    ],
-
     'error' => [
         'contact_support' => 'Prosím kontaktujte podporu pro obnovení účtu.',
         'is_privileged' => 'Kontaktujte peppyho lulz.',

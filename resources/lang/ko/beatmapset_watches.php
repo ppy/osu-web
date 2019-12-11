@@ -32,10 +32,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'update' => '":title"에 새로운 변경사항이 있습니다.',
-    ],
-
     'status' => [
         'read' => '읽음',
         'unread' => '읽지 않음',

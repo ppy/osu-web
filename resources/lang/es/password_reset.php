@@ -28,10 +28,6 @@ return [
         'start' => 'Empezar',
     ],
 
-    'email' => [
-        'subject' => 'Recuperación de tu cuenta de osu!',
-    ],
-
     'error' => [
         'contact_support' => 'Contacta al soporte técnico para recuperar tu contraseña.',
         'is_privileged' => 'Por favor, póngase en contacto con un administrador de alto nivel para recuperar la cuenta.',

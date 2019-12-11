@@ -25,6 +25,7 @@ return [
         'missing' => 'İstenilen ":keyword" sayfası bulunamadı.',
         'missing_title' => 'Bulunamadı',
         'missing_translation' => 'İstenilen sayfa seçilen dilde bulunamadı.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => ':link için var olan sayfaları ara.',
         'toc' => 'İçerik',
 

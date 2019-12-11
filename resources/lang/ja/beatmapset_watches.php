@@ -32,10 +32,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'update' => 'ビートマップ":title"に新しい投稿があります',
-    ],
-
     'status' => [
         'read' => '既読',
         'unread' => '未読',

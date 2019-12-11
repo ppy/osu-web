@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => '搜索',
             'deleted' => '包含已经删除的讨论',
-            'only_unresolved' => '',
+            'only_unresolved' => '只显示未解决的讨论',
             'types' => '评论类型',
             'username' => '用户名',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => '谱面状态',
+                'all' => '所有',
+                'disqualified' => '丧失 资格',
+                'never_qualified' => '从不合格',
+                'qualified' => '合格',
+                'ranked' => '排名',
             ],
 
             'user' => [
@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => '被 :user 标记为 “已解决”',
             'false' => '被 :user 重新打开',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

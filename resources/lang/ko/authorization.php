@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => '계속하려면 로그인해 주세요.',
+    'require_verification' => '',
+    'restricted' => "제한된 상태에서는 할 수 없습니다.",
+    'silenced' => "사일런스 상태에서는 할 수 없습니다.",
+    'unauthorized' => '접근이 거부되었습니다.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Hype한 것은 되돌릴 수 없습니다.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => '관리자만 열람이 가능한 포럼입니다.',
         ],
     ],
-
-    'require_login' => '계속하려면 로그인해 주세요.',
-
-    'unauthorized' => '접근이 거부되었습니다.',
-
-    'silenced' => "사일런스 상태에서는 할 수 없습니다.",
-
-    'restricted' => "제한된 상태에서는 할 수 없습니다.",
 
     'user' => [
         'page' => [

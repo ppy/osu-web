@@ -64,8 +64,36 @@ return [
         'send_message' => 'üzenet küldése',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Bejelentkezés',
+        'email_login_disabled' => '',
         'locked_ip' => 'Az IP címed zárolva van. Kérjük várj egy pár percet.',
         'username' => 'Felhasználónév',
         'password' => 'Jelszó',

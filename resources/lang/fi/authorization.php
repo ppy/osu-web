@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Kirjaudu sisään jatkaaksesi.',
+    'require_verification' => '',
+    'restricted' => "Et voi tehdä tätä rajoitettuna.",
+    'silenced' => "Et voi tehdä tätä mykistettynä.",
+    'unauthorized' => 'Pääsy evätty.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Hurrausta ei voi peruuttaa.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Vain ylläpitäjä voi nähdä tämän foorumin.',
         ],
     ],
-
-    'require_login' => 'Kirjaudu sisään jatkaaksesi.',
-
-    'unauthorized' => 'Pääsy evätty.',
-
-    'silenced' => "Et voi tehdä tätä mykistettynä.",
-
-    'restricted' => "Et voi tehdä tätä rajoitettuna.",
 
     'user' => [
         'page' => [

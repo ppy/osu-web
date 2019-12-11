@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'История',
             'general' => 'Обща :scope',
+            'reviews' => '',
             'timeline' => 'Времева лента',
             'scopes' => [
                 'general' => 'Тази трудност',

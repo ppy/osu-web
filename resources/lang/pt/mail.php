@@ -20,38 +20,98 @@
 
 return [
     'beatmapset_update_notice' => [
+        'new' => '',
         'subject' => 'Nova atualização para o beatmap ":title"',
+        'unwatch' => '',
+        'visit' => '',
+    ],
+
+    'common' => [
+        'closing' => '',
+        'hello' => '',
+        'report' => '',
     ],
 
     'donation_thanks' => [
+        'benefit_more' => '',
+        'feedback' => "",
+        'keep_free' => '',
+        'keep_running' => '',
         'subject' => 'Obrigado, osu! <3-te',
+
+        'benefit' => [
+            'gift' => '',
+            'self' => '',
+        ],
+
+        'support' => [
+            '_' => '',
+            'first' => '',
+            'repeat' => '',
+        ],
     ],
 
     'forum_new_reply' => [
+        'new' => '',
         'subject' => '[osu!] Nova resposta para o tópico ":title"',
+        'unwatch' => '',
+        'visit' => '',
     ],
 
     'password_reset' => [
+        'code' => '',
+        'requested' => '',
         'subject' => 'restaurador de conta osu!',
     ],
 
     'store_payment_completed' => [
+        'prepare_shipping' => '',
+        'processing' => '',
+        'questions' => "",
+        'shipping' => '',
         'subject' => 'Nós recebemos o teu pedido da osu!store!',
+        'thank_you' => '',
+        'total' => '',
     ],
 
     'supporter_gift' => [
+        'anonymous_gift' => '',
+        'anonymous_gift_maybe_not' => '',
+        'duration' => '',
+        'features' => '',
+        'gifted' => '',
         'subject' => 'Deram-te uma prenda, uma etiqueta osu!supporter!',
     ],
 
     'user_email_updated' => [
+        'changed_to' => '',
+        'check' => '',
+        'sent' => '',
         'subject' => 'Confirmação da alteração de email do osu!',
     ],
 
+    'user_force_reactivation' => [
+        'main' => '',
+        'perform_reset' => '',
+        'reason' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
+        'confirmation' => '',
         'subject' => 'Confirmação da alteração da palavra-passe do osu!',
     ],
 
     'user_verification' => [
+        'code' => '',
+        'code_hint' => '',
+        'link' => '',
+        'report' => '',
         'subject' => 'verificação da conta osu!',
+
+        'action_from' => [
+            '_' => '',
+            'unknown_country' => '',
+        ],
     ],
 ];

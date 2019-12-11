@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Te rugăm să te autentifici pentru a continua.',
+    'require_verification' => '',
+    'restricted' => "Nu poți face asta cât timp ești restricționat.",
+    'silenced' => "Nu poți face asta cât timp ești amuțit.",
+    'unauthorized' => 'Acces respins.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Nu poți anula hype-ul.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Numai administratorul poate vizualiza acest forum.',
         ],
     ],
-
-    'require_login' => 'Te rugăm să te autentifici pentru a continua.',
-
-    'unauthorized' => 'Acces respins.',
-
-    'silenced' => "Nu poți face asta cât timp ești amuțit.",
-
-    'restricted' => "Nu poți face asta cât timp ești restricționat.",
 
     'user' => [
         'page' => [

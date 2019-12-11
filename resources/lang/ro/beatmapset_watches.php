@@ -32,10 +32,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'update' => 'Actualizare nouă pentru beatmapul ":title"',
-    ],
-
     'status' => [
         'read' => 'Citit',
         'unread' => 'Necitit',

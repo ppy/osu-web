@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Zaloguj się, aby kontynuować.',
+    'require_verification' => '',
+    'restricted' => "Nie możesz tego zrobić podczas blokady konta.",
+    'silenced' => "Nie możesz tego zrobić podczas uciszenia.",
+    'unauthorized' => 'Odmowa dostępu.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Nie możesz cofnąć nagłośnienia.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Tylko administrator ma dostęp do tego forum.',
         ],
     ],
-
-    'require_login' => 'Zaloguj się, aby kontynuować.',
-
-    'unauthorized' => 'Odmowa dostępu.',
-
-    'silenced' => "Nie możesz tego zrobić podczas uciszenia.",
-
-    'restricted' => "Nie możesz tego zrobić podczas blokady konta.",
 
     'user' => [
         'page' => [

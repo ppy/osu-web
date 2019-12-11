@@ -28,10 +28,6 @@ return [
         'start' => 'Começar',
     ],
 
-    'email' => [
-        'subject' => 'restaurador de conta osu!',
-    ],
-
     'error' => [
         'contact_support' => 'Por favor contacta a assistência para recuperar a conta.',
         'is_privileged' => 'Contacta o peppy lel.',

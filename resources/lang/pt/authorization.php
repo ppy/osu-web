@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Por favor inicia sessão para proceder.',
+    'require_verification' => '',
+    'restricted' => "Não é possível fazer isso enquanto restrito.",
+    'silenced' => "Não é possível fazer isso enquanto silenciado.",
+    'unauthorized' => 'Acesso negado.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Não é possível anular o hyping.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Só o administrador é que pode ver este fórum.',
         ],
     ],
-
-    'require_login' => 'Por favor inicia sessão para proceder.',
-
-    'unauthorized' => 'Acesso negado.',
-
-    'silenced' => "Não é possível fazer isso enquanto silenciado.",
-
-    'restricted' => "Não é possível fazer isso enquanto restrito.",
 
     'user' => [
         'page' => [

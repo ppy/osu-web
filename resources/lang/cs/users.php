@@ -64,8 +64,36 @@ return [
         'send_message' => 'odeslat zprávu',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Přihlásit se',
+        'email_login_disabled' => '',
         'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
         'username' => 'Uživatelské jméno',
         'password' => 'Heslo',
@@ -164,7 +192,7 @@ return [
         ],
 
         'extra' => [
-            'none' => '',
+            'none' => 'nic',
             'unranked' => 'Žádné poslední údaje o hraní',
 
             'achievements' => [
@@ -194,13 +222,13 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
+                'title' => 'Diskuze',
+                'title_longer' => 'Poslední diskuze',
                 'show_more' => '',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
+                'title' => 'Události',
+                'title_longer' => 'Poslední údálosti',
                 'show_more' => '',
             ],
             'historical' => [
@@ -284,8 +312,8 @@ return [
                 'title' => 'Medaile',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
+                'title' => 'Příspěvky',
+                'title_longer' => 'Poslední příspěvky',
                 'show_more' => '',
             ],
             'recent_activity' => [
@@ -308,8 +336,8 @@ return [
             'votes' => [
                 'given' => '',
                 'received' => '',
-                'title' => '',
-                'title_longer' => '',
+                'title' => 'Hlasy',
+                'title_longer' => 'Poslední hlasy',
                 'vote_count' => '',
             ],
             'account_standing' => [
@@ -393,8 +421,8 @@ return [
             'total_score' => 'Celkové skóre',
             // modding stats
             'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
+            'loved_beatmapset_count' => 'Oblíbené Beatmapy',
+            'unranked_beatmapset_count' => 'Čekající Beatmapy',
             'graveyard_beatmapset_count' => '',
         ],
     ],

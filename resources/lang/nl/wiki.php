@@ -25,6 +25,7 @@ return [
         'missing' => 'Gevraagde pagina ":keyword" kon niet worden gevonden.',
         'missing_title' => 'Niet Gevonden',
         'missing_translation' => 'De opgevraagde pagina kon niet gevonden worden in de geselecteerde taal.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Zoek bestaande pagina\'s voor :link.',
         'toc' => 'Inhoud',
 

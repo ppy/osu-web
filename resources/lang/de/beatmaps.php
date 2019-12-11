@@ -91,13 +91,14 @@ return [
             'nomination_reset' => 'Nominierung zurücksetzen',
             'praise' => 'Loben',
             'problem' => 'Problem',
-            'review' => '',
+            'review' => 'Bewertung',
             'suggestion' => 'Vorschlag',
         ],
 
         'mode' => [
             'events' => 'Geschichte',
             'general' => 'Allgemein',
+            'reviews' => '',
             'timeline' => 'Timeline',
             'scopes' => [
                 'general' => 'Diese Schwierigkeitsstufe',

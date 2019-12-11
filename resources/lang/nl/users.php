@@ -64,8 +64,36 @@ return [
         'send_message' => 'stuur bericht',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Inloggen',
+        'email_login_disabled' => '',
         'locked_ip' => 'je IP adres is vergrendeld. Wacht enkele minuten.',
         'username' => 'Gebruikersnaam',
         'password' => 'Wachtwoord',

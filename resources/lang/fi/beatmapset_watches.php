@@ -32,10 +32,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'update' => 'Uusi päivitys beatmappiin ":title"',
-    ],
-
     'status' => [
         'read' => 'Luetut',
         'unread' => 'Lukemattomat',

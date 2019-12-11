@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'e-postadresse',
             'forgot' => "Jeg har glemt kontoinformasjonen min",
             'password' => 'passord',
             'title' => 'Logg på for å fortsette',
+            'username' => '',
 
             'error' => [
                 'email' => "Brukernavn eller e-postadresse eksisterer ikke",

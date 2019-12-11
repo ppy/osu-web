@@ -91,13 +91,14 @@ return [
             'nomination_reset' => 'ノミネーションをリセット',
             'praise' => '称賛',
             'problem' => '問題',
-            'review' => '',
+            'review' => 'レビュー',
             'suggestion' => '提案',
         ],
 
         'mode' => [
             'events' => '履歴',
             'general' => '一般:scope',
+            'reviews' => '',
             'timeline' => 'タイムライン',
             'scopes' => [
                 'general' => 'この難易度',

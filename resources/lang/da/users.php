@@ -64,8 +64,36 @@ return [
         'send_message' => 'send besked',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Log ind',
+        'email_login_disabled' => '',
         'locked_ip' => 'din IP-adresse er låst. Vent venligst et par minutter.',
         'username' => 'Brugernavn',
         'password' => 'Adgangskode',

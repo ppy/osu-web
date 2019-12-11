@@ -40,10 +40,10 @@ return [
 
             'beatmapset_problem' => [
                 '_' => 'Qualified 비트맵 문제',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                'beatmapset_discussion_qualified_problem' => '":title": ":content"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_empty' => '":title"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_compact' => '":content"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_compact_empty' => ':username 이(가) 보고함',
             ],
 
             'beatmapset_state' => [

@@ -64,8 +64,36 @@ return [
         'send_message' => 'メッセージの送信',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'ログイン',
+        'email_login_disabled' => '',
         'locked_ip' => 'あなたのIPアドレスは規制されています。数分後もう一度お試しください。',
         'username' => 'ユーザー名',
         'password' => 'パスワード',

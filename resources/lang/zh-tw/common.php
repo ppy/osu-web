@@ -82,11 +82,11 @@ return [
         'minutes' => ':count_delimited 分鐘|:count_delimited 分鐘',
         'months' => ':count 個月',
         'plus_others' => '+ :count_delimited 其他!|+ :count_delimited 其他!',
-        'post' => '',
+        'post' => ':count_delimited 篇貼文',
         'second_short_unit' => '秒',
         'star_priority' => ':count_delimited 星數優先|:count_delimited 星數優先',
         'update' => ':count_delimited 更新|:count_delimited 更新',
-        'view' => '',
+        'view' => ':count_delimited 次瀏覽',
         'years' => ':count 年',
     ],
 

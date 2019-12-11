@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Vastaanotimme osu!kauppa-tilauksesi!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Tilaus laitettu :date',
 

@@ -28,10 +28,6 @@ return [
         'start' => 'Aloita',
     ],
 
-    'email' => [
-        'subject' => 'osu! tilin palauttaminen',
-    ],
-
     'error' => [
         'contact_support' => 'Ota yhteyttä tukeen palauttaakesi käyttäjä.',
         'is_privileged' => 'Ota yhteyttä peppyyn ebin :-D',

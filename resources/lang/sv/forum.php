@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Nytt svar på ämne ":title"',
-    ],
-
     'forums' => [
         'latest_post' => '',
 

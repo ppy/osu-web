@@ -64,8 +64,36 @@ return [
         'send_message' => 'изпрати съобщението',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Вход',
+        'email_login_disabled' => '',
         'locked_ip' => 'Вашият IP адрес е блокиран. Моля изчакайте няколко минути.',
         'username' => 'Потребителско име',
         'password' => 'Парола',

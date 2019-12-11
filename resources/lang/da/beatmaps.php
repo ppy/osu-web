@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'Historie',
             'general' => 'Generalt :scope',
+            'reviews' => '',
             'timeline' => 'Tidslinje',
             'scopes' => [
                 'general' => 'Den her sværhedgrad',

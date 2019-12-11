@@ -24,6 +24,7 @@ return [
     'last_visit' => '最近の活動',
     'new' => '最近',
     'old' => '古い',
+    'rank' => '',
     'top' => 'トップ',
     'username' => 'ユーザー名',
 

@@ -64,8 +64,36 @@ return [
         'send_message' => '메시지 보내기',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => '로그인',
+        'email_login_disabled' => '',
         'locked_ip' => 'IP 주소가 잠겨있습니다. 잠시 기다려주세요.',
         'username' => 'Username',
         'password' => 'Password',

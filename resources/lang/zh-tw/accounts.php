@@ -67,12 +67,18 @@ return [
     'notifications' => [
         'title' => '通知',
         'topic_auto_subscribe' => '自動啟用自己創建的主題的通知',
-        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_discussion_qualified_problem' => '在以下模式的 qualified 圖譜上接收新問題通知',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
         'authorized_clients' => '已授權客戶端',
-        'own_clients' => '',
+        'own_clients' => '擁有的客戶端',
         'title' => 'OAuth',
     ],
 
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! 帳號電子郵件變更',
         'update' => '更新',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! 帳號密碼變更',
         'update' => '更新',
     ],
 

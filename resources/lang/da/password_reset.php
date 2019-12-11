@@ -28,10 +28,6 @@ return [
         'start' => 'Start',
     ],
 
-    'email' => [
-        'subject' => 'osu! konto genoprettelse',
-    ],
-
     'error' => [
         'contact_support' => 'Kontakt venligst support for at genoprette denne konto.',
         'is_privileged' => 'Kontakt peppy lulz.',

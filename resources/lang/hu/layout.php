@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'e-mail cím',
             'forgot' => "Elfelejtettem az adataimat",
             'password' => 'jelszó',
             'title' => 'Jelentkezz Be A Folytatáshoz',
+            'username' => '',
 
             'error' => [
                 'email' => "A felhasználónév vagy e-mail cím nem létezik",

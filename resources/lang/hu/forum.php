@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Új válasz a ":title" témában',
-    ],
-
     'forums' => [
         'latest_post' => 'Legújabb Poszt',
 

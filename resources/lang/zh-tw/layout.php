@@ -35,8 +35,8 @@ return [
         'close' => '關閉 (Esc)',
         'fullscreen' => '切換全螢幕',
         'zoom' => '放大/縮小',
-        'previous' => '',
-        'next' => '',
+        'previous' => '前一個（左箭頭）',
+        'next' => '下一個（右箭頭）',
     ],
 
     'menu' => [
@@ -61,9 +61,9 @@ return [
             'team' => '團隊',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => '個人簡介',
+            'friends' => '好友',
+            'settings' => '設定',
         ],
         'help' => [
             '_' => '幫助',
@@ -100,8 +100,8 @@ return [
         ],
         'community' => [
             '_' => '社群',
-            'chat' => '對話',
-            'chat-index' => '對話',
+            'chat' => '聊天',
+            'chat-index' => '聊天',
             'dev' => '開發',
             'getForum' => '論壇',
             'getLive' => '直播',
@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => '用戶名/郵箱',
             'forgot' => "我忘記了我的登錄信息",
             'password' => '密碼',
             'title' => '登錄以繼續',
+            'username' => '',
 
             'error' => [
                 'email' => "用戶名或郵箱不存在",
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => '下載',
             'info' => '點擊下方的註冊按鈕以成為 osu! 大家庭中的一員！',
             'title' => "沒有帳號？",
         ],

@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'e-posta adresi',
             'forgot' => "Bilgilerimi unuttum",
             'password' => 'şifre',
             'title' => 'Devam etmek için Giriş Yap',
+            'username' => '',
 
             'error' => [
                 'email' => "Kullanıcı adı veya e-posta adresi mevcut değil.",

@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'sähköpostiosoite',
             'forgot' => "Olen unohtanut tietoni",
             'password' => 'salasana',
             'title' => 'Kirjaudu sisään jatkaaksesi',
+            'username' => '',
 
             'error' => [
                 'email' => "Käyttäjänimeä tai sähköpostia ei ole",

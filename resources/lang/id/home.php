@@ -25,7 +25,7 @@ return [
         'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
         'title' => 'selamat datang',
-        'see_more_news' => 'muat lebih banyak berita',
+        'see_more_news' => 'lihat lebih banyak berita',
 
         'slogan' => [
             'main' => 'game ritme free-to-win terbaik',

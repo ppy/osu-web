@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Нов отговор на темата ":title"',
-    ],
-
     'forums' => [
         'latest_post' => '',
 

@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'Cronologia',
             'general' => ':scope Generale',
+            'reviews' => '',
             'timeline' => 'Linea Temporale',
             'scopes' => [
                 'general' => 'Questa difficoltà',

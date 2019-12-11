@@ -76,6 +76,11 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
             'report' => [
                 '_' => '이 비트맵에서 문제를 찾으셨다면 :link에서 저희에게 신고해 주세요.',
                 'button' => '문제 보고',
@@ -145,6 +150,16 @@ return [
             'rating-spread' => '평점 분포도',
             'nominations' => '지명',
             'playcount' => '플레이 횟수',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

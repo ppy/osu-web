@@ -24,6 +24,7 @@ return [
     'last_visit' => '',
     'new' => 'Seneste',
     'old' => 'Gammel',
+    'rank' => '',
     'top' => 'Top',
     'username' => '',
 

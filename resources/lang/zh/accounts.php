@@ -67,7 +67,13 @@ return [
     'notifications' => [
         'title' => '通知',
         'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
-        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_discussion_qualified_problem' => '在以下模式的合格节拍图上接收新问题通知',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! 帐户邮箱更改确认',
         'update' => '更新',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! 帐户密码更改确认',
         'update' => '更新',
     ],
 

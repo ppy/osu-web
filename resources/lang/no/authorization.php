@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Vennligst logg inn for å fortsette.',
+    'require_verification' => '',
+    'restricted' => "Kan ikke gjøre det mens kontoen din er begrenset.",
+    'silenced' => "Kan ikke gjøre det mens kontoen din er stum.",
+    'unauthorized' => 'Ingen tilgang.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Kan ikke angre spenning.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Bare administrator kan se dette forumet.',
         ],
     ],
-
-    'require_login' => 'Vennligst logg inn for å fortsette.',
-
-    'unauthorized' => 'Ingen tilgang.',
-
-    'silenced' => "Kan ikke gjøre det mens kontoen din er stum.",
-
-    'restricted' => "Kan ikke gjøre det mens kontoen din er begrenset.",
 
     'user' => [
         'page' => [

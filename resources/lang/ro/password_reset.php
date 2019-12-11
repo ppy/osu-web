@@ -28,10 +28,6 @@ return [
         'start' => 'Începe',
     ],
 
-    'email' => [
-        'subject' => 'recuperarea contului osu!',
-    ],
-
     'error' => [
         'contact_support' => 'Te rugăm să contactezi asistența pentru a îți recupera contul.',
         'is_privileged' => 'Contactați-l pe peppy lulz.',

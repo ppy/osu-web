@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Uusi vastaus aiheessa ":title"',
-    ],
-
     'forums' => [
         'latest_post' => '',
 

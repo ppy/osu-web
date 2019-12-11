@@ -28,10 +28,6 @@ return [
         'start' => 'Starta',
     ],
 
-    'email' => [
-        'subject' => 'osu! konto återhämtning',
-    ],
-
     'error' => [
         'contact_support' => 'Vänligen kontakta support för att återhämta konto.',
         'is_privileged' => 'Kontakta peppy lulz.',

@@ -20,38 +20,98 @@
 
 return [
     'beatmapset_update_notice' => [
+        'new' => '',
         'subject' => 'Pembaruan baru untuk beatmap ":title"',
+        'unwatch' => '',
+        'visit' => '',
+    ],
+
+    'common' => [
+        'closing' => '',
+        'hello' => '',
+        'report' => '',
     ],
 
     'donation_thanks' => [
+        'benefit_more' => '',
+        'feedback' => "",
+        'keep_free' => '',
+        'keep_running' => '',
         'subject' => 'Terima kasih, osu! mencintaimu',
+
+        'benefit' => [
+            'gift' => '',
+            'self' => '',
+        ],
+
+        'support' => [
+            '_' => '',
+            'first' => '',
+            'repeat' => '',
+        ],
     ],
 
     'forum_new_reply' => [
+        'new' => '',
         'subject' => '[osu!] Balasan terbaru dari topik ":title"',
+        'unwatch' => '',
+        'visit' => '',
     ],
 
     'password_reset' => [
+        'code' => '',
+        'requested' => '',
         'subject' => 'Pemulihan akun osu!',
     ],
 
     'store_payment_completed' => [
+        'prepare_shipping' => '',
+        'processing' => '',
+        'questions' => "",
+        'shipping' => '',
         'subject' => 'Kami menerima pesanan osu!store Anda!',
+        'thank_you' => '',
+        'total' => '',
     ],
 
     'supporter_gift' => [
+        'anonymous_gift' => '',
+        'anonymous_gift_maybe_not' => '',
+        'duration' => '',
+        'features' => '',
+        'gifted' => '',
         'subject' => 'Anda telah diberikan osu!supporter tag!',
     ],
 
     'user_email_updated' => [
-        'subject' => 'konfirmasi perubahan email osu!',
+        'changed_to' => '',
+        'check' => '',
+        'sent' => '',
+        'subject' => 'Konfirmasi perubahan email osu!',
+    ],
+
+    'user_force_reactivation' => [
+        'main' => '',
+        'perform_reset' => '',
+        'reason' => '',
+        'subject' => '',
     ],
 
     'user_password_updated' => [
-        'subject' => 'konfirmasi perubahan kata sandi osu!',
+        'confirmation' => '',
+        'subject' => 'Konfirmasi perubahan kata sandi osu!',
     ],
 
     'user_verification' => [
-        'subject' => 'verifikasi akun osu!',
+        'code' => '',
+        'code_hint' => '',
+        'link' => '',
+        'report' => '',
+        'subject' => 'Verifikasi akun osu!',
+
+        'action_from' => [
+            '_' => '',
+            'unknown_country' => '',
+        ],
     ],
 ];

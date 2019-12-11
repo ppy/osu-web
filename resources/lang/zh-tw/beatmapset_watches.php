@@ -32,10 +32,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'update' => '譜面“:title”有更新',
-    ],
-
     'status' => [
         'read' => '已讀',
         'unread' => '未讀',

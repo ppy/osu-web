@@ -28,10 +28,6 @@ return [
         'start' => 'Rozpocznij',
     ],
 
-    'email' => [
-        'subject' => 'odzyskiwanie konta osu!',
-    ],
-
     'error' => [
         'contact_support' => 'Skontaktuj się z pomocą techniczną, aby odzyskać konto.',
         'is_privileged' => 'Skontaktuj się administratorem, by odzyskać konto.',

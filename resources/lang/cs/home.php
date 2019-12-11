@@ -131,7 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Nově hodnocené beatmapy',
             'popular' => 'Populární Beatmapy',
-            'by_user' => '',
+            'by_user' => 'od :user',
         ],
         'buttons' => [
             'download' => 'Stáhnout osu!',

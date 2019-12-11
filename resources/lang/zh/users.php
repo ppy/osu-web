@@ -64,8 +64,36 @@ return [
         'send_message' => '发送消息',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => '登录',
+        'email_login_disabled' => '',
         'locked_ip' => 'IP 已被锁定，请稍等几分钟',
         'username' => '用户名',
         'password' => '密码',
@@ -373,8 +401,8 @@ return [
             'count' => ':count 篇帖子',
         ],
         'rank' => [
-            'country' => ':mode 模式的国内排名',
-            'country_simple' => '国内排名',
+            'country' => ':mode 模式的国内/区内排名',
+            'country_simple' => '国内/区内排名',
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
         ],

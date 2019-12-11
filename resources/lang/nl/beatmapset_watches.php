@@ -32,10 +32,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'update' => 'Nieuwe update voor beatmap ":Titel"',
-    ],
-
     'status' => [
         'read' => 'Gelezen',
         'unread' => 'Ongelezen',

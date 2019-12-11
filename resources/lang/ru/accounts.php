@@ -68,6 +68,12 @@ return [
         'title' => 'Уведомления',
         'topic_auto_subscribe' => 'отслеживать созданные темы автоматически',
         'beatmapset_discussion_qualified_problem' => 'получать уведомления о новых проблемах с квалифицированными картами у следующих режимов',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Подтверждение смены почты аккаунта osu!',
         'update' => 'сменить',
     ],
 
     'update_password' => [
-        'email_subject' => 'Подтверждение смены пароля аккаунта osu!',
         'update' => 'сменить',
     ],
 

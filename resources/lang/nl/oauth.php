@@ -52,12 +52,6 @@ return [
         'secret' => 'Client Secret',
     ],
 
-    'login' => [
-        'download' => 'Klik hier om het spel te downloaden en een account aan te maken',
-        'label' => 'Eerst, laten we inloggen op je account!',
-        'title' => 'Account aanmelden',
-    ],
-
     'new_client' => [
         'header' => 'Registreer een nieuwe OAuth applicatie',
         'register' => 'Registreer applicatie',

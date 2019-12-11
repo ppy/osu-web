@@ -24,6 +24,7 @@ return [
     'last_visit' => 'Legutóbb aktív volt',
     'new' => 'Legutóbbi',
     'old' => 'Régi',
+    'rank' => '',
     'top' => 'Felső',
     'username' => 'Felhasználónév',
 
