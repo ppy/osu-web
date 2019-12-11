@@ -15,3 +15,9 @@ $factory->state(App\Models\Multiplayer\Match::class, 'private', function (Faker\
         'private' => 1,
     ];
 });
+
+$factory->state(App\Models\Multiplayer\Match::class, 'tourney', function (Faker\Generator $faker) {
+    return [
+        'keep_forever' => 1,
+    ];
+});

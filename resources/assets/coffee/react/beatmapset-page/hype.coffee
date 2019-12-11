@@ -31,7 +31,7 @@ export class Hype extends React.PureComponent
       div className: "#{bn}__box #{bn}__box--description",
         div className: "#{bn}__description-row #{bn}__description-row--status",
           div className: 'beatmapset-status beatmapset-status--hype',
-            @props.beatmapset.status
+            osu.trans("beatmapsets.show.status.#{@props.beatmapset.status}")
         p className: "#{bn}__description-row #{bn}__description-row--current",
           osu.trans 'beatmapsets.show.hype.current._',
             status: osu.trans("beatmapsets.show.hype.current.status.#{@props.beatmapset.status}")
@@ -44,7 +44,11 @@ export class Hype extends React.PureComponent
                   href: @reportUrl()
                   key: 'link'
                   osu.trans 'beatmapsets.show.hype.report.link'
-              pattern: osu.trans('beatmapsets.show.hype.report._')
+              pattern:
+                if @userCanDisqualify()
+                  osu.trans('beatmapsets.show.hype.disqualify._')
+                else
+                  osu.trans('beatmapsets.show.hype.report._')
 
         else
           p
@@ -89,13 +93,25 @@ export class Hype extends React.PureComponent
         if @props.beatmapset.status == 'qualified'
           div
             className: "#{bn}__button"
-            title: osu.trans('beatmapsets.show.hype.report.button_title')
-            el BigButton,
-              modifiers: ['full']
-              text: osu.trans('beatmapsets.show.hype.report.button')
-              icon: 'fas fa-exclamation-triangle'
-              props:
-                href: @reportUrl()
+            if @userCanDisqualify()
+              title: osu.trans('beatmapsets.show.hype.disqualify.button_title')
+              el BigButton,
+                modifiers: ['full']
+                text: osu.trans 'beatmaps.nominations.disqualify'
+                icon: 'fas fa-thumbs-down'
+                props:
+                  href: @reportUrl()
+            else
+              title: osu.trans('beatmapsets.show.hype.report.button_title')
+              el BigButton,
+                modifiers: ['full']
+                text: osu.trans('beatmapsets.show.hype.report.button')
+                icon: 'fas fa-exclamation-triangle'
+                props:
+                  href: @reportUrl()
 
   reportUrl: =>
     "#{route('beatmapsets.discussion', beatmapset: @props.beatmapset.id, beatmap: '-', mode: 'generalAll')}#new"
+
+  userCanDisqualify: =>
+    @props.currentUser? && (@props.currentUser.can_moderate || @props.currentUser.is_admin || @props.currentUser.is_full_bn)

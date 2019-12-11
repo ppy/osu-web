@@ -70,7 +70,6 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'ranked_date' => json_time($beatmapset->approved_date),
             'creator' => $beatmapset->creator,
             'user_id' => $beatmapset->user_id,
-            'bpm' => $beatmapset->bpm,
             'source' => $beatmapset->source,
             'covers' => $beatmapset->allCoverURLs(),
             'preview_url' => $beatmapset->previewURL(),

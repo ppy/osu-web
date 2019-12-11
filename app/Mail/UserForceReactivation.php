@@ -41,6 +41,6 @@ class UserForceReactivation extends Mailable implements ShouldQueue
             ->with([
                 'reason' => $this->reason,
                 'user' => $this->user,
-            ])->subject(trans('users.force_reactivation.email.subject'));
+            ])->subject(trans('mail.user_force_reactivation.subject'));
     }
 }

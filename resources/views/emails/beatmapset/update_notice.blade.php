@@ -1,11 +1,11 @@
-Hi {!! $user->username !!},
+{!! trans('mail.common.hello', ['user' => $user->username]) !!}
 
-Just letting you know that there has been a new update in beatmap "{!! $beatmapset->title !!}" since your last visit.
+{!! trans('mail.beatmapset_update_notice.new', ['title' => $beatmapset->title]) !!}
 
-Visit the discussion page here:
+{!! trans('mail.beatmapset_update_notice.visit') !!}
 {!! route('beatmapsets.discussion', $beatmapset) !!}
 
-If you no longer wish to watch this beatmap, you can either click the "Unwatch" link found in the page above, or from the modding watchlist page:
+{!! trans('mail.beatmapset_update_notice.unwatch') !!}
 {!! route('beatmapsets.watches.index') !!}
 
 @include('emails._signature')

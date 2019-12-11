@@ -15,12 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-{!! trans('common.email.hello', ['user' => $user->username]) !!}
+{!! trans('mail.common.hello', ['user' => $user->username]) !!}
 
-{!! trans('users.force_reactivation.email.content.main') !!}
+{!! trans('mail.user_force_reactivation.main') !!}
 
-{!! trans('users.force_reactivation.email.content.reason') !!}: {!! trans("users.force_reactivation.reason.{$reason}") !!}
+{!! trans('mail.user_force_reactivation.reason') !!} {!! trans("users.force_reactivation.reason.{$reason}") !!}
 
-{!! trans('users.force_reactivation.email.content.perform_reset', ['url' => route('password-reset')]) !!}
+{!! trans('mail.user_force_reactivation.perform_reset', ['url' => route('password-reset')]) !!}
 
 @include('emails._signature')
