@@ -18,7 +18,7 @@
 
 import {
   ChatChannelPartAction,
-  ChatChannelSwitchAction,
+  ChatChannelSwitchAction, ChatMessageAddAction,
   ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
@@ -112,6 +112,10 @@ export default class ChatOrchestrator implements DispatchListener {
       this.changeChannel(action.channelId);
     } else if (action instanceof ChatChannelPartAction) {
       this.partChannel(action.channelId);
+    } else if (action instanceof ChatMessageAddAction) {
+      if (this.windowIsActive && this.rootDataStore.channelStore.loaded) {
+        this.markAsRead(this.rootDataStore.uiState.chat.selected);
+      }
     } else if (action instanceof ChatPresenceUpdateAction) {
       this.focusNextChannel();
     } else if (action instanceof WindowFocusAction) {
