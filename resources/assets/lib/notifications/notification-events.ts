@@ -16,8 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import DispatcherAction from 'actions/dispatcher-action';
 import NotificationJson from 'interfaces/notification-json';
-import { NotificationIdentity, NotificationIdentityJson } from 'notifications/notification-identity';
+import { fromJson, NotificationIdentity, NotificationIdentityJson } from 'notifications/notification-identity';
 
 export interface NotificationEventLogoutJson {
   event: 'logout';
@@ -36,9 +37,13 @@ export interface NotificationEventReadJson {
   event: 'read';
 }
 
-export interface NotificationEventRead {
-  data: NotificationIdentity[];
-  readCount: number;
+export class NotificationEventRead implements DispatcherAction {
+  constructor(readonly data: NotificationIdentity[], readonly readCount: number) {}
+
+  static fromJson(eventData: NotificationEventReadJson): NotificationEventRead {
+    const data = eventData.data.notifications.map((json) => fromJson(json));
+    return new NotificationEventRead(data, eventData.data.read_count);
+  }
 }
 
 export interface NotificationEventVerifiedJson {

@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { dispatch } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
 import { route } from 'laroute';
@@ -24,10 +25,10 @@ import { action, computed, observable } from 'mobx';
 import {
   NotificationEventLogoutJson,
   NotificationEventNewJson,
+  NotificationEventRead,
   NotificationEventReadJson,
   NotificationEventVerifiedJson,
 } from 'notifications/notification-events';
-import { fromJson } from 'notifications/notification-identity';
 import core from 'osu-core-singleton';
 
 interface NotificationBootJson extends NotificationBundleJson {
@@ -172,12 +173,7 @@ export default class Worker {
       this.notificationStore.handleNotificationEventNew(eventData);
       this.store.handleNotificationEventNew();
     } else if (isNotificationEventReadJson(eventData)) {
-      const notificationEvent = {
-        data: eventData.data.notifications.map((json) => fromJson(json)),
-        readCount: eventData.data.read_count,
-      };
-
-      this.store.handleNotificationEventRead(notificationEvent);
+      dispatch(NotificationEventRead.fromJson(eventData));
     } else if (isNotificationEventVerifiedJson(eventData)) {
       if (!this.hasData) {
         this.loadMore();

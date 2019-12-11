@@ -17,14 +17,10 @@
  */
 
 import NotificationJson from 'interfaces/notification-json';
-import { route } from 'laroute';
-import { debounce } from 'lodash';
 import { action, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import { NotificationEventNewJson } from 'notifications/notification-events';
-import { NotificationIdentity, toJson } from 'notifications/notification-identity';
-import NotificationReadable from 'notifications/notification-readable';
 import Store from 'stores/store';
 import NotificationStackStore from './notification-stack-store';
 import UnreadNotificationStackStore from './unread-notification-stack-store';
@@ -32,12 +28,8 @@ import UnreadNotificationStackStore from './unread-notification-stack-store';
 export default class NotificationStore extends Store {
   @observable notifications = new Map<number, Notification>();
   @observable pmNotification = new LegacyPmNotification();
-  readonly stacks = new NotificationStackStore(this.root);
-  readonly unreadStacks = new UnreadNotificationStackStore(this.root);
-
-  private debouncedSendQueued = debounce(this.sendQueued, 500);
-  private queued = new Set<number>();
-  private queuedXhr?: JQuery.jqXHR;
+  readonly stacks = new NotificationStackStore(this);
+  readonly unreadStacks = new UnreadNotificationStackStore(this);
 
   @action
   flushStore() {
@@ -48,73 +40,9 @@ export default class NotificationStore extends Store {
     this.notifications.get(id);
   }
 
-  getMany(ids: number[]) {
-    const notifications = [] as Notification[];
-    for (const id of ids) {
-      const notification = this.notifications.get(id);
-      if (notification != null) {
-        notifications.push(notification);
-      }
-    }
-
-    return notifications;
-  }
-
   @action
   handleNotificationEventNew(event: NotificationEventNewJson) {
     this.updateWithJson(event.data);
-  }
-
-  @action
-  queueMarkAsRead(readable: NotificationReadable) {
-    readable.isMarkingAsRead = true;
-
-    $.ajax({
-      data: toJson(readable.identity),
-      dataType: 'json',
-      method: 'POST',
-      url: route('notifications.mark-read'),
-    })
-    .then(action(() => this.unreadStacks.handleNotificationEventRead({ data: [readable.identity], readCount: 0 })))
-    .always(action(() => readable.isMarkingAsRead = false));
-  }
-
-  @action
-  queueMarkNotificationAsRead(notification: Notification) {
-    if (notification.canMarkRead) {
-      notification.isMarkingAsRead = true;
-      this.queued.add(notification.id);
-    }
-
-    this.debouncedSendQueued();
-  }
-
-  sendQueued() {
-    const ids = [...this.queued];
-    const identities: NotificationIdentity[] = [];
-    for (const id of ids) {
-      const notification = this.notifications.get(id);
-      if (notification != null) identities.push(notification.identity);
-    }
-
-    if (identities.length === 0) { return; }
-
-    this.queuedXhr = $.ajax({
-      data: { notifications: identities.map(toJson) },
-      dataType: 'json',
-      method: 'POST',
-      url: route('notifications.mark-read'),
-    });
-
-    ids.forEach((id) => this.queued.delete(id));
-
-    this.queuedXhr
-    .then(action(() => {
-      this.unreadStacks.handleNotificationEventRead({ data: identities, readCount: 0 });
-    }))
-    .always(action(() => this.getMany(ids).forEach((notification) => notification.isMarkingAsRead = false)));
-
-    return this.queuedXhr;
   }
 
   private updateWithJson(json: NotificationJson) {

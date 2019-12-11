@@ -23,7 +23,6 @@ import { NotificationContextData } from 'notifications-context';
 import { NotificationCursor } from 'notifications/notification-cursor';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
-import core from 'osu-core-singleton';
 import NotificationStackStore from 'stores/notification-stack-store';
 
 export type Name = null | 'beatmapset' | 'build' | 'channel' | 'forum_topic' | 'news_post' | 'user';
@@ -76,7 +75,7 @@ export default class NotificationType implements NotificationReadable {
 
   @action
   markTypeAsRead() {
-    core.dataStore.notificationStore.queueMarkAsRead(this);
+    this.store.markAsRead(this);
   }
 
   @action

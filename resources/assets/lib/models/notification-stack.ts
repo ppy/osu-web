@@ -24,7 +24,6 @@ import { NotificationContextData } from 'notifications-context';
 import { NotificationCursor } from 'notifications/notification-cursor';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
-import core from 'osu-core-singleton';
 import NotificationStackStore from 'stores/notification-stack-store';
 
 export default class NotificationStack implements NotificationReadable {
@@ -68,10 +67,6 @@ export default class NotificationStack implements NotificationReadable {
     return this.objectType;
   }
 
-  private get rootStore() {
-    return core.dataStore;
-  }
-
   constructor(
     private readonly store: NotificationStackStore,
     readonly objectId: number,
@@ -105,12 +100,12 @@ export default class NotificationStack implements NotificationReadable {
   markAsRead(notification?: Notification) {
     // not from this stack, ignore.
     if (notification == null || this.notifications.get(notification.id) == null) { return; }
-    this.rootStore.notificationStore.queueMarkNotificationAsRead(notification);
+    this.store.markNotificationAsRead(notification);
   }
 
   @action
   markStackAsRead() {
-    this.rootStore.notificationStore.queueMarkAsRead(this);
+    this.store.markAsRead(this);
   }
 
   @action

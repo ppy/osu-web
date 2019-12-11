@@ -26,21 +26,20 @@ import NotificationType, { Name as NotificationTypeName  } from 'models/notifica
 import { nameToCategory } from 'notification-maps/category';
 import { NotificationContextData } from 'notifications-context';
 import { NotificationIdentity, resolveStackId, toJson } from 'notifications/notification-identity';
-import RootDataStore from 'stores/root-data-store';
-import Store from 'stores/store';
+import { NotificationResolver } from 'notifications/notification-resolver';
+import NotificationStore from './notification-store';
 
-export default class NotificationStackStore extends Store {
+export default class NotificationStackStore {
   @observable readonly stacks = new Map<string, NotificationStack>();
   @observable readonly types = new Map<string, NotificationType>();
+  private readonly resolver = new NotificationResolver();
 
-  constructor(protected root: RootDataStore) {
-    super(root);
-
+  constructor(protected notificationStore: NotificationStore) {
     this.addLegacyPm();
   }
 
   get notifications() {
-    return this.root.notificationStore.notifications;
+    return this.notificationStore.notifications;
   }
 
   @action
@@ -78,6 +77,13 @@ export default class NotificationStackStore extends Store {
     return $.ajax(params).then(action((response: NotificationBundleJson) => {
       this.updateWithBundle(response);
     }));
+  }
+
+  markAsRead(readable: NotificationStack | NotificationType) {
+    this.resolver.queueMarkAsRead(readable);
+  }
+  markNotificationAsRead(notification: Notification) {
+    this.resolver.queueMarkNotificationAsRead(notification);
   }
 
   /**

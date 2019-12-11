@@ -46,9 +46,9 @@ interface BeatmapDiscussionHelperClass {
 }
 
 interface JQueryStatic {
-  publish: any;
-  subscribe: any;
-  unsubscribe: any;
+  publish: (eventName: string, data?: any) => void;
+  subscribe: (eventName: string, handler: (...params: any[]) => void) => void;
+  unsubscribe: (eventName: string) => void;
 }
 
 interface OsuCommon {
