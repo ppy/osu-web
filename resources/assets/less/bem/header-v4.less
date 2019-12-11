@@ -27,6 +27,12 @@
     height: 290px;
   }
 
+  &--chat {
+    @media @desktop {
+      height: (@nav2-height + 70px);
+    }
+  }
+
   &--supporter {
     @media @desktop {
       min-height: 450px;
@@ -59,6 +65,15 @@
 
     .@{_top}--changelog & {
       .at2x-simple('/images/headers/changelog.jpg');
+    }
+
+    .@{_top}--chat & {
+      .at2x-simple('/images/headers/chat.jpg');
+      filter: hue-rotate(115deg); // fix colour
+
+      &::before {
+        filter: hue-rotate(-115deg); // undo the one in parent
+      }
     }
 
     .@{_top}--forum & {
@@ -109,6 +124,10 @@
       background-image: url('/images/icons/changelog.svg');
     }
 
+    .@{_top}--chat & {
+      background-image: url('/images/icons/chat.svg');
+    }
+
     .@{_top}--comments & {
       background-image: url('/images/icons/chat.svg');
     }
@@ -142,6 +161,11 @@
       @media @desktop {
         display: flex;
       }
+    }
+
+    .@{_top}--chat & {
+      padding-left: 30px;
+      padding-right: 30px;
     }
 
     .@{_top}--users & {

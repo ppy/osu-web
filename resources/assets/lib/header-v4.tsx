@@ -33,6 +33,7 @@ export default class HeaderV4 extends React.Component<Props> {
   static defaultProps = {
     links: [],
     linksBreadcrumb: false,
+    subSection: '',
   };
 
   render(): React.ReactNode {
