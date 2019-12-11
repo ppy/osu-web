@@ -40,11 +40,11 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
     switch (identityType) {
       case 'type':
-        event.data.forEach((identity) => this.handleType(identity, event.readCount));
+        this.handleType(first, event.readCount);
         break;
 
       case 'stack':
-        event.data.forEach((identity) => this.handleStack(identity, event.readCount));
+        this.handleStack(first, event.readCount);
         break;
 
       case 'notification':
