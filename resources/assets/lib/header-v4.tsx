@@ -54,23 +54,23 @@ export default class HeaderV4 extends React.Component<Props> {
         <div className='header-v4__content'>
           <div className='header-v4__row header-v4__row--title'>
             <div className='header-v4__icon' />
-              <div className='header-v4__title'>
-                <span className='header-v4__title-section'>
-                  {this.props.section}
-                </span>
-                <span className='header-v4__title-action'>
-                  {' '}
-                  {this.props.subSection}
-                </span>
-              </div>
+            <div className='header-v4__title'>
+              <span className='header-v4__title-section'>
+                {this.props.section}
+              </span>
+              <span className='header-v4__title-action'>
+                {' '}
+                {this.props.subSection}
+              </span>
             </div>
+          </div>
 
-            {this.props.links.length > 0
-              ? <div className='header-v4__row header-v4__row--bar'>
-                  {this.renderLinks()}
-                </div>
-              : null
-            }
+          {this.props.links.length > 0
+            ? <div className='header-v4__row header-v4__row--bar'>
+                {this.renderLinks()}
+              </div>
+            : null
+          }
         </div>
       </div>
     );
