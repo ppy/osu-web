@@ -152,15 +152,23 @@ export default class ChatOrchestrator implements DispatchListener {
 
   markAsRead(channelId: number) {
     const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-    const lastRead = channel.lastMessageId;
+    const lastReadId = channel.lastMessageId;
 
     if (!channel.isUnread) {
       return;
     }
 
-    this.api.markAsRead(channel.channelId, lastRead)
+    // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
+    const lastSentMessage = channel.messages.find((message) => message.messageId === lastReadId);
+    if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
+      channel.lastReadId = lastReadId;
+
+      return;
+    }
+
+    this.api.markAsRead(channel.channelId, lastReadId)
       .then(() => {
-        channel.lastReadId = lastRead;
+        channel.lastReadId = lastReadId;
       })
       .catch((err) => {
         console.debug('markAsRead error', err);
