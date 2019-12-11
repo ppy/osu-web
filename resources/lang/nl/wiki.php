@@ -44,7 +44,4 @@ return [
         'title' => 'Kennisbank',
         'subtitle' => 'omdat osu!pedia dom klinkt',
     ],
-    'search' => [
-        'path' => 'van',
-    ],
 ];

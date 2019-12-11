@@ -33,15 +33,11 @@ formatDuration = (value) ->
     "#{m}:#{_.padStart s, 2, 0}"
 
 
-export BeatmapBasicStats = ({beatmapset, beatmap}) ->
+export BeatmapBasicStats = ({beatmap}) ->
   div
     className: bn
     for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
-      value =
-        if stat == 'bpm'
-          beatmapset.bpm
-        else
-          beatmap[stat]
+      value = beatmap[stat]
 
       suffixedValue =
         if stat == 'total_length'

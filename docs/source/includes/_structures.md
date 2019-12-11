@@ -1,5 +1,11 @@
 # Object Structures
 
+## Beatmapset
+
+Represents a beatmapset.
+
+<aside class="notice">TODO: This &gt;.&gt;</aside>
+
 ## Comment
 ```json
 {
@@ -259,6 +265,27 @@ is_action  | boolean                      | was this an action? i.e. `/me dances
 sender     | [UserCompact](#usercompact)  | embeded UserCompact object to save additional api lookups
 
 
+## Cursor
+```json
+{
+  "_id": 5,
+  "_score": 36.234
+}
+```
+
+```json
+{
+  "page": 2,
+}
+```
+
+A structure included in some API responses containing the parameters to get the next set of results.
+
+The values of the cursor should be provided to next request of the same endpoint to get the next set of results.
+
+If there are no more results available, a cursor with a value of `null` is returned: `"cursor": null`.
+
+
 ## Notification
 ```json
 {
@@ -489,6 +516,123 @@ cover_url | string  | Topic cover
 post_id   | number  | Post id
 username  | string? | Username of `source_user_id`
 
+
+## GameMode
+
+Available game modes:
+
+Name   | Descriprion
+------ | ---------------
+fruits | osu!catch
+mania  | osu!mania
+osu    | osu!standard
+taiko  | osu!taiko
+
+
+## Ranking Response
+```json
+{
+  "cursor": {
+
+  },
+  "ranking": [
+    {
+      "grade_counts": {
+          "a": 3,
+          "s": 2,
+          "sh": 6,
+          "ss": 2,
+          "ssh": 3
+      },
+      "hit_accuracy": 92.19,
+      "is_ranked": true,
+      "level": {
+          "current": 30,
+          "progress": 0
+      },
+      "maximum_combo": 3948,
+      "play_count": 228050,
+      "play_time": null,
+      "pp": 990,
+      "pp_rank": 87468,
+      "ranked_score": 1502995536,
+      "replays_watched_by_others": 0,
+      "total_hits": 5856573,
+      "total_score": 2104193750,
+      "user": {
+          "avatar_url": "/images/layout/avatar-guest.png",
+          "country": {
+              "code": "GF",
+              "name": "French Guiana"
+          },
+          "country_code": "GF",
+          "cover": {
+              "custom_url": null,
+              "id": "3",
+              "url": "http://osuweb.test/images/headers/profile-covers/c3.jpg"
+          },
+          "default_group": "default",
+          "id": 458402,
+          "is_active": false,
+          "is_bot": false,
+          "is_online": false,
+          "is_supporter": true,
+          "last_visit": "2017-02-22T11:07:10+00:00",
+          "pm_friends_only": false,
+          "profile_colour": null,
+          "username": "serdman"
+      }
+    }
+  ],
+  "total": 100
+}
+```
+
+Field          | Type                                | Description
+-------------- | ----------------------------------- | --------------------------------------------------------------------
+beatmapsets    | [Beatmapset](#beatmapset)[]?        | The list of beatmaps in the requested spotlight for the given `mode`; only available if `type` is `charts`
+cursor         | [Cursor](#cursor)                   | A cursor
+ranking        | [UserStatistics](#userstatistics)[] | Score details ordered by rank in descending order.
+spotlight      | [Spotlight](#spotlight)?            | Spotlight details; only available if `type` is `charts`
+total          | number                              | An approximate count of ranks available
+
+
+## RankingType
+
+Available ranking types:
+
+Name        | Descriprion
+----------- | ---------------------------------
+charts      | Spotlight
+country     | Country
+performance | Performance
+score       | Score
+
+
+## Spotlight
+```json
+{
+  "end_date": "2019-03-22T00:00:00+00:00",
+  "id": 1,
+  "mode_specific": false,
+  "name": "Best spinning circles 2019",
+  "start_date": "2019-02-22T00:00:00+00:00",
+  "type": "yearly",
+}
+```
+
+The details of a spotlight.
+
+Field         | Type     | Description
+------------- | -------- | ----------------------------------------------------------------------------
+end_date      | DateTime | The end date of the spotlight.
+id            | number   | The ID of this spotlight.
+mode_specific | number   | If the spotlight has different mades specific to each [GameMode](#gamemode).
+name          | number   | The name of the spotlight.
+start_date    | DateTime | The starting date of the spotlight.
+type          | string   | The type of spotlight.
+
+
 ## User
 ```json
 {
@@ -528,3 +672,79 @@ is_active      | boolean     | has this account been active in the last x months
 is_bot         | boolean     | is this a bot account?
 is_online      | boolean     | is the user currently online? (either on lazer or the new website)
 is_supporter   | boolean     | does this user have supporter?
+
+
+## UserStatistics
+```json
+{
+  "grade_counts": {
+      "a": 3,
+      "s": 2,
+      "sh": 6,
+      "ss": 2,
+      "ssh": 3
+  },
+  "hit_accuracy": 92.19,
+  "is_ranked": true,
+  "level": {
+      "current": 30,
+      "progress": 0
+  },
+  "maximum_combo": 3948,
+  "play_count": 228050,
+  "play_time": null,
+  "pp": 990,
+  "pp_rank": 87468,
+  "ranked_score": 1502995536,
+  "replays_watched_by_others": 0,
+  "total_hits": 5856573,
+  "total_score": 2104193750,
+  "user": {
+      "avatar_url": "https://a.ppy.sh/2?1519081077.png",
+      "country": {
+          "code": "AU",
+          "name": "Australia"
+      },
+      "country_code": "AU",
+      "cover": {
+          "custom_url": null,
+          "id": "3",
+          "url": "https://assets.ppy.sh/user-profile-covers/2/baba245ef60834b769694178f8f6d4f6166c5188c740de084656ad2b80f1eea7.jpeg"
+      },
+      "default_group": "ppy",
+      "id": 2,
+      "is_active": false,
+      "is_bot": false,
+      "is_online": false,
+      "is_supporter": true,
+      "last_visit": "2019-02-22T11:07:10+00:00",
+      "pm_friends_only": false,
+      "profile_colour": "#3366FF",
+      "username": "peppy"
+  }
+}
+```
+
+A summary of various gameplay statistics for a [User](#user). Specific to a [GameMode](#gamemode)
+
+Field                     | Type                        | Description
+------------------------- | --------------------------- | -------------------------------------------
+grade_counts.a            | number                      | Number of A ranked scores.
+grade_counts.s            | number                      | Number of S ranked scores.
+grade_counts.sh           | number                      | Number of Silver S ranked scores.
+grade_counts.ss           | number                      | Number of SS ranked scores.
+grade_counts.ssh          | number                      | Number of Silver SS ranked scores.
+hit_accuracy              | number                      | Hit accuracy percentage
+is_ranked                 | boolean                     | Is actively ranked
+level.cuurent             | number                      | Current level.
+level.progress            | number                      | Progress to next level.
+maximum_combo             | number                      | Highest maximum combo.
+play_count                | number                      | Number of maps played.
+play_time                 | number                      | Cummulative time played.
+pp                        | number                      | Performance points
+pp_rank                   | number                      | Current rank according to pp.
+ranked_score              | number                      | Current ranked score.
+replays_watched_by_others | number                      | Number of replays watched by other users.
+total_hits                | number                      | Total number of hits.
+total_score               | number                      | Total score.
+user                      | [UserCompact](#usercompact) | The associated user.

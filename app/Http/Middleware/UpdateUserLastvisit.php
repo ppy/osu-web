@@ -20,6 +20,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Libraries\UserVerification;
 use App\Models\Country;
 use Carbon\Carbon;
 use Closure;
@@ -37,23 +38,38 @@ class UpdateUserLastvisit
     public function handle($request, Closure $next)
     {
         if ($this->auth->check()) {
-            $this->auth->user()->update([
-                'user_lastvisit' => Carbon::createFromTime(null, null, 0),
-            ], ['skipValidations' => true]);
+            $user = auth()->user();
 
-            // Add metadata to session to help user recognize this login location
-            $countryCode = presence(request_country($request)) ?? 'XX';
-            $request->session()->put('meta', [
-                'agent' => $request->header('User-Agent'),
-                'country' => [
-                    'code' => $countryCode,
-                    'name' => presence(Country::where('acronym', $countryCode)->pluck('name')->first()) ?? 'Unknown',
-                ],
-                'ip' => $request->ip(),
-                'last_visit' => Carbon::now(),
-            ]);
+            $isInactive = $user->isInactive();
+
+            if ($isInactive) {
+                $isVerified = UserVerification::fromCurrentRequest()->isDone();
+            }
+
+            if (!$isInactive || $isVerified) {
+                $user->update([
+                    'user_lastvisit' => Carbon::createFromTime(null, null, 0),
+                ], ['skipValidations' => true]);
+            }
+
+            $this->recordSession($request);
         }
 
         return $next($request);
+    }
+
+    private function recordSession($request)
+    {
+        // Add metadata to session to help user recognize this login location
+        $countryCode = presence(request_country($request)) ?? 'XX';
+        $request->session()->put('meta', [
+            'agent' => $request->header('User-Agent'),
+            'country' => [
+                'code' => $countryCode,
+                'name' => presence(Country::where('acronym', $countryCode)->pluck('name')->first()) ?? 'Unknown',
+            ],
+            'ip' => $request->ip(),
+            'last_visit' => Carbon::now(),
+        ]);
     }
 }

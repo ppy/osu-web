@@ -67,6 +67,7 @@ return [
     'notifications' => [
         'title' => '알림',
         'topic_auto_subscribe' => '당신이 만드는 새로운 포럼 주제에 대한 알림을 자동적으로 활성화합니다.',
+        'beatmapset_discussion_qualified_problem' => '',
     ],
 
     'oauth' => [

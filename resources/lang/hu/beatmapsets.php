@@ -75,6 +75,13 @@ return [
                     'wip' => 'munkálatok alatt',
                 ],
             ],
+
+            'report' => [
+                '_' => '',
+                'button' => 'Probléma jelentése',
+                'button_title' => '',
+                'link' => 'itt',
+            ],
         ],
 
         'info' => [

@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => '搜尋',
             'deleted' => '包含已經刪除的討論',
+            'only_unresolved' => '',
             'types' => '訊息類別',
             'username' => '使用者名稱',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => '用戶',

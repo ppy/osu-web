@@ -57,14 +57,15 @@ export class Header extends React.PureComponent
 
     div className: bn,
       div className: "#{bn}__content #{bn}__content--details",
-        el BeatmapsetMapping,
-          beatmapset: @props.beatmapset
-          user: @props.users[@props.beatmapset.user_id]
+        div className: "#{bn}__details #{bn}__details--full",
+          el BeatmapsetMapping,
+            beatmapset: @props.beatmapset
+            user: @props.users[@props.beatmapset.user_id]
 
-        div className: "#{bn}__subscribe",
+        div className: "#{bn}__details",
           el Subscribe, beatmapset: @props.beatmapset
 
-        div className: "#{bn}__info-page",
+        div className: "#{bn}__details",
           el BigButton,
             modifiers: ['full']
             text: osu.trans('beatmaps.discussions.beatmap_information')
@@ -134,9 +135,7 @@ export class Header extends React.PureComponent
           div ref: 'chartArea', className: "#{bn}__chart"
 
           div className: "#{bn}__beatmap-stats",
-            el BeatmapBasicStats,
-              beatmapset: @props.beatmapset
-              beatmap: @props.currentBeatmap
+            el BeatmapBasicStats, beatmap: @props.currentBeatmap
 
 
   setFilter: (e) =>

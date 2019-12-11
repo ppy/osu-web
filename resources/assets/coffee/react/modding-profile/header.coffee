@@ -26,7 +26,6 @@ import { Img2x } from 'img2x'
 import { a, div, h1, li, ul } from 'react-dom-factories'
 el = React.createElement
 
-
 export class Header extends React.Component
   render: =>
     div

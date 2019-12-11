@@ -61,9 +61,9 @@ return [
             'team' => 'tiimi',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profiili',
+            'friends' => 'kaverit',
+            'settings' => 'asetukset',
         ],
         'help' => [
             '_' => 'apua',
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Lataa',
             'info' => 'Tarvitset käyttäjän hyvä mies. Miksei sinulla ole jo sellaista?',
             'title' => "Eikö sinulla ole vielä käyttäjää?",
         ],

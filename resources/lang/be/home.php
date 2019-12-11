@@ -25,6 +25,7 @@ return [
         'peak' => 'Пік, :count актыўных карыстальнікаў',
         'players' => 'Зарэгістравана гульцоў <strong>:count</strong>',
         'title' => 'вітаем',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'лепшая бясплатная рытм-гульня',
@@ -130,8 +131,7 @@ return [
         'beatmaps' => [
             'new' => 'Новыя ранкаваныя бітмапы',
             'popular' => 'Папулярныя бітмапы',
-            'by' => 'ад',
-            'plays' => 'згуляна :count раз',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Спампаваць osu!',

@@ -174,7 +174,7 @@ class AccountController extends Controller
                 $addresses[] = $previousEmail;
             }
             foreach ($addresses as $address) {
-                Mail::to($address)->send(new UserEmailUpdated($user));
+                Mail::to($address)->locale($user->preferredLocale())->send(new UserEmailUpdated($user));
             }
 
             UserAccountHistory::logUserUpdateEmail($user, $previousEmail);
@@ -229,7 +229,7 @@ class AccountController extends Controller
 
         if ($user->update($params) === true) {
             if (present($user->user_email)) {
-                Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
+                Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
             return response([], 204);
@@ -248,9 +248,12 @@ class AccountController extends Controller
         $state = UserVerificationState::fromVerifyLink(request('key'));
 
         if ($state === null) {
+            UserVerification::logAttempt('link', 'fail', 'incorrect_key');
+
             return response()->view('accounts.verification_invalid')->setStatusCode(404);
         }
 
+        UserVerification::logAttempt('link', 'success');
         $state->markVerified();
 
         return view('accounts.verification_completed');

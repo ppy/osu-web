@@ -21,7 +21,7 @@
 namespace App\Http\Controllers;
 
 use App;
-use App\Http\Middleware\VerifyPrivilegedUser;
+use App\Http\Middleware\VerifyUserAlways;
 use App\Libraries\LocaleMeta;
 use App\Models\Log;
 use Auth;
@@ -47,21 +47,6 @@ abstract class Controller extends BaseController
         view()->share('currentAction', ($this->actionPrefix ?? '').current_action());
     }
 
-    /**
-     * Remove cookies from domain different to the one currently set in session.domain.
-     *
-     * @return void
-     */
-    protected function cleanupCookies()
-    {
-        $domain = config('session.domain') === null ? request()->getHttpHost() : null;
-        foreach (['locale', 'osu_session', 'XSRF-TOKEN'] as $key) {
-            // TODO: maybe also remove keys on parents - if setting on
-            //       a.b.c.d.e then remove on .b.c.d.e, .b.c.d, etc.
-            setcookie($key, '', 1, '/', $domain);
-        }
-    }
-
     protected function formatValidationErrors(Validator $validator)
     {
         return ['validation_error' => $validator->errors()->getMessages()];
@@ -78,30 +63,18 @@ abstract class Controller extends BaseController
 
     protected function login($user, $remember = false)
     {
-        $this->cleanupCookies();
+        cleanup_cookies();
 
         session()->flush();
         session()->regenerateToken();
-        session()->put('requires_verification', VerifyPrivilegedUser::isRequired($user));
+        session()->put('requires_verification', VerifyUserAlways::isRequired($user));
         Auth::login($user, $remember);
         session()->migrate(true, Auth::user()->user_id);
     }
 
     protected function logout()
     {
-        Auth::logout();
-
-        // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
-        unset($_COOKIE['phpbb3_2cjk5_sid']);
-        unset($_COOKIE['phpbb3_2cjk5_sid_check']);
-        setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
-        setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
-        setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.osu.ppy.sh');
-        setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.osu.ppy.sh');
-
-        $this->cleanupCookies();
-
-        Request::session()->invalidate();
+        logout();
     }
 
     protected function locale()

@@ -28,54 +28,11 @@
   }
 
   &__item {
-    &--ppy {
-      .link-hover({ color: @osu-colour-group-ppy });
-      color: @osu-colour-group-ppy;
-    }
-
-    &--bot {
-      .link-hover({ color: @osu-colour-group-bot });
-      color: @osu-colour-group-bot;
-    }
-
-    &--dev {
-      .link-hover({ color: @osu-colour-group-dev });
-      color: @osu-colour-group-dev;
-    }
-
-    &--gmt {
-      .link-hover({ color: @osu-colour-group-gmt });
-      color: @osu-colour-group-gmt;
-    }
-
-    &--nat {
-      .link-hover({ color: @osu-colour-group-nat });
-      color: @osu-colour-group-nat;
-    }
-
-    &--bng {
-      .link-hover({ color: @osu-colour-group-bng });
-      color: @osu-colour-group-bng;
-    }
-
-    &--bng_limited {
-      .link-hover({ color: @osu-colour-group-bng });
-      color: @osu-colour-group-bng;
-    }
-
-    &--alumni {
-      .link-hover({ color: @osu-colour-group-alumni });
-      color: @osu-colour-group-alumni;
-    }
-
-    &--support {
-      .link-hover({ color: @osu-colour-group-support });
-      color: @osu-colour-group-support;
-    }
-
-    &--mapper {
-      .link-hover({ color: @osu-colour-blue-1 });
-      color: @osu-colour-blue-1;
-    }
+    .osu-group-colours({
+      &--@{group} {
+        .link-hover({ color: @@colour });
+        color: @@colour;
+      }
+    });
   }
 }

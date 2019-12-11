@@ -41,10 +41,7 @@ return [
         ],
     ],
     'main' => [
-        'title' => '',
+        'title' => 'Tudásbázis',
         'subtitle' => '',
-    ],
-    'search' => [
-        'path' => '',
     ],
 ];

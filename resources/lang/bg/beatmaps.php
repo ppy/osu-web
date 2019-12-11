@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Анулирай Номинацията',
             'praise' => 'Възхвали',
             'problem' => 'Проблем',
+            'review' => '',
             'suggestion' => 'Предложение',
         ],
 
@@ -183,6 +184,7 @@ return [
         'nominate' => 'Номинирай',
         'nominate_confirm' => 'Номинирай този бийтмап?',
         'nominated_by' => 'номиниран от :users',
+        'not_enough_hype' => "",
         'qualified' => 'Очаква се да бъде класиран :date, ако няма открити проблеми.',
         'qualified_soon' => 'Очаква се да бъде класиран скоро, ако няма открити проблеми.',
         'required_text' => 'Номинации: :current/:required',

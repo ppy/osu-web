@@ -37,7 +37,7 @@ class UserSearch extends RecordSearch
 
     public function records()
     {
-        return $this->response()->records()->with(['country', 'userProfileCustomization'])->get();
+        return $this->response()->records()->with(['country', 'userProfileCustomization', 'userGroups'])->get();
     }
 
     /**

@@ -24,13 +24,8 @@ use Laravel\Passport\Token as PassportToken;
 
 class Token extends PassportToken
 {
-    public function client()
-    {
-        return $this->belongsTo(Client::class);
-    }
-
     public function refreshToken()
     {
-        return $this->hasOne(RefreshToken::class, 'access_token_id', 'id');
+        return $this->hasOne(RefreshToken::class, 'access_token_id');
     }
 }

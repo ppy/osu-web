@@ -56,7 +56,7 @@ class Artist extends Model
 
     public function albums()
     {
-        return $this->hasMany(ArtistAlbum::class, 'artist_id', 'id');
+        return $this->hasMany(ArtistAlbum::class);
     }
 
     public function tracks()
@@ -79,5 +79,10 @@ class Artist extends Model
         }
 
         return in_array($this->id, self::$memoized['recentlyUpdatedArtists'], true);
+    }
+
+    public function url()
+    {
+        return route('artists.show', $this);
     }
 }

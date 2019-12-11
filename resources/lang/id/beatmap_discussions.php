@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
+            'only_unresolved' => 'Hanya tampilkan diskusi yang belum selesai',
             'types' => 'Tipe pesan',
             'username' => 'Nama Pengguna',
+
+            'beatmapset_status' => [
+                '_' => 'Status Beatmap',
+                'all' => 'Semua',
+                'disqualified' => 'Disqualified',
+                'never_qualified' => 'Tidak pernah Qualified',
+                'qualified' => 'Qualified',
+                'ranked' => 'Ranked',
+            ],
 
             'user' => [
                 'label' => 'Pengguna',

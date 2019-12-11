@@ -20,8 +20,8 @@
 
 namespace App\Http\Controllers\Chat\Channels;
 
-use App\Exceptions\API;
 use App\Http\Controllers\Chat\Controller as BaseController;
+use App\Libraries\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use Auth;
@@ -175,30 +175,14 @@ class MessagesController extends BaseController
      */
     public function store($channelId)
     {
-        $channel = Channel::findOrFail($channelId);
+        $params = request()->all();
 
-        if ($channel->isPM()) {
-            // restricted users should be treated as if they do not exist
-            if (optional($channel->pmTargetFor(Auth::user()))->isRestricted()) {
-                abort(404);
-            }
-        }
-
-        priv_check('ChatChannelSend', $channel)->ensureCan();
-
-        try {
-            $message = $channel->receiveMessage(
-                Auth::user(),
-                Request::input('message'),
-                get_bool(Request::input('is_action', false))
-            );
-        } catch (API\ChatMessageEmptyException $e) {
-            abort(422, $e->getMessage());
-        } catch (API\ChatMessageTooLongException $e) {
-            abort(422, $e->getMessage());
-        } catch (API\ExcessiveChatMessagesException $e) {
-            abort(429, $e->getMessage());
-        }
+        $message = Chat::sendMessage(
+            auth()->user(),
+            get_int($channelId),
+            presence($params['message'] ?? null),
+            get_bool($params['is_action'] ?? null) ?? false
+        );
 
         return json_item(
             $message,

@@ -91,6 +91,7 @@ return [
             'nomination_reset' => 'Reset Nominatie',
             'praise' => 'Prijs',
             'problem' => 'Probleem',
+            'review' => '',
             'suggestion' => 'Suggestie',
         ],
 
@@ -183,6 +184,7 @@ return [
         'nominate' => 'Nomineer',
         'nominate_confirm' => 'Nomineer deze beatmap?',
         'nominated_by' => 'genomineerd door :gebruikers',
+        'not_enough_hype' => "Er is niet genoeg hype.",
         'qualified' => 'Naar schatting gerankt op :date, als er geen problemen optreden.',
         'qualified_soon' => 'Naar schatting binnenkort gerankt, als er geen problemen optreden.',
         'required_text' => 'Nimonaties: :current/:required',

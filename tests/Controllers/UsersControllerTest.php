@@ -14,8 +14,6 @@ class UsersControllerTest extends TestCase
      */
     public function testStore()
     {
-        config()->set('osu.user.allow_registration', true);
-
         $previousCount = User::count();
 
         $this
@@ -39,8 +37,6 @@ class UsersControllerTest extends TestCase
      */
     public function testStoreDryRunValid()
     {
-        config()->set('osu.user.allow_registration', true);
-
         $previousCount = User::count();
 
         $this
@@ -63,8 +59,6 @@ class UsersControllerTest extends TestCase
      */
     public function testStoreInvalid()
     {
-        config()->set('osu.user.allow_registration', true);
-
         $previousCount = User::count();
 
         $this
@@ -101,8 +95,6 @@ class UsersControllerTest extends TestCase
 
     public function testStoreWithCountry()
     {
-        config()->set('osu.user.allow_registration', true);
-
         $country = Country::inRandomOrder()->first() ?? factory(Country::class)->create();
 
         $previousCount = User::count();
@@ -126,6 +118,30 @@ class UsersControllerTest extends TestCase
             ]);
 
         $this->assertSame($previousCount + 1, User::count());
+    }
+
+    /**
+     * Disable registration for logged in user.
+     */
+    public function testStoreLoggedIn()
+    {
+        $user = factory(User::class)->create();
+
+        $previousCount = User::count();
+
+        $this
+            ->actingAsVerified($user)
+            ->json('POST', route('users.store'), [
+                'user' => [
+                    'username' => 'user1',
+                    'user_email' => 'user1@example.com',
+                    'password' => 'hunter22',
+                ],
+            ], [
+                'HTTP_USER_AGENT' => config('osu.client.user_agent'),
+            ])->assertStatus(302);
+
+        $this->assertSame($previousCount, User::count());
     }
 
     public function testPreviousUsernameShouldRedirect()
