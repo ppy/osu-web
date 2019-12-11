@@ -140,8 +140,6 @@ return [
     'topic_watches' => [
         'index' => [
             'title' => 'Forum Subscriptions',
-            'title_compact' => 'forum subscriptions',
-            'title_main' => 'Forum <strong>Subscriptions</strong>',
 
             'box' => [
                 'total' => 'Topics subscribed',

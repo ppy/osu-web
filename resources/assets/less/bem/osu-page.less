@@ -137,13 +137,30 @@
     }
   }
 
+  &--forum-topic-watches-list {
+    .default();
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  &--forum-topic-watches-status {
+    .default-gutter-v2();
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: @osu-colour-b4;
+    display: flex;
+    justify-content: flex-end;
+  }
+
   &--full {
     flex: 1 0 auto;
   }
 
   &--generic {
-    .default;
-    padding: 20px;
+    .default();
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   &--generic-compact {
