@@ -17,6 +17,7 @@
  */
 import PostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
+import * as _ from 'lodash';
 import PostItem from 'news-index/post-item';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
@@ -25,7 +26,10 @@ export function LandingNews({posts}: {posts: PostJson[]}) {
   return (
     <div className='landing-news'>
       <div className='landing-news__posts'>
-        {posts.map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing', 'hover']} key={i}/>)}
+        {<PostItem post={posts[0]} modifiers={['landing', 'hover']} />}
+      </div>
+      <div className='landing-news__posts'>
+        {_.slice(posts, 1).map((post: PostJson, i: number) => <PostItem post={post} modifiers={['landing', 'hover']} key={i}/>)}
       </div>
       <div className='landing-news__link'>
         <ShowMoreLink
