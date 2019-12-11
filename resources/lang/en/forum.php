@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] New reply for topic ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Latest Post',
 
