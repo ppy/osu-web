@@ -32,8 +32,8 @@ import UnreadNotificationStackStore from './unread-notification-stack-store';
 export default class NotificationStore extends Store {
   @observable notifications = new Map<number, Notification>();
   @observable pmNotification = new LegacyPmNotification();
-  readonly stacks = new NotificationStackStore(this.root, this.dispatcher);
-  readonly unreadStacks = new UnreadNotificationStackStore(this.root, this.dispatcher);
+  readonly stacks = new NotificationStackStore(this.root);
+  readonly unreadStacks = new UnreadNotificationStackStore(this.root);
 
   private debouncedSendQueued = debounce(this.sendQueued, 500);
   private queued = new Set<number>();

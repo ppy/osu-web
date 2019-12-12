@@ -17,7 +17,7 @@
  */
 
 import { ChatChannelSwitchAction } from 'actions/chat-actions';
-import Dispatcher from 'dispatcher';
+import { dispatch } from 'app-dispatcher';
 import HeaderV3 from 'header-v3';
 import { Img2x } from 'img2x';
 import { observer, Provider } from 'mobx-react';
@@ -31,7 +31,6 @@ import InputBox from './input-box';
 
 interface Props {
   dataStore: RootDataStore;
-  dispatcher: Dispatcher;
   initialChannel?: number;
   worker: ChatWorker;
 }
@@ -42,7 +41,7 @@ export default class MainView extends React.Component<Props, any> {
     super(props);
 
     if (this.props.initialChannel) {
-      this.props.dispatcher.dispatch(new ChatChannelSwitchAction(this.props.initialChannel));
+      dispatch(new ChatChannelSwitchAction(this.props.initialChannel));
     }
   }
 
@@ -61,7 +60,7 @@ export default class MainView extends React.Component<Props, any> {
     return (
       <div>
         <HeaderV3 compact={true} theme='chat' title='Chat' />
-        <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
+        <Provider dataStore={this.props.dataStore}>
           {this.props.dataStore.channelStore.loaded ? (
             <div className='chat osu-page osu-page--chat'>
               <div className='chat__sidebar'>

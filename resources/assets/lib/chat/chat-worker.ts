@@ -25,29 +25,25 @@ import {
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
 import { transaction } from 'mobx';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
 
+@dispatchListener
 export default class ChatWorker implements DispatchListener {
   private api: ChatAPI;
-  private dispatcher: Dispatcher;
   private pollingEnabled: boolean = true;
   private pollTime: number = 1000;
   private pollTimeIdle: number = 5000;
-  private rootDataStore: RootDataStore;
   private updateTimerId?: number;
   private updateXHR: boolean = false;
   private windowIsActive: boolean = true;
 
-  constructor(dispatcher: Dispatcher, rootDataStore: RootDataStore) {
-    this.dispatcher = dispatcher;
-    this.rootDataStore = rootDataStore;
-    this.dispatcher.register(this);
+  constructor(private rootDataStore: RootDataStore) {
     this.api = new ChatAPI();
   }
 
@@ -82,10 +78,10 @@ export default class ChatWorker implements DispatchListener {
           updateJson.messages.forEach((message: MessageJSON) => {
             const newMessage = Message.fromJSON(message);
             newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
-            this.dispatcher.dispatch(new ChatMessageAddAction(newMessage));
+            dispatch(new ChatMessageAddAction(newMessage));
           });
 
-          this.dispatcher.dispatch(new ChatPresenceUpdateAction(updateJson.presence));
+          dispatch(new ChatPresenceUpdateAction(updateJson.presence));
         });
       })
       .catch((err) => {
@@ -122,12 +118,12 @@ export default class ChatWorker implements DispatchListener {
           transaction(() => {
             this.rootDataStore.channelStore.channels.delete(channelId);
             this.rootDataStore.channelStore.updatePresence(response.presence);
-            this.dispatcher.dispatch(new ChatChannelSwitchAction(newId));
+            dispatch(new ChatChannelSwitchAction(newId));
           });
         })
         .catch(() => {
           message.errored = true;
-          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
+          dispatch(new ChatMessageUpdateAction(message));
         });
     } else {
       this.api.sendMessage(channelId, message.content, message.isAction)
@@ -137,11 +133,11 @@ export default class ChatWorker implements DispatchListener {
           } else {
             message.errored = true;
           }
-          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
+          dispatch(new ChatMessageUpdateAction(message));
         })
         .catch(() => {
           message.errored = true;
-          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
+          dispatch(new ChatMessageUpdateAction(message));
         });
     }
   }

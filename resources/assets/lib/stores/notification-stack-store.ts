@@ -16,7 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Dispatcher from 'dispatcher';
 import NotificationJson, { NotificationBundleJson, NotificationStackJson, NotificationTypeJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { action, observable } from 'mobx';
@@ -34,8 +33,8 @@ export default class NotificationStackStore extends Store {
   @observable readonly stacks = new Map<string, NotificationStack>();
   @observable readonly types = new Map<string, NotificationType>();
 
-  constructor(protected root: RootDataStore, protected dispatcher: Dispatcher) {
-    super(root, dispatcher);
+  constructor(protected root: RootDataStore) {
+    super(root);
 
     this.addLegacyPm();
   }

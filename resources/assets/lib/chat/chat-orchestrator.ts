@@ -23,24 +23,21 @@ import {
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
 import { transaction } from 'mobx';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
 
+@dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
   private api: ChatAPI;
-  private dispatcher: Dispatcher;
-  private rootDataStore: RootDataStore;
   private windowIsActive: boolean = true;
 
-  constructor(dispatcher: Dispatcher, rootDataStore: RootDataStore) {
-    this.dispatcher = dispatcher;
+  constructor(private rootDataStore: RootDataStore) {
     this.rootDataStore = rootDataStore;
-    this.dispatcher.register(this);
     this.api = new ChatAPI();
   }
 
@@ -100,7 +97,7 @@ export default class ChatOrchestrator implements DispatchListener {
     const channelList = channelStore.channelList;
     if (channelList.length > 0) {
       // TODO: switch to next 'closest' conversation instead of first in list
-      this.dispatcher.dispatch(new ChatChannelSwitchAction(channelList[0].channelId));
+      dispatch(new ChatChannelSwitchAction(channelList[0].channelId));
     } else {
       channelStore.loaded  = false;
     }

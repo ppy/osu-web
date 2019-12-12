@@ -17,7 +17,6 @@
  */
 
 import { BeatmapsetSearch } from 'beatmaps/beatmapset-search';
-import Dispatcher from 'dispatcher';
 import { CommentBundleJSON } from 'interfaces/comment-json';
 import { action } from 'mobx';
 import { BeatmapsetStore } from './beatmapset-store';
@@ -42,18 +41,18 @@ export default class RootDataStore {
   uiState: UIStateStore;
   userStore: UserStore;
 
-  constructor(dispatcher: Dispatcher) {
+  constructor() {
     // TODO: needs re-re-refactoring
-    this.uiState = new UIStateStore(this, dispatcher);
-    this.beatmapsetStore = new BeatmapsetStore(this, dispatcher);
-    this.beatmapsetSearch = new BeatmapsetSearch(this.beatmapsetStore, dispatcher);
-    this.clientStore = new ClientStore(this, dispatcher);
-    this.commentableMetaStore = new CommentableMetaStore(this, dispatcher);
-    this.commentStore = new CommentStore(this, dispatcher);
-    this.channelStore = new ChannelStore(this, dispatcher);
-    this.notificationStore = new NotificationStore(this, dispatcher);
-    this.ownClientStore = new OwnClientStore(this, dispatcher);
-    this.userStore = new UserStore(this, dispatcher);
+    this.uiState = new UIStateStore(this);
+    this.beatmapsetStore = new BeatmapsetStore(this);
+    this.beatmapsetSearch = new BeatmapsetSearch(this.beatmapsetStore);
+    this.clientStore = new ClientStore(this);
+    this.commentableMetaStore = new CommentableMetaStore(this);
+    this.commentStore = new CommentStore(this);
+    this.channelStore = new ChannelStore(this);
+    this.notificationStore = new NotificationStore(this);
+    this.ownClientStore = new OwnClientStore(this);
+    this.userStore = new UserStore(this);
   }
 
   @action
