@@ -24,7 +24,7 @@ import { Spinner } from 'spinner';
 import { StringWithComponent } from 'string-with-component';
 import Beatmapset from './beatmapset';
 import User from './user';
-import { ResultMode } from './worker';
+import { ResultMode, Section } from './worker';
 import Worker from './worker';
 
 interface Props {
@@ -39,10 +39,9 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
 @observer export default class QuickSearch extends React.Component<Props, State> {
   searchPath = route('search', null, false);
-  state = { open: false };
+  state: State = { open: false };
 
   private inputRef = React.createRef<HTMLInputElement>();
-
   private get isSearchPage() {
     return document.location.pathname === this.searchPath;
   }
@@ -51,8 +50,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     if (this.inputRef.current != null && prevState.open !== this.state.open && this.state.open) {
       this.inputRef.current.selectionStart = 0;
       this.inputRef.current.selectionEnd = this.inputRef.current.value.length;
-      this.inputRef.current.focus();
     }
+    this.inputRef.current?.focus();
   }
 
   render() {
@@ -76,6 +75,11 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     );
   }
 
+  private boxIsActive(section: Section, idx: number): boolean {
+    const worker = this.props.worker;
+    return worker.cursor?.section === section && worker.cursor?.index === idx;
+  }
+
   private count(mode: ResultMode) {
     if (this.props.worker.searchResult === null) {
       return 0;
@@ -84,9 +88,21 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return this.props.worker.searchResult[mode].total;
   }
 
+  private navigateToCursor() {
+    const url = this.props.worker.cursorURL;
+    if (url) {
+      osu.navigate(url, false);
+    }
+  }
+
   private onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
+    const key = event.key;
+    if (key === 'Enter') {
       this.props.worker.debouncedSearch.flush();
+      this.navigateToCursor();
+    }
+    if (key === 'ArrowUp' || key === 'ArrowDown') {
+      this.props.worker.cycleCursor(key === 'ArrowDown' ? 1 : -1);
     }
   }
 
@@ -105,10 +121,13 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items'>
-        {this.props.worker.searchResult.beatmapset.beatmapsets.map((beatmapset) => {
+        {this.props.worker.searchResult.beatmapset.beatmapsets.map((beatmapset, idx) => {
           return (
             <div key={beatmapset.id} className='quick-search-items__item'>
-              <Beatmapset beatmapset={beatmapset} />
+              <Beatmapset
+                beatmapset={beatmapset}
+                active={this.boxIsActive(Section.Beatmapset, idx)}
+              />
             </div>
           );
         })}
@@ -116,7 +135,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
         {this.count('beatmapset') > this.props.worker.searchResult.beatmapset.beatmapsets.length
           ? (
             <div className='quick-search-items__item'>
-              {this.renderResultLink('beatmapset')}
+              {this.renderResultLink('beatmapset', this.boxIsActive(Section.BeatmapsetOthers, 0))}
             </div>
           ) : null
         }
@@ -172,10 +191,10 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items'>
-        {modes.map((mode) => {
+        {modes.map((mode, idx) => {
           return (
             <div key={mode} className='quick-search-items__item'>
-              {this.renderResultLink(mode)}
+              {this.renderResultLink(mode, this.boxIsActive(Section.Others, idx))}
             </div>
           );
         })}
@@ -248,15 +267,20 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     );
   }
 
-  private renderResultLink(mode: ResultMode) {
+  private renderResultLink(mode: ResultMode, active: boolean = false) {
     let key = 'quick_search.result.';
 
     key += otherModes.includes(mode) ? 'title' : 'more';
 
+    let className = 'search-result-more';
+    if (active) {
+      className += ' search-result-more__active';
+    }
+
     return (
       <a
         href={route('search', { mode, query: this.props.worker.query })}
-        className='search-result-more'
+        className={className}
       >
         <div className='search-result-more__content'>
           {osu.trans(key, { mode: osu.trans(`quick_search.mode.${mode}`) })}
@@ -297,10 +321,10 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     return (
       <div className='quick-search-items'>
-        {this.props.worker.searchResult.user.users.map((user) => {
+        {this.props.worker.searchResult.user.users.map((user, idx) => {
           return (
             <div key={user.id} className='quick-search-items__item'>
-              <User user={user} />
+              <User user={user} active={this.boxIsActive(Section.User, idx)}/>
             </div>
           );
         })}
@@ -308,7 +332,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
         {this.count('user') > this.props.worker.searchResult.user.users.length
           ? (
             <div className='quick-search-items__item'>
-              {this.renderResultLink('user')}
+              {this.renderResultLink('user', this.boxIsActive(Section.UserOthers, 0))}
             </div>
           ) : null
         }

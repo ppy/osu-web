@@ -21,11 +21,16 @@ import { Img2x } from 'img2x';
 import { route } from 'laroute';
 import * as React from 'react';
 
-export default function Beatmapset({ beatmapset }: { beatmapset: BeatmapsetJSON }) {
+export default function Beatmapset({ beatmapset, active = false }: { active?: boolean, beatmapset: BeatmapsetJSON }) {
   const url = route('beatmapsets.show', { beatmapset: beatmapset.id });
 
+  let className = 'beatmapset-search-card';
+  if (active) {
+    className += ' beatmapset-search-card__active';
+  }
+
   return (
-    <a className='beatmapset-search-card' href={url}>
+    <a className={className} href={url}>
       <div className='beatmapset-search-card__cover-container'>
         <Img2x className='beatmapset-search-card__cover' src={beatmapset.covers.list} />
       </div>

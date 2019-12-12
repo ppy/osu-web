@@ -22,11 +22,16 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { SupporterIcon } from 'supporter-icon';
 
-export default function User({ user }: { user: User }) {
+export default function User({ user, active = false }: { active?: boolean, user: User }) {
   const url = route('users.show', { user: user.id });
 
+  let className = 'user-search-card clickable-row';
+  if (active) {
+    className += ' user-search-card__active';
+  }
+
   return (
-    <div className='user-search-card clickable-row'>
+    <div className={className}>
       <a className='user-search-card__avatar-container' href={url}>
         <div className='avatar avatar--full' style={{ backgroundImage: osu.urlPresence(user.avatar_url) }} />
       </a>
