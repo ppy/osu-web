@@ -17,23 +17,28 @@
  */
 
 import DispatcherAction from 'actions/dispatcher-action';
-import DispatchListener from './dispatch-listener';
+import DispatchListener from 'dispatch-listener';
+import Dispatcher from 'dispatcher';
 
-export default class Dispatcher {
-  private callbacks: DispatchListener[] = [];
-  private trace: boolean = false;
+const dispatcher = new Dispatcher();
 
-  dispatch(action: DispatcherAction) {
-    if (this.trace) {
-      // tslint:disable-next-line: no-console
-      console.debug('Dispatcher::dispatch', action);
+function isDispatchListener(target: any): target is DispatchListener {
+  return target.handleDispatchAction;
+}
+
+export function dispatch(data: DispatcherAction) {
+  dispatcher.dispatch(data);
+}
+
+// https://www.typescriptlang.org/docs/handbook/decorators.html#class-decorators
+export function dispatchListener<T extends new(...args: any[]) => {}>(ctor: T) {
+  return class extends ctor {
+    constructor(...args: any[]) {
+      super(...args);
+
+      if (isDispatchListener(this)) {
+        dispatcher.register(this);
+      }
     }
-    this.callbacks.forEach((callback) => {
-      callback.handleDispatchAction(action);
-    });
-  }
-
-  register(callback: DispatchListener) {
-    this.callbacks.push(callback);
-  }
+  };
 }
