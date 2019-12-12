@@ -26,13 +26,27 @@ import { Spinner } from 'spinner';
 import RootDataStore from 'stores/root-data-store';
 import { StringWithComponent } from 'string-with-component';
 import { UserAvatar } from 'user-avatar';
+import { ChatChannelSwitchAction } from '../actions/chat-actions';
+import DispatcherAction from '../actions/dispatcher-action';
+import DispatchListener from '../dispatch-listener';
 import MessageDivider from './message-divider';
 import MessageGroup from './message-group';
 
 @inject('dataStore')
+@inject('dispatcher')
 @observer
-export default class ConversationView extends React.Component<any, any> {
+export default class ConversationView extends React.Component<any, any> implements DispatchListener {
+  private baseCssClass = 'chat-conversation';
+  private chatLabelClass = 'chat-label';
   private chatViewRef = React.createRef<HTMLInputElement>();
+  private didSwitchChannel: boolean = true;
+  private unreadMarker?: JQuery<HTMLElement>;
+  private unreadMarkerClass = 'read-marker';
+
+  constructor(props: {}) {
+    super(props);
+    this.props.dispatcher.register(this);
+  }
 
   componentDidMount() {
     this.componentDidUpdate();
@@ -45,8 +59,32 @@ export default class ConversationView extends React.Component<any, any> {
       return;
     }
 
-    if (this.props.dataStore.uiState.chat.autoScroll) {
-      $(chatView).scrollTop(chatView.scrollHeight);
+    const dataStore = this.props.dataStore;
+    const channel = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
+    if (!channel.loaded) {
+      return;
+    }
+
+    const unreadMarker = $(chatView).find(`.${this.baseCssClass}__${this.unreadMarkerClass}`);
+    this.unreadMarker = unreadMarker.length > 0 ? unreadMarker : undefined;
+
+    if (this.didSwitchChannel) {
+      if (this.unreadMarker) {
+        this.scrollToUnread();
+      } else {
+        this.scrollToBottom();
+      }
+      this.didSwitchChannel = false;
+    } else {
+      if (this.props.dataStore.uiState.chat.autoScroll) {
+        this.scrollToBottom();
+      }
+    }
+  }
+
+  handleDispatchAction(action: DispatcherAction) {
+    if (action instanceof ChatChannelSwitchAction) {
+      this.didSwitchChannel = true;
     }
   }
 
@@ -177,5 +215,27 @@ export default class ConversationView extends React.Component<any, any> {
         }
       </div>
     );
+  }
+
+  scrollToBottom = (): void => {
+    const chatView = this.chatViewRef.current;
+    if (chatView) {
+      $(chatView).scrollTop(chatView.scrollHeight);
+    }
+  }
+
+  scrollToUnread = (): void => {
+    const chatView = this.chatViewRef.current;
+    const unreadMarkerAtVeryTop = this.unreadMarker?.prev().hasClass(`${this.baseCssClass}__${this.chatLabelClass}`);
+    if (chatView && this.unreadMarker) {
+      // If the unread marker is the first element in this conversation, it most likely means that the unread cursor
+      // is even further in the past, making the displayed marker somewhat useless (until we can back-load those
+      // past messages in)... thus we ignore it when auto-scrolling and just go to the bottom instead.
+      if (unreadMarkerAtVeryTop) {
+        this.scrollToBottom();
+      } else {
+        $(chatView).scrollTop(this.unreadMarker[0].offsetTop);
+      }
+    }
   }
 }
