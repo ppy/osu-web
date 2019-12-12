@@ -27,7 +27,7 @@ return [
 
     'index' => [
         'title' => [
-            '_' => 'Home :info',
+            '_' => 'Home',
             'info' => 'Friends',
         ],
     ],

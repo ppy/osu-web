@@ -18,6 +18,7 @@
 
 import { Build } from 'build'
 import { ChangelogHeaderStreams } from 'changelog-header-streams'
+import HeaderV4 from 'header-v4'
 import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
@@ -43,13 +44,13 @@ export class Main extends React.PureComponent
 
 
   render: =>
-    div null,
-      div className: 'header-v3 header-v3--changelog',
-        div className: 'header-v3__bg'
-        div className: 'header-v3__overlay'
-        div className: 'osu-page osu-page--header-v3',
-          @renderHeaderTitle()
-          @renderHeaderTabs()
+    el React.Fragment, null,
+      el HeaderV4,
+        theme: 'changelog'
+        links: @headerLinks()
+        linksBreadcrumb: true
+        section: osu.trans 'layout.header.changelog._'
+        subSection: osu.trans 'layout.header.changelog.index'
 
       div className: 'osu-page osu-page--changelog',
         el ChangelogHeaderStreams, updateStreams: @props.updateStreams
@@ -76,23 +77,13 @@ export class Main extends React.PureComponent
           modifiers: ['t-greyviolet-darker', 'changelog-index']
 
 
-  renderHeaderTabs: =>
-    div className: 'page-mode-v2 page-mode-v2--changelog',
-      span
-        className: 'page-mode-v2__link page-mode-v2__link--active'
-        osu.trans 'changelog.index.title.info'
-
-
-  renderHeaderTitle: =>
-    div className: 'osu-page-header-v3 osu-page-header-v3--changelog',
-      div className: 'osu-page-header-v3__title',
-        div className: 'osu-page-header-v3__title-icon',
-          div className: 'osu-page-header-v3__icon'
-        h1
-          className: 'osu-page-header-v3__title-text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'changelog.index.title._',
-              info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('changelog.index.title.info')}</span>"
+  headerLinks: =>
+    [
+      {
+        title: osu.trans 'layout.header.changelog.index'
+        url: laroute.route('changelog.index')
+      }
+    ]
 
 
   showMore: =>

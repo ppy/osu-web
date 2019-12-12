@@ -49,10 +49,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Comments :info',
-            'info' => 'Listing',
-        ],
+        'nav_title' => 'Listing',
     ],
 
     'placeholder' => [
@@ -62,9 +59,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Comments',
-            'info' => 'Comments',
-        ],
+        'nav_title' => 'Comments',
     ],
 ];
