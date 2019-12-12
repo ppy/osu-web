@@ -49,8 +49,8 @@ export class Main extends React.PureComponent
         theme: 'changelog'
         links: @headerLinks()
         linksBreadcrumb: true
-        section: osu.trans 'changelog.index.title._', info: ''
-        subSection: osu.trans 'changelog.index.title.info'
+        section: osu.trans 'layout.header.changelog._'
+        subSection: osu.trans 'layout.header.changelog.index'
 
       div className: 'osu-page osu-page--changelog',
         el ChangelogHeaderStreams, updateStreams: @props.updateStreams
@@ -80,7 +80,7 @@ export class Main extends React.PureComponent
   headerLinks: =>
     [
       {
-        title: osu.trans 'changelog.index.title.info'
+        title: osu.trans 'layout.header.changelog.index'
         url: laroute.route('changelog.index')
       }
     ]

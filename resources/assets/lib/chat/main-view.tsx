@@ -59,7 +59,11 @@ export default class MainView extends React.Component<Props, any> {
     const lazerLink = 'https://github.com/ppy/osu/releases';
     return (
       <div>
-        <HeaderV4 section={osu.trans('chat.title')} theme='chat' />
+        <HeaderV4
+          section={osu.trans('layout.header.community._')}
+          subSection={osu.trans('chat.title')}
+          theme='chat'
+        />
         <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
           {this.props.dataStore.channelStore.loaded ? (
             <div className='chat osu-page osu-page--chat'>

@@ -46,9 +46,9 @@ export class Main extends React.Component
       el HeaderV4,
         links: @headerLinks()
         linksBreadcrumb: true
+        section: osu.trans 'layout.header.community._'
+        subSection: osu.trans 'layout.header.community.comments'
         theme: 'comments'
-        section: osu.trans 'comments.index.title._', info: ''
-        subSection: osu.trans 'comments.index.title.info'
 
       el Observer, null, () =>
         comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
@@ -69,7 +69,7 @@ export class Main extends React.Component
   headerLinks: ->
     [
       {
-        title: osu.trans 'comments.index.title.info'
+        title: osu.trans 'comments.index.nav_title'
         url: laroute.route('comments.index')
       }
     ]

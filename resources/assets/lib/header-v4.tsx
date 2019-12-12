@@ -65,11 +65,10 @@ export default class HeaderV4 extends React.Component<Props> {
             </div>
           </div>
 
-          {this.props.links.length > 0
-            ? <div className='header-v4__row header-v4__row--bar'>
-                {this.renderLinks()}
-              </div>
-            : null
+          {this.props.links.length > 0 &&
+            <div className='header-v4__row header-v4__row--bar'>
+              {this.renderLinks()}
+            </div>
           }
         </div>
       </div>

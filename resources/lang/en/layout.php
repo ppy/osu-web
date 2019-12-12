@@ -24,9 +24,14 @@ return [
     ],
 
     'header' => [
+        'changelog' => [
+            '_' => 'Changelog',
+            'index' => 'Listing',
+        ],
+
         'community' => [
             '_' => 'Community',
-
+            'comments' => 'Comments',
             'forum' => 'Forum',
         ],
 
