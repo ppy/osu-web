@@ -33,19 +33,21 @@
     </div>
 
     <div class="header-v4__content">
-        <div class="header-v4__row header-v4__row--title">
-            <div class="header-v4__icon"></div>
-            <div class="header-v4__title">
-                <span class="header-v4__title-section">
-                    {{ $section }}
-                </span>
-                @if (present($subSection))
-                    <span class="header-v4__title-action">
-                        {{ $subSection }}
+        @if ($section !== null)
+            <div class="header-v4__row header-v4__row--title">
+                <div class="header-v4__icon"></div>
+                <div class="header-v4__title">
+                    <span class="header-v4__title-section">
+                        {{ $section }}
                     </span>
-                @endif
+                    @if (present($subSection))
+                        <span class="header-v4__title-action">
+                            {{ $subSection }}
+                        </span>
+                    @endif
+                </div>
             </div>
-        </div>
+        @endif
 
         @if ($links !== null && count($links) > 0)
             <div class="header-v4__row header-v4__row--bar">
@@ -72,5 +74,7 @@
                 </{!! $linksElement !!}>
             </div>
         @endif
+
+        {{ $contentAppend ?? null }}
     </div>
 </div>
