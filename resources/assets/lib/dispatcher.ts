@@ -20,7 +20,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import DispatchListener from './dispatch-listener';
 
 export default class Dispatcher {
-  private callbacks: DispatchListener[] = [];
+  private listeners = new Set<DispatchListener>();
   private trace: boolean = false;
 
   dispatch(action: DispatcherAction) {
@@ -28,12 +28,12 @@ export default class Dispatcher {
       // tslint:disable-next-line: no-console
       console.debug('Dispatcher::dispatch', action);
     }
-    this.callbacks.forEach((callback) => {
+    this.listeners.forEach((callback) => {
       callback.handleDispatchAction(action);
     });
   }
 
   register(callback: DispatchListener) {
-    this.callbacks.push(callback);
+    this.listeners.add(callback);
   }
 }
