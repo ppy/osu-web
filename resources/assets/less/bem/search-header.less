@@ -20,16 +20,13 @@
   @_top: search-header;
   @_search-icon-width: 40px;
 
-  .default-header-overlay();
-  .default-box-shadow();
-  .at2x-simple('/images/headers/search.jpg');
-  background-size: cover;
-  height: 200px;
-  color: #fff;
+  .default-gutter-v2();
+  color: @osu-colour-c1;
+  background-color: @osu-colour-b4;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 20px 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
   &__box {
     position: relative;

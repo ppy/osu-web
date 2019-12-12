@@ -33,6 +33,12 @@
     }
   }
 
+  &--search {
+    @media @desktop {
+      height: (@nav2-height + 70px);
+    }
+  }
+
   &--supporter {
     @media @desktop {
       min-height: 450px;
@@ -97,6 +103,10 @@
 
     .@{_top}--news & {
       .at2x-simple('/images/headers/news.png');
+    }
+
+    .@{_top}--search & {
+      .at2x-simple('/images/headers/search.jpg');
     }
 
     .@{_top}--supporter & {
