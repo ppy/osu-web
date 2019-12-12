@@ -36,8 +36,9 @@ export class Main extends React.PureComponent
         el HeaderV4,
           links: @headerLinks()
           linksBreadcrumb: true
+          section: osu.trans 'layout.header.community._'
+          subSection: osu.trans 'layout.header.community.comments'
           theme: 'comments'
-          section: osu.trans 'comments.show.title._', info: ''
 
         div className: 'osu-page osu-page--comment',
           el Comment,
@@ -51,11 +52,11 @@ export class Main extends React.PureComponent
   headerLinks: =>
     [
         {
-          title: osu.trans 'comments.index.title.info'
+          title: osu.trans 'comments.index.nav_title'
           url: laroute.route('comments.index')
         }
         {
-          title: osu.trans 'comments.show.title._'
+          title: osu.trans 'comments.show.nav_title'
           url: laroute.route('comments.show', @comment)
         }
     ]

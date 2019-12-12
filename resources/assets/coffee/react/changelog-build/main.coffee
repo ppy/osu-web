@@ -36,7 +36,7 @@ export class Main extends React.PureComponent
         theme: 'changelog'
         links: @headerLinks()
         linksBreadcrumb: true
-        section: osu.trans 'changelog.index.title._', info: ''
+        section: osu.trans 'layout.header.changelog._'
         subSection: @props.build.update_stream.display_name
 
       div className: 'osu-page osu-page--changelog',
@@ -106,7 +106,7 @@ export class Main extends React.PureComponent
     [
       {
         url: laroute.route('changelog.index')
-        title: osu.trans 'changelog.index.title.info'
+        title: osu.trans 'layout.header.changelog.index'
       }
       {
         url: Url.changelogBuild @props.build
