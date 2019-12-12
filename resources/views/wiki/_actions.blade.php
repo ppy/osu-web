@@ -15,36 +15,27 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-
-<div class="osu-page-header__actions">
-    <div class="forum-post-actions">
-        <div class="forum-post-actions__action">
+<div class="osu-page">
+    <div class="forum-topic-toolbar">
+        <div class="forum-topic-toolbar__item">
             <a
-                class="btn-circle"
+                class="btn-osu-big btn-osu-big--rounded-thin"
                 href="{{ $page->editUrl() }}"
-                title="{{ trans('wiki.show.edit.link') }}"
-                data-tooltip-position="left center"
             >
-                <span class="btn-circle__content">
-                    <i class="fab fa-github"></i>
-                </span>
+                {{ trans('wiki.show.edit.link') }}
             </a>
         </div>
 
         @if (priv_check('WikiPageRefresh')->can())
-            <div class="forum-post-actions__action">
+            <div class="forum-topic-toolbar__item">
                 <button
                     type="button"
-                    class="btn-circle"
+                    class="btn-osu-big btn-osu-big--rounded-thin"
                     data-remote="true"
                     data-url="{{ wiki_url($page->path) }}"
                     data-method="PUT"
-                    title="{{ trans('wiki.show.edit.refresh') }}"
-                    data-tooltip-position="left center"
                 >
-                    <span class="btn-circle__content">
-                        <i class="fas fa-sync"></i>
-                    </span>
+                    {{ trans('wiki.show.edit.refresh') }}
                 </button>
             </div>
         @endif

@@ -35,6 +35,11 @@ return [
             'forum' => 'forum',
         ],
 
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'index',
+        ],
+
         'home' => [
             '_' => 'home',
         ],

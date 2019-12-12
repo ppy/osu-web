@@ -54,15 +54,19 @@
                 >
                     @foreach ($links as $link)
                         <li class="header-nav-v4__item">
-                            <a
-                                class="
-                                    header-nav-v4__link
-                                    {{ ($link['active'] ?? false) ? 'header-nav-v4__link--active' : '' }}
-                                "
-                                href="{{ $link['url'] }}"
-                            >
-                                {{ $link['title'] }}
-                            </a>
+                            @if (isset($link['url']))
+                                <a
+                                    class="
+                                        header-nav-v4__link
+                                        {{ ($link['active'] ?? false) ? 'header-nav-v4__link--active' : '' }}
+                                    "
+                                    href="{{ $link['url'] }}"
+                                >
+                                    {{ $link['title'] }}
+                                </a>
+                            @else
+                                <span class="header-nav-v4__text">{{ $link['title'] }}</span>
+                            @endif
                         </li>
                     @endforeach
                 </{!! $linksElement !!}>

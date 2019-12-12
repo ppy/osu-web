@@ -23,7 +23,7 @@
 @section('content')
     @include('home._user_header_default', ['title' => trans('forum.topic_watches.index.title_compact')])
 
-    <div class="osu-page osu-page--forum-topic-watches-status">
+    <div class="osu-page osu-page--info-bar">
         <div class="counter-box counter-box--forum">
             <div class="counter-box__content">
                 <div class="counter-box__title">
