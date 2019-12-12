@@ -67,12 +67,18 @@ export default class Worker {
   private xhr: JQueryXHR | null = null;
 
   @action cycleCursor(direction: number) {
+    let newCursor;
     if (!this.cursor) {
-      this.cursor = {section: SECTIONS[0], index: 0};
-      return;
+      if (direction > 0) {
+        newCursor = {section: SECTIONS[0], index: 0};
+      } else {
+        const section = SECTIONS.length - 1;
+        newCursor = {section, index: this.sectionLength(section) - 1};
+      }
+    } else {
+      newCursor = {...this.cursor};
+      newCursor.index += direction;
     }
-    let newCursor: Cursor = {...this.cursor};
-    newCursor.index += direction;
 
     if (newCursor.index < 0 || newCursor.index >= this.sectionLength(SECTIONS[newCursor.section])) {
       let newSection = newCursor.section;
@@ -140,6 +146,7 @@ export default class Worker {
 
   @action updateQuery(newQuery: string) {
     this.query = newQuery;
+    this.cursor = null;
     this.debouncedSearch();
   }
 
