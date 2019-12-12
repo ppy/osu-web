@@ -15,9 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', ['legacyNav' => false])
 
 @section('content')
+    @include('layout._page_header_v4', ['params' => [
+        'section' => trans('common.title.notice'),
+        'theme' => 'default',
+    ]])
+
     <div class="osu-page osu-page--generic">
         <h1>{{ trans('users.disabled.title') }}</h1>
 
