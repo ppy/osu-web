@@ -114,10 +114,17 @@
 
   &__title-action {
     color: @osu-colour-h1;
-    margin-left: 10px;
+    margin-left: 5px;
+
+    &::before {
+      color: @osu-colour-f1;
+      content: '•';
+      margin-right: 5px;
+    }
   }
 
   &__title-section {
     font-weight: 600;
+    display: inline-flex; // strip extra spaces
   }
 }
