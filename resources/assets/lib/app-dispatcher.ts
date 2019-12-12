@@ -20,7 +20,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
 
-const dispatcher = new Dispatcher();
+export const dispatcher = new Dispatcher();
 
 function isDispatchListener(target: any): target is DispatchListener {
   return target.handleDispatchAction;
