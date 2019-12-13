@@ -15,18 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', ['legacyNav' => false])
 
 @section('content')
-    <div class="osu-page">
-        <div class="osu-page-header osu-page-header--password-reset">
-            <h1 class="osu-page-header__title">
-                {{ trans('password_reset.title') }}
-            </h1>
-        </div>
-    </div>
-
-    <div class="osu-page osu-page--password-reset">
+    @include('layout._page_header_v4', ['params' => [
+        'section' => trans('layout.header.home._'),
+        'subSection' => trans('layout.header.home.password_reset'),
+        'theme' => 'password-reset',
+    ]])
+    <div class="osu-page osu-page--generic-compact">
         @if ($isStarted)
             @include('password_reset._reset')
         @else

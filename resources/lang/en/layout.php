@@ -50,6 +50,7 @@ return [
 
         'home' => [
             '_' => 'home',
+            'password_reset' => 'reset password',
         ],
 
         'notice' => [
