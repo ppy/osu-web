@@ -23,9 +23,9 @@ class LoginTest extends DuskTestCase
                 ->type('username', $user->user_email)
                 ->type('password', 'password') // User factory generates users with the password hardcoded as 'password'
                 ->press('Sign in')
-                ->waitFor('.osu-page-header--home-user')
+                ->waitFor('.user-home')
                 ->assertPathIs('/home')
-                ->assertSee("Hello, {$user->username}!")
+                ->assertSee('home dashboard')
                 ->assertDontSee('Incorrect sign in');
         });
     }

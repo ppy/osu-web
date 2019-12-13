@@ -70,13 +70,13 @@ export class Header extends React.Component
           a
             href: laroute.route('users.show', user: @props.user.id)
             className: 'header-nav-v4__link'
-            osu.trans 'users.show.header_title.info'
+            osu.trans 'layout.header.users.show'
         li
           className: 'header-nav-v4__item'
           a
             href: laroute.route('users.modding.index', user: @props.user.id)
             className: 'header-nav-v4__link header-nav-v4__link--active'
-            osu.trans 'users.beatmapset_activities.title_compact'
+            osu.trans 'layout.header.users.modding'
 
 
   renderTitle: =>
@@ -84,9 +84,9 @@ export class Header extends React.Component
       div className: 'header-v4__icon'
       div className: 'header-v4__title',
         span className: 'header-v4__title-section',
-          osu.trans 'users.show.header_title._', info: ''
+          osu.trans 'layout.header.users._'
         span className: 'header-v4__title-action',
-          osu.trans 'users.beatmapset_activities.title_compact'
+          osu.trans 'layout.header.users.modding'
 
 
   renderTournamentBanner: ({modifiers} = {}) =>
