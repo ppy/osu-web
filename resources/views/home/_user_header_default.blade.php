@@ -44,7 +44,7 @@
         ],
         [
             'active' => $currentAction === 'account-edit',
-            'title' => trans('accounts.edit.title'),
+            'title' => trans('accounts.edit.title_main'),
             'url' => route('account.edit'),
         ],
     ],

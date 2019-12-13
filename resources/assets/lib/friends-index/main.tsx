@@ -36,7 +36,7 @@ export class Main extends React.PureComponent<Props> {
     { title: osu.trans('friends.title'), url: route('friends.index'), active: true },
     { title: osu.trans('forum.topic_watches.index.title'), url: route('forum.topic-watches.index') },
     { title: osu.trans('beatmapset_watches.index.title'), url: route('beatmapsets.watches.index') },
-    { title: osu.trans('accounts.edit.title'), url: route('account.edit') },
+    { title: osu.trans('accounts.edit.title_main'), url: route('account.edit') },
   ];
 
   render() {
