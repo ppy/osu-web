@@ -18,6 +18,7 @@
 @php
     $backgroundExtraClass = $params['backgroundExtraClass'] ?? '';
     $backgroundImage = $params['backgroundImage'] ?? null;
+    $headerExtraClass = $params['headerExtraClass'] ?? '';
     $links = $params['links'] ?? null;
     $linksBreadcrumb = $params['linksBreadcrumb'] ?? false;
     $section = $params['section'] ?? null;
@@ -26,7 +27,7 @@
 
     $linksElement = $linksBreadcrumb ? 'ol' : 'ul';
 @endphp
-<div class="header-v4 {{ isset($theme) ? "header-v4--{$theme}" : '' }}">
+<div class="header-v4 {{ isset($theme) ? "header-v4--{$theme}" : '' }} {{ $headerExtraClass }}">
     <div class="header-v4__bg-container">
         <div class="header-v4__bg {{ $backgroundExtraClass }}" {!! background_image($backgroundImage ?? null, false) !!}></div>
     </div>
