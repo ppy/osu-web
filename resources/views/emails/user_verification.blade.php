@@ -15,17 +15,19 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-Hi {{ $user->username }},
+{!! trans('mail.common.hello', ['user' => $user->username]) !!}
 
-An action performed on your account from {{ $requestCountry ?? 'unknown country' }} requires verification.
+{!! trans('mail.user_verification.action_from._', [
+    'country' => $requestCountry ?? trans('mail.user_verification.action_from.unknown_country'),
+]) !!}
 
-Your verification code is: {{ $keys['main'] }}
-You can enter the code with or without spaces.
+{!! trans('mail.user_verification.code') !!} {{ $keys['main'] }}
+{!! trans('mail.user_verification.code_hint') !!}
 
-Alternatively, you can also visit this link below to finish verification:
+{!! trans('mail.user_verification.link') !!}
 
 {{ route('account.verify', ['key' => $keys['link']]) }}
 
-If you did not request this, please REPLY IMMEDIATELY as your account may be in danger.
+{!! trans('mail.user_verification.report') !!}
 
 @include('emails._signature')

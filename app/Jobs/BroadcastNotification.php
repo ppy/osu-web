@@ -111,10 +111,8 @@ class BroadcastNotification implements ShouldQueue
         event(new $eventClass($notification, $this->receiverIds));
 
         DB::transaction(function () use ($notification) {
-            $receivers = User::whereIn('user_id', $this->receiverIds)->get();
-
-            foreach ($receivers as $receiver) {
-                $notification->userNotifications()->create(['user_id' => $receiver->getKey()]);
+            foreach ($this->receiverIds as $id) {
+                $notification->userNotifications()->create(['user_id' => $id]);
             }
         });
     }

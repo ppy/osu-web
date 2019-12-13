@@ -24,10 +24,25 @@ return [
     ],
 
     'header' => [
-        'community' => [
-            '_' => 'Community',
+        'changelog' => [
+            '_' => 'changelog',
+            'index' => 'listing',
+        ],
 
-            'forum' => 'Forum',
+        'community' => [
+            '_' => 'community',
+            'comments' => 'comments',
+            'forum' => 'forum',
+        ],
+
+        'home' => [
+            '_' => 'home',
+        ],
+
+        'users' => [
+            '_' => 'player',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
@@ -42,11 +57,13 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
-            'account-edit' => 'settings',
+            'account-edit' => 'account settings',
             'account-verifyLink' => 'Verification Completed',
-            'friends-index' => 'friends',
-            'changelog-index' => 'changelog',
+            'beatmapset-watches-index' => 'modding watchlist',
             'changelog-build' => 'build',
+            'changelog-index' => 'changelog',
+            'forum-topic-watches-index' => 'forum subscriptions',
+            'friends-index' => 'friends',
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'groups-show' => 'groups',
@@ -78,7 +95,6 @@ return [
             'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'beatmap discussion posts',
             'beatmap_discussions-index' => 'beatmap discussions',
-            'beatmapset-watches-index' => 'modding watchlist',
             'beatmapset_discussion_votes-index' => 'beatmap discussion votes',
             'beatmapset_events-index' => 'beatmapset events',
             'index' => 'listing',
@@ -112,7 +128,6 @@ return [
             'tournaments' => 'tournaments',
             'tournaments-index' => 'tournaments',
             'tournaments-show' => 'tournament info',
-            'forum-topic-watches-index' => 'subscriptions',
             'forum-topics-create' => 'forums',
             'forum-topics-show' => 'forums',
             'forum-forums-index' => 'forums',

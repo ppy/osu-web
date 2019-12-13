@@ -46,6 +46,6 @@
             ], trans('password_reset.starting.support.button'))]) !!}
         </div>
 
-        <div class="enchant-help-center" data-id="{{ config('services.enchant.id') }}"></div>
+        @include('objects._enchant')
     @endif
 {!! Form::close() !!}

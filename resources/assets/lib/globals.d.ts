@@ -158,6 +158,7 @@ interface User {
   country?: Country;
   country_code?: string;
   cover: Cover;
+  current_mode_rank?: number;
   default_group: string;
   group_badge?: string;
   id: number;

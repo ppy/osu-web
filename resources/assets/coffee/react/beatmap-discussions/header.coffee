@@ -135,9 +135,7 @@ export class Header extends React.PureComponent
           div ref: 'chartArea', className: "#{bn}__chart"
 
           div className: "#{bn}__beatmap-stats",
-            el BeatmapBasicStats,
-              beatmapset: @props.beatmapset
-              beatmap: @props.currentBeatmap
+            el BeatmapBasicStats, beatmap: @props.currentBeatmap
 
 
   setFilter: (e) =>

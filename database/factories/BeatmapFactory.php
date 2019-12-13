@@ -30,6 +30,7 @@ $factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
         'countNormal' => $hitsNormal,
         'countSlider' => $hitsSlider,
         'countSpinner' => $hitsSpinner,
+        'bpm' => rand(100, 200),
         'diff_drain' => rand(0, 10),
         'diff_size' => rand(0, 10),
         'diff_overall' => rand(0, 10),
