@@ -16,15 +16,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
+.user-online-status {
+  display: flex;
+  flex-wrap: wrap;
+  color: @osu-colour-c1;
+  margin: -10px;
 
-export default class ChatLogo extends React.Component<any, any> {
-  render(): React.ReactNode {
-    return (
-      <div className='chat-logo'>
-        <div className='chat-logo__icon'/>
-        <div className='chat-logo__title'>{osu.trans('chat.title')}</div>
-      </div>
-    );
+  &__item {
+    padding: 10px;
+
+    &--chart {
+      height: 70px;
+      width: 100%;
+    }
+  }
+
+  &__label {
+    font-size: @font-size--small;
+    font-weight: 400;
+  }
+
+  &__value {
+    color: @osu-colour-l1;
+    font-size: @font-size--title-small-2;
   }
 }

@@ -20,8 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Account</strong> Settings',
-        'title_compact' => 'settings',
+        'title_compact' => 'account settings',
         'username' => 'username',
 
         'avatar' => [
