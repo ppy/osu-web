@@ -25,18 +25,18 @@ return [
 
     'header' => [
         'changelog' => [
-            '_' => 'Changelog',
-            'index' => 'Listing',
+            '_' => 'changelog',
+            'index' => 'listing',
         ],
 
         'community' => [
-            '_' => 'Community',
-            'comments' => 'Comments',
-            'forum' => 'Forum',
+            '_' => 'community',
+            'comments' => 'comments',
+            'forum' => 'forum',
         ],
 
         'home' => [
-            '_' => 'Home',
+            '_' => 'home',
         ],
     ],
 

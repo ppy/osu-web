@@ -139,7 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Subscriptions',
+            'title_compact' => 'forum subscriptions',
 
             'box' => [
                 'total' => 'Topics subscribed',

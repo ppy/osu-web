@@ -28,8 +28,8 @@ return [
         ],
 
         'title' => [
-            '_' => 'News',
-            'info' => 'Frontpage',
+            '_' => 'news',
+            'info' => 'frontpage',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => 'News',
-            'info' => 'Post',
+            '_' => 'news',
+            'info' => 'post',
         ],
     ],
 

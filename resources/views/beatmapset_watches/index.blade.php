@@ -21,7 +21,7 @@
 ])
 
 @section('content')
-    @include('home._user_header_default', ['title' => trans('beatmapset_watches.index.title')])
+    @include('home._user_header_default', ['title' => trans('beatmapset_watches.index.title_compact')])
 
     <div class="osu-page osu-page--full osu-page--generic">
         <div class="beatmapset-watches">

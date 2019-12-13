@@ -61,7 +61,7 @@ export default class MainView extends React.Component<Props, any> {
       <div>
         <HeaderV4
           section={osu.trans('layout.header.community._')}
-          subSection={osu.trans('chat.title')}
+          subSection={osu.trans('chat.title_compact')}
           theme='chat'
         />
         <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
