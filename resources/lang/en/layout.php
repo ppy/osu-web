@@ -38,6 +38,12 @@ return [
         'home' => [
             '_' => 'home',
         ],
+
+        'users' => [
+            '_' => 'player',
+            'modding' => 'modding',
+            'show' => 'info',
+        ],
     ],
 
     'gallery' => [
