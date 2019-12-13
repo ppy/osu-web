@@ -38,6 +38,7 @@ export default class NotificationStackStore {
     this.addLegacyPm();
   }
 
+  // TODO: remove, this is a trap, call notificationStore directly instead..
   get notifications() {
     return this.notificationStore.notifications;
   }
