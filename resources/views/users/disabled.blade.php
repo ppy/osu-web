@@ -19,7 +19,7 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'section' => trans('common.title.notice'),
+        'section' => trans('layout.header.notice._'),
         'theme' => 'default',
     ]])
 

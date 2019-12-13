@@ -52,6 +52,10 @@ return [
             '_' => 'home',
         ],
 
+        'notice' => [
+            '_' => 'notice',
+        ],
+
         'users' => [
             '_' => 'player',
             'modding' => 'modding',
