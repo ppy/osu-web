@@ -29,6 +29,7 @@ return [
             'discussions' => 'discussion',
             'index' => 'listing',
             'show' => 'info',
+            'packs' => 'packs',
         ],
 
         'changelog' => [
