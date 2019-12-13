@@ -363,11 +363,6 @@ return [
             ],
         ],
 
-        'header_title' => [
-            '_' => 'Player :info',
-            'info' => 'Info',
-        ],
-
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interests',
