@@ -24,6 +24,13 @@ return [
     ],
 
     'header' => [
+        'beatmapsets' => [
+            '_' => 'beatmap',
+            'discussions' => 'discussion',
+            'index' => 'listing',
+            'show' => 'info',
+        ],
+
         'changelog' => [
             '_' => 'changelog',
             'index' => 'listing',

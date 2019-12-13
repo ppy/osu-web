@@ -32,6 +32,25 @@
     color: #fff;
   }
 
+  &--disabled {
+    color: @osu-colour-f1;
+    cursor: default;
+
+    .link-hover({
+      color: @osu-colour-f1;
+    });
+  }
+
+  &__badge {
+    .default-border-radius();
+    padding: 2px 5px;
+    font-size: 80%;
+    font-weight: bold;
+    margin-left: 5px;
+    background-color: @osu-colour-b6;
+    color: @osu-colour-f1;
+  }
+
   &__icon {
     font-size: 89%;
   }

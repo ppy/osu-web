@@ -21,6 +21,7 @@ import * as React from 'react';
 
 interface Props {
   backgroundImage?: string;
+  contentAppend?: React.ReactNode;
   links: HeaderLink[];
   linksBreadcrumb?: boolean;
   onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -71,6 +72,7 @@ export default class HeaderV4 extends React.Component<Props> {
               {this.renderLinks()}
             </div>
           }
+          {this.props.contentAppend}
         </div>
       </div>
     );
