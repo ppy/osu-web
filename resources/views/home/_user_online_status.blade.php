@@ -18,36 +18,36 @@
 @php
     $stats = $stats ?? new App\Libraries\CurrentStats;
 @endphp
-<div class="user-home-status">
-    <div class="user-home-status__item">
-        <div class="user-home-status__label">
+<div class="user-online-status">
+    <div class="user-online-status__item">
+        <div class="user-online-status__label">
             {{ trans('home.user.header.stats.friends') }}
         </div>
-        <div class="user-home-status__value">
+        <div class="user-online-status__value">
             {{ i18n_number_format($stats->onlineFriends) }}
         </div>
     </div>
 
-    <div class="user-home-status__item">
-        <div class="user-home-status__label">
+    <div class="user-online-status__item">
+        <div class="user-online-status__label">
             {{ trans('home.user.header.stats.games') }}
         </div>
-        <div class="user-home-status__value">
+        <div class="user-online-status__value">
             {{ i18n_number_format($stats->currentGames) }}
         </div>
     </div>
 
-    <div class="user-home-status__item">
-        <div class="user-home-status__label">
+    <div class="user-online-status__item">
+        <div class="user-online-status__label">
             {{ trans('home.user.header.stats.online') }}
         </div>
-        <div class="user-home-status__value">
+        <div class="user-online-status__value">
             <strong>{{ i18n_number_format($stats->currentOnline) }}</strong>
         </div>
     </div>
 
     <div
-        class="js-fancy-graph user-home-status__item user-home-status__item--chart"
+        class="js-fancy-graph user-online-status__item user-online-status__item--chart"
         data-src="banchostats"
     ></div>
     <script id="banchostats" type="application/json">{!! json_encode($stats->graphData) !!}</script>

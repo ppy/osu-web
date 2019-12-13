@@ -29,22 +29,22 @@
         ],
         [
             'active' => $currentAction === 'friends-index',
-            'title' => trans('friends.title'),
+            'title' => trans('friends.title_compact'),
             'url' => route('friends.index'),
         ],
         [
             'active' => $currentAction === 'forum-topic-watches-index',
-            'title' => trans('forum.topic_watches.index.title'),
+            'title' => trans('forum.topic_watches.index.title_compact'),
             'url' => route('forum.topic-watches.index'),
         ],
         [
             'active' => $currentAction === 'beatmapset-watches-index',
-            'title' => trans('beatmapset_watches.index.title'),
+            'title' => trans('beatmapset_watches.index.title_compact'),
             'url' => route('beatmapsets.watches.index'),
         ],
         [
             'active' => $currentAction === 'account-edit',
-            'title' => trans('accounts.edit.title'),
+            'title' => trans('accounts.edit.title_compact'),
             'url' => route('account.edit'),
         ],
     ],

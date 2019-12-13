@@ -24,14 +24,25 @@ return [
     ],
 
     'header' => [
-        'community' => [
-            '_' => 'Community',
+        'changelog' => [
+            '_' => 'changelog',
+            'index' => 'listing',
+        ],
 
-            'forum' => 'Forum',
+        'community' => [
+            '_' => 'community',
+            'comments' => 'comments',
+            'forum' => 'forum',
         ],
 
         'home' => [
-            '_' => 'Home',
+            '_' => 'home',
+        ],
+
+        'users' => [
+            '_' => 'player',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 

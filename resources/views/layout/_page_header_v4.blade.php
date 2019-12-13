@@ -39,9 +39,11 @@
                 <span class="header-v4__title-section">
                     {{ $section }}
                 </span>
-                <span class="header-v4__title-action">
-                    {{ $subSection }}
-                </span>
+                @if (present($subSection))
+                    <span class="header-v4__title-action">
+                        {{ $subSection }}
+                    </span>
+                @endif
             </div>
         </div>
 

@@ -25,7 +25,7 @@ class LoginTest extends DuskTestCase
                 ->press('Sign in')
                 ->waitFor('.user-home')
                 ->assertPathIs('/home')
-                ->assertSee('Home Dashboard')
+                ->assertSee('home dashboard')
                 ->assertDontSee('Incorrect sign in');
         });
     }

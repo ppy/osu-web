@@ -19,7 +19,7 @@
  */
 
 return [
-    'title' => 'Friends',
+    'title_compact' => 'friends',
     'too_many' => 'Friend limit reached',
 
     'buttons' => [

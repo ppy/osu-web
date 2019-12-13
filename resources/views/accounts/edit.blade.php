@@ -18,7 +18,7 @@
 @extends('master', ['legacyNav' => false])
 
 @section('content')
-    @include('home._user_header_default', ['title' => trans('accounts.edit.title')])
+    @include('home._user_header_default', ['title' => trans('accounts.edit.title_compact')])
 
     <div class="osu-page u-has-anchor">
         <div class="account-edit account-edit--first">

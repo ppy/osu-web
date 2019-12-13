@@ -58,7 +58,7 @@
             </div>
             <div class="user-home__right-sidebar">
                 <div class="user-home__status-box">
-                    @include('home._user_home_status')
+                    @include('home._user_online_status')
                 </div>
                 <div class="user-home__buttons">
                     <div class="user-home__button">

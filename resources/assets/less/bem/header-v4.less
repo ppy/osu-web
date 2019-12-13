@@ -55,12 +55,18 @@
     background-size: cover;
     opacity: 0.5;
     .at2x-simple('/images/headers/generic.jpg');
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
 
     &::before {
-      .full-size();
       content: '';
       background-image: linear-gradient(to right, @osu-colour-d5, transparent 200px, transparent 1000px, @osu-colour-d5 1200px);
       background-position: center;
+      height: 100%;
+      width: 1200px;
+      display: block;
+      flex: none;
     }
 
     .@{_top}--changelog & {
@@ -69,6 +75,7 @@
 
     .@{_top}--chat & {
       .at2x-simple('/images/headers/chat.jpg');
+      opacity: 1;
       filter: hue-rotate(115deg); // fix colour
 
       &::before {

@@ -33,10 +33,10 @@ export class Main extends React.PureComponent<Props> {
 
   static readonly links = [
     { title: osu.trans('home.user.title'), url: route('home') },
-    { title: osu.trans('friends.title'), url: route('friends.index'), active: true },
-    { title: osu.trans('forum.topic_watches.index.title'), url: route('forum.topic-watches.index') },
-    { title: osu.trans('beatmapset_watches.index.title'), url: route('beatmapsets.watches.index') },
-    { title: osu.trans('accounts.edit.title'), url: route('account.edit') },
+    { title: osu.trans('friends.title_compact'), url: route('friends.index'), active: true },
+    { title: osu.trans('forum.topic_watches.index.title_compact'), url: route('forum.topic-watches.index') },
+    { title: osu.trans('beatmapset_watches.index.title_compact'), url: route('beatmapsets.watches.index') },
+    { title: osu.trans('accounts.edit.title_compact'), url: route('account.edit') },
   ];
 
   render() {
@@ -47,7 +47,7 @@ export class Main extends React.PureComponent<Props> {
           links={Main.links}
           theme='home'
           section={osu.trans('layout.header.home._')}
-          subSection={osu.trans('friends.title')}
+          subSection={osu.trans('friends.title_compact')}
         />
 
         <div className='osu-page osu-page--users'>

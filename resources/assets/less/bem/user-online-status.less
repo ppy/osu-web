@@ -16,9 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.user-home-status {
-  @_top: user-home-status;
-
+.user-online-status {
   display: flex;
   flex-wrap: wrap;
   color: @osu-colour-c1;
@@ -36,18 +34,10 @@
   &__label {
     font-size: @font-size--small;
     font-weight: 400;
-
-    .@{_top}__status--selected & {
-      font-size: @font-size--small-2;
-    }
   }
 
   &__value {
     color: @osu-colour-l1;
     font-size: @font-size--title-small-2;
-
-    .@{_top}__status--selected & {
-      font-size: @font-size--title-small-3;
-    }
   }
 }
