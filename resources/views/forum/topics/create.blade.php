@@ -21,10 +21,7 @@
 ])
 
 @section('content')
-    @include('forum._header', [
-        'forum' => $forum,
-        'modifiers' => ['forum'],
-    ])
+    @include('forum._header', compact('forum'))
 
     {!! Form::open([
         'url' => route('forum.topics.store', ['forum_id' => $forum]),

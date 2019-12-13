@@ -58,10 +58,11 @@ export default class HeaderV4 extends React.Component<Props> {
               <span className='header-v4__title-section'>
                 {this.props.section}
               </span>
-              <span className='header-v4__title-action'>
-                {' '}
-                {this.props.subSection}
-              </span>
+              {this.props.subSection !== '' &&
+                <span className='header-v4__title-action'>
+                  {this.props.subSection}
+                </span>
+              }
             </div>
           </div>
 
