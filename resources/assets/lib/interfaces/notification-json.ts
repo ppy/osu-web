@@ -37,6 +37,7 @@ export interface NotificationBundleJson {
 }
 
 export interface NotificationStackJson {
+  category: string;
   cursor: NotificationCursor | null;
   name: string;
   object_id: number;
@@ -45,6 +46,6 @@ export interface NotificationStackJson {
 }
 export interface NotificationTypeJson {
   cursor: NotificationCursor | null;
-  name: string;
+  name: string | null;
   total: number;
 }

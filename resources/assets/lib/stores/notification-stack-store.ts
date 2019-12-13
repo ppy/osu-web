@@ -31,7 +31,7 @@ import NotificationStore from './notification-store';
 
 export default class NotificationStackStore {
   @observable readonly stacks = new Map<string, NotificationStack>();
-  @observable readonly types = new Map<string, NotificationType>();
+  @observable readonly types = new Map<string | null, NotificationType>();
   private readonly resolver = new NotificationResolver();
 
   constructor(protected notificationStore: NotificationStore) {

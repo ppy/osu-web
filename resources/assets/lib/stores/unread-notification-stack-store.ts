@@ -78,16 +78,23 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
     const notification = this.getNotification(identity);
     const stack = this.getStack(identity);
     const type = this.getType(identity);
-
+    // TODO; check if notification and stackNotification is necessary;
+    const stackNotification = stack?.notifications.get(identity.id ?? 0);
     if (notification != null) {
       if (!notification.isRead) {
         stack?.remove(notification);
         if (type != null) type.total--;
 
+        this.total--;
         notification.isRead = true;
       }
-    } else {
+
+      return;
+    }
+
+    if (stackNotification == null) {
       // notification may not have been loaded yet.
+      this.total--;
 
       // not known anywhere, skip
       if (stack == null || type == null || identity.id == null) return;

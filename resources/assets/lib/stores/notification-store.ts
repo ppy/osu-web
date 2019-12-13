@@ -21,11 +21,10 @@ import { action, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import { NotificationEventNewJson } from 'notifications/notification-events';
-import Store from 'stores/store';
 import NotificationStackStore from './notification-stack-store';
 import UnreadNotificationStackStore from './unread-notification-stack-store';
 
-export default class NotificationStore extends Store {
+export default class NotificationStore {
   @observable notifications = new Map<number, Notification>();
   @observable pmNotification = new LegacyPmNotification();
   readonly stacks = new NotificationStackStore(this);
@@ -37,7 +36,7 @@ export default class NotificationStore extends Store {
   }
 
   get(id: number) {
-    this.notifications.get(id);
+    return this.notifications.get(id);
   }
 
   @action

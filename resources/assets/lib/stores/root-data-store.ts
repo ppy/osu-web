@@ -50,7 +50,7 @@ export default class RootDataStore {
     this.commentableMetaStore = new CommentableMetaStore(this);
     this.commentStore = new CommentStore(this);
     this.channelStore = new ChannelStore(this);
-    this.notificationStore = new NotificationStore(this);
+    this.notificationStore = new NotificationStore();
     this.ownClientStore = new OwnClientStore(this);
     this.userStore = new UserStore(this);
   }

@@ -54,7 +54,7 @@ export default class NotificationType implements NotificationReadable {
     };
   }
 
-  constructor(private readonly store: NotificationStackStore, readonly name: string) {}
+  constructor(private readonly store: NotificationStackStore, readonly name: string | null) {}
 
   static fromJson(json: NotificationTypeJson, store: NotificationStackStore) {
     const obj = new NotificationType(store, json.name);

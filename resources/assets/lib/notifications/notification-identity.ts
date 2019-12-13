@@ -22,14 +22,14 @@ export interface NotificationIdentity {
   category?: string;
   id?: number;
   objectId?: number;
-  objectType: string;
+  objectType: string | null;
 }
 
 export interface NotificationIdentityJson {
   category?: string;
   id?: number;
   object_id?: number;
-  object_type: string;
+  object_type: string | null;
 
   [key: string]: string | number | null | undefined;
 }
@@ -59,7 +59,7 @@ export function fromJson(json: NotificationIdentityJson): NotificationIdentity {
   };
 }
 
-export function toJson(identity: NotificationIdentity): NotificationIdentityJson {
+export function toJson(identity: NotificationIdentity) {
   // TODO: object from iterating only interface keys and snake casing them would be nice.
   return {
     category: identity.category,
