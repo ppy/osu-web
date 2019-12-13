@@ -21,16 +21,16 @@ import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, computed, observable } from 'mobx';
 
-export enum Section {User, UserOthers, Beatmapset, BeatmapsetOthers, Others}
-const SECTIONS = [
-  Section.User,
-  Section.UserOthers,
-  Section.Beatmapset,
-  Section.BeatmapsetOthers,
-  Section.Others,
+export type Section = 'user' | 'user_others' | 'beatmapset' | 'beatmapset_others' | 'others';
+const SECTIONS: Section[] = [
+  'user',
+  'user_others',
+  'beatmapset',
+  'beatmapset_others',
+  'others',
 ];
 
-interface Cursor {
+interface SelectedItem {
   index: number;
   section: number;
 }
@@ -58,69 +58,77 @@ interface SearchResultUser extends SearchResultSummary {
 const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
 export default class Worker {
-  @observable cursor: Cursor | null = null;
   debouncedSearch = debounce(this.search, 500);
   @observable query = '';
   @observable searching = false;
   @observable searchResult: SearchResult | null = null;
+  @observable selected: SelectedItem | null = null;
 
   private xhr: JQueryXHR | null = null;
 
   @action cycleCursor(direction: number) {
-    let newCursor;
-    if (!this.cursor) {
+    let newSelected: SelectedItem | null;
+    if (!this.selected) {
       if (direction > 0) {
-        newCursor = {section: SECTIONS[0], index: 0};
+        newSelected = {section: 0, index: 0};
       } else {
-        const section = SECTIONS.length - 1;
-        newCursor = {section, index: this.sectionLength(section) - 1};
+        const sectionIdx = SECTIONS.length - 1;
+        const section: Section = SECTIONS[sectionIdx];
+        newSelected = {section: sectionIdx, index: this.sectionLength(section) - 1};
       }
     } else {
-      newCursor = {...this.cursor};
-      newCursor.index += direction;
+      newSelected = {...this.selected};
+      newSelected.index += direction;
     }
 
-    if (newCursor.index < 0 || newCursor.index >= this.sectionLength(SECTIONS[newCursor.section])) {
-      let newSection = newCursor.section;
+    if (newSelected.index < 0 || newSelected.index >= this.sectionLength(SECTIONS[newSelected.section])) {
+      let newSection = newSelected.section;
       do {
         newSection = (newSection + direction) % SECTIONS.length;
         if (newSection < 0) {
           newSection = SECTIONS.length + newSection;
         }
-        if (newSection === newCursor.section) {
+        if (newSection === newSelected.section) {
           return;
         }
       } while (this.sectionLength(SECTIONS[newSection]) === 0);
 
-      newCursor = {
-        index: direction > 0 ? 0 : this.sectionLength(newSection) - 1,
+      newSelected = {
+        index: direction > 0 ? 0 : this.sectionLength(SECTIONS[newSection]) - 1,
         section: newSection,
       };
     }
 
-    this.cursor = newCursor;
+    this.selected = newSelected;
+  }
+
+  @computed get currentSection(): string | undefined {
+    if (!this.selected) {
+      return;
+    }
+    return SECTIONS[this.selected.section];
   }
 
   @computed get cursorURL(): string | undefined {
     const searchResult = this.searchResult;
-    if (!this.cursor || !searchResult) {
+    if (!this.selected || !searchResult) {
       return;
     }
 
-    switch (this.cursor.section) {
-      case Section.User:
-        const userId = searchResult.user.users[this.cursor.index]?.id;
+    switch (SECTIONS[this.selected.section]) {
+      case 'user':
+        const userId = searchResult.user.users[this.selected.index]?.id;
         return userId ? route('users.show', { user: userId }) : undefined;
-      case Section.UserOthers:
+      case 'user_others':
         return route('search', { mode: 'user', query: this.query });
-      case Section.Beatmapset:
-        const id = searchResult.beatmapset.beatmapsets[this.cursor.index]?.id;
+      case 'beatmapset':
+        const id = searchResult.beatmapset.beatmapsets[this.selected.index]?.id;
         return id ? route('beatmapsets.show', { beatmapset: id }) : undefined;
-      case Section.BeatmapsetOthers:
+      case 'beatmapset_others':
         return route('search', { mode: 'beatmapset', query: this.query });
-      case Section.Others:
+      case 'others':
         const others = otherModes.filter((mode) => searchResult[mode].total > 0);
-        const selectedMode = others[this.cursor.index];
+        const selectedMode = others[this.selected.index];
 
         return route('search', { mode: selectedMode, query: this.query });
     }
@@ -138,7 +146,7 @@ export default class Worker {
     this.xhr = $.get(route('quick-search'), { query: this.query })
     .done(action((searchResult: SearchResult) => {
       this.searchResult = searchResult;
-      this.cursor = null;
+      this.selected = null;
     })).always(action(() => {
       this.searching = false;
     }));
@@ -146,7 +154,7 @@ export default class Worker {
 
   @action updateQuery(newQuery: string) {
     this.query = newQuery;
-    this.cursor = null;
+    this.selected = null;
     this.debouncedSearch();
   }
 
@@ -157,7 +165,7 @@ export default class Worker {
     }
     this.searching = false;
     this.searchResult = null;
-    this.cursor = null;
+    this.selected = null;
   }
 
   private sectionLength(section: Section): number {
@@ -166,15 +174,15 @@ export default class Worker {
       return 0;
     }
     switch (section) {
-      case Section.User:
+      case 'user':
         return searchResult.user.users.length;
-      case Section.UserOthers:
+      case 'user_others':
         return searchResult.user.total > searchResult.user.users.length ? 1 : 0;
-      case Section.Beatmapset:
+      case 'beatmapset':
         return searchResult.beatmapset.beatmapsets.length;
-      case Section.BeatmapsetOthers:
+      case 'beatmapset_others':
         return searchResult.beatmapset.total > searchResult.beatmapset.beatmapsets.length ? 1 : 0;
-      case Section.Others:
+      case 'others':
         return otherModes.filter((mode) => searchResult[mode].total > 0).length;
     }
 

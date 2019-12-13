@@ -77,7 +77,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
   private boxIsActive(section: Section, idx: number): boolean {
     const worker = this.props.worker;
-    return worker.cursor?.section === section && worker.cursor?.index === idx;
+    return worker.currentSection === section && worker.selected?.index === idx;
   }
 
   private count(mode: ResultMode) {
@@ -126,7 +126,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
             <div key={beatmapset.id} className='quick-search-items__item'>
               <Beatmapset
                 beatmapset={beatmapset}
-                active={this.boxIsActive(Section.Beatmapset, idx)}
+                active={this.boxIsActive('beatmapset', idx)}
               />
             </div>
           );
@@ -135,7 +135,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
         {this.count('beatmapset') > this.props.worker.searchResult.beatmapset.beatmapsets.length
           ? (
             <div className='quick-search-items__item'>
-              {this.renderResultLink('beatmapset', this.boxIsActive(Section.BeatmapsetOthers, 0))}
+              {this.renderResultLink('beatmapset', this.boxIsActive('beatmapset_others', 0))}
             </div>
           ) : null
         }
@@ -194,7 +194,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
         {modes.map((mode, idx) => {
           return (
             <div key={mode} className='quick-search-items__item'>
-              {this.renderResultLink(mode, this.boxIsActive(Section.Others, idx))}
+              {this.renderResultLink(mode, this.boxIsActive('others', idx))}
             </div>
           );
         })}
@@ -324,7 +324,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
         {this.props.worker.searchResult.user.users.map((user, idx) => {
           return (
             <div key={user.id} className='quick-search-items__item'>
-              <User user={user} active={this.boxIsActive(Section.User, idx)}/>
+              <User user={user} active={this.boxIsActive('user', idx)}/>
             </div>
           );
         })}
@@ -332,7 +332,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
         {this.count('user') > this.props.worker.searchResult.user.users.length
           ? (
             <div className='quick-search-items__item'>
-              {this.renderResultLink('user', this.boxIsActive(Section.UserOthers, 0))}
+              {this.renderResultLink('user', this.boxIsActive('user_others', 0))}
             </div>
           ) : null
         }
