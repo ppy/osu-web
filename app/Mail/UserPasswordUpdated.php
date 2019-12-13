@@ -50,6 +50,6 @@ class UserPasswordUpdated extends Mailable implements ShouldQueue
     {
         return $this
             ->text('emails.user_password_updated')
-            ->subject(trans('accounts.update_password.email_subject'));
+            ->subject(trans('mail.user_password_updated.subject'));
     }
 }

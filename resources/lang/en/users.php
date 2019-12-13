@@ -64,17 +64,28 @@ return [
         'send_message' => 'Send message',
     ],
 
-    'force_reactivation' => [
-        'email' => [
-            'subject' => 'osu! Account Reactivation Required',
+    'disabled' => [
+        'title' => 'Uh-oh! It looks like your account has been disabled.',
+        'warning' => "In the case you have broken a rule, please note that there is generally a cool-down period of one month during which we will not consider any amnesty requests. After this period, you are free to contact us should you deem it necessary. Please note that creating new accounts after you have had one disabled will result in an <strong>extension of this one month cool-down</strong>. Please also note that for <strong>every account you create, you are further breaking rules</strong>. We highly suggest you don't go down this path!",
 
-            'content' => [
-                'main' => 'Your account is suspected to have been compromised, has recent suspicious activity or a VERY weak password. As a result, we require you to set a new password. Please make sure to choose a SECURE password.',
-                'reason' => 'Reason',
-                'perform_reset' => 'You can perform the reset from :url',
-            ],
+        'if_mistake' => [
+            '_' => 'If you feel this is a mistake, you are welcome to contact us (via :email or by clicking the "?" in the bottom-right-hand corner of this page). Please note that we are always fully confident with our actions, as they are based on very solid data. We reserve the right to disregard your request should we feel you are being intentionally dishonest.',
+            'email' => 'email',
         ],
 
+        'reasons' => [
+            'compromised' => 'Your account has deemed to be compromised. It may be disabled temporarily while its identity is confirmed.',
+            'opening' => 'There are a number of reasons that can result in your account being disabled:',
+
+            'tos' => [
+                '_' => 'You have broken one or more of our :community_rules or :tos.',
+                'community_rules' => 'community rules',
+                'tos' => 'terms of service',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
         'reason' => [
             'inactive_different_country' => "Your account hasn't been used in a long time.",
         ],
@@ -350,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Player :info',
-            'info' => 'Info',
         ],
 
         'info' => [

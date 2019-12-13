@@ -28,10 +28,6 @@ return [
         'start' => 'Start',
     ],
 
-    'email' => [
-        'subject' => 'osu! account recover',
-    ],
-
     'error' => [
         'contact_support' => 'Please contact support to recover account.',
         'is_privileged' => 'Please contact a high level admin to recover account.',
