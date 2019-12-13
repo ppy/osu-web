@@ -102,6 +102,14 @@ export default class Worker {
     this.selected = newSelected;
   }
 
+  @action setSelected(section: Section, index: number) {
+    this.selected = {section: SECTIONS.indexOf(section), index};
+  }
+
+  @action selectNone() {
+    this.selected = null;
+  }
+
   @computed get currentSection(): string | undefined {
     if (!this.selected) {
       return;
@@ -109,7 +117,7 @@ export default class Worker {
     return SECTIONS[this.selected.section];
   }
 
-  @computed get cursorURL(): string | undefined {
+  @computed get selectedURL(): string | undefined {
     const searchResult = this.searchResult;
     if (!this.selected || !searchResult) {
       return;

@@ -80,6 +80,17 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return worker.currentSection === section && worker.selected?.index === idx;
   }
 
+  private selectBox(section: Section, index: number = 0) {
+    this.props.worker.setSelected(section, index);
+  }
+
+  private selectUserOthers = () => this.selectBox('user_others')
+  private selectBeatmapsetOthers = () => this.selectBox('beatmapset_others')
+
+  private onMouseLeave = (event: React.MouseEvent<HTMLInputElement>) => {
+    this.props.worker.selectNone();
+  }
+
   private count(mode: ResultMode) {
     if (this.props.worker.searchResult === null) {
       return 0;
@@ -88,8 +99,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return this.props.worker.searchResult[mode].total;
   }
 
-  private navigateToCursor() {
-    const url = this.props.worker.cursorURL;
+  private navigateToSelected() {
+    const url = this.props.worker.selectedURL;
     if (url) {
       osu.navigate(url, false);
     }
@@ -99,7 +110,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     const key = event.key;
     if (key === 'Enter') {
       this.props.worker.debouncedSearch.flush();
-      this.navigateToCursor();
+      this.navigateToSelected();
     }
     if (key === 'ArrowUp' || key === 'ArrowDown') {
       this.props.worker.cycleCursor(key === 'ArrowDown' ? 1 : -1);
@@ -122,11 +133,17 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return (
       <div className='quick-search-items'>
         {this.props.worker.searchResult.beatmapset.beatmapsets.map((beatmapset, idx) => {
+          const selectBeatmapset = () => this.selectBox('beatmapset', idx);
           return (
-            <div key={beatmapset.id} className='quick-search-items__item'>
+            <div
+              key={beatmapset.id}
+              className='quick-search-items__item'
+              onMouseEnter={selectBeatmapset}
+              onMouseLeave={this.onMouseLeave}
+            >
               <Beatmapset
                 beatmapset={beatmapset}
-                active={this.boxIsActive('beatmapset', idx)}
+                modifiers={this.boxIsActive('beatmapset', idx) ? ['active'] : []}
               />
             </div>
           );
@@ -134,7 +151,11 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
         {this.count('beatmapset') > this.props.worker.searchResult.beatmapset.beatmapsets.length
           ? (
-            <div className='quick-search-items__item'>
+            <div
+              className='quick-search-items__item'
+              onMouseEnter={this.selectBeatmapsetOthers}
+              onMouseLeave={this.onMouseLeave}
+            >
               {this.renderResultLink('beatmapset', this.boxIsActive('beatmapset_others', 0))}
             </div>
           ) : null
@@ -272,15 +293,10 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
     key += otherModes.includes(mode) ? 'title' : 'more';
 
-    let className = 'search-result-more';
-    if (active) {
-      className += ' search-result-more__active';
-    }
-
     return (
       <a
         href={route('search', { mode, query: this.props.worker.query })}
-        className={className}
+        className={osu.classWithModifiers('search-result-more', active ? ['active'] : [])}
       >
         <div className='search-result-more__content'>
           {osu.trans(key, { mode: osu.trans(`quick_search.mode.${mode}`) })}
@@ -322,16 +338,29 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return (
       <div className='quick-search-items'>
         {this.props.worker.searchResult.user.users.map((user, idx) => {
+          const selectUser = () => this.selectBox('user', idx);
           return (
-            <div key={user.id} className='quick-search-items__item'>
-              <User user={user} active={this.boxIsActive('user', idx)}/>
+            <div
+              key={user.id}
+              className='quick-search-items__item'
+              onMouseEnter={selectUser}
+              onMouseLeave={this.onMouseLeave}
+            >
+              <User
+                user={user}
+                modifiers={this.boxIsActive('user', idx) ? ['active'] : []}
+              />
             </div>
           );
         })}
 
         {this.count('user') > this.props.worker.searchResult.user.users.length
           ? (
-            <div className='quick-search-items__item'>
+            <div
+              className='quick-search-items__item'
+              onMouseEnter={this.selectUserOthers}
+              onMouseLeave={this.onMouseLeave}
+            >
               {this.renderResultLink('user', this.boxIsActive('user_others', 0))}
             </div>
           ) : null

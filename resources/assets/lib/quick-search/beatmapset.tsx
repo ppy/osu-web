@@ -21,16 +21,11 @@ import { Img2x } from 'img2x';
 import { route } from 'laroute';
 import * as React from 'react';
 
-export default function Beatmapset({ beatmapset, active = false }: { active?: boolean, beatmapset: BeatmapsetJSON }) {
+export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset: BeatmapsetJSON, modifiers?: string[] }) {
   const url = route('beatmapsets.show', { beatmapset: beatmapset.id });
 
-  let className = 'beatmapset-search-card';
-  if (active) {
-    className += ' beatmapset-search-card__active';
-  }
-
   return (
-    <a className={className} href={url}>
+    <a className={osu.classWithModifiers('beatmapset-search-card', modifiers)} href={url}>
       <div className='beatmapset-search-card__cover-container'>
         <Img2x className='beatmapset-search-card__cover' src={beatmapset.covers.list} />
       </div>
