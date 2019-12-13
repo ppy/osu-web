@@ -48,7 +48,6 @@
     @include('forum._header', [
         'forum' => $topic->forum,
         'background' => $headerCover,
-        'modifiers' => ['forum'],
     ])
 
     <div class="js-forum__topic-user-can-moderate hidden" data-user-can-moderate="{{ $userCanModerate }}"></div>

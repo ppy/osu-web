@@ -137,13 +137,30 @@
     }
   }
 
+  &--forum-topic-watches-list {
+    .default();
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  &--forum-topic-watches-status {
+    .default-gutter-v2();
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: @osu-colour-b4;
+    display: flex;
+    justify-content: flex-end;
+  }
+
   &--full {
     flex: 1 0 auto;
   }
 
   &--generic {
-    .default;
-    padding: 20px;
+    .default();
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   &--generic-compact {
@@ -158,18 +175,6 @@
   &--header-news, &--groups {
     .default-box-shadow();
     background-color: #333;
-  }
-
-  &--header-v3 {
-    align-self: auto;
-  }
-
-  &--header-v3-compact {
-    @media @desktop {
-      align-self: flex-start;
-      margin-top: 90px;
-      width: 100%;
-    }
   }
 
   &--news {
@@ -244,8 +249,7 @@
 
     flex: 1 0 auto;
     display: flex;
-    height: calc((var(--vh, 1vh) * 100) - 150px); // viewport height - compact header+footer
-    width: 100vw;
+    height: calc((var(--vh, 1vh) * 100) - (@nav2-height + 70px + 50px)); // viewport height - compact header+footer
     margin-bottom: 0;
 
     @media @mobile {

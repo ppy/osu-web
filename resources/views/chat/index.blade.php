@@ -19,7 +19,7 @@
     'bodyAdditionalClasses' => 'osu-layout__no-scroll',
     'currentSection' => 'community',
     'legacyNav' => false,
-    'title' => trans('chat.title'),
+    'title' => trans('chat.title_compact'),
 ])
 
 @section("content")

@@ -120,8 +120,6 @@ return [
             'error' => 'Error loading news, try refreshing the page?...',
         ],
         'header' => [
-            'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have :count_delimited new message|You have :count_delimited new messages',
             'stats' => [
                 'friends' => 'Online Friends',
                 'games' => 'Games',
