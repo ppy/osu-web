@@ -119,10 +119,6 @@ return [
         'target' => 'drop here to upload',
     ],
 
-    'email' => [
-        'hello' => 'Hi :user,',
-    ],
-
     'input' => [
         'search' => 'search...',
     ],

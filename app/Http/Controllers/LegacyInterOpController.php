@@ -29,6 +29,8 @@ use App\Libraries\UserBestScoresCheck;
 use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\Chat\Message;
+use App\Models\Chat\UserChannel;
 use App\Models\Event;
 use App\Models\Forum;
 use App\Models\NewsPost;
@@ -36,6 +38,7 @@ use App\Models\Notification;
 use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserStatistics;
+use Datadog;
 use Exception;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use stdClass;
@@ -125,6 +128,50 @@ class LegacyInterOpController extends Controller
     }
 
     /**
+     * User Batch Mark-As-Read (for Chat Channels)
+     *
+     * This endpoint allows you to mark channels as read for users in bulk
+     *
+     * ---
+     *
+     * ### Response Format
+     * empty
+     *
+     * @bodyParam pairs[<id>][user_id] integer required id of user to mark as read for
+     * @bodyParam pairs[<id>][channel_id] integer required id of channel to mark as read
+     */
+    public function userBatchMarkChannelAsRead()
+    {
+        $pairs = request('pairs');
+
+        if (!is_array($pairs)) {
+            abort(422, '"pairs" parameter must be a list');
+        }
+
+        $channelMax = [];
+
+        foreach ($pairs as $pair) {
+            if (!is_array($pair) || !isset($pair['user_id']) || !isset($pair['channel_id'])) {
+                continue;
+            }
+
+            $channelId = get_int($pair['channel_id']);
+            $userId = get_int($pair['user_id']);
+
+            // cache the max message_id of each channel for the duration of this batch
+            $channelMax[$channelId] = $channelMax[$channelId] ??
+                Message::where('channel_id', $channelId)->max('message_id');
+
+            optional(
+                UserChannel::where([
+                    'user_id' => $userId,
+                    'channel_id' => $channelId,
+                ])->first()
+            )->markAsRead($channelMax[$channelId]);
+        }
+    }
+
+    /**
      * User Batch Send Message
      *
      * This endpoint allows you to send Message as a user to another user.
@@ -163,16 +210,29 @@ class LegacyInterOpController extends Controller
     {
         $params = request('messages');
 
-        $userIds = [];
+        $results = new stdClass;
+
+        if (!isset($params)) {
+            return response()->json($results);
+        }
 
         if (!is_array($params)) {
             abort(422, '"messages" parameter must be a list');
         }
 
-        foreach ($params as $messageParams) {
+        $userIds = [];
+
+        foreach ($params as $key => $messageParams) {
             if (!is_array($messageParams)) {
                 continue;
             }
+
+            $messageParams = get_params($messageParams, null, [
+                'sender_id:int',
+                'target_id:int',
+                'message:string',
+                'is_action:bool',
+            ]);
 
             if (isset($messageParams['sender_id'])) {
                 $userIds[$messageParams['sender_id']] = true;
@@ -180,12 +240,14 @@ class LegacyInterOpController extends Controller
             if (isset($messageParams['target_id'])) {
                 $userIds[$messageParams['target_id']] = true;
             }
+
+            $params[$key] = $messageParams;
         }
+
         $userIds = array_keys($userIds);
 
         $users = User::whereIn('user_id', $userIds)->get()->keyBy('user_id');
 
-        $results = new stdClass;
         foreach ($params as $id => $messageParams) {
             try {
                 if (!is_array($messageParams)) {
@@ -200,7 +262,7 @@ class LegacyInterOpController extends Controller
                     optional($users[$messageParams['sender_id']] ?? null)->markSessionVerified(),
                     $users[$messageParams['target_id']] ?? null,
                     presence($messageParams['message'] ?? null),
-                    get_bool($messageParams['is_action'] ?? null)
+                    $messageParams['is_action'] ?? null
                 );
 
                 $result = [
@@ -215,6 +277,10 @@ class LegacyInterOpController extends Controller
                     'error' => ExceptionHandler::exceptionMessage($e),
                 ];
             }
+
+            Datadog::increment(config('datadog-helper.prefix_web').'.chat.batch', 1, [
+                'status' => $result['status'],
+            ]);
 
             $results->$id = $result;
         }

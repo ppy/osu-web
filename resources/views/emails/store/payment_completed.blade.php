@@ -16,26 +16,27 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-Hi {{ $order->user->username }},
+{!! trans('mail.common.hello', ['user' => $order->user->username]) !!}
 
-Thanks for your osu!store order!
+{!! trans('mail.store_payment_completed.thank_you') !!}
 
 @foreach ($order->items as $item)
-{{ $item->quantity }} x {{ $item->getDisplayName() }} ({{ currency($item->subtotal()) }})
+{!! i18n_number_format($item->quantity) !!} x {!! $item->getDisplayName() !!} ({!! currency($item->subtotal()) !!})
 @endforeach
 
 @if ($order->shipping > 0)
-Shipping ({{ currency($order->shipping) }})
+{!! trans('mail.store_payment_completed.shipping') !!} ({{ currency($order->shipping) }})
 @endif
-Total ({{ currency($order->getTotal()) }})
+{!! trans('mail.store_payment_completed.total') !!} ({{ currency($order->getTotal()) }})
 
 @if ($order->requiresShipping())
-We have received your payment and are preparing your order for shipping. It may take a few days for us to send it out, depending on the quantity of orders. You can follow the progress of your order at {{ route('store.invoice.show', $order) }}, including tracking details where available.
+{!! trans('mail.store_payment_completed.prepare_shipping') !!}
 @else
-We have received your payment and are currently processing your order. You can follow the progress of your order at {{ route('store.invoice.show', $order) }}.
+{!! trans('mail.store_payment_completed.processing') !!}
 @endif
+{!! route('store.invoice.show', $order) !!}
 
-If you have any questions, don't hesitate to reply to this email.
+{!! trans('mail.store_payment_completed.questions') !!}
 
-Regards,
+{!! trans('mail.common.closing') !!}
 The osu!store team

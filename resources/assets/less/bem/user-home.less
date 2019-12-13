@@ -17,16 +17,13 @@
  */
 
 .user-home {
-  @title-height: 50px;
-
   .default-box-shadow();
-  .inner-shadow-top();
   display: flex;
   background: @osu-colour-b5;
   flex-direction: column;
 
   @media @desktop {
-    padding: 0 20px;
+    padding: 0 @gutter-v2-desktop;
     margin-bottom: 10px;
     flex-direction: row;
     align-items: flex-start;
@@ -58,9 +55,8 @@
     width: 100%;
 
     @media @desktop {
-      margin-left: 10px;
       margin-right: 10px;
-      width: calc(60% - 20px);
+      width: calc(60% - 10px);
     }
   }
 
@@ -81,9 +77,8 @@
   }
 
   &__news-title {
-    height: @title-height;
     margin: 0;
-    padding: 0 0 10px 20px;
+    padding: 20px 0 10px @gutter-v2;
     font-size: @font-size--large;
     font-weight: 100;
     color: @osu-colour-l1;
@@ -92,25 +87,26 @@
     align-items: flex-end;
 
     @media @desktop {
-      padding-left: 10px;
+      padding-left: 0;
     }
   }
 
   &__right-sidebar {
-    .inner-shadow-top();
     background-color: @osu-colour-b4;
     width: 100%;
     margin: 0;
     padding: 20px;
 
     @media @desktop {
-      .inner-shadow-top();
       .default-box-shadow();
       margin-left: 10px;
-      margin-right: 10px;
       margin-bottom: 10px;
-      width: calc(40% - 20px);
-      padding: @title-height 10px 10px;
+      width: calc(40% - 10px);
+      padding: 20px 10px 10px;
     }
+  }
+
+  &__status-box {
+    padding-bottom: 20px;
   }
 }

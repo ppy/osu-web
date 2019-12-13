@@ -76,9 +76,7 @@ export class Stats extends React.Component
             width: "#{if @state.preview == 'playing' then '100%' else 0}"
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
-        el BeatmapBasicStats,
-          beatmapset: @props.beatmapset
-          beatmap: @props.beatmap
+        el BeatmapBasicStats, beatmap: @props.beatmap
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--advanced',
         table className: 'beatmap-stats-table',

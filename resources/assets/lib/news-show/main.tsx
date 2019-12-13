@@ -51,17 +51,13 @@ export default class Main extends React.Component<Props> {
 
   render() {
     const {content, author} = this.processContent();
-    const titleTrans = {
-      info: osu.trans('news.show.title.info'),
-      key: 'news.show.title._',
-    };
 
     return (
       <>
         <NewsHeader
           section='show'
           post={this.props.post}
-          titleTrans={titleTrans}
+          title={osu.trans('news.show.title.info')}
         />
         <div className='osu-page osu-page--news'>
           <div className='news-show'>
