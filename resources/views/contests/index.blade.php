@@ -17,19 +17,21 @@
 --}}
 
 @extends('master', [
-    'currentSection' => 'community',
     'currentAction' => 'contests',
+    'currentSection' => 'community',
+    'legacyNav' => false,
     'title' => "Contests",
 ])
 
 @section('content')
-    <div class="osu-layout__row">
-        <div class="osu-page-header-v2 osu-page-header-v2--contests">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{trans('contest.header.large')}}</div>
-            <div class="osu-page-header-v2__subtitle">{{trans('contest.header.small')}}</div>
-        </div>
-    </div>
+    @include('layout._page_header_v4', ['params' => [
+        'links' => [['url' => route('contests.index'), 'title' => trans('layout.header.contests.index')]],
+        'linksBreadcrumb' => true,
+        'section' => trans('layout.header.contests._'),
+        'subSection' => trans('layout.header.contests.index'),
+        'theme' => 'contests',
+    ]])
+
     <div class="osu-page osu-page--contests">
         <div class="contest-list">
             <div class="contest-list-legend">

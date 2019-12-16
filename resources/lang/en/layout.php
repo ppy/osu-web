@@ -59,6 +59,11 @@ return [
             'livestream' => 'live streams',
         ],
 
+        'contests' => [
+            '_' => 'contests',
+            'index' => 'listing',
+        ],
+
         'help' => [
             '_' => 'wiki',
             'index' => 'index',
