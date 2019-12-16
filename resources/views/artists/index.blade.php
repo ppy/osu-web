@@ -18,21 +18,26 @@
 @extends('master', [
     'currentSection' => 'beatmaps',
     'currentAction' => 'artists',
+    'legacyNav' => false,
     'title' => trans('artist.title'),
     'pageDescription' => trans('artist.page_description'),
 ])
 
 @section('content')
-    <div class="osu-layout__row">
-        <div class="osu-page-header-v2 osu-page-header-v2--featured-artists">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{trans('artist.title')}}</div>
-        </div>
-    </div>
-    <div class="osu-layout__row osu-layout__row--page-artist-index">
+    @include('layout._page_header_v4', ['params' => [
+        'links' => [[
+            'title' => trans('layout.header.artists.index'),
+            'url' => route('artists.index'),
+        ]],
+        'linksBreadcrumb' => true,
+        'section' => trans('layout.header.artists._'),
+        'subSection' => trans('layout.header.artists.index'),
+        'theme' => 'artists',
+    ]])
+    <div class="osu-page osu-page--artists">
         <div class="page-contents page-contents--artist">
             <div class="page-contents__artist-left">
-                <div class="artist__description artist__description--index">{!! trans('artist.index.description') !!}</div>
+                <div class="artist__description">{!! trans('artist.index.description') !!}</div>
                 <div class="artist__index">
                     @foreach ($artists as $artist)
                         <div class="artist__box{{$artist->visible ? '' : ' artist__box--hidden'}}">

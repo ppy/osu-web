@@ -15,9 +15,23 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $headerLinks = [
+        [
+            'title' => trans('layout.header.artists.index'),
+            'url' => route('artists.index'),
+        ],
+        [
+            'title' => $artist->name,
+            'url' => route('artists.show', $artist),
+        ],
+    ];
+@endphp
+
 @extends('master', [
     'currentSection' => 'beatmaps',
     'currentAction' => 'artists',
+    'legacyNav' => false,
     'title' => "Featured Artist: $artist->name",
     'pageDescription' => $artist->description,
     'canonicalUrl' => $artist->url(),
@@ -30,18 +44,19 @@
 
 @section('content')
     @include('objects.css-override', ['mapping' => [
-        '.osu-page-header-v2--artist' => $images['header_url'],
+        '.header-v4--artists .header-v4__bg' => $images['header_url'],
         '.artist__portrait' => $images['cover_url'],
         '.artist__label-overlay' => $artist->label ? $artist->label->icon_url : '',
     ]])
 
-    <div class="osu-layout__row">
-        <div class="osu-page-header-v2 osu-page-header-v2--artist">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title osu-page-header-v2__title--artist">{{$artist->name}}</div>
-        </div>
-    </div>
-    <div class="osu-layout__row osu-layout__row--page-artist">
+    @include('layout._page_header_v4', ['params' => [
+        'links' => $headerLinks,
+        'linksBreadcrumb' => true,
+        'section' => trans('layout.header.artists._'),
+        'subSection' => $artist->name,
+        'theme' => 'artists',
+    ]])
+    <div class="osu-page osu-page--artist">
         <div class="page-contents page-contents--artist">
             <div class="page-contents__artist-left">
                 @if (!$artist->visible)

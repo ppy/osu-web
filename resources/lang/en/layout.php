@@ -24,6 +24,11 @@ return [
     ],
 
     'header' => [
+        'artists' => [
+            '_' => 'featured artists',
+            'index' => 'listing',
+        ],
+
         'beatmapsets' => [
             '_' => 'beatmap',
             'discussions' => 'discussion',

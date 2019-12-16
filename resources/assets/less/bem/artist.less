@@ -81,24 +81,21 @@
   }
 
   &__description {
+    .default-gutter-v2();
     background-color: @osu-colour-b4;
     color: white;
     font-size: 14px;
     font-weight: 300;
-    padding: 0 20px 20px 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .default-box-shadow();
 
     @media @desktop {
-      padding: 20px;
       margin-bottom: 10px;
     }
-    .default-box-shadow();
 
     > h1, h2, h3, h4, h5, h6 {
       color: white;
-    }
-
-    &--index {
-      padding: 30px;
     }
   }
 
