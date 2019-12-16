@@ -54,7 +54,7 @@
         'linksBreadcrumb' => true,
         'section' => trans('layout.header.artists._'),
         'subSection' => $artist->name,
-        'theme' => 'artists',
+        'theme' => 'artist',
     ]])
     <div class="osu-page osu-page--artist">
         <div class="page-contents page-contents--artist">
