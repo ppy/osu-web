@@ -98,9 +98,11 @@ class UserChannel extends Model
             ->with('userScoped')
             ->get();
 
+        $byUserId = $userChannelMembers->keyBy('user_id');
+
         $collection = json_collection(
             $userChannels,
-            function ($userChannel) use ($userChannelMembers, $userId) {
+            function ($userChannel) use ($byUserId, $userChannelMembers, $userId) {
                 $presence = [
                     'channel_id' => $userChannel->channel_id,
                     'type' => $userChannel->type,
@@ -125,7 +127,7 @@ class UserChannel extends Model
                 if ($userChannel->type === Channel::TYPES['pm']) {
                     // remove ourselves from $membersArray, leaving only the other party
                     $members = array_diff($filteredChannelMembers, [$userId]);
-                    $targetUser = $userChannelMembers->where('user_id', array_shift($members))->first();
+                    $targetUser = $byUserId[array_shift($members)] ?? null;
 
                     // hide if target is restricted ($targetUser missing) or is blocked ($targetUser->foe)
                     if (!$targetUser || $targetUser->foe) {
