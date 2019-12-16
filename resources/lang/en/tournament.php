@@ -52,6 +52,11 @@ return [
             'register' => 'Sign me up!',
         ],
 
+        'period' => [
+            'end' => 'End',
+            'start' => 'Start',
+        ],
+
         'state' => [
             'before_registration' => 'Registration for this tournament has not yet opened.',
             'ended' => 'This tournament has concluded. Check the information page for results.',

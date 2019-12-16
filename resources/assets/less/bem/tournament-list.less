@@ -17,12 +17,14 @@
  */
 
 .tournament-list {
+  .default-gutter-v2();
   background-color: @osu-colour-b5;
   font-weight: 300;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
-  @media @mobile {
-    padding: 5px;
+  @media @desktop {
+    margin-bottom: 10px;
   }
 
   &__heading {

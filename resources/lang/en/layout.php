@@ -78,6 +78,11 @@ return [
             '_' => 'notice',
         ],
 
+        'tournaments' => [
+            '_' => 'tournaments',
+            'index' => 'listing',
+        ],
+
         'users' => [
             '_' => 'player',
             'modding' => 'modding',

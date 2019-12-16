@@ -70,6 +70,13 @@
     height: 50px; // 50 is just what beatmap-list__item happens to end up at.
   }
 
+  &--tournament {
+    padding: 10px 20px;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
   &--deleted {
     .with-active(@color-deleted);
   }
@@ -108,6 +115,11 @@
 
     .@{top}--forum & {
       color: @osu-colour-c2;
+    }
+
+    .@{top}--tournament & {
+      color: @osu-colour-c2;
+      font-size: @font-size--title-small;
     }
   }
 

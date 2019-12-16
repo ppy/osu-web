@@ -18,19 +18,23 @@
 @extends('master', [
     'currentSection' => 'community',
     'currentAction' => 'tournaments',
+    'legacyNav' => false,
     'title' => trans('tournament.index.header.title'),
 ])
 
 @section('content')
-    <div class="osu-layout__row">
-        <div class="osu-page-header-v2 osu-page-header-v2--tournaments">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{trans('tournament.index.header.title')}}</div>
-            <div class="osu-page-header-v2__subtitle">{{trans('tournament.index.header.subtitle')}}</div>
-        </div>
+    @include('layout._page_header_v4', ['params' => [
+        'links' => [['title' => trans('layout.header.tournaments.index'), 'url' => route('tournaments.index')]],
+        'linksBreadcrumb' => true,
+        'section' => trans('layout.header.tournaments._'),
+        'subSection' => trans('layout.header.tournaments.index'),
+        'theme' => 'tournaments',
+    ]])
+    <div class="osu-page osu-page--description">
+        {{ trans('tournament.index.header.subtitle') }}
     </div>
 
-    <div class="osu-page osu-page--tournament">
+    <div class="osu-page">
         <div class="tournament-list">
             @foreach($listing as $state => $tournaments)
                 @if($tournaments->isEmpty())
