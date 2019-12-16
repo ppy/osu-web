@@ -24,6 +24,16 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => 'admin',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'beatmapset covers',
+            'contest' => 'contest',
+            'contests' => 'contests',
+            'root' => 'console',
+            'store_orders' => 'store admin',
+        ],
+
         'artists' => [
             '_' => 'featured artists',
             'index' => 'listing',
