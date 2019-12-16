@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <div class="osu-page osu-page--tournament">
+    <div class="osu-page">
         <div class="tournament">
             <div class='tournament__banner'></div>
 
