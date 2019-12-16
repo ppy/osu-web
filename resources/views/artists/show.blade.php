@@ -44,7 +44,7 @@
 
 @section('content')
     @include('objects.css-override', ['mapping' => [
-        '.header-v4--artists .header-v4__bg' => $images['header_url'],
+        '.header-v4__bg' => $images['header_url'],
         '.artist__portrait' => $images['cover_url'],
         '.artist__label-overlay' => $artist->label ? $artist->label->icon_url : '',
     ]])
