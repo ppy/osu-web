@@ -15,32 +15,32 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', ['legacyNav' => false])
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-compact">
-        <div class="osu-page-header osu-page-header--live">
-                <h1 class="osu-page-header__title">{{ trans('livestreams.top-headers.headline') }}</h1>
+    @include('layout._page_header_v4', ['params' => [
+        'theme' => 'default',
+        'section' => trans('layout.header.community._'),
+        'subSection' => trans('layout.header.community.livestream'),
+    ]])
 
-                <p class="osu-page-header__title osu-page-header__title--smaller">
-                    {!! trans('livestreams.top-headers.description', [
-                    'link' => link_to(
-                    wiki_url('Guides/Live_Streaming_osu!'),
-                    trans('livestreams.top-headers.link'),
-                    ['class' => 'osu-page-header__description-link']
-                    ),
-                    ]) !!}
-                </p>
-        </div>
+    <div class="osu-page osu-page--description">
+        {!! trans('livestreams.top-headers.description', [
+            'link' => link_to(
+                wiki_url('Guides/Live_Streaming_osu!'),
+                trans('livestreams.top-headers.link'),
+                ['class' => 'link link--default']
+            ),
+        ]) !!}
     </div>
 
     @if ($featuredStream !== null)
-        <div class="osu-layout__row osu-layout__row--page-compact">
+        <div class="osu-page">
             @include('livestreams._featured', compact('featuredStream'))
         </div>
     @endif
 
-    <div class="osu-layout__row osu-layout__row--page-compact">
+    <div class="osu-page">
         <div class="livestream-page">
             <h2 class="livestream-page__header">
                 {{ trans('livestreams.headers.regular') }}

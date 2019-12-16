@@ -41,6 +41,7 @@ return [
             '_' => 'community',
             'comments' => 'comments',
             'forum' => 'forum',
+            'livestream' => 'live streams',
         ],
 
         'help' => [
