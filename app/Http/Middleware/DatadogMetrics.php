@@ -37,10 +37,12 @@ class DatadogMetrics extends LaravelDatadogMiddleware
     protected static function logDuration(Request $request, Response $response, $startTime)
     {
         $duration = microtime(true) - $startTime;
-        $action = $request->route() ? $request->route()->getActionName() : 'ErrorPage';
+        $action = optional($request->route())->getActionName() ?? 'ErrorPage';
+        $section = optional(optional($request->route())->getController())->getSection() ?? 'error';
 
         $tags = [
             'action' => $action,
+            'section' => $section,
             'status_code' => $response->getStatusCode(),
         ];
 
