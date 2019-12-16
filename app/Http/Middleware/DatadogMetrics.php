@@ -44,6 +44,6 @@ class DatadogMetrics extends LaravelDatadogMiddleware
             'status_code' => $response->getStatusCode(),
         ];
 
-        Datadog::timing('request_time', $duration, 1, $tags);
+        Datadog::timing(config('datadog-helper.prefix_web').'.request_time', $duration, 1, $tags);
     }
 }
