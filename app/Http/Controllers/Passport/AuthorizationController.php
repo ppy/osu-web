@@ -71,6 +71,11 @@ class AuthorizationController extends PassportAuthorizationController
         return parent::authorize($this->normalizeRequestScopes($psrRequest), $request, $clients, $tokens);
     }
 
+    public function getSection()
+    {
+        return 'user';
+    }
+
     /**
      * Normalizes the authorization request's scopes.
      *
