@@ -28,6 +28,7 @@ import {
   NotificationEventRead,
   NotificationEventReadJson,
   NotificationEventVerifiedJson,
+  NotificationEventNew,
 } from 'notifications/notification-events';
 import core from 'osu-core-singleton';
 
@@ -170,8 +171,7 @@ export default class Worker {
     if (isNotificationEventLogoutJson(eventData)) {
       this.destroy();
     } else if (isNotificationEventNewJson(eventData)) {
-      this.notificationStore.handleNotificationEventNew(eventData);
-      this.store.handleNotificationEventNew();
+      dispatch(new NotificationEventNew(eventData.data));
     } else if (isNotificationEventReadJson(eventData)) {
       dispatch(NotificationEventRead.fromJson(eventData));
     } else if (isNotificationEventVerifiedJson(eventData)) {

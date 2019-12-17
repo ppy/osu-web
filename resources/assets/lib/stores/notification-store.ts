@@ -16,11 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import NotificationJson from 'interfaces/notification-json';
 import { action, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
-import { NotificationEventNewJson } from 'notifications/notification-events';
 import NotificationStackStore from './notification-stack-store';
 import UnreadNotificationStackStore from './unread-notification-stack-store';
 
@@ -42,24 +40,5 @@ export default class NotificationStore {
 
   get(id: number) {
     return this.notifications.get(id);
-  }
-
-  @action
-  handleNotificationEventNew(event: NotificationEventNewJson) {
-    this.updateWithJson(event.data);
-  }
-
-  private updateWithJson(json: NotificationJson) {
-    // TODO: push out updates to all the stacks as well?
-    let notification = this.notifications.get(json.id);
-
-    if (notification == null) {
-      notification = Notification.fromJson(json);
-      this.notifications.set(notification.id, notification);
-    } else {
-      return notification.updateFromJson(json);
-    }
-
-    return notification;
   }
 }

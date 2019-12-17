@@ -26,7 +26,7 @@ import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType, { Name as NotificationTypeName  } from 'models/notification-type';
 import { nameToCategory } from 'notification-maps/category';
-import { NotificationEventMoreLoaded } from 'notifications/notification-events';
+import { NotificationEventMoreLoaded, NotificationEventNew } from 'notifications/notification-events';
 import { NotificationIdentity, resolveStackId } from 'notifications/notification-identity';
 import { NotificationResolver } from 'notifications/notification-resolver';
 import NotificationStore from './notification-store';
@@ -58,9 +58,16 @@ export default class NotificationStackStore implements DispatchListener {
 
   @action
   handleDispatchAction(dispatched: DispatcherAction) {
-    if (dispatched instanceof NotificationEventMoreLoaded && !dispatched.context.unreadOnly) {
+    if (dispatched instanceof NotificationEventNew) {
+      this.handleNotificationEventNew(dispatched);
+    } else if (dispatched instanceof NotificationEventMoreLoaded && !dispatched.context.unreadOnly) {
       this.updateWithBundle(dispatched.data);
     }
+  }
+
+  @action
+  handleNotificationEventNew(event: NotificationEventNew) {
+    this.updateWithNotificationJson(event.data);
   }
 
   /**

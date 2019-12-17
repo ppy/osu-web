@@ -39,12 +39,22 @@ export interface NotificationEventReadJson {
   event: 'read';
 }
 
-export class NotificationEventMoreLoaded implements DispatcherAction {
-  constructor(readonly data: NotificationBundleJson, readonly context: NotificationContextData) {}
+export class NotificationEventMoreLoaded extends DispatcherAction {
+  constructor(readonly data: NotificationBundleJson, readonly context: NotificationContextData) {
+    super();
+  }
 }
 
-export class NotificationEventRead implements DispatcherAction {
-  constructor(readonly data: NotificationIdentity[], readonly readCount: number) {}
+export class NotificationEventNew extends DispatcherAction {
+  constructor(readonly data: NotificationJson) {
+    super();
+  }
+}
+
+export class NotificationEventRead extends DispatcherAction {
+  constructor(readonly data: NotificationIdentity[], readonly readCount: number) {
+    super();
+  }
 
   static fromJson(eventData: NotificationEventReadJson): NotificationEventRead {
     const data = eventData.data.notifications.map((json) => fromJson(json));
