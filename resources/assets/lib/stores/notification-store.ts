@@ -35,6 +35,10 @@ export default class NotificationStore {
     this.notifications.clear();
   }
 
+  add(notification: Notification) {
+    this.notifications.set(notification.id, notification);
+  }
+
   get(id: number) {
     return this.notifications.get(id);
   }

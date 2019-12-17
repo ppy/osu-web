@@ -75,7 +75,7 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
   private handleNotification = (identity: NotificationIdentity) => {
     if (resolveIdentityType(identity) !== 'notification') return;
 
-    const notification = this.getNotification(identity);
+    const notification = this.notificationStore.get(identity.id ?? 0);
     const stack = this.getStack(identity);
     const type = this.getType(identity);
     // TODO; check if notification and stackNotification is necessary;

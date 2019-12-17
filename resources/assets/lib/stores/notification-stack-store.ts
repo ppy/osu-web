@@ -38,20 +38,11 @@ export default class NotificationStackStore {
     this.addLegacyPm();
   }
 
-  // TODO: remove, this is a trap, call notificationStore directly instead..
-  get notifications() {
-    return this.notificationStore.notifications;
-  }
-
   @action
   flushStore() {
     this.stacks.clear();
     this.types.clear();
     this.addLegacyPm();
-  }
-
-  getNotification(identitiy: NotificationIdentity) {
-    return this.notifications.get(identitiy.id ?? 0);
   }
 
   getStack(identity: NotificationIdentity) {
@@ -123,10 +114,10 @@ export default class NotificationStackStore {
   }
 
   private updateWithNotificationJson(json: NotificationJson) {
-    let notification = this.notifications.get(json.id);
+    let notification = this.notificationStore.get(json.id);
     if (notification == null) {
       notification = Notification.fromJson(json);
-      this.notifications.set(notification.id, notification);
+      this.notificationStore.add(notification);
     } else {
       notification.updateFromJson(json);
     }
