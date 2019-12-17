@@ -15,12 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', ['legacyNav' => false])
 
 @section('content')
-<div class="osu-layout__row osu-layout__row--page">
-    <h1>Please login to continue</h1>
-</div>
+    @include('layout._page_header_v4', ['params' => [
+        'section' => trans('layout.header.notice._'),
+    ]])
+    <div class="osu-page osu-page--generic">
+        {{ trans('users.login.info') }}
+    </div>
 @endsection
 
 @section("script")

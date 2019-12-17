@@ -93,23 +93,24 @@ return [
 
     'login' => [
         '_' => 'Sign in',
-        'email_login_disabled' => 'Signing in with email is currently disabled. Please use username instead.',
-        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
-        'username' => 'Username',
-        'password' => 'Password',
         'button' => 'Sign in',
         'button_posting' => 'Signing in...',
+        'email_login_disabled' => 'Signing in with email is currently disabled. Please use username instead.',
+        'failed' => 'Incorrect sign in',
+        'forgot' => 'Forgotten your password?',
+        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
+        'info' => 'Please sign in to continue',
+        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
+        'password' => 'Password',
+        'register' => "Don't have an osu! account? Make a new one",
         'remember' => 'Remember this computer',
         'title' => 'Please sign in to proceed',
-        'failed' => 'Incorrect sign in',
-        'register' => "Don't have an osu! account? Make a new one",
-        'forgot' => 'Forgotten your password?',
+        'username' => 'Username',
+
         'beta' => [
             'main' => 'Beta access is currently restricted to privileged users.',
             'small' => '(osu!supporters will get in soon)',
         ],
-
-        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
