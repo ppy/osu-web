@@ -64,6 +64,10 @@ return [
             'index' => 'listing',
         ],
 
+        'error' => [
+            '_' => 'error',
+        ],
+
         'help' => [
             '_' => 'wiki',
             'index' => 'index',
