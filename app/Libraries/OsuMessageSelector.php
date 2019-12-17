@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,23 +18,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.landing-news {
-  padding: 10px 0;
+namespace App\Libraries;
 
-  &__posts {
-    display: flex;
-    flex-direction: column;
+use Illuminate\Translation\MessageSelector;
 
-    @media @desktop {
-      flex-direction: row;
-      margin: 0 -10px;
+class OsuMessageSelector extends MessageSelector
+{
+    public function getPluralIndex($locale, $number)
+    {
+        if ($locale === 'pt-br') {
+            $locale = 'pt_BR';
+        }
+
+        return parent::getPluralIndex($locale, $number);
     }
-  }
-
-  &__link {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-  }
 }
