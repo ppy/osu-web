@@ -97,7 +97,7 @@ class NotificationsBundle
         $query->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
 
         if ($this->cursorId !== null) {
-            $query->where('id', '<', $this->cursorId);
+            $query->where('notification_id', '<', $this->cursorId);
         }
 
         $stack = $query->get();
