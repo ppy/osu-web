@@ -78,6 +78,10 @@ return [
             'password_reset' => 'reset password',
         ],
 
+        'matches' => [
+            '_' => 'multi matches',
+        ],
+
         'notice' => [
             '_' => 'notice',
         ],
