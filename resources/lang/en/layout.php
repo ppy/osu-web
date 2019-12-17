@@ -97,6 +97,7 @@ return [
 
         'users' => [
             '_' => 'player',
+            'forum_posts' => 'forum posts',
             'modding' => 'modding',
             'show' => 'info',
         ],
