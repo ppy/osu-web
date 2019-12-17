@@ -102,14 +102,6 @@ export default class Worker {
     this.selected = newSelected;
   }
 
-  @action setSelected(section: Section, index: number) {
-    this.selected = {section: SECTIONS.indexOf(section), index};
-  }
-
-  @action selectNone() {
-    this.selected = null;
-  }
-
   @computed get currentSection(): string | undefined {
     if (!this.selected) {
       return;
@@ -158,6 +150,14 @@ export default class Worker {
     })).always(action(() => {
       this.searching = false;
     }));
+  }
+
+  @action selectNone() {
+    this.selected = null;
+  }
+
+  @action setSelected(section: Section, index: number) {
+    this.selected = {section: SECTIONS.indexOf(section), index};
   }
 
   @action updateQuery(newQuery: string) {

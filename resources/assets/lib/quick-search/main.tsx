@@ -80,17 +80,6 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return worker.currentSection === section && worker.selected?.index === idx;
   }
 
-  private selectBox(section: Section, index: number = 0) {
-    this.props.worker.setSelected(section, index);
-  }
-
-  private selectUserOthers = () => this.selectBox('user_others')
-  private selectBeatmapsetOthers = () => this.selectBox('beatmapset_others')
-
-  private onMouseLeave = (event: React.MouseEvent<HTMLInputElement>) => {
-    this.props.worker.selectNone();
-  }
-
   private count(mode: ResultMode) {
     if (this.props.worker.searchResult === null) {
       return 0;
@@ -115,6 +104,10 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     if (key === 'ArrowUp' || key === 'ArrowDown') {
       this.props.worker.cycleCursor(key === 'ArrowDown' ? 1 : -1);
     }
+  }
+
+  private onMouseLeave = (event: React.MouseEvent<HTMLInputElement>) => {
+    this.props.worker.selectNone();
   }
 
   private renderBeatmapsets() {
@@ -368,6 +361,14 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
       </div>
     );
   }
+
+  private selectBeatmapsetOthers = () => this.selectBox('beatmapset_others');
+
+  private selectBox(section: Section, index: number = 0) {
+    this.props.worker.setSelected(section, index);
+  }
+
+  private selectUserOthers = () => this.selectBox('user_others');
 
   private toggle = (event?: React.SyntheticEvent<HTMLElement>) => {
     if (event != null) {
