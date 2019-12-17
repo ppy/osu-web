@@ -82,7 +82,7 @@ module.exports = function (config) {
     mime: { 'text/x-typescript': ['ts', 'tsx'] },
     port: 9876,
     preprocessors: preprocessors,
-    reporters: ['progress'],
+    reporters: ['mocha'],
     singleRun: false, // set to true for the process to exit after completing.
     webpack: webpackConfig,
     webpackMiddleware: {
