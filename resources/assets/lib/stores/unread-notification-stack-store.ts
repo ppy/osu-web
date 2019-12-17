@@ -97,13 +97,12 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
     if (stackNotification == null) {
       // notification may not have been loaded yet.
-      this.total--;
-
       // not known anywhere, skip
       if (stack == null || type == null || identity.id == null) return;
 
       // notification is past cursor, update counts
       if (identity.id < (stack.cursor?.id ?? 0)) {
+        this.total--;
         stack.total--;
         type.total--;
       }

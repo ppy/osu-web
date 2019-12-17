@@ -127,27 +127,52 @@ describe('Notification Events', () => {
       });
 
       describe('/ when unread notification has not been loaded yet', () => {
-        // id needs to be less than cursor too.
-        const unreadIdentity = { id: 500, ...stackIdentity };
-        const unreadEventData = [unreadIdentity];
+        describe('read notification is after the cursor', () => {
+          const unreadIdentity = { id: 500, ...stackIdentity };
+          const unreadEventData = [unreadIdentity];
 
-        beforeEach(() => {
-          store.unreadStacks.updateWithBundle(bundleWithoutNotification);
+          beforeEach(() => {
+            store.unreadStacks.updateWithBundle(bundleWithoutNotification);
 
-          const event = new NotificationEventRead(unreadEventData, unreadEventData.length);
-          dispatch(event);
+            const event = new NotificationEventRead(unreadEventData, unreadEventData.length);
+            dispatch(event);
+          });
+
+          it('decrements the unread count', () => {
+            expect(store.unreadStacks.total).toBe(baseUnreadCount - 1);
+            expect(store.unreadStacks.getStack(unreadIdentity)?.total).toBe(4);
+            expect(store.stacks.getStack(unreadIdentity)?.total).toBe(5);
+          });
+
+          it('does not have an existing notification', () => {
+            const stack = store.unreadStacks.getStack(unreadIdentity);
+            expect(stack).toBeDefined();
+            expect(stack?.notifications.get(unreadIdentity.id)).toBeUndefined();
+          });
         });
 
-        it('decrements the unread count', () => {
-          expect(store.unreadStacks.total).toBe(baseUnreadCount - 1);
-          expect(store.unreadStacks.getStack(unreadIdentity)?.total).toBe(4);
-          expect(store.stacks.getStack(unreadIdentity)?.total).toBe(5);
-        });
+        describe('read notification is before the cursor', () => {
+          const unreadIdentity = { id: 999, ...stackIdentity };
+          const unreadEventData = [unreadIdentity];
 
-        it('does not have an existing notification', () => {
-          const stack = store.unreadStacks.getStack(unreadIdentity);
-          expect(stack).toBeDefined();
-          expect(stack?.notifications.get(unreadIdentity.id)).toBeUndefined();
+          beforeEach(() => {
+            store.unreadStacks.updateWithBundle(bundleWithoutNotification);
+
+            const event = new NotificationEventRead(unreadEventData, unreadEventData.length);
+            dispatch(event);
+          });
+
+          it('does not decrement the unread count', () => {
+            expect(store.unreadStacks.total).toBe(baseUnreadCount);
+            expect(store.unreadStacks.getStack(unreadIdentity)?.total).toBe(5);
+            expect(store.stacks.getStack(unreadIdentity)?.total).toBe(5);
+          });
+
+          it('does not have an existing notification', () => {
+            const stack = store.unreadStacks.getStack(unreadIdentity);
+            expect(stack).toBeDefined();
+            expect(stack?.notifications.get(unreadIdentity.id)).toBeUndefined();
+          });
         });
       });
     });
