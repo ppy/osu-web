@@ -167,7 +167,7 @@ export default class ItemGroup extends React.Component<Props, State> {
 
   private renderShowMore() {
     const stack = this.props.stack;
-    if (stack.cursor == null) { return null; }
+    if (!stack.hasMore) { return null; }
 
     return (
       <ShowMoreLink

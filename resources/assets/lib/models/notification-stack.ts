@@ -46,6 +46,11 @@ export default class NotificationStack implements NotificationReadable {
   }
 
   @computed
+  get hasMore() {
+    return !(this.notifications.size >= this.total || this.cursor == null);
+  }
+
+  @computed
   get id() {
     return `${this.objectType}-${this.objectId}-${this.category}`;
   }
