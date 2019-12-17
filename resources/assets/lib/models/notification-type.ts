@@ -59,6 +59,7 @@ export default class NotificationType implements NotificationReadable {
   static fromJson(json: NotificationTypeJson, resolver: NotificationResolver) {
     const obj = new NotificationType(json.name, resolver);
     obj.updateWithJson(json);
+    return obj;
   }
 
   @action

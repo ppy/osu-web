@@ -17,38 +17,12 @@
  */
 
 import { dispatch, dispatcher } from 'app-dispatcher';
-import NotificationJson, { NotificationBundleJson } from 'interfaces/notification-json';
+import { NotificationBundleJson } from 'interfaces/notification-json';
 import Notification from 'models/notification';
 import { NotificationEventMoreLoaded, NotificationEventRead } from 'notifications/notification-events';
-import { NotificationIdentity, toJson } from 'notifications/notification-identity';
+import { toJson } from 'notifications/notification-identity';
 import NotificationStore from 'stores/notification-store';
-
-function makeNotificationJson(overrides: object) {
-  const base = {
-    category: 'beatmapset_discussion',
-    created_at: '2019-12-02T08:13:19+00:00',
-    details: {},
-    id: 1,
-    is_read: false,
-    name: 'beatmapset_discussion_post_new',
-    object_id: 1,
-    object_type: 'beatmapset',
-    source_user_id: 475002,
-  };
-
-  return Object.assign({}, base, overrides) as NotificationJson;
-}
-
-function makeStackJson(identity: NotificationIdentity, total: number, name: string, cursorId?: number) {
-  return {
-    category: identity.category,
-    cursor: cursorId != null ? { id: cursorId } : null,
-    name,
-    object_id: identity.objectId,
-    object_type: identity.objectType,
-    total,
-  };
-}
+import { makeNotificationJson, makeStackJson } from './helpers';
 
 const baseUnreadCount = 10;
 const stackIdentity  = { objectType: 'beatmapset', objectId: 1, category: 'beatmapset_discussion' };
