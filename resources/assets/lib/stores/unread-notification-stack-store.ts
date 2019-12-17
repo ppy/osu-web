@@ -21,7 +21,7 @@ import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { action, observable } from 'mobx';
-import { NotificationEventRead } from 'notifications/notification-events';
+import { NotificationEventMoreLoaded, NotificationEventRead } from 'notifications/notification-events';
 import { NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
 import NotificationStackStore from './notification-stack-store';
 
@@ -32,6 +32,8 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
   handleDispatchAction(dispatched: DispatcherAction) {
     if (dispatched instanceof NotificationEventRead) {
       this.handleNotificationEventRead(dispatched);
+    } else if (dispatched instanceof NotificationEventMoreLoaded && dispatched.context.unreadOnly) {
+      this.updateWithBundle(dispatched.data);
     }
   }
 

@@ -17,19 +17,39 @@
  */
 
 import { dispatch } from 'app-dispatcher';
+import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action } from 'mobx';
 import Notification from 'models/notification';
-import { toJson } from 'notifications/notification-identity';
+import { NotificationContextData } from 'notifications-context';
+import { NotificationIdentity, toJson } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
-import { NotificationEventRead } from './notification-events';
+import { NotificationEventMoreLoaded, NotificationEventRead } from './notification-events';
 
 // I don't know what to name this
 export class NotificationResolver {
   private debouncedSendQueued = debounce(this.sendQueued, 500);
   private queued = new Map<number, Notification>();
   private queuedXhr?: JQuery.jqXHR;
+
+  @action
+  loadMore(identity: NotificationIdentity, cursor: JSON, context: NotificationContextData) {
+    const urlParams = toJson(identity);
+    delete urlParams.id; // ziggy doesn't set the query string if id property exists.
+
+    const url = route('notifications.index', urlParams);
+
+    const params = {
+      data: { cursor, unread: context.unreadOnly },
+      dataType: 'json',
+      url,
+    };
+
+    return $.ajax(params).then((response: NotificationBundleJson) => {
+      dispatch(new NotificationEventMoreLoaded(response, context));
+    });
+  }
 
   @action
   queueMarkAsRead(readable: NotificationReadable) {

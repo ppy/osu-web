@@ -17,9 +17,11 @@
  */
 
 import DispatcherAction from 'actions/dispatcher-action';
-import NotificationJson from 'interfaces/notification-json';
+import NotificationJson, { NotificationBundleJson } from 'interfaces/notification-json';
+import { NotificationContextData } from 'notifications-context';
 import { fromJson, NotificationIdentity, NotificationIdentityJson } from 'notifications/notification-identity';
 
+// tslint:disable: max-classes-per-file
 export interface NotificationEventLogoutJson {
   event: 'logout';
 }
@@ -35,6 +37,10 @@ export interface NotificationEventReadJson {
     read_count: number,
   };
   event: 'read';
+}
+
+export class NotificationEventMoreLoaded implements DispatcherAction {
+  constructor(readonly data: NotificationBundleJson, readonly context: NotificationContextData) {}
 }
 
 export class NotificationEventRead implements DispatcherAction {

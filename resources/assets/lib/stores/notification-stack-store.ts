@@ -16,20 +16,23 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import DispatcherAction from 'actions/dispatcher-action';
+import { dispatchListener } from 'app-dispatcher';
+import DispatchListener from 'dispatch-listener';
 import NotificationJson, { NotificationBundleJson, NotificationStackJson, NotificationTypeJson } from 'interfaces/notification-json';
-import { route } from 'laroute';
 import { action, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType, { Name as NotificationTypeName  } from 'models/notification-type';
 import { nameToCategory } from 'notification-maps/category';
-import { NotificationContextData } from 'notifications-context';
-import { NotificationIdentity, resolveStackId, toJson } from 'notifications/notification-identity';
+import { NotificationEventMoreLoaded } from 'notifications/notification-events';
+import { NotificationIdentity, resolveStackId } from 'notifications/notification-identity';
 import { NotificationResolver } from 'notifications/notification-resolver';
 import NotificationStore from './notification-store';
 
-export default class NotificationStackStore {
+@dispatchListener
+export default class NotificationStackStore implements DispatchListener {
   @observable readonly stacks = new Map<string, NotificationStack>();
   @observable readonly types = new Map<string | null, NotificationType>();
   private readonly resolver = new NotificationResolver();
@@ -54,28 +57,10 @@ export default class NotificationStackStore {
   }
 
   @action
-  loadMore(identity: NotificationIdentity, cursor: JSON, context: NotificationContextData) {
-    const urlParams = toJson(identity);
-    delete urlParams.id; // ziggy doesn't set the query string if id property exists.
-
-    const url = route('notifications.index', urlParams);
-
-    const params = {
-      data: { cursor, unread: context.unreadOnly },
-      dataType: 'json',
-      url,
-    };
-
-    return $.ajax(params).then(action((response: NotificationBundleJson) => {
-      this.updateWithBundle(response);
-    }));
-  }
-
-  markAsRead(readable: NotificationStack | NotificationType) {
-    this.resolver.queueMarkAsRead(readable);
-  }
-  markNotificationAsRead(notification: Notification) {
-    this.resolver.queueMarkNotificationAsRead(notification);
+  handleDispatchAction(dispatched: DispatcherAction) {
+    if (dispatched instanceof NotificationEventMoreLoaded && !dispatched.context.unreadOnly) {
+      this.updateWithBundle(dispatched.data);
+    }
   }
 
   /**
@@ -101,8 +86,8 @@ export default class NotificationStackStore {
   @action
   private addLegacyPm() {
     const notification = new LegacyPmNotification();
-    const stack = new NotificationStack(this, notification.id, notification.objectType, notification.category);
-    const type = new NotificationType(this, notification.name);
+    const stack = new NotificationStack(notification.id, notification.objectType, notification.category, this.resolver);
+    const type = new NotificationType(notification.name, this.resolver);
 
     stack.add(notification);
     stack.total = 1;
@@ -128,7 +113,7 @@ export default class NotificationStackStore {
   private updateWithStackJson(json: NotificationStackJson) {
     let stack = this.stacks.get(idFromJson(json));
     if (stack == null) {
-      stack = new NotificationStack(this, json.object_id, json.object_type, nameToCategory[json.name]);
+      stack = new NotificationStack(json.object_id, json.object_type, nameToCategory[json.name], this.resolver);
       this.stacks.set(stack.id, stack);
     }
     stack.updateWithJson(json);
@@ -138,7 +123,7 @@ export default class NotificationStackStore {
   private updateWithTypeJson(json: NotificationTypeJson) {
     let type = this.types.get(json.name);
     if (type == null) {
-      type = new NotificationType(this, json.name);
+      type = new NotificationType(json.name, this.resolver);
       this.types.set(type.name, type);
     }
     type.updateWithJson(json);

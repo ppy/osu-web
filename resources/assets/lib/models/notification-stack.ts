@@ -24,7 +24,7 @@ import { NotificationContextData } from 'notifications-context';
 import { NotificationCursor } from 'notifications/notification-cursor';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
-import NotificationStackStore from 'stores/notification-stack-store';
+import { NotificationResolver } from 'notifications/notification-resolver';
 
 export default class NotificationStack implements NotificationReadable {
   @observable cursor: NotificationCursor | null = null;
@@ -68,14 +68,14 @@ export default class NotificationStack implements NotificationReadable {
   }
 
   constructor(
-    private readonly store: NotificationStackStore,
     readonly objectId: number,
     readonly objectType: string,
     readonly category: string,
+    readonly resolver: NotificationResolver,
   ) {}
 
-  static fromJson(json: NotificationStackJson, store: NotificationStackStore) {
-    const obj = new NotificationStack(store, json.object_id, json.object_type, categoryFromName(name));
+  static fromJson(json: NotificationStackJson, resolver: NotificationResolver) {
+    const obj = new NotificationStack(json.object_id, json.object_type, categoryFromName(name), resolver);
     return obj.updateWithJson(json);
   }
 
@@ -90,7 +90,7 @@ export default class NotificationStack implements NotificationReadable {
 
     this.isLoading = true;
 
-    this.store.loadMore(this.identity, this.cursor, context)
+    this.resolver.loadMore(this.identity, this.cursor, context)
     .always(action(() => {
       this.isLoading = false;
     }));
@@ -100,12 +100,12 @@ export default class NotificationStack implements NotificationReadable {
   markAsRead(notification?: Notification) {
     // not from this stack, ignore.
     if (notification == null || this.notifications.get(notification.id) == null) { return; }
-    this.store.markNotificationAsRead(notification);
+    this.resolver.queueMarkNotificationAsRead(notification);
   }
 
   @action
   markStackAsRead() {
-    this.store.markAsRead(this);
+    this.resolver.queueMarkAsRead(this);
   }
 
   @action

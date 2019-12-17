@@ -23,7 +23,7 @@ import { NotificationContextData } from 'notifications-context';
 import { NotificationCursor } from 'notifications/notification-cursor';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
-import NotificationStackStore from 'stores/notification-stack-store';
+import { NotificationResolver } from 'notifications/notification-resolver';
 
 export type Name = null | 'beatmapset' | 'build' | 'channel' | 'forum_topic' | 'news_post' | 'user';
 const names: Name[] = [null, 'beatmapset', 'build', 'channel', 'forum_topic', 'news_post', 'user'];
@@ -54,10 +54,10 @@ export default class NotificationType implements NotificationReadable {
     };
   }
 
-  constructor(private readonly store: NotificationStackStore, readonly name: string | null) {}
+  constructor(readonly name: string | null, readonly resolver: NotificationResolver) {}
 
-  static fromJson(json: NotificationTypeJson, store: NotificationStackStore) {
-    const obj = new NotificationType(store, json.name);
+  static fromJson(json: NotificationTypeJson, resolver: NotificationResolver) {
+    const obj = new NotificationType(json.name, resolver);
     obj.updateWithJson(json);
   }
 
@@ -67,7 +67,7 @@ export default class NotificationType implements NotificationReadable {
 
     this.isLoading = true;
 
-    this.store.loadMore(this.identity, this.cursor, context)
+    this.resolver.loadMore(this.identity, this.cursor, context)
     .always(action(() => {
       this.isLoading = false;
     }));
@@ -75,7 +75,7 @@ export default class NotificationType implements NotificationReadable {
 
   @action
   markTypeAsRead() {
-    this.store.markAsRead(this);
+    this.resolver.queueMarkAsRead(this);
   }
 
   @action
