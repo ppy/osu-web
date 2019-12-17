@@ -38,7 +38,7 @@
         <div class="tournament-list">
             @foreach($listing as $state => $tournaments)
                 @if($tournaments->isEmpty())
-                    @if($state == 'current')
+                    @if($state === 'current')
                         <h1 class="tournament-list__heading">{{trans("tournament.index.state.$state")}}</h1>
                         <p class="tournament-list__none-running">{{trans('tournament.index.none_running')}}</p>
                     @endif
