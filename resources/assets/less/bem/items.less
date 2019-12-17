@@ -16,30 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
- .spotlight-info {
-  .default-gutter-v2();
+.items {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin: -10px;
 
-  padding-top: 10px;
-  padding-bottom: 10px;
-
-  color: @osu-colour-c1;
-  background-color: @osu-colour-b3;
-
-  &__items {
-    display: flex;
-    justify-content: flex-end;
-
-    margin: -5px;
-    padding: 5px;
-  }
-
-  &__item {
-    padding: 5px;
-  }
-
-  &__item-header {
-    font-size: @font-size--normal;
+  // simulating `gap` property
+  > * {
+    margin: 10px;
   }
 }

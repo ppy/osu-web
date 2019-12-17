@@ -47,8 +47,8 @@
     ]])
 
     <div class="osu-page osu-page--info-bar">
-        <div class="counter-box counter-box--tournament">
-            <div class="counter-box__content">
+        <div class="items">
+            <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
                     {{ trans('tournament.show.period.start') }}
                 </div>
@@ -56,9 +56,7 @@
                     {{ i18n_date($tournament->start_date) }}
                 </div>
             </div>
-        </div>
-        <div class="counter-box counter-box--tournament">
-            <div class="counter-box__content">
+            <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
                     {{ trans('tournament.show.period.end') }}
                 </div>

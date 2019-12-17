@@ -26,31 +26,37 @@
         {!! json_encode($selectOptions) !!}
     </script>
 
-    <div class="osu-page">
-        <div class="spotlight-info">
-            <div class="spotlight-info__items">
-                <div class="spotlight-info__item">
-                    <div class="spotlight-info__item-header">
-                        {{ trans('rankings.spotlight.start_date') }}
-                    </div>
+    <div class="osu-page osu-page--info-bar">
+        <div class="items">
+            <div class="counter-box counter-box--info">
+                <div class="counter-box__title">
+                    {{ trans('rankings.spotlight.start_date') }}
+                </div>
+                <div class="counter-box__count">
                     {{ $spotlight->start_date->formatLocalized('%Y-%m-%d') }}
                 </div>
-                <div class="spotlight-info__item">
-                    <div class="spotlight-info__item-header">
-                        {{ trans('rankings.spotlight.end_date') }}
-                    </div>
+            </div>
+            <div class="counter-box counter-box--info">
+                <div class="counter-box__title">
+                    {{ trans('rankings.spotlight.end_date') }}
+                </div>
+                <div class="counter-box__count">
                     {{ $spotlight->end_date->formatLocalized('%Y-%m-%d') }}
                 </div>
-                <div class="spotlight-info__item">
-                    <div class="spotlight-info__item-header">
-                        {{ trans('rankings.spotlight.map_count') }}
-                    </div>
+            </div>
+            <div class="counter-box counter-box--info">
+                <div class="counter-box__title">
+                    {{ trans('rankings.spotlight.map_count') }}
+                </div>
+                <div class="counter-box__count">
                     {{ count($beatmapsets) }}
                 </div>
-                <div class="spotlight-info__item">
-                    <div class="spotlight-info__item-header">
-                        {{ trans('rankings.spotlight.participants') }}
-                    </div>
+            </div>
+            <div class="counter-box counter-box--info">
+                <div class="counter-box__title">
+                    {{ trans('rankings.spotlight.participants') }}
+                </div>
+                <div class="counter-box__count">
                     {{ i18n_number_format($scoreCount) }}
                 </div>
             </div>
