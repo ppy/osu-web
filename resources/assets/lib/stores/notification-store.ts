@@ -31,12 +31,13 @@ export default class NotificationStore {
   readonly unreadStacks = new UnreadNotificationStackStore(this);
 
   @action
-  flushStore() {
-    this.notifications.clear();
-  }
-
   add(notification: Notification) {
     this.notifications.set(notification.id, notification);
+  }
+
+  @action
+  flushStore() {
+    this.notifications.clear();
   }
 
   get(id: number) {

@@ -19,7 +19,7 @@
 import { dispatch, dispatcher } from 'app-dispatcher';
 import NotificationJson, { NotificationBundleJson } from 'interfaces/notification-json';
 import Notification from 'models/notification';
-import { NotificationEventRead } from 'notifications/notification-events';
+import { NotificationEventMoreLoaded, NotificationEventRead } from 'notifications/notification-events';
 import { NotificationIdentity, toJson } from 'notifications/notification-identity';
 import NotificationStore from 'stores/notification-store';
 
@@ -58,14 +58,13 @@ const identities = [
 ];
 
 describe('Notification Events', () => {
+  // @ts-ignore
+  beforeEach(() => dispatcher.listeners.clear());
+  // @ts-ignore
+  afterEach(() => dispatcher.listeners.clear());
+
   describe('on NotificationEventRead', () => {
-    // @ts-ignore
-    beforeEach(() => dispatcher.listeners.clear());
-    // @ts-ignore
-    afterEach(() => dispatcher.listeners.clear());
-
     describe('/ when single notification read', () => {
-
       const identity = identities[0];
       const notificationJson = makeNotificationJson(toJson(identity));
 
@@ -367,6 +366,100 @@ describe('Notification Events', () => {
 
         it('removes the unread stack', () => {
           expect(store.unreadStacks.getStack(stackIdentity)).toBeUndefined();
+        });
+      });
+    });
+  });
+
+  describe('on NotificationEventMoreLoaded', () => {
+    const bundleBase = {
+      stacks: [makeStackJson(identities[0], 5, 'beatmapset_discussion_post_new', identities[0].id - 100)],
+      types: [
+        { cursor: null, name: null,  total: 5 },
+        { cursor: null, name: 'beatmapset', total: 5 },
+      ],
+    };
+
+    const notificationsJson = identities.map(toJson).map(makeNotificationJson);
+
+    const bundle = { ...bundleBase } as NotificationBundleJson;
+    bundle.notifications = notificationsJson;
+    bundle.unread_count = baseUnreadCount;
+
+    let store!: NotificationStore;
+    beforeEach(() => {
+      store = new NotificationStore();
+    });
+
+    it('only contains legacy pm', () => {
+      expect(store.unreadStacks.stacks.size).toBe(1);
+      expect(store.unreadStacks.types.size).toBe(1);
+      expect(store.stacks.stacks.size).toBe(1);
+      expect(store.stacks.types.size).toBe(1);
+
+      expect(store.unreadStacks.stacks.values().next().value.category).toBe('legacy_pm');
+      expect(store.unreadStacks.types.values().next().value.name).toBe('legacy_pm');
+      expect(store.stacks.stacks.values().next().value.category).toBe('legacy_pm');
+      expect(store.stacks.types.values().next().value.name).toBe('legacy_pm');
+    });
+
+    describe('/ all notifications', () => {
+      beforeEach(() => {
+        dispatch(new NotificationEventMoreLoaded(bundle, { unreadOnly: false } ));
+      });
+
+      it ('does not update the unread count', () => {
+        // does not update because the response doesn't have it
+        expect(store.unreadStacks.total).toBe(0);
+      });
+
+      it('store.stacks is not empty', () => {
+        expect(store.stacks.stacks.size).toBe(2);
+        expect(store.stacks.types.size).toBe(3);
+        expect(store.stacks.getType({ objectType: null })).toBeDefined();
+        expect(store.stacks.getType({ objectType: 'beatmapset' })).toBeDefined();
+      });
+
+      it('store.unreadStacks only contains legacy pm', () => {
+        expect(store.unreadStacks.stacks.size).toBe(1);
+        expect(store.unreadStacks.types.size).toBe(1);
+        expect(store.unreadStacks.getType({ objectType: 'legacy_pm' })).toBeDefined();
+      });
+
+      it('notifications added to store.notifications', () => {
+        identities.forEach((identity) => {
+          expect(store.notifications.get(identity.id)).toEqual(jasmine.any(Notification));
+        });
+      });
+    });
+
+    describe('/ only unread notifications', () => {
+      beforeEach(() => {
+        dispatch(new NotificationEventMoreLoaded(bundle, { unreadOnly: true } ));
+      });
+
+      it('updates the unread count', () => {
+        expect(store.unreadStacks.total).toBe(baseUnreadCount);
+      });
+
+      it('store.stacks only contains legacy pm', () => {
+        expect(store.stacks.stacks.size).toBe(1);
+
+        expect(store.stacks.types.size).toBe(1);
+        expect(store.stacks.getType({ objectType: 'legacy_pm' })).toBeDefined();
+      });
+
+      it('store.unreadStacks is not empty', () => {
+        expect(store.unreadStacks.stacks.size).toBe(2);
+        expect(store.unreadStacks.types.size).toBe(3);
+        expect(store.unreadStacks.getType({ objectType: null })).toBeDefined();
+        expect(store.unreadStacks.getType({ objectType: 'beatmapset' })).toBeDefined();
+        expect(store.unreadStacks.getType({ objectType: 'legacy_pm' })).toBeDefined();
+      });
+
+      it('notifications added to store.notifications', () => {
+        identities.forEach((identity) => {
+          expect(store.notifications.get(identity.id)).toEqual(jasmine.any(Notification));
         });
       });
     });
