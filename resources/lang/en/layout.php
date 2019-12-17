@@ -78,6 +78,10 @@ return [
             '_' => 'notice',
         ],
 
+        'rankings' => [
+            '_' => 'ranking',
+        ],
+
         'tournaments' => [
             '_' => 'tournaments',
             'index' => 'listing',
