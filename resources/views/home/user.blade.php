@@ -20,7 +20,7 @@
 @section('content')
     @include('home._user_header_default', [
         'title' => trans('home.user.title'),
-        ])
+    ])
 
     <div class="osu-page">
         <div class="user-home">
