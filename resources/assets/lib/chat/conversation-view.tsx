@@ -29,23 +29,32 @@ import { UserAvatar } from 'user-avatar';
 import { ChatChannelSwitchAction } from '../actions/chat-actions';
 import DispatcherAction from '../actions/dispatcher-action';
 import DispatchListener from '../dispatch-listener';
+import Dispatcher from '../dispatcher';
 import MessageDivider from './message-divider';
 import MessageGroup from './message-group';
+
+interface Props {
+  dataStore?: RootDataStore;
+  dispatcher?: Dispatcher;
+}
 
 @inject('dataStore')
 @inject('dispatcher')
 @observer
-export default class ConversationView extends React.Component<any, any> implements DispatchListener {
+export default class ConversationView extends React.Component<Props> implements DispatchListener {
   private baseCssClass = 'chat-conversation';
   private chatLabelClass = 'chat-label';
   private chatViewRef = React.createRef<HTMLInputElement>();
+  private readonly dataStore: RootDataStore;
   private didSwitchChannel: boolean = true;
   private unreadMarker?: JQuery<HTMLElement>;
   private unreadMarkerClass = 'read-marker';
 
-  constructor(props: {}) {
+  constructor(props: Props) {
     super(props);
-    this.props.dispatcher.register(this);
+
+    this.dataStore = props.dataStore!;
+    props.dispatcher!.register(this);
   }
 
   componentDidMount() {
@@ -59,7 +68,7 @@ export default class ConversationView extends React.Component<any, any> implemen
       return;
     }
 
-    const dataStore = this.props.dataStore;
+    const dataStore = this.dataStore;
     const channel = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
     if (!channel.loaded) {
       return;
@@ -76,7 +85,7 @@ export default class ConversationView extends React.Component<any, any> implemen
       }
       this.didSwitchChannel = false;
     } else {
-      if (this.props.dataStore.uiState.chat.autoScroll) {
+      if (this.dataStore.uiState.chat.autoScroll) {
         this.scrollToBottom();
       }
     }
@@ -89,7 +98,7 @@ export default class ConversationView extends React.Component<any, any> implemen
   }
 
   noCanSendMessage(): React.ReactNode {
-    const dataStore: RootDataStore = this.props.dataStore;
+    const dataStore: RootDataStore = this.dataStore;
     const presence = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
 
     if (!presence) {
@@ -125,12 +134,12 @@ export default class ConversationView extends React.Component<any, any> implemen
   onScroll = () => {
     const chatView = this.chatViewRef.current;
     if (chatView) {
-      this.props.dataStore.uiState.chat.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
+      this.dataStore.uiState.chat.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
     }
   }
 
   render(): React.ReactNode {
-    const dataStore: RootDataStore = this.props.dataStore;
+    const dataStore: RootDataStore = this.dataStore;
     const channel = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
 
     if (!channel) {
