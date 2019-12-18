@@ -160,7 +160,7 @@ export default class ChatOrchestrator implements DispatchListener {
     }
 
     // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
-    const lastSentMessage = channel.messages.find((message) => message.messageId === lastReadId);
+    const lastSentMessage = channel.messages[channel.messages.length - 1];
     if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
       channel.lastReadId = lastReadId;
 
