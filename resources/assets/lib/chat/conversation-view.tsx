@@ -48,7 +48,7 @@ export default class ConversationView extends React.Component<Props> implements 
   private readonly dataStore: RootDataStore;
   private didSwitchChannel: boolean = true;
   private unreadMarker?: JQuery<HTMLElement>;
-  private unreadMarkerClass = 'read-marker';
+  private unreadMarkerClass = 'unread-marker';
 
   constructor(props: Props) {
     super(props);
@@ -161,7 +161,7 @@ export default class ConversationView extends React.Component<Props> implements 
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
         }
-        conversationStack.push(<MessageDivider key={`read-${message.timestamp}`} type='READ_MARKER' timestamp={message.timestamp} />);
+        conversationStack.push(<MessageDivider key={`read-${message.timestamp}`} type='UNREAD_MARKER' timestamp={message.timestamp} />);
       }
 
       // check whether the day-change header needs to be shown

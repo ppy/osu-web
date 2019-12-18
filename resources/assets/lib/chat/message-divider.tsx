@@ -30,8 +30,8 @@ export default class MessageDivider extends React.Component<Props, any> {
       case 'DAY_MARKER':
         return (<div className='chat-conversation__day-divider'>{moment(this.props.timestamp).format('LL')}</div>);
 
-      case 'READ_MARKER':
-        return (<div className='chat-conversation__read-marker' data-content='unread messages' />);
+      case 'UNREAD_MARKER':
+        return (<div className='chat-conversation__unread-marker' data-content='unread messages' />);
 
       default:
         return null;
