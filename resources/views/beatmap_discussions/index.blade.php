@@ -124,7 +124,7 @@
                 </div>
             </form>
 
-            <div class="js-react--beatmap-discussions-history osu-layout osu-layout--full">
+            <div class="js-react--beatmap-discussions-history">
                 <div class="beatmapset-activities__spinner">{!! spinner() !!}</div>
             </div>
 
