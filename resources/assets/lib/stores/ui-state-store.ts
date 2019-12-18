@@ -19,8 +19,9 @@
 import ChatStateStore from 'chat/chat-state-store';
 import { CommentBundleJSON } from 'interfaces/comment-json';
 import { Dictionary, orderBy } from 'lodash';
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { Comment, CommentSort } from 'models/comment';
+import { getValidName, Name as NotificationTypeName } from 'models/notification-type';
 import { OwnClient } from 'models/oauth/own-client';
 import Store from 'stores/store';
 
@@ -41,6 +42,15 @@ interface CommentsUIState {
   total: number;
   userFollow: boolean;
 }
+
+interface NotificationUIState {
+  currentFilter: NotificationTypeName;
+
+}
+
+const defaultNotificationUIState: NotificationUIState = {
+  currentFilter: null,
+};
 
 const defaultCommentsUIState: CommentsUIState = {
   currentSort: 'new',
@@ -65,7 +75,17 @@ export default class UIStateStore extends Store {
 
   // only for the currently visible page
   @observable comments = Object.assign({}, defaultCommentsUIState);
+
+  @observable notifications = Object.assign({}, defaultNotificationUIState);
+
   private orderedCommentsByParentId: Dictionary<Comment[]> = {};
+
+  @computed
+  private get typeNameFromUrl() {
+    const url = new URL(location.href);
+
+    return getValidName(url.searchParams.get('type'));
+  }
 
   exportCommentsUIState() {
     return {
@@ -80,6 +100,23 @@ export default class UIStateStore extends Store {
   }
 
   // TODO: all the methods below should be moved out
+
+  @action
+  navigateNotifications(type: NotificationTypeName) {
+    const href = (() => {
+      if (type == null) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('type');
+
+        return url.href;
+      } else {
+        return osu.updateQueryString(null, { type });
+      }
+    })();
+
+    this.notifications.currentFilter = type;
+    Turbolinks.controller.advanceHistory(href);
+  }
 
   @action
   importCommentsUIState(json: any) {

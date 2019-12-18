@@ -35,9 +35,8 @@
 
 import HeaderV4 from 'header-v4';
 import { route } from 'laroute';
-import { computed } from 'mobx';
 import { observer } from 'mobx-react';
-import { getValidName, Name as NotificationTypeName } from 'models/notification-type';
+import { Name as NotificationTypeName } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
 import { NotificationContext } from 'notifications-context';
 import core from 'osu-core-singleton';
@@ -46,7 +45,6 @@ import { ShowMoreLink } from 'show-more-link';
 
 interface State {
   loadingMore: boolean;
-  type: NotificationTypeName;
 }
 
 @observer
@@ -65,17 +63,10 @@ export class Main extends React.Component<{}, State> {
 
   readonly state = {
     loadingMore: false,
-    type: this.typeNameFromUrl,
   };
 
   private readonly store = core.dataStore.notificationStore.stacks;
-
-  @computed
-  private get typeNameFromUrl() {
-    const url = new URL(location.href);
-
-    return getValidName(url.searchParams.get('type'));
-  }
+  private readonly uiState = core.dataStore.uiState;
 
   render() {
     return (
@@ -103,8 +94,7 @@ export class Main extends React.Component<{}, State> {
   }
 
   renderShowMore() {
-    // TODO: fix typing
-    const type = this.store.getType({ objectType: this.state.type as string });
+    const type = this.store.getType({ objectType: this.uiState.notifications.currentFilter });
 
     return (
       <ShowMoreLink
@@ -118,7 +108,7 @@ export class Main extends React.Component<{}, State> {
 
   renderStacks() {
     const nodes: React.ReactNode[] = [];
-    for (const stack of this.store.stacksOfType(this.state.type)) {
+    for (const stack of this.store.stacksOfType(this.uiState.notifications.currentFilter)) {
       nodes.push(<Stack key={stack.id} stack={stack} />);
     }
 
@@ -129,25 +119,11 @@ export class Main extends React.Component<{}, State> {
     event.preventDefault();
 
     const type = ((event.target as HTMLAnchorElement).dataset.type ?? null) as NotificationTypeName;
-    this.setState({ type }, () => {
-      const href = (() => {
-        if (type == null) {
-          const url = new URL(window.location.href);
-          url.searchParams.delete('type');
-
-          return url.href;
-        } else {
-          return osu.updateQueryString(null, { type });
-        }
-      })();
-
-      Turbolinks.controller.advanceHistory(href);
-    });
+    this.uiState.navigateNotifications(type);
   }
 
   private handleShowMore = () => {
-    // TODO: fix typing
-    const type = this.store.types.get(this.state.type as string);
+    const type = this.store.getType({ objectType: this.uiState.notifications.currentFilter });
     type?.loadMore(this.context);
   }
 }
