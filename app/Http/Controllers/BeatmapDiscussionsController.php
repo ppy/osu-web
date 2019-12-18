@@ -131,25 +131,13 @@ class BeatmapDiscussionsController extends Controller
             $related_discussions = $children->get();
         }
 
-        $discussionUserIds = [];
-        foreach ($discussions->merge($related_discussions) as $discussion) {
-            $discussionUserIds[] = $discussion->user_id;
-            $discussionUserIds[] = $discussion->startingPost->last_editor_id;
-        }
-
-        $userIdSources = [
-            $discussionUserIds,
-        ];
-
         $userIds = [];
-
-        foreach ($userIdSources as $source) {
-            $userIds = array_merge($userIds, $source);
+        foreach ($discussions->merge($related_discussions) as $discussion) {
+            $userIds[$discussion->user_id] = true;
+            $userIds[$discussion->startingPost->last_editor_id] = true;
         }
 
-        $userIds = array_values(array_filter(array_unique($userIds)));
-
-        $users = User::whereIn('user_id', $userIds)
+        $users = User::whereIn('user_id', array_keys($userIds))
             ->with('userGroups')
             ->default()
             ->get();
