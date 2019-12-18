@@ -16,6 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-export interface NotificationCursor extends JSON {
+export interface NotificationCursor {
   id: number | null;
 }

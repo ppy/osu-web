@@ -68,6 +68,10 @@ export default class NotificationStack implements NotificationReadable {
     };
   }
 
+  get isLegacyPm() {
+    return this.objectType === 'legacy_pm';
+  }
+
   get type() {
     return this.objectType;
   }

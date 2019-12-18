@@ -19,6 +19,7 @@
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import { NotificationContext } from 'notifications-context';
+import NotificationController from 'notifications/notification-controller';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import Stack from './stack';
@@ -39,8 +40,8 @@ export default class Main extends React.Component<Props, State> {
     hasError: false,
   };
 
+  private readonly controller = new NotificationController(core.dataStore.notificationStore, { unreadOnly: true });
   private menuId = `nav-notification-popup-${osu.uuid()}`;
-  private readonly store = core.dataStore.notificationStore.unreadStacks;
 
   static getDerivedStateFromError(error: Error) {
     // tslint:disable-next-line: no-console
@@ -114,13 +115,11 @@ export default class Main extends React.Component<Props, State> {
 
     const nodes: React.ReactNode[] = [];
 
-    this.store.stacks.forEach((stack) => {
-      if (!stack.hasVisibleNotifications) {
-        return;
-      }
+    for (const stack of this.controller.stacks) {
+      if (!stack.hasVisibleNotifications) continue;
 
       nodes.push(<Stack key={stack.id} stack={stack} />);
-    });
+    }
 
     if (nodes.length === 0) {
       nodes.push(this.props.worker.hasMore ? (

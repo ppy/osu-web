@@ -18,13 +18,11 @@
 
 import { dispatch, dispatcher } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
-import Notification from 'models/notification';
-import { NotificationEventMoreLoaded, NotificationEventRead } from 'notifications/notification-events';
+import NotificationController from 'notifications/notification-controller';
+import { NotificationEventMoreLoaded } from 'notifications/notification-events';
 import { toJson } from 'notifications/notification-identity';
 import NotificationStore from 'stores/notification-store';
-import { makeNotificationJson, makeStackJson, makeTypeJson } from './helpers';
-import NotificationType from 'models/notification-type';
-import { NotificationResolver } from 'notifications/notification-resolver';
+import { makeNotificationJson, makeStackJson } from './helpers';
 
 const identities = [
   { id: 1002, objectType: 'beatmapset', objectId: 2, category: 'beatmapset_discussion' },
@@ -37,38 +35,50 @@ describe('Notification Index', () => {
   // @ts-ignore
   afterEach(() => dispatcher.listeners.clear());
 
-  const bundle = {
+  const bundle: NotificationBundleJson = {
     notifications: [identities[0]].map(toJson).map(makeNotificationJson),
-    stacks: [makeStackJson(identities[0], 5, 'beatmapset_discussion_post_new', identities[0].id - 100)],
+    stacks: [makeStackJson(identities[0], 5, 'beatmapset_discussion_post_new', identities[0].id )],
     types: [
-      { cursor: null, name: null,  total: 20 },
-      { cursor: null, name: 'beatmapset', total: 5 },
-    ],
-  };
-
-  const loadMoreBundle = {
-    notifications: [identities[1]].map(toJson).map(makeNotificationJson),
-    stacks: [makeStackJson(identities[1], 5, 'beatmapset_discussion_post_new', identities[1].id - 100)],
-    types: [
-      { cursor: null, name: null,  total: 20 },
-      { cursor: null, name: 'beatmapset', total: 5 },
+      { cursor: { id: identities[0].id }, name: null,  total: 20 },
+      { cursor: { id: identities[0].id }, name: 'beatmapset', total: 5 },
     ],
   };
 
   let store!: NotificationStore;
   beforeEach(() => {
     store = new NotificationStore();
-
     store.stacks.updateWithBundle(bundle);
   });
 
   describe('/ when starting on All', () => {
+    let controller!: NotificationController;
+    beforeEach(() => {
+      controller = new NotificationController(store, { unreadOnly: false });
+    });
+
+    it('should filter by All', () => {
+      expect(controller.currentFilter).toBe(null);
+    });
+
     it('should have 1 notification', () => {
       expect(store.notifications.size).toBe(1);
     });
 
+    it('should have 2 stacks', () => {
+      expect([...controller.stacks].length).toBe(2);
+    });
+
     describe('/ after loading more', () => {
       beforeEach(() => {
+        const loadMoreBundle: NotificationBundleJson = {
+          notifications: [identities[1]].map(toJson).map(makeNotificationJson),
+          stacks: [makeStackJson(identities[1], 5, 'beatmapset_discussion_post_new', identities[1].id )],
+          types: [
+            { cursor: { id: identities[1].id }, name: null,  total: 20 },
+            { cursor: { id: identities[1].id }, name: 'beatmapset', total: 5 },
+          ],
+        };
+
         dispatch(new NotificationEventMoreLoaded(loadMoreBundle, { unreadOnly: false }));
       });
 
@@ -76,25 +86,54 @@ describe('Notification Index', () => {
         expect(store.notifications.size).toBe(2);
       });
 
-      describe('/ change filter to Beatmapsets', () => {
-        it('should filter by Beatmapsets', () => {
+      it('should have 3 stacks', () => {
+        expect([...controller.stacks].length).toBe(3);
+      });
 
+      describe('/ change filter to Beatmapsets', () => {
+        beforeEach(() => {
+          controller.navigateTo('beatmapset');
+        });
+
+        it('should filter by Beatmapsets', () => {
+          expect(controller.currentFilter).toBe('beatmapset');
         });
 
         it('should contain the extra notifications', () => {
-
+          expect([...controller.stacks].length).toBe(2);
         });
       });
     });
   });
 
   describe('/ when starting on Beatmapsets', () => {
+    let controller!: NotificationController;
+    beforeEach(() => {
+      controller = new NotificationController(store, { unreadOnly: false }, 'beatmapset');
+    });
+
+    it('should filter by Beatmapsets', () => {
+      expect(controller.currentFilter).toBe('beatmapset');
+    });
+
     it('should have 1 notifications', () => {
       expect(store.notifications.size).toBe(1);
     });
 
+    it('should have 1 stack', () => {
+      expect([...controller.stacks].length).toBe(1);
+    });
+
     describe('/ after loading more', () => {
       beforeEach(() => {
+        const loadMoreBundle: NotificationBundleJson = {
+          notifications: [identities[1]].map(toJson).map(makeNotificationJson),
+          stacks: [makeStackJson(identities[1], 5, 'beatmapset_discussion_post_new', identities[1].id )],
+          types: [
+            { cursor: { id: identities[1].id }, name: 'beatmapset', total: 5 },
+          ],
+        };
+
         dispatch(new NotificationEventMoreLoaded(loadMoreBundle, { unreadOnly: false }));
       });
 
@@ -103,12 +142,16 @@ describe('Notification Index', () => {
       });
 
       describe('/ change filter to All', () => {
-        it('should filter by All', () => {
+        beforeEach(() => {
+          controller.navigateTo(null);
+        });
 
+        it('should filter by All', () => {
+          expect(controller.currentFilter).toBe(null);
         });
 
         it('should reset the loaded notifications', () => {
-
+          expect([...controller.stacks].length).toBe(2);
         });
       });
     });

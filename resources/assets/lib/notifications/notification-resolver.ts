@@ -25,6 +25,7 @@ import Notification from 'models/notification';
 import { NotificationContextData } from 'notifications-context';
 import { NotificationIdentity, toJson } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
+import { NotificationCursor } from './notification-cursor';
 import { NotificationEventMoreLoaded, NotificationEventRead } from './notification-events';
 
 // I don't know what to name this
@@ -34,7 +35,7 @@ export class NotificationResolver {
   private queuedXhr?: JQuery.jqXHR;
 
   @action
-  loadMore(identity: NotificationIdentity, cursor: JSON, context: NotificationContextData) {
+  loadMore(identity: NotificationIdentity, cursor: NotificationCursor, context: NotificationContextData) {
     const urlParams = toJson(identity);
     delete urlParams.id; // ziggy doesn't set the query string if id property exists.
 

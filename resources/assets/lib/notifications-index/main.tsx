@@ -39,16 +39,13 @@ import { observer } from 'mobx-react';
 import { Name as NotificationTypeName } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
 import { NotificationContext } from 'notifications-context';
+import NotificationController from 'notifications/notification-controller';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 
-interface State {
-  loadingMore: boolean;
-}
-
 @observer
-export class Main extends React.Component<{}, State> {
+export class Main extends React.Component {
   static readonly contextType = NotificationContext;
 
   readonly links = [
@@ -61,12 +58,7 @@ export class Main extends React.Component<{}, State> {
     { title: 'Chat', url: route('notifications.index', { type: 'channel' }), data: { 'data-type': 'channel' }},
   ];
 
-  readonly state = {
-    loadingMore: false,
-  };
-
-  private readonly store = core.dataStore.notificationStore.stacks;
-  private readonly uiState = core.dataStore.uiState;
+  private readonly controller = new NotificationController(core.dataStore.notificationStore, this.context);
 
   render() {
     return (
@@ -94,7 +86,7 @@ export class Main extends React.Component<{}, State> {
   }
 
   renderShowMore() {
-    const type = this.store.getType({ objectType: this.uiState.notifications.currentFilter });
+    const type = this.controller.type;
 
     return (
       <ShowMoreLink
@@ -108,7 +100,7 @@ export class Main extends React.Component<{}, State> {
 
   renderStacks() {
     const nodes: React.ReactNode[] = [];
-    for (const stack of this.store.stacksOfType(this.uiState.notifications.currentFilter)) {
+    for (const stack of this.controller.stacks) {
       nodes.push(<Stack key={stack.id} stack={stack} />);
     }
 
@@ -119,11 +111,10 @@ export class Main extends React.Component<{}, State> {
     event.preventDefault();
 
     const type = ((event.target as HTMLAnchorElement).dataset.type ?? null) as NotificationTypeName;
-    this.uiState.navigateNotifications(type);
+    this.controller.navigateTo(type);
   }
 
   private handleShowMore = () => {
-    const type = this.store.getType({ objectType: this.uiState.notifications.currentFilter });
-    type?.loadMore(this.context);
+    this.controller.type?.loadMore(this.context);
   }
 }

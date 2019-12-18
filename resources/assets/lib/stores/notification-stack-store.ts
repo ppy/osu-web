@@ -75,11 +75,17 @@ export default class NotificationStackStore implements DispatchListener {
    * Because this is neither computed nor observable, in order to use this within an observer,
    * another observable value should be observed in render.
    *
-   * @param type the notifiable type of the notification
+   * @param name the notifiable type of the notification
    */
-  *stacksOfType(type: NotificationTypeName) {
+  *stacksOfType(name: NotificationTypeName) {
+    const type = this.types.get(name);
+    const cursorId = type?.cursor?.id ?? 0;
+
     for (const [, stack] of this.stacks) {
-      if (type == null || stack.type === type) yield stack;
+      if (name == null && stack.isLegacyPm) yield stack;
+      // don't include stacks that are past the cursor for the type
+      // this is to prevent gaps in loaded stacks when switching filters
+      if ((name == null || stack.type === name) && stack.first.id >= cursorId) yield stack;
     }
   }
 
