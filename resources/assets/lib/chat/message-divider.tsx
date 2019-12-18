@@ -24,17 +24,15 @@ interface Props {
   type: string;
 }
 
-export default class MessageDivider extends React.Component<Props, any> {
-  render(): React.ReactNode {
-    switch (this.props.type) {
-      case 'DAY_MARKER':
-        return (<div className='chat-conversation__day-divider'>{moment(this.props.timestamp).format('LL')}</div>);
+export const MessageDivider = React.forwardRef<HTMLDivElement, Props>(({timestamp, type}, innerRef) => {
+  switch (type) {
+    case 'DAY_MARKER':
+      return (<div ref={innerRef} className='chat-conversation__day-divider'>{moment(timestamp).format('LL')}</div>);
 
-      case 'UNREAD_MARKER':
-        return (<div className='chat-conversation__unread-marker' data-content='unread messages' />);
+    case 'UNREAD_MARKER':
+      return (<div ref={innerRef} className='chat-conversation__unread-marker' data-content='unread messages' />);
 
-      default:
-        return null;
-    }
+    default:
+      return null;
   }
-}
+});

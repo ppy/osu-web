@@ -30,7 +30,7 @@ import { ChatChannelSwitchAction } from '../actions/chat-actions';
 import DispatcherAction from '../actions/dispatcher-action';
 import DispatchListener from '../dispatch-listener';
 import Dispatcher from '../dispatcher';
-import MessageDivider from './message-divider';
+import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
 interface Props {
@@ -42,13 +42,11 @@ interface Props {
 @inject('dispatcher')
 @observer
 export default class ConversationView extends React.Component<Props> implements DispatchListener {
-  private baseCssClass = 'chat-conversation';
-  private chatLabelClass = 'chat-label';
-  private chatViewRef = React.createRef<HTMLInputElement>();
+  private assumeHasBacklog: boolean = false;
+  private chatViewRef = React.createRef<HTMLDivElement>();
   private readonly dataStore: RootDataStore;
   private didSwitchChannel: boolean = true;
-  private unreadMarker?: JQuery<HTMLElement>;
-  private unreadMarkerClass = 'unread-marker';
+  private unreadMarkerRef = React.createRef<HTMLDivElement>();
 
   constructor(props: Props) {
     super(props);
@@ -74,11 +72,8 @@ export default class ConversationView extends React.Component<Props> implements 
       return;
     }
 
-    const unreadMarker = $(chatView).find(`.${this.baseCssClass}__${this.unreadMarkerClass}`);
-    this.unreadMarker = unreadMarker.length > 0 ? unreadMarker : undefined;
-
     if (this.didSwitchChannel) {
-      if (this.unreadMarker) {
+      if (this.unreadMarkerRef.current) {
         this.scrollToUnread();
       } else {
         this.scrollToBottom();
@@ -150,18 +145,29 @@ export default class ConversationView extends React.Component<Props> implements 
     const oldPMLink = `https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u=${channel.pmTarget}`;
     const conversationStack: JSX.Element[] = [];
     let currentGroup: Message[] = [];
-    let lastReadIndicatorShown = false;
+    let unreadMarkerShown = false;
     let currentDay: number;
 
     _.each(channel.messages, (message: Message, key: number) => {
       // check if the last read indicator needs to be shown
-      if (!lastReadIndicatorShown && message.messageId > dataStore.uiState.chat.lastReadId && message.sender.id !== currentUser.id) {
-        lastReadIndicatorShown = true;
+      if (!unreadMarkerShown && message.messageId > dataStore.uiState.chat.lastReadId && message.sender.id !== currentUser.id) {
+        unreadMarkerShown = true;
+
+        // If the unread marker is the first element in this conversation, it most likely means that the unread cursor
+        // is even further in the past, making the displayed marker somewhat useless (until we can back-load those
+        // past messages in)... thus we ignore it when auto-scrolling and just go to the bottom instead.
+        //
+        // TODO: Actually in hindsight, there's another scenario where the first element in the conversation is an
+        // unread marker - when you receive new PMs and have yet to read any. Will look to handle this case later...
+        if (!_.isEmpty(conversationStack)) {
+          this.assumeHasBacklog = true;
+        }
+
         if (!_.isEmpty(currentGroup)) {
           conversationStack.push(<MessageGroup key={currentGroup[0].uuid} messages={currentGroup} />);
           currentGroup = [];
         }
-        conversationStack.push(<MessageDivider key={`read-${message.timestamp}`} type='UNREAD_MARKER' timestamp={message.timestamp} />);
+        conversationStack.push(<MessageDivider key={`read-${message.timestamp}`} ref={this.unreadMarkerRef} type='UNREAD_MARKER' timestamp={message.timestamp} />);
       }
 
       // check whether the day-change header needs to be shown
@@ -235,15 +241,11 @@ export default class ConversationView extends React.Component<Props> implements 
 
   scrollToUnread = (): void => {
     const chatView = this.chatViewRef.current;
-    const unreadMarkerAtVeryTop = this.unreadMarker?.prev().hasClass(`${this.baseCssClass}__${this.chatLabelClass}`);
-    if (chatView && this.unreadMarker) {
-      // If the unread marker is the first element in this conversation, it most likely means that the unread cursor
-      // is even further in the past, making the displayed marker somewhat useless (until we can back-load those
-      // past messages in)... thus we ignore it when auto-scrolling and just go to the bottom instead.
-      if (unreadMarkerAtVeryTop) {
+    if (chatView && this.unreadMarkerRef.current) {
+      if (this.assumeHasBacklog) {
         this.scrollToBottom();
       } else {
-        $(chatView).scrollTop(this.unreadMarker[0].offsetTop);
+        $(chatView).scrollTop(this.unreadMarkerRef.current.offsetTop);
       }
     }
   }
