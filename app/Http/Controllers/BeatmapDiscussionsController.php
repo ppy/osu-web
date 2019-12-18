@@ -112,7 +112,7 @@ class BeatmapDiscussionsController extends Controller
         );
 
         // TODO: remove this when reviews are released
-        $related_discussions = [];
+        $relatedDiscussions = [];
         if (config('osu.beatmapset.discussion_review_enabled')) {
             $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
                 ->with([
@@ -128,11 +128,11 @@ class BeatmapDiscussionsController extends Controller
                 $children->visible();
             }
 
-            $related_discussions = $children->get();
+            $relatedDiscussions = $children->get();
         }
 
         $userIds = [];
-        foreach ($discussions->merge($related_discussions) as $discussion) {
+        foreach ($discussions->merge($relatedDiscussions) as $discussion) {
             $userIds[$discussion->user_id] = true;
             $userIds[$discussion->startingPost->last_editor_id] = true;
         }
@@ -149,7 +149,7 @@ class BeatmapDiscussionsController extends Controller
                 ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
             ),
             'related-discussions' => json_collection(
-                $related_discussions,
+                $relatedDiscussions,
                 'BeatmapDiscussion',
                 ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
             ),
