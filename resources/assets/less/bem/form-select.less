@@ -24,6 +24,7 @@
   // reset global label style
   text-transform: initial;
   font-weight: initial;
+  line-height: normal;
   margin: 0;
 
   display: flex;
@@ -32,7 +33,7 @@
   font-size: @font-size--phone-input;
 
   @media @desktop {
-    font-size: @font-size--normal;
+    font-size: inherit;
   }
 
   &::after {
@@ -55,7 +56,7 @@
 
   &__input {
     .reset-input();
-    padding: 5px;
+    padding: 5px 2em 5px 5px;
     flex: 1;
     background-color: inherit;
     border-radius: inherit;

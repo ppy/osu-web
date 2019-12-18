@@ -88,7 +88,7 @@
     @endslot
 @endcomponent
 
-<div class="osu-page">
+<div class="osu-page no-print">
     @if (config('osu.store.notice') !== null)
         <div class="store-notice store-notice--important">
             <h2 class="store-notice__title">

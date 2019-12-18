@@ -39,8 +39,8 @@
         </strong>
         <div>Your current username is "<i>{{ Auth::user()->username }}</i>".</div>
     </div>
-    <div class="grid-cell price-box">
-        <p class="price" id="username-check-price"></p>
+    <div class="grid-cell">
+        <p class="store-text store-text--price" id="username-check-price"></p>
     </div>
 </div>
 @endif

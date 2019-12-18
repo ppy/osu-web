@@ -15,16 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('store/layout')
+<div class="store-page">
+    <h4 class="store-text store-text--title store-text--title-small">Tracking for {{ $code }}</h4>
 
-@section('content')
-    @include('store.header')
-
-    <div class="osu-page">
-        <div class="store-products">
-            @foreach($products as $product)
-                @include('store._product', ['product' => $product])
-            @endforeach
-        </div>
-    </div>
-@endsection
+    <iframe src="https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1={{ $code }}" frameBorder="0" width="100%" height="600px">
+    </iframe>
+</div>

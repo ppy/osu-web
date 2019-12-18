@@ -39,6 +39,7 @@ h1, h2, h3, h4 {
 }
 
 a {
+  .link-default();
   outline-style: none;
   &:link, &:visited, &:hover, &:active { outline-style: none; }
 
@@ -251,33 +252,6 @@ label {
 
 input[type="checkbox"], input[type="radio"] {
   margin: 2px 0 0;
-}
-
-.big-button {
-  display: flex;
-  justify-content: center;
-
-  a, button {
-    min-width: 220px;
-    min-height: 35px;
-  }
-}
-
-.btn-flat {
-  border: none;
-  background: transparent;
-}
-
-.shadow-selected {
-  .thick-box-shadow;
-}
-
-.shadow-hover {
-  .default-box-shadow();
-
-  &:hover {
-    .thicker-box-shadow();
-  }
 }
 
 a[disabled] { &:extend(.btn[disabled]); }

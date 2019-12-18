@@ -16,41 +16,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.store-payment-method {
+.store-transaction-info {
+  margin-top: 40px;
   display: grid;
-  grid-gap: 5px 20px;
-  margin-bottom: 20px;
+  grid-template-columns: auto 1fr;
 
   @media @desktop {
-    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    grid-template-rows: auto auto;
   }
 
-  &__cell {
-    text-align: center;
+  &__entry {
+    padding: 5px 10px;
 
-    @media @desktop {
-      text-align: start;
-    }
-  }
-
-  &__provider {
-    height: 20px;
-    margin: 4px 4px 4px 0;
-
-    // stop the bitcash icon from flying around
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &--light {
-      height: 30px;
-      padding: 5px 10px;
-      background-color: @osu-colour-c1;
-      border-radius: @border-radius-large;
-    }
-
-    &--tall {
-      height: 30px;
+    &--term {
+      background-color: @osu-colour-b3;
     }
   }
 }
