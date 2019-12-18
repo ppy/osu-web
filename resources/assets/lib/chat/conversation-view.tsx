@@ -70,7 +70,7 @@ export default class ConversationView extends React.Component<Props> implements 
 
     const dataStore = this.dataStore;
     const channel = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
-    if (!channel.loaded) {
+    if (!channel?.loaded) {
       return;
     }
 
