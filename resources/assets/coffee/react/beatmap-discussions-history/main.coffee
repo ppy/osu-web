@@ -74,7 +74,8 @@ export class Main extends React.PureComponent
     _.each beatmapset.related_users, (newUser) ->
       if userIds.includes(newUser.id)
         users = _.reject users, id: newUser.id
-        users.push(newUser)
+
+      users.push(newUser)
 
     @cache.users = @cache.discussions = @cache.beatmaps = null
     @setState
