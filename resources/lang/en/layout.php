@@ -79,7 +79,7 @@ return [
         ],
 
         'matches' => [
-            '_' => 'multi matches',
+            '_' => 'match history',
         ],
 
         'notice' => [
