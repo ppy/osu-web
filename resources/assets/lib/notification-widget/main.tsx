@@ -142,7 +142,7 @@ export default class Main extends React.Component<Props, State> {
         {...link.data}
       >
         <span>{link.title}</span>
-        <span> {type.total}</span>
+        <span className='notification-popup__filter-count'>{type.total}</span>
       </button>
     );
   }
