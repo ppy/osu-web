@@ -136,6 +136,7 @@ export default class ConversationView extends React.Component<Props> implements 
   render(): React.ReactNode {
     const dataStore: RootDataStore = this.dataStore;
     const channel = dataStore.channelStore.channels.get(dataStore.uiState.chat.selected);
+    this.assumeHasBacklog = false;
 
     if (!channel) {
       return <div className='conversation' />;
