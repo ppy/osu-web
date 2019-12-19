@@ -74,6 +74,8 @@ describe('app-dispatcher', () => {
     let count = 0;
     const obj = new ClassA();
 
+    const original = dispatcher.dispatch;
+
     dispatcher.dispatch = (event: DispatcherAction) => {
       count++;
     };
@@ -82,5 +84,7 @@ describe('app-dispatcher', () => {
 
     expect(count).toBe(1);
     expect(obj.count).toBe(0);
+
+    (dispatcher as any).dispatch = original;
   });
 });
