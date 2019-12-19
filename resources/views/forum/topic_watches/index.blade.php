@@ -24,7 +24,7 @@
     @include('home._user_header_default', ['title' => trans('forum.topic_watches.index.title_compact')])
 
     <div class="osu-page osu-page--info-bar">
-        <div class="items">
+        <div class="grid-items">
             <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
                     {{ trans('forum.topic_watches.index.box.total') }}

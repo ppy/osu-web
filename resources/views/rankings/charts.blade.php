@@ -27,7 +27,7 @@
     </script>
 
     <div class="osu-page osu-page--info-bar">
-        <div class="items">
+        <div class="grid-items">
             <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
                     {{ trans('rankings.spotlight.start_date') }}
