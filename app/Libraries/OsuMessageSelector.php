@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,15 +18,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as React from 'react';
+namespace App\Libraries;
 
-export default class ChatLogo extends React.Component<any, any> {
-  render(): React.ReactNode {
-    return (
-      <div className='chat-logo'>
-        <div className='chat-logo__icon'/>
-        <div className='chat-logo__title'>{osu.trans('chat.title')}</div>
-      </div>
-    );
-  }
+use Illuminate\Translation\MessageSelector;
+
+class OsuMessageSelector extends MessageSelector
+{
+    public function getPluralIndex($locale, $number)
+    {
+        if ($locale === 'pt-br') {
+            $locale = 'pt_BR';
+        }
+
+        return parent::getPluralIndex($locale, $number);
+    }
 }

@@ -33,6 +33,7 @@ export default class HeaderV4 extends React.Component<Props> {
   static defaultProps = {
     links: [],
     linksBreadcrumb: false,
+    subSection: '',
   };
 
   render(): React.ReactNode {
@@ -53,20 +54,23 @@ export default class HeaderV4 extends React.Component<Props> {
         <div className='header-v4__content'>
           <div className='header-v4__row header-v4__row--title'>
             <div className='header-v4__icon' />
-              <div className='header-v4__title'>
-                <span className='header-v4__title-section'>
-                  {this.props.section}
-                </span>
+            <div className='header-v4__title'>
+              <span className='header-v4__title-section'>
+                {this.props.section}
+              </span>
+              {this.props.subSection !== '' &&
                 <span className='header-v4__title-action'>
-                  {' '}
                   {this.props.subSection}
                 </span>
-              </div>
+              }
             </div>
+          </div>
 
+          {this.props.links.length > 0 &&
             <div className='header-v4__row header-v4__row--bar'>
               {this.renderLinks()}
             </div>
+          }
         </div>
       </div>
     );

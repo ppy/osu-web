@@ -15,26 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', [
+    'legacyNav' => false,
+    'currentSection' => 'home',
+])
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout__row--full t-forum-category-osu">
-        <div class="osu-layout__sub-row osu-layout__sub-row--lg1-compact ">
-            @include('home._user_header_nav')
+    @include('home._user_header_default', ['title' => trans('beatmapset_watches.index.title_compact')])
 
-            <div class="osu-page-header osu-page-header--home-user js-current-user-cover">
-                <div class="osu-page-header__box">
-                    <h1 class="osu-page-header__title">
-                        {!! trans('beatmapset_watches.index.title_main') !!}
-                    </h1>
-                </div>
-
-                <div class="osu-page-header__box osu-page-header__box--status">
-                    {{-- prevent pushed to the right --}}
-                </div>
-            </div>
-        </div>
-
+    <div class="osu-page osu-page--full osu-page--generic">
         <div class="beatmapset-watches">
             <div class="beatmapset-watches__description">
                 {{ trans('beatmapset_watches.index.description') }}
