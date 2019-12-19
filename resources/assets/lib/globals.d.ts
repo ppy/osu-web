@@ -27,6 +27,7 @@ declare var BeatmapHelper: BeatmapHelperInterface;
 declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
 declare var Timeout: any;
+declare const Lang: LangClass;
 
 // Global object types
 interface Comment {
@@ -149,6 +150,12 @@ interface BeatmapDiscussion {
 // TODO: incomplete
 interface BeatmapDiscussionPost {
   message: string;
+}
+
+interface LangClass {
+  _getPluralForm: (count: number) => number;
+  _origGetPluralForm: (count: number) => number;
+  locale: string;
 }
 
 // TODO: should look at combining with the other User.ts at some point.

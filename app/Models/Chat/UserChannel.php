@@ -98,9 +98,24 @@ class UserChannel extends Model
             ->with('userScoped')
             ->get();
 
+        $byUserId = $userChannelMembers->keyBy('user_id');
+        // keyBy overrides existing values
+        $byChannelId = [];
+        foreach ($userChannelMembers as $userChannelMember) {
+            $channelId = $userChannelMember->channel_id;
+            if (!isset($byChannelId[$channelId])) {
+                $byChannelId[$channelId] = [];
+            }
+
+            if ($userChannelMember->userScoped) {
+                // TODO: Decided whether we want to return user objects everywhere or just user_ids
+                $byChannelId[$channelId][] = $userChannelMember->user_id;
+            }
+        }
+
         $collection = json_collection(
             $userChannels,
-            function ($userChannel) use ($userChannelMembers, $userId) {
+            function ($userChannel) use ($byChannelId, $byUserId, $userId) {
                 $presence = [
                     'channel_id' => $userChannel->channel_id,
                     'type' => $userChannel->type,
@@ -112,20 +127,14 @@ class UserChannel extends Model
 
                 if ($userChannel->type !== Channel::TYPES['public']) {
                     // filter out restricted users from the listing
-                    $filteredChannelMembers = $userChannelMembers->where('channel_id', $userChannel->channel_id)
-                        ->map(function ($userChannel, $key) {
-                            return $userChannel->userScoped ? $userChannel->user_id : null;
-                        });
-
-                    // TODO: Decided whether we want to return user objects everywhere or just user_ids
-                    $filteredChannelMembers = array_values($filteredChannelMembers->toArray());
+                    $filteredChannelMembers = $byChannelId[$userChannel->channel_id] ?? [];
                     $presence['users'] = $filteredChannelMembers;
                 }
 
                 if ($userChannel->type === Channel::TYPES['pm']) {
                     // remove ourselves from $membersArray, leaving only the other party
                     $members = array_diff($filteredChannelMembers, [$userId]);
-                    $targetUser = $userChannelMembers->where('user_id', array_shift($members))->first();
+                    $targetUser = $byUserId[array_shift($members)] ?? null;
 
                     // hide if target is restricted ($targetUser missing) or is blocked ($targetUser->foe)
                     if (!$targetUser || $targetUser->foe) {
