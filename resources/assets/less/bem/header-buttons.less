@@ -16,29 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
- .spotlight-info {
+.header-buttons {
   display: flex;
-  justify-content: flex-end;
-
-  margin: @ranking-page-header-inset -@ranking-page-header-inset 0;
-  padding: 10px @ranking-page-header-inset;
-
-  color: #fff;
-  background: linear-gradient(to right, .osu-hsla(@osu-colour-b6, 0.5)[@hsla], @osu-colour-b6);
-
-  &__items {
-    display: flex;
-    justify-content: flex-end;
-
-    margin: -5px;
-    padding: 5px;
-  }
+  margin: 0 -5px 0 auto;
 
   &__item {
-    padding: 5px;
-  }
-
-  &__item-header {
-    font-size: @font-size--normal;
+    margin: 5px;
+    display: flex;
   }
 }

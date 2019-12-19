@@ -19,15 +19,13 @@
     @php
         $total = $newTopic ? 0 : $topic->deletedPostsCount();
     @endphp
-    <div class="counter-box counter-box--forum counter-box--forum-deleted">
-        <div class="counter-box__content">
-            <div class="counter-box__title">
-                {{ trans('forum.topics.show.deleted-posts') }}
-            </div>
+    <div class="counter-box counter-box--info">
+        <div class="counter-box__title">
+            {{ trans('forum.topics.show.deleted-posts') }}
+        </div>
 
-            <div data-total="{{ $total }}" class="counter-box__count js-forum__deleted-count">
-                {{ i18n_number_format($total) }}
-            </div>
+        <div data-total="{{ $total }}" class="counter-box__count js-forum__deleted-count">
+            {{ i18n_number_format($total) }}
         </div>
     </div>
 @endif

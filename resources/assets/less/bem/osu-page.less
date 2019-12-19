@@ -38,6 +38,85 @@
     .default-box-shadow();
   }
 
+  &--admin {
+    .default();
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    color: @osu-colour-c1;
+
+    h1, h3, h4 {
+      font-style: normal;
+      color: white;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    h3 {
+      font-size: 14px;
+    }
+
+    h4 {
+      font-size: 12px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    a {
+      .link-default();
+    }
+
+    pre {
+      background-color: @osu-colour-b6;
+      border: none;
+      color: white;
+    }
+
+    small {
+      color: @osu-colour-f1;
+    }
+
+    // bootstrap override
+    .label-default {
+      color: @osu-colour-f1;
+      background-color: @osu-colour-b6;
+    }
+  }
+
+  &--admin-store {
+    .default();
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    color: #000;
+
+    a {
+      .link-blue-dark();
+    }
+
+    .panel-title > small {
+      font-size: 12px;
+      color: #000;
+    }
+  }
+
+  &--artist {
+    @media @desktop {
+      margin-top: 10px;
+    }
+  }
+
+  &--artists {
+    margin-bottom: 10px;
+  }
+
   &--has-anchor {
     .fragment-target-fn();
   }
@@ -67,14 +146,24 @@
   }
 
   &--contest {
+    .default();
+
     @media @desktop {
-      .page-width-desktop(20px);
       margin-bottom: 10px;
     }
   }
 
   &--contests {
     .default;
+  }
+
+  &--description {
+    .default-gutter-v2();
+    background-color: @osu-colour-d3;
+    color: @osu-colour-c1;
+    font-size: @font-size--title-small;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   &--download {
@@ -143,15 +232,6 @@
     padding-bottom: 10px;
   }
 
-  &--forum-topic-watches-status {
-    .default-gutter-v2();
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: @osu-colour-b4;
-    display: flex;
-    justify-content: flex-end;
-  }
-
   &--full {
     flex: 1 0 auto;
   }
@@ -177,6 +257,15 @@
     background-color: #333;
   }
 
+  &--info-bar {
+    .default-gutter-v2();
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: @osu-colour-d3;
+    display: flex;
+    justify-content: flex-end;
+  }
+
   &--news {
     .default;
     .default-gutter();
@@ -188,15 +277,6 @@
     @media @desktop {
       height: 0;
       top: (@nav2-height + 10px);
-    }
-  }
-
-  &--password-reset {
-    .default;
-    .inner-shadow-top();
-
-    @media @desktop {
-      .page-width-desktop(20px);
     }
   }
 
@@ -217,13 +297,6 @@
     flex-direction: column;
   }
 
-  &--tournament {
-    @media @desktop {
-      .page-width-desktop(20px);
-      margin-bottom: 10px;
-    }
-  }
-
   &--users {
     .default;
     background-color: @osu-colour-b4;
@@ -234,14 +307,11 @@
   }
 
   &--wiki {
-    .default;
+    .default();
+    .default-gutter-v2();
     font-size: @font-size--wiki;
-    padding: 20px;
-
-    @media @desktop {
-      padding-left: @padding-wiki-desktop;
-      padding-right: @padding-wiki-desktop;
-    }
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   &--chat {

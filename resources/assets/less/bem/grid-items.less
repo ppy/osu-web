@@ -16,10 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.search {
-  .default-box-shadow();
-  padding: 0 0 20px;
-  background-color: @osu-colour-b5;
-  color: #fff;
-  margin-bottom: 10px;
+.grid-items {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+
+  // simulating `gap` property
+  > * {
+    margin: 10px;
+  }
 }

@@ -16,32 +16,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
- .tournament-list {
-    background-color: @osu-colour-b5;
-    font-weight: 300;
-    padding: 20px;
+.tournament-list {
+  .default-gutter-v2();
+  background-color: @osu-colour-b5;
+  font-weight: 300;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
-    @media @mobile{
-      padding: 5px;
-    }
+  @media @desktop {
+    margin-bottom: 10px;
+  }
 
-    &__heading {
-      color: white;
-    }
+  &__heading {
+    color: white;
+  }
 
-    &__group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 10px;
+  &__group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
 
-      &--old {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-    }
-
-    &__none-running {
-      color: @osu-colour-l1;
-      margin-left: 10px;
+    &--old {
+      flex-direction: row;
+      flex-wrap: wrap;
     }
   }
+
+  &__none-running {
+    color: @osu-colour-l1;
+    margin-left: 10px;
+  }
+}
