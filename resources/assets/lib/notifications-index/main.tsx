@@ -110,7 +110,7 @@ export class Main extends React.Component {
   private handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
-    const type = ((event.target as HTMLAnchorElement).dataset.type ?? null) as NotificationTypeName;
+    const type = ((event.currentTarget as HTMLAnchorElement).dataset.type ?? null) as NotificationTypeName;
     this.controller.navigateTo(type);
   }
 

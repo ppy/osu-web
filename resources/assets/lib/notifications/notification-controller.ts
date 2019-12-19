@@ -54,18 +54,20 @@ export default class NotificationController {
 
   @action
   navigateTo(type: NotificationTypeName) {
-    const href = (() => {
+    this.currentFilter = type;
+
+    if (!this.contextType.unreadOnly) {
+      let href: string;
       if (type == null) {
         const url = new URL(window.location.href);
         url.searchParams.delete('type');
 
-        return url.href;
+        href = url.href;
       } else {
-        return osu.updateQueryString(null, { type });
+        href = osu.updateQueryString(null, { type });
       }
-    })();
 
-    this.currentFilter = type;
-    Turbolinks.controller.advanceHistory(href);
+      Turbolinks.controller.advanceHistory(href);
+    }
   }
 }

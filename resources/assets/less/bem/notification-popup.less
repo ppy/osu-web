@@ -56,6 +56,18 @@
     flex-direction: row;
   }
 
+  &__filters {
+    display: grid;
+    grid-gap: 5px;
+    margin: 10px 0;
+    grid-template-columns: repeat(2, 50%);
+  }
+
+  &__filter {
+    .reset-input();
+    text-align: left;
+  }
+
   &__mark-as-read {
     width: 40px;
     // background-color: @osu-colour-b2;

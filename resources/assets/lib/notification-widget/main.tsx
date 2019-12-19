@@ -18,6 +18,7 @@
 
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
+import { Name } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
 import NotificationController from 'notifications/notification-controller';
 import core from 'osu-core-singleton';
@@ -37,6 +38,16 @@ interface State {
 
 @observer
 export default class Main extends React.Component<Props, State> {
+  readonly links = [
+    { title: 'All', type: null, data: { 'data-type': null }},
+    { title: 'Profile', type: 'user', data: { 'data-type': 'user' }},
+    { title: 'Beatmaps', type: 'beatmapset', data: { 'data-type': 'beatmapset' }},
+    { title: 'Forum', type: 'forum_topic', data: { 'data-type': 'forum_topic' }},
+    { title: 'News', type: 'news_post', data: { 'data-type': 'news_post' }},
+    { title: 'Build', type: 'build', data: { 'data-type': 'build' }},
+    { title: 'Chat', type: 'channel', data: { 'data-type': 'channel' }},
+  ];
+
   readonly state = {
     hasError: false,
   };
@@ -75,6 +86,7 @@ export default class Main extends React.Component<Props, State> {
             data-visibility='hidden'
           >
             <div className='notification-popup__scroll-container'>
+              {this.renderFilters()}
               {this.renderStacks()}
               {this.renderShowMore()}
             </div>
@@ -96,6 +108,11 @@ export default class Main extends React.Component<Props, State> {
     return ret;
   }
 
+  private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const type = ((event.currentTarget as HTMLButtonElement).dataset.type ?? null) as Name;
+    this.controller.navigateTo(type);
+  }
+
   private handleShowMore = () => {
     this.controller.type?.loadMore({ unreadOnly: true });
   }
@@ -112,6 +129,30 @@ export default class Main extends React.Component<Props, State> {
     }
 
     return ret;
+  }
+
+  private renderFilter = (link: any) => {
+    const type = core.dataStore.notificationStore.unreadStacks.getType({ objectType: link.type });
+
+    return (
+      <button
+        className='notification-popup__filter'
+        key={link.title}
+        onClick={this.handleFilterClick}
+        {...link.data}
+      >
+        <span>{link.title}</span>
+        <span> {type.total}</span>
+      </button>
+    );
+  }
+
+  private renderFilters() {
+    return (
+      <div className='notification-popup__filters'>
+        {this.links.map(this.renderFilter)}
+      </div>
+    );
   }
 
   private renderShowMore() {
