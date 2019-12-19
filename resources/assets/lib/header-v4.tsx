@@ -30,8 +30,8 @@ interface Props {
   onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   section: string;
   subSection: string;
-  titleAppend?: React.ReactNode;
   theme?: string;
+  titleAppend?: React.ReactNode;
 }
 
 export default class HeaderV4 extends React.Component<Props> {
