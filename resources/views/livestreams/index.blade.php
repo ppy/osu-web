@@ -42,10 +42,6 @@
 
     <div class="osu-page">
         <div class="livestream-page">
-            <h2 class="livestream-page__header">
-                {{ trans('livestreams.headers.regular') }}
-            </h2>
-
             <div class="livestream-page__items">
                 @foreach ($streams as $stream)
                     <div class="livestream-page__item">
