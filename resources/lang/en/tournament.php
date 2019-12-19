@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Registration: :start to :end',
 
         'header' => [
-            'subtitle' => 'A listing of active, officially-recognised tournaments',
             'title' => 'Community Tournaments',
         ],
 

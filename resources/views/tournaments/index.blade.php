@@ -30,9 +30,6 @@
         'subSection' => trans('layout.header.tournaments.index'),
         'theme' => 'tournaments',
     ]])
-    <div class="osu-page osu-page--description">
-        {{ trans('tournament.index.header.subtitle') }}
-    </div>
 
     <div class="osu-page">
         <div class="tournament-list">
