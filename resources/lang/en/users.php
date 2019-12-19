@@ -98,7 +98,6 @@ return [
         'email_login_disabled' => 'Signing in with email is currently disabled. Please use username instead.',
         'failed' => 'Incorrect sign in',
         'forgot' => 'Forgotten your password?',
-        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
         'info' => 'Please sign in to continue',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
         'password' => 'Password',
