@@ -239,7 +239,7 @@ export class Main extends React.Component
       section: osu.trans('layout.header.beatmapsets._')
       subSection: osu.trans('layout.header.beatmapsets.show')
       theme: 'beatmapsets'
-      contentAppend: el PlaymodeTabs,
+      titleAppend: el PlaymodeTabs,
         beatmaps: @state.beatmaps
         currentMode: @state.currentBeatmap.mode
         hrefFunc: @tabHrefFunc

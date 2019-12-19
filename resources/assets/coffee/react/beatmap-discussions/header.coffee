@@ -48,7 +48,7 @@ export class Header extends React.PureComponent
         section: osu.trans('layout.header.beatmapsets._')
         subSection: osu.trans('layout.header.beatmapsets.discussions')
         theme: 'beatmapsets'
-        contentAppend: el PlaymodeTabs,
+        titleAppend: el PlaymodeTabs,
           currentMode: @props.currentBeatmap.mode
           beatmaps: @props.beatmaps
           counts: @props.currentDiscussions.countsByPlaymode

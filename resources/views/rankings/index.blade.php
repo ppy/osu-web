@@ -52,7 +52,7 @@
         'subSection' => trans("rankings.type.{$type}"),
         'theme' => 'rankings',
     ]])
-        @slot('contentAppend')
+        @slot('titleAppend')
             @include('rankings._mode_selector', $selectorParams)
         @endslot
     @endcomponent

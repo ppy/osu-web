@@ -17,53 +17,7 @@
  */
 
 .header-v4 {
-  .compact() {
-    @media @desktop {
-      height: (@nav2-height + 70px);
-    }
-  }
-
-  .large() {
-    @media @desktop {
-      min-height: 450px;
-    }
-  }
-
   @_top: header-v4;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-
-  @media @desktop {
-    height: 290px;
-  }
-
-  &--beatmapsets {
-    .compact();
-  }
-
-  &--chat {
-    .compact();
-  }
-
-  &--download {
-    .large();
-  }
-
-  &--search {
-    .compact();
-  }
-
-  &--supporter {
-    .large();
-  }
-
-  &--users {
-    @media @desktop {
-      min-height: 320px;
-    }
-  }
 
   &__bg {
     margin: auto;
@@ -173,6 +127,39 @@
     .full-size();
     .default-box-shadow();
     background-color: @osu-colour-d5;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    &--main {
+      .large() {
+        @media @desktop {
+          min-height: 450px;
+        }
+      }
+
+      @media @desktop {
+        height: (@nav2-height + 70px);
+      }
+
+      .@{_top}--download & {
+        .large();
+      }
+
+      .@{_top}--supporter & {
+        .large();
+      }
+
+      .@{_top}--users & {
+        @media @desktop {
+          min-height: 320px;
+        }
+      }
+    }
   }
 
   &__content {
