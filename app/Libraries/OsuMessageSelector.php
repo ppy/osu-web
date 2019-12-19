@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,21 +18,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.chat-conversation-list-seperator {
-  content: ' ';
-  background: @osu-colour-l1;
-  border-radius: 1px;
-  flex-shrink: 0;
+namespace App\Libraries;
 
-  @media @desktop {
-    height: 2px;
-    margin: 10px 20px;
-  }
+use Illuminate\Translation\MessageSelector;
 
-  @media @mobile {
-    width: 2px;
-    height: 20px;
-    margin: 0px 5px;
-    align-self: center;
-  }
+class OsuMessageSelector extends MessageSelector
+{
+    public function getPluralIndex($locale, $number)
+    {
+        if ($locale === 'pt-br') {
+            $locale = 'pt_BR';
+        }
+
+        return parent::getPluralIndex($locale, $number);
+    }
 }
