@@ -160,7 +160,7 @@ export default class ConversationView extends React.Component<Props> implements 
         //
         // TODO: Actually in hindsight, there's another scenario where the first element in the conversation is an
         // unread marker - when you receive new PMs and have yet to read any. Will look to handle this case later...
-        if (!_.isEmpty(conversationStack)) {
+        if (_.isEmpty(conversationStack)) {
           this.assumeHasBacklog = true;
         }
 
