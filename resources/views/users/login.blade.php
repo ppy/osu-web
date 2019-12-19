@@ -20,7 +20,6 @@
 @section('content')
     @include('layout._page_header_v4', ['params' => [
         'section' => trans('layout.header.notice._'),
-        'theme' => 'default',
     ]])
     <div class="osu-page osu-page--generic">
         {{ trans('users.login.info') }}

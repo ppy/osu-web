@@ -19,7 +19,6 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'theme' => 'default',
         'section' => trans('layout.header.community._'),
         'subSection' => trans('layout.header.community.livestream'),
     ]])
