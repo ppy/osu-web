@@ -307,14 +307,11 @@
   }
 
   &--wiki {
-    .default;
+    .default();
+    .default-gutter-v2();
     font-size: @font-size--wiki;
-    padding: 20px;
-
-    @media @desktop {
-      padding-left: @padding-wiki-desktop;
-      padding-right: @padding-wiki-desktop;
-    }
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   &--chat {
