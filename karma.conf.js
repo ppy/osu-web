@@ -72,6 +72,7 @@ module.exports = function (config) {
     autoWatch: true,
     basePath: '.',
     browsers: ['ChromeHeadless'],
+    client: { jasmine: { random: false } },
     colors: true,
     concurrency: Infinity,
     exclude: [],
