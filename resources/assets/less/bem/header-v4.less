@@ -69,8 +69,12 @@
     }
 
     .@{_top}--download & {
-      opacity: 0.9;
       .at2x-simple('/images/headers/download.jpg');
+      opacity: 0.5;
+
+      @media @desktop {
+        opacity: 0.9;
+      }
     }
 
     .@{_top}--forum & {
