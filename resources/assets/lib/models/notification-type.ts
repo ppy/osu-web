@@ -38,7 +38,7 @@ export function getValidName(value: unknown) {
 }
 
 export default class NotificationType implements NotificationReadable {
-  @observable cursor: NotificationCursor | null = null;
+  @observable cursor?: NotificationCursor | null;
   @observable isLoading = false;
   @observable isMarkingAsRead = false;
   @observable stacks = new Map<string, NotificationStack>();
@@ -46,6 +46,11 @@ export default class NotificationType implements NotificationReadable {
 
   @computed get hasVisibleNotifications() {
     return (this.total > 0 && this.stacks.size > 0) || this.name === 'legacy_pm';
+  }
+
+  @computed get hasMore() {
+    // undefined means not loaded yet.
+    return this.cursor !== null;
   }
 
   get identity(): NotificationIdentity {
@@ -64,11 +69,11 @@ export default class NotificationType implements NotificationReadable {
 
   @action
   loadMore(context: NotificationContextData) {
-    if (this.cursor == null) { return; }
+    if (this.cursor === null) { return; }
 
     this.isLoading = true;
 
-    this.resolver.loadMore(this.identity, this.cursor, context)
+    this.resolver.loadMore(this.identity, context, this.cursor)
     .always(action(() => {
       this.isLoading = false;
     }));

@@ -35,7 +35,7 @@ export class NotificationResolver {
   private queuedXhr?: JQuery.jqXHR;
 
   @action
-  loadMore(identity: NotificationIdentity, cursor: NotificationCursor, context: NotificationContextData) {
+  loadMore(identity: NotificationIdentity, context: NotificationContextData, cursor?: NotificationCursor) {
     const urlParams = toJson(identity);
     delete urlParams.id; // ziggy doesn't set the query string if id property exists.
 

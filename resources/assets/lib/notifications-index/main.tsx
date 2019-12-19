@@ -91,7 +91,7 @@ export class Main extends React.Component {
     return (
       <ShowMoreLink
         callback={this.handleShowMore}
-        hasMore={type?.cursor != null}
+        hasMore={type?.hasMore}
         loading={type?.isLoading}
         modifiers={['notification-group']}
       />

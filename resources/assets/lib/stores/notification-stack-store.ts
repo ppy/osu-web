@@ -53,7 +53,12 @@ export default class NotificationStackStore implements DispatchListener {
   }
 
   getType(identity: NotificationIdentity) {
-    return this.types.get(identity.objectType);
+    let type = this.types.get(identity.objectType);
+    if (type == null) {
+      type = new NotificationType(identity.objectType, this.resolver);
+    }
+
+    return type;
   }
 
   @action
@@ -85,7 +90,7 @@ export default class NotificationStackStore implements DispatchListener {
       if (name == null && stack.isLegacyPm) yield stack;
       // don't include stacks that are past the cursor for the type
       // this is to prevent gaps in loaded stacks when switching filters
-      if ((name == null || stack.type === name) && stack.first.id >= cursorId) yield stack;
+      if ((name == null || stack.type === name) && type?.cursor !== undefined && stack.first.id >= cursorId) yield stack;
     }
   }
 
