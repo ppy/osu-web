@@ -47,15 +47,18 @@
 ])
 
 @section('content')
-    @include('layout._page_header_v4', ['params' => [
+    @component('layout._page_header_v4', ['params' => [
         'links' => $links,
         'linksBreadcrumb' => true,
         'section' => trans('layout.header.help._'),
         'subSection' => $subSection,
         'theme' => 'help',
     ]])
+        @slot('titleAppend')
+            @include('wiki._actions')
+        @endslot
+    @endcomponent
 
-    @include('wiki._actions')
 
     <div class="osu-page osu-page--wiki">
         @include('wiki._notice')
