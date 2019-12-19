@@ -60,7 +60,7 @@
     @yield('ranking-header')
 
     @if (isset($country))
-        <div class="osu-page osu-page--description-extra">
+        <div class="osu-page osu-page--description">
             <div class="ranking-country-filter">
                 {{ trans('rankings.country.filter') }}:
                 <div class="ranking-country-filter__item">
