@@ -22,6 +22,16 @@ return [
     'all_read' => 'All notifications read!',
     'mark_all_read' => 'Clear all',
 
+    'filters' => [
+        '_' => 'All',
+        'user' => 'Profile',
+        'beatmapset' => 'Beatmaps',
+        'forum_topic' => 'Forum',
+        'news_post' => 'News',
+        'build' => 'Builds',
+        'channel' => 'Chat',
+    ],
+
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',

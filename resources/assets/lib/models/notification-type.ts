@@ -28,6 +28,16 @@ import { NotificationResolver } from 'notifications/notification-resolver';
 export type Name = null | 'beatmapset' | 'build' | 'channel' | 'forum_topic' | 'news_post' | 'user';
 const names: Name[] = [null, 'beatmapset', 'build', 'channel', 'forum_topic', 'news_post', 'user'];
 
+export const TYPES = [
+  { type: null },
+  { type: 'user' },
+  { type: 'beatmapset' },
+  { type: 'forum_topic' },
+  { type: 'news_post' },
+  { type: 'build' },
+  { type: 'channel' },
+];
+
 export function getValidName(value: unknown) {
   const casted = value as Name;
   if (names.indexOf(casted) > -1) {

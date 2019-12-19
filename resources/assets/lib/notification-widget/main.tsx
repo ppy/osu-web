@@ -18,7 +18,7 @@
 
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
-import { Name } from 'models/notification-type';
+import { Name, TYPES } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
 import NotificationController from 'notifications/notification-controller';
 import core from 'osu-core-singleton';
@@ -38,15 +38,10 @@ interface State {
 
 @observer
 export default class Main extends React.Component<Props, State> {
-  readonly links = [
-    { title: 'All', type: null, data: { 'data-type': null }},
-    { title: 'Profile', type: 'user', data: { 'data-type': 'user' }},
-    { title: 'Beatmaps', type: 'beatmapset', data: { 'data-type': 'beatmapset' }},
-    { title: 'Forum', type: 'forum_topic', data: { 'data-type': 'forum_topic' }},
-    { title: 'News', type: 'news_post', data: { 'data-type': 'news_post' }},
-    { title: 'Build', type: 'build', data: { 'data-type': 'build' }},
-    { title: 'Chat', type: 'channel', data: { 'data-type': 'channel' }},
-  ];
+  readonly links = TYPES.map((obj) => {
+    const type = obj.type;
+    return { title: osu.trans(`notifications.filters.${type ?? '_'}`), data: { 'data-type': type }, type };
+  });
 
   readonly state = {
     hasError: false,
@@ -133,13 +128,14 @@ export default class Main extends React.Component<Props, State> {
 
   private renderFilter = (link: any) => {
     const type = core.dataStore.notificationStore.unreadStacks.getType({ objectType: link.type });
+    const data = { 'data-type': link.type };
 
     return (
       <button
         className='notification-popup__filter'
         key={link.title}
         onClick={this.handleFilterClick}
-        {...link.data}
+        {...data}
       >
         <span>{link.title}</span>
         <span className='notification-popup__filter-count'>{type.total}</span>

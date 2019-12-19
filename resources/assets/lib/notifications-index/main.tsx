@@ -36,7 +36,7 @@
 import HeaderV4 from 'header-v4';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
-import { Name as NotificationTypeName } from 'models/notification-type';
+import { Name as NotificationTypeName, TYPES } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
 import { NotificationContext } from 'notifications-context';
 import NotificationController from 'notifications/notification-controller';
@@ -48,15 +48,10 @@ import { ShowMoreLink } from 'show-more-link';
 export class Main extends React.Component {
   static readonly contextType = NotificationContext;
 
-  readonly links = [
-    { title: 'All', url: route('notifications.index'), data: { 'data-type': null }},
-    { title: 'Profile', url: route('notifications.index', { type: 'user' }), data: { 'data-type': 'user' }},
-    { title: 'Beatmaps', url: route('notifications.index', { type: 'beatmapset' }), data: { 'data-type': 'beatmapset' }},
-    { title: 'Forum', url: route('notifications.index', { type: 'forum_topic' }), data: { 'data-type': 'forum_topic' }},
-    { title: 'News', url: route('notifications.index', { type: 'news_post' }), data: { 'data-type': 'news_post' }},
-    { title: 'Build', url: route('notifications.index', { type: 'build' }), data: { 'data-type': 'build' }},
-    { title: 'Chat', url: route('notifications.index', { type: 'channel' }), data: { 'data-type': 'channel' }},
-  ];
+  readonly links = TYPES.map((obj) => {
+    const type = obj.type;
+    return { title: osu.trans(`notifications.filters.${type ?? '_'}`), url: route('notifications.index', { type }), data: { 'data-type': type } };
+  });
 
   private readonly controller = new NotificationController(core.dataStore.notificationStore, this.context);
 
