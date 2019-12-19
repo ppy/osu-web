@@ -27,7 +27,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.5;
+    opacity: 0.7;
     .at2x-simple('/images/headers/generic.jpg');
     display: flex;
     justify-content: center;
@@ -57,7 +57,6 @@
 
     .@{_top}--chat & {
       .at2x-simple('/images/headers/chat.jpg');
-      opacity: 1;
       filter: hue-rotate(115deg); // fix colour
 
       &::before {
@@ -67,12 +66,11 @@
 
     .@{_top}--contests & {
       .at2x-simple('/images/headers/contest.jpg');
-      opacity: 0.7;
     }
 
     .@{_top}--download & {
+      opacity: 0.9;
       .at2x-simple('/images/headers/download.jpg');
-      opacity: 0.8;
     }
 
     .@{_top}--forum & {
@@ -97,7 +95,6 @@
 
     .@{_top}--password-reset & {
       .at2x-simple('/images/headers/password-reset.jpg');
-      opacity: 0.7;
     }
 
     .@{_top}--rankings & {
