@@ -60,22 +60,24 @@
     @yield('ranking-header')
 
     @if (isset($country))
-        <div class="osu-page osu-page--description">
+        <div class="osu-page osu-page--description-extra">
             <div class="ranking-country-filter">
                 {{ trans('rankings.country.filter') }}:
-                <div class="ranking-country-filter__flag">
-                    @include('objects._country_flag', [
-                        'country_code' => $country['acronym'],
-                    ])
+                <div class="ranking-country-filter__item">
+                    <div class="ranking-country-filter__flag">
+                        @include('objects._country_flag', [
+                            'country_code' => $country['acronym'],
+                        ])
+                    </div>
+                    {{ $country['name'] }}
+                    <a
+                        class="ranking-country-filter__remove"
+                        href="{{ route('rankings', compact('mode', 'type')) }}"
+                    >
+                        <i class="fas fa-times"></i>
+                    </a>
                 </div>
-                {{ $country['name'] }}
             </div>
-            <a
-                class="btn-osu-big btn-osu-big--rounded-thin"
-                href="{{ route('rankings', compact('mode', 'type')) }}"
-            >
-                {{ trans('rankings.country.remove') }}
-            </a>
         </div>
     @endif
 

@@ -19,10 +19,24 @@
 .ranking-country-filter {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 
   &__flag {
-    margin: 0 5px;
+    margin-right: 5px;
     display: flex;
+  }
+
+  &__item {
+    background-color: @osu-colour-b5;
+    border-radius: 10000px;
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    margin: 0 10px;
+  }
+
+  &__remove {
+    .link-default();
+    .link-plain();
+    margin-left: 15px;
   }
 }

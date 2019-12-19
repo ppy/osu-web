@@ -21,7 +21,6 @@
 return [
     'country' => [
         'filter' => 'Filtered by country',
-        'remove' => 'Remove Filter',
     ],
 
     'type' => [
