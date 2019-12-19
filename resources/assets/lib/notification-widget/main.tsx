@@ -22,6 +22,7 @@ import { NotificationContext } from 'notifications-context';
 import NotificationController from 'notifications/notification-controller';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { ShowMoreLink } from 'show-more-link';
 import Stack from './stack';
 import Worker from './worker';
 
@@ -40,7 +41,7 @@ export default class Main extends React.Component<Props, State> {
     hasError: false,
   };
 
-  private readonly controller = new NotificationController(core.dataStore.notificationStore, { unreadOnly: true });
+  private readonly controller = new NotificationController(core.dataStore.notificationStore, { unreadOnly: true }, null);
   private menuId = `nav-notification-popup-${osu.uuid()}`;
 
   static getDerivedStateFromError(error: Error) {
@@ -74,7 +75,8 @@ export default class Main extends React.Component<Props, State> {
             data-visibility='hidden'
           >
             <div className='notification-popup__scroll-container'>
-              {this.renderTypeGroups()}
+              {this.renderStacks()}
+              {this.renderShowMore()}
             </div>
           </div>
         </div>
@@ -94,6 +96,10 @@ export default class Main extends React.Component<Props, State> {
     return ret;
   }
 
+  private handleShowMore = () => {
+    this.controller.type?.loadMore({ unreadOnly: true });
+  }
+
   private mainClass() {
     let ret = 'notification-icon';
 
@@ -108,7 +114,20 @@ export default class Main extends React.Component<Props, State> {
     return ret;
   }
 
-  private renderTypeGroups() {
+  private renderShowMore() {
+    const type = this.controller.type;
+
+    return (
+      <ShowMoreLink
+        callback={this.handleShowMore}
+        hasMore={type?.hasMore}
+        loading={type?.isLoading}
+        modifiers={['notification-group']}
+      />
+    );
+  }
+
+  private renderStacks() {
     if (this.state.hasError) {
       return;
     }
