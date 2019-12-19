@@ -37,7 +37,7 @@
     <div class="osu-page osu-page--artists">
         <div class="page-contents page-contents--artist">
             <div class="page-contents__artist-left">
-                <div class="artist__description">{!! trans('artist.index.description') !!}</div>
+                <div class="artist__description artist__description--index">{!! trans('artist.index.description') !!}</div>
                 <div class="artist__index">
                     @foreach ($artists as $artist)
                         <div class="artist__box{{$artist->visible ? '' : ' artist__box--hidden'}}">
