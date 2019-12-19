@@ -33,7 +33,7 @@
     </div>
 
     <div class="header-v4__content">
-        @if ($section !== null)
+        @if ($section !== null || isset($titleAppend))
             <div class="header-v4__row header-v4__row--title">
                 <div class="header-v4__icon"></div>
                 <div class="header-v4__title">
@@ -46,6 +46,8 @@
                         </span>
                     @endif
                 </div>
+
+                {{ $titleAppend ?? null }}
             </div>
         @endif
 

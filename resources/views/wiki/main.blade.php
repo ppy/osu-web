@@ -21,7 +21,7 @@
 ])
 
 @section('content')
-    @include('layout._page_header_v4', ['params' => [
+    @component('layout._page_header_v4', ['params' => [
         'links' => [[
             'title' => trans('layout.header.help.index'),
             'url' => wiki_url('Main_Page'),
@@ -31,8 +31,10 @@
         'subSection' => trans('wiki.main.title'),
         'theme' => 'help',
     ]])
-
-    @include('wiki._actions')
+        @slot('titleAppend')
+            @include('wiki._actions')
+        @endslot
+    @endcomponent
 
     <div class="osu-page osu-page--wiki wiki-main-page">
         @include('wiki._notice')

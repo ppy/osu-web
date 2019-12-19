@@ -256,15 +256,8 @@
       background-color: @osu-colour-d5;
       font-size: @font-size--large;
 
-      display: none;
-
-      @media @desktop {
-        display: flex;
-      }
-
-      .@{_top}--artist & {
-        display: flex;
-      }
+      display: flex;
+      flex-wrap: wrap;
     }
 
     .@{_top}--chat & {
