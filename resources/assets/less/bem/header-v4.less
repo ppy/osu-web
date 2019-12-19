@@ -254,15 +254,21 @@
 
     &--title {
       background-color: @osu-colour-d5;
-      font-size: @font-size--large;
+      font-size: @font-size--title-small;
+
+      @media @desktop {
+        font-size: @font-size--large;
+      }
 
       display: flex;
       flex-wrap: wrap;
     }
 
     .@{_top}--chat & {
-      padding-left: 30px;
-      padding-right: 30px;
+      @media @desktop {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
     }
 
     .@{_top}--users & {
