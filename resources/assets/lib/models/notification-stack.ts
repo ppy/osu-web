@@ -37,7 +37,7 @@ export default class NotificationStack implements NotificationReadable {
 
   @computed
   get first() {
-    return this.notifications.values().next().value ?? this.lastNotification;
+    return this.orderedNotifications[0] ?? this.lastNotification;
   }
 
   @computed
@@ -70,6 +70,11 @@ export default class NotificationStack implements NotificationReadable {
 
   get isLegacyPm() {
     return this.objectType === 'legacy_pm';
+  }
+
+  @computed
+  get orderedNotifications() {
+    return [...this.notifications.values()].sort((x, y) => y.id - x.id);
   }
 
   get type() {

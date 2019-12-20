@@ -112,11 +112,9 @@ export default class ItemGroup extends React.Component<Props, State> {
       return null;
     }
 
-    const notifications = [...this.props.stack.notifications.values()];
-
     return (
       <div className='notification-popup-item-group__items'>
-        {notifications.map(this.renderItem)}
+        {this.props.stack.orderedNotifications.map(this.renderItem)}
         <div className='notification-popup__show-more'>
           <div className='notification-popup__expand'>
             {this.renderShowMore()}

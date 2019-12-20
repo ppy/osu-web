@@ -521,6 +521,18 @@ describe('Notification Events', () => {
           }
         });
 
+        it('the new notification should be first in order', () => {
+          const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
+
+          expect(stack?.orderedNotifications[0].id).toBe(newNotificationIdentity.id);
+        });
+
+        it('the new notification should be first', () => {
+          const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
+
+          expect(stack?.first.id).toBe(newNotificationIdentity.id);
+        });
+
         it('should increment the stack unread count', () => {
           const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
           expect(stack?.total).toBe(6);
