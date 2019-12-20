@@ -237,13 +237,13 @@
             "authors": [
                 {
                     "name": "Alex Corley",
-                    "role": "Developer",
-                    "email": "anthroprose@gmail.com"
+                    "email": "anthroprose@gmail.com",
+                    "role": "Developer"
                 },
                 {
                     "name": "Datadog",
-                    "role": "Developer",
-                    "email": "dev@datadoghq.com"
+                    "email": "dev@datadoghq.com",
+                    "role": "Developer"
                 }
             ],
             "description": "This is an extremely simple PHP datadogstatsd client",
@@ -1039,8 +1039,8 @@
             "authors": [
                 {
                     "name": "Filipe Dobreira",
-                    "role": "Developer",
-                    "homepage": "https://github.com/filp"
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
                 }
             ],
             "description": "php error handling for cool kids",
@@ -2522,16 +2522,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "d74654d85954e3b9451d67faaebacd210fc70252"
+                "reference": "772e03fa9c6477ef5ef2d154fefd8a2a8d8ed03c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/d74654d85954e3b9451d67faaebacd210fc70252",
-                "reference": "d74654d85954e3b9451d67faaebacd210fc70252",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/772e03fa9c6477ef5ef2d154fefd8a2a8d8ed03c",
+                "reference": "772e03fa9c6477ef5ef2d154fefd8a2a8d8ed03c",
                 "shasum": ""
             },
             "require": {
@@ -2589,7 +2589,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2019-11-11T22:23:29+00:00"
+            "time": "2019-12-10T02:55:03+00:00"
         },
         {
             "name": "league/commonmark-ext-autolink",
@@ -8192,18 +8192,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "role": "Developer",
-                    "email": "sebastian@phpeople.de"
+                    "email": "sebastian@phpeople.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "Developer",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "Developer"
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
@@ -8239,18 +8239,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "role": "Developer",
-                    "email": "sebastian@phpeople.de"
+                    "email": "sebastian@phpeople.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "Developer",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "Developer"
                 }
             ],
             "description": "Library for handling version information and constraints",
@@ -8570,8 +8570,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "FilterIterator implementation that filters files based on a list of suffixes.",
@@ -8661,8 +8661,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Utility class for timing",
