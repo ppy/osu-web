@@ -76,6 +76,11 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
             'report' => [
                 '_' => 'Jika kamu menemukan masalah di beatmap ini, mohon laporkan kepada tim melewati tautan :link berikut.',
                 'button' => 'Lapokan Masalah',
@@ -145,6 +150,16 @@ return [
             'rating-spread' => 'Persebaran Nilai Pengguna',
             'nominations' => 'Nominasi',
             'playcount' => 'Jumlah Dimainkan',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

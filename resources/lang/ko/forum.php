@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] ":title"주제에 대한 새로운 답변이 달렸습니다',
-    ],
-
     'forums' => [
         'latest_post' => '최근 게시글',
 

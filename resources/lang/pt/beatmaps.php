@@ -91,13 +91,14 @@ return [
             'nomination_reset' => 'Reiniciar Nomeação',
             'praise' => 'Glorificar',
             'problem' => 'Problema',
-            'review' => '',
+            'review' => 'Revisão',
             'suggestion' => 'Sugestão',
         ],
 
         'mode' => [
             'events' => 'Historial',
             'general' => 'Geral :scope',
+            'reviews' => '',
             'timeline' => 'Cronologia',
             'scopes' => [
                 'general' => 'Esta dificuldade',

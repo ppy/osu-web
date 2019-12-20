@@ -20,38 +20,98 @@
 
 return [
     'beatmapset_update_notice' => [
+        'new' => '',
         'subject' => 'Nuovo aggiornamento per la beatmap ":title"',
+        'unwatch' => '',
+        'visit' => '',
+    ],
+
+    'common' => [
+        'closing' => '',
+        'hello' => '',
+        'report' => '',
     ],
 
     'donation_thanks' => [
+        'benefit_more' => '',
+        'feedback' => "",
+        'keep_free' => '',
+        'keep_running' => '',
         'subject' => 'Grazie, osu! ti ama <3',
+
+        'benefit' => [
+            'gift' => '',
+            'self' => '',
+        ],
+
+        'support' => [
+            '_' => '',
+            'first' => '',
+            'repeat' => '',
+        ],
     ],
 
     'forum_new_reply' => [
+        'new' => '',
         'subject' => '[osu!] Nuova risposta dal topic ":title"',
+        'unwatch' => '',
+        'visit' => '',
     ],
 
     'password_reset' => [
+        'code' => '',
+        'requested' => '',
         'subject' => 'Ripristino account osu!',
     ],
 
     'store_payment_completed' => [
+        'prepare_shipping' => '',
+        'processing' => '',
+        'questions' => "",
+        'shipping' => '',
         'subject' => 'Abbiamo ricevuto il tuo ordine su osu!store!',
+        'thank_you' => '',
+        'total' => '',
     ],
 
     'supporter_gift' => [
+        'anonymous_gift' => '',
+        'anonymous_gift_maybe_not' => '',
+        'duration' => '',
+        'features' => '',
+        'gifted' => '',
         'subject' => 'Ti hanno regalato un tag osu!supporter!',
     ],
 
     'user_email_updated' => [
+        'changed_to' => '',
+        'check' => '',
+        'sent' => '',
         'subject' => 'conferma il cambio della email di osu!',
     ],
 
+    'user_force_reactivation' => [
+        'main' => '',
+        'perform_reset' => '',
+        'reason' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
+        'confirmation' => '',
         'subject' => 'conferma il cambio della password di osu!',
     ],
 
     'user_verification' => [
+        'code' => '',
+        'code_hint' => '',
+        'link' => '',
+        'report' => '',
         'subject' => 'verifica account osu!',
+
+        'action_from' => [
+            '_' => '',
+            'unknown_country' => '',
+        ],
     ],
 ];

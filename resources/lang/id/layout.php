@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'alamat email',
             'forgot' => "Saya lupa identitas saya",
             'password' => 'kata sandi',
             'title' => 'Masuk untuk Melanjutkan',
+            'username' => '',
 
             'error' => [
                 'email' => "Nama pengguna atau alamat email tidak ada",

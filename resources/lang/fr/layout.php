@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'adresse e-mail',
             'forgot' => "J'ai oublié mes identifiants",
             'password' => 'mot de passe',
             'title' => 'Se connecter pour continuer',
+            'username' => '',
 
             'error' => [
                 'email' => "Le nom d'utilisateur ou l'e-mail ne correspond pas",

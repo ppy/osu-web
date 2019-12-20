@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => '登錄以繼續。',
+    'require_verification' => '',
+    'restricted' => "帳戶處於限制模式，無法進行該操作。",
+    'silenced' => "帳戶被禁言，無法進行該操作。",
+    'unauthorized' => '沒有權限。',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => '無法撤銷推薦。',
@@ -49,13 +55,13 @@ return [
     'beatmap_discussion_post' => [
         'destroy' => [
             'not_owner' => '您只能刪除自己的發文。',
-            'resolved' => '',
-            'system_generated' => '',
+            'resolved' => '你不能刪除已解決的討論串。',
+            'system_generated' => '自動生成的貼文無法刪除。',
         ],
 
         'edit' => [
             'not_owner' => '只有作者可以編輯。',
-            'resolved' => '',
+            'resolved' => '你不能編輯已解決討論裡的貼文。',
             'system_generated' => '無法編輯自動回覆。',
         ],
 
@@ -161,14 +167,6 @@ return [
             'admin_only' => '該板塊僅限管理員查看。',
         ],
     ],
-
-    'require_login' => '登錄以繼續。',
-
-    'unauthorized' => '沒有權限。',
-
-    'silenced' => "帳戶被禁言，無法進行該操作。",
-
-    'restricted' => "帳戶處於限制模式，無法進行該操作。",
 
     'user' => [
         'page' => [

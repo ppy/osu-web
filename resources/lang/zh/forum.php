@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] 主题 ":title" 有新回复',
-    ],
-
     'forums' => [
         'latest_post' => '最新帖子',
 

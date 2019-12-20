@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Balasan terbaru dari topik ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Kiriman Terbaru',
 

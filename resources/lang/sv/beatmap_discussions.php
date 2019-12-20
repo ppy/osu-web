@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Markerad som löst av :user',
             'false' => 'Öppnad igen av :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

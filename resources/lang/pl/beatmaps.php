@@ -91,13 +91,14 @@ return [
             'nomination_reset' => 'Zresetuj nominację',
             'praise' => 'Pochwała',
             'problem' => 'Problem',
-            'review' => '',
+            'review' => 'Recenzja',
             'suggestion' => 'Sugestia',
         ],
 
         'mode' => [
             'events' => 'Historia',
             'general' => 'Główne :scope',
+            'reviews' => '',
             'timeline' => 'Oś czasu',
             'scopes' => [
                 'general' => 'Ten poziom trudności',

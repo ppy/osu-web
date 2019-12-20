@@ -28,10 +28,6 @@ return [
         'start' => 'Start',
     ],
 
-    'email' => [
-        'subject' => 'osu! fiók helyreállítása',
-    ],
-
     'error' => [
         'contact_support' => 'Fiókod visszaszerzéséhez kérlek vedd fel a kapcsolatot az ügyfélszolgálattal.',
         'is_privileged' => 'Nyaggasd peppy-t lol.',

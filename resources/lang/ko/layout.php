@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => '이메일 주소',
             'forgot' => "계정 정보를 잊어버렸어요.",
             'password' => '비밀번호',
             'title' => '로그인하여 계속하기',
+            'username' => '',
 
             'error' => [
                 'email' => "존재하지 않는 유저이름 또는 이메일입니다.",

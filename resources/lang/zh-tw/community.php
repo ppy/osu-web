@@ -39,22 +39,22 @@ return [
             ],
             'featured-artists' => [
                 'title' => '精選藝術家',
-                'description' => '',
-                'link_text' => '',
+                'description' => '在你的支持下，我們可以與更多優秀的藝術家合作，並為 osu! 帶來更多出色的音樂',
+                'link_text' => '查看當前列表 &raquo;',
             ],
             'ads' => [
-                'title' => '保持 osu! 自持',
-                'description' => '',
+                'title' => '維持 osu! 自給自足',
+                'description' => '你的幫助可以讓遊戲保持獨立並遠離廣告，不受外部贊助商的控制。',
             ],
             'tournaments' => [
                 'title' => '官方錦標賽',
-                'description' => '',
-                'link_text' => '',
+                'description' => '為官方 osu! 世界杯籌備營運資金（及獎勵）。',
+                'link_text' => '探索比賽 &raquo;',
             ],
             'bounty-program' => [
                 'title' => '開源賞金計劃',
                 'description' => '',
-                'link_text' => '',
+                'link_text' => '了解更多 &raquo;',
             ],
         ],
         'perks' => [
@@ -75,7 +75,7 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => '',
+                'title' => '按 Mods 篩選',
                 'description' => '',
             ],
 
@@ -101,7 +101,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => '譜面篩選器',
-                'description' => '更多角度的去篩選譜面。',
+                'description' => '更多方面的去篩選譜面。',
             ],
 
             'yellow_fellow' => [
@@ -121,7 +121,7 @@ return [
 
             'skinnables' => [
                 'title' => '更多的定製',
-                'description' => '自定義更多的遊戲界面元素，例如主菜單的背景。',
+                'description' => '自定義更多的遊戲界面元素，例如主畫面的背景。',
             ],
 
             'feature_votes' => [

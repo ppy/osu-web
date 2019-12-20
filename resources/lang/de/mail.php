@@ -20,38 +20,98 @@
 
 return [
     'beatmapset_update_notice' => [
+        'new' => '',
         'subject' => 'Neues Update für Beatmap ":title"',
+        'unwatch' => '',
+        'visit' => '',
+    ],
+
+    'common' => [
+        'closing' => '',
+        'hello' => '',
+        'report' => '',
     ],
 
     'donation_thanks' => [
+        'benefit_more' => '',
+        'feedback' => "",
+        'keep_free' => '',
+        'keep_running' => '',
         'subject' => 'Danke, osu! <3 dich',
+
+        'benefit' => [
+            'gift' => '',
+            'self' => '',
+        ],
+
+        'support' => [
+            '_' => '',
+            'first' => '',
+            'repeat' => '',
+        ],
     ],
 
     'forum_new_reply' => [
+        'new' => '',
         'subject' => '[osu!] Neue Antwort auf Thread ":title"',
+        'unwatch' => '',
+        'visit' => '',
     ],
 
     'password_reset' => [
+        'code' => '',
+        'requested' => '',
         'subject' => 'osu!-Accountwiederherstellung',
     ],
 
     'store_payment_completed' => [
+        'prepare_shipping' => '',
+        'processing' => '',
+        'questions' => "",
+        'shipping' => '',
         'subject' => 'Wir haben deine osu!store Bestellung erhalten!',
+        'thank_you' => '',
+        'total' => '',
     ],
 
     'supporter_gift' => [
+        'anonymous_gift' => '',
+        'anonymous_gift_maybe_not' => '',
+        'duration' => '',
+        'features' => '',
+        'gifted' => '',
         'subject' => 'Dir wurde ein osu!supporter-Tag geschenkt!',
     ],
 
     'user_email_updated' => [
+        'changed_to' => '',
+        'check' => '',
+        'sent' => '',
         'subject' => 'Bestätigung der neuen E-Mail-Adresse für osu!',
     ],
 
+    'user_force_reactivation' => [
+        'main' => '',
+        'perform_reset' => '',
+        'reason' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
+        'confirmation' => '',
         'subject' => 'Bestätigung des neuen Passworts für osu!',
     ],
 
     'user_verification' => [
+        'code' => '',
+        'code_hint' => '',
+        'link' => '',
+        'report' => '',
         'subject' => 'osu!-Accountverifizierung',
+
+        'action_from' => [
+            '_' => '',
+            'unknown_country' => '',
+        ],
     ],
 ];

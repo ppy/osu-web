@@ -64,8 +64,36 @@ return [
         'send_message' => 'skicka meddelande',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Logga in',
+        'email_login_disabled' => '',
         'locked_ip' => 'din IP adress är låst. Var vänlig vänta några minuter.',
         'username' => 'Användarnamn',
         'password' => 'Lösenord',

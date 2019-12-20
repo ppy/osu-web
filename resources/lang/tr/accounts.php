@@ -68,6 +68,12 @@ return [
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'bu beatmap için oluşturduğunuz yeni forum konularında bildirimleri otomatik olarak etkinleştirin',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! e-posta değişikliği onayı',
         'update' => 'güncelle',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! şifre değişikliği onayı',
         'update' => 'güncelle',
     ],
 

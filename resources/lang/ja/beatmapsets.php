@@ -76,6 +76,11 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
             'report' => [
                 '_' => 'ビートマップに問題を見つけた場合、:link からチームに報告してください。',
                 'button' => '問題を報告する',
@@ -145,6 +150,16 @@ return [
             'rating-spread' => '評価分布',
             'nominations' => 'ノミネーション',
             'playcount' => 'プレイ数',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

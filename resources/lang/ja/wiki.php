@@ -25,6 +25,7 @@ return [
         'missing' => '要求されたページ”:keyword”は見つかりませんでした。',
         'missing_title' => 'Not Found',
         'missing_translation' => '要求されたページは選択している言語に翻訳されていません。',
+        'needs_cleanup_or_rewrite' => '',
         'search' => '既存のページで:linkを検索する',
         'toc' => '目次',
 

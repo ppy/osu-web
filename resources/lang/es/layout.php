@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'correo electrónico',
             'forgot' => "He olvidado mis datos",
             'password' => 'contraseña',
             'title' => 'Iniciar sesión para continuar',
+            'username' => '',
 
             'error' => [
                 'email' => "El nombre de usuario o correo electrónico no existe",

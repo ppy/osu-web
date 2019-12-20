@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'emailadres',
             'forgot' => "Ik ben mij gegevens vergeten",
             'password' => 'wachtwoord',
             'title' => 'Log In Om Verder Te Gaan',
+            'username' => '',
 
             'error' => [
                 'email' => "Gebruikersnaam of emailadres bestaat niet",

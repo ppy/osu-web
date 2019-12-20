@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'osu!store siparişinizi aldık!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Sipariş verme tarihi :date',
 

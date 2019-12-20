@@ -25,6 +25,7 @@ return [
         'missing' => '요청하신 ":keyword" 페이지를 찾을 수 없습니다.',
         'missing_title' => '찾을 수 없음',
         'missing_translation' => '현재 사용하시는 언어로 된 요청하신 페이지를 찾을 수 없습니다.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => ':link에 해당하는 페이지',
         'toc' => '내용',
 

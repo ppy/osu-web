@@ -52,12 +52,6 @@ return [
         'secret' => '客户端密钥',
     ],
 
-    'login' => [
-        'download' => '点此以下载游戏并创建账号',
-        'label' => '首先，让我们登录你的账号',
-        'title' => '账号登录',
-    ],
-
     'new_client' => [
         'header' => '注册一个新的 OAuth 应用程序',
         'register' => '注册应用程序',

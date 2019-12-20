@@ -28,10 +28,6 @@ return [
         'start' => 'Başlat',
     ],
 
-    'email' => [
-        'subject' => 'osu! hesap kurtarma',
-    ],
-
     'error' => [
         'contact_support' => 'Lütfen hesabı kurtarmak için desteğe başvurun.',
         'is_privileged' => 'Peppy\'e sorsana lulz.',

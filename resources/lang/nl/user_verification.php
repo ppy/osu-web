@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'osu! account verificatie',
-    ],
-
     'errors' => [
         'expired' => 'Verificatiecode is verlopen, nieuwe verificatie e-mail verstuurd.',
         'incorrect_key' => 'Onjuiste verificatiecode.',

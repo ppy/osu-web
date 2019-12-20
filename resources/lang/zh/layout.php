@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => '用户名/邮箱',
             'forgot' => "我忘记了我的登录信息",
             'password' => '密码',
             'title' => '登录以继续',
+            'username' => '',
 
             'error' => [
                 'email' => "用户名或邮箱不存在",

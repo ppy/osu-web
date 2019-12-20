@@ -64,8 +64,36 @@ return [
         'send_message' => 'адправіць паведамленне',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Увайсці',
+        'email_login_disabled' => '',
         'locked_ip' => 'ваш IP-адрас заблакаваны. Пачакайце некалькі хвілін.',
         'username' => 'Імя карыстальніка',
         'password' => 'Пароль',

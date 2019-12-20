@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'email adress',
             'forgot' => "Jag har glömt mina detaljer",
             'password' => 'lösenord',
             'title' => 'Logga In För Att Fortsätta',
+            'username' => '',
 
             'error' => [
                 'email' => "Användarnamn eller email adress finns inte",

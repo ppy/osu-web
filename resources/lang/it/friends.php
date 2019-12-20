@@ -21,7 +21,7 @@
 return [
     'buttons' => [
       'add' => 'aggiungi amico',
-      'disabled' => 'amici',
+      'disabled' => 'follower',
       'remove' => 'rimuovi amico',
     ],
 

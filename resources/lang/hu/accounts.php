@@ -68,6 +68,12 @@ return [
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'e-mail cím csere megerősítése',
         'update' => 'mentés',
     ],
 
     'update_password' => [
-        'email_subject' => 'jelszó csere megerősítése',
         'update' => 'mentés',
     ],
 

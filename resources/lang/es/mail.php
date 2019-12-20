@@ -20,38 +20,98 @@
 
 return [
     'beatmapset_update_notice' => [
+        'new' => '',
         'subject' => 'Nueva actualización para el Beatmap ":title"',
+        'unwatch' => '',
+        'visit' => '',
+    ],
+
+    'common' => [
+        'closing' => '',
+        'hello' => '',
+        'report' => '',
     ],
 
     'donation_thanks' => [
+        'benefit_more' => '',
+        'feedback' => "",
+        'keep_free' => '',
+        'keep_running' => '',
         'subject' => 'Gracias, osu! te <3',
+
+        'benefit' => [
+            'gift' => '',
+            'self' => '',
+        ],
+
+        'support' => [
+            '_' => '',
+            'first' => '',
+            'repeat' => '',
+        ],
     ],
 
     'forum_new_reply' => [
+        'new' => '',
         'subject' => '[osu!] Nueva respuesta para el tema ":title"',
+        'unwatch' => '',
+        'visit' => '',
     ],
 
     'password_reset' => [
+        'code' => '',
+        'requested' => '',
         'subject' => 'Recuperación de tu cuenta de osu!',
     ],
 
     'store_payment_completed' => [
+        'prepare_shipping' => '',
+        'processing' => '',
+        'questions' => "",
+        'shipping' => '',
         'subject' => '¡Hemos recibido tu orden de la osu!store!',
+        'thank_you' => '',
+        'total' => '',
     ],
 
     'supporter_gift' => [
+        'anonymous_gift' => '',
+        'anonymous_gift_maybe_not' => '',
+        'duration' => '',
+        'features' => '',
+        'gifted' => '',
         'subject' => '¡Te han regalado osu!supporter!',
     ],
 
     'user_email_updated' => [
+        'changed_to' => '',
+        'check' => '',
+        'sent' => '',
         'subject' => 'Confirmación de cambio de correo electrónico de osu!',
     ],
 
+    'user_force_reactivation' => [
+        'main' => '',
+        'perform_reset' => '',
+        'reason' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
+        'confirmation' => '',
         'subject' => 'Confirmación de cambio de contraseña de osu!',
     ],
 
     'user_verification' => [
+        'code' => '',
+        'code_hint' => '',
+        'link' => '',
+        'report' => '',
         'subject' => 'Verificación de la cuenta de osu!',
+
+        'action_from' => [
+            '_' => '',
+            'unknown_country' => '',
+        ],
     ],
 ];

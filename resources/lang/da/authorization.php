@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Log venligst ind for at fortsætte.',
+    'require_verification' => '',
+    'restricted' => "Det kan du ikke gøre, når du er begrænset.",
+    'silenced' => "Det kan du ikke gøre, når du er mutet.",
+    'unauthorized' => 'Adgang nægtet.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Kan ikke ophæve hyping.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Kun administratorer kan se dette forum.',
         ],
     ],
-
-    'require_login' => 'Log venligst ind for at fortsætte.',
-
-    'unauthorized' => 'Adgang nægtet.',
-
-    'silenced' => "Det kan du ikke gøre, når du er mutet.",
-
-    'restricted' => "Det kan du ikke gøre, når du er begrænset.",
 
     'user' => [
         'page' => [

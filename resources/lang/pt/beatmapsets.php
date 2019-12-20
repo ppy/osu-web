@@ -76,6 +76,11 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
             'report' => [
                 '_' => 'Se encontrares um problema com este beatmap, por favor transmite-o :link para avisar a equipa.',
                 'button' => 'Relatar Problema',
@@ -145,6 +150,16 @@ return [
             'rating-spread' => 'Avaliação Dispersada',
             'nominations' => 'Nomeações',
             'playcount' => 'Número de Partidas',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

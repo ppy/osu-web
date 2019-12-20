@@ -76,6 +76,11 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
             'report' => [
                 '_' => 'Wenn du ein Problem mit dieser Beatmap findest, bitte melde es :link, um das Team zu informieren.',
                 'button' => 'Problem melden',
@@ -145,6 +150,16 @@ return [
             'rating-spread' => 'Bewertungsverteilung',
             'nominations' => 'Nominierungen',
             'playcount' => 'Playcount',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

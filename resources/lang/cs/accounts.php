@@ -68,6 +68,12 @@ return [
         'title' => 'Oznámení',
         'topic_auto_subscribe' => 'automaticky povolit oznámení o nových tématech fóra, které vytvoříte',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'potvrzení změny osu! e-mailu',
         'update' => 'aktualizovat',
     ],
 
     'update_password' => [
-        'email_subject' => 'potvrzení změny osu! hesla',
         'update' => 'aktualizovat',
     ],
 

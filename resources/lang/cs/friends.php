@@ -27,7 +27,7 @@ return [
 
     'index' => [
         'title' => [
-            '_' => '',
+            '_' => 'Domů :info',
             'info' => 'Přátelé',
         ],
     ],

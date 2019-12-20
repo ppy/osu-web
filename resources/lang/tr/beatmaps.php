@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'Geçmiş',
             'general' => 'Genel :scope',
+            'reviews' => '',
             'timeline' => 'Zaman Çizgisi',
             'scopes' => [
                 'general' => 'Bu zorluk',

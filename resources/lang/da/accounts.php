@@ -68,6 +68,12 @@ return [
         'title' => 'Notifikationer',
         'topic_auto_subscribe' => 'aktiver automatisk notifikationer på nye forum emner du opretter',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Bekræftelse for opdatering af osu! email-adresse',
         'update' => 'opdater',
     ],
 
     'update_password' => [
-        'email_subject' => 'Bekræftelse for opdatering af osu! adgangskode',
         'update' => 'opdater',
     ],
 

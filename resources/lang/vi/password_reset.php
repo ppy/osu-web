@@ -28,10 +28,6 @@ return [
         'start' => 'Bắt đầu',
     ],
 
-    'email' => [
-        'subject' => 'khôi phục tài khoản osu!',
-    ],
-
     'error' => [
         'contact_support' => 'Vui lòng liên hệ hỗ trợ để khôi phục tài khoản của bạn.',
         'is_privileged' => 'Liên hệ peppy ấy lulz.',

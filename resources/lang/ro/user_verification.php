@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'verificarea contului osu!',
-    ],
-
     'errors' => [
         'expired' => 'Codul de verificare a expirat, a fost trimis un nou e-mail de verificare.',
         'incorrect_key' => 'Cod de verificare incorect.',

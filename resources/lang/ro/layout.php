@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'adresa de e-mail',
             'forgot' => "Mi-am uitat detaliile de autentificare",
             'password' => 'parolă',
             'title' => 'Autentifică-te pentru a continua',
+            'username' => '',
 
             'error' => [
                 'email' => "Numele de utilizator sau adresa de e-mail nu există",

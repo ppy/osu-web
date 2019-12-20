@@ -68,6 +68,12 @@ return [
         'title' => 'Thông báo',
         'topic_auto_subscribe' => 'tự động nhận thông báo cho các topic bạn tạo trong forum',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Xác nhận thay đổi email osu!',
         'update' => 'cập nhật',
     ],
 
     'update_password' => [
-        'email_subject' => 'Xác nhận thay đổi mật khẩu osu!',
         'update' => 'cập nhật',
     ],
 

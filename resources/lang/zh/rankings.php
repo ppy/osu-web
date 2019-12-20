@@ -25,7 +25,7 @@ return [
         'performance' => '表现',
         'charts' => '月赛',
         'score' => '总分',
-        'country' => '国家',
+        'country' => '国家和地区',
     ],
 
     'spotlight' => [
@@ -38,7 +38,7 @@ return [
     'stat' => [
         'accuracy' => '准确率',
         'active_users' => '活跃用户',
-        'country' => '国家',
+        'country' => '国家和地区',
         'play_count' => '游戏次数',
         'performance' => '表现',
         'total_score' => '总分',

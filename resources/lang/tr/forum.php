@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] ":title" başlığına yeni cevap',
-    ],
-
     'forums' => [
         'latest_post' => 'Son Gönderi',
 

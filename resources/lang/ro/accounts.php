@@ -68,6 +68,12 @@ return [
         'title' => 'Notificări',
         'topic_auto_subscribe' => '',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'confirmarea schimbării e-mailului în osu!',
         'update' => 'actualizează',
     ],
 
     'update_password' => [
-        'email_subject' => 'confirmarea schimbării parolei în osu!',
         'update' => 'actualizează',
     ],
 

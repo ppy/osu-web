@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'osu! 账户认证',
-    ],
-
     'errors' => [
         'expired' => '该验证码已经过期，新验证码已经重新发送。',
         'incorrect_key' => '验证码错误。',

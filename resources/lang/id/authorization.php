@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Silakan masuk untuk melanjutkan.',
+    'require_verification' => '',
+    'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
+    'silenced' => "Tidak dapat melakukan hal itu saat dibungkam.",
+    'unauthorized' => 'Akses ditolak.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Tidak dapat membatalkan pemberian hype.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Hanya admin yang dapat melihat forum ini.',
         ],
     ],
-
-    'require_login' => 'Silakan masuk untuk melanjutkan.',
-
-    'unauthorized' => 'Akses ditolak.',
-
-    'silenced' => "Tidak dapat melakukan hal itu saat dibungkam.",
-
-    'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
 
     'user' => [
         'page' => [
