@@ -39,6 +39,7 @@ class DatadogMetrics extends LaravelDatadogMiddleware
         $duration = microtime(true) - $startTime;
         $tags = [
             'action' => 'error_page',
+            'api' => $request->is('api/*') ? 'true' : 'false',
             'controller' => 'error',
             'namespace' => 'error',
             'section' => 'error',
