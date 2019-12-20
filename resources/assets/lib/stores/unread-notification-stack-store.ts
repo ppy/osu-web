@@ -47,6 +47,8 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
   @action
   handleNotificationEventNew(event: NotificationEventNew) {
+    if (event.data.is_read) return;
+
     super.handleNotificationEventNew(event);
     this.total++;
   }
@@ -88,7 +90,7 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
     const notification = this.notificationStore.get(identity.id ?? 0);
     const stack = this.getStack(identity);
-    const type = this.getType(identity);
+    const type = this.getOrCreateType(identity);
     // TODO; check if notification and stackNotification is necessary;
     const stackNotification = stack?.notifications.get(identity.id ?? 0);
     if (notification != null) {
@@ -129,7 +131,7 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
     this.notificationStore.notifications.forEach((notification) => notification.isRead = true);
     this.stacks.delete(resolveStackId(identity));
 
-    const type = this.getType(identity);
+    const type = this.getOrCreateType(identity);
     if (type == null) return;
 
     type.removeStack(stack);
@@ -137,7 +139,7 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
   }
 
   private handleType(identity: NotificationIdentity, readCount: number) {
-    const type = this.getType(identity);
+    const type = this.getOrCreateType(identity);
     if (type == null) {
       this.total -= readCount;
       return;

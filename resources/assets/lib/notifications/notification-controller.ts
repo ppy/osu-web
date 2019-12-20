@@ -39,7 +39,7 @@ export default class NotificationController {
 
   @computed
   get type() {
-    return this.store.getType({ objectType: this.currentFilter });
+    return this.store.getOrCreateType({ objectType: this.currentFilter });
   }
 
   constructor(

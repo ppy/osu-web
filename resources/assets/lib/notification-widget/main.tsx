@@ -127,7 +127,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private renderFilter = (link: any) => {
-    const type = core.dataStore.notificationStore.unreadStacks.getType({ objectType: link.type });
+    const type = core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: link.type });
     const data = { 'data-type': link.type };
 
     return (

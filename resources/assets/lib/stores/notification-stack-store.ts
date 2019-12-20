@@ -48,17 +48,18 @@ export default class NotificationStackStore implements DispatchListener {
     this.addLegacyPm();
   }
 
-  getStack(identity: NotificationIdentity) {
-    return this.stacks.get(resolveStackId(identity));
-  }
-
-  getType(identity: NotificationIdentity) {
+  getOrCreateType(identity: NotificationIdentity) {
     let type = this.types.get(identity.objectType);
     if (type == null) {
       type = new NotificationType(identity.objectType, this.resolver);
+      this.types.set(type.name, type);
     }
 
     return type;
+  }
+
+  getStack(identity: NotificationIdentity) {
+    return this.stacks.get(resolveStackId(identity));
   }
 
   @action
@@ -79,7 +80,33 @@ export default class NotificationStackStore implements DispatchListener {
 
   @action
   handleNotificationEventNew(event: NotificationEventNew) {
-    this.updateWithNotificationJson(event.data);
+    // TODO: maybe use NotificationIdentityJson instead?
+
+    const json = event.data;
+
+    let notification = this.notificationStore.get(json.id);
+    if (notification == null) {
+      notification = Notification.fromJson(json);
+      this.notificationStore.add(notification);
+    } else {
+      notification.updateFromJson(json);
+    }
+
+    const identity = notification.identity;
+    const type = this.getOrCreateType(identity);
+    let stack = this.getStack(identity);
+
+    // FIXME: we need the notification to include if the stack already exists server side :|
+    if (stack == null) {
+      stack = new NotificationStack(json.object_id, json.object_type, nameToCategory[json.name], this.resolver);
+      this.stacks.set(stack.id, stack);
+    }
+
+    stack.notifications.set(notification.id, notification);
+    stack.total++;
+
+    type.stacks.set(stack.id, stack);
+    type.total++;
   }
 
   /**

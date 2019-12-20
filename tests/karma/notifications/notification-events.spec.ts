@@ -19,8 +19,12 @@
 import { dispatch, dispatcher } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import Notification from 'models/notification';
-import { NotificationEventMoreLoaded, NotificationEventRead } from 'notifications/notification-events';
-import { toJson } from 'notifications/notification-identity';
+import {
+  NotificationEventMoreLoaded,
+  NotificationEventNew,
+  NotificationEventRead,
+} from 'notifications/notification-events';
+import { fromJson, toJson } from 'notifications/notification-identity';
 import NotificationStore from 'stores/notification-store';
 import { makeNotificationJson, makeStackJson } from './helpers';
 
@@ -415,14 +419,14 @@ describe('Notification Events', () => {
       it('store.stacks is not empty', () => {
         expect(store.stacks.stacks.size).toBe(2);
         expect(store.stacks.types.size).toBe(3);
-        expect(store.stacks.getType({ objectType: null })).toBeDefined();
-        expect(store.stacks.getType({ objectType: 'beatmapset' })).toBeDefined();
+        expect(store.stacks.getOrCreateType({ objectType: null })).toBeDefined();
+        expect(store.stacks.getOrCreateType({ objectType: 'beatmapset' })).toBeDefined();
       });
 
       it('store.unreadStacks only contains legacy pm', () => {
         expect(store.unreadStacks.stacks.size).toBe(1);
         expect(store.unreadStacks.types.size).toBe(1);
-        expect(store.unreadStacks.getType({ objectType: 'legacy_pm' })).toBeDefined();
+        expect(store.unreadStacks.getOrCreateType({ objectType: 'legacy_pm' })).toBeDefined();
       });
 
       it('notifications added to store.notifications', () => {
@@ -445,20 +449,140 @@ describe('Notification Events', () => {
         expect(store.stacks.stacks.size).toBe(1);
 
         expect(store.stacks.types.size).toBe(1);
-        expect(store.stacks.getType({ objectType: 'legacy_pm' })).toBeDefined();
+        expect(store.stacks.getOrCreateType({ objectType: 'legacy_pm' })).toBeDefined();
       });
 
       it('store.unreadStacks is not empty', () => {
         expect(store.unreadStacks.stacks.size).toBe(2);
         expect(store.unreadStacks.types.size).toBe(3);
-        expect(store.unreadStacks.getType({ objectType: null })).toBeDefined();
-        expect(store.unreadStacks.getType({ objectType: 'beatmapset' })).toBeDefined();
-        expect(store.unreadStacks.getType({ objectType: 'legacy_pm' })).toBeDefined();
+        expect(store.unreadStacks.getOrCreateType({ objectType: null })).toBeDefined();
+        expect(store.unreadStacks.getOrCreateType({ objectType: 'beatmapset' })).toBeDefined();
+        expect(store.unreadStacks.getOrCreateType({ objectType: 'legacy_pm' })).toBeDefined();
       });
 
       it('notifications added to store.notifications', () => {
         identities.forEach((identity) => {
           expect(store.notifications.get(identity.id)).toEqual(jasmine.any(Notification));
+        });
+      });
+    });
+  });
+
+  describe('on NotificationEventNew', () => {
+    const newNotificationIdentity = { ...toJson(identities[0]), id: identities[0].id + 100 }; // make it look newer
+    const newNotificationJson = makeNotificationJson(newNotificationIdentity);
+
+    describe('has existing stack', () => {
+      const notificationJson = makeNotificationJson(toJson(identities[0]));
+      const bundleBase = {
+        stacks: [makeStackJson(identities[0], 5, 'beatmapset_discussion_post_new', identities[0].id)],
+        types: [
+          { cursor: null, name: null,  total: 5 },
+          { cursor: null, name: 'beatmapset', total: 5 },
+        ],
+      };
+
+      const bundleWithNotification = { ...bundleBase } as NotificationBundleJson;
+      bundleWithNotification.notifications = [notificationJson];
+      bundleWithNotification.unread_count = baseUnreadCount;
+
+      let store!: NotificationStore;
+      beforeEach(() => {
+        store = new NotificationStore();
+        store.stacks.updateWithBundle(bundleWithNotification);
+        store.unreadStacks.updateWithBundle(bundleWithNotification);
+      });
+
+      it('should contain 1 stack', () => {
+        // FIXME: move pm notification stack out.
+        expect(store.stacks.stacks.size).toBe(2);
+      });
+
+      it('should contain 1 unread stack', () => {
+        expect(store.unreadStacks.stacks.size).toBe(2);
+      });
+
+      describe('NotificationEventNew dispatched', () => {
+        beforeEach(() => {
+          dispatch(new NotificationEventNew(newNotificationJson));
+        });
+
+        it('should add the notification to the store', () => {
+          expect([...store.notifications.keys()]).toContain(newNotificationIdentity.id);
+        });
+
+        it('should add the new notification to the stack', () => {
+          const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
+
+          expect(stack).toBeDefined();
+          if (stack != null) {
+            expect([...stack.notifications.keys()]).toContain(newNotificationIdentity.id);
+            expect(stack.notifications.size).toBe(2);
+          }
+        });
+
+        it('should increment the stack unread count', () => {
+          const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
+          expect(stack?.total).toBe(6);
+        });
+
+        it('should increment the type unread count', () => {
+          const type = store.unreadStacks.getOrCreateType(fromJson(newNotificationIdentity));
+          expect(type?.total).toBe(6);
+        });
+
+        it('should increment the total unread count', () => {
+          expect(store.unreadStacks.total).toBe(baseUnreadCount + 1);
+        });
+      });
+    });
+
+    describe('does not have an existing stack', () => {
+      let store!: NotificationStore;
+      beforeEach(() => {
+        store = new NotificationStore();
+      });
+
+      it('should contain be empty', () => {
+        // FIXME: move pm notification stack out.
+        expect(store.stacks.stacks.size).toBe(1);
+      });
+
+      it('should contain no unreads', () => {
+        expect(store.unreadStacks.stacks.size).toBe(1);
+      });
+
+      describe('NotificationEventNew dispatched', () => {
+        beforeEach(() => {
+          dispatch(new NotificationEventNew(newNotificationJson));
+        });
+
+        it('should add the notification to the store', () => {
+          expect([...store.notifications.keys()]).toContain(newNotificationIdentity.id);
+        });
+
+        it('should create a new stack', () => {
+          const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
+
+          expect(stack).toBeDefined();
+          if (stack != null) {
+            expect([...stack.notifications.keys()]).toContain(newNotificationIdentity.id);
+            expect(stack.notifications.size).toBe(1);
+          }
+        });
+
+        it('should increment the stack unread count', () => {
+          const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
+          expect(stack?.total).toBe(1);
+        });
+
+        it('should increment the type unread count', () => {
+          const type = store.unreadStacks.getOrCreateType(fromJson(newNotificationIdentity));
+          expect(type?.total).toBe(1);
+        });
+
+        it('should increment the total unread count', () => {
+          expect(store.unreadStacks.total).toBe(1);
         });
       });
     });

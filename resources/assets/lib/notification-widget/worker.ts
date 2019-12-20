@@ -24,11 +24,11 @@ import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import {
   NotificationEventLogoutJson,
+  NotificationEventNew,
   NotificationEventNewJson,
   NotificationEventRead,
   NotificationEventReadJson,
   NotificationEventVerifiedJson,
-  NotificationEventNew,
 } from 'notifications/notification-events';
 import core from 'osu-core-singleton';
 
