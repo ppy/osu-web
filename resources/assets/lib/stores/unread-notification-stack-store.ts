@@ -29,11 +29,19 @@ import NotificationStackStore from './notification-stack-store';
 export default class UnreadNotificationStackStore extends NotificationStackStore implements DispatchListener {
   @observable total = 0;
 
+  @action
   handleDispatchAction(dispatched: DispatcherAction) {
+    super.handleDispatchAction(dispatched);
+
     if (dispatched instanceof NotificationEventRead) {
       this.handleNotificationEventRead(dispatched);
-    } else if (dispatched instanceof NotificationEventMoreLoaded && dispatched.context.unreadOnly) {
-      this.updateWithBundle(dispatched.data);
+    }
+  }
+
+  @action
+  handleNotificationEventMoreLoaded(event: NotificationEventMoreLoaded) {
+    if (event.context.unreadOnly) {
+      this.updateWithBundle(event.data);
     }
   }
 

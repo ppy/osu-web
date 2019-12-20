@@ -39,6 +39,10 @@ export interface NotificationEventReadJson {
   event: 'read';
 }
 
+export interface NotificationEventVerifiedJson {
+  event: 'verified';
+}
+
 export class NotificationEventMoreLoaded extends DispatcherAction {
   constructor(readonly data: NotificationBundleJson, readonly context: NotificationContextData) {
     super();
@@ -60,8 +64,4 @@ export class NotificationEventRead extends DispatcherAction {
     const data = eventData.data.notifications.map((json) => fromJson(json));
     return new NotificationEventRead(data, eventData.data.read_count);
   }
-}
-
-export interface NotificationEventVerifiedJson {
-  event: 'verified';
 }

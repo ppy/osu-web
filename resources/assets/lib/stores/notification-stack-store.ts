@@ -65,8 +65,15 @@ export default class NotificationStackStore implements DispatchListener {
   handleDispatchAction(dispatched: DispatcherAction) {
     if (dispatched instanceof NotificationEventNew) {
       this.handleNotificationEventNew(dispatched);
-    } else if (dispatched instanceof NotificationEventMoreLoaded && !dispatched.context.unreadOnly) {
-      this.updateWithBundle(dispatched.data);
+    } else if (dispatched instanceof NotificationEventMoreLoaded) {
+      this.handleNotificationEventMoreLoaded(dispatched);
+    }
+  }
+
+  @action
+  handleNotificationEventMoreLoaded(event: NotificationEventMoreLoaded) {
+    if (!event.context.unreadOnly) {
+      this.updateWithBundle(event.data);
     }
   }
 
