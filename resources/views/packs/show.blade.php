@@ -17,13 +17,14 @@
 --}}
 @extends('master', [
     'currentAction' => 'packs',
+    'legacyNav' => false,
     'title' => $pack->name.' · '.trans('beatmappacks.index.title'),
 ])
 
 @section('content')
-    <div class="osu-page">
-        @include('packs._header')
+    @include('packs._header')
 
+    <div class="osu-page">
         <div class="beatmap-packs">
             <div class="beatmap-pack beatmap-pack--expanded">
                 <a href="{{ route('packs.show', $pack) }}" class="beatmap-pack__header">
@@ -38,12 +39,6 @@
                 <div class="beatmap-pack__body">
                     @include('packs.raw', compact('pack', 'sets', 'mode'))
                 </div>
-            </div>
-
-            <div class="beatmap-packs__footer-links">
-                <a href="{{ route('packs.index') }}" class="btn-osu-big btn-osu-big--rounded">
-                    {{ trans('beatmappacks.show.back') }}
-                </a>
             </div>
         </div>
     </div>

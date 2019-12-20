@@ -15,12 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('admin/master')
+@extends('master', ['legacyNav' => false])
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-admin">
-        <h1>{{ trans('admin.logs.index.title') }}</h1>
+    @include('admin/_header', ['title' => trans('admin.logs.index.title')])
 
+    <div class="osu-page osu-page--admin">
         @foreach ($logs->get() as $log)
             <p>
                 <pre>{{ json_encode($log->toArray(), JSON_PRETTY_PRINT) }}</pre>

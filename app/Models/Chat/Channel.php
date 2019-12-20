@@ -196,7 +196,7 @@ class Channel extends Model
         ])->first();
 
         if ($userChannel) {
-            $userChannel->update(['last_read_id' => $message->message_id]);
+            $userChannel->markAsRead($message->message_id);
         }
 
         if ($this->isPM()) {

@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Registration: :start to :end',
 
         'header' => [
-            'subtitle' => 'A listing of active, officially-recognised tournaments',
             'title' => 'Community Tournaments',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Cancel Registration',
             'register' => 'Sign me up!',
+        ],
+
+        'period' => [
+            'end' => 'End',
+            'start' => 'Start',
         ],
 
         'state' => [

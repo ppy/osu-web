@@ -82,11 +82,13 @@
                 </div>
 
                 <div class="forum-topic-title__item forum-topic-title__item--counters">
-                    @include('forum.topics._header_total_counter', ['newTopic' => false])
+                    <div class="grid-items">
+                        @include('forum.topics._header_total_counter', ['newTopic' => false])
 
-                    @if ($userCanModerate)
-                        @include('forum.topics._header_deleted_counter', ['newTopic' => false])
-                    @endif
+                        @if ($userCanModerate)
+                            @include('forum.topics._header_deleted_counter', ['newTopic' => false])
+                        @endif
+                    </div>
                 </div>
             </div>
 

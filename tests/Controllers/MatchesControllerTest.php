@@ -65,7 +65,7 @@ class MatchesControllerTest extends TestCase
     {
         $this
             ->get($this->privateMatchRoute)
-            ->assertSeeText('Please login to continue')
+            ->assertSeeText('Please sign in to continue')
             ->assertStatus(401);
     }
 

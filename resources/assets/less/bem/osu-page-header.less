@@ -102,47 +102,14 @@
     height: 165px;
   }
 
-  &--mp-history {
-    .at2x-simple("/images/headers/mp-history.jpg");
-    background-position: center;
-    @media @desktop {
-      height: 125px;
-    }
-  }
-
   &--news {
     background-image: url('/images/headers/generic.jpg');
     height: 200px;
     text-align: center;
   }
 
-  &--password-reset {
-    .at2x-simple("/images/headers/password-reset.jpg");
-    .default-box-shadow();
-    height: 200px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: center;
-  }
-
   &--tournaments {
     .at2x-simple("/images/headers/tournament.jpg");
-  }
-
-  &--wiki {
-    .default-box-shadow();
-    .at2x-simple("/images/headers/wiki.jpg");
-    height: 125px;
-
-    @media @desktop {
-      padding-left: @padding-wiki-desktop;
-      padding-right: @padding-wiki-desktop;
-    }
-
-    .@{top}--wiki-main-page& {
-      height: 250px;
-    }
   }
 
   &__actions {
@@ -281,34 +248,6 @@
       color: @osu-colour-b6;
       text-shadow: none;
     }
-
-    .@{top}--wiki &--main {
-      @border-height: 5px;
-      margin-bottom: 0;
-      padding-bottom: (@main-padding - @border-height);
-      border-bottom: @border-height solid @yellow;
-    }
-
-    .@{top}--wiki-main-page & {
-      border: 0;
-    }
-
-    .@{top}--wiki-main-page &--main {
-      padding-bottom: 15px;
-      margin: 0;
-      font-size: @font-size--large-3;
-      font-weight: 300;
-      font-style: italic;
-    }
-
-    .@{top}--wiki-main-page &--small {
-      padding-bottom: @main-padding;
-      font-style: normal;
-    }
-
-    .@{top}--wiki-main-page &--icon {
-      padding-bottom: 20px;
-    }
   }
 
   &__title-box {
@@ -336,22 +275,6 @@
         position: relative;
         padding: 0 20px;
       }
-    }
-
-    .@{top}--wiki & {
-      bottom: 0;
-
-      @media @mobile {
-        padding-right: 55px;
-      }
-    }
-
-    .@{top}--wiki-main-page & {
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      text-align: center;
-      padding: 0;
     }
   }
 }
