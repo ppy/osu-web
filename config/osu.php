@@ -185,6 +185,10 @@ return [
         'help' => [
             'support' => 'http://help.ppy.sh/',
         ],
+        'testflight' => [
+            'public' => env('TESTFLIGHT_LINK'),
+            'supporter' => env('TESTFLIGHT_LINK_SUPPORTER'),
+        ],
     ],
     'user' => [
         'allow_email_login' => get_bool(env('USER_ALLOW_EMAIL_LOGIN')) ?? true,
