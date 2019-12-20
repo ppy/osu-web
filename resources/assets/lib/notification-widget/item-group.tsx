@@ -50,6 +50,7 @@ export default class ItemGroup extends React.Component<Props, State> {
     return (
       <div className='notification-popup-item-group'>
         <Item
+          canMarkAsRead={this.props.stack.canMarkAsRead}
           markRead={this.handleMarkAsRead}
           markingAsRead={this.props.stack.isMarkingAsRead}
           expandButton={this.renderExpandButton()}

@@ -36,6 +36,15 @@ export default class NotificationStack implements NotificationReadable {
   @observable private lastNotification: Notification | null = null;
 
   @computed
+  get canMarkAsRead() {
+    for (const [, notifications] of this.notifications) {
+      if (notifications.canMarkRead) return true;
+    }
+
+    return false;
+  }
+
+  @computed
   get first() {
     return this.orderedNotifications[0] ?? this.lastNotification;
   }

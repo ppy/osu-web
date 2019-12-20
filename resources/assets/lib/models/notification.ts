@@ -33,7 +33,7 @@ export default class Notification {
   sourceUserId?: number;
 
   @computed get canMarkRead() {
-    return this.id > 0;
+    return this.id > 0 && !this.isRead;
   }
 
   @computed get category() {

@@ -17,6 +17,7 @@
  */
 
 export interface WithMarkReadProps {
+  canMarkAsRead?: boolean;
   markingAsRead?: boolean;
   markRead?: () => void;
 }

@@ -59,8 +59,12 @@ export default class Item extends React.Component<Props> {
 
   private blockClass() {
     const modifiers = [...this.props.modifiers, this.props.item.category];
-    if (this.props.item.isRead) {
-      modifiers.push('read');
+    if (this.props.canMarkAsRead) {
+
+    } else {
+      if (this.props.item.isRead) {
+        modifiers.push('read');
+      }
     }
 
     return `clickable-row ${osu.classWithModifiers('notification-popup-item', modifiers)}`;
@@ -128,11 +132,11 @@ export default class Item extends React.Component<Props> {
   }
 
   private renderMarkAsReadButton() {
-    if (!this.props.item.canMarkRead) {
+    if (!(this.props.canMarkAsRead ?? this.props.item.canMarkRead)) {
       return null;
     }
 
-    if (this.props.markingAsRead != null ? this.props.markingAsRead : this.props.item.isMarkingAsRead) {
+    if (this.props.markingAsRead ?? this.props.item.isMarkingAsRead) {
       return (
         <div className='notification-popup-item__read-button'>
           <Spinner />
