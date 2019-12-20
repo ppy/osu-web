@@ -40,6 +40,7 @@ class DatadogMetrics extends LaravelDatadogMiddleware
         $tags = [
             'action' => 'error_page',
             'controller' => 'error',
+            'namespace' => 'error',
             'section' => 'error',
             'status_code' => $response->getStatusCode(),
         ];
@@ -48,11 +49,17 @@ class DatadogMetrics extends LaravelDatadogMiddleware
         if ($route !== null) {
             $controller = $route->getController();
             if ($controller !== null) {
+                $className = get_class($controller);
+
                 $tags['section'] = method_exists($controller, 'getSection') ? $controller->getSection() : 'unknown';
 
-                $controllerTag = str_replace('App\\Http\\Controllers\\', '', get_class($controller));
-                $tags['controller'] = snake_case(str_replace('\\', '', $controllerTag));
-                $tags['action'] = $route->getActionMethod();
+                $namespace = get_class_namespace($className);
+                $namespace = str_replace('App\\Http\\Controllers', '', $namespace);
+                $namespace = snake_case(str_replace('\\', '', $namespace));
+                $tags['namespace'] = presence($namespace) ?? 'main';
+
+                $tags['controller'] = snake_case(get_class_basename($className));
+                $tags['action'] = snake_case($route->getActionMethod());
             }
         }
 
