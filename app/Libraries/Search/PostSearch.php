@@ -67,7 +67,8 @@ class PostSearch extends Search
     {
         $query = (new BoolQuery())
             ->filter(['term' => ['poster_id' => $this->params->userId]])
-            ->filter(['term' => ['type' => 'posts']]);
+            ->filter(['term' => ['type' => 'posts']])
+            ->mustNot(['term' => ['topic_id' => 0]]);
 
         if (isset($this->params->queryString)) {
             $query->must(QueryHelper::queryString($this->params->queryString, ['search_content']));

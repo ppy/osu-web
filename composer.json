@@ -11,19 +11,15 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/nanaya/laravel-datadog-helper"
-    },
-    {
-      "type": "vcs",
       "url": "https://github.com/nanaya/slack-php"
     },
     {
       "type": "vcs",
-      "url": "https://github.com/nanaya/ziggy"
+      "url": "https://github.com/nanaya/xsolla-sdk-php"
     }
   ],
   "require": {
-    "chaseconey/laravel-datadog-helper": "dev-laravel-6",
+    "chaseconey/laravel-datadog-helper": ">=1.2.0",
     "doctrine/dbal": "*",
     "egulias/email-validator": "*",
     "elasticsearch/elasticsearch": ">=6.0, <6.6",
@@ -50,8 +46,8 @@
     "paypal/rest-api-sdk-php": "*",
     "sentry/sentry-laravel": "*",
     "symfony/yaml": "*",
-    "tightenco/ziggy": "dev-osuweb",
-    "xsolla/xsolla-sdk-php": "*"
+    "tightenco/ziggy": ">=0.8.1",
+    "xsolla/xsolla-sdk-php": ">=4.2.0"
   },
   "require-dev": {
     "beyondcode/laravel-query-detector": "*",

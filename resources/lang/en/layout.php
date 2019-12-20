@@ -133,6 +133,7 @@ return [
             'search' => 'search',
             'supportTheGame' => 'support the game',
             'team' => 'team',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => 'profile',

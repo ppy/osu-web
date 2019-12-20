@@ -1,7 +1,7 @@
 <?php
     $authorization = '';
 
-    if ($route['authenticated']) {
+    if ($route['metadata']['authenticated']) {
         $authorization .= '    -H "Authorization: Bearer {{token}}"';
 
         if(count($route['headers']) > 0) {
