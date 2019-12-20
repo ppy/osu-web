@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Langganan Forum',
             'title_compact' => 'langganan forum',
-            'title_main' => '<strong>Langganan</strong> Forum',
 
             'box' => [
                 'total' => 'Topik yang dilanggan',

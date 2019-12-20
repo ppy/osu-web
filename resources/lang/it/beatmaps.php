@@ -91,14 +91,14 @@ return [
             'nomination_reset' => 'Resetta Nomina',
             'praise' => 'Elogio',
             'problem' => 'Problema',
-            'review' => '',
+            'review' => 'Recensione',
             'suggestion' => 'Suggerimento',
         ],
 
         'mode' => [
             'events' => 'Cronologia',
             'general' => ':scope Generale',
-            'reviews' => '',
+            'reviews' => 'Recensioni',
             'timeline' => 'Linea Temporale',
             'scopes' => [
                 'general' => 'Questa difficoltà',

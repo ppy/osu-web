@@ -93,23 +93,23 @@ return [
 
     'login' => [
         '_' => 'Přihlásit se',
-        'email_login_disabled' => '',
-        'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
-        'username' => 'Uživatelské jméno',
-        'password' => 'Heslo',
         'button' => 'Přihlásit se',
         'button_posting' => 'Probíhá přihlášení...',
+        'email_login_disabled' => '',
+        'failed' => 'Nesprávné přihlášení',
+        'forgot' => 'Zapoměl jsi heslo?',
+        'info' => '',
+        'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
+        'password' => 'Heslo',
+        'register' => "Nemáš osu! účet? Vytvoř si ho",
         'remember' => 'Pamatovat si tento počítač',
         'title' => 'Pro pokračování se prosím přihlašte',
-        'failed' => 'Nesprávné přihlášení',
-        'register' => "Nemáš osu! účet? Vytvoř si ho",
-        'forgot' => 'Zapoměl jsi heslo?',
+        'username' => 'Uživatelské jméno',
+
         'beta' => [
             'main' => 'Beta přístup je momentálně omezen na oprávněné uživatele.',
             'small' => '(brzy pro podporovatele)',
         ],
-
-        'here' => 'zde', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -361,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => ':info o hráči',
-            'info' => 'Informace',
         ],
 
         'info' => [

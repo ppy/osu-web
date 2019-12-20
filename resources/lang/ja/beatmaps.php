@@ -98,7 +98,7 @@ return [
         'mode' => [
             'events' => '履歴',
             'general' => '一般:scope',
-            'reviews' => '',
+            'reviews' => 'レビュー',
             'timeline' => 'タイムライン',
             'scopes' => [
                 'general' => 'この難易度',

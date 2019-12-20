@@ -77,8 +77,8 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
-                'button_title' => '',
+                '_' => 'Se você encontrar um problema com este beatmap, por favor desqualifique-o :link.',
+                'button_title' => 'Desqualificar um beatmap qualificado.',
             ],
 
             'report' => [
@@ -153,13 +153,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Ranqueado',
+            'approved' => 'Aprovado',
+            'loved' => 'Amado',
+            'qualified' => 'Qualificado',
+            'wip' => 'Em Progresso',
+            'pending' => 'Pendente',
+            'graveyard' => 'Cemitério',
         ],
     ],
 ];

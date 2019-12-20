@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Forhåndspakkede samlinger av beatmaps basert rundt et felles tema.',
+        'nav_title' => '',
+        'title' => 'Beatmappakker',
+
         'blurb' => [
             'important' => 'LES DETTE FØR NEDLASTING',
             'instruction' => [
@@ -34,12 +38,9 @@ return [
                 'scary' => 'laste ned de nye pakkene først',
             ],
         ],
-        'title' => 'Beatmappakker',
-        'description' => 'Forhåndspakkede samlinger av beatmaps basert rundt et felles tema.',
     ],
 
     'show' => [
-        'back' => '',
         'download' => 'Last ned',
         'item' => [
             'cleared' => 'fullført',

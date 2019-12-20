@@ -49,10 +49,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'コメント :info',
-            'info' => '一覧',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +59,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'コメント :info',
-            'info' => '詳細',
-        ],
+        'nav_title' => '',
     ],
 ];

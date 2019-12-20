@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>账户</strong>设置',
         'title_compact' => '设置',
         'username' => '用户名',
 
@@ -70,9 +69,9 @@ return [
         'beatmapset_discussion_qualified_problem' => '在以下模式的合格节拍图上接收新问题通知',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => '接收有关下列哪些的邮件通知？',
+            'beatmapset:modding' => '谱面审核',
+            'forum_topic_reply' => '帖子回复',
         ],
     ],
 

@@ -23,7 +23,7 @@ return [
     'talking_in' => 'praten in :channel',
     'talking_with' => 'aan het praten met :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'Je kan op het moment geen berichten sturen in dit kanaal. Dit kan worden veroorzaakt door een van de volgende redenen:',
         'user' => 'Je kan op het moment geen berichten sturen naar deze gebruiker. Dit kan worden veroorzaakt door een van de volgende redenen:',

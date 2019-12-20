@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Regisztráció: :start a :end -ig',
 
         'header' => [
-            'subtitle' => 'Az aktív, hivatalosan elismert tornák listája',
             'title' => 'Közösségi versenyek',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Regisztráció visszavonása',
             'register' => 'Regisztrálj engem!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

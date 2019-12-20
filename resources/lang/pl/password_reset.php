@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Zresetuj hasło',
-
     'button' => [
         'cancel' => 'Anuluj',
         'resend' => 'Wyślij ponownie e-mail weryfikacyjny',

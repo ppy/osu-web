@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'Cộng đồng',
-
+            'comments' => '',
             'forum' => 'Diễn đàn',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => 'trang chủ',
             'account-edit' => 'cài đặt',
             'account-verifyLink' => '',
-            'friends-index' => 'bạn bè',
-            'changelog-index' => 'changelog',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'build',
+            'changelog-index' => 'changelog',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'bạn bè',
             'getDownload' => 'tải xuống',
             'getIcons' => 'biểu tượng',
             'groups-show' => 'nhóm',
@@ -59,6 +133,7 @@ return [
             'search' => 'tìm kiếm',
             'supportTheGame' => 'ủng hộ osu!',
             'team' => 'team',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => '',
@@ -78,7 +153,6 @@ return [
             'artists' => 'nghệ sĩ tiêu biểu',
             'beatmap_discussion_posts-index' => 'bài đăng góc thảo luận beatmap',
             'beatmap_discussions-index' => 'góc thảo luận beatmap',
-            'beatmapset-watches-index' => 'theo dõi modding',
             'beatmapset_discussion_votes-index' => 'bình chọn góc thảo luận beatmap',
             'beatmapset_events-index' => 'sự kiện beatmapset',
             'index' => 'danh sách',
@@ -112,7 +186,6 @@ return [
             'tournaments' => 'giải đấu',
             'tournaments-index' => 'giải đấu',
             'tournaments-show' => 'thông tin giải đấu',
-            'forum-topic-watches-index' => 'đăng kí',
             'forum-topics-create' => 'diễn đàn',
             'forum-topics-show' => 'diễn đàn',
             'forum-forums-index' => 'diễn đàn',

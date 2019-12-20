@@ -38,13 +38,13 @@ return [
         'kudosu_recalculate' => 'A discussão :discussion teve o seu kudosu concedido recalculado.',
         'love' => 'Adorado por :user',
         'nominate' => 'Nomeado por :user.',
-        'nomination_reset' => 'Novo problema :discussion (:text) acionou um reinício de nomeação.',
+        'nomination_reset' => 'Um novo problema :discussion (:text) acionou um reinício de nomeação.',
         'qualify' => 'Este beatmap atingiu o número necessário de nomeações e foi qualificado.',
         'rank' => 'Classificado.',
     ],
 
     'index' => [
-        'title' => 'Eventos de Conjunto de Beatmaps',
+        'title' => 'Eventos do conjunto de beatmaps',
 
         'form' => [
             'period' => 'Período',
@@ -67,11 +67,11 @@ return [
         'disqualify' => 'Desqualificação',
         'issue_reopen' => 'Reabertura da discussão',
         'issue_resolve' => 'Resolução da discussão',
-        'kudosu_allow' => 'Pensão de Kudosu',
-        'kudosu_deny' => 'Rejeição de Kudosu',
-        'kudosu_gain' => 'Ganho de Kudosu',
-        'kudosu_lost' => 'Perda de Kudosu',
-        'kudosu_recalculate' => 'Recalculação de Kudosu',
+        'kudosu_allow' => 'Pensão de kudosu',
+        'kudosu_deny' => 'Rejeição de kudosu',
+        'kudosu_gain' => 'Ganho de kudosu',
+        'kudosu_lost' => 'Perda de kudosu',
+        'kudosu_recalculate' => 'Recalculação de kudosu',
         'love' => 'Adorar',
         'nominate' => 'Nomeação',
         'nomination_reset' => 'Reiniciação da nomeação',

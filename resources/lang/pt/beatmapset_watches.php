@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Estas são as discussões do beatmap que estás a seguir. Serás notificado quando houver novas publicações ou atualizações.',
         'title_compact' => 'lista de observação de modificações',
-        'title_main' => 'Lista de Observação de Modificações',
 
         'table' => [
             'empty' => 'Sem discussões de beatmap a serem vistas.',

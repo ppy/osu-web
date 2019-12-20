@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Đặt Lại Mật Khẩu',
-
     'button' => [
         'cancel' => 'Hủy',
         'resend' => 'Gửi lại email xác thực',

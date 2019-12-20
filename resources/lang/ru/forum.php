@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Темы, на которые вы подписаны',
             'title_compact' => 'подписки на темы',
-            'title_main' => '<strong>Подписки</strong> на темы',
 
             'box' => [
                 'total' => 'Подписок на тем',

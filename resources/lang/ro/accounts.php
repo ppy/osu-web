@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Setările</strong> contului',
         'title_compact' => 'setări',
         'username' => 'nume de utilizator',
 

@@ -23,7 +23,7 @@ return [
     'talking_in' => 'parlando in :channel',
     'talking_with' => 'parlando con :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'Al momento non puoi inviare messaggi in questo canale. Ciò può essere dovuto a uno dei seguenti motivi:',
         'user' => 'Al momento non puoi inviare messaggi a questo utente. Ciò può essere dovuto ad uno dei seguenti motivi:',

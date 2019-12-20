@@ -83,7 +83,7 @@ return [
 
             'report' => [
                 '_' => '',
-                'button' => '',
+                'button' => 'Sorun bildir',
                 'button_title' => '',
                 'link' => '',
             ],

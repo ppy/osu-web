@@ -98,7 +98,7 @@ return [
         'mode' => [
             'events' => 'Geschiedenis',
             'general' => 'Algemeen :scope',
-            'reviews' => '',
+            'reviews' => 'Recensies',
             'timeline' => 'Tijdlijn',
             'scopes' => [
                 'general' => 'Deze moeilijkheidsgraad',

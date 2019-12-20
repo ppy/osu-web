@@ -78,8 +78,8 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => '檢視其他人的評論',
+        'go_to_child' => '查看討論',
     ],
 
     'system' => [
@@ -90,8 +90,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => '一般',
+        'general_all' => '一般(所有)',
     ],
 
     'user_filter' => [

@@ -120,8 +120,6 @@ return [
             'error' => '載入最新消息發生錯誤，請重新載入頁面？...',
         ],
         'header' => [
-            'welcome' => '哈嘍，<strong>:username</strong>！',
-            'messages' => '你有 :count 條新訊息|{0}',
             'stats' => [
                 'friends' => '線上好友',
                 'games' => '房間',

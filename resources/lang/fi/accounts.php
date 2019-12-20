@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Tili</strong>asetukset',
         'title_compact' => 'asetukset',
         'username' => 'käyttäjätunnus',
 

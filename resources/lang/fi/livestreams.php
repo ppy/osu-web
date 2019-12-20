@@ -25,7 +25,4 @@ return [
 
         'link' => 'wikisivu livestriimaamisesta',
     ],
-    'headers' => [
-        'regular' => 'Parhaillaan striimaavat',
-    ],
 ];

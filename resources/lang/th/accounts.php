@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'ตั้งค่า<strong>บัญชีผู้ใช้</strong>',
         'title_compact' => 'ตั้งค่า',
         'username' => 'ชื่อผู้ใช้',
 

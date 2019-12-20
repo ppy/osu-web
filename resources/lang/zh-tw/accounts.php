@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>帳號</strong>設定',
         'title_compact' => '設定',
         'username' => '使用者名稱',
 
@@ -71,8 +70,8 @@ return [
 
         'mail' => [
             '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            'beatmapset:modding' => '圖譜製作',
+            'forum_topic_reply' => '主題回復',
         ],
     ],
 

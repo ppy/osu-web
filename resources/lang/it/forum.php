@@ -77,7 +77,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited post|:count_delimited post',
-            'topic_starter' => 'Starter del Topic',
+            'topic_starter' => 'Iniziatore del Topic',
         ],
     ],
 
@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Iscrizioni Forum',
             'title_compact' => 'iscrizioni forum',
-            'title_main' => '<strong>Iscrizioni</strong> Forum',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',

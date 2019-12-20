@@ -93,23 +93,23 @@ return [
 
     'login' => [
         '_' => 'ลงชื่อเข้าใช้',
-        'email_login_disabled' => '',
-        'locked_ip' => 'ที่อยู่ IP ของคุณถูกล็อก โปรดรอสักครู่',
-        'username' => 'ชื่อผู้ใช้',
-        'password' => 'รหัสผ่าน',
         'button' => 'ลงชื่อเข้าใช้',
         'button_posting' => 'กำลังลงชื่อเข้าใช้…',
+        'email_login_disabled' => '',
+        'failed' => 'เข้าสู่ระบบไม่ถูกต้อง',
+        'forgot' => 'ลืมรหัสผ่าน?',
+        'info' => '',
+        'locked_ip' => 'ที่อยู่ IP ของคุณถูกล็อก โปรดรอสักครู่',
+        'password' => 'รหัสผ่าน',
+        'register' => "ไม่มีแอคเคาท์ Osu! หรอ? สร้างเลยสิ",
         'remember' => 'จดจำคอมพิวเตอร์นี้',
         'title' => 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อไป',
-        'failed' => 'เข้าสู่ระบบไม่ถูกต้อง',
-        'register' => "ไม่มีแอคเคาท์ Osu! หรอ? สร้างเลยสิ",
-        'forgot' => 'ลืมรหัสผ่าน?',
+        'username' => 'ชื่อผู้ใช้',
+
         'beta' => [
             'main' => 'การเข้าถึงข้อมูลนี้มีข้อจำกัด จำกัดเฉพาะผู้ใช้ที่ได้รับการยกเว้นเท่านั้น',
             'small' => '(กำลังจะได้รับ osu!supporters เร็วๆนี้)',
         ],
-
-        'here' => 'ที่นี่', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -361,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'ผู้เล่น :info',
-            'info' => 'ข้อมูล',
         ],
 
         'info' => [

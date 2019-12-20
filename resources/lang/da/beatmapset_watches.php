@@ -20,14 +20,13 @@
 
 return [
     'index' => [
-        'description' => 'Dette er de beatmap diskussioner følger du. Du vil modtage opdateringer når der er nye opslag eller opdateringer.',
+        'description' => 'Dette er de beatmap diskussioner du følger. Du vil modtage opdateringer når der er nye opslag eller opdateringer.',
         'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
 
         'table' => [
-            'empty' => 'Ingen beatmap diskussioner watched.',
+            'empty' => 'Ingen beatmap-diskussioner fulgt.',
             'open_issues' => 'Åbne problemer',
-            'state' => 'Tilstand',
+            'state' => 'Status',
             'title' => 'Titel',
         ],
     ],

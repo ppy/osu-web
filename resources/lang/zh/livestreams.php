@@ -25,7 +25,4 @@ return [
 
         'link' => 'wiki 上关于直播的内容',
     ],
-    'headers' => [
-        'regular' => '正在直播',
-    ],
 ];

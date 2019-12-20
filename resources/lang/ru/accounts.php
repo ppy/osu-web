@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Настройки <strong>аккаунта</strong>',
         'title_compact' => 'настройки',
         'username' => 'имя пользователя',
 
@@ -70,9 +69,9 @@ return [
         'beatmapset_discussion_qualified_problem' => 'получать уведомления о новых проблемах с квалифицированными картами у следующих режимов',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => 'получать уведомления по почте о',
+            'beatmapset:modding' => 'моддинге карт',
+            'forum_topic_reply' => 'ответах на темы',
         ],
     ],
 

@@ -20,14 +20,14 @@
 
 return [
     'require_login' => 'Log venligst ind for at fortsætte.',
-    'require_verification' => '',
-    'restricted' => "Det kan du ikke gøre, når du er begrænset.",
+    'require_verification' => 'Verificer venligst for at fortsætte.',
+    'restricted' => "Det kan du ikke gøre, når du er tilbageholdt.",
     'silenced' => "Det kan du ikke gøre, når du er mutet.",
     'unauthorized' => 'Adgang nægtet.',
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Kan ikke ophæve hyping.',
+            'is_hype' => 'Kan ikke fortryde hyping.',
             'has_reply' => 'Kan ikke slette en diskussion med svar',
         ],
         'nominate' => [
@@ -38,30 +38,30 @@ return [
             'owner' => "Kan ikke nominere din egen beatmap.",
         ],
         'resolve' => [
-            'not_owner' => 'Kun den oprindlige ejer af tråden og beatmap ejeren kan løse en diskussion.',
+            'not_owner' => 'Kun den oprindelige ejer af tråden og beatmap-ejeren kan løse en diskussion.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Kun ejeren af dette beatmap eller en nominator/QAT group member kan sende map notes.',
+            'mapper_note_wrong_user' => 'Kun ejeren af dette beatmap eller en nominator/NAT-medlem kan lave notes opslag.',
         ],
 
         'vote' => [
-            'limit_exceeded' => 'Vent venligst et stykke tid med at stemme igen.',
+            'limit_exceeded' => 'Vent venligst før du stemmer igen',
             'owner' => "Du kan ikke stemme på din egen diskussion!",
-            'wrong_beatmapset_state' => 'Kan kun stemme på diskussioner hvis beatmappen er i Afventende.',
+            'wrong_beatmapset_state' => 'Kan kun stemme på diskussioner fra afventende beatmaps.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Du kan kun slette dine egne opslag.',
+            'resolved' => 'Du kan ikke slette et opslag fra en løst diskussion.',
+            'system_generated' => 'Automatisk genererede oplsag kan ikke slettes.',
         ],
 
         'edit' => [
             'not_owner' => 'Kun ejeren af dette opslag kan redigere det.',
-            'resolved' => '',
+            'resolved' => 'Du kan ikke redigere et opslag fra en løst diskussion.',
             'system_generated' => 'Automatisk genererede opslag kan ikke redigeres.',
         ],
 
@@ -72,10 +72,10 @@ return [
 
     'chat' => [
         'blocked' => 'Du kan ikke sende denne besked, enten har brugeren blokeret dig eller du har blokeret brugeren.',
-        'friends_only' => 'Brugeren blokere beskeder fra folk der ikke er på deres venneliste.',
+        'friends_only' => 'Brugeren blokerer beskeder fra folk der ikke er på deres venneliste.',
         'moderated' => 'Denne kanal er i øjeblikket modereret.',
         'no_access' => 'Du har ikke adgang til denne kanal.',
-        'restricted' => 'Du kan ikke sende beskeder nå du er muted eller banned.',
+        'restricted' => 'Du kan ikke sende beskeder når du er enten muted, begrænset eller banned.',
     ],
 
     'comment' => [
@@ -95,23 +95,23 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Kun sidste opslag kan blive slettet.',
+                'only_last_post' => 'Kun sidste opslag kan slettes.',
                 'locked' => 'Kan ikke slette opslag fra låste emner.',
-                'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
-                'not_owner' => 'Kun ejeren af dette opslag kan slette opslaget.',
+                'no_forum_access' => 'Adgang til det anmodede forum er nødvendigt.',
+                'not_owner' => 'Kun ejeren af dette opslag kan slette det.',
             ],
 
             'edit' => [
-                'deleted' => 'Kan ikke redigere slettede opslag',
+                'deleted' => 'Kan ikke redigere slettede opslag.',
                 'locked' => 'Dette opslag er låst fra at blive redigeret.',
-                'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
-                'not_owner' => 'Kun ejeren af dette opslaget kan redigere opslaget.',
+                'no_forum_access' => 'Adgang til det anmodede forum er nødvendigt.',
+                'not_owner' => 'Kun ejeren af dette opslag kan redigere det.',
                 'topic_locked' => 'Kan ikke redigere opslag fra låste emner.',
             ],
 
             'store' => [
-                'play_more' => 'Prøv at spille spillet før du skriver i forumet, tak! Hvis du har et problem med at spille, bedes du skrive til Hjælp og Support forumet.',
-                'too_many_help_posts' => "Du skal spille spillet mere, før du kan lave flere indlæg. Hvis du stadig har problemer med at spille spillet, skal du sende en email til support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Prøv at spille spillet før du skriver i forumet, tak! Hvis du har et problem med at få spillet op at køre, bedes du skrive i \'Hjælp og Support\' forumet.',
+                'too_many_help_posts' => "Du skal spille mere, før du kan lave flere indlæg. Hvis du stadig har problemer med at få spillet op at køre, skal du sende en email til support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -138,8 +138,8 @@ return [
             'vote' => [
                 'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
                 'over' => 'Stemmeafgivningen er slut og kan ikke stemmes på længere.',
-                'play_more' => 'Du skal spille mere før du stemmer på forum.',
-                'voted' => 'Det er ikke tilladt at ændre stemme.',
+                'play_more' => 'Du skal spille mere før du kan stemme på forumet.',
+                'voted' => 'Det er ikke tilladt at ændre din stemme.',
 
                 'user' => [
                     'require_login' => 'Log venligst ind for at stemme.',
@@ -149,17 +149,17 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
+                'no_forum_access' => 'Adgang til det anmodede forum er nødvendigt.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Ugyldigt cover valgt.',
-                'not_owner' => 'Kun ejeren kan redigere dette cover.',
+                'uneditable' => 'Ugyldigt cover-billede valgt.',
+                'not_owner' => 'Kun ejeren kan redigere dette cover-billede.',
             ],
             'store' => [
-                'forum_not_allowed' => 'Dette forum accepterer ikke emne coverbilleder.',
+                'forum_not_allowed' => 'Dette forum accepterer ikke emne-coverbilleder.',
             ],
         ],
 
@@ -173,7 +173,7 @@ return [
             'edit' => [
                 'locked' => 'Brugerside er låst.',
                 'not_owner' => 'Du kan kun redigere din egen brugerside.',
-                'require_supporter_tag' => 'osu!supporter tag er påkrævet.',
+                'require_supporter_tag' => 'osu!supporter tag er nødvendigt.',
             ],
         ],
     ],

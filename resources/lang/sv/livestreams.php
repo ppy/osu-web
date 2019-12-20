@@ -25,7 +25,4 @@ return [
 
         'link' => '',
     ],
-    'headers' => [
-        'regular' => 'Strömmar Nu',
-    ],
 ];

@@ -20,7 +20,7 @@
 
 return [
     'require_login' => 'Silakan masuk untuk melanjutkan.',
-    'require_verification' => '',
+    'require_verification' => 'Silakan verifikasi untuk melanjutkan.',
     'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
     'silenced' => "Tidak dapat melakukan hal itu saat dibungkam.",
     'unauthorized' => 'Akses ditolak.',

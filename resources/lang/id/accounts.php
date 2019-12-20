@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Pengaturan <strong>Akun</strong>',
         'title_compact' => 'pengaturan',
         'username' => 'nama pengguna',
 
@@ -70,8 +69,8 @@ return [
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi jika ada aktivitas terbaru dari beatmap yang qualified mode berikut',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
+            '_' => 'terima pemberitahuan email tentang',
+            'beatmapset:modding' => 'modding beatmap',
             'forum_topic_reply' => '',
         ],
     ],

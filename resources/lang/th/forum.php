@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'กระทู้ที่ติดตาม',
             'title_compact' => 'กระทู้ที่ติดตาม',
-            'title_main' => 'ฟอรั่ม <strong>ติดตาม</strong>',
 
             'box' => [
                 'total' => 'ติดตามกระทู้แล้ว',

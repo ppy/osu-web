@@ -93,23 +93,23 @@ return [
 
     'login' => [
         '_' => 'Logga in',
-        'email_login_disabled' => '',
-        'locked_ip' => 'din IP adress är låst. Var vänlig vänta några minuter.',
-        'username' => 'Användarnamn',
-        'password' => 'Lösenord',
         'button' => 'Logga in',
         'button_posting' => 'Loggar in...',
+        'email_login_disabled' => '',
+        'failed' => 'Felaktig inloggning',
+        'forgot' => 'Glömt ditt lösenord?',
+        'info' => '',
+        'locked_ip' => 'din IP adress är låst. Var vänlig vänta några minuter.',
+        'password' => 'Lösenord',
+        'register' => "Har du inget osu! konto? Skapa ett nytt",
         'remember' => 'Kom ihåg denna dator',
         'title' => 'Var vänlig logga in för att fortsätta',
-        'failed' => 'Felaktig inloggning',
-        'register' => "Har du inget osu! konto? Skapa ett nytt",
-        'forgot' => 'Glömt ditt lösenord?',
+        'username' => 'Användarnamn',
+
         'beta' => [
             'main' => 'Beta åtkomst är för nuvarande begränsad till privilegierade användare.',
             'small' => '(osu!supportrar kommer att komma in snart)',
         ],
-
-        'here' => 'här', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -361,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => '',
-            'info' => '',
         ],
 
         'info' => [

@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'Topluluk',
-
+            'comments' => '',
             'forum' => 'Forum',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => 'anasayfa',
             'account-edit' => 'ayarlar',
             'account-verifyLink' => 'Doğrulama Tamamlandı',
-            'friends-index' => 'arkadaşlar',
-            'changelog-index' => 'değişiklikler',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'sürüm',
+            'changelog-index' => 'değişiklikler',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'arkadaşlar',
             'getDownload' => 'indir',
             'getIcons' => 'simgeler',
             'groups-show' => 'gruplar',
@@ -59,6 +133,7 @@ return [
             'search' => 'ara',
             'supportTheGame' => 'oyunu destekle',
             'team' => 'takım',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => 'profil',
@@ -78,7 +153,6 @@ return [
             'artists' => 'seçkin sanatçılar',
             'beatmap_discussion_posts-index' => 'beatmap tartışma başlıkları',
             'beatmap_discussions-index' => 'beatmap tartışmaları',
-            'beatmapset-watches-index' => 'modlama izleme listesi',
             'beatmapset_discussion_votes-index' => 'beatmap tartışma oyları',
             'beatmapset_events-index' => 'beatmapset olayları',
             'index' => 'listeleme',
@@ -112,7 +186,6 @@ return [
             'tournaments' => 'turnuvalar',
             'tournaments-index' => 'turnuvalar',
             'tournaments-show' => 'turnuva bilgisi',
-            'forum-topic-watches-index' => 'abonelikler',
             'forum-topics-create' => 'forumlar',
             'forum-topics-show' => 'forumlar',
             'forum-forums-index' => 'forumlar',

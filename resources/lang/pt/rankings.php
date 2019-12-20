@@ -19,32 +19,34 @@
  */
 
 return [
-    'header' => ':type Classificação',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Desempenho',
-        'charts' => 'Em Destaque',
+        'charts' => 'Em destaque',
         'score' => 'Pontuação',
         'country' => 'País',
     ],
 
     'spotlight' => [
-        'end_date' => 'Data Final',
-        'map_count' => 'Contador de Mapas',
+        'end_date' => 'Data final',
+        'map_count' => 'Contador de mapas',
         'participants' => 'Participantes',
-        'start_date' => 'Data de Início',
+        'start_date' => 'Data de início',
     ],
 
     'stat' => [
         'accuracy' => 'Precisão',
-        'active_users' => 'Utilizadores Ativos',
+        'active_users' => 'Utilizadores ativos',
         'country' => 'País',
-        'play_count' => 'Contador de Partidas',
+        'play_count' => 'Contador de partidas',
         'performance' => 'Desempenho',
-        'total_score' => 'Pontuação Total',
-        'ranked_score' => 'Pontuação Classificada',
-        'average_score' => 'Pontuação Média',
-        'average_performance' => 'Desempenho Médio',
+        'total_score' => 'Pontuação total',
+        'ranked_score' => 'Pontuação classificada',
+        'average_score' => 'Pontuação média',
+        'average_performance' => 'Desempenho médio',
         'ss' => '',
         's' => '',
         'a' => '',

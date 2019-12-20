@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':typeランキング',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'パフォーマンス',

@@ -24,7 +24,7 @@ return [
     'last_visit' => 'Baru-baru ini aktif',
     'new' => 'Komentar Terbaru',
     'old' => 'Komentar Terlama',
-    'rank' => '',
+    'rank' => 'Peringkat',
     'top' => 'Komentar Terbaik',
     'username' => 'Nama Pengguna',
 
