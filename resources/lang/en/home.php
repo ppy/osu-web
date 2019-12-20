@@ -39,7 +39,7 @@ return [
         'empty_result' => 'Nothing found!',
         'keyword_required' => 'A search keyword is required',
         'placeholder' => 'type to search',
-        'title' => 'Search',
+        'title' => 'search',
 
         'beatmapset' => [
             'more' => ':count more beatmap search results',

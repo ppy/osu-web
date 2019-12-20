@@ -23,6 +23,7 @@ import { Subscribe } from './subscribe'
 import { UserFilter } from './user-filter'
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
+import HeaderV4 from 'header-v4'
 import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { a, div, h1, h2, p } from 'react-dom-factories'
@@ -42,7 +43,16 @@ export class Header extends React.PureComponent
 
 
   render: =>
-    div null,
+    el React.Fragment, null,
+      el HeaderV4,
+        section: osu.trans('layout.header.beatmapsets._')
+        subSection: osu.trans('layout.header.beatmapsets.discussions')
+        theme: 'beatmapsets'
+        titleAppend: el PlaymodeTabs,
+          currentMode: @props.currentBeatmap.mode
+          beatmaps: @props.beatmaps
+          counts: @props.currentDiscussions.countsByPlaymode
+
       div
         className: 'osu-page'
         @headerTop()
@@ -88,11 +98,6 @@ export class Header extends React.PureComponent
 
     div
       className: bn
-
-      el PlaymodeTabs,
-        currentMode: @props.currentBeatmap.mode
-        beatmaps: @props.beatmaps
-        counts: @props.currentDiscussions.countsByPlaymode
 
       div
         className: "#{bn}__content"

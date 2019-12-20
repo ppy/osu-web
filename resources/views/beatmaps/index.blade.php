@@ -18,6 +18,7 @@
 @extends('master', [
   'currentSection' => 'beatmaps',
   'currentAction' => 'index',
+  'legacyNav' => false,
   'title' => trans('beatmapsets.index.title'),
   'pageDescription' => trans('beatmapsets.index.title'),
 ])

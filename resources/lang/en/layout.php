@@ -24,6 +24,29 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => 'admin',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'beatmapset covers',
+            'contest' => 'contest',
+            'contests' => 'contests',
+            'root' => 'console',
+            'store_orders' => 'store admin',
+        ],
+
+        'artists' => [
+            '_' => 'featured artists',
+            'index' => 'listing',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'beatmap',
+            'discussions' => 'discussion',
+            'index' => 'listing',
+            'show' => 'info',
+            'packs' => 'packs',
+        ],
+
         'changelog' => [
             '_' => 'changelog',
             'index' => 'listing',
@@ -33,14 +56,48 @@ return [
             '_' => 'community',
             'comments' => 'comments',
             'forum' => 'forum',
+            'livestream' => 'live streams',
+        ],
+
+        'contests' => [
+            '_' => 'contests',
+            'index' => 'listing',
+        ],
+
+        'error' => [
+            '_' => 'error',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'index',
         ],
 
         'home' => [
             '_' => 'home',
+            'password_reset' => 'reset password',
+        ],
+
+        'matches' => [
+            '_' => 'match history',
+        ],
+
+        'notice' => [
+            '_' => 'notice',
+        ],
+
+        'rankings' => [
+            '_' => 'ranking',
+        ],
+
+        'tournaments' => [
+            '_' => 'tournaments',
+            'index' => 'listing',
         ],
 
         'users' => [
             '_' => 'player',
+            'forum_posts' => 'forum posts',
             'modding' => 'modding',
             'show' => 'info',
         ],
@@ -77,6 +134,7 @@ return [
             'search' => 'search',
             'supportTheGame' => 'support the game',
             'team' => 'team',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => 'profile',

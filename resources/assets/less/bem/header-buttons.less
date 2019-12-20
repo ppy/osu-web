@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,31 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers;
+.header-buttons {
+  display: flex;
+  margin: 0 -5px 0 auto;
 
-class CommunityController extends Controller
-{
-    /*
-    |--------------------------------------------------------------------------
-    | Community Controller
-    |--------------------------------------------------------------------------
-    |
-    | Frontend to the community of osu!
-    | Unsure if forum should use /forum or not.
-    | Route:
-    |
-    |	Route::get('/community</page>', 'CommunityController@get<Page>');
-    |
-    */
-    protected $section = 'community';
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    public function getChat()
-    {
-        return view('community.chat');
-    }
+  &__item {
+    margin: 5px;
+    display: flex;
+  }
 }
