@@ -37,26 +37,24 @@ class DatadogMetrics extends LaravelDatadogMiddleware
     protected static function logDuration(Request $request, Response $response, $startTime)
     {
         $duration = microtime(true) - $startTime;
-        $action = 'ErrorPage';
-        $section = 'error';
+        $tags = [
+            'action' => 'error_page',
+            'controller' => 'error',
+            'section' => 'error',
+            'status_code' => $response->getStatusCode(),
+        ];
 
         $route = $request->route();
         if ($route !== null) {
             $controller = $route->getController();
             if ($controller !== null) {
-                $section = method_exists($controller, 'getSection') ? $controller->getSection() : 'unknown';
+                $tags['section'] = method_exists($controller, 'getSection') ? $controller->getSection() : 'unknown';
 
-                $actionPrefix = str_replace('App\\Http\\Controllers\\', '', get_class($controller));
-                $actionPrefix = str_replace('\\', '', $actionPrefix);
-                $action = snake_case("{$actionPrefix}:{$route->getActionMethod()}");
+                $controllerTag = str_replace('App\\Http\\Controllers\\', '', get_class($controller));
+                $tags['controller'] = snake_case(str_replace('\\', '', $controllerTag));
+                $tags['action'] = $route->getActionMethod();
             }
         }
-
-        $tags = [
-            'action' => $action,
-            'section' => $section,
-            'status_code' => $response->getStatusCode(),
-        ];
 
         Datadog::timing(config('datadog-helper.prefix_web').'.request_time', $duration, 1, $tags);
     }
