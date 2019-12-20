@@ -15,4 +15,21 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@php
+    $links = [[
+        'url' => route('admin.root'),
+        'title' => trans('layout.header.admin.root'),
+    ]];
+
+    if (isset($title)) {
+        $links[] = compact('title');
+    } else {
+        $title = trans('layout.header.admin.root');
+    }
+@endphp
+@include('layout._page_header_v4', ['params' => [
+    'links' => $links,
+    'linksBreadcrumb' => true,
+    'section' => trans('layout.header.admin._'),
+    'subSection' => $title,
+]])

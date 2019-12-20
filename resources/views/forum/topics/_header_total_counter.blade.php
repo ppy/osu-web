@@ -18,14 +18,12 @@
 @php
     $total = $newTopic ? 1 : $topic->postsCount();
 @endphp
-<div class="counter-box counter-box--forum">
-    <div class="counter-box__content">
-        <div class="counter-box__title">
-            {{ trans('forum.topics.show.total_posts') }}
-        </div>
+<div class="counter-box counter-box--info">
+    <div class="counter-box__title">
+        {{ trans('forum.topics.show.total_posts') }}
+    </div>
 
-        <div data-total="{{ $total }}" class="counter-box__count js-forum__total-count">
-            {{ i18n_number_format($total) }}
-        </div>
+    <div data-total="{{ $total }}" class="counter-box__count js-forum__total-count">
+        {{ i18n_number_format($total) }}
     </div>
 </div>

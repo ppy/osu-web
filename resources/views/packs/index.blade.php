@@ -17,14 +17,15 @@
 --}}
 @extends('master', [
     'currentAction' => 'packs',
+    'legacyNav' => false,
     'title' => trans('beatmappacks.index.title'),
     'pageDescription' => trans('beatmappacks.index.description'),
 ])
 
 @section('content')
-    <div class="osu-page">
-        @include('packs._header')
+    @include('packs._header')
 
+    <div class="osu-page">
         <ul class="page-mode">
             @foreach(['standard', 'chart', 'theme', 'artist'] as $mode)
                 <li class="page-mode__item">
