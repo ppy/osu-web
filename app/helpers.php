@@ -73,7 +73,7 @@ function broadcast_notification(...$arguments)
 /**
  * Like cache_remember_with_fallback but with a mutex that only allows a single process to run the callback.
  */
-function cache_remember_mutexed(string $key, $seconds, $default, callable $callback)
+function cache_remember_mutexed(string $key, $seconds, $default, callable $callback, ?callable $exceptionHandler = null)
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
     $fullKey = "{$key}:with_fallback";
@@ -95,8 +95,15 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
 
                 cache()->put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
             } catch (Exception $e) {
-                // Log and continue with data from the first ::get.
-                log_error($e);
+                $handled = false;
+                if ($exceptionHandler !== null) {
+                    $handled = $exceptionHandler($e);
+                }
+
+                if (!$handled) {
+                    // Log and continue with data from the first ::get.
+                    log_error($e);
+                }
             } finally {
                 cache()->forget($lockKey);
             }
