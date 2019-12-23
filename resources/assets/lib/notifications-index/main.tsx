@@ -34,11 +34,13 @@
  */
 
 import HeaderV4 from 'header-v4';
+import HeaderLink from 'interfaces/header-link';
 import { route } from 'laroute';
+import { observe } from 'mobx';
 import { observer } from 'mobx-react';
 import { Name as NotificationTypeName, TYPES } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
-import { NotificationContext } from 'notifications-context';
+import { NotificationContext, NotificationContextData } from 'notifications-context';
 import NotificationController from 'notifications/notification-controller';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -48,12 +50,30 @@ import { ShowMoreLink } from 'show-more-link';
 export class Main extends React.Component {
   static readonly contextType = NotificationContext;
 
-  readonly links = TYPES.map((obj) => {
-    const type = obj.type;
-    return { title: osu.trans(`notifications.filters.${type ?? '_'}`), url: route('notifications.index', { type }), data: { 'data-type': type } };
-  });
+  readonly links: HeaderLink[];
 
-  private readonly controller = new NotificationController(core.dataStore.notificationStore, this.context);
+  private readonly controller: NotificationController;
+
+  constructor(props: {}, context: NotificationContextData) {
+    super(props, context);
+
+    this.controller = new NotificationController(core.dataStore.notificationStore, this.context);
+    this.links = TYPES.map((obj) => {
+      const type = obj.type;
+      return {
+        active: this.controller.currentFilter === obj.type,
+        data: { 'data-type': type },
+        title: osu.trans(`notifications.filters.${type ?? '_'}`),
+        url: route('notifications.index', { type }),
+      };
+    });
+
+    observe(this.controller, 'currentFilter', (change) => {
+      this.links.forEach((link) => {
+        link.active = link.data['data-type'] === change.newValue;
+      });
+    });
+  }
 
   render() {
     return (
