@@ -163,13 +163,6 @@
 @osu-colour-group-support: #EBD047;
 @osu-colour-group-mapper: @osu-colour-blue-1; // Technically this isn't a 'group' colour, but gets used in multiple places...
 
-// Use this instead of fade(colour, amount) - LESS tries to parse the css var as a colour and fails.
-// This is not ideal, but not sure of a better way to do this (without modifying LESS at least)
-.osu-hsla(@colour, @alpha) {
-  @string: replace("@{colour}", "hsl\(([^,]+), ([^,]+), ([^,]+)\)", "hsla($1, $2, $3, @{alpha})");
-  @hsla: ~"@{string}";
-}
-
 // Use this to save having to repeatedly define each group's colour, e.g.:
 //  .user-card {
 //    .osu-group-colours({
