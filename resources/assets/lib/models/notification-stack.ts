@@ -64,6 +64,10 @@ export default class NotificationStack implements NotificationReadable {
     return `${this.objectType}-${this.objectId}-${this.category}`;
   }
 
+  set isRead(value: boolean) {
+    this.notifications.forEach((notification) => notification.isRead = value);
+  }
+
   @computed
   get isSingle() {
     return this.total === 1;

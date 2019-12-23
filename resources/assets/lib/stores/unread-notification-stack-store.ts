@@ -132,7 +132,7 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
     this.total -= stack.total;
 
-    this.notificationStore.notifications.forEach((notification) => notification.isRead = true);
+    stack.isRead = true;
     this.stacks.delete(resolveStackId(identity));
 
     const type = this.getOrCreateType(identity);
