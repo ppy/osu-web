@@ -16,7 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import DispatcherAction from 'actions/dispatcher-action';
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
@@ -31,15 +30,6 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
   @computed get totalWithPm() {
     return this.total + this.legacyPm.count;
-  }
-
-  @action
-  handleDispatchAction(dispatched: DispatcherAction) {
-    super.handleDispatchAction(dispatched);
-
-    if (dispatched instanceof NotificationEventRead) {
-      this.handleNotificationEventRead(dispatched);
-    }
   }
 
   @action

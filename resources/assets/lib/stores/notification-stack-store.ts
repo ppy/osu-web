@@ -26,8 +26,8 @@ import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType, { Name as NotificationTypeName  } from 'models/notification-type';
 import { nameToCategory } from 'notification-maps/category';
-import { NotificationEventMoreLoaded, NotificationEventNew } from 'notifications/notification-events';
-import { NotificationIdentity, resolveStackId } from 'notifications/notification-identity';
+import { NotificationEventMoreLoaded, NotificationEventNew, NotificationEventRead } from 'notifications/notification-events';
+import { NotificationIdentity, resolveStackId, resolveIdentityType } from 'notifications/notification-identity';
 import { NotificationResolver } from 'notifications/notification-resolver';
 import NotificationStore from './notification-store';
 
@@ -66,6 +66,8 @@ export default class NotificationStackStore implements DispatchListener {
       this.handleNotificationEventNew(dispatched);
     } else if (dispatched instanceof NotificationEventMoreLoaded) {
       this.handleNotificationEventMoreLoaded(dispatched);
+    } else if (dispatched instanceof NotificationEventRead) {
+      this.handleNotificationEventRead(dispatched);
     }
   }
 
@@ -105,6 +107,20 @@ export default class NotificationStackStore implements DispatchListener {
 
     type.stacks.set(stack.id, stack);
     type.total++;
+  }
+
+  @action
+  handleNotificationEventRead(event: NotificationEventRead) {
+    if (event.data.length === 0) return;
+    const first = event.data[0];
+    const identityType = resolveIdentityType(first);
+
+    if (identityType === 'stack') {
+      const stack = this.getStack(first);
+      if (stack != null) {
+        stack.isRead = true;
+      }
+    }
   }
 
   /**
