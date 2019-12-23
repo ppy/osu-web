@@ -64,8 +64,36 @@ return [
         'send_message' => '傳送訊息',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => '登入',
+        'email_login_disabled' => '',
         'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
         'username' => '使用者名稱',
         'password' => '密碼',
@@ -164,7 +192,7 @@ return [
         ],
 
         'extra' => [
-            'none' => '',
+            'none' => '無',
             'unranked' => '近期沒有遊玩記錄',
 
             'achievements' => [
@@ -196,12 +224,12 @@ return [
             'discussions' => [
                 'title' => '討論',
                 'title_longer' => '最近討論',
-                'show_more' => '',
+                'show_more' => '顯示更多討論',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '活動',
+                'title_longer' => '近期活動',
+                'show_more' => '顯示更多活動',
             ],
             'historical' => [
                 'empty' => '尚無遊戲分數。:(',
@@ -284,9 +312,9 @@ return [
                 'title' => '成就',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '貼文',
+                'title_longer' => '最新貼文',
+                'show_more' => '顯示更多貼文',
             ],
             'recent_activity' => [
                 'title' => '最近活動',
@@ -306,11 +334,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
+                'given' => '給予投票（最近三個月）',
+                'received' => '獲得的投票（最近三個月）',
                 'title' => '投票',
                 'title_longer' => '最近投票',
-                'vote_count' => '',
+                'vote_count' => ':count_delimited 票',
             ],
             'account_standing' => [
                 'title' => '帳號狀態',
@@ -394,8 +422,8 @@ return [
             // modding stats
             'ranked_and_approved_beatmapset_count' => '進榜 & 批准圖譜',
             'loved_beatmapset_count' => 'Loved 圖譜',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'unranked_beatmapset_count' => 'Pending 的譜面',
+            'graveyard_beatmapset_count' => '墳場裡的譜面',
         ],
     ],
 

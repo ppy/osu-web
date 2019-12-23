@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'verificação da conta osu!',
-    ],
-
     'errors' => [
         'expired' => 'Código de verificação expirado, novo email de verificação enviado.',
         'incorrect_key' => 'Código de verificação incorreto.',

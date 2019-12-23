@@ -17,16 +17,18 @@
  */
 
 .download-page-header {
+  .default-text-shadow();
   display: flex;
   flex-direction: column;
   align-items: center;
 
   margin: 20px 0;
-  margin-top: 80px;
+  color: @osu-colour-c1;
 
   @media @desktop {
     margin-left: 90px;
     width: 180px;
+    text-shadow: none;
   }
 
   &__extra-link {

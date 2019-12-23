@@ -25,16 +25,16 @@ return [
 
     'header' => [
         'community' => [
-            '_' => '',
+            '_' => 'Komunita',
 
-            'forum' => '',
+            'forum' => 'Fórum',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
+        'close' => 'Zavřít (Esc)',
         'fullscreen' => '',
-        'zoom' => '',
+        'zoom' => 'Přiblížit/Oddálit',
         'previous' => '',
         'next' => '',
     ],
@@ -61,9 +61,9 @@ return [
             'team' => 'tým',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profil',
+            'friends' => 'přátelé',
+            'settings' => 'nastavení',
         ],
         'help' => [
             '_' => 'nápověda',
@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'e-mailová adresa',
             'forgot' => "Zapomněl jsem své údaje",
             'password' => 'heslo',
             'title' => 'Pro pokračování se přihlašte',
+            'username' => '',
 
             'error' => [
                 'email' => "Uživatelské jméno nebo emailová adresa neexistují",
@@ -268,7 +268,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Stáhnout',
             'info' => 'Potřebujete účet, pane. Proč již jeden nemáte?',
             'title' => "Nemáte účet?",
         ],

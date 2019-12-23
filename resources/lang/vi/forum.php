@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Có trả lời mới cho chủ đề ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Bài viết mới nhất',
 

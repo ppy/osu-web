@@ -64,8 +64,36 @@ return [
         'send_message' => 'Wyślij wiadomość',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Zaloguj się',
+        'email_login_disabled' => '',
         'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
         'username' => 'Nazwa użytkownika',
         'password' => 'Hasło',

@@ -24,6 +24,7 @@ return [
     'last_visit' => 'Onlangs actief',
     'new' => 'Recent',
     'old' => 'Oud',
+    'rank' => '',
     'top' => 'Terug naar boven',
     'username' => 'Gebruikersnaam',
 

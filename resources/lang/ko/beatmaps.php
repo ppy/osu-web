@@ -91,13 +91,14 @@ return [
             'nomination_reset' => '지명 초기화',
             'praise' => '칭찬',
             'problem' => '문제',
-            'review' => '',
+            'review' => '검토',
             'suggestion' => '제안',
         ],
 
         'mode' => [
             'events' => '기록',
             'general' => '일반 :scope',
+            'reviews' => '',
             'timeline' => '타임라인',
             'scopes' => [
                 'general' => '해당 난이도',

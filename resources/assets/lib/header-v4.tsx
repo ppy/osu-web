@@ -18,21 +18,27 @@
 
 import HeaderLink from 'interfaces/header-link';
 import * as React from 'react';
+import { Spinner } from 'spinner';
 
 interface Props {
   backgroundImage?: string;
+  contentAppend?: React.ReactNode;
+  contentPrepend?: React.ReactNode;
+  isCoverUpdating?: boolean;
   links: HeaderLink[];
-  onLinkClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  linksBreadcrumb?: boolean;
+  onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   section: string;
   subSection: string;
   theme?: string;
+  titleAppend?: React.ReactNode;
 }
 
 export default class HeaderV4 extends React.Component<Props> {
   static defaultProps = {
     links: [],
-    // tslint:disable-next-line: no-empty
-    onLinkClick: () => {},
+    linksBreadcrumb: false,
+    subSection: '',
   };
 
   render(): React.ReactNode {
@@ -43,50 +49,86 @@ export default class HeaderV4 extends React.Component<Props> {
 
     return (
       <div className={classNames}>
-        <div className='header-v4__bg-container'>
-          <div
-            className='header-v4__bg'
-            style={{ backgroundImage: osu.urlPresence(this.props.backgroundImage) }}
-          />
-        </div>
+        <div className='header-v4__container header-v4__container--main'>
+          <div className='header-v4__bg-container'>
+            <div
+              className='header-v4__bg'
+              style={{ backgroundImage: osu.urlPresence(this.props.backgroundImage) }}
+            />
+          </div>
 
-        <div className='header-v4__content'>
-          <div className='header-v4__row header-v4__row--title'>
-            <div className='header-v4__icon' />
+          {this.props.isCoverUpdating &&
+            <div className='header-v4__spinner'>
+              <Spinner />
+            </div>
+          }
+
+          <div className='header-v4__content'>
+            {this.props.contentPrepend}
+
+            <div className='header-v4__row header-v4__row--title'>
+              <div className='header-v4__icon' />
               <div className='header-v4__title'>
                 <span className='header-v4__title-section'>
                   {this.props.section}
                 </span>
-                <span className='header-v4__title-action'>
-                  {' '}
-                  {this.props.subSection}
-                </span>
+                {this.props.subSection !== '' &&
+                  <span className='header-v4__title-action'>
+                    {this.props.subSection}
+                  </span>
+                }
               </div>
+
+              {this.props.titleAppend}
             </div>
 
-            <div className='header-v4__row header-v4__row--bar'>
-              {this.renderLinks()}
-            </div>
+            {this.props.contentAppend}
+          </div>
         </div>
+
+        {this.props.links.length > 0 &&
+          <div className='header-v4__container'>
+            <div className='header-v4__content'>
+              <div className='header-v4__row header-v4__row--bar'>
+                {this.renderLinks()}
+              </div>
+            </div>
+          </div>
+        }
       </div>
     );
   }
 
   private renderLinks() {
     const items = this.props.links.map((link) => {
+      const linkModifiers = [];
+      if (link.active) {
+        linkModifiers.push('active');
+      }
+
       return (
         <li className='header-nav-v4__item' key={`${link.url}-${link.title}`}>
-          <a className='header-nav-v4__link' href={link.url} onClick={this.props.onLinkClick} {...link.data}>
+          <a
+            className={osu.classWithModifiers('header-nav-v4__link', linkModifiers)}
+            href={link.url}
+            onClick={this.props.onLinkClick}
+            {...link.data}
+          >
             {link.title}
           </a>
         </li>
       );
     });
 
+    const List = this.props.linksBreadcrumb ? 'ol' : 'ul';
+
+    const modifiers = [];
+    modifiers.push(this.props.linksBreadcrumb ? 'breadcrumb' : 'list');
+
     return (
-      <ol className='header-nav-v4'>
+      <List className={osu.classWithModifiers('header-nav-v4', modifiers)}>
         {items}
-      </ol>
+      </List>
     );
   }
 }

@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Получихме вашата поръчка от osu!store !',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Поръчка направена на :date',
 

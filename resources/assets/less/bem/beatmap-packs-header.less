@@ -17,29 +17,13 @@
  */
 
 .beatmap-packs-header {
-  &__blurb {
-    padding: 20px 40px;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.8);
-    font-size: @font-size--title-small;
-    font-weight: 300;
-    line-height: 1.3;
-    text-align: center;
-  }
-
-  &__header {
-    padding: 40px 0 45px;
-  }
-
-  &__icon {
-    .at2x-simple("/images/headers/beatmappacks-icon.png");
-    width: @header-icon-size;
-    height: @header-icon-size;
-    margin: @header-icon-margin auto;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+  padding: 20px 40px;
+  color: @osu-colour-c1;
+  font-size: @font-size--title-small;
+  font-weight: 300;
+  line-height: 1.3;
+  text-align: center;
+  background-color: @osu-colour-d3;
 
   &__important {
     font-size: 110%;
@@ -50,11 +34,5 @@
   &__scary {
     color: @osu-colour-c2;
     font-weight: 600;
-  }
-
-  &__title {
-    font-weight: 300;
-    font-size: @font-size--header-title;
-    color: #fff;
   }
 }

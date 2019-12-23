@@ -64,8 +64,36 @@ return [
         'send_message' => 'отправить сообщение',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Вход',
+        'email_login_disabled' => '',
         'locked_ip' => 'Ваш IP адрес заблокирован. Попробуйте через несколько минут.',
         'username' => 'Никнейм',
         'password' => 'Пароль',
@@ -151,7 +179,7 @@ return [
                     'unsupported_format' => 'Неподдерживаемый формат.',
 
                     'restriction_info' => [
-                        '_' => 'Загрузка доступна только для :link',
+                        '_' => 'Загрузка доступна только :link',
                         'link' => 'приобретшим тег osu!supporter',
                     ],
                 ],
@@ -264,14 +292,14 @@ return [
                     ],
 
                     'forum_post' => [
-                        'give' => ':giver дал :amount за ответ в посте :post',
+                        'give' => 'Получено :amount от :giver за сообщение в посте :post',
                         'reset' => ':giver сбросил кудосу за ответ в посте :post',
                         'revoke' => ':giver отнял кудосу за ответ в посте :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => 'Зависит от того, сколько вклада пользователь внёс в модерацию карт. Смотрите :link для дополнительной информации.',
+                    '_' => 'Зависит от того, сколько вклада пользователь внёс в модерацию карт. Посетите :link для дополнительной информации.',
                     'link' => 'эту страницу',
                 ],
             ],
@@ -280,8 +308,8 @@ return [
             ],
             'medals' => [
                 'empty' => "Этот пользователь ещё ничего не получил. ;_;",
-                'recent' => 'Последние достижения',
-                'title' => 'Достижения',
+                'recent' => 'Последние полученные медали',
+                'title' => 'Медали',
             ],
             'posts' => [
                 'title' => 'Посты',
@@ -310,7 +338,7 @@ return [
                 'received' => 'Полученные голоса (за 3 месяца)',
                 'title' => 'Голоса',
                 'title_longer' => 'Недавние голоса',
-                'vote_count' => 'голосов: :count_delimited|голосов: :count_delimited',
+                'vote_count' => ':count_delimited голос|:count_delimited голоса|:count_delimited голосов',
             ],
             'account_standing' => [
                 'title' => 'Состояние аккаунта',
@@ -392,9 +420,9 @@ return [
             'total_hits' => 'Всего попаданий',
             'total_score' => 'Всего очков',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Рейтинговые и одобренные карты',
-            'loved_beatmapset_count' => 'Любимые карты',
-            'unranked_beatmapset_count' => 'На рассмотрении',
+            'ranked_and_approved_beatmapset_count' => 'Рейтинговые и утвержденные карты',
+            'loved_beatmapset_count' => 'Любимые сообществом карты',
+            'unranked_beatmapset_count' => 'Карты на рассмотрении',
             'graveyard_beatmapset_count' => 'Заброшенные карты',
         ],
     ],

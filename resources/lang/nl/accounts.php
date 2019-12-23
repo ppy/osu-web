@@ -68,6 +68,12 @@ return [
         'title' => 'Meldingen',
         'topic_auto_subscribe' => 'automatisch meldingen inschakelen op nieuwe forum onderwerpen die u maakt',
         'beatmapset_discussion_qualified_problem' => 'ontvang meldingen voor nieuw probleem op gekwalificeerde beatmaps van de volgende modes',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! e-mail wijziging bevestigen',
         'update' => 'bijwerken',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! wachtwoord wijziging bevestiging',
         'update' => 'bijwerken',
     ],
 

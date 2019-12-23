@@ -28,10 +28,6 @@ return [
         'start' => 'Começar',
     ],
 
-    'email' => [
-        'subject' => 'Recuperação da conta do osu!',
-    ],
-
     'error' => [
         'contact_support' => 'Por favor, entre em contato com o suporte para recuperar a sua conta.',
         'is_privileged' => 'Fala com o peppy, lul.',

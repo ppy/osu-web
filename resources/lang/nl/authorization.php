@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Log in om verder te gaan.',
+    'require_verification' => '',
+    'restricted' => "Je kan dit niet doen terwijl je restricted bent.",
+    'silenced' => "Je kunt dit niet doen terwijl je silenced bent.",
+    'unauthorized' => 'Toegang geweigerd.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Hyping kan niet ongedaan gemaakt worden.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Alleen admins kunnen dit forum zien.',
         ],
     ],
-
-    'require_login' => 'Log in om verder te gaan.',
-
-    'unauthorized' => 'Toegang geweigerd.',
-
-    'silenced' => "Je kunt dit niet doen terwijl je silenced bent.",
-
-    'restricted' => "Je kan dit niet doen terwijl je restricted bent.",
 
     'user' => [
         'page' => [

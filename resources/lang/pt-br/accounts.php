@@ -68,6 +68,12 @@ return [
         'title' => 'Notificações',
         'topic_auto_subscribe' => 'automaticamente ativar as notificações em tópicos que você criar no fórum',
         'beatmapset_discussion_qualified_problem' => 'receber notificações para novos problemas em beatmaps qualificados dos seguintes modos',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Confirmação de mudança de email do osu!',
         'update' => 'atualizar',
     ],
 
     'update_password' => [
-        'email_subject' => 'Confirmação de mudança de senha do osu!',
         'update' => 'atualizar',
     ],
 

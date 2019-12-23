@@ -130,7 +130,6 @@ return [
     'scores' => [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
     ],
-    'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
     'static' => env('LEGACY_STATICS_HOST', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
@@ -184,6 +183,10 @@ return [
         ],
         'help' => [
             'support' => 'http://help.ppy.sh/',
+        ],
+        'testflight' => [
+            'public' => env('TESTFLIGHT_LINK'),
+            'supporter' => env('TESTFLIGHT_LINK_SUPPORTER'),
         ],
     ],
     'user' => [

@@ -25,6 +25,7 @@ return [
         'missing' => '请求的页面未找到',
         'missing_title' => '未找到',
         'missing_translation' => '请求的页面没有当前语言的版本',
+        'needs_cleanup_or_rewrite' => '',
         'search' => '在 wiki 中搜索 :link 。',
         'toc' => '目录',
 

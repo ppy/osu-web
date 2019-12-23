@@ -68,6 +68,12 @@ return [
         'title' => 'Известия',
         'topic_auto_subscribe' => '',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +106,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'потвърдете смяната на osu! имейла',
         'update' => 'обнови',
     ],
 
     'update_password' => [
-        'email_subject' => 'подвърдете смяната на osu! паролата',
         'update' => 'обнови',
     ],
 

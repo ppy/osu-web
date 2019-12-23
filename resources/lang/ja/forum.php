@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] トピック":title"に新しい返信があります',
-    ],
-
     'forums' => [
         'latest_post' => '最新の投稿',
 

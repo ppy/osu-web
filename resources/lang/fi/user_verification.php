@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'osu! tilin vahvistaminen',
-    ],
-
     'errors' => [
         'expired' => 'Vahvistuskoodi erääntyi, uusi vahvistussähköposti lähetetty.',
         'incorrect_key' => 'Virheellinen vahvistuskoodi.',

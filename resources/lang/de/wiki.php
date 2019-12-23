@@ -25,6 +25,7 @@ return [
         'missing' => 'Die angeforderte Seite ":keyword" konnte nicht gefunden werden.',
         'missing_title' => 'Nicht gefunden',
         'missing_translation' => 'Die angeforderte Seite konnte für die ausgewählte Sprache nicht gefunden werden.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Existierende Seiten nach :link durchsuchen.',
         'toc' => 'Inhalt',
 

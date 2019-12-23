@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Zum Fortfahren bitte einloggen.',
+    'require_verification' => '',
+    'restricted' => "Nicht möglich, während man restricted ist.",
+    'silenced' => "Nicht möglich, während man stummgeschaltet ist.",
+    'unauthorized' => 'Zugang verwehrt.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Hype kann nicht rückgängig gemacht werden.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Nur Administratoren können dieses Forum sehen.',
         ],
     ],
-
-    'require_login' => 'Zum Fortfahren bitte einloggen.',
-
-    'unauthorized' => 'Zugang verwehrt.',
-
-    'silenced' => "Nicht möglich, während man stummgeschaltet ist.",
-
-    'restricted' => "Nicht möglich, während man restricted ist.",
 
     'user' => [
         'page' => [

@@ -25,6 +25,7 @@ return [
         'missing' => 'Η σελίδα ":keyword" δεν βρέθηκε.',
         'missing_title' => 'Δεν Βρέθηκε',
         'missing_translation' => 'Η σελίδα που ζητήσατε δεν βρέθηκε για την επιλεγμένη γλώσσα.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Αναζήτηση υπάρχουσων σελίδων για :link.',
         'toc' => 'Περιεχόμενα',
 

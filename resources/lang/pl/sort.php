@@ -24,6 +24,7 @@ return [
     'last_visit' => 'Ostatnio aktywni',
     'new' => 'Najnowsze',
     'old' => 'Najstarsze',
+    'rank' => '',
     'top' => 'Najwyżej oceniane',
     'username' => 'Nazwa użytkownika',
 

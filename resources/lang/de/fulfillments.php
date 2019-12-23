@@ -19,12 +19,4 @@
  */
 
 return [
-    'mail' => [
-        'donation_thanks' => [
-            'subject' => 'Danke, osu! <3 dich',
-        ],
-        'supporter_gift' => [
-            'subject' => 'Dir wurde ein osu!supporter-Tag geschenkt!',
-        ],
-    ],
 ];

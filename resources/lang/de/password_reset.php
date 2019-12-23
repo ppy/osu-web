@@ -28,10 +28,6 @@ return [
         'start' => 'Starten',
     ],
 
-    'email' => [
-        'subject' => 'osu!-Accountwiederherstellung',
-    ],
-
     'error' => [
         'contact_support' => 'Bitte wende dich zur Accountwiederherstellung an den Support.',
         'is_privileged' => 'Kontaktiere peppy lulz.',

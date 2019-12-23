@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Obdrželi jsme tvou osu!store objednávku!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Objednávka vystavena dne :date',
 

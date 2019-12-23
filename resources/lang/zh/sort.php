@@ -24,6 +24,7 @@ return [
     'last_visit' => '最近活跃',
     'new' => '最新',
     'old' => '最旧',
+    'rank' => '',
     'top' => '热门',
     'username' => '用户名',
 

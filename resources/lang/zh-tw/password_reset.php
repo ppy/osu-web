@@ -28,10 +28,6 @@ return [
         'start' => '開始',
     ],
 
-    'email' => [
-        'subject' => 'osu! 帳戶恢復',
-    ],
-
     'error' => [
         'contact_support' => '請聯繫支持團隊以找回帳戶。',
         'is_privileged' => '聯繫 peppy（笑）',
@@ -57,8 +53,8 @@ return [
         'username' => '輸入郵件地址或使用者名稱',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => '需要進一步的幫助？通過我們的 :button 聯繫我們。',
+            'button' => '支持系統',
         ],
     ],
 ];

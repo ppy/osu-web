@@ -18,12 +18,11 @@
 
 import { ChatChannelSwitchAction } from 'actions/chat-actions';
 import { dispatch } from 'app-dispatcher';
-import HeaderV3 from 'header-v3';
+import HeaderV4 from 'header-v4';
 import { Img2x } from 'img2x';
 import { observer, Provider } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
-import ChatLogo from './chat-logo';
 import ChatWorker from './chat-worker';
 import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
@@ -59,12 +58,15 @@ export default class MainView extends React.Component<Props, any> {
     const lazerLink = 'https://github.com/ppy/osu/releases';
     return (
       <div>
-        <HeaderV3 compact={true} theme='chat' title='Chat' />
+        <HeaderV4
+          section={osu.trans('layout.header.community._')}
+          subSection={osu.trans('chat.title_compact')}
+          theme='chat'
+        />
         <Provider dataStore={this.props.dataStore}>
           {this.props.dataStore.channelStore.loaded ? (
             <div className='chat osu-page osu-page--chat'>
               <div className='chat__sidebar'>
-                <ChatLogo />
                 <ConversationList />
               </div>
               <div className='chat__conversation-area'>

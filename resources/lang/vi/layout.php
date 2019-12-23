@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'địa chỉ email',
             'forgot' => "Quên mật khẩu",
             'password' => 'password',
             'title' => 'Đăng Nhập Để Tiếp Tục',
+            'username' => '',
 
             'error' => [
                 'email' => "Tài khoản hoặc địa chỉ email không tồn tại",

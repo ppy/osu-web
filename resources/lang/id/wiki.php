@@ -25,6 +25,7 @@ return [
         'missing' => 'Laman ":keyword" yang diminta tidak dapat ditemukan.',
         'missing_title' => 'Tidak Ditemukan',
         'missing_translation' => 'Laman yang diminta tidak dapat ditemukan untuk bahasa yang dipilih saat ini.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Cari halaman yang ada untuk :link.',
         'toc' => 'Konten',
 

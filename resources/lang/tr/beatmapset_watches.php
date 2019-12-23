@@ -32,10 +32,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'update' => '":title" beatmapi için yeni bir güncelleme',
-    ],
-
     'status' => [
         'read' => 'Okundu',
         'unread' => 'Okunmamış',

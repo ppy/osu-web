@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => '続行するにはログインが必要です。',
+    'require_verification' => '',
+    'restricted' => "制限中には不可能です。",
+    'silenced' => "サイレンス中には不可能です。",
+    'unauthorized' => 'アクセスが拒否されました。',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'hypeは取り消し不可能です。',
@@ -161,14 +167,6 @@ return [
             'admin_only' => '管理人のみがこのフォーラムは閲覧可能です。',
         ],
     ],
-
-    'require_login' => '続行するにはログインが必要です。',
-
-    'unauthorized' => 'アクセスが拒否されました。',
-
-    'silenced' => "サイレンス中には不可能です。",
-
-    'restricted' => "制限中には不可能です。",
 
     'user' => [
         'page' => [

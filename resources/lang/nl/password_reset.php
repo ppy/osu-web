@@ -28,10 +28,6 @@ return [
         'start' => 'Start',
     ],
 
-    'email' => [
-        'subject' => 'osu! account herstellen',
-    ],
-
     'error' => [
         'contact_support' => 'Contakteer support om je account te herstellen.',
         'is_privileged' => 'Contacteer peppy lol.',

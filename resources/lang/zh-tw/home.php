@@ -25,7 +25,7 @@ return [
         'peak' => '最高線上人數 :count 人',
         'players' => '<strong>:count</strong> 名已註冊玩家',
         'title' => '歡迎',
-        'see_more_news' => '',
+        'see_more_news' => '顯示更多新聞',
 
         'slogan' => [
             'main' => '最棒的音樂遊戲',
@@ -131,7 +131,7 @@ return [
         'beatmaps' => [
             'new' => '新進榜圖譜',
             'popular' => '熱門圖譜',
-            'by_user' => '',
+            'by_user' => '由 :user',
         ],
         'buttons' => [
             'download' => '下載 osu!',

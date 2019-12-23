@@ -39,7 +39,7 @@ return [
     ],
 
     'show' => [
-        'back' => '',
+        'back' => '回到列表',
         'download' => '下载',
         'item' => [
             'cleared' => '玩过',

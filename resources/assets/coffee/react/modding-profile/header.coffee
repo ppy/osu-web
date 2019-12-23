@@ -22,8 +22,9 @@ import { HeaderInfo } from '../profile-page/header-info'
 import { Links } from '../profile-page/links'
 import { Stats } from './stats'
 import * as React from 'react'
+import HeaderV4 from 'header-v4'
 import { Img2x } from 'img2x'
-import { a, div, h1, li, ul } from 'react-dom-factories'
+import { a, div, h1, li, span, ul } from 'react-dom-factories'
 el = React.createElement
 
 export class Header extends React.Component
@@ -31,16 +32,13 @@ export class Header extends React.Component
     div
       className: 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
       'data-page-id': 'main'
-      div className: 'header-v3 header-v3--users',
-        div
-          className: 'header-v3__bg'
-          style:
-            backgroundImage: osu.urlPresence(@props.user.cover_url)
-        div className: 'header-v3__overlay'
-        div className: 'osu-page osu-page--header-v3',
-          @renderTournamentBanner()
-          @renderTitle()
-          @renderTabs()
+      el HeaderV4,
+        backgroundImage: @props.user.cover_url
+        contentPrepend: @renderTournamentBanner()
+        links: @headerLinks()
+        section: osu.trans 'layout.header.users._'
+        subSection: osu.trans 'layout.header.users.modding'
+        theme: 'users'
       div className: 'osu-page osu-page--users',
         div className: 'profile-header',
           div className: 'profile-header__top',
@@ -62,34 +60,6 @@ export class Header extends React.Component
           el Links, user: @props.user
 
 
-  renderTabs: =>
-    ul className: 'page-mode-v2 page-mode-v2--users',
-      li
-        className: 'page-mode-v2__item'
-        a
-          href: laroute.route('users.show', user: @props.user.id)
-          className: 'page-mode-v2__link'
-          osu.trans 'users.show.header_title.info'
-      li
-        className: 'page-mode-v2__item'
-        a
-          href: laroute.route('users.modding.index', user: @props.user.id)
-          className: 'page-mode-v2__link page-mode-v2__link--active'
-          osu.trans 'users.beatmapset_activities.title_compact'
-
-
-  renderTitle: =>
-    div className: 'osu-page-header-v3 osu-page-header-v3--users',
-      div className: 'osu-page-header-v3__title',
-        div className: 'osu-page-header-v3__title-icon',
-          div className: 'osu-page-header-v3__icon'
-        h1
-          className: 'osu-page-header-v3__title-text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'users.show.header_title._',
-            info: "<span class='osu-page-header-v3__title-highlight'>#{osu.trans('users.beatmapset_activities.title_compact')}</span>"
-
-
   renderTournamentBanner: ({modifiers} = {}) =>
     return if !@props.user.active_tournament_banner.id?
 
@@ -99,3 +69,17 @@ export class Header extends React.Component
       el Img2x,
         src: @props.user.active_tournament_banner.image
         className: 'profile-tournament-banner__image'
+
+
+  headerLinks: =>
+    [
+      {
+        url: laroute.route('users.show', user: @props.user.id)
+        title: osu.trans 'layout.header.users.show'
+      }
+      {
+        active: true
+        title: osu.trans 'layout.header.users.modding'
+        url: laroute.route('users.modding.index', user: @props.user.id)
+      }
+    ]

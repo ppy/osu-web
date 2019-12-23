@@ -28,10 +28,6 @@ return [
         'start' => 'Inizia',
     ],
 
-    'email' => [
-        'subject' => 'Ripristino account osu!',
-    ],
-
     'error' => [
         'contact_support' => 'Si prega di contattare il supporto per ripristinare l\'account.',
         'is_privileged' => 'Contatta peppy lulz.',

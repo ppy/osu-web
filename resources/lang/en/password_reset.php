@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Reset Password',
-
     'button' => [
         'cancel' => 'Cancel',
         'resend' => 'Resend verification email',
         'set' => 'Set password',
         'start' => 'Start',
-    ],
-
-    'email' => [
-        'subject' => 'osu! account recover',
     ],
 
     'error' => [

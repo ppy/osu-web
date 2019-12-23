@@ -25,7 +25,7 @@ return [
     'title' => 'osu! 論壇',
 
     'covers' => [
-        'edit' => '',
+        'edit' => '編輯封面',
 
         'create' => [
             '_' => '新增封面',
@@ -39,15 +39,11 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] 主題 ":title" 有新回覆',
-    ],
-
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => '最新貼文',
 
         'index' => [
-            'title' => '',
+            'title' => '論壇主頁',
         ],
 
         'topics' => [
@@ -75,7 +71,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => '新回覆',
             ],
         ],
 
@@ -105,7 +101,7 @@ return [
         'started_by_verbose' => '由 :user 發起',
 
         'create' => [
-            'close' => '',
+            'close' => '關閉',
             'preview' => '預覽',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -276,8 +272,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => '顯示已刪除帖子',
+            'hide' => '隱藏已刪除帖子',
         ],
 
         'show' => [
@@ -302,15 +298,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => '編輯投票',
+                'edit_warning' => '編輯投票將會清除目前結果！',
                 'vote' => '投票',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => '更改投票',
+                    'edit' => '編輯投票',
+                    'view_results' => '直接跳到結果',
+                    'vote' => '投票',
                 ],
 
                 'detail' => [

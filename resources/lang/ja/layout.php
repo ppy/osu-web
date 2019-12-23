@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'メールアドレス',
             'forgot' => "ログイン情報を忘れた",
             'password' => 'パスワード',
             'title' => '続行するにはログインしてください',
+            'username' => '',
 
             'error' => [
                 'email' => "ユーザー名かメールアドレスが存在しません",

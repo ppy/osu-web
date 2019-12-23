@@ -28,10 +28,6 @@ return [
         'start' => 'Mulai',
     ],
 
-    'email' => [
-        'subject' => 'Pemulihan akun osu!',
-    ],
-
     'error' => [
         'contact_support' => 'Mohon hubungi layanan dukungan untuk memulihkan akun.',
         'is_privileged' => 'Hubungi peppy lul.',

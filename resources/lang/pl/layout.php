@@ -256,10 +256,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'adres e-mail',
             'forgot' => "Nie pamiętam swoich danych logowania",
             'password' => 'hasło',
             'title' => 'Zaloguj się, aby przejść dalej',
+            'username' => '',
 
             'error' => [
                 'email' => "Nazwa użytkownika bądź adres e-mail nie istnieją",

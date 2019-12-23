@@ -28,10 +28,6 @@ return [
         'start' => '开始',
     ],
 
-    'email' => [
-        'subject' => 'osu! 账户找回',
-    ],
-
     'error' => [
         'contact_support' => '请联系支持团队以找回账户',
         'is_privileged' => '联系 peppy（笑）',

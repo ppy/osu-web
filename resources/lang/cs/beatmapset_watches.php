@@ -32,10 +32,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'update' => 'Nová aktualizace pro beatmapu ":title"',
-    ],
-
     'status' => [
         'read' => 'Číst',
         'unread' => 'Nepřečtené',

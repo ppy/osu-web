@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Vi har modtaget din osu!store bestilling!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Ordre placeret :date',
 

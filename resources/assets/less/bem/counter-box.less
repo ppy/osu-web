@@ -57,18 +57,17 @@
     color: @osu-colour-c1;
   }
 
-  &--forum {
-    margin: 5px;
-    padding: 0;
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-  }
-
   &--beatmap-discussions {
     margin: 5px;
     height: 50px; // 50 is just what beatmap-list__item happens to end up at.
+  }
+
+  &--info {
+    padding: 10px 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    flex-direction: column;
   }
 
   &--deleted {
@@ -107,7 +106,7 @@
     font-size: @font-size--large;
     font-weight: 300;
 
-    .@{top}--forum & {
+    .@{top}--info & {
       color: @osu-colour-c2;
     }
   }
@@ -156,8 +155,9 @@
       margin-right: 10px;
     }
 
-    .@{top}--forum & {
+    .@{top}--info & {
       font-weight: normal;
+      margin-right: 0;
     }
   }
 }

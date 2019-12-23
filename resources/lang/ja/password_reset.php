@@ -28,10 +28,6 @@ return [
         'start' => '開始',
     ],
 
-    'email' => [
-        'subject' => 'osu!アカウントの復元',
-    ],
-
     'error' => [
         'contact_support' => 'アカウントの復元を続行するにはサポートへ連絡をしてください。',
         'is_privileged' => 'peppyに相談だ',

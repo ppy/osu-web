@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => '登录以继续。',
+    'require_verification' => '',
+    'restricted' => "账户处于限制模式，无法进行该操作。",
+    'silenced' => "账户被禁言，无法进行该操作。",
+    'unauthorized' => '没有权限。',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => '无法撤销推荐。',
@@ -161,14 +167,6 @@ return [
             'admin_only' => '该板块仅限管理员查看。',
         ],
     ],
-
-    'require_login' => '登录以继续。',
-
-    'unauthorized' => '没有权限。',
-
-    'silenced' => "账户被禁言，无法进行该操作。",
-
-    'restricted' => "账户处于限制模式，无法进行该操作。",
 
     'user' => [
         'page' => [

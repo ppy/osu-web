@@ -15,10 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-Hi {{ $user->username }},
+{!! trans('mail.common.hello', ['user' => $user->username]) !!}
 
-This is just a confirmation that your osu! password has been changed.
+{!! trans('mail.user_password_updated.confirmation') !!}
 
-Please reply to this email IMMEDIATELY if you did not request this change.
+{!! trans('mail.common.report') !!}
 
 @include('emails._signature')

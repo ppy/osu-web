@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Мы атрымалі ваш заказ у osu!store!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Заказ размешчаны :date',
 

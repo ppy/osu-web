@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => '搜尋',
             'deleted' => '包含已經刪除的討論',
-            'only_unresolved' => '',
+            'only_unresolved' => '只顯示未解決的討論',
             'types' => '訊息類別',
             'username' => '使用者名稱',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => '圖譜狀態',
+                'all' => '全部',
+                'disqualified' => 'Disqualified',
+                'never_qualified' => 'Never Qualified',
+                'qualified' => 'Qualified',
+                'ranked' => '已進榜',
             ],
 
             'user' => [
@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => '被 :user 標記為 “已解決”',
             'false' => '被 :user 標記為 “未解決”',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

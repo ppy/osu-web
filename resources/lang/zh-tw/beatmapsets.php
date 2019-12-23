@@ -39,7 +39,7 @@ return [
             'logged-out' => '下載圖譜前請先登入！',
             'loved' => 'loved 於 ',
             'mapped_by' => '由 :mapper 製作',
-            'qualified' => '提名於 ',
+            'qualified' => 'qualified 於 ',
             'ranked' => '進榜於 ',
             'submitted' => '發佈於 ',
             'unfavourite' => '取消收藏',
@@ -71,16 +71,21 @@ return [
 
                 'status' => [
                     'pending' => '待處理',
-                    'qualified' => '已提名',
+                    'qualified' => 'qualified',
                     'wip' => '此功能仍在開發中',
                 ],
             ],
 
-            'report' => [
+            'disqualify' => [
                 '_' => '',
-                'button' => '',
                 'button_title' => '',
-                'link' => '',
+            ],
+
+            'report' => [
+                '_' => '如果您發現此圖譜有問題，請在 :link 通知團隊。',
+                'button' => '回報問題',
+                'button_title' => '在 qualified 的圖譜上回報問題。',
+                'link' => '這裡',
             ],
         ],
 
@@ -145,6 +150,16 @@ return [
             'rating-spread' => '評分情況',
             'nominations' => '提名',
             'playcount' => '遊玩次数',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

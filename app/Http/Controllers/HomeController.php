@@ -340,4 +340,9 @@ class HomeController extends Controller
             ->with('supporterStatus', $supporterStatus ?? [])
             ->with('data', $pageLayout);
     }
+
+    public function testflight()
+    {
+        return view('home.testflight');
+    }
 }

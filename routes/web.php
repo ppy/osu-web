@@ -191,6 +191,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('download', 'HomeController@getDownload')->name('download');
     Route::post('set-locale', 'HomeController@setLocale')->name('set-locale');
     Route::get('support', 'HomeController@supportTheGame')->name('support-the-game');
+    Route::get('testflight', 'HomeController@testflight')->name('testflight');
 
     Route::delete('password-reset', 'PasswordResetController@destroy');
     Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');
@@ -422,6 +423,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::post('user-send-message', 'LegacyInterOpController@userSendMessage');
+    Route::post('user-batch-mark-channel-as-read', 'LegacyInterOpController@userBatchMarkChannelAsRead');
     Route::post('user-batch-send-message', 'LegacyInterOpController@userBatchSendMessage');
     Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
     Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
