@@ -64,8 +64,8 @@ describe('Notification Index', () => {
       expect(store.notifications.size).toBe(1);
     });
 
-    it('should have 2 stacks', () => {
-      expect([...controller.stacks].length).toBe(2);
+    it('should have 1 stack', () => {
+      expect([...controller.stacks].length).toBe(1);
     });
 
     describe('/ after loading more', () => {
@@ -86,8 +86,8 @@ describe('Notification Index', () => {
         expect(store.notifications.size).toBe(2);
       });
 
-      it('should have 3 stacks', () => {
-        expect([...controller.stacks].length).toBe(3);
+      it('should have 2 stacks', () => {
+        expect([...controller.stacks].length).toBe(2);
       });
 
       describe('/ change filter to Beatmapsets', () => {
@@ -151,7 +151,7 @@ describe('Notification Index', () => {
         });
 
         it('should reset the loaded notifications', () => {
-          expect([...controller.stacks].length).toBe(2);
+          expect([...controller.stacks].length).toBe(1);
         });
       });
     });

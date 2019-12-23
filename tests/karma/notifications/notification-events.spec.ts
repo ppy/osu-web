@@ -420,18 +420,6 @@ describe('Notification Events', () => {
       store = new NotificationStore();
     });
 
-    it('only contains legacy pm', () => {
-      expect(store.unreadStacks.stacks.size).toBe(1);
-      expect(store.unreadStacks.types.size).toBe(1);
-      expect(store.stacks.stacks.size).toBe(1);
-      expect(store.stacks.types.size).toBe(1);
-
-      expect(store.unreadStacks.stacks.values().next().value.category).toBe('legacy_pm');
-      expect(store.unreadStacks.types.values().next().value.name).toBe('legacy_pm');
-      expect(store.stacks.stacks.values().next().value.category).toBe('legacy_pm');
-      expect(store.stacks.types.values().next().value.name).toBe('legacy_pm');
-    });
-
     describe('/ all notifications', () => {
       beforeEach(() => {
         dispatch(new NotificationEventMoreLoaded(bundle, { unreadOnly: false } ));
@@ -443,16 +431,15 @@ describe('Notification Events', () => {
       });
 
       it('store.stacks is not empty', () => {
-        expect(store.stacks.stacks.size).toBe(2);
-        expect(store.stacks.types.size).toBe(3);
+        expect(store.stacks.stacks.size).toBe(1);
+        expect(store.stacks.types.size).toBe(2);
         expect(store.stacks.getOrCreateType({ objectType: null })).toBeDefined();
         expect(store.stacks.getOrCreateType({ objectType: 'beatmapset' })).toBeDefined();
       });
 
-      it('store.unreadStacks only contains legacy pm', () => {
-        expect(store.unreadStacks.stacks.size).toBe(1);
-        expect(store.unreadStacks.types.size).toBe(1);
-        expect(store.unreadStacks.getOrCreateType({ objectType: 'legacy_pm' })).toBeDefined();
+      it('store.unreadStacks is empty', () => {
+        expect(store.unreadStacks.stacks.size).toBe(0);
+        expect(store.unreadStacks.types.size).toBe(0);
       });
 
       it('notifications added to store.notifications', () => {
@@ -471,19 +458,17 @@ describe('Notification Events', () => {
         expect(store.unreadStacks.total).toBe(baseUnreadCount);
       });
 
-      it('store.stacks only contains legacy pm', () => {
-        expect(store.stacks.stacks.size).toBe(1);
+      it('store.stacks only is empty', () => {
+        expect(store.stacks.stacks.size).toBe(0);
 
-        expect(store.stacks.types.size).toBe(1);
-        expect(store.stacks.getOrCreateType({ objectType: 'legacy_pm' })).toBeDefined();
+        expect(store.stacks.types.size).toBe(0);
       });
 
       it('store.unreadStacks is not empty', () => {
-        expect(store.unreadStacks.stacks.size).toBe(2);
-        expect(store.unreadStacks.types.size).toBe(3);
+        expect(store.unreadStacks.stacks.size).toBe(1);
+        expect(store.unreadStacks.types.size).toBe(2);
         expect(store.unreadStacks.getOrCreateType({ objectType: null })).toBeDefined();
         expect(store.unreadStacks.getOrCreateType({ objectType: 'beatmapset' })).toBeDefined();
-        expect(store.unreadStacks.getOrCreateType({ objectType: 'legacy_pm' })).toBeDefined();
       });
 
       it('notifications added to store.notifications', () => {
@@ -521,11 +506,11 @@ describe('Notification Events', () => {
 
       it('should contain 1 stack', () => {
         // FIXME: move pm notification stack out.
-        expect(store.stacks.stacks.size).toBe(2);
+        expect(store.stacks.stacks.size).toBe(1);
       });
 
       it('should contain 1 unread stack', () => {
-        expect(store.unreadStacks.stacks.size).toBe(2);
+        expect(store.unreadStacks.stacks.size).toBe(1);
       });
 
       describe('NotificationEventNew dispatched', () => {
@@ -581,13 +566,12 @@ describe('Notification Events', () => {
         store = new NotificationStore();
       });
 
-      it('should contain be empty', () => {
-        // FIXME: move pm notification stack out.
-        expect(store.stacks.stacks.size).toBe(1);
+      it('should be empty', () => {
+        expect(store.stacks.stacks.size).toBe(0);
       });
 
       it('should contain no unreads', () => {
-        expect(store.unreadStacks.stacks.size).toBe(1);
+        expect(store.unreadStacks.stacks.size).toBe(0);
       });
 
       describe('NotificationEventNew dispatched', () => {
