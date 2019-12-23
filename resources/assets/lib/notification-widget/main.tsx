@@ -82,8 +82,15 @@ export default class Main extends React.Component<Props, State> {
           >
             <div className='notification-popup__scroll-container'>
               {this.renderFilters()}
-              {this.renderStacks()}
-              {this.renderShowMore()}
+
+              <div className='notification-type-group__items notification-type-group__items--legacy_pm'>
+                {this.renderLegacyPmNotification()}
+              </div>
+
+              <div className='notification-type-group__items'>
+                {this.renderStacks()}
+                {this.renderShowMore()}
+              </div>
             </div>
           </div>
         </div>
@@ -149,6 +156,13 @@ export default class Main extends React.Component<Props, State> {
         {this.links.map(this.renderFilter)}
       </div>
     );
+  }
+
+  private renderLegacyPmNotification() {
+    const stack = this.controller.legacyPmNotificationStack;
+    if (stack == null) return null;
+
+    return <Stack key={stack.id} stack={stack} />;
   }
 
   private renderShowMore() {

@@ -121,7 +121,7 @@ export default class NotificationStackStore implements DispatchListener {
     const cursorId = type?.cursor?.id ?? 0;
 
     for (const [, stack] of this.stacks) {
-      if (name == null && stack.isLegacyPm) yield stack;
+      if (name === 'legacy_pm' && stack.isLegacyPm) yield stack;
       // don't include stacks that are past the cursor for the type
       // this is to prevent gaps in loaded stacks when switching filters
       if ((name == null || stack.type === name) && type?.cursor !== undefined && stack.first.id >= cursorId) yield stack;

@@ -27,10 +27,9 @@ export default class NotificationController {
 
   private store: NotificationStackStore;
 
-  private get typeNameFromUrl() {
-    const url = new URL(location.href);
-
-    return getValidName(url.searchParams.get('type'));
+  @computed
+  get legacyPmNotificationStack() {
+    return [...this.store.stacksOfType('legacy_pm')][0];
   }
 
   get stacks() {
@@ -40,6 +39,12 @@ export default class NotificationController {
   @computed
   get type() {
     return this.store.getOrCreateType({ objectType: this.currentFilter });
+  }
+
+  private get typeNameFromUrl() {
+    const url = new URL(location.href);
+
+    return getValidName(url.searchParams.get('type'));
   }
 
   constructor(

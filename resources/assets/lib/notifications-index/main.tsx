@@ -89,6 +89,9 @@ export class Main extends React.Component {
         <div className='osu-page osu-page--generic-compact'>
           <div className='notification-index'>
             <div className='notification-popup__item'>
+              <div className='notification-type-group__items notification-type-group__items--legacy_pm'>
+                {this.renderLegacyPmNotification()}
+              </div>
               <div className='notification-type-group__items'>
                 {this.renderStacks()}
                 {this.renderShowMore()}
@@ -98,6 +101,13 @@ export class Main extends React.Component {
         </div>
       </div>
     );
+  }
+
+  renderLegacyPmNotification() {
+    const stack = this.controller.legacyPmNotificationStack;
+    if (stack == null) return null;
+
+    return <Stack key={stack.id} stack={stack} />;
   }
 
   renderShowMore() {
