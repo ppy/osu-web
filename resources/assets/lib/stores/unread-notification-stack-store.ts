@@ -20,7 +20,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { NotificationEventMoreLoaded, NotificationEventNew, NotificationEventRead } from 'notifications/notification-events';
 import { NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
 import NotificationStackStore from './notification-stack-store';
@@ -28,6 +28,10 @@ import NotificationStackStore from './notification-stack-store';
 @dispatchListener
 export default class UnreadNotificationStackStore extends NotificationStackStore implements DispatchListener {
   @observable total = 0;
+
+  @computed get totalWithPm() {
+    return this.total + this.legacyPm.count;
+  }
 
   @action
   handleDispatchAction(dispatched: DispatcherAction) {

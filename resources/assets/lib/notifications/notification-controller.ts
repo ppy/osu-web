@@ -28,8 +28,8 @@ export default class NotificationController {
   private store: NotificationStackStore;
 
   @computed
-  get legacyPmNotificationStack() {
-    return [...this.store.stacksOfType('legacy_pm')][0];
+  get legacyPm() {
+    return this.store.legacyPm;
   }
 
   get stacks() {

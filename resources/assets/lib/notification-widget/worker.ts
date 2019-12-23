@@ -70,7 +70,6 @@ export default class Worker {
   userId: number | null = null;
   @observable private active: boolean = false;
   private endpoint?: string;
-  private readonly notificationStore = core.dataStore.notificationStore;
   private readonly store = core.dataStore.notificationStore.unreadStacks;
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
@@ -86,25 +85,14 @@ export default class Worker {
   }
 
   @computed get unreadCount() {
-    let ret = this.store.total;
-
-    if (typeof this.notificationStore.pmNotification.details === 'object'
-      && typeof this.notificationStore.pmNotification.details.count === 'number'
-      && this.notificationStore.pmNotification.details.count > 0
-    ) {
-      ret++;
-    }
-
-    return Math.max(ret, 0);
+    return this.store.totalWithPm;
   }
 
   boot = () => {
     this.active = this.userId != null;
 
     if (this.active) {
-      this.updatePmNotification();
       this.startWebSocket();
-      $(document).on('turbolinks:load', this.updatePmNotification);
     }
   }
 
@@ -153,8 +141,6 @@ export default class Worker {
       this.ws.close();
       this.ws = null;
     }
-
-    $(document).off('turbolinks:load', this.updatePmNotification);
   }
 
   @action handleNewEvent = (event: MessageEvent) => {
@@ -254,16 +240,6 @@ export default class Worker {
       })).fail(action(() => {
         this.timeout.startWebSocket = Timeout.set(10000, this.startWebSocket);
       }));
-  }
-
-  @action updatePmNotification = () => {
-    let count = currentUser.unread_pm_count;
-
-    if (count == null) {
-      count = 0;
-    }
-
-    this.notificationStore.pmNotification.details.count = count;
   }
 
   private isPendingXhr = (id: string) => {

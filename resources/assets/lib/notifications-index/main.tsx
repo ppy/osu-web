@@ -41,6 +41,7 @@ import { observer } from 'mobx-react';
 import { Name as NotificationTypeName, TYPES } from 'models/notification-type';
 import Stack from 'notification-widget/stack';
 import { NotificationContext, NotificationContextData } from 'notifications-context';
+import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -104,10 +105,7 @@ export class Main extends React.Component {
   }
 
   renderLegacyPmNotification() {
-    const stack = this.controller.legacyPmNotificationStack;
-    if (stack == null) return null;
-
-    return <Stack key={stack.id} stack={stack} />;
+    return <LegacyPm />;
   }
 
   renderShowMore() {

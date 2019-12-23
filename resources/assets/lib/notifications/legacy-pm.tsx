@@ -16,19 +16,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Notification from './notification';
+import { observer } from 'mobx-react';
+import LegacyPmNotification from 'models/legacy-pm-notification';
+import { nameToIcons } from 'notification-maps/icons';
+import Item from 'notification-widget/item';
+import * as React from 'react';
 
-export default class LegacyPmNotification extends Notification {
-  details = {};
-  isRead = false;
-  name = 'legacy_pm';
-  objectId = -1;
+@observer
+export default class LegacyPm extends React.Component {
+  handleMarkAsRead: any;
+  render() {
+    const item = new LegacyPmNotification();
 
-  get count() {
-    return window?.currentUser?.unread_pm_count ?? 0;
-  }
-
-  constructor() {
-    super(-1, 'legacy_pm');
+    return (
+      <Item
+        icons={nameToIcons.legacy_pm}
+        item={item}
+        message={osu.transChoice('notifications.item.legacy_pm.legacy_pm.legacy_pm', item.count)}
+        modifiers={['one']}
+        url='/forum/ucp.php?i=pm&folder=inbox'
+        withCategory={true}
+        withCoverImage={true}
+      />
+    );
   }
 }

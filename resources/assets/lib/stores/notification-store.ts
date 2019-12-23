@@ -17,14 +17,12 @@
  */
 
 import { action, observable } from 'mobx';
-import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import NotificationStackStore from './notification-stack-store';
 import UnreadNotificationStackStore from './unread-notification-stack-store';
 
 export default class NotificationStore {
   @observable notifications = new Map<number, Notification>();
-  @observable pmNotification = new LegacyPmNotification();
   readonly stacks = new NotificationStackStore(this);
   readonly unreadStacks = new UnreadNotificationStackStore(this);
 

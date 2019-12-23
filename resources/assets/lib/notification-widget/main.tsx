@@ -20,6 +20,7 @@ import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import { Name, TYPES } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
+import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -159,10 +160,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private renderLegacyPmNotification() {
-    const stack = this.controller.legacyPmNotificationStack;
-    if (stack == null) return null;
-
-    return <Stack key={stack.id} stack={stack} />;
+    return <LegacyPm />;
   }
 
   private renderShowMore() {

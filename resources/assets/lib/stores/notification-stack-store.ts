@@ -33,19 +33,17 @@ import NotificationStore from './notification-store';
 
 @dispatchListener
 export default class NotificationStackStore implements DispatchListener {
+  @observable readonly legacyPm = new LegacyPmNotification();
   @observable readonly stacks = new Map<string, NotificationStack>();
   @observable readonly types = new Map<string | null, NotificationType>();
   private readonly resolver = new NotificationResolver();
 
-  constructor(protected notificationStore: NotificationStore) {
-    this.addLegacyPm();
-  }
+  constructor(protected notificationStore: NotificationStore) {}
 
   @action
   flushStore() {
     this.stacks.clear();
     this.types.clear();
-    this.addLegacyPm();
   }
 
   getOrCreateType(identity: NotificationIdentity) {
@@ -121,7 +119,6 @@ export default class NotificationStackStore implements DispatchListener {
     const cursorId = type?.cursor?.id ?? 0;
 
     for (const [, stack] of this.stacks) {
-      if (name === 'legacy_pm' && stack.isLegacyPm) yield stack;
       // don't include stacks that are past the cursor for the type
       // this is to prevent gaps in loaded stacks when switching filters
       if ((name == null || stack.type === name) && type?.cursor !== undefined && stack.first.id >= cursorId) yield stack;
@@ -133,21 +130,6 @@ export default class NotificationStackStore implements DispatchListener {
     bundle.types?.forEach((json) => this.updateWithTypeJson(json));
     bundle.stacks?.forEach((json) => this.updateWithStackJson(json));
     bundle.notifications?.forEach((json) => this.updateWithNotificationJson(json));
-  }
-
-  @action
-  private addLegacyPm() {
-    const notification = new LegacyPmNotification();
-    const stack = new NotificationStack(notification.id, notification.objectType, notification.category, this.resolver);
-    const type = new NotificationType(notification.name, this.resolver);
-
-    stack.add(notification);
-    stack.total = 1;
-    this.stacks.set(stack.id, stack);
-
-    type.stacks.set(stack.id, stack);
-    type.total = 1;
-    this.types.set(type.name, type);
   }
 
   private updateWithNotificationJson(json: NotificationJson) {

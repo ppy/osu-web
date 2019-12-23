@@ -16,12 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 
 export function formatMessage(item: Notification, compact: boolean = false) {
-  let message: string;
-
   const replacements = {
     content: item.details.content,
     title: item.details.title,
@@ -44,11 +41,5 @@ export function formatMessage(item: Notification, compact: boolean = false) {
     key = emptyKey;
   }
 
-  if (item instanceof LegacyPmNotification) {
-    message = osu.transChoice(key, item.details.count, replacements);
-  } else {
-    message = osu.trans(key, replacements);
-  }
-
-  return message;
+  return osu.trans(key, replacements);
 }
