@@ -83,11 +83,9 @@ export default class Main extends React.Component<Props, State> {
           >
             <div className='notification-popup__scroll-container'>
               {this.renderFilters()}
-
               <div className='notification-type-group__items notification-type-group__items--legacy_pm'>
-                {this.renderLegacyPmNotification()}
+                <LegacyPm />
               </div>
-
               <div className='notification-type-group__items'>
                 {this.renderStacks()}
                 {this.renderShowMore()}
@@ -159,10 +157,6 @@ export default class Main extends React.Component<Props, State> {
     );
   }
 
-  private renderLegacyPmNotification() {
-    return <LegacyPm />;
-  }
-
   private renderShowMore() {
     const type = this.controller.type;
 
@@ -182,7 +176,6 @@ export default class Main extends React.Component<Props, State> {
     }
 
     const nodes: React.ReactNode[] = [];
-
     for (const stack of this.controller.stacks) {
       if (!stack.hasVisibleNotifications) continue;
 
@@ -190,13 +183,11 @@ export default class Main extends React.Component<Props, State> {
     }
 
     if (nodes.length === 0) {
-      nodes.push(this.props.worker.hasMore ? (
-        <div key='empty-with-more' className='notification-popup__empty-with-more' />
-      ) : (
+      return (
         <p key='empty' className='notification-popup__empty'>
           {osu.trans('notifications.all_read')}
         </p>
-      ));
+      );
     }
 
     return nodes;

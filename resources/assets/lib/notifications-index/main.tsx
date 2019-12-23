@@ -91,7 +91,7 @@ export class Main extends React.Component {
           <div className='notification-index'>
             <div className='notification-popup__item'>
               <div className='notification-type-group__items notification-type-group__items--legacy_pm'>
-                {this.renderLegacyPmNotification()}
+                <LegacyPm />
               </div>
               <div className='notification-type-group__items'>
                 {this.renderStacks()}
@@ -102,10 +102,6 @@ export class Main extends React.Component {
         </div>
       </div>
     );
-  }
-
-  renderLegacyPmNotification() {
-    return <LegacyPm />;
   }
 
   renderShowMore() {
