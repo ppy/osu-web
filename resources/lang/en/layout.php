@@ -222,6 +222,7 @@ return [
             'modding-history-posts' => 'user modding posts',
             'modding-history-votesGiven' => 'user modding votes given',
             'modding-history-votesReceived' => 'user modding votes received',
+            'notifications-index' => 'notifications history',
             'oauth_login' => 'sign in for oauth',
             'oauth_request' => 'oauth authorisation',
             'settings' => 'Settings',

@@ -32,8 +32,8 @@ class NotificationsController extends Controller
     const PER_STACK_LIMIT = 5;
     const STACK_LIMIT = 50;
 
-    protected $section = 'notifications';
-    protected $actionPrefix = 'notifications_';
+    protected $section = 'user';
+    protected $actionPrefix = 'notifications-';
 
     public function __construct()
     {
