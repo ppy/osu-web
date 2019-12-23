@@ -53,9 +53,7 @@
                 </button>
             </div>
         </div>
-    </form>
 
-    <div class="osu-page">
         <div class="search">
             @include('home._search_page_tabs', compact('allSearch'))
 
@@ -78,5 +76,5 @@
                 </div>
             @endif
         </div>
-    </div>
+    </form>
 @endsection
