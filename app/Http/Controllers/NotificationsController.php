@@ -20,13 +20,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\NotificationReadEvent;
-use App\Libraries\MorphMap;
 use App\Libraries\NotificationsBundle;
-use App\Models\Notification;
 use App\Models\UserNotification;
-use Carbon\Carbon;
-use DB;
 
 /**
  * @group Notification
