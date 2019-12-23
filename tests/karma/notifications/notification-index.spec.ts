@@ -50,7 +50,7 @@ describe('Notification Index', () => {
     store.stacks.updateWithBundle(bundle);
   });
 
-  describe('/ when starting on All', () => {
+  describe('when starting on All', () => {
     let controller!: NotificationController;
     beforeEach(() => {
       controller = new NotificationController(store, { unreadOnly: false });
@@ -68,7 +68,7 @@ describe('Notification Index', () => {
       expect([...controller.stacks].length).toBe(1);
     });
 
-    describe('/ after loading more', () => {
+    describe('after loading more', () => {
       beforeEach(() => {
         const loadMoreBundle: NotificationBundleJson = {
           notifications: [identities[1]].map(toJson).map(makeNotificationJson),
@@ -90,7 +90,7 @@ describe('Notification Index', () => {
         expect([...controller.stacks].length).toBe(2);
       });
 
-      describe('/ change filter to Beatmapsets', () => {
+      describe('change filter to Beatmapsets', () => {
         beforeEach(() => {
           controller.navigateTo('beatmapset');
         });
@@ -106,7 +106,7 @@ describe('Notification Index', () => {
     });
   });
 
-  describe('/ when starting on Beatmapsets', () => {
+  describe('when starting on Beatmapsets', () => {
     let controller!: NotificationController;
     beforeEach(() => {
       controller = new NotificationController(store, { unreadOnly: false }, 'beatmapset');
@@ -124,7 +124,7 @@ describe('Notification Index', () => {
       expect([...controller.stacks].length).toBe(1);
     });
 
-    describe('/ after loading more', () => {
+    describe('after loading more', () => {
       beforeEach(() => {
         const loadMoreBundle: NotificationBundleJson = {
           notifications: [identities[1]].map(toJson).map(makeNotificationJson),
@@ -141,7 +141,7 @@ describe('Notification Index', () => {
         expect(store.notifications.size).toBe(2);
       });
 
-      describe('/ change filter to All', () => {
+      describe('change filter to All', () => {
         beforeEach(() => {
           controller.navigateTo(null);
         });

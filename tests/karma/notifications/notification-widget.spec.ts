@@ -87,7 +87,7 @@ describe('Notification Widget', () => {
       expect([...controller.stacks].length).toBe(2);
     });
 
-    describe('/ change filter to Beatmapsets', () => {
+    describe('change filter to Beatmapsets', () => {
       beforeEach(() => {
         controller.navigateTo('beatmapset');
       });

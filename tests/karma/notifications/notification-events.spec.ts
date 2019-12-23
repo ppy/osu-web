@@ -42,7 +42,7 @@ describe('Notification Events', () => {
   afterEach(() => dispatcher.listeners.clear());
 
   describe('on NotificationEventRead', () => {
-    describe('/ when single notification read', () => {
+    describe('when single notification read', () => {
       const identity = identities[0];
       const notificationJson = makeNotificationJson(toJson(identity));
 
@@ -71,7 +71,7 @@ describe('Notification Events', () => {
         expect(store.stacks.getStack(identity)).toBeDefined();
       });
 
-      describe('/ when unread notification has been loaded', () => {
+      describe('when unread notification has been loaded', () => {
         describe('when other stacks exist', () => {
           const extra = { ...stackIdentity, id: 1003, objectId: 2 };
           const bundle = { ...bundleBase } as NotificationBundleJson;
@@ -130,7 +130,7 @@ describe('Notification Events', () => {
         });
       });
 
-      describe('/ when unread notification has not been loaded yet', () => {
+      describe('when unread notification has not been loaded yet', () => {
         describe('read notification is after the cursor', () => {
           const unreadIdentity = { id: 500, ...stackIdentity };
           const unreadEventData = [unreadIdentity];
@@ -181,7 +181,7 @@ describe('Notification Events', () => {
       });
     });
 
-    describe('/ when multiple notifications read', () => {
+    describe('when multiple notifications read', () => {
       const bundleBase = {
         stacks: [makeStackJson(identities[0], 5, 'beatmapset_discussion_post_new', identities[0].id - 100)],
         types: [
@@ -205,7 +205,7 @@ describe('Notification Events', () => {
         store.stacks.updateWithBundle(bundleWithNotification);
       });
 
-      describe('/ when unread notifications have been loaded', () => {
+      describe('when unread notifications have been loaded', () => {
         beforeEach(() => {
           store.unreadStacks.updateWithBundle(bundleWithNotification);
 
@@ -244,7 +244,7 @@ describe('Notification Events', () => {
         });
       });
 
-      describe('/ when some unread notifications have not been loaded yet', () => {
+      describe('when some unread notifications have not been loaded yet', () => {
         // id needs to be less than cursor too.
         const unreadIdentity = { id: 500, objectType: 'beatmapset', objectId: 1, category: 'beatmapset_discussion' };
         const identity = identities[0];
@@ -272,7 +272,7 @@ describe('Notification Events', () => {
       });
     });
 
-    describe('/ when notification stack read', () => {
+    describe('when notification stack read', () => {
       const stackSize = identities.length;
       const typeSize = 5;
 
@@ -298,7 +298,7 @@ describe('Notification Events', () => {
         store = new NotificationStore();
       });
 
-      describe('/ when stack has all notifications loaded', () => {
+      describe('when stack has all notifications loaded', () => {
         beforeEach(() => {
           store.stacks.updateWithBundle(bundleWithNotification);
           store.unreadStacks.updateWithBundle(bundleWithNotification);
@@ -329,7 +329,7 @@ describe('Notification Events', () => {
         });
       });
 
-      describe('/ when stack has some notifications loaded', () => {
+      describe('when stack has some notifications loaded', () => {
         beforeEach(() => {
           store.stacks.updateWithBundle(bundleWithNotification);
 
@@ -364,7 +364,7 @@ describe('Notification Events', () => {
         });
       });
 
-      describe('/ when stack has not been loaded yet', () => {
+      describe('when stack has not been loaded yet', () => {
         beforeEach(() => {
           store.stacks.updateWithBundle(bundleWithNotification);
 
@@ -420,7 +420,7 @@ describe('Notification Events', () => {
       store = new NotificationStore();
     });
 
-    describe('/ all notifications', () => {
+    describe('all notifications', () => {
       beforeEach(() => {
         dispatch(new NotificationEventMoreLoaded(bundle, { unreadOnly: false } ));
       });
@@ -449,7 +449,7 @@ describe('Notification Events', () => {
       });
     });
 
-    describe('/ only unread notifications', () => {
+    describe('only unread notifications', () => {
       beforeEach(() => {
         dispatch(new NotificationEventMoreLoaded(bundle, { unreadOnly: true } ));
       });
