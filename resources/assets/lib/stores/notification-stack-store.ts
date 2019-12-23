@@ -27,7 +27,7 @@ import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType, { Name as NotificationTypeName  } from 'models/notification-type';
 import { nameToCategory } from 'notification-maps/category';
 import { NotificationEventMoreLoaded, NotificationEventNew, NotificationEventRead } from 'notifications/notification-events';
-import { NotificationIdentity, resolveStackId, resolveIdentityType } from 'notifications/notification-identity';
+import { NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
 import { NotificationResolver } from 'notifications/notification-resolver';
 import NotificationStore from './notification-store';
 
