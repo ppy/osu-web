@@ -59,12 +59,8 @@ export default class Item extends React.Component<Props> {
 
   private blockClass() {
     const modifiers = [...this.props.modifiers, this.props.item.category];
-    if (this.props.canMarkAsRead) {
-
-    } else {
-      if (this.props.item.isRead) {
-        modifiers.push('read');
-      }
+    if (this.props.item.isRead && !this.props.canMarkAsRead) {
+      modifiers.push('read');
     }
 
     return `clickable-row ${osu.classWithModifiers('notification-popup-item', modifiers)}`;
