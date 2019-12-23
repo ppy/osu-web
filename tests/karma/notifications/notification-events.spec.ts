@@ -72,6 +72,32 @@ describe('Notification Events', () => {
       });
 
       describe('/ when unread notification has been loaded', () => {
+        describe('when other stacks exist', () => {
+          const extra = { ...stackIdentity, id: 1003, objectId: 2 };
+          const bundle = { ...bundleBase } as NotificationBundleJson;
+
+          bundle.stacks?.push(makeStackJson(extra, 5, 'beatmapset_discussion_post_new', identity.id - 100))
+          bundle.notifications = [
+            makeNotificationJson(toJson(identity)),
+            makeNotificationJson(toJson(extra)),
+          ];
+
+          beforeEach(() => {
+            store.unreadStacks.updateWithBundle(bundle);
+
+            const event = new NotificationEventRead([identity], 1);
+            dispatch(event);
+          });
+
+          it('does not mark the other stack as read', () => {
+            const stack = store.unreadStacks.getStack(extra);
+            expect(stack).toBeDefined();
+            if (stack != null) {
+              expect([...stack?.notifications.values()].find((notification) => notification.isRead)).toBeUndefined();
+            }
+          });
+        });
+
         beforeEach(() => {
           store.unreadStacks.updateWithBundle(bundleWithNotification);
 
