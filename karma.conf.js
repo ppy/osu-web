@@ -48,7 +48,7 @@ function readWebpackConfig() {
 }
 
 webpackConfig = readWebpackConfig();
-// webpackConfig['plugins'].push(new ExitOnErrorWebpackPlugin());
+webpackConfig['plugins'].push(new ExitOnErrorWebpackPlugin());
 webpackConfig['mode'] = 'development';
 webpackConfig['devtool'] = 'inline-source-map';
 delete webpackConfig.optimization; // karma doesn't work with splitChunks...or runtimeChunk
