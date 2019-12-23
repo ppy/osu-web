@@ -156,10 +156,6 @@ class RankingController extends Controller
             if (is_api_request()) {
                 $stats->with(['user.userProfileCustomization']);
             }
-
-            if (is_api_request()) {
-                $stats->with(['user.userProfileCustomization']);
-            }
         }
 
         $maxResults = $this->maxResults($modeInt);
