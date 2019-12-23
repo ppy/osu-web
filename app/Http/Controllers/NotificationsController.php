@@ -29,8 +29,6 @@ use App\Models\UserNotification;
 class NotificationsController extends Controller
 {
     const LIMIT = 51;
-    const PER_STACK_LIMIT = 5;
-    const STACK_LIMIT = 50;
 
     protected $section = 'user';
     protected $actionPrefix = 'notifications-';

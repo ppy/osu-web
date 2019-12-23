@@ -27,7 +27,7 @@ use DB;
 
 class NotificationsBundle
 {
-    const PER_STACK_LIMIT = 5;
+    const PER_STACK_LIMIT = 50;
     const STACK_LIMIT = 50;
 
     private $category;
