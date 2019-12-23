@@ -29,17 +29,14 @@ import { UserAvatar } from 'user-avatar';
 import { ChatChannelSwitchAction } from '../actions/chat-actions';
 import DispatcherAction from '../actions/dispatcher-action';
 import DispatchListener from '../dispatch-listener';
-import Dispatcher from '../dispatcher';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
 interface Props {
   dataStore?: RootDataStore;
-  dispatcher?: Dispatcher;
 }
 
 @inject('dataStore')
-@inject('dispatcher')
 @observer
 export default class ConversationView extends React.Component<Props> implements DispatchListener {
   private assumeHasBacklog: boolean = false;
@@ -52,7 +49,6 @@ export default class ConversationView extends React.Component<Props> implements 
     super(props);
 
     this.dataStore = props.dataStore!;
-    props.dispatcher!.register(this);
   }
 
   componentDidMount() {
