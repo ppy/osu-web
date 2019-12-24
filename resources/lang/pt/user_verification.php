@@ -21,8 +21,8 @@
 return [
     'box' => [
         'sent' => 'Um email foi enviado para :mail com um código de verificação. Introduz o código.',
-        'title' => 'Verificação de Conta',
-        'verifying' => 'A Verificar...',
+        'title' => 'Verificação da conta',
+        'verifying' => 'A verificar...',
         'issuing' => 'A emitir o novo código...',
 
         'info' => [
@@ -36,10 +36,10 @@ return [
     ],
 
     'errors' => [
-        'expired' => 'Código de verificação expirado, novo email de verificação enviado.',
+        'expired' => 'O código de verificação está expirado, um novo email de verificação foi enviado.',
         'incorrect_key' => 'Código de verificação incorreto.',
-        'retries_exceeded' => 'Código de verificação incorreto. Limite de tentativas excedido, novo email de verificação enviado.',
-        'reissued' => 'Código de verificação reenviado, novo email de verificação enviado.',
-        'unknown' => 'Ocorreu um problema desconhecido, novo email de verificação enviado.',
+        'retries_exceeded' => 'Código de verificação incorreto. O limite de tentativas foi excedido, um novo email de verificação foi enviado.',
+        'reissued' => 'Código de verificação reenviado, um novo email de verificação foi enviado.',
+        'unknown' => 'Ocorreu um problema desconhecido, um novo email de verificação foi enviado.',
     ],
 ];

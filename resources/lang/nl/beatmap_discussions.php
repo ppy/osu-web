@@ -78,8 +78,8 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'Bekijk Review Post',
+        'go_to_child' => 'Bekijk discussie',
     ],
 
     'system' => [
@@ -90,8 +90,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'algemeen',
+        'general_all' => 'algemeen (alles)',
     ],
 
     'user_filter' => [

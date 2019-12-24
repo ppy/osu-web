@@ -25,6 +25,7 @@ return [
             'regenerating' => '재생성 중...',
             'remove' => '제거',
             'removing' => '제거 중...',
+            'title' => '',
         ],
         'show' => [
             'covers' => '비트맵셋 표지 관리',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => '관리자 콘솔 같은거',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => '포럼',
                 'general' => '일반',
                 'store' => '상점',

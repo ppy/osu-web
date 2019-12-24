@@ -25,7 +25,7 @@ return [
         'authorise' => 'Autorizar',
         'request' => 'está a solicitar permissão para aceder à tua conta.',
         'scopes_title' => 'Esta aplicação será capaz de:',
-        'title' => 'Pedido de Autorização',
+        'title' => 'Pedido de autorização',
 
         'wrong_user' => [
             '_' => 'Estás autenticado como :user. :logout_link.',
@@ -37,19 +37,19 @@ return [
         'confirm_revoke' => 'Tens a certeza de que desejas revogar as permissões deste cliente?',
         'scopes_title' => 'Esta aplicação pode:',
         'owned_by' => 'Proprietário de :user',
-        'none' => 'Sem Clientes',
+        'none' => 'Sem clientes',
 
         'revoked' => [
-            'false' => 'Revogar Acesso',
-            'true' => 'Acesso Revogado',
+            'false' => 'Revogar acesso',
+            'true' => 'Acesso revogado',
         ],
     ],
 
     'client' => [
-        'id' => 'ID do Cliente',
-        'name' => 'Nome da Aplicação',
-        'redirect' => 'URL da Rechamada da Aplicação',
-        'secret' => 'Segredo do Cliente',
+        'id' => 'ID do cliente',
+        'name' => 'Nome da aplicação',
+        'redirect' => 'URL da recolha da aplicação',
+        'secret' => 'Segredo do cliente',
     ],
 
     'new_client' => [
@@ -57,14 +57,14 @@ return [
         'register' => 'Aplicação de registo',
         'terms_of_use' => [
             '_' => 'Ao usares a API, estás a aceitar o que está neste :link.',
-            'link' => 'Termos de Uso',
+            'link' => 'Termos de uso',
         ],
     ],
 
     'own_clients' => [
         'confirm_delete' => 'Tens a certeza que queres eliminar este cliente?',
-        'new' => 'Nova Aplicação OAuth',
-        'none' => 'Sem Clientes',
+        'new' => 'Nova aplicação OAuth',
+        'none' => 'Sem clientes',
 
         'revoked' => [
             'false' => 'Eliminar',

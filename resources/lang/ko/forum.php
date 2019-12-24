@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => '구독한 주제글',
             'title_compact' => '구독',
-            'title_main' => '포럼 <strong>구독</strong>',
 
             'box' => [
                 'total' => '구독한 주제글',

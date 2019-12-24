@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Konto</strong> Inställningar',
         'title_compact' => 'inställningar',
         'username' => 'användarnamn',
 

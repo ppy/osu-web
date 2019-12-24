@@ -23,7 +23,7 @@ return [
     'talking_in' => '在 :channel 中聊天',
     'talking_with' => '与 :name 聊天',
     'title_compact' => '聊天',
-    'title' => '聊天',
+
     'cannot_send' => [
         'channel' => '现在无法向该频道发送消息，这可能是由于以下原因：',
         'user' => '现在不能向该玩家发送消息，这可能是由于以下原因：',

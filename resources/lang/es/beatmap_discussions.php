@@ -79,7 +79,7 @@ return [
 
     'review' => [
         'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_child' => 'Ver discusión',
     ],
 
     'system' => [
@@ -90,8 +90,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'general',
+        'general_all' => 'general (todo)',
     ],
 
     'user_filter' => [

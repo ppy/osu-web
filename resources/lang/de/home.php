@@ -120,8 +120,6 @@ return [
             'error' => 'News konnten nicht geladen werden. Versuche, die Seite neu zu laden...?',
         ],
         'header' => [
-            'welcome' => 'Hallo, <strong>:username</strong>!',
-            'messages' => 'Du hast 1 neue Nachricht|Du hast :count neue Nachrichten',
             'stats' => [
                 'friends' => 'Freunde online',
                 'games' => 'Mehrspielerräume',

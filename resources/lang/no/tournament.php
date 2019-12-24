@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Registrering: :start til :end',
 
         'header' => [
-            'subtitle' => 'En liste over aktive, offisielt-anerkjente turneringer',
             'title' => 'Fellesskapsturnering',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Avbryt Registrering',
             'register' => 'Registrer meg!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

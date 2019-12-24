@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Nulstil Adgangskode',
-
     'button' => [
         'cancel' => 'Annuller',
         'resend' => 'Gensend Bekræftelsesemail',
@@ -53,8 +51,8 @@ return [
         'username' => 'Indtast email-adresse eller brugernavn',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Har du brug for yderligere assistance? Kontakt os via vores :button.',
+            'button' => 'support system',
         ],
     ],
 ];

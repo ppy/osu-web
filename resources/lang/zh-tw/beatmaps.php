@@ -98,7 +98,7 @@ return [
         'mode' => [
             'events' => '歷史',
             'general' => '整體:scope',
-            'reviews' => '',
+            'reviews' => '評論',
             'timeline' => '時間線',
             'scopes' => [
                 'general' => '目前難度',

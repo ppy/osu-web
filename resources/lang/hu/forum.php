@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Fórum Feliratkozások',
             'title_compact' => 'fórum feliratkozások',
-            'title_main' => 'Fórum <strong>Feliratkozások</strong>',
 
             'box' => [
                 'total' => 'Követett témák',

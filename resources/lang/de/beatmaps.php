@@ -98,7 +98,7 @@ return [
         'mode' => [
             'events' => 'Geschichte',
             'general' => 'Allgemein',
-            'reviews' => '',
+            'reviews' => 'Rezensionen',
             'timeline' => 'Timeline',
             'scopes' => [
                 'general' => 'Diese Schwierigkeitsstufe',

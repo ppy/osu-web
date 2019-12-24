@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Återställ Lösenord',
-
     'button' => [
         'cancel' => 'Avbryt',
         'resend' => 'Skicka bekräftelsemail igen',

@@ -33,7 +33,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Udvalgte kunstnere er kunstnere, som vi samarbejder med for at skabe nyt og originalt musik til osu!. Disse kunstnere og et udvalg af deres sange er blevet specielt udvalgt af osu! teamet for at være gode og være egnet til at blive mappet. Nogle af de udvalgte kunstnere har også skabt eksklusive nye sange bare for at kunne blive brugt i osu!.<br><br>Alle sange i denne sektion er fremskaffede som "pre-timed" .osz filer og er blevet officielt licenseret til brug i osu! og osu!-relateret indhold.',
+        'description' => 'Udvalgte kunstnere er kunstnere, som vi samarbejder med for at bringe nyt og originalt musik til osu!. Disse kunstnere og et udvalg af deres sange er blevet valgt af osu! teamet for at være specielt gode og egnede til at blive mappet. Nogle af de udvalgte kunstnere har også skabt nye eksklusive sange til brug i osu!.<br><br>Alle sange i denne sektion er leveret som "pre-timed" .osz filer og er blevet officielt licenseret til brug i osu! og osu!-relateret indhold.',
     ],
 
     'links' => [
@@ -44,7 +44,7 @@ return [
     'songs' => [
         '_' => 'Sange',
         'count' => ':count_delimited sang|:count_delimited sange',
-        'exclusive' => 'osu! exklusive',
+        'exclusive' => 'osu! eksklusiv',
     ],
 
     'tracklist' => [

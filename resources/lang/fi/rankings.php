@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type tilastot',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Suorituskyky',

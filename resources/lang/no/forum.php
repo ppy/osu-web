@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Abonnementer',
             'title_compact' => 'forum abonnementer',
-            'title_main' => 'Forum <strong>Abonnementer</strong>',
 
             'box' => [
                 'total' => 'Abonnerte emner',

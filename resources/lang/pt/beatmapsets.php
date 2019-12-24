@@ -21,12 +21,12 @@
 return [
     'availability' => [
         'disabled' => 'Este beatmap não está disponível atualmente para transferência.',
-        'parts-removed' => 'Porções deste beatmap foram removidas a pedido do criador ou dum titular de direitos de terceiros.',
+        'parts-removed' => 'Algumas porções deste beatmap foram removidas a pedido do criador ou dum titular de direitos de terceiros.',
         'more-info' => 'Clica aqui para mais informações.',
     ],
 
     'index' => [
-        'title' => 'Listagem de Beatmaps',
+        'title' => 'Listagem de beatmaps',
         'guest_title' => 'Beatmaps',
     ],
 
@@ -49,13 +49,13 @@ return [
             'download' => [
                 '_' => 'Descarregar',
                 'direct' => '',
-                'no-video' => 'sem Vídeo',
-                'video' => 'com Vídeo',
+                'no-video' => 'sem vídeo',
+                'video' => 'com vídeo',
             ],
 
             'login_required' => [
                 'bottom' => 'para aceder a mais funcionalidades',
-                'top' => 'Iniciar Sessão',
+                'top' => 'Iniciar sessão',
             ],
         ],
 
@@ -77,13 +77,13 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
-                'button_title' => '',
+                '_' => 'Se encontrares um problema com este beatmap, por favor desqualifica-o :link.',
+                'button_title' => 'Desqualificar um beatmap qualificado.',
             ],
 
             'report' => [
                 '_' => 'Se encontrares um problema com este beatmap, por favor transmite-o :link para avisar a equipa.',
-                'button' => 'Relatar Problema',
+                'button' => 'Relatar problema',
                 'button_title' => 'Relatar um problema num beatmap qualificado.',
                 'link' => 'aqui',
             ],
@@ -92,33 +92,33 @@ return [
         'info' => [
             'description' => 'Descrição',
             'genre' => 'Género',
-            'language' => 'Linguagem',
+            'language' => 'Língua',
             'no_scores' => 'Os dados ainda estão a ser calculados...',
-            'points-of-failure' => 'Pontos de Falha',
+            'points-of-failure' => 'Pontos de falha',
             'source' => 'Fonte',
-            'success-rate' => 'Taxa de Sucesso',
+            'success-rate' => 'Taxa de sucesso',
             'tags' => 'Etiquetas',
             'unranked' => 'Beatmap sem classificação',
         ],
 
         'scoreboard' => [
             'achieved' => 'conseguido :when',
-            'country' => 'Classificação Nacional',
-            'friend' => 'Classificação de Amigos',
-            'global' => 'Classificação Global',
-            'supporter-link' => 'Clica <a href=":link">aqui</a> para ver todas as funcionalidades chiques que obténs!',
-            'supporter-only' => 'Precisas de ser um apoiante para ter acesso às classificações de amigos e nacional!',
-            'title' => 'Tabela de Pontuações',
+            'country' => 'Classificação nacional',
+            'friend' => 'Classificação de amigos',
+            'global' => 'Classificação global',
+            'supporter-link' => 'Clica <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obténs!',
+            'supporter-only' => 'Precisas de ser um osu!supporter para ter acesso às classificações de amigos e nacional!',
+            'title' => 'Tabela de pontuações',
 
             'headers' => [
                 'accuracy' => 'Precisão',
-                'combo' => 'Combo Máximo',
+                'combo' => 'Combo máximo',
                 'miss' => 'Erros',
                 'mods' => 'Mods',
                 'player' => 'Jogador',
                 'pp' => '',
                 'rank' => 'Posição',
-                'score_total' => 'Pontuação Total',
+                'score_total' => 'Pontuação total',
                 'score' => 'Pontuação',
             ],
 
@@ -130,36 +130,36 @@ return [
                 'unranked' => 'Beatmap sem classificação.',
             ],
             'score' => [
-                'first' => 'Na Liderança',
-                'own' => 'A Tua Melhor',
+                'first' => 'Na liderança',
+                'own' => 'A tua melhor',
             ],
         ],
 
         'stats' => [
-            'cs' => 'Tamanho do Círculo',
-            'cs-mania' => 'Quantidade de Teclas',
-            'drain' => 'HP Drenado',
+            'cs' => 'Tamanho do círculo',
+            'cs-mania' => 'Quantidade de teclas',
+            'drain' => 'HP drenado',
             'accuracy' => 'Precisão',
-            'ar' => 'Taxa de Aproximação',
-            'stars' => 'Dificuldade Estrela',
+            'ar' => 'Taxa de aproximação',
+            'stars' => 'Dificuldade estrela',
             'total_length' => 'Duração',
             'bpm' => 'BPM',
-            'count_circles' => 'Número de Círculos',
-            'count_sliders' => 'Número de Deslizadores',
-            'user-rating' => 'Classificação de Utilizador',
-            'rating-spread' => 'Avaliação Dispersada',
+            'count_circles' => 'Número de círculos',
+            'count_sliders' => 'Número de deslizadores',
+            'user-rating' => 'Classificação de utilizador',
+            'rating-spread' => 'Avaliação dispersada',
             'nominations' => 'Nomeações',
-            'playcount' => 'Número de Partidas',
+            'playcount' => 'Número de partidas',
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Classificado',
+            'approved' => 'Aprovado',
+            'loved' => 'Adorado',
+            'qualified' => 'Qualificado',
+            'wip' => 'Trabalho em progresso',
+            'pending' => 'Pendente',
+            'graveyard' => 'Cemitério',
         ],
     ],
 ];

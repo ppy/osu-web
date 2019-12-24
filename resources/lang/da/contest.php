@@ -21,10 +21,10 @@
 return [
     'header' => [
         'small' => 'Konkurrér på flere måder end bare at klikke på cirkler.',
-        'large' => 'Fællesskabsturnerninger',
+        'large' => 'Fællesskabs-turnerninger',
     ],
     'voting' => [
-        'over' => 'Afstemning for denne konkurrence er sluit',
+        'over' => 'Afstemning for denne konkurrence er slut',
         'login_required' => 'Log venligst ind for at stemme.',
 
         'best_of' => [

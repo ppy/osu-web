@@ -44,11 +44,6 @@ return [
             '_stream_to' => 'endringer i :stream opp til :to',
             '_to' => 'endringer opp til :to',
         ],
-
-        'title' => [
-            '_' => 'Endringslogg :info',
-            'info' => 'Oversikt',
-        ],
     ],
 
     'support' => [

@@ -24,7 +24,6 @@ return [
         'registration_period' => '参加登録期間: :start から :end',
 
         'header' => [
-            'subtitle' => '公認トーナメントのリスト',
             'title' => 'コミュニティトーナメント',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => '登録をキャンセル',
             'register' => '登録申請する！',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

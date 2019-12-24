@@ -21,35 +21,35 @@
 return [
     'header' => [
         'title' => 'estado',
-        'description' => 'como é que é meu?',
+        'description' => 'como é que é, meu?',
     ],
 
     'incidents' => [
-        'title' => 'Incidentes Ativos',
+        'title' => 'Incidentes ativos',
         'automated' => 'automatizado',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Utilizadores Online nas últimas 24 Horas',
-            'score' => 'Submissões de Pontuação nas últimas 24 Horas',
+            'users' => 'Utilizadores online nas últimas 24 horas',
+            'score' => 'Submissões de pontuação nas últimas 24 horas',
         ],
-        'current' => 'Utilizadores Online Atuais',
-        'score' => 'Submissões de Pontuação por Segundo',
+        'current' => 'Utilizadores online atuais',
+        'score' => 'Submissões de pontuação por segundo',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Incidentes Recentes',
+            'title' => 'Incidentes recentes',
             'state' => [
-                'resolved' => 'Solucionados',
-                'resolving' => 'A Solucionar',
+                'resolved' => 'Resolvidos',
+                'resolving' => 'A resolver',
                 'unknown' => 'Desconhecido',
             ],
         ],
 
         'uptime' => [
-            'title' => 'Tempo Ativo',
+            'title' => 'Tempo ativo',
             'graphs' => [
                 'server' => 'servidor',
                 'web' => 'web',

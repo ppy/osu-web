@@ -19,21 +19,12 @@
  */
 
 return [
+    'title_compact' => 'vrienden',
+    'too_many' => 'Vrienden limiet bereikt.',
+
     'buttons' => [
       'add' => 'voeg vriend toe',
       'disabled' => 'vrienden',
       'remove' => 'verwijder vriend',
     ],
-
-    'index' => [
-        'title' => [
-            '_' => 'Home :info',
-            'info' => 'Vrienden',
-        ],
-    ],
-
-    'title' => 'Vrienden',
-    'title_compact' => 'vrienden',
-
-    'too_many' => 'Vrienden limiet bereikt.',
 ];

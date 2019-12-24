@@ -79,37 +79,37 @@ return [
 
             'tos' => [
                 '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                'community_rules' => '社群規則',
+                'tos' => '服務條款',
             ],
         ],
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "你的帳號已經一段時間沒有登入了",
         ],
     ],
 
     'login' => [
         '_' => '登入',
-        'email_login_disabled' => '',
-        'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
-        'username' => '使用者名稱',
-        'password' => '密碼',
         'button' => '登入',
         'button_posting' => '登入中...',
+        'email_login_disabled' => '目前沒辦法使用Email登入了，請使用使用者名稱登入。',
+        'failed' => '登入失敗',
+        'forgot' => '忘記密碼？',
+        'info' => '',
+        'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
+        'password' => '密碼',
+        'register' => "沒有 osu! 帳號嗎？現在就註冊一個吧！",
         'remember' => '記住我這台裝置',
         'title' => '登入以繼續',
-        'failed' => '登入失敗',
-        'register' => "沒有 osu! 帳號嗎？現在就註冊一個吧！",
-        'forgot' => '忘記密碼？',
+        'username' => '使用者名稱',
+
         'beta' => [
             'main' => 'Beta 版僅限於特定使用者存取',
             'small' => '(osu!贊助者將在不久後開放)',
         ],
-
-        'here' => '這裡', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -361,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => ':info 玩家',
-            'info' => '資訊',
         ],
 
         'info' => [

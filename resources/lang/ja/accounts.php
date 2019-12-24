@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>アカウント</strong>設定',
         'title_compact' => '設定',
         'username' => 'ユーザー名',
 
@@ -70,9 +69,9 @@ return [
         'beatmapset_discussion_qualified_problem' => '次のモードのQualifiedビートマップで新しい問題の通知を受け取る',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => '次のメール通知を受け取る：',
+            'beatmapset:modding' => 'ビートマップmodding',
+            'forum_topic_reply' => 'トピックの返信',
         ],
     ],
 

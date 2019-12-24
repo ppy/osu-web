@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Seuraat näiden beatmappien keskusteluja. Sinulle huomautetaan uusista viesteistä ja päivityksistä.',
         'title_compact' => 'modiseuranta',
-        'title_main' => 'Modiseuranta',
 
         'table' => [
             'empty' => 'Ei seurattuja keskusteluja.',

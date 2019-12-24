@@ -25,7 +25,4 @@ return [
 
         'link' => 'trang wiki về live stream',
     ],
-    'headers' => [
-        'regular' => 'Những livestream đang phát sóng',
-    ],
 ];

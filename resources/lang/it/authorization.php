@@ -20,7 +20,7 @@
 
 return [
     'require_login' => 'Per favore effettua il login per poter procedere.',
-    'require_verification' => '',
+    'require_verification' => 'Per favore, esegui la verifica prima di procedere.',
     'restricted' => "Non puoi farlo mentre sei limitato.",
     'silenced' => "Non puoi farlo mentre sei silenziato.",
     'unauthorized' => 'Accesso Negato.',
@@ -31,7 +31,7 @@ return [
             'has_reply' => 'Impossibile eliminare una discussione con risposte',
         ],
         'nominate' => [
-            'exhausted' => 'Hai raggiunto il limite di nominazioni per questa giornata, per favore riprova domani.',
+            'exhausted' => 'Hai raggiunto il limite di nomine per questa giornata, per favore riprova domani.',
             'full_bn_required' => 'Devi essere un nominatore completo per eseguire questa nomina di qualifica.',
             'full_bn_required_hybrid' => 'Devi essere un nominatore completo per nominare dei set di beatmap con più di una modalità di gioco.',
             'incorrect_state' => 'Errore nell\'eseguire questa azione, prova a ricaricare la pagina.',
@@ -97,7 +97,7 @@ return [
             'delete' => [
                 'only_last_post' => 'Solo l\'ultimo post può essere eliminato.',
                 'locked' => 'Non puoi eliminare i post di un topic bloccato.',
-                'no_forum_access' => 'È necessario accedere al forum richiesto.',
+                'no_forum_access' => 'È richiesto l\'accesso al forum.',
                 'not_owner' => 'Solo l\'autore del post lo può eliminare.',
             ],
 

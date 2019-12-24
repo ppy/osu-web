@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => '',
-
+            'comments' => '',
             'forum' => '',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => 'галоўная',
             'account-edit' => 'налады',
             'account-verifyLink' => 'Пацверджанне завершана',
-            'friends-index' => 'сябры',
-            'changelog-index' => 'спic змен',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'зборка',
+            'changelog-index' => 'спic змен',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'сябры',
             'getDownload' => 'спампаваць',
             'getIcons' => 'іконкі',
             'groups-show' => 'суполкі',
@@ -59,6 +133,7 @@ return [
             'search' => 'пошук',
             'supportTheGame' => 'падтрымаць гульню',
             'team' => 'каманда',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => '',
@@ -78,7 +153,6 @@ return [
             'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'допісы ў абмеркаваннях бітмап',
             'beatmap_discussions-index' => 'абмеркаванні бітмап',
-            'beatmapset-watches-index' => 'падпіскі на бітмапы',
             'beatmapset_discussion_votes-index' => 'галасы ў абмеркаванні бітмап',
             'beatmapset_events-index' => 'падзеі бітмапы',
             'index' => 'спіс',
@@ -112,7 +186,6 @@ return [
             'tournaments' => 'турніры',
             'tournaments-index' => 'турніры',
             'tournaments-show' => 'звесткі пра турнір',
-            'forum-topic-watches-index' => 'падпіскі',
             'forum-topics-create' => 'форумы',
             'forum-topics-show' => 'форумы',
             'forum-forums-index' => 'форумы',

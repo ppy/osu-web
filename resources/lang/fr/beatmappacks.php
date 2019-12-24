@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Collection de beatmaps basées sur un thème',
+        'nav_title' => '',
+        'title' => 'Collections de Beatmaps',
+
         'blurb' => [
             'important' => 'LISEZ CECI AVANT DE TÉLÉCHARGER',
             'instruction' => [
@@ -34,12 +38,9 @@ return [
                 'scary' => 'télécharger les collections de la plus récente à la plus ancienne',
             ],
         ],
-        'title' => 'Collections de Beatmaps',
-        'description' => 'Collection de beatmaps basées sur un thème',
     ],
 
     'show' => [
-        'back' => 'Retour à la liste',
         'download' => 'Télécharger',
         'item' => [
             'cleared' => 'terminé',

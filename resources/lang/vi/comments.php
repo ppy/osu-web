@@ -49,10 +49,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Bình luận :info',
-            'info' => 'Danh Sách',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +59,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Bình luận :info',
-            'info' => 'Chi tiết',
-        ],
+        'nav_title' => '',
     ],
 ];

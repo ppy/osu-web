@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Passwort zurücksetzen',
-
     'button' => [
         'cancel' => 'Abbrechen',
         'resend' => 'Bestätigungsmail erneut senden',

@@ -19,21 +19,12 @@
  */
 
 return [
+    'title_compact' => '好友',
+    'too_many' => '好友数量达到最大限制。',
+
     'buttons' => [
       'add' => '添加好友',
       'disabled' => '好友',
       'remove' => '删除好友',
     ],
-
-    'index' => [
-        'title' => [
-            '_' => '主页 :info',
-            'info' => '好友',
-        ],
-    ],
-
-    'title' => '好友',
-    'title_compact' => '好友',
-
-    'too_many' => '好友数量达到最大限制。',
 ];

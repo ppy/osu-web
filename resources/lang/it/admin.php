@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Rigenerando...',
             'remove' => 'Rimuovi',
             'removing' => 'Rimuovendo...',
+            'title' => '',
         ],
         'show' => [
             'covers' => '',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Console degli Amministratori',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => 'Forum',
                 'general' => 'Generale',
                 'store' => 'Negozio',

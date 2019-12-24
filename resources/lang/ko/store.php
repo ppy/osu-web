@@ -66,7 +66,7 @@ return [
     'discount' => ':percent% 절약 가능',
 
     'invoice' => [
-        'echeck_delay' => 'eCheck로 결제하셧다면 10일까지 PayPal을 통해 결재할 수 있도록 허용해주세요.',
+        'echeck_delay' => 'eCheck로 결제하셨다면 10일까지 PayPal을 통해 결제할 수 있도록 허용해주세요.',
         'status' => [
             'processing' => [
                 'title' => '당신의 결제가 아직 확인되지 않았습니다!',

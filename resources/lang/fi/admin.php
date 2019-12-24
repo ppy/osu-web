@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Luodaan uudelleen...',
             'remove' => 'Poista',
             'removing' => 'Poistetaan...',
+            'title' => '',
         ],
         'show' => [
             'covers' => 'Hallitse rytmikarttojen kansia',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Hallintakonsolin juttu',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => 'Foorumi',
                 'general' => 'Yleinen',
                 'store' => 'Kauppa',

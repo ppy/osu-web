@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'Komunita',
-
+            'comments' => '',
             'forum' => 'Fórum',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => 'domů',
             'account-edit' => 'nastavení',
             'account-verifyLink' => '',
-            'friends-index' => 'přátelé',
-            'changelog-index' => 'seznam změn',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'sestavení',
+            'changelog-index' => 'seznam změn',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'přátelé',
             'getDownload' => 'stáhnout',
             'getIcons' => 'ikony',
             'groups-show' => 'skupiny',
@@ -59,6 +133,7 @@ return [
             'search' => 'hledat',
             'supportTheGame' => 'podpoř hru',
             'team' => 'tým',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => 'profil',
@@ -78,7 +153,6 @@ return [
             'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'příspěvky diskuze o beatmapě',
             'beatmap_discussions-index' => 'diskuze o beatmapě',
-            'beatmapset-watches-index' => 'sledování moddingu',
             'beatmapset_discussion_votes-index' => 'diskuzní hlasování beatmap',
             'beatmapset_events-index' => 'eventy beatmapsetů',
             'index' => 'výpis',
@@ -112,7 +186,6 @@ return [
             'tournaments' => 'turnaje',
             'tournaments-index' => 'turnaje',
             'tournaments-show' => 'Turnajové body',
-            'forum-topic-watches-index' => 'Předplatné',
             'forum-topics-create' => 'fórum',
             'forum-topics-show' => 'fórum',
             'forum-forums-index' => 'fórum',

@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => 'Clasificación por :type',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Rendimiento',

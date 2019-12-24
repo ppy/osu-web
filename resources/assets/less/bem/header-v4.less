@@ -140,11 +140,19 @@
       .large() {
         @media @desktop {
           min-height: 450px;
+
+          .@{_top}--restricted & {
+            min-height: 450px;
+          }
         }
       }
 
       @media @desktop {
         height: (@nav2-height + 70px);
+
+        .@{_top}--restricted & {
+          height: (@nav2-height + 70px + 70px);
+        }
       }
 
       .@{_top}--download & {
@@ -261,7 +269,7 @@
     .center-content();
     .full-size();
     font-size: 60px;
-    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
+    background-color: osu-hsla(@osu-colour-b6, 0.5);
     color: @osu-colour-c1;
     display: none;
 

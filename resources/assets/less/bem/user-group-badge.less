@@ -19,7 +19,7 @@
 .user-group-badge {
   border-radius: 20px;
   font-size: 10px;
-  background-color: .osu-hsla(@osu-colour-b6, 0.75)[@hsla];
+  background-color: osu-hsla(@osu-colour-b6, 0.75);
   color: white;
   padding: 2px 10px;
   font-weight: bold;
@@ -86,7 +86,7 @@
 
   // we need to override this, as bot badge colours are inverted
   &--bot {
-    color: .osu-hsla(@osu-colour-b6, 0.75)[@hsla];
+    color: osu-hsla(@osu-colour-b6, 0.75);
     background-color: @osu-colour-group-bot;
   }
 

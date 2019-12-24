@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => '社区',
-
+            'comments' => '',
             'forum' => '论坛',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => '主页',
             'account-edit' => '设置',
             'account-verifyLink' => '验证完成',
-            'friends-index' => '好友',
-            'changelog-index' => '更新日志',
+            'beatmapset-watches-index' => '',
             'changelog-build' => '版本',
+            'changelog-index' => '更新日志',
+            'forum-topic-watches-index' => '',
+            'friends-index' => '好友',
             'getDownload' => '下载',
             'getIcons' => '图标',
             'groups-show' => '用户组',
@@ -59,6 +133,7 @@ return [
             'search' => '搜索',
             'supportTheGame' => '支持 osu!',
             'team' => '团队',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => '个人资料',
@@ -78,7 +153,6 @@ return [
             'artists' => '精选艺术家',
             'beatmap_discussion_posts-index' => '谱面讨论帖',
             'beatmap_discussions-index' => '谱面讨论',
-            'beatmapset-watches-index' => '谱面关注列表',
             'beatmapset_discussion_votes-index' => '谱面讨论投票',
             'beatmapset_events-index' => '谱面事件',
             'index' => '列表',
@@ -87,7 +161,7 @@ return [
         ],
         'beatmapsets' => [
             '_' => '谱面',
-            'discussion' => '修改',
+            'discussion' => '摸图',
         ],
         'rankings' => [
             '_' => '排名',
@@ -112,7 +186,6 @@ return [
             'tournaments' => '官方比赛',
             'tournaments-index' => '官方比赛',
             'tournaments-show' => '官方比赛信息',
-            'forum-topic-watches-index' => '订阅',
             'forum-topics-create' => '论坛',
             'forum-topics-show' => '论坛',
             'forum-forums-index' => '论坛',

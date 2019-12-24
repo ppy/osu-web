@@ -23,12 +23,12 @@ return [
         'new' => '',
         'subject' => 'Nová aktualizace pro beatmapu ":title"',
         'unwatch' => '',
-        'visit' => '',
+        'visit' => 'Navštivte stránku diskuze:',
     ],
 
     'common' => [
-        'closing' => '',
-        'hello' => '',
+        'closing' => 'S pozdravem,',
+        'hello' => 'Ahoj :user,',
         'report' => '',
     ],
 
@@ -46,7 +46,7 @@ return [
 
         'support' => [
             '_' => '',
-            'first' => '',
+            'first' => 'podpora',
             'repeat' => '',
         ],
     ],
@@ -68,15 +68,15 @@ return [
         'prepare_shipping' => '',
         'processing' => '',
         'questions' => "",
-        'shipping' => '',
+        'shipping' => 'Doručení',
         'subject' => 'Obdrželi jsme tvou osu!store objednávku!',
-        'thank_you' => '',
-        'total' => '',
+        'thank_you' => 'Děkujeme za vaši osu!store objednávku!',
+        'total' => 'Celkem',
     ],
 
     'supporter_gift' => [
         'anonymous_gift' => '',
-        'anonymous_gift_maybe_not' => '',
+        'anonymous_gift_maybe_not' => 'Ale už asi víte, kdo to je ;).',
         'duration' => '',
         'features' => '',
         'gifted' => '',
@@ -92,8 +92,8 @@ return [
 
     'user_force_reactivation' => [
         'main' => '',
-        'perform_reset' => '',
-        'reason' => '',
+        'perform_reset' => 'Můžete provést resetování z :url',
+        'reason' => 'Důvod:',
         'subject' => '',
     ],
 
@@ -103,15 +103,15 @@ return [
     ],
 
     'user_verification' => [
-        'code' => '',
-        'code_hint' => '',
+        'code' => 'Tvůj ověřovací kód je:',
+        'code_hint' => 'Můžeš zadat kód s mezerami nebo bez nich.',
         'link' => '',
         'report' => '',
         'subject' => 'ověření osu! účtu',
 
         'action_from' => [
             '_' => '',
-            'unknown_country' => '',
+            'unknown_country' => 'neznámá země',
         ],
     ],
 ];

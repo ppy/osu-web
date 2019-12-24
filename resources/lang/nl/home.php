@@ -120,8 +120,6 @@ return [
             'error' => 'Fout tijdens laden van nieuws, probeer de pagina te verversen?...',
         ],
         'header' => [
-            'welcome' => 'Hallo, <strong>:username</strong>!',
-            'messages' => 'Je hebt :count nieuw bericht|Je hebt :count nieuwe berichten',
             'stats' => [
                 'friends' => 'Online Vrienden',
                 'games' => 'Games',

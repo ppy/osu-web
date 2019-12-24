@@ -29,9 +29,9 @@ return [
 
     'commentable_name' => [
         'beatmapset' => 'Beatmap',
-        'build' => 'Registo de Alterações',
+        'build' => 'Registo de alterações',
         'news_post' => 'Notícias',
-        '_deleted' => 'Item Eliminado',
+        '_deleted' => 'Item eliminado',
     ],
 
     'editor' => [
@@ -49,10 +49,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Comentários :info',
-            'info' => 'Listagem',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +59,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Comentários :info',
-            'info' => 'Detalhe',
-        ],
+        'nav_title' => '',
     ],
 ];
