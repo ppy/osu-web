@@ -113,7 +113,10 @@ class WikiSearch extends RecordSearch
             }
         }
 
+        $visibilityQuery = ['exists' => ['field' => 'page']];
+
         return (new BoolQuery)
+            ->must($visibilityQuery)
             ->must($langQuery)
             ->must($matchQuery);
     }
