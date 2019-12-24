@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Laravel\Passport\Exceptions\MissingScopeException;
+use Laravel\Passport\Exceptions\OAuthServerException as PassportOAuthServerException;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
@@ -53,7 +55,7 @@ class Handler extends ExceptionHandler
         VerificationRequiredException::class,
 
         // oauth
-        \League\OAuth2\Server\Exception\OAuthServerException::class,
+        OAuthServerException::class,
     ];
 
     public static function exceptionMessage($e)
@@ -83,9 +85,16 @@ class Handler extends ExceptionHandler
             return 401;
         } elseif ($e instanceof AuthorizationException || $e instanceof MissingScopeException) {
             return 403;
+        } elseif (static::isOAuthServerException($e)) {
+            return $e->getPrevious()->getHttpStatusCode();
         } else {
             return 500;
         }
+    }
+
+    private static function isOAuthServerException($e)
+    {
+        return ($e instanceof PassportOAuthServerException) && ($e->getPrevious() instanceof OAuthServerException);
     }
 
     /**
@@ -149,6 +158,11 @@ class Handler extends ExceptionHandler
         }
 
         return $response->setStatusCode(static::statusCode($e));
+    }
+
+    protected function shouldntReport(Exception $e)
+    {
+        return parent::shouldntReport($e) || $this->isOAuthServerException($e);
     }
 
     protected function unauthenticated($request, AuthenticationException $exception)
