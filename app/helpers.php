@@ -95,10 +95,7 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
 
                 cache()->put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
             } catch (Exception $e) {
-                $handled = false;
-                if ($exceptionHandler !== null) {
-                    $handled = $exceptionHandler($e);
-                }
+                $handled = $exceptionHandler !== null && $exceptionHandler($e);
 
                 if (!$handled) {
                     // Log and continue with data from the first ::get.
