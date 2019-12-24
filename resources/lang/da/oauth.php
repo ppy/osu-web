@@ -22,10 +22,10 @@ return [
     'cancel' => 'Annuller',
 
     'authorise' => [
-        'authorise' => '',
+        'authorise' => 'Autoriser',
         'request' => 'anmoder om tilladelse til at få adgang til din konto.',
         'scopes_title' => 'Denne applikation vil være i stand til at:',
-        'title' => '',
+        'title' => 'Autorisation Anmodning',
 
         'wrong_user' => [
             '_' => 'Du er logged ind som :user. :logout_link.',
@@ -34,41 +34,41 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Er du sikker på, at du vil tilbagekalde denne klients tilladelser?',
+        'scopes_title' => 'Denne applikation kan:',
+        'owned_by' => 'Ejet af :user',
+        'none' => 'Ingen Klienter',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Fjern Adgang',
+            'true' => 'Adgang Omstødt',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'secret' => '',
+        'id' => 'Klient-ID',
+        'name' => 'Applikationsnavn',
+        'redirect' => 'Application Callback URL',
+        'secret' => 'Client Secret',
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Registrer ny OAuth applikation',
+        'register' => 'Registrer ny applikation',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'Ved at bruge denne API giver du samtykke til :link.',
+            'link' => 'Brugsbetingelser',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Er du sikker på du vil slette denne klient?',
+        'new' => 'Ny OAuth Applikation',
+        'none' => 'Ingen Klienter',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Fjern',
+            'true' => 'Slettet',
         ],
     ],
 ];

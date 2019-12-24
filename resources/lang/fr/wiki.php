@@ -25,7 +25,7 @@ return [
         'missing' => 'La page demandée n\'a pas pu être trouvée.',
         'missing_title' => 'Non Trouvée',
         'missing_translation' => 'La page demandée n\'a pas pu être trouvée pour la langue sélectionnée actuellement',
-        'needs_cleanup_or_rewrite' => '',
+        'needs_cleanup_or_rewrite' => 'Cette page ne correspond pas aux standards du wiki osu! et doit être nettoyée ou réécrite. Si vous êtes en mesure d\'aider, envisagez de mettre à jour l\'article !',
         'search' => 'Rechercher des pages existantes pour :link.',
         'toc' => 'Contenu',
 

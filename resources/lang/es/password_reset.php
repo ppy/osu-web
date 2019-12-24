@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Reestablecer contraseña',
-
     'button' => [
         'cancel' => 'Cancelar',
         'resend' => 'Reenviar verificación por correo electrónico',

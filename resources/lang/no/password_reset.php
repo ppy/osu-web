@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Nullstill passord',
-
     'button' => [
         'cancel' => 'Avbryt',
         'resend' => 'Send verifiserings e-posten på nytt',

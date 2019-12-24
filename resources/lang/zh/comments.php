@@ -49,10 +49,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => '评论 :info',
-            'info' => '列表',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +59,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => '评论 :info',
-            'info' => '详情',
-        ],
+        'nav_title' => '',
     ],
 ];

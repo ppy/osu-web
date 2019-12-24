@@ -78,8 +78,8 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'Ver Publicação de Revisão',
+        'go_to_child' => 'Ver Discussão',
     ],
 
     'system' => [
@@ -90,8 +90,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'geral',
+        'general_all' => 'geral (tudo)',
     ],
 
     'user_filter' => [

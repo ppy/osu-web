@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'Komunitas',
-
+            'comments' => '',
             'forum' => 'Forum',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => 'beranda',
             'account-edit' => 'pengaturan',
             'account-verifyLink' => 'Verifikasi Selesai',
-            'friends-index' => 'teman',
-            'changelog-index' => 'riwayat perubahan',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'versi',
+            'changelog-index' => 'riwayat perubahan',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'teman',
             'getDownload' => 'unduh',
             'getIcons' => 'ikon',
             'groups-show' => 'grup',
@@ -59,6 +133,7 @@ return [
             'search' => 'cari',
             'supportTheGame' => 'dukung permainan ini',
             'team' => 'tim',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => 'profil',
@@ -78,7 +153,6 @@ return [
             'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'postingan diskusi beatmap',
             'beatmap_discussions-index' => 'laman diskusi beatmap',
-            'beatmapset-watches-index' => 'daftar pengamatan modding',
             'beatmapset_discussion_votes-index' => 'laman diskusi voting beatmap',
             'beatmapset_events-index' => 'laman peristiwa beatmap',
             'index' => 'daftar',
@@ -112,7 +186,6 @@ return [
             'tournaments' => 'turnamen',
             'tournaments-index' => 'turnamen',
             'tournaments-show' => 'info turnamen',
-            'forum-topic-watches-index' => 'langganan',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -259,7 +332,7 @@ return [
             'forgot' => "Saya lupa identitas saya",
             'password' => 'kata sandi',
             'title' => 'Masuk untuk Melanjutkan',
-            'username' => '',
+            'username' => 'nama pengguna',
 
             'error' => [
                 'email' => "Nama pengguna atau alamat email tidak ada",

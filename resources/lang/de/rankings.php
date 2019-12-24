@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type-Rangliste',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Performance',

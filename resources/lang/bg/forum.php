@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Форум абонаменти',
             'title_compact' => 'форум абонаменти',
-            'title_main' => 'Форум <strong>Абонаменти</strong>',
 
             'box' => [
                 'total' => 'Абонирани теми',

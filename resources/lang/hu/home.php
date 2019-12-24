@@ -120,8 +120,6 @@ return [
             'error' => 'Hiba a hírek betöltése közben, talán próbáld meg újratölteni az oldalt?...',
         ],
         'header' => [
-            'welcome' => 'Üdv, <strong>:username</strong>!',
-            'messages' => ':count új üzeneted van | :count új üzeneted van',
             'stats' => [
                 'friends' => 'Elérhető barátok',
                 'games' => 'Játékok',

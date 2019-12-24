@@ -49,10 +49,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => '댓글 :info',
-            'info' => '목록',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +59,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => '댓글 :info',
-            'info' => '세부 정보',
-        ],
+        'nav_title' => '',
     ],
 ];

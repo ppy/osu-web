@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type Hodnocení',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Výkon',

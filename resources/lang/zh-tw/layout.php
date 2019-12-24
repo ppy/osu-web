@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => '社群',
-
+            'comments' => '',
             'forum' => '論壇',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => '首頁',
             'account-edit' => '設定',
             'account-verifyLink' => '驗證已完成',
-            'friends-index' => '好友',
-            'changelog-index' => '更新日誌',
+            'beatmapset-watches-index' => '',
             'changelog-build' => '版本',
+            'changelog-index' => '更新日誌',
+            'forum-topic-watches-index' => '',
+            'friends-index' => '好友',
             'getDownload' => '下載',
             'getIcons' => '圖示',
             'groups-show' => '群組',
@@ -59,6 +133,7 @@ return [
             'search' => '搜尋',
             'supportTheGame' => '贊助 osu!',
             'team' => '團隊',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => '個人簡介',
@@ -78,7 +153,6 @@ return [
             'artists' => '精選藝術家',
             'beatmap_discussion_posts-index' => '譜面討論帖',
             'beatmap_discussions-index' => '譜面討論',
-            'beatmapset-watches-index' => '譜面關注列表',
             'beatmapset_discussion_votes-index' => '譜面討論投票',
             'beatmapset_events-index' => '譜面事件',
             'index' => '圖譜列表',
@@ -112,7 +186,6 @@ return [
             'tournaments' => '官方比賽',
             'tournaments-index' => '官方比賽',
             'tournaments-show' => '官方比賽訊息',
-            'forum-topic-watches-index' => '訂閱',
             'forum-topics-create' => '論壇',
             'forum-topics-show' => '論壇',
             'forum-forums-index' => '論壇',
@@ -259,7 +332,7 @@ return [
             'forgot' => "我忘記了我的登錄信息",
             'password' => '密碼',
             'title' => '登錄以繼續',
-            'username' => '',
+            'username' => '使用者名稱',
 
             'error' => [
                 'email' => "用戶名或郵箱不存在",

@@ -93,23 +93,23 @@ return [
 
     'login' => [
         '_' => 'Đăng nhập',
-        'email_login_disabled' => '',
-        'locked_ip' => 'Địa chỉ IP của bạn đã bị khóa. Vui lòng đợi một vài phút.',
-        'username' => 'Tên tài khoản',
-        'password' => 'Mật khẩu',
         'button' => 'Đăng nhập',
         'button_posting' => 'Đang đăng nhập...',
+        'email_login_disabled' => '',
+        'failed' => 'Đăng nhập không chính xác',
+        'forgot' => 'Quên mật khẩu?',
+        'info' => '',
+        'locked_ip' => 'Địa chỉ IP của bạn đã bị khóa. Vui lòng đợi một vài phút.',
+        'password' => 'Mật khẩu',
+        'register' => "Không có tài khoản osu!? Tạo một tài khoản mới",
         'remember' => 'Nhớ máy tính này',
         'title' => 'Vui lòng đăng nhập để tiếp tục',
-        'failed' => 'Đăng nhập không chính xác',
-        'register' => "Không có tài khoản osu!? Tạo một tài khoản mới",
-        'forgot' => 'Quên mật khẩu?',
+        'username' => 'Tên tài khoản',
+
         'beta' => [
             'main' => 'Quyền truy cập bản thử nghiệm hiện bị hạn chế cho người dùng đặc quyền.',
             'small' => '(người ủng hộ sẽ sớm được tham gia)',
         ],
-
-        'here' => 'tại đây', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -361,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => ':info Người Chơi',
-            'info' => 'Thông Tin',
         ],
 
         'info' => [

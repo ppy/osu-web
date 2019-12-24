@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Foorumilla Seuratut',
             'title_compact' => 'foorumilla seuratut',
-            'title_main' => 'foorumilla <strong>Seuratut</strong>',
 
             'box' => [
                 'total' => 'Seurattuja aiheita',

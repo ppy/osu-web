@@ -78,8 +78,8 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'レビュー投稿を表示',
+        'go_to_child' => 'ディスカッションを表示',
     ],
 
     'system' => [
@@ -90,8 +90,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => '全般',
+        'general_all' => '全般（全て）',
     ],
 
     'user_filter' => [

@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Obnovit heslo',
-
     'button' => [
         'cancel' => 'Zrušit',
         'resend' => 'Znovu odeslat ověřovací e-mail',

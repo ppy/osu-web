@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type 排名',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => '成績',

@@ -25,6 +25,7 @@ return [
             'regenerating' => '重新生成中...',
             'remove' => '移除',
             'removing' => '正在删除...',
+            'title' => '',
         ],
         'show' => [
             'covers' => '管理谱面封面',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => '管理员控制台',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => '论坛',
                 'general' => '常规',
                 'store' => '商店',

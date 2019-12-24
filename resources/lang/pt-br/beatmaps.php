@@ -98,7 +98,7 @@ return [
         'mode' => [
             'events' => 'Histórico',
             'general' => 'Geral :scope',
-            'reviews' => '',
+            'reviews' => 'Revisões',
             'timeline' => 'Linha do tempo',
             'scopes' => [
                 'general' => 'Esta dificuldade',

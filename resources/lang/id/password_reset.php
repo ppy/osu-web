@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Setel Ulang Kata Sandi',
-
     'button' => [
         'cancel' => 'Batal',
         'resend' => 'Kirim ulang email verifikasi',

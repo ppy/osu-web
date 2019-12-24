@@ -93,23 +93,23 @@ return [
 
     'login' => [
         '_' => 'Kirjaudu',
-        'email_login_disabled' => '',
-        'locked_ip' => 'IP-osoitteesi on lukittu. Ole hyvä ja odota muutama minuutti.',
-        'username' => 'Käyttäjänimi',
-        'password' => 'Salasana',
         'button' => 'Kirjaudu',
         'button_posting' => 'Kirjaudutaan...',
+        'email_login_disabled' => '',
+        'failed' => 'Väärät kirjautumistiedot',
+        'forgot' => 'Unohditko salasanasi?',
+        'info' => '',
+        'locked_ip' => 'IP-osoitteesi on lukittu. Ole hyvä ja odota muutama minuutti.',
+        'password' => 'Salasana',
+        'register' => "Eikö sinulla ole osu!-tiliä? Tee yksi",
         'remember' => 'Muista tämä laite',
         'title' => 'Kirjaudu sisään jatkaaksesi',
-        'failed' => 'Väärät kirjautumistiedot',
-        'register' => "Eikö sinulla ole osu!-tiliä? Tee yksi",
-        'forgot' => 'Unohditko salasanasi?',
+        'username' => 'Käyttäjänimi',
+
         'beta' => [
             'main' => 'Beta on tällä hetkellä käytössä vain siihen oikeutetuilla käyttäjillä.',
             'small' => '(osu!tukijat tulevat kohta)',
         ],
-
-        'here' => 'täällä', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -361,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Pelaajan :info',
-            'info' => 'tiedot',
         ],
 
         'info' => [

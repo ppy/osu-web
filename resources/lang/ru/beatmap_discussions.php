@@ -78,8 +78,8 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'Посмотреть отзыв',
+        'go_to_child' => 'Посмотреть обсуждение',
     ],
 
     'system' => [
@@ -90,8 +90,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'общее',
+        'general_all' => 'общее (все)',
     ],
 
     'user_filter' => [

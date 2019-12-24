@@ -154,11 +154,11 @@ return [
 
         'status' => [
             'ranked' => '',
-            'approved' => '',
+            'approved' => '已批准。',
             'loved' => '',
             'qualified' => '',
             'wip' => '',
-            'pending' => '',
+            'pending' => '待處理',
             'graveyard' => '',
         ],
     ],

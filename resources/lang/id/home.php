@@ -120,8 +120,6 @@ return [
             'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
         ],
         'header' => [
-            'welcome' => 'Halo, <strong>:username</strong>!',
-            'messages' => 'Anda memiliki :count pesan baru',
             'stats' => [
                 'friends' => 'Teman yang Online',
                 'games' => 'Permainan',

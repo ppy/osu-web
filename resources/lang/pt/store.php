@@ -27,7 +27,7 @@ return [
         'checkout' => 'Pagamento',
         'more_goodies' => 'Quero adicionar mais brindes antes de completar o pedido',
         'shipping_fees' => 'custos de envio',
-        'title' => 'Carrinho de Compras',
+        'title' => 'Carrinho de compras',
         'total' => 'total',
 
         'errors_no_checkout' => [
@@ -38,7 +38,7 @@ return [
         'empty' => [
             'text' => 'O teu carrinho está vazio.',
             'return_link' => [
-                '_' => 'Voltar ao :link para encontrar brindes!',
+                '_' => 'Volta ao :link para encontrar brindes!',
                 'link_text' => 'listagem da loja',
             ],
         ],
@@ -48,7 +48,7 @@ return [
         'cart_problems' => 'Oh não, há problemas com o teu carrinho!',
         'cart_problems_edit' => 'Clica aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
-        'delayed_shipping' => 'Nós estamos atualmente sobrecarregados com encomendas! És bem-vindo em fazeres o teu pedido, mas por favor espera aguardar **1-2 semanas** enquanto alcançamos os pedidos existentes.',
+        'delayed_shipping' => 'Nós estamos atualmente sobrecarregados com encomendas! Podes realizar o teu pedido, mas por favor espera aguardar **1-2 semanas** enquanto nos pomos a par dos pedidos existentes.',
         'old_cart' => 'O teu carrinho parece que está fora de prazo e foi recarregado, por favor tenta outra vez.',
         'pay' => 'Pagar com Paypal',
 
@@ -70,7 +70,7 @@ return [
         'status' => [
             'processing' => [
                 'title' => 'O teu pagamento ainda não foi confirmado!',
-                'line_1' => 'Se já pagaste, nós ainda poderemos estar à espera de receber a confirmação do teu pagamento. Por favor atualiza esta página dentro de um minuto ou dois!',
+                'line_1' => 'Se já pagaste, ainda poderemos estar à espera de receber a confirmação do teu pagamento. Por favor atualiza esta página dentro de um minuto ou dois!',
                 'line_2' => [
                     '_' => 'Se encontraste um problema durante o pagamento, :link',
                     'link_text' => 'clica aqui para resumir o teu pagamento',
@@ -80,11 +80,11 @@ return [
     ],
 
     'order' => [
-        'paid_on' => 'Ordem colocada em :date',
+        'paid_on' => 'Pedido colocado em :date',
 
-        'invoice' => 'Ver Fatura',
+        'invoice' => 'Ver fatura',
         'no_orders' => 'Sem pedidos para ver.',
-        'resume' => 'Retomar Pagamento',
+        'resume' => 'Retomar pagamento',
 
         'item' => [
             'display_name' => [
@@ -95,7 +95,7 @@ return [
 
         'not_modifiable_exception' => [
             'cancelled' => 'Não podes modificar o teu pedido porque foi cancelado.',
-            'checkout' => 'Não podes alterar o teu pedido enquanto está a ser processado.', // checkout and processing should have the same message.
+            'checkout' => 'Não podes alterar o teu pedido enquanto estiver a ser processado.', // checkout and processing should have the same message.
             'default' => 'O pedido não é alterável',
             'delivered' => 'Não podes alterar o teu pedido porque já foi entregue.',
             'paid' => 'Não podes alterar o teu pedido porque já foi pago.',
@@ -105,11 +105,11 @@ return [
 
         'status' => [
             'cancelled' => 'Cancelados',
-            'checkout' => 'Em Preparação',
+            'checkout' => 'Em preparação',
             'delivered' => 'Entregues',
             'paid' => 'Pagos',
             'processing' => 'Confirmação pendente',
-            'shipped' => 'Em Curso',
+            'shipped' => 'Em curso',
         ],
     ],
 
@@ -117,23 +117,23 @@ return [
         'name' => 'Nome',
 
         'stock' => [
-            'out' => 'Este item está atualmente fora de stock. Verifica mais tarde!',
-            'out_with_alternative' => 'Infelizmente este item está fora de stock. Usa o dropdown para escolher um tipo diferente ou verifica mais tarde!',
+            'out' => 'Este item está esgotado atualmente. Verifica mais tarde!',
+            'out_with_alternative' => 'Infelizmente este item está fora de stock. Usa a opção de colapsar para escolher um tipo diferente ou verifica mais tarde!',
         ],
 
-        'add_to_cart' => 'Adicionar ao Carrinho',
-        'notify' => 'Notificar-me quando estiver disponível!',
+        'add_to_cart' => 'Adicionar ao carrinho',
+        'notify' => 'Notifica-me quando estiver disponível!',
 
         'notification_success' => 'serás notificado quando tivermos um novo stock. clica em :link para cancelar',
         'notification_remove_text' => 'aqui',
 
-        'notification_in_stock' => 'Este produto já está no stock!',
+        'notification_in_stock' => 'Este produto já está em stock!',
     ],
 
     'supporter_tag' => [
         'gift' => 'oferecer ao jogador',
         'require_login' => [
-            '_' => 'Tu precisas de ser :link para arranjar uma etiqueta osu!supporter!',
+            '_' => 'Precisas de ser :link para arranjar uma etiqueta osu!supporter!',
             'link_text' => 'sessão iniciada',
         ],
     ],
@@ -142,7 +142,7 @@ return [
         'check' => 'Introduz um nome de utilizador para confirmar disponibilidade!',
         'checking' => 'A confirmar disponibilidade de :username...',
         'require_login' => [
-            '_' => 'Tu precisas de ser :link para mudares o teu nome!',
+            '_' => 'Precisas de ser :link para mudares o teu nome!',
             'link_text' => 'sessão iniciada',
         ],
     ],

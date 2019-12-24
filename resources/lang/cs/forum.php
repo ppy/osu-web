@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Sledované příspěvky',
             'title_compact' => 'sledovaná fóra',
-            'title_main' => 'Sledované <strong>příspěvky</strong>',
 
             'box' => [
                 'total' => 'Počet sledovaných témat',

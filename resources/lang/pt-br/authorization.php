@@ -20,7 +20,7 @@
 
 return [
     'require_login' => 'Por favor, inicie a sessão para continuar.',
-    'require_verification' => '',
+    'require_verification' => 'Por favor verifique para prosseguir.',
     'restricted' => "Não é possível fazer isso enquanto restrito.",
     'silenced' => "Não é possível fazer isso enquanto silenciado.",
     'unauthorized' => 'Acesso negado.',
