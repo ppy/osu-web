@@ -140,6 +140,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'New medal',
                 'user_achievement_unlock' => 'Unlocked ":title"!',
+                'user_achievement_unlock_compact' => 'Unlocked ":title"!',
             ],
         ],
     ],
