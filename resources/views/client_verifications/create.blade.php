@@ -48,35 +48,14 @@
 
             <div class="dialog-form__row dialog-form__row--title">
                 <div class="dialog-form__logo"></div>
-                <h1 class="dialog-form__title">{{ trans('oauth.authorise.title') }}</h1>
+                <h1 class="dialog-form__title">{{ trans('client_verifications.create.title') }}</h1>
             </div>
 
             <div class="dialog-form__row dialog-form__row--label">
-                <h2 class="dialog-form__client-name">
-                    {{ $client->name }}
-                </h2>
                 <p class="dialog-form__client-request">
-                    {{ trans('oauth.authorise.request') }}
+                    {{ trans('client_verifications.create.confirm') }}
                 </p>
             </div>
-
-            @if (count($scopes) > 0)
-                <div class="dialog-form__row dialog-form__row--scopes">
-                    <p class="dialog-form__scopes-title">
-                        {{ trans('oauth.authorise.scopes_title') }}
-                    </p>
-
-                    <ul class="oauth-scopes oauth-scopes--oauth-form">
-                        @foreach ($scopes as $scope)
-                            <li>
-                                <span class="oauth-scopes__icon">
-                                    <span class="fas fa-check"></span>
-                                </span>{{ $scope->description }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
 
             <div class="dialog-form__row dialog-form__row--wrong-user">
                 {!! trans('common.wrong_user._', [
@@ -95,32 +74,25 @@
                     ),
                 ]) !!}
             </div>
+
             <div class="dialog-form__row dialog-form__row--buttons">
                 {!! Form::open([
-                    'url' => '/oauth/authorize',
+                    'url' => route('client-verifications.store'),
                     'method' => 'POST',
                 ]) !!}
-                    <input type="hidden" name="state" value="{{ $request->state }}" />
-                    <input type="hidden" name="client_id" value="{{ $client->id }}" />
+                    <input type="hidden" name="ch" value="{{ $hash }}" />
 
                     <button class="dialog-form__button">
                         {{ trans('common.buttons.authorise') }}
                     </button>
                 {!! Form::close() !!}
 
-                {!! Form::open([
-                    'url' => '/oauth/authorize',
-                    'method' => 'DELETE',
-                ]) !!}
-                    <input type="hidden" name="state" value="{{ $request->state }}" />
-                    <input type="hidden" name="client_id" value="{{ $client->id }}" />
-
-                    <button
-                        class="dialog-form__button dialog-form__button--cancel"
-                    >
-                        {{ trans('common.buttons.cancel') }}
-                    </button>
-                {!! Form::close() !!}
+                <a
+                    href="{{ route('home') }}"
+                    class="dialog-form__button dialog-form__button--cancel"
+                >
+                    {{ trans('common.buttons.cancel') }}
+                </a>
             </div>
         </div>
     </div>
