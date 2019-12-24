@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type Klassering',
+    'country' => [
+        'filter' => 'gefilterd op land',
+    ],
 
     'type' => [
         'performance' => 'Prestatie',

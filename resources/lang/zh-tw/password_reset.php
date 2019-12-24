@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => '重設密碼',
-
     'button' => [
         'cancel' => '取消',
         'resend' => '重新發送確認郵件',
         'set' => '設定密碼',
         'start' => '開始',
-    ],
-
-    'email' => [
-        'subject' => 'osu! 帳戶恢復',
     ],
 
     'error' => [
@@ -57,8 +51,8 @@ return [
         'username' => '輸入郵件地址或使用者名稱',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => '需要進一步的幫助？通過我們的 :button 聯繫我們。',
+            'button' => '支持系統',
         ],
     ],
 ];

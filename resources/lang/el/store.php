@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Λάβαμε την παραγγελία σας από το osu!store!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Παραγγελία ορίστηκε :date',
 

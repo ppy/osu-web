@@ -23,7 +23,7 @@ return [
     'talking_in' => 'taler i :channel',
     'talking_with' => 'taler med:name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'Du kan ikke skrive i denne kanal på nuværende tidspunkt. Dette kan være pga. en af disse grunde:',
         'user' => 'Du kan ikke skrive til denne person på nuværende tidspunkt. Dette kan være pga. en af disse grunde:',
@@ -41,7 +41,7 @@ return [
         'send' => 'Send',
     ],
     'no-conversations' => [
-        'howto' => "Start samtaler fra en brugers profil eller en brugerkort popup.",
+        'howto' => "Start samtaler fra en brugers profil eller et brugerkort-popup.",
         'lazer' => 'Offentlige kanaler du joiner via <a href=":link">osu!lazer</a> vil også vises her.',
         'pm_limitations' => 'Kun personer der bruger <a href=":link">osu!lazer</a> eller den nye side vil modtage Privat Beskeder.',
         'title' => 'ingen samtaler "endnu"',

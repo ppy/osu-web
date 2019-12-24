@@ -29,7 +29,7 @@ return [
 
         'title' => [
             '_' => 'Notícias :info',
-            'info' => 'Primeira página',
+            'info' => 'Página inicial',
         ],
     ],
 

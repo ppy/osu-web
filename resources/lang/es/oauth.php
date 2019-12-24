@@ -52,12 +52,6 @@ return [
         'secret' => 'Secreto del Cliente',
     ],
 
-    'login' => [
-        'download' => 'Haga clic para descargar el juego y crear una cuenta',
-        'label' => 'Primero, ¡vamos a iniciar sesión en tu cuenta!',
-        'title' => 'Iniciar sesión',
-    ],
-
     'new_client' => [
         'header' => 'Registre una nueva aplicación OAuth',
         'register' => 'Registro de aplicación',

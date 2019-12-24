@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Új válasz a ":title" témában',
-    ],
-
     'forums' => [
         'latest_post' => 'Legújabb Poszt',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Fórum Feliratkozások',
             'title_compact' => 'fórum feliratkozások',
-            'title_main' => 'Fórum <strong>Feliratkozások</strong>',
 
             'box' => [
                 'total' => 'Követett témák',

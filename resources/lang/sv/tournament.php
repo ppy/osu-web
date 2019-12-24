@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Registrering: :start till :end',
 
         'header' => [
-            'subtitle' => 'En lista av aktiva, officiella turneringar',
             'title' => 'Gemenskapsturneringar',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Avbryt Registrering',
             'register' => 'Skriv upp mig!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

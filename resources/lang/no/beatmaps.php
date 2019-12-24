@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'Historie',
             'general' => 'Generell :scope',
+            'reviews' => '',
             'timeline' => 'Tidslinje',
             'scopes' => [
                 'general' => 'Denne vanskelighetsgraden',

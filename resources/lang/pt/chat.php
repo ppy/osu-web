@@ -19,11 +19,11 @@
  */
 
 return [
-    'limitation_notice' => 'NOTA: Somente pessoas que usem <a href=":lazer_link">osu!lazer</a> ou o novo website é que receberão mensagens privadas através deste sistema.<br/>Se estás incerto, envia-os uma mensagem a partir da <a href=":oldpm_link">página de mensagens privadas do fórum velho</a> como alternativa.',
+    'limitation_notice' => 'NOTA: Somente as pessoas que usem <a href=":lazer_link">osu!lazer</a> ou o novo website é que receberão mensagens privadas através deste sistema.<br/>Se estás incerto, envia-os uma mensagem a partir da <a href=":oldpm_link">página de mensagens privadas do fórum velho</a> como alternativa.',
     'talking_in' => 'a falar em :channel',
     'talking_with' => 'a falar com :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'Não podes mandar mensagens neste canal de momento. Isto poderá ser devido a uma das razões:',
         'user' => 'Não podes enviar mensagens a este utilizador de momento. Isto poderá ser devido a uma das razões:',
@@ -31,7 +31,7 @@ return [
             'blocked' => 'Foste bloqueado pelo destinatário',
             'channel_moderated' => 'O canal foi moderado',
             'friends_only' => 'O destinatário só aceita mensagens de pessoas da sua lista de amigos',
-            'restricted' => 'Atualmente, tu estás restrito',
+            'restricted' => 'Tu estás restrito',
             'target_restricted' => 'O destinatário está atualmente restrito',
         ],
     ],

@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Tili</strong>asetukset',
         'title_compact' => 'asetukset',
         'username' => 'käyttäjätunnus',
 
@@ -68,6 +67,12 @@ return [
         'title' => 'Ilmoitukset',
         'topic_auto_subscribe' => '',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu!-sähköpostin muutoksen vahvistaminen',
         'update' => 'päivitä',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu!-salasanan muutoksen vahvistaminen',
         'update' => 'päivitä',
     ],
 

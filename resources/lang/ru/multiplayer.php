@@ -27,7 +27,7 @@ return [
         'in-progress' => '(игра в процессе)',
         'in_progress_spinner_label' => 'игра в процессе',
         'loading-events' => 'Загрузка событий...',
-        'winner' => ':team победила,',
+        'winner' => ':team победила',
 
         'events' => [
             'player-left' => ':user покинул игру',

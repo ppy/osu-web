@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] トピック":title"に新しい返信があります',
-    ],
-
     'forums' => [
         'latest_post' => '最新の投稿',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'フォーラムサブスクリプション',
             'title_compact' => 'フォーラムサブスクリプション',
-            'title_main' => 'フォーラム<strong>サブスクリプション</strong>',
 
             'box' => [
                 'total' => 'サブスクライブしているトピック',

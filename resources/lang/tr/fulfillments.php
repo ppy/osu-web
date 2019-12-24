@@ -19,12 +19,4 @@
  */
 
 return [
-    'mail' => [
-        'donation_thanks' => [
-            'subject' => 'Teşekkürler, osu! sizi seviyor <3',
-        ],
-        'supporter_gift' => [
-            'subject' => 'Size bir osu! Destekçisi etiketi verildi!',
-        ],
-    ],
 ];

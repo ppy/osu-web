@@ -64,24 +64,52 @@ return [
         'send_message' => 'stuur bericht',
     ],
 
+    'disabled' => [
+        'title' => 'Uh-oh! Het lijkt erop dat je account is uitgeschakeld.',
+        'warning' => "In het geval dat je een regel hebt overtreden, houd er rekening mee dat er over het algemeen een afkoelperiode van één maand is waarin we geen amnestieverzoeken in behandeling nemen. Na deze periode kunt u contact met ons opnemen als je dit nodig vind. Houd er rekening mee dat het maken van nieuwe accounts nadat uw account is uitgeschakeld, resulteert in een <strong> verlenging van deze cool-down van een maand </strong>. Houd er ook rekening mee dat voor <strong> elk account dat je maakt, je de regels verder overtreedt </strong>. We raden je ten zeerste aan om dit niet te doen!",
+
+        'if_mistake' => [
+            '_' => 'Als je denkt dat dit een vergissing is, ben je welkom om ons te contacteren (via :email of door te klikken op "? in de rechter onderhoek van deze pagina). Houd er rekening mee dat we altijd volledig vertrouwen hebben in onze acties, aangezien deze gebaseerd zijn op zeer solide gegevens. We behouden ons het recht voor om je verzoek te negeren als we het gevoel hebben dat je opzettelijk oneerlijk bent.',
+            'email' => 'e-mail',
+        ],
+
+        'reasons' => [
+            'compromised' => 'Uw account is beschadigd. Het kan tijdelijk worden uitgeschakeld terwijl de identiteit wordt bevestigd.',
+            'opening' => 'Er zijn een aantal redenen die ertoe kunnen leiden dat uw account wordt uitgeschakeld:',
+
+            'tos' => [
+                '_' => 'Je hebt een of meer van onze :community_rules of :tos overtreden.',
+                'community_rules' => 'community regels',
+                'tos' => 'algemene voorwaarden',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "Je account is lange tijd niet gebruikt.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Inloggen',
-        'locked_ip' => 'je IP adres is vergrendeld. Wacht enkele minuten.',
-        'username' => 'Gebruikersnaam',
-        'password' => 'Wachtwoord',
         'button' => 'Inloggen',
         'button_posting' => 'Inloggen...',
+        'email_login_disabled' => 'Inloggen met e-mail is momenteel uitgeschakeld. Gebruik in plaats daarvan de gebruikersnaam.',
+        'failed' => 'Verkeerde login',
+        'forgot' => 'Wachtwoord vergeten?',
+        'info' => '',
+        'locked_ip' => 'je IP adres is vergrendeld. Wacht enkele minuten.',
+        'password' => 'Wachtwoord',
+        'register' => "Heb je geen osu! account? Maak een nieuwe",
         'remember' => 'Onthoud deze computer',
         'title' => 'Log in om verder te gaan',
-        'failed' => 'Verkeerde login',
-        'register' => "Heb je geen osu! account? Maak een nieuwe",
-        'forgot' => 'Wachtwoord vergeten?',
+        'username' => 'Gebruikersnaam',
+
         'beta' => [
             'main' => 'Beta toegang is momenteel beperkt voor bepaalde gebruikers.',
             'small' => '(osu!supporters krijgen binnenkort in)',
         ],
-
-        'here' => 'hier', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Speler :info',
-            'info' => 'Info',
         ],
 
         'info' => [

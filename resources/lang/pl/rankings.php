@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => 'Ranking :type',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Globalny',

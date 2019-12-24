@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Chúng tôi đã nhận được đơn hàng osu!store của bạn!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Đã đặt hàng :date',
 

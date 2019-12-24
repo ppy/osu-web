@@ -52,12 +52,6 @@ return [
         'secret' => 'İstemci Anahtarı',
     ],
 
-    'login' => [
-        'download' => 'Oyunu indirmek ve bir hesap yaratmak için buraya tıklayın',
-        'label' => 'İlk olarak, hadi hesabına giriş yapalım!',
-        'title' => 'Hesaba giriş yap',
-    ],
-
     'new_client' => [
         'header' => 'Yeni bir OAuth uygulaması kaydet',
         'register' => 'Uygulama Kaydet',

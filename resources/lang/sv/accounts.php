@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Konto</strong> Inställningar',
         'title_compact' => 'inställningar',
         'username' => 'användarnamn',
 
@@ -68,6 +67,12 @@ return [
         'title' => 'Aviseringar',
         'topic_auto_subscribe' => '',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'bekräfta ändrad osu! e-postadress',
         'update' => 'uppdatera',
     ],
 
     'update_password' => [
-        'email_subject' => 'bekräfta ändrat osu! lösenord',
         'update' => 'uppdatera',
     ],
 

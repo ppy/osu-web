@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Wachtwoord Resetten',
-
     'button' => [
         'cancel' => 'Annuleer',
         'resend' => 'Verificatie e-mail opnieuw versturen',
         'set' => 'Wachtwoord instellen',
         'start' => 'Start',
-    ],
-
-    'email' => [
-        'subject' => 'osu! account herstellen',
     ],
 
     'error' => [

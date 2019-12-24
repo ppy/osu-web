@@ -22,5 +22,5 @@ return [
     'insufficient_stock' => 'Já não resta quantidade suficiente para este item!',
     'must_separate' => 'Este item tem que ser verificado separadamente de outros itens',
     'not_available' => 'Este item não está disponível.',
-    'too_many' => 'Só podes encomendar :count deste item por compra.',
+    'too_many' => 'Só podes encomendar :count deste item por pedido.',
 ];

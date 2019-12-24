@@ -19,7 +19,7 @@
  */
 
 return [
-    'pinned_topics' => 'Tópicos Afixados',
+    'pinned_topics' => 'Tópicos afixados',
     'slogan' => "é perigoso brincar sozinho.",
     'subforums' => 'Sub-fóruns',
     'title' => 'Fóruns osu!',
@@ -30,7 +30,7 @@ return [
         'create' => [
             '_' => 'Colocar imagem de capa',
             'button' => 'Carregar imagem',
-            'info' => 'O tamanho cobrido deveria ser :dimensions. Também podes largar aqui uma imagem para carregar.',
+            'info' => 'O tamanho cobrido deveria ser :dimensions. Também podes largar aqui uma imagem para carregá-la.',
         ],
 
         'destroy' => [
@@ -39,15 +39,11 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Nova resposta para o tópico ":title"',
-    ],
-
     'forums' => [
-        'latest_post' => 'Última Publicação',
+        'latest_post' => 'Última publicação',
 
         'index' => [
-            'title' => 'Índice do Fórum',
+            'title' => 'Índice do fórum',
         ],
 
         'topics' => [
@@ -81,13 +77,13 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited publicação|:count_delimited publicações',
-            'topic_starter' => 'Criador do Tópico',
+            'topic_starter' => 'Criador do tópico',
         ],
     ],
 
     'search' => [
         'go_to_post' => 'Ir para a publicação',
-        'post_number_input' => 'insere o número da publicação',
+        'post_number_input' => 'inserir o número da publicação',
         'total_posts' => ':posts_count publicações no total',
     ],
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Subscrições do Fórum',
             'title_compact' => 'subscrições do fórum',
-            'title_main' => '<strong>Subscrições</strong> do Fórum',
 
             'box' => [
                 'total' => 'Tópicos subscritos',
@@ -154,7 +148,7 @@ return [
 
             'info' => [
                 'total' => 'Subscreveste a :total tópicos.',
-                'unread' => 'Tu tens :unread respostas não lidas a tópicos subscritos.',
+                'unread' => 'Tens :unread respostas não lidas a tópicos subscritos.',
             ],
         ],
 
@@ -170,16 +164,16 @@ return [
         '_' => 'Tópicos',
 
         'actions' => [
-            'login_reply' => 'Inicia sessão para Responder',
+            'login_reply' => 'Inicia sessão para responderes',
             'reply' => 'Resposta',
             'reply_with_quote' => 'Publicação de citação para resposta',
             'search' => 'Procurar',
         ],
 
         'create' => [
-            'create_poll' => 'Criação de Sondagem',
+            'create_poll' => 'Criação de sondagem',
 
-            'preview' => 'Publicar Amostra',
+            'preview' => 'Publicar amostra',
 
             'create_poll_button' => [
                 'add' => 'Criar uma sondagem',
@@ -188,7 +182,7 @@ return [
 
             'poll' => [
                 'hide_results' => 'Ocultar os resultados da sondagem.',
-                'hide_results_info' => 'Eles serão mostrados só quando a sondagem concluir.',
+                'hide_results_info' => 'Serão mostrados só quando a sondagem concluir.',
                 'length' => 'Manter a sondagem por',
                 'length_days_suffix' => 'dias',
                 'length_info' => 'Deixa em branco para uma sondagem interminável',
@@ -281,11 +275,11 @@ return [
         ],
 
         'show' => [
-            'deleted-posts' => 'Publicações Eliminadas',
-            'total_posts' => 'Publicações Totais',
+            'deleted-posts' => 'Publicações eliminadas',
+            'total_posts' => 'Publicações totais',
 
             'feature_vote' => [
-                'current' => 'Prioridade Atual: +:count',
+                'current' => 'Prioridade atual: +:count',
                 'do' => 'Promover este pedido',
 
                 'info' => [
@@ -302,8 +296,8 @@ return [
             ],
 
             'poll' => [
-                'edit' => 'Edição de Sondagem',
-                'edit_warning' => 'Ao editar uma sondagem, isto irá remover os resultados atuais!',
+                'edit' => 'Edição da sondagem',
+                'edit_warning' => 'Ao editares uma sondagem, isto irá remover os resultados atuais!',
                 'vote' => 'Votar',
 
                 'button' => [

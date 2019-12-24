@@ -19,12 +19,4 @@
  */
 
 return [
-    'mail' => [
-        'donation_thanks' => [
-            'subject' => 'Dziękujemy, osu! cię <3',
-        ],
-        'supporter_gift' => [
-            'subject' => 'Otrzymujesz status donatora osu!',
-        ],
-    ],
 ];

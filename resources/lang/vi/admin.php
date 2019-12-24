@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Đang phục hồi...',
             'remove' => 'Gỡ bỏ',
             'removing' => 'Đang gỡ bỏ...',
+            'title' => '',
         ],
         'show' => [
             'covers' => 'Quản lý Các ảnh bìa của Beatmapset',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Đồ Chơi Điều Khiển của Admin',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => 'Diễn đàn',
                 'general' => 'Thông tin chung',
                 'store' => 'Cửa hàng',

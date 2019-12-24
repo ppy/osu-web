@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Paket beatmap yang telah disusun atas satu tema tertentu.',
+        'nav_title' => '',
+        'title' => 'Paket Beatmap',
+
         'blurb' => [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
             'instruction' => [
@@ -34,12 +38,9 @@ return [
                 'scary' => 'mengunduh paket dari yang terbaru ke yang paling lama',
             ],
         ],
-        'title' => 'Paket Beatmap',
-        'description' => 'Paket beatmap yang telah disusun atas satu tema tertentu.',
     ],
 
     'show' => [
-        'back' => 'Kembali ke daftar beatmap',
         'download' => 'Unduh',
         'item' => [
             'cleared' => 'telah diselesaikan',

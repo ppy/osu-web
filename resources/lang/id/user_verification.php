@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'verifikasi akun osu!',
-    ],
-
     'errors' => [
         'expired' => 'Kode verifikasi telah kedaluwarsa, email verifikasi baru telah dikirim.',
         'incorrect_key' => 'Kode verifikasi salah.',

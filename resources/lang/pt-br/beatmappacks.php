@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Coleções temáticas pré-compactadas.',
+        'nav_title' => 'listagem',
+        'title' => 'Pacotes de Beatmaps',
+
         'blurb' => [
             'important' => 'LEIA ISSO ANTES DE BAIXAR',
             'instruction' => [
@@ -34,12 +38,9 @@ return [
                 'scary' => 'baixar os pacotes de beatmaps dos mais recentes para os mais antigos',
             ],
         ],
-        'title' => 'Pacotes de Beatmaps',
-        'description' => 'Coleções temáticas pré-compactadas.',
     ],
 
     'show' => [
-        'back' => 'Voltar à listagem',
         'download' => 'Baixar',
         'item' => [
             'cleared' => 'finalizado',

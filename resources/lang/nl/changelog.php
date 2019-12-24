@@ -44,11 +44,6 @@ return [
             '_stream_to' => 'veranderingen in :stream tot :to',
             '_to' => 'veranderingen tot :to',
         ],
-
-        'title' => [
-            '_' => 'Changelog :info',
-            'info' => 'Index',
-        ],
     ],
 
     'support' => [

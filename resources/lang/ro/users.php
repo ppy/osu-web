@@ -64,24 +64,52 @@ return [
         'send_message' => 'trimite mesaj',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Autentifică-te',
-        'locked_ip' => 'adresa ta IP este blocată. Te rugăm să aștepți câteva minute.',
-        'username' => 'Nume de utilizator',
-        'password' => 'Parolă',
         'button' => 'Autentifică-te',
         'button_posting' => 'Se conectează...',
+        'email_login_disabled' => '',
+        'failed' => 'Conectare incorectă',
+        'forgot' => 'Ți-ai uitat parola?',
+        'info' => '',
+        'locked_ip' => 'adresa ta IP este blocată. Te rugăm să aștepți câteva minute.',
+        'password' => 'Parolă',
+        'register' => "Nu ai un cont osu!? Fă-ți unul nou",
         'remember' => 'Ține-mă minte pe acest computer',
         'title' => 'Te rog autentifică-te pentru a continua',
-        'failed' => 'Conectare incorectă',
-        'register' => "Nu ai un cont osu!? Fă-ți unul nou",
-        'forgot' => 'Ți-ai uitat parola?',
+        'username' => 'Nume de utilizator',
+
         'beta' => [
             'main' => 'Accesul beta este momentan limitat la utilizatorii autorizați.',
             'small' => '(suporterii osu! vor primi acces curând)',
         ],
-
-        'here' => 'aici', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => ':info jucător',
-            'info' => 'Detalii',
         ],
 
         'info' => [

@@ -64,24 +64,52 @@ return [
         'send_message' => '发送消息',
     ],
 
+    'disabled' => [
+        'title' => '哎呀！看起来您的帐户已被禁用。',
+        'warning' => "如果您破坏了规则，我们原则上在一个月的期限以内不会考虑解禁您的帐户。在此之后，您如果需要，可以随时联系我们。请注意，在一个帐户被封后创建新帐户会<strong>使您的封禁期限被延长</strong>。您更需要注意<strong>您每创建一个新帐户都会更严重地破坏规则</strong>。我们强烈建议您不要误入歧途。",
+
+        'if_mistake' => [
+            '_' => '如果你觉得我们误封了你的账号，你可以通过电子邮件（:email）或者点击本页面右下方的问号来联系我们。一般来说，我们犯错的几率是很低的。我们只以可靠的数据为参考进行这一类的操作。如果你执意违反规则，我们保留拒绝你的请求的权利。',
+            'email' => '电子邮件',
+        ],
+
+        'reasons' => [
+            'compromised' => '我们认为你的帐户已被盗用。在确认身份期间，该帐户会被暂时停用。',
+            'opening' => '您的账户可能由于这几种原因被禁用：',
+
+            'tos' => [
+                '_' => '您已经违反了一条或多条 :community_rules 或是 :tos',
+                'community_rules' => '社区规则',
+                'tos' => '服务条款',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "您已经很长时间没有使用您的账户了。",
+        ],
+    ],
+
     'login' => [
         '_' => '登录',
-        'locked_ip' => 'IP 已被锁定，请稍等几分钟',
-        'username' => '用户名',
-        'password' => '密码',
         'button' => '登录',
         'button_posting' => '登录中...',
+        'email_login_disabled' => '当前不可以使用电子邮件登陆。请使用您的用户名。',
+        'failed' => '登录失败',
+        'forgot' => '忘记密码？',
+        'info' => '',
+        'locked_ip' => 'IP 已被锁定，请稍等几分钟',
+        'password' => '密码',
+        'register' => "没有 osu! 账户？现在就注册一个！",
         'remember' => '记住此电脑',
         'title' => '登录以继续',
-        'failed' => '登录失败',
-        'register' => "没有 osu! 账户？现在就注册一个！",
-        'forgot' => '忘记密码？',
+        'username' => '用户名',
+
         'beta' => [
             'main' => 'Beta 仅限于特定用户访问',
             'small' => '（在不久后将对 osu!支持者 开放）',
         ],
-
-        'here' => '这里', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -335,11 +363,6 @@ return [
             ],
         ],
 
-        'header_title' => [
-            '_' => '玩家 :info',
-            'info' => '资料',
-        ],
-
         'info' => [
             'discord' => 'Discord',
             'interests' => '兴趣爱好',
@@ -373,8 +396,8 @@ return [
             'count' => ':count 篇帖子',
         ],
         'rank' => [
-            'country' => ':mode 模式的国内排名',
-            'country_simple' => '国内排名',
+            'country' => ':mode 模式的国内/区内排名',
+            'country_simple' => '国内/区内排名',
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
         ],
