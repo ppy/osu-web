@@ -123,10 +123,6 @@ export class Main extends React.Component {
       nodes.push(<Stack key={stack.id} stack={stack} />);
     }
 
-    if (nodes.length === 0) {
-      this.handleShowMore();
-    }
-
     return nodes;
   }
 

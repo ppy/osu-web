@@ -53,7 +53,7 @@ describe('Notification Index', () => {
   describe('when starting on All', () => {
     let controller!: NotificationController;
     beforeEach(() => {
-      controller = new NotificationController(store, { unreadOnly: false });
+      controller = new NotificationController(store, { unreadOnly: false }, null);
     });
 
     it('should filter by All', () => {
@@ -102,6 +102,26 @@ describe('Notification Index', () => {
         it('should contain the extra notifications', () => {
           expect([...controller.stacks].length).toBe(2);
         });
+      });
+    });
+
+    describe('swithcing to a filter with no items', () => {
+      it('should automatically try to load more', () => {
+        const type = store.stacks.getOrCreateType({ objectType: 'user' });
+        spyOn(type, 'loadMore');
+        controller.navigateTo('user');
+
+        expect(type.loadMore).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('swithcing to a filter with items', () => {
+      it('should not automatically try to load more', () => {
+        const type = store.stacks.getOrCreateType({ objectType: 'beatmapset' });
+        spyOn(type, 'loadMore');
+        controller.navigateTo('beatmapset');
+
+        expect(type.loadMore).toHaveBeenCalledTimes(0);
       });
     });
   });

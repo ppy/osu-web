@@ -132,7 +132,9 @@ export default class NotificationStackStore implements DispatchListener {
    */
   *stacksOfType(name: NotificationTypeName) {
     const type = this.types.get(name);
-    const cursorId = type?.cursor?.id ?? 0;
+    if (type == null) return;
+
+    const cursorId = type.cursor?.id ?? 0;
 
     for (const [, stack] of this.stacks) {
       // don't include stacks that are past the cursor for the type

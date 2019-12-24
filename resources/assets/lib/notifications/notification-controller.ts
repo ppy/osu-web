@@ -52,7 +52,8 @@ export default class NotificationController {
     protected readonly contextType: NotificationContextData,
     filter?: NotificationTypeName,
   ) {
-    this.currentFilter = filter ?? this.typeNameFromUrl;
+    // TODO: should probably not infer from url here.
+    this.currentFilter = filter !== undefined ? filter : this.typeNameFromUrl;
 
     this.store = contextType.unreadOnly ? notificationStore.unreadStacks : notificationStore.stacks;
   }
@@ -60,6 +61,10 @@ export default class NotificationController {
   @action
   navigateTo(type: NotificationTypeName) {
     this.currentFilter = type;
+
+    if ([...this.stacks].length === 0) {
+      this.type?.loadMore(this.contextType);
+    }
 
     if (!this.contextType.unreadOnly) {
       let href: string;
