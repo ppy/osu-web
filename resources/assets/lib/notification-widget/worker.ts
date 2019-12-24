@@ -186,7 +186,7 @@ export default class Worker {
 
     this.xhrLoadingState.loadMore = true;
 
-    this.xhr.loadMore = $.ajax({ url: route('notifications.unread'), dataType: 'json' })
+    this.xhr.loadMore = $.ajax({ url: route('notifications.index', { unread: 1 }), dataType: 'json' })
       .always(action(() => {
         this.xhrLoadingState.loadMore = false;
       })).done(this.loadBundle)

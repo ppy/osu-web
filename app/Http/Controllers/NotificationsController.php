@@ -90,24 +90,15 @@ class NotificationsController extends Controller
      *   "notification_endpoint": "wss://notify.ppy.sh"
      * }
      */
-    public function unread()
-    {
-        $bundle = new NotificationsBundle(auth()->user(), request()->all(), true);
-        $response = $bundle->toArray();
-
-        $response['notification_endpoint'] = $this->endpointUrl();
-        $response['unread_count'] = auth()->user()->userNotifications()->where('is_read', false)->count();
-
-        return response($response)->header('Cache-Control', 'no-store');
-    }
-
     public function index()
     {
         $bundle = new NotificationsBundle(auth()->user(), request()->all());
         $bundleJson = $bundle->toArray();
 
         if (is_json_request()) {
-            return $bundleJson;
+            $bundleJson['notification_endpoint'] = $this->endpointUrl();
+
+            return response($bundleJson)->header('Cache-Control', 'no-store');
         }
 
         return view('notifications.index', compact('bundleJson'));

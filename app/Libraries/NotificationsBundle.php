@@ -40,11 +40,11 @@ class NotificationsBundle
     private $unreadOnly;
     private $user;
 
-    public function __construct(User $user, array $request, bool $unreadOnly = false)
+    public function __construct(User $user, array $request)
     {
         $this->user = $user;
         $this->notifications = collect();
-        $this->unreadOnly = get_bool($request['unread'] ?? null) ?? $unreadOnly;
+        $this->unreadOnly = get_bool($request['unread'] ?? false);
         $this->cursorId = get_int($request['cursor']['id'] ?? null);
 
         $this->objectId = get_int($request['object_id'] ?? null);
@@ -68,6 +68,11 @@ class NotificationsBundle
         if ($this->types !== null) {
             $response['types'] = array_values($this->types);
         }
+
+        if ($this->unreadOnly) {
+            $response['unread_count'] = $this->user->userNotifications()->where('is_read', false)->count();
+        }
+
 
         return $response;
     }

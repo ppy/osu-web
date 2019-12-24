@@ -206,7 +206,6 @@ Route::group(['prefix' => 'home'], function () {
     Route::resource('news', 'NewsController', ['only' => ['index', 'show', 'store', 'update']]);
     Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
     Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
-    Route::get('notifications/unread', 'NotificationsController@unread')->name('notifications.unread');
     Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
 
     Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
