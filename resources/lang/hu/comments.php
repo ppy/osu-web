@@ -49,10 +49,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Hozzászólások: :info',
-            'info' => 'Listázás',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +59,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Hozzászólások: :info',
-            'info' => 'Részletek',
-        ],
+        'nav_title' => '',
     ],
 ];

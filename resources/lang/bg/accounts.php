@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Настройки на <strong>профила</strong>',
         'title_compact' => 'настройки',
         'username' => 'потребителско име',
 

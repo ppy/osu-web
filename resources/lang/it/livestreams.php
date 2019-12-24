@@ -25,7 +25,4 @@ return [
 
         'link' => 'la pagina della wiki sulle livestreams',
     ],
-    'headers' => [
-        'regular' => 'In Diretta',
-    ],
 ];

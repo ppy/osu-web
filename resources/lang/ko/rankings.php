@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type 순위',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => '퍼포먼스',

@@ -23,7 +23,7 @@ return [
     'talking_in' => 'keskustellaan kanavalla :channel',
     'talking_with' => 'keskustellaan käyttäjän :name kanssa',
     'title_compact' => 'viestit',
-    'title' => 'Viestit',
+
     'cannot_send' => [
         'channel' => 'Et voi lähettää tälle kanavalle viestejä juuri nyt, koska',
         'user' => 'Et voi lähettää tälle käyttäjälle viestejä, koska',

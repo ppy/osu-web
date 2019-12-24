@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => 'Xếp Hạng Theo :type',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Performance',

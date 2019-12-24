@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Account</strong> Instellingen',
         'title_compact' => 'instellingen',
         'username' => 'gebruikersnaam',
 
@@ -70,9 +69,9 @@ return [
         'beatmapset_discussion_qualified_problem' => 'ontvang meldingen voor nieuw probleem op gekwalificeerde beatmaps van de volgende modes',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => 'e-mailnotificaties ontvangen voor',
+            'beatmapset:modding' => 'beatmap modding',
+            'forum_topic_reply' => 'topic antwoord',
         ],
     ],
 

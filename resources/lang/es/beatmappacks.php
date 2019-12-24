@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Colecciones preempaquetadas de beatmaps basadas en un tema común.',
+        'nav_title' => '',
+        'title' => 'Paquetes de Beatmap',
+
         'blurb' => [
             'important' => 'LEE ESTO ANTES DE DESCARGAR',
             'instruction' => [
@@ -34,12 +38,9 @@ return [
                 'scary' => 'descargar los paquetes de los más recientes a los más antiguos',
             ],
         ],
-        'title' => 'Paquetes de Beatmap',
-        'description' => 'Colecciones preempaquetadas de beatmaps basadas en un tema común.',
     ],
 
     'show' => [
-        'back' => 'Volver al listado',
         'download' => 'Descargar',
         'item' => [
             'cleared' => 'procesado',

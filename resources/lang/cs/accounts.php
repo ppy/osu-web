@@ -20,14 +20,13 @@
 
 return [
     'edit' => [
-        'title' => 'Nastavení<strong>účtu</strong>',
         'title_compact' => 'nastavení',
         'username' => 'uživatelské jméno',
 
         'avatar' => [
             'title' => 'Avatar',
             'rules' => '',
-            'rules_link' => '',
+            'rules_link' => 'pravidla komunity',
         ],
 
         'email' => [

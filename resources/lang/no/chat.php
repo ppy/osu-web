@@ -23,7 +23,7 @@ return [
     'talking_in' => 'snakker i :channel',
     'talking_with' => 'snakker med :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'Du kan ikke sende meldinger i denne kanalen akkurat nå. Dette kan være en av følgende grunner:',
         'user' => 'Du kan ikke sende meldinger til denne brukeren akkurat nå. Dette kan være en av følgende grunner:',

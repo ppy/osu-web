@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Memperbarui...',
             'remove' => 'Hapus',
             'removing' => 'Menghapus...',
+            'title' => '',
         ],
         'show' => [
             'covers' => 'Kelola Sampul Beatmapset',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Konsol Admin',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => 'Forum',
                 'general' => 'Umum',
                 'store' => 'Toko',

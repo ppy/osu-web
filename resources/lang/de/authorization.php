@@ -20,7 +20,7 @@
 
 return [
     'require_login' => 'Zum Fortfahren bitte einloggen.',
-    'require_verification' => '',
+    'require_verification' => 'Bitte verifiziere Dich, um fortzufahren.',
     'restricted' => "Nicht möglich, während man restricted ist.",
     'silenced' => "Nicht möglich, während man stummgeschaltet ist.",
     'unauthorized' => 'Zugang verwehrt.',

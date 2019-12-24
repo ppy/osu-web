@@ -93,23 +93,23 @@ return [
 
     'login' => [
         '_' => 'Iniciar sesión',
-        'email_login_disabled' => '',
-        'locked_ip' => 'Tu dirección IP está bloqueada. Espera unos minutos.',
-        'username' => 'Nombre de usuario',
-        'password' => 'Contraseña',
         'button' => 'Iniciar sesión',
         'button_posting' => 'Iniciando sesión...',
+        'email_login_disabled' => '',
+        'failed' => 'Inicio de sesión incorrecto',
+        'forgot' => '¿Olvidaste tu contraseña?',
+        'info' => '',
+        'locked_ip' => 'Tu dirección IP está bloqueada. Espera unos minutos.',
+        'password' => 'Contraseña',
+        'register' => "¿No tienes una cuenta de osu!? Crea una nueva",
         'remember' => 'Recordar este computador',
         'title' => 'Inicia sesión para continuar',
-        'failed' => 'Inicio de sesión incorrecto',
-        'register' => "¿No tienes una cuenta de osu!? Crea una nueva",
-        'forgot' => '¿Olvidaste tu contraseña?',
+        'username' => 'Nombre de usuario',
+
         'beta' => [
             'main' => 'El acceso a la beta está actualmente restringido a usuarios privilegiados.',
             'small' => '(los osu!supporters tendrán acceso pronto)',
         ],
-
-        'here' => 'aquí', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -361,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => ':info del jugador',
-            'info' => 'Información',
         ],
 
         'info' => [

@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Hesap</strong> Ayarları',
         'title_compact' => 'ayarlar',
         'username' => 'kullanıcı adı',
 
@@ -70,9 +69,9 @@ return [
         'beatmapset_discussion_qualified_problem' => '',
 
         'mail' => [
-            '_' => '',
+            '_' => 'Bunun için bildirim al',
             'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => 'Konuya cevap ver',
         ],
     ],
 

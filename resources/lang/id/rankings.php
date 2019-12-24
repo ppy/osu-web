@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => 'Peringkat :type',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Performa',

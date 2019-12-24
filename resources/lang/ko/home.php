@@ -120,8 +120,6 @@ return [
             'error' => '소식을 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',
         ],
         'header' => [
-            'welcome' => '<strong>:username</strong>님, 안녕하세요!',
-            'messages' => '새로 받은 메시지 :count건이 있습니다',
             'stats' => [
                 'friends' => '접속 중인 친구',
                 'games' => '게임 수',

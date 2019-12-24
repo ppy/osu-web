@@ -79,7 +79,7 @@ return [
 
     'review' => [
         'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_child' => '查看讨论',
     ],
 
     'system' => [

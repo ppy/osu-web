@@ -23,12 +23,12 @@ return [
         'new' => '',
         'subject' => 'Nowa aktualizacja dla beatmapy „:title”',
         'unwatch' => '',
-        'visit' => '',
+        'visit' => 'Przejdź do dyskusji tutaj:',
     ],
 
     'common' => [
-        'closing' => '',
-        'hello' => '',
+        'closing' => 'Z wyrazami szacunku,',
+        'hello' => 'Witaj, :user!',
         'report' => '',
     ],
 
@@ -45,9 +45,9 @@ return [
         ],
 
         'support' => [
-            '_' => '',
-            'first' => '',
-            'repeat' => '',
+            '_' => 'Dziękujemy za :support osu!.',
+            'first' => 'wsparcie',
+            'repeat' => 'ciągłe wsparcie',
         ],
     ],
 
@@ -59,59 +59,59 @@ return [
     ],
 
     'password_reset' => [
-        'code' => '',
+        'code' => 'Twój kod weryfikacyjny to:',
         'requested' => '',
-        'subject' => 'odzyskiwanie konta osu!',
+        'subject' => 'Odzyskiwanie konta osu!',
     ],
 
     'store_payment_completed' => [
         'prepare_shipping' => '',
-        'processing' => '',
-        'questions' => "",
-        'shipping' => '',
+        'processing' => 'Otrzymaliśmy twoją płatność i właśnie wykonujemy twoje zamówienie. Obecny stan swojego zamówienia możesz sprawdzić tutaj:',
+        'questions' => "Jeśli masz pytania, odpowiedz na tę wiadomość e-mail.",
+        'shipping' => 'Wysyłka',
         'subject' => 'Otrzymaliśmy twoje zamówienie!',
-        'thank_you' => '',
-        'total' => '',
+        'thank_you' => 'Dziękujemy za twoje zamówienie w sklepie osu!',
+        'total' => 'Łącznie',
     ],
 
     'supporter_gift' => [
         'anonymous_gift' => '',
         'anonymous_gift_maybe_not' => '',
-        'duration' => '',
+        'duration' => 'Dzięki tej osobie, otrzymasz dostęp do osu!direct i innych korzyści przeznaczonych dla donatorów osu! przez następne :duration.',
         'features' => '',
-        'gifted' => '',
+        'gifted' => 'Ktoś podarował ci status donatora osu!.',
         'subject' => 'Otrzymujesz status donatora osu!',
     ],
 
     'user_email_updated' => [
         'changed_to' => '',
         'check' => '',
-        'sent' => '',
-        'subject' => 'potwierdź zmianę adresu e-mail',
+        'sent' => 'Ze względów bezpieczeństwa ta wiadomość została wysłana zarówno na stary jak i nowy adres e-mail.',
+        'subject' => 'Potwierdzenie zmiany adresu e-mail w osu!',
     ],
 
     'user_force_reactivation' => [
         'main' => '',
         'perform_reset' => '',
-        'reason' => '',
-        'subject' => '',
+        'reason' => 'Powód:',
+        'subject' => 'Wymagana ponowna aktywacja konta osu!',
     ],
 
     'user_password_updated' => [
         'confirmation' => '',
-        'subject' => 'potwierdź zmianę hasła',
+        'subject' => 'Potwierdzenie zmiany hasła w osu!',
     ],
 
     'user_verification' => [
-        'code' => '',
+        'code' => 'Twój kod weryfikacyjny to:',
         'code_hint' => '',
-        'link' => '',
+        'link' => 'Ewentualnie możesz kliknąć odnośnik poniżej, aby dokończyć proces weryfikacji:',
         'report' => '',
-        'subject' => 'weryfikacja konta osu!',
+        'subject' => 'Weryfikacja konta osu!',
 
         'action_from' => [
-            '_' => '',
-            'unknown_country' => '',
+            '_' => 'Działanie podjęte na twoim koncie z :country wymaga weryfikacji.',
+            'unknown_country' => 'nieznanego kraju',
         ],
     ],
 ];

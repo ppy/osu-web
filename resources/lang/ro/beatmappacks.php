@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Colecțiile pre-ambalate de beatmaps sunt bazate în jurul unei teme comune.',
+        'nav_title' => '',
+        'title' => 'Pachete beatmap',
+
         'blurb' => [
             'important' => 'CITEȘTE ASTA ÎNAINTE DE A DESCĂRCA',
             'instruction' => [
@@ -34,12 +38,9 @@ return [
                 'scary' => 'descarci pachetele de la cele mai noi la cele mai vechi',
             ],
         ],
-        'title' => 'Pachete beatmap',
-        'description' => 'Colecțiile pre-ambalate de beatmaps sunt bazate în jurul unei teme comune.',
     ],
 
     'show' => [
-        'back' => '',
         'download' => 'Descarcă',
         'item' => [
             'cleared' => 'eliminat',

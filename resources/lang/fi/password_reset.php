@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Nollaa salasana',
-
     'button' => [
         'cancel' => 'Peruuta',
         'resend' => 'Lähetä vahvistussähköposti uudelleen',

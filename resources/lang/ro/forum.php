@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Abonamente',
             'title_compact' => 'abonamente',
-            'title_main' => '<strong>Abonamente</strong> la forumuri',
 
             'box' => [
                 'total' => 'Subiecte la care te-ai abonat',

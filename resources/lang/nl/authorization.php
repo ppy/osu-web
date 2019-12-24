@@ -20,7 +20,7 @@
 
 return [
     'require_login' => 'Log in om verder te gaan.',
-    'require_verification' => '',
+    'require_verification' => 'Gelieve te verifiëren om verder te gaan.',
     'restricted' => "Je kan dit niet doen terwijl je restricted bent.",
     'silenced' => "Je kunt dit niet doen terwijl je silenced bent.",
     'unauthorized' => 'Toegang geweigerd.',

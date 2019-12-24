@@ -20,7 +20,7 @@
 
 return [
     'require_login' => 'Zaloguj się, aby kontynuować.',
-    'require_verification' => '',
+    'require_verification' => 'Przejdź proces weryfikacji, aby kontynuować.',
     'restricted' => "Nie możesz tego zrobić podczas blokady konta.",
     'silenced' => "Nie możesz tego zrobić podczas uciszenia.",
     'unauthorized' => 'Odmowa dostępu.',

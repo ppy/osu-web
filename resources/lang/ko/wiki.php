@@ -31,7 +31,7 @@ return [
 
         'edit' => [
             'link' => 'GitHub에서 보기',
-            'refresh' => '새로고침',
+            'refresh' => '새로 고침',
         ],
 
         'translation' => [

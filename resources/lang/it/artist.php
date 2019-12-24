@@ -37,12 +37,12 @@ return [
     ],
 
     'links' => [
-        'osu' => 'Profilo osu!',
+        'osu' => 'Profilo di osu!',
         'site' => 'Sito Ufficiale',
     ],
 
     'songs' => [
-        '_' => 'Canzoni',
+        '_' => 'Brani',
         'count' => ':count_delimited canzone|:count_delimited canzoni',
         'exclusive' => 'Esclusiva di osu!',
     ],

@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Registration: :start to :end',
 
         'header' => [
-            'subtitle' => 'รายชื่อทัวร์นาเมนต์ที่ได้รับการยอมรับอย่างเป็นทางการ',
             'title' => 'คอมมูนิตี้ ทัวร์นาเมนต์',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'ยกเลิกการลงทะเบียน',
             'register' => 'ลงทะเบียน',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

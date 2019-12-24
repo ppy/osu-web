@@ -157,7 +157,7 @@ return [
             'approved' => '',
             'loved' => '',
             'qualified' => '',
-            'wip' => '',
+            'wip' => '작업중',
             'pending' => '',
             'graveyard' => '',
         ],

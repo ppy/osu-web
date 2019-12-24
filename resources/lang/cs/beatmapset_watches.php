@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Toto jsou diskuze beatmap, které sledujete. Všechny nové příspěvky a aktualizace vám budou oznámeny.',
         'title_compact' => 'sledování moddingu',
-        'title_main' => 'Sledování moddingu',
 
         'table' => [
             'empty' => 'Nesledujete diskuzi žádné beatmapy.',

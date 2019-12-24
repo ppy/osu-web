@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => 'beheerder',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'beatmapset covers',
+            'contest' => 'competitie',
+            'contests' => 'competities',
+            'root' => 'console',
+            'store_orders' => 'winkel beheerder',
+        ],
+
+        'artists' => [
+            '_' => 'uitgelichte artiesten',
+            'index' => 'lijst',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'beatmap',
+            'discussions' => 'discussie',
+            'index' => 'lijst',
+            'show' => 'info',
+            'packs' => 'pakketten',
+        ],
+
+        'changelog' => [
+            '_' => 'changelog',
+            'index' => 'lijst',
+        ],
+
         'community' => [
             '_' => 'Community',
-
+            'comments' => 'reacties',
             'forum' => 'Forum',
+            'livestream' => 'livestreams',
+        ],
+
+        'contests' => [
+            '_' => 'competities',
+            'index' => 'lijst',
+        ],
+
+        'error' => [
+            '_' => 'fout',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'index',
+        ],
+
+        'home' => [
+            '_' => 'home',
+            'password_reset' => 'wachtwoord resetten',
+        ],
+
+        'matches' => [
+            '_' => 'wedstrijdgeschiedenis',
+        ],
+
+        'notice' => [
+            '_' => 'notificatie',
+        ],
+
+        'rankings' => [
+            '_' => 'ranking',
+        ],
+
+        'tournaments' => [
+            '_' => 'toernooien',
+            'index' => 'lijst',
+        ],
+
+        'users' => [
+            '_' => 'speler',
+            'forum_posts' => 'forum berichten',
+            'modding' => 'modderen',
+            'show' => 'info',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => 'start',
             'account-edit' => 'instellingen',
             'account-verifyLink' => 'Verificatie voltooid',
-            'friends-index' => 'vrienden',
-            'changelog-index' => 'changelog',
+            'beatmapset-watches-index' => 'modding volglijst',
             'changelog-build' => 'versie',
+            'changelog-index' => 'changelog',
+            'forum-topic-watches-index' => 'forum abonnementen',
+            'friends-index' => 'vrienden',
             'getDownload' => 'downloaden',
             'getIcons' => 'iconen',
             'groups-show' => 'groepen',
@@ -59,6 +133,7 @@ return [
             'search' => 'zoeken',
             'supportTheGame' => 'ondersteun het spel',
             'team' => 'team',
+            'testflight' => 'testvlucht',
         ],
         'profile' => [
             '_' => 'profiel',
@@ -78,7 +153,6 @@ return [
             'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'beatmap discussie berichten',
             'beatmap_discussions-index' => 'beatmap discussies',
-            'beatmapset-watches-index' => 'modding volglijst',
             'beatmapset_discussion_votes-index' => 'beatmap discussie stemmen',
             'beatmapset_events-index' => 'beatmapset evenementen',
             'index' => 'index',
@@ -112,7 +186,6 @@ return [
             'tournaments' => 'toernooien',
             'tournaments-index' => 'toernooien',
             'tournaments-show' => 'toernooi info',
-            'forum-topic-watches-index' => 'abonnementen',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -259,7 +332,7 @@ return [
             'forgot' => "Ik ben mij gegevens vergeten",
             'password' => 'wachtwoord',
             'title' => 'Log In Om Verder Te Gaan',
-            'username' => '',
+            'username' => 'gebruikersnaam',
 
             'error' => [
                 'email' => "Gebruikersnaam of emailadres bestaat niet",

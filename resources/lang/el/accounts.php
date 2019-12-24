@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Ρυθμίσεις <strong>Λογαριασμού</strong>',
         'title_compact' => 'ρυθμίσεις',
         'username' => 'όνομα χρήστη',
 

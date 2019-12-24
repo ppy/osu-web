@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Acestea sunt discuțiile beatmap pe care le urmărești. O să fii notificat atunci când apar noi postări sau actualizări.',
         'title_compact' => 'jurnalul modificărilor',
-        'title_main' => 'Jurnalul modificărilor',
 
         'table' => [
             'empty' => 'Nicio discuție beatmap urmărită.',

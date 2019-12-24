@@ -31,11 +31,11 @@ return [
 
             'team' => [
                 'title' => '支持團隊',
-                'description' => '',
+                'description' => 'Osu! 是由一小群團隊進行開發和營運。您的贊助可以幫助團隊活久一點。',
             ],
             'infra' => [
                 'title' => '伺服器基礎設施',
-                'description' => '',
+                'description' => '捐款用於網站營運，多人連線服務，在線排行榜，等等。',
             ],
             'featured-artists' => [
                 'title' => '精選藝術家',

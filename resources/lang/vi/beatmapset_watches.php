@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Đây là những cuộc thảo luận beatmap mà bạn đang theo dõi. Bạn sẽ được thông báo khi bài viết mới được đăng hoặc những cập nhật.',
         'title_compact' => 'danh sách theo dõi modding',
-        'title_main' => 'Danh Sách Theo Dõi Modding',
 
         'table' => [
             'empty' => 'Chưa theo dõi cuộc thảo luận nào.',

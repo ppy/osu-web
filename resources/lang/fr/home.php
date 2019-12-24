@@ -120,8 +120,6 @@ return [
             'error' => 'Erreur lors du chargement des nouvelles, essayez de recharger la page ?...',
         ],
         'header' => [
-            'welcome' => 'Bonjour, <strong>:username</strong> !',
-            'messages' => 'Vous avez :count nouveau message|Vous avez :count nouveaux messages',
             'stats' => [
                 'friends' => 'Amis en ligne',
                 'games' => 'Parties',

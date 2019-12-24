@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Regenererer...',
             'remove' => 'Fjern',
             'removing' => 'Fjerner...',
+            'title' => '',
         ],
         'show' => [
             'covers' => '',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => '',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => 'Forum',
                 'general' => 'Generelt',
                 'store' => 'Butikk',

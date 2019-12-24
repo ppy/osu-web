@@ -44,11 +44,6 @@ return [
             '_stream_to' => 'промени в :stream до :to',
             '_to' => 'промени до :to',
         ],
-
-        'title' => [
-            '_' => 'Промени :info',
-            'info' => 'Списък',
-        ],
     ],
 
     'support' => [

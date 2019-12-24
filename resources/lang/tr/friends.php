@@ -19,21 +19,12 @@
  */
 
 return [
+    'title_compact' => 'arkadaşlar',
+    'too_many' => 'Arkadaş sınırına ulaşıldı.',
+
     'buttons' => [
       'add' => 'arkadaş ekle',
       'disabled' => 'arkadaşlar',
       'remove' => 'arkadaşlıktan çıkar',
     ],
-
-    'index' => [
-        'title' => [
-            '_' => 'Ana menü :info',
-            'info' => 'Arkadaşlar',
-        ],
-    ],
-
-    'title' => 'Arkadaşlar',
-    'title_compact' => 'arkadaşlar',
-
-    'too_many' => 'Arkadaş sınırına ulaşıldı.',
 ];

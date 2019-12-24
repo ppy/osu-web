@@ -20,7 +20,7 @@
 
 return [
     'require_login' => '続行するにはログインが必要です。',
-    'require_verification' => '',
+    'require_verification' => '続行して確認してください。',
     'restricted' => "制限中には不可能です。",
     'silenced' => "サイレンス中には不可能です。",
     'unauthorized' => 'アクセスが拒否されました。',

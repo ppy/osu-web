@@ -23,7 +23,7 @@ return [
     'talking_in' => 'berbicara pada :channel',
     'talking_with' => 'berbicara dengan :name',
     'title_compact' => 'percakapan',
-    'title' => 'Percakapan',
+
     'cannot_send' => [
         'channel' => 'Saat ini Anda tidak dapat mengirimkan pesan pada kanal percakapan ini. Hal ini dapat disebabkan oleh beberapa alasan berikut:',
         'user' => 'Saat ini Anda tidak dapat mengirimkan pesan pada pada pengguna yang Anda tuju. Hal ini dapat disebabkan oleh beberapa alasan berikut:',

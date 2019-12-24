@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Período de inscrições: :start até :end',
 
         'header' => [
-            'subtitle' => 'Uma lista de torneios ativos e oficialmente reconhecidos',
             'title' => 'Torneios da Comunidade',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Cancelar Inscrição',
             'register' => 'Inscreva-me!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [
