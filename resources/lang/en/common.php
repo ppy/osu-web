@@ -81,6 +81,7 @@ return [
         'minute_short_unit' => 'min|mins',
         'minutes' => ':count_delimited minute|:count_delimited minutes',
         'months' => ':count_delimited month|:count_delimited months',
+        'notifications' => ':count_delimited notification|:count_delimited notifications',
         'plus_others' => '+ :count_delimited other!|+ :count_delimited others!',
         'post' => ':count_delimited post|:count_delimited posts',
         'second_short_unit' => 'sec|secs',

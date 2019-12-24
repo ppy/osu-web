@@ -81,6 +81,7 @@ export default class ItemGroup extends React.Component<Props, State> {
 
   private renderExpandButton() {
     const count = this.props.stack.total;
+    const transKey = this.context.unreadOnly ? 'common.count.update' : 'common.count.notifications';
 
     return (
       <button
@@ -90,7 +91,7 @@ export default class ItemGroup extends React.Component<Props, State> {
       >
         <span className='show-more-link__label'>
           <span className='show-more-link__label-text'>
-            {osu.transChoice('common.count.update', count)}
+            {osu.transChoice(transKey, count)}
           </span>
           <span className='show-more-link__label-icon'>
             <span className={`fas fa-angle-${this.state.expanded ? 'up' : 'down'}`} />
