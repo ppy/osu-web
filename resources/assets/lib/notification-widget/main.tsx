@@ -115,7 +115,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private handleShowMore = () => {
-    this.controller.type?.loadMore({ unreadOnly: true });
+    this.controller.loadMore();
   }
 
   private mainClass() {

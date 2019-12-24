@@ -134,6 +134,6 @@ export class Main extends React.Component {
   }
 
   private handleShowMore = () => {
-    this.controller.type?.loadMore(this.context);
+    this.controller.loadMore();
   }
 }

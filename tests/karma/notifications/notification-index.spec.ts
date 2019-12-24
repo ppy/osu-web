@@ -107,21 +107,19 @@ describe('Notification Index', () => {
 
     describe('swithcing to a filter with no items', () => {
       it('should automatically try to load more', () => {
-        const type = store.stacks.getOrCreateType({ objectType: 'user' });
-        spyOn(type, 'loadMore');
+        spyOn(controller, 'loadMore');
         controller.navigateTo('user');
 
-        expect(type.loadMore).toHaveBeenCalledTimes(1);
+        expect(controller.loadMore).toHaveBeenCalledTimes(1);
       });
     });
 
     describe('swithcing to a filter with items', () => {
       it('should not automatically try to load more', () => {
-        const type = store.stacks.getOrCreateType({ objectType: 'beatmapset' });
-        spyOn(type, 'loadMore');
+        spyOn(controller, 'loadMore');
         controller.navigateTo('beatmapset');
 
-        expect(type.loadMore).toHaveBeenCalledTimes(0);
+        expect(controller.loadMore).toHaveBeenCalledTimes(0);
       });
     });
   });

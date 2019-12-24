@@ -59,11 +59,16 @@ export default class NotificationController {
   }
 
   @action
+  loadMore() {
+    this.type?.loadMore(this.contextType);
+  }
+
+  @action
   navigateTo(type: NotificationTypeName) {
     this.currentFilter = type;
 
     if ([...this.stacks].length === 0) {
-      this.type?.loadMore(this.contextType);
+      this.loadMore();
     }
 
     if (!this.contextType.unreadOnly) {
