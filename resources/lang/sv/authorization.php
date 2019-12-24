@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Var vänlig logga in för att fortsätta.',
+    'require_verification' => '',
+    'restricted' => "Kan ej göra det när man är avstängd.",
+    'silenced' => "Kan ej göra det när man är tystad.",
+    'unauthorized' => 'Åtkomst nekad.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Kan inte ångra hype.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Endast administratörer kan se detta forum.',
         ],
     ],
-
-    'require_login' => 'Var vänlig logga in för att fortsätta.',
-
-    'unauthorized' => 'Åtkomst nekad.',
-
-    'silenced' => "Kan ej göra det när man är tystad.",
-
-    'restricted' => "Kan ej göra det när man är avstängd.",
 
     'user' => [
         'page' => [

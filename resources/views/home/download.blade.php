@@ -15,11 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', ['legacyNav' => false])
 
 @section('content')
-<div class="osu-page osu-page--header">
-    <div class="osu-page-header-v2 osu-page-header-v2--download">
+@component('layout._page_header_v4', ['params' => [
+    'theme' => 'download',
+]])
+    @slot('contentAppend')
         <div class="download-page-header">
             <span class="download-page-header__tagline">{!! trans('home.download.tagline') !!}</span>
 
@@ -42,9 +44,8 @@
                 </a>
             </p>
         </div>
-    </div>
-</div>
-
+    @endslot
+@endcomponent
 <div class="osu-page osu-page--download">
     <div class="download-page">
         <div class="download-page__step">

@@ -156,7 +156,7 @@ export class Nominations extends React.PureComponent
                     " #{nominations.current}/#{nominations.required}"
                 @renderLights(nominations.current, nominations.required)
 
-              if @props.currentUser.id? && !@userIsOwner()
+              if @props.currentUser.id?
                 div className: "#{bn}__row-right",
                   if mapIsQualified && @userCanDisqualify()
                     el BigButton,
@@ -465,7 +465,7 @@ export class Nominations extends React.PureComponent
 
 
   userCanDisqualify: =>
-    !@userIsOwner() && (@props.currentUser.is_admin || @props.currentUser.can_moderate || @props.currentUser.is_full_bn)
+    @props.currentUser.is_admin || @props.currentUser.can_moderate || @props.currentUser.is_full_bn
 
 
   userIsOwner: =>

@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'ověření osu! účtu',
-    ],
-
     'errors' => [
         'expired' => 'Ověřovací kód vypršel, byl zaslán nový ověřovací email.',
         'incorrect_key' => 'Nesprávný ověřovací kód.',

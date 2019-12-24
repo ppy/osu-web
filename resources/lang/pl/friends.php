@@ -19,21 +19,12 @@
  */
 
 return [
+    'title_compact' => 'znajomi',
+    'too_many' => 'Limit znajomych został osiągnięty.',
+
     'buttons' => [
       'add' => 'dodaj znajomego',
       'disabled' => 'znajomi',
       'remove' => 'usuń znajomego',
     ],
-
-    'index' => [
-        'title' => [
-            '_' => 'Strona główna » :info',
-            'info' => 'Znajomi',
-        ],
-    ],
-
-    'title' => 'Znajomi',
-    'title_compact' => 'znajomi',
-
-    'too_many' => 'Limit znajomych został osiągnięty.',
 ];

@@ -25,7 +25,7 @@ return [
         'peak' => '最高線上人數 :count 人',
         'players' => '<strong>:count</strong> 名已註冊玩家',
         'title' => '歡迎',
-        'see_more_news' => '',
+        'see_more_news' => '顯示更多新聞',
 
         'slogan' => [
             'main' => '最棒的音樂遊戲',
@@ -120,8 +120,6 @@ return [
             'error' => '載入最新消息發生錯誤，請重新載入頁面？...',
         ],
         'header' => [
-            'welcome' => '哈嘍，<strong>:username</strong>！',
-            'messages' => '你有 :count 條新訊息|{0}',
             'stats' => [
                 'friends' => '線上好友',
                 'games' => '房間',
@@ -131,7 +129,7 @@ return [
         'beatmaps' => [
             'new' => '新進榜圖譜',
             'popular' => '熱門圖譜',
-            'by_user' => '',
+            'by_user' => '由 :user',
         ],
         'buttons' => [
             'download' => '下載 osu!',

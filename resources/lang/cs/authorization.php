@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Pro pokračování se prosím přihlašte.',
+    'require_verification' => '',
+    'restricted' => "Toto nelze provést, když jste omezeni.",
+    'silenced' => "Toto nelze provést, když jste umlčeni.",
+    'unauthorized' => 'Přístup odepřen.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Hype nelze vrátit zpět.',
@@ -48,9 +54,9 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Můžeš odstranit pouze svoje příspěvky.',
+            'resolved' => 'Nemůžete odstranit příspěvek v vyřešené diskusi.',
+            'system_generated' => 'Automaticky generované příspěvky nelze odstranit.',
         ],
 
         'edit' => [
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Pouze admin může zobrazit toto fórum.',
         ],
     ],
-
-    'require_login' => 'Pro pokračování se prosím přihlašte.',
-
-    'unauthorized' => 'Přístup odepřen.',
-
-    'silenced' => "Toto nelze provést, když jste umlčeni.",
-
-    'restricted' => "Toto nelze provést, když jste omezeni.",
 
     'user' => [
         'page' => [

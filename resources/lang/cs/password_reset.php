@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Obnovit heslo',
-
     'button' => [
         'cancel' => 'Zrušit',
         'resend' => 'Znovu odeslat ověřovací e-mail',
         'set' => 'Nastavit heslo',
         'start' => 'Začít',
-    ],
-
-    'email' => [
-        'subject' => 'obnovení osu! účtu',
     ],
 
     'error' => [

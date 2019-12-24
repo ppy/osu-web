@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'osu! kontobekräftelse',
-    ],
-
     'errors' => [
         'expired' => 'Verifieringskoden har utgått, ett nytt bekräftelsemail har skickats.',
         'incorrect_key' => 'Felaktig verifieringskod.',

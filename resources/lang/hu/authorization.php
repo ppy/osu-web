@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Kérlek jelentkezz be a folytatáshoz.',
+    'require_verification' => '',
+    'restricted' => "Felfüggesztett állapotban erre nem vagy képes.",
+    'silenced' => "Némított állapotban erre nem vagy képes.",
+    'unauthorized' => 'Hozzáférés megtagadva.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'A hype-olást nem lehet visszavonni.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Csak admin láthatja ezt a fórumot.',
         ],
     ],
-
-    'require_login' => 'Kérlek jelentkezz be a folytatáshoz.',
-
-    'unauthorized' => 'Hozzáférés megtagadva.',
-
-    'silenced' => "Némított állapotban erre nem vagy képes.",
-
-    'restricted' => "Felfüggesztett állapotban erre nem vagy képes.",
 
     'user' => [
         'page' => [

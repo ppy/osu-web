@@ -52,12 +52,6 @@ return [
         'secret' => 'Client Secret',
     ],
 
-    'login' => [
-        'download' => 'ゲームをダウンロードしてアカウントを作成するにはここをクリック',
-        'label' => 'まず、アカウントにログインしてみましょう！',
-        'title' => 'アカウントログイン',
-    ],
-
     'new_client' => [
         'header' => '新しいOAuthアプリケーションを登録する',
         'register' => 'アプリケーションを登録',

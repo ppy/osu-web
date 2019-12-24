@@ -44,11 +44,6 @@ return [
             '_stream_to' => '直到 :to 為止 :stream 的更新',
             '_to' => '直到 :to 為止的更新',
         ],
-
-        'title' => [
-            '_' => '更新日誌 :info',
-            'info' => '列表',
-        ],
     ],
 
     'support' => [

@@ -51,12 +51,12 @@ return [
         'permalink_copied' => 'link copiado',
         'post' => 'Publicar',
         'reply' => 'Resposta',
-        'reply_reopen' => 'Responder e Reabrir',
-        'reply_resolve' => 'Responder e Resolver',
+        'reply_reopen' => 'Responder e reabrir',
+        'reply_resolve' => 'Responder e resolver',
         'reset' => 'Reiniciar',
         'restore' => 'Restaurar',
         'save' => 'Guardar',
-        'saving' => 'A Guardar...',
+        'saving' => 'A guardar...',
         'search' => 'Procurar',
         'see_more' => 'ver mais',
         'show' => 'mostrar',
@@ -111,7 +111,7 @@ return [
         'keyboard' => 'Teclado',
         'mouse' => 'Rato',
         'tablet' => 'Tablet',
-        'touch' => 'Ecrã Tátil',
+        'touch' => 'Ecrã tátil',
     ],
 
     'dropzone' => [
@@ -140,7 +140,7 @@ return [
         'days_ago' => ':count dia atrás|:count dias atrás',
         'hours_ago' => ':count hora atrás|:count horas atrás',
         'now' => 'agora',
-        'remaining' => 'Tempo Restante',
+        'remaining' => 'Tempo restante',
     ],
 
     'title' => [

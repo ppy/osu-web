@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => '비밀번호 재설정',
-
     'button' => [
         'cancel' => '취소',
         'resend' => '인증 메일 다시 받기',
         'set' => '비밀번호 설정',
         'start' => '시작',
-    ],
-
-    'email' => [
-        'subject' => 'osu! 계정 복구',
     ],
 
     'error' => [

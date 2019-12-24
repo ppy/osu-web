@@ -30,7 +30,7 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'NYT',
     ],
 
     'buttons' => [
@@ -38,11 +38,11 @@ return [
         'back_to_previous' => 'Vend tilbage til tidligere position',
         'back_to_top' => 'Tilbage til toppen',
         'cancel' => 'Annullér',
-        'change' => 'ændre',
-        'click_to_copy' => 'klik for at kopiere til udklipsholder',
-        'click_to_copy_copied' => 'kopieret til udklipsholder!',
+        'change' => 'ændr',
+        'click_to_copy' => 'klik for at kopiere til udklipsholderen',
+        'click_to_copy_copied' => 'kopieret til udklipsholderen!',
         'close' => 'Luk',
-        'collapse' => '',
+        'collapse' => 'kollaps',
         'delete' => 'Slet',
         'edit' => 'Rediger',
         'expand' => 'udvid',
@@ -52,7 +52,7 @@ return [
         'post' => 'Slå op',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og Genåben',
-        'reply_resolve' => 'Svar og markér som løst',
+        'reply_resolve' => 'Svar og Markér som Løst',
         'reset' => 'Nulstil',
         'restore' => 'Gendan',
         'save' => 'Gem',
@@ -60,15 +60,15 @@ return [
         'search' => 'Søg',
         'see_more' => 'se mere',
         'show' => 'vis',
-        'show_deleted' => '',
+        'show_deleted' => 'Vis slettede',
         'show_more' => 'vis mere',
         'show_more_options' => 'vis flere muligheder',
-        'update' => 'Opdatering',
+        'update' => 'Opdater',
         'upload_image' => 'upload billede',
 
         'watch' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Følg ikke længere',
+            'to_1' => 'Følg',
         ],
     ],
 
@@ -81,12 +81,12 @@ return [
         'minute_short_unit' => 'min|minutter',
         'minutes' => ':count minut|:count minutter',
         'months' => ':count måned|:count måneder',
-        'plus_others' => '',
-        'post' => '',
+        'plus_others' => '+ :count_delimited andre!|+ :count_delimited andre!',
+        'post' => ':count_delimited opslag|:count_delimited opslag',
         'second_short_unit' => 'sek',
-        'star_priority' => '',
-        'update' => '',
-        'view' => '',
+        'star_priority' => ':count_delimited stjerne prioritet|:count_delimited stjerne prioriteter',
+        'update' => ':count_delimited opdatering|:count_delimited opdateringer',
+        'view' => ':count_delimited visning|:count_delimited visninger',
         'years' => ':count år|:count år',
     ],
 
@@ -119,7 +119,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'søg...',
     ],
 
     'pagination' => [
@@ -140,7 +140,7 @@ return [
         'days_ago' => ':count dag siden|:count dage siden',
         'hours_ago' => ':count time siden|:count timer siden',
         'now' => 'nu',
-        'remaining' => 'Tid Tilbage',
+        'remaining' => 'Resterende Tid',
     ],
 
     'title' => [

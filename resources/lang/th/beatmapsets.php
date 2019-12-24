@@ -76,6 +76,11 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
             'report' => [
                 '_' => '',
                 'button' => '',
@@ -145,6 +150,16 @@ return [
             'rating-spread' => 'การกระจายความยาก',
             'nominations' => 'การเสนอชื่อ',
             'playcount' => 'จำนวนครั้งที่เล่น',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

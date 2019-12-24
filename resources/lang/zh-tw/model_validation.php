@@ -88,7 +88,7 @@ return [
             'only_quote' => '您的回覆僅有引用。',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => '貼文主體',
             ],
         ],
 
@@ -120,12 +120,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
+            'too_many' => 'OAuth 應用程式數量超出限制。',
             'url' => '請輸入有效的 URL。',
 
             'attributes' => [
                 'name' => '應用程式名稱',
-                'redirect' => '',
+                'redirect' => '應用程式回傳 URL',
             ],
         ],
     ],
@@ -171,7 +171,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason 不符合此報告類型。',
         'self' => "您不能檢舉你自己！",
     ],
 

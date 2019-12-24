@@ -52,12 +52,6 @@ return [
         'secret' => 'Ügyfél titkos kódja',
     ],
 
-    'login' => [
-        'download' => 'Kattints ide a játék letöltése és egy felhasználó létrehozásához',
-        'label' => 'Először is, jelentkezz be a fiókodba!',
-        'title' => 'Felhasználó Bejelentkezés',
-    ],
-
     'new_client' => [
         'header' => '',
         'register' => 'Regisztráld az alkalmazásodat',

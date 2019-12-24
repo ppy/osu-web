@@ -24,7 +24,6 @@ return [
         'registration_period' => '참가: :start부터 :end까지',
 
         'header' => [
-            'subtitle' => '현재 진행중인, 공식적으로 인정된 토너먼트 목록입니다.',
             'title' => '커뮤니티 토너먼트',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => '참가 신청 취소',
             'register' => '참가시켜 주세요!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

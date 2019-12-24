@@ -52,12 +52,6 @@ return [
         'secret' => '',
     ],
 
-    'login' => [
-        'download' => 'Klikk her for å laste ned spillet og opprette en konto',
-        'label' => 'Først, la oss logge inn på kontoen din!',
-        'title' => 'Kontoinnlogging',
-    ],
-
     'new_client' => [
         'header' => '',
         'register' => '',

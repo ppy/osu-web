@@ -27,6 +27,7 @@ declare var BeatmapHelper: BeatmapHelperInterface;
 declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
 declare var Timeout: any;
+declare const Lang: LangClass;
 
 // Global object types
 interface Comment {
@@ -159,12 +160,19 @@ interface Group {
   short_name: string;
 }
 
+interface LangClass {
+  _getPluralForm: (count: number) => number;
+  _origGetPluralForm: (count: number) => number;
+  locale: string;
+}
+
 // TODO: should look at combining with the other User.ts at some point.
 interface User {
   avatar_url?: string;
   country?: Country;
   country_code?: string;
   cover: Cover;
+  current_mode_rank?: number;
   default_group: string;
   group_badge?: Group;
   id: number;

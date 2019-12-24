@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Merket som løst av :user',
             'false' => 'Gjenåpnet av :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

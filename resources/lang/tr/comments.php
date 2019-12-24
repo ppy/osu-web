@@ -49,10 +49,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Yorumlar :info',
-            'info' => 'Listeleme',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +59,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Yorumlar :info',
-            'info' => 'Ayrıntı',
-        ],
+        'nav_title' => '',
     ],
 ];

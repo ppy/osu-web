@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'Гісторыя',
             'general' => 'Агульнае :scope',
+            'reviews' => '',
             'timeline' => 'Шкала часу',
             'scopes' => [
                 'general' => 'Гэтая цяжкасць',

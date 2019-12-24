@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'Xác thực tài khoản osu!',
-    ],
-
     'errors' => [
         'expired' => 'Mã xác thực này đã hết hạn, email xác thực mới đã được gửi.',
         'incorrect_key' => 'Mã xác thực không chính xác.',

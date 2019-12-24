@@ -20,10 +20,10 @@
 ])
 
 @section('content')
-    <div class="header-v3 header-v3--supporter">
-        <div class="header-v3__bg"></div>
-        <div class="header-v3__overlay"></div>
-        <div class="osu-page osu-page--header-v3">
+    @component('layout._page_header_v4', ['params' => [
+        'theme' => 'supporter',
+    ]])
+        @slot('contentAppend')
             <div class="supporter-status">
                 <div class="supporter-status__pippi"></div>
                 @if (!empty($supporterStatus))
@@ -66,9 +66,8 @@
                     <!-- end: supporter status -->
                 @endif
             </div>
-            <ol class="page-mode-v2 page-mode-v2--empty"></ol>
-        </div>
-    </div>
+        @endslot
+    @endcomponent
 
     <div class="osu-page osu-page--supporter">
         <div class="supporter">

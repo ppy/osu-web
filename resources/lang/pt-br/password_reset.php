@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Redefinir Senha',
-
     'button' => [
         'cancel' => 'Cancelar',
         'resend' => 'Reenviar email de verificação',
         'set' => 'Definir senha',
         'start' => 'Começar',
-    ],
-
-    'email' => [
-        'subject' => 'Recuperação da conta do osu!',
     ],
 
     'error' => [

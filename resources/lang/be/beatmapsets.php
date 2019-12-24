@@ -76,6 +76,11 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
             'report' => [
                 '_' => '',
                 'button' => '',
@@ -145,6 +150,16 @@ return [
             'rating-spread' => 'Шкала рэйтынгу',
             'nominations' => 'Намінацыі',
             'playcount' => 'Колькасць гульняў',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

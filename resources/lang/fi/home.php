@@ -120,8 +120,6 @@ return [
             'error' => 'Virhe ladattaessa uutisia. Kokeile sivun päivittämistä.',
         ],
         'header' => [
-            'welcome' => 'Hei <strong>:username</strong>!',
-            'messages' => 'Sinulle on :count uusi viesti|Sinulle on :count uutta viestiä',
             'stats' => [
                 'friends' => 'Kavereita paikalla',
                 'games' => 'Pelejä',

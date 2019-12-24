@@ -1,11 +1,11 @@
-Hi {!! $user->username !!},
+{!! trans('mail.common.hello', ['user' => $user->username]) !!}
 
-Just letting you know that there has been a new reply in "{!! $topic->topic_title !!}" since your last visit.
+{!! trans('mail.forum_new_reply.new', ['title' => $topic->topic_title]) !!}
 
-Jump straight to the latest reply using the following link:
+{!! trans('mail.forum_new_reply.visit') !!}
 {!! post_url($topic->topic_id, 'unread', false) !!}
 
-If you no longer wish to watch this topic, you can either click the "Unsubscribe topic" link found at the bottom of the topic above, or from topic subscriptions management page:
+{!! trans('mail.forum_new_reply.unwatch') !!}
 {!! route('forum.topic-watches.index') !!}
 
 @include('emails._signature')

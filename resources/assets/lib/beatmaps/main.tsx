@@ -18,6 +18,7 @@
 
 import { BackToTop } from 'back-to-top';
 import AvailableFilters from 'beatmaps/available-filters';
+import HeaderV4 from 'header-v4';
 import { isEqual } from 'lodash';
 import { IValueDidChange, Lambda, observe } from 'mobx';
 import { observer } from 'mobx-react';
@@ -64,13 +65,18 @@ export class Main extends React.Component<Props> {
 
   render() {
     return (
-      <div className='osu-layout__section'>
+      <>
+        <HeaderV4
+          theme='beatmapsets'
+          section={osu.trans('layout.header.beatmapsets._')}
+          subSection={osu.trans('layout.header.beatmapsets.index')}
+        />
         <SearchContent
           availableFilters={this.props.availableFilters}
           backToTopAnchor={this.backToTopAnchor}
         />
         <BackToTop anchor={this.backToTopAnchor} ref={this.backToTop} />
-      </div>
+      </>
     );
   }
 

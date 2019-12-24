@@ -15,13 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-Hey there {{ $giftee->username }},
+{!! trans('mail.common.hello', ['user' => $giftee->username]) !!}
 
-Someone has just gifted you an osu!supporter tag!
-Thanks to them, you have access to osu!direct and other osu!supporter benefits for the next {{ $duration }}.
-You can find out more details on these features at {{ route('support-the-game') }}.
-The person who gifted you this tag may choose to remain anonymous, so they have not been mentioned in this notification.
-But you likely already know who it is ;).
+{!! trans('mail.supporter_gift.gifted') !!}
+{!! trans('mail.supporter_gift.duration', ['duration' => $duration]) !!}
+{!! trans('mail.supporter_gift.features') !!}
+{!! route('support-the-game') !!}
+{!! trans('mail.supporter_gift.anonymous_gift') !!}
+{!! trans('mail.supporter_gift.anonymous_gift_maybe_not') !!}
 
-Regards,
+{!! trans('mail.common.closing') !!}
 osu! Management

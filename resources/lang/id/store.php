@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Kami menerima pesanan osu!store Anda!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Pemesanan dilangsukan pada :date',
 

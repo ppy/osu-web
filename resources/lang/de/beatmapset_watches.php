@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Dies sind deine beobachteten Diskussionen. Du wirst über neue Beiträge und Updates informiert.',
         'title_compact' => 'beobachtete moddingthreads',
-        'title_main' => 'Beobachtete Moddingthreads',
 
         'table' => [
             'empty' => 'Du beobachtest keine Diskussionen.',
@@ -30,10 +29,6 @@ return [
             'state' => 'Status',
             'title' => 'Titel',
         ],
-    ],
-
-    'mail' => [
-        'update' => 'Neues Update für Beatmap ":title"',
     ],
 
     'status' => [

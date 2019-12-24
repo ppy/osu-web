@@ -44,11 +44,6 @@ return [
             '_stream_to' => 'cambios en :stream hasta :to',
             '_to' => 'cambios hasta :to',
         ],
-
-        'title' => [
-            '_' => ':info de cambios',
-            'info' => 'Lista',
-        ],
     ],
 
     'support' => [

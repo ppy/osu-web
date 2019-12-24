@@ -25,7 +25,4 @@ return [
 
         'link' => 'az élő közvetítésről szóló wiki oldal',
     ],
-    'headers' => [
-        'regular' => 'Jelenleg élő',
-    ],
 ];

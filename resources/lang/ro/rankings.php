@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => 'Clasificare :type',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'performanță',

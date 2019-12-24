@@ -31,19 +31,19 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Ugyldig spiltilstand er specificeret.',
-        'standard_converts_only' => 'Ingen scores er tilgængelige for den anmodede spiltilstand på denne beatmap sværhedsgrad.',
+        'invalid_mode' => 'Ugyldig mode specificeret.',
+        'standard_converts_only' => 'Ingen scores er tilgængelige for den anmodede mode på denne sværhedsgrad.',
     ],
     'checkout' => [
         'generic' => 'Der opstod en fejl under forberedelsen af ​​dit køb.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Kunne ikke få resultater, prøv igen senere.',
+        'operation_timeout_exception' => 'Søgemaskinen er i øjeblikket travlere end ellers, prøv igen senere.',
     ],
 
     'logged_out' => 'Du er blevet logget ud. Log venligst ind og prøv igen.',
-    'supporter_only' => 'Du skal være supporter for at udføre denne handling.',
-    'no_restricted_access' => 'Du kan ikke udføre denne handling eftersom, at din konto er begrænset.',
+    'supporter_only' => 'Du skal være osu!supporter for at kunne anvende denne funktion.',
+    'no_restricted_access' => 'Du kan ikke udføre denne handling mens din konto er begrænset.',
     'unknown' => 'En ukendt fejl er opstået.',
 ];

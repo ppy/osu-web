@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Regenerating...',
             'remove' => 'Remove',
             'removing' => 'Removing...',
+            'title' => 'Beatmapset covers',
         ],
         'show' => [
             'covers' => 'Manage Beatmapset Covers',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Console Thingy',
-
             'sections' => [
+                'beatmapsets' => 'Beatmapsets',
                 'forum' => 'Forum',
                 'general' => 'General',
                 'store' => 'Store',

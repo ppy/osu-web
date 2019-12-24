@@ -17,6 +17,7 @@ import 'bootstrap-modal.coffee';
 import 'logout.coffee';
 import 'shared.coffee';
 import 'turbolinks-overrides.coffee';
+import 'lang-overrides';
 
 import 'import-shims';  // shim imports to window
 import 'main.coffee';

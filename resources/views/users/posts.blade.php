@@ -16,12 +16,18 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'currentSection' => 'community',
     'currentAction' => 'profile',
+    'currentSection' => 'community',
+    'legacyNav' => false,
     'title' => trans('users.posts.title', ['username' => $user->username]),
 ])
 
 @section('content')
+    @include('layout._page_header_v4', ['params' => [
+        'backgroundImage' => $user->profileCustomization()->cover()->url(),
+        'section' => trans('layout.header.users._'),
+        'subSection' => trans('layout.header.users.forum_posts'),
+    ]])
     <form action="{{ route('users.posts', request()->route('user')) }}">
         <div class="osu-page">
             <div class="search-header">
@@ -39,7 +45,7 @@
             </div>
         </div>
 
-        <div class="osu-page osu-page--small">
+        <div class="osu-page">
             <div class="search">
                 @include('objects.search._forum_options', ['fields' => ['user' => null]])
 

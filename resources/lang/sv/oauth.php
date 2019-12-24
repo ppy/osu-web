@@ -52,12 +52,6 @@ return [
         'secret' => '',
     ],
 
-    'login' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
-    ],
-
     'new_client' => [
         'header' => '',
         'register' => '',

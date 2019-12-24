@@ -27,6 +27,7 @@ use App\Libraries\Groups;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
 use App\Libraries\OsuCookieJar;
+use App\Libraries\OsuMessageSelector;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
@@ -61,6 +62,8 @@ class AppServiceProvider extends ServiceProvider
                 );
             }
         });
+
+        $this->app->make('translator')->setSelector(new OsuMessageSelector);
     }
 
     /**

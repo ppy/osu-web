@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type Rankning',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Prestanda',

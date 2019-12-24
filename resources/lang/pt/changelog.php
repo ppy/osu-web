@@ -44,17 +44,12 @@ return [
             '_stream_to' => 'alterações em :stream até :to',
             '_to' => 'alterações até :to',
         ],
-
-        'title' => [
-            '_' => 'Registo de Alterações :info',
-            'info' => 'Listagem',
-        ],
     ],
 
     'support' => [
         'heading' => 'Adoras esta atualização?',
         'text_1' => 'Apoia o desenvolvimento mais adiante do osu! e :link hoje!',
         'text_1_link' => 'torna-te num apoiante',
-        'text_2' => 'Não só estarás a ajudar a acelerar o desenvolvimento, mas também receberás algumas funcionalidades extra e personalizações!',
+        'text_2' => 'Não só estarás a ajudar a acelerar o desenvolvimento, como também receberás algumas funcionalidades extra e personalizações!',
     ],
 ];

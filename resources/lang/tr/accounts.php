@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Hesap</strong> Ayarları',
         'title_compact' => 'ayarlar',
         'username' => 'kullanıcı adı',
 
@@ -68,6 +67,12 @@ return [
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'bu beatmap için oluşturduğunuz yeni forum konularında bildirimleri otomatik olarak etkinleştirin',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => 'Bunun için bildirim al',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => 'Konuya cevap ver',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! e-posta değişikliği onayı',
         'update' => 'güncelle',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! şifre değişikliği onayı',
         'update' => 'güncelle',
     ],
 

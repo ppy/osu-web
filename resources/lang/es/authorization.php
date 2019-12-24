@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Por favor, inicia sesión para continuar.',
+    'require_verification' => '',
+    'restricted' => "No puedes hacer eso mientras estés restringido.",
+    'silenced' => "No puedes hacer eso mientras estés silenciado.",
+    'unauthorized' => 'Acceso denegado.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'No puedes deshacer el hyping.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Solo los administradores pueden ver este foro.',
         ],
     ],
-
-    'require_login' => 'Por favor, inicia sesión para continuar.',
-
-    'unauthorized' => 'Acceso denegado.',
-
-    'silenced' => "No puedes hacer eso mientras estés silenciado.",
-
-    'restricted' => "No puedes hacer eso mientras estés restringido.",
 
     'user' => [
         'page' => [

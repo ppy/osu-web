@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Por favor, inicie a sessão para continuar.',
+    'require_verification' => 'Por favor verifique para prosseguir.',
+    'restricted' => "Não é possível fazer isso enquanto restrito.",
+    'silenced' => "Não é possível fazer isso enquanto silenciado.",
+    'unauthorized' => 'Acesso negado.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Não é possível desfazer o hype.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Apenas administradores podem visualizar este fórum.',
         ],
     ],
-
-    'require_login' => 'Por favor, inicie a sessão para continuar.',
-
-    'unauthorized' => 'Acesso negado.',
-
-    'silenced' => "Não é possível fazer isso enquanto silenciado.",
-
-    'restricted' => "Não é possível fazer isso enquanto restrito.",
 
     'user' => [
         'page' => [
