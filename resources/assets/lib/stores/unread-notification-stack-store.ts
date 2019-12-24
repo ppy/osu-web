@@ -27,6 +27,7 @@ import NotificationStackStore from './notification-stack-store';
 @dispatchListener
 export default class UnreadNotificationStackStore extends NotificationStackStore implements DispatchListener {
   @observable total = 0;
+  private deletedStacks = new Set<string>();
 
   @computed get totalWithPm() {
     return this.total + this.legacyPm.count;
@@ -115,15 +116,20 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
   private handleStack(identity: NotificationIdentity, readCount: number) {
     const stack = this.getStack(identity);
+    const key = resolveStackId(identity);
     if (stack == null) {
-      this.total -= readCount;
+      if (!this.deletedStacks.has(key)) {
+        this.total -= readCount;
+      }
+
       return;
     }
 
+    this.deletedStacks.add(key);
+
     stack.isRead = true;
-    if (this.stacks.delete(resolveStackId(identity))) {
-      this.total -= stack.total;
-    }
+    this.stacks.delete(key);
+    this.total -= stack.total;
 
     const type = this.getOrCreateType(identity);
     if (type == null) return;
