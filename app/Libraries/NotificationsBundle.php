@@ -73,7 +73,6 @@ class NotificationsBundle
             $response['unread_count'] = $this->user->userNotifications()->where('is_read', false)->count();
         }
 
-
         return $response;
     }
 
