@@ -183,6 +183,8 @@ export default class Main extends React.Component<Props, State> {
     }
 
     if (nodes.length === 0) {
+      this.handleShowMore();
+
       return (
         <p key='empty' className='notification-popup__empty'>
           {osu.trans('notifications.all_read')}
