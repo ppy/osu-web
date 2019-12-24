@@ -16,13 +16,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { dispatch } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { Main } from 'notifications-index/main';
-import core from 'osu-core-singleton';
+import { NotificationEventMoreLoaded } from 'notifications/notification-events';
 
 reactTurbolinks.registerPersistent('notifications-index', Main, true, (container: HTMLElement) => {
   const bundle = osu.parseJson('json-notifications') as NotificationBundleJson;
-  core.dataStore.notificationStore.stacks.updateWithBundle(bundle);
+  dispatch(new NotificationEventMoreLoaded(bundle, { unreadOnly: false }));
 
   return {};
 });

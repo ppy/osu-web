@@ -24,6 +24,7 @@ import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import {
   NotificationEventLogoutJson,
+  NotificationEventMoreLoaded,
   NotificationEventNew,
   NotificationEventNewJson,
   NotificationEventRead,
@@ -173,7 +174,7 @@ export default class Worker {
   }
 
   @action loadBundle = (data: NotificationBootJson) => {
-    this.store.updateWithBundle(data);
+    dispatch(new NotificationEventMoreLoaded(data, { unreadOnly: true }));
     this.hasData = true;
   }
 
