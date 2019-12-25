@@ -59,7 +59,7 @@
     @slot('titleAppend')
         <div class="store-xsolla">
             <div class="store-xsolla__text">
-                {{ trans('store.xsolla.distributor') }}
+                {!! trans('store.xsolla.distributor') !!}
             </div>
             <div class="store-xsolla__icon"></div>
         </div>
