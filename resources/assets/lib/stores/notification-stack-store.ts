@@ -38,6 +38,10 @@ export default class NotificationStackStore implements DispatchListener {
   @observable readonly types = new Map<string | null, NotificationType>();
   private readonly resolver = new NotificationResolver();
 
+  get allType() {
+    return this.getOrCreateType({ objectType: null });
+  }
+
   constructor(protected notificationStore: NotificationStore) {}
 
   @action
@@ -106,6 +110,8 @@ export default class NotificationStackStore implements DispatchListener {
 
     type.stacks.set(stack.id, stack);
     type.total++;
+
+    this.allType.total++;
   }
 
   @action

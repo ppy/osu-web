@@ -49,7 +49,7 @@ describe('Notification Events', () => {
       const bundleBase = {
         stacks: [makeStackJson(identity, 5, 'beatmapset_discussion_post_new', identity.id - 100)],
         types: [
-          { cursor: null, name: null,  total: 5 },
+          { cursor: null, name: null,  total: baseUnreadCount },
           { cursor: null, name: 'beatmapset', total: 5 },
         ],
       };
@@ -185,7 +185,7 @@ describe('Notification Events', () => {
       const bundleBase = {
         stacks: [makeStackJson(identities[0], 5, 'beatmapset_discussion_post_new', identities[0].id - 100)],
         types: [
-          { cursor: null, name: null,  total: 5 },
+          { cursor: null, name: null,  total: baseUnreadCount },
           { cursor: null, name: 'beatmapset', total: 5 },
         ],
       };
@@ -279,7 +279,7 @@ describe('Notification Events', () => {
       const bundleBase = {
         stacks: [makeStackJson(stackIdentity, stackSize, 'beatmapset_discussion_post_new', identities[0].id - 100)],
         types: [
-          { cursor: null, name: null,  total: typeSize },
+          { cursor: null, name: null,  total: baseUnreadCount },
           { cursor: null, name: 'beatmapset', total: typeSize },
         ],
       };
@@ -404,7 +404,7 @@ describe('Notification Events', () => {
     const bundleBase = {
       stacks: [makeStackJson(identities[0], 5, 'beatmapset_discussion_post_new', identities[0].id - 100)],
       types: [
-        { cursor: null, name: null,  total: 5 },
+        { cursor: null, name: null,  total: baseUnreadCount },
         { cursor: null, name: 'beatmapset', total: 5 },
       ],
     };
@@ -485,7 +485,7 @@ describe('Notification Events', () => {
       const bundleBase = {
         stacks: [makeStackJson(identities[0], 5, 'beatmapset_discussion_post_new', identities[0].id)],
         types: [
-          { cursor: null, name: null,  total: 5 },
+          { cursor: null, name: null,  total: baseUnreadCount },
           { cursor: null, name: 'beatmapset', total: 5 },
         ],
       };
@@ -557,7 +557,11 @@ describe('Notification Events', () => {
           it('should increment the total unread count', () => {
             expect(store.unreadStacks.total).toBe(baseUnreadCount + 1);
           });
-        })
+
+          it('should increment the unfiltered unread count', () => {
+            expect(store.unreadStacks.allType.total).toBe(baseUnreadCount + 1);
+          });
+        });
 
         describe('notification does not belong to an existing stack', () => {
           const newNotificationIdentity = { ...toJson(identities[0]), object_id: 2, id: identities[0].id + 100 };
