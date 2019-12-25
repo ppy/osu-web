@@ -33,7 +33,7 @@ export default class NotificationController {
   }
 
   get stacks() {
-    return this.store.stacksOfType(this.currentFilter);
+    return this.store.orderedStacksOfType(this.currentFilter);
   }
 
   @computed

@@ -96,7 +96,6 @@ export default class NotificationStackStore implements DispatchListener {
     const type = this.getOrCreateType(identity);
     let stack = this.getStack(identity);
 
-    // FIXME: we need the notification to include if the stack already exists server side :|
     if (stack == null) {
       stack = new NotificationStack(json.object_id, json.object_type, nameToCategory[json.name], this.resolver);
       this.stacks.set(stack.id, stack);
@@ -121,6 +120,12 @@ export default class NotificationStackStore implements DispatchListener {
         stack.isRead = true;
       }
     }
+  }
+
+  orderedStacksOfType(name: NotificationTypeName) {
+    const stacks = [...this.stacksOfType(name)];
+
+    return stacks.sort((x, y) => y.first.id - x.first.id);
   }
 
   /**

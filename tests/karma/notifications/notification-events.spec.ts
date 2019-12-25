@@ -480,9 +480,6 @@ describe('Notification Events', () => {
   });
 
   describe('on NotificationEventNew', () => {
-    const newNotificationIdentity = { ...toJson(identities[0]), id: identities[0].id + 100 }; // make it look newer
-    const newNotificationJson = makeNotificationJson(newNotificationIdentity);
-
     describe('has existing stack', () => {
       const notificationJson = makeNotificationJson(toJson(identities[0]));
       const bundleBase = {
@@ -505,7 +502,6 @@ describe('Notification Events', () => {
       });
 
       it('should contain 1 stack', () => {
-        // FIXME: move pm notification stack out.
         expect(store.stacks.stacks.size).toBe(1);
       });
 
@@ -514,48 +510,74 @@ describe('Notification Events', () => {
       });
 
       describe('NotificationEventNew dispatched', () => {
-        beforeEach(() => {
-          dispatch(new NotificationEventNew(newNotificationJson));
-        });
+        describe('notification belongs to an existing stack', () => {
+          const newNotificationIdentity = { ...toJson(identities[0]), id: identities[0].id + 100 }; // make it look newer
+          const newNotificationJson = makeNotificationJson(newNotificationIdentity);
 
-        it('should add the notification to the store', () => {
-          expect([...store.notifications.keys()]).toContain(newNotificationIdentity.id);
-        });
+          beforeEach(() => {
+            dispatch(new NotificationEventNew(newNotificationJson));
+          });
 
-        it('should add the new notification to the stack', () => {
-          const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
+          it('should add the notification to the store', () => {
+            expect([...store.notifications.keys()]).toContain(newNotificationIdentity.id);
+          });
 
-          expect(stack).toBeDefined();
-          if (stack != null) {
-            expect([...stack.notifications.keys()]).toContain(newNotificationIdentity.id);
-            expect(stack.notifications.size).toBe(2);
-          }
-        });
+          it('should add the new notification to the stack', () => {
+            const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
 
-        it('the new notification should be first in order', () => {
-          const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
+            expect(stack).toBeDefined();
+            if (stack != null) {
+              expect([...stack.notifications.keys()]).toContain(newNotificationIdentity.id);
+              expect(stack.notifications.size).toBe(2);
+            }
+          });
 
-          expect(stack?.orderedNotifications[0].id).toBe(newNotificationIdentity.id);
-        });
+          it('the new notification should be first in order', () => {
+            const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
 
-        it('the new notification should be first', () => {
-          const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
+            expect(stack?.orderedNotifications[0].id).toBe(newNotificationIdentity.id);
+          });
 
-          expect(stack?.first.id).toBe(newNotificationIdentity.id);
-        });
+          it('the new notification should be first', () => {
+            const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
 
-        it('should increment the stack unread count', () => {
-          const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
-          expect(stack?.total).toBe(6);
-        });
+            expect(stack?.first.id).toBe(newNotificationIdentity.id);
+          });
 
-        it('should increment the type unread count', () => {
-          const type = store.unreadStacks.getOrCreateType(fromJson(newNotificationIdentity));
-          expect(type?.total).toBe(6);
-        });
+          it('should increment the stack unread count', () => {
+            const stack = store.unreadStacks.getStack(fromJson(newNotificationIdentity));
+            expect(stack?.total).toBe(6);
+          });
 
-        it('should increment the total unread count', () => {
-          expect(store.unreadStacks.total).toBe(baseUnreadCount + 1);
+          it('should increment the type unread count', () => {
+            const type = store.unreadStacks.getOrCreateType(fromJson(newNotificationIdentity));
+            expect(type?.total).toBe(6);
+          });
+
+          it('should increment the total unread count', () => {
+            expect(store.unreadStacks.total).toBe(baseUnreadCount + 1);
+          });
+        })
+
+        describe('notification does not belong to an existing stack', () => {
+          const newNotificationIdentity = { ...toJson(identities[0]), object_id: 2, id: identities[0].id + 100 };
+          const newNotificationJson = makeNotificationJson(newNotificationIdentity);
+
+          beforeEach(() => {
+            dispatch(new NotificationEventNew(newNotificationJson));
+          });
+
+          it('there is a new stack', () => {
+            expect(store.unreadStacks.stacks.size).toBe(2);
+          });
+
+          it('the stack the new notification is in should be first', () => {
+            const stacks = store.unreadStacks.orderedStacksOfType('beatmapset');
+            const expected = fromJson(newNotificationIdentity);
+            delete expected.id;
+
+            expect(stacks[0].identity).toEqual(expected);
+          });
         });
       });
     });
@@ -575,6 +597,9 @@ describe('Notification Events', () => {
       });
 
       describe('NotificationEventNew dispatched', () => {
+        const newNotificationIdentity = { ...toJson(identities[0]), id: identities[0].id + 100 }; // make it look newer
+        const newNotificationJson = makeNotificationJson(newNotificationIdentity);
+
         beforeEach(() => {
           dispatch(new NotificationEventNew(newNotificationJson));
         });
