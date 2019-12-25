@@ -19,7 +19,7 @@
     $links = [
         [
             'url' => route('contests.index'),
-            'title' => trans('layout.header.contests.index'),
+            'title' => trans('contest.index.nav_title'),
         ],
         [
             'url' => $contestMeta->url(),
@@ -50,8 +50,8 @@
     @include('layout._page_header_v4', ['params' => [
         'links' => $links,
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.contests._'),
-        'subSection' => $contestMeta->name,
+        'section' => trans('layout.header.community._'),
+        'subSection' => trans('layout.header.community.contests'),
         'theme' => 'contests',
     ]])
 

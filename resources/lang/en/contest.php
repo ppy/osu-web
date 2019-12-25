@@ -23,6 +23,11 @@ return [
         'small' => 'Compete in more ways than just clicking circles.',
         'large' => 'Community Contests',
     ],
+
+    'index' => [
+        'nav_title' => 'listing',
+    ],
+
     'voting' => [
         'over' => 'Voting for this contest has ended',
         'login_required' => 'Please sign in to vote.',
