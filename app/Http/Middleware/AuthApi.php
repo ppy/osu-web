@@ -41,6 +41,12 @@ class AuthApi
             return $next($request);
         }
 
-        return app(Authenticate::class)->handle($request, $next, 'api');
+        $handler = function ($request) use ($next) {
+            optional(auth()->user())->markSessionVerified();
+
+            return $next($request);
+        };
+
+        return app(Authenticate::class)->handle($request, $handler, 'api');
     }
 }
