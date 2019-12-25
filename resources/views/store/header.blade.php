@@ -57,6 +57,15 @@
     'theme' => 'store',
 ]])
     @slot('titleAppend')
+        <div class="store-xsolla">
+            <div class="store-xsolla__text">
+                {{ trans('store.xsolla.distributor') }}
+            </div>
+            <div class="store-xsolla__icon"></div>
+        </div>
+    @endslot
+
+    @slot('navAppend')
         @if(isset($cart) && $cart && $cart->items()->exists())
             <a href="{{ route('store.cart.show') }}" class="btn-osu-big btn-osu-big--store-cart">
                 <span class="btn-osu-big__content">
@@ -70,15 +79,6 @@
                 </span>
             </a>
         @endif
-    @endslot
-
-    @slot('contentAppend')
-        <div class="store-xsolla">
-            <div class="store-xsolla__text">
-                {{ trans('store.xsolla.distributor') }}
-            </div>
-            <div class="store-xsolla__icon"></div>
-        </div>
     @endslot
 @endcomponent
 

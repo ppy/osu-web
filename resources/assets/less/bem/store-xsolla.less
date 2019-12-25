@@ -21,10 +21,8 @@
   background-color: osu-hsla(@osu-colour-c1, 0.7);
   color: @osu-colour-b6;
   font-size: @font-size--normal;
-  position: absolute;
-  bottom: 100%;
-  margin-bottom: 10px;
-  right: 0;
+  margin-left: auto;
+  margin-right: -(@gutter-v2-desktop - 8px); // about the same as vertical margin (flex-centered)
   display: none;
 
   @media @desktop {
