@@ -55,6 +55,19 @@
         'theme' => 'contests',
     ]])
 
+    <div class="osu-page">
+        <div class="page-image">
+            {!! img2x([
+                'src' => $contestMeta->header_url,
+                'class' => 'page-image__image',
+            ]) !!}
+
+            <h1 class="page-image__title">
+                {{ $contestMeta->name }}
+            </h1>
+        </div>
+    </div>
+
     <div class="osu-page osu-page--contest">
         <div class='contest'>
             @yield('contest-content')

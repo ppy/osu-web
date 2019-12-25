@@ -312,6 +312,18 @@ function html_excerpt($body, $limit = 300)
     return e(truncate($body, $limit));
 }
 
+function img2x(array $attributes)
+{
+    if (presence($attributes['src'] ?? null) === null) {
+        return;
+    }
+
+    $src2x = retinaify($attributes['src']);
+    $attributes['srcset'] = "{$attributes['src']} 1x, {$src2x} 1.5x";
+
+    return tag('img', $attributes);
+}
+
 function truncate(string $text, $limit = 100, $ellipsis = '...')
 {
     if (mb_strlen($text) > $limit) {
