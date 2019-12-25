@@ -37,7 +37,10 @@ class AuthApi
 
     public function handle(Request $request, Closure $next)
     {
-        if (static::skipAuth($request)) {
+        // Calling user() on the guard will set auth()->user()
+        $user = auth()->guard('api')->user();
+
+        if ($user === null && static::skipAuth($request)) {
             return $next($request);
         }
 
