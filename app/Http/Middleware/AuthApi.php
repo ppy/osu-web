@@ -37,19 +37,13 @@ class AuthApi
 
     public function handle(Request $request, Closure $next)
     {
-        // Calling user() on the guard will set auth()->user()
-        $user = auth()->guard('api')->user();
+        auth()->shouldUse('api');
+        optional(auth()->user())->markSessionVerified();
 
-        if ($user === null && static::skipAuth($request)) {
+        if (static::skipAuth($request)) {
             return $next($request);
         }
 
-        $handler = function ($request) use ($next) {
-            optional(auth()->user())->markSessionVerified();
-
-            return $next($request);
-        };
-
-        return app(Authenticate::class)->handle($request, $handler, 'api');
+        return app(Authenticate::class)->handle($request, $next, 'api');
     }
 }
