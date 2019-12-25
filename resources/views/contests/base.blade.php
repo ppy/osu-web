@@ -44,9 +44,9 @@
 ])
 
 @section('content')
-    @include('objects.css-override', ['mapping' => [
-        '.header-v4--contests .header-v4__bg' => $contestMeta->header_url,
-    ]])
+    <style>
+        :root { {{ css_var_2x('--header-bg', $contestMeta->header_url) }} }
+    </style>
 
     @include('layout._page_header_v4', ['params' => [
         'links' => $links,

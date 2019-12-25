@@ -179,6 +179,18 @@ function cleanup_cookies()
     }
 }
 
+function css_var_2x(string $key, string $url)
+{
+    if (!present($url)) {
+        return;
+    }
+
+    $url = e($url);
+    $url2x = retinaify($url);
+
+    return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}')");
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $uid = uniqid($stat);
