@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $legacyNav = $legacyNav ?? true;
+    $legacyNav = false;
     $legacyFont = $legacyFont ?? true;
 
     if (!isset($title)) {
