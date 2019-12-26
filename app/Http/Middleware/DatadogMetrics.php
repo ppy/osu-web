@@ -48,7 +48,7 @@ class DatadogMetrics extends LaravelDatadogMiddleware
 
         $route = $request->route();
         if ($route !== null) {
-            $controller = $route->getController();
+            $controller = $route->controller;
             if ($controller !== null) {
                 $className = get_class($controller);
 
