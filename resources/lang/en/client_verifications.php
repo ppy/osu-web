@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,26 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmapset-status {
-  background-color: osu-hsla(@osu-colour-b6, 0.5);
-  padding: 6px 15px;
-  border-radius: 1000px;
-  font-size: @font-size--normal;
-  font-style: normal;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #fff;
+return [
+    'completed' => [
+        'home' => 'Go to dashboard',
+        'logout' => 'Logout',
+        'text' => 'You can close this tab/window now',
+        'title' => 'osu! client verification has been completed',
+    ],
 
-  .fade-element(@hover-transition-duration);
-
-  &--hype {
-    background-color: @osu-colour-b3;
-  }
-
-  &--show {
-    padding: 10px 35px;
-    font-size: @font-size--title-small;
-    align-self: flex-end;
-    margin-bottom: 10px;
-  }
-}
+    'create' => [
+        'confirm' => 'Click on authorise button below to finish client verification.',
+        'title' => 'osu! client verification',
+    ],
+];

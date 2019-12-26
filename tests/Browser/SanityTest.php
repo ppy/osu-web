@@ -345,6 +345,7 @@ class SanityTest extends DuskTestCase
     {
         $verificationExpected = [
             'account.edit',
+            'client-verifications.create',
             'store.checkout.show',
             'store.invoice.show',
             'store.orders.index',

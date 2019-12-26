@@ -53,7 +53,7 @@
   &__overlay {
     position: absolute;
     border-radius: @border-radius-large;
-    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
+    background-color: osu-hsla(@osu-colour-b6, 0.5);
     .center-content();
     .full-size();
     transition: all 120ms;
@@ -64,7 +64,7 @@
     }
 
     &[data-state="hover"] {
-      background-color: .osu-hsla(@osu-colour-b6, 0.8)[@hsla];
+      background-color: osu-hsla(@osu-colour-b6, 0.8);
     }
   }
 }
