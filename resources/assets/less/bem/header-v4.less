@@ -257,6 +257,7 @@
     .default-gutter-v2();
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 
     &--bar {
       background-color: @osu-colour-d4;
@@ -269,9 +270,6 @@
       @media @desktop {
         font-size: @font-size--large;
       }
-
-      display: flex;
-      flex-wrap: wrap;
     }
 
     .@{_top}--users & {

@@ -22,12 +22,18 @@
   color: @osu-colour-c1;
   font-size: @font-size--small-2;
   font-family: var(--font-default-torus);
-  margin-left: auto;
-  display: none;
+  margin-left: -@gutter-v2;
+  display: flex;
   text-align: right;
+  width: calc(100% + (@gutter-v2 * 2));
+  flex: none;
+  order: -1;
 
   @media @desktop {
     display: flex;
+    width: auto;
+    margin-left: auto;
+    order: 0;
   }
 
   &__icon {
@@ -39,5 +45,6 @@
 
   &__text {
     padding: 0 10px;
+    flex: 1;
   }
 }
