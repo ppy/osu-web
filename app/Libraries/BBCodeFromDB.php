@@ -59,8 +59,14 @@ class BBCodeFromDB
 
     public function parseAudio($text)
     {
-        $text = str_replace("[audio:{$this->uid}]", '<audio controls="controls" src="', $text);
-        $text = str_replace("[/audio:{$this->uid}]", '"></audio>', $text);
+        preg_match_all("#\[audio:{$this->uid}\](?<url>[^[]+)\[/audio:{$this->uid}\]#", $text, $matches, PREG_SET_ORDER);
+
+        foreach ($matches as $match) {
+            $proxiedSrc = proxy_image(html_entity_decode_better($match['url']));
+            $tag = '<audio controls="controls" preload="none" src="'.$proxiedSrc.'"></audio>';
+
+            $text = str_replace($match[0], $tag, $text);
+        }
 
         return $text;
     }
