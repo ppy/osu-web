@@ -62,7 +62,7 @@ class BBCodeFromDB
         preg_match_all("#\[audio:{$this->uid}\](?<url>[^[]+)\[/audio:{$this->uid}\]#", $text, $matches, PREG_SET_ORDER);
 
         foreach ($matches as $match) {
-            $proxiedSrc = proxy_image(html_entity_decode_better($match['url']));
+            $proxiedSrc = proxy_media(html_entity_decode_better($match['url']));
             $tag = '<audio controls="controls" preload="none" src="'.$proxiedSrc.'"></audio>';
 
             $text = str_replace($match[0], $tag, $text);
@@ -162,7 +162,7 @@ class BBCodeFromDB
         $index = 0;
 
         foreach ($images as $i) {
-            $proxiedSrc = proxy_image(html_entity_decode_better($i['url']));
+            $proxiedSrc = proxy_media(html_entity_decode_better($i['url']));
 
             $imageTag = $galleryAttributes = '';
 
