@@ -16,34 +16,40 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $action = request()->route()->getActionName();
-    if ($action === App\Http\Controllers\StoreController::class.'@getListing') {
-        $actionName = 'products';
-    } elseif ($action === App\Http\Controllers\Store\ProductsController::class.'@show') {
-        $actionName = 'product';
-    } elseif ($action === App\Http\Controllers\Store\CartController::class.'@show') {
-        $actionName = 'cart';
-    } elseif ($action === App\Http\Controllers\Store\CheckoutController::class.'@show') {
-        $actionName = 'cart';
-    } elseif ($action === App\Http\Controllers\StoreController::class.'@getInvoice') {
-        $actionName = 'order';
-    } elseif ($action === App\Http\Controllers\Store\OrdersController::class.'@index') {
-        $actionName = 'orders';
+    switch (request()->route()->getName()) {
+        case 'store.products.index':
+            $currentNav = 'products';
+            break;
+        case 'store.products.show':
+            $currentNav = 'product';
+            break;
+        case 'store.cart.show':
+            $currentNav = 'cart';
+            break;
+        case 'store.checkout.show':
+            $currentNav = 'cart';
+            break;
+        case 'store.invoice.show':
+            $currentNav = 'order';
+            break;
+        case 'store.orders.index':
+            $currentNav = 'orders';
+            break;
     }
 
     $links = [
         [
-            'active' => $actionName === 'products',
+            'active' => $currentNav === 'products',
             'title' => trans('layout.header.store.products'),
             'url' => route('store.products.index'),
         ],
         [
-            'active' => $actionName === 'cart',
+            'active' => $currentNav === 'cart',
             'title' => trans('layout.header.store.cart'),
             'url' => route('store.cart.show'),
         ],
         [
-            'active' => $actionName === 'orders',
+            'active' => $currentNav === 'orders',
             'title' => trans('layout.header.store.orders'),
             'url' => route('store.orders.index'),
         ],
@@ -53,7 +59,7 @@
 @component('layout._page_header_v4', ['params' => [
     'links' => $links,
     'section' => trans('layout.header.store._'),
-    'subSection' => trans("layout.header.store.{$actionName}"),
+    'subSection' => trans("layout.header.store.{$currentNav}"),
     'theme' => 'store',
 ]])
     @slot('titleAppend')
