@@ -43,9 +43,13 @@ class PlaylistItemTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmap(PlaylistItem $item)
     {
-        return $this->item(
-            $item->beatmap,
-            new BeatmapCompactTransformer
-        );
+        if ($item->beatmap !== null) {
+            return $this->item(
+                $item->beatmap,
+                new BeatmapCompactTransformer
+            );
+        } else {
+            return $this->primitive(null);
+        }
     }
 }
