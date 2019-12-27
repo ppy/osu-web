@@ -16,23 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as _ from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Transforms } from 'slate';
+import { ReactEditor } from 'slate-react';
+import { SlateContext } from './slate-context';
 
 type DiscussionType = 'hype' | 'mapperNote' | 'praise' | 'problem' | 'suggestion';
 const selectableTypes: DiscussionType[] = ['praise', 'problem', 'suggestion'];
 
 export default class EditorIssueTypeSelector extends React.Component<any, any> {
+  static contextType = SlateContext;
   portal: HTMLDivElement;
-  private readonly topRef: React.RefObject<HTMLDivElement>;
+  private readonly topRef: React.RefObject<HTMLAnchorElement> = React.createRef<HTMLAnchorElement>();
 
   constructor(props: {}) {
     super(props);
 
     this.portal = document.createElement('div');
     document.body.appendChild(this.portal);
-    this.topRef = React.createRef<HTMLDivElement>();
+    // this.topRef = React.createRef<HTMLDivElement>();
 
     this.state = {
       visible: false,
@@ -58,7 +61,7 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
   }
 
   render(): React.ReactNode {
-    const type: DiscussionType = this.props.node.data.get('type');
+    const type: DiscussionType = this.props.element.discussionType;
     const icons = {
       hype: 'fas fa-bullhorn',
       mapperNote: 'far fa-sticky-note',
@@ -69,7 +72,7 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
 
     return (
       <React.Fragment>
-        <a href='#' className='beatmap-discussion-timestamp__icons' onClick={this.toggleMenu} contentEditable={false} {...this.props.attributes} ref={this.topRef}>
+        <a href='#' className='beatmap-discussion-timestamp__icons' onClick={this.toggleMenu} contentEditable={false} ref={this.topRef}>
           <div className='beatmap-discussion-timestamp__icon'>
             <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={icons[type]} /></span>
           </div>
@@ -118,20 +121,18 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
     );
   }
 
-  select = (event: React.MouseEvent<HTMLElement>) => {
+  select = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
 
-    const target = event.currentTarget as HTMLElement;
+    const target = event.currentTarget;
 
     if (!target) {
       return;
     }
 
-    const type = target.dataset.type;
     this.setState({visible: false}, () => {
-      const {editor, node} = this.props;
-      const data = node.data.merge({ type });
-      editor.setNodeByKey(node.key, {data});
+      const path = ReactEditor.findPath(this.context, this.props.element);
+      Transforms.setNodes(this.context, {discussionType: target.dataset.type}, {at: path});
     });
   }
 
@@ -139,7 +140,7 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
     // Blackout.toggle(this.state.visible, 0.5);
   }
 
-  toggleMenu = (event: Event) => {
+  toggleMenu = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
     this.setState({
       visible: !this.state.visible,

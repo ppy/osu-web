@@ -20,17 +20,21 @@ import { BeatmapIcon } from 'beatmap-icon';
 import * as _ from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Transforms } from 'slate';
+import { ReactEditor } from 'slate-react';
+import { SlateContext } from './slate-context';
 
 export default class EditorBeatmapSelector extends React.Component<any, any> {
+  static contextType = SlateContext;
   portal: HTMLDivElement;
-  private readonly topRef: React.RefObject<HTMLDivElement>;
+  private readonly topRef: React.RefObject<HTMLAnchorElement>;
 
   constructor(props: {}) {
     super(props);
 
     this.portal = document.createElement('div');
     document.body.appendChild(this.portal);
-    this.topRef = React.createRef<HTMLDivElement>();
+    this.topRef = React.createRef<HTMLAnchorElement>();
 
     this.state = {
       visible: false,
@@ -57,10 +61,10 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
   }
 
   render(): React.ReactNode {
-    const beatmap = this.props.node.data.get('beatmapId') ? _.find(this.props.beatmaps, (b) => b.id === this.props.node.data.get('beatmapId')) : this.props.currentBeatmap;
+    const beatmap = this.props.element.beatmapId ? _.find(this.props.beatmaps, (b) => b.id === this.props.element.beatmapId) : this.props.currentBeatmap;
     return (
       <React.Fragment>
-        <a href='#' className='beatmap-discussion-newer__dropdown' onClick={this.toggleMenu} contentEditable={false} {...this.props.attributes} ref={this.topRef}>
+        <a href='#' className='beatmap-discussion-newer__dropdown' onClick={this.toggleMenu} contentEditable={false} ref={this.topRef}>
           <BeatmapIcon
             beatmap={beatmap}
           />
@@ -73,7 +77,7 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
   renderList = () => {
     return ReactDOM.createPortal(
       (
-        <div className='beatmap-discussion-newer__dropdown-menu' contentEditable={false}>
+        <div className='beatmap-discussion-newer__dropdown-menu'>
           {this.props.beatmaps.map((beatmap: Beatmap) => this.renderListItem(beatmap))}
         </div>
       ), this.portal);
@@ -119,18 +123,17 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
     const id = parseInt(target.dataset.id || '', 10);
     if (id) {
       this.setState({visible: false}, () => {
-        const {editor, node} = this.props;
-        const data = node.data.merge({beatmapId: id});
-        editor.setNodeByKey(node.key, {data});
+        const path = ReactEditor.findPath(this.context, this.props.element);
+        Transforms.setNodes(this.context, {beatmapId: id}, {at: path});
       });
     }
   }
 
   syncBlackout = () => {
-    Blackout.toggle(this.state.visible, 0.5);
+    // Blackout.toggle(this.state.visible, 0.5);
   }
 
-  toggleMenu = (event: Event) => {
+  toggleMenu = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
     this.setState({
       visible: !this.state.visible,

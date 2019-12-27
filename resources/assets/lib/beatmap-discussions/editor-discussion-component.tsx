@@ -32,26 +32,32 @@ export default class EditorDiscussionComponent extends React.Component<any, any>
     return (
       <div className='beatmap-discussion beatmap-discussion--preview' {...this.props.attributes}>
         <div className='beatmap-discussion__discussion'>
-            <div className='beatmap-discussion-post beatmap-discussion-post--reply'>
-                <div className='beatmap-discussion-post__content'>
-                    <EditorBeatmapSelector {...this.props}/>
-                    <div className='beatmap-discussion-post__user-container' contentEditable={false}>
-                      <div className='beatmap-discussion-timestamp__icons-container' style={{marginRight: '10px'}}>
-                        <EditorIssueTypeSelector {...this.props}/>
-                        <div className='beatmap-discussion-timestamp__text'>00:00.184</div>
-                      </div>
-                      <div className='beatmap-discussion-post__user-stripe'/>
-                    </div>
-                    <div className='beatmap-discussion-post__message-container undefined'>
-                        <div className='beatmapset-discussion-message'>{this.props.children}</div>
-                        <div className='beatmap-discussion-post__actions' contentEditable={false}>
-                            <div className='beatmap-discussion-post__actions-group'>
-                                <a className='beatmap-discussion-post__action beatmap-discussion-post__action--button' href='#' onClick={this.remove}>delete</a>
-                            </div>
-                        </div>
-                    </div>
+          <div className='beatmap-discussion-post beatmap-discussion-post--reply'>
+            <div className='beatmap-discussion-post__content'>
+              <EditorBeatmapSelector {...this.props}/>
+              <div className='beatmap-discussion-post__user-container' style={{userSelect: 'none'}} contentEditable={false}>
+                <div className='beatmap-discussion-timestamp__icons-container' style={{marginRight: '10px'}}>
+                  <EditorIssueTypeSelector {...this.props}/>
+                  <div className='beatmap-discussion-timestamp__text'>00:00.184</div>
                 </div>
+                <div className='beatmap-discussion-post__user-stripe'/>
+              </div>
+              <div className='beatmap-discussion-post__message-container'>
+                <div className='beatmapset-discussion-message'>{this.props.children}</div>
+                <div className='beatmap-discussion-post__actions' style={{userSelect: 'none'}} contentEditable={false}>
+                  <div className='beatmap-discussion-post__actions-group'>
+                    <a
+                      className='beatmap-discussion-post__action beatmap-discussion-post__action--button'
+                      href='#'
+                      onClick={this.remove}
+                    >
+                      delete
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
       </div>
     );

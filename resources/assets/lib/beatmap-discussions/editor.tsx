@@ -1,4 +1,4 @@
-/**
+  /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
@@ -20,71 +20,33 @@ import isHotkey from 'is-hotkey';
 import * as laroute from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
-import { SchemaProperties, Value } from 'slate';
-import { Editor as SlateEditor } from 'slate';
-import {
-  Editor as SlateReactEditor,
-  findDOMNode,
-  RenderBlockProps,
-  RenderInlineProps,
-  RenderMarkProps,
-} from 'slate-react';
+import { createEditor, Editor as SlateEditor, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
+import { withHistory } from 'slate-history';
+import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import EditorDiscussionComponent from './editor-discussion-component';
 import EditorPluginTimestamp from './editor-plugin-timestamp';
+import { SlateContext } from './slate-context';
 
-const placeholder: string = '{"document":{"nodes":[{"object":"block","type":"paragraph","nodes":[]}]}}';
+const placeholder: string = '[{"children": [{"text": "placeholder"}], "type": "paragraph"}]';
 let initialValue: string = placeholder;
 
-const schema: SchemaProperties = {
-  blocks: {
-    embed: {
-      // nodes: (object, match) => {
-      //   console.log('validlidd', object, match);
-      //   return true;
-      // },
-    },
-    // {
-    //   marks: [],
-    //   nodes: [{
-    //     marks: [],
-    //     match: [{
-    //       object: 'text',
-    //       marks: [],
-    //     }]
-    //   }],
-    // },
-  },
-  document: {
-    marks: [
-      {type: 'bold'},
-      {type: 'italic'},
-    ],
-    nodes: [{
-      match: [
-        {type: 'embed'},
-        {type: 'paragraph'},
-      ],
-    }],
-  },
-  inlines: {
-    timestamp: {
-      nodes: [{
-        match: { object: 'text' },
-      }],
-    },
-  },
-};
+interface TimestampRange extends Range {
+  timestamp: string;
+}
 
 export default class Editor extends React.Component<any, any> {
-  editor = React.createRef<SlateReactEditor>();
+  editor = React.createRef<HTMLDivElement>();
   menu = React.createRef<HTMLDivElement>();
   menuBody = React.createRef<HTMLDivElement>();
   plugins = [
     EditorPluginTimestamp(),
   ];
+  slateEditor: ReactEditor;
 
   constructor(props: {}) {
     super(props);
+
+    this.slateEditor = this.withEmbeds(withHistory(withReact(createEditor())));
 
     const savedValue = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
     if (savedValue) {
@@ -94,28 +56,28 @@ export default class Editor extends React.Component<any, any> {
     this.state = {
       menuOffset: -1000,
       menuShown: false,
-      value: Value.fromJSON(JSON.parse(initialValue)),
+      value: JSON.parse(initialValue),
     };
+  }
+
+  withEmbeds = (editor: ReactEditor) => {
+    // const { isVoid } = editor;
+    // editor.isVoid = (element) => {
+    //   // console.log('isVoid', element.type);
+    //   return element.type === 'embed' ? true : isVoid(element);
+    // };
+
+    return editor;
   }
 
   buttan = (event: React.MouseEvent<HTMLElement>, type: string) => {
     event.preventDefault();
 
-    if (!this.editor.current) {
-      return;
-    }
-
-    this.editor.current
-      .focus()
-      .moveToStart()
-      .insertBlock({
-        type: 'embed',
-
-        data: {
-          beatmapId: this.props.currentBeatmap.id,
-          type,
-        },
-      });
+    Transforms.setNodes(this.slateEditor, {
+      beatmapId: this.props.currentBeatmap.id,
+      discussionType: type,
+      type: 'embed',
+    });
   }
 
   hideMenu = (e: React.MouseEvent<HTMLElement>) => {
@@ -158,53 +120,62 @@ export default class Editor extends React.Component<any, any> {
   //   console.log(output.join(''));
   // }
 
-  log = () => console.log(this.state.value.toJSON());
+  log = () => console.log(JSON.stringify(this.state.value));
 
-  onChange = ({ value }: { value: Value }) => {
-    const content = JSON.stringify(value.toJSON());
+  onChange = (value: SlateNode[]) => {
+    const content = JSON.stringify(value);
     localStorage.setItem(`newDiscussion-${this.props.beatmapset.id}`, content);
 
     this.setState({value}, () => {
-      if (!this.editor.current) {
-        return;
-      }
-
-      if (!this.editor.current.value.selection.isFocused && !this.state.menuShown) {
+      if (!ReactEditor.isFocused(this.slateEditor) && !this.state.menuShown) {
         this.setState({menuOffset: -1000});
         return;
       }
 
-      let menuOffset: number = 0;
-      if (this.editor.current && this.editor.current.value.anchorBlock) {
-        const node = findDOMNode(this.editor.current.value.anchorBlock.key) as HTMLElement;
-        menuOffset = node.offsetTop + (node.offsetHeight / 2);
-        this.setState({menuOffset});
+      const selection = window.getSelection();
+      // console.log('selection', selection, 'rangeCount', selection?.rangeCount);
+      // try {
+      //   const derp = selection?.getRangeAt(0);
+      // } catch (e) {
+      //   console.log('xselection', selection, 'xrangeCount', selection?.rangeCount);
+      //   // debugger
+      // }
+      let menuOffset: number = -1000;
+      if (selection && selection.anchorNode !== null) {
+        const selectionTop = window.getSelection()?.getRangeAt(0).getBoundingClientRect().top ?? -1000;
+        // const selectionHeight = window.getSelection()?.getRangeAt(0).getBoundingClientRect().height ?? 0;
+        const editorTop = this.editor.current?.getBoundingClientRect().top ?? 0;
+        menuOffset = selectionTop - editorTop - 5;
+        // if (this.editor.current && this.editor.current.value.anchorBlock) {
+        // const node = findDOMNode(this.editor.current.value.anchorBlock.key) as HTMLElement;
+        // menuOffset = node.offsetTop + (node.offsetHeight / 2);
+      } else {
+        console.log('[explosion caught]', 'selection', selection, 'rangeCount', selection?.rangeCount);
       }
+
+      this.setState({menuOffset});
+      // }
     });
   }
 
-  onKeyDown = (event: KeyboardEvent, editor: SlateEditor, next: () => any) => {
-    // don't apply bold/italic marks within embed blocks
-    if (editor.value.anchorBlock.type === 'embed') {
-      return next();
-    }
+  onKeyDown = (event: KeyboardEvent) => {
+    // // don't apply bold/italic marks within embed blocks
+    // if (editor.value.anchorBlock.type === 'embed') {
+    //   return next();
+    // }
 
-    let mark;
     if (isHotkey('mod+b', event)) {
-      mark = 'bold';
+      event.preventDefault();
+      this.toggleMark('bold');
     } else if (isHotkey('mod+i', event)) {
-      mark = 'italic';
-    } else {
-      return next();
+      event.preventDefault();
+      this.toggleMark('italic');
     }
-
-    event.preventDefault();
-    editor.toggleMark(mark);
   }
 
   resetInput = () => {
     this.setState({
-      value: Value.fromJSON(JSON.parse(placeholder)),
+      value: JSON.parse(placeholder),
     });
   }
 
@@ -223,24 +194,48 @@ export default class Editor extends React.Component<any, any> {
     });
   }
 
-  toggleMark = (type: string) => {
-    if (!this.editor.current) {
-      return;
-    }
-
-    if (this.editor.current.value.focusBlock.type === 'embed') {
-      return;
-    }
-
-    this.editor.current.toggleMark(type);
+  toggleBold = () => {
+    this.toggleMark('bold');
   }
 
   toggleItalic = () => {
     this.toggleMark('italic');
   }
 
-  toggleBold = () => {
-    this.toggleMark('bold');
+  toggleMark = (format: any) => {
+    const marks = SlateEditor.marks(this.slateEditor);
+    const isActive = marks ? marks[format] === true : false;
+
+    if (isActive) {
+      SlateEditor.removeMark(this.slateEditor, format);
+    } else {
+      SlateEditor.addMark(this.slateEditor, format, true);
+    }
+  }
+
+  decorate = (derp: NodeEntry) => {
+    const node = derp[0];
+    const path = derp[1];
+    const ranges: TimestampRange[] = [];
+
+    if (!Text.isText(node)) {
+      return ranges;
+    }
+
+    const TS_REGEX = /\b((\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d[,|])*\d\))?)/;
+    const matches = node.text.match(TS_REGEX);
+
+    if (matches && matches.index !== undefined) {
+      // console.log('match', matches);
+      // console.log(path, matches.index, matches.index + matches[0].length);
+      ranges.push({
+        anchor: { path, offset: matches.index },
+        focus: { path, offset: matches.index + matches[0].length },
+        timestamp: matches[0],
+      });
+    }
+
+    return ranges;
   }
 
   render(): React.ReactNode {
@@ -254,82 +249,86 @@ export default class Editor extends React.Component<any, any> {
             <div className='osu-page osu-page--small'>
               <div className={bn}>
                 <div className='page-title'>{osu.trans('beatmaps.discussions.new.title')}</div>
-                <div className={`${bn}__content`}>
-                  <SlateReactEditor
-                    value={this.state.value}
-                    onChange={this.onChange}
-                    onKeyDown={this.onKeyDown}
-                    plugins={this.plugins}
-                    placeholder='Placeholder goes here...'
-                    renderBlock={this.renderBlock}
-                    renderInline={this.renderInline}
-                    renderMark={this.renderMark}
-                    ref={this.editor}
-                    schema={schema}
-                  />
-                  <div className='forum-post-edit__buttons-bar'>
-                    <div className='forum-post-edit__buttons forum-post-edit__buttons--toolbar'>
-                      <div className='post-box-toolbar'>
-                          <button
-                              className='btn-circle btn-circle--bbcode'
-                              title='Bold'
-                              type='button'
-                              onClick={this.toggleBold}
-                          >
-                              <span className='btn-circle__content'>
-                                  <i className='fas fa-bold'/>
-                              </span>
-                          </button>
-
-                          <button
-                              className='btn-circle btn-circle--bbcode'
-                              title='Italic'
-                              type='button'
-                              onClick={this.toggleItalic}
-                          >
-                              <span className='btn-circle__content'>
-                                  <i className='fas fa-italic'/>
-                              </span>
-                          </button>
-                      </div>
-                    </div>
-                    <div className='forum-post-edit__buttons forum-post-edit__buttons--actions'>
-                        <div className='forum-post-edit__button'>
-                            <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
-                          <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className={`${bn}__menu`}
-                    ref={this.menu}
-                    style={{
-                      left: '-13px',
-                      position: 'absolute',
-                      top: `${this.state.menuOffset}px`,
-                    }}
-                    onMouseEnter={this.showMenu}
-                    onMouseLeave={this.hideMenu}
+                <div ref={this.editor} className={`${bn}__content`}>
+                  <SlateContext.Provider
+                    value={this.slateEditor}
                   >
-                    <div className='forum-post-edit__button'><i className='fa fas fa-plus-circle' /></div>
-                    <div
-                      className={`${bn}__menu-content`}
-                      ref={this.menuBody}
-                      style={{
-                        display: this.state.menuShown ? 'block' : 'none',
-                      }}
+                    <Slate
+                      editor={this.slateEditor}
+                      value={this.state.value}
+                      onChange={this.onChange}
                     >
-                      <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'suggestion')}>
-                        <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
-                      </button>
-                      <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'problem')}>
-                        <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
-                      </button>
-                      <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'praise')}>
-                        <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
-                      </button>
-                    </div>
-                  </div>
+                      <Editable
+                        decorate={this.decorate}
+                        onKeyDown={this.onKeyDown}
+                        renderElement={this.renderElement}
+                        renderLeaf={this.renderLeaf}
+                      />
+                      <div className='forum-post-edit__buttons-bar'>
+                        <div className='forum-post-edit__buttons forum-post-edit__buttons--toolbar'>
+                          <div className='post-box-toolbar'>
+                              <button
+                                  className='btn-circle btn-circle--bbcode'
+                                  title='Bold'
+                                  type='button'
+                                  onClick={this.toggleBold}
+                              >
+                                  <span className='btn-circle__content'>
+                                      <i className='fas fa-bold'/>
+                                  </span>
+                              </button>
+                              <button
+                                  className='btn-circle btn-circle--bbcode'
+                                  title='Italic'
+                                  type='button'
+                                  onClick={this.toggleItalic}
+                              >
+                                  <span className='btn-circle__content'>
+                                      <i className='fas fa-italic'/>
+                                  </span>
+                              </button>
+                          </div>
+                        </div>
+                        <div className='forum-post-edit__buttons forum-post-edit__buttons--actions'>
+                            <div className='forum-post-edit__button'>
+                              <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={(event) => { event.preventDefault(); this.resetInput(); }}>reset</button>
+                              <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
+                              <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className={`${bn}__menu`}
+                        ref={this.menu}
+                        style={{
+                          left: '-13px',
+                          position: 'absolute',
+                          top: `${this.state.menuOffset}px`,
+                        }}
+                        onMouseEnter={this.showMenu}
+                        onMouseLeave={this.hideMenu}
+                      >
+                        <div className='forum-post-edit__button'><i className='fa fas fa-plus-circle' /></div>
+                        <div
+                          className={`${bn}__menu-content`}
+                          ref={this.menuBody}
+                          style={{
+                            display: this.state.menuShown ? 'block' : 'none',
+                          }}
+                        >
+                          <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'suggestion')}>
+                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
+                          </button>
+                          <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'problem')}>
+                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
+                          </button>
+                          <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'praise')}>
+                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
+                          </button>
+                        </div>
+                      </div>
+                    </Slate>
+                  </SlateContext.Provider>
                 </div>
               </div>
             </div>
@@ -339,8 +338,27 @@ export default class Editor extends React.Component<any, any> {
     );
   }
 
-  renderBlock = (props: RenderBlockProps, editor: SlateEditor, next: () => any) => {
-    switch (props.node.type) {
+  renderLeaf = (props: RenderLeafProps) => {
+    let children = props.children;
+    if (props.leaf.bold) {
+      children = <strong>{children}</strong>;
+    }
+
+    if (props.leaf.italic) {
+      children = <em>{children}</em>;
+    }
+
+    if (props.leaf.timestamp) {
+      return <span className={'beatmapset-discussion-message'} {...props.attributes}><a href={`osu:\/\/edit\/${props.leaf.timestamp}`} className={'beatmapset-discussion-message__timestamp'}>{children}</a></span>;
+    }
+
+    return (
+      <span {...props.attributes}>{children}</span>
+    );
+  }
+
+  renderElement = (props: RenderElementProps) => {
+    switch (props.element.type) {
       case 'embed':
         return (
           <EditorDiscussionComponent
@@ -351,42 +369,13 @@ export default class Editor extends React.Component<any, any> {
             {...props}
           />
         );
+      case 'other':
       default:
-        return next();
+        return <div {...props.attributes}>{props.children}</div>;
     }
   }
 
-  renderInline = (props: RenderInlineProps, editor: SlateEditor, next: () => any) => {
-    const { node, attributes, children } = props;
-    switch (node.type) {
-      case 'timestamp': {
-        return (
-          <span className='beatmapset-discussion-message' {...attributes}>
-            <a href={`osu:\/\/edit\/${node.data.get('lastWord')}`} className='beatmapset-discussion-message__timestamp'>
-              {children}
-            </a>
-          </span>
-        );
-      }
-      default:
-        return next();
-    }
-  }
-
-  renderMark = (props: RenderMarkProps, editor: SlateEditor, next: () => any) => {
-    const { children, mark, attributes } = props;
-
-    switch (mark.type) {
-      case 'bold':
-        return <strong {...attributes}>{children}</strong>;
-      case 'italic':
-        return <em {...attributes}>{children}</em>;
-      default:
-        return next();
-    }
-  }
-
-  showMenu = (event: React.MouseEvent<HTMLElement>) => {
+  showMenu = () => {
     if (!this.menuBody.current) {
       return;
     }
