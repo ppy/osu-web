@@ -20,11 +20,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Routing\Exceptions\UrlGenerationException;
+
 class RedirectController extends Controller
 {
     public function __invoke()
     {
-        // Redirect routes should be named 'redirect:<target>'
-        return ujs_redirect(route(explode('redirect:', \Route::currentRouteName(), 2)[1], func_get_args()));
+        try {
+            // Redirect routes should be named 'redirect:<target>'
+            return ujs_redirect(route(explode('redirect:', \Route::currentRouteName(), 2)[1], func_get_args()));
+        } catch (UrlGenerationException $_e) {
+            return abort(404);
+        }
     }
 }
