@@ -152,6 +152,29 @@ class ChannelsControllerTest extends TestCase
             ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id]);
     }
 
+    public function testChannelJoinTourney() // succeed
+    {
+        // ensure not in channel
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonMissing(['channel_id' => $this->tourneyChannel->channel_id]);
+
+        // join channel
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
+                'channel' => $this->tourneyChannel->channel_id,
+                'user' => $this->user->user_id,
+            ]))
+            ->assertStatus(204);
+
+        // ensure now in channel
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->tourneyChannel->channel_id]);
+    }
+
     //endregion
 
     //region PUT /chat/channels/[channel_id]/mark-as-read/[message_id] - Mark Channel as Read
@@ -259,7 +282,7 @@ class ChannelsControllerTest extends TestCase
     //endregion
 
     //region DELETE /chat/channels/[channel_id]/users/[user_id] - Leave Channel
-    public function testChannelLeaveWhenGuest() // fail
+    public function testChannelLeavePublicWhenGuest() // fail
     {
         $this->json('DELETE', route('api.chat.channels.part', [
                 'channel' => $this->publicChannel->channel_id,
@@ -268,7 +291,7 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(401);
     }
 
-    public function testChannelLeaveWhenPrivate() // fail
+    public function testChannelLeavePrivate() // fail
     {
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('DELETE', route('api.chat.channels.part', [
@@ -278,7 +301,7 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus(403);
     }
 
-    public function testChannelLeaveWhenNotJoined() // success ?
+    public function testChannelLeavePublicWhenNotJoined() // success ?
     {
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.presence'))
@@ -298,7 +321,7 @@ class ChannelsControllerTest extends TestCase
             ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
     }
 
-    public function testChannelLeaveWhenJoined() // success
+    public function testChannelLeavePublicWhenJoined() // success
     {
         // ensure not in channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -335,6 +358,43 @@ class ChannelsControllerTest extends TestCase
             ->assertJsonMissing(['channel_id' => $this->publicChannel->channel_id]);
     }
 
+    public function testChannelLeaveTourneyWhenJoined() // success
+    {
+        // ensure not in channel
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonMissing(['channel_id' => $this->tourneyChannel->channel_id]);
+
+        // join channel
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('PUT', route('api.chat.channels.join', [
+                'channel' => $this->tourneyChannel->channel_id,
+                'user' => $this->user->user_id,
+            ]))
+            ->assertStatus(204);
+
+        // ensure now in channel
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonFragment(['channel_id' => $this->tourneyChannel->channel_id]);
+
+        // leave channel
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('DELETE', route('api.chat.channels.part', [
+                'channel' => $this->tourneyChannel->channel_id,
+                'user' => $this->user->user_id,
+            ]))
+            ->assertStatus(204);
+
+        // ensure no longer in channel
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('GET', route('api.chat.presence'))
+            ->assertStatus(200)
+            ->assertJsonMissing(['channel_id' => $this->tourneyChannel->channel_id]);
+    }
+
     //endregion
 
     protected function setUp(): void
@@ -347,5 +407,6 @@ class ChannelsControllerTest extends TestCase
         $this->privateChannel = factory(Chat\Channel::class)->states('private')->create();
         $this->pmChannel = factory(Chat\Channel::class)->states('pm')->create();
         $this->publicMessage = factory(Chat\Message::class)->create(['channel_id' => $this->publicChannel->channel_id]);
+        $this->tourneyChannel = factory(Chat\Channel::class)->states('tourney')->create();
     }
 }

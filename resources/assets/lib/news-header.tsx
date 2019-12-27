@@ -16,8 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import HeaderV3 from 'header-v3';
-import HeaderTitleTrans from 'interfaces/header-title-trans';
+import HeaderV4 from 'header-v4';
 import NewsPostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
 import * as React from 'react';
@@ -25,7 +24,7 @@ import * as React from 'react';
 interface Props {
   post?: NewsPostJson;
   section: string;
-  titleTrans: HeaderTitleTrans;
+  title: string;
 }
 
 export default function NewsHeader(props: Props) {
@@ -46,10 +45,12 @@ export default function NewsHeader(props: Props) {
   }
 
   return (
-    <HeaderV3
+    <HeaderV4
+      section={osu.trans('news.index.title._', { info: '' })}
+      subSection={props.title}
       theme='news'
-      titleTrans={props.titleTrans}
       links={links}
+      linksBreadcrumb={true}
     />
   );
 }

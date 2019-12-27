@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Đặt Lại Mật Khẩu',
-
     'button' => [
         'cancel' => 'Hủy',
         'resend' => 'Gửi lại email xác thực',
         'set' => 'Đặt mật khẩu',
         'start' => 'Bắt đầu',
-    ],
-
-    'email' => [
-        'subject' => 'khôi phục tài khoản osu!',
     ],
 
     'error' => [

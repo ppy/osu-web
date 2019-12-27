@@ -76,11 +76,16 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
             'report' => [
                 '_' => '',
-                'button' => '',
+                'button' => 'Probléma jelentése',
                 'button_title' => '',
-                'link' => '',
+                'link' => 'itt',
             ],
         ],
 
@@ -145,6 +150,16 @@ return [
             'rating-spread' => 'Értékelési Szórás',
             'nominations' => 'Nominálások',
             'playcount' => 'Játékszám',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

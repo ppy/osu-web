@@ -19,21 +19,12 @@
  */
 
 return [
+    'title_compact' => 'teman',
+    'too_many' => 'Batas teman tercapai.',
+
     'buttons' => [
       'add' => 'tambah teman',
       'disabled' => 'teman',
       'remove' => 'hapus teman',
     ],
-
-    'index' => [
-        'title' => [
-            '_' => 'Beranda :info',
-            'info' => 'Teman',
-        ],
-    ],
-
-    'title' => 'Teman',
-    'title_compact' => 'teman',
-
-    'too_many' => 'Batas teman tercapai.',
 ];

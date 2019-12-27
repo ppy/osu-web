@@ -20,11 +20,11 @@
 
 return [
     'index' => [
-        'title' => 'Publicações de Discussão do Beatmap',
+        'title' => 'Publicações de discussão do beatmap',
     ],
 
     'item' => [
         'content' => 'Conteúdo',
-        'modding_history_link' => 'Ver historial de modificação',
+        'modding_history_link' => 'Ver historial de modificações',
     ],
 ];

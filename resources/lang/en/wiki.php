@@ -25,6 +25,7 @@ return [
         'missing' => 'Requested page ":keyword" could not be found.',
         'missing_title' => 'Not Found',
         'missing_translation' => 'Requested page could not be found for currently selected language.',
+        'needs_cleanup_or_rewrite' => 'This page does not meet the standards of the osu! wiki and needs to be cleaned up or rewritten. If you are able to help out, please consider updating the article!',
         'search' => 'Search existing pages for :link.',
         'toc' => 'Contents',
 
@@ -41,7 +42,7 @@ return [
         ],
     ],
     'main' => [
-        'title' => 'Knowledge Base',
+        'title' => 'knowledge base',
         'subtitle' => 'because osu!pedia sounds lame',
     ],
 ];

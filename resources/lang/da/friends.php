@@ -19,21 +19,12 @@
  */
 
 return [
+    'title_compact' => 'venner',
+    'too_many' => 'Det maksimale antal venner er nået',
+
     'buttons' => [
       'add' => 'tilføj ven',
-      'disabled' => 'venner',
+      'disabled' => 'følgere',
       'remove' => 'fjern ven',
     ],
-
-    'index' => [
-        'title' => [
-            '_' => '',
-            'info' => '',
-        ],
-    ],
-
-    'title' => 'Venner',
-    'title_compact' => 'venner',
-
-    'too_many' => 'Det maksimale antal venner er nået',
 ];

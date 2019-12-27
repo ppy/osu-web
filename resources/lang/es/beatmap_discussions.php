@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => 'Buscar',
             'deleted' => 'Incluir discusiones eliminadas',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Mostrar sólo discusiones no resueltas',
             'types' => 'Tipos de mensaje',
             'username' => 'Nombre de usuario',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Estado de Beatmap',
+                'all' => 'Todo',
+                'disqualified' => 'Descalificado',
+                'never_qualified' => 'No calificado',
+                'qualified' => 'Calificado',
+                'ranked' => 'Clasificado',
             ],
 
             'user' => [
@@ -62,7 +62,7 @@ return [
         'created_at' => 'Fecha de publicación',
         'deleted_at' => 'Fecha de eliminación',
         'message_type' => 'Tipo',
-        'permalink' => 'Permalink',
+        'permalink' => 'Enlace permanente',
     ],
 
     'nearby_posts' => [
@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => 'Ver discusión',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marcado como resuelto por :user',
             'false' => 'Reabierto por :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'general',
+        'general_all' => 'general (todo)',
     ],
 
     'user_filter' => [

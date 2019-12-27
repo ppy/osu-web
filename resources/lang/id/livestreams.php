@@ -25,7 +25,4 @@ return [
 
         'link' => 'halaman wiki yang membahas tentang siaran langsung',
     ],
-    'headers' => [
-        'regular' => 'Sedang Siaran Langsung',
-    ],
 ];

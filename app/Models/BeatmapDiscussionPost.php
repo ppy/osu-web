@@ -382,6 +382,11 @@ class BeatmapDiscussionPost extends Model
             ->whereHas('visibleBeatmapDiscussion');
     }
 
+    public function url()
+    {
+        return $this->beatmapDiscussion->url();
+    }
+
     protected function newReportableExtraParams(): array
     {
         return [

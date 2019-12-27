@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Ajustes</strong> de la cuenta',
         'title_compact' => 'ajustes',
         'username' => 'nombre de usuario',
 
@@ -67,7 +66,13 @@ return [
     'notifications' => [
         'title' => 'Notificaciones',
         'topic_auto_subscribe' => 'activa automáticamente las notificaciones en nuevos temas del foro que crees',
-        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en beatmaps calificados de los siguientes modos',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -85,7 +90,7 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'Bloquear mensajes privados de gente que no está en tu lista de amigos',
+        'friends_only' => 'bloquear los mensajes privados de usuarios que no están en tu lista de amigos',
         'hide_online' => 'mostrarse como desconectado',
         'title' => 'Privacidad',
     ],
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Confirmación de cambio de correo electrónico de osu!',
         'update' => 'actualizar',
     ],
 
     'update_password' => [
-        'email_subject' => 'Confirmación de cambio de contraseña de osu!',
         'update' => 'actualizar',
     ],
 

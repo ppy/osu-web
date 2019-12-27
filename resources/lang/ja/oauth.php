@@ -36,7 +36,7 @@ return [
     'authorized_clients' => [
         'confirm_revoke' => 'このクライアントの認証を無効化しますか？',
         'scopes_title' => 'このアプリケーションでできること:',
-        'owned_by' => '管理者 :user',
+        'owned_by' => '所有者 :user',
         'none' => 'クライアントがありません',
 
         'revoked' => [
@@ -50,12 +50,6 @@ return [
         'name' => 'アプリケーション名',
         'redirect' => 'アプリケーションコールバックURL',
         'secret' => 'Client Secret',
-    ],
-
-    'login' => [
-        'download' => 'ゲームをダウンロードしてアカウントを作成するにはここをクリック',
-        'label' => 'まず、アカウントにログインしてみましょう！',
-        'title' => 'アカウントログイン',
     ],
 
     'new_client' => [

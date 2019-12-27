@@ -22,25 +22,21 @@ return [
     'pinned_topics' => 'Temas Fijados',
     'slogan' => "es peligroso jugar solo.",
     'subforums' => 'Subforos',
-    'title' => 'foros de osu!',
+    'title' => 'Foros',
 
     'covers' => [
         'edit' => 'Editar portada',
 
         'create' => [
             '_' => 'Establecer imagen de portada',
-            'button' => 'Subir imagen',
-            'info' => 'El tamaño de la portada debe ser de: dimensions. También puedes soltar tu imagen aquí para subirla.',
+            'button' => 'Subir portada',
+            'info' => 'El tamaño de la portada debe ser de :dimensions. También puedes soltar tu imagen aquí para subirla.',
         ],
 
         'destroy' => [
-            '_' => 'Eliminar imagen de portada',
+            '_' => 'Eliminar portada',
             'confirm' => '¿Estás seguro de que quieres eliminar la imagen de portada?',
         ],
-    ],
-
-    'email' => [
-        'new_reply' => '[osu!] Nueva respuesta para el tema ":title"',
     ],
 
     'forums' => [
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Suscripciones a Temas',
             'title_compact' => 'suscripciones a foros',
-            'title_main' => '<strong>Suscripciones</strong> de foros',
 
             'box' => [
                 'total' => 'Temas suscritos',
@@ -276,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => 'Enseñar publicaciones eliminadas',
-            'hide' => 'Esconder publicaciones eliminadas',
+            'show' => 'Mostrar publicaciones eliminadas',
+            'hide' => 'Ocultar publicaciones eliminadas',
         ],
 
         'show' => [
@@ -289,8 +283,8 @@ return [
                 'do' => 'Apoyar esta solicitud',
 
                 'info' => [
-                    '_' => 'Esto es un :feature_request. Sugerencias pueden ser votadas por :supporters.',
-                    'feature_request' => 'sugerir una idea',
+                    '_' => 'Esta es una :feature_request. Las solicitudes de características pueden ser votadas por :supporters.',
+                    'feature_request' => 'solicitud de característica',
                     'supporters' => 'colaboradores',
                 ],
 

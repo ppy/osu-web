@@ -2,6 +2,10 @@
 
 // osu config~
 return [
+    'achievement' => [
+        'icon_prefix' => env('USER_ACHIEVEMENT_ICON_PREFIX', 'https://assets.ppy.sh/user-achievements/'),
+    ],
+
     'avatar' => [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
         'default' => env('DEFAULT_AVATAR', '/images/layout/avatar-guest.png'),
@@ -30,6 +34,7 @@ return [
     'beatmapset' => [
         'client_bundle' => array_map('intval', explode(' ', env('BEATMAPSET_CLIENT_BUNDLE', '3756 163112 140662 151878 190390 123593 241526 299224'))),
         'discussion_kudosu_per_user' => get_int(env('BEATMAPSET_DISCUSSION_KUDOSU_PER_USER')) ?? 10,
+        'discussion_review_enabled' => get_bool(env('BEATMAPSET_DISCUSSION_REVIEW_ENABLED', false)),
         'download_limit' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY', 10)),
         'download_limit_supporter' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY_SUPPORTER', 20)),
         'es_cache_duration' => 60 * (get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0), // in minutes, converted to seconds
@@ -76,6 +81,7 @@ return [
     ],
     'forum' => [
         'admin_forum_id' => get_int(env('ADMIN_FORUM_ID')) ?? 28,
+        'double_post_allowed_forum_ids' => array_map('intval', explode(' ', env('DOUBLE_POST_ALLOWED_FORUM_IDS', '52 68 84 114'))),
         'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')) ?? 4,
         'feature_topic_small_star_min' => get_int(env('FEATURE_TOPIC_SMALL_STAR_MIN')) ?? 1000,
         'help_forum_id' => get_int(env('HELP_FORUM_ID')) ?? 5,
@@ -124,7 +130,6 @@ return [
     'scores' => [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
     ],
-    'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
     'static' => env('LEGACY_STATICS_HOST', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
@@ -179,14 +184,23 @@ return [
         'help' => [
             'support' => 'http://help.ppy.sh/',
         ],
+        'testflight' => [
+            'public' => env('TESTFLIGHT_LINK'),
+            'supporter' => env('TESTFLIGHT_LINK_SUPPORTER'),
+        ],
     ],
     'user' => [
+        'allow_email_login' => get_bool(env('USER_ALLOW_EMAIL_LOGIN')) ?? true,
         'allow_registration' => get_bool(env('ALLOW_REGISTRATION', false)),
+        'inactive_days_verification' => get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180,
+        'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
+        'post_action_verification' => get_bool(env('USER_POST_ACTION_VERIFICATION')) ?? true,
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
         'max_friends' => 250,
         'max_friends_supporter' => 500,
+        'max_login_attempts' => get_int(env('USER_MAX_LOGIN_ATTEMPTS')) ?? 10,
         'max_multiplayer_rooms' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS')) ?? 1,
         'max_multiplayer_rooms_supporter' => get_int(env('USER_MAX_MULTIPLAYER_ROOMS_SUPPORTER')) ?? 5,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
@@ -198,6 +212,9 @@ return [
         ],
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
+    ],
+    'user_report_notification' => [
+        'endpoint' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT')),
     ],
     'changelog' => [
         'build_history_interval' => 60 * intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)), // in minutes, converted to seconds

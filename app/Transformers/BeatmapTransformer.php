@@ -53,6 +53,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'version' => $beatmap->version,
             'total_length' => $beatmap->total_length,
             'hit_length' => $beatmap->hit_length,
+            'bpm' => $beatmap->bpm,
             'cs' => $beatmap->diff_size,
             'drain' => $beatmap->diff_drain,
             'accuracy' => $beatmap->diff_overall,

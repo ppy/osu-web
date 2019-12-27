@@ -18,11 +18,17 @@
 
 .game-mode {
   line-height: normal;
+  width: 100%;
 
   @media @desktop {
-    position: absolute;
-    right: 0;
-    top: 0;
+    margin-left: auto;
+    width: auto;
+  }
+
+  &--beatmapsets {
+    @media @desktop {
+      right: @gutter-v2-desktop;
+    }
   }
 
   &__items {
@@ -47,7 +53,7 @@
   &__set-default {
     position: absolute;
     bottom: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     right: 0;
   }
 }

@@ -24,6 +24,7 @@ return [
     'last_visit' => 'Recent activ',
     'new' => 'Recent',
     'old' => 'Vechi',
+    'rank' => '',
     'top' => 'Top',
     'username' => 'Nume de utilizator',
 

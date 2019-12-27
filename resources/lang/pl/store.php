@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Otrzymaliśmy twoje zamówienie!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Zamówienie złożone :date',
 

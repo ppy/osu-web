@@ -120,8 +120,6 @@ return [
             'error' => 'Eroare la încărcarea știrilor, încearcă să reîmrospătezi pagina?...',
         ],
         'header' => [
-            'welcome' => 'Salut, <strong>:username</strong>!',
-            'messages' => 'Tu ai :count mesaj nou|Tu ai :count mesaje noi',
             'stats' => [
                 'friends' => 'Prieteni online',
                 'games' => 'Jocuri',

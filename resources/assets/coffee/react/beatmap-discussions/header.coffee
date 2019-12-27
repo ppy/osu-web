@@ -23,6 +23,7 @@ import { Subscribe } from './subscribe'
 import { UserFilter } from './user-filter'
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
+import HeaderV4 from 'header-v4'
 import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { a, div, h1, h2, p } from 'react-dom-factories'
@@ -42,7 +43,16 @@ export class Header extends React.PureComponent
 
 
   render: =>
-    div null,
+    el React.Fragment, null,
+      el HeaderV4,
+        section: osu.trans('layout.header.beatmapsets._')
+        subSection: osu.trans('layout.header.beatmapsets.discussions')
+        theme: 'beatmapsets'
+        titleAppend: el PlaymodeTabs,
+          currentMode: @props.currentBeatmap.mode
+          beatmaps: @props.beatmaps
+          counts: @props.currentDiscussions.countsByPlaymode
+
       div
         className: 'osu-page'
         @headerTop()
@@ -57,14 +67,15 @@ export class Header extends React.PureComponent
 
     div className: bn,
       div className: "#{bn}__content #{bn}__content--details",
-        el BeatmapsetMapping,
-          beatmapset: @props.beatmapset
-          user: @props.users[@props.beatmapset.user_id]
+        div className: "#{bn}__details #{bn}__details--full",
+          el BeatmapsetMapping,
+            beatmapset: @props.beatmapset
+            user: @props.users[@props.beatmapset.user_id]
 
-        div className: "#{bn}__subscribe",
+        div className: "#{bn}__details",
           el Subscribe, beatmapset: @props.beatmapset
 
-        div className: "#{bn}__info-page",
+        div className: "#{bn}__details",
           el BigButton,
             modifiers: ['full']
             text: osu.trans('beatmaps.discussions.beatmap_information')
@@ -87,11 +98,6 @@ export class Header extends React.PureComponent
 
     div
       className: bn
-
-      el PlaymodeTabs,
-        currentMode: @props.currentBeatmap.mode
-        beatmaps: @props.beatmaps
-        counts: @props.currentDiscussions.countsByPlaymode
 
       div
         className: "#{bn}__content"
@@ -134,9 +140,7 @@ export class Header extends React.PureComponent
           div ref: 'chartArea', className: "#{bn}__chart"
 
           div className: "#{bn}__beatmap-stats",
-            el BeatmapBasicStats,
-              beatmapset: @props.beatmapset
-              beatmap: @props.currentBeatmap
+            el BeatmapBasicStats, beatmap: @props.currentBeatmap
 
 
   setFilter: (e) =>

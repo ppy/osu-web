@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Nominálás Visszaállítása',
             'praise' => 'Dicséret',
             'problem' => 'Probléma',
+            'review' => '',
             'suggestion' => 'Javaslat',
         ],
 
         'mode' => [
             'events' => 'Előzmények',
             'general' => 'Általános :scope',
+            'reviews' => '',
             'timeline' => 'Idővonal',
             'scopes' => [
                 'general' => 'Ez a nehézség',

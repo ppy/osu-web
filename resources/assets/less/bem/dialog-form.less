@@ -1,0 +1,226 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.dialog-form {
+  flex: 1 0 auto;
+  width: 100%;
+
+  .center-content();
+  display: flex;
+  padding: 10px;
+  color: #fff;
+
+  &__button {
+    .reset-input();
+    .default-text-shadow();
+    .link-white();
+    .link-plain();
+    .center-content();
+    flex: none;
+    padding: 10px 20px;
+    margin: 5px 5px;
+    min-width: 160px;
+    border-radius: 10000px;
+    background-color: @osu-colour-blue-3;
+
+    .link-hover({
+      background-color: @osu-colour-blue-2;
+    });
+
+    &--cancel {
+      background-color: @osu-colour-red-3;
+
+      .link-hover({
+        background-color: @osu-colour-red-2;
+      });
+    }
+  }
+
+  &__client-name {
+    color: inherit;
+    font-size: @font-size--header-title;
+    font-style: normal;
+    margin: 0;
+  }
+
+  &__client-request {
+    margin: 0;
+    font-size: @font-size--title-small-3;
+  }
+
+  &__dialog {
+    background-color: @osu-colour-b4;
+    border-radius: @border-radius-large;
+    width: 500px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__extra-link {
+    .reset-input();
+    .link-default();
+    cursor: pointer;
+    display: inline;
+
+    .link-hover({
+      text-decoration: underline;
+    });
+
+    &--small {
+      font-size: @font-size--normal;
+    }
+  }
+
+  &__header-overlay {
+    .full-size();
+    background-color: fade(#000, 75%);
+    border-radius: @border-radius-large @border-radius-large 0 0;
+  }
+
+  &__input {
+    .reset-input();
+    .default-border-radius();
+    width: 100%;
+    background-color: @osu-colour-b5;
+    padding: 15px 20px;
+    font-size: @font-size--title-small-3;
+
+    &::placeholder {
+      color: @osu-colour-b1;
+      opacity: 1;
+    }
+  }
+
+  &__logo {
+    background-image: url('/images/layout/osu-logo-white.svg');
+    background-position: contain;
+
+    flex: none;
+    margin-right: 10px;
+
+    height: 50px;
+    width: 50px;
+  }
+
+  &__row {
+    display: flex;
+    margin: 5px 30px;
+
+    &--buttons {
+      margin-top: 25px;
+      margin-bottom: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    &--client-verification-completed {
+      display: block;
+      margin-top: -20px; // undo --title
+      margin-bottom: 0;
+    }
+
+    &--client-verification-completed-buttons {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    &--error {
+      color: @purple-light;
+
+      &::after {
+        content: '\a0'; // prevent div from collapsing when empty
+      }
+    }
+
+    &--extra-link {
+      font-size: @font-size--normal;
+      display: block;
+    }
+
+    &--header {
+      .at2x-simple('/images/headers/oauth-login.jpg');
+      .center-content();
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 200px;
+      border-radius: @border-radius-large @border-radius-large 0 0;
+    }
+
+    &--label {
+      margin-bottom: 10px;
+      flex-direction: column;
+    }
+
+    &--scopes {
+      flex-direction: column;
+    }
+
+    &--title {
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    &--verification-completed {
+      display: block;
+      margin-top: -20px; // undo --title
+      margin-bottom: 50px;
+    }
+
+    &--verification-invalid {
+      display: block;
+      margin-bottom: 50px;
+    }
+
+    &--wrong-user {
+      display: block;
+      font-size: @font-size--normal;
+    }
+  }
+
+  &__title {
+    font-size: @font-size--title-small;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: normal;
+    margin: 0 0 0 auto;
+  }
+
+  &__user-avatar {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 5px;
+  }
+
+  &__user-header {
+    .center-content();
+    .link-white();
+    .link-plain();
+    flex-direction: column;
+    font-size: @font-size--title;
+    font-style: italic;
+  }
+}

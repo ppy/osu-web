@@ -24,7 +24,7 @@ return [
     ],
 
     'cart' => [
-        'checkout' => 'Tjek Ud',
+        'checkout' => 'Til kassen',
         'more_goodies' => 'Jeg ønsker at tjekke flere goodies ud før jeg færdiggører ordren',
         'shipping_fees' => 'fragt gebyrer',
         'title' => 'Indkøbskurv',
@@ -79,18 +79,12 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Vi har modtaget din osu!store bestilling!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Ordre placeret :date',
 
         'invoice' => 'Vis faktura',
         'no_orders' => 'Ingen ordrer til at se.',
-        'resume' => '',
+        'resume' => 'Fortsæt Til Kassen',
 
         'item' => [
             'display_name' => [

@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'osu! 계정 인증',
-    ],
-
     'errors' => [
         'expired' => '인증 코드가 만료되었습니다, 새 인증용 메일을 발송했습니다.',
         'incorrect_key' => '인증 코드가 잘못되었습니다.',

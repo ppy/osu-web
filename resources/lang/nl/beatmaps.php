@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Reset Nominatie',
             'praise' => 'Prijs',
             'problem' => 'Probleem',
+            'review' => 'Recensie',
             'suggestion' => 'Suggestie',
         ],
 
         'mode' => [
             'events' => 'Geschiedenis',
             'general' => 'Algemeen :scope',
+            'reviews' => 'Recensies',
             'timeline' => 'Tijdlijn',
             'scopes' => [
                 'general' => 'Deze moeilijkheidsgraad',
@@ -183,7 +185,7 @@ return [
         'nominate' => 'Nomineer',
         'nominate_confirm' => 'Nomineer deze beatmap?',
         'nominated_by' => 'genomineerd door :gebruikers',
-        'not_enough_hype' => "",
+        'not_enough_hype' => "Er is niet genoeg hype.",
         'qualified' => 'Naar schatting gerankt op :date, als er geen problemen optreden.',
         'qualified_soon' => 'Naar schatting binnenkort gerankt, als er geen problemen optreden.',
         'required_text' => 'Nimonaties: :current/:required',

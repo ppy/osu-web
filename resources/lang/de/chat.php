@@ -23,7 +23,7 @@ return [
     'talking_in' => 'sprechen in :channel',
     'talking_with' => 'sprechen mit :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'Du kannst derzeit keine Nachrichten an diesen Kanal senden. Dies kann folgende Gründe haben:',
         'user' => 'Du kannst derzeit keine Nachrichten an diesen User senden. Dies kann folgende Gründe haben:',

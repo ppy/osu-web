@@ -44,11 +44,6 @@ return [
             '_stream_to' => 'ändringar i :stream upp till :to',
             '_to' => 'ändringar up till :to',
         ],
-
-        'title' => [
-            '_' => 'Ändringsloggs :info',
-            'info' => 'Lista',
-        ],
     ],
 
     'support' => [

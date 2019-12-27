@@ -104,4 +104,9 @@ class TestCase extends BaseTestCase
     {
         return str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html)));
     }
+
+    protected function actingAsVerified($user)
+    {
+        return $this->be($user)->withSession(['verified' => true]);
+    }
 }

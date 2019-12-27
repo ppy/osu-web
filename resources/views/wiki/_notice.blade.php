@@ -15,10 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@if ($page->get() !== null && $page->locale !== $page->requestedLocale)
+@if ($page->isVisible() && $page->locale !== $locale)
     <div class="wiki-notice">
         <div class="wiki-notice__box">
-            {{ trans('wiki.show.fallback_translation', ['language' => locale_name($page->requestedLocale)]) }}
+            {{ trans('wiki.show.fallback_translation', ['language' => locale_name($locale)]) }}
         </div>
     </div>
 @endif
@@ -41,8 +41,14 @@
                     'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(trans('wiki.show.translation.default')).'</a>',
                 ]) !!}
             @else
-                {!! trans('wiki.show.incomplete_or_outdated') !!}
+                {{ trans('wiki.show.incomplete_or_outdated') }}
             @endif
+        </div>
+    </div>
+@elseif ($page->needsCleanup())
+    <div class="wiki-notice">
+        <div class="wiki-notice__box">
+            {{ trans('wiki.show.needs_cleanup_or_rewrite') }}
         </div>
     </div>
 @endif

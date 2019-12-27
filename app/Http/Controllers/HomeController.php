@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App;
 use App\Libraries\CurrentStats;
 use App\Libraries\Search\AllSearch;
+use App\Libraries\Search\QuickSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
@@ -41,6 +42,7 @@ class HomeController extends Controller
         $this->middleware('auth', [
             'only' => [
                 'downloadQuotaCheck',
+                'quickSearch',
                 'search',
             ],
         ]);
@@ -107,6 +109,33 @@ class HomeController extends Controller
     public function osuSupportPopup()
     {
         return view('objects._popup_support_osu');
+    }
+
+    public function quickSearch()
+    {
+        $quickSearch = new QuickSearch(request(), ['user' => auth()->user()]);
+        $searches = $quickSearch->searches();
+
+        $result = [];
+
+        if ($quickSearch->hasQuery()) {
+            foreach ($searches as $mode => $search) {
+                if ($search === null) {
+                    continue;
+                }
+                $result[$mode]['total'] = $search->count();
+            }
+
+            $result['user']['users'] = json_collection($searches['user']->data(), 'UserCompact', [
+                'country',
+                'cover',
+                'group_badge',
+                'support_level',
+            ]);
+            $result['beatmapset']['beatmapsets'] = json_collection($searches['beatmapset']->data(), 'Beatmapset', ['beatmaps']);
+        }
+
+        return $result;
     }
 
     public function search()
@@ -310,5 +339,10 @@ class HomeController extends Controller
         return view('home.support-the-game')
             ->with('supporterStatus', $supporterStatus ?? [])
             ->with('data', $pageLayout);
+    }
+
+    public function testflight()
+    {
+        return view('home.testflight');
     }
 }

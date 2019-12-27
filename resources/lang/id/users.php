@@ -64,24 +64,52 @@ return [
         'send_message' => 'kirim pesan',
     ],
 
+    'disabled' => [
+        'title' => 'Uh-oh! Sepertinya akun kamu telah dinonaktifkan.',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => 'email',
+        ],
+
+        'reasons' => [
+            'compromised' => 'Akun kamu telah ditandai berbahaya. Akun kamu mungkin akan dinonaktifkan untuk sementara hingga identitasnya selesai dikonfirmasi.',
+            'opening' => 'Ada sejumlah alasan yang dapat menyebabkan akun kamu dinonaktifkan:',
+
+            'tos' => [
+                '_' => 'Kamu telah melanggar salah satu atau mungkin beberapa :community_rules atau :tos kami.',
+                'community_rules' => 'peraturan komunitas',
+                'tos' => 'ketentuan layanan',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "Akun kamu sudah lama tidak digunakan.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Masuk',
-        'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
-        'username' => 'Nama Pengguna',
-        'password' => 'Kata Sandi',
         'button' => 'Masuk',
         'button_posting' => 'Mencoba masuk...',
+        'email_login_disabled' => 'Masuk menggunakan email saat ini dinonaktifkan. Silakan masuk menggunakan nama pengguna.',
+        'failed' => 'Gagal masuk',
+        'forgot' => 'Lupa kata sandi?',
+        'info' => '',
+        'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
+        'password' => 'Kata Sandi',
+        'register' => "Belum memiliki akun osu!? Buat yang baru sekarang",
         'remember' => 'Ingat perangkat ini',
         'title' => 'Mohon masuk untuk melanjutkan',
-        'failed' => 'Gagal masuk',
-        'register' => "Belum memiliki akun osu!? Buat yang baru sekarang",
-        'forgot' => 'Lupa kata sandi?',
+        'username' => 'Nama Pengguna',
+
         'beta' => [
             'main' => 'Akses beta saat ini dibatasi untuk pengguna istimewa.',
             'small' => '(osu!supporter akan segera masuk)',
         ],
-
-        'here' => 'di sini', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Pemain :info',
-            'info' => 'Info',
         ],
 
         'info' => [

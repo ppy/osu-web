@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Настройки <strong>аккаунта</strong>',
         'title_compact' => 'настройки',
         'username' => 'имя пользователя',
 
@@ -33,14 +32,14 @@ return [
         'email' => [
             'current' => 'текущая почта',
             'new' => 'новая почта',
-            'new_confirmation' => 'напишите ещё раз',
+            'new_confirmation' => 'повторите почту',
             'title' => 'Смена почты',
         ],
 
         'password' => [
             'current' => 'текущий пароль',
             'new' => 'новый пароль',
-            'new_confirmation' => 'напишите ещё раз',
+            'new_confirmation' => 'повторите пароль',
             'title' => 'Смена пароля',
         ],
 
@@ -66,14 +65,20 @@ return [
 
     'notifications' => [
         'title' => 'Уведомления',
-        'topic_auto_subscribe' => 'автоматически включать уведомления для тем на форуме, когда вы их создаёте',
-        'beatmapset_discussion_qualified_problem' => '',
+        'topic_auto_subscribe' => 'отслеживать созданные темы автоматически',
+        'beatmapset_discussion_qualified_problem' => 'получать уведомления о новых проблемах с квалифицированными картами у следующих режимов',
+
+        'mail' => [
+            '_' => 'получать уведомления по почте о',
+            'beatmapset:modding' => 'моддинге карт',
+            'forum_topic_reply' => 'ответах на темы',
+        ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'авторизованные клиенты',
-        'own_clients' => 'мои клиенты',
-        'title' => 'OAuth',
+        'authorized_clients' => 'подключенные',
+        'own_clients' => 'мои приложения',
+        'title' => 'Приложения и доступ',
     ],
 
     'playstyles' => [
@@ -85,14 +90,14 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'блокировать личные сообщения от людей, не входящих в мой список друзей',
-        'hide_online' => 'скрыть ваше присутствие',
+        'friends_only' => 'разрешить писать мне только друзьям',
+        'hide_online' => 'скрывать онлайн на сайте',
         'title' => 'Приватность',
     ],
 
     'security' => [
         'current_session' => 'это вы',
-        'end_session' => 'Закончить сеанс',
+        'end_session' => 'деавторизовать',
         'end_session_confirmation' => 'Сеанс на этом устройстве будет немедленно завершён. Вы уверены?',
         'last_active' => 'Был активен:',
         'title' => 'Безопасность',
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Подтверждение смены почты аккаунта osu!',
         'update' => 'сменить',
     ],
 
     'update_password' => [
-        'email_subject' => 'Подтверждение смены пароля аккаунта osu!',
         'update' => 'сменить',
     ],
 

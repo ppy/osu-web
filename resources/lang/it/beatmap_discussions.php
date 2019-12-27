@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => 'Cerca',
             'deleted' => 'Includi discussioni eliminate',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Mostra solo le discussioni in sospeso',
             'types' => 'Tipi di messaggio',
             'username' => 'Nome Utente',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Stato Beatmap',
+                'all' => 'Tutti',
+                'disqualified' => 'Squalificata',
+                'never_qualified' => 'Mai Qualificata',
+                'qualified' => 'Qualificata',
+                'ranked' => 'Rankata',
             ],
 
             'user' => [
@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Visualizza il post della recensione',
+        'go_to_child' => 'Visualizza discussione',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Segnato come risolto da :user',
             'false' => 'Riaperto da :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'generale',
+        'general_all' => 'generale (tutti)',
     ],
 
     'user_filter' => [

@@ -64,24 +64,52 @@ return [
         'send_message' => 'ส่งข้อความ',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'ลงชื่อเข้าใช้',
-        'locked_ip' => 'ที่อยู่ IP ของคุณถูกล็อก โปรดรอสักครู่',
-        'username' => 'ชื่อผู้ใช้',
-        'password' => 'รหัสผ่าน',
         'button' => 'ลงชื่อเข้าใช้',
         'button_posting' => 'กำลังลงชื่อเข้าใช้…',
+        'email_login_disabled' => '',
+        'failed' => 'เข้าสู่ระบบไม่ถูกต้อง',
+        'forgot' => 'ลืมรหัสผ่าน?',
+        'info' => '',
+        'locked_ip' => 'ที่อยู่ IP ของคุณถูกล็อก โปรดรอสักครู่',
+        'password' => 'รหัสผ่าน',
+        'register' => "ไม่มีแอคเคาท์ Osu! หรอ? สร้างเลยสิ",
         'remember' => 'จดจำคอมพิวเตอร์นี้',
         'title' => 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อไป',
-        'failed' => 'เข้าสู่ระบบไม่ถูกต้อง',
-        'register' => "ไม่มีแอคเคาท์ Osu! หรอ? สร้างเลยสิ",
-        'forgot' => 'ลืมรหัสผ่าน?',
+        'username' => 'ชื่อผู้ใช้',
+
         'beta' => [
             'main' => 'การเข้าถึงข้อมูลนี้มีข้อจำกัด จำกัดเฉพาะผู้ใช้ที่ได้รับการยกเว้นเท่านั้น',
             'small' => '(กำลังจะได้รับ osu!supporters เร็วๆนี้)',
         ],
-
-        'here' => 'ที่นี่', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -151,8 +179,8 @@ return [
                     'unsupported_format' => 'ไม่รองรับไฟล์นามสกุลนี้',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'อัพโหลดพร้อมแล้ว สำหรับ :link เท่านั้น',
+                        'link' => 'osu!ผู้สนับสนุน',
                     ],
                 ],
             ],
@@ -195,8 +223,8 @@ return [
             ],
             'discussions' => [
                 'title' => 'การสนทนา',
-                'title_longer' => '',
-                'show_more' => '',
+                'title_longer' => 'บทสนทนาที่ผ่านมา',
+                'show_more' => 'ดูการสนทนาเพิ่มเติม',
             ],
             'events' => [
                 'title' => 'อีเว้นท์',
@@ -271,8 +299,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'ขึ้นอยู่กับการดูแลบีทแมพของเจ้าของบีทแมพ ดูรายละเอียดเพิ่มเติมที่นี่ :link',
+                    'link' => 'หน้านี้',
                 ],
             ],
             'me' => [
@@ -310,7 +338,7 @@ return [
                 'received' => 'ผลโหวตที่ได้รับ (เมื่อสามเดือนที่แล้ว)',
                 'title' => 'โหวต',
                 'title_longer' => 'โหวตล่าสุด',
-                'vote_count' => '',
+                'vote_count' => ':count_delimited โหวต|:count_delimited โหวตทั้งหมด',
             ],
             'account_standing' => [
                 'title' => 'ชื่อเสียงของบัญชี',
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'ผู้เล่น :info',
-            'info' => 'ข้อมูล',
         ],
 
         'info' => [
@@ -365,7 +388,7 @@ return [
 
             'restriction_info' => [
                 '_' => 'คุณจำเป็นจะต้อง :link เพื่อที่จะปลดล็อกสิ่งนี้',
-                'link' => '',
+                'link' => 'osu!ผู้สนับสนุน',
             ],
         ],
         'post_count' => [
@@ -392,7 +415,7 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
             'loved_beatmapset_count' => 'เลิฟแมพ',
             'unranked_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
@@ -412,7 +435,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'มุมมองแบบการ์ด',
+        'list' => 'มุมมองแบบรายการ',
     ],
 ];

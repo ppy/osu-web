@@ -44,11 +44,6 @@ return [
             '_stream_to' => ':stream 의 :to 까지 바뀐 것들',
             '_to' => ':to 까지 바뀐 것들',
         ],
-
-        'title' => [
-            '_' => '변경 사항 :info',
-            'info' => '목록',
-        ],
     ],
 
     'support' => [

@@ -28,8 +28,7 @@ class StripCookies
     {
         $result = $next($request);
 
-        if (session('_strip_cookies') === true) {
-            session()->forget('_strip_cookies');
+        if ($request->attributes->get('strip_cookies')) {
             // strip all cookies from response
             foreach ($result->headers->getCookies() as $cookie) {
                 $result->headers->removeCookie(

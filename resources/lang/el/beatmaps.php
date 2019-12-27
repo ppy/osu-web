@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Αλλαγή Υποψηφιότητας',
             'praise' => 'Έπαινος',
             'problem' => 'Πρόβλημα',
+            'review' => '',
             'suggestion' => 'Πρόταση',
         ],
 
         'mode' => [
             'events' => 'Ιστορικό',
             'general' => 'Γενικά :scope',
+            'reviews' => '',
             'timeline' => 'Χρονολόγιο',
             'scopes' => [
                 'general' => 'Αυτή η δυσκολία',

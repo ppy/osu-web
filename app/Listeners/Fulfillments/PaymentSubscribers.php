@@ -140,6 +140,6 @@ class PaymentSubscribers
             return;
         }
 
-        Mail::to($order->user->user_email)->queue(new StorePaymentCompleted($order));
+        Mail::to($order->user)->queue(new StorePaymentCompleted($order));
     }
 }

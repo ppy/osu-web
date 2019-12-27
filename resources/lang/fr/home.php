@@ -25,7 +25,7 @@ return [
         'peak' => 'Pic, :count joueurs connectés',
         'players' => '<strong>:count</strong> joueurs inscrits',
         'title' => 'bienvenue',
-        'see_more_news' => '',
+        'see_more_news' => 'voir plus de nouvelles',
 
         'slogan' => [
             'main' => 'le meilleur jeu de rythme free-to-win',
@@ -120,8 +120,6 @@ return [
             'error' => 'Erreur lors du chargement des nouvelles, essayez de recharger la page ?...',
         ],
         'header' => [
-            'welcome' => 'Bonjour, <strong>:username</strong> !',
-            'messages' => 'Vous avez :count nouveau message|Vous avez :count nouveaux messages',
             'stats' => [
                 'friends' => 'Amis en ligne',
                 'games' => 'Parties',
@@ -131,7 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Nouvelles Beatmaps Approuvées',
             'popular' => 'Beatmaps Populaires',
-            'by_user' => '',
+            'by_user' => 'par :user',
         ],
         'buttons' => [
             'download' => 'Télécharger osu!',

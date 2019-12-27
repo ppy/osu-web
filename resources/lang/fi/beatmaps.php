@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Nollaa Suositus',
             'praise' => 'Kehu',
             'problem' => 'Ongelma',
+            'review' => '',
             'suggestion' => 'Ehdotus',
         ],
 
         'mode' => [
             'events' => 'Historia',
             'general' => 'Yleinen :scope',
+            'reviews' => '',
             'timeline' => 'Aikajana',
             'scopes' => [
                 'general' => 'Tämä vaikeustaso',

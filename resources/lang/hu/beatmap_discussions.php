@@ -44,11 +44,11 @@ return [
 
             'beatmapset_status' => [
                 '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                'all' => 'Mind',
+                'disqualified' => 'Diszkvalifikálva',
+                'never_qualified' => 'Minősítetlen',
+                'qualified' => 'Minősített',
+                'ranked' => 'Rangsorolt',
             ],
 
             'user' => [
@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Megoldottnak jelölve :user által',
             'false' => 'Újranyitva :user által',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

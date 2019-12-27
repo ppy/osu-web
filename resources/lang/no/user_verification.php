@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'bekreftelse av osu! konto',
-    ],
-
     'errors' => [
         'expired' => 'Bekreftelseskoden har utløpt, ny bekreftelsesmail sendt.',
         'incorrect_key' => 'Ugyldig bekreftelseskode.',

@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Vui lòng đăng nhập để tiếp tục.',
+    'require_verification' => '',
+    'restricted' => "Không thể làm việc đó trong khi bị hạn chế.",
+    'silenced' => "Không thể làm việc đó trong khi bị cấm nói.",
+    'unauthorized' => 'Truy cập bị từ chối.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Không thể hủy bỏ hype.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Chỉ có admin mới có thể xem diễn đàn này.',
         ],
     ],
-
-    'require_login' => 'Vui lòng đăng nhập để tiếp tục.',
-
-    'unauthorized' => 'Truy cập bị từ chối.',
-
-    'silenced' => "Không thể làm việc đó trong khi bị cấm nói.",
-
-    'restricted' => "Không thể làm việc đó trong khi bị hạn chế.",
 
     'user' => [
         'page' => [

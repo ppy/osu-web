@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] ":title" başlığına yeni cevap',
-    ],
-
     'forums' => [
         'latest_post' => 'Son Gönderi',
 
@@ -75,7 +71,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Yeni Yanıt',
             ],
         ],
 
@@ -105,7 +101,7 @@ return [
         'started_by_verbose' => ':user tarafından başlatıldı',
 
         'create' => [
-            'close' => '',
+            'close' => 'Kapat',
             'preview' => 'Ön izleme ',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Abonelikleri',
             'title_compact' => 'forum abonelikleri',
-            'title_main' => 'Forum <strong>Abonelikleri</strong>',
 
             'box' => [
                 'total' => 'Abone olunan konular',
@@ -276,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Silinmiş gönderileri göster',
+            'hide' => 'Silinmiş gönderileri gizle',
         ],
 
         'show' => [
@@ -303,14 +297,14 @@ return [
 
             'poll' => [
                 'edit' => '',
-                'edit_warning' => '',
+                'edit_warning' => 'Bir anketi düzenlemek mevcut sonuçlarını siler!',
                 'vote' => 'Oyla',
 
                 'button' => [
                     'change_vote' => '',
                     'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'view_results' => 'Sonuçlara geç',
+                    'vote' => 'Oy ver',
                 ],
 
                 'detail' => [

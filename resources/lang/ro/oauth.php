@@ -52,12 +52,6 @@ return [
         'secret' => '',
     ],
 
-    'login' => [
-        'download' => 'Apasă aici pentru a descărca jocul şi de a crea un cont',
-        'label' => 'Mai întâi, conectează-te în contul tău!',
-        'title' => 'Conectează-te în contul tău',
-    ],
-
     'new_client' => [
         'header' => '',
         'register' => '',

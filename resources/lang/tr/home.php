@@ -25,7 +25,7 @@ return [
         'peak' => 'Zirve, :count çevrimiçi oyuncu',
         'players' => '<strong>:count</strong> kayıtlı oyuncu',
         'title' => 'hoşgeldiniz',
-        'see_more_news' => '',
+        'see_more_news' => 'daha fazla haber gör',
 
         'slogan' => [
             'main' => 'en en iyi free-to-win ritim oyunu',
@@ -120,8 +120,6 @@ return [
             'error' => 'Haberler yüklenirken hata oluştu, sayfayı yenilemeyi deneseniz?...',
         ],
         'header' => [
-            'welcome' => 'Merhaba, <strong>:username</strong>!',
-            'messages' => ':count yeni mesajınız var|:count yeni mesajınız var',
             'stats' => [
                 'friends' => 'Çevrimiçi Arkadaşlar',
                 'games' => 'Oyunlar',
@@ -131,7 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Yeni Dereceli Beatmapler',
             'popular' => 'Popüler Beatmapler',
-            'by_user' => '',
+            'by_user' => ':user tarafından',
         ],
         'buttons' => [
             'download' => 'osu!\'yu indir',

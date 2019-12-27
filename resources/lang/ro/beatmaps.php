@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Resetați nominalizarea',
             'praise' => 'Laudă',
             'problem' => 'Problemă',
+            'review' => '',
             'suggestion' => 'Sugestie',
         ],
 
         'mode' => [
             'events' => 'Istoric',
             'general' => 'General :scope',
+            'reviews' => '',
             'timeline' => 'Cronologie',
             'scopes' => [
                 'general' => 'Această dificultate',

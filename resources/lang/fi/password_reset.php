@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Nollaa salasana',
-
     'button' => [
         'cancel' => 'Peruuta',
         'resend' => 'Lähetä vahvistussähköposti uudelleen',
         'set' => 'Aseta salasana',
         'start' => 'Aloita',
-    ],
-
-    'email' => [
-        'subject' => 'osu! tilin palauttaminen',
     ],
 
     'error' => [

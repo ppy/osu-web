@@ -468,6 +468,9 @@ class ChatControllerTest extends TestCase
         }
 
         $this->user = factory(User::class)->create();
+        $minPlays = config('osu.user.min_plays_for_posting');
+        $this->user->statisticsOsu()->create(['playcount' => $minPlays]);
+
         $this->anotherUser = factory(User::class)->create();
     }
 }

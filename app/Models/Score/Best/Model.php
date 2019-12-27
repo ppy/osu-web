@@ -82,23 +82,8 @@ abstract class Model extends BaseModel
         return function ($query) {
             $limit = config('osu.beatmaps.max-scores');
             $newQuery = (clone $query)->with('user')->limit($limit * 3);
-            $newQuery->getQuery()->orders = null;
 
-            $baseResult = $newQuery->orderBy('score', 'desc')->get();
-
-            // Sort scores by score desc and then date asc if scores are equal
-            $baseResult = $baseResult->sort(function ($a, $b) {
-                if ($a->score === $b->score) {
-                    if ($a->date->timestamp === $b->date->timestamp) {
-                        // On the rare chance that both were submitted in the same second, default to submission order
-                        return ($a->score_id < $b->score_id) ? -1 : 1;
-                    }
-
-                    return ($a->date->timestamp < $b->date->timestamp) ? -1 : 1;
-                }
-
-                return ($a->score > $b->score) ? -1 : 1;
-            });
+            $baseResult = $newQuery->get();
 
             $result = [];
             $users = [];
@@ -246,9 +231,7 @@ abstract class Model extends BaseModel
     {
         return $query
             ->whereHas('beatmap')
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            });
+            ->where(['hidden' => false]);
     }
 
     public function scopeDefaultListing($query)
@@ -256,7 +239,7 @@ abstract class Model extends BaseModel
         return $query
             ->default()
             ->orderBy('score', 'DESC')
-            ->orderBy('date', 'ASC')
+            ->orderBy('score_id', 'ASC')
             ->limit(config('osu.beatmaps.max-scores'));
     }
 

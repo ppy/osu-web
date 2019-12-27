@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Estas são as discussões de beatmap que você está acompanhando. Você será notificado quando o beatmap receber atualizações ou postagens novas.',
         'title_compact' => 'notificações de modding',
-        'title_main' => 'Lista de notificações de modding',
 
         'table' => [
             'empty' => 'Nenhuma discussão de beatmap supervisionada.',
@@ -30,10 +29,6 @@ return [
             'state' => 'Estado',
             'title' => 'Título',
         ],
-    ],
-
-    'mail' => [
-        'update' => 'Nova atualização no beatmap ":title"',
     ],
 
     'status' => [

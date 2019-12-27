@@ -25,7 +25,4 @@ return [
 
         'link' => 'de wiki pagina bij het live streamen',
     ],
-    'headers' => [
-        'regular' => 'Momenteel aan het streamen',
-    ],
 ];

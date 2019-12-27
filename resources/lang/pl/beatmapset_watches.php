@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Poniżej znajdują się dyskuje, które obserwujesz. Otrzymasz powiadomienie, gdy pojawią się nowe posty bądź aktualizacje.',
         'title_compact' => 'obserwowane dyskusje',
-        'title_main' => 'Obserwowane dyskusje',
 
         'table' => [
             'empty' => 'Brak obserwowanych dyskusji.',
@@ -30,10 +29,6 @@ return [
             'state' => 'Status',
             'title' => 'Tytuł',
         ],
-    ],
-
-    'mail' => [
-        'update' => 'Nowa aktualizacja dla beatmapy „:title”',
     ],
 
     'status' => [

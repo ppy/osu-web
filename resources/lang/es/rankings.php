@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => 'Clasificación por :type',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Rendimiento',
@@ -42,7 +44,7 @@ return [
         'play_count' => 'Conteo de jugadas',
         'performance' => 'Rendimiento',
         'total_score' => 'Puntuación total',
-        'ranked_score' => 'Puntuación rankeada',
+        'ranked_score' => 'Puntuación clasificada',
         'average_score' => 'Puntuación promedio',
         'average_performance' => 'Rendimiento promedio',
         'ss' => 'SS',

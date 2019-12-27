@@ -44,11 +44,6 @@ return [
             '_stream_to' => 'modifiche in :stream fino a :to',
             '_to' => 'modifiche fino a :to',
         ],
-
-        'title' => [
-            '_' => 'Note di rilascio :info',
-            'info' => 'Lista',
-        ],
     ],
 
     'support' => [

@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => '社群',
-
+            'comments' => '',
             'forum' => '論壇',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -35,8 +107,8 @@ return [
         'close' => '關閉 (Esc)',
         'fullscreen' => '切換全螢幕',
         'zoom' => '放大/縮小',
-        'previous' => '',
-        'next' => '',
+        'previous' => '前一個（左箭頭）',
+        'next' => '下一個（右箭頭）',
     ],
 
     'menu' => [
@@ -44,9 +116,11 @@ return [
             '_' => '首頁',
             'account-edit' => '設定',
             'account-verifyLink' => '驗證已完成',
-            'friends-index' => '好友',
-            'changelog-index' => '更新日誌',
+            'beatmapset-watches-index' => '',
             'changelog-build' => '版本',
+            'changelog-index' => '更新日誌',
+            'forum-topic-watches-index' => '',
+            'friends-index' => '好友',
             'getDownload' => '下載',
             'getIcons' => '圖示',
             'groups-show' => '群組',
@@ -59,11 +133,12 @@ return [
             'search' => '搜尋',
             'supportTheGame' => '贊助 osu!',
             'team' => '團隊',
+            'testflight' => '',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => '個人簡介',
+            'friends' => '好友',
+            'settings' => '設定',
         ],
         'help' => [
             '_' => '幫助',
@@ -78,7 +153,6 @@ return [
             'artists' => '精選藝術家',
             'beatmap_discussion_posts-index' => '譜面討論帖',
             'beatmap_discussions-index' => '譜面討論',
-            'beatmapset-watches-index' => '譜面關注列表',
             'beatmapset_discussion_votes-index' => '譜面討論投票',
             'beatmapset_events-index' => '譜面事件',
             'index' => '圖譜列表',
@@ -100,8 +174,8 @@ return [
         ],
         'community' => [
             '_' => '社群',
-            'chat' => '對話',
-            'chat-index' => '對話',
+            'chat' => '聊天',
+            'chat-index' => '聊天',
             'dev' => '開發',
             'getForum' => '論壇',
             'getLive' => '直播',
@@ -112,7 +186,6 @@ return [
             'tournaments' => '官方比賽',
             'tournaments-index' => '官方比賽',
             'tournaments-show' => '官方比賽訊息',
-            'forum-topic-watches-index' => '訂閱',
             'forum-topics-create' => '論壇',
             'forum-topics-show' => '論壇',
             'forum-forums-index' => '論壇',
@@ -256,10 +329,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => '用戶名/郵箱',
             'forgot' => "我忘記了我的登錄信息",
             'password' => '密碼',
             'title' => '登錄以繼續',
+            'username' => '使用者名稱',
 
             'error' => [
                 'email' => "用戶名或郵箱不存在",
@@ -268,7 +341,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => '下載',
             'info' => '點擊下方的註冊按鈕以成為 osu! 大家庭中的一員！',
             'title' => "沒有帳號？",
         ],

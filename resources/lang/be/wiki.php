@@ -25,6 +25,7 @@ return [
         'missing' => 'Запытаная старонка «:keyword» не знойдзена.',
         'missing_title' => 'Не знойдзена',
         'missing_translation' => 'Запытаная старонка для бягучай мовы не знойдзена.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Пошук існых старонак для :link.',
         'toc' => 'Змесціва',
 
