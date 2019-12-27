@@ -51,8 +51,11 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     if (this.inputRef.current != null && prevState.open !== this.state.open && this.state.open) {
       this.inputRef.current.selectionStart = 0;
       this.inputRef.current.selectionEnd = this.inputRef.current.value.length;
+
+      this.props.worker.selectNone();
+
+      this.inputRef.current?.focus();
     }
-    this.inputRef.current?.focus();
   }
 
   render() {
