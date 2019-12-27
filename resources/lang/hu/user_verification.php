@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'osu! fiók hitelesítés',
-    ],
-
     'errors' => [
         'expired' => 'Érvénytelen ellenőrző kód, új visszaigazoló e-mail lett küldve.',
         'incorrect_key' => 'Helytelen hitelesítő kód.',

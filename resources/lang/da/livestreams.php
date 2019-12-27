@@ -25,7 +25,4 @@ return [
 
         'link' => 'wiki-siden omkring livestreaming',
     ],
-    'headers' => [
-        'regular' => 'Streamer i øjeblikket',
-    ],
 ];

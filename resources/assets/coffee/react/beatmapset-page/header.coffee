@@ -20,7 +20,6 @@ import { BeatmapPicker } from './beatmap-picker'
 import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import { BigButton } from 'big-button'
-import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
@@ -71,12 +70,6 @@ export class Header extends React.Component
         icon: 'far fa-heart'
 
     div className: 'beatmapset-header',
-      el PlaymodeTabs,
-        beatmaps: @props.beatmaps
-        currentMode: @props.currentBeatmap.mode
-        hrefFunc: @tabHrefFunc
-        showCounts: true,
-
       div
         className: 'beatmapset-header__content'
         style:
@@ -256,10 +249,6 @@ export class Header extends React.Component
       props:
         href: href
         'data-turbolinks': 'false'
-
-
-  tabHrefFunc: (mode) ->
-    BeatmapsetPageHash.generate mode: mode
 
 
   toggleFavourite: (e) ->

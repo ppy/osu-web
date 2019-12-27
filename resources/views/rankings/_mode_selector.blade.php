@@ -16,13 +16,20 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<ul class="page-mode">
-    @foreach (App\Models\Beatmap::MODES as $tab => $_int)
-        <li class="page-mode__item">
-            <a class="page-mode-link{{$mode == $tab ? ' page-mode-link--is-active' : ''}}" href="{{$route($tab, $type)}}">
-                {{trans("beatmaps.mode.{$tab}")}}
-                <span class="page-mode-link__stripe"></span>
-            </a>
-        </li>
-    @endforeach
-</ul>
+<div class="game-mode">
+    <ul class="game-mode__items">
+        @foreach (App\Models\Beatmap::MODES as $tab => $_int)
+            <li class="game-mode__item">
+                <a
+                    class="
+                        game-mode-link
+                        {{$mode === $tab ? ' game-mode-link--active' : ''}}
+                    "
+                    href="{{ $route($tab, $type) }}"
+                >
+                    {{ trans("beatmaps.mode.{$tab}") }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+</div>

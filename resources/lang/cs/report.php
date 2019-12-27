@@ -20,8 +20,8 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nahlásit',
+        'title' => 'Nahlásit příspěvek od :username?',
     ],
 
     'comment' => [

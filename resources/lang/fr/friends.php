@@ -19,21 +19,12 @@
  */
 
 return [
+    'title_compact' => 'amis',
+    'too_many' => 'Limite d\'amis atteinte.',
+
     'buttons' => [
       'add' => 'ajouter aux amis',
       'disabled' => 'amis',
       'remove' => 'supprimer des amis',
     ],
-
-    'index' => [
-        'title' => [
-            '_' => 'Accueil :info',
-            'info' => 'Amis',
-        ],
-    ],
-
-    'title' => 'Amis',
-    'title_compact' => 'amis',
-
-    'too_many' => 'Limite d\'amis atteinte.',
 ];

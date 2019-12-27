@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Nytt svar for emnet ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Siste Innlegg',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Abonnementer',
             'title_compact' => 'forum abonnementer',
-            'title_main' => 'Forum <strong>Abonnementer</strong>',
 
             'box' => [
                 'total' => 'Abonnerte emner',

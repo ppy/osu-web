@@ -15,9 +15,23 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $links = [
+        [
+            'url' => route('contests.index'),
+            'title' => trans('layout.header.contests.index'),
+        ],
+        [
+            'url' => $contestMeta->url(),
+            'title' => $contestMeta->name,
+        ],
+    ];
+@endphp
+
 @extends('master', [
     'currentSection' => 'community',
     'currentAction' => 'contests',
+    'legacyNav' => false,
     'title' => "Contest: {$contestMeta->name}",
     'pageDescription' => strip_tags(markdown($contestMeta->currentDescription())),
     'canonicalUrl' => $contestMeta->url(),
@@ -30,15 +44,17 @@
 
 @section('content')
     @include('objects.css-override', ['mapping' => [
-        '.osu-page-header-v2--contests' => $contestMeta->header_url,
+        '.header-v4--contests .header-v4__bg' => $contestMeta->header_url,
     ]])
 
-    <div class="osu-page">
-        <div class="osu-page-header-v2 osu-page-header-v2--contests">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{$contestMeta->name}}</div>
-        </div>
-    </div>
+    @include('layout._page_header_v4', ['params' => [
+        'links' => $links,
+        'linksBreadcrumb' => true,
+        'section' => trans('layout.header.contests._'),
+        'subSection' => $contestMeta->name,
+        'theme' => 'contests',
+    ]])
+
     <div class="osu-page osu-page--contest">
         <div class='contest'>
             @yield('contest-content')

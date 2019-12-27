@@ -44,11 +44,6 @@ return [
             '_stream_to' => ':to \'a kadar olan :stream değişiklikleri',
             '_to' => ':to \'a kadar olan değişiklikler',
         ],
-
-        'title' => [
-            '_' => 'Değişiklikler :info',
-            'info' => 'Liste',
-        ],
     ],
 
     'support' => [

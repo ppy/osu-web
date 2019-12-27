@@ -19,12 +19,4 @@
  */
 
 return [
-    'mail' => [
-        'donation_thanks' => [
-            'subject' => 'Díky, osu! tě <3luje',
-        ],
-        'supporter_gift' => [
-            'subject' => 'Dostal si status osu!podporovatele jako dárek!',
-        ],
-    ],
 ];

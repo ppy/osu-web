@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'Communauté',
-
+            'comments' => '',
             'forum' => 'Forum',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => 'accueil',
             'account-edit' => 'paramètres',
             'account-verifyLink' => 'Vérification terminée',
-            'friends-index' => 'amis',
-            'changelog-index' => 'notes de MàJ',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'build',
+            'changelog-index' => 'notes de MàJ',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'amis',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
             'groups-show' => 'groupes',
@@ -59,6 +133,7 @@ return [
             'search' => 'rechercher',
             'supportTheGame' => 'supporter le jeu',
             'team' => 'équipe',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => 'profil',
@@ -78,7 +153,6 @@ return [
             'artists' => 'artistes plébiscités',
             'beatmap_discussion_posts-index' => 'posts de la discussion beatmap',
             'beatmap_discussions-index' => 'discussions sur la beatmap',
-            'beatmapset-watches-index' => 'liste d\'abonnement des modifications',
             'beatmapset_discussion_votes-index' => 'votes de la discussion beatmap',
             'beatmapset_events-index' => 'évènements de la collection',
             'index' => 'index',
@@ -112,7 +186,6 @@ return [
             'tournaments' => 'tournois',
             'tournaments-index' => 'tournois',
             'tournaments-show' => 'infos des tournois',
-            'forum-topic-watches-index' => 'abonnements aux sujets',
             'forum-topics-create' => 'forums',
             'forum-topics-show' => 'forums',
             'forum-forums-index' => 'forums',
@@ -256,10 +329,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'adresse e-mail',
             'forgot' => "J'ai oublié mes identifiants",
             'password' => 'mot de passe',
             'title' => 'Se connecter pour continuer',
+            'username' => 'nom d\'utilisateur',
 
             'error' => [
                 'email' => "Le nom d'utilisateur ou l'e-mail ne correspond pas",

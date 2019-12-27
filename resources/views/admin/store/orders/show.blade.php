@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('admin/master')
+@extends('master', ['legacyNav' => false])
 
 @section('content')
 
@@ -50,9 +50,11 @@
 
 </style>
 
-<div class="osu-layout__row osu-layout__row--page-admin osu-layout__row--page-admin-store">
+@include('admin/_header', ['title' => trans('layout.header.admin.store_orders')])
+
+<div class="osu-page osu-page--admin-store">
     <div>
-        <h1>Store Admin <small>{!! count($orders) !!} orders waiting to be shipped!</small></h1>
+        <h1><small>{!! count($orders) !!} orders waiting to be shipped!</small></h1>
     </div>
 
     <div>

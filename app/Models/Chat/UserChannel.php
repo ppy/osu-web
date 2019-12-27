@@ -60,6 +60,10 @@ class UserChannel extends Model
     {
         $maxId = get_int($messageId ?? Message::where('channel_id', $this->channel_id)->max('message_id'));
 
+        if ($maxId === null) {
+            return;
+        }
+
         // this prevents the read marker from going backwards
         $this->update(['last_read_id' => DB::raw("GREATEST(COALESCE(last_read_id, 0), $maxId)")]);
 

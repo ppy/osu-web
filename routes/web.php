@@ -94,6 +94,8 @@ Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
     Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
 });
 
+Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);
+
 Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
@@ -191,6 +193,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('download', 'HomeController@getDownload')->name('download');
     Route::post('set-locale', 'HomeController@setLocale')->name('set-locale');
     Route::get('support', 'HomeController@supportTheGame')->name('support-the-game');
+    Route::get('testflight', 'HomeController@testflight')->name('testflight');
 
     Route::delete('password-reset', 'PasswordResetController@destroy');
     Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');

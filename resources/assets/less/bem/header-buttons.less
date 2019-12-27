@@ -16,21 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.chat-conversation-list-seperator {
-  content: ' ';
-  background: @osu-colour-l1;
-  border-radius: 1px;
-  flex-shrink: 0;
+.header-buttons {
+  display: flex;
+  margin: 0 -5px 0 auto;
 
-  @media @desktop {
-    height: 2px;
-    margin: 10px 20px;
-  }
-
-  @media @mobile {
-    width: 2px;
-    height: 20px;
-    margin: 0px 5px;
-    align-self: center;
+  &__item {
+    margin: 5px;
+    display: flex;
   }
 }

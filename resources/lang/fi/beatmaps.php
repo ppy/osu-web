@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'Historia',
             'general' => 'Yleinen :scope',
+            'reviews' => '',
             'timeline' => 'Aikajana',
             'scopes' => [
                 'general' => 'Tämä vaikeustaso',

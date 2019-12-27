@@ -18,13 +18,17 @@
 
 .game-mode {
   line-height: normal;
-  background-color: @osu-colour-b6;
+  width: 100%;
 
   @media @desktop {
-    position: absolute;
-    right: @gutter-desktop;
-    top: 17px; // kind of centered in the page title area
-    background-color: transparent;
+    margin-left: auto;
+    width: auto;
+  }
+
+  &--beatmapsets {
+    @media @desktop {
+      right: @gutter-v2-desktop;
+    }
   }
 
   &__items {

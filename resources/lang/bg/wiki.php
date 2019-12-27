@@ -25,6 +25,7 @@ return [
         'missing' => 'Страницата ":keyword" не беше намерена.',
         'missing_title' => 'Не е намерено',
         'missing_translation' => 'Страницата не е намерена на текущо избрания език.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Търси съществуващи страници за :link.',
         'toc' => 'Съдържание',
 

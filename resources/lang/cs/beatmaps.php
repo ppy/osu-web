@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'povolit kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Stránka Beatmapy',
         'delete' => 'odstranit',
         'deleted' => 'Smazal uživatel :editor v :delete_time.',
         'deny_kudosu' => 'odepřít kudosu',
@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'Historie',
             'general' => 'Obecný :scope',
+            'reviews' => '',
             'timeline' => 'Časová osa',
             'scopes' => [
                 'general' => 'Tato obtížnost',
@@ -255,7 +256,7 @@ return [
         'approved' => 'Schválené',
         'favourites' => 'Oblíbené',
         'graveyard' => 'Hřbitov',
-        'leaderboard' => '',
+        'leaderboard' => 'Má žebříček',
         'loved' => 'Oblíbené',
         'mine' => 'Moje mapy',
         'pending' => 'Čekající & Rozpracované',

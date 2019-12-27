@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => '登錄以繼續。',
+    'require_verification' => '需要驗證帳戶!',
+    'restricted' => "帳戶處於限制模式，無法進行該操作。",
+    'silenced' => "帳戶被禁言，無法進行該操作。",
+    'unauthorized' => '沒有權限。',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => '無法撤銷推薦。',
@@ -49,13 +55,13 @@ return [
     'beatmap_discussion_post' => [
         'destroy' => [
             'not_owner' => '您只能刪除自己的發文。',
-            'resolved' => '',
-            'system_generated' => '',
+            'resolved' => '你不能刪除已解決的討論串。',
+            'system_generated' => '自動生成的貼文無法刪除。',
         ],
 
         'edit' => [
             'not_owner' => '只有作者可以編輯。',
-            'resolved' => '',
+            'resolved' => '你不能編輯已解決討論裡的貼文。',
             'system_generated' => '無法編輯自動回覆。',
         ],
 
@@ -79,7 +85,7 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => '投票已結束，無法修改投票。',
+        'voting_over' => '投票已結束，禁止重新投票。',
     ],
 
     'forum' => [
@@ -126,11 +132,11 @@ return [
             'store' => [
                 'no_forum_access' => '沒有權限，無法進入該板塊。',
                 'no_permission' => '沒有權限，無法創建新主題。',
-                'forum_closed' => '該板塊已關閉，無法發表新主題。',
+                'forum_closed' => '該討論區已關閉，無法發表新主題。',
             ],
 
             'vote' => [
-                'no_forum_access' => '沒有權限，無法進入該板塊。',
+                'no_forum_access' => '沒有權限，無法進入該討論區。',
                 'over' => '投票已結束！',
                 'play_more' => '你需要在論壇上投票之前多玩一些。',
                 'voted' => '不允許修改投票。',
@@ -158,24 +164,16 @@ return [
         ],
 
         'view' => [
-            'admin_only' => '該板塊僅限管理員查看。',
+            'admin_only' => '該討論區僅限管理員查看。',
         ],
     ],
-
-    'require_login' => '登錄以繼續。',
-
-    'unauthorized' => '沒有權限。',
-
-    'silenced' => "帳戶被禁言，無法進行該操作。",
-
-    'restricted' => "帳戶處於限制模式，無法進行該操作。",
 
     'user' => [
         'page' => [
             'edit' => [
                 'locked' => '個人頁面被鎖定。',
                 'not_owner' => '只能編輯自己的個人頁面。',
-                'require_supporter_tag' => '需要成為支持者。',
+                'require_supporter_tag' => '需要成為osu!贊助者。',
             ],
         ],
     ],

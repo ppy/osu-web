@@ -11,7 +11,7 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 @endif
 
 let headers = {
-@if($route['authenticated'])
+@if($route['metadata']['authenticated'])
     "Authorization": "Bearer @{{token}}"
 @endif
 @foreach($route['headers'] as $header => $value)

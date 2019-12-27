@@ -148,7 +148,7 @@ class PostsController extends Controller
             priv_check('ForumModerate', $post->forum)->ensureCan();
         }
 
-        if ($post->forum === null) {
+        if ($post->forum === null || $post->topic === null) {
             abort(404);
         }
 
@@ -171,7 +171,7 @@ class PostsController extends Controller
             priv_check('ForumModerate', $post->forum)->ensureCan();
         }
 
-        if ($post->forum === null) {
+        if ($post->forum === null || $post->topic === null) {
             abort(404);
         }
 

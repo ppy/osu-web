@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => '給予 kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => '圖譜頁面',
         'delete' => '刪除',
         'deleted' => '被 :editor 於 :delete_time 刪除。',
         'deny_kudosu' => '收回 kudosu',
@@ -91,13 +91,14 @@ return [
             'nomination_reset' => '重置提名',
             'praise' => '讚',
             'problem' => '問題',
-            'review' => '',
+            'review' => '評論',
             'suggestion' => '建議',
         ],
 
         'mode' => [
             'events' => '歷史',
             'general' => '整體:scope',
+            'reviews' => '評論',
             'timeline' => '時間線',
             'scopes' => [
                 'general' => '目前難度',
@@ -143,12 +144,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => '沒有任何反對票',
+                'up' => '還沒有任何贊成票',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => '最新的反對票',
+                'up' => '最新的贊成票',
             ],
         ],
     ],
@@ -184,7 +185,7 @@ return [
         'nominate' => '提名',
         'nominate_confirm' => '確定要提名這張圖譜？',
         'nominated_by' => '被 :users 提名',
-        'not_enough_hype' => "",
+        'not_enough_hype' => "沒有足夠的推薦。",
         'qualified' => '如果沒有問題，預計將於 :date 被 Ranked 。',
         'qualified_soon' => '如果沒有問題，預計不久將被 Ranked 。',
         'required_text' => '提名數: :current/:required',
@@ -259,7 +260,7 @@ return [
         'loved' => 'Loved',
         'mine' => '我的圖譜',
         'pending' => 'Pending & WIP',
-        'qualified' => '提名',
+        'qualified' => 'Qualified',
         'ranked' => '已進榜',
     ],
     'genre' => [

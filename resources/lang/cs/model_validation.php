@@ -29,7 +29,7 @@ return [
         'first_post' => 'Počáteční příspěvek nelze odstranit.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Zpráva',
         ],
     ],
 
@@ -43,7 +43,7 @@ return [
 
         'attributes' => [
             'message_type' => '',
-            'timestamp' => '',
+            'timestamp' => 'Časové razítko',
         ],
 
         'hype' => [
@@ -64,7 +64,7 @@ return [
         'deleted_parent' => 'Odpovídat na smazaný komentář není povoleno.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Zpráva',
         ],
     ],
 
@@ -94,7 +94,7 @@ return [
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Titulek příspěvku',
             ],
         ],
 

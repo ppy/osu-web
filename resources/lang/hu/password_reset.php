@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Jelszó Visszaállítása',
-
     'button' => [
         'cancel' => 'Mégse',
         'resend' => 'Megerősítő email újraküldése',
         'set' => 'Jelszó beállítása',
         'start' => 'Start',
-    ],
-
-    'email' => [
-        'subject' => 'osu! fiók helyreállítása',
     ],
 
     'error' => [

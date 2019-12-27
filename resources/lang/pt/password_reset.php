@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Redefinir Palavra-passe',
-
     'button' => [
         'cancel' => 'Cancelar',
         'resend' => 'Reenviar email de verificação',
@@ -28,13 +26,9 @@ return [
         'start' => 'Começar',
     ],
 
-    'email' => [
-        'subject' => 'restaurador de conta osu!',
-    ],
-
     'error' => [
         'contact_support' => 'Por favor contacta a assistência para recuperar a conta.',
-        'is_privileged' => 'Contacta o peppy lel.',
+        'is_privileged' => 'Por favor contacta um administrador de alto nível para recuperar a conta.',
         'missing_key' => 'Necessário.',
         'too_many_tries' => 'Demasiadas tentativas falhadas.',
         'user_not_found' => 'O utilizador solicitado não existe.',

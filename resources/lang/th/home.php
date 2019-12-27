@@ -120,8 +120,6 @@ return [
             'error' => 'โหลดข่าวสารไม่ได้ ลองรีเฟรชดู เผื่อติดนะ',
         ],
         'header' => [
-            'welcome' => 'สวัสดี <strong>:username</strong>',
-            'messages' => 'คุณมี :count ข้อความใหม่|คุณมี :count ข้อความใหม่',
             'stats' => [
                 'friends' => 'จำนวนเพื่อนที่ออนไลน์',
                 'games' => 'Games',

@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Am primit comanda ta din magazinul osu!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Comandă plasată pe :date',
 

@@ -21,10 +21,11 @@
 return [
     'show' => [
         'fallback_translation' => 'Den anmodede side er endnu ikke blevet oversat til (:language). Viser den engelske version.',
-        'incomplete_or_outdated' => '',
+        'incomplete_or_outdated' => 'Indholdet på denne side er ufuldstændigt eller forældet. Hvis du har mulighed for at hjælpe til, overvej venligst at opdatere artiklen!',
         'missing' => 'Den anmodede side ":keyword" kunne ikke blive fundet.',
         'missing_title' => 'Ikke fundet',
         'missing_translation' => 'Den anmodede side kunne ikke blive fundet på det valgte sprog.',
+        'needs_cleanup_or_rewrite' => 'Denne side lever ikke op til standarderne for osu! wiki og har brug for oprydning og omskrivning. Hvis du har mulighed for at hjælpe til, overvej venligst at opdatere artiklen!',
         'search' => 'Søg eksisterende sider for :link.',
         'toc' => 'Indhold',
 
@@ -41,7 +42,7 @@ return [
         ],
     ],
     'main' => [
-        'title' => '',
-        'subtitle' => '',
+        'title' => 'Vidensbase',
+        'subtitle' => 'da osu!pedia lyder lamt',
     ],
 ];
