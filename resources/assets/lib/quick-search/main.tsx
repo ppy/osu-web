@@ -106,7 +106,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
       this.navigateToSelected();
     }
     if (key === 'ArrowUp' || key === 'ArrowDown') {
-      this.props.worker.cycleCursor(key === 'ArrowDown' ? 1 : -1);
+      this.props.worker.cycleSelectedItem(key === 'ArrowDown' ? 1 : -1);
     }
   }
 

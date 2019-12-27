@@ -66,7 +66,7 @@ export default class Worker {
 
   private xhr: JQueryXHR | null = null;
 
-  @action cycleCursor(direction: number) {
+  @action cycleSelectedItem(direction: number) {
     let newSelected: SelectedItem | null;
     if (!this.selected) {
       if (direction > 0) {
