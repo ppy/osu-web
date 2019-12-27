@@ -42,6 +42,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   state: State = { open: false };
 
   private inputRef = React.createRef<HTMLInputElement>();
+
   private get isSearchPage() {
     return document.location.pathname === this.searchPath;
   }

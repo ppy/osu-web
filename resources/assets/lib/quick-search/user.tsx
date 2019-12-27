@@ -26,7 +26,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[], u
   const url = route('users.show', { user: user.id });
 
   return (
-    <div className={osu.classWithModifiers('user-search-card', modifiers) + ' clickable-row'}>
+    <div className={`${osu.classWithModifiers('user-search-card', modifiers)} clickable-row`}>
       <a className='user-search-card__avatar-container' href={url}>
         <div className='avatar avatar--full' style={{ backgroundImage: osu.urlPresence(user.avatar_url) }} />
       </a>
