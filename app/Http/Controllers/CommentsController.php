@@ -264,7 +264,6 @@ class CommentsController extends Controller
         return $bundle->toArray();
     }
 
-
     public function pinStore($id)
     {
         priv_check('CommentPin')->ensureCan();
