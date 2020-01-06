@@ -54,7 +54,7 @@ export class Comments extends React.PureComponent
         div className: 'comments__content',
           if pinnedComments.length > 0
             div className: "comments__items comments__items--pinned",
-              pinnedComments.map (c) => @renderComment c, true
+              @renderComments pinnedComments, true
 
           div className: 'comments__items comments__items--toolbar',
             el CommentsSort,
@@ -66,7 +66,7 @@ export class Comments extends React.PureComponent
 
           if comments.length > 0
             div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
-              comments.map @renderComment
+              @renderComments comments, false
 
               el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
 
@@ -93,6 +93,10 @@ export class Comments extends React.PureComponent
       modifiers: @props.modifiers
       showDeleted: uiState.comments.isShowDeleted
       showReplies: !pinned
+
+
+  renderComments: (comments, pinned) =>
+    @renderComment(comment, pinned) for comment in comments
 
 
   renderShowDeletedToggle: =>
