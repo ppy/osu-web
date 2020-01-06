@@ -72,6 +72,7 @@ class CommentBundle
     {
         $hasMore = false;
         $includedComments = collect();
+        $pinnedComments = collect();
 
         // Either use the provided comment as a base, or look for matching comments.
         if (isset($this->comment)) {
@@ -112,18 +113,19 @@ class CommentBundle
         $includedComments = $includedComments->unique('id', true)->reject(function ($comment) use ($commentIds) {
             return $commentIds->contains($comment->getKey());
         });
-        $allComments = $comments->concat($includedComments);
 
         if ($this->includePinned) {
             $pinnedComments = $this->getComments($this->commentsQuery()->where('pinned', true), true, 'new');
         }
+
+        $allComments = $comments->concat($includedComments)->concat($pinnedComments);
 
         $result = [
             'comments' => json_collection($comments, 'Comment'),
             'has_more' => $hasMore,
             'has_more_id' => $this->params->parentId,
             'included_comments' => json_collection($includedComments, 'Comment'),
-            'pinned_comments' => json_collection($pinnedComments ?? [], 'Comment'),
+            'pinned_comments' => json_collection($pinnedComments, 'Comment'),
             'user_votes' => $this->getUserVotes($allComments),
             'user_follow' => $this->getUserFollow(),
             'users' => json_collection($this->getUsers($comments->concat($allComments)), 'UserCompact'),

@@ -38,6 +38,7 @@ class CommentTransformer extends Fractal\TransformerAbstract
             'user_id' => $comment->user_id,
             'message' => $message ?? null,
             'message_html' => $messageHtml ?? null,
+            'pinned' => $comment->pinned,
             'replies_count' => $comment->replies_count_cache ?? 0,
             'votes_count' => $comment->votes_count_cache ?? 0,
 
@@ -53,8 +54,6 @@ class CommentTransformer extends Fractal\TransformerAbstract
 
             'edited_at' => json_time($comment->edited_at),
             'edited_by_id' => $comment->edited_by_id,
-
-            'pinned' => $comment->pinned,
         ];
     }
 }
