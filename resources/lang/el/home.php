@@ -25,6 +25,7 @@ return [
         'peak' => 'Κορύφωση, :count συνδεδεμένοι χρήστες',
         'players' => '<strong>:count</strong> εγγεγραμμένοι παίκτες',
         'title' => 'καλώς ήρθατε',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'το καλυτερότερο free-to-win ρυθμικό παιχνίδι',
@@ -119,8 +120,6 @@ return [
             'error' => 'Σφάλμα φόρτωσης ειδήσεων, δοκιμάστε να ανανεώσετε τη σελίδα;...',
         ],
         'header' => [
-            'welcome' => 'Γεια σας, <strong>:username</strong>!',
-            'messages' => 'Έχετε :count νέο μήνυμα|Έχετε :count νέα μηνύματα',
             'stats' => [
                 'friends' => 'Συνδεδεμένοι Φίλοι',
                 'games' => 'Παιχνίδια',
@@ -130,8 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Νέα Ranked Beatmaps',
             'popular' => 'Δημοφιλή Beatmaps',
-            'by' => 'από',
-            'plays' => ':count προσπάθειες',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Λήψη osu!',

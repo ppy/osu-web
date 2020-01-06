@@ -22,13 +22,14 @@ return [
     'landing' => [
         'download' => 'Hent nu',
         'online' => '<strong>:players</strong> online i øjeblikket i <strong>:games</strong> spil',
-        'peak' => 'Peak, :count online brugere',
+        'peak' => 'Højeste antal, :count online brugere',
         'players' => '<strong>:count</strong> registrerede brugere',
         'title' => 'velkommen',
+        'see_more_news' => 'se flere nyheder',
 
         'slogan' => [
-            'main' => 'Det bedste gratis rytmespil',
-            'sub' => 'rytmen er bare et klik væk',
+            'main' => 'det aller-allerbedste, gratis rytmespil',
+            'sub' => 'rytme er bare et klik væk',
         ],
     ],
 
@@ -36,7 +37,7 @@ return [
         'advanced_link' => 'Avanceret søgning',
         'button' => 'Søg',
         'empty_result' => 'Intet fundet!',
-        'keyword_required' => '',
+        'keyword_required' => 'Et søge-nøgleord behøves',
         'placeholder' => 'klik for at søge',
         'title' => 'Søg',
 
@@ -47,14 +48,14 @@ return [
         ],
 
         'forum_post' => [
-            'all' => 'Alle forums',
-            'link' => 'Søg i forummet',
+            'all' => 'Alle forumer',
+            'link' => 'Søg i forumet',
             'more_simple' => 'Se flere forum-søgeresultater',
             'title' => 'Forum',
 
             'label' => [
                 'forum' => 'søg i forummerne',
-                'forum_children' => 'inkluder subforums',
+                'forum_children' => 'inkluder subforummer',
                 'topic_id' => 'emne #',
                 'username' => 'forfatter',
             ],
@@ -102,10 +103,10 @@ return [
                 'description' => 'klik på knappen ovenfor for at hente installeren, og kør den!',
             ],
             'beatmaps' => [
-                'title' => 'anskaf beatmaps',
+                'title' => 'få beatmaps',
                 'description' => [
-                    '_' => ':browse det gigantiske bibliotek af bruger-oprettede beatmaps, og begynd at spille!',
-                    'browse' => 'gennemse',
+                    '_' => ':browse det gigantiske bibliotek af bruger-skabte beatmaps, og begynd at spille!',
+                    'browse' => 'udforsk',
                 ],
             ],
         ],
@@ -119,19 +120,16 @@ return [
             'error' => 'Fejl ved indlæsning af nyheder, prøv at genindlæse siden?...',
         ],
         'header' => [
-            'welcome' => 'Hejsa, <strong>:username</strong>!',
-            'messages' => 'Du har :count ny besked|Du har :count nye beskeder',
             'stats' => [
-                'friends' => 'Online venner',
+                'friends' => 'Venner Online',
                 'games' => 'Spil',
-                'online' => 'Online brugere',
+                'online' => 'Online Brugere',
             ],
         ],
         'beatmaps' => [
             'new' => 'Nye Rangerede Beatmaps',
             'popular' => 'Populære Beatmaps',
-            'by' => 'af',
-            'plays' => ':count afspilninger',
+            'by_user' => 'af :user',
         ],
         'buttons' => [
             'download' => 'Hent osu!',
@@ -145,9 +143,9 @@ return [
         'subtitle' => 'Du ser ud til at have det sjovt! :D',
         'body' => [
             'part-1' => 'Vidste du, at osu! kører helt uden reklamer og er stærkt afhængigt af, at spillerne støtter spillets udvikling og omkostninger?',
-            'part-2' => 'Vidste du også, at du ved at støtte osu! får en stor håndfuld ekstra brugbare funktioner, såsom <strong>in-game downloading</strong> som kan udnyttes i multiplayer- og tilskuertilstand?',
+            'part-2' => 'Vidste du også, at du ved at støtte osu! får en stor håndfuld ekstra funktioner, såsom <strong>in-game downloading</strong> som kan udnyttes i multiplayer- og spectator-tilstand?',
         ],
         'find-out-more' => 'Klik her for at læse mere!',
-        'download-starting' => "Hov, og bare rolig - din download er allerede startet for dig ;)",
+        'download-starting' => "Oh, og bare rolig - din download er allerede blevet startet for dig ;)",
     ],
 ];

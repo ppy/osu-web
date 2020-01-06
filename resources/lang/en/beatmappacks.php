@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
+        'nav_title' => 'listing',
+        'title' => 'Beatmap Packs',
+
         'blurb' => [
             'important' => 'READ THIS BEFORE DOWNLOADING',
             'instruction' => [
@@ -34,8 +38,6 @@ return [
                 'scary' => 'download the packs from latest to earliest',
             ],
         ],
-        'title' => 'Beatmap Packs',
-        'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
     ],
 
     'show' => [

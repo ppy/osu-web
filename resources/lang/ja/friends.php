@@ -19,21 +19,12 @@
  */
 
 return [
+    'title_compact' => 'フレンド',
+    'too_many' => 'フレンド数の上限に達しました。',
+
     'buttons' => [
       'add' => 'フレンドに追加',
       'disabled' => 'フレンド',
       'remove' => 'フレンドから削除',
     ],
-
-    'index' => [
-        'title' => [
-            '_' => 'ホーム :info',
-            'info' => 'フレンド',
-        ],
-    ],
-
-    'title' => 'フレンドリスト',
-    'title_compact' => 'フレンド',
-
-    'too_many' => 'フレンド数の上限に達しました。',
 ];

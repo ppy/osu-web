@@ -39,7 +39,7 @@ class BeatmapDiscussionPostsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'index']);
 
         return parent::__construct();
     }
@@ -154,7 +154,7 @@ class BeatmapDiscussionPostsController extends Controller
 
         $notifyQualifiedProblem = false;
 
-        if (!$disqualify && $discussion->beatmapset->isQualified() && $discussion->message_type === 'problem') {
+        if ($discussion->beatmapset->isQualified() && $discussion->message_type === 'problem') {
             $openProblems = $discussion
                 ->beatmapset
                 ->beatmapDiscussions()
@@ -203,7 +203,11 @@ class BeatmapDiscussionPostsController extends Controller
 
         if ($notifyQualifiedProblem) {
             // TODO: should work out how have the new post notification be able to handle this instead.
-            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM, $post, auth()->user());
+            broadcast_notification(
+                Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+                $post,
+                auth()->user()
+            );
         }
 
         broadcast_notification(Notification::BEATMAPSET_DISCUSSION_POST_NEW, $post, Auth::user());

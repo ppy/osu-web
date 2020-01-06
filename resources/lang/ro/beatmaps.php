@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Resetați nominalizarea',
             'praise' => 'Laudă',
             'problem' => 'Problemă',
+            'review' => '',
             'suggestion' => 'Sugestie',
         ],
 
         'mode' => [
             'events' => 'Istoric',
             'general' => 'General :scope',
+            'reviews' => '',
             'timeline' => 'Cronologie',
             'scopes' => [
                 'general' => 'Această dificultate',
@@ -183,6 +185,7 @@ return [
         'nominate' => 'Nominalizează',
         'nominate_confirm' => 'Nominalizezi acest beatmap?',
         'nominated_by' => 'nominalizat de :users',
+        'not_enough_hype' => "",
         'qualified' => 'Estimat pentru a fi clasat pe :date, dacă nu sunt găsite probleme.',
         'qualified_soon' => 'Estimat să fie clasat în curând, dacă nu sunt găsite probleme.',
         'required_text' => 'Nominalizări: :current/:required',

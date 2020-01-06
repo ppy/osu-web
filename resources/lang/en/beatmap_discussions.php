@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Search',
             'deleted' => 'Include deleted discussions',
+            'only_unresolved' => 'Show only unresolved discussions',
             'types' => 'Message types',
             'username' => 'Username',
+
+            'beatmapset_status' => [
+                '_' => 'Beatmap Status',
+                'all' => 'All',
+                'disqualified' => 'Disqualified',
+                'never_qualified' => 'Never Qualified',
+                'qualified' => 'Qualified',
+                'ranked' => 'Ranked',
+            ],
 
             'user' => [
                 'label' => 'User',
@@ -67,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'View Review Post',
+        'go_to_child' => 'View Discussion',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marked as resolved by :user',
             'false' => 'Reopened by :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'general',
+        'general_all' => 'general (all)',
     ],
 
     'user_filter' => [

@@ -40,26 +40,20 @@ return [
         'none' => '沒有客戶端',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => '撤回存取權限',
+            'true' => '存取遭撤回',
         ],
     ],
 
     'client' => [
         'id' => '客戶端 ID',
         'name' => '應用程式名稱',
-        'redirect' => '',
-        'secret' => '',
-    ],
-
-    'login' => [
-        'download' => '點擊這裡下載遊戲並創建一個帳戶',
-        'label' => '首先，登入您的帳號吧！',
-        'title' => '登入',
+        'redirect' => '應用程式回傳 URL',
+        'secret' => '用戶端密鑰',
     ],
 
     'new_client' => [
-        'header' => '',
+        'header' => '註冊一個新的 OAuth 應用程式',
         'register' => '註冊應用程式',
         'terms_of_use' => [
             '_' => '在使用API之前您必須同意 :link.',

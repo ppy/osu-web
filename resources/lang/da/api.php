@@ -21,7 +21,7 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'Kan ikke sende tom besked.',
+            'empty' => 'Kan ikke sende en tom besked.',
             'limit_exceeded' => 'Du sender beskeder for hurtigt, vent venligst lidt før du prøver igen.',
             'too_long' => 'Beskeden du prøver at sende er for lang.',
         ],

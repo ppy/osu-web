@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
+            'only_unresolved' => 'Pokaż tylko nierozwiązane dyskusje',
             'types' => 'Rodzaj wiadomości',
             'username' => 'Nazwa użytkownika',
+
+            'beatmapset_status' => [
+                '_' => 'Status beatmapy',
+                'all' => 'Wszystkie',
+                'disqualified' => 'Zdyskwalifikowana',
+                'never_qualified' => 'Nigdy nie zakwalifikowana',
+                'qualified' => 'Zakwalifikowana',
+                'ranked' => 'Rankingowa',
+            ],
 
             'user' => [
                 'label' => 'Użytkownik',
@@ -67,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Zobacz recenzję',
+        'go_to_child' => 'Zobacz dyskusję',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Oznaczone jako gotowe przez :user',
             'false' => 'Otworzone ponownie przez :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'główne',
+        'general_all' => 'główne (wszystkie)',
     ],
 
     'user_filter' => [

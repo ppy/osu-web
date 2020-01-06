@@ -30,6 +30,8 @@ class @FancyChart
 
     @area = d3.select(area)
 
+    @area.selectAll('.fancy-graph').remove()
+
     @svg = @area
       .append 'svg'
       .classed 'fancy-graph', true

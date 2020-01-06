@@ -23,6 +23,7 @@ import { forEach, minBy, orderBy, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
+import { fromJson, NotificationIdentity, NotificationIdentityJson } from 'notifications/notification-identity';
 
 interface NotificationBundleJson {
   has_more: boolean;
@@ -41,7 +42,7 @@ interface NotificationEventNewJson {
 }
 
 interface NotificationEventReadJson {
-  data: NotificationReadJson;
+  data: NotificationIdsJson | NotificationReadJson;
   event: 'read';
 }
 
@@ -53,8 +54,13 @@ interface NotificationFeedMetaJson {
   url: string;
 }
 
-interface NotificationReadJson {
+interface NotificationIdsJson {
   ids: number[];
+}
+
+interface NotificationReadJson {
+  notification: NotificationIdentityJson;
+  read_count: number;
 }
 
 interface TimeoutCollection {
@@ -79,6 +85,10 @@ const isNotificationEventReadJson = (arg: any): arg is NotificationEventReadJson
 
 const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVerifiedJson => {
   return arg.event === 'verified';
+};
+
+const isNotificationReadJson = (arg: any): arg is NotificationReadJson => {
+  return arg.read_count != null;
 };
 
 export default class Worker {
@@ -113,10 +123,6 @@ export default class Worker {
       if (groupedItems == null) {
         groupedItems = [];
         ret.set(key, groupedItems);
-      }
-
-      if (item.isRead) {
-        return;
       }
 
       groupedItems.push(item);
@@ -234,7 +240,7 @@ export default class Worker {
       this.updateFromServer(data.data);
       this.actualUnreadCount++;
     } else if (isNotificationEventReadJson(data)) {
-      this.markRead(data.data.ids);
+      this.markRead(data.data);
     } else if (isNotificationEventVerifiedJson(data)) {
       if (!this.hasData) {
         this.loadMore();
@@ -277,17 +283,11 @@ export default class Worker {
       }));
   }
 
-  @action markRead = (ids: number[]) => {
-    for (const id of ids) {
-      const item = this.items.get(id);
-
-      if (item == null || !item.isRead) {
-        this.actualUnreadCount--;
-      }
-
-      if (item != null) {
-        item.isRead = true;
-      }
+  @action markRead = (data: NotificationIdsJson | NotificationReadJson) => {
+    if (isNotificationReadJson(data)) {
+      this.markReadByIdentity(data);
+    } else {
+      this.markReadByIds(data.ids);
     }
   }
 
@@ -338,14 +338,14 @@ export default class Worker {
 
     this.xhrLoadingState[key] = true;
     return this.xhr[key] = $.ajax({
-        data: { ids },
-        dataType: 'json',
-        method: 'POST',
-        url: route('notifications.mark-read'),
+      data: { ids },
+      dataType: 'json',
+      method: 'POST',
+      url: route('notifications.mark-read'),
     }).always(action(() => {
       this.xhrLoadingState[key] = false;
     })).done(() => {
-      this.markRead(ids);
+      this.markReadByIds(ids);
     });
   }
 
@@ -398,5 +398,45 @@ export default class Worker {
 
   private isPendingXhr = (id: string) => {
     return this.xhrLoadingState[id] === true;
+  }
+
+  private markReadByIdentity(json: NotificationReadJson) {
+    const identity = fromJson(json.notification);
+    this.actualUnreadCount -= json.read_count;
+
+    for (const [, notification] of this.items) {
+      if (this.match(notification, identity)) {
+        if (!notification.isRead) {
+          notification.isRead = true;
+        }
+      }
+    }
+  }
+
+  private markReadByIds(ids: number[]) {
+    for (const id of ids) {
+      const item = this.items.get(id);
+
+      if (item == null || !item.isRead) {
+        this.actualUnreadCount--;
+      }
+
+      if (item != null) {
+        item.isRead = true;
+      }
+    }
+  }
+
+  private match(notification: Notification, identity: NotificationIdentity) {
+    // partial check, ignore invalid combinations
+    if (identity.category == null || identity.category === notification.category) {
+      if (identity.objectId == null || identity.objectId === notification.objectId) {
+        if (identity.objectType === notification.objectType) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 }

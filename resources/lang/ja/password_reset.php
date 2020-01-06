@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'パスワードのリセット',
-
     'button' => [
         'cancel' => 'キャンセル',
         'resend' => '認証メールを再送信',
         'set' => 'パスワードを設定する',
         'start' => '開始',
-    ],
-
-    'email' => [
-        'subject' => 'osu!アカウントの復元',
     ],
 
     'error' => [

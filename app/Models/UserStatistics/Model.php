@@ -23,6 +23,7 @@ namespace App\Models\UserStatistics;
 use App\Exceptions\ClassNotFoundException;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
+use App\Models\Score\Best;
 use App\Models\User;
 
 /**
@@ -86,6 +87,24 @@ abstract class Model extends BaseModel
         return get_class_namespace(static::class).'\\'.studly_case($modeStr);
     }
 
+    public static function getMode(): string
+    {
+        return snake_case(get_class_basename(static::class));
+    }
+
+    public static function recalculateRankedScoreForUser(User $user)
+    {
+        $bestClass = Best\Model::getClassByString(static::getMode());
+
+        $instance = new static;
+        $statsTable = $instance->getTable();
+        $bestTable = (new $bestClass)->getTable();
+
+        $instance->getConnection()->update(
+            "UPDATE {$statsTable} SET accuracy_count = 0, accuracy_total = 0, ranked_score = (SELECT COALESCE(SUM(score), 0) FROM (SELECT MAX(score) AS score FROM {$bestTable} WHERE user_id = {$user->getKey()} GROUP BY beatmap_id) s) WHERE user_id = {$user->getKey()}"
+        );
+    }
+
     public function __construct($attributes = [], $zeroInsteadOfNull = true)
     {
         if ($zeroInsteadOfNull) {
@@ -110,6 +129,12 @@ abstract class Model extends BaseModel
             $this->s_rank_count = 0;
             $this->sh_rank_count = 0;
             $this->a_rank_count = 0;
+
+            $this->accuracy_total = 0;
+            $this->accuracy_count = 0;
+            $this->accuracy = 0;
+            $this->rank = 0;
+            $this->rank_score = 0;
         }
 
         return parent::__construct($attributes);

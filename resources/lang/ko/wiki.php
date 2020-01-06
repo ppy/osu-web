@@ -25,12 +25,13 @@ return [
         'missing' => '요청하신 ":keyword" 페이지를 찾을 수 없습니다.',
         'missing_title' => '찾을 수 없음',
         'missing_translation' => '현재 사용하시는 언어로 된 요청하신 페이지를 찾을 수 없습니다.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => ':link에 해당하는 페이지',
         'toc' => '내용',
 
         'edit' => [
             'link' => 'GitHub에서 보기',
-            'refresh' => '새로고침',
+            'refresh' => '새로 고침',
         ],
 
         'translation' => [
@@ -43,8 +44,5 @@ return [
     'main' => [
         'title' => '지식 창고',
         'subtitle' => '그렇다고 osu!백과는 좀 아니잖아요',
-    ],
-    'search' => [
-        'path' => '다음으로 부터 검색: ',
     ],
 ];

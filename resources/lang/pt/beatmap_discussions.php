@@ -22,7 +22,7 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Tens que ter sessão iniciada para editar.',
-            'system_generated' => 'Uma publicação gerada pelo sistema não pode ser editada.',
+            'system_generated' => 'Não se pode editar uma publicação gerada pelo sistema.',
             'wrong_user' => 'Tens que ser dono da publicação para editar.',
         ],
     ],
@@ -33,45 +33,65 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'apagado',
-        'title' => 'Discussões do Beatmap',
+        'title' => 'Discussões do beatmap',
 
         'form' => [
             '_' => 'Pesquisar',
             'deleted' => 'Incluir discussões eliminadas',
+            'only_unresolved' => 'Mostrar apenas as discussões não resolvidas',
             'types' => 'Tipos de mensagem',
             'username' => 'Nome de utilizador',
 
+            'beatmapset_status' => [
+                '_' => 'Estado do beatmap',
+                'all' => 'Todos',
+                'disqualified' => 'Desqualificado',
+                'never_qualified' => 'Nunca qualificado',
+                'qualified' => 'Qualificado',
+                'ranked' => 'Classificado',
+            ],
+
             'user' => [
                 'label' => 'Utilizador',
-                'overview' => 'Visão geral de actividades',
+                'overview' => 'Visão geral de atividades',
             ],
         ],
     ],
 
     'item' => [
         'created_at' => 'Data da publicação',
-        'deleted_at' => 'Data de eliminação',
+        'deleted_at' => 'Data da eliminação',
         'message_type' => 'Tipo',
-        'permalink' => 'Link Permanente',
+        'permalink' => 'Link permanente',
     ],
 
     'nearby_posts' => [
         'confirm' => 'Nenhuma das publicações abordam a minha preocupação',
-        'notice' => 'Há publicações à volta de :timestamp (:existing_timestamps). Por favor, consulta-as antes de publicar.',
+        'notice' => 'Há publicações à volta de :timestamp (:existing_timestamps). Por favor consulta-as antes de publicar.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => 'Inicia sessão para Responder',
+            'guest' => 'Inicia sessão para responder',
             'user' => 'Responder',
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Ver publicação de análise',
+        'go_to_child' => 'Ver discussão',
+    ],
+
     'system' => [
         'resolved' => [
-            'true' => 'Marcado como resolvida por :user',
+            'true' => 'Marcada como resolvida por :user',
             'false' => 'Reaberta por :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'geral',
+        'general_all' => 'geral (todas)',
     ],
 
     'user_filter' => [

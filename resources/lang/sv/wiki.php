@@ -25,6 +25,7 @@ return [
         'missing' => 'Begärd sida kunde ej hittas.',
         'missing_title' => 'Hittades inte',
         'missing_translation' => 'Den begärda sidan kunde inte hittas för nuvarande valt språk.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Sök befintliga sidor för: länk.',
         'toc' => 'Innehåll',
 
@@ -43,8 +44,5 @@ return [
     'main' => [
         'title' => '',
         'subtitle' => '',
-    ],
-    'search' => [
-        'path' => '',
     ],
 ];

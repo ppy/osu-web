@@ -41,7 +41,7 @@ class Kernel extends HttpKernel
         Middleware\SetLocale::class,
         Middleware\AutologinFromLegacyCookie::class,
         Middleware\UpdateUserLastvisit::class,
-        Middleware\VerifyPrivilegedUser::class,
+        Middleware\VerifyUserAlways::class,
         Middleware\CheckUserBanStatus::class,
         Middleware\TurbolinksSupport::class,
         Middleware\DatadogMetrics::class,

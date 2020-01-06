@@ -25,6 +25,7 @@ return [
         'missing' => 'ไม่พบหน้า ":keyword" ที่คุณเรียก',
         'missing_title' => 'ไม่พบ',
         'missing_translation' => 'หน้าที่คุณเรียกไม่สามารถหาพบเจอได้ในภาษาที่คุณเรียกอยู่ในขณะนี้',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'ค้นหาหน้าที่มีอยู่สำหรับ :link.',
         'toc' => 'เนื้อหา',
 
@@ -43,8 +44,5 @@ return [
     'main' => [
         'title' => '',
         'subtitle' => 'เพราะชื่อ osu!pedia ไม่ค่อยเหมาะเท่าไหร่',
-    ],
-    'search' => [
-        'path' => '',
     ],
 ];

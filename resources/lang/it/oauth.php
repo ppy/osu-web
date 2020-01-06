@@ -49,13 +49,7 @@ return [
         'id' => 'Client ID',
         'name' => 'Nome Applicazione',
         'redirect' => 'URL di richiamo dell\'applicazione',
-        'secret' => '',
-    ],
-
-    'login' => [
-        'download' => 'Clicca qui per scaricare il gioco e creare un account',
-        'label' => 'Prima di tutto, accedi al tuo account!',
-        'title' => 'Accesso account',
+        'secret' => 'Client Secret',
     ],
 
     'new_client' => [

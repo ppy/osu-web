@@ -19,12 +19,11 @@
  */
 
 return [
-    'coming_soon' => '即将到来',
     'limitation_notice' => '注：只有使用 <a href=":lazer_link">osu! lazer</a> 或新官网的人才能通过该系统接收私聊消息。<br/>如果你不确定对方是否使用，请通过<a href=":oldpm_link">旧论坛私聊页面</a>向他们发送消息。',
     'talking_in' => '在 :channel 中聊天',
     'talking_with' => '与 :name 聊天',
     'title_compact' => '聊天',
-    'title' => '聊天',
+
     'cannot_send' => [
         'channel' => '现在无法向该频道发送消息，这可能是由于以下原因：',
         'user' => '现在不能向该玩家发送消息，这可能是由于以下原因：',

@@ -20,13 +20,12 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Fiókbeállítások</strong>',
         'title_compact' => 'beállítások',
         'username' => 'felhasználónév',
 
         'avatar' => [
             'title' => 'Avatár',
-            'rules' => '',
+            'rules' => 'Kérjük, ellenőrizze, hogy az avatár illeszkedik-e ehhez :link.<br/>Ez azt jelenti, hogy <strong>minden korosztály számára alkalmasnak kell lennie</strong>. Vagyis nincs meztelenség, mások számára elfogadhatatlan vagy szuggesztív tartalom.',
             'rules_link' => 'a közösségi szabályok',
         ],
 
@@ -67,11 +66,18 @@ return [
     'notifications' => [
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
+        'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
         'authorized_clients' => 'felhatalmazott kliensek',
-        'own_clients' => '',
+        'own_clients' => 'külső alkalmazások',
         'title' => 'OAuth',
     ],
 
@@ -99,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'e-mail cím csere megerősítése',
         'update' => 'mentés',
     ],
 
     'update_password' => [
-        'email_subject' => 'jelszó csere megerősítése',
         'update' => 'mentés',
     ],
 

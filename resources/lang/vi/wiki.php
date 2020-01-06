@@ -25,6 +25,7 @@ return [
         'missing' => 'Không thể tìm thấy trang ":keyword".',
         'missing_title' => 'Không Tìm Thấy',
         'missing_translation' => 'Không thể tìm trang đã yêu cầu cho ngôn ngữ bạn đã chọn.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Tìm kiếm trang có sẵn cho :link.',
         'toc' => 'Nội dung',
 
@@ -43,8 +44,5 @@ return [
     'main' => [
         'title' => '',
         'subtitle' => '',
-    ],
-    'search' => [
-        'path' => '',
     ],
 ];

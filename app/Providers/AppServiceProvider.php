@@ -25,6 +25,8 @@ use App\Http\Middleware\RequireScopes;
 use App\Http\Middleware\StartSession;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
+use App\Libraries\OsuCookieJar;
+use App\Libraries\OsuMessageSelector;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
@@ -49,9 +51,18 @@ class AppServiceProvider extends ServiceProvider
 
         Queue::after(function (JobProcessed $event) {
             if (config('datadog-helper.enabled')) {
-                Datadog::increment(config('datadog-helper.prefix_web').'.queue.run', 1, ['queue' => $event->job->getQueue()]);
+                Datadog::increment(
+                    config('datadog-helper.prefix_web').'.queue.run',
+                    1,
+                    [
+                        'job' => $event->job->resolveName(),
+                        'queue' => $event->job->getQueue(),
+                    ]
+                );
             }
         });
+
+        $this->app->make('translator')->setSelector(new OsuMessageSelector);
     }
 
     /**
@@ -84,6 +95,14 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(RequireScopes::class, function () {
             return new RequireScopes;
+        });
+
+        $this->app->singleton('cookie', function ($app) {
+            $config = $app->make('config')->get('session');
+
+            return (new OsuCookieJar)->setDefaultPathAndDomain(
+                $config['path'], $config['domain'], $config['secure'], $config['same_site'] ?? null
+            );
         });
 
         // The middleware breaks without this. Not sure why.

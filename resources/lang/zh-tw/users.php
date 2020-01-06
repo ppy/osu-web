@@ -64,24 +64,52 @@ return [
         'send_message' => '傳送訊息',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '社群規則',
+                'tos' => '服務條款',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "你的帳號已經一段時間沒有登入了",
+        ],
+    ],
+
     'login' => [
         '_' => '登入',
-        'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
-        'username' => '使用者名稱',
-        'password' => '密碼',
         'button' => '登入',
         'button_posting' => '登入中...',
+        'email_login_disabled' => '目前沒辦法使用Email登入了，請使用使用者名稱登入。',
+        'failed' => '登入失敗',
+        'forgot' => '忘記密碼？',
+        'info' => '',
+        'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
+        'password' => '密碼',
+        'register' => "沒有 osu! 帳號嗎？現在就註冊一個吧！",
         'remember' => '記住我這台裝置',
         'title' => '登入以繼續',
-        'failed' => '登入失敗',
-        'register' => "沒有 osu! 帳號嗎？現在就註冊一個吧！",
-        'forgot' => '忘記密碼？',
+        'username' => '使用者名稱',
+
         'beta' => [
             'main' => 'Beta 版僅限於特定使用者存取',
             'small' => '(osu!贊助者將在不久後開放)',
         ],
-
-        'here' => '這裡', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -164,7 +192,7 @@ return [
         ],
 
         'extra' => [
-            'none' => '',
+            'none' => '無',
             'unranked' => '近期沒有遊玩記錄',
 
             'achievements' => [
@@ -196,12 +224,12 @@ return [
             'discussions' => [
                 'title' => '討論',
                 'title_longer' => '最近討論',
-                'show_more' => '',
+                'show_more' => '顯示更多討論',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '活動',
+                'title_longer' => '近期活動',
+                'show_more' => '顯示更多活動',
             ],
             'historical' => [
                 'empty' => '尚無遊戲分數。:(',
@@ -284,9 +312,9 @@ return [
                 'title' => '成就',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '貼文',
+                'title_longer' => '最新貼文',
+                'show_more' => '顯示更多貼文',
             ],
             'recent_activity' => [
                 'title' => '最近活動',
@@ -306,11 +334,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
+                'given' => '給予投票（最近三個月）',
+                'received' => '獲得的投票（最近三個月）',
                 'title' => '投票',
                 'title_longer' => '最近投票',
-                'vote_count' => '',
+                'vote_count' => ':count_delimited 票',
             ],
             'account_standing' => [
                 'title' => '帳號狀態',
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => ':info 玩家',
-            'info' => '資訊',
         ],
 
         'info' => [
@@ -394,8 +417,8 @@ return [
             // modding stats
             'ranked_and_approved_beatmapset_count' => '進榜 & 批准圖譜',
             'loved_beatmapset_count' => 'Loved 圖譜',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'unranked_beatmapset_count' => 'Pending 的譜面',
+            'graveyard_beatmapset_count' => '墳場裡的譜面',
         ],
     ],
 

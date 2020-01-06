@@ -40,7 +40,7 @@ use Exception;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class NewsPost extends Model implements Commentable
+class NewsPost extends Model implements Commentable, Wiki\WikiObject
 {
     use CommentableDefaults;
 
@@ -48,6 +48,7 @@ class NewsPost extends Model implements Commentable
     const CACHE_DURATION = 86400;
     const VERSION = 3;
     const DASHBOARD_LIMIT = 8;
+    const LANDING_LIMIT = 4;
 
     protected $casts = [
         'page' => 'array',
@@ -59,19 +60,9 @@ class NewsPost extends Model implements Commentable
 
     private $adjacent = [];
 
-    public static function lookupAndSync($slug)
+    public static function lookup($slug)
     {
-        $post = static::where(['slug' => $slug])->first();
-
-        if ($post === null) {
-            $post = new static(['slug' => $slug]);
-        }
-
-        $post->sync();
-
-        if ($post->page !== null && $post->published_at !== null && $post->published_at->isPast()) {
-            return $post;
-        }
+        return static::firstOrNew(compact('slug'));
     }
 
     public static function pageVersion()
@@ -134,7 +125,6 @@ class NewsPost extends Model implements Commentable
             if (array_key_exists($post->slug, $latestSlugs)) {
                 if ($latestSlugs[$post->slug] !== $post->hash) {
                     $post->sync(true);
-                } else {
                 }
 
                 unset($latestSlugs[$post->slug]);
@@ -181,6 +171,11 @@ class NewsPost extends Model implements Commentable
         return "{$this->slug}.md";
     }
 
+    public function isVisible()
+    {
+        return $this->page !== null && $this->published_at !== null && $this->published_at->isPast();
+    }
+
     public function needsSync()
     {
         return $this->page === null ||
@@ -203,9 +198,23 @@ class NewsPost extends Model implements Commentable
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/news/'.$this->filename();
     }
 
-    public function firstImage()
+    public function firstImage($absolute = false)
     {
-        return $this->page['firstImage'];
+        $url = $this->page['firstImage'];
+
+        if ($url === null) {
+            return;
+        }
+
+        if ($absolute && !starts_with($url, ['https://', 'http://'])) {
+            if ($url[0] === '/') {
+                $url = config('app.url').$url;
+            } else {
+                $url = "{$this->url()}/{$url}";
+            }
+        }
+
+        return $url;
     }
 
     public function newer()
@@ -239,21 +248,30 @@ class NewsPost extends Model implements Commentable
     public function sync($force = false)
     {
         if (!$force && !$this->needsSync()) {
-            return;
+            return $this;
+        }
+
+        $path = "news/{$this->filename()}";
+        $pathMissingKey = "osu_wiki:not_found:{$path}";
+
+        if (!$force && cache()->get($pathMissingKey) !== null) {
+            return $this;
         }
 
         try {
-            $file = new OsuWiki("news/{$this->filename()}");
+            $file = new OsuWiki($path);
         } catch (GitHubNotFoundException $e) {
             if ($this->exists) {
                 $this->update(['published_at' => null]);
+            } else {
+                cache()->put($pathMissingKey, 1, 300);
             }
 
-            return;
+            return $this;
         } catch (Exception $e) {
             log_error($e);
 
-            return;
+            return $this;
         }
 
         $rawPage = $file->content();
@@ -268,6 +286,8 @@ class NewsPost extends Model implements Commentable
         $this->hash = $file->data['sha'];
 
         $this->save();
+
+        return $this;
     }
 
     public function pagePublishedAt()

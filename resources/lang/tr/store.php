@@ -79,18 +79,12 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'osu!store siparişinizi aldık!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Sipariş verme tarihi :date',
 
         'invoice' => 'Faturayı Görüntüle',
         'no_orders' => 'Görüntülenecek sipariş yok.',
-        'resume' => '',
+        'resume' => 'Sepete Dön',
 
         'item' => [
             'display_name' => [

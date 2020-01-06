@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 import * as React from 'react'
-import { button, span } from 'react-dom-factories'
+import { a, button, span } from 'react-dom-factories'
 import { Spinner } from 'spinner'
 el = React.createElement
 bn = 'show-more-link'
@@ -29,10 +29,19 @@ export ShowMoreLink = React.forwardRef (props, ref) =>
   icon = span className: "#{bn}__label-icon",
     span className: "fas fa-angle-#{props.direction ? 'down'}"
 
-  button
+  if props.hideIcon
+    icon = null
+
+  element = button
+
+  if props.url
+    element = a
+
+  element
     ref: ref
     type: 'button'
-    onClick: onClick
+    onClick: onClick if !props.url
+    href: props.url if props.url
     disabled: props.loading
     className: osu.classWithModifiers(bn, props.modifiers)
     span className: "#{bn}__spinner",

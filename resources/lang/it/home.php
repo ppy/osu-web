@@ -25,6 +25,7 @@ return [
         'peak' => 'Picco, :count utenti online',
         'players' => '<strong>:count</strong> utenti registrati',
         'title' => 'benvenuto',
+        'see_more_news' => 'guarda più notizie',
 
         'slogan' => [
             'main' => 'il miglior gioco di ritmo free-to-win',
@@ -119,8 +120,6 @@ return [
             'error' => 'Errore nel caricamento delle notizie, prova a riavviare la pagina?...',
         ],
         'header' => [
-            'welcome' => 'Ciao <strong>:username</strong>!',
-            'messages' => 'Hai :count_delimited nuovo messaggio|Hai :count_delimited nuovi messaggi',
             'stats' => [
                 'friends' => 'Amici Online',
                 'games' => 'Partite',
@@ -130,8 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Nuove Beatmap Classificate',
             'popular' => 'Beatmap Popolari',
-            'by' => 'di',
-            'plays' => ':count giocate',
+            'by_user' => 'di :user',
         ],
         'buttons' => [
             'download' => 'Scarica osu!',

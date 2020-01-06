@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Търсене',
             'deleted' => 'Включете изтрити дискусии',
+            'only_unresolved' => '',
             'types' => 'Тип съобщения',
             'username' => 'Потребителско име',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Потребител',
@@ -67,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Маркирано като разрешено от :user',
             'false' => 'Подновено от :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

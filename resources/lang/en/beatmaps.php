@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Reset Nomination',
             'praise' => 'Praise',
             'problem' => 'Problem',
+            'review' => 'Review',
             'suggestion' => 'Suggestion',
         ],
 
         'mode' => [
             'events' => 'History',
             'general' => 'General :scope',
+            'reviews' => 'Reviews',
             'timeline' => 'Timeline',
             'scopes' => [
                 'general' => 'This difficulty',
@@ -183,6 +185,7 @@ return [
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Nominate this beatmap?',
         'nominated_by' => 'nominated by :users',
+        'not_enough_hype' => "There isn't enough hype.",
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
         'qualified_soon' => 'Estimated to be ranked soon, if no issues are found.',
         'required_text' => 'Nominations: :current/:required',

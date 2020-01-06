@@ -25,6 +25,7 @@ return [
         'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
         'title' => 'witaj',
+        'see_more_news' => 'zobacz więcej aktualności',
 
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
@@ -119,8 +120,6 @@ return [
             'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',
         ],
         'header' => [
-            'welcome' => 'Witaj, <strong>:username</strong>!',
-            'messages' => 'Masz :count_delimited nową wiadomość|Masz :count_delimited nowe wiadomości|Masz :count_delimited nowych wiadomości',
             'stats' => [
                 'friends' => 'Znajomi online',
                 'games' => 'Mecze',
@@ -130,8 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Nowe rankingowe beatmapy',
             'popular' => 'Popularne beatmapy',
-            'by' => 'autorstwa',
-            'plays' => ':count zagrań',
+            'by_user' => 'autorstwa :user',
         ],
         'buttons' => [
             'download' => 'Pobierz osu!',

@@ -52,12 +52,6 @@ return [
         'secret' => '',
     ],
 
-    'login' => [
-        'download' => 'Paina tästä ladataksesi pelin ja luodaksesi käyttäjän',
-        'label' => 'Ensiksi, kirjaudutaan käyttäjällesi!',
-        'title' => 'Kirjaudu Käyttäjälle',
-    ],
-
     'new_client' => [
         'header' => '',
         'register' => '',
@@ -73,7 +67,7 @@ return [
         'none' => '',
 
         'revoked' => [
-            'false' => '',
+            'false' => 'Poista',
             'true' => '',
         ],
     ],

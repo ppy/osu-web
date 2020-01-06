@@ -25,6 +25,7 @@ return [
             'regenerating' => '',
             'remove' => '',
             'removing' => '',
+            'title' => '',
         ],
         'show' => [
             'covers' => '',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => '',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => '',
                 'general' => '',
                 'store' => '',

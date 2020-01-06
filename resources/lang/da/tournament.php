@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Tilmelding: :start til :end',
 
         'header' => [
-            'subtitle' => 'En liste over alle aktive officielle turneringer',
             'title' => 'Fællesskabsturnerninger',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Annullér tilmelding',
             'register' => 'Tilmeld mig!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

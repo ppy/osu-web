@@ -47,7 +47,7 @@ return [
         'edit' => 'Editar',
         'expand' => 'expandir',
         'hide' => 'ocultar',
-        'permalink' => 'permalink',
+        'permalink' => 'enlace permanente',
         'permalink_copied' => 'enlace copiado',
         'post' => 'Publicar',
         'reply' => 'Responder',

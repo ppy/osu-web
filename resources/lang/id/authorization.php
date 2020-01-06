@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Silakan masuk untuk melanjutkan.',
+    'require_verification' => 'Silakan verifikasi untuk melanjutkan.',
+    'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
+    'silenced' => "Tidak dapat melakukan hal itu saat dibungkam.",
+    'unauthorized' => 'Akses ditolak.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Tidak dapat membatalkan pemberian hype.',
@@ -48,14 +54,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Kamu tidak dapat menghapus postingan milikmu sendiri.',
+            'resolved' => 'Kamu tidak dapat menghapus konten dari postingan yang sudah ditutup.',
+            'system_generated' => 'Postingan yang dibuat otomatis tidak dapat dihapus.',
         ],
 
         'edit' => [
             'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
-            'resolved' => '',
+            'resolved' => 'Kamu tidak dapat mengubah postingan yang sudah ditutup.',
             'system_generated' => 'Kiriman yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
 
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Hanya admin yang dapat melihat forum ini.',
         ],
     ],
-
-    'require_login' => 'Silakan masuk untuk melanjutkan.',
-
-    'unauthorized' => 'Akses ditolak.',
-
-    'silenced' => "Tidak dapat melakukan hal itu saat dibungkam.",
-
-    'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
 
     'user' => [
         'page' => [

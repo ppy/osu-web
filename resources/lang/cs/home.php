@@ -25,6 +25,7 @@ return [
         'peak' => 'Vrchol, :count online uživatelů',
         'players' => '<strong>:count</strong> registrovaných hráčů',
         'title' => 'vítejte',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'nejlepší free-to-win rytmická hra',
@@ -119,8 +120,6 @@ return [
             'error' => 'Chyba načítání novinek, zkuste obnovit stránku?...',
         ],
         'header' => [
-            'welcome' => 'Vítej, <strong>:username</strong>!',
-            'messages' => 'Máte :count novou zprávu|Máte :count nové zprávy|Máte :count nových zpráv',
             'stats' => [
                 'friends' => 'Přátelé online',
                 'games' => 'Her',
@@ -130,8 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Nově hodnocené beatmapy',
             'popular' => 'Populární Beatmapy',
-            'by' => 'od',
-            'plays' => ':count zahrání',
+            'by_user' => 'od :user',
         ],
         'buttons' => [
             'download' => 'Stáhnout osu!',

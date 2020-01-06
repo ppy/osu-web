@@ -110,9 +110,6 @@ $ php artisan tinker
 Using Laravel's [Mix](https://laravel.com/docs/5.5/mix).
 
 ```bash
-# generate translations for langjs
-# and routes for laroute
-$ bin/update_locales_and_routes_js
 # build assets (should be done automatically if using docker)
 $ yarn run development
 ```

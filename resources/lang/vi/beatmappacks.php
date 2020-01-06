@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Sưu tầm những map được đóng gói sẵn dựa trên chủ đề chung.',
+        'nav_title' => '',
+        'title' => 'Gói Beatmap',
+
         'blurb' => [
             'important' => 'HÃY ĐỌC TRƯỚC KHI TẢI',
             'instruction' => [
@@ -33,8 +37,6 @@ return [
                 'scary' => 'tải những gói từ mới nhất đến cũ nhất',
             ],
         ],
-        'title' => 'Gói Beatmap',
-        'description' => 'Sưu tầm những map được đóng gói sẵn dựa trên chủ đề chung.',
     ],
 
     'show' => [

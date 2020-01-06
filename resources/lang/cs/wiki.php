@@ -25,6 +25,7 @@ return [
         'missing' => 'Požadovaná stránka ":keyword" nebyla nalezena.',
         'missing_title' => 'Nenalezeno',
         'missing_translation' => 'Požadovaná stránka nebyla nalezena pro zvolený jazyk.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Prohledat existující stránky pro :link.',
         'toc' => 'Obsah',
 
@@ -43,8 +44,5 @@ return [
     'main' => [
         'title' => '',
         'subtitle' => '',
-    ],
-    'search' => [
-        'path' => '',
     ],
 ];

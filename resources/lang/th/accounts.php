@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'ตั้งค่า<strong>บัญชีผู้ใช้</strong>',
         'title_compact' => 'ตั้งค่า',
         'username' => 'ชื่อผู้ใช้',
 
@@ -67,11 +66,18 @@ return [
     'notifications' => [
         'title' => 'การแจ้งเตือน',
         'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
+        'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
         'authorized_clients' => 'ตัวรับที่ได้รับการยืนยัน',
-        'own_clients' => '',
+        'own_clients' => 'own clients',
         'title' => 'OAuth',
     ],
 
@@ -99,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'ยืนยันการเปลี่ยนอีเมล osu!',
         'update' => 'อัพเดต',
     ],
 
     'update_password' => [
-        'email_subject' => 'ยืนยันการเปลี่ยนรหัสผ่าน osu!',
         'update' => 'อัพเดต',
     ],
 

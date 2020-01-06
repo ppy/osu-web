@@ -23,11 +23,11 @@ namespace App\Http\Controllers;
 use App;
 use App\Libraries\CurrentStats;
 use App\Libraries\Search\AllSearch;
+use App\Libraries\Search\QuickSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\NewsPost;
-use App\Models\User;
 use App\Models\UserDonation;
 use Auth;
 use Request;
@@ -42,6 +42,7 @@ class HomeController extends Controller
         $this->middleware('auth', [
             'only' => [
                 'downloadQuotaCheck',
+                'quickSearch',
                 'search',
             ],
         ]);
@@ -77,23 +78,26 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
+        $newsLimit = Auth::check() ? NewsPost::DASHBOARD_LIMIT + 1 : NewsPost::LANDING_LIMIT;
+        $news = NewsPost::default()->limit($newsLimit)->get();
+
         if (Auth::check()) {
-            $news = NewsPost::default()->limit(NewsPost::DASHBOARD_LIMIT + 1)->get();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
-            $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
-            $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
-            $popularBeatmapsets = Beatmapset::whereIn('beatmapset_id', $popularBeatmapsetIds)
-                ->orderByField('beatmapset_id', $popularBeatmapsetIds)
+            $popularBeatmapsets = Beatmapset::ranked()
+                ->where('approved_date', '>', now()->subDays(30))
+                ->orderBy('favourite_count', 'DESC')
+                ->limit(5)
                 ->get();
 
             return view('home.user', compact(
                 'newBeatmapsets',
                 'news',
-                'popularBeatmapsets',
-                'popularBeatmapsetsPlaycount'
+                'popularBeatmapsets'
             ));
         } else {
-            return view('home.landing', ['stats' => new CurrentStats()]);
+            $news = json_collection($news, 'NewsPost');
+
+            return view('home.landing', ['stats' => new CurrentStats(), 'news' => $news]);
         }
     }
 
@@ -105,6 +109,33 @@ class HomeController extends Controller
     public function osuSupportPopup()
     {
         return view('objects._popup_support_osu');
+    }
+
+    public function quickSearch()
+    {
+        $quickSearch = new QuickSearch(request(), ['user' => auth()->user()]);
+        $searches = $quickSearch->searches();
+
+        $result = [];
+
+        if ($quickSearch->hasQuery()) {
+            foreach ($searches as $mode => $search) {
+                if ($search === null) {
+                    continue;
+                }
+                $result[$mode]['total'] = $search->count();
+            }
+
+            $result['user']['users'] = json_collection($searches['user']->data(), 'UserCompact', [
+                'country',
+                'cover',
+                'group_badge',
+                'support_level',
+            ]);
+            $result['beatmapset']['beatmapsets'] = json_collection($searches['beatmapset']->data(), 'Beatmapset', ['beatmaps']);
+        }
+
+        return $result;
     }
 
     public function search()
@@ -308,5 +339,10 @@ class HomeController extends Controller
         return view('home.support-the-game')
             ->with('supporterStatus', $supporterStatus ?? [])
             ->with('data', $pageLayout);
+    }
+
+    public function testflight()
+    {
+        return view('home.testflight');
     }
 }

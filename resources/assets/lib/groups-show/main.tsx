@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import HeaderV3 from 'header-v3';
+import HeaderV4 from 'header-v4';
 import * as React from 'react';
 import { UserList } from 'user-list';
 
@@ -34,9 +34,8 @@ export class Main extends React.PureComponent<Props> {
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
-        <HeaderV3
-          theme='users'
-          title={this.props.group.group_name}
+        <HeaderV4
+          section={this.props.group.group_name}
         />
 
         <div className='osu-page osu-page--users'>

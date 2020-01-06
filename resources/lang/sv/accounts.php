@@ -20,14 +20,13 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Konto</strong> Inställningar',
         'title_compact' => 'inställningar',
         'username' => 'användarnamn',
 
         'avatar' => [
             'title' => 'Profilbild',
             'rules' => '',
-            'rules_link' => '',
+            'rules_link' => 'gemenskaps regler',
         ],
 
         'email' => [
@@ -65,13 +64,20 @@ return [
     ],
 
     'notifications' => [
-        'title' => '',
+        'title' => 'Aviseringar',
         'topic_auto_subscribe' => '',
+        'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
         'authorized_clients' => '',
-        'own_clients' => '',
+        'own_clients' => 'egna klienter',
         'title' => '',
     ],
 
@@ -91,26 +97,24 @@ return [
 
     'security' => [
         'current_session' => '',
-        'end_session' => '',
-        'end_session_confirmation' => '',
-        'last_active' => '',
-        'title' => '',
+        'end_session' => 'Avsluta sessionen',
+        'end_session_confirmation' => 'Detta kommer avsluta din session på den valda enheten. Är du säker?',
+        'last_active' => 'Senast aktiv:',
+        'title' => 'Säkerhet',
         'web_sessions' => '',
     ],
 
     'update_email' => [
-        'email_subject' => 'bekräfta ändrad osu! e-postadress',
         'update' => 'uppdatera',
     ],
 
     'update_password' => [
-        'email_subject' => 'bekräfta ändrat osu! lösenord',
         'update' => 'uppdatera',
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Du kan stänga detta fönstret nu',
+        'title' => 'Verifieringen har blivit slutförd',
     ],
 
     'verification_invalid' => [

@@ -171,7 +171,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => 'alasan :reason tidak sah untuk jenis laporan ini.',
         'self' => "Anda tidak dapat melaporkan diri Anda sendiri!",
     ],
 

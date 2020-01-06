@@ -86,7 +86,7 @@ class Order extends Model
 
     public function items()
     {
-        return $this->hasMany(OrderItem::class, 'order_id');
+        return $this->hasMany(OrderItem::class);
     }
 
     public function address()
@@ -96,7 +96,7 @@ class Order extends Model
 
     public function payments()
     {
-        return $this->hasMany(Payment::class, 'order_id');
+        return $this->hasMany(Payment::class);
     }
 
     public function user()
@@ -216,7 +216,7 @@ class Order extends Model
      *
      * @return string|null
      */
-    public function getProviderReference() : ?string
+    public function getProviderReference(): ?string
     {
         if (!present($this->transaction_id)) {
             return null;
@@ -346,12 +346,12 @@ class Order extends Model
         return $this->tracking_code === static::PENDING_ECHECK;
     }
 
-    public function isShopify() : bool
+    public function isShopify(): bool
     {
         return $this->getPaymentProvider() === static::PROVIDER_SHOPIFY;
     }
 
-    public function isShouldShopify() : bool
+    public function isShouldShopify(): bool
     {
         foreach ($this->items as $item) {
             if ($item->product->shopify_id !== null) {

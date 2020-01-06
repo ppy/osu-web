@@ -53,6 +53,7 @@ Route::group(['prefix' => 'beatmaps'], function () {
     // featured artists
     Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
     Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
+    Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
 });
 Route::get('beatmaps/{beatmap}/scores', 'BeatmapsController@scores')->name('beatmaps.scores');
 Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
@@ -92,6 +93,8 @@ Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', '
 Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
     Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
 });
+
+Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);
 
 Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
@@ -174,6 +177,7 @@ Route::group(['prefix' => 'home'], function () {
         Route::post('avatar', 'AccountController@avatar')->name('avatar');
         Route::post('cover', 'AccountController@cover')->name('cover');
         Route::put('email', 'AccountController@updateEmail')->name('email');
+        Route::put('notification-options', 'AccountController@updateNotificationOptions')->name('notification-options');
         Route::put('options', 'AccountController@updateOptions')->name('options');
         Route::put('password', 'AccountController@updatePassword')->name('password');
         Route::post('reissue-code', 'AccountController@reissueCode')->name('reissue-code');
@@ -183,6 +187,7 @@ Route::group(['prefix' => 'home'], function () {
         Route::put('/', 'AccountController@update')->name('update');
     });
 
+    Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');
     Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::get('changelog/{stream}/{build}', 'ChangelogController@build')->name('changelog.build');
@@ -191,6 +196,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('download', 'HomeController@getDownload')->name('download');
     Route::post('set-locale', 'HomeController@setLocale')->name('set-locale');
     Route::get('support', 'HomeController@supportTheGame')->name('support-the-game');
+    Route::get('testflight', 'HomeController@testflight')->name('testflight');
 
     Route::delete('password-reset', 'PasswordResetController@destroy');
     Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');
@@ -420,8 +426,12 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('/regenerate-beatmapset-covers/{beatmapset}', 'LegacyInterOpController@regenerateBeatmapsetCovers');
     Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
+    Route::post('user-send-message', 'LegacyInterOpController@userSendMessage');
+    Route::post('user-batch-mark-channel-as-read', 'LegacyInterOpController@userBatchMarkChannelAsRead');
+    Route::post('user-batch-send-message', 'LegacyInterOpController@userBatchSendMessage');
     Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
     Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
+    Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
 });
 

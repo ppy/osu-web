@@ -16,27 +16,31 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-@extends('master')
+@extends('master', [
+    'legacyNav' => false,
+])
 
 @section('content')
-    <div class="osu-layout osu-layout__row">
-        <div class="osu-page-header osu-page-header--wiki osu-page-header--wiki-main-page">
-            <div class="osu-page-header__title-box">
-                <span class="osu-page-header__title osu-page-header__title--icon">
-                    <i class="fa fa-university"></i>
-                </span>
-                <h1 class="osu-page-header__title osu-page-header__title--main">{{ trans('wiki.main.title') }}</h1>
-                <h2 class="osu-page-header__title osu-page-header__title--small">{{ trans('wiki.main.subtitle') }}</h2>
-            </div>
-
+    @component('layout._page_header_v4', ['params' => [
+        'links' => [[
+            'title' => trans('layout.header.help.index'),
+            'url' => wiki_url('Main_Page'),
+        ]],
+        'linksBreadcrumb' => true,
+        'section' => trans('layout.header.help._'),
+        'subSection' => trans('wiki.main.title'),
+        'theme' => 'help',
+    ]])
+        @slot('titleAppend')
             @include('wiki._actions')
-        </div>
-    </div>
+        @endslot
+    @endcomponent
+
     <div class="osu-page osu-page--wiki wiki-main-page">
         @include('wiki._notice')
         @if (Auth::user() !== null)
             <div class="js-react--wiki-search"></div>
         @endif
-        {!! $page->page()["output"] !!}
+        {!! $page->get()["output"] !!}
     </div>
 @endsection

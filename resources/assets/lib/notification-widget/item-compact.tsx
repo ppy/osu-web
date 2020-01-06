@@ -18,7 +18,7 @@
 
 import { observer } from 'mobx-react';
 import { nameToIconsCompact } from 'notification-maps/icons';
-import { messageCompact } from 'notification-maps/message';
+import { formatMessage } from 'notification-maps/message';
 import { urlSingular } from 'notification-maps/url';
 import * as React from 'react';
 import Item from './item';
@@ -36,7 +36,7 @@ export default withMarkRead(observer(class ItemCompact extends React.Component<I
 
         icons={nameToIconsCompact[this.props.item.name || '']}
         item={this.props.item}
-        message={messageCompact(this.props.item)}
+        message={formatMessage(this.props.item, true)}
         modifiers={['compact']}
         url={urlSingular(this.props.item)}
         withCategory={false}

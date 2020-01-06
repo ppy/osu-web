@@ -18,25 +18,30 @@
 @extends('master', [
     'currentSection' => 'beatmaps',
     'currentAction' => 'artists',
+    'legacyNav' => false,
     'title' => trans('artist.title'),
     'pageDescription' => trans('artist.page_description'),
 ])
 
 @section('content')
-    <div class="osu-layout__row">
-        <div class="osu-page-header-v2 osu-page-header-v2--featured-artists">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{trans('artist.title')}}</div>
-        </div>
-    </div>
-    <div class="osu-layout__row osu-layout__row--page-artist-index">
+    @include('layout._page_header_v4', ['params' => [
+        'links' => [[
+            'title' => trans('layout.header.artists.index'),
+            'url' => route('artists.index'),
+        ]],
+        'linksBreadcrumb' => true,
+        'section' => trans('layout.header.artists._'),
+        'subSection' => trans('layout.header.artists.index'),
+        'theme' => 'artists',
+    ]])
+    <div class="osu-page osu-page--artists">
         <div class="page-contents page-contents--artist">
             <div class="page-contents__artist-left">
                 <div class="artist__description artist__description--index">{!! trans('artist.index.description') !!}</div>
                 <div class="artist__index">
                     @foreach ($artists as $artist)
                         <div class="artist__box{{$artist->visible ? '' : ' artist__box--hidden'}}">
-                            <div class="artist__portrait-wrapper artist__portrait-wrapper--index">
+                            <div class="artist__portrait-wrapper">
                                 <a href="{{route('artists.show', $artist)}}" class="artist__portrait artist__portrait--index {{$artist->hasNewTracks() ? ' artist__portrait--new' : ''}}" style="{{$artist->cover_url ? 'background-image: url(' . $artist->cover_url . ')' : ''}}"></a>
                                 @if($artist->label !== null)
                                     <a class="artist__label-overlay artist__label-overlay--index" href="{{$artist->label->website}}" style="background-image: url('{{$artist->label->icon_url}}')"></a>

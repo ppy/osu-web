@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>帳號</strong>設定',
         'title_compact' => '設定',
         'username' => '使用者名稱',
 
@@ -67,11 +66,18 @@ return [
     'notifications' => [
         'title' => '通知',
         'topic_auto_subscribe' => '自動啟用自己創建的主題的通知',
+        'beatmapset_discussion_qualified_problem' => '在以下模式的 qualified 圖譜上接收新問題通知',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '圖譜製作',
+            'forum_topic_reply' => '主題回復',
+        ],
     ],
 
     'oauth' => [
         'authorized_clients' => '已授權客戶端',
-        'own_clients' => '',
+        'own_clients' => '擁有的客戶端',
         'title' => 'OAuth',
     ],
 
@@ -99,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! 帳號電子郵件變更',
         'update' => '更新',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! 帳號密碼變更',
         'update' => '更新',
     ],
 

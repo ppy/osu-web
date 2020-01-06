@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Регистрация: от :start до :end',
 
         'header' => [
-            'subtitle' => 'Списък на текущи официално одобрени турнири',
             'title' => 'Обществени турнири',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Отмени регистрацията',
             'register' => 'Запиши ме!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

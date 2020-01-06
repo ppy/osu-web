@@ -25,6 +25,7 @@ return [
         'peak' => 'Maximum, :count Benutzer online',
         'players' => '<strong>:count</strong> registrierte Spieler',
         'title' => 'Willkommen',
+        'see_more_news' => 'mehr Neuigkeiten anzeigen',
 
         'slogan' => [
             'main' => 'das besteste free-to-play rhythmusspiel',
@@ -119,8 +120,6 @@ return [
             'error' => 'News konnten nicht geladen werden. Versuche, die Seite neu zu laden...?',
         ],
         'header' => [
-            'welcome' => 'Hallo, <strong>:username</strong>!',
-            'messages' => 'Du hast 1 neue Nachricht|Du hast :count neue Nachrichten',
             'stats' => [
                 'friends' => 'Freunde online',
                 'games' => 'Mehrspielerräume',
@@ -130,8 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Neue Ranked Beatmaps',
             'popular' => 'Beliebte Beatmaps',
-            'by' => 'von',
-            'plays' => ':count plays',
+            'by_user' => 'von :user',
         ],
         'buttons' => [
             'download' => 'osu! herunterladen',

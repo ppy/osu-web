@@ -83,7 +83,7 @@ class MultiSearch
                 $class = $settings['type'];
                 $paramsClass = $settings['paramsType'];
 
-                $params = new $paramsClass($this->request, $this->options['user']);
+                $params = new $paramsClass($this->request->all(), $this->options['user']);
                 $search = new $class($params);
                 if ($search instanceof BeatmapsetSearch) {
                     $search->source(false);

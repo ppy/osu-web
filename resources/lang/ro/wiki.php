@@ -25,6 +25,7 @@ return [
         'missing' => 'Pagina solicitată ":keyword" nu a putut fi găsită.',
         'missing_title' => 'Nu a fost găsit',
         'missing_translation' => 'Pagina solicitată nu a putut fi găsită pentru limba selectată momentan.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Căută pagini existente pentru :link.',
         'toc' => 'Conținut',
 
@@ -43,8 +44,5 @@ return [
     'main' => [
         'title' => '',
         'subtitle' => '',
-    ],
-    'search' => [
-        'path' => '',
     ],
 ];

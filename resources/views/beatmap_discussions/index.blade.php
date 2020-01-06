@@ -15,17 +15,24 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@php
+    $statusOptions = App\Models\BeatmapDiscussion::VALID_BEATMAPSET_STATUSES;
+    array_unshift($statusOptions, 'all');
+@endphp
+
+@extends('master', ['legacyNav' => false])
 
 {{-- FIXME: move to user modding history --}}
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page">
+    @include('layout._page_header_v4', ['params' => [
+        'section' => trans('layout.header.beatmapsets._'),
+        'subSection' => trans('beatmap_discussions.index.title'),
+    ]])
+    <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
             @if (isset($user))
                 <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
             @endif
-
-            <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
 
             <form class="simple-form simple-form--search-box">
                 <h2 class="simple-form__row simple-form__row--title">
@@ -47,10 +54,34 @@
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
+                        {{ trans('beatmap_discussions.index.form.beatmapset_status._') }}
+                    </div>
+                    <div class="simple-form__select">
+                        <div class="form-select form-select--simple-form">
+                            <select class="form-select__input" name="beatmapset_status">
+                                @foreach ($statusOptions as $option)
+                                    <option
+                                        value="{{$option}}"
+                                        {{ $option === $search['params']['beatmapset_status'] ? "selected" : "" }}
+                                    >
+                                        {{ trans("beatmap_discussions.index.form.beatmapset_status.{$option}") }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="simple-form__row">
+                    <div class="simple-form__label">
                         {{ trans('beatmap_discussions.index.form.types') }}
                     </div>
                     <div class="simple-form__checkboxes-inline">
                         @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $messageType)
+                            {{-- TODO: remove this when reviews are released --}}
+                            @if (!config('osu.beatmapset.discussion_review_enabled') && $messageType === 'review')
+                                @continue
+                            @endif
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
                                 @include('objects._switch', [
                                     'checked' => in_array($messageType, $search['params']['message_types'], true),
@@ -61,6 +92,16 @@
                             </label>
                         @endforeach
                     </div>
+                </div>
+
+                <div class="simple-form__row simple-form__row--no-label">
+                    <label class="simple-form__checkbox">
+                        @include('objects._switch', [
+                            'checked' => $search['params']['only_unresolved'],
+                            'name' => 'only_unresolved',
+                        ])
+                        {{ trans('beatmap_discussions.index.form.only_unresolved') }}
+                    </label>
                 </div>
 
                 @if (priv_check('BeatmapDiscussionModerate')->can())
@@ -95,7 +136,7 @@
                 @endforeach
             </div>
 
-            @include('objects._pagination_v2', ['object' => $discussions])
+            @include('objects._pagination_simple', ['object' => $discussions])
         </div>
     </div>
 @endsection

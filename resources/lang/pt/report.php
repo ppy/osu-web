@@ -20,22 +20,22 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Denunciar',
+        'title' => 'Queres denunciar a publicação de :username?',
     ],
 
     'comment' => [
         'button' => 'Denunciar',
-        'title' => 'Denunciar o comentário de :username?',
+        'title' => 'Queres denunciar o comentário de :username?',
     ],
 
     'scores' => [
-        'button' => 'Denunciar Pontuação',
+        'button' => 'Denunciar pontuação',
         'title' => 'Denunciar a pontuação de :username?',
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Denunciar',
+        'title' => 'Pretendes denunciar :username?',
     ],
 ];

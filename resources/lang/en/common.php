@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => 'Authorise',
         'back_to_previous' => 'Return to previous position',
         'back_to_top' => 'Back to top',
         'cancel' => 'Cancel',
@@ -48,7 +49,6 @@ return [
         'expand' => 'expand',
         'hide' => 'hide',
         'permalink' => 'permalink',
-        'permalink_copied' => 'link copied',
         'pin' => 'pin',
         'post' => 'Post',
         'reply' => 'Reply',
@@ -147,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Notice',
+    ],
+
+    'wrong_user' => [
+        '_' => 'You\'re signed in as :user. :logout_link.',
+        'logout_link' => 'Click here to sign in as different user',
     ],
 ];

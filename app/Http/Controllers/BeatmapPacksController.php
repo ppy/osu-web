@@ -28,6 +28,7 @@ use Request;
 class BeatmapPacksController extends Controller
 {
     protected $section = 'beatmaps';
+    private const PER_PAGE = 20;
 
     public function index()
     {
@@ -38,13 +39,34 @@ class BeatmapPacksController extends Controller
         }
 
         return view('packs.index')
-            ->with('packs', $packs->paginate(20)->appends(['type' => $type]))
+            ->with('packs', $packs->paginate(static::PER_PAGE)->appends(['type' => $type]))
             ->with('type', $type);
     }
 
-    public function show($id)
+    public function show($idOrTag)
     {
-        $pack = BeatmapPack::findOrFail($id);
+        $query = BeatmapPack::default();
+
+        if (!ctype_digit($idOrTag)) {
+            $pack = $query->where('tag', $idOrTag)->firstOrFail();
+
+            return ujs_redirect(route('packs.show', $pack));
+        }
+
+        $pack = $query->findOrFail($idOrTag);
+
+        return view('packs.show', $this->packData($pack));
+    }
+
+    public function raw($id)
+    {
+        $pack = BeatmapPack::default()->findOrFail($id);
+
+        return view('packs.raw', $this->packData($pack));
+    }
+
+    private function packData($pack)
+    {
         $mode = Beatmap::modeStr($pack->playmode ?? 0);
 
         $sets = $pack
@@ -53,6 +75,6 @@ class BeatmapPacksController extends Controller
             ->withHasCompleted($pack->playmode ?? 0, Auth::user())
             ->get();
 
-        return view('packs.show', compact('pack', 'sets', 'mode'));
+        return compact('pack', 'sets', 'mode');
     }
 }

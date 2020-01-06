@@ -25,6 +25,7 @@ return [
         'peak' => 'Maks, :count påloggede brukere',
         'players' => '<strong>:count</strong> registrerte spillere',
         'title' => 'velkommen',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'det besteste gratis-å-vinne rytmespillet',
@@ -119,8 +120,6 @@ return [
             'error' => 'Feil ved innlasting av nyheter, prøv å oppdatere siden?...',
         ],
         'header' => [
-            'welcome' => 'Hei, <strong>:username</strong>!',
-            'messages' => 'Du har :count_delimited ny melding|Du har :count_delimited nye meldinger',
             'stats' => [
                 'friends' => 'Tilkoblede Venner',
                 'games' => 'Lobbyer',
@@ -130,8 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Nye Rangerte Beatmaps',
             'popular' => 'Populære Beatmaps',
-            'by' => 'av',
-            'plays' => 'spilt :count ganger',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Last ned osu!',

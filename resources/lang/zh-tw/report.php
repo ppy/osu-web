@@ -20,8 +20,8 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => '檢舉',
+        'title' => '檢舉 :username\'s 的貼文？',
     ],
 
     'comment' => [
@@ -35,7 +35,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => '檢舉',
+        'title' => '檢舉 :username?',
     ],
 ];

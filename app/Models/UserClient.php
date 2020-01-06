@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use InvalidArgumentException;
+
 /**
  * @property Build $build
  * @property mixed $disk_md5
@@ -34,13 +36,62 @@ class UserClient extends Model
 {
     const CREATED_AT = 'timestamp';
 
+    protected $casts = [
+        'verified' => 'boolean',
+    ];
+
     protected $table = 'osu_user_security';
 
     protected $dates = ['timestamp'];
 
     protected $primaryKeys = ['user_id', 'osu_md5', 'unique_md5'];
 
+    public $incrementing = false;
     public $timestamps = false;
+
+    public static function lookupOrNew($userId, $hash)
+    {
+        $splitHash = static::splitHash($hash);
+
+        if ($splitHash === null) {
+            return;
+        }
+
+        return static::firstOrNew([
+            'user_id' => $userId,
+            'unique_md5' => $splitHash['unique'],
+            'osu_md5' => $splitHash['osu'],
+        ], [
+            'mac_md5' => $splitHash['mac'],
+            'disk_md5' => $splitHash['disk'],
+        ]);
+    }
+
+    public static function splitHash($hash)
+    {
+        $hashes = explode(':', $hash);
+
+        if (count($hashes) < 5) {
+            return;
+        }
+
+        try {
+            return array_map(function ($value) {
+                if (!ctype_xdigit($value) || strlen($value) !== 32) {
+                    throw new InvalidArgumentException('not a valid md5 hash');
+                }
+
+                return hex2bin($value);
+            }, [
+                'osu' => $hashes[0],
+                'mac' => $hashes[2],
+                'unique' => $hashes[3],
+                'disk' => $hashes[4],
+            ]);
+        } catch (InvalidArgumentException $e) {
+            // return nothing on error
+        }
+    }
 
     public function build()
     {

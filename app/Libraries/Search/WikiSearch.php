@@ -53,7 +53,7 @@ class WikiSearch extends RecordSearch
         $pages = [];
 
         foreach ($response as $hit) {
-            $page = new PageSearchResult($hit);
+            $page = PageSearchResult::fromEs($hit);
 
             $pages[] = $page;
         }
@@ -113,7 +113,10 @@ class WikiSearch extends RecordSearch
             }
         }
 
+        $visibilityQuery = ['exists' => ['field' => 'page']];
+
         return (new BoolQuery)
+            ->must($visibilityQuery)
             ->must($langQuery)
             ->must($matchQuery);
     }

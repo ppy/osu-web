@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Libraries\Search\PostSearch;
 use App\Libraries\Search\PostSearchRequestParams;
@@ -44,6 +45,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
+        $this->middleware('guest', ['only' => 'store']);
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
             'checkUsernameExists',
@@ -137,6 +139,10 @@ class UsersController extends Controller
         try {
             $registration->assertValid();
 
+            if (get_bool(request('check'))) {
+                return response(null, 204);
+            }
+
             $throttleKey = "registration:{$ip}";
 
             if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {
@@ -180,7 +186,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $search = (new PostSearch(new PostSearchRequestParams(request(), $user)))
+        $search = (new PostSearch(new PostSearchRequestParams(request()->all(), $user)))
             ->size(50);
 
         return view('users.posts', compact('search', 'user'));

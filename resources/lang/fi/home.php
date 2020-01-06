@@ -25,6 +25,7 @@ return [
         'peak' => 'Huipussaan :count käyttäjää paikalla',
         'players' => '<strong>:count</strong> rekisteröitynyttä pelaajaa',
         'title' => 'tervetuloa',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'parastakin parempi ilmainen rytmipeli',
@@ -119,8 +120,6 @@ return [
             'error' => 'Virhe ladattaessa uutisia. Kokeile sivun päivittämistä.',
         ],
         'header' => [
-            'welcome' => 'Hei <strong>:username</strong>!',
-            'messages' => 'Sinulle on :count uusi viesti|Sinulle on :count uutta viestiä',
             'stats' => [
                 'friends' => 'Kavereita paikalla',
                 'games' => 'Pelejä',
@@ -130,8 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Uudet Hyväksytyt Beatmapit',
             'popular' => 'Suositut Beatmapit',
-            'by' => 'luonut',
-            'plays' => ':count pelikertaa',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Lataa osu!',

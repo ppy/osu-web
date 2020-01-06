@@ -20,14 +20,13 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Tili</strong>asetukset',
         'title_compact' => 'asetukset',
         'username' => 'käyttäjätunnus',
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Pidä huoli, että avatari ei riko :link.<br/>Tämä tarkoittaa sitä, että kuvan on <strong>sovittava kaikenikäisille</strong>, eli ei alastomuutta tai muita hävyttömyyksiä.',
+            'rules_link' => 'yhteisön sääntöjä',
         ],
 
         'email' => [
@@ -67,6 +66,13 @@ return [
     'notifications' => [
         'title' => 'Ilmoitukset',
         'topic_auto_subscribe' => '',
+        'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -99,17 +105,15 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu!-sähköpostin muutoksen vahvistaminen',
         'update' => 'päivitä',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu!-salasanan muutoksen vahvistaminen',
         'update' => 'päivitä',
     ],
 
     'verification_completed' => [
-        'text' => '',
+        'text' => 'Tämän välilehden/ikkunan voi nyt sulkea',
         'title' => '',
     ],
 

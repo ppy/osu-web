@@ -19,7 +19,7 @@
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 
-export function messageCompact(item: Notification) {
+export function formatMessage(item: Notification, compact: boolean = false) {
   let message: string;
 
   const replacements = {
@@ -32,7 +32,17 @@ export function messageCompact(item: Notification) {
   if (item.objectType === 'channel') {
     key += `.${item.details.type}`;
   }
-  key += `.${item.name}_compact`;
+
+  key += `.${item.name}`;
+
+  if (compact) {
+    key += '_compact';
+  }
+
+  const emptyKey = `${key}_empty`;
+  if (item.details.content == null && osu.transExists(emptyKey)) {
+    key = emptyKey;
+  }
 
   if (item instanceof LegacyPmNotification) {
     message = osu.transChoice(key, item.details.count, replacements);
@@ -56,28 +66,4 @@ export function messageGroup(item: Notification) {
   }
 
   return item.details.title;
-}
-
-export function messageSingular(item: Notification) {
-  let message: string;
-
-  const replacements = {
-    content: item.details.content,
-    title: item.details.title,
-    username: item.details.username,
-  };
-
-  let key = `notifications.item.${item.displayType}.${item.category}`;
-  if (item.objectType === 'channel') {
-    key += `.${item.details.type}`;
-  }
-  key += `.${item.name}`;
-
-  if (item instanceof LegacyPmNotification) {
-    message = osu.transChoice(key, item.details.count, replacements);
-  } else {
-    message = osu.trans(key, replacements);
-  }
-
-  return message;
 }

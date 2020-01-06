@@ -2,8 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\EsDeleteDocument;
-use App\Jobs\EsIndexDocument;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\Search\BasicSearch;
@@ -42,15 +40,10 @@ class EsIndexWiki extends Command
             $response = $search->response();
 
             foreach ($response as $hit) {
-                $page = new Page(null, null, $hit->source());
-                if ($page->page() === null) {
-                    continue;
-                }
-
-                if ($page->getContent(true) !== null) {
-                    (new EsIndexDocument($page))->handle();
-                } else {
-                    (new EsDeleteDocument($page))->handle();
+                $page = Page::fromEs($hit);
+                $page->sync(true);
+                if (!$page->isVisible()) {
+                    $page->esDeleteDocument();
                 }
 
                 $bar->advance();
@@ -62,7 +55,7 @@ class EsIndexWiki extends Command
         $bar->finish();
     }
 
-    private static function newBaseSearch() : Search
+    private static function newBaseSearch(): Search
     {
         return (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
             ->query(['match_all' => new \stdClass])

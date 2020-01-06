@@ -75,6 +75,18 @@ return [
                     'wip' => 'muncă în desfășurare',
                 ],
             ],
+
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [
@@ -138,6 +150,16 @@ return [
             'rating-spread' => 'Clasament grafic',
             'nominations' => 'Nominalizări',
             'playcount' => 'Numărul de jocuri',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => '',
-
+            'comments' => '',
             'forum' => 'Forum',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => 'hjem',
             'account-edit' => 'instillinger',
             'account-verifyLink' => 'Verifisering fullført',
-            'friends-index' => 'venner',
-            'changelog-index' => 'endringslogg',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'versjon',
+            'changelog-index' => 'endringslogg',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'venner',
             'getDownload' => 'last ned',
             'getIcons' => 'ikoner',
             'groups-show' => 'grupper',
@@ -59,11 +133,12 @@ return [
             'search' => 'søk',
             'supportTheGame' => 'støtt spillet',
             'team' => 'skapere',
+            'testflight' => '',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profil',
+            'friends' => 'venner',
+            'settings' => 'innstillinger',
         ],
         'help' => [
             '_' => 'hjelp',
@@ -78,7 +153,6 @@ return [
             'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'beatmapdiskusjonsinnlegg',
             'beatmap_discussions-index' => 'beatmapdiskusjoner',
-            'beatmapset-watches-index' => 'modding overvåkningsliste',
             'beatmapset_discussion_votes-index' => 'beatmapdiskusjonsstemmer',
             'beatmapset_events-index' => 'beatmapset hendelser',
             'index' => 'liste',
@@ -112,7 +186,6 @@ return [
             'tournaments' => 'turneringer',
             'tournaments-index' => 'turneringer',
             'tournaments-show' => 'turneringsinfo',
-            'forum-topic-watches-index' => 'abonnementer',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -256,10 +329,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'e-postadresse',
             'forgot' => "Jeg har glemt kontoinformasjonen min",
             'password' => 'passord',
             'title' => 'Logg på for å fortsette',
+            'username' => '',
 
             'error' => [
                 'email' => "Brukernavn eller e-postadresse eksisterer ikke",
@@ -268,7 +341,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Last ned',
             'info' => 'Du trenger en konto, min gode mann. Hvorfor har du ikke en allerede?',
             'title' => "Har du ikke en konto?",
         ],

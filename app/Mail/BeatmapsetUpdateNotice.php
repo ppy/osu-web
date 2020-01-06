@@ -62,8 +62,8 @@ class BeatmapsetUpdateNotice extends Mailable implements ShouldQueue
         }
 
         return $this
-            ->text(i18n_view('emails.beatmapset.update_notice'))
-            ->subject(trans('beatmapset_watches.mail.update', [
+            ->text('emails.beatmapset.update_notice')
+            ->subject(trans('mail.beatmapset_update_notice.subject', [
                 'title' => $beatmapset->title,
             ]))
             ->with(compact('beatmapset', 'user'));

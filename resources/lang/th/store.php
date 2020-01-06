@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'เราได้รับคำสั่งซื้อ osu!store ของคุณแล้ว!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'สั่งซื้อเมื่อ :date',
 

@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Ponowne generowanie...',
             'remove' => 'Usuń',
             'removing' => 'Usuwanie...',
+            'title' => 'Tła zestawów beatmap',
         ],
         'show' => [
             'covers' => 'Zarządzaj tłami zestawu beatmap',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Konsola administratora',
-
             'sections' => [
+                'beatmapsets' => 'Zestawy beatmap',
                 'forum' => 'Forum',
                 'general' => 'Ogólne',
                 'store' => 'Sklep',

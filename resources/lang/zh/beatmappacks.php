@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => '围绕某个相同主题打包好的曲包',
+        'nav_title' => '',
+        'title' => '曲包',
+
         'blurb' => [
             'important' => '下载前必读',
             'instruction' => [
@@ -34,8 +38,6 @@ return [
                 'scary' => '下载最新的曲包',
             ],
         ],
-        'title' => '曲包',
-        'description' => '围绕某个相同主题打包好的曲包',
     ],
 
     'show' => [

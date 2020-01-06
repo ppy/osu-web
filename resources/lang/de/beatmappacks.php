@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Fertig gepackte Sammlungen an Beatmaps, die auf einem gemeinsamen Thema basieren.',
+        'nav_title' => '',
+        'title' => 'Beatmap-Pakete',
+
         'blurb' => [
             'important' => 'VOR DEM HERUNTERLADEN BITTE LESEN',
             'instruction' => [
@@ -34,8 +38,6 @@ return [
                 'scary' => 'die neuesten Pakete zuerst herunterzuladen',
             ],
         ],
-        'title' => 'Beatmap-Pakete',
-        'description' => 'Fertig gepackte Sammlungen an Beatmaps, die auf einem gemeinsamen Thema basieren.',
     ],
 
     'show' => [

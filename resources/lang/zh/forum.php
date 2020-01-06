@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] 主题 ":title" 有新回复',
-    ],
-
     'forums' => [
         'latest_post' => '最新帖子',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => '订阅的主题',
             'title_compact' => '订阅',
-            'title_main' => '<strong>订阅</strong>主题',
 
             'box' => [
                 'total' => '订阅的主题',
@@ -276,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => '显示已删除的帖子',
+            'hide' => '隐藏已删除的帖子',
         ],
 
         'show' => [

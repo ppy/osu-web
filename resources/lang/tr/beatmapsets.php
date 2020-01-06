@@ -75,6 +75,18 @@ return [
                     'wip' => 'yapım aşamasında',
                 ],
             ],
+
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
+            'report' => [
+                '_' => '',
+                'button' => 'Sorun bildir',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [
@@ -138,6 +150,16 @@ return [
             'rating-spread' => 'Değerlendirme Puanı',
             'nominations' => 'Adaylıklar',
             'playcount' => 'Oynama sayısı',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

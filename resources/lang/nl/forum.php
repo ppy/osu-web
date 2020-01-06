@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Nieuwe reactie voor topic ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Laatste bericht',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Abonnementen',
             'title_compact' => 'forum abonnementen',
-            'title_main' => 'Forum <strong>Abonnementen</strong>',
 
             'box' => [
                 'total' => 'Geabonneerde topics',
@@ -276,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Toon verwijderde berichten',
+            'hide' => 'Verberg verwijderde berichten',
         ],
 
         'show' => [

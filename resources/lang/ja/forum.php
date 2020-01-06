@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] トピック":title"に新しい返信があります',
-    ],
-
     'forums' => [
         'latest_post' => '最新の投稿',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'フォーラムサブスクリプション',
             'title_compact' => 'フォーラムサブスクリプション',
-            'title_main' => 'フォーラム<strong>サブスクリプション</strong>',
 
             'box' => [
                 'total' => 'サブスクライブしているトピック',
@@ -276,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => '削除された投稿を表示',
+            'hide' => '削除された投稿を非表示',
         ],
 
         'show' => [

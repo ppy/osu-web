@@ -24,6 +24,7 @@ return [
     'last_visit' => 'Kürzlich aktiv',
     'new' => 'Kürzlich',
     'old' => 'Alt',
+    'rank' => 'Rang',
     'top' => 'Top',
     'username' => 'Benutzername',
 

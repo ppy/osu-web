@@ -25,6 +25,7 @@ return [
         'peak' => 'Csúcsfokon, :count játékos volt elérhető',
         'players' => '<strong>:count</strong> regisztrált játékos',
         'title' => 'üdv',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'a legeslegjobb ingyen játszható ritmusjáték',
@@ -119,8 +120,6 @@ return [
             'error' => 'Hiba a hírek betöltése közben, talán próbáld meg újratölteni az oldalt?...',
         ],
         'header' => [
-            'welcome' => 'Üdv, <strong>:username</strong>!',
-            'messages' => ':count új üzeneted van | :count új üzeneted van',
             'stats' => [
                 'friends' => 'Elérhető barátok',
                 'games' => 'Játékok',
@@ -130,8 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Új Rangsorolt Beatmap-ek',
             'popular' => 'Népszerű beatmap-ek',
-            'by' => 'által',
-            'plays' => 'játszva :count alkalommal',
+            'by_user' => ':user által',
         ],
         'buttons' => [
             'download' => 'osu! letöltése',

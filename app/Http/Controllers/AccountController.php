@@ -106,7 +106,9 @@ class AccountController extends Controller
 
     public function edit()
     {
-        $blocks = Auth::user()->blocks()
+        $user = auth()->user();
+
+        $blocks = $user->blocks()
             ->orderBy('username')
             ->get();
 
@@ -116,10 +118,19 @@ class AccountController extends Controller
         $currentSessionId = Request::session()
             ->getIdWithoutKeyPrefix();
 
-        $authorizedClients = json_collection(Client::forUser(auth()->user()), 'OAuth\Client', 'user');
-        $ownClients = json_collection(auth()->user()->oauthClients()->where('revoked', false)->get(), 'OAuth\Client');
+        $authorizedClients = json_collection(Client::forUser($user), 'OAuth\Client', 'user');
+        $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
 
-        return view('accounts.edit', compact('authorizedClients', 'blocks', 'ownClients', 'sessions', 'currentSessionId'));
+        $notificationOptions = $user->notificationOptions->keyBy('name');
+
+        return view('accounts.edit', compact(
+            'authorizedClients',
+            'blocks',
+            'currentSessionId',
+            'notificationOptions',
+            'ownClients',
+            'sessions'
+        ));
     }
 
     public function update()
@@ -163,7 +174,7 @@ class AccountController extends Controller
                 $addresses[] = $previousEmail;
             }
             foreach ($addresses as $address) {
-                Mail::to($address)->send(new UserEmailUpdated($user));
+                Mail::to($address)->locale($user->preferredLocale())->send(new UserEmailUpdated($user));
             }
 
             UserAccountHistory::logUserUpdateEmail($user, $previousEmail);
@@ -171,6 +182,24 @@ class AccountController extends Controller
             return response([], 204);
         } else {
             return $this->errorResponse($user);
+        }
+    }
+
+    public function updateNotificationOptions()
+    {
+        $request = request();
+
+        $name = $request['name'] ?? null;
+        $params = get_params($request, 'user_notification_option', ['details:any']);
+
+        $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $name]);
+
+        if ($option->update($params)) {
+            return response(null, 204);
+        } else {
+            return response(['form_error' => [
+                'user_notification_option' => $option->validationErrors()->all(),
+            ]]);
         }
     }
 
@@ -200,7 +229,7 @@ class AccountController extends Controller
 
         if ($user->update($params) === true) {
             if (present($user->user_email)) {
-                Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
+                Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
             return response([], 204);
@@ -219,9 +248,12 @@ class AccountController extends Controller
         $state = UserVerificationState::fromVerifyLink(request('key'));
 
         if ($state === null) {
+            UserVerification::logAttempt('link', 'fail', 'incorrect_key');
+
             return response()->view('accounts.verification_invalid')->setStatusCode(404);
         }
 
+        UserVerification::logAttempt('link', 'success');
         $state->markVerified();
 
         return view('accounts.verification_completed');

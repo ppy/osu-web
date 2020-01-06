@@ -75,6 +75,18 @@ return [
                     'wip' => 'rozwijana',
                 ],
             ],
+
+            'disqualify' => [
+                '_' => 'Jeżeli znajdziesz problem z tą beatmapą, zdyskwalifikuj ją :link.',
+                'button_title' => 'Zdyskwalifikuj beatmapę.',
+            ],
+
+            'report' => [
+                '_' => 'Jeżeli znajdziesz problem z tą beatmapą, zgłoś go :link, aby powiadomić zespół.',
+                'button' => 'Zgłoś problem',
+                'button_title' => 'Zgłoś problem z zakwalifikowaną beatmapą.',
+                'link' => 'tutaj',
+            ],
         ],
 
         'info' => [
@@ -138,6 +150,16 @@ return [
             'rating-spread' => 'Wykres ocen',
             'nominations' => 'Nominacje',
             'playcount' => 'Liczba zagrań',
+        ],
+
+        'status' => [
+            'ranked' => 'Rankingowa',
+            'approved' => 'Zatwierdzona',
+            'loved' => 'Ulubiona społeczności',
+            'qualified' => 'Zakwalifikowana',
+            'wip' => 'Obecnie rozwijana',
+            'pending' => 'Oczekująca',
+            'graveyard' => 'Porzucona',
         ],
     ],
 ];

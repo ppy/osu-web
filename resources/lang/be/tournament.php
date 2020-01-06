@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Рэгістрацыя: з :start да :end',
 
         'header' => [
-            'subtitle' => 'Спіс актыўных, афіцыйна прызнаных турніраў',
             'title' => 'Турніры супольнасці',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Скасаваць рэгістрацыю',
             'register' => 'Зарэгістравацца!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

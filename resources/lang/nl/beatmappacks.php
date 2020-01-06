@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Voorverpakte collecties van beatmaps gebaseerd rond een gedeeld thema.',
+        'nav_title' => 'lijst',
+        'title' => 'Beatmap Packs',
+
         'blurb' => [
             'important' => 'LEES DIT VOOR TE JE DOWNLOAD',
             'instruction' => [
@@ -34,8 +38,6 @@ return [
                 'scary' => 'eerst de nieuwste packs te downloaden',
             ],
         ],
-        'title' => 'Beatmap Packs',
-        'description' => 'Voorverpakte collecties van beatmaps gebaseerd rond een gedeeld thema.',
     ],
 
     'show' => [

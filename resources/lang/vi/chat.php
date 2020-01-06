@@ -19,12 +19,11 @@
  */
 
 return [
-    'coming_soon' => 'sắp xuất hiện',
     'limitation_notice' => 'GHI CHÚ: Chỉ những người đang sử dụng trang web mới hoặc <a href=":lazer_link">osu!lazer</a> mới nhận tin nhắn thông qua hệ thống này.<br/>Nếu bạn không chắc, hãy gửi họ tin nhắn qua <a href=":oldpm_link">trang tin nhắn cũ</a>.',
     'talking_in' => 'đang trò chuyện ở :channel',
     'talking_with' => 'đang trò chuyện với :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'Hiện bạn không thế gửi tin nhắn vào kênh này. Điều này có thể vì những lí do sau:',
         'user' => 'Hiện bạn không thế gửi tin nhắn cho người dùng này. Điều này có thể vì những lí do sau:',

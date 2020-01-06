@@ -19,12 +19,11 @@
  */
 
 return [
-    'coming_soon' => 'segera hadir',
     'limitation_notice' => 'CATATAN: Pesan Anda hanya dapat diterima oleh para pengguna yang terhubung melalui <a href=":lazer_link">osu!lazer</a>.<br/>Apabila Anda tidak yakin, harap kirimkan pesan Anda melalui <a href=":oldpm_link">halaman forum PM lama</a>.',
     'talking_in' => 'berbicara pada :channel',
     'talking_with' => 'berbicara dengan :name',
     'title_compact' => 'percakapan',
-    'title' => 'Percakapan',
+
     'cannot_send' => [
         'channel' => 'Saat ini Anda tidak dapat mengirimkan pesan pada kanal percakapan ini. Hal ini dapat disebabkan oleh beberapa alasan berikut:',
         'user' => 'Saat ini Anda tidak dapat mengirimkan pesan pada pada pengguna yang Anda tuju. Hal ini dapat disebabkan oleh beberapa alasan berikut:',

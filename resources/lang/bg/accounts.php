@@ -20,14 +20,13 @@
 
 return [
     'edit' => [
-        'title' => 'Настройки на <strong>профила</strong>',
         'title_compact' => 'настройки',
         'username' => 'потребителско име',
 
         'avatar' => [
             'title' => 'Аватар',
             'rules' => '',
-            'rules_link' => '',
+            'rules_link' => 'правилата на общността',
         ],
 
         'email' => [
@@ -67,12 +66,19 @@ return [
     'notifications' => [
         'title' => 'Известия',
         'topic_auto_subscribe' => '',
+        'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
-        'own_clients' => '',
-        'title' => '',
+        'authorized_clients' => 'оторизирани клиенти',
+        'own_clients' => 'собствени клиенти',
+        'title' => 'OAuth',
     ],
 
     'playstyles' => [
@@ -99,18 +105,16 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'потвърдете смяната на osu! имейла',
         'update' => 'обнови',
     ],
 
     'update_password' => [
-        'email_subject' => 'подвърдете смяната на osu! паролата',
         'update' => 'обнови',
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Можете да затворите този раздел сега',
+        'title' => 'Проверката на потребителя е завършена',
     ],
 
     'verification_invalid' => [

@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type Rangering',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Prestasjon',

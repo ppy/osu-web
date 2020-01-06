@@ -31,7 +31,7 @@ function array_search_null($value, $array)
     }
 }
 
-function atom_id(string $namespace, $id = null) : string
+function atom_id(string $namespace, $id = null): string
 {
     return 'tag:'.request()->getHttpHost().',2019:'.$namespace.($id === null ? '' : "/{$id}");
 }
@@ -57,6 +57,14 @@ function beatmap_timestamp_format($ms)
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
 }
 
+/**
+ * Allows using both html-safe and non-safe text inside `{{ }}` directive.
+ */
+function blade_safe($html)
+{
+    return new Illuminate\Support\HtmlString($html);
+}
+
 function broadcast_notification(...$arguments)
 {
     return (new App\Jobs\BroadcastNotification(...$arguments))->dispatch();
@@ -65,7 +73,7 @@ function broadcast_notification(...$arguments)
 /**
  * Like cache_remember_with_fallback but with a mutex that only allows a single process to run the callback.
  */
-function cache_remember_mutexed(string $key, $seconds, $default, callable $callback)
+function cache_remember_mutexed(string $key, $seconds, $default, callable $callback, ?callable $exceptionHandler = null)
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
     $fullKey = "{$key}:with_fallback";
@@ -87,8 +95,12 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
 
                 cache()->put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
             } catch (Exception $e) {
-                // Log and continue with data from the first ::get.
-                log_error($e);
+                $handled = $exceptionHandler !== null && $exceptionHandler($e);
+
+                if (!$handled) {
+                    // Log and continue with data from the first ::get.
+                    log_error($e);
+                }
             } finally {
                 cache()->forget($lockKey);
             }
@@ -142,6 +154,29 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
     }
 
     return $class;
+}
+
+function cleanup_cookies()
+{
+    $host = request()->getHttpHost();
+    $domains = [$host, ''];
+
+    $hostParts = explode('.', $host);
+
+    while (count($hostParts) > 1) {
+        array_shift($hostParts);
+        $domains[] = implode('.', $hostParts);
+    }
+
+    // remove duplicates and current session domain
+    $sessionDomain = presence(ltrim(config('session.domain'), '.')) ?? '';
+    $domains = array_diff(array_unique($domains), [$sessionDomain]);
+
+    foreach (['locale', 'osu_session', 'XSRF-TOKEN'] as $key) {
+        foreach ($domains as $domain) {
+            cookie()->queueForget($key, null, $domain);
+        }
+    }
 }
 
 function datadog_timing(callable $callable, $stat, array $tag = null)
@@ -286,12 +321,12 @@ function truncate(string $text, $limit = 100, $ellipsis = '...')
     return $text;
 }
 
-function json_date(?DateTime $date) : ?string
+function json_date(?DateTime $date): ?string
 {
     return $date === null ? null : $date->format('Y-m-d');
 }
 
-function json_time(?DateTime $time) : ?string
+function json_time(?DateTime $time): ?string
 {
     return $time === null ? null : $time->format(DateTime::ATOM);
 }
@@ -339,6 +374,22 @@ function log_error($exception)
     if (config('sentry.dsn')) {
         Sentry::captureException($exception);
     }
+}
+
+function logout()
+{
+    auth()->logout();
+
+    // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
+    foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
+        foreach (['ppy.sh', 'osu.ppy.sh', ''] as $domain) {
+            cookie()->queueForget($key, null, $domain);
+        }
+    }
+
+    cleanup_cookies();
+
+    session()->invalidate();
 }
 
 function markdown($input, $preset = 'default')
@@ -562,17 +613,6 @@ function error_popup($message, $statusCode = 422)
     return response(['error' => $message], $statusCode);
 }
 
-function i18n_view($view)
-{
-    $localViewPath = sprintf('%s-%s', $view, App::getLocale());
-
-    if (view()->exists($localViewPath)) {
-        return $localViewPath;
-    } else {
-        return sprintf('%s-%s', $view, config('app.fallback_locale'));
-    }
-}
-
 function is_api_request()
 {
     return request()->is('api/*');
@@ -679,6 +719,10 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     $postIdParamKey = 'start';
     if ($tail === true) {
         $postIdParamKey = 'end';
+    }
+
+    if ($topicId === null) {
+        return;
     }
 
     $url = route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
@@ -795,10 +839,12 @@ function nav_links_mobile()
 {
     $links = [];
 
-    $links['profile'] = [
-        'friends' => route('friends.index'),
-        'settings' => route('account.edit'),
-    ];
+    if (Auth::check()) {
+        $links['profile'] = [
+            'friends' => route('friends.index'),
+            'settings' => route('account.edit'),
+        ];
+    }
 
     return array_merge($links, nav_links());
 }
@@ -1134,6 +1180,8 @@ function deltree($dir)
 function get_param_value($input, $type)
 {
     switch ($type) {
+        case 'any':
+            return $input;
         case 'bool':
             return get_bool($input);
             break;
@@ -1229,7 +1277,7 @@ function get_time_or_null($timestamp)
  * Returns 0 if $time is null so mysql doesn't explode because of not null
  * constraints.
  */
-function get_timestamp_or_zero(DateTime $time = null) : int
+function get_timestamp_or_zero(DateTime $time = null): int
 {
     return $time === null ? 0 : $time->getTimestamp();
 }

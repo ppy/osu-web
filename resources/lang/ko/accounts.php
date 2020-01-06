@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>계정</strong> 설정',
         'title_compact' => '설정',
         'username' => '사용자 이름',
 
@@ -67,6 +66,13 @@ return [
     'notifications' => [
         'title' => '알림',
         'topic_auto_subscribe' => '당신이 만드는 새로운 포럼 주제에 대한 알림을 자동적으로 활성화합니다.',
+        'beatmapset_discussion_qualified_problem' => '해당 모드에서 Qualified 비트맵에 문제가 발생하면 알림을 수신하기',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '비트맵 모딩',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -99,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! 이메일 주소 변경 확인',
         'update' => '변경',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! 비밀번호 변경 확인',
         'update' => '변경',
     ],
 

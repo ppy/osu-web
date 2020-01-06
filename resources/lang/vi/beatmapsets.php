@@ -75,6 +75,18 @@ return [
                     'wip' => 'đang thực hiện',
                 ],
             ],
+
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
+            'report' => [
+                '_' => '',
+                'button' => '',
+                'button_title' => '',
+                'link' => '',
+            ],
         ],
 
         'info' => [
@@ -138,6 +150,16 @@ return [
             'rating-spread' => 'Phân Loại Đánh Giá',
             'nominations' => 'Đề cử',
             'playcount' => 'Đã chơi',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

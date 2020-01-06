@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'コミュニティ',
-
+            'comments' => '',
             'forum' => 'フォーラム',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => 'ホーム',
             'account-edit' => '設定',
             'account-verifyLink' => '認証が完了しました。',
-            'friends-index' => 'フレンド',
-            'changelog-index' => '更新履歴',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'ビルド',
+            'changelog-index' => '更新履歴',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'フレンド',
             'getDownload' => 'ダウンロード',
             'getIcons' => 'アイコン',
             'groups-show' => 'グループ',
@@ -59,11 +133,12 @@ return [
             'search' => '検索',
             'supportTheGame' => 'ゲームを支援する',
             'team' => 'osu!team',
+            'testflight' => '',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'プロフィール',
+            'friends' => 'フレンド',
+            'settings' => '設定',
         ],
         'help' => [
             '_' => 'ヘルプ',
@@ -78,7 +153,6 @@ return [
             'artists' => '注目アーティスト',
             'beatmap_discussion_posts-index' => 'ディスカッション投稿',
             'beatmap_discussions-index' => 'ディスカッション',
-            'beatmapset-watches-index' => 'moddingウォッチリスト',
             'beatmapset_discussion_votes-index' => 'ディスカッション評価',
             'beatmapset_events-index' => 'ビートマップセットイベント',
             'index' => '一覧',
@@ -112,7 +186,6 @@ return [
             'tournaments' => 'トーナメント',
             'tournaments-index' => 'トーナメント',
             'tournaments-show' => 'トーナメント情報',
-            'forum-topic-watches-index' => 'サブスクリプション',
             'forum-topics-create' => 'フォーラム',
             'forum-topics-show' => 'フォーラム',
             'forum-forums-index' => 'フォーラム',
@@ -256,10 +329,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'メールアドレス',
             'forgot' => "ログイン情報を忘れた",
             'password' => 'パスワード',
             'title' => '続行するにはログインしてください',
+            'username' => 'ユーザー名',
 
             'error' => [
                 'email' => "ユーザー名かメールアドレスが存在しません",
@@ -268,7 +341,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'ダウンロード',
             'info' => 'アカウントが必要です。作ってみませんか？',
             'title' => "アカウントを持っていませんか？",
         ],

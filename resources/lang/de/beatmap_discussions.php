@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Suche',
             'deleted' => 'Gelöschte Diskussionen einbeziehen',
+            'only_unresolved' => 'Nur ungelöste Diskussionen anzeigen',
             'types' => 'Nachrichtentyp',
             'username' => 'Benutzername',
+
+            'beatmapset_status' => [
+                '_' => 'Beatmap-Status',
+                'all' => 'Alle',
+                'disqualified' => 'Disqualifiziert',
+                'never_qualified' => 'Nie Qualifiziert',
+                'qualified' => 'Qualifiziert',
+                'ranked' => 'Ranked',
+            ],
 
             'user' => [
                 'label' => 'Benutzer',
@@ -67,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Rezensionsbeitrag anzeigen',
+        'go_to_child' => 'Diskussion anzeigen',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Von :user als gelöst erklärt',
             'false' => 'Von :user wiedereröffnet',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'allgemein',
+        'general_all' => 'allgemein (alle)',
     ],
 
     'user_filter' => [

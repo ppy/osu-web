@@ -45,20 +45,15 @@ class ScoresController extends Controller
         }
 
         try {
-            $disposition = "attachment; filename=replay-{$mode}_{$score->beatmap_id}_{$score->getKey()}.osr";
-
+            $filename = "replay-{$mode}_{$score->beatmap_id}_{$score->getKey()}.osr";
             $content = $replayFile->get();
-            // TODO: switch to streamDownload in Laravel 5.6+?
-            $stream = response()->stream(function () use ($replayFile, $content) {
+
+            return response()->streamDownload(function () use ($replayFile, $content) {
                 echo $replayFile->headerChunk();
                 echo pack('i', strlen($content));
                 echo $content;
                 echo $replayFile->endChunk();
-            });
-            $stream->headers->set('Content-Disposition', $disposition);
-            $stream->headers->set('Content-Type', 'application/octet-stream');
-
-            return $stream;
+            }, $filename, ['Content-Type' => 'application/octet-stream']);
         } catch (FileNotFoundException $e) {
             // missing from storage.
             log_error($e);

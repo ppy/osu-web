@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Zresetuj nominację',
             'praise' => 'Pochwała',
             'problem' => 'Problem',
+            'review' => 'Recenzja',
             'suggestion' => 'Sugestia',
         ],
 
         'mode' => [
             'events' => 'Historia',
             'general' => 'Główne :scope',
+            'reviews' => 'Recenzje',
             'timeline' => 'Oś czasu',
             'scopes' => [
                 'general' => 'Ten poziom trudności',
@@ -183,6 +185,7 @@ return [
         'nominate' => 'Nominuj',
         'nominate_confirm' => 'Nominować tę beatmapę?',
         'nominated_by' => 'nominowana przez :users',
+        'not_enough_hype' => "Beatmapa nie jest wystarczająco nagłośniona.",
         'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną wykryte żadne błędy.',
         'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną wykryte żadne błędy.',
         'required_text' => 'Nominacje: :current/:required',

@@ -25,6 +25,7 @@ return [
         'peak' => '最高在线人数 :count 人',
         'players' => '<strong>:count</strong> 名已注册玩家',
         'title' => '欢迎',
+        'see_more_news' => '查看更多新闻',
 
         'slogan' => [
             'main' => '棒到不行的免费音乐游戏',
@@ -119,8 +120,6 @@ return [
             'error' => '载入新闻失败，刷新页面试试看？...',
         ],
         'header' => [
-            'welcome' => '哈喽，<strong>:username</strong>！',
-            'messages' => '你有 :count 条新消息',
             'stats' => [
                 'friends' => '在线好友',
                 'games' => '房间',
@@ -130,8 +129,7 @@ return [
         'beatmaps' => [
             'new' => '新 Ranked 谱面',
             'popular' => '高人气谱面',
-            'by' => '作者：',
-            'plays' => ':count 次游玩',
+            'by_user' => '由 :user',
         ],
         'buttons' => [
             'download' => '下载 osu!',

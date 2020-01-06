@@ -19,12 +19,11 @@
  */
 
 return [
-    'coming_soon' => '近日公開',
     'limitation_notice' => '注意：<a href=":lazer_link">osu!lazer</a>または新しいウェブサイトを利用している人だけが、このシステムを使ってPMを受け取れます。<br/>もし嫌な場合は、<a href=":oldpm_link">旧サイト</a>からメッセージを送信して下さい。',
     'talking_in' => ':channelで会話中',
     'talking_with' => ':nameと会話中',
     'title_compact' => 'チャット',
-    'title' => 'チャット',
+
     'cannot_send' => [
         'channel' => '現在このチャンネルでメッセージを送信できません。次の理由のいずれかである可能性があります：',
         'user' => '現在このユーザーへメッセージを送信できません。理由は次のいずれかである可能性があります：',

@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'ノミネーションをリセット',
             'praise' => '称賛',
             'problem' => '問題',
+            'review' => 'レビュー',
             'suggestion' => '提案',
         ],
 
         'mode' => [
             'events' => '履歴',
             'general' => '一般:scope',
+            'reviews' => 'レビュー',
             'timeline' => 'タイムライン',
             'scopes' => [
                 'general' => 'この難易度',
@@ -183,6 +185,7 @@ return [
         'nominate' => 'ノミネート',
         'nominate_confirm' => 'このビートマップをノミネートしますか？',
         'nominated_by' => ':usersにノミネートされました。',
+        'not_enough_hype' => "hypeは十分ではありません。",
         'qualified' => '特に問題がなかった場合、:dateにranked予定です。',
         'qualified_soon' => '特に問題がなかった場合、間もなくランクされる予定です。',
         'required_text' => 'ノミネート数: :current/:required',
@@ -287,7 +290,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => 'ミラー',
+        'MR' => 'Mirror',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

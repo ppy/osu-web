@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'Community',
-
+            'comments' => '',
             'forum' => 'Forum',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => 'home',
             'account-edit' => 'einstellungen',
             'account-verifyLink' => 'Überprüfung abgeschlossen',
-            'friends-index' => 'freunde',
-            'changelog-index' => 'changelog',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'version',
+            'changelog-index' => 'changelog',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'freunde',
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'groups-show' => 'gruppen',
@@ -59,11 +133,12 @@ return [
             'search' => 'suche',
             'supportTheGame' => 'Das Spiel unterstützen',
             'team' => 'team',
+            'testflight' => '',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profil',
+            'friends' => 'freunde',
+            'settings' => 'einstellungen',
         ],
         'help' => [
             '_' => 'hilfe',
@@ -78,7 +153,6 @@ return [
             'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'beatmapdiskussion: posts',
             'beatmap_discussions-index' => 'beatmapdiskussion',
-            'beatmapset-watches-index' => 'modding watchlist',
             'beatmapset_discussion_votes-index' => 'beatmapdiskussion: abstimmungen',
             'beatmapset_events-index' => 'beatmapset-events',
             'index' => 'auflistung',
@@ -112,7 +186,6 @@ return [
             'tournaments' => 'turniere',
             'tournaments-index' => 'turniere',
             'tournaments-show' => 'turnier-info',
-            'forum-topic-watches-index' => 'abonnements',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -256,10 +329,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'e-mail-adresse',
             'forgot' => "Passwort vergessen",
             'password' => 'passwort',
             'title' => 'Zum Fortfahren einloggen',
+            'username' => 'Benutzername',
 
             'error' => [
                 'email' => "Nutzername oder E-Mail-Adresse existiert nicht",
@@ -268,7 +341,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Herunterladen',
             'info' => 'Sie brauchen einen Account, Sir. Warum besitzen Sie noch keinen?',
             'title' => "Kein Account?",
         ],

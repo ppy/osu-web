@@ -25,6 +25,7 @@ return [
         'peak' => ':count usuarios en línea',
         'players' => '<strong>:count</strong> usuarios registrados',
         'title' => 'bienvenido',
+        'see_more_news' => 'ver más novedades',
 
         'slogan' => [
             'main' => 'el mejor juego de ritmo gratis',
@@ -115,12 +116,10 @@ return [
     'user' => [
         'title' => 'panel',
         'news' => [
-            'title' => 'Noticias',
+            'title' => 'Novedades',
             'error' => 'Error al cargar las novedades, ¿intenta recargando la página?...',
         ],
         'header' => [
-            'welcome' => '¡Hola, <strong>:username</strong>!',
-            'messages' => 'Tienes :count nuevo mensaje|Tienes :count nuevos mensajes',
             'stats' => [
                 'friends' => 'Amigos en línea',
                 'games' => 'Partidas',
@@ -130,8 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Nuevos Beatmaps Rankeados',
             'popular' => 'Beatmaps Populares',
-            'by' => 'por',
-            'plays' => ':count veces jugado',
+            'by_user' => 'por :user',
         ],
         'buttons' => [
             'download' => 'Descargar osu!',

@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => 'admin',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => 'concurso',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'Comunidade',
-
+            'comments' => '',
             'forum' => 'Fórum',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => 'início',
             'account-edit' => 'configurações',
             'account-verifyLink' => 'Verificação Concluída',
-            'friends-index' => 'amigos',
-            'changelog-index' => 'registro de alterações',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'versão',
+            'changelog-index' => 'registro de alterações',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'amigos',
             'getDownload' => 'baixar',
             'getIcons' => 'ícones',
             'groups-show' => 'grupos',
@@ -59,11 +133,12 @@ return [
             'search' => 'busca',
             'supportTheGame' => 'apoie o jogo',
             'team' => 'time',
+            'testflight' => '',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'perfil',
+            'friends' => 'amigos',
+            'settings' => 'configurações',
         ],
         'help' => [
             '_' => 'ajuda',
@@ -78,7 +153,6 @@ return [
             'artists' => 'artistas em destaque',
             'beatmap_discussion_posts-index' => 'postagens de discussão sobre beatmaps',
             'beatmap_discussions-index' => 'discussões de beatmaps',
-            'beatmapset-watches-index' => 'supervisão de modding',
             'beatmapset_discussion_votes-index' => 'votos na discussão de beatmaps',
             'beatmapset_events-index' => 'eventos do beatmap',
             'index' => 'listagem',
@@ -112,7 +186,6 @@ return [
             'tournaments' => 'torneios',
             'tournaments-index' => 'torneios',
             'tournaments-show' => 'informações de torneios',
-            'forum-topic-watches-index' => 'inscrições de tópico',
             'forum-topics-create' => 'fóruns',
             'forum-topics-show' => 'fóruns',
             'forum-forums-index' => 'fóruns',
@@ -256,10 +329,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'endereço de e-mail',
             'forgot' => "Esqueci as minhas credenciais",
             'password' => 'senha',
             'title' => 'Inicie a sessão para continuar',
+            'username' => 'nome de usuário',
 
             'error' => [
                 'email' => "O nome de usuário ou o endereço de e-mail não existe",
@@ -268,8 +341,8 @@ return [
         ],
 
         'register' => [
-            'download' => '',
-            'info' => 'Você precisa de uma conta, senhor. Por que você ainda não tem uma?',
+            'download' => 'Download',
+            'info' => 'Baixe o osu! para criar própria conta!',
             'title' => "Não tem uma conta?",
         ],
     ],

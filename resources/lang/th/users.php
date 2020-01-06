@@ -64,24 +64,52 @@ return [
         'send_message' => 'ส่งข้อความ',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'ลงชื่อเข้าใช้',
-        'locked_ip' => 'ที่อยู่ IP ของคุณถูกล็อก โปรดรอสักครู่',
-        'username' => 'ชื่อผู้ใช้',
-        'password' => 'รหัสผ่าน',
         'button' => 'ลงชื่อเข้าใช้',
         'button_posting' => 'กำลังลงชื่อเข้าใช้…',
+        'email_login_disabled' => '',
+        'failed' => 'เข้าสู่ระบบไม่ถูกต้อง',
+        'forgot' => 'ลืมรหัสผ่าน?',
+        'info' => '',
+        'locked_ip' => 'ที่อยู่ IP ของคุณถูกล็อก โปรดรอสักครู่',
+        'password' => 'รหัสผ่าน',
+        'register' => "ไม่มีแอคเคาท์ Osu! หรอ? สร้างเลยสิ",
         'remember' => 'จดจำคอมพิวเตอร์นี้',
         'title' => 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อไป',
-        'failed' => 'เข้าสู่ระบบไม่ถูกต้อง',
-        'register' => "ไม่มีแอคเคาท์ Osu! หรอ? สร้างเลยสิ",
-        'forgot' => 'ลืมรหัสผ่าน?',
+        'username' => 'ชื่อผู้ใช้',
+
         'beta' => [
             'main' => 'การเข้าถึงข้อมูลนี้มีข้อจำกัด จำกัดเฉพาะผู้ใช้ที่ได้รับการยกเว้นเท่านั้น',
             'small' => '(กำลังจะได้รับ osu!supporters เร็วๆนี้)',
         ],
-
-        'here' => 'ที่นี่', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -89,7 +117,7 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'คลิกเพื่อลงชื่อเข้าใช้',
+        'login_link' => 'คลิก! เพื่อลงชื่อเข้าใช้',
         'login_text' => 'ลงชื่อเข้าใช้',
         'username' => 'ผู้เยี่ยมชม',
         'error' => 'คุณจะต้องเข้าสู่ระบบเพื่อจะกระทำสิ่งนี้',
@@ -151,8 +179,8 @@ return [
                     'unsupported_format' => 'ไม่รองรับไฟล์นามสกุลนี้',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'อัพโหลดพร้อมแล้ว สำหรับ :link เท่านั้น',
+                        'link' => 'osu!ผู้สนับสนุน',
                     ],
                 ],
             ],
@@ -164,7 +192,7 @@ return [
         ],
 
         'extra' => [
-            'none' => '',
+            'none' => 'ไม่มี',
             'unranked' => 'ยังไม่มีการเล่น',
 
             'achievements' => [
@@ -194,14 +222,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'การสนทนา',
+                'title_longer' => 'บทสนทนาที่ผ่านมา',
+                'show_more' => 'ดูการสนทนาเพิ่มเติม',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'อีเว้นท์',
+                'title_longer' => 'อีเว้นท์ล่าสุด',
+                'show_more' => 'ดูอีเว้นท์อื่นๆ เพิ่มเติม',
             ],
             'historical' => [
                 'empty' => 'ไม่มี performance ที่บันทึกไว้. :(',
@@ -271,8 +299,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'ขึ้นอยู่กับการดูแลบีทแมพของเจ้าของบีทแมพ ดูรายละเอียดเพิ่มเติมที่นี่ :link',
+                    'link' => 'หน้านี้',
                 ],
             ],
             'me' => [
@@ -284,9 +312,9 @@ return [
                 'title' => 'เหรียญตรา',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'โพสต์',
+                'title_longer' => 'โพสต์ล่าสุด',
+                'show_more' => 'ดูโพสต์อื่นๆ เพิ่มเติม',
             ],
             'recent_activity' => [
                 'title' => 'ล่า​สุด',
@@ -306,11 +334,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'จำนวน Votes ที่ได้ให้ (เมื่อสามเดือนที่แล้ว)',
+                'received' => 'ผลโหวตที่ได้รับ (เมื่อสามเดือนที่แล้ว)',
+                'title' => 'โหวต',
+                'title_longer' => 'โหวตล่าสุด',
+                'vote_count' => ':count_delimited โหวต|:count_delimited โหวตทั้งหมด',
             ],
             'account_standing' => [
                 'title' => 'ชื่อเสียงของบัญชี',
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'ผู้เล่น :info',
-            'info' => 'ข้อมูล',
         ],
 
         'info' => [
@@ -364,8 +387,8 @@ return [
             'placeholder' => 'Type page content here',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'คุณจำเป็นจะต้อง :link เพื่อที่จะปลดล็อกสิ่งนี้',
+                'link' => 'osu!ผู้สนับสนุน',
             ],
         ],
         'post_count' => [
@@ -392,10 +415,10 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
+            'loved_beatmapset_count' => 'เลิฟแมพ',
+            'unranked_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
+            'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
         ],
     ],
 
@@ -412,7 +435,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'มุมมองแบบการ์ด',
+        'list' => 'มุมมองแบบรายการ',
     ],
 ];

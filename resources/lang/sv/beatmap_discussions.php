@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Sök',
             'deleted' => 'Inkludera raderade diskussioner',
+            'only_unresolved' => '',
             'types' => 'Typ av meddelande',
             'username' => 'Användarnamn',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => 'Alla',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Användare',
@@ -67,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Markerad som löst av :user',
             'false' => 'Öppnad igen av :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

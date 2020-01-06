@@ -64,24 +64,52 @@ return [
         'send_message' => 'nachricht senden',
     ],
 
+    'disabled' => [
+        'title' => 'Uh, oh! Anscheinend wurde dein Konto deaktiviert.',
+        'warning' => "Falls Du gegen eine Regel verstoßen hast, beachte bitte, dass es in der Regel eine Frist von einem Monat gibt, in der wir keine Anträge berücksichtigen. Nach diesem Zeitraum kannst Du uns jederzeit kontaktieren, falls Du dies für erforderlich hältst. Beachte, dass das Erstellen neuer Konten nach dem Deaktivieren eines Kontos zu einer <strong>Verlängerung dieser einmonatigen Frist</strong> führt. Bitte beachte auch, dass du für <strong>jedes Konto, das du erstellst, weitere Regeln verletzt</strong>. Wir empfehlen Dir dringend, diesen Weg nicht zu gehen!",
+
+        'if_mistake' => [
+            '_' => 'Wenn Du der Meinung bist, dass dies ein Fehler ist, kannst Du uns gerne kontaktieren (per :email oder durch Klicken auf das "?" in der rechten unteren Ecke dieser Seite). Bitte beachte, dass wir bei unseren Handlungen immer volles Vertrauen haben, da sie auf sehr soliden Daten beruhen. Wir behalten uns das Recht vor, Deine Anfrage zu ignorieren, wenn wir das Gefühl haben, dass Du absichtlich unehrlich bist.',
+            'email' => 'E-Mail',
+        ],
+
+        'reasons' => [
+            'compromised' => 'Dein Konto wurde als gefährdet eingestuft. Es kann vorübergehend deaktiviert werden, während seine Identität bestätigt wird.',
+            'opening' => 'Es gibt eine Reihe von Gründen, die dazu führen können, dass Dein Konto deaktiviert wird:',
+
+            'tos' => [
+                '_' => 'Du hast eine oder mehr von unseren :community_rules oder :tos gebrochen.',
+                'community_rules' => 'Communityregeln',
+                'tos' => 'Nutzungsbedinungen',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "Dein Konto wurde längere Zeit nicht benutzt.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Login',
-        'locked_ip' => 'Deine IP-Adresse ist gesperrt. Bitte warte ein paar Minuten.',
-        'username' => 'Benutzername',
-        'password' => 'Passwort',
         'button' => 'Einloggen',
         'button_posting' => 'Einloggen...',
+        'email_login_disabled' => 'Das Anmelden per E-Mail ist derzeit deaktiviert. Bitte benutze stattdessen Deinen Benutzernamen.',
+        'failed' => 'Falscher Login',
+        'forgot' => 'Passwort vergessen?',
+        'info' => '',
+        'locked_ip' => 'Deine IP-Adresse ist gesperrt. Bitte warte ein paar Minuten.',
+        'password' => 'Passwort',
+        'register' => "Noch keinen osu!-Account? Erstell' einen",
         'remember' => 'Diesen Computer merken',
         'title' => 'Zum Fortfahren bitte einloggen',
-        'failed' => 'Falscher Login',
-        'register' => "Noch keinen osu!-Account? Erstell' einen",
-        'forgot' => 'Passwort vergessen?',
+        'username' => 'Benutzername',
+
         'beta' => [
             'main' => 'Beta-Zugang ist momentan privilegierten Benutzern vorbehalten.',
             'small' => '(osu!supporter kommen bald dazu)',
         ],
-
-        'here' => 'hier', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -169,7 +197,7 @@ return [
 
             'achievements' => [
                 'achieved-on' => 'Erreicht am :date',
-                'locked' => 'Gesperrt',
+                'locked' => 'Noch nicht freigeschaltet',
                 'title' => 'Erfolge',
             ],
             'beatmaps' => [
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Spieler :info',
-            'info' => 'Info',
         ],
 
         'info' => [

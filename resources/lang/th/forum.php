@@ -25,7 +25,7 @@ return [
     'title' => 'ฟอรั่ม osu!',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'แก้ไขหน้าปก',
 
         'create' => [
             '_' => 'ตั้งภาพหน้าปก',
@@ -39,12 +39,8 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] มีการตอบกลับใหม่ใน ":title"',
-    ],
-
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'โพสต์ล่าสุด',
 
         'index' => [
             'title' => '',
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'กระทู้ที่ติดตาม',
             'title_compact' => 'กระทู้ที่ติดตาม',
-            'title_main' => 'ฟอรั่ม <strong>ติดตาม</strong>',
 
             'box' => [
                 'total' => 'ติดตามกระทู้แล้ว',
@@ -276,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'แสดงโพสต์ที่ถูกลบ',
+            'hide' => 'ซ่อนโพสต์ที่ถูกลบ',
         ],
 
         'show' => [
@@ -308,7 +302,7 @@ return [
 
                 'button' => [
                     'change_vote' => 'เปลี่ยนตัวเลือกโหวต',
-                    'edit' => '',
+                    'edit' => 'แก้ไขโพลล์',
                     'view_results' => 'ไปดูผลโหวต',
                     'vote' => 'โหวต',
                 ],

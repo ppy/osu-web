@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Neue Antwort auf Thread ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Neuester Beitrag',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forenabonnements',
             'title_compact' => 'forenabos',
-            'title_main' => 'Foren<strong>abonnenements</strong>',
 
             'box' => [
                 'total' => 'Abonnierte Threads',
@@ -276,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Gelöschte Beiträge anzeigen',
+            'hide' => 'Gelöschte Beiträge ausblenden',
         ],
 
         'show' => [

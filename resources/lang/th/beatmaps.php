@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'รีเซทการเสนอชื่อ',
             'praise' => 'ชื่นชม',
             'problem' => 'ข้อผิดพลาด',
+            'review' => '',
             'suggestion' => 'ข้อเสนอแนะ',
         ],
 
         'mode' => [
             'events' => 'ประวัติ',
             'general' => 'ทั่วไป :scope',
+            'reviews' => '',
             'timeline' => 'เส้นเวลา',
             'scopes' => [
                 'general' => 'ระดับความยากนี้',
@@ -146,8 +148,8 @@ return [
                 'up' => 'ยังไม่มีคนโหวตเพิ่ม',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'ความคิดเห็นด้านลบล่าสุด',
+                'up' => 'ความคิดเห็นด้านบวกล่าสุด',
             ],
         ],
     ],
@@ -183,6 +185,7 @@ return [
         'nominate' => 'เสนอชื่อ',
         'nominate_confirm' => 'เสนอชื่อ Beatmap นี้?',
         'nominated_by' => 'เสนอชื่อโดย :users',
+        'not_enough_hype' => "",
         'qualified' => 'คาดการณ์ว่าจะถูกจัดอันดับในเร็วๆนี้ ถ้าไม่พบปัญหาใดๆ',
         'qualified_soon' => 'คาดการณ์ว่าจะถูกจัดอันดับในเร็วๆนี้ ถ้าไม่พบปัญหาใดๆ',
         'required_text' => 'การเสนอชื่อ: :current/:required',

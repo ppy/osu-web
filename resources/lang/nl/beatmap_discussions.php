@@ -38,8 +38,18 @@ return [
         'form' => [
             '_' => 'Zoeken',
             'deleted' => 'Verwijderde discussies toevoegen',
+            'only_unresolved' => 'Alleen niet-afgehandelde discussies weergeven',
             'types' => 'Berichttypen',
             'username' => 'Gebruikersnaam',
+
+            'beatmapset_status' => [
+                '_' => 'Beatmap status',
+                'all' => 'Alle',
+                'disqualified' => 'Gediskwalificeerd',
+                'never_qualified' => 'Nooit gekwalificeerd',
+                'qualified' => 'Gekwalificeerd',
+                'ranked' => 'Ranked',
+            ],
 
             'user' => [
                 'label' => 'Gebruiker',
@@ -67,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Bekijk Review Post',
+        'go_to_child' => 'Bekijk discussie',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Gemarkeerd als opgelost door :user',
             'false' => 'Heropend door :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'algemeen',
+        'general_all' => 'algemeen (alles)',
     ],
 
     'user_filter' => [

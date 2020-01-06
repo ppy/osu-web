@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Reiniciar nomeação',
             'praise' => 'Elogio',
             'problem' => 'Problema',
+            'review' => 'Revisão',
             'suggestion' => 'Sugestão',
         ],
 
         'mode' => [
             'events' => 'Histórico',
             'general' => 'Geral :scope',
+            'reviews' => 'Revisões',
             'timeline' => 'Linha do tempo',
             'scopes' => [
                 'general' => 'Esta dificuldade',
@@ -183,6 +185,7 @@ return [
         'nominate' => 'Nomear',
         'nominate_confirm' => 'Nomear este beatmap?',
         'nominated_by' => 'nomeado por :users',
+        'not_enough_hype' => "Não há hype suficiente.",
         'qualified' => 'Esse beatmap será ranqueado em :date, caso nenhum problema seja encontrado.',
         'qualified_soon' => 'Estimado para ser ranqueado em breve, caso nenhum problema for encontrado.',
         'required_text' => 'Nomeações: :current/:required',
@@ -225,7 +228,7 @@ return [
                 'difficulty' => 'Dificuldade',
                 'favourites' => 'Favoritos',
                 'updated' => 'Atualizado',
-                'ranked' => 'Ranked',
+                'ranked' => 'Ranqueado',
                 'rating' => 'Avaliação',
                 'plays' => 'Vezes jogadas',
                 'relevance' => 'Relevância',
@@ -258,7 +261,7 @@ return [
         'mine' => 'Meus Maps',
         'pending' => 'Pendente & Em Progresso',
         'qualified' => 'Qualificado',
-        'ranked' => 'Ranked',
+        'ranked' => 'Ranqueado',
     ],
     'genre' => [
         'any' => 'Todos',

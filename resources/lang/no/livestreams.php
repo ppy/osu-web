@@ -25,7 +25,4 @@ return [
 
         'link' => 'wikisiden på direktesendinger',
     ],
-    'headers' => [
-        'regular' => 'Direktesender for øyeblikket',
-    ],
 ];

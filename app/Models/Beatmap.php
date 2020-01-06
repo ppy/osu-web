@@ -101,7 +101,7 @@ class Beatmap extends Model
 
     public function beatmapDiscussions()
     {
-        return $this->hasMany(BeatmapDiscussion::class, 'beatmap_id');
+        return $this->hasMany(BeatmapDiscussion::class);
     }
 
     public function creator()
@@ -111,12 +111,17 @@ class Beatmap extends Model
 
     public function difficulty()
     {
-        return $this->hasMany(BeatmapDifficulty::class, 'beatmap_id');
+        return $this->hasMany(BeatmapDifficulty::class);
     }
 
     public function difficultyAttribs()
     {
-        return $this->hasMany(BeatmapDifficultyAttrib::class, 'beatmap_id');
+        return $this->hasMany(BeatmapDifficultyAttrib::class);
+    }
+
+    public function getDifficultyratingAttribute($value)
+    {
+        return round($value, 2);
     }
 
     public function getModeAttribute()
@@ -182,7 +187,22 @@ class Beatmap extends Model
 
     public function failtimes()
     {
-        return $this->hasMany(BeatmapFailtimes::class, 'beatmap_id');
+        return $this->hasMany(BeatmapFailtimes::class);
+    }
+
+    public function scores($mode = null)
+    {
+        return $this->getScores(Score::class, $mode);
+    }
+
+    public function scoresBest($mode = null)
+    {
+        return $this->getScores(Score\Best::class, $mode);
+    }
+
+    public function status()
+    {
+        return array_search($this->approved, Beatmapset::STATES, true);
     }
 
     private function getScores($modelPath, $mode)
@@ -199,21 +219,6 @@ class Beatmap extends Model
 
         $mode = studly_case($mode);
 
-        return $this->hasMany("{$modelPath}\\{$mode}", 'beatmap_id');
-    }
-
-    public function scores($mode = null)
-    {
-        return $this->getScores("App\Models\Score", $mode);
-    }
-
-    public function scoresBest($mode = null)
-    {
-        return $this->getScores("App\Models\Score\Best", $mode);
-    }
-
-    public function status()
-    {
-        return array_search($this->approved, Beatmapset::STATES, true);
+        return $this->hasMany("{$modelPath}\\{$mode}");
     }
 }

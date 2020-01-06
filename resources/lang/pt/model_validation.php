@@ -26,7 +26,7 @@ return [
 
     'beatmap_discussion_post' => [
         'discussion_locked' => 'A discussão está bloqueada.',
-        'first_post' => 'Não é possível eliminar uma publicação de começo.',
+        'first_post' => 'Não é possível eliminar uma publicação inicial.',
 
         'attributes' => [
             'message' => 'A mensagem',
@@ -61,7 +61,7 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => 'Responder a comentários eliminados não é permitido.',
+        'deleted_parent' => 'Não é permitido responder a comentários eliminados.',
 
         'attributes' => [
             'message' => 'A mensagem',
@@ -124,8 +124,8 @@ return [
             'url' => 'Por favor insere um URL válido.',
 
             'attributes' => [
-                'name' => 'Nome da Aplicação',
-                'redirect' => 'URL da Rechamada da Aplicação',
+                'name' => 'Nome da aplicação',
+                'redirect' => 'URL de recolha da aplicação',
             ],
         ],
     ],
@@ -148,7 +148,7 @@ return [
         'username_not_allowed' => 'Esta escolha para nome de utilizador não é permitida.',
         'username_too_short' => 'O nome de utilizador solicitado é demasiado curto.',
         'username_too_long' => 'O nome de utilizador solicitado é demasiado longo.',
-        'weak' => 'Palavra-passe colocada na lista-negra.',
+        'weak' => 'A palavra-passe está na lista-negra.',
         'wrong_current_password' => 'A palavra-passe atual está incorreta.',
         'wrong_email_confirmation' => 'A confirmação do email não corresponde.',
         'wrong_password_confirmation' => 'A confirmação da palavra-passe não corresponde.',
@@ -163,7 +163,7 @@ return [
         'change_username' => [
             'restricted' => 'Não podes mudar o teu nome de utilizador enquanto estiveres restrito.',
             'supporter_required' => [
-                '_' => 'Tu tens de ter :link para mudar o teu nome!',
+                '_' => 'Tens de ter :link para mudar o teu nome!',
                 'link_text' => 'ajudaste o osu!',
             ],
             'username_is_same' => 'Este já é o teu nome de utilizador, tontinho!',
@@ -171,7 +171,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason não é valida para este tipo de denúncia.',
         'self' => "Não te podes denunciar a ti mesmo!",
     ],
 

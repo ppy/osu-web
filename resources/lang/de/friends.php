@@ -19,21 +19,12 @@
  */
 
 return [
+    'title_compact' => 'freunde',
+    'too_many' => 'Freundelimit erreicht.',
+
     'buttons' => [
       'add' => 'freund hinzufügen',
       'disabled' => 'Freunde',
       'remove' => 'freund entfernen',
     ],
-
-    'index' => [
-        'title' => [
-            '_' => 'Startseite :info',
-            'info' => 'Freunde',
-        ],
-    ],
-
-    'title' => 'Freunde',
-    'title_compact' => 'freunde',
-
-    'too_many' => 'Freundelimit erreicht.',
 ];

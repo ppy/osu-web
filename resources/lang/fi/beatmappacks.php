@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Valmiiksi kasattuja beatmap kokoelmia, joissa yhdistyy tietty teema.',
+        'nav_title' => '',
+        'title' => 'Beatmap-Kokoelmat',
+
         'blurb' => [
             'important' => 'LUE TÄMÄ ENNEN LATAAMISTA',
             'instruction' => [
@@ -34,8 +38,6 @@ return [
                 'scary' => 'ladata uusimpia kokoelmia vanhojen sijaan',
             ],
         ],
-        'title' => 'Beatmap-Kokoelmat',
-        'description' => 'Valmiiksi kasattuja beatmap kokoelmia, joissa yhdistyy tietty teema.',
     ],
 
     'show' => [

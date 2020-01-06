@@ -24,10 +24,82 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => '커뮤니티',
-
+            'comments' => '',
             'forum' => '포럼',
+            'livestream' => '',
+        ],
+
+        'contests' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +116,11 @@ return [
             '_' => '메인',
             'account-edit' => '설정',
             'account-verifyLink' => '인증 완료',
-            'friends-index' => '친구',
-            'changelog-index' => '변경 사항',
+            'beatmapset-watches-index' => '',
             'changelog-build' => '빌드 버전',
+            'changelog-index' => '변경 사항',
+            'forum-topic-watches-index' => '',
+            'friends-index' => '친구',
             'getDownload' => '다운로드',
             'getIcons' => '아이콘',
             'groups-show' => '그룹',
@@ -59,11 +133,12 @@ return [
             'search' => '검색',
             'supportTheGame' => '게임 지원하기',
             'team' => '운영진',
+            'testflight' => '',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => '프로필',
+            'friends' => '친구',
+            'settings' => '설정',
         ],
         'help' => [
             '_' => '도움말',
@@ -78,7 +153,6 @@ return [
             'artists' => '공식 아티스트',
             'beatmap_discussion_posts-index' => '비트맵 토론 글',
             'beatmap_discussions-index' => '비트맵 토론',
-            'beatmapset-watches-index' => '모딩 확인 목록',
             'beatmapset_discussion_votes-index' => '비트맵 토론 투표',
             'beatmapset_events-index' => '비트맵셋 활동',
             'index' => '목록',
@@ -112,7 +186,6 @@ return [
             'tournaments' => '대회',
             'tournaments-index' => '대회',
             'tournaments-show' => '대회 정보',
-            'forum-topic-watches-index' => '구독',
             'forum-topics-create' => '포럼',
             'forum-topics-show' => '포럼',
             'forum-forums-index' => '포럼',
@@ -256,10 +329,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => '이메일 주소',
             'forgot' => "계정 정보를 잊어버렸어요.",
             'password' => '비밀번호',
             'title' => '로그인하여 계속하기',
+            'username' => '',
 
             'error' => [
                 'email' => "존재하지 않는 유저이름 또는 이메일입니다.",
@@ -268,7 +341,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => '다운로드',
             'info' => '계정이 필요합니다, 하나 만들어보시는 건 어때요?',
             'title' => "아직 계정이 없으신가요?",
         ],

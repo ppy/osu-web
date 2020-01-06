@@ -148,7 +148,7 @@
         <div class="osu-layout__sub-row osu-layout__sub-row--with-separator" id="add-to-cart">
             <div class="big-button">
                 @if($product->inStock())
-                    <button type="submit" class="js-store-add-to-cart btn-osu btn-osu-default">
+                    <button type="submit" class="js-store-add-to-cart btn-osu btn-osu-default js-login-required--click">
                         {{ trans('store.product.add_to_cart') }}
                     </button>
 

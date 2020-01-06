@@ -25,6 +25,7 @@ return [
         'missing' => '請求的頁面未找到',
         'missing_title' => '未找到',
         'missing_translation' => '請求的頁面沒有當前語言的版本。',
+        'needs_cleanup_or_rewrite' => '',
         'search' => '在 wiki 中搜索 :link 。',
         'toc' => '目錄',
 
@@ -41,10 +42,7 @@ return [
         ],
     ],
     'main' => [
-        'title' => '',
+        'title' => '知識庫',
         'subtitle' => '',
-    ],
-    'search' => [
-        'path' => '',
     ],
 ];

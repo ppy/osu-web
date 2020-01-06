@@ -21,6 +21,7 @@
 namespace App\Jobs;
 
 use App\Mail\BeatmapsetUpdateNotice;
+use App\Models\UserNotificationOption;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -64,6 +65,14 @@ class NotifyBeatmapsetUpdate implements ShouldQueue
             $watches->where('user_id', '<>', $this->user->getKey());
         }
 
+        $userIds = $watches->pluck('user_id');
+
+        $options = UserNotificationOption
+            ::whereIn('user_id', $userIds)
+            ->where(['name' => UserNotificationOption::BEATMAPSET_MODDING])
+            ->get()
+            ->keyBy('user_id');
+
         foreach ($watches->get() as $watch) {
             $user = $watch->user;
 
@@ -71,7 +80,11 @@ class NotifyBeatmapsetUpdate implements ShouldQueue
                 continue;
             }
 
-            Mail::to($user->user_email)
+            if (($options[$user->getKey()]->details['mail'] ?? true) !== true) {
+                continue;
+            }
+
+            Mail::to($user)
                 ->queue(new BeatmapsetUpdateNotice([
                     'watch' => $watch,
                 ]));

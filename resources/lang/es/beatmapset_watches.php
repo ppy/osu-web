@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Estas son las discusiones de Beatmap que estás siguiendo. Se te notificará cuando haya nuevas publicaciones o actualizaciones.',
         'title_compact' => 'lista de seguimiento de modificaciones',
-        'title_main' => 'Lista de seguimiento de modificaciones',
 
         'table' => [
             'empty' => 'No estás mirando discusiones de Beatmaps.',
@@ -30,10 +29,6 @@ return [
             'state' => 'Estado',
             'title' => 'Título',
         ],
-    ],
-
-    'mail' => [
-        'update' => 'Nueva actualización para el Beatmap ":title"',
     ],
 
     'status' => [

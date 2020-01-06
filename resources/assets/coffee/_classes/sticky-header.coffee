@@ -77,7 +77,7 @@ class @StickyHeader
 
 
   shouldPin: (offset = window.pageYOffset) =>
-    offset > window._styles.header.height || @shouldStick()
+    offset > 30 || @shouldStick()
 
 
   shouldStick: =>

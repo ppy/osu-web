@@ -15,25 +15,31 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@extends('master', [
+    'currentAction' => 'packs',
+    'legacyNav' => false,
+    'title' => $pack->name.' · '.trans('beatmappacks.index.title'),
+])
 
+@section('content')
+    @include('packs._header')
 
-<div class="beatmap-pack-download">
-    @if(Auth::check())
-        <a href="{{ $pack->downloadUrl()['url'] }}"
-            class="beatmap-pack-download__link">{{ trans('beatmappacks.show.download') }}</a>
-    @else
-        {!! require_login('beatmappacks.require_login._', 'beatmappacks.require_login.link_text') !!}
-    @endif
-</div>
-<ul class="beatmap-pack-items">
-    @foreach ($sets as $set)
-        <li class="beatmap-pack-items__set">
-            <span class="fal fa-extra-mode-{{$mode}} beatmap-pack-items__icon {{ $set->count > 0 ? 'beatmap-pack-items__icon--cleared' : '' }}"
-                  title="{{ $set->count > 0 ? trans('beatmappacks.show.item.cleared') : trans('beatmappacks.show.item.not_cleared') }}"
-            ></span>
-            <a href="{{ route('beatmapsets.show', ['beatmapset' => $set->getKey()]) }}" class="beatmap-pack-items__link">
-                <span class="beatmap-pack-items__artist">{{ $set->artist }}</span>
-                <span class="beatmap-pack-items__title"> - {{ $set->title }}</span>
-            </a>
-    @endforeach
-</ul>
+    <div class="osu-page">
+        <div class="beatmap-packs">
+            <div class="beatmap-pack beatmap-pack--expanded">
+                <a href="{{ route('packs.show', $pack) }}" class="beatmap-pack__header">
+                    <div class="beatmap-pack__name">{{ $pack->name }}</div>
+                    <div class="beatmap-pack__details">
+                        <span class="beatmap-pack__date">{{ $pack->date->formatLocalized('%Y-%m-%d') }}</span>
+                        <span class="beatmap-pack__author">by </span>
+                        <span class="beatmap-pack__author beatmap-pack__author--bold">{{ $pack->author }}</span>
+                    </div>
+                </a>
+
+                <div class="beatmap-pack__body">
+                    @include('packs.raw', compact('pack', 'sets', 'mode'))
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

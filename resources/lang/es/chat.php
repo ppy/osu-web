@@ -19,12 +19,11 @@
  */
 
 return [
-    'coming_soon' => 'Próximamente',
-    'limitation_notice' => 'Nota: Solo quienes están usando <a href=":lazer_link">osu! lazer</a> o el nuevo sitio web recibirán PMs a través de este sistema.<br/>si no está seguro, envieles un mensaje por el foro antiguo <a href=":oldpm_link">PM página</a> en lugar de otro.',
+    'limitation_notice' => 'NOTA: Sólo las personas que estén usando <a href=":lazer_link">osu!lazer</a> o el nuevo sitio web recibirán MPs a través de este sistema.<br/>Si no está seguro, envíeles un mensaje a través de la <a href=":oldpm_link">página de MP del antiguo foro</a>.',
     'talking_in' => 'Hablando en :channel',
     'talking_with' => 'Hablando con :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'No puedes enviar mensajes a este canal en este momento. Esto puede ser debido a cualquiera de las siguientes razones:',
         'user' => 'No puedes enviar mensajes a este canal en este momento. Esto puede ser debido a cualquiera de las siguientes razones:',

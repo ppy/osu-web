@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Có trả lời mới cho chủ đề ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Bài viết mới nhất',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Diễn Đàn Đã Đăng Kí',
             'title_compact' => 'diễn đàn đã đăng kí',
-            'title_main' => 'Diễn Đàn đã <strong>Đăng Kí</strong>',
 
             'box' => [
                 'total' => 'Chủ đề đã đăng kí',

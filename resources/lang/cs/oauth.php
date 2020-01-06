@@ -36,7 +36,7 @@ return [
     'authorized_clients' => [
         'confirm_revoke' => '',
         'scopes_title' => '',
-        'owned_by' => '',
+        'owned_by' => 'Vlastní :user',
         'none' => '',
 
         'revoked' => [
@@ -50,12 +50,6 @@ return [
         'name' => '',
         'redirect' => '',
         'secret' => '',
-    ],
-
-    'login' => [
-        'download' => 'Klikni zde pro stažení hry a vytvoření účtu',
-        'label' => 'Nejprve se přihlašme k vašemu účtu!',
-        'title' => 'Přihlášení k účtu',
     ],
 
     'new_client' => [
@@ -73,8 +67,8 @@ return [
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Smazat',
+            'true' => 'Smazáno',
         ],
     ],
 ];

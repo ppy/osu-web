@@ -19,12 +19,11 @@
  */
 
 return [
-    'coming_soon' => 'em breve',
     'limitation_notice' => 'NOTA: Somente pessoas que estiverem utilizando <a href=":lazer_link">osu!lazer</a> ou o novo website poderão receber mensagens privadas através deste sistema.<br/>Se estiver incerto, utilize a <a href=":oldpm_link">página de mensagens privadas do fórum antigo</a> como alternativa.',
     'talking_in' => 'conversando em :channel',
     'talking_with' => 'conversando com :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'Você não pode conversar neste canal no momento. Isso pode ter ocorrido pelos seguintes motivos:',
         'user' => 'Você não pode conversar com este usuário no momento. Isso pode ter ocorrido pelos seguintes motivos:',

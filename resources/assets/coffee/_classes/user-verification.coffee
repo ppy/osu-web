@@ -63,6 +63,10 @@ class @UserVerification
       .fail @error
 
 
+  isVerificationPage: ->
+    document.querySelector('.js-user-verification--on-load')?
+
+
   error: (xhr) =>
     @setMessage osu.xhrErrorMessage(xhr)
 
@@ -134,7 +138,9 @@ class @UserVerification
     @inputBox[0].value = ''
     @inputBox[0].dataset.lastKey = ''
 
-    osu.executeAction toClick
+    return osu.reloadPage() if @isVerificationPage()
+
+    osu.executeAction(toClick) if toClick?
 
 
   show: (target, html) =>
@@ -154,15 +160,14 @@ class @UserVerification
 
 
   showOnError: ({target}, xhr) =>
-    return unless xhr.status == 401 && xhr.responseJSON?.authentication == 'verify'
+    return false unless xhr.status == 401 && xhr.responseJSON?.authentication == 'verify'
 
     @show target, xhr.responseJSON.box
+
+    true
 
 
   # for pages which require authentication
   # and being visited directly from outside
   showOnLoad: =>
-    return unless window.showVerificationModal
-
-    window.showVerificationModal = null
-    @show()
+    @show() if @isVerificationPage()

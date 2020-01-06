@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import ClickToCopy from 'click-to-copy'
 import { CommentEditor } from 'comment-editor'
 import { CommentShowMore } from 'comment-show-more'
 import DeletedCommentsCount from 'deleted-comments-count'
@@ -237,10 +238,12 @@ export class Comment extends React.PureComponent
 
   renderPermalink: =>
     div className: 'comment__row-item',
-      a
-        href: laroute.route('comments.show', comment: @props.comment.id)
+      span
         className: 'comment__action comment__action--permalink'
-        osu.trans('common.buttons.permalink')
+        el ClickToCopy,
+          value: laroute.route('comments.show', comment: @props.comment.id)
+          label: osu.trans 'common.buttons.permalink'
+          valueAsUrl: true
 
 
   renderRepliesText: =>

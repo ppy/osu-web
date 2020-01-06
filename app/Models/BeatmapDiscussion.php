@@ -69,11 +69,13 @@ class BeatmapDiscussion extends Model
         'mapper_note' => 3,
         'praise' => 0,
         'hype' => 4,
+        'review' => 5,
     ];
 
     const RESOLVABLE_TYPES = [1, 2];
     const KUDOSUABLE_TYPES = [1, 2];
 
+    const VALID_BEATMAPSET_STATUSES = ['ranked', 'qualified', 'disqualified', 'never_qualified'];
     const VOTES_TO_SHOW = 50;
 
     public static function search($rawParams = [])
@@ -124,6 +126,20 @@ class BeatmapDiscussion extends Model
             $params['message_types'] = array_keys(static::MESSAGE_TYPES);
         }
 
+        $params['beatmapset_status'] = static::getValidBeatmapsetStatus($rawParams['beatmapset_status'] ?? null);
+        if ($params['beatmapset_status']) {
+            $query->whereHas('beatmapset', function ($beatmapsetQuery) use ($params) {
+                $scope = camel_case($params['beatmapset_status']);
+                $beatmapsetQuery->$scope();
+            });
+        }
+
+        $params['only_unresolved'] = get_bool($rawParams['only_unresolved'] ?? null) ?? false;
+
+        if ($params['only_unresolved']) {
+            $query->openIssues();
+        }
+
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
@@ -136,7 +152,19 @@ class BeatmapDiscussion extends Model
             });
         }
 
+        // TODO: remove this when reviews are released
+        if (!config('osu.beatmapset.discussion_review_enabled')) {
+            $query->hideReviews();
+        }
+
         return ['query' => $query, 'params' => $params];
+    }
+
+    private static function getValidBeatmapsetStatus($rawParam)
+    {
+        if (in_array($rawParam, static::VALID_BEATMAPSET_STATUSES, true)) {
+            return $rawParam;
+        }
     }
 
     public function beatmap()
@@ -156,7 +184,7 @@ class BeatmapDiscussion extends Model
 
     public function visibleBeatmapset()
     {
-        return $this->belongsTo(Beatmapset::class, 'beatmapset_id', 'beatmapset_id');
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public function beatmapDiscussionPosts()
@@ -198,6 +226,11 @@ class BeatmapDiscussion extends Model
 
     public function setMessageTypeAttribute($value)
     {
+        // TODO: remove this when reviews are released
+        if (!config('osu.beatmapset.discussion_review_enabled') && $value === 'review') {
+            return $this->attributes['message_type'] = null;
+        }
+
         return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
     }
 
@@ -252,7 +285,7 @@ class BeatmapDiscussion extends Model
         }
 
         $beatmapsetKudosuGranted = (int) KudosuHistory
-            ::whereIn('kudosuable_type', [static::class, $this->getMorphClass()])
+            ::where('kudosuable_type', $this->getMorphClass())
             ->whereIn('kudosuable_id',
                 static
                     ::where('kudosu_denied', '=', false)
@@ -421,6 +454,11 @@ class BeatmapDiscussion extends Model
     {
         // skip validation if not changed
         if (!$this->isDirty('timestamp')) {
+            return;
+        }
+
+        // skip validation if changed timestamp from null to null
+        if ($this->getOriginal('timestamp') === null && $this->timestamp === null) {
             return;
         }
 
@@ -658,12 +696,12 @@ class BeatmapDiscussion extends Model
             }
         }
 
-        $query->whereIn('message_type', $intTypes);
+        return $query->whereIn('message_type', $intTypes);
     }
 
     public function scopeOpenIssues($query)
     {
-        $query
+        return $query
             ->withoutTrashed()
             ->whereIn('message_type', static::RESOLVABLE_TYPES)
             ->where(function ($query) {
@@ -676,18 +714,26 @@ class BeatmapDiscussion extends Model
 
     public function scopeWithoutTrashed($query)
     {
-        $query->whereNull('deleted_at');
+        return $query->whereNull('deleted_at');
     }
 
     public function scopeVisible($query)
     {
-        $query->visibleWithTrashed()
+        return $query->visibleWithTrashed()
             ->withoutTrashed();
+    }
+
+    // TODO: remove this when reviews are released
+    public function scopeHideReviews($query)
+    {
+        if (!config('osu.beatmapset.discussion_review_enabled')) {
+            return $query->where('message_type', '<>', static::MESSAGE_TYPES['review']);
+        }
     }
 
     public function scopeVisibleWithTrashed($query)
     {
-        $query->whereHas('visibleBeatmapset')
+        return $query->whereHas('visibleBeatmapset')
             ->where(function ($q) {
                 $q->whereNull('beatmap_id')
                     ->orWhereHas('visibleBeatmap');
