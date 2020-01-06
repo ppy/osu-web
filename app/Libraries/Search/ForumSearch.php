@@ -76,7 +76,7 @@ class ForumSearch extends Search
         return $query;
     }
 
-    private function childQuery() : HasChildQuery
+    private function childQuery(): HasChildQuery
     {
         $query = new BoolQuery();
 
@@ -113,7 +113,7 @@ class ForumSearch extends Search
      *
      * @return array
      */
-    public function firstPostsMap() : array
+    public function firstPostsMap(): array
     {
         $ids = $this->response()->ids('post_id');
 
@@ -133,7 +133,7 @@ class ForumSearch extends Search
         return $map;
     }
 
-    public function response() : SearchResponse
+    public function response(): SearchResponse
     {
         return parent::response()->recordType(Topic::class)->idField('topic_id');
     }
@@ -143,7 +143,7 @@ class ForumSearch extends Search
      *
      * @return Builder
      */
-    public function users() : Builder
+    public function users(): Builder
     {
         $ids = array_merge(
             $this->response()->ids('poster_id'),

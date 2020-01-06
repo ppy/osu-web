@@ -55,7 +55,7 @@ class FavouritesController extends Controller
         }
 
         return [
-          'favourite_count' => $beatmapset->fresh()->favourite_count,
+            'favourite_count' => $beatmapset->fresh()->favourite_count,
         ];
     }
 }

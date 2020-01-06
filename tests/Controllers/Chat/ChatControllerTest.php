@@ -218,9 +218,9 @@ class ChatControllerTest extends TestCase
         // join the channel
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel' => $publicChannel->channel_id,
-                'user' => $this->user->user_id,
-            ]))
+            'channel' => $publicChannel->channel_id,
+            'user' => $this->user->user_id,
+        ]))
             ->assertStatus(204);
 
         $this->actAsScopedUser($this->user, ['*']);
@@ -327,9 +327,9 @@ class ChatControllerTest extends TestCase
         // leave PM with $this->anotherUser
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('DELETE', route('api.chat.channels.part', [
-                'channel' => $channelId,
-                'user' => $this->user->user_id,
-            ]))
+            'channel' => $channelId,
+            'user' => $this->user->user_id,
+        ]))
             ->assertStatus(204);
 
         // ensure conversation with $this->anotherUser isn't visible
@@ -378,9 +378,9 @@ class ChatControllerTest extends TestCase
         // join the channel
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel' => $publicChannel->channel_id,
-                'user' => $this->user->user_id,
-            ]))
+            'channel' => $publicChannel->channel_id,
+            'user' => $this->user->user_id,
+        ]))
             ->assertStatus(204);
 
         $this->actAsScopedUser($this->user, ['*']);
@@ -396,9 +396,9 @@ class ChatControllerTest extends TestCase
         // join channel
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
-                'channel' => $publicChannel->channel_id,
-                'user' => $this->user->user_id,
-            ]))
+            'channel' => $publicChannel->channel_id,
+            'user' => $this->user->user_id,
+        ]))
             ->assertStatus(204);
 
         $this->actAsScopedUser($this->user, ['*']);

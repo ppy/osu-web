@@ -63,7 +63,7 @@ abstract class Model extends BaseModel
         );
     }
 
-    public function replayFile() : ?ReplayFile
+    public function replayFile(): ?ReplayFile
     {
         if ($this->replay) {
             return new ReplayFile($this);
@@ -319,7 +319,7 @@ abstract class Model extends BaseModel
         return $result;
     }
 
-    protected function newReportableExtraParams() : array
+    protected function newReportableExtraParams(): array
     {
         return [
             'mode' => Beatmap::modeInt($this->getMode()),

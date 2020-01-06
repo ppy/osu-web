@@ -31,7 +31,7 @@ function array_search_null($value, $array)
     }
 }
 
-function atom_id(string $namespace, $id = null) : string
+function atom_id(string $namespace, $id = null): string
 {
     return 'tag:'.request()->getHttpHost().',2019:'.$namespace.($id === null ? '' : "/{$id}");
 }
@@ -321,12 +321,12 @@ function truncate(string $text, $limit = 100, $ellipsis = '...')
     return $text;
 }
 
-function json_date(?DateTime $date) : ?string
+function json_date(?DateTime $date): ?string
 {
     return $date === null ? null : $date->format('Y-m-d');
 }
 
-function json_time(?DateTime $time) : ?string
+function json_time(?DateTime $time): ?string
 {
     return $time === null ? null : $time->format(DateTime::ATOM);
 }
@@ -1277,7 +1277,7 @@ function get_time_or_null($timestamp)
  * Returns 0 if $time is null so mysql doesn't explode because of not null
  * constraints.
  */
-function get_timestamp_or_zero(DateTime $time = null) : int
+function get_timestamp_or_zero(DateTime $time = null): int
 {
     return $time === null ? 0 : $time->getTimestamp();
 }

@@ -128,7 +128,7 @@ class Product extends Model
         }
     }
 
-    public function isAvailable() : bool
+    public function isAvailable(): bool
     {
         return $this->enabled
             && ($this->available_until === null ? true : $this->available_until->isFuture());
@@ -208,12 +208,12 @@ class Product extends Model
      *
      * @return string|null
      */
-    public function getShopifyVariantGid() : ?string
+    public function getShopifyVariantGid(): ?string
     {
         return $this->isShopify() ? base64_encode("gid://shopify/ProductVariant/{$this->shopify_id}") : null;
     }
 
-    public function isShopify() : bool
+    public function isShopify(): bool
     {
         return $this->shopify_id !== null;
     }
