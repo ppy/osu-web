@@ -949,7 +949,7 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkCommentPin(?User $user, Comment $comment) : string
+    public function checkCommentPin(?User $user, Comment $comment): string
     {
         return 'unauthorized';
     }
