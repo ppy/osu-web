@@ -253,9 +253,9 @@ class CommentsController extends Controller
 
     public function pin($id)
     {
-        $comment = Comment::findOrFail($id);
+        priv_check('CommentPin')->ensureCan();
 
-        priv_check('CommentPin', $comment)->ensureCan();
+        $comment = Comment::findOrFail($id);
 
         if (request()->isMethod('post')) {
             $state = true;
