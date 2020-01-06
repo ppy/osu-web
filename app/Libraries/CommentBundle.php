@@ -115,7 +115,7 @@ class CommentBundle
         });
 
         if ($this->includePinned) {
-            $pinnedComments = $this->getComments($this->commentsQuery()->where('pinned', true), true, 'new');
+            $pinnedComments = $this->getComments($this->commentsQuery()->where('pinned', true), true, true);
         }
 
         $allComments = $comments->concat($includedComments)->concat($pinnedComments);
@@ -154,9 +154,9 @@ class CommentBundle
         }
     }
 
-    private function getComments($query, $isChildren = true, $customSort = null)
+    private function getComments($query, $isChildren = true, $pinnedOnly = false)
     {
-        $sort = $customSort ? CommentBundleParams::SORTS[$customSort] : $this->params->sortDbOptions();
+        $sort = $pinnedOnly ? CommentBundleParams::SORTS['new'] : $this->params->sortDbOptions();
         $sorted = false;
         $queryLimit = $this->params->limit;
 
@@ -202,7 +202,11 @@ class CommentBundle
             }
         }
 
-        return $query->limit($queryLimit)->get();
+        if (!$pinnedOnly) {
+            $query->limit($queryLimit);
+        }
+
+        return $query->get();
     }
 
     private function getUserFollow()
