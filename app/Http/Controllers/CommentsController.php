@@ -251,20 +251,26 @@ class CommentsController extends Controller
         return CommentBundle::forComment($comment)->toArray();
     }
 
-    public function pin($id)
+    public function pinDestroy($id)
     {
         priv_check('CommentPin')->ensureCan();
 
         $comment = Comment::findOrFail($id);
+        $comment->update(['pinned' => false]);
 
-        if (request()->isMethod('post')) {
-            $state = true;
-        } elseif (request()->isMethod('delete')) {
-            $state = false;
-        }
+        $bundle = CommentBundle::forComment($comment);
+        $bundle->includePinned = true;
 
-        $comment->pinned = $state;
-        $comment->save();
+        return $bundle->toArray();
+    }
+
+
+    public function pinStore($id)
+    {
+        priv_check('CommentPin')->ensureCan();
+
+        $comment = Comment::findOrFail($id);
+        $comment->update(['pinned' => true]);
 
         $bundle = CommentBundle::forComment($comment);
         $bundle->includePinned = true;
