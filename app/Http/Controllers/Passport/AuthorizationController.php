@@ -82,7 +82,7 @@ class AuthorizationController extends PassportAuthorizationController
      * @param ServerRequestInterface $request
      * @return ServerRequestInterface
      */
-    private function normalizeRequestScopes(ServerRequestInterface $request) : ServerRequestInterface
+    private function normalizeRequestScopes(ServerRequestInterface $request): ServerRequestInterface
     {
         $params = $request->getQueryParams();
         $scopes = $this->normalizeScopes(
@@ -99,7 +99,7 @@ class AuthorizationController extends PassportAuthorizationController
      * @param array $scopes
      * @return array
      */
-    private function normalizeScopes(array $scopes) : array
+    private function normalizeScopes(array $scopes): array
     {
         if (!in_array('identify', $scopes, true)) {
             $scopes[] = 'identify';

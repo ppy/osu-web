@@ -48,7 +48,7 @@ class HasChildQuery extends HasSearch implements Queryable
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         // some of the parameters that normally go in body get moved into
         // inner_hits in join queries.

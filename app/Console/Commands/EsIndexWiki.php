@@ -55,7 +55,7 @@ class EsIndexWiki extends Command
         $bar->finish();
     }
 
-    private static function newBaseSearch() : Search
+    private static function newBaseSearch(): Search
     {
         return (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
             ->query(['match_all' => new \stdClass])

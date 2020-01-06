@@ -246,10 +246,10 @@ class ModdingHistoryController extends Controller
         unset($search['params']['user']);
         $discussions = new LengthAwarePaginator(
             $search['query']->with([
-                    'user',
-                    'beatmapset',
-                    'startingPost',
-                ])->get(),
+                'user',
+                'beatmapset',
+                'startingPost',
+            ])->get(),
             $search['query']->realCount(),
             $search['params']['limit'],
             $search['params']['page'],
@@ -302,13 +302,13 @@ class ModdingHistoryController extends Controller
         unset($search['params']['user']);
         $posts = new LengthAwarePaginator(
             $search['query']->with([
-                    'user',
-                    'beatmapset',
-                    'beatmapDiscussion',
-                    'beatmapDiscussion.beatmapset',
-                    'beatmapDiscussion.user',
-                    'beatmapDiscussion.startingPost',
-                ])->get(),
+                'user',
+                'beatmapset',
+                'beatmapDiscussion',
+                'beatmapDiscussion.beatmapset',
+                'beatmapDiscussion.user',
+                'beatmapDiscussion.startingPost',
+            ])->get(),
             $search['query']->realCount(),
             $search['params']['limit'],
             $search['params']['page'],
@@ -329,12 +329,12 @@ class ModdingHistoryController extends Controller
         unset($search['params']['user']);
         $votes = new LengthAwarePaginator(
             $search['query']->with([
-                    'user',
-                    'beatmapDiscussion',
-                    'beatmapDiscussion.user',
-                    'beatmapDiscussion.beatmapset',
-                    'beatmapDiscussion.startingPost',
-                ])->get(),
+                'user',
+                'beatmapDiscussion',
+                'beatmapDiscussion.user',
+                'beatmapDiscussion.beatmapset',
+                'beatmapDiscussion.startingPost',
+            ])->get(),
             $search['query']->realCount(),
             $search['params']['limit'],
             $search['params']['page'],
@@ -358,12 +358,12 @@ class ModdingHistoryController extends Controller
         unset($search['params']['user']);
         $votes = new LengthAwarePaginator(
             $search['query']->with([
-                    'user',
-                    'beatmapDiscussion',
-                    'beatmapDiscussion.user',
-                    'beatmapDiscussion.beatmapset',
-                    'beatmapDiscussion.startingPost',
-                ])->get(),
+                'user',
+                'beatmapDiscussion',
+                'beatmapDiscussion.user',
+                'beatmapDiscussion.beatmapset',
+                'beatmapDiscussion.startingPost',
+            ])->get(),
             $search['query']->realCount(),
             $search['params']['limit'],
             $search['params']['page'],

@@ -229,23 +229,23 @@ class Page implements WikiObject
             && static::lookup($this->parentPath(), $this->locale)->isVisible();
     }
 
-    public function needsCleanup() : bool
+    public function needsCleanup(): bool
     {
         return $this->page['header']['needs_cleanup'] ?? false;
     }
 
-    public function isLegalTranslation() : bool
+    public function isLegalTranslation(): bool
     {
         return $this->isTranslation()
             && ($this->page['header']['legal'] ?? false);
     }
 
-    public function isOutdated() : bool
+    public function isOutdated(): bool
     {
         return $this->page['header']['outdated'] ?? false;
     }
 
-    public function isTranslation() : bool
+    public function isTranslation(): bool
     {
         return $this->locale !== config('app.fallback_locale');
     }

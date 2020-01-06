@@ -216,7 +216,7 @@ class Comment extends Model
         return $this->update(['deleted_at' => null]);
     }
 
-    protected function newReportableExtraParams() : array
+    protected function newReportableExtraParams(): array
     {
         return [
             'reason' => 'Spam',

@@ -244,7 +244,7 @@ class RankingController extends Controller
         );
     }
 
-    private function optionFromSpotlight(Spotlight $spotlight) : array
+    private function optionFromSpotlight(Spotlight $spotlight): array
     {
         return ['id' => $spotlight->chart_id, 'text' => $spotlight->name];
     }

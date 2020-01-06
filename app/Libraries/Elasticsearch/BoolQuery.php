@@ -91,7 +91,7 @@ class BoolQuery implements Queryable
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         $bool = [
             'bool' => [

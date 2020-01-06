@@ -32,7 +32,7 @@ class ValidationErrors
         $this->keyBase = $keyBase;
     }
 
-    public function add($column, $rawMessage, $params = null) : self
+    public function add($column, $rawMessage, $params = null): self
     {
         $this->errors[$column] ?? ($this->errors[$column] = []);
 
@@ -51,14 +51,14 @@ class ValidationErrors
         return $this;
     }
 
-    public function addTranslated($column, $message) : self
+    public function addTranslated($column, $message): self
     {
         $this->errors[$column][] = $message;
 
         return $this;
     }
 
-    public function merge(self $validationErrors) : self
+    public function merge(self $validationErrors): self
     {
         $errors = $validationErrors->all();
         foreach ($errors as $key => $value) {

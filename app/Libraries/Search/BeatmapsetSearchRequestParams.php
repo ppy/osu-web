@@ -134,7 +134,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         return compact('extras', 'general', 'genres', 'languages', 'modes', 'played', 'ranks', 'statuses');
     }
 
-    private function getDefaultSort(string $order) : array
+    private function getDefaultSort(string $order): array
     {
         if (present($this->queryString)) {
             return [new Sort('_score', $order)];
@@ -160,7 +160,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
      * The search_after value passed to elasticsearch needs to be the same length as the number of
      * sorts given.
      */
-    private function getSearchAfter($cursor) : ?array
+    private function getSearchAfter($cursor): ?array
     {
         if (!is_array($cursor)) {
             return null;
@@ -183,7 +183,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     /**
      * Generate sort parameters for the elasticsearch query.
      */
-    private function normalizeSort(Sort $sort) : array
+    private function normalizeSort(Sort $sort): array
     {
         // additional options
         static $orderOptions = [

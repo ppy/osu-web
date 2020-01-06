@@ -28,7 +28,7 @@ use Cache;
  */
 class BeatmapsetSearchCached extends BeatmapsetSearch
 {
-    public function response() : SearchResponse
+    public function response(): SearchResponse
     {
         $this->source(false);
 

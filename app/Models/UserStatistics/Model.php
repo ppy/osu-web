@@ -87,7 +87,7 @@ abstract class Model extends BaseModel
         return get_class_namespace(static::class).'\\'.studly_case($modeStr);
     }
 
-    public static function getMode() : string
+    public static function getMode(): string
     {
         return snake_case(get_class_basename(static::class));
     }
