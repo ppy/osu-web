@@ -251,7 +251,7 @@ class CommentsController extends Controller
         return CommentBundle::forComment($comment)->toArray();
     }
 
-    public function setPinned($id)
+    public function pin($id)
     {
         $comment = Comment::findOrFail($id);
 
