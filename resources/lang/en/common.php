@@ -49,7 +49,6 @@ return [
         'expand' => 'expand',
         'hide' => 'hide',
         'permalink' => 'permalink',
-        'permalink_copied' => 'link copied',
         'post' => 'Post',
         'reply' => 'Reply',
         'reply_reopen' => 'Reply and Reopen',
