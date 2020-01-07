@@ -86,7 +86,6 @@ vendor.forEach(function (script) {
 
 
 let webpackConfig = {
-  devtool: '#source-map',
   externals: {
     "lodash": "_",
     "moment": "moment",
@@ -195,6 +194,7 @@ if (process.env.SENTRY_RELEASE == 1) {
 
 mix
 .webpackConfig(webpackConfig)
+.sourceMaps(true, 'source-map', 'source-map')
 .js([
   'resources/assets/app.js'
 ], 'js/app.js')
