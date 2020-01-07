@@ -75,7 +75,7 @@ class RequireScopes
      *
      * @return bool
      */
-    private function requestHasScopedMiddleware(Request $request) : bool
+    private function requestHasScopedMiddleware(Request $request): bool
     {
         if ($this->requestHasScopedMiddleware === null) {
             $this->requestHasScopedMiddleware = $this->containsScoped($request);

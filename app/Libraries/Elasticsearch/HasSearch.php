@@ -123,12 +123,12 @@ abstract class HasSearch
      *
      * @return int actual size to use.
      */
-    protected function getQuerySize() : int
+    protected function getQuerySize(): int
     {
         return min($this->maxResults() - $this->params->from, $this->params->size);
     }
 
-    protected function maxResults() : int
+    protected function maxResults(): int
     {
         // the default is the maximum number of total results allowed when not using the scroll API.
         return 10000;

@@ -84,7 +84,7 @@ class PostSearch extends Search
         return $this->response();
     }
 
-    public function response() : SearchResponse
+    public function response(): SearchResponse
     {
         return parent::response()->recordType(Post::class)->idField('post_id');
     }
@@ -94,7 +94,7 @@ class PostSearch extends Search
      *
      * @return Builder
      */
-    public function users() : Builder
+    public function users(): Builder
     {
         $ids = $this->response()->ids('poster_id');
 

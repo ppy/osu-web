@@ -102,7 +102,7 @@ class ReplayFileTest extends TestCase
         if ($hasReplayRecord) {
             $score->fill([
                 'replayViewCount' => ReplayViewCount\Osu::make([
-                   'score_id' => 2493013207,
+                    'score_id' => 2493013207,
                     'play_count' => 1,
                     'version' => $version,
                 ]),

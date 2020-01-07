@@ -217,7 +217,7 @@ class ChangeUsernameTest extends TestCase
         $user->changeUsername($newUsername, 'paid');
     }
 
-    private function createUser(array $attribs = []) : User
+    private function createUser(array $attribs = []): User
     {
         return factory(User::class)->create(array_merge([
             'username' => 'iamuser',
