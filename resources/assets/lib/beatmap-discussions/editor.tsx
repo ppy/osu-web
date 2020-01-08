@@ -223,16 +223,17 @@ export default class Editor extends React.Component<any, any> {
     }
 
     const TS_REGEX = /\b((\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d[,|])*\d\))?)/;
-    const matches = node.text.match(TS_REGEX);
+    const regex = RegExp(TS_REGEX, 'g');
+    let match;
 
-    if (matches && matches.index !== undefined) {
-      // console.log('match', matches);
-      // console.log(path, matches.index, matches.index + matches[0].length);
-      ranges.push({
-        anchor: { path, offset: matches.index },
-        focus: { path, offset: matches.index + matches[0].length },
-        timestamp: matches[0],
-      });
+    while ((match = regex.exec(node.text)) !== null) {
+      if (match && match.index !== undefined) {
+        ranges.push({
+          anchor: {path, offset: match.index},
+          focus: {path, offset: match.index + match[0].length},
+          timestamp: match[0],
+        });
+      }
     }
 
     return ranges;
