@@ -326,7 +326,7 @@ function html_excerpt($body, $limit = 300)
 
 function img2x(array $attributes)
 {
-    if (presence($attributes['src'] ?? null) === null) {
+    if (!present($attributes['src'] ?? null)) {
         return;
     }
 
