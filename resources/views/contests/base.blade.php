@@ -67,10 +67,8 @@
                 {{ $contestMeta->name }}
             </h1>
         </div>
-    </div>
 
-    <div class="osu-page osu-page--contest">
-        <div class='contest'>
+        <div class="contest">
             @yield('contest-content')
         </div>
     </div>
