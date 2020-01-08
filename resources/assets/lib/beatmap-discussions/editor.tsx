@@ -60,40 +60,6 @@ export default class Editor extends React.Component<any, any> {
     };
   }
 
-  withNormalization = (editor: ReactEditor) => {
-    const { normalizeNode } = editor;
-
-    editor.normalizeNode = (entry) => {
-      const [node, path] = entry;
-
-      if (SlateElement.isElement(node) && node.type === 'embed') {
-        for (const [child, childPath] of SlateNode.children(editor, path)) {
-          // ensure embeds only have a single child
-          if (SlateElement.isElement(child) && !editor.isInline(child)) {
-            Transforms.unwrapNodes(editor, { at: childPath });
-
-            return;
-          }
-
-          // clear formatting from content within embeds
-          if (child.bold || child.italic) {
-            Transforms.setNodes(
-              editor,
-              { bold: false, italic: false },
-              { at: childPath },
-            );
-
-            return;
-          }
-        }
-      }
-
-      normalizeNode(entry);
-    };
-
-    return editor;
-  }
-
   buttan = (event: React.MouseEvent<HTMLElement>, type: string) => {
     event.preventDefault();
 
@@ -102,6 +68,32 @@ export default class Editor extends React.Component<any, any> {
       discussionType: type,
       type: 'embed',
     });
+  }
+
+  decorate = (entry: NodeEntry) => {
+    const node = entry[0];
+    const path = entry[1];
+    const ranges: TimestampRange[] = [];
+
+    if (!Text.isText(node)) {
+      return ranges;
+    }
+
+    const TS_REGEX = /\b((\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d[,|])*\d\))?)/;
+    const regex = RegExp(TS_REGEX, 'g');
+    let match;
+
+    while ((match = regex.exec(node.text)) !== null) {
+      if (match && match.index !== undefined) {
+        ranges.push({
+          anchor: {path, offset: match.index},
+          focus: {path, offset: match.index + match[0].length},
+          timestamp: match[0],
+        });
+      }
+    }
+
+    return ranges;
   }
 
   hideMenu = (e: React.MouseEvent<HTMLElement>) => {
@@ -192,12 +184,6 @@ export default class Editor extends React.Component<any, any> {
     }
   }
 
-  resetInput = () => {
-    this.setState({
-      value: JSON.parse(placeholder),
-    });
-  }
-
   post = () => {
     const data = this.state.value.toJSON();
 
@@ -211,51 +197,6 @@ export default class Editor extends React.Component<any, any> {
       }).then(() => {
         this.resetInput();
     });
-  }
-
-  toggleBold = () => {
-    this.toggleMark('bold');
-  }
-
-  toggleItalic = () => {
-    this.toggleMark('italic');
-  }
-
-  toggleMark = (format: any) => {
-    const marks = SlateEditor.marks(this.slateEditor);
-    const isActive = marks ? marks[format] === true : false;
-
-    if (isActive) {
-      SlateEditor.removeMark(this.slateEditor, format);
-    } else {
-      SlateEditor.addMark(this.slateEditor, format, true);
-    }
-  }
-
-  decorate = (derp: NodeEntry) => {
-    const node = derp[0];
-    const path = derp[1];
-    const ranges: TimestampRange[] = [];
-
-    if (!Text.isText(node)) {
-      return ranges;
-    }
-
-    const TS_REGEX = /\b((\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d[,|])*\d\))?)/;
-    const regex = RegExp(TS_REGEX, 'g');
-    let match;
-
-    while ((match = regex.exec(node.text)) !== null) {
-      if (match && match.index !== undefined) {
-        ranges.push({
-          anchor: {path, offset: match.index},
-          focus: {path, offset: match.index + match[0].length},
-          timestamp: match[0],
-        });
-      }
-    }
-
-    return ranges;
   }
 
   render(): React.ReactNode {
@@ -311,7 +252,7 @@ export default class Editor extends React.Component<any, any> {
                         </div>
                         <div className='forum-post-edit__buttons forum-post-edit__buttons--actions'>
                             <div className='forum-post-edit__button'>
-                              <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={(event) => { event.preventDefault(); this.resetInput(); }}>reset</button>
+                              <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.resetInput}>reset</button>
                               <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
                               <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
                           </div>
@@ -358,6 +299,24 @@ export default class Editor extends React.Component<any, any> {
     );
   }
 
+  renderElement = (props: RenderElementProps) => {
+    switch (props.element.type) {
+      case 'embed':
+        return (
+          <EditorDiscussionComponent
+            beatmapset={this.props.beatmapset}
+            currentBeatmap={this.props.currentBeatmap}
+            currentDiscussions={this.props.currentDiscussions}
+            beatmaps={_.flatten(_.values(this.props.beatmaps))}
+            {...props}
+          />
+        );
+      case 'other':
+      default:
+        return <div {...props.attributes}>{props.children}</div>;
+    }
+  }
+
   renderLeaf = (props: RenderLeafProps) => {
     let children = props.children;
     if (props.leaf.bold) {
@@ -377,22 +336,14 @@ export default class Editor extends React.Component<any, any> {
     );
   }
 
-  renderElement = (props: RenderElementProps) => {
-    switch (props.element.type) {
-      case 'embed':
-        return (
-          <EditorDiscussionComponent
-            beatmapset={this.props.beatmapset}
-            currentBeatmap={this.props.currentBeatmap}
-            currentDiscussions={this.props.currentDiscussions}
-            beatmaps={_.flatten(_.values(this.props.beatmaps))}
-            {...props}
-          />
-        );
-      case 'other':
-      default:
-        return <div {...props.attributes}>{props.children}</div>;
+  resetInput = (event?: React.MouseEvent) => {
+    if (event) {
+      event.preventDefault();
     }
+
+    this.setState({
+      value: JSON.parse(placeholder),
+    });
   }
 
   showMenu = () => {
@@ -400,5 +351,60 @@ export default class Editor extends React.Component<any, any> {
       return;
     }
     this.setState({menuShown: true});
+  }
+
+  toggleBold = (event: React.MouseEvent) => {
+    event.preventDefault();
+    this.toggleMark('bold');
+  }
+
+  toggleItalic = (event: React.MouseEvent) => {
+    event.preventDefault();
+    this.toggleMark('italic');
+  }
+
+  toggleMark = (format: any) => {
+    const marks = SlateEditor.marks(this.slateEditor);
+    const isActive = marks ? marks[format] === true : false;
+
+    if (isActive) {
+      SlateEditor.removeMark(this.slateEditor, format);
+    } else {
+      SlateEditor.addMark(this.slateEditor, format, true);
+    }
+  }
+
+  withNormalization = (editor: ReactEditor) => {
+    const { normalizeNode } = editor;
+
+    editor.normalizeNode = (entry) => {
+      const [node, path] = entry;
+
+      if (SlateElement.isElement(node) && node.type === 'embed') {
+        for (const [child, childPath] of SlateNode.children(editor, path)) {
+          // ensure embeds only have a single child
+          if (SlateElement.isElement(child) && !editor.isInline(child)) {
+            Transforms.unwrapNodes(editor, { at: childPath });
+
+            return;
+          }
+
+          // clear formatting from content within embeds
+          if (child.bold || child.italic) {
+            Transforms.setNodes(
+              editor,
+              { bold: false, italic: false },
+              { at: childPath },
+            );
+
+            return;
+          }
+        }
+      }
+
+      normalizeNode(entry);
+    };
+
+    return editor;
   }
 }
