@@ -402,6 +402,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
 
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', 'RankingController@index');
+        Route::resource('spotlights', 'SpotlightsController', ['only' => ['index']]);
 
         //  GET /api/v2/users/:user_id/kudosu
         Route::get('users/{user}/kudosu', 'UsersController@kudosu');

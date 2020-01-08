@@ -597,6 +597,34 @@ spotlight      | [Spotlight](#spotlight)?            | Spotlight details; only a
 total          | number                              | An approximate count of ranks available
 
 
+## Spotlight Response
+```json
+{
+  "spotlights": [
+    {
+      "end_date": "2019-03-22T00:00:00+00:00",
+      "id": 1,
+      "mode_specific": false,
+      "name": "Best spinning circles 2019",
+      "start_date": "2019-02-22T00:00:00+00:00",
+      "type": "yearly",
+    },
+    {
+      "end_date": "2019-03-22T00:00:00+00:00",
+      "id": 2,
+      "mode_specific": true,
+      "name": "Ultimate fruit collector February 2019",
+      "start_date": "2019-02-22T00:00:00+00:00",
+      "type": "monthly",
+    }
+  ],
+}
+
+Field          | Type                                | Description
+-------------- | ----------------------------------- | --------------------------------------------------------------------
+spotlight      | [Spotlight](#spotlight)[]           | An array of spotlights
+
+
 ## RankingType
 
 Available ranking types:
@@ -623,14 +651,15 @@ score       | Score
 
 The details of a spotlight.
 
-Field         | Type     | Description
-------------- | -------- | ----------------------------------------------------------------------------
-end_date      | DateTime | The end date of the spotlight.
-id            | number   | The ID of this spotlight.
-mode_specific | number   | If the spotlight has different mades specific to each [GameMode](#gamemode).
-name          | number   | The name of the spotlight.
-start_date    | DateTime | The starting date of the spotlight.
-type          | string   | The type of spotlight.
+Field             | Type     | Description
+----------------- | -------- | ----------------------------------------------------------------------------
+end_date          | DateTime | The end date of the spotlight.
+id                | number   | The ID of this spotlight.
+mode_specific     | number   | If the spotlight has different mades specific to each [GameMode](#gamemode).
+participant_count | number?  | The number of users participating in this spotlight. This is only shown when viewing a single spotlight.
+name              | number   | The name of the spotlight.
+start_date        | DateTime | The starting date of the spotlight.
+type              | string   | The type of spotlight.
 
 
 ## User
