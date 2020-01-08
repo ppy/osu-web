@@ -24,7 +24,6 @@ import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as S
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import EditorDiscussionComponent from './editor-discussion-component';
-import EditorPluginTimestamp from './editor-plugin-timestamp';
 import { SlateContext } from './slate-context';
 
 const placeholder: string = '[{"children": [{"text": "placeholder"}], "type": "paragraph"}]';
@@ -38,9 +37,6 @@ export default class Editor extends React.Component<any, any> {
   editor = React.createRef<HTMLDivElement>();
   menu = React.createRef<HTMLDivElement>();
   menuBody = React.createRef<HTMLDivElement>();
-  plugins = [
-    EditorPluginTimestamp(),
-  ];
   slateEditor: ReactEditor;
 
   constructor(props: {}) {
