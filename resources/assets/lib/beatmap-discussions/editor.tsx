@@ -387,9 +387,9 @@ export default class Editor extends React.Component<any, any> {
 
           // clear formatting from content within embeds
           if (child.bold || child.italic) {
-            Transforms.setNodes(
+            Transforms.unsetNodes(
               editor,
-              { bold: false, italic: false },
+              ['bold', 'italic'],
               { at: childPath },
             );
 
