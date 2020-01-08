@@ -1,4 +1,4 @@
-  /**
+/**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
@@ -20,7 +20,7 @@ import isHotkey from 'is-hotkey';
 import * as laroute from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
-import { createEditor, Editor as SlateEditor, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
+import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import EditorDiscussionComponent from './editor-discussion-component';
@@ -46,7 +46,7 @@ export default class Editor extends React.Component<any, any> {
   constructor(props: {}) {
     super(props);
 
-    this.slateEditor = this.withEmbeds(withHistory(withReact(createEditor())));
+    this.slateEditor = this.withNormalization(withHistory(withReact(createEditor())));
 
     const savedValue = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
     if (savedValue) {
@@ -60,12 +60,36 @@ export default class Editor extends React.Component<any, any> {
     };
   }
 
-  withEmbeds = (editor: ReactEditor) => {
-    // const { isVoid } = editor;
-    // editor.isVoid = (element) => {
-    //   // console.log('isVoid', element.type);
-    //   return element.type === 'embed' ? true : isVoid(element);
-    // };
+  withNormalization = (editor: ReactEditor) => {
+    const { normalizeNode } = editor;
+
+    editor.normalizeNode = (entry) => {
+      const [node, path] = entry;
+
+      if (SlateElement.isElement(node) && node.type === 'embed') {
+        for (const [child, childPath] of SlateNode.children(editor, path)) {
+          // ensure embeds only have a single child
+          if (SlateElement.isElement(child) && !editor.isInline(child)) {
+            Transforms.unwrapNodes(editor, { at: childPath });
+
+            return;
+          }
+
+          // clear formatting from content within embeds
+          if (child.bold || child.italic) {
+            Transforms.setNodes(
+              editor,
+              { bold: false, italic: false },
+              { at: childPath },
+            );
+
+            return;
+          }
+        }
+      }
+
+      normalizeNode(entry);
+    };
 
     return editor;
   }
@@ -159,11 +183,6 @@ export default class Editor extends React.Component<any, any> {
   }
 
   onKeyDown = (event: KeyboardEvent) => {
-    // // don't apply bold/italic marks within embed blocks
-    // if (editor.value.anchorBlock.type === 'embed') {
-    //   return next();
-    // }
-
     if (isHotkey('mod+b', event)) {
       event.preventDefault();
       this.toggleMark('bold');
