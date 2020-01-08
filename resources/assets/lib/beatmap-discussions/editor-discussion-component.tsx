@@ -17,15 +17,27 @@
  */
 
 import * as React from 'react';
+import { Transforms } from 'slate';
+import { RenderElementProps } from 'slate-react';
+import { ReactEditor } from 'slate-react';
 import EditorBeatmapSelector from './editor-beatmap-selector';
 import EditorIssueTypeSelector from './editor-issue-type-selector';
+import { SlateContext } from './slate-context';
 
-export default class EditorDiscussionComponent extends React.Component<any, any> {
+interface Props extends RenderElementProps {
+  beatmaps: Beatmap[];
+  beatmapset: Beatmapset;
+  currentBeatmap: Beatmap;
+  currentDiscussions: BeatmapDiscussion[];
+}
+
+export default class EditorDiscussionComponent extends React.Component<Props> {
+  static contextType = SlateContext;
+
   remove = (event: React.MouseEvent<HTMLElement>) => {
-    const { editor, node } = this.props;
-
     event.preventDefault();
-    editor.removeNodeByKey(node.key);
+    const path = ReactEditor.findPath(this.context, this.props.element);
+    Transforms.delete(this.context, { at: path });
   }
 
   render(): React.ReactNode {

@@ -106,6 +106,12 @@ interface BeatmapFailTimesArray {
 }
 
 // TODO: incomplete
+interface Beatmapset {
+  beatmapset_id: number;
+  // ... and other stuff
+}
+
+// TODO: incomplete
 interface Beatmap {
   accuracy: number;
   ar: number;
