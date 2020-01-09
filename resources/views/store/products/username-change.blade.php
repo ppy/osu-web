@@ -37,7 +37,7 @@
         <strong>
             <div id="username-check-status">{{ trans('store.username_change.check') }}</div>
         </strong>
-        <div>Your current username is "<i>{{ Auth::user()->username }}</i>".</div>
+        <div>Your current username is "{{ Auth::user()->username }}".</div>
     </div>
     <div class="grid-cell">
         <p class="store-text store-text--price" id="username-check-price"></p>
