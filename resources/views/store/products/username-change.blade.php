@@ -32,7 +32,12 @@
             <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
             <input type="hidden" id="username-form-price" name="item[cost]" value="0" />
             {!! Form::label('username', 'New Username') !!}
-            {!! Form::text('item[extra_info]', '', ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Requested Username', 'autocomplete' => 'off']) !!}
+            {!! Form::text('item[extra_info]', '', [
+                'id' => 'username',
+                'class' => 'form-text form-text--username-change',
+                'placeholder' => 'Requested Username',
+                'autocomplete' => 'off',
+            ]) !!}
         </div>
         <strong>
             <div id="username-check-status">{{ trans('store.username_change.check') }}</div>
