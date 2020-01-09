@@ -45,9 +45,11 @@
   &__dropdown {
     align-items: center;
     display: flex;
-    margin-left: -5px;
     margin-right: 10px;
     padding: 5px;
+    justify-content: center;
+    width: 32px;
+    cursor: pointer; // TODO: less hacky
 
     .default-border-radius();
     .link-default();
@@ -72,26 +74,6 @@
       &:after {
         opacity: 1;
       }
-    }
-  }
-
-  &__dropdown-menu {
-    margin: 5px 0;
-    background: @osu-colour-b5;
-    .default-border-radius();
-    .default-box-shadow();
-    z-index: @z-index--blackout-visible;
-  }
-
-  &__dropdown-menu-item {
-    padding: 5px;
-    display: flex;
-    .link-white();
-    .link-plain();
-
-    &:hover {
-      .default-border-radius();
-      background: @osu-colour-b6;
     }
   }
 

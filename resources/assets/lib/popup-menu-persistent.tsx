@@ -22,13 +22,14 @@ import { ContainerContext, KeyContext } from 'stateful-activation-context';
 
 interface Props {
   children: Children;
+  customRender?: (children: JSX.Element[], ref: React.RefObject<HTMLElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => JSX.Element;
 }
 
 /**
  * Wrapper around PopupMenu that handles the persistent active state thing for it.
  * Also a functional component to be able to use useContext.
  */
-export function PopupMenuPersistent({ children, ...params }: Props) {
+export function PopupMenuPersistent({customRender, children, ...params }: Props) {
   const container = React.useContext(ContainerContext);
   const key = React.useContext(KeyContext);
 
@@ -36,7 +37,7 @@ export function PopupMenuPersistent({ children, ...params }: Props) {
   const onShow = () => container.activeKeyDidChange(key);
 
   return (
-    <PopupMenu onHide={onHide} onShow={onShow} {...params}>
+    <PopupMenu onHide={onHide} onShow={onShow} customRender={customRender} {...params}>
       {children}
     </PopupMenu>
   );

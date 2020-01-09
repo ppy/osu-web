@@ -44,33 +44,64 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     return (
       <div className='beatmap-discussion beatmap-discussion--preview' {...this.props.attributes}>
         <div className='beatmap-discussion__discussion'>
-          <div className='beatmap-discussion-post beatmap-discussion-post--reply'>
-            <div className='beatmap-discussion-post__content'>
-              <EditorBeatmapSelector {...this.props}/>
-              <div className='beatmap-discussion-post__user-container' style={{userSelect: 'none'}} contentEditable={false}>
-                <div className='beatmap-discussion-timestamp__icons-container' style={{marginRight: '10px'}}>
-                  <EditorIssueTypeSelector {...this.props}/>
-                  <div className='beatmap-discussion-timestamp__text'>00:00.184</div>
+          <div className='beatmap-discussion-post'>
+            <div
+              className='beatmap-discussion-post__content'
+              style={{
+                alignItems: 'flex-start',
+              }}
+            >
+              <div
+                style={{
+                  alignItems: 'center',
+                  display: 'flex',
+                }}
+              >
+                <EditorBeatmapSelector {...this.props}/>
+                <EditorIssueTypeSelector {...this.props}/>
+                <div
+                  contentEditable={false}
+                  style={{
+                    color: 'hsl(var(--base-hue), 10%, 60%)',
+                    fontSize: '9px',
+                    userSelect: 'none',
+                  }}
+                >
+                  00:00.184
                 </div>
-                <div className='beatmap-discussion-post__user-stripe'/>
+                <div
+                  contentEditable={false}
+                  style={{
+                    backgroundColor: '#21272a',
+                    borderRadius: '5px',
+                    display: 'flex',
+                    height: '32px',
+                    margin: '0 10px',
+                    padding: '0',
+                    userSelect: 'none',
+                    width: '2px',
+                  }}
+                />
               </div>
-              <div className='beatmap-discussion-post__message-container'>
+              <div
+                className='beatmap-discussion-post__message-container'
+                style={{alignSelf: 'center'}}
+              >
                 <div className='beatmapset-discussion-message'>{this.props.children}</div>
-                <div className='beatmap-discussion-post__actions' style={{userSelect: 'none'}} contentEditable={false}>
-                  <div className='beatmap-discussion-post__actions-group'>
-                    <a
-                      className='beatmap-discussion-post__action beatmap-discussion-post__action--button'
-                      href='#'
-                      onClick={this.remove}
-                    >
-                      delete
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
+        <button
+          onClick={this.remove}
+          style={{
+            height: '32px',
+            userSelect: 'none',
+          }}
+          contentEditable={false}
+        >
+          <i className='far fa-trash-alt' />
+        </button>
       </div>
     );
   }

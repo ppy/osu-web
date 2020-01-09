@@ -17,9 +17,9 @@
  */
 
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
+import { PopupMenuPersistent } from '../popup-menu-persistent';
 import { SlateContext } from './slate-context';
 
 type DiscussionType = 'hype' | 'mapperNote' | 'praise' | 'problem' | 'suggestion';
@@ -27,40 +27,22 @@ const selectableTypes: DiscussionType[] = ['praise', 'problem', 'suggestion'];
 
 export default class EditorIssueTypeSelector extends React.Component<any, any> {
   static contextType = SlateContext;
-  portal: HTMLDivElement;
-  private readonly topRef: React.RefObject<HTMLAnchorElement> = React.createRef<HTMLAnchorElement>();
-
-  constructor(props: {}) {
-    super(props);
-
-    this.portal = document.createElement('div');
-    document.body.appendChild(this.portal);
-    // this.topRef = React.createRef<HTMLDivElement>();
-
-    this.state = {
-      visible: false,
-    };
-  }
-
-  componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any): void {
-    this.syncBlackout();
-
-    if (!this.topRef.current) {
-      return;
-    }
-
-    const position = $(this.topRef.current).offset();
-    if (!position) {
-      return;
-    }
-
-    const { top, left } = position;
-    this.portal.style.position = 'absolute';
-    this.portal.style.top = `${Math.floor(top + this.topRef.current.offsetHeight)}px`;
-    this.portal.style.left = `${Math.floor(left)}px`;
-  }
 
   render(): React.ReactNode {
+    return (
+      <PopupMenuPersistent customRender={this.renderButton}>
+        {() => {
+          return (
+            <div className='simple-menu simple-menu--popup-menu-compact'>
+              {selectableTypes.map((type: DiscussionType) => this.renderListItem(type))}
+            </div>
+            );
+        }}
+      </PopupMenuPersistent>
+    );
+  }
+
+  renderButton = (children: JSX.Element[], ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
     const type: DiscussionType = this.props.element.discussionType;
     const icons = {
       hype: 'fas fa-bullhorn',
@@ -71,28 +53,15 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
     };
 
     return (
-      <React.Fragment>
-        <a href='#' className='beatmap-discussion-timestamp__icons' onClick={this.toggleMenu} contentEditable={false} ref={this.topRef}>
-          <div className='beatmap-discussion-timestamp__icon'>
-            <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={icons[type]} /></span>
-          </div>
-        </a>
-        {this.state.visible && this.renderList()}
-      </React.Fragment>
+      <div className='beatmap-discussion-newer__dropdown' ref={ref} onClick={toggle} contentEditable={false} style={{userSelect: 'none'}}>
+          <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={icons[type]} /></span>
+          {children}
+      </div>
     );
   }
 
-  renderList = () => {
-    return ReactDOM.createPortal(
-      (
-        <div className='beatmap-discussion-newer__dropdown-menu' contentEditable={false}>
-          {selectableTypes.map((type: DiscussionType) => this.renderListItem(type))}
-        </div>
-      ), this.portal);
-  }
-
   renderListItem = (type: DiscussionType) => {
-    const menuItemClasses = 'beatmap-discussion-newer__dropdown-menu-item';
+    const menuItemClasses = 'simple-menu__item';
     const icons = {
       hype: 'fas fa-bullhorn',
       mapperNote: 'far fa-sticky-note',
@@ -102,8 +71,7 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
     };
 
     return (
-      <a
-        href='#'
+      <button
         className={menuItemClasses}
         key={type}
         data-type={type}
@@ -117,11 +85,11 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
           <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`} style={{paddingRight: '5px'}}><i className={icons[type]} /></span>
           {type}
         </div>
-      </a>
+      </button>
     );
   }
 
-  select = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  select = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
 
     const target = event.currentTarget;
@@ -130,20 +98,7 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
       return;
     }
 
-    this.setState({visible: false}, () => {
-      const path = ReactEditor.findPath(this.context, this.props.element);
-      Transforms.setNodes(this.context, {discussionType: target.dataset.type}, {at: path});
-    });
-  }
-
-  syncBlackout = () => {
-    // Blackout.toggle(this.state.visible, 0.5);
-  }
-
-  toggleMenu = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    event.preventDefault();
-    this.setState({
-      visible: !this.state.visible,
-    });
+    const path = ReactEditor.findPath(this.context, this.props.element);
+    Transforms.setNodes(this.context, {discussionType: target.dataset.type}, {at: path});
   }
 }

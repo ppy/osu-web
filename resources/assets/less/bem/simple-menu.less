@@ -94,6 +94,11 @@
     padding: 10px @_gutter;
   }
 
+  &--popup-menu-compact {
+    border-radius: 10px;
+    padding: @_gutter;
+  }
+
   &--profile-page-bar {
     margin-top: 5px;
     top: 100%;
@@ -198,6 +203,15 @@
 
     .@{_top}--nav2-locales & {
       width: 50%;
+    }
+
+    .@{_top}--popup-menu-compact & {
+      display: flex;
+      padding: @_gutter @_gutter * 2;
+
+      &::before {
+        display: none;
+      }
     }
 
     &[disabled], &--disabled {
