@@ -259,7 +259,6 @@ class CommentsController extends Controller
         $comment->update(['pinned' => false]);
 
         $bundle = CommentBundle::forComment($comment);
-        $bundle->includePinned = true;
 
         return $bundle->toArray();
     }
@@ -272,7 +271,6 @@ class CommentsController extends Controller
         $comment->update(['pinned' => true]);
 
         $bundle = CommentBundle::forComment($comment);
-        $bundle->includePinned = true;
 
         return $bundle->toArray();
     }
