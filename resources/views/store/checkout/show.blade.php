@@ -29,20 +29,20 @@
             <h1 class="store-text store-text--title">Checkout</h1>
 
             @if (session()->has('checkout.error.message') || $hasErrors)
-                <div class="alert alert-danger">
-                    <p>
+                <ul class="store-page__alert store-page__alert--with-margin-bottom">
+                    <li>
                         {{ session('checkout.error.message') ?? trans('store.checkout.cart_problems') }}
-                    </p>
-                </div>
+                    </li>
+                </ul>
             @endif
 
             @if ($order->isProcessing())
-                <div class="alert alert-danger">
-                    <p>
+                <ul class="store-page__alert store-page__alert--with-margin-bottom">
+                    <li>
                         {{ trans('store.checkout.pending_checkout.line_1') }}<br>
                         {{ trans('store.checkout.pending_checkout.line_2') }}
-                    </p>
-                </div>
+                    </li>
+                </ul>
             @endif
 
             @include("store.objects.order", ['order' => $order, 'modifiers' => ['checkout']])
