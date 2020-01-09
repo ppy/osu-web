@@ -59,7 +59,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   }
 
   render() {
-    let className = 'nav2__menu-link-main nav2__menu-link-main--search';
+    let className = 'nav2__menu-link-main nav2__menu-link-main--search js-login-required--click';
 
     if (this.state.open || document.location.pathname === route('search', null, false)) {
       className += ' u-section--bg-normal';
@@ -377,6 +377,10 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   private toggle = (event?: React.SyntheticEvent<HTMLElement>) => {
     if (event != null) {
       event.preventDefault();
+    }
+
+    if (currentUser.id == null) {
+      return;
     }
 
     if (this.isSearchPage) {
