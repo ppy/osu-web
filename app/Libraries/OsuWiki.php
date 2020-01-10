@@ -40,6 +40,21 @@ class OsuWiki
         return preg_replace('|//+|', '/', trim($path, '/'));
     }
 
+    public static function getPageList()
+    {
+        return collect(static::getTree()['tree'])
+            ->pluck('path')
+            ->filter(function ($path) {
+                return starts_with($path, 'wiki/') && ends_with($path, '.md');
+            })
+            ->values();
+    }
+
+    public static function getTree()
+    {
+        return Github::gitData()->trees()->show(static::user(), static::repository(), config('osu.wiki.branch'), true);
+    }
+
     public static function fetch($path)
     {
         try {
