@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Şifre Sıfırlama',
-
     'button' => [
         'cancel' => 'İptal',
         'resend' => 'Doğrulama e-postasını tekrar gönder',
         'set' => 'Şifre belirle',
         'start' => 'Başlat',
-    ],
-
-    'email' => [
-        'subject' => 'osu! hesap kurtarma',
     ],
 
     'error' => [

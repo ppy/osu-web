@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Megkaptuk az osu!boltban elhelyezett rendelésed!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Megrendelés feladva :date',
 

@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'Lịch sử',
             'general' => 'Chung :scope',
+            'reviews' => '',
             'timeline' => 'Timeline',
             'scopes' => [
                 'general' => 'Difficulty này',

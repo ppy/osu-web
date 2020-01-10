@@ -64,24 +64,52 @@ return [
         'send_message' => '메시지 보내기',
     ],
 
+    'disabled' => [
+        'title' => '이런! 계정이 비활성화 된 것 같네요.',
+        'warning' => "규칙을 어긴 경우, 일반적으로 한 달의 기간동안 어느 사면 요청도 받지 않습니다. 이 기간이 끝나면, 필요하다고 판단 할 경우 언제든지 저희에게 연락하실 수 있습니다. 하나의 계정이 비활성화 된 이후 새로운 계정을 만들면 <strong>이 한 달 기간이 연장될 수 있음</strong>을 명심해주세요. 또한, <strong>계정을 새로 만들 때마다 더욱 규칙을 위반</strong>한다는 것을 잊지 마세요. 이 길은 절대로 걷지 말아주시기 바랍니다!",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '이메일',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '당신은 저희의 :community_rules 또는 :tos 를 위반했습니다.',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "당신의 계정은 오랫동안 사용되지 않았네요.",
+        ],
+    ],
+
     'login' => [
         '_' => '로그인',
-        'locked_ip' => 'IP 주소가 잠겨있습니다. 잠시 기다려주세요.',
-        'username' => 'Username',
-        'password' => 'Password',
         'button' => '로그인',
         'button_posting' => '로그인 중...',
+        'email_login_disabled' => '',
+        'failed' => '계정 정보가 올바르지 않습니다',
+        'forgot' => '비밀번호를 잊어버리셨나요?',
+        'info' => '',
+        'locked_ip' => 'IP 주소가 잠겨있습니다. 잠시 기다려주세요.',
+        'password' => 'Password',
+        'register' => "osu!계정이 없으신가요? 새로 하나 만들어보세요",
         'remember' => '이 컴퓨터에서 계정 정보 기억하기',
         'title' => '계속하려면 로그인해 주세요',
-        'failed' => '계정 정보가 올바르지 않습니다',
-        'register' => "osu!계정이 없으신가요? 새로 하나 만들어보세요",
-        'forgot' => '비밀번호를 잊어버리셨나요?',
+        'username' => 'Username',
+
         'beta' => [
             'main' => '베타 권한은 현재 일부 특수 사용자만 가지고 있습니다.',
             'small' => '(osu! 서포터들도 곧 받게 될 거에요)',
         ],
-
-        'here' => '이곳', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => '플레이어 :info',
-            'info' => '정보',
         ],
 
         'info' => [

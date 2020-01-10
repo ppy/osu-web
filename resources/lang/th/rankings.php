@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => 'อันดับ:type',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'ประสิทธิภาพ',

@@ -41,7 +41,7 @@ class Sort implements Queryable
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         if ($this->field === null) {
             return [];

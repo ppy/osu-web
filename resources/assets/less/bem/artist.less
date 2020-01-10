@@ -19,7 +19,7 @@
 .artist {
   @_top: artist;
   &__index {
-    background-color: @osu-colour-b5;
+    background-color: @osu-colour-b4;
     padding: 10px;
     font-weight: 300;
     .default-box-shadow();
@@ -81,24 +81,27 @@
   }
 
   &__description {
-    background-color: @osu-colour-b4;
+    .default-gutter-v2();
+    background-color: @osu-colour-b5;
     color: white;
     font-size: 14px;
     font-weight: 300;
-    padding: 0 20px 20px 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .default-box-shadow();
 
     @media @desktop {
-      padding: 20px;
       margin-bottom: 10px;
     }
-    .default-box-shadow();
 
     > h1, h2, h3, h4, h5, h6 {
       color: white;
     }
 
     &--index {
-      padding: 30px;
+      @media @desktop {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -117,10 +120,10 @@
     background-position: center;
     display: block;
 
-    margin: -90px auto 10px auto;
+    margin: 10px auto;
 
     @media @desktop {
-      margin-top: -160px;
+      margin-top: -113px; // approximately aligned to inside of title bar
     }
 
     &--index {
@@ -133,7 +136,7 @@
     }
 
     &--new {
-      box-shadow: 25px -10px 50px .osu-hsla(@osu-colour-orange-1, 0.2)[@hsla];
+      box-shadow: 25px -10px 50px osu-hsla(@osu-colour-orange-1, 0.2);
     }
   }
 

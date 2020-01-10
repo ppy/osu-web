@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'osu! 帳號驗證',
-    ],
-
     'errors' => [
         'expired' => '該驗證碼已經過期，新驗證碼已經重新發送。',
         'incorrect_key' => '驗證碼錯誤。',

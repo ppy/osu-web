@@ -91,13 +91,14 @@ return [
             'nomination_reset' => 'Hilangkan Status Nominasi',
             'praise' => 'Pujian',
             'problem' => 'Masalah',
-            'review' => '',
+            'review' => 'Ulasan',
             'suggestion' => 'Saran',
         ],
 
         'mode' => [
             'events' => 'Riwayat',
             'general' => 'Umum :scope',
+            'reviews' => '',
             'timeline' => 'Linimasa',
             'scopes' => [
                 'general' => 'Tingkat kesulitan ini',

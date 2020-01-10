@@ -19,12 +19,4 @@
  */
 
 return [
-    'mail' => [
-        'donation_thanks' => [
-            'subject' => 'Köszi, az osu! <3 téged',
-        ],
-        'supporter_gift' => [
-            'subject' => 'osu!támogatói címet kaptál!',
-        ],
-    ],
 ];

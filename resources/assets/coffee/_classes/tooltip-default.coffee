@@ -84,6 +84,9 @@ class @TooltipDefault
     if el.dataset.tooltipPinPosition
       options.position.effect = false
 
+    if el.dataset.tooltipHideEvents
+      options.hide.event = el.dataset.tooltipHideEvents
+
     el.dataset.origTitle = title
 
     $(el).qtip options, event

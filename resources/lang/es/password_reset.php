@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Reestablecer contraseña',
-
     'button' => [
         'cancel' => 'Cancelar',
         'resend' => 'Reenviar verificación por correo electrónico',
         'set' => 'Establecer contraseña',
         'start' => 'Empezar',
-    ],
-
-    'email' => [
-        'subject' => 'Recuperación de tu cuenta de osu!',
     ],
 
     'error' => [

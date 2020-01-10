@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Setel Ulang Kata Sandi',
-
     'button' => [
         'cancel' => 'Batal',
         'resend' => 'Kirim ulang email verifikasi',
         'set' => 'Atur Kata Sandi',
         'start' => 'Mulai',
-    ],
-
-    'email' => [
-        'subject' => 'Pemulihan akun osu!',
     ],
 
     'error' => [

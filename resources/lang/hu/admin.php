@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Újragenerálás...',
             'remove' => 'Eltávolítás',
             'removing' => 'Eltávolítás...',
+            'title' => '',
         ],
         'show' => [
             'covers' => 'Beatmap fejlécek kezelése',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Konzol Dolog',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => 'Fórum',
                 'general' => 'Általános',
                 'store' => 'Bolt',

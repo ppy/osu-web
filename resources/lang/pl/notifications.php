@@ -30,7 +30,7 @@ return [
                 '_' => 'Dyskusja beatmapy',
                 'beatmapset_discussion_lock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało zablokowane.',
                 'beatmapset_discussion_lock_compact' => 'Dyskusja została zablokowana',
-                'beatmapset_discussion_post_new' => 'Nowy post w duskusji „:title” od użytkownika :username: ":content"',
+                'beatmapset_discussion_post_new' => 'Nowy post w dyskusji „:title” od użytkownika :username: „:content”',
                 'beatmapset_discussion_post_new_empty' => 'Nowy post od użytkownika :username dla beatmapy „:title”',
                 'beatmapset_discussion_post_new_compact' => 'Nowy post od użytkownika :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nowy post od użytkownika :username',

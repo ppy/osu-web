@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] ":title"주제에 대한 새로운 답변이 달렸습니다',
-    ],
-
     'forums' => [
         'latest_post' => '최근 게시글',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => '구독한 주제글',
             'title_compact' => '구독',
-            'title_main' => '포럼 <strong>구독</strong>',
 
             'box' => [
                 'total' => '구독한 주제글',

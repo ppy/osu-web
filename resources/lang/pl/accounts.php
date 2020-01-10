@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Ustawienia <strong>konta</strong>',
         'title_compact' => 'ustawienia',
         'username' => 'nazwa użytkownika',
 
@@ -68,6 +67,12 @@ return [
         'title' => 'Powiadomienia',
         'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',
         'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
+
+        'mail' => [
+            '_' => 'otrzymuj powiadomienia e-mail dla',
+            'beatmapset:modding' => 'dyskusji beatmap',
+            'forum_topic_reply' => 'odpowiedzi w wątkach',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'potwierdź zmianę adresu e-mail',
         'update' => 'zaktualizuj',
     ],
 
     'update_password' => [
-        'email_subject' => 'potwierdź zmianę hasła',
         'update' => 'zaktualizuj',
     ],
 

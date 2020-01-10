@@ -64,24 +64,52 @@ return [
         'send_message' => 'üzenet küldése',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Bejelentkezés',
-        'locked_ip' => 'Az IP címed zárolva van. Kérjük várj egy pár percet.',
-        'username' => 'Felhasználónév',
-        'password' => 'Jelszó',
         'button' => 'Bejelentkezés',
         'button_posting' => 'Bejelentkezés...',
+        'email_login_disabled' => '',
+        'failed' => 'Hibás adatok',
+        'forgot' => 'Elfelejtetted a jelszavad?',
+        'info' => '',
+        'locked_ip' => 'Az IP címed zárolva van. Kérjük várj egy pár percet.',
+        'password' => 'Jelszó',
+        'register' => "Nincs osu! felhasználód? Regisztrálj egyet!",
         'remember' => 'Számítógép megjegyzése',
         'title' => 'Kérlek, jelentkezz be a folytatáshoz',
-        'failed' => 'Hibás adatok',
-        'register' => "Nincs osu! felhasználód? Regisztrálj egyet!",
-        'forgot' => 'Elfelejtetted a jelszavad?',
+        'username' => 'Felhasználónév',
+
         'beta' => [
             'main' => 'Beta hozzáférés jelenleg csak kiváltságos felhasználóknak elérhető.',
             'small' => '(osu!támogatók hamarosan bejutnak)',
         ],
-
-        'here' => 'itt', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Játékos :info',
-            'info' => 'Info',
         ],
 
         'info' => [

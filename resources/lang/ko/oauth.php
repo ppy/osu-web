@@ -52,12 +52,6 @@ return [
         'secret' => '클라이언트 비밀 키',
     ],
 
-    'login' => [
-        'download' => '이곳을 눌러 게임을 다운로드하고 계정을 생성하세요',
-        'label' => '우선 로그인해봅시다!',
-        'title' => '계정 로그인',
-    ],
-
     'new_client' => [
         'header' => '새 OAuth 애플리케이션 등록',
         'register' => '애플리케이션 등록',

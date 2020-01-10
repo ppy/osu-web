@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Regenerando...',
             'remove' => 'Eliminar',
             'removing' => 'Eliminando...',
+            'title' => '',
         ],
         'show' => [
             'covers' => 'Administrar las portadas de los Beatmap',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Consola de administración',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => 'Foro',
                 'general' => 'General',
                 'store' => 'Tienda',

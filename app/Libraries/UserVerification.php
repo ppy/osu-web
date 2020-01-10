@@ -49,7 +49,7 @@ class UserVerification
         return $verification;
     }
 
-    public static function logAttempt(string $source, string $type, string $reason = null) : void
+    public static function logAttempt(string $source, string $type, string $reason = null): void
     {
         Datadog::increment(
             config('datadog-helper.prefix_web').'.verification.attempts',

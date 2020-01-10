@@ -26,11 +26,11 @@ return [
 
     'comment' => [
         'button' => 'Denunciar',
-        'title' => 'Denunciar o comentário de :username?',
+        'title' => 'Queres denunciar o comentário de :username?',
     ],
 
     'scores' => [
-        'button' => 'Denunciar Pontuação',
+        'button' => 'Denunciar pontuação',
         'title' => 'Denunciar a pontuação de :username?',
     ],
 

@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Настройки <strong>аккаунта</strong>',
         'title_compact' => 'настройки',
         'username' => 'имя пользователя',
 
@@ -68,6 +67,12 @@ return [
         'title' => 'Уведомления',
         'topic_auto_subscribe' => 'отслеживать созданные темы автоматически',
         'beatmapset_discussion_qualified_problem' => 'получать уведомления о новых проблемах с квалифицированными картами у следующих режимов',
+
+        'mail' => [
+            '_' => 'получать уведомления по почте о',
+            'beatmapset:modding' => 'моддинге карт',
+            'forum_topic_reply' => 'ответах на темы',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Подтверждение смены почты аккаунта osu!',
         'update' => 'сменить',
     ],
 
     'update_password' => [
-        'email_subject' => 'Подтверждение смены пароля аккаунта osu!',
         'update' => 'сменить',
     ],
 

@@ -20,38 +20,98 @@
 
 return [
     'beatmapset_update_notice' => [
+        'new' => '',
         'subject' => 'Có cập nhật mới cho beatmap ":title"',
+        'unwatch' => '',
+        'visit' => '',
+    ],
+
+    'common' => [
+        'closing' => '',
+        'hello' => '',
+        'report' => '',
     ],
 
     'donation_thanks' => [
+        'benefit_more' => '',
+        'feedback' => "",
+        'keep_free' => '',
+        'keep_running' => '',
         'subject' => 'Cảm ơn, osu! <3 bạn',
+
+        'benefit' => [
+            'gift' => '',
+            'self' => '',
+        ],
+
+        'support' => [
+            '_' => '',
+            'first' => '',
+            'repeat' => '',
+        ],
     ],
 
     'forum_new_reply' => [
+        'new' => '',
         'subject' => '[osu!] Có trả lời mới cho chủ đề ":title"',
+        'unwatch' => '',
+        'visit' => '',
     ],
 
     'password_reset' => [
+        'code' => '',
+        'requested' => '',
         'subject' => 'khôi phục tài khoản osu!',
     ],
 
     'store_payment_completed' => [
+        'prepare_shipping' => '',
+        'processing' => '',
+        'questions' => "",
+        'shipping' => '',
         'subject' => 'Chúng tôi đã nhận được đơn hàng osu!store của bạn!',
+        'thank_you' => '',
+        'total' => '',
     ],
 
     'supporter_gift' => [
+        'anonymous_gift' => '',
+        'anonymous_gift_maybe_not' => '',
+        'duration' => '',
+        'features' => '',
+        'gifted' => '',
         'subject' => 'Bạn đã được tặng một osu!supporter tag!',
     ],
 
     'user_email_updated' => [
+        'changed_to' => '',
+        'check' => '',
+        'sent' => '',
         'subject' => 'Xác nhận thay đổi email osu!',
     ],
 
+    'user_force_reactivation' => [
+        'main' => '',
+        'perform_reset' => '',
+        'reason' => '',
+        'subject' => '',
+    ],
+
     'user_password_updated' => [
+        'confirmation' => '',
         'subject' => 'Xác nhận thay đổi mật khẩu osu!',
     ],
 
     'user_verification' => [
+        'code' => '',
+        'code_hint' => '',
+        'link' => '',
+        'report' => '',
         'subject' => 'Xác thực tài khoản osu!',
+
+        'action_from' => [
+            '_' => '',
+            'unknown_country' => '',
+        ],
     ],
 ];

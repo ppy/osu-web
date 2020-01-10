@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'Előzmények',
             'general' => 'Általános :scope',
+            'reviews' => '',
             'timeline' => 'Idővonal',
             'scopes' => [
                 'general' => 'Ez a nehézség',

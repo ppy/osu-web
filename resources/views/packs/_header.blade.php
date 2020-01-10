@@ -15,23 +15,40 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $links = [
+        [
+            'title' => trans('beatmappacks.index.nav_title'),
+            'url' => route('packs.index'),
+        ],
+    ];
 
-<div class="osu-page-header osu-page-header--beatmappacks">
+    if (isset($pack)) {
+        $links[] = [
+            'title' => $pack->name,
+            'url' => route('packs.show', $pack),
+        ];
+    }
+@endphp
+
+@include('layout._page_header_v4', ['params' => [
+    'links' => $links,
+    'linksBreadcrumb' => true,
+    'section' => trans('layout.header.beatmapsets._'),
+    'subSection' => trans('layout.header.beatmapsets.packs'),
+    'theme' => 'beatmappacks',
+]])
+
+<div class="osu-page">
     <div class="beatmap-packs-header">
-        <div class="beatmap-packs-header__header">
-            <div class="beatmap-packs-header__icon"></div>
-            <div class="beatmap-packs-header__title">{{trans('beatmappacks.index.title')}}</div>
-        </div>
-        <div class="beatmap-packs-header__blurb">
-            @php
-                $scaryTexts = [
-                    '<span class="beatmap-packs-header__scary">' . trans('beatmappacks.index.blurb.instruction.scary') . '</span>',
-                    '<span class="beatmap-packs-header__scary">' . trans('beatmappacks.index.blurb.note.scary') . '</span>',
-                ];
-            @endphp
-            <p class="beatmap-packs-header__important">{{ trans('beatmappacks.index.blurb.important') }}</p>
-            <p>{!! trans('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]]) !!}</p>
-            <p>{!! trans('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]]) !!}</p>
-        </div>
+        @php
+            $scaryTexts = [
+                tag('span', ['class' => 'beatmap-packs-header__scary'], trans('beatmappacks.index.blurb.instruction.scary')),
+                tag('span', ['class' => 'beatmap-packs-header__scary'], trans('beatmappacks.index.blurb.note.scary')),
+            ];
+        @endphp
+        <p class="beatmap-packs-header__important">{{ trans('beatmappacks.index.blurb.important') }}</p>
+        <p>{!! trans('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]]) !!}</p>
+        <p>{!! trans('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]]) !!}</p>
     </div>
 </div>

@@ -25,6 +25,7 @@ import { HeaderInfo } from './header-info'
 import { Links } from './links'
 import { Stats } from './stats'
 import * as React from 'react'
+import HeaderV4 from 'header-v4'
 import { Img2x } from 'img2x'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
 import { Spinner } from 'spinner'
@@ -71,25 +72,19 @@ export class Header extends React.Component
     div
       className: 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
       'data-page-id': 'main'
-      div className: 'header-v4 header-v4--users',
-        div className: 'header-v4__bg-container',
-          div
-            className: 'header-v4__bg'
-            style:
-              backgroundImage: osu.urlPresence(@state.coverUrl)
-        if @state.isCoverUpdating
-          div
-            className: 'header-v4__spinner'
-            el Spinner
-        div className: 'header-v4__overlay'
-        div className: 'header-v4__content',
-          @renderTournamentBanner()
-          @renderTitle()
-          @renderTabs()
-          el GameModeSwitcher,
-            currentMode: @props.currentMode
-            user: @props.user
-            withEdit: @props.withEdit
+      el HeaderV4,
+        backgroundImage: @state.coverUrl
+        isCoverUpdating: @state.isCoverUpdating
+        links: @headerLinks()
+        section: osu.trans 'layout.header.users._'
+        subSection: osu.trans 'layout.header.users.show'
+        theme: 'users'
+        contentPrepend: @renderTournamentBanner()
+        titleAppend: el GameModeSwitcher,
+          currentMode: @props.currentMode
+          user: @props.user
+          withEdit: @props.withEdit
+
       div className: 'osu-page osu-page--users',
         div className: 'profile-header',
           div className: 'profile-header__top',
@@ -135,34 +130,6 @@ export class Header extends React.Component
             cover: @props.user.cover
 
 
-  renderTabs: =>
-    div className: 'header-v4__row header-v4__row--bar',
-      ul className: 'header-nav-v4 header-nav-v4--list',
-        li
-          className: 'header-nav-v4__item'
-          a
-            href: laroute.route('users.show', user: @props.user.id)
-            className: 'header-nav-v4__link header-nav-v4__link--active'
-            osu.trans 'layout.header.users.show'
-        if !@props.user.is_bot
-          li
-            className: 'header-nav-v4__item'
-            a
-              href: laroute.route('users.modding.index', user: @props.user.id)
-              className: 'header-nav-v4__link'
-              osu.trans 'layout.header.users.modding'
-
-
-  renderTitle: =>
-    div className: 'header-v4__row header-v4__row--title',
-      div className: 'header-v4__icon'
-      div className: 'header-v4__title',
-        span className: 'header-v4__title-section',
-          osu.trans 'layout.header.users._'
-        span className: 'header-v4__title-action',
-          osu.trans 'layout.header.users.show'
-
-
   renderTournamentBanner: ({modifiers} = {}) =>
     return if !@props.user.active_tournament_banner.id?
 
@@ -199,6 +166,23 @@ export class Header extends React.Component
 
   coverUploadState: (_e, state) =>
     @setState isCoverUpdating: state
+
+
+  headerLinks: =>
+    links = [
+      {
+        url: laroute.route('users.show', user: @props.user.id)
+        active: true
+        title: osu.trans 'layout.header.users.show'
+      }
+    ]
+
+    if !@props.user.is_bot
+      links.push
+        url: laroute.route('users.modding.index', user: @props.user.id)
+        title: osu.trans 'layout.header.users.modding'
+
+    links
 
 
   openEdit: =>

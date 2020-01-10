@@ -25,6 +25,7 @@ return [
         'missing' => 'Az oldal ":keyword" nem található.',
         'missing_title' => 'Nem Található',
         'missing_translation' => 'A kért oldal nem található a jelenleg kiválasztott nyelven.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Létező oldalak keresése :link után.',
         'toc' => 'Tartalom',
 

@@ -23,7 +23,7 @@ return [
     'talking_in' => 'rozmowa na kanale :channel',
     'talking_with' => 'rozmowa z użytkownikiem :name',
     'title_compact' => 'czat',
-    'title' => 'Czat',
+
     'cannot_send' => [
         'channel' => 'Nie możesz wysłać wiadomości na ten kanał z jednego z następujących powodów:',
         'user' => 'Nie możesz wysłać wiadomości do tego użytkownika z jednego z następujących powodów:',

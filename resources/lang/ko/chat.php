@@ -23,7 +23,7 @@ return [
     'talking_in' => ':channel에서 대화 중',
     'talking_with' => ':name님과 대화 중',
     'title_compact' => '채팅',
-    'title' => '채팅',
+
     'cannot_send' => [
         'channel' => '이 채널에서 메시지를 보낼 수 없습니다. 다음과 같은 이유 때문일 수도 있습니다:',
         'user' => '이 유저에게 메시지를 보낼 수 없습니다. 다음과 같은 이유 때문일 수도 있습니다:',

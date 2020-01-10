@@ -16,23 +16,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import "app";
+.ranking-country-filter {
+  display: flex;
+  align-items: center;
 
-.wiki-header {
-  .at2x-simple("/images/headers/tournament.jpg");
-  background-size: cover;
+  &__flag {
+    margin-right: 5px;
+    display: flex;
+  }
 
-  .text {
-    padding-left: 130px;
+  &__item {
+    background-color: @osu-colour-b5;
+    border-radius: 10000px;
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    margin: 0 10px;
+  }
 
-    h1, h2 {
-      .default-text-shadow;
-      color: #fff;
-
-      font-style: normal;
-    }
-
-    h1 { font-size: 32px; margin-bottom: 10px; }
-    h2 { font-size: 16px; }
+  &__remove {
+    .link-default();
+    .link-plain();
+    margin-left: 15px;
   }
 }

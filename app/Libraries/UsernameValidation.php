@@ -28,7 +28,7 @@ use Illuminate\Support\Collection;
 
 class UsernameValidation
 {
-    public static function validateAvailability(string $username) : ValidationErrors
+    public static function validateAvailability(string $username): ValidationErrors
     {
         $errors = new ValidationErrors('user');
 
@@ -93,7 +93,7 @@ class UsernameValidation
         return $errors;
     }
 
-    public static function validateUsersOfUsername(string $username) : ValidationErrors
+    public static function validateUsersOfUsername(string $username): ValidationErrors
     {
         $errors = new ValidationErrors('user');
 
@@ -113,7 +113,7 @@ class UsernameValidation
         return $errors;
     }
 
-    public static function usersOfUsername(string $username) : Collection
+    public static function usersOfUsername(string $username): Collection
     {
         $userIds = UsernameChangeHistory::where('username_last', $username)->pluck('user_id');
         $users = User::whereIn('user_id', $userIds)->get();

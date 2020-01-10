@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type Rangsor',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Teljesítmény',

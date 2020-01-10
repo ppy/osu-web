@@ -79,12 +79,6 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => '我們已收到您的 osu!商店 訂單！',
-        ],
-    ],
-
     'order' => [
         'paid_on' => '下訂單 :date',
 

@@ -60,7 +60,7 @@ class UserScoreAggregate extends RoomUserHighScore
         $highScore->save();
     }
 
-    public static function new(User $user, Room $room) : self
+    public static function new(User $user, Room $room): self
     {
         $obj = static::firstOrNew([
             'user_id' => $user->getKey(),

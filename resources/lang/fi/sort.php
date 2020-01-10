@@ -24,6 +24,7 @@ return [
     'last_visit' => 'Äskettäin aktiivinen',
     'new' => 'Viimeisin',
     'old' => 'Vanha',
+    'rank' => '',
     'top' => 'Paras',
     'username' => 'Käyttäjänimi',
 

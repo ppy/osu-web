@@ -76,11 +76,16 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
             'report' => [
                 '_' => '',
                 'button' => '',
                 'button_title' => '',
-                'link' => '',
+                'link' => 'zde',
             ],
         ],
 
@@ -145,6 +150,16 @@ return [
             'rating-spread' => 'Graf hodnocení',
             'nominations' => 'Nominace',
             'playcount' => 'Počet zahrání',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

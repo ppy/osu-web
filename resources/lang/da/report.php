@@ -20,22 +20,22 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmeld',
+        'title' => 'Vil du anmelde :username\'s opslag?',
     ],
 
     'comment' => [
-        'button' => 'Rapporter',
-        'title' => 'Vil du rapportere :username\'s kommentar?',
+        'button' => 'Anmeld',
+        'title' => 'Vil du anmelde :username\'s kommentar?',
     ],
 
     'scores' => [
-        'button' => 'Rapporter Score',
-        'title' => 'Vil du rapportere :username\'s score?',
+        'button' => 'Anmeld Score',
+        'title' => 'Vil du anmelde :username\'s score?',
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmeld',
+        'title' => 'Anmeld :username?',
     ],
 ];

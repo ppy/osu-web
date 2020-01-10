@@ -120,8 +120,6 @@ return [
             'error' => '読み込みに失敗しました。ページの更新をしてみると直るかも・・・？',
         ],
         'header' => [
-            'welcome' => 'こんにちは、<strong>:username</strong>さん！',
-            'messages' => ':count件の未読メッセージがあります',
             'stats' => [
                 'friends' => 'オンラインのフレンド',
                 'games' => '部屋数',

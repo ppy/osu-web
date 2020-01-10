@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Merci de vous connecter pour continuer.',
+    'require_verification' => 'Veuillez vous vérifier pour continuer.',
+    'restricted' => "Action impossible quand votre compte est restreint.",
+    'silenced' => "Action impossible quand votre compte est réduit au silence.",
+    'unauthorized' => 'Accès refusé.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Vous ne pouvez pas retirer votre hype.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Ce forum n\'est accessible qu\'aux administrateurs.',
         ],
     ],
-
-    'require_login' => 'Merci de vous connecter pour continuer.',
-
-    'unauthorized' => 'Accès refusé.',
-
-    'silenced' => "Action impossible quand votre compte est réduit au silence.",
-
-    'restricted' => "Action impossible quand votre compte est restreint.",
 
     'user' => [
         'page' => [

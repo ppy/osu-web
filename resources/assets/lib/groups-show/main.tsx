@@ -35,7 +35,6 @@ export class Main extends React.PureComponent<Props> {
     return (
       <div className='osu-layout osu-layout--full'>
         <HeaderV4
-          theme='users'
           section={this.props.group.group_name}
         />
 

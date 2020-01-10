@@ -27,46 +27,66 @@
 
     $linksElement = $linksBreadcrumb ? 'ol' : 'ul';
 @endphp
-<div class="header-v4 {{ isset($theme) ? "header-v4--{$theme}" : '' }} {{ $headerExtraClass }}">
-    <div class="header-v4__bg-container">
-        <div class="header-v4__bg {{ $backgroundExtraClass }}" {!! background_image($backgroundImage ?? null, false) !!}></div>
-    </div>
-
-    <div class="header-v4__content">
-        <div class="header-v4__row header-v4__row--title">
-            <div class="header-v4__icon"></div>
-            <div class="header-v4__title">
-                <span class="header-v4__title-section">
-                    {{ $section }}
-                </span>
-                @if (present($subSection))
-                    <span class="header-v4__title-action">
-                        {{ $subSection }}
-                    </span>
-                @endif
-            </div>
+<div class="
+    header-v4
+    {{ isset($theme) ? "header-v4--{$theme}" : '' }}
+    {{ (auth()->check() && auth()->user()->isRestricted()) ? 'header-v4--restricted' : '' }}
+    {{ $headerExtraClass }}
+">
+    <div class="header-v4__container header-v4__container--main">
+        <div class="header-v4__bg-container">
+            <div class="header-v4__bg {{ $backgroundExtraClass }}" {!! background_image($backgroundImage ?? null, false) !!}></div>
         </div>
 
-        @if ($links !== null && count($links) > 0)
-            <div class="header-v4__row header-v4__row--bar">
-                <{!! $linksElement !!}
-                    class="header-nav-v4 header-nav-v4--{{ $linksBreadcrumb ? 'breadcrumb' : 'list' }}"
-                >
-                    @foreach ($links as $link)
-                        <li class="header-nav-v4__item">
-                            <a
-                                class="
-                                    header-nav-v4__link
-                                    {{ ($link['active'] ?? false) ? 'header-nav-v4__link--active' : '' }}
-                                "
-                                href="{{ $link['url'] }}"
-                            >
-                                {{ $link['title'] }}
-                            </a>
-                        </li>
-                    @endforeach
-                </{!! $linksElement !!}>
-            </div>
-        @endif
+        <div class="header-v4__content">
+            @if ($section !== null || isset($titleAppend))
+                <div class="header-v4__row header-v4__row--title">
+                    <div class="header-v4__icon"></div>
+                    <div class="header-v4__title">
+                        <span class="header-v4__title-section">
+                            {{ $section }}
+                        </span>
+                        @if (present($subSection))
+                            <span class="header-v4__title-action">
+                                {{ $subSection }}
+                            </span>
+                        @endif
+                    </div>
+
+                    {{ $titleAppend ?? null }}
+                </div>
+            @endif
+
+            {{ $contentAppend ?? null }}
+        </div>
     </div>
+    @if ($links !== null && count($links) > 0)
+        <div class="header-v4__container">
+            <div class="header-v4__content">
+                <div class="header-v4__row header-v4__row--bar">
+                    <{!! $linksElement !!}
+                        class="header-nav-v4 header-nav-v4--{{ $linksBreadcrumb ? 'breadcrumb' : 'list' }}"
+                    >
+                        @foreach ($links as $link)
+                            <li class="header-nav-v4__item">
+                                @if (isset($link['url']))
+                                    <a
+                                        class="
+                                            header-nav-v4__link
+                                            {{ ($link['active'] ?? false) ? 'header-nav-v4__link--active' : '' }}
+                                        "
+                                        href="{{ $link['url'] }}"
+                                    >
+                                        {{ $link['title'] }}
+                                    </a>
+                                @else
+                                    <span class="header-nav-v4__text">{{ $link['title'] }}</span>
+                                @endif
+                            </li>
+                        @endforeach
+                    </{!! $linksElement !!}>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>

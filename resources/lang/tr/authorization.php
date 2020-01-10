@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Devam etmek için lütfen giriş yapın.',
+    'require_verification' => '',
+    'restricted' => "Kısıtlanmışken bunu yapamazsınız.",
+    'silenced' => "Susturulmuşken bunu yapamazsınız.",
+    'unauthorized' => 'Erişim engellendi.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Verilen gaz geri alınamaz.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Yalnızca yönetici bu forumu görüntüleyebilir.',
         ],
     ],
-
-    'require_login' => 'Devam etmek için lütfen giriş yapın.',
-
-    'unauthorized' => 'Erişim engellendi.',
-
-    'silenced' => "Susturulmuşken bunu yapamazsınız.",
-
-    'restricted' => "Kısıtlanmışken bunu yapamazsınız.",
 
     'user' => [
         'page' => [
