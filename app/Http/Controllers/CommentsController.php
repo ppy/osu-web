@@ -117,6 +117,7 @@ class CommentsController extends Controller
             $commentBundle->depth = 0;
             $commentBundle->includeCommentableMeta = true;
             $commentBundle->includeDeleted = isset($commentable);
+            $commentBundle->includePinned = isset($commentable);
 
             $commentPagination = new LengthAwarePaginator(
                 [],
@@ -246,6 +247,26 @@ class CommentsController extends Controller
         if ($comment->user_id !== auth()->user()->getKey()) {
             $this->logModerate('LOG_COMMENT_UPDATE', $comment);
         }
+
+        return CommentBundle::forComment($comment)->toArray();
+    }
+
+    public function pinDestroy($id)
+    {
+        priv_check('CommentPin')->ensureCan();
+
+        $comment = Comment::findOrFail($id);
+        $comment->update(['pinned' => false]);
+
+        return CommentBundle::forComment($comment)->toArray();
+    }
+
+    public function pinStore($id)
+    {
+        priv_check('CommentPin')->ensureCan();
+
+        $comment = Comment::findOrFail($id);
+        $comment->update(['pinned' => true]);
 
         return CommentBundle::forComment($comment)->toArray();
     }

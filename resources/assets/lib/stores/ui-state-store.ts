@@ -36,6 +36,7 @@ interface CommentsUIState {
   isShowDeleted: boolean;
   loadingFollow: boolean | null;
   loadingSort: CommentSort | null;
+  pinnedCommentIds: number[];
   topLevelCommentIds: number[];
   topLevelCount: number;
   total: number;
@@ -48,6 +49,7 @@ const defaultCommentsUIState: CommentsUIState = {
   isShowDeleted: false,
   loadingFollow: null,
   loadingSort: null,
+  pinnedCommentIds: [],
   topLevelCommentIds: [],
   topLevelCount: 0,
   total: 0,
@@ -100,6 +102,8 @@ export default class UIStateStore extends Store {
       this.comments.topLevelCommentIds = commentBundle.comments.map((x) => x.id);
     }
 
+    this.updatePinnedCommentIds(commentBundle);
+
     this.orderedCommentsByParentId = {};
   }
 
@@ -140,6 +144,11 @@ export default class UIStateStore extends Store {
     }
   }
 
+  @action
+  updateFromCommentUpdated(commentBundle: CommentBundleJSON) {
+    this.updatePinnedCommentIds(commentBundle);
+  }
+
   private orderComments(comments: Comment[]) {
     switch (this.comments.currentSort) {
       case 'old':
@@ -155,6 +164,12 @@ export default class UIStateStore extends Store {
     if (this.orderedCommentsByParentId[parentId] == null) {
       const comments = this.root.commentStore.getRepliesByParentId(parentId);
       this.orderedCommentsByParentId[parentId] = this.orderComments(comments);
+    }
+  }
+
+  private updatePinnedCommentIds(commentBundle: CommentBundleJSON) {
+    if (commentBundle.pinned_comments != null) {
+      this.comments.pinnedCommentIds = commentBundle.pinned_comments.map((x) => x.id);
     }
   }
 }

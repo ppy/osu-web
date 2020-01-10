@@ -93,7 +93,7 @@ class PlaylistItem extends Model
 
     public function beatmap()
     {
-        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+        return $this->belongsTo(Beatmap::class, 'beatmap_id')->withTrashed();
     }
 
     public function scores()

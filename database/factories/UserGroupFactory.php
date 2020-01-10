@@ -18,7 +18,7 @@
  */
  $factory->define(App\Models\UserGroup::class, function (Faker\Generator $faker) {
      return [
-        'group_leader' => 0,
-        'user_pending' => 0,
-    ];
+         'group_leader' => 0,
+         'user_pending' => 0,
+     ];
  });

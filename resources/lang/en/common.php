@@ -49,7 +49,7 @@ return [
         'expand' => 'expand',
         'hide' => 'hide',
         'permalink' => 'permalink',
-        'permalink_copied' => 'link copied',
+        'pin' => 'pin',
         'post' => 'Post',
         'reply' => 'Reply',
         'reply_reopen' => 'Reply and Reopen',
@@ -64,6 +64,7 @@ return [
         'show_deleted' => 'Show deleted',
         'show_more' => 'show more',
         'show_more_options' => 'show more options',
+        'unpin' => 'unpin',
         'update' => 'Update',
         'upload_image' => 'upload image',
 
