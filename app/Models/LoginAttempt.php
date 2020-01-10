@@ -61,6 +61,8 @@ class LoginAttempt extends Model
             if (is_sql_unique_exception($e)) {
                 return static::findOrDefault($ip);
             }
+
+            throw $e;
         }
     }
 

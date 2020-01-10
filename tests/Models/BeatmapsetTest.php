@@ -190,7 +190,7 @@ class BeatmapsetTest extends TestCase
         $this->assertNull(Beatmapset::withTrashed()->find($id));
     }
 
-    private function createBeatmapset($params = []) : Beatmapset
+    private function createBeatmapset($params = []): Beatmapset
     {
         $defaultParams = [
             'discussion_enabled' => true,

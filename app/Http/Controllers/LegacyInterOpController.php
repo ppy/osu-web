@@ -86,10 +86,10 @@ class LegacyInterOpController extends Controller
 
         foreach ($newsPosts as $post) {
             $posts[] = [
-                  'timestamp' => $post->published_at->timestamp,
-                  'permalink' => route('news.show', $post->slug),
-                  'title' => $post->title(),
-                  'body' => $post->previewText(),
+                'timestamp' => $post->published_at->timestamp,
+                'permalink' => route('news.show', $post->slug),
+                'title' => $post->title(),
+                'body' => $post->previewText(),
             ];
         }
 

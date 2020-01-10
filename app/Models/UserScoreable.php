@@ -27,7 +27,7 @@ use App\Models\Score\Best;
 
 trait UserScoreable
 {
-    public function aggregatedScoresBest(string $mode, int $size) : SearchResponse
+    public function aggregatedScoresBest(string $mode, int $size): SearchResponse
     {
         $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
 

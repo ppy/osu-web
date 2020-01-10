@@ -80,7 +80,7 @@ class UserReport extends Model
         return $this->belongsTo(User::class, 'reporter_id');
     }
 
-    public function routeNotificationForSlack(?Notification $_notification) : ?string
+    public function routeNotificationForSlack(?Notification $_notification): ?string
     {
         return config('osu.user_report_notification.endpoint');
     }
