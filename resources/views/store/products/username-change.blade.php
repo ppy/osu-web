@@ -34,7 +34,7 @@
             {!! Form::label('username', 'New Username') !!}
             {!! Form::text('item[extra_info]', '', [
                 'id' => 'username',
-                'class' => 'form-text form-text--username-change',
+                'class' => 'js-username-change-input form-text form-text--username-change',
                 'placeholder' => 'Requested Username',
                 'autocomplete' => 'off',
             ]) !!}
