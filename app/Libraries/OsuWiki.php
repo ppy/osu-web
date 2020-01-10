@@ -43,11 +43,12 @@ class OsuWiki
     public static function getPageList()
     {
         return collect(static::getTree()['tree'])
-            ->pluck('path')
-            ->filter(function ($path) {
-                return starts_with($path, 'wiki/') && ends_with($path, '.md');
+            ->filter(function ($item) {
+                return $item['type'] === 'blob'
+                    && starts_with($item['path'], 'wiki/')
+                    && ends_with($item['path'], '.md');
             })
-            ->values();
+            ->pluck('path');
     }
 
     public static function getTree()
