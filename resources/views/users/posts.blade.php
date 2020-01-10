@@ -18,7 +18,6 @@
 @extends('master', [
     'currentAction' => 'profile',
     'currentSection' => 'community',
-    'legacyNav' => false,
     'title' => trans('users.posts.title', ['username' => $user->username]),
 ])
 

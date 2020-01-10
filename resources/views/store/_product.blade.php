@@ -15,29 +15,32 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php
-    $_inStock = $product->inStock(1, true);
-    $_large = $product->promoted && $_inStock;
+@php
+    $inStock = $product->inStock(1, true);
+    $blockClass = 'product-box product-box--card';
 
-    $_topClass = 'osu-layout__col';
-
-    if (!$_large) {
-        $_topClass .= ' osu-layout__col--sm-6';
+    if (!$inStock) {
+        $blockClass .= ' product-box--oos';
     }
-?>
 
-<div class="{{ $_topClass }}" style="order: {{ $_inStock ? '0' : '1' }};">
-    <a
-        href="{{ route('store.products.show', $product) }}"
-        class="product-box product-box--{{ $_large ? 'large' : 'small' }}"
-        style="background-image: url('{{ $_large ? $product->header_image : $product->image }}')"
-    >
-        <div class="product-box__text">
-            {!! markdown($product->header_description) !!}
-        </div>
+    if ($product->promoted && $inStock) {
+        $backgroundImage = $product->header_image;
+        $blockClass .= ' product-box--card-large';
+        $markdownPreset = 'store-product';
+    } else {
+        $backgroundImage = $product->image;
+        $blockClass .= ' product-box--card-small';
+        $markdownPreset = 'store-product-small';
+    }
+@endphp
+<a
+    href="{{ route('store.products.show', $product) }}"
+    class="{{ $blockClass }}"
+    {!! background_image($backgroundImage) !!}
+>
+    <div class="product-box__text">
+        {!! markdown($product->header_description, $markdownPreset) !!}
+    </div>
 
-        @if(!$_inStock)
-            <i class="product-box__bar product-box__bar--oos"></i>
-        @endif
-    </a>
-</div>
+    <i class="product-box__oos-bar"></i>
+</a>

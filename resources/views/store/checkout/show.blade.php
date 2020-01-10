@@ -23,29 +23,29 @@
 @endphp
 
 @section('content')
-    @include("store.header")
-    <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout--store">
-        <div class="osu-layout__sub-row osu-layout__sub-row--lg1 osu-layout--store">
-            <h1>Checkout</h1>
+    @include('store.header')
+    <div class="osu-page osu-page--store">
+        <div class="store-page">
+            <h1 class="store-text store-text--title">Checkout</h1>
 
             @if (session()->has('checkout.error.message') || $hasErrors)
-                <div class="alert alert-danger">
-                    <p>
+                <ul class="store-page__alert store-page__alert--with-margin-bottom">
+                    <li>
                         {{ session('checkout.error.message') ?? trans('store.checkout.cart_problems') }}
-                    </p>
-                </div>
+                    </li>
+                </ul>
             @endif
 
             @if ($order->isProcessing())
-                <div class="alert alert-danger">
-                    <p>
+                <ul class="store-page__alert store-page__alert--with-margin-bottom">
+                    <li>
                         {{ trans('store.checkout.pending_checkout.line_1') }}<br>
                         {{ trans('store.checkout.pending_checkout.line_2') }}
-                    </p>
-                </div>
+                    </li>
+                </ul>
             @endif
 
-            @include("store.objects.order", ['order' => $order, "table_class" => "table-fancy"])
+            @include("store.objects.order", ['order' => $order, 'modifiers' => ['checkout']])
 
             <div class="store-cart-footer">
                 <div class="store-cart-footer__total-box store-cart-footer__total-box--full">
@@ -60,15 +60,17 @@
         </div>
 
         @if ($order->requiresShipping())
-            <div class="osu-layout__sub-row">
-                <div class="grid grid--gutters">
-                    <div class="grid-cell grid-cell--fill"><h2>Shipping Address</h2></div>
-                </div>
+            <div class="store-page">
+                <h2 class="store-text store-text--title">Shipping Address</h2>
 
-                @if(count($addresses))
-                    <div class="grid grid--gutters address-list">
+                @if (count($addresses))
+                    <div class="address-list">
                         @foreach($addresses as $a)
-                        @include('store.objects.address', ['data' => $a, 'selected' => ($order->address && $order->address->address_id == $a->address_id), 'modifiable' => true])
+                            @include('store.objects.address', [
+                                'data' => $a,
+                                'selected' => (isset($order->address) && $order->address->address_id === $a->address_id),
+                                'modifiable' => true,
+                            ])
                         @endforeach
                     </div>
                 @endif
@@ -76,18 +78,16 @@
                 @include('store.objects.new_address')
             </div>
         @endif
-    </div>
 
-    @if(!$order->requiresShipping() || $order->shipping)
-        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row osu-layout__row--sm1 osu-layout--store">
-            <div class="osu-layout__sub-row osu-layout__sub-row--lg1 osu-layout--store">
-                <h1>Select Payment Method</h1>
+        @if(!$order->requiresShipping() || $order->shipping)
+            <div class="store-page store-page--footer">
+                <h1 class="store-text store-text--title">Select Payment Method</h1>
 
-                @if($checkout->isShippingDelayed() && $order->requiresShipping())
+                @if ($checkout->isShippingDelayed() && $order->requiresShipping())
                     @include('store._shipping_delay_warning')
                 @endif
 
-                @if($order->address !== null && $order->address->country_code === 'DE')
+                @if ($order->address !== null && $order->address->country_code === 'DE')
                     @include('store._shipping_germany_warning')
                 @endif
 
@@ -105,6 +105,6 @@
                     @endforeach
                 @endif
             </div>
-        </div>
-    @endif
+        @endif
+    </div>
 @endsection

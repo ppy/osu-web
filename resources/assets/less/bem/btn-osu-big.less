@@ -327,6 +327,41 @@
     min-width: 70px;
   }
 
+  &--store-action {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    margin: 0 auto;
+    font-size: @font-size--title-small;
+    padding: 10px 50px;
+    border-radius: 10000px;
+    line-height: normal;
+    text-align: center;
+  }
+
+  &--store-cart {
+    padding: 5px 15px;
+    border-radius: 10000px;
+    margin: 10px 0;
+    width: 100%;
+
+    @media @desktop {
+      margin: 0 0 0 auto;
+      width: auto;
+    }
+  }
+
+  &--store-cart-delete {
+    background: none;
+    padding: 5px 10px;
+    line-height: normal;
+    font-size: @font-size--title-small-3;
+
+    .link-hover({
+      background: none;
+    });
+  }
+
   &--wrap-text {
     white-space: normal;
   }

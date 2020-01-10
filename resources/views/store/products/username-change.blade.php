@@ -32,15 +32,20 @@
             <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
             <input type="hidden" id="username-form-price" name="item[cost]" value="0" />
             {!! Form::label('username', 'New Username') !!}
-            {!! Form::text('item[extra_info]', '', ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Requested Username', 'autocomplete' => 'off']) !!}
+            {!! Form::text('item[extra_info]', '', [
+                'id' => 'username',
+                'class' => 'js-username-change-input form-text form-text--username-change',
+                'placeholder' => 'Requested Username',
+                'autocomplete' => 'off',
+            ]) !!}
         </div>
-        <strong>
+        <em class="store-text store-text--emphasis">
             <div id="username-check-status">{{ trans('store.username_change.check') }}</div>
-        </strong>
-        <div>Your current username is "<i>{{ Auth::user()->username }}</i>".</div>
+        </em>
+        <div>Your current username is "{{ Auth::user()->username }}".</div>
     </div>
-    <div class="grid-cell price-box">
-        <p class="price" id="username-check-price"></p>
+    <div class="grid-cell">
+        <p class="store-text store-text--price" id="username-check-price"></p>
     </div>
 </div>
 @endif

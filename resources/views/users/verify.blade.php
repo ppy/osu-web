@@ -19,7 +19,6 @@
     // Verification doesn't inherit from App\Controller, thus these variables aren't set. Thus we set them here:
     'currentSection' => 'error',
     'currentAction' => '401',
-    'legacyNav' => false,
 ])
 
 @section('content')

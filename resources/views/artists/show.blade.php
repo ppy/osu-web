@@ -31,7 +31,6 @@
 @extends('master', [
     'currentSection' => 'beatmaps',
     'currentAction' => 'artists',
-    'legacyNav' => false,
     'title' => "Featured Artist: $artist->name",
     'pageDescription' => $artist->description,
     'canonicalUrl' => $artist->url(),

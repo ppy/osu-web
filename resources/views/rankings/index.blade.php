@@ -43,7 +43,7 @@
     }
 @endphp
 
-@extends('master', ['legacyNav' => false])
+@extends('master')
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [

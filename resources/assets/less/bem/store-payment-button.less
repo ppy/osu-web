@@ -28,13 +28,15 @@
   text-align: center;
   height: @button-height;
   width: 100%;
+  background-color: @osu-colour-c1;
   background-position: center center;
   background-size: @logo-width;
   background-repeat: no-repeat;
   cursor: pointer;
 
   &:hover {
-    border: 3px solid @blue-darker;
+    .default-box-shadow();
+    box-shadow: 0 0 0 3px @osu-colour-l4;
   }
 
   &--centili {

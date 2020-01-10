@@ -19,7 +19,6 @@
 @extends('master', [
     'currentAction' => 'contests',
     'currentSection' => 'community',
-    'legacyNav' => false,
     'title' => "Contests",
 ])
 
