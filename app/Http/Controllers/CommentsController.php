@@ -258,9 +258,7 @@ class CommentsController extends Controller
         $comment = Comment::findOrFail($id);
         $comment->update(['pinned' => false]);
 
-        $bundle = CommentBundle::forComment($comment);
-
-        return $bundle->toArray();
+        return CommentBundle::forComment($comment)->toArray();
     }
 
     public function pinStore($id)
@@ -270,9 +268,7 @@ class CommentsController extends Controller
         $comment = Comment::findOrFail($id);
         $comment->update(['pinned' => true]);
 
-        $bundle = CommentBundle::forComment($comment);
-
-        return $bundle->toArray();
+        return CommentBundle::forComment($comment)->toArray();
     }
 
     /**
