@@ -16,12 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import DispatcherAction from 'actions/dispatcher-action';
+import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
+import { dispatchListener } from 'app-dispatcher';
+import DispatchListener from 'dispatch-listener';
 import { action, observable } from 'mobx';
 import Notification from 'models/notification';
 import NotificationStackStore from './notification-stack-store';
 import UnreadNotificationStackStore from './unread-notification-stack-store';
 
-export default class NotificationStore {
+@dispatchListener
+export default class NotificationStore implements DispatchListener {
   @observable notifications = new Map<number, Notification>();
   readonly stacks = new NotificationStackStore(this);
   readonly unreadStacks = new UnreadNotificationStackStore(this);
@@ -38,5 +43,12 @@ export default class NotificationStore {
 
   get(id: number) {
     return this.notifications.get(id);
+  }
+
+  @action
+  handleDispatchAction(dispatched: DispatcherAction) {
+    if (dispatched instanceof UserLoginAction || dispatched instanceof UserLogoutAction) {
+      this.flushStore();
+    }
   }
 }

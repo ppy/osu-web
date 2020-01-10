@@ -17,6 +17,7 @@
  */
 
 import DispatcherAction from 'actions/dispatcher-action';
+import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import NotificationJson, { NotificationBundleJson, NotificationStackJson, NotificationTypeJson } from 'interfaces/notification-json';
@@ -72,6 +73,8 @@ export default class NotificationStackStore implements DispatchListener {
       this.handleNotificationEventMoreLoaded(dispatched);
     } else if (dispatched instanceof NotificationEventRead) {
       this.handleNotificationEventRead(dispatched);
+    } else if (dispatched instanceof UserLoginAction || dispatched instanceof UserLogoutAction) {
+      this.flushStore();
     }
   }
 
