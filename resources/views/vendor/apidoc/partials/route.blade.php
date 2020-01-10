@@ -1,5 +1,5 @@
 <?php
-    $descriptions = explode("\n---\n", $route['description'] ?? '');
+    $descriptions = explode("\n---\n", $route['metadata']['description'] ?? '');
 
     $topDescription = $descriptions[0];
     $bottomDescription = $descriptions[1] ?? '';
