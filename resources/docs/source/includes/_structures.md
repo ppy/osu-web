@@ -623,7 +623,7 @@ total          | number                              | An approximate count of r
 
 Field          | Type                                | Description
 -------------- | ----------------------------------- | --------------------------------------------------------------------
-spotlight      | [Spotlight](#spotlight)[]           | An array of spotlights
+spotlights     | [Spotlight](#spotlight)[]           | An array of spotlights
 
 
 ## RankingType
