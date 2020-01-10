@@ -60,6 +60,31 @@ class Page implements WikiObject
         return strtolower(str_replace(['-', '/', '_'], ' ', $path));
     }
 
+    public static function esReindexAll()
+    {
+        $startTime = time();
+
+        $count = 0;
+
+        $items = OsuWiki::getPageList();
+        foreach ($items as $item) {
+            $parts = explode('/', $item);
+            if (array_shift($parts) !== 'wiki') {
+                // shouldn't actually happen, though...
+                continue;
+            }
+
+            $locale = str_replace('.md', '', array_pop($parts));
+            $path = implode('/', $parts);
+            $page = new static($path, $locale);
+            $page->sync(true);
+            $count++;
+        }
+
+        $duration = time() - $startTime;
+        Log::info(static::class." Indexed {$count} records in {$duration} s.");
+    }
+
     public static function searchIndexConfig($params = [])
     {
         return array_merge([
