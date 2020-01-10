@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { dispatchListener } from 'app-dispatcher';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
@@ -38,6 +39,7 @@ interface Props {
 
 @inject('dataStore')
 @observer
+@dispatchListener
 export default class ConversationView extends React.Component<Props> implements DispatchListener {
   private assumeHasBacklog: boolean = false;
   private chatViewRef = React.createRef<HTMLDivElement>();
