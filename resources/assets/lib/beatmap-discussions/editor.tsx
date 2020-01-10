@@ -324,7 +324,8 @@ export default class Editor extends React.Component<any, any> {
     }
 
     if (props.leaf.timestamp) {
-      return <span className={'beatmapset-discussion-message'} {...props.attributes}><a href={`osu:\/\/edit\/${props.leaf.timestamp}`} className={'beatmapset-discussion-message__timestamp'}>{children}</a></span>;
+      // TODO: fix this nested stuff
+      return <span className={'beatmapset-discussion-message'} {...props.attributes}><span className={'beatmapset-discussion-message__timestamp'}>{children}</span></span>;
     }
 
     return (

@@ -34,6 +34,20 @@ interface Props extends RenderElementProps {
 export default class EditorDiscussionComponent extends React.Component<Props> {
   static contextType = SlateContext;
 
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any): void {
+    const content = this.props.element.children[0].text;
+    const TS_REGEX = /^((\d{2,}):([0-5]\d)[:.](\d{3}))( \((?:\d[,|])*\d\))?/;
+    const matches = content.match(TS_REGEX);
+    let timestamp = 'general';
+
+    if (matches !== null) {
+      timestamp = matches[1];
+    }
+
+    const path = ReactEditor.findPath(this.context, this.props.element);
+    Transforms.setNodes(this.context, {timestamp}, {at: path});
+  }
+
   remove = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     const path = ReactEditor.findPath(this.context, this.props.element);
@@ -41,6 +55,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
+    const timestamp = this.props.element.timestamp || 'general';
     return (
       <div className='beatmap-discussion beatmap-discussion--preview' {...this.props.attributes}>
         <div className='beatmap-discussion__discussion'>
@@ -65,9 +80,10 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                     color: 'hsl(var(--base-hue), 10%, 60%)',
                     fontSize: '9px',
                     userSelect: 'none',
+                    width: '40px',
                   }}
                 >
-                  00:00.184
+                  {timestamp}
                 </div>
                 <div
                   contentEditable={false}
