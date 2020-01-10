@@ -65,12 +65,14 @@ class CommentBundle
         $this->depth = $options['depth'] ?? 2;
         $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
         $this->includeDeleted = $options['includeDeleted'] ?? true;
+        $this->includePinned = $options['includePinned'] ?? true;
     }
 
     public function toArray()
     {
         $hasMore = false;
         $includedComments = collect();
+        $pinnedComments = collect();
 
         // Either use the provided comment as a base, or look for matching comments.
         if (isset($this->comment)) {
@@ -111,13 +113,19 @@ class CommentBundle
         $includedComments = $includedComments->unique('id', true)->reject(function ($comment) use ($commentIds) {
             return $commentIds->contains($comment->getKey());
         });
-        $allComments = $comments->concat($includedComments);
+
+        if ($this->includePinned) {
+            $pinnedComments = $this->getComments($this->commentsQuery()->where('pinned', true), true, true);
+        }
+
+        $allComments = $comments->concat($includedComments)->concat($pinnedComments);
 
         $result = [
             'comments' => json_collection($comments, 'Comment'),
             'has_more' => $hasMore,
             'has_more_id' => $this->params->parentId,
             'included_comments' => json_collection($includedComments, 'Comment'),
+            'pinned_comments' => json_collection($pinnedComments, 'Comment'),
             'user_votes' => $this->getUserVotes($allComments),
             'user_follow' => $this->getUserFollow(),
             'users' => json_collection($this->getUsers($comments->concat($allComments)), 'UserCompact'),
@@ -146,9 +154,9 @@ class CommentBundle
         }
     }
 
-    private function getComments($query, $isChildren = true)
+    private function getComments($query, $isChildren = true, $pinnedOnly = false)
     {
-        $sort = $this->params->sortDbOptions();
+        $sort = $pinnedOnly ? CommentBundleParams::SORTS['new'] : $this->params->sortDbOptions();
         $sorted = false;
         $queryLimit = $this->params->limit;
 
@@ -194,7 +202,11 @@ class CommentBundle
             }
         }
 
-        return $query->limit($queryLimit)->get();
+        if (!$pinnedOnly) {
+            $query->limit($queryLimit);
+        }
+
+        return $query->get();
     }
 
     private function getUserFollow()

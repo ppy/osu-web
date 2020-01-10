@@ -41,6 +41,10 @@
       border-bottom-width: 0;
     }
 
+    &:last-of-type {
+      border-bottom-width: 0;
+    }
+
     @media @desktop {
       padding-left: @_gutter-desktop-left;
       padding-right: @_gutter-desktop-right;
@@ -269,6 +273,12 @@
 
     &--username-link {
       .link-default();
+    }
+
+    &--pinned {
+      .fa {
+        vertical-align: middle;
+      }
     }
   }
 

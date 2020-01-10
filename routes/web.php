@@ -97,6 +97,8 @@ Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
 Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);
 
 Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
+Route::post('comments/{comment}/pin', 'CommentsController@pinStore')->name('comments.pin');
+Route::delete('comments/{comment}/pin', 'CommentsController@pinDestroy');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
 Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');

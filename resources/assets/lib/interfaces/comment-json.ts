@@ -37,6 +37,7 @@ export interface CommentJSON {
   message: string;
   message_html: string;
   parent_id: number | null;
+  pinned: boolean;
   replies_count: number;
   updated_at: string;
   user_id: number;
@@ -49,6 +50,7 @@ export interface CommentBundleJSON {
   has_more: boolean;
   has_more_id: number;
   included_comments: CommentJSON[];
+  pinned_comments: CommentJSON[];
   sort: string;
   top_level_count?: number;
   total?: number;
