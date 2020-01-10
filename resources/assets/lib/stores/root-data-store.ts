@@ -58,6 +58,7 @@ export default class RootDataStore {
     this.commentableMetaStore.updateWithJSON(commentBundle.commentable_meta);
     this.commentStore.updateWithJSON(commentBundle.comments);
     this.commentStore.updateWithJSON(commentBundle.included_comments);
+    this.commentStore.updateWithJSON(commentBundle.pinned_comments);
     this.userStore.updateWithJSON(commentBundle.users);
     this.commentStore.addVoted(commentBundle.user_votes);
   }
