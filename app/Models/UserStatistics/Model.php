@@ -58,6 +58,11 @@ abstract class Model extends BaseModel
         return presence($value);
     }
 
+    public function getHitAccuracyAttribute($value)
+    {
+        return $this->accuracy_new ?? round($this->accuracy * 100, 2);
+    }
+
     public function currentLevelProgress()
     {
         return fmod($this->level, 1);

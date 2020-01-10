@@ -5,7 +5,7 @@ $factory->define(App\Models\ContestEntry::class, function (Faker\Generator $fake
         'user_id' => function () {
             return factory(App\Models\User::class)->create()->user_id;
         },
-        'entry_url' => $faker->imageUrl(256, 256, 'cats'),
+        'entry_url' => '/images/headers/generic.jpg',
         'name' => $faker->words(3, true),
         'masked_name' => $faker->words(3, true),
     ];
