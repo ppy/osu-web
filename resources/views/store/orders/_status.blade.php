@@ -19,12 +19,12 @@
     <h3 class="store-text store-text--title">Order Status</h3>
 
     @if ($order->status === 'delivered')
-        <p><strong>Your order has been delivered! We hope you are enjoying it!</strong></p>
+        <p><em class="store-text store-text--emphasis">Your order has been delivered! We hope you are enjoying it!</em></p>
         <p>
             If you have any issues with your purchase, please contact the <a href='mailto:osustore@ppy.sh'>osu!store support</a>.
         </p>
     @elseif ($order->isProcessing())
-        <p><strong>{{ trans('store.invoice.status.processing.title') }}</strong></p>
+        <p><em class="store-text store-text--emphasis">{{ trans('store.invoice.status.processing.title') }}</em></p>
         <p>
             {{ trans('store.invoice.status.processing.line_1') }}
         </p>
@@ -34,12 +34,12 @@
             ]) !!}
         </p>
     @elseif ($order->status === 'cancelled')
-        <p><strong>Your order has been cancelled</strong></p>
+        <p><em class="store-text store-text--emphasis">Your order has been cancelled</em></p>
         <p>
             If you didn't request a cancellation please contact <a href='mailto:osustore@ppy.sh'>osu!store support</a> quoting your order number (#{{$order->order_id}}).
         </p>
     @elseif (($order->status === 'shipped' && ($order->last_tracking_state || count($order->trackingCodes()) === 0)) || $order->status === 'delivered')
-        <p><strong>Your order has been shipped!</strong></p>
+        <p><em class="store-text store-text--emphasis">Your order has been shipped!</em></p>
         @if(count($order->trackingCodes()))
             <p>
                 Tracking details follow:
@@ -50,7 +50,7 @@
             </p>
         @endif
     @else
-        <p><strong>Your order is being prepared!</strong></p>
+        <p><em class="store-text store-text--emphasis">Your order is being prepared!</em></p>
         @if ($order->requiresShipping())
             <p>
                 Please wait a bit longer for it to be shipped. Tracking information will appear here once the order has been processed and sent. This can take up to 5 days (but usually less!) depending on how busy we are.

@@ -35,7 +35,7 @@
             </div>
             <div class="grid-cell">
                 <p>
-                    <strong>ppy Pty Ltd</strong><br />
+                    <em class="store-text store-text--emphasis">ppy Pty Ltd</em><br />
                     ACN 163 593 413 a.t.f. Dean Herbert Family Trust
                 </p>
 

@@ -39,9 +39,9 @@
                 'autocomplete' => 'off',
             ]) !!}
         </div>
-        <strong>
+        <em class="store-text store-text--emphasis">
             <div id="username-check-status">{{ trans('store.username_change.check') }}</div>
-        </strong>
+        </em>
         <div>Your current username is "{{ Auth::user()->username }}".</div>
     </div>
     <div class="grid-cell">
