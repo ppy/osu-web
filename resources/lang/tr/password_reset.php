@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Şifre Sıfırlama',
-
     'button' => [
         'cancel' => 'İptal',
         'resend' => 'Doğrulama e-postasını tekrar gönder',

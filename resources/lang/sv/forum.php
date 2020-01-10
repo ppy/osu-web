@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Prenumerationer',
             'title_compact' => 'forum prenumerationer',
-            'title_main' => 'Forum <strong>Prenumerationer</strong>',
 
             'box' => [
                 'total' => 'Ämne prenumererade',

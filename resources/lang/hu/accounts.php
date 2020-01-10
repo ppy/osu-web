@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Fiókbeállítások</strong>',
         'title_compact' => 'beállítások',
         'username' => 'felhasználónév',
 

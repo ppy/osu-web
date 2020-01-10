@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => '訂閱的主題',
             'title_compact' => '訂閱',
-            'title_main' => '<strong>訂閱</strong>主題',
 
             'box' => [
                 'total' => '訂閱的主題',

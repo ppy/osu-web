@@ -47,6 +47,10 @@ export default class HeaderV4 extends React.Component<Props> {
       classNames += ` header-v4--${this.props.theme}`;
     }
 
+    if (currentUser.is_restricted) {
+      classNames += ' header-v4--restricted';
+    }
+
     return (
       <div className={classNames}>
         <div className='header-v4__container header-v4__container--main'>

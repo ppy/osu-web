@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Abonelikleri',
             'title_compact' => 'forum abonelikleri',
-            'title_main' => 'Forum <strong>Abonelikleri</strong>',
 
             'box' => [
                 'total' => 'Abone olunan konular',

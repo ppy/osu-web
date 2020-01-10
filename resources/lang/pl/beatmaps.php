@@ -98,7 +98,7 @@ return [
         'mode' => [
             'events' => 'Historia',
             'general' => 'Główne :scope',
-            'reviews' => '',
+            'reviews' => 'Recenzje',
             'timeline' => 'Oś czasu',
             'scopes' => [
                 'general' => 'Ten poziom trudności',

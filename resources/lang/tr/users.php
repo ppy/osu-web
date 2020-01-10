@@ -93,23 +93,23 @@ return [
 
     'login' => [
         '_' => 'Giriş Yap',
-        'email_login_disabled' => '',
-        'locked_ip' => 'IP adresiniz kilitli. Lütfen birkaç dakika bekleyin.',
-        'username' => 'Kullanıcı adı',
-        'password' => 'Şifre',
         'button' => 'Giriş Yap',
         'button_posting' => 'Giriş yapılıyor...',
+        'email_login_disabled' => '',
+        'failed' => 'Hatalı giriş',
+        'forgot' => 'Şifrenizi mi unuttunuz?',
+        'info' => '',
+        'locked_ip' => 'IP adresiniz kilitli. Lütfen birkaç dakika bekleyin.',
+        'password' => 'Şifre',
+        'register' => "osu! hesabınız yok mu? Yeni bir tane oluşturun",
         'remember' => 'Bu bilgisayarı hatırla',
         'title' => 'Devam etmek için lütfen giriş yapın',
-        'failed' => 'Hatalı giriş',
-        'register' => "osu! hesabınız yok mu? Yeni bir tane oluşturun",
-        'forgot' => 'Şifrenizi mi unuttunuz?',
+        'username' => 'Kullanıcı adı',
+
         'beta' => [
             'main' => 'Beta erişimi ayrıcalıklı üyelere kısıtlandırılmıştır.',
             'small' => '(osu!supporterlar yakında erişebilecekler)',
         ],
-
-        'here' => 'buraya', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -361,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Oyuncu bilgisi',
-            'info' => 'Bilgi',
         ],
 
         'info' => [

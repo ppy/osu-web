@@ -120,8 +120,6 @@ return [
             'error' => 'Feil ved innlasting av nyheter, prøv å oppdatere siden?...',
         ],
         'header' => [
-            'welcome' => 'Hei, <strong>:username</strong>!',
-            'messages' => 'Du har :count_delimited ny melding|Du har :count_delimited nye meldinger',
             'stats' => [
                 'friends' => 'Tilkoblede Venner',
                 'games' => 'Lobbyer',

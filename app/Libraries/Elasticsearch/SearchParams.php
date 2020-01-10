@@ -43,14 +43,14 @@ abstract class SearchParams
      *
      * @return string the cache key.
      */
-    abstract public function getCacheKey() : string;
+    abstract public function getCacheKey(): string;
 
     /**
      * Checks if the current set of parameters is eligible for caching.
      *
      * @return bool true if the parameters are eligible for caching; false, otherwise.
      */
-    abstract public function isCacheable() : bool;
+    abstract public function isCacheable(): bool;
 
     public function blockedUserIds()
     {
@@ -64,7 +64,7 @@ abstract class SearchParams
         return mb_strlen($this->queryString) < config('osu.search.minimum_length');
     }
 
-    public function shouldReturnEmptyResponse() : bool
+    public function shouldReturnEmptyResponse(): bool
     {
         return false;
     }
@@ -76,7 +76,7 @@ abstract class SearchParams
      * @param $page
      * @return int
      */
-    public function pageAsFrom($page) : int
+    public function pageAsFrom($page): int
     {
         $page = max(1, $page ?? 1);
 

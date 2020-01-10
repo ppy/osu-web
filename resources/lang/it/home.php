@@ -120,8 +120,6 @@ return [
             'error' => 'Errore nel caricamento delle notizie, prova a riavviare la pagina?...',
         ],
         'header' => [
-            'welcome' => 'Ciao <strong>:username</strong>!',
-            'messages' => 'Hai :count_delimited nuovo messaggio|Hai :count_delimited nuovi messaggi',
             'stats' => [
                 'friends' => 'Amici Online',
                 'games' => 'Partite',

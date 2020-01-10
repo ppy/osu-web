@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => '비밀번호 재설정',
-
     'button' => [
         'cancel' => '취소',
         'resend' => '인증 메일 다시 받기',

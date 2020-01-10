@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Paramètres de <strong>Compte</strong>',
         'title_compact' => 'paramètres',
         'username' => 'nom d\'utilisateur',
 
@@ -70,9 +69,9 @@ return [
         'beatmapset_discussion_qualified_problem' => 'recevoir des notifications pour un nouveau problème sur les beatmaps qualifiées des modes suivants',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => 'recevoir des notifications par mail pour',
+            'beatmapset:modding' => 'modding de beatmap',
+            'forum_topic_reply' => 'réponse à un sujet',
         ],
     ],
 

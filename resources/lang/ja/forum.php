@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'フォーラムサブスクリプション',
             'title_compact' => 'フォーラムサブスクリプション',
-            'title_main' => 'フォーラム<strong>サブスクリプション</strong>',
 
             'box' => [
                 'total' => 'サブスクライブしているトピック',

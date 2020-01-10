@@ -28,7 +28,7 @@
     "guzzlehttp/guzzle": "*",
     "itsgoingd/clockwork": ">=3.0",
     "jenssegers/agent": "*",
-    "laravel/framework": "6.*",
+    "laravel/framework": "6.8.0",
     "laravel/helpers": "^1.1",
     "laravel/passport": "*",
     "laravel/slack-notification-channel": "^2.0",

@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Ezek a beatmap beszélgetések amiket követsz. Értesítve leszel amikor új hozzászólások illetve frissítések vannak.',
         'title_compact' => 'modding követőlista',
-        'title_main' => 'Modding Követőlista',
 
         'table' => [
             'empty' => 'Nem követsz beatmap beszélgetéseket.',

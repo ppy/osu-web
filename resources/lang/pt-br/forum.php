@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Inscrições de Fórum',
             'title_compact' => 'inscrições de fórum',
-            'title_main' => '<strong>Inscrições</strong> de Fórum',
 
             'box' => [
                 'total' => 'Tópicos inscritos',

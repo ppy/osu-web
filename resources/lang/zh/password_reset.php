@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => '重置密码',
-
     'button' => [
         'cancel' => '取消',
         'resend' => '重新发送确认邮件',

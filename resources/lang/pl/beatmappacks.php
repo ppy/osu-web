@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Kolekcje beatmap o wspólnej tematyce.',
+        'nav_title' => 'lista',
+        'title' => 'Paczki beatmap',
+
         'blurb' => [
             'important' => 'WAŻNE',
             'instruction' => [
@@ -37,12 +41,9 @@ return [
                 'scary' => 'Pobieranie paczek beatmap od najnowszych do najstarszych',
             ],
         ],
-        'title' => 'Paczki beatmap',
-        'description' => 'Kolekcje beatmap o wspólnej tematyce.',
     ],
 
     'show' => [
-        'back' => 'Powrót do listy',
         'download' => 'Pobierz',
         'item' => [
             'cleared' => 'ukończona',

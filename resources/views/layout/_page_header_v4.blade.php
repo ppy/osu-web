@@ -27,7 +27,12 @@
 
     $linksElement = $linksBreadcrumb ? 'ol' : 'ul';
 @endphp
-<div class="header-v4 {{ isset($theme) ? "header-v4--{$theme}" : '' }} {{ $headerExtraClass }}">
+<div class="
+    header-v4
+    {{ isset($theme) ? "header-v4--{$theme}" : '' }}
+    {{ (auth()->check() && auth()->user()->isRestricted()) ? 'header-v4--restricted' : '' }}
+    {{ $headerExtraClass }}
+">
     <div class="header-v4__container header-v4__container--main">
         <div class="header-v4__bg-container">
             <div class="header-v4__bg {{ $backgroundExtraClass }}" {!! background_image($backgroundImage ?? null, false) !!}></div>

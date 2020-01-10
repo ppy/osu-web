@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Cài đặt <strong>Tài khoản</strong>',
         'title_compact' => 'cài đặt',
         'username' => 'tên người dùng',
 

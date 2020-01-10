@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Berikut adalah diskusi beatmap yang Anda amati. Anda akan diberitahu jika ada pembaruan atau kiriman terbaru.',
         'title_compact' => 'daftar pengamatan modding',
-        'title_main' => 'Daftar Pengamatan Modding',
 
         'table' => [
             'empty' => 'Tidak ada diskusi beatmap yang diamati.',

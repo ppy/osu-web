@@ -98,7 +98,7 @@ return [
         'mode' => [
             'events' => 'История',
             'general' => 'Общее :scope',
-            'reviews' => '',
+            'reviews' => 'Отзывы',
             'timeline' => 'Временная шкала',
             'scopes' => [
                 'general' => 'эта сложность',

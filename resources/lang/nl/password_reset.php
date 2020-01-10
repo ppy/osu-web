@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Wachtwoord Resetten',
-
     'button' => [
         'cancel' => 'Annuleer',
         'resend' => 'Verificatie e-mail opnieuw versturen',

@@ -20,13 +20,12 @@
 
 return [
     'edit' => [
-        'title' => 'Definições de <strong>Conta</strong>',
         'title_compact' => 'definições',
         'username' => 'nome de utilizador',
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Por favor, certifica-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo sugestivo.',
+            'rules' => 'Por favor assegura-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo sugestivo.',
             'rules_link' => 'as regras da comunidade',
         ],
 
@@ -70,9 +69,9 @@ return [
         'beatmapset_discussion_qualified_problem' => 'receber notificações para um novo problema em beatmaps qualificados dos modos seguintes',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => 'receber notificações por email para',
+            'beatmapset:modding' => 'modificações de beatmaps',
+            'forum_topic_reply' => 'resposta ao tópico',
         ],
     ],
 
@@ -98,7 +97,7 @@ return [
 
     'security' => [
         'current_session' => 'atual',
-        'end_session' => 'Terminar Sessão',
+        'end_session' => 'Terminar sessão',
         'end_session_confirmation' => 'Isto irá imediatamente terminar a tua sessão nesse dispositivo. Tens a certeza?',
         'last_active' => 'Ativo pela última vez:',
         'title' => 'Segurança',

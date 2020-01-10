@@ -120,8 +120,6 @@ return [
             'error' => 'Haberler yüklenirken hata oluştu, sayfayı yenilemeyi deneseniz?...',
         ],
         'header' => [
-            'welcome' => 'Merhaba, <strong>:username</strong>!',
-            'messages' => ':count yeni mesajınız var|:count yeni mesajınız var',
             'stats' => [
                 'friends' => 'Çevrimiçi Arkadaşlar',
                 'games' => 'Oyunlar',

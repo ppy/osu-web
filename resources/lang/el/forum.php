@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Εγγραφές Φόρουμ',
             'title_compact' => 'εγγραφές φόρουμ',
-            'title_main' => '<strong>Εγγραφές</strong> Φόρουμ',
 
             'box' => [
                 'total' => 'Θέματα στα οποία έχετε εγγραφεί',

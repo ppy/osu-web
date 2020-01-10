@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Zasubskrybowane wątki',
             'title_compact' => 'subskrybcje',
-            'title_main' => '<strong>Subskrybcje</strong> wątków',
 
             'box' => [
                 'total' => 'Zasubskrybowane wątki',

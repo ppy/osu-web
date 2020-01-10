@@ -20,12 +20,9 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Transmissões ao Vivo',
-        'description' => 'A informação é obtida através da twitch.tv a cada cinco minutos baseado na listagem de diretórios. Fica à vontade em começares a transmitir e torna-te listado! Para mais informações em como configurar, por favor consulta :link.',
+        'headline' => 'Transmissões ao vivo',
+        'description' => 'A informação é obtida através da twitch.tv a cada cinco minutos baseado na listagem de diretórios. Podes começar a transmitir e tornar-te listado! Para mais informações em como configurar, por favor consulta :link.',
 
         'link' => 'a página wiki dedicada às transmissões ao vivo',
-    ],
-    'headers' => [
-        'regular' => 'Atualmente a Transmitir',
     ],
 ];

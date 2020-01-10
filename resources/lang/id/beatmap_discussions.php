@@ -90,8 +90,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'umum',
+        'general_all' => 'umum (semua)',
     ],
 
     'user_filter' => [

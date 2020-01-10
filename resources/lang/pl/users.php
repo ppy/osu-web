@@ -65,17 +65,17 @@ return [
     ],
 
     'disabled' => [
-        'title' => '',
+        'title' => 'Och! Wygląda na to, że twoje konto zostało zdezaktywowane.',
         'warning' => "",
 
         'if_mistake' => [
-            '_' => '',
-            'email' => '',
+            '_' => 'Jeżeli uważasz, że to pomyłka, skontaktuj się z nami (poprzez :email lub kliknięcie znaku zapytania w prawym dolnym rogu tej strony). Miej na uwadze, że w pełni zdajemy sobie sprawę z naszych działań, ponieważ opierają się one na zgromadzonych informacjach. Mamy prawo odrzucić twój wniosek, jeżeli uważamy, że umyślnie próbujesz wprowadzić nas w błąd.',
+            'email' => 'wiadomość e-mail',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'Twoje konto zostało uznane za skradzione. Zdezaktywowaliśmy je do czasu potwierdzenia twojej tożsamości.',
+            'opening' => 'Istnieje kilka powodów, przez które twoje konto mogło zostać zdezaktywowane:',
 
             'tos' => [
                 '_' => '',
@@ -87,29 +87,29 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Twoje konto nie było używane przez długi okres czasu.",
         ],
     ],
 
     'login' => [
         '_' => 'Zaloguj się',
-        'email_login_disabled' => '',
-        'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
-        'username' => 'Nazwa użytkownika',
-        'password' => 'Hasło',
         'button' => 'Zaloguj się',
         'button_posting' => 'Logowanie...',
+        'email_login_disabled' => 'Logowanie się przy użyciu adresu e-mail jest obecnie wyłączone. Użyj swojej nazwy użytkownika.',
+        'failed' => 'Nieprawidłowe dane logowania',
+        'forgot' => 'Nie pamiętasz hasła?',
+        'info' => '',
+        'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
+        'password' => 'Hasło',
+        'register' => "Nie posiadasz konta osu!? Utwórz nowe.",
         'remember' => 'Zapamiętaj ten komputer',
         'title' => 'Zaloguj się, aby kontynuować',
-        'failed' => 'Nieprawidłowe dane logowania',
-        'register' => "Nie posiadasz konta osu!? Utwórz nowe.",
-        'forgot' => 'Nie pamiętasz hasła?',
+        'username' => 'Nazwa użytkownika',
+
         'beta' => [
             'main' => 'Beta jest obecnie dostępna tylko dla wybranych użytkowników.',
             'small' => '(donatorzy osu! otrzymają ją wkrótce)',
         ],
-
-        'here' => 'tutaj', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -361,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Użytkownik » :info',
-            'info' => 'Informacje',
         ],
 
         'info' => [

@@ -156,10 +156,6 @@ class RankingController extends Controller
             if (is_api_request()) {
                 $stats->with(['user.userProfileCustomization']);
             }
-
-            if (is_api_request()) {
-                $stats->with(['user.userProfileCustomization']);
-            }
         }
 
         $maxResults = $this->maxResults($modeInt);
@@ -248,7 +244,7 @@ class RankingController extends Controller
         );
     }
 
-    private function optionFromSpotlight(Spotlight $spotlight) : array
+    private function optionFromSpotlight(Spotlight $spotlight): array
     {
         return ['id' => $spotlight->chart_id, 'text' => $spotlight->name];
     }

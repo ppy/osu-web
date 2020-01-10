@@ -23,7 +23,7 @@ return [
     'talking_in' => 'pratar i :channel',
     'talking_with' => 'pratar med :name',
     'title_compact' => 'chatt',
-    'title' => 'Chatt',
+
     'cannot_send' => [
         'channel' => '',
         'user' => '',

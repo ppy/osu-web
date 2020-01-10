@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Jelszó Visszaállítása',
-
     'button' => [
         'cancel' => 'Mégse',
         'resend' => 'Megerősítő email újraküldése',

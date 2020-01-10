@@ -34,7 +34,7 @@ class BlockRenderer implements BlockRendererInterface
      * @param Node $node
      * @return AbstractBlock|null
      */
-    public static function getEnclosingBlock(Node $node) : ?AbstractBlock
+    public static function getEnclosingBlock(Node $node): ?AbstractBlock
     {
         $parent = $node->parent();
         if ($parent instanceof AbstractBlock) {

@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forenabonnements',
             'title_compact' => 'forenabos',
-            'title_main' => 'Foren<strong>abonnenements</strong>',
 
             'box' => [
                 'total' => 'Abonnierte Threads',

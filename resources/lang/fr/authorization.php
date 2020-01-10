@@ -20,7 +20,7 @@
 
 return [
     'require_login' => 'Merci de vous connecter pour continuer.',
-    'require_verification' => '',
+    'require_verification' => 'Veuillez vous vérifier pour continuer.',
     'restricted' => "Action impossible quand votre compte est restreint.",
     'silenced' => "Action impossible quand votre compte est réduit au silence.",
     'unauthorized' => 'Accès refusé.',

@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,23 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import "app";
+return [
+    'completed' => [
+        'home' => 'Go to dashboard',
+        'logout' => 'Logout',
+        'text' => 'You can close this tab/window now',
+        'title' => 'osu! client verification has been completed',
+    ],
 
-.wiki-header {
-  .at2x-simple("/images/headers/tournament.jpg");
-  background-size: cover;
-
-  .text {
-    padding-left: 130px;
-
-    h1, h2 {
-      .default-text-shadow;
-      color: #fff;
-
-      font-style: normal;
-    }
-
-    h1 { font-size: 32px; margin-bottom: 10px; }
-    h2 { font-size: 16px; }
-  }
-}
+    'create' => [
+        'confirm' => 'Click on authorise button below to finish client verification.',
+        'title' => 'osu! client verification',
+    ],
+];

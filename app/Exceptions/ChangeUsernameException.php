@@ -39,7 +39,7 @@ class ChangeUsernameException extends Exception
         parent::__construct($message, 0, $previous);
     }
 
-    public function getErrors() : ValidationErrors
+    public function getErrors(): ValidationErrors
     {
         return $this->errors;
     }

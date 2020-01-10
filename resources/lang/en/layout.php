@@ -119,6 +119,7 @@ return [
             'beatmapset-watches-index' => 'modding watchlist',
             'changelog-build' => 'build',
             'changelog-index' => 'changelog',
+            'client_verifications-create' => 'osu! client verification',
             'forum-topic-watches-index' => 'forum subscriptions',
             'friends-index' => 'friends',
             'getDownload' => 'download',

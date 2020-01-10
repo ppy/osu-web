@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Εγγραφή από :start μέχρι :end',
 
         'header' => [
-            'subtitle' => 'Μια λίστα των ενεργών, επίσημα αναγνωρισμένων τουρνουά',
             'title' => 'Τουρνουά της Κοινότητας',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Ακύρωση Eγγραφής',
             'register' => 'Εγγέγραψέ με!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

@@ -20,7 +20,7 @@
 
 return [
     'require_login' => '계속하려면 로그인해 주세요.',
-    'require_verification' => '',
+    'require_verification' => '계속하려면 인증해 주세요.',
     'restricted' => "제한된 상태에서는 할 수 없습니다.",
     'silenced' => "사일런스 상태에서는 할 수 없습니다.",
     'unauthorized' => '접근이 거부되었습니다.',

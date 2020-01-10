@@ -120,8 +120,6 @@ return [
             'error' => 'Erro ao carregar as notícias, tente atualizar a página?...',
         ],
         'header' => [
-            'welcome' => 'Bem-vindo(a), <strong>:username</strong>!',
-            'messages' => 'Você tem :count_delimited nova mensagem|Você tem :count_delimited novas mensagens',
             'stats' => [
                 'friends' => 'Amigos Online',
                 'games' => 'Partidas',

@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Réinitialiser le mot de passe',
-
     'button' => [
         'cancel' => 'Annuler',
         'resend' => 'Renvoyer l\'email de vérification',

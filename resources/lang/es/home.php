@@ -120,8 +120,6 @@ return [
             'error' => 'Error al cargar las novedades, ¿intenta recargando la página?...',
         ],
         'header' => [
-            'welcome' => '¡Hola, <strong>:username</strong>!',
-            'messages' => 'Tienes :count nuevo mensaje|Tienes :count nuevos mensajes',
             'stats' => [
                 'friends' => 'Amigos en línea',
                 'games' => 'Partidas',

@@ -44,11 +44,6 @@ return [
             '_stream_to' => ':stream változtatások :to -ig',
             '_to' => 'változtatások :to -ig',
         ],
-
-        'title' => [
-            '_' => 'Változtatások :info',
-            'info' => 'Listázás',
-        ],
     ],
 
     'support' => [

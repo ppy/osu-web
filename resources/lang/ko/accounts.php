@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>계정</strong> 설정',
         'title_compact' => '설정',
         'username' => '사용자 이름',
 
@@ -71,7 +70,7 @@ return [
 
         'mail' => [
             '_' => '',
-            'beatmapset:modding' => '',
+            'beatmapset:modding' => '비트맵 모딩',
             'forum_topic_reply' => '',
         ],
     ],

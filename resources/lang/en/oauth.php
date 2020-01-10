@@ -22,15 +22,9 @@ return [
     'cancel' => 'Cancel',
 
     'authorise' => [
-        'authorise' => 'Authorise',
         'request' => 'is requesting permission to access your account.',
         'scopes_title' => 'This application will be able to:',
         'title' => 'Authorisation Request',
-
-        'wrong_user' => [
-            '_' => 'You\'re signed in as :user. :logout_link.',
-            'logout_link' => 'Click here to sign in as different user',
-        ],
     ],
 
     'authorized_clients' => [
