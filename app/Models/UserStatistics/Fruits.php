@@ -33,6 +33,7 @@ namespace App\Models\UserStatistics;
  * @property string $country_acronym
  * @property int $exit_count
  * @property int $fail_count
+ * @property float $hit_accuracy
  * @property \Carbon\Carbon $last_played
  * @property \Carbon\Carbon $last_update
  * @property float $level

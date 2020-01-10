@@ -82,6 +82,7 @@ export class CommentsManager extends React.PureComponent
   handleCommentUpdated: (_event, commentBundle) =>
     runInAction () ->
       core.dataStore.updateWithCommentBundleJSON commentBundle
+      uiState.updateFromCommentUpdated commentBundle
 
 
   jsonStorageId: =>
@@ -151,4 +152,3 @@ export class CommentsManager extends React.PureComponent
     .always =>
       runInAction () ->
         uiState.comments.loadingSort = null
-

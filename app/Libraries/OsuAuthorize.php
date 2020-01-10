@@ -949,6 +949,11 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkCommentPin(?User $user): string
+    {
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @param Contest $contest
