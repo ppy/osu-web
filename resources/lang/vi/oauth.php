@@ -22,15 +22,9 @@ return [
     'cancel' => 'Hủy',
 
     'authorise' => [
-        'authorise' => 'Cho phép',
         'request' => 'yêu cầu quyền truy cập vào tài khoản của bạn.',
         'scopes_title' => 'Ứng dụng này sẽ được:',
         'title' => 'Yêu Cầu Ủy Quyền',
-
-        'wrong_user' => [
-            '_' => 'Bạn đã đăng nhập với :user. :logout_link.',
-            'logout_link' => 'Nhấp vào đây để đăng nhập người dùng khác',
-        ],
     ],
 
     'authorized_clients' => [

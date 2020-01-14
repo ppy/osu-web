@@ -22,15 +22,9 @@ return [
     'cancel' => '取消',
 
     'authorise' => [
-        'authorise' => '授权',
         'request' => '正在请求访问你的账户',
         'scopes_title' => '该应用将可以：',
         'title' => '授权请求',
-
-        'wrong_user' => [
-            '_' => '你正以 :user 登录。:logout_link。',
-            'logout_link' => '点此切换用户',
-        ],
     ],
 
     'authorized_clients' => [

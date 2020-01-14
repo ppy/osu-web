@@ -20,7 +20,7 @@
 
 return [
     'country' => [
-        'filter' => '',
+        'filter' => '國家/地區排名',
     ],
 
     'type' => [

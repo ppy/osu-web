@@ -25,7 +25,7 @@ return [
             'regenerating' => '',
             'remove' => '',
             'removing' => '',
-            'title' => '',
+            'title' => 'Pături Beatmapset',
         ],
         'show' => [
             'covers' => '',
@@ -72,7 +72,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '',
+                'beatmapsets' => 'Beatmapset-uri',
                 'forum' => '',
                 'general' => '',
                 'store' => '',

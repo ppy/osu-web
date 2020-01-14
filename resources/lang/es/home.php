@@ -39,7 +39,7 @@ return [
         'empty_result' => '¡No se ha encontrado nada!',
         'keyword_required' => 'Se requiere una palabra clave de búsqueda',
         'placeholder' => 'escribe para buscar',
-        'title' => 'Buscar',
+        'title' => 'buscar',
 
         'beatmapset' => [
             'more' => 'Hay :count beatmaps más en los resultados',
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nuevos Beatmaps Rankeados',
+            'new' => 'Nuevos Beatmaps Clasificados',
             'popular' => 'Beatmaps Populares',
             'by_user' => 'por :user',
         ],
@@ -143,7 +143,7 @@ return [
         'subtitle' => '¡Pareces estar pasando un buen rato! :D',
         'body' => [
             'part-1' => '¿Sabías que osu! se mantiene sin publicidad y confía en sus jugadores para apoyar su desarrollo y costos de mantenimiento?',
-            'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar Beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
+            'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
         ],
         'find-out-more' => '¡Haz clic aquí para obtener más información!',
         'download-starting' => "Ah, y no te preocupes - tu descarga ya se ha iniciado para ti ;)",

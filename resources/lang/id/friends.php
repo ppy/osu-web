@@ -23,8 +23,8 @@ return [
     'too_many' => 'Batas teman tercapai.',
 
     'buttons' => [
-      'add' => 'tambah teman',
-      'disabled' => 'teman',
-      'remove' => 'hapus teman',
+        'add' => 'tambah teman',
+        'disabled' => 'teman',
+        'remove' => 'hapus teman',
     ],
 ];

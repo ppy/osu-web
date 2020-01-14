@@ -25,7 +25,7 @@ return [
             'regenerating' => '重新產生中...',
             'remove' => '移除',
             'removing' => '移除中...',
-            'title' => '',
+            'title' => '譜面封面',
         ],
         'show' => [
             'covers' => '管理圖譜封面',
@@ -72,7 +72,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '',
+                'beatmapsets' => '譜面',
                 'forum' => '論壇',
                 'general' => '一般',
                 'store' => '商店',

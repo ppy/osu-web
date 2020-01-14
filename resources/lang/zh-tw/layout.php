@@ -31,41 +31,41 @@ return [
             'contest' => '',
             'contests' => '',
             'root' => '',
-            'store_orders' => '',
+            'store_orders' => '商店管理',
         ],
 
         'artists' => [
-            '_' => '',
-            'index' => '',
+            '_' => '精選藝術家',
+            'index' => '清單',
         ],
 
         'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            '_' => '圖譜',
+            'discussions' => '討論',
+            'index' => '列表',
+            'show' => '資訊',
+            'packs' => '圖譜壓縮檔',
         ],
 
         'changelog' => [
-            '_' => '',
-            'index' => '',
+            '_' => '更新日誌',
+            'index' => '列表',
         ],
 
         'community' => [
             '_' => '社群',
-            'comments' => '',
+            'comments' => '評論',
             'forum' => '論壇',
-            'livestream' => '',
+            'livestream' => '直播',
         ],
 
         'contests' => [
-            '_' => '',
-            'index' => '',
+            '_' => '評選',
+            'index' => '列表',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => '錯誤',
         ],
 
         'help' => [
@@ -74,12 +74,12 @@ return [
         ],
 
         'home' => [
-            '_' => '',
-            'password_reset' => '',
+            '_' => '首頁',
+            'password_reset' => '重設密碼',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => '對戰紀錄',
         ],
 
         'notice' => [
@@ -87,19 +87,28 @@ return [
         ],
 
         'rankings' => [
+            '_' => '排行榜',
+        ],
+
+        'store' => [
             '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
-            '_' => '',
-            'index' => '',
+            '_' => '官方比賽',
+            'index' => '清單',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            '_' => '玩家',
+            'forum_posts' => '論壇貼文',
+            'modding' => '摸圖',
+            'show' => '資訊',
         ],
     ],
 
@@ -116,10 +125,11 @@ return [
             '_' => '首頁',
             'account-edit' => '設定',
             'account-verifyLink' => '驗證已完成',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => '摸圖',
             'changelog-build' => '版本',
             'changelog-index' => '更新日誌',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => '訂閱',
             'friends-index' => '好友',
             'getDownload' => '下載',
             'getIcons' => '圖示',
@@ -161,7 +171,7 @@ return [
         ],
         'beatmapsets' => [
             '_' => '圖譜',
-            'discussion' => '修改',
+            'discussion' => '摸圖',
         ],
         'rankings' => [
             '_' => '排行榜',

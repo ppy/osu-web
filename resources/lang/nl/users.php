@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => 'Inloggen met e-mail is momenteel uitgeschakeld. Gebruik in plaats daarvan de gebruikersnaam.',
         'failed' => 'Verkeerde login',
         'forgot' => 'Wachtwoord vergeten?',
-        'info' => '',
+        'info' => 'Log in om verder te gaan',
         'locked_ip' => 'je IP adres is vergrendeld. Wacht enkele minuten.',
         'password' => 'Wachtwoord',
         'register' => "Heb je geen osu! account? Maak een nieuwe",

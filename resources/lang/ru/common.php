@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Администратор',
+        'authorise' => '',
         'back_to_previous' => 'Возвратить предыдущее состояние',
         'back_to_top' => 'В начало',
         'cancel' => 'Отмена',
@@ -48,7 +49,7 @@ return [
         'expand' => 'развернуть',
         'hide' => 'скрыть',
         'permalink' => 'прямая ссылка',
-        'permalink_copied' => 'ссылка скопирована',
+        'pin' => '',
         'post' => 'Опубликовать',
         'reply' => 'Ответить',
         'reply_reopen' => 'Ответить и возобновить',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Показать удалённые',
         'show_more' => 'показать больше',
         'show_more_options' => 'показать больше опций',
+        'unpin' => '',
         'update' => 'Обновить',
         'upload_image' => 'выбрать файл',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Замечание',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

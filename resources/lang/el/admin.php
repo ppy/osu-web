@@ -25,7 +25,7 @@ return [
             'regenerating' => 'Ανανεώνεται...',
             'remove' => 'Αφαίρεση',
             'removing' => 'Αφαίρεση...',
-            'title' => '',
+            'title' => 'Εξώφυλλα Beatmapset',
         ],
         'show' => [
             'covers' => 'Διαχείριση εξωφύλλων Beatmapset',
@@ -72,7 +72,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '',
+                'beatmapsets' => 'Beatmapsets',
                 'forum' => 'Φόρουμ',
                 'general' => 'Γενικά',
                 'store' => 'Κατάστημα',

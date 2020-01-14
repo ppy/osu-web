@@ -25,7 +25,7 @@ return [
             'regenerating' => 'Revivendo...',
             'remove' => 'Remover',
             'removing' => 'Removendo...',
-            'title' => '',
+            'title' => 'Capas de beatmapset',
         ],
         'show' => [
             'covers' => 'Gerenciar capas',
@@ -72,7 +72,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '',
+                'beatmapsets' => 'Beatmapsets',
                 'forum' => 'Fórum',
                 'general' => 'Geral',
                 'store' => 'Loja',

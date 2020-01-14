@@ -81,7 +81,7 @@ return [
         'message_placeholder' => [
             'general' => '在此處輸入以發佈至整體 (:version)',
             'generalAll' => '在此處輸入以發佈至整體 (所有難度)',
-            'timeline' => '在此處輸入以發佈至時間線 (:version)',
+            'timeline' => '在此處輸入以發佈至時間軸 (:version)',
         ],
 
         'message_type' => [
