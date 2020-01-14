@@ -20,9 +20,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\OsuWiki;
+use App\Libraries\Search\BasicSearch;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
+use App\Models\Wiki\Page;
 use Request;
 
 class WikiController extends Controller
@@ -58,6 +62,41 @@ class WikiController extends Controller
         }
 
         return response()->view($page->template(), compact('page', 'locale'), $status ?? 200);
+    }
+
+    public function suggestions()
+    {
+        $query = presence(trim(request('q')));
+        if ($query === null) {
+            return response(null, 204);
+        }
+
+        $search = (new BasicSearch(Page::esIndexName()))
+            ->query(
+                (new BoolQuery)
+                    ->must(['term' => ['locale' => app()->getLocale()]])
+                    ->must([
+                        'match' => [
+                            'title.autocomplete' => [
+                                'query' => $query,
+                                'operator' => 'and',
+                            ],
+                        ],
+                    ])
+            )
+            ->highlight(
+                (new Highlight)
+                    ->field('title.autocomplete')
+                    ->numberOfFragments(0)
+            )
+            ->source(false);
+
+        $response = [];
+        foreach ($search->response() as $hit) {
+            $response[] = $hit->highlights('title.autocomplete');
+        }
+
+        return array_flatten($response);
     }
 
     public function update($path)
