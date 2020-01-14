@@ -15,9 +15,19 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@php
-    $template = ($legacyNav ?? true) ? 'objects._notification_banner_v1' : 'objects._notification_banner_v2';
-@endphp
 @push('notification_banners')
-    @include($template, compact('type', 'title', 'message'))
+    <div class="notification-banner-v2 notification-banner-v2--{{ $type }}">
+        <div class="notification-banner-v2__col notification-banner-v2__col--icon"></div>
+
+        <div class="notification-banner-v2__col notification-banner-v2__col--label">
+            <div class="notification-banner-v2__type">{{ $type }}</div>
+            <div class="notification-banner-v2__text">{{ $title }}</div>
+        </div>
+
+        <div class="notification-banner-v2__col">
+            <div class="notification-banner-v2__text">
+                {!! $message !!}
+            </div>
+        </div>
+    </div>
 @endpush

@@ -85,6 +85,8 @@
                             </li>
                         @endforeach
                     </{!! $linksElement !!}>
+
+                    {{ $navAppend ?? null }}
                 </div>
             </div>
         </div>

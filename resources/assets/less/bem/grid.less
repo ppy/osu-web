@@ -37,8 +37,10 @@
   }
 
   &--gutters {
-    margin-left: -@flex-grid--gutter-width;
-    margin-right: -@flex-grid--gutter-width;
+    @media @desktop {
+      margin-left: -@flex-grid--gutter-width;
+      margin-right: -@flex-grid--gutter-width;
+    }
   }
 
   &--packed {

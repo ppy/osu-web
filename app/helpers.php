@@ -1463,12 +1463,13 @@ function mini_asset(string $url): string
 function section_to_hue_map($section): int
 {
     static $colourToHue = [
-        'red' => 0,
-        'pink' => 333,
-        'orange' => 46,
-        'green' => 115,
-        'purple' => 255,
         'blue' => 200,
+        'darkorange' => 20,
+        'green' => 115,
+        'orange' => 46,
+        'pink' => 333,
+        'purple' => 255,
+        'red' => 0,
     ];
 
     static $sectionMapping = [
@@ -1484,7 +1485,7 @@ function section_to_hue_map($section): int
         'multiplayer' => 'pink',
         'notifications' => 'pink',
         'rankings' => 'green',
-        'store' => 'pink',
+        'store' => 'darkorange',
         'user' => 'pink',
     ];
 

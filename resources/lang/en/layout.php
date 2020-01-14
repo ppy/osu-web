@@ -90,6 +90,15 @@ return [
             '_' => 'ranking',
         ],
 
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'cart',
+            'order' => 'invoice',
+            'orders' => 'order history',
+            'product' => 'product',
+            'products' => 'products',
+        ],
+
         'tournaments' => [
             '_' => 'tournaments',
             'index' => 'listing',

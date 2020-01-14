@@ -31,7 +31,6 @@
 @extends('master', [
     'currentAction' => 'tournaments',
     'currentSection' => 'community',
-    'legacyNav' => false,
     'title' => $tournament->name,
 ])
 

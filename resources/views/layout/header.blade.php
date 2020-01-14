@@ -15,14 +15,8 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@php
-    $legacyNav ?? ($legacyNav = true);
-@endphp
 @include('layout._header_mobile')
 
-@if ($legacyNav)
-    <div class="nav2-header-legacy-padding"></div>
-@endif
 <div
     class="
     js-pinned-header
@@ -32,14 +26,9 @@
     {{ optional(Auth::user())->isRestricted() ? 'nav2-header--restricted' : '' }}
 ">
     <div class="nav2-header__body">
-        @if ($legacyNav)
-            <div class="nav2-header__legacy-triangles"></div>
-            <div class="nav2-header__legacy-gradient-overlay u-section--gradient-down"></div>
-        @else
-            <div class="nav2-header__menu-bg js-nav2--menu-bg" data-visibility="hidden"></div>
-            <div class="nav2-header__triangles"></div>
-            <div class="nav2-header__transition-overlay"></div>
-        @endif
+        <div class="nav2-header__menu-bg js-nav2--menu-bg" data-visibility="hidden"></div>
+        <div class="nav2-header__triangles"></div>
+        <div class="nav2-header__transition-overlay"></div>
 
         <div class="osu-page">
             @include('layout._nav2')

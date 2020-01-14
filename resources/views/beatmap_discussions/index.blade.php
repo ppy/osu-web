@@ -20,7 +20,7 @@
     array_unshift($statusOptions, 'all');
 @endphp
 
-@extends('master', ['legacyNav' => false])
+@extends('master')
 
 {{-- FIXME: move to user modding history --}}
 @section('content')

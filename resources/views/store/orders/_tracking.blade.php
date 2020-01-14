@@ -15,17 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="notification-banner-v2 notification-banner-v2--{{ $type }}">
-    <div class="notification-banner-v2__col notification-banner-v2__col--icon"></div>
+<div class="store-page">
+    <h4 class="store-text store-text--title store-text--title-small">Tracking for {{ $code }}</h4>
 
-    <div class="notification-banner-v2__col notification-banner-v2__col--label">
-        <div class="notification-banner-v2__type">{{ $type }}</div>
-        <div class="notification-banner-v2__text">{{ $title }}</div>
-    </div>
-
-    <div class="notification-banner-v2__col">
-        <div class="notification-banner-v2__text">
-            {!! $message !!}
-        </div>
-    </div>
+    <iframe src="https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1={{ $code }}" frameBorder="0" width="100%" height="600px">
+    </iframe>
 </div>

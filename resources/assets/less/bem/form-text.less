@@ -16,40 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.store-logo--late {
-  .at2x("/images/headers/store-late.png", 900px, 200px);
-  background-position: 50% 50%;
-  width: 500px;
-  height: 200px;
+.form-text {
+  .reset-input();
+  .default-border-radius();
+  padding: 5px;
+  width: 100%;
+
+  background-color: @osu-colour-b6;
+  color: @osu-colour-c1;
+  font-size: @font-size--phone-input;
+
+  @media @desktop {
+    font-size: @font-size--normal;
+  }
+
+  &--username-change {
+    padding: 10px;
+    margin: 5px 0;
+
+    @media @desktop {
+      font-size: @font-size--title-small;
+    }
+  }
 }
-
-#store-logo {
-  width: 190px;
-  height: 125px;
-
-  background-image: url("/images/layout/store-logo-bg.svg");
-  background-repeat: no-repeat;
-
-  &:hover {
-    .sh0 { fill: #fff; }
-    .sh1 { fill: #FF66AA; }
-  }
-
-  .sh0 {
-    fill: #FF66AA;
-    transition: fill 0.3s ease-in-out;
-  }
-
-  .sh1 {
-    fill: #FFFFFF;
-    transition: fill 0.3s ease-in-out;
-  }
-  .correct {
-    transform: translate(128px,128px);
-  }
-
-  path {
-    transform: translate(-128px,-128px);
-    transform-origin: 0 0;
-  }
- }

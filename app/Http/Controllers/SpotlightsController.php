@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,26 +18,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.store-logo-text {
-  @_top: store-logo-text;
+namespace App\Http\Controllers;
 
-  &__content {
-    transition: fill 0.3s ease-in-out;
+use App\Models\Spotlight;
 
-    &--text {
-      fill: @pink;
+/**
+ * @group Ranking
+ */
+class SpotlightsController extends Controller
+{
+    protected $section = 'rankings';
 
-      .@{_top}:hover & {
-        fill: #fff;
-      }
+    /**
+     * Get Spotlights
+     *
+     * Gets the list of spotlights.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [Spotlight Response](#spotlight-response)
+     *
+     * @authenticated
+     */
+    public function index()
+    {
+        return [
+            'spotlights' => json_collection(Spotlight::orderBy('chart_id', 'desc')->get(), 'Spotlight'),
+        ];
     }
-
-    &--circle {
-      fill: #fff;
-
-      .@{_top}:hover & {
-        fill: @pink;
-      }
-    }
-  }
 }

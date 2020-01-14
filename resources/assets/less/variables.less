@@ -29,7 +29,8 @@
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
 @mobile: ~"(max-width: @{screen-mobile-max})";
-@narrow: ~"(max-width: 480px)";
+@narrow: ~"(max-width: 479px)";
+@narrow-up: ~"(min-width: 480px)";
 
 @highdpi: ~"(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
 
@@ -181,8 +182,6 @@
 @font-size--forum-post-heading: 20px;
 @font-size--forum-quote-heading: 13px;
 
-@font-size--store-header-link-icon: 18px;
-@font-size--store-header-link-text: 12px;
 @font-size--store-notice-text: 15px;
 @font-size--store-notice-title: 13px;
 

@@ -21,7 +21,7 @@
 @section('content')
     @include('store.header')
 
-    <div class="osu-layout__row osu-layout__row--page osu-layout--store">
+    <div class="osu-page osu-page--generic">
         <div class="store-orders">
             @if (count($orders) === 0)
                 <span>{{ trans('store.order.no_orders') }}</span>
@@ -61,7 +61,7 @@
                     </ul>
                     @if ($order->isShopify())
                         <button
-                            class="js-store-resume-checkout btn-osu-big"
+                            class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
                             data-order-id="{{ $order->getKey() }}"
                             data-provider="{{ $order->getPaymentProvider() }}"
                             data-provider-reference="{{ $order->getProviderReference() }}"
@@ -70,7 +70,7 @@
                         </button>
                     @elseif ($order->hasInvoice())
                         <button
-                            class="js-store-resume-checkout btn-osu-big"
+                            class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
                             data-order-id="{{ $order->getKey() }}"
                             data-provider="{{ $order->getPaymentProvider() }}"
                         >
