@@ -16,6 +16,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+.no-print, .no-print * {
+  @media print {
+    display: none !important;
+  }
+}
+
+.print-page-break {
+  @media print {
+    page-break-before: always;
+  }
+}
+
 .u-blackout-visible {
   z-index: @z-index--blackout-visible !important;
 }

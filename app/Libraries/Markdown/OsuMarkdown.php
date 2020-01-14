@@ -68,6 +68,12 @@ class OsuMarkdown
             'block_modifiers' => ['store'],
             'html_input' => 'allow',
         ],
+        'store-product' => [
+            'block_modifiers' => ['store-product'],
+        ],
+        'store-product-small' => [
+            'block_modifiers' => ['store-product', 'store-product-small'],
+        ],
         'wiki' => [
             'generate_toc' => true,
             'title_from_document' => true,

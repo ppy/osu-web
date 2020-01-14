@@ -17,12 +17,18 @@
  */
 
 .grid-items {
+  --grid-items-gutter: 10px;
   display: flex;
   flex-wrap: wrap;
-  margin: -10px;
+  margin: calc(var(--grid-items-gutter) * -1);
 
   // simulating `gap` property
   > * {
-    margin: 10px;
+    margin: var(--grid-items-gutter);
+  }
+
+  &--notification-banner-buttons {
+    --grid-items-gutter: 5px;
+    justify-content: center;
   }
 }
