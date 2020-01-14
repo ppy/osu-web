@@ -50,4 +50,36 @@
 
     color: @osu-colour-c1;
   }
+
+  &__suggestion {
+    padding: 5px 20px;
+
+    em {
+      color: @osu-colour-l2;
+      font-style: normal;
+      font-weight: bold;
+    }
+
+    &:hover {
+      background-color: @osu-colour-b5;
+    }
+  }
+
+  &__suggestions {
+    position: absolute;
+    background-color: @osu-colour-b6;
+    color: @osu-colour-c1;
+
+    max-height: 500px;
+    width: calc(100% - 4px);
+    left: 2px;
+    overflow-y: auto;
+
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 0 0 @border-radius-large @border-radius-large;
+  }
 }

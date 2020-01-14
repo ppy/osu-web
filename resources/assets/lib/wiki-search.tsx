@@ -19,10 +19,30 @@
 import { route } from 'laroute';
 import * as React from 'react';
 
-export class WikiSearch extends React.Component {
-  input = React.createRef<HTMLInputElement>();
+interface State {
+  suggestions?: string[];
+}
 
-  onKeyDown = (e: React.KeyboardEvent) => {
+export class WikiSearch extends React.Component<{}, State> {
+  readonly input = React.createRef<HTMLInputElement>();
+  readonly state = {
+    suggestions: [],
+  };
+
+  getSuggestions() {
+    console.log(this.input.current?.value);
+    $.getJSON(route('wiki-suggestions'), { q: this.input.current?.value })
+    .done((response) => {
+      console.log(response);
+      this.setState({ suggestions: response });
+    });
+  }
+
+  handleChange = () => {
+    this.getSuggestions();
+  }
+
+  handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.keyCode === 13) { // enter
       this.performSearch();
     }
@@ -50,12 +70,34 @@ export class WikiSearch extends React.Component {
             ref={this.input}
             placeholder={osu.trans('common.input.search')}
             autoFocus={true}
-            onKeyDown={this.onKeyDown}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
           />
           <button className='wiki-search__button' onClick={this.performSearch}>
             <i className='fa fa-search'/>
           </button>
         </div>
+        {this.renderSuggestions()}
+      </div>
+    );
+  }
+
+  renderSuggestions() {
+    if (!this.state.suggestions?.length) return null;
+
+    return (
+      <div className='wiki-search__suggestions u-fancy-scrollbar'>
+        {
+          this.state.suggestions.map((item, index) => {
+            return (
+              <div
+                dangerouslySetInnerHTML={{ __html: item }}
+                className='wiki-search__suggestion'
+                key={index}
+              />
+            );
+          })
+        }
       </div>
     );
   }
