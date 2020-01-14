@@ -63,11 +63,8 @@ class NotificationsBundle
         $response = [
             'notifications' => json_collection($this->notifications, 'Notification'),
             'stacks' => array_values($this->stacks),
+            'types' => array_values($this->types),
         ];
-
-        if ($this->types !== null) {
-            $response['types'] = array_values($this->types);
-        }
 
         if ($this->unreadOnly) {
             $response['unread_count'] = $this->user->userNotifications()->where('is_read', false)->count();
