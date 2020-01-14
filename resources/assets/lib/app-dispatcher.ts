@@ -16,19 +16,29 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
-import { dispatch } from 'app-dispatcher';
+import DispatcherAction from 'actions/dispatcher-action';
+import DispatchListener from 'dispatch-listener';
+import Dispatcher from 'dispatcher';
 
-export default class WindowFocusObserver {
-  constructor(window: Window) {
-    $(window).on('blur focus', this.focusChange);
-  }
+export const dispatcher = new Dispatcher();
 
-  focusChange = (e: JQuery.TriggeredEvent<EventTarget>) => {
-    if (e.type === 'focus') {
-      dispatch(new WindowFocusAction());
-    } else {
-      dispatch(new WindowBlurAction());
+function isDispatchListener(target: any): target is DispatchListener {
+  return target.handleDispatchAction;
+}
+
+export function dispatch(data: DispatcherAction) {
+  dispatcher.dispatch(data);
+}
+
+// https://www.typescriptlang.org/docs/handbook/decorators.html#class-decorators
+export function dispatchListener<T extends new(...args: any[]) => {}>(ctor: T) {
+  return class extends ctor {
+    constructor(...args: any[]) {
+      super(...args);
+
+      if (isDispatchListener(this)) {
+        dispatcher.register(this);
+      }
     }
-  }
+  };
 }

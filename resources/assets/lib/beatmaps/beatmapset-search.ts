@@ -18,12 +18,12 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
+import { dispatchListener } from 'app-dispatcher';
 import ResultSet from 'beatmaps/result-set';
 import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
 import { route } from 'laroute';
 import { action, observable, runInAction } from 'mobx';
 import { BeatmapsetStore } from 'stores/beatmapset-store';
@@ -36,15 +36,14 @@ export interface SearchResponse {
   total: number;
 }
 
+@dispatchListener
 export class BeatmapsetSearch implements DispatchListener {
   @observable readonly recommendedDifficulties = new Map<string|null, number>();
   @observable readonly resultSets = new Map<string, ResultSet>();
 
   private xhr?: JQueryXHR;
 
-  constructor(private beatmapsetStore: BeatmapsetStore, private dispatcher: Dispatcher) {
-    this.dispatcher.register(this);
-  }
+  constructor(private beatmapsetStore: BeatmapsetStore) {}
 
   cancel() {
     if (this.xhr) {

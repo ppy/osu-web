@@ -63,7 +63,7 @@ export default class UIStateStore extends Store {
     newClientVisible: false,
   };
 
-  chat = new ChatStateStore(this.root, this.dispatcher);
+  chat = new ChatStateStore(this.root);
 
   // only for the currently visible page
   @observable comments = Object.assign({}, defaultCommentsUIState);

@@ -24,6 +24,7 @@ import {
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
+import { dispatchListener } from 'app-dispatcher';
 import { ChannelJSON } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
@@ -32,6 +33,7 @@ import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
 import Store from 'stores/store';
 
+@dispatchListener
 export default class ChannelStore extends Store {
   @observable channels = observable.map<number, Channel>();
   @observable loaded: boolean = false;
