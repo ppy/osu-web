@@ -25,6 +25,7 @@ use App\Exceptions\GitHubTooLargeException;
 use App\Jobs\UpdateWiki;
 use GitHub;
 use Github\Exception\RuntimeException as GithubException;
+use Illuminate\Support\Collection;
 
 class OsuWiki
 {
@@ -40,7 +41,7 @@ class OsuWiki
         return preg_replace('|//+|', '/', trim($path, '/'));
     }
 
-    public static function getPageList()
+    public static function getPageList(): Collection
     {
         return collect(static::getTree()['tree'])
             ->filter(function ($item) {
