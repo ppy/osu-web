@@ -81,7 +81,7 @@ export default class ItemGroup extends React.Component<Props, State> {
 
   private renderExpandButton() {
     const count = this.props.stack.total;
-    const transKey = this.context.unreadOnly ? 'common.count.update' : 'common.count.notifications';
+    const transKey = this.context.isWidget ? 'common.count.update' : 'common.count.notifications';
 
     return (
       <button

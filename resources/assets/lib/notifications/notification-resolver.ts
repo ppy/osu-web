@@ -42,7 +42,7 @@ export class NotificationResolver {
     const url = route('notifications.index', urlParams);
 
     const params = {
-      data: { cursor, unread: context.unreadOnly },
+      data: { cursor, unread: context.isWidget },
       dataType: 'json',
       url,
     };

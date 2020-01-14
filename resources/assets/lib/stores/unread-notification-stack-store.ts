@@ -35,7 +35,7 @@ export default class UnreadNotificationStackStore extends NotificationStackStore
 
   @action
   handleNotificationEventMoreLoaded(event: NotificationEventMoreLoaded) {
-    if (event.context.unreadOnly) {
+    if (event.context.isWidget) {
       this.updateWithBundle(event.data);
     }
   }

@@ -50,7 +50,7 @@ describe('Notification Widget', () => {
     store = new NotificationStore();
     store.unreadStacks.updateWithBundle(bundle);
 
-    controller = new NotificationController(store, { unreadOnly: true }, null);
+    controller = new NotificationController(store, { isWidget: true }, null);
   });
 
   it('should filter by All', () => {
@@ -76,7 +76,7 @@ describe('Notification Widget', () => {
         ],
       };
 
-      dispatch(new NotificationEventMoreLoaded(loadMoreBundle, { unreadOnly: true }));
+      dispatch(new NotificationEventMoreLoaded(loadMoreBundle, { isWidget: true }));
     });
 
     it('should have 2 notifications', () => {

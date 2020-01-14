@@ -48,7 +48,7 @@ export default class Main extends React.Component<Props, State> {
     hasError: false,
   };
 
-  private readonly controller = new NotificationController(core.dataStore.notificationStore, { unreadOnly: true }, null);
+  private readonly controller = new NotificationController(core.dataStore.notificationStore, { isWidget: true }, null);
   private menuId = `nav-notification-popup-${osu.uuid()}`;
 
   static getDerivedStateFromError(error: Error) {
@@ -63,7 +63,7 @@ export default class Main extends React.Component<Props, State> {
     }
 
     return (
-      <NotificationContext.Provider value={{ unreadOnly: true }}>
+      <NotificationContext.Provider value={{ isWidget: true }}>
         <button
           className={this.buttonClass()}
           data-click-menu-target={this.menuId}

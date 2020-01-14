@@ -80,7 +80,7 @@ export default class NotificationStackStore implements DispatchListener {
 
   @action
   handleNotificationEventMoreLoaded(event: NotificationEventMoreLoaded) {
-    if (!event.context.unreadOnly) {
+    if (!event.context.isWidget) {
       this.updateWithBundle(event.data);
     }
   }

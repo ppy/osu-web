@@ -422,7 +422,7 @@ describe('Notification Events', () => {
 
     describe('all notifications', () => {
       beforeEach(() => {
-        dispatch(new NotificationEventMoreLoaded(bundle, { unreadOnly: false } ));
+        dispatch(new NotificationEventMoreLoaded(bundle, { isWidget: false } ));
       });
 
       it ('does not update the unread count', () => {
@@ -451,7 +451,7 @@ describe('Notification Events', () => {
 
     describe('only unread notifications', () => {
       beforeEach(() => {
-        dispatch(new NotificationEventMoreLoaded(bundle, { unreadOnly: true } ));
+        dispatch(new NotificationEventMoreLoaded(bundle, { isWidget: true } ));
       });
 
       it('updates the unread count', () => {

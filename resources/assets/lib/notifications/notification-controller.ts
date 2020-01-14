@@ -55,7 +55,7 @@ export default class NotificationController {
     // TODO: should probably not infer from url here.
     this.currentFilter = filter !== undefined ? filter : this.typeNameFromUrl;
 
-    this.store = contextType.unreadOnly ? notificationStore.unreadStacks : notificationStore.stacks;
+    this.store = contextType.isWidget ? notificationStore.unreadStacks : notificationStore.stacks;
   }
 
   @action
@@ -71,7 +71,7 @@ export default class NotificationController {
       this.loadMore();
     }
 
-    if (!this.contextType.unreadOnly) {
+    if (!this.contextType.isWidget) {
       let href: string;
       if (type == null) {
         const url = new URL(window.location.href);

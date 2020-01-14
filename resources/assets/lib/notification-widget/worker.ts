@@ -174,7 +174,7 @@ export default class Worker {
   }
 
   @action loadBundle = (data: NotificationBootJson) => {
-    dispatch(new NotificationEventMoreLoaded(data, { unreadOnly: true }));
+    dispatch(new NotificationEventMoreLoaded(data, { isWidget: true }));
     this.hasData = true;
   }
 

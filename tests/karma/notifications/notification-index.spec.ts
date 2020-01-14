@@ -53,7 +53,7 @@ describe('Notification Index', () => {
   describe('when starting on All', () => {
     let controller!: NotificationController;
     beforeEach(() => {
-      controller = new NotificationController(store, { unreadOnly: false }, null);
+      controller = new NotificationController(store, { isWidget: false }, null);
     });
 
     it('should filter by All', () => {
@@ -79,7 +79,7 @@ describe('Notification Index', () => {
           ],
         };
 
-        dispatch(new NotificationEventMoreLoaded(loadMoreBundle, { unreadOnly: false }));
+        dispatch(new NotificationEventMoreLoaded(loadMoreBundle, { isWidget: false }));
       });
 
       it('should have 2 notifications', () => {
@@ -127,7 +127,7 @@ describe('Notification Index', () => {
   describe('when starting on Beatmapsets', () => {
     let controller!: NotificationController;
     beforeEach(() => {
-      controller = new NotificationController(store, { unreadOnly: false }, 'beatmapset');
+      controller = new NotificationController(store, { isWidget: false }, 'beatmapset');
     });
 
     it('should filter by Beatmapsets', () => {
@@ -152,7 +152,7 @@ describe('Notification Index', () => {
           ],
         };
 
-        dispatch(new NotificationEventMoreLoaded(loadMoreBundle, { unreadOnly: false }));
+        dispatch(new NotificationEventMoreLoaded(loadMoreBundle, { isWidget: false }));
       });
 
       it('should have 2 notifications', () => {
