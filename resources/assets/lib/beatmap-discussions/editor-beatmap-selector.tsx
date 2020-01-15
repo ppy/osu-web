@@ -24,16 +24,46 @@ import { ReactEditor } from 'slate-react';
 import { PopupMenuPersistent } from '../popup-menu-persistent';
 import { SlateContext } from './slate-context';
 
+interface MenuItem {
+  icon: JSX.Element;
+  id: string | number;
+  label: string;
+}
+
 export default class EditorBeatmapSelector extends React.Component<any, any> {
   static contextType = SlateContext;
+  menuOptions: MenuItem[] = [];
 
   render(): React.ReactNode {
+    this.menuOptions = [];
+    this.menuOptions.push({
+      icon: <i className='fas fa-fw fa-star-of-life' style={{width: '22px', alignSelf: 'center', lineHeight: 'inherit'}} />,
+      id: 'all',
+      label: osu.trans(
+        'beatmaps.discussions.mode.general', {
+          scope: '(' + osu.trans('beatmaps.discussions.mode.scopes.generalAll') + ')' ,
+        },
+      ),
+    });
+
+    this.props.beatmaps.forEach((beatmap: Beatmap) => {
+      if (beatmap.deleted_at) {
+        return;
+      }
+
+      this.menuOptions.push({
+        icon: <BeatmapIcon beatmap={beatmap} showTitle={false} />,
+        id: beatmap.id,
+        label: beatmap.version,
+      });
+    });
+
     return (
       <PopupMenuPersistent customRender={this.renderButton}>
         {() => {
           return (
             <div className='simple-menu simple-menu--popup-menu-compact'>
-              {this.props.beatmaps.map((beatmap: Beatmap) => this.renderItem(beatmap))}
+              {this.menuOptions.map((item) => this.renderItem(item))}
             </div>
             );
         }}
@@ -42,40 +72,35 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
   }
 
   renderButton = (children: JSX.Element[], ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
-    const beatmap = this.props.element.beatmapId ? _.find(this.props.beatmaps, (b) => b.id === this.props.element.beatmapId) : this.props.currentBeatmap;
+    const selected: MenuItem = _.find(this.menuOptions, (option) => option.id === this.props.element.beatmapId) || this.menuOptions[0];
     return (
       <div ref={ref} className='beatmap-discussion-newer__dropdown' onClick={toggle} contentEditable={false} style={{userSelect: 'none'}}>
-          <BeatmapIcon
-            beatmap={beatmap}
-          />
-          {children}
+        {selected.icon}
+        {children}
       </div>
     );
   }
 
-  renderItem = (beatmap: Beatmap) => {
-    if (beatmap.deleted_at) {
-      return null;
+  renderItem = (menuItem: MenuItem) => {
+    let menuItemClasses = 'simple-menu__item';
+    if (this.props.element.beatmapId === menuItem.id) {
+      menuItemClasses += ' simple-menu__item--active';
     }
-    const menuItemClasses = 'simple-menu__item';
 
     return (
       <button
         className={menuItemClasses}
-        key={beatmap.id}
-        data-id={beatmap.id}
+        key={menuItem.id}
+        data-id={menuItem.id}
         onClick={this.select}
       >
-        <BeatmapIcon
-          beatmap={beatmap}
-          showTitle={false}
-        />
+        {menuItem.icon}
         <div
           style={{
             paddingLeft: '5px',
           }}
         >
-          {beatmap.version}
+          {menuItem.label}
         </div>
       </button>
     );
@@ -90,7 +115,7 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
       return;
     }
 
-    const id = parseInt(target.dataset.id || '', 10);
+    const id = target.dataset.id !== 'all' ? parseInt(target.dataset.id || '', 10) : 'all';
     if (id) {
       const path = ReactEditor.findPath(this.context, this.props.element);
       Transforms.setNodes(this.context, {beatmapId: id}, {at: path});

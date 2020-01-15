@@ -38,7 +38,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     const content = this.props.element.children[0].text;
     const TS_REGEX = /^((\d{2,}):([0-5]\d)[:.](\d{3}))( \((?:\d[,|])*\d\))?/;
     const matches = content.match(TS_REGEX);
-    let timestamp = 'general';
+    let timestamp = osu.trans('beatmap_discussions.timestamp_display.general');
 
     if (matches !== null) {
       timestamp = matches[1];
@@ -55,7 +55,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    const timestamp = this.props.element.timestamp || 'general';
+    const timestamp = this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general');
     return (
       <div className='beatmap-discussion beatmap-discussion--preview' {...this.props.attributes}>
         <div className='beatmap-discussion__discussion'>
@@ -80,7 +80,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                     color: 'hsl(var(--base-hue), 10%, 60%)',
                     fontSize: '9px',
                     userSelect: 'none',
-                    width: '40px',
+                    width: '45px',
                   }}
                 >
                   {timestamp}
