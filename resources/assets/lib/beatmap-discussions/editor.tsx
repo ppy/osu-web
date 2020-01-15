@@ -99,38 +99,41 @@ export default class Editor extends React.Component<any, any> {
     this.setState({menuShown: false});
   }
 
-  // test = () => {
-  //   let output = [];
-  //   const whee = this.state.value.toJSON().document.nodes;
-  //
-  //   whee.forEach((node) => {
-  //     switch (node.type) {
-  //       case 'paragraph':
-  //         const temp: string[] = [];
-  //         node.nodes.forEach((child) => {
-  //           let marks: string[] = [];
-  //           child.marks.forEach((mark) => {
-  //             switch (mark.type) {
-  //               case 'bold':
-  //                 marks.push('**');
-  //                 break;
-  //               case 'italic':
-  //                 marks.push('*');
-  //                 break;
-  //             }
-  //           });
-  //           temp.push([marks.join(''), child.text, marks.reverse().join('')].join(''));
-  //         });
-  //         output.push(temp.join('') + '\n');
-  //         break;
-  //       case 'embed':
-  //         output.push('[embed goes here]\n');
-  //         break;
-  //     }
-  //   });
-  //
-  //   console.log(output.join(''));
-  // }
+  serialize = () => {
+    const newOutput = [];
+
+    this.state.value.forEach((node) => {
+      switch (node.type) {
+        case 'paragraph':
+          const childOutput: string[] = [];
+          node.children.forEach((child) => {
+            const marks: string[] = [];
+            if (child.text !== '') {
+              if (child.bold) {
+                marks.push('**');
+              }
+
+              if (child.italic) {
+                marks.push('*');
+              }
+            }
+            childOutput.push([marks.join(''), child.text, marks.reverse().join('')].join(''));
+          });
+          newOutput.push({type: 'paragraph', text: childOutput.join('')});
+          // }
+          break;
+        case 'embed':
+          newOutput.push({type: 'embed', text: node.children[0].text, beatmapId: node.beatmapId, discussionType: node.discussionType, timestamp: node.timestamp});
+          break;
+      }
+    });
+
+    return JSON.stringify(newOutput);
+  }
+
+  test = () => {
+    console.log(this.serialize());
+  }
 
   log = () => console.log(JSON.stringify(this.state.value));
 
@@ -181,13 +184,11 @@ export default class Editor extends React.Component<any, any> {
   }
 
   post = () => {
-    const data = this.state.value.toJSON();
-
     $.ajax(laroute.route('beatmap-discussion-posts.review'),
       {
         data: {
           beatmapset_id: this.props.beatmapset.id,
-          document: JSON.stringify(data),
+          document: this.serialize(),
         },
         method: 'POST',
       }).then(() => {
@@ -249,6 +250,7 @@ export default class Editor extends React.Component<any, any> {
                         <div className='forum-post-edit__buttons forum-post-edit__buttons--actions'>
                             <div className='forum-post-edit__button'>
                               <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.resetInput}>reset</button>
+                              <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.test}>test</button>
                               <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
                               <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
                           </div>

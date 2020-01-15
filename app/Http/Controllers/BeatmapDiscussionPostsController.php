@@ -113,30 +113,20 @@ class BeatmapDiscussionPostsController extends Controller
                 ::where('discussion_enabled', true)
                 ->findOrFail(request()->input('beatmapset_id'));
 
-            foreach ($jsonObj->document->nodes as $node) {
-                switch ($node->type) {
+            $childIds = [];
+
+            foreach ($jsonObj as $block) {
+                switch ($block->type) {
                     case 'embed':
-                        $message = '';
-
-                        foreach ($node->nodes as $child) {
-                            switch ($child->object) {
-                                case 'text':
-                                    $message .= $child->text;
-                                    break;
-
-                                case 'inline':
-                                    if ($child->type === 'timestamp')
-                                        $message .= $child->data->lastWord;
-                                    break;
-                            }
-                        }
+                        $message = $block->text;
+                        $beatmapId = $block->beatmapId === 'all' ? null : $block->beatmapId;
 
                         $discussion = new BeatmapDiscussion([
                             'beatmapset_id' => $beatmapset->getKey(),
                             'user_id' => Auth::user()->getKey(),
                             'resolved' => false,
-                            'message_type' => $node->data->type,
-                            'beatmap_id' => $node->data->beatmapId,
+                            'message_type' => $block->discussionType,
+                            'beatmap_id' => $beatmapId,
                         ]);
                         $discussion->saveOrExplode();
 
@@ -152,48 +142,15 @@ class BeatmapDiscussionPostsController extends Controller
                             'discussion' => $discussion->getKey(),
                             'post' => $post->getKey(),
                         ];
+                        $childIds[] = $discussion->getKey();
                         break;
                 }
             }
 
-            foreach ($jsonObj->document->nodes as $node) {
-                switch ($node->type) {
+            foreach ($jsonObj as $block) {
+                switch ($block->type) {
                     case 'paragraph':
-                        // For paragraphs, we convert the formatting to Markdown
-                        $temp = [];
-                        foreach ($node->nodes as $child) {
-                            $marks = [];
-                            if (isset($child->marks)) {
-                                foreach ($child->marks as $mark) {
-                                    switch ($mark->type) {
-                                        case 'bold':
-                                            $marks[] = '**';
-                                            break;
-                                        case 'italic':
-                                            $marks[] = '*';
-                                            break;
-                                    }
-                                }
-                            }
-
-                            $matches = [];
-                            // Markdown expects no whitespace between marks and word boundaries, so we find and move the whitespace to outside the marks.
-                            $hasWhitespace = preg_match('/^(?:(?<leading>\s+)?(?<body>\S.*\S|\S))(?<trailing>\s+)?$/', $child->text, $matches);
-
-                            // Should always match with the named 'body' group at least (unless the text is just a single space).
-                            if ($hasWhitespace) {
-                                $temp[] = join('', [
-                                    $matches['leading'] ?? '',        // leading whitespace
-                                    join('', $marks),                 // opening marks
-                                    $matches['body'],                 // main text
-                                    join('', array_reverse($marks)),  // closing marks
-                                    $matches['trailing'] ?? ''        // trailing whitespace
-                                ]);
-                            } else {
-                                $temp[] = $child->text;
-                            }
-                        }
-                        $output[] = join('', $temp) . "\n";
+                        $output[] = $block->text . "\n";
                         break;
 
                     case 'embed':
@@ -217,6 +174,11 @@ class BeatmapDiscussionPostsController extends Controller
             ]);
             $post->beatmapDiscussion()->associate($review);
             $post->saveOrExplode();
+
+            // associate children with parent
+            BeatmapDiscussion::whereIn('id', $childIds)
+                ->update(['parent_id' => $review->getKey()]);
+
 
             DB::commit();
         } catch (\Exception $e) {
