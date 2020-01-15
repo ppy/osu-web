@@ -35,17 +35,22 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   static contextType = SlateContext;
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any): void {
-    const content = this.props.element.children[0].text;
-    const TS_REGEX = /^((\d{2,}):([0-5]\d)[:.](\d{3}))( \((?:\d[,|])*\d\))?/;
-    const matches = content.match(TS_REGEX);
-    let timestamp = osu.trans('beatmap_discussions.timestamp_display.general');
+    if (this.props.element.beatmapId !== 'all') {
+      const content = this.props.element.children[0].text;
+      const TS_REGEX = /((\d{2,}):([0-5]\d)[:.](\d{3}))( \((?:\d[,|])*\d\))?/;
+      const matches = content.match(TS_REGEX);
+      let timestamp = osu.trans('beatmap_discussions.timestamp_display.general');
 
-    if (matches !== null) {
-      timestamp = matches[1];
+      if (matches !== null) {
+        timestamp = matches[1];
+      }
+
+      const path = ReactEditor.findPath(this.context, this.props.element);
+      Transforms.setNodes(this.context, {timestamp}, {at: path});
+    } else {
+      const path = ReactEditor.findPath(this.context, this.props.element);
+      Transforms.setNodes(this.context, {timestamp: null}, {at: path});
     }
-
-    const path = ReactEditor.findPath(this.context, this.props.element);
-    Transforms.setNodes(this.context, {timestamp}, {at: path});
   }
 
   remove = (event: React.MouseEvent<HTMLElement>) => {
