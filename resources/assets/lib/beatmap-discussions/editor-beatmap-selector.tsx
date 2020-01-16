@@ -39,11 +39,7 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
     this.menuOptions.push({
       icon: <i className='fas fa-fw fa-star-of-life' style={{width: '22px', alignSelf: 'center', lineHeight: 'inherit'}} />,
       id: 'all',
-      label: osu.trans(
-        'beatmaps.discussions.mode.general', {
-          scope: '(' + osu.trans('beatmaps.discussions.mode.scopes.generalAll') + ')' ,
-        },
-      ),
+      label: osu.trans('beatmaps.discussions.mode.scopes.generalAll'),
     });
 
     this.props.beatmaps.forEach((beatmap: Beatmap) => {
