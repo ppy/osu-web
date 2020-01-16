@@ -79,9 +79,9 @@ export class NotificationResolver {
   }
 
   private sendQueued() {
-    const notifications = [...this.queued.values()];
-    if (notifications.length === 0) { return; }
+    if (this.queued.size === 0) return;
 
+    const notifications = [...this.queued.values()];
     const identities = notifications.map((notification) => notification.identity);
 
     this.queuedXhr = $.ajax({
