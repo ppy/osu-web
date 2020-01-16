@@ -23,6 +23,7 @@ import * as React from 'react';
 import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
+import { BeatmapDiscussionReview } from '../interfaces/beatmap-discussion-review';
 import EditorDiscussionComponent from './editor-discussion-component';
 import { SlateContext } from './slate-context';
 
@@ -56,16 +57,6 @@ export default class Editor extends React.Component<any, any> {
     };
   }
 
-  buttan = (event: React.MouseEvent<HTMLElement>, type: string) => {
-    event.preventDefault();
-
-    Transforms.setNodes(this.slateEditor, {
-      beatmapId: this.props.currentBeatmap.id,
-      discussionType: type,
-      type: 'embed',
-    });
-  }
-
   decorate = (entry: NodeEntry) => {
     const node = entry[0];
     const path = entry[1];
@@ -79,6 +70,7 @@ export default class Editor extends React.Component<any, any> {
     const regex = RegExp(TS_REGEX, 'g');
     let match;
 
+    // tslint:disable-next-line:no-conditional-assignment
     while ((match = regex.exec(node.text)) !== null) {
       if (match && match.index !== undefined) {
         ranges.push({
@@ -92,47 +84,23 @@ export default class Editor extends React.Component<any, any> {
     return ranges;
   }
 
-  hideMenu = (e: React.MouseEvent<HTMLElement>) => {
+  hideMenu = () => {
     if (!this.menuBody.current) {
       return;
     }
+
     this.setState({menuShown: false});
   }
 
-  serialize = () => {
-    const newOutput = [];
+  insertEmbed = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    const type = event.currentTarget.dataset.dtype;
 
-    this.state.value.forEach((node) => {
-      switch (node.type) {
-        case 'paragraph':
-          const childOutput: string[] = [];
-          node.children.forEach((child) => {
-            const marks: string[] = [];
-            if (child.text !== '') {
-              if (child.bold) {
-                marks.push('**');
-              }
-
-              if (child.italic) {
-                marks.push('*');
-              }
-            }
-            childOutput.push([marks.join(''), child.text, marks.reverse().join('')].join(''));
-          });
-          newOutput.push({type: 'paragraph', text: childOutput.join('')});
-          // }
-          break;
-        case 'embed':
-          newOutput.push({type: 'embed', text: node.children[0].text, beatmapId: node.beatmapId, discussionType: node.discussionType, timestamp: node.timestamp});
-          break;
-      }
+    Transforms.setNodes(this.slateEditor, {
+      beatmapId: this.props.currentBeatmap.id,
+      discussionType: type,
+      type: 'embed',
     });
-
-    return JSON.stringify(newOutput);
-  }
-
-  test = () => {
-    console.log(this.serialize());
   }
 
   log = () => console.log(JSON.stringify(this.state.value));
@@ -148,28 +116,16 @@ export default class Editor extends React.Component<any, any> {
       }
 
       const selection = window.getSelection();
-      // console.log('selection', selection, 'rangeCount', selection?.rangeCount);
-      // try {
-      //   const derp = selection?.getRangeAt(0);
-      // } catch (e) {
-      //   console.log('xselection', selection, 'xrangeCount', selection?.rangeCount);
-      //   // debugger
-      // }
       let menuOffset: number = -1000;
       if (selection && selection.anchorNode !== null) {
         const selectionTop = window.getSelection()?.getRangeAt(0).getBoundingClientRect().top ?? -1000;
-        // const selectionHeight = window.getSelection()?.getRangeAt(0).getBoundingClientRect().height ?? 0;
         const editorTop = this.editor.current?.getBoundingClientRect().top ?? 0;
         menuOffset = selectionTop - editorTop - 5;
-        // if (this.editor.current && this.editor.current.value.anchorBlock) {
-        // const node = findDOMNode(this.editor.current.value.anchorBlock.key) as HTMLElement;
-        // menuOffset = node.offsetTop + (node.offsetHeight / 2);
       } else {
         console.log('[explosion caught]', 'selection', selection, 'rangeCount', selection?.rangeCount);
       }
 
       this.setState({menuOffset});
-      // }
     });
   }
 
@@ -275,13 +231,13 @@ export default class Editor extends React.Component<any, any> {
                             display: this.state.menuShown ? 'block' : 'none',
                           }}
                         >
-                          <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'suggestion')}>
+                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
                             <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
                           </button>
-                          <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'problem')}>
+                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
                             <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
                           </button>
-                          <button type='button' className='btn-circle btn-circle--bbcode' onClick={(event) => this.buttan(event, 'praise')}>
+                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
                             <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
                           </button>
                         </div>
@@ -345,11 +301,56 @@ export default class Editor extends React.Component<any, any> {
     });
   }
 
+  serialize = (): string => {
+    const review: BeatmapDiscussionReview = [];
+
+    this.state.value.forEach((node: SlateNode) => {
+      switch (node.type) {
+        case 'paragraph':
+          const childOutput: string[] = [];
+          node.children.forEach((child: SlateNode) => {
+            const marks: string[] = [];
+            if (child.text !== '') {
+              if (child.bold) {
+                marks.push('**');
+              }
+
+              if (child.italic) {
+                marks.push('*');
+              }
+            }
+            childOutput.push([marks.join(''), child.text, marks.reverse().join('')].join(''));
+          });
+          review.push({
+            text: childOutput.join(''),
+            type: 'paragraph',
+          });
+          break;
+
+        case 'embed':
+          review.push({
+            beatmapId: node.beatmapId,
+            discussionType: node.discussionType,
+            text: node.children[0].text,
+            timestamp: node.timestamp,
+            type: 'embed',
+          });
+          break;
+      }
+    });
+
+    return JSON.stringify(review);
+  }
+
   showMenu = () => {
     if (!this.menuBody.current) {
       return;
     }
     this.setState({menuShown: true});
+  }
+
+  test = () => {
+    console.log(this.serialize());
   }
 
   toggleBold = (event: React.MouseEvent) => {
@@ -398,6 +399,8 @@ export default class Editor extends React.Component<any, any> {
 
             return;
           }
+
+          // TODO: ensure content is cleared of invalid beatmapId references (for embeds of pasted content)
         }
       }
 
