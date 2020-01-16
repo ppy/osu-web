@@ -103,10 +103,10 @@ class NotificationsBundle
 
         $stack = $query->get();
 
-        $response = $this->stackToResponse($stack);
-        if ($response !== null) {
-            $response['total'] = $total;
-            $this->stacks[$key] = $response;
+        $json = $this->stackToJson($stack);
+        if ($json !== null) {
+            $json['total'] = $total;
+            $this->stacks[$key] = $json;
             $this->notifications = $this->notifications->merge($stack);
         }
     }
@@ -188,7 +188,7 @@ class NotificationsBundle
         }
     }
 
-    private function stackToResponse($stack)
+    private function stackToJson($stack)
     {
         $last = $stack->last();
         if ($last === null) {
@@ -196,13 +196,13 @@ class NotificationsBundle
         }
 
         $last = $last instanceof UserNotification ? $last->notification : $last;
-        $cursor = [
+        $cursor = $stack->count() < static::PER_STACK_LIMIT ? null : [
             'id' => $last->id,
         ];
 
         return [
             'category' => Notification::nameToCategory($last->name),
-            'cursor' => $stack->count() < static::PER_STACK_LIMIT ? null : $cursor,
+            'cursor' => $cursor,
             'name' => $last->name,
             'object_type' => $last->notifiable_type,
             'object_id' => $last->notifiable_id,
