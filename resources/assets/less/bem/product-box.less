@@ -20,27 +20,11 @@
   @_top: product-box;
 
   display: block;
-  padding-left: 20px;
-  padding-top: 20px;
-  height: 100%;
-  width: 100%;
-  .product-header-base();
-
-  &,
-  &:focus,
-  &:hover,
-  &:active {
-    color: #fff;
-    text-decoration: none;
-  }
-
-  &::before, &::after {
-    .full-size();
-    content: ' ';
-    will-change: opacity;
-    transition: opacity 120ms;
-    pointer-events: none;
-  }
+  background-size: cover;
+  background-position: center;
+  background-color: osu-hsla(@osu-colour-b4, 0.25);
+  .link-white();
+  .link-plain();
 
   &::before {
     .default-box-shadow();
@@ -60,12 +44,39 @@
     opacity: 1;
   }
 
-  &--large {
-    height: 300px;
+  &--card {
+    padding: 20px;
+
+    &::before, &::after {
+      .full-size();
+      content: '';
+      will-change: opacity;
+      transition: opacity 120ms;
+      pointer-events: none;
+    }
   }
 
-  &--small {
+  &--card-large {
+    height: 300px;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    order: -1;
+  }
+
+  &--card-small {
     height: 200px;
+  }
+
+  &--header {
+    .default-gutter-v2();
+    height: 300px;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  &--oos {
+    order: 1;
   }
 
   &__text {
@@ -74,23 +85,21 @@
     .@{_top}:hover & {
       opacity: 0;
     }
-
-    .@{_top}--small & {
-      h1 { font-size: 30px; }
-
-      p { display: none; }
-    }
   }
 
-  &__bar {
-    &--oos {
-      width: 233px;
-      height: 136px;
-      .at2x('/images/layout/store-out-of-stock-bar.png', 233px, 136px);
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      margin: 0;
+  &__oos-bar {
+    width: 233px;
+    height: 136px;
+    .at2x-simple('/images/layout/store-out-of-stock-bar.png');
+    background-size: contain;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    display: none;
+
+    .@{_top}--oos & {
+      display: block;
     }
   }
 }

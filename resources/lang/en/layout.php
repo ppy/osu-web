@@ -90,6 +90,15 @@ return [
             '_' => 'ranking',
         ],
 
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'cart',
+            'order' => 'invoice',
+            'orders' => 'order history',
+            'product' => 'product',
+            'products' => 'products',
+        ],
+
         'tournaments' => [
             '_' => 'tournaments',
             'index' => 'listing',
@@ -119,6 +128,7 @@ return [
             'beatmapset-watches-index' => 'modding watchlist',
             'changelog-build' => 'build',
             'changelog-index' => 'changelog',
+            'client_verifications-create' => 'osu! client verification',
             'forum-topic-watches-index' => 'forum subscriptions',
             'friends-index' => 'friends',
             'getDownload' => 'download',

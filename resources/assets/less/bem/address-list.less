@@ -16,26 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.store-logo-text {
-  @_top: store-logo-text;
+.address-list {
+  margin: 20px 0;
+  display: grid;
+  grid-gap: 20px;
 
-  &__content {
-    transition: fill 0.3s ease-in-out;
-
-    &--text {
-      fill: @pink;
-
-      .@{_top}:hover & {
-        fill: #fff;
-      }
-    }
-
-    &--circle {
-      fill: #fff;
-
-      .@{_top}:hover & {
-        fill: @pink;
-      }
-    }
+  @media @desktop {
+    grid-template-columns: 1fr 1fr;
   }
 }

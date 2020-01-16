@@ -1,0 +1,81 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.order-line-items {
+  @_top: order-line-items;
+
+  padding: 0;
+  list-style: none;
+
+  &__data {
+    font-size: @font-size--title-small;
+
+    @media @desktop {
+      font-size: inherit;
+    }
+    &--name {
+      grid-area: name;
+    }
+
+    &--quantity {
+      grid-area: quantity;
+    }
+
+    &--value {
+      grid-area: value;
+      text-align: right;
+    }
+
+    &--weight {
+      grid-area: weight;
+    }
+  }
+
+  &__item {
+    display: grid;
+    padding: 5px 10px;
+    grid-gap: 5px 10px;
+
+    &--main {
+      grid-template-areas: "name name name name" ". weight quantity value";
+      grid-template-columns: 1fr repeat(3, minmax(50px, max-content));
+
+      @media @narrow-up {
+        grid-template-areas: "name weight quantity value";
+        grid-template-columns: 1fr repeat(3, minmax(100px, max-content));
+        grid-template-rows: auto;
+      }
+
+      &:nth-child(odd) {
+        background-color: @osu-colour-b4;
+      }
+    }
+
+    &--footer {
+      grid-template: "name value" / 1fr 100px;
+    }
+
+    &--footer-total {
+      background-color: osu-hsla(@osu-colour-orange-2, 25%);
+
+      .@{_top}--checkout & {
+        display: none;
+      }
+    }
+  }
+}

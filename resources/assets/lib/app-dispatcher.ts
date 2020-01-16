@@ -16,8 +16,29 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.nav2-header-legacy-padding {
-  @media @desktop {
-    padding-top: @nav2-height;
-  }
+import DispatcherAction from 'actions/dispatcher-action';
+import DispatchListener from 'dispatch-listener';
+import Dispatcher from 'dispatcher';
+
+export const dispatcher = new Dispatcher();
+
+function isDispatchListener(target: any): target is DispatchListener {
+  return target.handleDispatchAction;
+}
+
+export function dispatch(data: DispatcherAction) {
+  dispatcher.dispatch(data);
+}
+
+// https://www.typescriptlang.org/docs/handbook/decorators.html#class-decorators
+export function dispatchListener<T extends new(...args: any[]) => {}>(ctor: T) {
+  return class extends ctor {
+    constructor(...args: any[]) {
+      super(...args);
+
+      if (isDispatchListener(this)) {
+        dispatcher.register(this);
+      }
+    }
+  };
 }

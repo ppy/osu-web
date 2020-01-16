@@ -19,6 +19,10 @@
 .header-v4 {
   @_top: header-v4;
 
+  @media print {
+    display: none;
+  }
+
   &__bg {
     margin: auto;
     width: 100%;
@@ -107,6 +111,11 @@
 
     .@{_top}--search & {
       .at2x-simple('/images/headers/search.jpg');
+    }
+
+    .@{_top}--store & {
+      opacity: 0.7;
+      .at2x-simple('/images/headers/store.png');
     }
 
     .@{_top}--supporter & {
@@ -232,6 +241,11 @@
       background-size: 75%;
     }
 
+    .@{_top}--store & {
+      background-image: url('/images/icons/store.svg');
+      background-size: 75%;
+    }
+
     .@{_top}--users & {
       background-image: url('/images/icons/profile.svg');
     }
@@ -243,6 +257,7 @@
     .default-gutter-v2();
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 
     &--bar {
       background-color: @osu-colour-d4;
@@ -255,9 +270,6 @@
       @media @desktop {
         font-size: @font-size--large;
       }
-
-      display: flex;
-      flex-wrap: wrap;
     }
 
     .@{_top}--users & {

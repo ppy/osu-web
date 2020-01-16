@@ -24,7 +24,6 @@
 @endif
 @extends('master', [
     'currentSection' => 'beatmaps',
-    'legacyNav' => false,
     'pageDescription' => $beatmapset->toMetaDescription(),
     'titlePrepend' => "{$beatmapset->artist} - {$beatmapset->title}",
     'extraFooterLinks' => $extraFooterLinks ?? [],

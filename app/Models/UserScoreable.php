@@ -24,11 +24,10 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Libraries\Search\BasicSearch;
 use App\Models\Score\Best;
-use Cache;
 
 trait UserScoreable
 {
-    public function aggregatedScoresBest(string $mode, int $size) : SearchResponse
+    public function aggregatedScoresBest(string $mode, int $size): SearchResponse
     {
         $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
 
@@ -86,6 +85,10 @@ trait UserScoreable
         $key = "search-cache:beatmapBestScores:{$this->getKey()}:{$mode}";
         $ids = cache_remember_mutexed($key, config('osu.scores.es_cache_duration'), [], function () use ($mode) {
             return $this->beatmapBestScoreIds($mode, 100);
+        }, function () {
+            // TODO: propagate a more useful message back to the client
+            // for now we just mark the exception as handled.
+            return true;
         });
 
         $ids = array_slice($ids, $offset, $limit);

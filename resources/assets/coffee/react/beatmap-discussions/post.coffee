@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import ClickToCopy from 'click-to-copy'
 import { MessageLengthCounter } from './message-length-counter'
 import { BigButton } from 'big-button'
 import * as React from 'react'
@@ -58,7 +59,6 @@ export class Post extends React.PureComponent
 
   componentWillUnmount: =>
     @throttledUpdatePost.cancel()
-    clearTimeout @state.permalinkTimer if @state.permalinkTimer?
 
     for own _id, xhr of @xhr
       xhr?.abort()
@@ -207,16 +207,12 @@ export class Post extends React.PureComponent
         div
           className: "#{bn}__actions-group"
           if @props.type == 'discussion'
-            a
-              href: BeatmapDiscussionHelper.url discussion: @props.discussion
-              onClick: @permalink
-              rel: 'nofollow'
+            span
               className: "#{bn}__action #{bn}__action--button"
-
-              if @state.permalinkTimer?
-                osu.trans('common.buttons.permalink_copied')
-              else
-                osu.trans('common.buttons.permalink')
+              el ClickToCopy,
+                value: BeatmapDiscussionHelper.url discussion: @props.discussion
+                label: osu.trans 'common.buttons.permalink'
+                valueAsUrl: true
 
           if @props.canBeEdited
             button
@@ -272,24 +268,8 @@ export class Post extends React.PureComponent
     currentUser.id? && @props.post.user_id != currentUser.id
 
 
-  clearPermalinkClicked: =>
-    @setState permalinkTimer: null
-
-
   isTimeline: =>
     @props.discussion.timestamp?
-
-
-  permalink: (e) =>
-    e.preventDefault()
-
-    # copy url to clipboard
-    clipboard.writeText e.currentTarget.href
-
-    # show feedback
-    permalinkTmer = Timeout.set 2000, @clearPermalinkClicked
-
-    @setState permalinkTimer: permalinkTmer
 
 
   setMessage: (e) =>

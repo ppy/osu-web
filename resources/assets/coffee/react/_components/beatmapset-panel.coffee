@@ -155,7 +155,7 @@ export class BeatmapsetPanel extends React.PureComponent
                         laroute.link_to_route 'users.show',
                             beatmapset.creator,
                             user: beatmapset.user_id,
-                              'class': 'js-usercard'
+                              'class': 'beatmapset-panel__link js-usercard'
                               'data-user-id': beatmapset.user_id
               div
                 className: 'u-ellipsis-overflow'

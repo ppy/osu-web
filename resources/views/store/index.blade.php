@@ -20,8 +20,8 @@
 @section('content')
     @include('store.header')
 
-    <div class="osu-layout__row osu-layout__row--with-gutter">
-        <div class="osu-layout__col-container">
+    <div class="osu-page">
+        <div class="store-products">
             @foreach($products as $product)
                 @include('store._product', ['product' => $product])
             @endforeach

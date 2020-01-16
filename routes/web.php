@@ -94,7 +94,11 @@ Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
     Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
 });
 
+Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);
+
 Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
+Route::post('comments/{comment}/pin', 'CommentsController@pinStore')->name('comments.pin');
+Route::delete('comments/{comment}/pin', 'CommentsController@pinDestroy');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
 Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
@@ -400,6 +404,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
 
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', 'RankingController@index');
+        Route::resource('spotlights', 'SpotlightsController', ['only' => ['index']]);
 
         //  GET /api/v2/users/:user_id/kudosu
         Route::get('users/{user}/kudosu', 'UsersController@kudosu');

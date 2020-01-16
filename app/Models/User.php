@@ -263,7 +263,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
     }
 
-    public function revertUsername($type = 'revert') : UsernameChangeHistory
+    public function revertUsername($type = 'revert'): UsernameChangeHistory
     {
         // TODO: normalize validation with changeUsername.
         if ($this->user_id <= 1) {
@@ -277,7 +277,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->updateUsername($this->username_previous, $type);
     }
 
-    public function changeUsername(string $newUsername, string $type) : UsernameChangeHistory
+    public function changeUsername(string $newUsername, string $type): UsernameChangeHistory
     {
         $errors = $this->validateChangeUsername($newUsername, $type);
         if ($errors->isAny()) {
@@ -291,7 +291,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         });
     }
 
-    public function renameIfInactive() : ?UsernameChangeHistory
+    public function renameIfInactive(): ?UsernameChangeHistory
     {
         if ($this->getUsernameAvailableAt() <= Carbon::now()) {
             $newUsername = "{$this->username}_old";
@@ -300,7 +300,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
     }
 
-    private function tryUpdateUsername(int $try, string $newUsername, string $type) : UsernameChangeHistory
+    private function tryUpdateUsername(int $try, string $newUsername, string $type): UsernameChangeHistory
     {
         $name = $try > 0 ? "{$newUsername}_{$try}" : $newUsername;
 
@@ -315,7 +315,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
     }
 
-    private function updateUsername(string $newUsername, string $type) : UsernameChangeHistory
+    private function updateUsername(string $newUsername, string $type): UsernameChangeHistory
     {
         $oldUsername = $type === 'revert' ? null : $this->getOriginal('username');
         $this->username_previous = $oldUsername;
@@ -354,7 +354,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return strtolower($username);
     }
 
-    public static function findAndRenameUserForInactive($username) : ?self
+    public static function findAndRenameUserForInactive($username): ?self
     {
         $existing = static::findByUsernameForInactive($username);
         if ($existing !== null) {
@@ -366,7 +366,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     }
 
     // TODO: be able to change which connection this runs on?
-    public static function findByUsernameForInactive($username) : ?self
+    public static function findByUsernameForInactive($username): ?self
     {
         return static::whereIn(
             'username',
@@ -374,7 +374,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         )->first();
     }
 
-    public static function checkWhenUsernameAvailable($username) : Carbon
+    public static function checkWhenUsernameAvailable($username): Carbon
     {
         $user = static::findByUsernameForInactive($username);
         if ($user !== null) {
@@ -393,7 +393,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return Carbon::parse($lastUsage->timestamp)->addDays(static::INACTIVE_DAYS);
     }
 
-    public function getUsernameAvailableAt() : Carbon
+    public function getUsernameAvailableAt(): Carbon
     {
         $playCount = $this->playCount();
 
@@ -1906,7 +1906,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->isValid() && parent::save($options);
     }
 
-    protected function newReportableExtraParams() : array
+    protected function newReportableExtraParams(): array
     {
         return [
             'reason' => 'Cheating',

@@ -43,7 +43,7 @@ if (isset($fields)) {
             <input
                 name="{{ $fields['user'] }}"
                 value="{{ request($fields['user']) }}"
-                class="search-forum-options__input search-forum-options__input--text"
+                class="form-text"
             >
         </label>
     @endif

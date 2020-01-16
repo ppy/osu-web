@@ -46,7 +46,7 @@ class PostSearchParams extends SearchParams
     /**
      * {@inheritdoc}
      */
-    public function getCacheKey() : string
+    public function getCacheKey(): string
     {
         $vars = get_object_vars($this);
         ksort($vars);
@@ -57,7 +57,7 @@ class PostSearchParams extends SearchParams
     /**
      * {@inheritdoc}
      */
-    public function isCacheable() : bool
+    public function isCacheable(): bool
     {
         return false;
     }

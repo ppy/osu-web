@@ -18,7 +18,6 @@
 @extends('master', [
     'currentSection' => 'community',
     'currentAction' => 'tournaments',
-    'legacyNav' => false,
     'title' => trans('tournament.index.header.title'),
 ])
 

@@ -18,7 +18,6 @@
 @extends('master', [
     'currentSection' => 'community',
     'currentAction' => 'profile',
-    'legacyNav' => false,
 ])
 
 @section('content')

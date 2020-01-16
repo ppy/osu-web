@@ -31,7 +31,7 @@ function array_search_null($value, $array)
     }
 }
 
-function atom_id(string $namespace, $id = null) : string
+function atom_id(string $namespace, $id = null): string
 {
     return 'tag:'.request()->getHttpHost().',2019:'.$namespace.($id === null ? '' : "/{$id}");
 }
@@ -73,7 +73,7 @@ function broadcast_notification(...$arguments)
 /**
  * Like cache_remember_with_fallback but with a mutex that only allows a single process to run the callback.
  */
-function cache_remember_mutexed(string $key, $seconds, $default, callable $callback)
+function cache_remember_mutexed(string $key, $seconds, $default, callable $callback, ?callable $exceptionHandler = null)
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
     $fullKey = "{$key}:with_fallback";
@@ -95,8 +95,12 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
 
                 cache()->put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
             } catch (Exception $e) {
-                // Log and continue with data from the first ::get.
-                log_error($e);
+                $handled = $exceptionHandler !== null && $exceptionHandler($e);
+
+                if (!$handled) {
+                    // Log and continue with data from the first ::get.
+                    log_error($e);
+                }
             } finally {
                 cache()->forget($lockKey);
             }
@@ -317,12 +321,12 @@ function truncate(string $text, $limit = 100, $ellipsis = '...')
     return $text;
 }
 
-function json_date(?DateTime $date) : ?string
+function json_date(?DateTime $date): ?string
 {
     return $date === null ? null : $date->format('Y-m-d');
 }
 
-function json_time(?DateTime $time) : ?string
+function json_time(?DateTime $time): ?string
 {
     return $time === null ? null : $time->format(DateTime::ATOM);
 }
@@ -1273,7 +1277,7 @@ function get_time_or_null($timestamp)
  * Returns 0 if $time is null so mysql doesn't explode because of not null
  * constraints.
  */
-function get_timestamp_or_zero(DateTime $time = null) : int
+function get_timestamp_or_zero(DateTime $time = null): int
 {
     return $time === null ? 0 : $time->getTimestamp();
 }
@@ -1459,12 +1463,13 @@ function mini_asset(string $url): string
 function section_to_hue_map($section): int
 {
     static $colourToHue = [
-        'red' => 0,
-        'pink' => 333,
-        'orange' => 46,
-        'green' => 115,
-        'purple' => 255,
         'blue' => 200,
+        'darkorange' => 20,
+        'green' => 115,
+        'orange' => 46,
+        'pink' => 333,
+        'purple' => 255,
+        'red' => 0,
     ];
 
     static $sectionMapping = [
@@ -1479,7 +1484,7 @@ function section_to_hue_map($section): int
         'home' => 'purple',
         'multiplayer' => 'pink',
         'rankings' => 'green',
-        'store' => 'pink',
+        'store' => 'darkorange',
         'user' => 'pink',
     ];
 
