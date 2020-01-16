@@ -62,6 +62,7 @@ return [
         'see_more' => 'see more',
         'show' => 'show',
         'show_deleted' => 'Show deleted',
+        'show_less' => 'show less',
         'show_more' => 'show more',
         'show_more_options' => 'show more options',
         'unpin' => 'unpin',

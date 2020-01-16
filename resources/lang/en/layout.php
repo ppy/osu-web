@@ -86,6 +86,11 @@ return [
             '_' => 'notice',
         ],
 
+        'notifications' => [
+            '_' => 'notifications',
+            'index' => 'history',
+        ],
+
         'rankings' => [
             '_' => 'ranking',
         ],

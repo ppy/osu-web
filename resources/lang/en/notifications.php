@@ -23,13 +23,13 @@ return [
     'mark_all_read' => 'Clear all',
 
     'filters' => [
-        '_' => 'All',
-        'user' => 'Profile',
-        'beatmapset' => 'Beatmaps',
-        'forum_topic' => 'Forum',
-        'news_post' => 'News',
-        'build' => 'Builds',
-        'channel' => 'Chat',
+        '_' => 'all',
+        'user' => 'profile',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'forum',
+        'news_post' => 'news',
+        'build' => 'builds',
+        'channel' => 'chat',
     ],
 
     'item' => [

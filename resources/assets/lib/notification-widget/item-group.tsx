@@ -159,7 +159,7 @@ export default class ItemGroup extends React.Component<Props, State> {
         callback={this.handleShowLess}
         direction='up'
         hasMore={true}
-        label='Show Less'
+        label={osu.trans('common.buttons.show_less')}
         modifiers={['notification-group']}
       />
     );
