@@ -90,9 +90,7 @@ export class Main extends React.Component {
         <div className='osu-page osu-page--generic-compact'>
           <div className='notification-index'>
             <div className='notification-popup__item'>
-              <div className='notification-type-group__items notification-type-group__items--legacy_pm'>
-                <LegacyPm />
-              </div>
+              {this.renderLegacyPm()}
               <div className='notification-type-group__items'>
                 {this.renderStacks()}
                 {this.renderShowMore()}
@@ -100,6 +98,16 @@ export class Main extends React.Component {
             </div>
           </div>
         </div>
+      </div>
+    );
+  }
+
+  renderLegacyPm() {
+    if (this.controller.currentFilter != null) return;
+
+    return (
+      <div className='notification-type-group__items notification-type-group__items--legacy_pm'>
+        <LegacyPm />
       </div>
     );
   }
