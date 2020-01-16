@@ -17,7 +17,7 @@
  */
 
 import * as React from 'react';
-import { Transforms } from 'slate';
+import { Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
 import EditorBeatmapSelector from './editor-beatmap-selector';
@@ -34,7 +34,14 @@ interface Props extends RenderElementProps {
 export default class EditorDiscussionComponent extends React.Component<Props> {
   static contextType = SlateContext;
 
+  componentDidMount = () => {
+    // reset timestamp to null on clone
+    Transforms.setNodes(this.context, {timestamp: null}, {at: this.path()});
+  }
+
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any): void {
+    const path = this.path();
+
     if (this.props.element.beatmapId !== 'all') {
       const content = this.props.element.children[0].text;
       const TS_REGEX = /((\d{2,}):([0-5]\d)[:.](\d{3}))( \((?:\d[,|])*\d\))?/;
@@ -45,18 +52,17 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         timestamp = matches[1];
       }
 
-      const path = ReactEditor.findPath(this.context, this.props.element);
       Transforms.setNodes(this.context, {timestamp}, {at: path});
     } else {
-      const path = ReactEditor.findPath(this.context, this.props.element);
       Transforms.setNodes(this.context, {timestamp: null}, {at: path});
     }
   }
 
+  path = (): Path => ReactEditor.findPath(this.context, this.props.element);
+
   remove = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    const path = ReactEditor.findPath(this.context, this.props.element);
-    Transforms.delete(this.context, { at: path });
+    Transforms.delete(this.context, { at: this.path() });
   }
 
   render(): React.ReactNode {
