@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+import mapperGroup from 'beatmap-discussions/mapper-group'
 import * as React from 'react'
 import { a } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
@@ -45,20 +46,21 @@ export class UserFilter extends React.PureComponent
 
 
   mapUserProperties: (user) ->
-    group_badge: user.group_badge?.identifier
+    group_badge: user.group_badge
     id: user.id
     text: user.username
 
 
   renderItem: ({ cssClasses, children, item, onClick }) =>
-    userBadge = if @isOwner(item) then 'mapper' else item.group_badge
-    cssClasses += " beatmap-discussions-user-filter__item--#{userBadge}" if userBadge?
+    userBadge = if @isOwner(item) then mapperGroup else item.group_badge
+    style = '--group-colour': userBadge.colour if userBadge?
 
     a
       className: cssClasses
       href: BeatmapDiscussionHelper.url user: item?.id, true
       key: item?.id
       onClick: onClick
+      style: style
       children
 
 

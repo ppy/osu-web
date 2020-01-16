@@ -16,22 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussions-user-filter {
-  .select-options(beatmap-discussions-user-filter);
+import GroupJSON from 'interfaces/group-json';
+import * as React from 'react';
 
-  @media @desktop {
-    width: 200px;
+interface Props {
+  badge?: GroupJSON;
+}
+
+export default function UserGroupBadge({badge}: Props) {
+  if (badge == null) {
+    return null;
   }
 
-  &__decoration {
-    color: #fff;
-  }
+  const style = {'--group-colour': badge.colour} as React.CSSProperties;
 
-  &__item {
-    color: var(--group-colour, @osu-colour-c1);
-
-    .link-hover({
-      color: var(--group-colour, @osu-colour-c1);
-    });
-  }
+  return (
+    <div
+      className='user-group-badge'
+      data-label={badge.short_name}
+      style={style}
+      title={badge.name}
+    />
+  );
 }

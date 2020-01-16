@@ -48,10 +48,12 @@
 
     @if ($user->groupBadge() !== null)
         <div class="forum-post-info__row forum-post-info__row--group-badge">
-            <div class="{{ class_with_modifiers('user-group-badge', [
-                't-forum',
-                $user->groupBadge()->identifier,
-            ]) }}"></div>
+            <div
+                class="user-group-badge user-group-badge--t-forum"
+                data-label="{{ $user->groupBadge()->short_name }}"
+                title="{{ $user->groupBadge()->group_name }}"
+                style="--group-colour: {{ $user->groupBadge()->group_colour }}"
+            ></div>
         </div>
     @endif
 

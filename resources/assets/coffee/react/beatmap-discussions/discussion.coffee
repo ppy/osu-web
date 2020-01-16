@@ -19,10 +19,11 @@
 import { NewReply } from './new-reply'
 import { Post } from './post'
 import { SystemPost } from './system-post'
+import { UserCard } from './user-card'
+import mapperGroup from 'beatmap-discussions/mapper-group'
 import * as React from 'react'
 import { button, div, i, span, a } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
-import { UserCard } from './user-card'
 
 el = React.createElement
 
@@ -75,15 +76,16 @@ export class Discussion extends React.PureComponent
     firstPost = @props.discussion.starting_post || @props.discussion.posts[0]
 
     user = @props.users[@props.discussion.user_id]
-    badge = if user.id == @props.beatmapset.user_id then 'mapper' else user.group_badge?.identifier
+    badge = if user.id == @props.beatmapset.user_id then mapperGroup else user.group_badge
+    style = '--group-colour': badge.colour if badge?
 
     topClasses += " #{bn}--unread" unless _.includes(@props.readPostIds, firstPost.id) || @isOwner(firstPost) || @props.preview
-    topClasses += " #{bn}--#{badge}" if badge?
 
     div
       className: topClasses
       'data-id': @props.discussion.id
       onClick: @emitSetHighlight
+      style: style
 
       div className: "#{bn}__timestamp hidden-xs",
         @timestamp()

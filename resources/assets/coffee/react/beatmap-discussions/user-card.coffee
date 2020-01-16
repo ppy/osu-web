@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 import { UserAvatar } from 'user-avatar'
+import UserGroupBadge from 'user-group-badge'
 import { a, div, i, span } from 'react-dom-factories'
 
 el = React.createElement
@@ -24,11 +25,12 @@ bn = 'beatmap-discussion-user-card'
 export class UserCard extends React.PureComponent
   render: =>
     additionalClasses = @props.additionalClasses ? []
-    additionalClasses.push(@props.badge) if @props.badge?
     hideStripe = @props.hideStripe ? false
 
     div
       className: osu.classWithModifiers(bn, additionalClasses)
+      style:
+        '--group-colour': @props.badge?.colour
 
       div className: "#{bn}__avatar",
         a
@@ -55,8 +57,7 @@ export class UserCard extends React.PureComponent
 
         div
           className: "#{bn}__user-badge"
-          if @props.badge?
-            div className: "user-group-badge user-group-badge--#{@props.badge}"
+          el UserGroupBadge, badge: @props.badge
 
       if (!hideStripe)
         div
