@@ -25,7 +25,7 @@ import { NotificationIdentity, resolveIdentityType, resolveStackId } from 'notif
 import NotificationStackStore from './notification-stack-store';
 
 @dispatchListener
-export default class UnreadNotificationStackStore extends NotificationStackStore implements DispatchListener {
+export default class WidgetNotificationStackStore extends NotificationStackStore implements DispatchListener {
   @observable total = 0;
   private deletedStacks = new Set<string>();
 

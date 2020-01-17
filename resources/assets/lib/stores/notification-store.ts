@@ -23,13 +23,13 @@ import DispatchListener from 'dispatch-listener';
 import { action, observable } from 'mobx';
 import Notification from 'models/notification';
 import NotificationStackStore from './notification-stack-store';
-import UnreadNotificationStackStore from './unread-notification-stack-store';
+import WidgetNotificationStackStore from './widget-notification-stack-store';
 
 @dispatchListener
 export default class NotificationStore implements DispatchListener {
   @observable notifications = new Map<number, Notification>();
   readonly stacks = new NotificationStackStore(this);
-  readonly unreadStacks = new UnreadNotificationStackStore(this);
+  readonly unreadStacks = new WidgetNotificationStackStore(this);
 
   @action
   add(notification: Notification) {
