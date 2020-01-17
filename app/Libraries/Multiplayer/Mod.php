@@ -140,6 +140,43 @@ class Mod
         ],
     ];
 
+    const SETTINGS = [
+        self::DOUBLETIME => [
+            'speed_change' => 'float',
+        ],
+        self::EASY => [
+            'retries' => 'int',
+        ],
+        self::HALFTIME => [
+            'speed_change' => 'float',
+        ],
+        self::WIND_UP => [
+            'final_rate' => 'float',
+        ],
+        self::WIND_DOWN => [
+            'final_rate' => 'float',
+        ],
+    ];
+
+    public static function filterSettings($mod, $settings)
+    {
+        if ($settings === null || !is_array($settings)) {
+            return (object) [];
+        }
+
+        $cleanSettings = [];
+
+        foreach ($settings as $key => $value) {
+            $type = static::SETTINGS[$mod][$key] ?? null;
+
+            if ($type !== null) {
+                $cleanSettings[$key] = get_param_value($value, $type);
+            }
+        }
+
+        return (object) $cleanSettings;
+    }
+
     // Mapping of valid mods per ruleset
     public static function validityByRuleset()
     {
@@ -278,7 +315,7 @@ class Mod
 
                 $filteredMods[$acronym] = (object) [
                     'acronym' => $acronym,
-                    'settings' => (object) [],
+                    'settings' => static::filterSettings($acronym, $mod['settings'] ?? null),
                 ];
                 continue;
             }
