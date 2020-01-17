@@ -109,6 +109,8 @@ class Mod
             self::HALFTIME,
             self::DAYCORE,
             self::NIGHTCORE,
+        ],
+        [
             self::WIND_DOWN,
             self::WIND_UP,
         ],
