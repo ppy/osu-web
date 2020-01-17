@@ -25,7 +25,7 @@ export default class LegacyPmNotification extends Notification {
   objectId = -1;
 
   get count() {
-    return window?.currentUser?.unread_pm_count ?? 0;
+    return currentUser?.unread_pm_count ?? 0;
   }
 
   constructor() {

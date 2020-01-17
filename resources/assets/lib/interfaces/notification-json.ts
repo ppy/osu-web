@@ -17,6 +17,7 @@
  */
 
 import { NotificationCursor } from 'notifications/notification-cursor';
+import { NotificationIdentityJson } from 'notifications/notification-identity';
 
 export default interface NotificationJson {
   created_at?: string;
@@ -36,7 +37,7 @@ export interface NotificationBundleJson {
   unread_count?: number;
 }
 
-export interface NotificationStackJson {
+export interface NotificationStackJson extends NotificationIdentityJson {
   category: string;
   cursor: NotificationCursor | null;
   name: string;
@@ -44,6 +45,7 @@ export interface NotificationStackJson {
   object_type: string;
   total: number;
 }
+
 export interface NotificationTypeJson {
   cursor: NotificationCursor | null;
   name: string | null;

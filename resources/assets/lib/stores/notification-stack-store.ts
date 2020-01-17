@@ -28,26 +28,35 @@ import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType, { Name as NotificationTypeName  } from 'models/notification-type';
 import { nameToCategory } from 'notification-maps/category';
 import { NotificationEventMoreLoaded, NotificationEventNew, NotificationEventRead } from 'notifications/notification-events';
-import { NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
+import { fromJson, NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
 import { NotificationResolver } from 'notifications/notification-resolver';
 import NotificationStore from './notification-store';
 
 @dispatchListener
 export default class NotificationStackStore implements DispatchListener {
   @observable readonly legacyPm = new LegacyPmNotification();
-  @observable readonly stacks = new Map<string, NotificationStack>();
   @observable readonly types = new Map<string | null, NotificationType>();
   private readonly resolver = new NotificationResolver();
+
+  get allStacks() {
+    return this.allType.stacks;
+  }
 
   get allType() {
     return this.getOrCreateType({ objectType: null });
   }
 
-  constructor(protected notificationStore: NotificationStore) {}
+  get isEmpty() {
+    return this.types.size === 1 && this.allStacks.size === 0;
+  }
+
+  constructor(protected notificationStore: NotificationStore) {
+    // 'all' type should always exist; makes testing deterministic.
+    this.getOrCreateType({ objectType: null });
+  }
 
   @action
   flushStore() {
-    this.stacks.clear();
     this.types.clear();
   }
 
@@ -62,7 +71,7 @@ export default class NotificationStackStore implements DispatchListener {
   }
 
   getStack(identity: NotificationIdentity) {
-    return this.stacks.get(resolveStackId(identity));
+    return this.types.get(identity.objectType)?.stacks.get(resolveStackId(identity));
   }
 
   @action
@@ -105,7 +114,6 @@ export default class NotificationStackStore implements DispatchListener {
 
     if (stack == null) {
       stack = new NotificationStack(json.object_id, json.object_type, nameToCategory[json.name], this.resolver);
-      this.stacks.set(stack.id, stack);
     }
 
     stack.notifications.set(notification.id, notification);
@@ -114,6 +122,7 @@ export default class NotificationStackStore implements DispatchListener {
     type.stacks.set(stack.id, stack);
     type.total++;
 
+    this.allType.stacks.set(stack.id, stack);
     this.allType.total++;
   }
 
@@ -146,14 +155,15 @@ export default class NotificationStackStore implements DispatchListener {
    */
   *stacksOfType(name: NotificationTypeName) {
     const type = this.types.get(name);
+
     if (type == null) return;
 
     const cursorId = type.cursor?.id ?? 0;
 
-    for (const [, stack] of this.stacks) {
+    for (const [, stack] of type.stacks) {
       // don't include stacks that are past the cursor for the type
       // this is to prevent gaps in loaded stacks when switching filters
-      if ((name == null || stack.type === name) && type?.cursor !== undefined && stack.first.id >= cursorId) yield stack;
+      if (type?.cursor !== undefined && stack.first.id >= cursorId) yield stack;
     }
   }
 
@@ -173,17 +183,21 @@ export default class NotificationStackStore implements DispatchListener {
       notification.updateFromJson(json);
     }
 
-    this.stacks.get(notification.stackId)?.notifications.set(notification.id, notification);
+    const type = this.getOrCreateType(notification.identity);
+    type.stacks.get(notification.stackId)?.notifications.set(notification.id, notification);
   }
 
   private updateWithStackJson(json: NotificationStackJson) {
-    let stack = this.stacks.get(idFromJson(json));
+    const type = this.getOrCreateType(fromJson(json))
+    let stack = type.stacks.get(idFromJson(json));
     if (stack == null) {
       stack = new NotificationStack(json.object_id, json.object_type, nameToCategory[json.name], this.resolver);
-      this.stacks.set(stack.id, stack);
+      type.stacks.set(stack.id, stack);
     }
+
     stack.updateWithJson(json);
     this.types.get(stack.objectType)?.stacks.set(stack.id, stack);
+    this.allType.stacks.set(stack.id, stack);
   }
 
   private updateWithTypeJson(json: NotificationTypeJson) {
@@ -192,6 +206,7 @@ export default class NotificationStackStore implements DispatchListener {
       type = new NotificationType(json.name, this.resolver);
       this.types.set(type.name, type);
     }
+
     type.updateWithJson(json);
   }
 }

@@ -431,15 +431,14 @@ describe('Notification Events', () => {
       });
 
       it('store.stacks is not empty', () => {
-        expect(store.stacks.stacks.size).toBe(1);
+        expect(store.stacks.allStacks.size).toBe(1);
         expect(store.stacks.types.size).toBe(2);
         expect(store.stacks.getOrCreateType({ objectType: null })).toBeDefined();
         expect(store.stacks.getOrCreateType({ objectType: 'beatmapset' })).toBeDefined();
       });
 
       it('store.unreadStacks is empty', () => {
-        expect(store.unreadStacks.stacks.size).toBe(0);
-        expect(store.unreadStacks.types.size).toBe(0);
+        expect(store.unreadStacks.isEmpty).toBe(true);
       });
 
       it('notifications added to store.notifications', () => {
@@ -459,13 +458,11 @@ describe('Notification Events', () => {
       });
 
       it('store.stacks only is empty', () => {
-        expect(store.stacks.stacks.size).toBe(0);
-
-        expect(store.stacks.types.size).toBe(0);
+        expect(store.stacks.isEmpty).toBe(true);
       });
 
       it('store.unreadStacks is not empty', () => {
-        expect(store.unreadStacks.stacks.size).toBe(1);
+        expect(store.unreadStacks.allStacks.size).toBe(1);
         expect(store.unreadStacks.types.size).toBe(2);
         expect(store.unreadStacks.getOrCreateType({ objectType: null })).toBeDefined();
         expect(store.unreadStacks.getOrCreateType({ objectType: 'beatmapset' })).toBeDefined();
@@ -502,11 +499,11 @@ describe('Notification Events', () => {
       });
 
       it('should contain 1 stack', () => {
-        expect(store.stacks.stacks.size).toBe(1);
+        expect(store.stacks.allStacks.size).toBe(1);
       });
 
       it('should contain 1 unread stack', () => {
-        expect(store.unreadStacks.stacks.size).toBe(1);
+        expect(store.unreadStacks.allStacks.size).toBe(1);
       });
 
       describe('NotificationEventNew dispatched', () => {
@@ -572,7 +569,7 @@ describe('Notification Events', () => {
           });
 
           it('there is a new stack', () => {
-            expect(store.unreadStacks.stacks.size).toBe(2);
+            expect(store.unreadStacks.allStacks.size).toBe(2);
           });
 
           it('the stack the new notification is in should be first', () => {
@@ -593,11 +590,11 @@ describe('Notification Events', () => {
       });
 
       it('should be empty', () => {
-        expect(store.stacks.stacks.size).toBe(0);
+        expect(store.stacks.isEmpty).toBe(true);
       });
 
       it('should contain no unreads', () => {
-        expect(store.unreadStacks.stacks.size).toBe(0);
+        expect(store.unreadStacks.isEmpty).toBe(true);
       });
 
       describe('NotificationEventNew dispatched', () => {

@@ -30,8 +30,6 @@ export interface NotificationIdentityJson {
   id?: number;
   object_id?: number;
   object_type: string | null;
-
-  [key: string]: string | number | null | undefined;
 }
 
 export function resolveStackId(identity: NotificationIdentity) {
