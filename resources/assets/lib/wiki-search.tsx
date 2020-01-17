@@ -20,14 +20,26 @@ import { route } from 'laroute';
 import * as React from 'react';
 
 interface State {
+  direction: number;
+  selectedIndex: number;
   suggestions?: string[];
 }
 
 export class WikiSearch extends React.Component<{}, State> {
   readonly input = React.createRef<HTMLInputElement>();
-  readonly state = {
+  readonly state: State = {
+    direction: 0,
+    selectedIndex: -1,
     suggestions: [],
   };
+
+  componentDidUpdate() {
+    // scroll highlighted option into view if triggered by keys
+    if (this.state.direction !== 0) {
+      // FIXME: probably doesn't work on Edge?
+      $('.wiki-search__suggestion--active')[0]?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+    }
+  }
 
   getSuggestions() {
     console.log(this.input.current?.value);
@@ -43,9 +55,19 @@ export class WikiSearch extends React.Component<{}, State> {
   }
 
   handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.keyCode === 13) { // enter
+    const key = e.key;
+
+    if (key === 'Enter') {
       this.performSearch();
     }
+
+    if (key === 'ArrowUp' || key === 'ArrowDown') {
+      this.shiftSelectedIndex(key === 'ArrowDown' ? 1 : -1);
+    }
+  }
+
+  handleUnselect = () => {
+    this.setState({ selectedIndex: -1 });
   }
 
   performSearch = () => {
@@ -86,19 +108,28 @@ export class WikiSearch extends React.Component<{}, State> {
     if (!this.state.suggestions?.length) return null;
 
     return (
-      <div className='wiki-search__suggestions u-fancy-scrollbar'>
+      <div className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleUnselect}>
         {
           this.state.suggestions.map((item, index) => {
+            const setIndex = () => this.setState({ selectedIndex: index, direction: 0 });
+
             return (
               <div
                 dangerouslySetInnerHTML={{ __html: item }}
-                className='wiki-search__suggestion'
+                className={osu.classWithModifiers('wiki-search__suggestion', this.state.selectedIndex === index ? ['active'] : [])}
                 key={index}
+                onMouseEnter={setIndex}
               />
             );
           })
         }
       </div>
     );
+  }
+
+  private shiftSelectedIndex(direction: number) {
+    const selectedIndex = this.state.selectedIndex + direction;
+    if (selectedIndex < -1 || selectedIndex >= (this.state.suggestions?.length ?? 0)) return;
+    this.setState({ selectedIndex, direction });
   }
 }
