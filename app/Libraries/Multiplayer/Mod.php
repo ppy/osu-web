@@ -25,6 +25,7 @@ use App\Exceptions\InvariantException;
 class Mod
 {
     // common
+    const DIFFICULTY_ADJUST = 'DA';
     const DAYCORE = 'DC';
     const DOUBLETIME = 'DT';
     const EASY = 'EZ';
@@ -75,6 +76,7 @@ class Mod
     const SCORABLE_COMMON = [
         // common
         self::DAYCORE,
+        self::DIFFICULTY_ADJUST,
         self::DOUBLETIME,
         self::EASY,
         self::FLASHLIGHT,
@@ -103,6 +105,7 @@ class Mod
         [
             self::HARDROCK,
             self::EASY,
+            self::DIFFICULTY_ADJUST,
         ],
         [
             self::DOUBLETIME,
@@ -143,6 +146,12 @@ class Mod
     ];
 
     const SETTINGS = [
+        self::DIFFICULTY_ADJUST => [
+            'drain_rate' => 'float',
+            'overall_difficulty' => 'float',
+            'circle_size' => 'float',
+            'approach_rate' => 'float',
+        ],
         self::DOUBLETIME => [
             'speed_change' => 'float',
         ],
