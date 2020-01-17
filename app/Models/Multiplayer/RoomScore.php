@@ -59,7 +59,7 @@ class RoomScore extends Model
     protected $dates = ['started_at', 'ended_at'];
     protected $casts = [
         'passed' => 'boolean',
-        'mods' => 'array',
+        'mods' => 'object',
         'statistics' => 'array',
     ];
 

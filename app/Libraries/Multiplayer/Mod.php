@@ -276,9 +276,9 @@ class Mod
             if (isset($mod['acronym']) && present($mod['acronym'])) {
                 $acronym = strtoupper($mod['acronym']);
 
-                $filteredMods[$acronym] = [
+                $filteredMods[$acronym] = (object)[
                     'acronym' => $acronym,
-                    'settings' => [],
+                    'settings' => (object)[],
                 ];
                 continue;
             }
