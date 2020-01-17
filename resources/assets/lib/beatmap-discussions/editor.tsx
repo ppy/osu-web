@@ -308,23 +308,41 @@ export default class Editor extends React.Component<any, any> {
       switch (node.type) {
         case 'paragraph':
           const childOutput: string[] = [];
+          const currentMarks = {
+            bold: false,
+            italic: false,
+          };
+
           node.children.forEach((child: SlateNode) => {
-            const marks: string[] = [];
             if (child.text !== '') {
-              if (child.bold) {
-                marks.push('**');
+              if (currentMarks.bold !== (child.bold ?? false)) {
+                currentMarks.bold = child.bold;
+                childOutput.push('**');
               }
 
-              if (child.italic) {
-                marks.push('*');
+              if (currentMarks.italic !== (child.italic ?? false)) {
+                currentMarks.italic = child.italic;
+                childOutput.push('*');
               }
             }
-            childOutput.push([marks.join(''), child.text, marks.reverse().join('')].join(''));
+
+            childOutput.push(child.text.replace('*', '\\*'));
           });
+
+          // ensure closing of open tags
+          if (currentMarks.bold) {
+            childOutput.push('**');
+          }
+          if (currentMarks.italic) {
+            childOutput.push('*');
+          }
+
           review.push({
             text: childOutput.join(''),
             type: 'paragraph',
           });
+
+          currentMarks.bold = currentMarks.italic = false;
           break;
 
         case 'embed':
@@ -350,7 +368,14 @@ export default class Editor extends React.Component<any, any> {
   }
 
   test = () => {
-    console.log(this.serialize());
+    const obj = this.serialize();
+    let output = '';
+    _.each(JSON.parse(obj), (b) => {
+      output += b.text + '\n\n';
+    });
+
+    console.dir(JSON.parse(obj));
+    console.log(output);
   }
 
   toggleBold = (event: React.MouseEvent) => {
