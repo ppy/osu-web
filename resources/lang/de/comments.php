@@ -22,6 +22,7 @@ return [
     'deleted' => 'gelöscht',
     'deleted_count' => ':count_delimited gelöschten Kommentar|:count_delimited gelöschte Kommentare',
     'edited' => 'bearbeitet :timeago von :user',
+    'pinned' => '',
     'empty' => 'Noch keine Kommentare vorhanden.',
     'load_replies' => 'Antworten laden',
     'replies' => 'Antworten',
@@ -29,7 +30,7 @@ return [
 
     'commentable_name' => [
         'beatmapset' => 'Beatmap',
-        'build' => 'Protokoll',
+        'build' => 'Changelog',
         'news_post' => 'Neuigkeiten',
         '_deleted' => 'Gelöschtes Item',
     ],
@@ -49,7 +50,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'Auflistung',
     ],
 
     'placeholder' => [
@@ -59,6 +60,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'Kommentare',
     ],
 ];

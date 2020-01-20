@@ -27,9 +27,9 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
-        'download' => 'Descargar la plantilla del Beatmap',
-        'download-na' => 'La plantilla del Beatmap no está disponible aún',
+        '_' => 'Mapas',
+        'download' => 'Descargar plantilla del mapa',
+        'download-na' => 'La plantilla del mapa no está disponible aún',
     ],
 
     'index' => [

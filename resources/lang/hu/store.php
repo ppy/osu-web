@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Fizetés',
+        'info' => '',
         'more_goodies' => 'Még több cuccot szeretnék megnézni mielőtt befejezném a rendelésem',
         'shipping_fees' => 'szállítási költség',
         'title' => 'Kosár',
@@ -145,5 +146,9 @@ return [
             '_' => ':link kell lenned a neved megváltoztatásához!',
             'link_text' => 'bejelentkezve',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

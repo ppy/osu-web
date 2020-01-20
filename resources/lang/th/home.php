@@ -21,7 +21,7 @@
 return [
     'landing' => [
         'download' => 'ดาวน์โหลดเลย',
-        'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
+        'online' => 'มีผู้เล่นออนไลน์ <strong>:players</strong> คน และมีห้องเล่นหลายคน <strong>:games</strong> ห้อง',
         'peak' => 'Peak, :count online users',
         'players' => 'มีผู้เล่นลงทะเบียนแล้ว <strong>:count</strong> คน',
         'title' => 'ยินดีต้อนรับ',
@@ -106,7 +106,7 @@ return [
                 'title' => 'ไปโหลดบีตแมป',
                 'description' => [
                     '_' => ':browse the vast library of user-created beatmaps and start playing!',
-                    'browse' => 'browse',
+                    'browse' => 'ค้นหา',
                 ],
             ],
         ],
@@ -122,7 +122,7 @@ return [
         'header' => [
             'stats' => [
                 'friends' => 'จำนวนเพื่อนที่ออนไลน์',
-                'games' => 'Games',
+                'games' => 'เกมที่เล่นอยู่',
                 'online' => 'จำนวนผู้ใช้ที่ออนไลน์',
             ],
         ],

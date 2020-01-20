@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Διαχειριστής',
+        'authorise' => '',
         'back_to_previous' => 'Επιστροφή στην προηγούμενη κατάσταση',
         'back_to_top' => 'Πίσω στην αρχή',
         'cancel' => 'Ακύρωση',
@@ -48,7 +49,7 @@ return [
         'expand' => 'επέκταση',
         'hide' => 'απόκρυψη',
         'permalink' => 'permalink',
-        'permalink_copied' => 'το link αντιγράφτηκε',
+        'pin' => '',
         'post' => 'Δημοσίευση',
         'reply' => 'Απάντηση',
         'reply_reopen' => 'Απάντηση και εκ νέου άνοιγμα',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Εμφάνιση διαγραμμένου',
         'show_more' => 'εμφάνιση περισσότερων',
         'show_more_options' => 'περισσότερες επιλογές',
+        'unpin' => '',
         'update' => '',
         'upload_image' => 'ανεβάστε εικόνα',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Ειδοποίηση',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

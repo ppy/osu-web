@@ -25,7 +25,7 @@ return [
             'regenerating' => '재생성 중...',
             'remove' => '제거',
             'removing' => '제거 중...',
-            'title' => '',
+            'title' => '비트맵셋 커버',
         ],
         'show' => [
             'covers' => '비트맵셋 표지 관리',
@@ -72,7 +72,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '',
+                'beatmapsets' => '비트맵셋',
                 'forum' => '포럼',
                 'general' => '일반',
                 'store' => '상점',

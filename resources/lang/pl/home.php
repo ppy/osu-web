@@ -39,7 +39,7 @@ return [
         'empty_result' => 'Nie znaleziono!',
         'keyword_required' => 'Wyszukiwana fraza jest wymagana',
         'placeholder' => 'wpisz, by rozpocząć wyszukiwanie',
-        'title' => 'Wyszukiwarka',
+        'title' => 'wyszukiwarka',
 
         'beatmapset' => [
             'more' => 'Zobacz więcej wyszukanych beatmap: :count',

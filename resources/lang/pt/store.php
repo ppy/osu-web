@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Pagamento',
+        'info' => '',
         'more_goodies' => 'Quero adicionar mais brindes antes de completar o pedido',
         'shipping_fees' => 'custos de envio',
         'title' => 'Carrinho de compras',
@@ -145,5 +146,9 @@ return [
             '_' => 'Precisas de ser :link para mudares o teu nome!',
             'link_text' => 'sessão iniciada',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

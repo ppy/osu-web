@@ -52,8 +52,8 @@ return [
         ],
 
         'period' => [
-            'end' => '',
-            'start' => '',
+            'end' => '结束于',
+            'start' => '开始于',
         ],
 
         'state' => [
