@@ -22,15 +22,9 @@ return [
     'cancel' => 'Zrušit',
 
     'authorise' => [
-        'authorise' => 'Autorizovat',
         'request' => 'žádá o přístup k vašemu účtu.',
         'scopes_title' => 'Tato aplikace bude moci:',
         'title' => 'Žádost o autorizaci',
-
-        'wrong_user' => [
-            '_' => 'Jsi přihlášen jako :user. :logout_link.',
-            'logout_link' => 'Klikni zde pro přihlášení, jako jiný uživatel',
-        ],
     ],
 
     'authorized_clients' => [

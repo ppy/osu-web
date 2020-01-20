@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => '结账',
+        'info' => '',
         'more_goodies' => '在完成订单之前，我想看看其他商品',
         'shipping_fees' => '运费',
         'title' => '购物车',
@@ -145,5 +146,9 @@ return [
             '_' => '需要 :link 才能改变用户名！',
             'link_text' => '登录',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

@@ -22,15 +22,9 @@ return [
     'cancel' => 'Annuller',
 
     'authorise' => [
-        'authorise' => 'Autoriser',
         'request' => 'anmoder om tilladelse til at få adgang til din konto.',
         'scopes_title' => 'Denne applikation vil være i stand til at:',
         'title' => 'Autorisation Anmodning',
-
-        'wrong_user' => [
-            '_' => 'Du er logged ind som :user. :logout_link.',
-            'logout_link' => 'Klik her for at logge ind som en anden bruger',
-        ],
     ],
 
     'authorized_clients' => [

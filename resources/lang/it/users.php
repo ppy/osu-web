@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => 'L\'accesso con email è attualmente disabilitato. Utilizza il nome utente.',
         'failed' => 'Login non corretto',
         'forgot' => 'Hai dimenticato la tua password?',
-        'info' => '',
+        'info' => 'Accedi per continuare',
         'locked_ip' => 'il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
         'password' => 'Password',
         'register' => "Non hai un account di osu!? Fanne uno nuovo",

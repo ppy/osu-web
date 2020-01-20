@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => '',
         'back_to_previous' => 'Vend tilbage til tidligere position',
         'back_to_top' => 'Tilbage til toppen',
         'cancel' => 'Annullér',
@@ -48,7 +49,7 @@ return [
         'expand' => 'udvid',
         'hide' => 'skjul',
         'permalink' => 'permalink',
-        'permalink_copied' => 'link kopieret',
+        'pin' => '',
         'post' => 'Slå op',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og Genåben',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Vis slettede',
         'show_more' => 'vis mere',
         'show_more_options' => 'vis flere muligheder',
+        'unpin' => '',
         'update' => 'Opdater',
         'upload_image' => 'upload billede',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Meddelelse',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

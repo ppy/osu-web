@@ -22,15 +22,9 @@ return [
     'cancel' => 'Cancelar',
 
     'authorise' => [
-        'authorise' => 'Autorizar',
         'request' => 'está pidiendo permiso para entrar en tu cuenta.',
         'scopes_title' => 'Esta aplicación podrá:',
         'title' => 'Solicitud de autorización',
-
-        'wrong_user' => [
-            '_' => 'Has iniciado sesión como :user. :logout_link.',
-            'logout_link' => 'Haga clic aquí para iniciar sesión como otro usuario',
-        ],
     ],
 
     'authorized_clients' => [
@@ -62,12 +56,12 @@ return [
     ],
 
     'own_clients' => [
-        'confirm_delete' => '¿Está seguro que desea borrar este cliente?',
+        'confirm_delete' => '¿Está seguro que desea eliminar este cliente?',
         'new' => 'Nueva aplicación OAuth',
         'none' => 'Sin Clientes',
 
         'revoked' => [
-            'false' => 'Borrar',
+            'false' => 'Eliminar',
             'true' => 'Eliminado',
         ],
     ],

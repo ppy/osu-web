@@ -67,7 +67,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Ninguna de las publicaciones aborda mi asunto',
-        'notice' => 'Ya hay posts cerca de :timestamp (:existing_timestamps). Por favor revísalos antes de publicar.',
+        'notice' => 'Hay publicaciones cerca de la :timestamp (:existing_timestamps). Por favor revíselas antes de publicar.',
     ],
 
     'reply' => [
@@ -78,7 +78,7 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
+        'go_to_parent' => 'Ver post de la reseña',
         'go_to_child' => 'Ver discusión',
     ],
 

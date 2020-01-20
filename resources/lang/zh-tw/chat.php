@@ -37,7 +37,7 @@ return [
     ],
     'input' => [
         'disabled' => '無法傳送訊息...',
-        'placeholder' => '輸入訊息中...',
+        'placeholder' => '輸入訊息...',
         'send' => '發送',
     ],
     'no-conversations' => [

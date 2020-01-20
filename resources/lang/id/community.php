@@ -24,10 +24,10 @@ return [
             'title' => 'Saya yakin! :D',
             'support' => 'dukung osu!',
             'gift' => 'atau hadiahkan supporter tag kepada pemain lain',
-            'instructions' => 'klik tombol hati untuk melanjutkan ke osu!store',
+            'instructions' => 'klik tombol hati di atas untuk melanjutkan ke osu!store',
         ],
         'why-support' => [
-            'title' => 'Kenapa saya harus mendukung osu!? Kemana uangnya akan pergi?',
+            'title' => 'Kenapa saya harus mendukung osu!? Ke mana uangnya akan disalurkan?',
 
             'team' => [
                 'title' => 'Dukung Tim kami',
@@ -38,7 +38,7 @@ return [
                 'description' => 'Kontribusi langsung digunakan untuk kebutuhan server dalam menjalankan situs web, layanan multiplayer, papan peringkat online, dan lainnya.',
             ],
             'featured-artists' => [
-                'title' => 'Artis Unggulan',
+                'title' => 'Featured Artist',
                 'description' => 'Dengan dukunganmu, kami dapat mencari artis - artis berbakat lainnya dan melisensi musiknya untuk digunakan di osu!',
                 'link_text' => 'Lihat daftar saat ini &raquo;',
             ],
@@ -75,8 +75,8 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => 'Filter berdasarkan Mod',
-                'description' => 'Ingin mencari orang yang memainkannya dengan HDHR? Tidak masalah!',
+                'title' => 'Filter Berdasarkan Mod',
+                'description' => 'Ingin mencari orang yang memainkan suatu map dengan HDHR? Tidak masalah!',
             ],
 
             'auto_downloads' => [

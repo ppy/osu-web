@@ -69,7 +69,7 @@ return [
         'beatmapset_discussion_qualified_problem' => '在以下模式的 qualified 圖譜上接收新問題通知',
 
         'mail' => [
-            '_' => '',
+            '_' => '接收以下有關的電子郵件通知',
             'beatmapset:modding' => '圖譜製作',
             'forum_topic_reply' => '主題回復',
         ],

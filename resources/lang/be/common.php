@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Кіраўнік',
+        'authorise' => '',
         'back_to_previous' => 'Вярнуцца ў папярэднюю пазіцыю',
         'back_to_top' => 'Вярнуцца ў пачатак',
         'cancel' => 'Скасаваць',
@@ -48,7 +49,7 @@ return [
         'expand' => 'разгарнуць',
         'hide' => 'схаваць',
         'permalink' => 'нязменная спасылка',
-        'permalink_copied' => 'спасылка скапіявана',
+        'pin' => '',
         'post' => 'Размясціць',
         'reply' => 'Адказаць',
         'reply_reopen' => 'Адказаць і пераадкрыць',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Паказ выдаленыя',
         'show_more' => 'паказаць больш',
         'show_more_options' => 'паказаць больш параметраў',
+        'unpin' => '',
         'update' => '',
         'upload_image' => 'запампаваць выяву',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Заўвага',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

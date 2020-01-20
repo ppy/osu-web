@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Ödeme',
+        'info' => '',
         'more_goodies' => 'Ödememi yapmadan önce başka eşyalara göz atmak istiyorum',
         'shipping_fees' => 'kargo ücretleri',
         'title' => 'Alışveriş Sepeti',
@@ -145,5 +146,9 @@ return [
             '_' => 'İsmini değiştirmek için :link olman gerekiyor!',
             'link_text' => 'giriş yapmış',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

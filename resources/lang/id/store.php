@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Checkout',
+        'info' => '',
         'more_goodies' => 'Saya ingin melihat barang lain sebelum menyelesaikan pesanan',
         'shipping_fees' => 'biaya pengiriman',
         'title' => 'Keranjang Belanja',
@@ -145,5 +146,9 @@ return [
             '_' => 'Anda harus :link untuk mengubah nama Anda!',
             'link_text' => 'masuk',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

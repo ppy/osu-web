@@ -77,8 +77,8 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
-                'button_title' => '',
+                '_' => '如果你认为此谱面有问题，可以取消提名：:link',
+                'button_title' => '取消提名已被Qualified的图',
             ],
 
             'report' => [
@@ -153,13 +153,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
+            'qualified' => 'Qualified',
+            'wip' => 'WIP',
+            'pending' => 'Pending',
+            'graveyard' => 'Graveyard',
         ],
     ],
 ];

@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Afrekenen',
+        'info' => '',
         'more_goodies' => 'Ik wil meer goodies bekijken voordat ik de bestelling voltooi',
         'shipping_fees' => 'verzendkosten',
         'title' => 'Winkelwagen',
@@ -145,5 +146,9 @@ return [
             '_' => 'Je moet :link zijn om je naam te veranderen!',
             'link_text' => 'ingelogd',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

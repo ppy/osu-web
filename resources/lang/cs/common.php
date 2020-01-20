@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => '',
         'back_to_previous' => 'Zpátky na předchozí pozici',
         'back_to_top' => 'Zpátky nahoru',
         'cancel' => 'Zrušit',
@@ -48,7 +49,7 @@ return [
         'expand' => 'rozbalit',
         'hide' => 'skrýt',
         'permalink' => 'trvalý odkaz',
-        'permalink_copied' => 'odkaz zkopírován',
+        'pin' => '',
         'post' => 'Přidat příspěvek',
         'reply' => 'Odpovědět',
         'reply_reopen' => 'Odpovědět a znovu otevřít',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Zobrazit smazané',
         'show_more' => 'zobrazit více',
         'show_more_options' => 'zobrazit více možností',
+        'unpin' => '',
         'update' => 'Aktualizovat',
         'upload_image' => 'nahrát obrázek',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Oznámení',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

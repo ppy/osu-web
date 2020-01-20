@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => 'Caută',
             'deleted' => 'Include discuțiile șterse',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Arată doar discuții nerezolvate',
             'types' => 'Tipuri de mesaje',
             'username' => 'Nume de utilizator',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Status de Beatmap',
+                'all' => 'Tot',
+                'disqualified' => 'Descalificat',
+                'never_qualified' => 'Niciodată Calificat',
+                'qualified' => 'Calificat',
+                'ranked' => 'Clasat',
             ],
 
             'user' => [
@@ -78,8 +78,8 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'Vezi review-ul utilizatorului',
+        'go_to_child' => 'Vezi Discuția',
     ],
 
     'system' => [
@@ -90,8 +90,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'general',
+        'general_all' => 'general (tot)',
     ],
 
     'user_filter' => [

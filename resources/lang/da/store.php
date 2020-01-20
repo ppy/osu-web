@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Til kassen',
+        'info' => '',
         'more_goodies' => 'Jeg ønsker at tjekke flere goodies ud før jeg færdiggører ordren',
         'shipping_fees' => 'fragt gebyrer',
         'title' => 'Indkøbskurv',
@@ -145,5 +146,9 @@ return [
             '_' => 'Du skal være :link for at ændre dit brugernavn!',
             'link_text' => 'logget ind',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];
