@@ -24,7 +24,7 @@ return [
         'title_compact' => 'lista de seguimiento de modificaciones',
 
         'table' => [
-            'empty' => 'No estás mirando discusiones de Beatmaps.',
+            'empty' => 'No estás viendo ninguna discusión de un mapa.',
             'open_issues' => 'Problemas abiertos',
             'state' => 'Estado',
             'title' => 'Título',

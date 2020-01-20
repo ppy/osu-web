@@ -22,6 +22,7 @@ return [
     'deleted' => 'terhapus',
     'deleted_count' => ':count_delimited komentar yang dihapus|:count_delimited komentar yang dihapus',
     'edited' => 'disunting :timeago oleh :user',
+    'pinned' => '',
     'empty' => 'Belum ada komentar.',
     'load_replies' => 'muat lebih banyak balasan',
     'replies' => 'Balasan',
@@ -49,7 +50,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'daftar',
     ],
 
     'placeholder' => [
@@ -59,6 +60,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'komentar',
     ],
 ];

@@ -25,81 +25,90 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            '_' => '관리자',
+            'beatmapset' => '비트맵셋',
+            'beatmapset_covers' => '비트맵셋 커버',
+            'contest' => '콘테스트',
+            'contests' => '콘테스트',
+            'root' => '콘솔',
+            'store_orders' => '상점 관리자',
         ],
 
         'artists' => [
-            '_' => '',
-            'index' => '',
+            '_' => '공식 아티스트',
+            'index' => '목록',
         ],
 
         'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            '_' => '비트맵',
+            'discussions' => '토론',
+            'index' => '목록',
+            'show' => '정보',
+            'packs' => '맵팩',
         ],
 
         'changelog' => [
-            '_' => '',
-            'index' => '',
+            '_' => '변경 사항',
+            'index' => '목록',
         ],
 
         'community' => [
             '_' => '커뮤니티',
-            'comments' => '',
+            'comments' => '댓글',
             'forum' => '포럼',
-            'livestream' => '',
+            'livestream' => '라이브 스트림',
         ],
 
         'contests' => [
-            '_' => '',
-            'index' => '',
+            '_' => '콘테스트',
+            'index' => '목록',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => '오류',
         ],
 
         'help' => [
-            '_' => '',
-            'index' => '',
+            '_' => '위키',
+            'index' => '목록',
         ],
 
         'home' => [
-            '_' => '',
-            'password_reset' => '',
+            '_' => '메인',
+            'password_reset' => '비밀번호 재설정',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => '매치 기록',
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => '알림',
         ],
 
         'rankings' => [
+            '_' => '순위',
+        ],
+
+        'store' => [
             '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
-            '_' => '',
-            'index' => '',
+            '_' => '대회',
+            'index' => '목록',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            '_' => '플레이어',
+            'forum_posts' => '포럼 게시물',
+            'modding' => '모딩',
+            'show' => '정보',
         ],
     ],
 
@@ -116,10 +125,11 @@ return [
             '_' => '메인',
             'account-edit' => '설정',
             'account-verifyLink' => '인증 완료',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => '모딩 확인 목록',
             'changelog-build' => '빌드 버전',
             'changelog-index' => '변경 사항',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => '구독',
             'friends-index' => '친구',
             'getDownload' => '다운로드',
             'getIcons' => '아이콘',
@@ -133,7 +143,7 @@ return [
             'search' => '검색',
             'supportTheGame' => '게임 지원하기',
             'team' => '운영진',
-            'testflight' => '',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => '프로필',
@@ -332,7 +342,7 @@ return [
             'forgot' => "계정 정보를 잊어버렸어요.",
             'password' => '비밀번호',
             'title' => '로그인하여 계속하기',
-            'username' => '',
+            'username' => '사용자 이름',
 
             'error' => [
                 'email' => "존재하지 않는 유저이름 또는 이메일입니다.",

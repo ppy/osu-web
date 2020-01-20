@@ -21,7 +21,7 @@
 return [
     'index' => [
         'description' => 'Paket beatmap yang telah disusun atas satu tema tertentu.',
-        'nav_title' => '',
+        'nav_title' => 'daftar',
         'title' => 'Paket Beatmap',
 
         'blurb' => [

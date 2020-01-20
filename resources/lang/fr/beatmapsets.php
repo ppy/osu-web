@@ -157,7 +157,7 @@ return [
             'approved' => 'Approuvée',
             'loved' => 'Aimée',
             'qualified' => 'Qualifiée',
-            'wip' => 'En construction',
+            'wip' => 'WIP',
             'pending' => 'En attente',
             'graveyard' => 'Cimetière',
         ],

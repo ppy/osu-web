@@ -21,7 +21,7 @@
 return [
     'index' => [
         'description' => '相同主題的圖譜合集壓縮檔',
-        'nav_title' => '',
+        'nav_title' => '列表',
         'title' => '圖譜壓縮檔',
 
         'blurb' => [

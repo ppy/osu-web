@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => '管理员',
+        'authorise' => '',
         'back_to_previous' => '返回上一位置',
         'back_to_top' => '回到顶部',
         'cancel' => '取消',
@@ -48,7 +49,7 @@ return [
         'expand' => '展开',
         'hide' => '隐藏',
         'permalink' => '静态链接',
-        'permalink_copied' => '链接已复制',
+        'pin' => '',
         'post' => '发表',
         'reply' => '回复',
         'reply_reopen' => '回复并重新打开',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => '显示已删除的评论',
         'show_more' => '显示更多',
         'show_more_options' => '显示更多选项',
+        'unpin' => '',
         'update' => '更新',
         'upload_image' => '上传图片',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => '提醒',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];
