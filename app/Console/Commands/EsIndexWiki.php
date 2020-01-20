@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Libraries\Elasticsearch\Es;
+use App\Libraries\Elasticsearch\Indexing;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\OsuWiki;
@@ -32,6 +34,11 @@ class EsIndexWiki extends Command
      */
     public function handle()
     {
+        // setup index and alias
+        $oldIndices = Indexing::getOldIndices(Page::esIndexName());
+        $newIndex = Page::esIndexName().'_'.time();
+        Page::esCreateIndex($newIndex);
+
         // for storing the paths as keys; the values don't matter in practise.
         $paths = [];
 
@@ -63,22 +70,27 @@ class EsIndexWiki extends Command
         foreach ($paths as $path => $_inEs) {
             $pagePath = Page::parsePagePath($path);
             $page = new Page($pagePath['path'], $pagePath['locale']);
-            $page->sync(true);
+            $page->sync(true, $newIndex);
 
             if (!$page->isVisible()) {
                 $this->warn("delete {$pagePath['locale']}: {$pagePath['path']}");
-                $page->esDeleteDocument();
+                $page->esDeleteDocument(['index' => $newIndex]);
             }
 
             $bar->advance();
         }
 
         $bar->finish();
+
+        Indexing::updateAlias(Page::esIndexName(), [$newIndex]);
+        foreach ($oldIndices as $index) {
+            Indexing::deleteIndex($index);
+        }
     }
 
     private static function newBaseSearch(): Search
     {
-        return (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
+        return (new BasicSearch(Page::esIndexName()))
             ->query(['match_all' => new \stdClass])
             ->sort(new Sort('_id', 'asc'))
             ->source(false);
