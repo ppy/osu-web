@@ -78,7 +78,7 @@ export class WikiSearch extends React.Component {
   }
 
   renderSuggestions() {
-    if (!this.controller.isSuggestionsVisibile || this.controller.suggestions.length === 0) return null;
+    if (!this.controller.isSuggestionsVisible) return null;
 
     return (
       <div className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleMouseLeave}>

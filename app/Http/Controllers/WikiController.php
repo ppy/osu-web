@@ -66,9 +66,9 @@ class WikiController extends Controller
 
     public function suggestions()
     {
-        $query = presence(trim(request('q')));
-        if ($query === null) {
-            return response(null, 204);
+        $query = trim(request('q'));
+        if (mb_strlen($query) < 2) {
+            return [];
         }
 
         $search = (new BasicSearch(Page::esIndexName()))
@@ -89,7 +89,8 @@ class WikiController extends Controller
                     ->field('title.autocomplete')
                     ->numberOfFragments(0)
             )
-            ->source(['title']);
+            ->source(['title'])
+            ->size(10);
 
         $response = [];
         foreach ($search->response() as $hit) {
@@ -99,7 +100,7 @@ class WikiController extends Controller
             ];
         }
 
-        return $response;
+        return collect($response)->unique('source')->values();
     }
 
     public function update($path)

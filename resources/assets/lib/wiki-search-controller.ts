@@ -17,7 +17,8 @@
  */
 
 import { route } from 'laroute';
-import { action, observable } from 'mobx';
+import { debounce } from 'lodash';
+import { action, computed, observable } from 'mobx';
 
 interface SuggestionJSON {
   highlight: string;
@@ -26,35 +27,40 @@ interface SuggestionJSON {
 
 export class WikiSearchController {
   @observable direction = 0;
-  @observable isSuggestionsVisibile = false;
   @observable query = '';
   @observable selectedIndex = -1;
+  @observable shouldShowSuggestions = false;
   @observable suggestions: SuggestionJSON[] = [];
 
+  private getSuggestionsDebounced = debounce(this.getSuggestions, 200);
   private saved = '';
+
+  @computed get isSuggestionsVisible() {
+    return this.shouldShowSuggestions && this.suggestions.length > 0;
+  }
 
   @action
   getSuggestions() {
-    $.getJSON(route('wiki-suggestions'), { q: this.query })
+    $.getJSON(route('wiki-suggestions'), { q: this.query.trim() })
     .done(action((response) => {
       if (response != null) {
         this.suggestions = response as SuggestionJSON[];
-        this.isSuggestionsVisibile = this.suggestions.length > 0;
+        this.shouldShowSuggestions = true;
       }
     }));
   }
 
   @action
   search() {
-    const input = this.query;
+    const query = this.query.trim();
 
-    if (input === '') {
+    if (query === '') {
       return;
     }
 
     Turbolinks.visit(route('search', {
       mode: 'wiki_page',
-      query: input,
+      query,
     }));
   }
 
@@ -69,10 +75,10 @@ export class WikiSearchController {
 
     if (index < 0) {
       this.query = this.saved;
-      this.isSuggestionsVisibile = false;
+      this.shouldShowSuggestions = false;
     } else {
       this.query = this.suggestions[index].source;
-      this.isSuggestionsVisibile = true;
+      this.shouldShowSuggestions = true;
     }
   }
 
@@ -84,6 +90,13 @@ export class WikiSearchController {
   @action
   updateQuery(query: string) {
     this.saved = this.query = query;
-    this.getSuggestions();
+
+    if (this.query.trim().length === 0) {
+      this.suggestions = [];
+    }
+
+    if (this.query.trim().length > 1) {
+      this.getSuggestionsDebounced();
+    }
   }
 }
