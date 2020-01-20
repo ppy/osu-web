@@ -21,7 +21,7 @@
 return [
     'index' => [
         'description' => 'Collection de beatmaps basées sur un thème',
-        'nav_title' => '',
+        'nav_title' => 'liste',
         'title' => 'Collections de Beatmaps',
 
         'blurb' => [

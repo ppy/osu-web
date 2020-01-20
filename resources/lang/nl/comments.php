@@ -22,6 +22,7 @@ return [
     'deleted' => 'verwijderd',
     'deleted_count' => ':count_delimited verwijderde opmerking|:count_delimited verwijderde opmerkingen',
     'edited' => 'gewijzigd :timeago door :user',
+    'pinned' => '',
     'empty' => 'Nog geen commentaar.',
     'load_replies' => 'antwoorden laden',
     'replies' => 'Reacties',

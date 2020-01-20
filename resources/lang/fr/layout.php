@@ -25,81 +25,90 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            '_' => 'admin',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'couvertures du beatmapset',
+            'contest' => 'concours',
+            'contests' => 'concours',
+            'root' => 'console',
+            'store_orders' => 'administration de la boutique',
         ],
 
         'artists' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'artistes en vedette',
+            'index' => 'liste',
         ],
 
         'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            '_' => 'beatmap',
+            'discussions' => 'discussion',
+            'index' => 'liste',
+            'show' => 'info',
+            'packs' => 'packs',
         ],
 
         'changelog' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'notes de MàJ',
+            'index' => 'liste',
         ],
 
         'community' => [
             '_' => 'Communauté',
-            'comments' => '',
+            'comments' => 'commentaires',
             'forum' => 'Forum',
-            'livestream' => '',
+            'livestream' => 'flux en direct',
         ],
 
         'contests' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'concours',
+            'index' => 'liste',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => 'erreur',
         ],
 
         'help' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'wiki',
+            'index' => 'index',
         ],
 
         'home' => [
-            '_' => '',
-            'password_reset' => '',
+            '_' => 'accueil',
+            'password_reset' => 'réinitialiser le mot de passe',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => 'historique des matchs',
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => 'information',
         ],
 
         'rankings' => [
+            '_' => 'classement',
+        ],
+
+        'store' => [
             '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'tournois',
+            'index' => 'liste',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            '_' => 'joueur',
+            'forum_posts' => 'messages du forum',
+            'modding' => 'modding',
+            'show' => 'infos',
         ],
     ],
 
@@ -116,10 +125,11 @@ return [
             '_' => 'accueil',
             'account-edit' => 'paramètres',
             'account-verifyLink' => 'Vérification terminée',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => 'liste de suivi de modding',
             'changelog-build' => 'build',
             'changelog-index' => 'notes de MàJ',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => 'abonnements aux sujets',
             'friends-index' => 'amis',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
@@ -133,7 +143,7 @@ return [
             'search' => 'rechercher',
             'supportTheGame' => 'supporter le jeu',
             'team' => 'équipe',
-            'testflight' => '',
+            'testflight' => 'vol de test',
         ],
         'profile' => [
             '_' => 'profil',

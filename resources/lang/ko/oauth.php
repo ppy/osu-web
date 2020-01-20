@@ -22,15 +22,9 @@ return [
     'cancel' => '취소',
 
     'authorise' => [
-        'authorise' => '권한 부여',
         'request' => '는 당신의 계정에 접근할 수 있는 권한을 요청합니다.',
         'scopes_title' => '이 애플리케이션은 다음 기능을 할 수 있습니다:',
         'title' => '권한 요청',
-
-        'wrong_user' => [
-            '_' => ':user로 로그인되었습니다. :logout_link.',
-            'logout_link' => '다른 사용자로 로그인하려면 이곳을 클릭하세요',
-        ],
     ],
 
     'authorized_clients' => [

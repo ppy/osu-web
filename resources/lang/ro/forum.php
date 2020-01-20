@@ -25,7 +25,7 @@ return [
     'title' => 'forumuri osu!',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Editare copertă',
 
         'create' => [
             '_' => 'Setează imaginea de copertă',
@@ -40,10 +40,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Ultima Postare',
 
         'index' => [
-            'title' => '',
+            'title' => 'Index forum',
         ],
 
         'topics' => [
@@ -71,13 +71,13 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Răspuns nou',
             ],
         ],
 
         'info' => [
             'post_count' => ':count_delimited postare|:count_delimited postări',
-            'topic_starter' => '',
+            'topic_starter' => 'Începător de topic',
         ],
     ],
 
@@ -101,7 +101,7 @@ return [
         'started_by_verbose' => 'început de :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Închide',
             'preview' => 'Previzualizare',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -181,8 +181,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Ascunde rezultatele poll-ului.',
+                'hide_results_info' => 'Vor fi arătate doar după ce poll-ul conclude.',
                 'length' => 'Rulează sondajul pentru',
                 'length_days_suffix' => 'zile',
                 'length_info' => 'Lasă liber pentru un sondaj ce nu se termină niciodată',
@@ -270,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Arată postări șterse',
+            'hide' => 'Ascunde postări șterse',
         ],
 
         'show' => [
@@ -296,21 +296,21 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Editare Poll',
+                'edit_warning' => 'Editarea unui poll va înlătura rezultatele curente!',
                 'vote' => 'Votează',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Schimbă votul',
+                    'edit' => 'Editează poll-ul',
+                    'view_results' => 'Sări la rezultate',
+                    'vote' => 'Votează',
                 ],
 
                 'detail' => [
                     'end_time' => 'Votarea se va termina în :time',
                     'ended' => 'Votarea s-a terminat :time',
-                    'results_hidden' => '',
+                    'results_hidden' => 'Rezultatele vor fi arătate după sfârșirea poll-ului.',
                     'total' => 'Total voturi: :count',
                 ],
             ],

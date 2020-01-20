@@ -22,11 +22,11 @@ return [
     'event' => [
         'approve' => 'Aprobat.',
         'discussion_delete' => 'Un moderator a șters discuția :discussion.',
-        'discussion_lock' => '',
+        'discussion_lock' => 'Discuție pentru acest beatmap a fost dezactivată. (:text)',
         'discussion_post_delete' => 'Un moderator a șters postarea din discuția :discussion.',
         'discussion_post_restore' => 'Un moderator a restaurat postarea din discuția :discussion.',
         'discussion_restore' => 'Un moderator a restaurat discuția :discussion.',
-        'discussion_unlock' => '',
+        'discussion_unlock' => 'Discuție pentru acest beatmap a fost activată.',
         'disqualify' => 'Descalificat de :user. Motiv: :discussion (:text).',
         'disqualify_legacy' => 'Descalificat de :user. Motiv :text.',
         'issue_reopen' => 'Problema rezolvată :discussion s-a redeschis.',

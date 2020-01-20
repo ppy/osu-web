@@ -23,8 +23,8 @@ return [
     'too_many' => 'Vän gräns uppnådd.',
 
     'buttons' => [
-      'add' => 'lägg till vän',
-      'disabled' => 'vänner',
-      'remove' => 'ta bort vän',
+        'add' => 'lägg till vän',
+        'disabled' => 'vänner',
+        'remove' => 'ta bort vän',
     ],
 ];

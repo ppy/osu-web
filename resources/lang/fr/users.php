@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => 'La connexion par email est actuellement désactivée. Veuillez utiliser le nom d\'utilisateur à la place.',
         'failed' => 'Identifiants incorrects',
         'forgot' => 'Mot de passe oublié ?',
-        'info' => '',
+        'info' => 'Veuillez vous connecter pour continuer',
         'locked_ip' => 'votre adresse IP est bloquée. Merci d\'attendre quelques minutes.',
         'password' => 'Mot de passe',
         'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant ici",

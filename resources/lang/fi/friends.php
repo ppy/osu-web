@@ -23,8 +23,8 @@ return [
     'too_many' => 'Kaverilista täynnä',
 
     'buttons' => [
-      'add' => 'lisää kaveri',
-      'disabled' => 'kaverit',
-      'remove' => 'poista kaveri',
+        'add' => 'lisää kaveri',
+        'disabled' => 'kaverit',
+        'remove' => 'poista kaveri',
     ],
 ];

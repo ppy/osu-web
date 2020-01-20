@@ -25,7 +25,7 @@ return [
             'regenerating' => 'Restauration...',
             'remove' => 'Supprimer',
             'removing' => 'Suppression...',
-            'title' => '',
+            'title' => 'Couvertures des beatmapsets',
         ],
         'show' => [
             'covers' => 'Gérer les couvertures de beatmapset',
@@ -72,7 +72,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '',
+                'beatmapsets' => 'Sets de beatmaps',
                 'forum' => 'Forum',
                 'general' => 'Général',
                 'store' => 'Boutique',

@@ -22,6 +22,7 @@ return [
     'deleted' => 'usunięte',
     'deleted_count' => ':count_delimited usunięty komentarz|:count_delimited usunięte komentarze|:count_delimited usuniętych komentarzy',
     'edited' => 'ostatnio edytowane :timeago przez :user',
+    'pinned' => '',
     'empty' => 'Brak komentarzy.',
     'load_replies' => 'wczytaj odpowiedzi',
     'replies' => 'Odpowiedzi',
@@ -49,7 +50,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'lista',
     ],
 
     'placeholder' => [
@@ -59,6 +60,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'komentarze',
     ],
 ];
