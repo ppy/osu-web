@@ -88,7 +88,7 @@ export class WikiSearch extends React.Component {
 
             return (
               <div
-                dangerouslySetInnerHTML={{ __html: item }}
+                dangerouslySetInnerHTML={{ __html: item .highlight }}
                 className={osu.classWithModifiers('wiki-search__suggestion', this.controller.selectedIndex === index ? ['active'] : [])}
                 key={index}
                 onMouseEnter={setIndex}

@@ -89,14 +89,17 @@ class WikiController extends Controller
                     ->field('title.autocomplete')
                     ->numberOfFragments(0)
             )
-            ->source(false);
+            ->source(['title']);
 
         $response = [];
         foreach ($search->response() as $hit) {
-            $response[] = $hit->highlights('title.autocomplete');
+            $response[] = [
+                'highlight' => $hit->highlights('title.autocomplete')[0],
+                'source' => $hit->source('title'),
+            ];
         }
 
-        return array_flatten($response);
+        return $response;
     }
 
     public function update($path)

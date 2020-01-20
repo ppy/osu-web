@@ -19,12 +19,17 @@
 import { route } from 'laroute';
 import { action, observable } from 'mobx';
 
+interface SuggestionJSON {
+  highlight: string;
+  source: string;
+}
+
 export class WikiSearchController {
   @observable direction = 0;
   @observable isSuggestionsVisibile = false;
   @observable query = '';
   @observable selectedIndex = -1;
-  @observable suggestions: string[] = [];
+  @observable suggestions: SuggestionJSON[] = [];
 
   private saved = '';
 
@@ -32,8 +37,10 @@ export class WikiSearchController {
   getSuggestions() {
     $.getJSON(route('wiki-suggestions'), { q: this.query })
     .done(action((response) => {
-      this.suggestions = response as string[] ?? [];
-      this.isSuggestionsVisibile = this.suggestions.length > 0;
+      if (response != null) {
+        this.suggestions = response as SuggestionJSON[];
+        this.isSuggestionsVisibile = this.suggestions.length > 0;
+      }
     }));
   }
 
@@ -64,7 +71,7 @@ export class WikiSearchController {
       this.query = this.saved;
       this.isSuggestionsVisibile = false;
     } else {
-      this.query = this.suggestions[index];
+      this.query = this.suggestions[index].source;
       this.isSuggestionsVisibile = true;
     }
   }
