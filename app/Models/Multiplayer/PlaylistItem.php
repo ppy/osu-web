@@ -44,8 +44,8 @@ class PlaylistItem extends Model
 {
     protected $table = 'multiplayer_playlist_items';
     protected $casts = [
-        'allowed_mods' => 'json',
-        'required_mods' => 'json',
+        'allowed_mods' => 'object',
+        'required_mods' => 'object',
     ];
 
     public static function assertBeatmapsExist(array $playlistItems)
