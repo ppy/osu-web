@@ -18,7 +18,7 @@ class EsIndexWiki extends Command
      *
      * @var string
      */
-    protected $signature = 'es:index-wiki';
+    protected $signature = 'es:index-wiki {--inplace} {--cleanup} {--yes}';
 
     /**
      * The console command description.
@@ -27,18 +27,62 @@ class EsIndexWiki extends Command
      */
     protected $description = 'Re-indexes wiki pages';
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
+    private $cleanup;
+    private $inplace;
+    private $yes;
+
     public function handle()
     {
-        // setup index and alias
-        $oldIndices = Indexing::getOldIndices(Page::esIndexName());
-        $newIndex = Page::esIndexName().'_'.time();
-        Page::esCreateIndex($newIndex);
+        $this->readOptions();
 
+        $alias = $index = Page::esIndexName();
+        $oldIndices = Indexing::getOldIndices($alias);
+        $continue = $this->starterMessage($oldIndices);
+        if (!$continue) {
+            return $this->error('User aborted!');
+        }
+
+        if (!$this->inplace) {
+            $index .= '_'.time();
+            Page::esCreateIndex($index);
+        }
+
+        $this->reindex($index);
+
+        if ($alias !== $index) {
+            Indexing::updateAlias($alias, [$index]);
+        }
+
+        $this->finish($oldIndices);
+    }
+
+    private static function newBaseSearch(): Search
+    {
+        return (new BasicSearch(Page::esIndexName()))
+            ->query(['match_all' => new \stdClass])
+            ->sort(new Sort('_id', 'asc'))
+            ->source(false);
+    }
+
+    private function finish(array $oldIndices)
+    {
+        if (!$this->inplace && $this->cleanup) {
+            foreach ($oldIndices as $index) {
+                $this->warn("Removing '{$index}'...");
+                Indexing::deleteIndex($index);
+            }
+        }
+    }
+
+    private function readOptions()
+    {
+        $this->inplace = $this->option('inplace');
+        $this->cleanup = $this->option('cleanup');
+        $this->yes = $this->option('yes');
+    }
+
+    private function reindex($index)
+    {
         // for storing the paths as keys; the values don't matter in practise.
         $paths = [];
 
@@ -70,29 +114,37 @@ class EsIndexWiki extends Command
         foreach ($paths as $path => $_inEs) {
             $pagePath = Page::parsePagePath($path);
             $page = new Page($pagePath['path'], $pagePath['locale']);
-            $page->sync(true, $newIndex);
+            $page->sync(true, $index);
 
             if (!$page->isVisible()) {
                 $this->warn("delete {$pagePath['locale']}: {$pagePath['path']}");
-                $page->esDeleteDocument(['index' => $newIndex]);
+                $page->esDeleteDocument(['index' => $index]);
             }
 
             $bar->advance();
         }
 
         $bar->finish();
-
-        Indexing::updateAlias(Page::esIndexName(), [$newIndex]);
-        foreach ($oldIndices as $index) {
-            Indexing::deleteIndex($index);
-        }
     }
 
-    private static function newBaseSearch(): Search
+    private function starterMessage(array $oldIndices)
     {
-        return (new BasicSearch(Page::esIndexName()))
-            ->query(['match_all' => new \stdClass])
-            ->sort(new Sort('_id', 'asc'))
-            ->source(false);
+        if ($this->inplace) {
+            $this->warn('Running in-place reindex.');
+            $confirmMessage = 'This will reindex in-place (schemas must match)';
+        } else {
+            $this->warn('Running index transfer.');
+
+            if ($this->cleanup) {
+                $this->warn(
+                    "The following indices will be deleted on completion!\n"
+                    .implode("\n", $oldIndices)
+                );
+            }
+
+            $confirmMessage = 'This will create new indices';
+        }
+
+        return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?");
     }
 }
