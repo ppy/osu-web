@@ -46,9 +46,9 @@ class EsIndexWiki extends Command
             $this->indexName = $oldIndices[0];
         }
 
-        $this->indicesToRemove = collect($oldIndices)->reject(function ($index) {
+        $this->indicesToRemove = array_filter($oldIndices, function ($index) {
             // because removing the index we just wrote to would be silly.
-            return $this->indexName === $index;
+            return $this->indexName !== $index;
         });
 
         $continue = $this->starterMessage();
@@ -148,7 +148,7 @@ class EsIndexWiki extends Command
         if ($this->cleanup) {
             $this->warn(
                 "The following indices will be deleted on completion!\n"
-                .$this->indicesToRemove->implode("\n")
+                .implode("\n", $this->indicesToRemove)
             );
         }
 
