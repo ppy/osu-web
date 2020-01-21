@@ -1,6 +1,7 @@
 {
   "mappings": {
     "wiki_page": {
+      "dynamic": false,
       "properties": {
         "indexed_at": {
           "type": "date"
