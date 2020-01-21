@@ -18,13 +18,7 @@
 <div class="visible-xs no-print js-header--main">
     <div class="navbar-mobile-before"></div>
 
-    <div
-        class="
-            navbar-mobile
-            u-section--bg
-        "
-        role="navigation"
-    >
+    <div class="navbar-mobile" role="navigation">
         <div class="container">
             <div class="navbar-header navbar-mobile__header">
                 <div class="navbar-mobile__header-section">

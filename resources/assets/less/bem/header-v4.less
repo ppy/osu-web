@@ -273,7 +273,13 @@
     }
 
     .@{_top}--users & {
-      .default-gutter();
+      padding-left: @gutter-profile-page;
+      padding-right: $padding-left;
+
+      @media @desktop {
+        padding-left: @gutter-profile-page-desktop;
+        padding-right: $padding-left;
+      }
     }
   }
 
@@ -293,7 +299,11 @@
   &__title {
     padding-top: 15px;
     padding-bottom: 15px;
-    display: flex;
+    display: none;
+
+    @media @desktop {
+      display: flex;
+    }
   }
 
   &__title-action {
