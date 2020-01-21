@@ -21,6 +21,7 @@
 namespace App\Traits;
 
 use App\Libraries\Elasticsearch\Es;
+use DateTime;
 
 trait EsIndexable
 {
@@ -54,5 +55,10 @@ trait EsIndexable
         }
 
         return $schema;
+    }
+
+    public static function esTimestampedIndexName(?DateTime $time = null)
+    {
+        return static::esIndexName().'_'.($time ?? now())->format('YmdHis');
     }
 }
