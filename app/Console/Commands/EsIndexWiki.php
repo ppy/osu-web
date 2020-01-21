@@ -29,6 +29,7 @@ class EsIndexWiki extends Command
 
     private $cleanup;
     private $indexName;
+    private $indicesToRemove;
     private $inplace;
     private $yes;
 
@@ -38,15 +39,21 @@ class EsIndexWiki extends Command
 
         $alias = Page::esIndexName();
         $oldIndices = Indexing::getOldIndices($alias);
-        $continue = $this->starterMessage($oldIndices);
-        if (!$continue) {
-            return $this->error('User aborted!');
-        }
 
         if (!$this->inplace || empty($oldIndices)) {
             $this->indexName = Page::esTimestampedIndexName();
         } else {
             $this->indexName = $oldIndices[0];
+        }
+
+        $this->indicesToRemove = collect($oldIndices)->reject(function ($index) {
+            // because removing the index we just wrote to would be silly.
+            return $this->indexName === $index;
+        });
+
+        $continue = $this->starterMessage();
+        if (!$continue) {
+            return $this->error('User aborted!');
         }
 
         if (!Es::getClient()->indices()->exists(['index' => [$this->indexName]])) {
@@ -58,16 +65,18 @@ class EsIndexWiki extends Command
 
         Indexing::updateAlias($alias, [$this->indexName]);
 
-        $this->finish($oldIndices);
+        $this->finish();
     }
 
-    private function finish(array $oldIndices)
+    private function finish()
     {
-        if (!$this->inplace && $this->cleanup) {
-            foreach ($oldIndices as $index) {
-                $this->warn("Removing '{$index}'...");
-                Indexing::deleteIndex($index);
-            }
+        if (!$this->cleanup) {
+            return;
+        }
+
+        foreach ($this->indicesToRemove as $index) {
+            $this->warn("Removing '{$index}'...");
+            Indexing::deleteIndex($index);
         }
     }
 
@@ -133,24 +142,15 @@ class EsIndexWiki extends Command
         $bar->finish();
     }
 
-    private function starterMessage(array $oldIndices)
+    private function starterMessage()
     {
-        if ($this->inplace) {
-            $this->warn('Running in-place reindex.');
-            $confirmMessage = 'This will reindex in-place (schemas must match)';
-        } else {
-            $this->warn('Running index transfer.');
-
-            if ($this->cleanup) {
-                $this->warn(
-                    "The following indices will be deleted on completion!\n"
-                    .implode("\n", $oldIndices)
-                );
-            }
-
-            $confirmMessage = 'This will create new indices';
+        if ($this->cleanup) {
+            $this->warn(
+                "The following indices will be deleted on completion!\n"
+                .$this->indicesToRemove->implode("\n")
+            );
         }
 
-        return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?");
+        return $this->yes || $this->confirm("This index to {$this->indexName}, begin indexing?");
     }
 }
