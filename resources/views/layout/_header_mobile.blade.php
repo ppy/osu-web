@@ -75,8 +75,8 @@
         </div>
     </div>
 
-    <div class="collapse navbar-mobile__menu js-navbar-mobile--menu" id="xs-navbar">
-        <ul class="nav navbar-nav navbar-mobile__menu-items">
+    <div class="collapse navbar-mobile-menu js-navbar-mobile--menu" id="xs-navbar">
+        <ul class="nav navbar-nav navbar-mobile-menu__items">
             @include('layout.header_mobile.user')
             @include('layout.header_mobile.nav')
             @include('layout.header_mobile.locale')

@@ -57,36 +57,13 @@
 
   &__logo {
     flex: none;
-    display: inline-block;
-    background-image: url('/images/layout/osu-logo.png');
-    background-size: 100%;
+    display: block;
+    background-image: url('/images/layout/osu-logo-white.svg');
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: @navbar-mobile--content-height;
     height: @navbar-mobile--content-height;
-  }
-
-  &__menu {
-    position: fixed;
-    top: @navbar-height;
-    padding: 0 10px;
-    background-color: @osu-colour-b5;
-    width: 100%;
-    max-height: calc((var(--vh, 1vh) * 100) - @navbar-height);
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    z-index: @z-index--nav-bar;
-
-    &:focus,
-    &:hover,
-    &:active,
-    & {
-      color: #fff;
-    }
-  }
-
-  &__menu-items {
-    margin-top: 0;
   }
 
   &__toggle {
