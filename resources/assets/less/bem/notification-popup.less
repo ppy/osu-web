@@ -61,13 +61,20 @@
     grid-gap: 5px;
     margin: 10px 0;
     grid-template-columns: repeat(2, 50%);
-
-    color: @osu-colour-c1
   }
 
   &__filter {
     .reset-input();
     text-align: left;
+    color: @osu-colour-l2;
+
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+
+    &--active {
+      color: @osu-colour-c1;
+    }
   }
 
   &__filter-count {

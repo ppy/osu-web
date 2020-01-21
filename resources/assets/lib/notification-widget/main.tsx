@@ -133,10 +133,11 @@ export default class Main extends React.Component<Props, State> {
   private renderFilter = (link: any) => {
     const type = core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: link.type });
     const data = { 'data-type': link.type };
+    const modifiers = link.type === this.controller.currentFilter ? ['active'] : [];
 
     return (
       <button
-        className='notification-popup__filter'
+        className={osu.classWithModifiers('notification-popup__filter', modifiers)}
         key={link.title}
         onClick={this.handleFilterClick}
         {...data}
