@@ -88,7 +88,6 @@ class EsIndexWiki extends Command
             ->source(false);
     }
 
-
     private function readOptions()
     {
         $this->inplace = $this->option('inplace');
@@ -109,17 +108,19 @@ class EsIndexWiki extends Command
 
         $this->line(count($paths).' pages found');
 
-        $this->line('Fetching existing list...');
-        $cursor = ['']; // works with Sort(_id, asc) to start at the beginning.
-        while ($cursor !== null) {
-            $search = $this->newBaseSearch()->searchAfter(array_values($cursor));
-            $response = $search->response();
+        if ($this->inplace) {
+            $this->line('Fetching existing list...');
+            $cursor = ['']; // works with Sort(_id, asc) to start at the beginning.
+            while ($cursor !== null) {
+                $search = $this->newBaseSearch()->searchAfter(array_values($cursor));
+                $response = $search->response();
 
-            foreach ($response as $hit) {
-                $paths[$hit['_id']] = true;
+                foreach ($response as $hit) {
+                    $paths[$hit['_id']] = true;
+                }
+
+                $cursor = $search->getSortCursor();
             }
-
-            $cursor = $search->getSortCursor();
         }
 
         $total = count($paths);
