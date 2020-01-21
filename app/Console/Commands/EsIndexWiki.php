@@ -141,6 +141,7 @@ class EsIndexWiki extends Command
         }
 
         $bar->finish();
+        $this->line('');
     }
 
     private function starterMessage()
