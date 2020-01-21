@@ -35,7 +35,8 @@ class EsIndexWiki extends Command
     {
         $this->readOptions();
 
-        $alias = $index = Page::esIndexName();
+        $alias = Page::esIndexName();
+        $index = $this->inplace ? $alias : Page::esTimestampedIndexName();
         $oldIndices = Indexing::getOldIndices($alias);
         $continue = $this->starterMessage($oldIndices);
         if (!$continue) {
@@ -43,7 +44,6 @@ class EsIndexWiki extends Command
         }
 
         if (!$this->inplace) {
-            $index .= '_'.time();
             Page::esCreateIndex($index);
         }
 
