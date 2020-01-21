@@ -28,7 +28,7 @@ trait EsWikiPage
 
     public static function esIndexName()
     {
-        return config('osu.elasticsearch.prefix').'wiki_page';
+        return config('osu.elasticsearch.prefix').'wiki_pages';
     }
 
     public static function esSchemaFile()
