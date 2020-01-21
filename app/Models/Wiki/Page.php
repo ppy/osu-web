@@ -28,7 +28,6 @@ use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use App\Libraries\Wiki\MainPageRenderer;
 use App\Libraries\Wiki\MarkdownRenderer;
-use App\Traits\EsIndexable;
 use Carbon\Carbon;
 use Exception;
 use Log;

@@ -31,15 +31,6 @@ trait EsWikiPage
         return config('osu.elasticsearch.prefix').'wiki_page';
     }
 
-    public static function esIndexingQuery()
-    {
-        // no DB-backed models
-    }
-
-    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], callable $progress = null)
-    {
-    }
-
     public static function esSchemaFile()
     {
         return config_path('schemas/wiki_page.json');
@@ -48,14 +39,5 @@ trait EsWikiPage
     public static function esType()
     {
         return 'wiki_page';
-    }
-
-    public function toEsJson()
-    {
-    }
-
-    public function getEsId()
-    {
-        return $this->pagePath();
     }
 }
