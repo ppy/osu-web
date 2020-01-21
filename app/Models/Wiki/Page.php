@@ -28,13 +28,14 @@ use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use App\Libraries\Wiki\MainPageRenderer;
 use App\Libraries\Wiki\MarkdownRenderer;
+use App\Models\Elasticsearch\WikiPageTrait;
 use Carbon\Carbon;
 use Exception;
 use Log;
 
 class Page implements WikiObject
 {
-    use EsWikiPage;
+    use WikiPageTrait;
 
     const CACHE_DURATION = 5 * 60 * 60;
     const VERSION = 1;

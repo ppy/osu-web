@@ -18,11 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Wiki;
+namespace App\Models\Elasticsearch;
 
 use App\Traits\EsIndexable;
 
-trait EsWikiPage
+trait WikiPageTrait
 {
     use EsIndexable;
 
