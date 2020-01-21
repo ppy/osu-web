@@ -1191,6 +1191,9 @@ function get_param_value($input, $type)
         case 'file':
             return get_file($input);
             break;
+        case 'float':
+            return get_float($input);
+            break;
         case 'string':
             return get_string($input);
         case 'string_split':
