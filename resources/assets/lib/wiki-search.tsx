@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { WikiSearchController } from 'wiki-search-controller';
@@ -108,14 +109,20 @@ export class WikiSearch extends React.Component {
         {
           this.controller.suggestions.map((item, index) => {
             const setIndex = () => this.controller.selectIndex(index, 0);
+            const href = route('search', {
+              mode: 'wiki_page',
+              query: item.source,
+            });
 
             return (
-              <div
-                dangerouslySetInnerHTML={{ __html: item .highlight }}
+              <a
                 className={osu.classWithModifiers('wiki-search__suggestion', this.controller.selectedIndex === index ? ['active'] : [])}
+                href={href}
                 key={index}
                 onMouseEnter={setIndex}
-              />
+              >
+                <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
+              </a>
             );
           })
         }
