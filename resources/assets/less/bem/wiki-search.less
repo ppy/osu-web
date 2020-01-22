@@ -17,6 +17,9 @@
  */
 
 .wiki-search {
+  @_gutter: 20px;
+  @_border-size: 2px;
+
   padding-top: 10px;
 
   &__bar {
@@ -24,20 +27,17 @@
     display: flex;
     flex-direction: row;
 
-    width: 100%;
-    padding: 13px 20px;
-
+    padding: 13px @_gutter;
     font-size: @font-size--wiki-search;
-
     background-color: @osu-colour-b6;
 
-    border: 2px solid @osu-colour-orange-1;
+    border: @_border-size solid @osu-colour-orange-1;
   }
 
   &__input {
     .reset-input();
     color: @osu-colour-c1;
-    flex-grow: 1;
+    flex: 1;
 
     &::placeholder {
       color: @osu-colour-c2;
@@ -49,6 +49,7 @@
     .reset-input();
 
     color: @osu-colour-c1;
+    margin-left: 10px;
   }
 
   &__suggestion {
@@ -56,7 +57,7 @@
     color: @osu-colour-c1;
     .link-hover({ color: @osu-colour-c1 });
 
-    padding: 5px 20px;
+    padding: 5px @_gutter;
 
     em {
       color: @osu-colour-l2;
@@ -75,8 +76,8 @@
     color: @osu-colour-c1;
 
     max-height: 500px;
-    width: calc(100% - 4px);
-    left: 2px;
+    width: calc(100% - @_border-size * 2);
+    left: @_border-size;
     overflow-y: auto;
 
     z-index: 1;
