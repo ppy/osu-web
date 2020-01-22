@@ -19,14 +19,13 @@
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
-import { action, computed, observable } from 'mobx';
+import { action, computed } from 'mobx';
 import { NotificationEventMoreLoaded, NotificationEventNew, NotificationEventRead } from 'notifications/notification-events';
 import { NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
 import NotificationStackStore from './notification-stack-store';
 
 @dispatchListener
 export default class WidgetNotificationStackStore extends NotificationStackStore implements DispatchListener {
-  @observable total = 0;
   private deletedStacks = new Set<string>();
 
   @computed get totalWithPm() {
@@ -45,7 +44,6 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
     if (event.data.is_read) return;
 
     super.handleNotificationEventNew(event);
-    this.total++;
   }
 
   @action

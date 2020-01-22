@@ -21,7 +21,7 @@ import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import NotificationJson, { NotificationBundleJson, NotificationStackJson, NotificationTypeJson } from 'interfaces/notification-json';
-import { action, observable } from 'mobx';
+import { action, observable, computed } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
@@ -48,6 +48,14 @@ export default class NotificationStackStore implements DispatchListener {
 
   get isEmpty() {
     return this.types.size === 1 && this.allStacks.size === 0;
+  }
+
+  @computed get total() {
+    return this.allType.total;
+  }
+
+  set total(value: number) {
+    this.allType.total = value;
   }
 
   constructor(protected notificationStore: NotificationStore) {
