@@ -396,6 +396,17 @@ describe('Notification Events', () => {
         it('removes the unread stack', () => {
           expect(store.unreadStacks.getStack(stackIdentity)).toBeUndefined();
         });
+
+        describe('duplicate NotificationEventRead is received', () => {
+          it('does not change the unread count again', () => {
+            const before = store.unreadStacks.total;
+
+            const event = new NotificationEventRead([stackIdentity], stackSize);
+            dispatch(event);
+
+            expect(store.unreadStacks.total).toBe(before);
+          });
+        });
       });
     });
   });

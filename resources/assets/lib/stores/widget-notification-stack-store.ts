@@ -117,6 +117,9 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
   private handleStack(identity: NotificationIdentity, readCount: number) {
     const stack = this.getStack(identity);
     const key = resolveStackId(identity);
+
+    this.deletedStacks.add(key);
+
     if (stack == null) {
       if (!this.deletedStacks.has(key)) {
         this.total -= readCount;
@@ -124,8 +127,6 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
 
       return;
     }
-
-    this.deletedStacks.add(key);
 
     stack.isRead = true;
     // this.stacks.delete(key);
