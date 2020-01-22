@@ -23,6 +23,12 @@ import { WikiSearchController } from 'wiki-search-controller';
 @observer
 export class WikiSearch extends React.Component {
   private readonly controller = new WikiSearchController();
+  private readonly ref = React.createRef<HTMLDivElement>();
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleEsc);
+    document.addEventListener('mousedown', this.handleMouseDown);
+  }
 
   componentDidUpdate() {
     // scroll highlighted option into view if triggered by keys
@@ -32,8 +38,19 @@ export class WikiSearch extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleEsc);
+    document.removeEventListener('mousedown', this.handleMouseDown);
+  }
+
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.controller.updateQuery(event.target.value);
+  }
+
+  handleEsc = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      this.controller.selectIndex(-1, -1);
+    }
   }
 
   handleKeyDown = (e: React.KeyboardEvent) => {
@@ -41,10 +58,16 @@ export class WikiSearch extends React.Component {
 
     if (key === 'Enter') {
       this.handleSearch();
-    } else if (key === 'Escape') {
-      this.controller.selectIndex(-1, -1);
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       this.controller.shiftSelectedIndex(key === 'ArrowDown' ? 1 : -1);
+    }
+  }
+
+  handleMouseDown = (e: MouseEvent) => {
+    if (this.ref.current == null) return;
+
+    if (!e.composedPath().includes(this.ref.current)) {
+      this.controller.selectIndex(-1, -1);
     }
   }
 
@@ -81,7 +104,7 @@ export class WikiSearch extends React.Component {
     if (!this.controller.isSuggestionsVisible) return null;
 
     return (
-      <div className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleMouseLeave}>
+      <div ref={this.ref} className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleMouseLeave}>
         {
           this.controller.suggestions.map((item, index) => {
             const setIndex = () => this.controller.selectIndex(index, 0);
