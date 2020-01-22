@@ -149,30 +149,31 @@ export default class NotificationStackStore implements DispatchListener {
   }
 
   orderedStacksOfType(name: NotificationTypeName) {
-    const stacks = [...this.stacksOfType(name)];
-
-    return stacks.sort((x, y) => y.first.id - x.first.id);
+    return this.stacksOfType(name).sort((x, y) => y.first.id - x.first.id);
   }
 
   /**
-   * A generator that returns stacks of a specified notifiable type.
+   * Returns stacks of a specified notifiable type.
    * Because this is neither computed nor observable, in order to use this within an observer,
    * another observable value should be observed in render.
    *
    * @param name the notifiable type of the notification
    */
-  *stacksOfType(name: NotificationTypeName) {
+  stacksOfType(name: NotificationTypeName) {
     const type = this.types.get(name);
+    const stacks: NotificationStack[] = [];
 
-    if (type == null) return;
+    if (type == null) return stacks;
 
     const cursorId = type.cursor?.id ?? 0;
 
     for (const [, stack] of type.stacks) {
       // don't include stacks that are past the cursor for the type
       // this is to prevent gaps in loaded stacks when switching filters
-      if (type?.cursor !== undefined && stack.first.id >= cursorId) yield stack;
+      if (type?.cursor !== undefined && stack.first.id >= cursorId) stacks.push(stack);
     }
+
+    return stacks;
   }
 
   @action

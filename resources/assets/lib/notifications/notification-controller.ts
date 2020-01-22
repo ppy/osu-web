@@ -32,6 +32,7 @@ export default class NotificationController {
     return this.store.legacyPm;
   }
 
+  @computed
   get stacks() {
     return this.store.orderedStacksOfType(this.currentFilter);
   }
