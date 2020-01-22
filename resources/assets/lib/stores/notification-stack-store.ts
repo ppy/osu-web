@@ -21,7 +21,7 @@ import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
 import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import NotificationJson, { NotificationBundleJson, NotificationStackJson, NotificationTypeJson } from 'interfaces/notification-json';
-import { action, observable, computed } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
@@ -196,7 +196,7 @@ export default class NotificationStackStore implements DispatchListener {
   }
 
   private updateWithStackJson(json: NotificationStackJson) {
-    const type = this.getOrCreateType(fromJson(json))
+    const type = this.getOrCreateType(fromJson(json));
     let stack = type.stacks.get(idFromJson(json));
     if (stack == null) {
       stack = new NotificationStack(json.object_id, json.object_type, nameToCategory[json.name], this.resolver);
