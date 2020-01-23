@@ -16,49 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.game-mode {
-  line-height: normal;
+.navbar-mobile-menu {
+  position: fixed;
+  top: @navbar-height;
+  padding: 0 10px;
+  background-color: @osu-colour-b5;
   width: 100%;
+  max-height: calc((var(--vh, 1vh) * 100) - @navbar-height);
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  z-index: @z-index--nav-bar;
 
-  @media @desktop {
-    margin-left: auto;
-    width: auto;
-  }
-
-  &--beatmapsets {
-    @media @desktop {
-      right: @gutter-v2-desktop;
-    }
+  &:focus,
+  &:hover,
+  &:active,
+  & {
+    color: #fff;
   }
 
   &__items {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0 -5px; // 5px margin __item
-    justify-content: space-around;
-    flex-wrap: wrap;
-
-    @media @desktop {
-      margin: -10px -20px; // 10px margin __item, 10px padding game-mode-link
-      justify-content: flex-end;
-    }
-  }
-
-  &__item {
-    margin: 10px 5px; // linked to __items
-    flex: none;
-
-    @media @desktop {
-      margin-left: 10px;
-      margin-right: $margin-left;
-    }
-  }
-
-  &__set-default {
-    position: absolute;
-    bottom: 100%;
-    margin-bottom: 20px;
-    right: 0;
+    margin-top: 0;
   }
 }

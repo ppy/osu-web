@@ -20,7 +20,7 @@
   .default-text-shadow();
   .link-plain();
   color: @osu-colour-h1;
-  padding: 0 10px;
+  padding: 0;
   font-size: @font-size--title-small;
 
   .link-hover({
@@ -29,6 +29,8 @@
 
   @media @desktop {
     font-size: @font-size--title-small-4;
+    padding-left: 10px; // linked to game-mode__items
+    padding-right: $padding-left;
   }
 
   &--active {
