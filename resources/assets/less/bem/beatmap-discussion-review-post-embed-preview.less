@@ -1,0 +1,84 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+.beatmap-discussion-review-post-embed-preview {
+  @_top: beatmap-discussion-review-post-embed-preview;
+
+  padding: 10px 15px;
+  user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+
+  &__content {
+    display: flex;
+    align-items: flex-start;
+
+    @media @mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__message-container {
+    @media @desktop {
+      align-self: center;
+    }
+
+    @media @mobile {
+      margin-top: 5px;
+    }
+  }
+
+  &__selectors {
+    align-items: center;
+    display: flex;
+  }
+
+  &__stripe {
+    background-color: @osu-colour-b5;
+    border-radius: 5px;
+    display: flex;
+    height: 32px;
+    margin: 0 10px;
+    padding: 0;
+    user-select: none;
+    width: 2px;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__timestamp {
+    color: @osu-colour-f1;
+    font-size: 9px;
+    user-select: none;
+    width: 45px;
+  }
+
+  &__trashcan {
+    .reset-input();
+    height: 32px;
+    user-select: none;
+    padding: 5px;
+    margin-left: 10px;
+    color: @osu-colour-f1;
+    opacity: 0.5;
+    margin-top: 15px;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

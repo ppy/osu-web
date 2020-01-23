@@ -53,7 +53,7 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
     };
 
     return (
-      <div className='beatmap-discussion-newer__dropdown' ref={ref} onClick={toggle} contentEditable={false} style={{userSelect: 'none'}}>
+      <div className='beatmap-discussion-editor__dropdown' ref={ref} onClick={toggle} contentEditable={false}>
           <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={icons[type]} /></span>
           {children}
       </div>

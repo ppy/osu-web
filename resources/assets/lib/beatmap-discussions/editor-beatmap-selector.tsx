@@ -70,7 +70,7 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
   renderButton = (children: JSX.Element[], ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
     const selected: MenuItem = _.find(this.menuOptions, (option) => option.id === this.props.element.beatmapId) || this.menuOptions[0];
     return (
-      <div ref={ref} className='beatmap-discussion-newer__dropdown' onClick={toggle} contentEditable={false} style={{userSelect: 'none'}}>
+      <div ref={ref} className='beatmap-discussion-editor__dropdown' onClick={toggle} contentEditable={false}>
         {selected.icon}
         {children}
       </div>

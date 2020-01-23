@@ -66,53 +66,33 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
+    const bn = 'beatmap-discussion-review-post-embed-preview';
     const timestamp = this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general');
     return (
       <div className='beatmap-discussion beatmap-discussion--preview' {...this.props.attributes}>
         <div className='beatmap-discussion__discussion'>
-          <div className='beatmap-discussion-post'>
+          <div className={bn}>
             <div
-              className='beatmap-discussion-post__content'
-              style={{
-                alignItems: 'flex-start',
-              }}
+              className={`${bn}__content`}
             >
               <div
-                style={{
-                  alignItems: 'center',
-                  display: 'flex',
-                }}
+                className={`${bn}__selectors`}
               >
                 <EditorBeatmapSelector {...this.props}/>
                 <EditorIssueTypeSelector {...this.props}/>
                 <div
+                  className={`${bn}__timestamp`}
                   contentEditable={false}
-                  style={{
-                    color: 'hsl(var(--base-hue), 10%, 60%)',
-                    fontSize: '9px',
-                    userSelect: 'none',
-                    width: '45px',
-                  }}
                 >
                   {timestamp}
                 </div>
                 <div
                   contentEditable={false}
-                  style={{
-                    backgroundColor: '#21272a',
-                    borderRadius: '5px',
-                    display: 'flex',
-                    height: '32px',
-                    margin: '0 10px',
-                    padding: '0',
-                    userSelect: 'none',
-                    width: '2px',
-                  }}
+                  className={`${bn}__stripe`}
                 />
               </div>
               <div
-                className='beatmap-discussion-post__message-container'
-                style={{alignSelf: 'center'}}
+                className={`${bn}__message-container`}
               >
                 <div className='beatmapset-discussion-message'>{this.props.children}</div>
               </div>
@@ -120,11 +100,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
           </div>
         </div>
         <button
+          className={`${bn}__trashcan`}
           onClick={this.remove}
-          style={{
-            height: '32px',
-            userSelect: 'none',
-          }}
           contentEditable={false}
         >
           <i className='far fa-trash-alt' />

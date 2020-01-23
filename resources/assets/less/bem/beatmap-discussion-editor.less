@@ -16,8 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussion-newer {
-  @_top: beatmap-discussion-newer;
+.beatmap-discussion-editor {
+  @_top: beatmap-discussion-editor;
   @_avatar-size: 45px;
   @_side-padding: 20px;
 
@@ -30,6 +30,14 @@
     flex: none;
     width: @_avatar-size;
     height: @_avatar-size;
+  }
+
+  &__button-bar {
+    margin: auto -5px -5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__content {
@@ -49,7 +57,9 @@
     padding: 5px;
     justify-content: center;
     width: 32px;
+    height: 32px;
     cursor: pointer; // TODO: less hacky
+    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
 
     .default-border-radius();
     .link-default();
@@ -67,7 +77,7 @@
       align-items: center;
       justify-content: center;
       opacity: 0;
-      content: '\f078';
+      content: '\f078'; // fa-chevron-down
     }
 
     &:hover {

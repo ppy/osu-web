@@ -93,7 +93,6 @@ export default class Editor extends React.Component<any, any> {
   }
 
   insertEmbed = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
     const type = event.currentTarget.dataset.dtype;
 
     Transforms.setNodes(this.slateEditor, {
@@ -103,7 +102,7 @@ export default class Editor extends React.Component<any, any> {
     });
   }
 
-  log = () => console.log(JSON.stringify(this.state.value));
+  log = () => console.dir(this.state.value);
 
   onChange = (value: SlateNode[]) => {
     const content = JSON.stringify(value);
@@ -153,17 +152,17 @@ export default class Editor extends React.Component<any, any> {
   }
 
   render(): React.ReactNode {
-    const cssClasses = 'beatmap-discussion-new-float';
-    const bn = 'beatmap-discussion-newer';
+    const floatClass = 'beatmap-discussion-new-float';
+    const editorClass = 'beatmap-discussion-editor';
 
     return (
-      <div className={cssClasses}>
-        <div className='beatmap-discussion-new-float__floatable beatmap-discussion-new-float__floatable--pinned'>
-          <div className='beatmap-discussion-new-float__content'>
+      <div className={floatClass}>
+        <div className={`${floatClass}__floatable ${floatClass}__floatable--pinned`}>
+          <div className={`${floatClass}__content`}>
             <div className='osu-page osu-page--small'>
-              <div className={bn}>
+              <div className={editorClass}>
                 <div className='page-title'>{osu.trans('beatmaps.discussions.new.title')}</div>
-                <div ref={this.editor} className={`${bn}__content`}>
+                <div ref={this.editor} className={`${editorClass}__content`}>
                   <SlateContext.Provider
                     value={this.slateEditor}
                   >
@@ -178,42 +177,47 @@ export default class Editor extends React.Component<any, any> {
                         renderElement={this.renderElement}
                         renderLeaf={this.renderLeaf}
                       />
-                      <div className='forum-post-edit__buttons-bar'>
-                        <div className='forum-post-edit__buttons forum-post-edit__buttons--toolbar'>
-                          <div className='post-box-toolbar'>
-                              <button
-                                  className='btn-circle btn-circle--bbcode'
-                                  title='Bold'
-                                  type='button'
-                                  onClick={this.toggleBold}
-                              >
-                                  <span className='btn-circle__content'>
-                                      <i className='fas fa-bold'/>
-                                  </span>
-                              </button>
-                              <button
-                                  className='btn-circle btn-circle--bbcode'
-                                  title='Italic'
-                                  type='button'
-                                  onClick={this.toggleItalic}
-                              >
-                                  <span className='btn-circle__content'>
-                                      <i className='fas fa-italic'/>
-                                  </span>
-                              </button>
-                          </div>
+                      <div className={`${editorClass}__button-bar`}>
+                        <div className='post-box-toolbar'>
+                            <button
+                                className='btn-circle btn-circle--bbcode'
+                                title='Bold'
+                                type='button'
+                                onClick={this.toggleBold}
+                            >
+                                <span className='btn-circle__content'>
+                                    <i className='fas fa-bold'/>
+                                </span>
+                            </button>
+                            <button
+                                className='btn-circle btn-circle--bbcode'
+                                title='Italic'
+                                type='button'
+                                onClick={this.toggleItalic}
+                            >
+                                <span className='btn-circle__content'>
+                                    <i className='fas fa-italic'/>
+                                </span>
+                            </button>
                         </div>
-                        <div className='forum-post-edit__buttons forum-post-edit__buttons--actions'>
-                            <div className='forum-post-edit__button'>
-                              <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.resetInput}>reset</button>
-                              <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.test}>test</button>
-                              <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
-                              <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
-                          </div>
+                        <div className={`${editorClass}__button-bar-button`}>
+                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
+                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
+                          </button>
+                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
+                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
+                          </button>
+                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
+                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
+                          </button>
+                          <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.resetInput}>reset</button>
+                          <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.test}>test</button>
+                          <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
+                          <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
                         </div>
                       </div>
                       <div
-                        className={`${bn}__menu`}
+                        className={`${editorClass}__menu`}
                         ref={this.menu}
                         style={{
                           left: '-13px',
@@ -225,7 +229,7 @@ export default class Editor extends React.Component<any, any> {
                       >
                         <div className='forum-post-edit__button'><i className='fa fas fa-plus-circle' /></div>
                         <div
-                          className={`${bn}__menu-content`}
+                          className={`${editorClass}__menu-content`}
                           ref={this.menuBody}
                           style={{
                             display: this.state.menuShown ? 'block' : 'none',
@@ -379,12 +383,10 @@ export default class Editor extends React.Component<any, any> {
   }
 
   toggleBold = (event: React.MouseEvent) => {
-    event.preventDefault();
     this.toggleMark('bold');
   }
 
   toggleItalic = (event: React.MouseEvent) => {
-    event.preventDefault();
     this.toggleMark('italic');
   }
 
