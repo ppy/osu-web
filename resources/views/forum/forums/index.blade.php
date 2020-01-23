@@ -17,7 +17,6 @@
 --}}
 @extends('master', [
     'legacyFont' => false,
-    'legacyNav' => false,
     'pageDescription' => trans('forum.title'),
     'searchParams' => ['mode' => 'forum_post'],
 ])

@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Amministratore',
+        'authorise' => '',
         'back_to_previous' => 'Torna alla posizione precedente',
         'back_to_top' => 'Torna in cima',
         'cancel' => 'Cancella',
@@ -48,7 +49,7 @@ return [
         'expand' => 'espandi',
         'hide' => 'nascondi',
         'permalink' => 'permalink',
-        'permalink_copied' => 'link copiato',
+        'pin' => '',
         'post' => 'Posta',
         'reply' => 'Rispondi',
         'reply_reopen' => 'Rispondi e Riapri',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Mostra eliminati',
         'show_more' => 'mostra altro',
         'show_more_options' => 'mostra più opzioni',
+        'unpin' => '',
         'update' => 'Aggiorna',
         'upload_image' => 'carica immagine',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Avviso',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

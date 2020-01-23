@@ -23,8 +23,8 @@ return [
     'too_many' => 'Vrienden limiet bereikt.',
 
     'buttons' => [
-      'add' => 'voeg vriend toe',
-      'disabled' => 'vrienden',
-      'remove' => 'verwijder vriend',
+        'add' => 'voeg vriend toe',
+        'disabled' => 'vrienden',
+        'remove' => 'verwijder vriend',
     ],
 ];

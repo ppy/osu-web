@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Yönetici',
+        'authorise' => '',
         'back_to_previous' => 'Bir önceki pozisyona dön',
         'back_to_top' => 'Yukarıya geri dön',
         'cancel' => 'İptal',
@@ -48,7 +49,7 @@ return [
         'expand' => 'genişletin',
         'hide' => 'gizle',
         'permalink' => 'kalıcı bağlantı',
-        'permalink_copied' => 'bağlantı kopyalandı',
+        'pin' => '',
         'post' => 'Gönder',
         'reply' => 'Cevapla',
         'reply_reopen' => 'Cevapla ve Yeniden Aç',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Silineni göster',
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',
+        'unpin' => '',
         'update' => 'Güncelle',
         'upload_image' => 'görsel yükle',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Bildirim',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

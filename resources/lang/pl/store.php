@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Zapłać',
+        'info' => '',
         'more_goodies' => 'Chcę przejrzeć inne produkty przed zakończeniem zamówienia',
         'shipping_fees' => 'koszt wysyłki',
         'title' => 'Koszyk',
@@ -145,5 +146,9 @@ return [
             '_' => 'Aby zmienić swoją nazwę użytkownika, musisz się :link!',
             'link_text' => 'zalogować',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

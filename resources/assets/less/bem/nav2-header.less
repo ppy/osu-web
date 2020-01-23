@@ -40,26 +40,6 @@
     }
   }
 
-  &__legacy-gradient-overlay {
-    .full-size();
-
-    .@{header-pinned} & {
-      background-repeat-y: no-repeat; // prevents triangles from peeking through at some zoom levels.
-      background-position-y: 100%;
-    }
-
-    display: block;
-    transition: background-position @header-pinned-animation-duration / 2;
-  }
-
-  &__legacy-triangles {
-    .full-size();
-    display: block;
-    background-size: 640px 360px;
-
-    .at2x-simple("/images/layout/nav-backgrounds/triangles-combined.png");
-  }
-
   &__transition-overlay {
     .full-size();
     background-color: @osu-colour-h2;

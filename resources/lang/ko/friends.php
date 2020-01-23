@@ -23,8 +23,8 @@ return [
     'too_many' => '등록 가능한 친구 수를 넘었습니다.',
 
     'buttons' => [
-      'add' => '친구 추가',
-      'disabled' => '친구',
-      'remove' => '친구 삭제',
+        'add' => '친구 추가',
+        'disabled' => '친구',
+        'remove' => '친구 삭제',
     ],
 ];

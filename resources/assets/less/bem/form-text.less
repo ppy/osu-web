@@ -16,30 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.badges {
-  // Elements
-  &__badge {
-    text-align: center;
-    display: block;
+.form-text {
+  .reset-input();
+  .default-border-radius();
+  padding: 5px;
+  width: 100%;
 
-    &--small {
-      background-size: contain !important;
-      height: 38px;
-      width: 38px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #fff;
-      padding-top: 2px;
-    }
+  background-color: @osu-colour-b6;
+  color: @osu-colour-c1;
+  font-size: @font-size--phone-input;
 
-    &--level {
-      .at2x("/images/badges/levelbadge.png");
-    }
-
-    &--achievements {
-      .at2x("/images/badges/achievements.png");
-    }
+  @media @desktop {
+    font-size: @font-size--normal;
   }
 
-  // Modifiers
+  &--username-change {
+    padding: 10px;
+    margin: 5px 0;
+
+    @media @desktop {
+      font-size: @font-size--title-small;
+    }
+  }
 }

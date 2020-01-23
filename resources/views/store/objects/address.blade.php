@@ -15,42 +15,49 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php
-    $mainClasses = 'address';
+@php
+    $modifiable = $modifiable ?? false;
+    $isCard = isset($selected);
 
-    if (isset($selected)) {
+    if ($isCard) {
+        $modifiers[] = 'card';
+
         if ($selected) {
-            $mainClasses .= ' shadow-selected';
+            $modifiers[] = 'card-active';
         } else {
-            $mainClasses .= ' shadow-hover';
-
-            if (isset($modifiable) && $modifiable) {
-                $mainClasses .= ' clickable-row';
-            }
+            $modifiers[] = 'card-hover';
+            $withButtons = true;
         }
     }
-?>
-<div class="{{{ $grid ?? 'grid-cell grid-cell--1of2' }}}" id="address-{{ $data->address_id }}">
-    <div class="{{ $mainClasses }}">
-        @if((isset($modifiable) && $modifiable))
-        {!! Form::open(['action' => 'StoreController@postUpdateAddress', "data-remote" => true]) !!}
-        @endif
 
-            <div>{{{$data->first_name}}} {{{$data->last_name}}}</div>
-            <div class="street">{{{$data->street}}}</div>
-            <div class="city">{{{$data->city}}}, {{{$data->state}}}, {{{$data->zip}}}</div>
-            <div class="country">{{{$data->countryName()}}}</div>
-            <div class="phone">{{{$data->phone}}}</div>
+    $mainClasses = class_with_modifiers('address', $modifiers ?? []);
+    $withButtons = $withButtons ?? false;
 
-        @if((isset($modifiable) && $modifiable))
-            {!! Form::hidden('id', $data->address_id) !!}
+    if ($withButtons) {
+        $mainClasses .= ' clickable-row';
+    }
+@endphp
+{!! Form::open([
+    'action' => 'StoreController@postUpdateAddress',
+    'class' => $mainClasses,
+    'data-remote' => true,
+    'id' => "address-{$data->address_id}",
+]) !!}
+    <div>{{ $data->first_name }} {{ $data->last_name }}</div>
+    <div>{{ $data->street }}</div>
+    <div>{{ $data->city }}, {{ $data->state }}, {{ $data->zip }}</div>
+    <div>{{ $data->countryName() }}</div>
+    <div>{{ $data->phone }}</div>
 
-            <button type="submit" class="address-delete-button" name="action" value="remove"><i class="fas fa-trash"></i></button>
-            <button type="submit" class="clickable-row-link address-select-button" name="action" value="use"><i class="fas fa-check"></i> Use</button>
-        @endif
+    @if ($withButtons)
+        {!! Form::hidden('id', $data->address_id) !!}
 
-        @if((isset($modifiable) && $modifiable))
-        {!! Form::close() !!}
-        @endif
-    </div>
-</div>
+        <button type="submit" class="address__button-delete" name="action" value="remove">
+            <i class="fas fa-trash"></i>
+        </button>
+
+        <button type="submit" class="clickable-row-link address__button-select" name="action" value="use">
+            <i class="fas fa-check"></i> Use
+        </button>
+    @endif
+{!! Form::close() !!}

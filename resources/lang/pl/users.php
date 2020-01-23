@@ -78,9 +78,9 @@ return [
             'opening' => 'Istnieje kilka powodów, przez które twoje konto mogło zostać zdezaktywowane:',
 
             'tos' => [
-                '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                '_' => 'Złamałeś(aś) :community_rules lub :tos osu!.',
+                'community_rules' => 'zasady społeczności',
+                'tos' => 'warunki świadczenia usług',
             ],
         ],
     ],
@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => 'Logowanie się przy użyciu adresu e-mail jest obecnie wyłączone. Użyj swojej nazwy użytkownika.',
         'failed' => 'Nieprawidłowe dane logowania',
         'forgot' => 'Nie pamiętasz hasła?',
-        'info' => '',
+        'info' => 'Zaloguj się, aby kontynuować',
         'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
         'password' => 'Hasło',
         'register' => "Nie posiadasz konta osu!? Utwórz nowe.",
@@ -174,7 +174,7 @@ return [
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2800x620',
+                    'size_info' => 'Rozmiary tła powinny wynosić przynajmniej 2400x640',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
 

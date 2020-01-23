@@ -47,9 +47,9 @@ return [
     ],
 
     'support' => [
-        'heading' => '¿Amas esta actualización?',
-        'text_1' => '¡Apoyar a un mayor desarrollo de osu! y: :link hoy!',
-        'text_1_link' => 'vuélvete un supporter',
-        'text_2' => 'No solo ayudará a acelerar el desarrollo,!también obtendrás algunas características adicionales y personalizaciones!',
+        'heading' => '¿Te gusta esta actualización?',
+        'text_1' => '¡Apoya el desarrollo de osu! y :link hoy!',
+        'text_1_link' => 'vuélvete un osu!supporter',
+        'text_2' => 'No sólo ayudarás a acelerar el desarrollo, ¡también obtendrás algunas características y personalizaciones adicionales!',
     ],
 ];

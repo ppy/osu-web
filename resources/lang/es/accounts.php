@@ -26,7 +26,7 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'rules' => 'Por favor asegúrese de que su avatar se adhiere a :link.<br/>Esto significa que debe ser <strong>adecuado para todas las edades</strong>. Es decir, no desnudez, profanidad o contenido sugestivo.',
-            'rules_link' => 'las reglas de la comunidad',
+            'rules_link' => 'las normas de la comunidad',
         ],
 
         'email' => [
@@ -69,9 +69,9 @@ return [
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en beatmaps calificados de los siguientes modos',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => 'recibir notifiaciones por correo',
+            'beatmapset:modding' => 'beatmap modding',
+            'forum_topic_reply' => 'respuesta al tema',
         ],
     ],
 

@@ -17,7 +17,6 @@
 --}}
 @extends('master', [
     'legacyFont' => false,
-    'legacyNav' => false,
     'pageDescription' => $forum->toMetaDescription(),
     'searchParams' => [
         'forum_id' => $forum->getKey(),

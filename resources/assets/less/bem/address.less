@@ -16,23 +16,49 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import "app";
+.address {
+  margin-bottom: 20px;
 
-.wiki-header {
-  .at2x-simple("/images/headers/tournament.jpg");
-  background-size: cover;
+  &--card {
+    .default-box-shadow();
+    .default-border-radius();
+    background: @osu-colour-b4;
+    padding: 20px;
+    margin: 0;
+  }
 
-  .text {
-    padding-left: 130px;
+  &--card-active {
+    .default-box-shadow();
+    box-shadow: 0 0 0 3px @osu-colour-l4;
+  }
 
-    h1, h2 {
-      .default-text-shadow;
-      color: #fff;
-
-      font-style: normal;
+  &--card-hover {
+    &:hover {
+      .default-box-shadow();
+      box-shadow: 0 0 0 3px @osu-colour-l4;
     }
+  }
 
-    h1 { font-size: 32px; margin-bottom: 10px; }
-    h2 { font-size: 16px; }
+  &__button-delete {
+    .reset-input();
+    color: @osu-colour-c1;
+    position: absolute;
+    padding: 10px;
+    top: 0;
+    right: 0;
+    font-size: 20px; // icon size
+
+    &:hover {
+      color: @osu-colour-red-2;
+    }
+  }
+
+  &__button-select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
   }
 }

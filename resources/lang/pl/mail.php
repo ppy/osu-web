@@ -20,28 +20,28 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => '',
+        'new' => 'W obserwowanej przez ciebie beatmapie („:title”) pojawił się nowy post.',
         'subject' => 'Nowa aktualizacja dla beatmapy „:title”',
-        'unwatch' => '',
+        'unwatch' => 'Jeżeli nie chcesz już obserwować tej beatmapy, możesz kliknąć przycisk „Przestań obserwować” na stronie dyskusji lub zrobić to z poziomu strony obserwowanych dyskusji:',
         'visit' => 'Przejdź do dyskusji tutaj:',
     ],
 
     'common' => [
         'closing' => 'Z wyrazami szacunku,',
         'hello' => 'Witaj, :user!',
-        'report' => '',
+        'report' => 'Odpowiedz na tę wiadomość e-mail NATYCHMIAST, jeżeli to nie ty.',
     ],
 
     'donation_thanks' => [
-        'benefit_more' => '',
-        'feedback' => "",
-        'keep_free' => '',
+        'benefit_more' => 'Więcej korzyści pojawi się z czasem!',
+        'feedback' => "Jeżeli masz jakieś pytania lub chcesz przekazać nam swoją opinię, odpowiedz na tę wiadomość e-mail. Odpiszemy, jak najszybciej to możliwe!",
+        'keep_free' => 'Dzięki tobie osu! jest w stanie utrzymać się bez żadnych reklam czy wymuszanych płatności.',
         'keep_running' => '',
         'subject' => 'Dziękujemy, osu! cię <3',
 
         'benefit' => [
-            'gift' => '',
-            'self' => '',
+            'gift' => 'Odbiorca(y) twojego zakupu otrzymają dostęp do osu!direct i innych korzyści wynikających z posiadania statusu donatora osu!.',
+            'self' => 'Otrzymasz dostęp do osu!direct i innych korzyści wynikających z posiadania statusu donatora osu! na :duration.',
         ],
 
         'support' => [
@@ -52,21 +52,21 @@ return [
     ],
 
     'forum_new_reply' => [
-        'new' => '',
+        'new' => 'W obserwowanym przez ciebie wątku („:title”) pojawiła się nowa odpowiedź.',
         'subject' => '[osu!] Nowa odpowiedź dla wątku ":title"',
-        'unwatch' => '',
-        'visit' => '',
+        'unwatch' => 'Jeżeli nie chcesz już obserwować tego wątku, możesz kliknąć przycisk „Nie subskrybuj” w dolnej części strony wątku lub zrobić to z poziomu strony subskrybcji wątków:',
+        'visit' => 'Przejdź do najnowszej odpowiedzi w wątku tutaj:',
     ],
 
     'password_reset' => [
         'code' => 'Twój kod weryfikacyjny to:',
-        'requested' => '',
+        'requested' => 'Otrzymaliśmy żądanie zmiany hasła na twoim koncie osu!.',
         'subject' => 'Odzyskiwanie konta osu!',
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => '',
-        'processing' => 'Otrzymaliśmy twoją płatność i właśnie wykonujemy twoje zamówienie. Obecny stan swojego zamówienia możesz sprawdzić tutaj:',
+        'prepare_shipping' => 'Otrzymaliśmy twoją płatność i przygotowujemy twoje zamówienie do wysyłki. Może nam to zająć kilka dni, w zależności od liczby zamówień. Stan swojego zamówienia możesz sprawdzić tutaj (wraz ze śledzeniem przesyłki):',
+        'processing' => 'Otrzymaliśmy twoją płatność i właśnie przygotowujemy twoje zamówienie. Obecny stan swojego zamówienia możesz sprawdzić tutaj:',
         'questions' => "Jeśli masz pytania, odpowiedz na tę wiadomość e-mail.",
         'shipping' => 'Wysyłka',
         'subject' => 'Otrzymaliśmy twoje zamówienie!',
@@ -75,38 +75,38 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => '',
-        'anonymous_gift_maybe_not' => '',
+        'anonymous_gift' => 'Osoba, która podarowała ci status donatora, wybrała pozostać anonimowa, dlatego nie została wspomniana w tej wiadomości.',
+        'anonymous_gift_maybe_not' => 'Chociaż najpewniej wiesz kto to był. ;)',
         'duration' => 'Dzięki tej osobie, otrzymasz dostęp do osu!direct i innych korzyści przeznaczonych dla donatorów osu! przez następne :duration.',
-        'features' => '',
+        'features' => 'Więcej informacji na temat korzyści wynikających z posiadania statusu donatora osu! znajdziesz tutaj:',
         'gifted' => 'Ktoś podarował ci status donatora osu!.',
         'subject' => 'Otrzymujesz status donatora osu!',
     ],
 
     'user_email_updated' => [
-        'changed_to' => '',
-        'check' => '',
+        'changed_to' => 'Ta wiadomość e-mail jest potwierdzeniem, że twój adres email w osu! został zmieniony na „:email”.',
+        'check' => 'Upewnij się, że tę wiadomość wysłano również na twój nowy adres e-mail, aby uniknąć utraty konta osu!.',
         'sent' => 'Ze względów bezpieczeństwa ta wiadomość została wysłana zarówno na stary jak i nowy adres e-mail.',
         'subject' => 'Potwierdzenie zmiany adresu e-mail w osu!',
     ],
 
     'user_force_reactivation' => [
-        'main' => '',
-        'perform_reset' => '',
+        'main' => 'Twoje konto zostało uznane za skradzione. Wykryto podejrzaną aktywność i bardzo słabe hasło. W związku z tym, prosimy o zmianę hasła na bezpieczne.',
+        'perform_reset' => 'Możesz je zresetować tutaj: :url',
         'reason' => 'Powód:',
         'subject' => 'Wymagana ponowna aktywacja konta osu!',
     ],
 
     'user_password_updated' => [
-        'confirmation' => '',
+        'confirmation' => 'Ta wiadomość e-mail jest potwierdzeniem, że twoje hasło w osu! zostało zmienione.',
         'subject' => 'Potwierdzenie zmiany hasła w osu!',
     ],
 
     'user_verification' => [
         'code' => 'Twój kod weryfikacyjny to:',
-        'code_hint' => '',
+        'code_hint' => 'Możesz wprowadzić kod ze spacjami lub bez spacji.',
         'link' => 'Ewentualnie możesz kliknąć odnośnik poniżej, aby dokończyć proces weryfikacji:',
-        'report' => '',
+        'report' => 'Jeżeli to nie ty, odpowiedz na tę wiadomość NATYCHMIAST, gdyż twoje konto może być zagrożone.',
         'subject' => 'Weryfikacja konta osu!',
 
         'action_from' => [

@@ -16,7 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'legacyNav' => false,
     'title' => trans('news.index.title_page'),
 ])
 

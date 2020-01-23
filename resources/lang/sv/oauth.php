@@ -22,15 +22,9 @@ return [
     'cancel' => '',
 
     'authorise' => [
-        'authorise' => '',
         'request' => '',
         'scopes_title' => '',
         'title' => '',
-
-        'wrong_user' => [
-            '_' => '',
-            'logout_link' => '',
-        ],
     ],
 
     'authorized_clients' => [

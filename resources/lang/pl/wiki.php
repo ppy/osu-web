@@ -42,7 +42,7 @@ return [
         ],
     ],
     'main' => [
-        'title' => 'Baza wiedzy',
+        'title' => 'baza wiedzy',
         'subtitle' => 'oficjalna skarbnica wiedzy o osu!',
     ],
 ];

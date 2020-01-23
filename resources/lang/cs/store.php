@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Zaplatit',
+        'info' => '',
         'more_goodies' => 'Chci se ještě podívat na nějaké dobroty než dokončím objednávku',
         'shipping_fees' => 'poplatky za dopravu',
         'title' => 'Nákupní košík',
@@ -145,5 +146,9 @@ return [
             '_' => 'Pro změnu uživatelského jména se musíš :link!',
             'link_text' => 'přihlášený',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

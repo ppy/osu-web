@@ -65,12 +65,12 @@ return [
     ],
 
     'disabled' => [
-        'title' => '',
-        'warning' => "",
+        'title' => '哎唷！看起來你的帳號已被禁用。',
+        'warning' => "若你沒有遵守規則，我們原則上在一個月的期限以內不會考慮解禁您的帳號。在此之後，您如有需要，可以隨時聯絡我們。請注意，在一個帳號被封禁後創建新帳號會<strong>使您的封禁期限被延長</strong>。而且<strong>每當您創建一個新帳號，您都是在更嚴重地破壞規則</strong>。我們強烈建議您不要誤入歧途。",
 
         'if_mistake' => [
             '_' => '',
-            'email' => '',
+            'email' => '電子郵件',
         ],
 
         'reasons' => [
@@ -78,7 +78,7 @@ return [
             'opening' => '',
 
             'tos' => [
-                '_' => '',
+                '_' => '您已違反一條或多條:community_rules或:tos',
                 'community_rules' => '社群規則',
                 'tos' => '服務條款',
             ],
@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => '目前沒辦法使用Email登入了，請使用使用者名稱登入。',
         'failed' => '登入失敗',
         'forgot' => '忘記密碼？',
-        'info' => '',
+        'info' => '請先登入以繼續',
         'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
         'password' => '密碼',
         'register' => "沒有 osu! 帳號嗎？現在就註冊一個吧！",
@@ -261,7 +261,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "該使用者尚未收到任何 kudosu ！",
+                    'empty' => "該使用者尚未收到任何 kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [

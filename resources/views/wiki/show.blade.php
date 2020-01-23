@@ -41,7 +41,6 @@
 @endphp
 
 @extends('master', [
-    'legacyNav' => false,
     'title' => null,
     'titlePrepend' => $page->title(true),
 ])
