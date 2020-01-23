@@ -23,7 +23,7 @@ return [
         'approve' => 'Aprobado.',
         'discussion_delete' => 'Un moderador eliminó la discusión :discussion.',
         'discussion_lock' => 'La discusión para este beatmap ha sido desactivada. (:text)',
-        'discussion_post_delete' => 'Un moderador eliminó un publicación en la discusión :discussion.',
+        'discussion_post_delete' => 'Un moderador eliminó una publicación en la discusión :discussion.',
         'discussion_post_restore' => 'Un moderador restauró una publicación de la discusión :discussion.',
         'discussion_restore' => 'Un moderador restauró la discusión :discussion.',
         'discussion_unlock' => 'La discusión para este beatmap ha sido activada.',
@@ -40,7 +40,7 @@ return [
         'nominate' => 'Nominado por :user.',
         'nomination_reset' => 'Un nuevo problema :discussion (:text) ha reiniciado las nominaciones.',
         'qualify' => 'Este beatmap ha alcanzado el número requerido de nominaciones y ha sido calificado.',
-        'rank' => 'Rankeado.',
+        'rank' => 'Clasificado.',
     ],
 
     'index' => [
@@ -60,13 +60,13 @@ return [
 
     'type' => [
         'approve' => 'Aprovado',
-        'discussion_delete' => 'Borrar discusion',
-        'discussion_post_delete' => 'Borrar respuesta a la discusion',
-        'discussion_post_restore' => 'Recuperar respuesta a la discusion',
-        'discussion_restore' => 'Recuperar discusion',
+        'discussion_delete' => 'Eliminación de la discusión',
+        'discussion_post_delete' => 'Eliminación de la respuesta de la discusión',
+        'discussion_post_restore' => 'Recuperar respuesta a la discusión',
+        'discussion_restore' => 'Recuperar discusión',
         'disqualify' => 'Descalificar',
-        'issue_reopen' => 'Reabrir discusion',
-        'issue_resolve' => 'Resolver discusion',
+        'issue_reopen' => 'Reabrir discusión',
+        'issue_resolve' => 'Resolver discusión',
         'kudosu_allow' => 'Permitir kudosu',
         'kudosu_deny' => 'Denegar kudosu',
         'kudosu_gain' => 'Ganancia de Kudosu',

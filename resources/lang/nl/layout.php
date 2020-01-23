@@ -90,6 +90,15 @@ return [
             '_' => 'ranking',
         ],
 
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
+        ],
+
         'tournaments' => [
             '_' => 'toernooien',
             'index' => 'lijst',
@@ -119,6 +128,7 @@ return [
             'beatmapset-watches-index' => 'modding volglijst',
             'changelog-build' => 'versie',
             'changelog-index' => 'changelog',
+            'client_verifications-create' => '',
             'forum-topic-watches-index' => 'forum abonnementen',
             'friends-index' => 'vrienden',
             'getDownload' => 'downloaden',

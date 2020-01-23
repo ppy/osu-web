@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => 'Neste momento, a autenticação por email está desativada. Por favor usa o nome de utilizador como alternativa.',
         'failed' => 'Início de sessão incorreto',
         'forgot' => 'Esqueceste-te da palavra-passe?',
-        'info' => '',
+        'info' => 'Por favor inicia sessão para continuar',
         'locked_ip' => 'o teu endereço de IP foi bloqueado. Por favor espera uns minutos.',
         'password' => 'Palavra-passe',
         'register' => "Não tens uma conta osu? Cria uma nova",

@@ -52,8 +52,8 @@ return [
         ],
 
         'period' => [
-            'end' => '',
-            'start' => '',
+            'end' => '結束',
+            'start' => '開始',
         ],
 
         'state' => [

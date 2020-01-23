@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => 'Login via email er i øjeblikket deaktiveret. Brug venligst dit brugernavn i stedet.',
         'failed' => 'Ugyldigt login',
         'forgot' => 'Glemt din adgangskode?',
-        'info' => '',
+        'info' => 'Log ind for at fortsætte',
         'locked_ip' => 'din IP-adresse er låst. Vent venligst et par minutter.',
         'password' => 'Adgangskode',
         'register' => "Har du ikke en osu! konto? Opret en ny én!",

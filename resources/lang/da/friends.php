@@ -23,8 +23,8 @@ return [
     'too_many' => 'Det maksimale antal venner er nået',
 
     'buttons' => [
-      'add' => 'tilføj ven',
-      'disabled' => 'følgere',
-      'remove' => 'fjern ven',
+        'add' => 'tilføj ven',
+        'disabled' => 'følgere',
+        'remove' => 'fjern ven',
     ],
 ];

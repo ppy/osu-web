@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => 'O login com email está desativado no momento. Por favor use o nome de usuário.',
         'failed' => 'Login incorreto',
         'forgot' => 'Esqueceu sua senha?',
-        'info' => '',
+        'info' => 'Por favor, conecte-se para continuar',
         'locked_ip' => 'seu endereço IP está bloqueado. Por favor, espere alguns minutos.',
         'password' => 'Senha',
         'register' => "Você não tem uma conta no osu!? Faça uma!",
@@ -174,7 +174,7 @@ return [
                     'button' => 'Enviar imagem',
                     'dropzone' => 'Solte aqui pare enviar',
                     'dropzone_info' => 'Você também pode soltar sua imagem aqui para enviar',
-                    'size_info' => 'O tamanho da capa deve ser 2800x620',
+                    'size_info' => 'O tamanho da capa deve ser 2400x640',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
 

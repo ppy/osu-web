@@ -98,7 +98,7 @@ return [
         'mode' => [
             'events' => '기록',
             'general' => '일반 :scope',
-            'reviews' => '',
+            'reviews' => '평가',
             'timeline' => '타임라인',
             'scopes' => [
                 'general' => '해당 난이도',
@@ -128,7 +128,7 @@ return [
             'deleted' => '삭제됨',
             'mapper_notes' => '노트',
             'mine' => '내 글',
-            'pending' => '토론중',
+            'pending' => 'Pending',
             'praises' => '칭찬',
             'resolved' => '해결됨',
             'total' => '모두',

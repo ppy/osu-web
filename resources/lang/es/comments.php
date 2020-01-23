@@ -19,9 +19,10 @@
  */
 
 return [
-    'deleted' => 'borrado',
+    'deleted' => 'eliminado',
     'deleted_count' => ':count_delimited comentario eliminado|:count_delimited comentarios eliminados',
     'edited' => 'editado hace :timeago por :user',
+    'pinned' => '',
     'empty' => 'Todavía no hay comentarios.',
     'load_replies' => 'cargar respuestas',
     'replies' => 'Respuestas',
@@ -49,7 +50,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'listado',
     ],
 
     'placeholder' => [
@@ -59,6 +60,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'comentarios',
     ],
 ];

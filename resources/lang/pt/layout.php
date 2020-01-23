@@ -25,81 +25,90 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            '_' => 'administrador',
+            'beatmapset' => 'conjunto de beatmaps',
+            'beatmapset_covers' => 'capas de conjunto de beatmaps',
+            'contest' => 'concurso',
+            'contests' => 'concursos',
+            'root' => 'consola',
+            'store_orders' => 'administrador da loja',
         ],
 
         'artists' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'artistas destacados',
+            'index' => 'listagem',
         ],
 
         'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            '_' => 'beatmap',
+            'discussions' => 'discussão',
+            'index' => 'listagem',
+            'show' => 'informação',
+            'packs' => 'pacotes',
         ],
 
         'changelog' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'registo de alterações',
+            'index' => 'listagem',
         ],
 
         'community' => [
             '_' => 'Comunidade',
-            'comments' => '',
+            'comments' => 'comentários',
             'forum' => 'Fórum',
-            'livestream' => '',
+            'livestream' => 'transmissões ao vivo',
         ],
 
         'contests' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'concursos',
+            'index' => 'listagem',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => 'erro',
         ],
 
         'help' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'wiki',
+            'index' => 'índice',
         ],
 
         'home' => [
-            '_' => '',
-            'password_reset' => '',
+            '_' => 'início',
+            'password_reset' => 'redefinir palavra-passe',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => 'histórico de partidas',
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => 'aviso',
         ],
 
         'rankings' => [
+            '_' => 'classificação',
+        ],
+
+        'store' => [
             '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'torneios',
+            'index' => 'listagem',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            '_' => 'jogador',
+            'forum_posts' => 'publicações do fórum',
+            'modding' => 'modding',
+            'show' => 'informação',
         ],
     ],
 
@@ -116,10 +125,11 @@ return [
             '_' => 'início',
             'account-edit' => 'definições',
             'account-verifyLink' => 'Verificação concluída',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => 'lista de observação de modificações',
             'changelog-build' => 'compilação',
             'changelog-index' => 'lista de mudanças',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => 'subscrições de fóruns',
             'friends-index' => 'amigos',
             'getDownload' => 'transferir',
             'getIcons' => 'ícones',
@@ -133,7 +143,7 @@ return [
             'search' => 'pesquisar',
             'supportTheGame' => 'apoia o jogo',
             'team' => 'equipa',
-            'testflight' => '',
+            'testflight' => 'voo de teste',
         ],
         'profile' => [
             '_' => 'perfil',

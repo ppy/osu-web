@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Pagamento',
+        'info' => '',
         'more_goodies' => 'Voglio dare un\'occhiata ad altri elementi prima di completare l\'ordine',
         'shipping_fees' => 'costi di spedizione',
         'title' => 'Carrello della spesa',
@@ -38,8 +39,8 @@ return [
         'empty' => [
             'text' => 'Il tuo carrello è vuoto.',
             'return_link' => [
-                '_' => 'Ritorna al :link per trovare alcuni elementi!',
-                'link_text' => 'listino',
+                '_' => 'Ritorna alla :link per trovare alcuni elementi!',
+                'link_text' => 'lista',
             ],
         ],
     ],
@@ -145,5 +146,9 @@ return [
             '_' => 'Devi essere :link per cambiare il tuo nome!',
             'link_text' => 'accesso effettuato',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

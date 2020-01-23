@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Zur Kasse',
+        'info' => '',
         'more_goodies' => 'Ich möchte mich vor meiner Bestellung noch etwas umschauen',
         'shipping_fees' => 'Versandkosten',
         'title' => 'Warenkorb',
@@ -145,5 +146,9 @@ return [
             '_' => 'Um deinen Namen zu ändern, musst du :link sein!',
             'link_text' => 'eingeloggt',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];
