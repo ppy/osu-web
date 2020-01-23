@@ -42,6 +42,7 @@ export class WikiSearch extends React.Component {
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleEsc);
     document.removeEventListener('mousedown', this.handleMouseDown);
+    this.controller.cancel();
   }
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -40,6 +40,11 @@ export class WikiSearchController {
   }
 
   @action
+  cancel() {
+    this.getSuggestionsDebounced.cancel();
+  }
+
+  @action
   getSuggestions() {
     $.getJSON(route('wiki-suggestions'), { q: this.query.trim() })
     .done(action((response) => {
