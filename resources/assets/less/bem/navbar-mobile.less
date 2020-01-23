@@ -23,34 +23,22 @@
   width: 100%;
   z-index: @z-index--nav-bar;
   color: #fff;
+  display: flex;
+  align-items: center;
+  height: @navbar-height;
+  padding: 0 10px;
 
   &__brand {
-    float: none;
     padding: 0 10px;
-    height: auto;
     min-width: 0;
-    font-size: 20px;
-    line-height: 1.5; // avoid clipping
     font-size: @font-size--title-small;
-  }
-
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: @navbar-height;
-    padding: 0 10px;
-
-    &::after,
-    &::before {
-      display: none;
-    }
   }
 
   &__header-section {
     display: flex;
     align-items: center;
     min-width: 0;
+    flex: 1;
 
     &--buttons {
       flex: none;
@@ -64,27 +52,26 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: @navbar-mobile--content-height;
-    height: @navbar-mobile--content-height;
+    width: (@navbar-mobile--content-height + 10px);
+    height: $width;
+    margin: -5px;
   }
 
   &__toggle {
+    .reset-input();
     flex: none;
-    float: none;
     width: @navbar-mobile--content-height;
     height: @navbar-mobile--content-height;
     padding: 0;
     margin: 0;
 
     border-width: 2px;
-    color: #fff;
+    color: @osu-colour-c1;
 
     display: block;
 
-    &:focus,
-    &:hover,
-    &:active {
-      border-color: transparent;
+    &:hover {
+      color: @osu-colour-l1;
     }
   }
 
