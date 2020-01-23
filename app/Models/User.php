@@ -1318,7 +1318,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             $ids = $this->groupIds();
             array_unshift($ids, $this->defaultGroup()->getKey());
 
-            $idOrder = app('groups')->all()->where('group_type', 1)->pluck('group_id')->all();
+            $idOrder = app('groups')->all()->whereStrict('display_order', null)->pluck('group_id')->all();
             $badge = array_first(array_intersect($idOrder, $ids));
             $this->memoized[__FUNCTION__] = app('groups')->byId($badge);
         }
