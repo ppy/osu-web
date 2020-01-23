@@ -199,7 +199,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $conditions = [
             'user_id' => $user->user_id,
-            'group_id' => UserGroup::GROUPS['bng'],
+            'group_id' => app('groups')->byIdentifier('bng')->getKey(),
         ];
 
         $existingUserGroup = UserGroup::where($conditions)->first();

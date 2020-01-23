@@ -52,6 +52,19 @@ class Group extends Model
         return $query->where('group_type', 1);
     }
 
+    public function getGroupColourAttribute($value)
+    {
+        if (!present($value)) {
+            return;
+        }
+
+        if (strlen($value) === 6 || strlen($value) === 3 && ctype_xdigit($value)) {
+            return "#{$value}";
+        }
+
+        return $value;
+    }
+
     public function users()
     {
         // 'cuz hasManyThrough is derp
