@@ -429,7 +429,18 @@ export default class Editor extends React.Component<any, any> {
         }
       }
 
-      normalizeNode(entry);
+      // ensure the last node is always a paragraph, (otherwise it becomes impossible to insert a normal paragraph after an embed)
+      if (editor.children.length > 0) {
+        const lastNode = editor.children[editor.children.length - 1];
+        if (lastNode.type === 'embed') {
+          const paragraph = {type: 'paragraph', children: [{text: ''}]};
+          Transforms.insertNodes(editor, paragraph, {at: SlateEditor.end(editor, [])});
+
+          return;
+        }
+      }
+
+      return normalizeNode(entry);
     };
 
     return editor;
