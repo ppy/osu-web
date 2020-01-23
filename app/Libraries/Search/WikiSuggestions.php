@@ -52,8 +52,26 @@ class WikiSuggestions extends Search
      */
     public function getQuery()
     {
+        $langQuery = (new BoolQuery())
+            ->shouldMatch(1)
+            ->should(['constant_score' => [
+                'boost' => 1000,
+                'filter' => [
+                    'match' => [
+                        'locale' => app()->getLocale(),
+                    ],
+                ],
+            ]])
+            ->should(['constant_score' => [
+                'filter' => [
+                    'match' => [
+                        'locale' => config('app.fallback_locale'),
+                    ],
+                ],
+            ]]);
+
         return (new BoolQuery)
-            ->must(['term' => ['locale' => app()->getLocale()]])
+            ->must($langQuery)
             ->must([
                 'match' => [
                     'title.autocomplete' => [
