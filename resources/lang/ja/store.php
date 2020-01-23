@@ -25,7 +25,7 @@ return [
 
     'cart' => [
         'checkout' => '支払いをする',
-        'info' => '',
+        'info' => ':count_delimited 個がカート内にあります($:subtotal)',
         'more_goodies' => '精算の前に他のグッズをチェックする。',
         'shipping_fees' => '配送料',
         'title' => 'カート',
@@ -149,6 +149,6 @@ return [
     ],
 
     'xsolla' => [
-        'distributor' => '',
+        'distributor' => 'osu!はXsollaをグローバル代理店<br>として使用しております。',
     ],
 ];

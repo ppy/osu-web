@@ -91,12 +91,12 @@ return [
         ],
 
         'store' => [
-            '_' => '',
-            'cart' => '',
-            'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            '_' => 'osu!store',
+            'cart' => 'carrito',
+            'order' => 'factura',
+            'orders' => 'historial de pedidos',
+            'product' => 'producto',
+            'products' => 'productos',
         ],
 
         'tournaments' => [
@@ -128,7 +128,7 @@ return [
             'beatmapset-watches-index' => 'lista seguimiento de modding',
             'changelog-build' => 'compilación',
             'changelog-index' => 'listado de cambios',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'Verificación del cliente de osu!',
             'forum-topic-watches-index' => 'suscripciones a foros',
             'friends-index' => 'amigos',
             'getDownload' => 'descargar',

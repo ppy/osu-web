@@ -53,7 +53,7 @@ return [
 
         'period' => [
             'end' => '',
-            'start' => '',
+            'start' => 'Başlat',
         ],
 
         'state' => [

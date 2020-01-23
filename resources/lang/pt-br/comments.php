@@ -22,7 +22,7 @@ return [
     'deleted' => 'excluído',
     'deleted_count' => ':count_delimited comentário excluído|:count_delimited comentários excluídos',
     'edited' => 'editado por :user :timeago',
-    'pinned' => '',
+    'pinned' => 'fixado',
     'empty' => 'Sem comentários no momento.',
     'load_replies' => 'carregar respostas',
     'replies' => 'Respostas',

@@ -91,12 +91,12 @@ return [
         ],
 
         'store' => [
-            '_' => '',
-            'cart' => '',
-            'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            '_' => 'osu!store',
+            'cart' => '장바구니',
+            'order' => '청구서',
+            'orders' => '주문 내역',
+            'product' => '상품',
+            'products' => '상품',
         ],
 
         'tournaments' => [
@@ -128,7 +128,7 @@ return [
             'beatmapset-watches-index' => '모딩 확인 목록',
             'changelog-build' => '빌드 버전',
             'changelog-index' => '변경 사항',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'osu! 클라이언트 인증',
             'forum-topic-watches-index' => '구독',
             'friends-index' => '친구',
             'getDownload' => '다운로드',

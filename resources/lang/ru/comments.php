@@ -22,7 +22,7 @@ return [
     'deleted' => 'удалено',
     'deleted_count' => ':count_delimited комментарий удален|:count_delimited комментариев удалено',
     'edited' => ':user отредактировал :timeago',
-    'pinned' => '',
+    'pinned' => 'закреплён',
     'empty' => 'Нет комментариев.',
     'load_replies' => 'загрузить ответы',
     'replies' => 'Ответы',

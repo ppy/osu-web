@@ -91,12 +91,12 @@ return [
         ],
 
         'store' => [
-            '_' => '',
-            'cart' => '',
-            'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            '_' => 'osu!store',
+            'cart' => 'keranjang',
+            'order' => 'faktur',
+            'orders' => 'riwayat transaksi',
+            'product' => 'produk',
+            'products' => 'produk',
         ],
 
         'tournaments' => [
@@ -128,7 +128,7 @@ return [
             'beatmapset-watches-index' => 'daftar pengamatan modding',
             'changelog-build' => 'versi',
             'changelog-index' => 'riwayat perubahan',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'Verifikasi akun osu!',
             'forum-topic-watches-index' => 'langganan forum',
             'friends-index' => 'teman',
             'getDownload' => 'unduh',

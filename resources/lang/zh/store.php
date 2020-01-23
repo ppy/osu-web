@@ -25,7 +25,7 @@ return [
 
     'cart' => [
         'checkout' => '结账',
-        'info' => '',
+        'info' => '购物车里有 :count_delimited 件商品（$:subtotal）|购物车里有 :count_delimited 件商品（$:subtotal）',
         'more_goodies' => '在完成订单之前，我想看看其他商品',
         'shipping_fees' => '运费',
         'title' => '购物车',
@@ -149,6 +149,6 @@ return [
     ],
 
     'xsolla' => [
-        'distributor' => '',
+        'distributor' => 'Xsolla 是<br>osu! 授权的全球经销商',
     ],
 ];

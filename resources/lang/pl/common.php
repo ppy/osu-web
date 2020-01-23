@@ -35,7 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Administrator',
-        'authorise' => '',
+        'authorise' => 'Autoryzuj',
         'back_to_previous' => 'Powrót do poprzedniej pozycji',
         'back_to_top' => 'Powrót na górę',
         'cancel' => 'Anuluj',
@@ -49,7 +49,7 @@ return [
         'expand' => 'rozwiń',
         'hide' => 'ukryj',
         'permalink' => 'odnośnik bezpośredni',
-        'pin' => '',
+        'pin' => 'przypnij',
         'post' => 'Opublikuj',
         'reply' => 'Odpowiedz',
         'reply_reopen' => 'Odpowiedz i otwórz ponownie',
@@ -64,7 +64,7 @@ return [
         'show_deleted' => 'Pokaż usunięte',
         'show_more' => 'pokaż więcej',
         'show_more_options' => 'pokaż więcej opcji',
-        'unpin' => '',
+        'unpin' => 'odepnij',
         'update' => 'Zaktualizuj',
         'upload_image' => 'prześlij obraz',
 
@@ -150,7 +150,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Jesteś zalogowany jako :user. :logout_link.',
+        'logout_link' => 'Kliknij tutaj, aby zalogować się jako inny użytkownik',
     ],
 ];

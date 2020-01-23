@@ -35,7 +35,7 @@ return [
 
     'buttons' => [
         'admin' => '管理者',
-        'authorise' => '',
+        'authorise' => '承認',
         'back_to_previous' => '直前の状態に戻す',
         'back_to_top' => 'トップに戻る',
         'cancel' => 'キャンセル',
@@ -49,7 +49,7 @@ return [
         'expand' => '展開',
         'hide' => '隠す',
         'permalink' => 'パーマリンク',
-        'pin' => '',
+        'pin' => 'ピン',
         'post' => '投稿',
         'reply' => '返信',
         'reply_reopen' => '返信して再開',
@@ -64,7 +64,7 @@ return [
         'show_deleted' => '削除済みを表示',
         'show_more' => '展開する',
         'show_more_options' => '詳細オプションを表示する',
-        'unpin' => '',
+        'unpin' => 'ピン解除',
         'update' => 'アップデート',
         'upload_image' => '画像をアップロード',
 
@@ -150,7 +150,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'あなたは:userとしてログインしています。:logout_link。',
+        'logout_link' => '別のユーザーとしてログインするにはここをクリック',
     ],
 ];

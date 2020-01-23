@@ -35,7 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
-        'authorise' => '',
+        'authorise' => 'Izinkan',
         'back_to_previous' => 'Kembali ke posisi sebelumnya',
         'back_to_top' => 'Kembali ke atas',
         'cancel' => 'Batal',
@@ -49,7 +49,7 @@ return [
         'expand' => 'perluas',
         'hide' => 'sembunyikan',
         'permalink' => 'tautan',
-        'pin' => '',
+        'pin' => 'sematkan',
         'post' => 'Posting',
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Kembali',
@@ -64,7 +64,7 @@ return [
         'show_deleted' => 'Tampilkan yang sudah dihapus',
         'show_more' => 'tampilkan lebih banyak',
         'show_more_options' => 'tampilkan pilihan lainnya',
-        'unpin' => '',
+        'unpin' => 'lepas sematan',
         'update' => 'Perbarui',
         'upload_image' => 'unggah gambar',
 
@@ -150,7 +150,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Kamu terdaftar masuk sebagai :user. :logout_link.',
+        'logout_link' => 'Klik di sini untuk masuk sebagai pengguna lain',
     ],
 ];

@@ -25,7 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Checkout',
-        'info' => '',
+        'info' => ':count_delimited barang dalam keranjang ($:subtotal)',
         'more_goodies' => 'Saya ingin melihat barang lain sebelum menyelesaikan pesanan',
         'shipping_fees' => 'biaya pengiriman',
         'title' => 'Keranjang Belanja',
@@ -149,6 +149,6 @@ return [
     ],
 
     'xsolla' => [
-        'distributor' => '',
+        'distributor' => 'Xsolla adalah distributor<br>internasional resmi osu!',
     ],
 ];

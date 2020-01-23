@@ -21,7 +21,7 @@
 return [
     'beatmapset_update_notice' => [
         'new' => '',
-        'subject' => '譜面“:title”有更新',
+        'subject' => '圖譜“:title”有更新',
         'unwatch' => '',
         'visit' => '',
     ],
@@ -104,8 +104,8 @@ return [
 
     'user_verification' => [
         'code' => '您的驗證碼是:',
-        'code_hint' => '',
-        'link' => '',
+        'code_hint' => '你可以帶或不帶空格地輸入該驗證碼',
+        'link' => '或者，你也可以點擊下列連結已完成認證:',
         'report' => '如果您並沒有進行此項操作，請「立刻」回覆此信件，您的帳戶可能有危險。',
         'subject' => 'osu! 帳號驗證',
 

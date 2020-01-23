@@ -22,7 +22,7 @@ return [
     'deleted' => 'terhapus',
     'deleted_count' => ':count_delimited komentar yang dihapus|:count_delimited komentar yang dihapus',
     'edited' => 'disunting :timeago oleh :user',
-    'pinned' => '',
+    'pinned' => 'disematkan',
     'empty' => 'Belum ada komentar.',
     'load_replies' => 'muat lebih banyak balasan',
     'replies' => 'Balasan',

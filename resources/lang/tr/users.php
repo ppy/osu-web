@@ -65,29 +65,29 @@ return [
     ],
 
     'disabled' => [
-        'title' => '',
+        'title' => 'Olamaz! Görünüşe bakılırsa hesabın kilitlenmiş.',
         'warning' => "",
 
         'if_mistake' => [
             '_' => '',
-            'email' => '',
+            'email' => 'e-posta',
         ],
 
         'reasons' => [
             'compromised' => '',
-            'opening' => '',
+            'opening' => 'Hesabını dondurmaya sebebiyet verebilecek birtakım sebepler var:',
 
             'tos' => [
-                '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                '_' => 'Siz, :community_rules ya da :tos kurallarından bir veya daha fazlasını ihlal ettiniz.',
+                'community_rules' => 'topluluk kuralları',
+                'tos' => 'hizmet kullanım şartları',
             ],
         ],
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Hesabın uzun bir zamandır kullanılmamıştır.",
         ],
     ],
 
@@ -95,10 +95,10 @@ return [
         '_' => 'Giriş Yap',
         'button' => 'Giriş Yap',
         'button_posting' => 'Giriş yapılıyor...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'E-posta ile giriş yapmak şu anlık mümkün değildir. Lütfen kullanıcı adınızı kullanınız.',
         'failed' => 'Hatalı giriş',
         'forgot' => 'Şifrenizi mi unuttunuz?',
-        'info' => '',
+        'info' => 'Devam etmek için lütfen giriş yapınız',
         'locked_ip' => 'IP adresiniz kilitli. Lütfen birkaç dakika bekleyin.',
         'password' => 'Şifre',
         'register' => "osu! hesabınız yok mu? Yeni bir tane oluşturun",
@@ -299,7 +299,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
+                    '_' => 'Beatmap yönetiminine kullanıcının ne kadar çok katkı yapmış olmuşluğuna dayanarak. Daha fazla bilgi için :link\'e bakınız.',
                     'link' => 'bu sayfa',
                 ],
             ],

@@ -25,8 +25,8 @@ return [
 
     'cart' => [
         'checkout' => '결제',
-        'info' => '',
-        'more_goodies' => '주문을 끝내기 전에 더 둘러볼게요',
+        'info' => '장바구니에 담긴 :count_delimited개의 항목 ($:subtotal)',
+        'more_goodies' => '주문을 끝내기 전에 더 둘러볼게요.',
         'shipping_fees' => '배송료',
         'title' => '장바구니',
         'total' => '합계',
@@ -149,6 +149,6 @@ return [
     ],
 
     'xsolla' => [
-        'distributor' => '',
+        'distributor' => 'Xsolla는 osu!의 공식<br> 글로벌 유통 업체입니다.',
     ],
 ];

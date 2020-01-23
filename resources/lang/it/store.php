@@ -25,7 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Pagamento',
-        'info' => '',
+        'info' => ':count_delimited articolo nel carrello ($:subtotal)|:count_delimited articoli nel carrello ($:subtotal)',
         'more_goodies' => 'Voglio dare un\'occhiata ad altri elementi prima di completare l\'ordine',
         'shipping_fees' => 'costi di spedizione',
         'title' => 'Carrello della spesa',
@@ -149,6 +149,6 @@ return [
     ],
 
     'xsolla' => [
-        'distributor' => '',
+        'distributor' => 'Xsolla è un distributore<br>globale autorizzato di osu!',
     ],
 ];

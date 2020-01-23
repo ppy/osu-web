@@ -150,7 +150,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => '您已以 :user 的身分登入。 :logout_link',
+        'logout_link' => '點擊此處以不同帳號登入。',
     ],
 ];
