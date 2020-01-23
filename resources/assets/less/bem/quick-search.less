@@ -18,11 +18,15 @@
 
 .quick-search {
   .page-width-default();
-  background-color: @osu-colour-b5;
   color: @osu-colour-c1;
-  border-radius: @border-radius-large;
   overflow: hidden;
-  max-height: calc(100% - 40px);
+  max-height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: @osu-colour-b5;
+
+  @media @desktop {
+    border-radius: @border-radius-large;
+    max-height: calc(100% - 40px);
+  }
 }

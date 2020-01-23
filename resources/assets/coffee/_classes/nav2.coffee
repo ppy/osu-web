@@ -17,10 +17,11 @@
 ###
 
 class @Nav2
-  constructor: ->
+  constructor: (@clickMenu) ->
     @menuBg = document.getElementsByClassName('js-nav2--menu-bg')
 
     $.subscribe 'click-menu:current', @autoCenterPopup
+    $.subscribe 'click-menu:current', @autoMobileNav
     $.subscribe 'menu:current', @showMenuBg
 
 
@@ -47,6 +48,10 @@ class @Nav2
     osu.pageChangeImmediate() if @loginBoxVisible()
     doCenter()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
+
+
+  autoMobileNav: (e, {target}) =>
+    @clickMenu.show('mobile-nav') if target == 'mobile-menu'
 
 
   centerPopup: (popup, reference) ->

@@ -15,6 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $search = Auth::check();
+@endphp
 <div class="visible-xs no-print js-header--main">
     <div class="navbar-mobile-before"></div>
 
@@ -27,6 +30,55 @@
         </div>
 
         <div class="navbar-mobile__header-section navbar-mobile__header-section--buttons">
+            <button
+                type="button"
+                class="navbar-mobile__toggle js-click-menu"
+                data-click-menu-target="mobile-menu"
+            >
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-mobile__toggle-icon">
+                    <i class="fas fa-chevron-down"></i>
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div
+        class="mobile-menu js-click-menu"
+        data-click-menu-id="mobile-menu"
+        data-visibility="hidden"
+    >
+        <div class="mobile-menu__tabs">
+            @if (Auth::check())
+                <a
+                    href="{{ route('users.show', Auth::user()->user_id) }}"
+                    data-click-menu-target="mobile-user"
+                    class="mobile-menu-tab mobile-menu-tab--user js-click-menu"
+                >
+                    <span
+                        class="avatar avatar--full-rounded"
+                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                    ></span>
+                </a>
+            @else
+                <button
+                    title="{{ trans('users.anonymous.login_link') }}"
+                    class="mobile-menu-tab mobile-menu-tab--user js-navbar-mobile--top-icon js-user-link"
+                >
+                    <span class="avatar avatar--full-rounded avatar--guest"></span>
+                </button>
+            @endif
+
+            <button class="mobile-menu-tab js-click-menu" data-click-menu-target="mobile-nav">
+                <span class="fas fa-sitemap"></span>
+            </button>
+
+            @if ($search)
+                <button class="mobile-menu-tab js-click-menu" data-click-menu-target="mobile-search">
+                    <span class="fas fa-search"></span>
+                </button>
+            @endif
+
             @if (Auth::check())
                 <div class="js-react--notification" data-notification-type="mobile">
                     <div class="nav-button nav-button--mobile">
@@ -36,52 +88,20 @@
                         </span>
                     </div>
                 </div>
-
-                <a
-                    href="{{ route('users.show', Auth::user()->user_id) }}"
-                    class="avatar avatar--navbar-mobile js-navbar-mobile--top-icon"
-                    style="background-image: url('{{ Auth::user()->user_avatar }}');"
-                >
-                </a>
-            @else
-                <a
-                    href="#"
-                    title="{{ trans('users.anonymous.login_link') }}"
-                    class="avatar avatar--navbar-mobile avatar--guest js-navbar-mobile--top-icon js-user-link"
-                >
-                </a>
             @endif
-
-            <button
-                type="button"
-                class="navbar-mobile__toggle"
-                data-toggle="collapse" data-target="#xs-navbar"
-            >
-                <span class="sr-only">Toggle navigation</span>
-                <span class="navbar-mobile__toggle-icon">
-                    <i class="fas fa-bars"></i>
-                </span>
-            </button>
         </div>
-    </div>
 
-    <div class="collapse navbar-mobile-menu js-navbar-mobile--menu" id="xs-navbar">
-        <ul class="nav navbar-nav navbar-mobile-menu__items">
+        <div class="mobile-menu__item js-click-menu" data-click-menu-id="mobile-user">
             @include('layout.header_mobile.user')
-            @include('layout.header_mobile.nav')
-            @include('layout.header_mobile.locale')
-        </ul>
-    </div>
+        </div>
 
-    @if (Auth::check() && !($currentSection === 'home' && $currentAction === 'search'))
-        <form action="{{ route('search') }}" class="navbar-mobile-search">
-            @foreach ($searchParams ?? [] as $name => $value)
-                <input type="hidden" name="{{ $name }}" value="{{ $value }}" />
-            @endforeach
-            <input class="navbar-mobile-search__input" name="query" />
-            <button class="navbar-mobile-search__icon">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
-    @endif
+        <div class="mobile-menu__item js-click-menu" data-click-menu-id="mobile-nav">
+            @include('layout.header_mobile.nav')
+        </div>
+
+        @if ($search)
+            <div class="mobile-menu__item mobile-menu__item--search js-click-menu js-react--quick-search" data-click-menu-id="mobile-search">
+            </div>
+        @endif
+    </div>
 </div>

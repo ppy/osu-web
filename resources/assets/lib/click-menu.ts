@@ -22,10 +22,15 @@ export default class ClickMenu {
   private current: string | null | undefined = null;
 
   constructor() {
+    $(document).on('click', '.js-click-menu--close', this.close);
     $(document).on('click', '.js-click-menu[data-click-menu-target]', this.toggle);
     $(document).on('click', this.hide);
     document.addEventListener('turbolinks:load', this.restoreSaved);
     document.addEventListener('turbolinks:before-cache', this.saveCurrent);
+  }
+
+  close = () => {
+    this.show();
   }
 
   closestMenuId(child: Element | null | undefined) {
@@ -60,6 +65,7 @@ export default class ClickMenu {
 
     const tree = this.tree();
     const menus = Array.from(document.querySelectorAll('.js-click-menu[data-click-menu-id]'));
+    let shownMenu: HTMLElement | null = null;
     let validCurrent = false;
 
     for (const menu of menus) {
@@ -78,6 +84,10 @@ export default class ClickMenu {
         this.menuLink(menuId)?.classList.add('js-click-menu--active');
         menu.classList.add('js-click-menu--active');
         validCurrent = true;
+
+        if (menuId === this.current) {
+          shownMenu = menu;
+        }
       }
     }
 
@@ -86,6 +96,12 @@ export default class ClickMenu {
     }
 
     $.publish('click-menu:current', { target: this.current });
+
+    const toFocus = shownMenu?.querySelector('.js-click-menu--autofocus');
+
+    if (toFocus instanceof HTMLElement) {
+      toFocus.focus();
+    }
   }
 
   toggle = (e: JQuery.ClickEvent) => {

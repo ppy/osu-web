@@ -74,12 +74,12 @@ export default class Main extends React.Component<Props> {
   }
 
   private buttonClass() {
-    let ret = 'js-click-menu nav-button';
+    let ret = 'js-click-menu';
 
     if (this.props.type === 'mobile') {
-      ret += ' nav-button--mobile';
+      ret += ' mobile-menu-tab';
     } else {
-      ret += ' nav-button--stadium';
+      ret += ' nav-button nav-button--stadium';
     }
 
     return ret;

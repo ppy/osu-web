@@ -16,46 +16,46 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.search-result-more {
-  .link-plain();
-  .fade-element(120ms);
-  border-radius: @border-radius-large;
-  background-color: @osu-colour-b4;
-  min-height: 40px;
-  padding: 2px 10px;
-  display: flex;
-  align-items: center;
-  color: @osu-colour-c1;
-  font-size: @font-size--normal;
+.mobile-menu {
+  position: fixed;
+  top: @navbar-height;
+  background-color: @osu-colour-b5;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  z-index: @z-index--nav-bar;
+  max-height: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  transition: 400ms max-height;
 
-  @media @desktop {
-    font-size: @font-size--title-small-3;
-    padding-left: 20px;
-    padding-right: $padding-left;
+  &:focus,
+  &:hover,
+  &:active,
+  & {
+    color: #fff;
   }
 
-  &--active {
-    background-color: @osu-colour-b2;
-    color: @osu-colour-c1;
+  &.js-click-menu--active {
+    max-height: calc((var(--vh, 1vh) * 100) - @navbar-height);
   }
 
-  &:focus, &:active, &:hover {
-    color: @osu-colour-c1;
+  &__item {
+    display: none;
+    overflow-y: scroll;
+
+    &--search {
+      overflow-y: auto;
+    }
+
+    &.js-click-menu--active {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
   }
 
-  &__arrow {
-    flex: none;
-  }
-
-  &__content {
-    flex: 1;
-  }
-
-  &__count {
-    padding: 2px 10px;
-    font-size: @font-size--normal;
-    background-color: @osu-colour-b3;
-    border-radius: 10000px;
-    margin-left: 20px;
+  &__tabs {
+    display: flex;
+    background-color: @osu-colour-d4;
   }
 }
