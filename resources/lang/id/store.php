@@ -149,6 +149,6 @@ return [
     ],
 
     'xsolla' => [
-        'distributor' => 'Xsolla adalah distributor<br>internasional resmi osu!',
+        'distributor' => '',
     ],
 ];

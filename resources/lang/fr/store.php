@@ -149,6 +149,6 @@ return [
     ],
 
     'xsolla' => [
-        'distributor' => 'Xsolla est un revendeur<br>officiel d\'osu!',
+        'distributor' => '',
     ],
 ];

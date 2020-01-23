@@ -149,6 +149,6 @@ return [
     ],
 
     'xsolla' => [
-        'distributor' => 'Xsolla는 osu!의 공식<br> 글로벌 유통 업체입니다.',
+        'distributor' => '',
     ],
 ];

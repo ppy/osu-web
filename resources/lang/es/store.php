@@ -149,6 +149,6 @@ return [
     ],
 
     'xsolla' => [
-        'distributor' => 'Xsolla es un distribuidor global autorizado<br> de osu!',
+        'distributor' => '',
     ],
 ];

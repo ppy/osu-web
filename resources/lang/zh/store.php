@@ -149,6 +149,6 @@ return [
     ],
 
     'xsolla' => [
-        'distributor' => 'Xsolla 是<br>osu! 授权的全球经销商',
+        'distributor' => '',
     ],
 ];

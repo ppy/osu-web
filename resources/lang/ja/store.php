@@ -149,6 +149,6 @@ return [
     ],
 
     'xsolla' => [
-        'distributor' => 'osu!はXsollaをグローバル代理店<br>として使用しております。',
+        'distributor' => '',
     ],
 ];
