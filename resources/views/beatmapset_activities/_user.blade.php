@@ -23,7 +23,7 @@
         $badge = $user->groupBadge();
 
         if (isset($badge)) {
-            $extraAttributes = "style='--group-colour: {$badge->group_colour}'";
+            $extraAttributes = "style='--group-colour: {$badge->colour}'";
         }
     }
 
@@ -57,7 +57,7 @@
                     class="user-group-badge"
                     title="{{ $badge->group_name }}"
                     data-label="{{ $badge->short_name }}"
-                    style="--group-colour: {{ $badge->group_colour }}"
+                    style="--group-colour: {{ $badge->colour }}"
                 ></div>
             @endif
         </div>

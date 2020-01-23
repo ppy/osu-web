@@ -52,7 +52,7 @@
                 class="user-group-badge user-group-badge--t-forum"
                 data-label="{{ $user->groupBadge()->short_name }}"
                 title="{{ $user->groupBadge()->group_name }}"
-                style="--group-colour: {{ $user->groupBadge()->group_colour }}"
+                style="--group-colour: {{ $user->groupBadge()->colour }}"
             ></div>
         </div>
     @endif
