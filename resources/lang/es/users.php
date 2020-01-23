@@ -22,7 +22,7 @@ return [
     'deleted' => '[usuario eliminado]',
 
     'beatmapset_activities' => [
-        'title' => "Historial de Modding de :usuario",
+        'title' => "Historial de modding de :user",
         'title_compact' => 'Modding',
 
         'discussions' => [
@@ -34,7 +34,7 @@ return [
         ],
 
         'posts' => [
-            'title_recent' => 'Pubicaciones recientes',
+            'title_recent' => 'Publicaciones recientes',
         ],
 
         'votes_received' => [
@@ -49,9 +49,9 @@ return [
     'blocks' => [
         'banner_text' => 'Has bloqueado a este usuario.',
         'blocked_count' => 'usuarios bloqueados (:count)',
-        'hide_profile' => 'ocultar perfil',
+        'hide_profile' => 'Ocultar perfil',
         'not_blocked' => 'Ese usuario no está bloqueado.',
-        'show_profile' => 'mostrar perfil',
+        'show_profile' => 'Mostrar perfil',
         'too_many' => 'Límite de bloqueos alcanzado.',
         'button' => [
             'block' => 'Bloquear',
@@ -61,33 +61,33 @@ return [
 
     'card' => [
         'loading' => 'Cargando...',
-        'send_message' => 'enviar mensaje',
+        'send_message' => 'Enviar mensaje',
     ],
 
     'disabled' => [
-        'title' => '',
-        'warning' => "",
+        'title' => '¡Oh, oh! Parece que tu cuenta ha sido desactivada.',
+        'warning' => "En caso de que haya infringido una norma, tenga en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puede ponerse en contacto con nosotros si lo considera necesario. Tenga en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada dará lugar a una <strong>ampliación de este período de espera de un mes</strong>. Tenga en cuenta también que por <strong>cada cuenta que cree, estará infringiendo aún más las normas</strong>. ¡Le recomendamos encarecidamente que no siga este camino!",
 
         'if_mistake' => [
-            '_' => '',
-            'email' => '',
+            '_' => 'Si cree que se trata de un error, puede ponerse en contacto con nosotros (por :email o haciendo clic en el "?" en la esquina inferior derecha de esta página). Tenga en cuenta que siempre confiamos plenamente en nuestras acciones, ya que se basan en datos muy sólidos. Nos reservamos el derecho de ignorar su petición si consideramos que está siendo intencionadamente deshonesto.',
+            'email' => 'correo electrónico',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'Su cuenta se ha considerado comprometida. Puede ser desactivada temporalmente mientras se confirma su identidad.',
+            'opening' => 'Hay un serie de razones que pueden resultar en la desactivación de su cuenta:',
 
             'tos' => [
-                '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                '_' => 'Ha infringido una o más de nuestras :community_rules o :tos.',
+                'community_rules' => 'normas de la comunidad',
+                'tos' => 'términos de servicio',
             ],
         ],
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Tu cuenta no ha sido usada en mucho tiempo.",
         ],
     ],
 
@@ -95,10 +95,10 @@ return [
         '_' => 'Iniciar sesión',
         'button' => 'Iniciar sesión',
         'button_posting' => 'Iniciando sesión...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'El inicio de sesión con correo electrónico está actualmente desactivado. Por favor, utilice el nombre de usuario en su lugar.',
         'failed' => 'Inicio de sesión incorrecto',
         'forgot' => '¿Olvidaste tu contraseña?',
-        'info' => '',
+        'info' => 'Por favor, inicia sesión para continuar',
         'locked_ip' => 'Tu dirección IP está bloqueada. Espera unos minutos.',
         'password' => 'Contraseña',
         'register' => "¿No tienes una cuenta de osu!? Crea una nueva",
@@ -161,20 +161,20 @@ return [
         'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
-        'previous_usernames' => 'Antes conocido como',
+        'previous_usernames' => 'antes conocido como',
         'plays_with' => 'Juega con :devices',
         'title' => "Perfil de :username",
 
         'edit' => [
             'cover' => [
-                'button' => 'Cambiar Portada de Perfil',
+                'button' => 'Cambiar portada de perfil',
                 'defaults_info' => 'Más opciones de portadas estarán disponibles en el futuro',
                 'upload' => [
                     'broken_file' => 'Error al procesar la imagen. Verifica la imagen subida e intenta de nuevo.',
                     'button' => 'Subir imagen',
                     'dropzone' => 'Suelta aquí para subir',
                     'dropzone_info' => 'También puedes soltar tu imagen aquí para subirla',
-                    'size_info' => 'El tamaño de la portada debe ser de 2800x620',
+                    'size_info' => 'El tamaño de la portada debe ser de 2400x640',
                     'too_large' => 'El archivo subido es demasiado grande.',
                     'unsupported_format' => 'Formato no soportado.',
 
@@ -254,7 +254,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',
-                'available_info' => "Los kudosu se puede cambiar por estrellas kudosu, lo que ayudará a que tu beatmap reciba más atención. Este es el número de kudosus que aún has intercambiado.",
+                'available_info' => "Los kudosu pueden ser intercambiados por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.",
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu obtenido',
@@ -322,7 +322,7 @@ return [
             'top_ranks' => [
                 'download_replay' => 'Descargar Repetición',
                 'empty' => 'No hay records de rendimiento impresionantes aún. :(',
-                'not_ranked' => 'Sólo los mapas rankeados dan pp.',
+                'not_ranked' => 'Sólo los mapas clasificados dan pp.',
                 'pp_weight' => 'valorado :percentage',
                 'title' => 'Rangos',
 
@@ -409,7 +409,7 @@ return [
             'medals' => 'Medallas',
             'play_count' => 'Conteo de jugadas',
             'play_time' => 'Tiempo de juego total',
-            'ranked_score' => 'Puntuación rankeada',
+            'ranked_score' => 'Puntuación clasificada',
             'replays_watched_by_others' => 'Repeticiones vistas por otros',
             'score_ranks' => 'Clasificación de las puntuaciones',
             'total_hits' => 'Golpes totales',

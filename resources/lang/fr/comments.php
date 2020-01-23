@@ -22,6 +22,7 @@ return [
     'deleted' => 'supprimé',
     'deleted_count' => ':count_delimited a supprimé le commentaire|:count_delimited a supprimé les commentaires',
     'edited' => 'édité par :user :timeago',
+    'pinned' => '',
     'empty' => 'Il n’y a pas encore de commentaires.',
     'load_replies' => 'charger les réponses',
     'replies' => 'Réponses',
@@ -49,7 +50,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'liste',
     ],
 
     'placeholder' => [
@@ -59,6 +60,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'commentaires',
     ],
 ];

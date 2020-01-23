@@ -19,15 +19,16 @@
 @extends('master', [
     'currentAction' => 'contests',
     'currentSection' => 'community',
+    'legacyFont' => false,
     'title' => "Contests",
 ])
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'links' => [['url' => route('contests.index'), 'title' => trans('layout.header.contests.index')]],
+        'links' => [['url' => route('contests.index'), 'title' => trans('contest.index.nav_title')]],
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.contests._'),
-        'subSection' => trans('layout.header.contests.index'),
+        'section' => trans('layout.header.community._'),
+        'subSection' => trans('layout.header.community.contests'),
         'theme' => 'contests',
     ]])
 

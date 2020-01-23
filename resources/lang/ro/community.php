@@ -27,34 +27,34 @@ return [
             'instructions' => 'Faceți clic pe butonul în formă de inimă pentru a merge la magazinul osu!',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'De ce ar trebui să suport osu!? Unde se duc bani?',
 
             'team' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Ajută echipa',
+                'description' => 'O echipă mică dezvoltează și rulează osu!. Suportul tău îi ajută pe ei să, știi tu... trăiască.',
             ],
             'infra' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Infrastructura de Server',
+                'description' => 'Contribuțiile merg către servere pentru a menține website-ul, Serviciile multiplayer, Clasamente Online, etc.',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Artiști renumiți',
+                'description' => 'Cu suportul tău, putem să ajungem la și mai mulți artiști geniali și să licităm și mai multă muzică grozavă pentru folosirea în osu!',
+                'link_text' => 'Vezi roster-ul curent &raquo;',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Menține osu! sine-stătător',
+                'description' => 'Contribuțiile tale țin jocul independent și complet gratuit de reclame și sponsori de afară.',
             ],
             'tournaments' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Turnee Oficiale',
+                'description' => 'Ajută fondatul și menținerea (și premiile pentru) osu oficial! Turnee mondiale.',
+                'link_text' => 'Explorează turnee &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Deschide Programul Sursă Bounty',
+                'description' => 'Sprijină contribuitorii comunității care și-au dat timpul și efortul să ajute creerea osu! mai bună.',
+                'link_text' => 'Află mai mult &raquo;',
             ],
         ],
         'perks' => [
@@ -65,18 +65,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => '',
-                'description' => "",
+                'title' => 'Clasament Prieteni',
+                'description' => "Să vedem cum concurezi peste prietenii tăi pe un clasament într-un beatmap, ambele în joc și pe website.",
             ],
 
             'country_ranking' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Clasament Țară',
+                'description' => 'Cucerește țara ta înainte de a cuceri lumea.',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Filtrează după Moderatori',
+                'description' => 'Asociază doar cu oamenii care joacă HDHR? Nicio problemă!',
             ],
 
             'auto_downloads' => [
@@ -135,20 +135,20 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Mai multe favorite',
+                'description' => 'Numărul maxim de beatmap-uri care poți favoriza este mărit din :normally &rarr; :supporter',
             ],
             'more_friends' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Mai Mulți Prieteni',
+                'description' => 'Numărul maxim de prieteni pe care în poți avea este mărit din :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Distribuie mai multe Beatmap-uri',
+                'description' => 'Câte beatmap-uri neclasate poți avea în același timp este calculat dintr-o bază valută plus încă un bonus pentru fiecare beatmap clasat acum ai (până la limită).<br/><br/>Normal acesta este 4 plus 1 per beatmap clasat (până la 2). Cu ajutător, aceste se mărește la 8 plus 1 per beatmap clasat (până la 12).',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Clasamente Prieteni',
+                'description' => 'Completează cu prietenii tăi și vezi cât clasezi înpotriva lor!*<br/><br/><small>* nu este încă disponibil pe site-ul nou, disponibilcurând(tm)</small>',
             ],
 
         ],

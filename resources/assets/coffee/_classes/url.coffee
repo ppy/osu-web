@@ -36,7 +36,7 @@ class @Url
   ].join('|')
 
 
-  @beatmapDownloadDirect: (id) -> "osu://dl/#{id}"
+  @beatmapDownloadDirect: (id) -> "osu://b/#{id}"
 
   @changelogBuild: (build) ->
     laroute.route 'changelog.build', stream: build.update_stream.name, build: build.version

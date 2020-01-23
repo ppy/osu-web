@@ -25,7 +25,7 @@ return [
         'peak' => 'Maxim, :count utilizatori online',
         'players' => '<strong>:count</strong> jucători înregistrați',
         'title' => 'bine ai venit',
-        'see_more_news' => '',
+        'see_more_news' => 'vezi mai multe noutăți',
 
         'slogan' => [
             'main' => 'cel mai bun joc de ritm free-to-win',
@@ -37,7 +37,7 @@ return [
         'advanced_link' => 'Căutare avansată',
         'button' => 'Căutare',
         'empty_result' => 'Nimic găsit!',
-        'keyword_required' => '',
+        'keyword_required' => 'Un cuvânt cheie este necesar',
         'placeholder' => 'tastează pentru a căuta',
         'title' => 'Caută',
 
@@ -129,7 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Noi beatmaps clasate',
             'popular' => 'Beatmaps populare',
-            'by_user' => '',
+            'by_user' => 'de :user',
         ],
         'buttons' => [
             'download' => 'Descarcă osu!',

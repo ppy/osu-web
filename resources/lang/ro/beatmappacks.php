@@ -21,7 +21,7 @@
 return [
     'index' => [
         'description' => 'Colecțiile pre-ambalate de beatmaps sunt bazate în jurul unei teme comune.',
-        'nav_title' => '',
+        'nav_title' => 'listare',
         'title' => 'Pachete beatmap',
 
         'blurb' => [

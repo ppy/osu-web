@@ -90,6 +90,15 @@ return [
             '_' => '',
         ],
 
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
+        ],
+
         'tournaments' => [
             '_' => '',
             'index' => '',
@@ -119,6 +128,7 @@ return [
             'beatmapset-watches-index' => '',
             'changelog-build' => 'bygget',
             'changelog-index' => 'ändringslogg',
+            'client_verifications-create' => '',
             'forum-topic-watches-index' => '',
             'friends-index' => 'vänner',
             'getDownload' => 'ladda ner',

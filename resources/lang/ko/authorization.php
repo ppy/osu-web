@@ -111,7 +111,7 @@ return [
 
             'store' => [
                 'play_more' => '포럼에 글을 올리기 전에 게임을 플레이해주세요, 제발요! 만약 플레이하는데 문제가 있다면, Help and Support 포럼에 글을 남겨주세요.',
-                'too_many_help_posts' => "추가 글을 더 남기려면 게임을 플레이해야 합니다. 만약 아직도 게임을 하는 데 문제가 있다면, support@ppy.sh 에 이메일을 보내주세요.", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "글을 더 남기려면 게임을 플레이해야 합니다. 만약 게임 진행에 문제가 있다면, support@ppy.sh 에 이메일을 보내주세요.", // FIXME: unhardcode email address.
             ],
         ],
 

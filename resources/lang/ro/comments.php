@@ -22,6 +22,7 @@ return [
     'deleted' => 'șters',
     'deleted_count' => ':count_delimited comentariu șters|:count_delimited comentariu șters',
     'edited' => 'editat :timeago de :user',
+    'pinned' => '',
     'empty' => 'Niciun comentariu încă.',
     'load_replies' => 'încarcă răspunsurile',
     'replies' => 'Răspunsuri',
@@ -49,7 +50,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'listare',
     ],
 
     'placeholder' => [
@@ -59,6 +60,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'comentarii',
     ],
 ];

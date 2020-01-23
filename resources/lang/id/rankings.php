@@ -20,7 +20,7 @@
 
 return [
     'country' => [
-        'filter' => '',
+        'filter' => 'disortir berdasarkan negara',
     ],
 
     'type' => [

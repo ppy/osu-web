@@ -21,7 +21,7 @@
 return [
     'index' => [
         'description' => 'Coleções pré-empacotadas de beatmaps baseadas num tema em comum.',
-        'nav_title' => '',
+        'nav_title' => 'listagem',
         'title' => 'Pacotes de beatmap',
 
         'blurb' => [

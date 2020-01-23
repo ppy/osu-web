@@ -25,13 +25,13 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
+            '_' => 'administrator',
             'beatmapset' => 'zestaw beatmap',
             'beatmapset_covers' => 'tła zestawów beatmap',
             'contest' => 'konkurs',
             'contests' => 'konkursy',
             'root' => 'konsola',
-            'store_orders' => '',
+            'store_orders' => 'administrator sklepu',
         ],
 
         'artists' => [
@@ -41,10 +41,10 @@ return [
 
         'beatmapsets' => [
             '_' => 'beatmapy',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            'discussions' => 'dyskusja',
+            'index' => 'lista',
+            'show' => 'informacje',
+            'packs' => 'paczki',
         ],
 
         'changelog' => [
@@ -53,9 +53,9 @@ return [
         ],
 
         'community' => [
-            '_' => 'Społeczność »',
+            '_' => 'społeczność',
             'comments' => 'komentarze',
-            'forum' => 'Forum',
+            'forum' => 'forum',
             'livestream' => 'na żywo',
         ],
 
@@ -75,19 +75,28 @@ return [
 
         'home' => [
             '_' => 'strona główna',
-            'password_reset' => '',
+            'password_reset' => 'zresetuj hasło',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => 'mecz',
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => 'uwaga',
         ],
 
         'rankings' => [
             '_' => 'ranking',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
@@ -96,8 +105,8 @@ return [
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
+            '_' => 'użytkownik',
+            'forum_posts' => 'posty na forum',
             'modding' => 'modowanie',
             'show' => 'informacje',
         ],
@@ -116,10 +125,11 @@ return [
             '_' => 'strona główna',
             'account-edit' => 'ustawienia',
             'account-verifyLink' => 'Weryfikacja zakończona',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => 'obserwowane dyskusje',
             'changelog-build' => 'kompilacja',
             'changelog-index' => 'zmiany',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => 'subskrybcje wątków',
             'friends-index' => 'znajomi',
             'getDownload' => 'pobierz',
             'getIcons' => 'ikony',
@@ -133,7 +143,7 @@ return [
             'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
             'team' => 'zespół',
-            'testflight' => '',
+            'testflight' => 'testy beta',
         ],
         'profile' => [
             '_' => 'profil',

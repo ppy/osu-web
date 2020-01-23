@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Paiement',
+        'info' => '',
         'more_goodies' => 'Je souhaite regarder d\'autres goodies avant de passer commande',
         'shipping_fees' => 'frais de livraison',
         'title' => 'Panier',
@@ -145,5 +146,9 @@ return [
             '_' => 'Vous devez être :link pour changer de nom !',
             'link_text' => 'connecté',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

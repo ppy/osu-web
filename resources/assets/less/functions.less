@@ -295,6 +295,15 @@
   }
 }
 
+.at2x-fallback(@var, @fallback) {
+  @fallback2x: replace(@fallback, "(\.[^.]+)$", "@2x$1");
+  background-image: var(@var, url(@fallback));
+
+  @media @highdpi {
+    background-image: var(~"@{var}-2x", url(@fallback2x));
+  }
+}
+
 // Will force the element to be rendered in its own layer
 // in hardware accelerated mode.
 // Be careful that elements using this will have z-index context applied.

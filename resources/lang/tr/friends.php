@@ -23,8 +23,8 @@ return [
     'too_many' => 'Arkadaş sınırına ulaşıldı.',
 
     'buttons' => [
-      'add' => 'arkadaş ekle',
-      'disabled' => 'arkadaşlar',
-      'remove' => 'arkadaşlıktan çıkar',
+        'add' => 'arkadaş ekle',
+        'disabled' => 'arkadaşlar',
+        'remove' => 'arkadaşlıktan çıkar',
     ],
 ];
