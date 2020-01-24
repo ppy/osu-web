@@ -43,6 +43,7 @@
   &__selectors {
     align-items: center;
     display: flex;
+    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
   }
 
   &__stripe {
@@ -52,7 +53,7 @@
     height: 32px;
     margin: 0 10px;
     padding: 0;
-    user-select: none;
+    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
     width: 2px;
 
     @media @mobile {
@@ -63,14 +64,14 @@
   &__timestamp {
     color: @osu-colour-f1;
     font-size: 9px;
-    user-select: none;
+    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
     width: 45px;
   }
 
   &__trashcan {
     .reset-input();
     height: 32px;
-    user-select: none;
+    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
     padding: 5px;
     margin-left: 10px;
     color: @osu-colour-f1;
