@@ -43,7 +43,6 @@ class HomeController extends Controller
             'only' => [
                 'downloadQuotaCheck',
                 'quickSearch',
-                'search',
             ],
         ]);
 

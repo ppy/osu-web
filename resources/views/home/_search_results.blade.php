@@ -16,7 +16,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="search-result search-result--{{ $mode }}">
-    @if ($search->getError() !== null)
+    @if (!auth()->check() && $search->isLoginRequired())
+        <div>login required to view {{ $mode }}</div>
+    @elseif ($search->getError() !== null)
         <div class="search-result__row search-result__row--notice">
             {{ search_error_message($search->getError()) }}
         </div>
