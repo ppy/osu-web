@@ -49,7 +49,6 @@
     "slate": "^0.57.1",
     "slate-auto-replace": "^0.12.1",
     "slate-history": "^0.57.1",
-    "slate-instant-replace": "../slate-instant-replace",
     "slate-react": "^0.57.1",
     "slate-soft-break": "^0.9.0",
     "terser-webpack-plugin": "^1.4.1",

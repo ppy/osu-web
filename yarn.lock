@@ -8233,9 +8233,6 @@ slate-history@^0.57.1:
     immer "^5.0.0"
     is-plain-object "^3.0.0"
 
-slate-instant-replace@../slate-instant-replace:
-  version "0.1.12"
-
 slate-react@^0.57.1:
   version "0.57.1"
   resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.57.1.tgz#219a95b7caaea365a7f6fac5f3f5aa2e9da62295"
