@@ -91,12 +91,12 @@ return [
         ],
 
         'store' => [
-            '_' => '',
-            'cart' => '',
-            'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            '_' => 'osu! 商店',
+            'cart' => '购物车',
+            'order' => '发票',
+            'orders' => '历史订单',
+            'product' => '商品',
+            'products' => '商品',
         ],
 
         'tournaments' => [
@@ -128,7 +128,7 @@ return [
             'beatmapset-watches-index' => '谱面关注列表',
             'changelog-build' => '版本',
             'changelog-index' => '更新日志',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'osu! 客户端验证',
             'forum-topic-watches-index' => '订阅的主题',
             'friends-index' => '好友',
             'getDownload' => '下载',

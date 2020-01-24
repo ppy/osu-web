@@ -29,7 +29,7 @@
         'subSection' => trans('wiki.main.title'),
         'theme' => 'help',
     ]])
-        @slot('titleAppend')
+        @slot('navAppend')
             @include('wiki._actions')
         @endslot
     @endcomponent

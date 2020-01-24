@@ -40,7 +40,7 @@ return [
         ],
 
         'beatmapsets' => [
-            '_' => 'beatmapy',
+            '_' => 'beatmapa',
             'discussions' => 'dyskusja',
             'index' => 'lista',
             'show' => 'informacje',
@@ -79,11 +79,11 @@ return [
         ],
 
         'matches' => [
-            '_' => 'mecz',
+            '_' => 'historia meczu',
         ],
 
         'notice' => [
-            '_' => 'uwaga',
+            '_' => 'powiadomienie',
         ],
 
         'rankings' => [
@@ -91,12 +91,12 @@ return [
         ],
 
         'store' => [
-            '_' => '',
-            'cart' => '',
-            'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            '_' => 'sklep osu!',
+            'cart' => 'koszyk',
+            'order' => 'faktura',
+            'orders' => 'historia zamówień',
+            'product' => 'produkt',
+            'products' => 'produkty',
         ],
 
         'tournaments' => [
@@ -123,12 +123,12 @@ return [
     'menu' => [
         'home' => [
             '_' => 'strona główna',
-            'account-edit' => 'ustawienia',
+            'account-edit' => 'ustawienia konta',
             'account-verifyLink' => 'Weryfikacja zakończona',
             'beatmapset-watches-index' => 'obserwowane dyskusje',
             'changelog-build' => 'kompilacja',
             'changelog-index' => 'zmiany',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'Weryfikacja klienta osu!',
             'forum-topic-watches-index' => 'subskrybcje wątków',
             'friends-index' => 'znajomi',
             'getDownload' => 'pobierz',

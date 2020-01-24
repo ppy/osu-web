@@ -20,13 +20,13 @@
 
 return [
     'availability' => [
-        'disabled' => '該譜面現在無法下載。',
+        'disabled' => '該圖譜現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
         'more-info' => '點擊這裡查看更多訊息。',
     ],
 
     'index' => [
-        'title' => '譜面列表',
+        'title' => '圖譜列表',
         'guest_title' => '圖譜',
     ],
 

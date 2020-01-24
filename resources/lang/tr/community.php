@@ -53,7 +53,7 @@ return [
             ],
             'bounty-program' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Topluluğa katkı sağlamış ve kendi efor ve zamanlarını harcamış insanlara osu!\'yu daha iyi yapmak için destek verin.',
                 'link_text' => 'Daha fazlasını öğren &raquo;',
             ],
         ],
@@ -76,7 +76,7 @@ return [
 
             'mod_filtering' => [
                 'title' => 'Modlara Göre Filtrele',
-                'description' => '',
+                'description' => 'Sadece HDHR oynayan insanlarla mı muhattap oluyorsun? Hiç sıkıntı değil!',
             ],
 
             'auto_downloads' => [
@@ -144,7 +144,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Daha Fazla Beatmap Yükle',
-                'description' => '',
+                'description' => 'Ne kadar ranked olmayan beatmaplere sahip olabileceğin, temel bir değere ek olarak, ne kadar ranked beatmap sahip olmuşluğun varsa eklenerek belirlenir (bir sınıra kadar).<br/>Normalde bu her bir ranked map için fazladan 4 tane daha fazla ranked olmayan beatmap hakkına erişirsin (2\'ye kadar). Destekçilik ile bu 1 ranked beatmap için 8 e çıkar (12\'ye kadar).<br/>',
             ],
             'friend_filtering' => [
                 'title' => 'Arkadaş Sıralamaları',

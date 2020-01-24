@@ -25,7 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Paiement',
-        'info' => '',
+        'info' => ':count_delimited produit dans le panier ($:subtotal)|:count_delimited produits dans le panier ($:subtotal)',
         'more_goodies' => 'Je souhaite regarder d\'autres goodies avant de passer commande',
         'shipping_fees' => 'frais de livraison',
         'title' => 'Panier',

@@ -25,7 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Zapłać',
-        'info' => '',
+        'info' => ':count_delimited produkt w koszyku (:subtotal$)|:count_delimited produkty w koszyku (:subtotal$)|:count_delimited produktów w koszyku (:subtotal$)',
         'more_goodies' => 'Chcę przejrzeć inne produkty przed zakończeniem zamówienia',
         'shipping_fees' => 'koszt wysyłki',
         'title' => 'Koszyk',

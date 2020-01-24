@@ -129,7 +129,7 @@ return [
 
             'user_achievement_unlock' => [
                 '_' => 'Nova medalha',
-                'user_achievement_unlock' => '":title" obtida!',
+                'user_achievement_unlock' => 'Desbloqueaste ":title"!',
             ],
         ],
     ],
