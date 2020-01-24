@@ -20,7 +20,7 @@
 
 return [
     'require_login' => 'Te rugăm să te autentifici pentru a continua.',
-    'require_verification' => '',
+    'require_verification' => 'Vă rugăm să verificați pentru a continua.',
     'restricted' => "Nu poți face asta cât timp ești restricționat.",
     'silenced' => "Nu poți face asta cât timp ești amuțit.",
     'unauthorized' => 'Acces respins.',
@@ -32,7 +32,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Ai atins limita de nominalizări pentru această zi, te rugăm să încerci din nou mâine.',
-            'full_bn_required' => '',
+            'full_bn_required' => 'Trebuie să fi un nominator să participi în această nominare calificată.',
             'full_bn_required_hybrid' => 'Trebuie să fi un nominator complet pentru a nominaliza beatmap-uri care au mai mult de un singur mod de joc.',
             'incorrect_state' => 'S-a produs o eroare la efectuarea acestei acțiuni, încearcă să reîmprospătezi pagina.',
             'owner' => "Nu îți poți nominaliza propriul beatmap.",
@@ -54,14 +54,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Poți să ștergi doar postările tale.',
+            'resolved' => 'Nu poți șterge o postare din o discuție rezolvată.',
+            'system_generated' => 'Postările generate automat nu pot fi șterse.',
         ],
 
         'edit' => [
             'not_owner' => 'Doar proprietarul poate edita această postare.',
-            'resolved' => '',
+            'resolved' => 'Nu poți edita o postare din o discuție rezolvată.',
             'system_generated' => 'Postările generate automat nu pot fi editate.',
         ],
 
@@ -159,7 +159,7 @@ return [
                 'not_owner' => 'Numai proprietarul poate edita coperta.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Acest forum nu acceptă acoperiri topice.',
             ],
         ],
 

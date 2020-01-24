@@ -53,7 +53,7 @@
         'subSection' => $subSection,
         'theme' => 'help',
     ]])
-        @slot('titleAppend')
+        @slot('navAppend')
             @include('wiki._actions')
         @endslot
     @endcomponent

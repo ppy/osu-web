@@ -127,6 +127,12 @@ return [
     'scores' => [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
     ],
+
+    'seasonal' => [
+        'contest_id' => get_int(env('SEASONAL_CONTEST_ID')),
+        'ends_at' => env('SEASONAL_ENDS_AT'),
+    ],
+
     'static' => env('LEGACY_STATICS_HOST', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),

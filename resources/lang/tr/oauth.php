@@ -22,15 +22,9 @@ return [
     'cancel' => 'İptal et',
 
     'authorise' => [
-        'authorise' => 'İzin ver',
         'request' => 'hesabınıza erişmek için izin istiyor.',
         'scopes_title' => 'Bu uygulama şunları yapabilecek:',
         'title' => 'İzin İsteği',
-
-        'wrong_user' => [
-            '_' => ':user olarak giriş yaptınız. :logout_link.',
-            'logout_link' => 'Farklı bir kullanıcı olarak giriş yapmak için buraya tıklayın',
-        ],
     ],
 
     'authorized_clients' => [

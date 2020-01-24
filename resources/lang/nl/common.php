@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Administrator',
+        'authorise' => 'Autorisatie',
         'back_to_previous' => 'Terug naar vorige positie',
         'back_to_top' => 'Terug naar boven',
         'cancel' => 'Annuleer',
@@ -48,7 +49,7 @@ return [
         'expand' => 'uitbreiden',
         'hide' => 'verbergen',
         'permalink' => 'permalink',
-        'permalink_copied' => 'link gekopieerd',
+        'pin' => 'vastzetten',
         'post' => 'Post',
         'reply' => 'Beantwoord',
         'reply_reopen' => 'Beantwoord en Heropen',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Toon verwijderd',
         'show_more' => 'toon meer',
         'show_more_options' => 'toon meer opties',
+        'unpin' => 'losmaken',
         'update' => 'Update',
         'upload_image' => 'upload afbeelding',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Notitie',
+    ],
+
+    'wrong_user' => [
+        '_' => 'U bent ingelogd als :user. :logout_link.',
+        'logout_link' => 'Klik hier om in te loggen als een andere gebruiker',
     ],
 ];

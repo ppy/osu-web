@@ -153,6 +153,14 @@ interface BeatmapDiscussionPost {
   message: string;
 }
 
+interface Group {
+  description: string;
+  id: number;
+  identifier: string;
+  name: string;
+  short_name: string;
+}
+
 interface LangClass {
   _getPluralForm: (count: number) => number;
   _origGetPluralForm: (count: number) => number;
@@ -167,7 +175,7 @@ interface User {
   cover: Cover;
   current_mode_rank?: number;
   default_group: string;
-  group_badge?: string;
+  group_badge?: Group;
   id: number;
   is_active: boolean;
   is_bot: boolean;

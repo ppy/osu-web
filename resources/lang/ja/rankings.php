@@ -20,7 +20,7 @@
 
 return [
     'country' => [
-        'filter' => '',
+        'filter' => '国別でフィルタリング',
     ],
 
     'type' => [

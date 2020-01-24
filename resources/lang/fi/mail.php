@@ -28,7 +28,7 @@ return [
 
     'common' => [
         'closing' => '',
-        'hello' => '',
+        'hello' => 'Hei :user,',
         'report' => '',
     ],
 
@@ -111,7 +111,7 @@ return [
 
         'action_from' => [
             '_' => '',
-            'unknown_country' => '',
+            'unknown_country' => 'tuntemattomasta maasta',
         ],
     ],
 ];

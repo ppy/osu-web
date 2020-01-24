@@ -25,7 +25,8 @@ return [
 
     'cart' => [
         'checkout' => '결제',
-        'more_goodies' => '주문을 끝내기 전에 더 둘러볼게요',
+        'info' => '장바구니에 담긴 :count_delimited개의 항목 ($:subtotal)',
+        'more_goodies' => '주문을 끝내기 전에 더 둘러볼게요.',
         'shipping_fees' => '배송료',
         'title' => '장바구니',
         'total' => '합계',
@@ -58,7 +59,7 @@ return [
         ],
 
         'pending_checkout' => [
-            'line_1' => '이전 결제가 시작 됐지만 끝나지 않았습니다.',
+            'line_1' => '이전에 시작했던 결제가 끝나지 않았습니다.',
             'line_2' => '결제 수단을 선택하여 결제를 계속하세요.',
         ],
     ],
@@ -145,5 +146,9 @@ return [
             '_' => '유저이름을 바꾸려면 :link하셔야 합니다!',
             'link_text' => '로그인',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

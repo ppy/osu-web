@@ -397,9 +397,9 @@ return [
         ],
         'rank' => [
             'country' => 'Maakohtainen sijoitus pelimuodossa :mode',
-            'country_simple' => 'Maakohtaiset sijoitukset',
+            'country_simple' => 'Maakohtainen sijoitus',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
-            'global_simple' => 'Maailmanlaajuiset sijoitukset',
+            'global_simple' => 'Maailmanlaajuinen sijoitus',
         ],
         'stats' => [
             'hit_accuracy' => 'Tarkkuus',

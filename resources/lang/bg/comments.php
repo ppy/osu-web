@@ -22,6 +22,7 @@ return [
     'deleted' => 'изтрито',
     'deleted_count' => ':count_delimited изтрит коментар|:count_delimited изтрити коментари',
     'edited' => 'редактирано :timeago от :user',
+    'pinned' => '',
     'empty' => 'Все още няма коментари.',
     'load_replies' => '',
     'replies' => 'Отговори',

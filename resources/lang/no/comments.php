@@ -22,6 +22,7 @@ return [
     'deleted' => 'slettet',
     'deleted_count' => ':count_delimited slettet kommentar|:count_delimited slettede kommentarer',
     'edited' => 'redigert for :timeago av :user',
+    'pinned' => '',
     'empty' => 'Ingen kommentarer ennå.',
     'load_replies' => 'last inn svar',
     'replies' => 'Svar',

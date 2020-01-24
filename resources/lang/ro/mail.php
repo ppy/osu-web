@@ -111,7 +111,7 @@ return [
 
         'action_from' => [
             '_' => '',
-            'unknown_country' => '',
+            'unknown_country' => 'țară necunoscută',
         ],
     ],
 ];

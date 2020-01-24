@@ -24,7 +24,7 @@ return [
     'last_visit' => 'Son zamanlarda aktif',
     'new' => 'En son yüklenen',
     'old' => 'Eski',
-    'rank' => '',
+    'rank' => 'Sıralama',
     'top' => 'En üst',
     'username' => 'Kullanıcı adı',
 

@@ -26,80 +26,89 @@ return [
     'header' => [
         'admin' => [
             '_' => 'admin',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'capas de beatmapset',
             'contest' => 'concurso',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            'contests' => 'concursos',
+            'root' => 'console',
+            'store_orders' => 'loja admin',
         ],
 
         'artists' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'artistas em destaque',
+            'index' => 'listagem',
         ],
 
         'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            '_' => 'beatmap',
+            'discussions' => 'discussão',
+            'index' => 'listagem',
+            'show' => 'info',
+            'packs' => 'pacotes',
         ],
 
         'changelog' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'registro de alterações',
+            'index' => 'listagem',
         ],
 
         'community' => [
             '_' => 'Comunidade',
-            'comments' => '',
+            'comments' => 'comentários',
             'forum' => 'Fórum',
-            'livestream' => '',
+            'livestream' => 'transmissões ao vivo',
         ],
 
         'contests' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'concursos',
+            'index' => 'listagem',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => 'erro',
         ],
 
         'help' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'wiki',
+            'index' => 'índice',
         ],
 
         'home' => [
-            '_' => '',
-            'password_reset' => '',
+            '_' => 'início',
+            'password_reset' => 'redefinir senha',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => 'histórico de partidas',
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => 'aviso',
         ],
 
         'rankings' => [
-            '_' => '',
+            '_' => 'classificação',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'carrinho',
+            'order' => 'fatura',
+            'orders' => 'histórico de pedidos',
+            'product' => 'produto',
+            'products' => 'produtos',
         ],
 
         'tournaments' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'torneios',
+            'index' => 'listagem',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            '_' => 'jogador',
+            'forum_posts' => 'publicações do fórum',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
@@ -114,12 +123,13 @@ return [
     'menu' => [
         'home' => [
             '_' => 'início',
-            'account-edit' => 'configurações',
+            'account-edit' => 'configurações de conta',
             'account-verifyLink' => 'Verificação Concluída',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => 'notificações de modding',
             'changelog-build' => 'versão',
             'changelog-index' => 'registro de alterações',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => 'Verificação do cliente osu!',
+            'forum-topic-watches-index' => 'inscrições do fórum',
             'friends-index' => 'amigos',
             'getDownload' => 'baixar',
             'getIcons' => 'ícones',
@@ -132,8 +142,8 @@ return [
             'password-reset-index' => 'redefinir senha',
             'search' => 'busca',
             'supportTheGame' => 'apoie o jogo',
-            'team' => 'time',
-            'testflight' => '',
+            'team' => 'equipe',
+            'testflight' => 'vôo de teste',
         ],
         'profile' => [
             '_' => 'perfil',

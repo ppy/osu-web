@@ -25,81 +25,90 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            '_' => '管理',
+            'beatmapset' => '谱面集',
+            'beatmapset_covers' => '谱面集封面',
+            'contest' => '比赛',
+            'contests' => '竞赛',
+            'root' => '控制中心',
+            'store_orders' => '商店管理',
         ],
 
         'artists' => [
-            '_' => '',
-            'index' => '',
+            '_' => '精选艺术家',
+            'index' => '列表',
         ],
 
         'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            '_' => '谱面',
+            'discussions' => '讨论',
+            'index' => '列表',
+            'show' => '信息',
+            'packs' => '曲包',
         ],
 
         'changelog' => [
-            '_' => '',
-            'index' => '',
+            '_' => '更新日志',
+            'index' => '列表',
         ],
 
         'community' => [
             '_' => '社区',
-            'comments' => '',
+            'comments' => '评论',
             'forum' => '论坛',
-            'livestream' => '',
+            'livestream' => '直播',
         ],
 
         'contests' => [
-            '_' => '',
-            'index' => '',
+            '_' => '评选',
+            'index' => '列表',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => '错误',
         ],
 
         'help' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'wiki',
+            'index' => '主页',
         ],
 
         'home' => [
-            '_' => '',
-            'password_reset' => '',
+            '_' => '主页',
+            'password_reset' => '重置密码',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => '比赛历史',
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => '通知',
         ],
 
         'rankings' => [
-            '_' => '',
+            '_' => '排名',
+        ],
+
+        'store' => [
+            '_' => 'osu! 商店',
+            'cart' => '购物车',
+            'order' => '发票',
+            'orders' => '历史订单',
+            'product' => '商品',
+            'products' => '商品',
         ],
 
         'tournaments' => [
-            '_' => '',
-            'index' => '',
+            '_' => '官方比赛',
+            'index' => '列表',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            '_' => '玩家',
+            'forum_posts' => '论坛帖子',
+            'modding' => '摸图',
+            'show' => '信息',
         ],
     ],
 
@@ -116,10 +125,11 @@ return [
             '_' => '主页',
             'account-edit' => '设置',
             'account-verifyLink' => '验证完成',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => '谱面关注列表',
             'changelog-build' => '版本',
             'changelog-index' => '更新日志',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => 'osu! 客户端验证',
+            'forum-topic-watches-index' => '订阅的主题',
             'friends-index' => '好友',
             'getDownload' => '下载',
             'getIcons' => '图标',
@@ -133,7 +143,7 @@ return [
             'search' => '搜索',
             'supportTheGame' => '支持 osu!',
             'team' => '团队',
-            'testflight' => '',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => '个人资料',
@@ -169,7 +179,7 @@ return [
             'performance' => '表现',
             'charts' => '月赛',
             'score' => '得分',
-            'country' => '国家',
+            'country' => '国家和地区',
             'kudosu' => 'kudosu',
         ],
         'community' => [
@@ -332,7 +342,7 @@ return [
             'forgot' => "我忘记了我的登录信息",
             'password' => '密码',
             'title' => '登录以继续',
-            'username' => '',
+            'username' => '用户名',
 
             'error' => [
                 'email' => "用户名或邮箱不存在",
