@@ -116,15 +116,16 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
     const stack = this.getStack(identity);
     const key = resolveStackId(identity);
 
-    this.deletedStacks.add(key);
-
     if (stack == null) {
       if (!this.deletedStacks.has(key)) {
+        this.deletedStacks.add(key);
         this.total -= readCount;
       }
 
       return;
     }
+
+    this.deletedStacks.add(key);
 
     stack.isRead = true;
     this.allStacks.delete(key);

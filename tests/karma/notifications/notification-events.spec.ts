@@ -369,6 +369,7 @@ describe('Notification Events', () => {
           store.stacks.updateWithBundle(bundleWithNotification);
 
           const bundle = { ...bundleBase } as NotificationBundleJson;
+          bundle.stacks = [];
           bundle.unread_count = baseUnreadCount;
           store.unreadStacks.updateWithBundle(bundle);
 
