@@ -27,7 +27,9 @@
                 @if (!empty($supporterStatus))
                     <!-- supporter status  -->
                     <div class="supporter-status__flex-container">
-                        <div class="supporter-heart{{ $supporterStatus['current'] ? ' supporter-heart--active' : '' }}"></div>
+                        <a class="supporter-eyecatch__link" href="{{ route('store.products.show', 'supporter-tag') }}" title="{{ trans('community.support.convinced.support') }}">
+                            <div class="supporter-heart{{ $supporterStatus['current'] ? ' supporter-heart--active' : '' }}"></div>
+                        </a>
                         <div class="supporter-status__flex-container-inner">
                             <div class="supporter-status__progress-bar supporter-status__progress-bar--active">
                                 <div class="supporter-status__progress-bar-fill supporter-status__progress-bar-fill--active" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
