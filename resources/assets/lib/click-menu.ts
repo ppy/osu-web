@@ -22,7 +22,7 @@ export default class ClickMenu {
   private current: string | null | undefined = null;
 
   constructor() {
-    $(document).on('click', '.js-click-menu', this.toggle);
+    $(document).on('click', '.js-click-menu[data-click-menu-target]', this.toggle);
     $(document).on('click', this.hide);
     document.addEventListener('turbolinks:load', this.restoreSaved);
     document.addEventListener('turbolinks:before-cache', this.saveCurrent);
@@ -91,11 +91,6 @@ export default class ClickMenu {
   toggle = (e: JQuery.ClickEvent) => {
     const menu = e.currentTarget;
     const tree = this.tree();
-
-    // Events bubble up, and when clicking stuff inside menu that's not a menu,
-    // this function will be called. When currentTarget is finally the closest
-    // menu from the clicked item, this function should not do anything.
-    if (this.current != null && tree.indexOf(menu.dataset.clickMenuId) !== -1) return;
 
     e.preventDefault();
     e.stopPropagation();
