@@ -89,7 +89,7 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
     if (notification != null) {
       if (!notification.isRead) {
         stack?.remove(notification);
-        if (type != null) type.total--;
+        type.total--;
 
         this.total--;
         notification.isRead = true;
@@ -101,7 +101,7 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
     if (stackNotification == null) {
       // notification may not have been loaded yet.
       // not known anywhere, skip
-      if (stack == null || type == null || identity.id == null) return;
+      if (stack == null || identity.id == null) return;
 
       // notification is past cursor, update counts
       if (identity.id < (stack.cursor?.id ?? 0)) {
