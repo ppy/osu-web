@@ -90,8 +90,12 @@ export default class ClickMenu {
 
   toggle = (e: JQuery.ClickEvent) => {
     const menu = e.currentTarget;
+    const tree = this.tree();
 
-    if (this.current != null && this.current === menu.dataset.clickMenuId) return;
+    // Events bubble up, and when clicking stuff inside menu that's not a menu,
+    // this function will be called. When currentTarget is finally the closest
+    // menu from the clicked item, this function should not do anything.
+    if (this.current != null && tree.indexOf(menu.dataset.clickMenuId) !== -1) return;
 
     e.preventDefault();
     e.stopPropagation();
@@ -100,7 +104,6 @@ export default class ClickMenu {
     let next = target;
 
     if (target != null) {
-      const tree = this.tree();
       const index = tree.indexOf(target);
 
       if (index !== -1) {
