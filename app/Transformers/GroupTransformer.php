@@ -18,38 +18,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Transformers;
 
-/**
- * @property Group $group
- * @property int $group_id
- * @property int $group_leader
- * @property User $user
- * @property int $user_id
- * @property int $user_pending
- */
-class UserGroup extends Model
+use App\Models\Group;
+use League\Fractal;
+
+class GroupTransformer extends Fractal\TransformerAbstract
 {
-    protected $table = 'phpbb_user_group';
-    public $timestamps = false;
-    protected $primaryKeys = ['user_id', 'group_id'];
-
-    public function group()
+    public function transform(Group $group)
     {
-        return $this->belongsTo(Group::class, 'group_id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function name()
-    {
-        static $lookup;
-
-        $lookup = $lookup ?? array_flip(static::GROUPS);
-
-        return $lookup[$this->group_id] ?? null;
+        return [
+            'id' => $group->getKey(),
+            'identifier' => $group->identifier,
+            'name' => $group->group_name,
+            'short_name' => $group->short_name,
+            'description' => $group->group_desc,
+            'colour' => $group->group_colour,
+        ];
     }
 }

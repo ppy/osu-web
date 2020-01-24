@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,38 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+.navbar-mobile-menu {
+  position: fixed;
+  top: @navbar-height;
+  padding: 0 10px;
+  background-color: @osu-colour-b5;
+  width: 100%;
+  max-height: calc((var(--vh, 1vh) * 100) - @navbar-height);
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  z-index: @z-index--nav-bar;
 
-/**
- * @property Group $group
- * @property int $group_id
- * @property int $group_leader
- * @property User $user
- * @property int $user_id
- * @property int $user_pending
- */
-class UserGroup extends Model
-{
-    protected $table = 'phpbb_user_group';
-    public $timestamps = false;
-    protected $primaryKeys = ['user_id', 'group_id'];
+  &:focus,
+  &:hover,
+  &:active,
+  & {
+    color: #fff;
+  }
 
-    public function group()
-    {
-        return $this->belongsTo(Group::class, 'group_id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function name()
-    {
-        static $lookup;
-
-        $lookup = $lookup ?? array_flip(static::GROUPS);
-
-        return $lookup[$this->group_id] ?? null;
-    }
+  &__items {
+    margin-top: 0;
+  }
 }

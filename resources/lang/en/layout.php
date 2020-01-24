@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'community',
             'comments' => 'comments',
+            'contests' => 'contests',
             'forum' => 'forum',
             'livestream' => 'live streams',
-        ],
-
-        'contests' => [
-            '_' => 'contests',
-            'index' => 'listing',
         ],
 
         'error' => [
