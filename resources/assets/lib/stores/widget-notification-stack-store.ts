@@ -127,7 +127,7 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
     }
 
     stack.isRead = true;
-    // this.stacks.delete(key);
+    this.allStacks.delete(key);
     this.total -= stack.total;
 
     const type = this.getOrCreateType(identity);
