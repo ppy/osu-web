@@ -56,15 +56,15 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
 
     switch (identityType) {
       case 'type':
-        this.handleType(first, event.readCount);
+        this.handleTypeRead(first, event.readCount);
         break;
 
       case 'stack':
-        this.handleStack(first, event.readCount);
+        this.handleStackRead(first, event.readCount);
         break;
 
       case 'notification':
-        event.data.forEach(this.handleNotification);
+        event.data.forEach(this.handleNotificationRead);
         break;
     }
   }
@@ -78,7 +78,7 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
     }
   }
 
-  private handleNotification = (identity: NotificationIdentity) => {
+  private handleNotificationRead = (identity: NotificationIdentity) => {
     if (resolveIdentityType(identity) !== 'notification') return;
 
     const notification = this.notificationStore.get(identity.id ?? 0);
@@ -112,7 +112,7 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
     }
   }
 
-  private handleStack(identity: NotificationIdentity, readCount: number) {
+  private handleStackRead(identity: NotificationIdentity, readCount: number) {
     const stack = this.getStack(identity);
     const key = resolveStackId(identity);
 
@@ -135,7 +135,7 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
     type.removeStack(stack);
   }
 
-  private handleType(identity: NotificationIdentity, readCount: number) {
+  private handleTypeRead(identity: NotificationIdentity, readCount: number) {
     const type = this.getOrCreateType(identity);
     this.total -= type.total;
 
