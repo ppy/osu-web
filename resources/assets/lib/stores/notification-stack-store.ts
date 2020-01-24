@@ -200,22 +200,17 @@ export default class NotificationStackStore implements DispatchListener {
     const type = this.getOrCreateType(fromJson(json));
     let stack = type.stacks.get(idFromJson(json));
     if (stack == null) {
-      stack = new NotificationStack(json.object_id, json.object_type, nameToCategory[json.name], this.resolver);
+      stack = NotificationStack.fromJson(json, this.resolver);
       type.stacks.set(stack.id, stack);
+    } else {
+      stack.updateWithJson(json);
     }
 
-    stack.updateWithJson(json);
-    this.types.get(stack.objectType)?.stacks.set(stack.id, stack);
+    type.stacks.set(stack.id, stack);
     this.allType.stacks.set(stack.id, stack);
   }
 
   private updateWithTypeJson(json: NotificationTypeJson) {
-    let type = this.types.get(json.name);
-    if (type == null) {
-      type = new NotificationType(json.name, this.resolver);
-      this.types.set(type.name, type);
-    }
-
-    type.updateWithJson(json);
+    this.getOrCreateType({ objectType: json.name }).updateWithJson(json);
   }
 }

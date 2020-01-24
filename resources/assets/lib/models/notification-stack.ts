@@ -102,8 +102,9 @@ export default class NotificationStack implements NotificationReadable {
   ) {}
 
   static fromJson(json: NotificationStackJson, resolver: NotificationResolver) {
-    const obj = new NotificationStack(json.object_id, json.object_type, categoryFromName(name), resolver);
-    return obj.updateWithJson(json);
+    const obj = new NotificationStack(json.object_id, json.object_type, categoryFromName(json.name), resolver);
+    obj.updateWithJson(json);
+    return obj;
   }
 
   @action
