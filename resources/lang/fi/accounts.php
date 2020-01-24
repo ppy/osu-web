@@ -78,7 +78,7 @@ return [
     'oauth' => [
         'authorized_clients' => '',
         'own_clients' => '',
-        'title' => '',
+        'title' => 'OAuth',
     ],
 
     'playstyles' => [

@@ -25,7 +25,7 @@ return [
             'regenerating' => 'Yeniden oluşturuluyor...',
             'remove' => 'Kaldır',
             'removing' => 'Kaldırılıyor...',
-            'title' => '',
+            'title' => 'Uyarlanmış beatmapsetler',
         ],
         'show' => [
             'covers' => 'Beatmap Seti Kapaklarını Yönet',
@@ -72,7 +72,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '',
+                'beatmapsets' => 'Beatmapsets',
                 'forum' => 'Forum',
                 'general' => 'Genel',
                 'store' => 'Mağaza',

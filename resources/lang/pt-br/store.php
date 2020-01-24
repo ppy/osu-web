@@ -25,7 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Pagar',
-        'info' => '',
+        'info' => ':count_delimited item no carrinho ($:subtotal)|:count_delimited itens no carrinho ($:subtotal)',
         'more_goodies' => 'Gostaria de conferir mais coisas antes de finalizar meu pedido',
         'shipping_fees' => 'taxas de envio',
         'title' => 'Carrinho de Compras',

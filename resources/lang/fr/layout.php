@@ -91,12 +91,12 @@ return [
         ],
 
         'store' => [
-            '_' => '',
-            'cart' => '',
-            'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            '_' => 'osu!store',
+            'cart' => 'panier',
+            'order' => 'facture',
+            'orders' => 'historique des commandes',
+            'product' => 'produit',
+            'products' => 'produits',
         ],
 
         'tournaments' => [
@@ -128,7 +128,7 @@ return [
             'beatmapset-watches-index' => 'liste de suivi de modding',
             'changelog-build' => 'build',
             'changelog-index' => 'notes de MàJ',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'vérification du client osu!',
             'forum-topic-watches-index' => 'abonnements aux sujets',
             'friends-index' => 'amis',
             'getDownload' => 'télécharger',
@@ -319,14 +319,14 @@ return [
         ],
         '500' => [
             'error' => 'Oh non ! Quelque chose s\'est cassé ! ;_;',
-            'description' => "Nous avons été notifié automatiquement de cette erreur.",
+            'description' => "Nous avons automatiquement été notifié de cette erreur.",
         ],
         'fatal' => [
             'error' => 'Oh non ! Quelque chose s\'est cassé ! (gravement) ;_;',
             'description' => "Nous avons été notifié automatiquement de cette erreur.",
         ],
         '503' => [
-            'error' => 'Maitenance en cours!',
+            'error' => 'Maintenance en cours!',
             'description' => "Les maintenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
             'link' => [
                 'text' => '@osustatus',
@@ -352,7 +352,7 @@ return [
 
         'register' => [
             'download' => 'Télécharger',
-            'info' => 'Vous avez besoin d\'un compte, mon cher. Pourquoi n\'en avez vous pas ?',
+            'info' => 'Téléchargez osu! pour créer votre propre compte!',
             'title' => "Vous n'avez pas de compte ?",
         ],
     ],

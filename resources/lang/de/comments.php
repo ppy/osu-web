@@ -22,7 +22,7 @@ return [
     'deleted' => 'gelöscht',
     'deleted_count' => ':count_delimited gelöschten Kommentar|:count_delimited gelöschte Kommentare',
     'edited' => 'bearbeitet :timeago von :user',
-    'pinned' => '',
+    'pinned' => 'angeheftet',
     'empty' => 'Noch keine Kommentare vorhanden.',
     'load_replies' => 'Antworten laden',
     'replies' => 'Antworten',
