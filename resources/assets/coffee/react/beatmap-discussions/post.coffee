@@ -75,7 +75,7 @@ export class Post extends React.PureComponent
       if @isOwner()
         'mapper'
       else
-        @props.user.group_badge
+        @props.user.group_badge?.identifier
 
     div
       className: topClasses

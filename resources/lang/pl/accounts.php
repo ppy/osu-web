@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'ustawienia',
+        'title_compact' => 'ustawienia konta',
         'username' => 'nazwa użytkownika',
 
         'avatar' => [

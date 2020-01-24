@@ -20,14 +20,14 @@
 
 return [
     'country' => [
-        'filter' => '',
+        'filter' => 'filtrado por país',
     ],
 
     'type' => [
-        'performance' => 'Rendimiento',
-        'charts' => 'Destacados',
-        'score' => 'Puntuación',
-        'country' => 'País',
+        'performance' => 'rendimiento',
+        'charts' => 'destacados',
+        'score' => 'puntuación',
+        'country' => 'país',
     ],
 
     'spotlight' => [

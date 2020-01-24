@@ -76,7 +76,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 
 $factory->state(App\Models\User::class, 'bng', function (Faker\Generator $faker) {
     return [
-        'group_id' => App\Models\UserGroup::GROUPS['bng'],
+        'group_id' => app('groups')->byIdentifier('bng')->getKey(),
     ];
 });
 
@@ -87,7 +87,7 @@ $factory->state(App\Models\User::class, 'restricted', function (Faker\Generator 
 });
 
 $factory->afterCreatingState(App\Models\User::class, 'bng', function ($user, $faker) {
-    $user->userGroups()->create(['group_id' => App\Models\UserGroup::GROUPS['bng']]);
+    $user->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
 });
 
 $factory->afterCreatingState(App\Models\User::class, 'silenced', function ($user, $faker) {

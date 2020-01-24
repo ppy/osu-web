@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => 'Das Anmelden per E-Mail ist derzeit deaktiviert. Bitte benutze stattdessen Deinen Benutzernamen.',
         'failed' => 'Falscher Login',
         'forgot' => 'Passwort vergessen?',
-        'info' => '',
+        'info' => 'Bitte melde dich an, um fortzufahren',
         'locked_ip' => 'Deine IP-Adresse ist gesperrt. Bitte warte ein paar Minuten.',
         'password' => 'Passwort',
         'register' => "Noch keinen osu!-Account? Erstell' einen",

@@ -30,25 +30,26 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'NOU',
     ],
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => '',
         'back_to_previous' => 'Revino la poziția anterioară',
         'back_to_top' => 'Înapoi sus',
         'cancel' => 'Anulează',
         'change' => 'modifică',
         'click_to_copy' => 'faceți clic pentru a copia în clipboard',
         'click_to_copy_copied' => 'copiat în clipboard!',
-        'close' => '',
+        'close' => 'Închide',
         'collapse' => 'restrânge',
         'delete' => 'Șterge',
         'edit' => 'Editează',
         'expand' => 'extinde',
         'hide' => 'ascunde',
         'permalink' => 'link permanent',
-        'permalink_copied' => 'link copiat',
+        'pin' => '',
         'post' => 'Postează',
         'reply' => 'Răspunde',
         'reply_reopen' => 'Răspundeți și deschideți din nou',
@@ -63,7 +64,8 @@ return [
         'show_deleted' => 'Arată șterse',
         'show_more' => 'arată mai mult',
         'show_more_options' => 'arată mai multe opţiuni',
-        'update' => '',
+        'unpin' => '',
+        'update' => 'Actualizează',
         'upload_image' => 'încarcă imaginea',
 
         'watch' => [
@@ -81,12 +83,12 @@ return [
         'minute_short_unit' => 'minut|minute',
         'minutes' => ':count minut|:count minute',
         'months' => ':count lună|:count luni',
-        'plus_others' => '',
-        'post' => '',
+        'plus_others' => '+ :count_delimited altul!|+ :count_delimited alții!',
+        'post' => ':count_delimited postare|:count_delimited postări',
         'second_short_unit' => 'secundă|secunde',
-        'star_priority' => '',
+        'star_priority' => ':count_delimited prioritate stea|:count_delimited Prioritați stea',
         'update' => ':count_delimited actualizare|:count_delimited actualizări',
-        'view' => '',
+        'view' => ':count_delimited vizualizare|:count_delimited vizualizări',
         'years' => ':count an|:count ani',
     ],
 
@@ -119,7 +121,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'caută...',
     ],
 
     'pagination' => [
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Notificare',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

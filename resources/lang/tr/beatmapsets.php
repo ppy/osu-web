@@ -77,7 +77,7 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Eğer bu beatmap\'de bir sorun bulduysanız, lütfen diskalifiye ediniz :link.',
                 'button_title' => '',
             ],
 
@@ -159,7 +159,7 @@ return [
             'qualified' => '',
             'wip' => '',
             'pending' => '',
-            'graveyard' => '',
+            'graveyard' => 'Mezarlık',
         ],
     ],
 ];

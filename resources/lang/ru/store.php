@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Проверка',
+        'info' => ':count_delimited товар в корзине ($:subtotal)|:count_delimited товара в корзине ($:subtotal)|:count_delimited товаров в корзине ($:subtotal)',
         'more_goodies' => 'Я хочу посмотреть другие товары перед завершением заказа',
         'shipping_fees' => 'стоимость доставки',
         'title' => 'Корзина',
@@ -145,5 +146,9 @@ return [
             '_' => 'Вы должны :link для смены имени пользователя!',
             'link_text' => 'войти в аккаунт',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

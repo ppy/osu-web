@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Pagamento',
+        'info' => ':count_delimited artigo no carrinho ($:subtotal)|:count_delimited artigos no carrinho ($:subtotal)',
         'more_goodies' => 'Quero adicionar mais brindes antes de completar o pedido',
         'shipping_fees' => 'custos de envio',
         'title' => 'Carrinho de compras',
@@ -32,7 +33,7 @@ return [
 
         'errors_no_checkout' => [
             'line_1' => 'Oh não, há problemas com o teu carrinho a impedir o pagamento!',
-            'line_2' => 'Remove ou atualiza os itens acima para continuar.',
+            'line_2' => 'Remove ou atualiza os artigos acima para continuar.',
         ],
 
         'empty' => [
@@ -117,8 +118,8 @@ return [
         'name' => 'Nome',
 
         'stock' => [
-            'out' => 'Este item está esgotado atualmente. Verifica mais tarde!',
-            'out_with_alternative' => 'Infelizmente este item está fora de stock. Usa a opção de colapsar para escolher um tipo diferente ou verifica mais tarde!',
+            'out' => 'Este artigo está esgotado atualmente. Volta mais tarde!',
+            'out_with_alternative' => 'Infelizmente este artigo está fora de stock. Usa a opção de colapsar para escolher um tipo diferente ou volta mais tarde!',
         ],
 
         'add_to_cart' => 'Adicionar ao carrinho',
@@ -145,5 +146,9 @@ return [
             '_' => 'Precisas de ser :link para mudares o teu nome!',
             'link_text' => 'sessão iniciada',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];
