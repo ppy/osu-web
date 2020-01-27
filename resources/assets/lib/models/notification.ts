@@ -22,8 +22,9 @@ import { computed, observable } from 'mobx';
 import { categoryFromName, categoryGroupKey } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
 import { NotificationIdentity } from 'notifications/notification-identity';
+import NotificationReadable from 'notifications/notification-readable';
 
-export default class Notification {
+export default class Notification implements NotificationReadable {
   createdAtJson?: string;
   details?: any;
   @observable isMarkingAsRead = false;

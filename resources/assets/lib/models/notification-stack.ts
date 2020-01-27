@@ -128,7 +128,7 @@ export default class NotificationStack implements NotificationReadable {
   markAsRead(notification?: Notification) {
     // not from this stack, ignore.
     if (notification == null || !this.notifications.has(notification.id)) { return; }
-    this.resolver.queueMarkNotificationAsRead(notification);
+    this.resolver.queueMarkAsRead(notification);
   }
 
   @action

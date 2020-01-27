@@ -30,9 +30,8 @@ import { NotificationEventMoreLoaded, NotificationEventRead } from './notificati
 
 // I don't know what to name this
 export class NotificationResolver {
-  private debouncedSendQueued = debounce(this.sendQueued, 500);
-  private queued = new Map<number, Notification>();
-  private queuedXhr?: JQuery.jqXHR;
+  private queuedMarkedAsRead = new Map<number, Notification>();
+  private sendQueuedMarkedAsReadDebounced = debounce(this.sendQueuedMarkedAsRead, 500);
 
   @action
   loadMore(identity: NotificationIdentity, context: NotificationContextData, cursor?: NotificationCursor) {
@@ -56,6 +55,17 @@ export class NotificationResolver {
   queueMarkAsRead(readable: NotificationReadable) {
     readable.isMarkingAsRead = true;
 
+    // single notifications are batched, also it's annoying if they get removed
+    // from display while the user is clicking.
+    if (readable instanceof Notification) {
+      if (readable.canMarkRead) {
+        this.queuedMarkedAsRead.set(readable.id, readable);
+      }
+
+      this.sendQueuedMarkedAsReadDebounced();
+      return;
+    }
+
     $.ajax({
       data: toJson(readable.identity),
       dataType: 'json',
@@ -68,37 +78,22 @@ export class NotificationResolver {
     .always(action(() => readable.isMarkingAsRead = false));
   }
 
-  @action
-  queueMarkNotificationAsRead(notification: Notification) {
-    if (notification.canMarkRead) {
-      notification.isMarkingAsRead = true;
-      this.queued.set(notification.id, notification);
-    }
+  private sendQueuedMarkedAsRead() {
+    if (this.queuedMarkedAsRead.size === 0) return;
 
-    this.debouncedSendQueued();
-  }
-
-  private sendQueued() {
-    if (this.queued.size === 0) return;
-
-    const notifications = [...this.queued.values()];
+    const notifications = [...this.queuedMarkedAsRead.values()];
     const identities = notifications.map((notification) => notification.identity);
+    this.queuedMarkedAsRead.clear();
 
-    this.queuedXhr = $.ajax({
+    $.ajax({
       data: { notifications: identities.map(toJson) },
       dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),
-    });
-
-    this.queued.clear();
-
-    this.queuedXhr
+    })
     .then(action(() => {
       dispatch(new NotificationEventRead(identities, 0));
     }))
     .always(action(() => notifications.forEach((notification) => notification.isMarkingAsRead = false)));
-
-    return this.queuedXhr;
   }
 }
