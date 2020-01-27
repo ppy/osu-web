@@ -202,12 +202,10 @@ export default class NotificationStackStore implements DispatchListener {
     if (stack == null) {
       stack = NotificationStack.fromJson(json, this.resolver);
       type.stacks.set(stack.id, stack);
+      this.allType.stacks.set(stack.id, stack);
     } else {
       stack.updateWithJson(json);
     }
-
-    type.stacks.set(stack.id, stack);
-    this.allType.stacks.set(stack.id, stack);
   }
 
   private updateWithTypeJson(json: NotificationTypeJson) {
