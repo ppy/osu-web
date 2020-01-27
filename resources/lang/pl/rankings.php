@@ -20,7 +20,7 @@
 
 return [
     'country' => [
-        'filter' => 'filtrowanie wg. kraju',
+        'filter' => 'filtrowanie wg kraju',
     ],
 
     'type' => [

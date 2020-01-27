@@ -65,20 +65,20 @@ return [
     ],
 
     'disabled' => [
-        'title' => 'Och! Wygląda na to, że twoje konto zostało zdezaktywowane.',
-        'warning' => "",
+        'title' => 'Och! Wygląda na to, że Twoje konto zostało zdezaktywowane.',
+        'warning' => "Jeżeli złamiesz zasady, pamiętaj o tym, że zwyczajowo obowiązuje okres oczekiwania o długości 1 miesiąca, podczas którego nie będziemy przyjmować żadnych próśb o amnestię. Po tym czasie możesz skontaktować się z nami, jeśli uznasz to za konieczne. Miej na uwadze, że tworzenie nowych kont po otrzymaniu blokady na jedno z nich poskutkuje <strong>przedłużeniem tego miesięcznego okresu oczekiwania</strong>. Pamiętaj także, że <strong>każdorazowe utworzenie nowego konta jest dalszym łamaniem zasad</strong>. Stanowczo zalecamy nieobieranie tej ścieżki!",
 
         'if_mistake' => [
-            '_' => 'Jeżeli uważasz, że to pomyłka, skontaktuj się z nami (poprzez :email lub kliknięcie znaku zapytania w prawym dolnym rogu tej strony). Miej na uwadze, że w pełni zdajemy sobie sprawę z naszych działań, ponieważ opierają się one na zgromadzonych informacjach. Mamy prawo odrzucić twój wniosek, jeżeli uważamy, że umyślnie próbujesz wprowadzić nas w błąd.',
-            'email' => 'wiadomość e-mail',
+            '_' => 'Jeżeli uważasz, że to pomyłka, skontaktuj się z nami (poprzez :email lub kliknięcie znaku zapytania w prawym dolnym rogu tej strony). Miej na uwadze, że zawsze jesteśmy całkowicie pewni naszych działań, ponieważ opierają się one na wiarygodnych danych. Mamy prawo odrzucić Twój wniosek, jeżeli uważamy, że umyślnie próbujesz wprowadzić nas w błąd.',
+            'email' => 'e-mail',
         ],
 
         'reasons' => [
-            'compromised' => 'Twoje konto zostało uznane za skradzione. Zdezaktywowaliśmy je do czasu potwierdzenia twojej tożsamości.',
-            'opening' => 'Istnieje kilka powodów, przez które twoje konto mogło zostać zdezaktywowane:',
+            'compromised' => 'Bezpieczeństwo twojego konta zostało uznane za naruszone. Zdezaktywowaliśmy je do czasu potwierdzenia twojej tożsamości.',
+            'opening' => 'Istnieje kilka powodów, przez które Twoje konto mogło zostać zdezaktywowane:',
 
             'tos' => [
-                '_' => 'Złamałeś(aś) :community_rules lub :tos osu!.',
+                '_' => 'Złamałeś(-aś) :community_rules lub :tos osu!.',
                 'community_rules' => 'zasady społeczności',
                 'tos' => 'warunki świadczenia usług',
             ],
@@ -87,7 +87,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "Twoje konto nie było używane przez długi okres czasu.",
+            'inactive_different_country' => "Brak aktywności przez długi czas.",
         ],
     ],
 
@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => 'Logowanie się przy użyciu adresu e-mail jest obecnie wyłączone. Użyj swojej nazwy użytkownika.',
         'failed' => 'Nieprawidłowe dane logowania',
         'forgot' => 'Nie pamiętasz hasła?',
-        'info' => 'Zaloguj się, aby kontynuować',
+        'info' => 'Zaloguj się, aby kontynuować.',
         'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
         'password' => 'Hasło',
         'register' => "Nie posiadasz konta osu!? Utwórz nowe.",

@@ -66,7 +66,7 @@
             </div>
         @endforeach
 
-        <div class="nav2__col nav2__col--menu js-react--quick-search">
+        <div class="nav2__col nav2__col--menu js-react--quick-search-button">
             <a
                 href="{{ route('search') }}"
                 class="

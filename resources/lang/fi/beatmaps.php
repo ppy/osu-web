@@ -258,7 +258,7 @@ return [
         'graveyard' => 'Hautausmaa',
         'leaderboard' => '',
         'loved' => 'Rakastettu',
-        'mine' => '',
+        'mine' => 'Mappini',
         'pending' => 'Vireillä & WIP',
         'qualified' => 'Esihyväksytty',
         'ranked' => '',

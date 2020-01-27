@@ -42,7 +42,7 @@ return [
                 '_' => '',
                 'beatmapset_discussion_qualified_problem' => '',
                 'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_qualified_problem_compact' => ':username tarafından rapor edildi: ":content"',
                 'beatmapset_discussion_qualified_problem_compact_empty' => ':username tarafından rapor edildi',
             ],
 

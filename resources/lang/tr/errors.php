@@ -38,8 +38,8 @@ return [
         'generic' => 'Çıkışınızı yaparken bir hata oluştu.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Hiç bir sonuç bulunamadı, sonra tekrar deneyiniz.',
+        'operation_timeout_exception' => 'Arama, şu an her zamankinden daha yoğun, lütfen sonra tekrar deneyiniz.',
     ],
 
     'logged_out' => 'Oturumunuz kapatıldı. Lütfen giriş yapın ve tekrar deneyin.',

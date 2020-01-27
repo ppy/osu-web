@@ -25,12 +25,12 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
+            '_' => 'amministratore',
             'beatmapset' => '',
             'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
+            'contest' => 'concorso',
+            'contests' => 'concorsi',
+            'root' => 'console',
             'store_orders' => '',
         ],
 
@@ -83,7 +83,7 @@ return [
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => 'avviso',
         ],
 
         'rankings' => [
@@ -91,12 +91,12 @@ return [
         ],
 
         'store' => [
-            '_' => '',
-            'cart' => '',
-            'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            '_' => 'osu!store',
+            'cart' => 'carrello',
+            'order' => 'fattura',
+            'orders' => 'cronologia ordini',
+            'product' => 'prodotto',
+            'products' => 'prodotti',
         ],
 
         'tournaments' => [
@@ -128,7 +128,7 @@ return [
             'beatmapset-watches-index' => 'lista modding',
             'changelog-build' => 'versione',
             'changelog-index' => 'note di rilascio',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'verifica client osu!',
             'forum-topic-watches-index' => 'iscrizioni forum',
             'friends-index' => 'amici',
             'getDownload' => 'download',

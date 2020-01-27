@@ -43,8 +43,8 @@ return [
     'show' => [
         'download' => 'Transferir',
         'item' => [
-            'cleared' => 'limpado',
-            'not_cleared' => 'não limpado',
+            'cleared' => 'concluído',
+            'not_cleared' => 'não concluído',
         ],
     ],
 

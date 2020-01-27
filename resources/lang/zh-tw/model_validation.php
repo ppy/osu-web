@@ -84,7 +84,7 @@ return [
 
         'post' => [
             'beatmapset_post_no_delete' => '不允許刪除譜面信息帖。',
-            'beatmapset_post_no_edit' => '不允許編輯譜面信息帖。',
+            'beatmapset_post_no_edit' => '不允許編輯圖譜信息帖。',
             'only_quote' => '您的回覆僅有引用。',
 
             'attributes' => [

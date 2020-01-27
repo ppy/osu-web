@@ -91,12 +91,12 @@ return [
         ],
 
         'store' => [
-            '_' => '',
-            'cart' => '',
-            'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            '_' => 'osu!store',
+            'cart' => 'winkelwagen',
+            'order' => 'factuur',
+            'orders' => 'bestel geschiedenis',
+            'product' => 'product',
+            'products' => 'producten',
         ],
 
         'tournaments' => [
@@ -128,7 +128,7 @@ return [
             'beatmapset-watches-index' => 'modding volglijst',
             'changelog-build' => 'versie',
             'changelog-index' => 'changelog',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'osu! clientverificatie',
             'forum-topic-watches-index' => 'forum abonnementen',
             'friends-index' => 'vrienden',
             'getDownload' => 'downloaden',
