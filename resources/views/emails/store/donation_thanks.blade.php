@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-{!! trans('mail.common.hello', ['user' => $donor->username]) !!}
+{!! trans('mail.donation_thanks.hello', ['user' => $donor->username]) !!}
 
 {!! trans('mail.donation_thanks.support._', [
     'support' => trans('mail.donation_thanks.support.'.($continued ? 'repeat' : 'first')),
@@ -32,5 +32,5 @@
 
 {!! trans('mail.donation_thanks.feedback') !!}
 
-{!! trans('mail.common.closing') !!}
+{!! trans('mail.donation_thanks.closing') !!}
 Dean Herbert (peppy)

@@ -34,7 +34,9 @@ return [
 
     'donation_thanks' => [
         'benefit_more' => 'More new supporter benefits will appear over time, as well!',
+        'closing' => 'Regards,',
         'feedback' => "If you have any questions or feedback, don't hesitate to reply to this mail; I'll get back to you as soon as possible!",
+        'hello' => 'Hi :user,',
         'keep_free' => 'It is thanks to people like you that osu! is able to keep the game and community running smoothly without any advertisements or forced payments.',
         'keep_running' => 'Your support keeps osu! running for around :minutes! It may not seem like much, but it all adds up :).',
         'subject' => 'Thanks, osu! <3s you',
