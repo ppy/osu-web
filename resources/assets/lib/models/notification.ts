@@ -19,7 +19,7 @@
 import NotificationJson from 'interfaces/notification-json';
 import { camelCase, forEach } from 'lodash';
 import { computed, observable } from 'mobx';
-import { categoryGroupKey, nameToCategory } from 'notification-maps/category';
+import { categoryFromName, categoryGroupKey } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
 import { NotificationIdentity } from 'notifications/notification-identity';
 
@@ -37,7 +37,7 @@ export default class Notification {
   }
 
   @computed get category() {
-    return nameToCategory[this.name ?? ''];
+    return categoryFromName(this.name ?? '');
   }
 
   @computed get categoryGroupKey() {

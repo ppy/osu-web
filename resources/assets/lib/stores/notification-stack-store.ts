@@ -26,7 +26,7 @@ import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 import NotificationStack, { idFromJson } from 'models/notification-stack';
 import NotificationType, { Name as NotificationTypeName  } from 'models/notification-type';
-import { nameToCategory } from 'notification-maps/category';
+import { categoryFromName } from 'notification-maps/category';
 import { NotificationEventMoreLoaded, NotificationEventNew, NotificationEventRead } from 'notifications/notification-events';
 import { fromJson, NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
 import { NotificationResolver } from 'notifications/notification-resolver';
@@ -121,7 +121,7 @@ export default class NotificationStackStore implements DispatchListener {
     let stack = this.getStack(identity);
 
     if (stack == null) {
-      stack = new NotificationStack(json.object_id, json.object_type, nameToCategory[json.name], this.resolver);
+      stack = new NotificationStack(json.object_id, json.object_type, categoryFromName(json.name), this.resolver);
     }
 
     stack.notifications.set(notification.id, notification);
