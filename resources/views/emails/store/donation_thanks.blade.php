@@ -29,7 +29,10 @@ If you have any questions or feedback, don't hesitate to reply to this mail; I'l
 
 Regards,
 Dean Herbert (peppy)
-@if (app()->getLocale() !== 'en')
+@if (app()->getLocale() !== 'en'
+    && trans_exists('mail.donation_thanks.keep_free', app()->getLocale())
+    && trans_exists('mail.donation_thanks.support.first', app()->getLocale())
+)
 
 {!! trans('mail.donation_thanks.translation') !!}
 
