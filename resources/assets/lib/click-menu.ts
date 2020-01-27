@@ -81,11 +81,11 @@ export default class ClickMenu {
       }
     }
 
-    $.publish('click-menu:current', { target: this.current });
-
     if (!validCurrent) {
       this.current = null;
     }
+
+    $.publish('click-menu:current', { target: this.current });
   }
 
   toggle = (e: JQuery.ClickEvent) => {
