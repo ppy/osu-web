@@ -20,7 +20,7 @@ Hi {{ $donor->username }},
 
 Thanks a lot for your {{ $continued ? 'continued ': '' }}support towards osu!.
 It is thanks to people like you that osu! is able to keep the game and community running smoothly without any advertisements or forced payments.
-{{ $isGift ? 'Your giftee(s)' : 'You' }} will now have access to osu!direct and many other supporter benefits{{ !$isGift ? ' for '.$duration : '' }}.
+{{ $isGift ? 'Your giftee(s)' : 'You' }} will now have access to osu!direct and many other supporter benefits{{ !$isGift ? ' for '.\App\Models\SupporterTag::getDurationText($duration, 'en') : '' }}.
 More new supporter benefits will appear over time, as well!
 
 Your support keeps osu! running for around {{ $minutes }} minutes! It may not seem like much, but it all adds up :).
@@ -45,7 +45,7 @@ Dean Herbert (peppy)
 ]) !!}
 {!! trans('mail.donation_thanks.keep_free') !!}
 {!! trans('mail.donation_thanks.benefit.'.($isGift ? 'gift' : 'self'), [
-    'duration' => $duration,
+    'duration' => \App\Models\SupporterTag::getDurationText($duration),
 ]) !!}
 {!! trans('mail.donation_thanks.benefit_more') !!}
 
