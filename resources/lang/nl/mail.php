@@ -32,25 +32,6 @@ return [
         'report' => 'Reageer op deze e-mail met SPOED als je niet om deze wijziging hebt verzocht.',
     ],
 
-    'donation_thanks' => [
-        'benefit_more' => 'Er zullen na verloop van tijd ook meer nieuwe voordelen bijkomen voor supporters!',
-        'feedback' => "Als je vragen of feedback hebt, aarzel dan niet om deze mail te beantwoorden; ik neem zo snel mogelijk contact met je op!",
-        'keep_free' => 'Het is aan mensen zoals jij te danken dat osu! het mogelijk maakt om het spel en de gemeenschap probleemloos draaiende te houden zonder advertenties of gedwongen betalingen.',
-        'keep_running' => 'Je support houdt osu! draait gedurende ongeveer :minutes! Het lijkt misschien niet zo veel, maar het voegt allemaal toe :).',
-        'subject' => 'Bedankt, osu! <3 van je',
-
-        'benefit' => [
-            'gift' => 'De mensen die je supporter hebt gegift zullen nu toegang hebben tot osu! direct en vele andere voordelen.',
-            'self' => 'Je krijgt nu toegang tot osu!direct en vele andere supporter voordelen gedurende :duration.',
-        ],
-
-        'support' => [
-            '_' => 'Bedankt voor je :support naar osu!.',
-            'first' => 'ondersteuning',
-            'repeat' => 'voortdurende ondersteuning',
-        ],
-    ],
-
     'forum_new_reply' => [
         'new' => 'Laat je maar weten dat er sinds je laatste bezoek een nieuw antwoord in ":title" is geweest.',
         'subject' => '[osu!] Nieuwe reactie voor topic ":title"',

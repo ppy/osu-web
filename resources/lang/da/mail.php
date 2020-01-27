@@ -32,25 +32,6 @@ return [
         'report' => 'Svar venligst på denne mail MED DET SAMME hvis du ikke anmodede om denne ændring.',
     ],
 
-    'donation_thanks' => [
-        'benefit_more' => 'Over tid vil der også kommer flere nye supporter goder!',
-        'feedback' => "Hvis du har nogen spørgsmål så tøv ikke med at svare på denne mail; Jeg vil vende tilbage til dem snarest muligt!",
-        'keep_free' => 'Det er takket være folk som dig at osu! kan blive ved med at holde spillet og fællesskabet kørende uden problemer eller nogen former for betaling.',
-        'keep_running' => 'Din støtte holder osu! kørende for omtrent :minutes! Det ser måske ikke ud af meget, men hver en krone hjælper :).',
-        'subject' => 'Tak, osu! elsker dig! <3',
-
-        'benefit' => [
-            'gift' => 'Personen/personerne som du har givet supporter til har nu adgang til osu!direct samt mange andre supporter fordele.',
-            'self' => 'Du har nu adgang til osu!direct samt mange andre supporter fordele i :duration.',
-        ],
-
-        'support' => [
-            '_' => 'Mange tak for din :support til osu!.',
-            'first' => 'support',
-            'repeat' => 'fortsat støtte',
-        ],
-    ],
-
     'forum_new_reply' => [
         'new' => 'Der har været et nyt svar i ":title" siden dit sidste besøg.',
         'subject' => '[osu!] Nyt svar for emne ":title"',

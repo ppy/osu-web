@@ -32,25 +32,6 @@ return [
         'report' => '',
     ],
 
-    'donation_thanks' => [
-        'benefit_more' => '',
-        'feedback' => "",
-        'keep_free' => '',
-        'keep_running' => '',
-        'subject' => 'Takk, osu! <3 deg',
-
-        'benefit' => [
-            'gift' => '',
-            'self' => '',
-        ],
-
-        'support' => [
-            '_' => '',
-            'first' => '',
-            'repeat' => '',
-        ],
-    ],
-
     'forum_new_reply' => [
         'new' => '',
         'subject' => '[osu!] Nytt svar for emnet ":title"',

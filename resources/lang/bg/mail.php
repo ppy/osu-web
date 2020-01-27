@@ -32,25 +32,6 @@ return [
         'report' => '',
     ],
 
-    'donation_thanks' => [
-        'benefit_more' => '',
-        'feedback' => "",
-        'keep_free' => '',
-        'keep_running' => '',
-        'subject' => 'Благодаря ви, osu! Ви <3',
-
-        'benefit' => [
-            'gift' => '',
-            'self' => '',
-        ],
-
-        'support' => [
-            '_' => '',
-            'first' => '',
-            'repeat' => '',
-        ],
-    ],
-
     'forum_new_reply' => [
         'new' => '',
         'subject' => '[osu!] Нов отговор на темата ":title"',

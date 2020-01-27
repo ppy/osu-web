@@ -32,25 +32,6 @@ return [
         'report' => '',
     ],
 
-    'donation_thanks' => [
-        'benefit_more' => '',
-        'feedback' => "",
-        'keep_free' => '',
-        'keep_running' => '',
-        'subject' => 'Ευχαριστούμε, το osu! σε <3',
-
-        'benefit' => [
-            'gift' => '',
-            'self' => '',
-        ],
-
-        'support' => [
-            '_' => '',
-            'first' => '',
-            'repeat' => '',
-        ],
-    ],
-
     'forum_new_reply' => [
         'new' => '',
         'subject' => '[osu!] Νέα απάντηση για το θέμα ":title"',

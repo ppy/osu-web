@@ -40,17 +40,6 @@ return [
         'keep_free' => 'It is thanks to people like you that osu! is able to keep the game and community running smoothly without any advertisements or forced payments.',
         'keep_running' => 'Your support keeps osu! running for around :minutes! It may not seem like much, but it all adds up :).',
         'subject' => 'Thanks, osu! <3s you',
-
-        'benefit' => [
-            'gift' => 'Your giftee(s) will now have access to osu!direct and many other supporter benefits.',
-            'self' => 'You will now have access to osu!direct and many other supporter benefits for :duration.',
-        ],
-
-        'support' => [
-            '_' => 'Thanks a lot for your :support towards osu!.',
-            'first' => 'support',
-            'repeat' => 'continued support',
-        ],
     ],
 
     'forum_new_reply' => [

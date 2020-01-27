@@ -32,25 +32,6 @@ return [
         'report' => 'Eğer bu değişim istemediğseniz, lütfen ACİLEN bu e-maile cevap yazın.',
     ],
 
-    'donation_thanks' => [
-        'benefit_more' => '',
-        'feedback' => "Eğer herhangi bir sorunuz veya geribildiriminiz varsa, bu postaya cevap yazmaktan çekinmeyin; Size en kısa zamanda geri döneceğim!",
-        'keep_free' => 'Sizin gibi insanlar sayesinde osu!, oyunu ve topluluğu akıcı bir şekilde hiçbir reklam veya zorla ödeme olmadan oyunu devam ettirebiliyor.',
-        'keep_running' => 'Senin katkın osu!\'yu :minutes kadardır ayakta tutuyor. Fazla görünmüyor olabilir ama damlaya damlaya göl olur :).',
-        'subject' => 'Teşekkürler, osu! sizi seviyor <3',
-
-        'benefit' => [
-            'gift' => '',
-            'self' => 'Şu andan itibaren osu!direct ve diğer başka destekçi avantajlarına :duration kadar erişim hakkın vardır.',
-        ],
-
-        'support' => [
-            '_' => 'osu!\'ya karşı olan :support \'un için çokça teşekkür ederiz!.',
-            'first' => '',
-            'repeat' => '',
-        ],
-    ],
-
     'forum_new_reply' => [
         'new' => '',
         'subject' => '[osu!] ":title" başlığına yeni cevap',

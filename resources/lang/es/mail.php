@@ -32,25 +32,6 @@ return [
         'report' => 'Por favor responde a este correo INMEDIATAMENTE si no solicitaste este cambio.',
     ],
 
-    'donation_thanks' => [
-        'benefit_more' => '¡Además, con el tiempo aparecerán nuevos beneficios para supporter!',
-        'feedback' => "Si tienes alguna pregunta o comentarios, no dudes en responder a este correo; ¡Te responderé lo antes posible!",
-        'keep_free' => 'Es gracias a gente como tú que osu! es capaz de mantener el juego y la comunidad funcionando sin problemas, sin anuncios o pagos forzados.',
-        'keep_running' => '¡Tu apoyo mantiene a osu! funcionando durante :minutes! Puede que no parezca mucho, pero todo suma :).',
-        'subject' => 'Gracias, osu! te <3',
-
-        'benefit' => [
-            'gift' => 'A quien(es) le regaló ahora tendrá(n) acceso a osu!direct y a muchos otros beneficios para supporter.',
-            'self' => 'Ahora tendrá acceso a osu!direct y a muchos otros beneficios para supporter por :duration.',
-        ],
-
-        'support' => [
-            '_' => 'Muchas gracias por tu :support a osu!.',
-            'first' => 'apoyo',
-            'repeat' => 'continuo apoyo',
-        ],
-    ],
-
     'forum_new_reply' => [
         'new' => 'Para informarte, ha habido una nueva respuesta en ":title" desde tu última visita.',
         'subject' => '[osu!] Nueva respuesta para el tema ":title"',

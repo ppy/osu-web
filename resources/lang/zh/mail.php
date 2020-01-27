@@ -32,25 +32,6 @@ return [
         'report' => '如果您没有进行此操作，请立刻回复此邮件！',
     ],
 
-    'donation_thanks' => [
-        'benefit_more' => '将来还会有更多的支持者的独有功能！',
-        'feedback' => "如果您有什么问题，或者有什么意见的话，您可以直接回复这封邮件。我会尽快回应的！",
-        'keep_free' => 'osu! 与其游戏社区能够在没有讨厌的广告与强制付款的环境中稳定运行，正是因为您这样的人的存在。感谢您的支持！',
-        'keep_running' => '您的捐赠能够维持 osu! 持续运转 :minutes 分钟！虽然这看起来不多，但是江海来源于小流，不是么？',
-        'subject' => '非常感谢， osu! 爱你哦~',
-
-        'benefit' => [
-            'gift' => '您的受赠者将会享受到 osu!direct 等其他 osu! 支持者所享有的的特权。',
-            'self' => '您可以在 :duration 内享受 osu!direct 等 osu! 支持者所享有的特权！',
-        ],
-
-        'support' => [
-            '_' => '感谢您向 osu! 捐赠的 :support ！',
-            'first' => '支持',
-            'repeat' => '持续支持',
-        ],
-    ],
-
     'forum_new_reply' => [
         'new' => ':title 话题下又有了新的回复。',
         'subject' => '[osu!] 主题 ":title" 有新回复',

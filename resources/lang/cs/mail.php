@@ -32,25 +32,6 @@ return [
         'report' => '',
     ],
 
-    'donation_thanks' => [
-        'benefit_more' => '',
-        'feedback' => "",
-        'keep_free' => '',
-        'keep_running' => '',
-        'subject' => 'Díky, osu! tě <3luje',
-
-        'benefit' => [
-            'gift' => '',
-            'self' => '',
-        ],
-
-        'support' => [
-            '_' => '',
-            'first' => 'podpora',
-            'repeat' => '',
-        ],
-    ],
-
     'forum_new_reply' => [
         'new' => '',
         'subject' => '[osu!] Nová odpověd téma ":title"',

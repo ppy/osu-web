@@ -23,10 +23,6 @@ return [
         'subject' => 'Nová aktualizácia pre beatmapu ":title"',
     ],
 
-    'donation_thanks' => [
-        'subject' => 'Díky, osu! ťa <3luje',
-    ],
-
     'forum_new_reply' => [
         'subject' => '[osu!] Nová odpoveď na tému ":title"',
     ],

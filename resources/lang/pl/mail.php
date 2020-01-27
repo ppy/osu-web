@@ -32,25 +32,6 @@ return [
         'report' => 'Odpowiedz na ten e-mail NATYCHMIAST, jeżeli to działanie nie zostało wykonane przez Ciebie.',
     ],
 
-    'donation_thanks' => [
-        'benefit_more' => 'Więcej korzyści pojawi się z czasem!',
-        'feedback' => "Jeżeli masz jakieś pytania lub chcesz przekazać nam swoją opinię, odpowiedz na ten e-mail. Odpiszemy jak to najszybciej możliwe!",
-        'keep_free' => 'Dzięki Tobie osu! jest w stanie utrzymać się bez żadnych reklam czy wymuszanych płatności.',
-        'keep_running' => 'Twoje wsparcie utrzymuje osu! przez około :minutes! Może nie wydaje się to zbyt wiele, ale to wszystko się dodaje. :)',
-        'subject' => 'Dziękujemy, osu! cię <3',
-
-        'benefit' => [
-            'gift' => 'Odbiorca(-y) Twojego zakupu otrzymają dostęp do osu!direct i innych korzyści wynikających z posiadania statusu donatora osu!.',
-            'self' => 'Otrzymasz dostęp do osu!direct i innych korzyści wynikających z posiadania statusu donatora osu! na :duration.',
-        ],
-
-        'support' => [
-            '_' => 'Dziękujemy za :support osu!.',
-            'first' => 'wsparcie',
-            'repeat' => 'dalsze wspieranie',
-        ],
-    ],
-
     'forum_new_reply' => [
         'new' => 'W obserwowanym przez ciebie wątku („:title”) pojawiła się nowa odpowiedź.',
         'subject' => '[osu!] Nowa odpowiedź dla wątku „:title”',

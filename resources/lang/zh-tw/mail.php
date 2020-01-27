@@ -32,25 +32,6 @@ return [
         'report' => '如果您沒有進行此項操作，請「立刻」回覆此信件!',
     ],
 
-    'donation_thanks' => [
-        'benefit_more' => '將來還會有更多贊助者獨享的功能!',
-        'feedback' => "",
-        'keep_free' => '',
-        'keep_running' => '',
-        'subject' => '非常感謝，osu! 愛你哦~',
-
-        'benefit' => [
-            'gift' => '',
-            'self' => '',
-        ],
-
-        'support' => [
-            '_' => '感謝您向 osu! 捐贈的 :support !',
-            'first' => '',
-            'repeat' => '',
-        ],
-    ],
-
     'forum_new_reply' => [
         'new' => '',
         'subject' => '[osu!] 主題 ":title" 有新回覆',
