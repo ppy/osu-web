@@ -22,7 +22,7 @@
 ]) !!}
 {!! trans('mail.donation_thanks.keep_free') !!}
 {!! trans('mail.donation_thanks.benefit.'.($isGift ? 'gift' : 'self'), [
-    'duration' => $duration,
+    'duration' => \App\Models\SupporterTag::getDurationText($duration),
 ]) !!}
 {!! trans('mail.donation_thanks.benefit_more') !!}
 
