@@ -192,9 +192,10 @@ export default class Main extends React.Component<Props, State> {
     }
 
     if (nodes.length === 0) {
+      const transKey = this.controller.currentFilter == null ? 'notifications.all_read' : 'notifications.none';
       return (
         <p key='empty' className='notification-popup__empty'>
-          {osu.trans('notifications.all_read')}
+          {osu.trans(transKey)}
         </p>
       );
     }

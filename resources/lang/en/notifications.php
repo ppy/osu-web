@@ -21,6 +21,7 @@
 return [
     'all_read' => 'All notifications read!',
     'mark_all_read' => 'Clear all',
+    'none' => 'No notifications',
 
     'filters' => [
         '_' => 'all',
