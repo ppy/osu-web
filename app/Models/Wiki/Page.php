@@ -230,7 +230,7 @@ class Page implements WikiObject
 
     public function getMarkdown()
     {
-        return $this->source['markdown'];
+        return $this->source['markdown'] ?? null;
     }
 
     public function hasParent()
