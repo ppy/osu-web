@@ -764,6 +764,10 @@ function wiki_url($page = 'Main_Page', $locale = null)
         $params['locale'] = $locale;
     }
 
+    if (is_api_request()) {
+        return route('api.wiki.show', $params);
+    }
+
     return route('wiki.show', $params);
 }
 

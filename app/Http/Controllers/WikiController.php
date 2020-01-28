@@ -57,7 +57,11 @@ class WikiController extends Controller
             $status = 404;
         }
 
-        if (is_api_request()) {
+        if (is_json_request()) {
+            if (!$page->isVisible()) {
+                return response(null, 404);
+            }
+
             return json_item($page, 'WikiPage');
         }
 
