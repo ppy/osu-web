@@ -50,8 +50,16 @@ class @Nav2
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
 
 
-  autoMobileNav: (e, {target}) =>
-    @clickMenu.show('mobile-nav') if target == 'mobile-menu'
+  autoMobileNav: (e, {target, tree}) =>
+    if target == 'mobile-menu'
+      @clickMenu.show('mobile-nav')
+      Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).stop().slideDown()
+
+    if tree.indexOf('mobile-menu') == -1
+      Blackout.hide()
+      Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).stop().slideUp()
+    else
+      Blackout.show()
 
 
   centerPopup: (popup, reference) ->

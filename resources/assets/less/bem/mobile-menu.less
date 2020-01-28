@@ -18,24 +18,21 @@
 
 .mobile-menu {
   position: fixed;
+  display: none;
   top: @navbar-height;
-  background-color: @osu-colour-b5;
   width: 100%;
-  -webkit-overflow-scrolling: touch;
   z-index: @z-index--nav-bar;
-  max-height: 0;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  transition: 400ms max-height;
+  color: @osu-colour-c1;
 
-  &:focus,
-  &:hover,
-  &:active,
-  & {
-    color: #fff;
-  }
+  .link-hover({
+    color: @osu-colour-c1;
+  });
 
-  &.js-click-menu--active {
+  &__content {
+    -webkit-overflow-scrolling: touch;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background-color: @osu-colour-b5;
     max-height: calc((var(--vh, 1vh) * 100) - @navbar-height);
   }
 

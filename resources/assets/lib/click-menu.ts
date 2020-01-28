@@ -48,6 +48,10 @@ export default class ClickMenu {
     this.show();
   }
 
+  menu(id: string | null | undefined) {
+    return document.querySelector(`.js-click-menu[data-click-menu-id${id == null ? '' : `='${id}'`}]`);
+  }
+
   menuLink(id: string | null | undefined) {
     return document.querySelector(`.js-click-menu[data-click-menu-target${id == null ? '' : `='${id}'`}]`);
   }
@@ -95,7 +99,7 @@ export default class ClickMenu {
       this.current = null;
     }
 
-    $.publish('click-menu:current', { target: this.current });
+    $.publish('click-menu:current', { target: this.current, tree });
 
     const toFocus = shownMenu?.querySelector('.js-click-menu--autofocus');
 
