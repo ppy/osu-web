@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Will je deze post echt verwijderen?',
         'confirm_restore' => 'Will je deze post echt terugzetten?',
-        'edited' => 'Laatst bewerkt door :user op :when. :count keer bewerkt in totaal.',
+        'edited' => 'Laatst bewerkt door :user op :when. :count_delimited keer bewerkt in totaal.',
         'posted_at' => 'gepost op :when',
 
         'actions' => [

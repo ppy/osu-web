@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Bạn muốn xóa bài viết?',
         'confirm_restore' => 'Bạn muốn phục hồi bài viết?',
-        'edited' => 'Chỉnh sửa lần cuối bởi :user :when, đã chỉnh sửa tổng cộng :count lần.',
+        'edited' => 'Chỉnh sửa lần cuối bởi :user :when, đã chỉnh sửa tổng cộng :count_delimited lần.',
         'posted_at' => 'đăng vào :when',
 
         'actions' => [
