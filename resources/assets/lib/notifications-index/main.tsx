@@ -106,7 +106,7 @@ export class Main extends React.Component {
     if (this.controller.currentFilter != null) return;
 
     return (
-      <div className='notification-type-group__items notification-type-group__items--legacy_pm'>
+      <div className='notification-type-group__items notification-type-group__items--standalone'>
         <LegacyPm />
       </div>
     );

@@ -27,6 +27,7 @@ import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import Stack from './stack';
 import Worker from './worker';
+import { route } from 'laroute';
 
 interface Props {
   type?: string;
@@ -83,6 +84,7 @@ export default class Main extends React.Component<Props, State> {
           >
             <div className='notification-popup__scroll-container'>
               {this.renderFilters()}
+              {this.renderHistoryLink()}
               {this.renderLegacyPm()}
               <div className='notification-type-group__items'>
                 {this.renderStacks()}
@@ -156,11 +158,21 @@ export default class Main extends React.Component<Props, State> {
     );
   }
 
+  private renderHistoryLink() {
+    return (
+      <div className='notification-type-group__items notification-type-group__items--standalone'>
+        <a className='notification-popup__filter' href={route('notifications.index')}>
+          {osu.trans('notifications.see_all')}
+        </a>
+      </div>
+    );
+  }
+
   private renderLegacyPm() {
     if (this.controller.currentFilter != null) return;
 
     return (
-      <div className='notification-type-group__items notification-type-group__items--legacy_pm'>
+      <div className='notification-type-group__items notification-type-group__items--standalone'>
         <LegacyPm />
       </div>
     );
