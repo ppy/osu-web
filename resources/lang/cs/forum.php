@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Opravdu chcete příspěvek odstranit?',
         'confirm_restore' => 'Opravdu chcete příspěvek obnovit?',
-        'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count.',
+        'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count_delimited.',
         'posted_at' => 'publikováno :when',
 
         'actions' => [

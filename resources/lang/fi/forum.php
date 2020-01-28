@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Haluatko varmasti poistaa viestin?',
         'confirm_restore' => 'Haluatko varmasti palauttaa viestin?',
-        'edited' => 'Viimeksi muokannut :user :when, muokattu yhteensä :count kertaa.',
+        'edited' => 'Viimeksi muokannut :user :when, muokattu yhteensä :count_delimited kertaa.',
         'posted_at' => 'lähetetty :when',
 
         'actions' => [
