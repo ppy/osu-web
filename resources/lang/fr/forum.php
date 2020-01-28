@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Voulez-vous vraiment supprimer ce post ?',
         'confirm_restore' => 'Voulez-vous vraiment restaurer ce post ?',
-        'edited' => 'Modifié par :user le :when, édité :count fois en tout.',
+        'edited' => 'Modifié par :user le :when, édité :count_delimited fois en tout.',
         'posted_at' => 'posté :when',
 
         'actions' => [
