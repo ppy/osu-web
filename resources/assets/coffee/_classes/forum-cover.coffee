@@ -39,7 +39,7 @@ class @ForumCover
   $uploadButton: => $(@uploadButton[0])
 
 
-  checkModal: (e, target) =>
+  checkModal: (e, {target}) =>
     return if target != 'forum-cover-edit'
 
     @initFileupload()

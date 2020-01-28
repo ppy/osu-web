@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Slet opslag?',
         'confirm_restore' => 'Gendan opslag?',
-        'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count gange.',
+        'edited' => 'Sidst redigeret af :user den :when, redigeret i alt :count_delimited gange.',
         'posted_at' => 'slået op på :when',
 
         'actions' => [
