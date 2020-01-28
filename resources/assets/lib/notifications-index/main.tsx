@@ -120,7 +120,7 @@ export class Main extends React.Component {
         callback={this.handleShowMore}
         hasMore={type?.hasMore}
         loading={type?.isLoading}
-        modifiers={['notification-group']}
+        modifiers={['notification-group', 'notification-list']}
       />
     );
   }

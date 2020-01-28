@@ -124,7 +124,7 @@ export default class Item extends React.Component<Props> {
       return null;
     }
 
-    return <div className='notification-popup-item__row'>{this.props.expandButton}</div>;
+    return <div className='notification-popup-item__row notification-popup-item__row--expand'>{this.props.expandButton}</div>;
   }
 
   private renderMarkAsReadButton() {

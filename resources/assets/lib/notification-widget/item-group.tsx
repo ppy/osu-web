@@ -86,7 +86,7 @@ export default class ItemGroup extends React.Component<Props, State> {
     return (
       <button
         type='button'
-        className='show-more-link show-more-link--notification-group show-more-link--t-greysky'
+        className='show-more-link show-more-link--notification-group'
         onClick={this.toggleExpand}
       >
         <span className='show-more-link__label'>
