@@ -63,7 +63,7 @@ export default class ClickMenu {
     this.current = target;
 
     const tree = this.tree();
-    const menus = Array.from(document.querySelectorAll('.js-click-menu[data-click-menu-id]'));
+    const menus = document.querySelectorAll('.js-click-menu[data-click-menu-id]');
     let validCurrent = false;
 
     for (const menu of menus) {
