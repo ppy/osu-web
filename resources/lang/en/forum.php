@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Really delete post?',
         'confirm_restore' => 'Really restore post?',
-        'edited' => 'Last edited by :user :when, edited :count times in total.',
+        'edited' => 'Last edited by :user :when, edited :count time in total.|Last edited by :user :when, edited :count times in total.',
         'posted_at' => 'posted :when',
 
         'actions' => [
