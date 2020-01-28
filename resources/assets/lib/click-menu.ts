@@ -52,7 +52,11 @@ export default class ClickMenu {
   }
 
   saveCurrent = () => {
-    document.body.dataset.clickMenuCurrent = this.current ?? undefined;
+    if (this.current == null) {
+      delete document.body.dataset.clickMenuCurrent;
+    } else {
+      document.body.dataset.clickMenuCurrent = this.current;
+    }
   }
 
   show = (target?: string | null | undefined) => {
