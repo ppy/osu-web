@@ -57,6 +57,10 @@ class WikiController extends Controller
             $status = 404;
         }
 
+        if (is_api_request()) {
+            return ['markdown' => $page->getMarkdown()];
+        }
+
         return response()->view($page->template(), compact('page', 'locale'), $status ?? 200);
     }
 
