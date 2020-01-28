@@ -124,6 +124,9 @@ export default class NotificationStackStore implements DispatchListener {
       stack = new NotificationStack(json.object_id, json.object_type, categoryFromName(json.name), this.resolver);
     }
 
+    // FIXME: count will be wrong if event for the same notification
+    // is received multiple times, but we can't check if notification already exists as
+    // the count for only the first store that processes the event will be correct.
     stack.notifications.set(notification.id, notification);
     stack.total++;
 
