@@ -25,10 +25,6 @@ use League\Fractal;
 
 class WikiPageTransformer extends Fractal\TransformerAbstract
 {
-    protected $availableIncludes = [
-        'parsed',
-    ];
-
     public function transform(Page $page)
     {
         return [
@@ -40,10 +36,5 @@ class WikiPageTransformer extends Fractal\TransformerAbstract
             'tags' => $page->tags(),
             'title' => $page->title(),
         ];
-    }
-
-    public function includeParsed(Page $page)
-    {
-        return $this->primitive($page->get());
     }
 }
