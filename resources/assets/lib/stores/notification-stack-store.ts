@@ -127,12 +127,12 @@ export default class NotificationStackStore implements DispatchListener {
     if (!stack.notifications.has(notification.id)) {
       stack.total++;
       type.total++;
-      this.allType.total++;
+      this.total++;
     }
 
     stack.notifications.set(notification.id, notification);
     type.stacks.set(stack.id, stack);
-    this.allType.stacks.set(stack.id, stack);
+    this.allStacks.set(stack.id, stack);
   }
 
   @action
