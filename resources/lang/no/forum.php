@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Vil du virkelig slette innlegget?',
         'confirm_restore' => 'Vil du virkelig gjenopprette innlegget?',
-        'edited' => 'Sist endret av :user :when, redigert :count ganger totalt.',
+        'edited' => 'Sist endret av :user :when, redigert :count_delimited ganger totalt.',
         'posted_at' => 'lagt ut :when',
 
         'actions' => [

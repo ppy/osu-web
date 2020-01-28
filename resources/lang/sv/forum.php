@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Verkligen radera inlägg?',
         'confirm_restore' => 'Verkligen återställa inlägg?',
-        'edited' => 'Senast redigerad av :user den :when, redigerad :count gånger totalt.',
+        'edited' => 'Senast redigerad av :user den :when, redigerad :count_delimited gånger totalt.',
         'posted_at' => 'upplagd :when',
 
         'actions' => [

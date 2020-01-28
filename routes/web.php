@@ -364,6 +364,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
 
         Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
 
+        Route::apiResource('seasonal-backgrounds', 'SeasonalBackgroundsController', ['only' => ['index']]);
+
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             // GET /api/v2/scores/:mode/:score_id/download
             Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');

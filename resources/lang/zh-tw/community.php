@@ -86,7 +86,7 @@ return [
 
             'upload_more' => [
                 'title' => '上傳更多圖譜',
-                'description' => '做圖者上傳待批准的圖譜上限增加到 10 張。',
+                'description' => '做圖者上傳待處理的圖譜上限增加到 10 張。',
             ],
 
             'early_access' => [
@@ -100,8 +100,8 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => '譜面篩選器',
-                'description' => '更多方面的去篩選譜面。',
+                'title' => '圖譜篩選器',
+                'description' => '更多角度的去篩選圖譜。',
             ],
 
             'yellow_fellow' => [

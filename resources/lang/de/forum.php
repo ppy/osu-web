@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Post entfernen?',
         'confirm_restore' => 'Post wiederherstellen?',
-        'edited' => 'Zuletzt von :user :when bearbeitet, insgesamt :count Mal bearbeitet.',
+        'edited' => 'Zuletzt von :user :when bearbeitet, insgesamt :count_delimited Mal bearbeitet.',
         'posted_at' => 'erstellt :when',
 
         'actions' => [

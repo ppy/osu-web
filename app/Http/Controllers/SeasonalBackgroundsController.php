@@ -18,13 +18,31 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'mail' => [
-        'donation_thanks' => [
-            'subject' => 'Díky, osu! ťa <3luje',
-        ],
-        'supporter_gift' => [
-            'subject' => '',
-        ],
-    ],
-];
+namespace App\Http\Controllers;
+
+use App\Models\Contest;
+use Carbon\Carbon;
+use stdClass;
+
+class SeasonalBackgroundsController extends Controller
+{
+    protected $section = 'community';
+    protected $actionPrefix = 'seasonal_backgrounds-';
+
+    public function index()
+    {
+        $contest = Contest::find(config('osu.seasonal.contest_id'));
+
+        if ($contest === null) {
+            return response()->json(new stdClass);
+        }
+
+        $backgrounds = $contest->userContestEntries()->where('show_in_client', true)->get();
+
+        return [
+            'ends_at' => json_time(Carbon::parse(config('osu.seasonal.ends_at'))),
+
+            'backgrounds' => json_collection($backgrounds, 'SeasonalBackground'),
+        ];
+    }
+}

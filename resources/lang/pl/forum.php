@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Czy na pewno chcesz usunąć post?',
         'confirm_restore' => 'Czy na pewno chcesz przywrócić post?',
-        'edited' => 'Ostatnio edytowane przez :user :when, łącznie edytowane :count razy.',
+        'edited' => 'Ostatnio edytowane przez :user :when, łącznie edytowane :count_delimited razy.',
         'posted_at' => 'opublikowane :when',
 
         'actions' => [

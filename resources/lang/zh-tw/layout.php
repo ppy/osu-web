@@ -25,9 +25,9 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
+            '_' => '管理員',
+            'beatmapset' => '圖譜',
+            'beatmapset_covers' => '圖譜封面',
             'contest' => '',
             'contests' => '',
             'root' => '',
@@ -69,7 +69,7 @@ return [
         ],
 
         'help' => [
-            '_' => '',
+            '_' => 'wiki',
             'index' => '',
         ],
 
@@ -91,12 +91,12 @@ return [
         ],
 
         'store' => [
-            '_' => '',
-            'cart' => '',
+            '_' => 'osu! 商店',
+            'cart' => '購物車',
             'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            'orders' => '訂單記錄',
+            'product' => '商品',
+            'products' => '商品',
         ],
 
         'tournaments' => [
@@ -153,7 +153,7 @@ return [
         'help' => [
             '_' => '幫助',
             'getFaq' => '常見問題',
-            'getRules' => '規則準則',
+            'getRules' => '規則',
             'getSupport' => '支援服務',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
@@ -161,10 +161,10 @@ return [
         'beatmaps' => [
             '_' => '圖譜',
             'artists' => '精選藝術家',
-            'beatmap_discussion_posts-index' => '譜面討論帖',
-            'beatmap_discussions-index' => '譜面討論',
-            'beatmapset_discussion_votes-index' => '譜面討論投票',
-            'beatmapset_events-index' => '譜面事件',
+            'beatmap_discussion_posts-index' => '圖譜討論帖',
+            'beatmap_discussions-index' => '圖譜討論',
+            'beatmapset_discussion_votes-index' => '圖譜討論投票',
+            'beatmapset_events-index' => '圖譜事件',
             'index' => '圖譜列表',
             'packs' => '圖譜壓縮檔',
             'show' => '資訊',

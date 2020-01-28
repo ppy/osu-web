@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Yakin menghapus post?',
         'confirm_restore' => 'Yakin mengembalikan post?',
-        'edited' => 'Terakhir disunting oleh :user :when, total disunting sebanyak :count kali.',
+        'edited' => 'Terakhir disunting oleh :user :when, total disunting sebanyak :count_delimited kali.',
         'posted_at' => 'Diposting :when',
 
         'actions' => [
