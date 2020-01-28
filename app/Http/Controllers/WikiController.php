@@ -58,7 +58,7 @@ class WikiController extends Controller
         }
 
         if (is_api_request()) {
-            return ['markdown' => $page->getMarkdown()];
+            return json_item($page, 'WikiPage');
         }
 
         return response()->view($page->template(), compact('page', 'locale'), $status ?? 200);
