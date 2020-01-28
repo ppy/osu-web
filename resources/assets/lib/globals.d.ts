@@ -62,6 +62,7 @@ interface OsuCommon {
   navigate: (url: string, keepScroll?: boolean, action?: object) => void;
   parseJson: (id: string, remove?: boolean) => any;
   popup: (message: string, type: string) => void;
+  popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;
   promisify: (xhr: JQueryXHR) => Promise<any>;
