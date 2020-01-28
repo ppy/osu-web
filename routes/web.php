@@ -419,7 +419,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', 'UsersController@show');
 
-        Route::apiResource('wiki', 'WikiController', ['only' => ['show']]);
+        Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     });
 });
 
