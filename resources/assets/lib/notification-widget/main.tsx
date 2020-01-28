@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import { Name, TYPES } from 'models/notification-type';
@@ -27,7 +28,6 @@ import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import Stack from './stack';
 import Worker from './worker';
-import { route } from 'laroute';
 
 interface Props {
   type?: string;
