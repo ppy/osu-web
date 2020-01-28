@@ -46,7 +46,6 @@
     <div
         class="mobile-menu js-click-menu"
         data-click-menu-id="mobile-menu"
-        data-visibility="hidden"
     >
         <div class="mobile-menu__content">
             <div class="mobile-menu__tabs">
