@@ -353,6 +353,7 @@ class Page implements WikiObject
             $this->page = $contentRenderer->render();
             $pageIndex = $contentRenderer->renderIndexable();
 
+            $source['markdown'] = $content;
             $source['page'] = json_encode($this->page);
             $source['page_text'] = $pageIndex;
             $source['title'] = strip_tags($this->title());
