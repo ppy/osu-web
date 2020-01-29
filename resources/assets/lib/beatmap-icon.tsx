@@ -32,7 +32,11 @@ export const BeatmapIcon: FunctionComponent<Props> = ({beatmap, overrideVersion,
   const showTooltip = showTitle && overrideVersion == null;
   const mode = beatmap.convert ? 'osu' : beatmap.mode;
 
-  let className = `beatmap-icon beatmap-icon--${difficultyRating} beatmap-icon--${modifier}`;
+  let className = `beatmap-icon beatmap-icon--${difficultyRating}`;
+  if (modifier) {
+    className += ` beatmap-icon--${modifier}`;
+  }
+
   if (showTooltip) {
     className += ' beatmap-icon--with-hover js-beatmap-tooltip';
   }

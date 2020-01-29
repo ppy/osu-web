@@ -207,6 +207,7 @@
 
     .@{_top}--popup-menu-compact & {
       display: flex;
+      align-items: center;
       padding: @_gutter @_gutter * 2;
 
       &::before {
@@ -237,5 +238,9 @@
     .js-forum-topic-watch-ajax--loading & {
       opacity: 1;
     }
+  }
+
+  &__label {
+    padding-left: 5px;
   }
 }

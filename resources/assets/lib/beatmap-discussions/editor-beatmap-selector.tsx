@@ -37,7 +37,7 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
   render(): React.ReactNode {
     this.menuOptions = [];
     this.menuOptions.push({
-      icon: <i className='fas fa-fw fa-star-of-life' style={{width: '22px', alignSelf: 'center', lineHeight: 'inherit'}} />,
+      icon: <i className='fas fa-fw fa-star-of-life beatmap-discussion-editor__menu-icon' />,
       id: 'all',
       label: osu.trans('beatmaps.discussions.mode.scopes.generalAll'),
     });
@@ -96,11 +96,7 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
         onClick={this.select}
       >
         {menuItem.icon}
-        <div
-          style={{
-            paddingLeft: '5px',
-          }}
-        >
+        <div className='simple-menu__label'>
           {menuItem.label}
         </div>
       </button>

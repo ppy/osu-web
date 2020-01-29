@@ -82,14 +82,8 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
         data-type={type}
         onClick={this.select}
       >
-        <div
-          style={{
-            paddingLeft: '5px',
-          }}
-        >
-          <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`} style={{paddingRight: '5px'}}><i className={icons[type]} /></span>
-          {type}
-        </div>
+        <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={`${icons[type]} beatmap-discussion-editor__menu-icon`} /></span>
+        {osu.trans(`beatmaps.discussions.message_type.${type}`)}
       </button>
     );
   }

@@ -19,7 +19,6 @@
   @_top: beatmap-discussion-review-post-embed-preview;
 
   padding: 10px 15px;
-  user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
 
   &__content {
     display: flex;
@@ -31,6 +30,8 @@
   }
 
   &__message-container {
+    flex: 1;
+
     @media @desktop {
       align-self: center;
     }
