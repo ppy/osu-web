@@ -28,6 +28,8 @@ class CommentBundle
 {
     public $depth;
     public $includeCommentableMeta;
+    public $includeDeleted;
+    public $includePinned;
     public $params;
 
     private $commentable;
@@ -64,8 +66,8 @@ class CommentBundle
         $this->comment = $options['comment'] ?? null;
         $this->depth = $options['depth'] ?? 2;
         $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
-        $this->includeDeleted = $options['includeDeleted'] ?? true;
-        $this->includePinned = $options['includePinned'] ?? true;
+        $this->includeDeleted = isset($commentable);
+        $this->includePinned = isset($commentable);
     }
 
     public function toArray()

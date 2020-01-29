@@ -117,7 +117,6 @@ class CommentsController extends Controller
         } else {
             $commentBundle->depth = 0;
             $commentBundle->includeCommentableMeta = true;
-            $commentBundle->includeDeleted = isset($commentable);
             $commentBundle->includePinned = false;
 
             $countQuery = isset($commentable) ? $commentable->comments() : Comment::query();
