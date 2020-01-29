@@ -21,9 +21,9 @@
 namespace App\Transformers\API;
 
 use App\Models\Multiplayer\Game;
-use League\Fractal;
+use App\Transformers\TransformerAbstract;
 
-class GameTransformer extends Fractal\TransformerAbstract
+class GameTransformer extends TransformerAbstract
 {
     protected $availableIncludes = ['scores'];
 

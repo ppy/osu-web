@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\UpdateStream;
-use League\Fractal;
 
-class UpdateStreamTransformer extends Fractal\TransformerAbstract
+class UpdateStreamTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'latest_build',

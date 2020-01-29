@@ -21,10 +21,10 @@
 namespace App\Transformers\Multiplayer;
 
 use App\Models\Multiplayer\UserScoreAggregate;
+use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
-use League\Fractal;
 
-class UserScoreAggregateTransformer extends Fractal\TransformerAbstract
+class UserScoreAggregateTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'user',

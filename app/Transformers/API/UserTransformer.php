@@ -21,9 +21,9 @@
 namespace App\Transformers\API;
 
 use App\Models\User;
-use League\Fractal;
+use App\Transformers\TransformerAbstract;
 
-class UserTransformer extends Fractal\TransformerAbstract
+class UserTransformer extends TransformerAbstract
 {
     public function transform(User $user)
     {

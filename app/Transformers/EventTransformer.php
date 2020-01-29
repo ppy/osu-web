@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\Event;
-use League\Fractal;
 
-class EventTransformer extends Fractal\TransformerAbstract
+class EventTransformer extends TransformerAbstract
 {
     public function transform(Event $event)
     {

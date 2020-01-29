@@ -21,9 +21,9 @@
 namespace App\Transformers\API;
 
 use App\Models\Score;
-use League\Fractal;
+use App\Transformers\TransformerAbstract;
 
-class UserScoreTransformer extends Fractal\TransformerAbstract
+class UserScoreTransformer extends TransformerAbstract
 {
     public function transform(Score\Model $score)
     {

@@ -22,9 +22,8 @@ namespace App\Transformers;
 
 use App\Models\BeatmapDiscussion;
 use Auth;
-use League\Fractal;
 
-class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
+class BeatmapDiscussionTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap',

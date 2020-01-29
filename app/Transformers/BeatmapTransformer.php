@@ -22,9 +22,8 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapFailtimes;
-use League\Fractal;
 
-class BeatmapTransformer extends Fractal\TransformerAbstract
+class BeatmapTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'scoresBest',

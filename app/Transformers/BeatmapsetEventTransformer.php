@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\BeatmapsetEvent;
-use League\Fractal;
 
-class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
+class BeatmapsetEventTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmapset',

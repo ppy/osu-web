@@ -30,7 +30,7 @@ use App\Models\User;
 use Auth;
 use League\Fractal;
 
-class BeatmapsetTransformer extends Fractal\TransformerAbstract
+class BeatmapsetTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmaps',

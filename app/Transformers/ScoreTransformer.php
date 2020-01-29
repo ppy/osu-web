@@ -23,9 +23,8 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
-use League\Fractal;
 
-class ScoreTransformer extends Fractal\TransformerAbstract
+class ScoreTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap',

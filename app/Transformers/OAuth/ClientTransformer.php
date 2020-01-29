@@ -21,10 +21,10 @@
 namespace App\Transformers\OAuth;
 
 use App\Models\OAuth\Client;
+use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
-use League\Fractal;
 
-class ClientTransformer extends Fractal\TransformerAbstract
+class ClientTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'redirect',

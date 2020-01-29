@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\Comment;
-use League\Fractal;
 
-class CommentTransformer extends Fractal\TransformerAbstract
+class CommentTransformer extends TransformerAbstract
 {
     public function transform(Comment $comment)
     {

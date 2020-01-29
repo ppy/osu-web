@@ -37,7 +37,7 @@ class TransformerAbstract extends Fractal\TransformerAbstract
         foreach ($this->availableIncludes as $include) {
             if ($this->hasPermission($include)) {
                 $includes[] = $include;
-            };
+            }
         }
 
         return $includes;
@@ -54,15 +54,16 @@ class TransformerAbstract extends Fractal\TransformerAbstract
         foreach ($this->defaultIncludes as $include) {
             if ($this->hasPermission($include)) {
                 $includes[] = $include;
-            };
+            }
         }
 
         return $includes;
     }
 
-    protected function hasPermission($include) {
+    protected function hasPermission($include)
+    {
         $permissionRequired = $this->permissions[$include] ?? null;
 
-        return $permissionRequired == null || priv_check($permissionRequired)->can();
+        return $permissionRequired === null || priv_check($permissionRequired)->can();
     }
 }

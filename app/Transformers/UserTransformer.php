@@ -23,7 +23,7 @@ namespace App\Transformers;
 use App\Models\User;
 use League\Fractal;
 
-class UserTransformer extends Fractal\TransformerAbstract
+class UserTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'account_history',
