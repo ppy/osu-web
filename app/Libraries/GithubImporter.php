@@ -38,7 +38,7 @@ class GithubImporter
 
     public function import()
     {
-        if ($this->repository === OsuWiki::REPOSITORY && $this->isMasterPush()) {
+        if ($this->repository === OsuWiki::repository() && $this->isMasterPush()) {
             OsuWiki::updateFromGithub($this->data);
         } elseif ($this->isMergedPullRequest()) {
             return ChangelogEntry::importFromGithub($this->data);
