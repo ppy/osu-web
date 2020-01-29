@@ -119,7 +119,7 @@ class BeatmapDiscussionPostsController extends Controller
                 switch ($block->type) {
                     case 'embed':
                         $message = $block->text;
-                        $beatmapId = $block->beatmapId === 'all' ? null : $block->beatmapId;
+                        $beatmapId = $block->beatmapId ?? null;
 
                         $discussion = new BeatmapDiscussion([
                             'beatmapset_id' => $beatmapset->getKey(),
