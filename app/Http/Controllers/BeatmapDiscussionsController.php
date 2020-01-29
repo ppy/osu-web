@@ -22,7 +22,10 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionPost;
+use App\Models\Beatmapset;
 use Auth;
+use DB;
 use Illuminate\Pagination\Paginator;
 use Request;
 
@@ -118,6 +121,110 @@ class BeatmapDiscussionsController extends Controller
         $discussion->restore(Auth::user());
 
         return $discussion->beatmapset->defaultDiscussionJson();
+    }
+
+    public function review()
+    {
+        $jsonObj = request()->input('document');
+        $beatmapsetId = request()->input('beatmapset_id');
+
+        $beatmapset = Beatmapset
+            ::where('discussion_enabled', true)
+            ->findOrFail($beatmapsetId);
+
+        if (!$jsonObj || !is_array($jsonObj) || empty($jsonObj)) {
+            return error_popup('invalid document', 422);
+        }
+
+        $output = [];
+        try {
+            DB::beginTransaction();
+
+            // create the issues for the embeds first
+            $childIds = [];
+            foreach ($jsonObj as $block) {
+                switch ($block['type']) {
+                    case 'embed':
+                        $message = $block['text'];
+                        $beatmapId = $block['beatmapId'] ?? null;
+
+                        $discussion = new BeatmapDiscussion([
+                            'beatmapset_id' => $beatmapset->getKey(),
+                            'user_id' => Auth::user()->getKey(),
+                            'resolved' => false,
+                            'message_type' => $block['discussionType'],
+                            'beatmap_id' => $beatmapId,
+                        ]);
+                        $discussion->saveOrExplode();
+
+                        $postParams = [
+                            'user_id' => Auth::user()->user_id,
+                            'message' => $message,
+                        ];
+                        $post = new BeatmapDiscussionPost($postParams);
+                        $post->beatmapDiscussion()->associate($discussion);
+                        $post->saveOrExplode();
+
+                        $issues[] = [
+                            'discussion' => $discussion->getKey(),
+                            'post' => $post->getKey(),
+                        ];
+                        $childIds[] = $discussion->getKey();
+                        break;
+                }
+            }
+
+            // generate the post body now that the issues have been created
+            foreach ($jsonObj as $block) {
+                switch ($block['type']) {
+                    case 'paragraph':
+                        if (!$block['text']) {
+                            throw new \Exception('paragraph block missing text');
+                        }
+                        // strip attempted embed injections
+                        preg_replace('/%\[\]\(([^)])\)/', '$1', $block['text']);
+                        $output[] = $block['text'] . "\n";
+                        break;
+
+                    case 'embed':
+                        $discussionId = array_shift($issues)['discussion'];
+                        $output[] = "%[](#{$discussionId})\n";
+                        break;
+
+                    default:
+                        // invalid block type
+                        throw new \Exception('invalid block type');
+                }
+            }
+
+            // create the review post
+            $review = new BeatmapDiscussion([
+                'beatmapset_id' => $beatmapset->getKey(),
+                'user_id' => Auth::user()->getKey(),
+                'resolved' => false,
+                'message_type' => 'review',
+            ]);
+            $review->saveOrExplode();
+            $post = new BeatmapDiscussionPost([
+                'user_id' => Auth::user()->user_id,
+                'message' => join('', $output),
+            ]);
+            $post->beatmapDiscussion()->associate($review);
+            $post->saveOrExplode();
+
+            // associate children with parent
+            BeatmapDiscussion::whereIn('id', $childIds)
+                ->update(['parent_id' => $review->getKey()]);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return error_popup($e->getMessage(), 422);
+        }
+
+        return join('', $output);
+        //return $beatmapset->defaultDiscussionJson();
     }
 
     public function show($id)

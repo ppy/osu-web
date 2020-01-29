@@ -167,6 +167,136 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore - 1, $this->currentScore($this->discussion));
     }
 
+
+    // posting reviews - fail scenarios
+
+    // beatmapset id missing
+    public function testPostReviewIdMissing()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'))
+            ->assertStatus(404);
+    }
+
+    // document missing
+    public function testPostReviewDocumentMissing()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+            ])
+            ->assertStatus(422);
+    }
+
+    // invalid document
+    public function testPostReviewDocumentInvalid()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+                'document' => 'lol',
+            ])
+            ->assertStatus(422);
+    }
+
+    // empty document
+    public function testPostReviewDocumentEmpty()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+                'document' => [],
+            ])
+            ->assertStatus(422);
+    }
+
+    // invalid block type
+    public function testPostReviewDocumentInvalidBlockType()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+                'document' => [
+                    [
+                        'type' => 'invalid lol',
+                    ],
+                ],
+            ])
+            ->assertStatus(422);
+    }
+
+    // invalid paragraph block
+    public function testPostReviewDocumentInvalidParagraphBlockContent()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+                'document' => [
+                    [
+                        'type' => 'paragraph',
+                    ],
+                ],
+            ])
+            ->assertStatus(422);
+    }
+
+    // invalid embed block
+    public function testPostReviewDocumentInvalidEmbedBlockContent()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+                'document' => [
+                    [
+                        'type' => 'embed',
+                    ],
+                ],
+            ])
+            ->assertStatus(422);
+    }
+
+    public function testPostReviewDocumentValidParagraph()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+                'document' => [
+                    [
+                        'type' => 'paragraph',
+                        'text' => 'this is a text',
+                    ],
+                ],
+            ])
+            ->assertOk()
+            ->assertSee('this is a text'); // TODO: better test
+    }
+
+    public function testPostReviewDocumentValidEmbed()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+                'document' => [
+                    [
+                        'type' => 'embed',
+                        'discussionType' => 'problem',
+                        'text' => 'this is an embed text',
+                    ],
+                ],
+            ])
+            ->assertOk()
+            ->assertSee('%[]('); // TODO: better test
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
