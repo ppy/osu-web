@@ -196,11 +196,3 @@ interface TurbolinksStatic {
   uuid(): string;
   visit(location: string, options?: TurbolinksAction): void;
 }
-
-declare module 'slate-instant-replace' {
-  export default function InstantReplace(arguments: object): object;
-}
-
-declare module 'slate-soft-break' {
-  export default function SoftBreak(arguments: object): object;
-}
