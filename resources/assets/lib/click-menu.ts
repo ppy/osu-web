@@ -85,12 +85,12 @@ export default class ClickMenu {
 
       if (menuId == null || tree.indexOf(menuId) === -1) {
         Fade.out(menu);
-        this.menuLink(menuId)?.classList.remove('js-click-menu--active');
         menu.classList.remove('js-click-menu--active');
+        this.menuLink(menuId)?.classList.remove('js-click-menu--active');
       } else {
         Fade.in(menu);
-        this.menuLink(menuId)?.classList.add('js-click-menu--active');
         menu.classList.add('js-click-menu--active');
+        this.menuLink(menuId)?.classList.add('js-click-menu--active');
         validCurrent = true;
 
         if (menuId === this.current) {
