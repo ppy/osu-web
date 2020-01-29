@@ -71,9 +71,6 @@ return [
     'elasticsearch' => [
         'number_of_shards' => env('ES_DEFAULT_SHARDS', 1),
         'prefix' => env('ES_INDEX_PREFIX'),
-        'index' => [
-            'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
-        ],
         'search_timeout' => env('ES_SEARCH_TIMEOUT', '5s'),
     ],
     'emails' => [
@@ -221,6 +218,11 @@ return [
     ],
     'user_report_notification' => [
         'endpoint' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT')),
+    ],
+    'wiki' => [
+        'branch' => presence(env('WIKI_BRANCH'), 'master'),
+        'repository' => presence(env('WIKI_REPOSITORY'), 'osu-wiki'),
+        'user' => presence(env('WIKI_USER'), 'ppy'),
     ],
     'changelog' => [
         'build_history_interval' => 60 * intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)), // in minutes, converted to seconds
