@@ -121,7 +121,7 @@ class CommentsController extends Controller
 
             $commentPagination = new LengthAwarePaginator(
                 [],
-                Comment::count(),
+                $commentBundle->includeDeleted ? Comment::count() : Comment::withoutTrashed()->count(),
                 $commentBundle->params->limit,
                 $commentBundle->params->page,
                 [
