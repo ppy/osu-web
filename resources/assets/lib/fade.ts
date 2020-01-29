@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,13 +16,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'mail' => [
-        'donation_thanks' => [
-            'subject' => 'Díky, osu! ťa <3luje',
-        ],
-        'supporter_gift' => [
-            'subject' => '',
-        ],
-    ],
-];
+type MaybeHTMLElement = HTMLElement | undefined | null;
+
+const Fade = {
+  in: (el: MaybeHTMLElement) => {
+    el?.setAttribute('data-visibility', 'visible');
+  },
+
+  isVisible: (el: MaybeHTMLElement) => {
+    return el?.getAttribute('data-visibility') !== 'hidden';
+  },
+
+  out: (el: MaybeHTMLElement) => {
+    el?.setAttribute('data-visibility', 'hidden');
+  },
+
+  toggle: (el: MaybeHTMLElement, makeVisible?: boolean) => {
+    if (el == null) return;
+
+    makeVisible = makeVisible ?? !Fade.isVisible(el);
+
+    makeVisible ? Fade.in(el) : Fade.out(el);
+  },
+};
+
+export default Fade;
