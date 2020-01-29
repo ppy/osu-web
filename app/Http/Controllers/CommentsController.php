@@ -92,13 +92,10 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        $requestParams = get_params(request(), null, [
-            'commentable_id:int',
-            'commentable_type',
-        ]);
+        $params = request()->all();
 
-        $id = $requestParams['commentable_id'] ?? null;
-        $type = $requestParams['commentable_type'] ?? null;
+        $id = $params['commentable_id'] ?? null;
+        $type = $params['commentable_type'] ?? null;
 
         if (isset($type) && isset($id)) {
             if (!Comment::isValidType($type)) {
@@ -109,7 +106,6 @@ class CommentsController extends Controller
             $commentable = $class::findOrFail($id);
         }
 
-        $params = request()->all();
         $params['sort'] = $params['sort'] ?? CommentBundleParams::DEFAULT_SORT;
         $commentBundle = new CommentBundle(
             $commentable ?? null,
@@ -134,7 +130,7 @@ class CommentsController extends Controller
                 $commentBundle->params->page,
                 [
                     'path' => LengthAwarePaginator::resolveCurrentPath(),
-                    'query' => array_merge($commentBundle->params->forUrl(), $requestParams),
+                    'query' => array_merge($commentBundle->params->forUrl(), ['commentable_id' => $id, 'commentable_type' => $type]),
                 ]
             );
 
