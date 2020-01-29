@@ -21,12 +21,12 @@
 namespace App\Models\Elasticsearch;
 
 use App\Models\Beatmap;
-use App\Traits\EsIndexable;
+use App\Traits\EsIndexableModel;
 use Carbon\Carbon;
 
 trait BeatmapsetTrait
 {
-    use EsIndexable;
+    use EsIndexableModel;
 
     public function toEsJson()
     {
