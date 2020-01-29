@@ -92,8 +92,13 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        $type = request('commentable_type');
-        $id = request('commentable_id');
+        $requestParams = get_params(request(), null, [
+            'commentable_id:int',
+            'commentable_type',
+        ]);
+
+        $id = $requestParams['commentable_id'] ?? null;
+        $type = $requestParams['commentable_type'] ?? null;
 
         if (isset($type) && isset($id)) {
             if (!Comment::isValidType($type)) {
@@ -129,7 +134,7 @@ class CommentsController extends Controller
                 $commentBundle->params->page,
                 [
                     'path' => LengthAwarePaginator::resolveCurrentPath(),
-                    'query' => $commentBundle->params->forUrl(),
+                    'query' => array_merge($commentBundle->params->forUrl(), $requestParams),
                 ]
             );
 
