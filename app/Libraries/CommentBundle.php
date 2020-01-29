@@ -156,6 +156,18 @@ class CommentBundle
         }
     }
 
+    // This is named explictly for the paginator because there's another count
+    // in ::toArray() which always includes deleted comments.
+    public function countForPaginator()
+    {
+        $query = $this->commentsQuery();
+        if (!$this->includeDeleted) {
+            $query->withoutTrashed();
+        }
+
+        return $query->count();
+    }
+
     private function getComments($query, $isChildren = true, $pinnedOnly = false)
     {
         $sort = $pinnedOnly ? CommentBundleParams::SORTS['new'] : $this->params->sortDbOptions();

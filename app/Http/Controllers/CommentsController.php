@@ -119,12 +119,9 @@ class CommentsController extends Controller
             $commentBundle->includeCommentableMeta = true;
             $commentBundle->includePinned = false;
 
-            $countQuery = isset($commentable) ? $commentable->comments() : Comment::query();
-            $count = $commentBundle->includeDeleted ? $countQuery->count() : $countQuery->withoutTrashed()->count();
-
             $commentPagination = new LengthAwarePaginator(
                 [],
-                $count,
+                $commentBundle->countForPaginator(),
                 $commentBundle->params->limit,
                 $commentBundle->params->page,
                 [
