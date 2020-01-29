@@ -61,14 +61,18 @@ export default class ClickMenu {
   }
 
   saveCurrent = () => {
-    document.body.dataset.clickMenuCurrent = this.current ?? undefined;
+    if (this.current == null) {
+      delete document.body.dataset.clickMenuCurrent;
+    } else {
+      document.body.dataset.clickMenuCurrent = this.current;
+    }
   }
 
   show = (target?: string | null | undefined) => {
     this.current = target;
 
     const tree = this.tree();
-    const menus = Array.from(document.querySelectorAll('.js-click-menu[data-click-menu-id]'));
+    const menus = document.querySelectorAll('.js-click-menu[data-click-menu-id]');
     let shownMenu: HTMLElement | null = null;
     let validCurrent = false;
 
