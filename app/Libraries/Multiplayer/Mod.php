@@ -162,9 +162,11 @@ class Mod
             'speed_change' => 'float',
         ],
         self::WIND_UP => [
+            'initial_rate' => 'float',
             'final_rate' => 'float',
         ],
         self::WIND_DOWN => [
+            'initial_rate' => 'float',
             'final_rate' => 'float',
         ],
     ];
