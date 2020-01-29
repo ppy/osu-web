@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Biztosan törlöd a posztot?',
         'confirm_restore' => 'Biztosan visszaállítod a posztot?',
-        'edited' => 'Utoljára módosítva :user által :when, módosítva :count alkalommal.',
+        'edited' => 'Utoljára módosítva :user által :when, módosítva :count_delimited alkalommal.',
         'posted_at' => 'posztolva :when',
 
         'actions' => [

@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'ต้องการลบโพสต์จริงหรอ?',
         'confirm_restore' => 'ต้องการกู้คืนโพสต์จริงหรอ?',
-        'edited' => 'แก้ไขล่าสุดโดย :user :when ถูกแก้ไขทั้งหมด :count ครั้ง',
+        'edited' => 'แก้ไขล่าสุดโดย :user :when ถูกแก้ไขทั้งหมด :count_delimited ครั้ง',
         'posted_at' => 'โพสต์เมื่อ :when',
 
         'actions' => [
