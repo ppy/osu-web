@@ -126,7 +126,7 @@ class CommentsController extends Controller
                 $commentBundle->params->page,
                 [
                     'path' => LengthAwarePaginator::resolveCurrentPath(),
-                    'query' => array_merge($commentBundle->params->forUrl(), ['commentable_id' => $id, 'commentable_type' => $type]),
+                    'query' => $commentBundle->params->forUrl(),
                 ]
             );
 
