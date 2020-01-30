@@ -126,6 +126,11 @@ class BeatmapDiscussionsController extends Controller
     public function review()
     {
         $jsonObj = request()->input('document');
+        // TODO: remove this when reviews are released
+        if (!config('osu.beatmapset.discussion_review_enabled')) {
+            abort(404);
+        }
+
         $beatmapsetId = request()->input('beatmapset_id');
 
         $beatmapset = Beatmapset
