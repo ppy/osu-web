@@ -148,6 +148,10 @@ class BeatmapDiscussionsController extends Controller
             // create the issues for the embeds first
             $childIds = [];
             foreach ($document as $block) {
+                if (!isset($block['type'])) {
+                    throw new \Exception(trans('beatmap_discussions.review.validation.invalid_block_type'));
+                }
+
                 switch ($block['type']) {
                     case 'embed':
                         $message = $block['text'];

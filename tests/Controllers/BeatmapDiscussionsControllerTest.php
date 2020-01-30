@@ -222,6 +222,23 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(422);
     }
 
+
+    // missing block type
+    public function testPostReviewDocumentMissingBlockType()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+                'document' => [
+                    [
+                        'text' => 'invalid lol',
+                    ],
+                ],
+            ])
+            ->assertStatus(422);
+    }
+
     // invalid block type
     public function testPostReviewDocumentInvalidBlockType()
     {
