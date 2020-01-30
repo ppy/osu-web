@@ -222,7 +222,6 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(422);
     }
 
-
     // missing block type
     public function testPostReviewDocumentMissingBlockType()
     {
