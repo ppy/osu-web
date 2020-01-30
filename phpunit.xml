@@ -18,6 +18,8 @@
         <env name="ALLOW_REGISTRATION" value="true"/>
         <env name="APP_ENV" value="testing"/>
         <env name="BEATMAPSET_REQUIRED_HYPE" value="0"/>
+        <env name="BEATMAPSET_DISCUSSION_REVIEW_ENABLED" value="true"/>
+        <env name="BEATMAPSET_DISCUSSION_REVIEW_MAXIMUM_BLOCKS" value="3"/>
         <env name="BROADCAST_DRIVER" value="log"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="CHAT_PRIVATE_LIMIT" value="2"/>

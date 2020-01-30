@@ -85,6 +85,7 @@ return [
             'invalid_document' => 'invalid review',
             'minimum_issues' => 'review must contain a minimum of :count issue|review must contain a minimum of :count issues',
             'paragraph_missing_text' => 'paragraph block is missing text',
+            'too_many_blocks' => 'reviews may only contain :count paragraph/issue|reviews may only contain up to :count paragraphs/issues',
         ],
     ],
 

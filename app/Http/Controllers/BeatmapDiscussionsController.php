@@ -147,11 +147,11 @@ class BeatmapDiscussionsController extends Controller
 
             // create the issues for the embeds first
             $childIds = [];
+            $blockCount = 0;
             foreach ($document as $block) {
                 if (!isset($block['type'])) {
                     throw new \Exception(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
-
                 switch ($block['type']) {
                     case 'embed':
                         $message = $block['text'];
@@ -181,11 +181,17 @@ class BeatmapDiscussionsController extends Controller
                         $childIds[] = $discussion->getKey();
                         break;
                 }
+                $blockCount++;
             }
 
             $minIssues = config('osu.beatmapset.discussion_review_min_issues');
             if (empty($childIds) || count($childIds) < $minIssues) {
                 return error_popup(trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues), 422);
+            }
+
+            $maxBlocks = config('osu.beatmapset.discussion_review_max_blocks');
+            if ($blockCount > $maxBlocks) {
+                return error_popup(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks), 422);
             }
 
             // generate the post body now that the issues have been created

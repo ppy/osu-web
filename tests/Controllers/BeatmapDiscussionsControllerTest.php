@@ -303,6 +303,36 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(422);
     }
 
+    // document with too many blocks
+    public function testPostReviewDocumentValidWithTooManyBlocks()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+                'document' => [
+                    [
+                        'type' => 'embed',
+                        'discussionType' => 'problem',
+                        'text' => self::$faker->sentence(),
+                    ],
+                    [
+                        'type' => 'paragraph',
+                        'text' => self::$faker->sentence(),
+                    ],
+                    [
+                        'type' => 'paragraph',
+                        'text' => self::$faker->sentence(),
+                    ],
+                    [
+                        'type' => 'paragraph',
+                        'text' => self::$faker->sentence(),
+                    ],
+                ],
+            ])
+            ->assertStatus(422);
+    }
+
     // posting reviews - success scenarios ----
 
     // valid document containing issue embeds
