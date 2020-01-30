@@ -26,6 +26,11 @@ class TransformerAbstract extends Fractal\TransformerAbstract
 {
     protected $permissions = [];
 
+    public function getPermissions()
+    {
+        return $this->permissions;
+    }
+
     /**
      * {@inheritcoc}
      */
