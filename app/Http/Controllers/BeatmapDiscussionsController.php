@@ -125,20 +125,20 @@ class BeatmapDiscussionsController extends Controller
 
     public function review()
     {
-        $jsonObj = request()->input('document');
         // TODO: remove this when reviews are released
         if (!config('osu.beatmapset.discussion_review_enabled')) {
             abort(404);
         }
 
+        $document = request()->input('document');
         $beatmapsetId = request()->input('beatmapset_id');
 
         $beatmapset = Beatmapset
             ::where('discussion_enabled', true)
             ->findOrFail($beatmapsetId);
 
-        if (!$jsonObj || !is_array($jsonObj) || empty($jsonObj)) {
-            return error_popup('invalid document', 422);
+        if (!$document || !is_array($document) || empty($document)) {
+            return error_popup(trans('beatmap_discussions.review.validation.invalid_document'), 422);
         }
 
         $output = [];
@@ -147,7 +147,7 @@ class BeatmapDiscussionsController extends Controller
 
             // create the issues for the embeds first
             $childIds = [];
-            foreach ($jsonObj as $block) {
+            foreach ($document as $block) {
                 switch ($block['type']) {
                     case 'embed':
                         $message = $block['text'];
@@ -179,16 +179,21 @@ class BeatmapDiscussionsController extends Controller
                 }
             }
 
+            $minIssues = config('osu.beatmapset.discussion_review_min_issues');
+            if (empty($childIds) || count($childIds) < $minIssues) {
+                return error_popup(trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues), 422);
+            }
+
             // generate the post body now that the issues have been created
-            foreach ($jsonObj as $block) {
+            foreach ($document as $block) {
                 switch ($block['type']) {
                     case 'paragraph':
                         if (!$block['text']) {
-                            throw new \Exception('paragraph block missing text');
+                            throw new \Exception(trans('beatmap_discussions.review.validation.paragraph_missing_text'));
                         }
-                        // strip attempted embed injections
-                        preg_replace('/%\[\]\(([^)])\)/', '$1', $block['text']);
-                        $output[] = $block['text'] . "\n";
+                        // escape embed injection attempts
+                        $text = preg_replace('/%\[\]\(#(\d+)\)/', '%\[\]\(#$1\)', $block['text']);
+                        $output[] = "{$text}\n";
                         break;
 
                     case 'embed':
@@ -198,7 +203,7 @@ class BeatmapDiscussionsController extends Controller
 
                     default:
                         // invalid block type
-                        throw new \Exception('invalid block type');
+                        throw new \Exception(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
             }
 
@@ -212,7 +217,7 @@ class BeatmapDiscussionsController extends Controller
             $review->saveOrExplode();
             $post = new BeatmapDiscussionPost([
                 'user_id' => Auth::user()->user_id,
-                'message' => join('', $output),
+                'message' => implode('', $output),
             ]);
             $post->beatmapDiscussion()->associate($review);
             $post->saveOrExplode();
@@ -228,8 +233,7 @@ class BeatmapDiscussionsController extends Controller
             return error_popup($e->getMessage(), 422);
         }
 
-        return join('', $output);
-        //return $beatmapset->defaultDiscussionJson();
+        return $beatmapset->defaultDiscussionJson();
     }
 
     public function show($id)

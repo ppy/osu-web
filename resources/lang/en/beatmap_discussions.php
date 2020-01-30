@@ -80,6 +80,12 @@ return [
     'review' => [
         'go_to_parent' => 'View Review Post',
         'go_to_child' => 'View Discussion',
+        'validation' => [
+            'invalid_block_type' => 'invalid block type',
+            'invalid_document' => 'invalid review',
+            'minimum_issues' => 'review must contain a minimum of :count issue|review must contain a minimum of :count issues',
+            'paragraph_missing_text' => 'paragraph block is missing text',
+        ],
     ],
 
     'system' => [

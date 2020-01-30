@@ -4,15 +4,24 @@ namespace Tests\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Models\UserGroup;
 use DB;
+use Faker;
 use Tests\TestCase;
 
 class BeatmapDiscussionsControllerTest extends TestCase
 {
+    protected static $faker;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$faker = Faker\Factory::create();
+    }
+
     // normal vote
     public function testPutVoteInitial()
     {
@@ -167,8 +176,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore - 1, $this->currentScore($this->discussion));
     }
 
-
-    // posting reviews - fail scenarios
+    // posting reviews - fail scenarios ----
 
     // beatmapset id missing
     public function testPostReviewIdMissing()
@@ -262,7 +270,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(422);
     }
 
-    public function testPostReviewDocumentValidParagraph()
+    // valid document containing zero issue embeds
+    public function testPostReviewDocumentValidParagraphWithNoIssues()
     {
         $this
             ->actingAsVerified($this->user)
@@ -275,12 +284,19 @@ class BeatmapDiscussionsControllerTest extends TestCase
                     ],
                 ],
             ])
-            ->assertOk()
-            ->assertSee('this is a text'); // TODO: better test
+            ->assertStatus(422);
     }
 
-    public function testPostReviewDocumentValidEmbed()
+    // posting reviews - success scenarios ----
+
+    // valid document containing issue embeds
+    public function testPostReviewDocumentValidWithIssues()
     {
+        $discussionCount = BeatmapDiscussion::count();
+        $discussionPostCount = BeatmapDiscussionPost::count();
+        $issueText = self::$faker->sentence();
+        $issueText2 = self::$faker->sentence();
+
         $this
             ->actingAsVerified($this->user)
             ->post(route('beatmapsets.beatmap-discussions.review'), [
@@ -289,12 +305,72 @@ class BeatmapDiscussionsControllerTest extends TestCase
                     [
                         'type' => 'embed',
                         'discussionType' => 'problem',
-                        'text' => 'this is an embed text',
+                        'text' => $issueText,
+                    ],
+                    [
+                        'type' => 'embed',
+                        'discussionType' => 'problem',
+                        'text' => $issueText2,
                     ],
                 ],
             ])
-            ->assertOk()
-            ->assertSee('%[]('); // TODO: better test
+            ->assertSuccessful()
+            ->assertJsonFragment(
+              [
+                  'user_id' => $this->user->getKey(),
+                  'message' => $issueText,
+              ]
+            )
+            ->assertJsonFragment(
+              [
+                  'user_id' => $this->user->getKey(),
+                  'message' => $issueText2,
+              ]
+            );
+
+        // ensure 3 discussions/posts are created - one for the review and one for each embedded problem
+        $this->assertSame($discussionCount + 3, BeatmapDiscussion::count());
+        $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
+    }
+
+    // valid document containing attempted discussion embed injection
+    public function testPostReviewDocumentEscaping()
+    {
+        $discussionCount = BeatmapDiscussion::count();
+        $discussionPostCount = BeatmapDiscussionPost::count();
+        $issueText = self::$faker->sentence();
+        $problematicText = '%[](#123)';
+        $problematicTextEscaped = '%\\\[\\\]\\\(#123\\\)';
+
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+                'document' => [
+                    [
+                        'type' => 'embed',
+                        'discussionType' => 'problem',
+                        'text' => $issueText,
+                    ],
+                    [
+                        'type' => 'paragraph',
+                        'text' => $problematicText,
+                    ],
+                ],
+            ])
+            ->assertSuccessful()
+            ->assertJsonFragment(
+              [
+                  'user_id' => $this->user->getKey(),
+                  'message' => $issueText,
+              ]
+            )
+            ->assertDontsee($problematicText)
+            ->assertSee($problematicTextEscaped);
+
+        // ensure 2 discussions/posts are created - one for the review and one for the embedded problem
+        $this->assertSame($discussionCount + 2, BeatmapDiscussion::count());
+        $this->assertSame($discussionPostCount + 2, BeatmapDiscussionPost::count());
     }
 
     protected function setUp(): void
