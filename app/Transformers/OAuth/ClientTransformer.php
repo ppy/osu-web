@@ -32,6 +32,11 @@ class ClientTransformer extends TransformerAbstract
         'user',
     ];
 
+    protected $permissions = [
+        'redirect' => 'IsOwnClient',
+        'secret' => 'IsOwnClient',
+    ];
+
     public function transform(Client $client)
     {
         return [
@@ -51,24 +56,11 @@ class ClientTransformer extends TransformerAbstract
 
     public function includeRedirect(Client $client)
     {
-        if (!static::isOwnClient($client)) {
-            return;
-        }
-
         return $this->primitive($client->redirect);
     }
 
     public function includeSecret(Client $client)
     {
-        if (!static::isOwnClient($client)) {
-            return;
-        }
-
         return $this->primitive($client->secret);
-    }
-
-    private static function isOwnClient(Client $client)
-    {
-        return auth()->check() && auth()->user()->getKey() === $client->user_id;
     }
 }

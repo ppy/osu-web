@@ -35,6 +35,7 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Multiplayer\Match;
+use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;
 use Carbon\Carbon;
@@ -1417,6 +1418,15 @@ class OsuAuthorize
             if ($topic->poll()->votedBy($user)) {
                 return $prefix.'voted';
             }
+        }
+
+        return 'ok';
+    }
+
+    public function checkIsOwnClient(?User $user, Client $client): string
+    {
+        if ($user === null || $user->getKey() !== $client->user_id) {
+            return 'unauthorized';
         }
 
         return 'ok';
