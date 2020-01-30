@@ -27,43 +27,21 @@ class TransformerAbstract extends Fractal\TransformerAbstract
     protected $permissions = [];
 
     /**
-     * Getter for availableIncludes.
-     *
-     * @return array
+     * {@inheritcoc}
      */
-    public function getAvailableIncludes()
+    protected function callIncludeMethod(Fractal\Scope $scope, $includeName, $data)
     {
-        $includes = [];
-        foreach ($this->availableIncludes as $include) {
-            if ($this->hasPermission($include)) {
-                $includes[] = $include;
-            }
+        if (!$this->hasPermission($includeName, $data)) {
+            return; // or false apparently
         }
 
-        return $includes;
+        return parent::callIncludeMethod($scope, $includeName, $data);
     }
 
-    /**
-     * Getter for defaultIncludes.
-     *
-     * @return array
-     */
-    public function getDefaultIncludes()
-    {
-        $includes = [];
-        foreach ($this->defaultIncludes as $include) {
-            if ($this->hasPermission($include)) {
-                $includes[] = $include;
-            }
-        }
-
-        return $includes;
-    }
-
-    protected function hasPermission($include)
+    protected function hasPermission($include, $data)
     {
         $permissionRequired = $this->permissions[$include] ?? null;
 
-        return $permissionRequired === null || priv_check($permissionRequired)->can();
+        return $permissionRequired === null || priv_check($permissionRequired, $data)->can();
     }
 }
