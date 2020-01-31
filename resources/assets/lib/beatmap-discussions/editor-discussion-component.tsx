@@ -29,6 +29,7 @@ interface Props extends RenderElementProps {
   beatmapset: Beatmapset;
   currentBeatmap: Beatmap;
   currentDiscussions: BeatmapDiscussion[];
+  editMode?: boolean;
 }
 
 export default class EditorDiscussionComponent extends React.Component<Props> {
@@ -60,9 +61,9 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   path = (): Path => ReactEditor.findPath(this.context, this.props.element);
 
-  remove = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
+  remove = () => {
     Transforms.delete(this.context, { at: this.path() });
+    // if editmode, do callback to server to nuke?
   }
 
   render(): React.ReactNode {
@@ -100,6 +101,15 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
             </div>
           </div>
         </div>
+        {this.props.editMode &&
+          <button
+            className={`${bn}__trashcan`}
+            onClick={this.unlink}
+            contentEditable={false}
+          >
+            <i className='fas fa-unlink' />
+          </button>
+        }
         <button
           className={`${bn}__trashcan`}
           onClick={this.remove}
@@ -109,5 +119,9 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         </button>
       </div>
     );
+  }
+
+  unlink = () => {
+    Transforms.delete(this.context, { at: this.path() });
   }
 }

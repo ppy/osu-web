@@ -50,11 +50,70 @@ export default class Editor extends React.Component<any, any> {
       initialValue = savedValue;
     }
 
+    try {
+      initialValue = JSON.parse(initialValue);
+    } catch (error) {
+      console.log('invalid json in localstorage, resetting');
+      initialValue = JSON.parse(placeholder);
+    }
+
     this.state = {
       menuOffset: -1000,
       menuShown: false,
-      value: JSON.parse(initialValue),
+      value: initialValue,
     };
+  }
+
+  // componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any): void {
+  //   console.log('componentDidUpdate');
+  // }
+
+  componentDidMount(): void {
+    // console.log('componentDidMount');
+    //
+    if (this.props.fromMarkdown) {
+      if (!this.props.discussions || _.isEmpty(this.props.discussions)) {
+        return;
+      }
+      const markdown: string = this.props.fromMarkdown;
+      const document: SlateNode[] = [];
+
+      const derp = markdown.split('\n');
+      _.each(derp, (block) => {
+        const regex = new RegExp(/%\[\]\(#(\d+)\)\n*/);
+        const result = regex.exec(block);
+
+        if (!result || result.index !== 0) {
+          // paragraph
+          document.push({
+            children: [{
+              text: block,
+            }],
+            type: 'paragraph',
+          });
+        } else {
+          // embed
+          const [matched, embed, reference] = result;
+          const discussion: BeatmapDiscussion = this.props.discussions[embed];
+          if (!discussion) {
+            return;
+          }
+          document.push({
+            beatmapId: discussion.beatmap_id,
+            children: [{
+              text: (discussion.starting_post || discussion.posts[0]).message,
+            }],
+            discussionType: discussion.message_type,
+            timestamp: discussion.timestamp,
+            type: 'embed',
+          });
+        }
+      });
+
+      this.setState({value: document});
+
+      console.dir(document);
+    }
   }
 
   decorate = (entry: NodeEntry) => {
@@ -105,8 +164,10 @@ export default class Editor extends React.Component<any, any> {
   log = () => console.dir(this.state.value);
 
   onChange = (value: SlateNode[]) => {
-    const content = JSON.stringify(value);
-    localStorage.setItem(`newDiscussion-${this.props.beatmapset.id}`, content);
+    if (!this.props.editMode) {
+      const content = JSON.stringify(value);
+      localStorage.setItem(`newDiscussion-${this.props.beatmapset.id}`, content);
+    }
 
     this.setState({value}, () => {
       if (!ReactEditor.isFocused(this.slateEditor) && !this.state.menuShown) {
@@ -152,107 +213,95 @@ export default class Editor extends React.Component<any, any> {
   }
 
   render(): React.ReactNode {
-    const floatClass = 'beatmap-discussion-new-float';
     const editorClass = 'beatmap-discussion-editor';
 
     return (
-      <div className={floatClass}>
-        <div className={`${floatClass}__floatable ${floatClass}__floatable--pinned`}>
-          <div className={`${floatClass}__content`}>
-            <div className='osu-page osu-page--small'>
-              <div className={editorClass}>
-                <div className='page-title'>{osu.trans('beatmaps.discussions.new.title')}</div>
-                <div ref={this.editor} className={`${editorClass}__content`}>
-                  <SlateContext.Provider
-                    value={this.slateEditor}
+      <div ref={this.editor} className={`${editorClass}__content`}>
+        <SlateContext.Provider
+          value={this.slateEditor}
+        >
+          <Slate
+            editor={this.slateEditor}
+            value={this.state.value}
+            onChange={this.onChange}
+          >
+            <Editable
+              decorate={this.decorate}
+              onKeyDown={this.onKeyDown}
+              renderElement={this.renderElement}
+              renderLeaf={this.renderLeaf}
+            />
+            <div className={`${editorClass}__button-bar`}>
+              <div className='post-box-toolbar'>
+                  <button
+                      className='btn-circle btn-circle--bbcode'
+                      title='Bold'
+                      type='button'
+                      onClick={this.toggleBold}
                   >
-                    <Slate
-                      editor={this.slateEditor}
-                      value={this.state.value}
-                      onChange={this.onChange}
-                    >
-                      <Editable
-                        decorate={this.decorate}
-                        onKeyDown={this.onKeyDown}
-                        renderElement={this.renderElement}
-                        renderLeaf={this.renderLeaf}
-                      />
-                      <div className={`${editorClass}__button-bar`}>
-                        <div className='post-box-toolbar'>
-                            <button
-                                className='btn-circle btn-circle--bbcode'
-                                title='Bold'
-                                type='button'
-                                onClick={this.toggleBold}
-                            >
-                                <span className='btn-circle__content'>
-                                    <i className='fas fa-bold'/>
-                                </span>
-                            </button>
-                            <button
-                                className='btn-circle btn-circle--bbcode'
-                                title='Italic'
-                                type='button'
-                                onClick={this.toggleItalic}
-                            >
-                                <span className='btn-circle__content'>
-                                    <i className='fas fa-italic'/>
-                                </span>
-                            </button>
-                        </div>
-                        <div className={`${editorClass}__button-bar-button`}>
-                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
-                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
-                          </button>
-                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
-                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
-                          </button>
-                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
-                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
-                          </button>
-                          <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.resetInput}>reset</button>
-                          <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.test}>test</button>
-                          <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
-                          <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
-                        </div>
-                      </div>
-                      <div
-                        className={`${editorClass}__menu`}
-                        ref={this.menu}
-                        style={{
-                          left: '-13px',
-                          position: 'absolute',
-                          top: `${this.state.menuOffset}px`,
-                        }}
-                        onMouseEnter={this.showMenu}
-                        onMouseLeave={this.hideMenu}
-                      >
-                        <div className='forum-post-edit__button'><i className='fa fas fa-plus-circle' /></div>
-                        <div
-                          className={`${editorClass}__menu-content`}
-                          ref={this.menuBody}
-                          style={{
-                            display: this.state.menuShown ? 'block' : 'none',
-                          }}
-                        >
-                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
-                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
-                          </button>
-                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
-                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
-                          </button>
-                          <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
-                            <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
-                          </button>
-                        </div>
-                      </div>
-                    </Slate>
-                  </SlateContext.Provider>
-                </div>
+                      <span className='btn-circle__content'>
+                          <i className='fas fa-bold'/>
+                      </span>
+                  </button>
+                  <button
+                      className='btn-circle btn-circle--bbcode'
+                      title='Italic'
+                      type='button'
+                      onClick={this.toggleItalic}
+                  >
+                      <span className='btn-circle__content'>
+                          <i className='fas fa-italic'/>
+                      </span>
+                  </button>
+              </div>
+              <div className={`${editorClass}__button-bar-button`}>
+                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
+                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
+                </button>
+                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
+                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
+                </button>
+                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
+                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
+                </button>
+                <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.resetInput}>reset</button>
+                <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.test}>test</button>
+                <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
+                <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
               </div>
             </div>
-          </div>
-        </div>
+            <div
+              className={`${editorClass}__menu`}
+              ref={this.menu}
+              style={{
+                left: '-13px',
+                position: 'absolute',
+                top: `${this.state.menuOffset}px`,
+              }}
+              onMouseEnter={this.showMenu}
+              onMouseLeave={this.hideMenu}
+            >
+              <div className='forum-post-edit__button'><i className='fa fas fa-plus-circle' /></div>
+              <div
+                className={`${editorClass}__menu-content`}
+                ref={this.menuBody}
+                style={{
+                  display: this.state.menuShown ? 'block' : 'none',
+                }}
+              >
+                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
+                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
+                </button>
+                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
+                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
+                </button>
+                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
+                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
+                </button>
+              </div>
+            </div>
+          </Slate>
+        </SlateContext.Provider>
       </div>
     );
   }
@@ -265,6 +314,7 @@ export default class Editor extends React.Component<any, any> {
             beatmapset={this.props.beatmapset}
             currentBeatmap={this.props.currentBeatmap}
             currentDiscussions={this.props.currentDiscussions}
+            editMode={this.props.editMode}
             beatmaps={_.flatten(_.values(this.props.beatmaps))}
             {...props}
           />

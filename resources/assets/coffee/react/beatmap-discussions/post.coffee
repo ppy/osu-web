@@ -23,6 +23,9 @@ import { a, button, div, span } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
 import { ReviewPost } from 'beatmap-discussions/review-post'
 import { UserCard } from './user-card'
+import Editor from 'beatmap-discussions/editor'
+import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 
 el = React.createElement
 
@@ -121,14 +124,30 @@ export class Post extends React.PureComponent
     canPost = !@state.posting && @validPost()
 
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
-      el TextareaAutosize,
-        disabled: @state.posting
-        className: "#{bn}__message #{bn}__message--editor"
-        onChange: @setMessage
-        onKeyDown: @handleKeyDown
-        value: @state.message
-        ref: @textarea
-      el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
+      if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+        el DiscussionsContext.Consumer, null,
+          (discussions) =>
+            el BeatmapsContext.Consumer, null,
+              (beatmaps) =>
+                el Editor,
+                  beatmapset: @props.beatmapset
+    #              users: @users()
+                  beatmaps: beatmaps
+    #              currentBeatmap: @currentBeatmap()
+    #              currentDiscussions: @currentDiscussions()
+                  discussions: discussions
+                  editMode: true
+                  fromMarkdown: @state.message
+      else
+        el React.Fragment, null,
+          el TextareaAutosize,
+            disabled: @state.posting
+            className: "#{bn}__message #{bn}__message--editor"
+            onChange: @setMessage
+            onKeyDown: @handleKeyDown
+            value: @state.message
+            ref: @textarea
+          el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",
         div className: "#{bn}__actions-group"
