@@ -33,6 +33,9 @@ export default class NotificationStack implements NotificationReadable {
   @observable notifications = new Map<number, Notification>();
   @observable total = 0;
 
+  // This is for cases when there are more notifications available to be loaded
+  // but all the currently loaded notifications have seen removed, allowing the last known notification
+  // to be shown in the stack's header instead of nothing.
   @observable private lastNotification: Notification | null = null;
 
   @computed
