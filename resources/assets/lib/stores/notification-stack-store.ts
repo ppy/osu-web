@@ -130,7 +130,7 @@ export default class NotificationStackStore implements DispatchListener {
       this.total++;
     }
 
-    stack.notifications.set(notification.id, notification);
+    stack.add(notification);
     type.stacks.set(stack.id, stack);
     this.allStacks.set(stack.id, stack);
   }
@@ -150,7 +150,7 @@ export default class NotificationStackStore implements DispatchListener {
   }
 
   orderedStacksOfType(name: NotificationTypeName) {
-    return this.stacksOfType(name).sort((x, y) => y.first.id - x.first.id);
+    return this.stacksOfType(name).sort((x, y) => y.displayOrder - x.displayOrder);
   }
 
   /**
@@ -171,7 +171,7 @@ export default class NotificationStackStore implements DispatchListener {
     for (const [, stack] of type.stacks) {
       // don't include stacks that are past the cursor for the type
       // this is to prevent gaps in loaded stacks when switching filters
-      if (type?.cursor !== undefined && stack.first.id >= cursorId) stacks.push(stack);
+      if (type?.cursor !== undefined && stack.displayOrder >= cursorId) stacks.push(stack);
     }
 
     return stacks;
@@ -194,7 +194,7 @@ export default class NotificationStackStore implements DispatchListener {
     }
 
     const type = this.getOrCreateType(notification.identity);
-    type.stacks.get(notification.stackId)?.notifications.set(notification.id, notification);
+    type.stacks.get(notification.stackId)?.add(notification);
   }
 
   private updateWithStackJson(json: NotificationStackJson) {

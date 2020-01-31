@@ -28,6 +28,7 @@ import { NotificationResolver } from 'notifications/notification-resolver';
 
 export default class NotificationStack implements NotificationReadable {
   @observable cursor: NotificationCursor | null = null;
+  @observable displayOrder = 0;
   @observable isLoading = false;
   @observable isMarkingAsRead = false;
   @observable notifications = new Map<number, Notification>();
@@ -113,6 +114,7 @@ export default class NotificationStack implements NotificationReadable {
   @action
   add(notification: Notification) {
     this.notifications.set(notification.id, notification);
+    this.displayOrder = Math.max(notification.id, this.displayOrder);
   }
 
   @action
