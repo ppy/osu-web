@@ -110,10 +110,7 @@ export class WikiSearch extends React.Component {
         {
           this.controller.suggestions.map((item, index) => {
             const setIndex = () => this.controller.selectIndex(index, 0);
-            const href = route('search', {
-              mode: 'wiki_page',
-              query: item.source,
-            });
+            const href = route('wiki.show', { page: item.path });
 
             return (
               <a

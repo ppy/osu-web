@@ -22,7 +22,8 @@ import { action, computed, observable } from 'mobx';
 
 interface SuggestionJSON {
   highlight: string;
-  source: string;
+  path: string;
+  title: string;
 }
 
 export class WikiSearchController {
@@ -82,7 +83,7 @@ export class WikiSearchController {
       this.query = this.saved;
       this.shouldShowSuggestions = false;
     } else {
-      this.query = this.suggestions[index].source;
+      this.query = this.suggestions[index].title;
       this.shouldShowSuggestions = true;
     }
   }
