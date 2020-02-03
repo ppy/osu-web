@@ -23,6 +23,11 @@ return [
         'small' => 'Concurează în mai multe moduri decât doar făcând clic pe cercuri.',
         'large' => 'Concursuri comunitare',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Votarea pentru acest concurs s-a încheiat',
         'login_required' => 'Te rugăm să te autentifici pentru a vota.',

@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'salli kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Beatmap-sivu',
         'delete' => 'poista',
         'deleted' => 'Poistanut :editor :delete_time.',
         'deny_kudosu' => 'hylkää kudosu',
@@ -69,7 +69,7 @@ return [
 
             'prompt' => [
                 'lock' => 'Syy lukitsemiseen',
-                'unlock' => '',
+                'unlock' => 'Avataanko varmasti?',
             ],
         ],
 

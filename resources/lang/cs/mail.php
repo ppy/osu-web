@@ -38,6 +38,7 @@ return [
         'keep_free' => '',
         'keep_running' => '',
         'subject' => 'Díky, osu! tě <3luje',
+        'translation' => '',
 
         'benefit' => [
             'gift' => '',

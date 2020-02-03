@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'comunitate',
             'comments' => 'comentarii',
+            'contests' => '',
             'forum' => 'forum',
             'livestream' => 'transmisiuni în direct',
-        ],
-
-        'contests' => [
-            '_' => 'concursuri',
-            'index' => 'listare',
         ],
 
         'error' => [

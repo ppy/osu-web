@@ -25,7 +25,7 @@ return [
     'new' => 'Reciente',
     'old' => 'Antiguo',
     'rank' => 'Rango',
-    'top' => 'Top',
+    'top' => 'Mejor',
     'username' => 'Nombre de usuario',
 
     'forum_topics' => [

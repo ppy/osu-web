@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Haluatko varmasti poistaa viestin?',
         'confirm_restore' => 'Haluatko varmasti palauttaa viestin?',
-        'edited' => 'Viimeksi muokannut :user :when, muokattu yhteensä :count_delimited kertaa.',
+        'edited' => 'Viimeksi muokannut :user :when, muokattu yhteensä :count kertaa.',
         'posted_at' => 'lähetetty :when',
 
         'actions' => [
@@ -101,7 +101,7 @@ return [
         'started_by_verbose' => 'aloittanut :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Sulje',
             'preview' => 'Esikatselu',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
