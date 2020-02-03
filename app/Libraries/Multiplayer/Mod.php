@@ -185,9 +185,7 @@ class Mod
             if (isset($type)) {
                 $cleanSettings[$key] = get_param_value($value, $type);
             } else {
-                $stringValue = json_encode($value);
-
-                throw new InvariantException("unknown setting for {$mod} ({$key}: {$stringValue})");
+                throw new InvariantException("unknown setting for {$mod} ({$key})");
             }
         }
 
