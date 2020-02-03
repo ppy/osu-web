@@ -60,13 +60,19 @@ export default class NotificationType implements NotificationReadable {
 
   @computed get hasMore() {
     // undefined means not loaded yet.
-    return this.cursor !== null;
+    return this.cursor !== null && this.stackNotificationCount < this.total;
   }
 
   get identity(): NotificationIdentity {
     return {
       objectType: this.name,
     };
+  }
+
+  @computed get stackNotificationCount() {
+    return [...this.stacks.values()].reduce((acc, stack) => {
+      return acc + stack.total;
+    }, 0);
   }
 
   constructor(readonly name: string | null, readonly resolver: NotificationResolver) {}
