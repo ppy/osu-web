@@ -54,7 +54,7 @@ export class WikiSearchController {
   @action
   getSuggestions() {
     this.xhr?.abort();
-    this.xhr = $.getJSON(route('wiki-suggestions'), { q: this.query.trim() })
+    this.xhr = $.getJSON(route('wiki-suggestions'), { query: this.query.trim() })
     .done(action((response) => {
       if (response != null) {
         this.suggestions = response as SuggestionJSON[];
