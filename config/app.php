@@ -89,6 +89,7 @@ return [
         'en',
 
         // sort by name
+        'ar',
         'be',
         'bg',
         'cs',
