@@ -52,18 +52,6 @@ export class WikiSearchController {
   }
 
   @action
-  getSuggestions() {
-    this.xhr?.abort();
-    this.xhr = $.getJSON(route('wiki-suggestions'), { query: this.query.trim() })
-    .done(action((response) => {
-      if (response != null) {
-        this.suggestions = response as SuggestionJSON[];
-        this.shouldShowSuggestions = true;
-      }
-    }));
-  }
-
-  @action
   search() {
     const query = this.query.trim();
 
@@ -109,7 +97,19 @@ export class WikiSearchController {
     }
 
     if (this.query.trim().length > 1) {
+      this.xhr?.abort();
       this.getSuggestionsDebounced();
     }
+  }
+
+  @action
+  private getSuggestions() {
+    this.xhr = $.getJSON(route('wiki-suggestions'), { query: this.query.trim() })
+    .done(action((response) => {
+      if (response != null) {
+        this.suggestions = response as SuggestionJSON[];
+        this.shouldShowSuggestions = true;
+      }
+    }));
   }
 }
