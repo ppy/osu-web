@@ -182,8 +182,10 @@ class Mod
         foreach ($settings as $key => $value) {
             $type = static::SETTINGS[$mod][$key] ?? null;
 
-            if ($type !== null) {
+            if (isset($type)) {
                 $cleanSettings[$key] = get_param_value($value, $type);
+            } else {
+                throw new InvariantException("unknown setting for {$mod} ({$key})");
             }
         }
 
