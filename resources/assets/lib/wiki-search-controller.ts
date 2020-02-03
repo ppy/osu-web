@@ -35,6 +35,7 @@ export class WikiSearchController {
 
   private getSuggestionsDebounced = debounce(this.getSuggestions, 200);
   private saved = '';
+  private xhr?: JQueryXHR;
 
   @computed get isSuggestionsVisible() {
     return this.shouldShowSuggestions && this.suggestions.length > 0;
@@ -46,12 +47,14 @@ export class WikiSearchController {
 
   @action
   cancel() {
+    this.xhr?.abort();
     this.getSuggestionsDebounced.cancel();
   }
 
   @action
   getSuggestions() {
-    $.getJSON(route('wiki-suggestions'), { q: this.query.trim() })
+    this.xhr?.abort();
+    this.xhr = $.getJSON(route('wiki-suggestions'), { q: this.query.trim() })
     .done(action((response) => {
       if (response != null) {
         this.suggestions = response as SuggestionJSON[];
