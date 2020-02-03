@@ -25,7 +25,7 @@ class LocaleMeta
     const MAPPINGS = [
         'ar' => [
             'name' => 'اَلْعَرَبِيَّةُ‎',
-            'flag' => 'AR',
+            'flag' => 'SA',
         ],
         'be' => [
             'name' => 'Беларуская мова',
