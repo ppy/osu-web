@@ -30,8 +30,8 @@ import { NotificationEventMoreLoaded, NotificationEventRead } from './notificati
 
 // I don't know what to name this
 export class NotificationResolver {
+  private debouncedSendQueuedMarkedAsRead = debounce(this.sendQueuedMarkedAsRead, 500);
   private queuedMarkedAsRead = new Map<number, Notification>();
-  private sendQueuedMarkedAsReadDebounced = debounce(this.sendQueuedMarkedAsRead, 500);
 
   @action
   loadMore(identity: NotificationIdentity, context: NotificationContextData, cursor?: NotificationCursor) {
@@ -62,7 +62,7 @@ export class NotificationResolver {
         this.queuedMarkedAsRead.set(readable.id, readable);
       }
 
-      this.sendQueuedMarkedAsReadDebounced();
+      this.debouncedSendQueuedMarkedAsRead();
       return;
     }
 
