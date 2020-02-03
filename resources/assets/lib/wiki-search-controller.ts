@@ -40,6 +40,10 @@ export class WikiSearchController {
     return this.shouldShowSuggestions && this.suggestions.length > 0;
   }
 
+  @computed get selectedItem(): SuggestionJSON | undefined {
+    return this.suggestions[this.selectedIndex];
+  }
+
   @action
   cancel() {
     this.getSuggestionsDebounced.cancel();

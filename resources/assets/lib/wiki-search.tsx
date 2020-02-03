@@ -59,7 +59,11 @@ export class WikiSearch extends React.Component {
     const key = e.key;
 
     if (key === 'Enter') {
-      this.handleSearch();
+      if (this.controller.selectedItem == null) {
+        this.handleSearch();
+      } else {
+        osu.navigate(route('wiki.show', { page: this.controller.selectedItem.path }));
+      }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       this.controller.shiftSelectedIndex(key === 'ArrowDown' ? 1 : -1);
     }
