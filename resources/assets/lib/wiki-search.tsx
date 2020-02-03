@@ -92,7 +92,7 @@ export class WikiSearch extends React.Component {
           <input
             autoFocus={true}
             className='wiki-search__input'
-            value={this.controller.query}
+            value={this.controller.displayText}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             placeholder={osu.trans('common.input.search')}

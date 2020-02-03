@@ -28,13 +28,12 @@ interface SuggestionJSON {
 
 export class WikiSearchController {
   @observable direction = 0;
-  @observable query = '';
   @observable selectedIndex = -1;
   @observable shouldShowSuggestions = false;
   @observable suggestions: SuggestionJSON[] = [];
 
   private getSuggestionsDebounced = debounce(this.getSuggestions, 200);
-  private saved = '';
+  @observable private query = '';
   private xhr?: JQueryXHR;
 
   @computed get isSuggestionsVisible() {
@@ -45,6 +44,10 @@ export class WikiSearchController {
     return this.suggestions[this.selectedIndex];
   }
 
+  @computed get displayText() {
+    return this.selectedItem == null ? this.query : this.selectedItem.title;
+  }
+
   @action
   cancel() {
     this.xhr?.abort();
@@ -53,9 +56,9 @@ export class WikiSearchController {
 
   @action
   search() {
-    const query = this.query.trim();
+    const query = this.displayText.trim();
 
-    if (query === '') {
+    if (!query.length) {
       return;
     }
 
@@ -66,30 +69,18 @@ export class WikiSearchController {
   }
 
   @action
-  selectIndex(index: number, direction: number) {
-    if (index < -1 && direction < 0) {
-     this.selectIndex(this.suggestions.length - 1, direction);
-     return;
+  selectIndex(index: number, direction: number): void {
+    if (index < -1) {
+     return this.selectIndex(this.suggestions.length - 1, direction);
     }
 
-    if (index >= this.suggestions.length && direction > 0) {
-      this.selectIndex(-1, direction);
-      return;
+    if (index >= this.suggestions.length) {
+      return this.selectIndex(-1, direction);
     }
-
-    if (index < -1 || index >= this.suggestions.length) return;
 
     this.selectedIndex = index;
     this.direction = direction;
-
-    if (direction === 0) return;
-
-    if (index < 0) {
-      this.query = this.saved;
-    } else {
-      this.query = this.suggestions[index].title;
-      this.shouldShowSuggestions = true;
-    }
+    this.shouldShowSuggestions = true;
   }
 
   @action
@@ -105,15 +96,20 @@ export class WikiSearchController {
 
   @action
   updateQuery(query: string) {
-    this.saved = this.query = query;
+    const newQuery = query.trim();
+    const previousQuery = this.query.trim();
 
-    if (this.query.trim().length === 0) {
-      this.suggestions = [];
-    }
+    this.query = query;
 
-    if (this.query.trim().length > 1) {
-      this.xhr?.abort();
+    // just adding more spaces to either end of the query shouldn't perform more queries
+    if (previousQuery === newQuery) return;
+
+    this.xhr?.abort();
+
+    if (newQuery.length > 1) {
       this.getSuggestionsDebounced();
+    } else {
+      this.suggestions = [];
     }
   }
 
