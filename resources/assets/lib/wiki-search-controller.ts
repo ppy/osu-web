@@ -86,7 +86,6 @@ export class WikiSearchController {
 
     if (index < 0) {
       this.query = this.saved;
-      this.shouldShowSuggestions = false;
     } else {
       this.query = this.suggestions[index].title;
       this.shouldShowSuggestions = true;
@@ -96,6 +95,12 @@ export class WikiSearchController {
   @action
   shiftSelectedIndex(direction: number) {
     this.selectIndex(this.selectedIndex + direction, direction);
+  }
+
+  @action
+  unselect(leaveOpen: boolean) {
+    this.selectIndex(-1, leaveOpen ? -1 : 0);
+    this.shouldShowSuggestions = this.shouldShowSuggestions && !leaveOpen;
   }
 
   @action

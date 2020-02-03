@@ -51,7 +51,7 @@ export class WikiSearch extends React.Component {
 
   handleEsc = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
-      this.controller.selectIndex(-1, -1);
+      this.controller.unselect(true);
     }
   }
 
@@ -73,12 +73,12 @@ export class WikiSearch extends React.Component {
     if (this.ref.current == null) return;
 
     if (!e.composedPath().includes(this.ref.current)) {
-      this.controller.selectIndex(-1, -1);
+      this.controller.unselect(true);
     }
   }
 
   handleMouseLeave = () => {
-    this.controller.selectIndex(-1, 0);
+    this.controller.unselect(false);
   }
 
   handleSearch = () => {
