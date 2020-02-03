@@ -27,7 +27,7 @@ return [
     ],
 
     'common' => [
-        'closing' => '',
+        'closing' => 'Terveisin',
         'hello' => 'Hei :user,',
         'report' => '',
     ],
@@ -38,6 +38,7 @@ return [
         'keep_free' => '',
         'keep_running' => '',
         'subject' => 'Kiitos, osu! <3 sinua',
+        'translation' => '',
 
         'benefit' => [
             'gift' => '',

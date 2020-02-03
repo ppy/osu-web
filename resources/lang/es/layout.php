@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'comunidad',
             'comments' => 'comentarios',
+            'contests' => '',
             'forum' => 'foro',
             'livestream' => 'transmisiones en vivo',
-        ],
-
-        'contests' => [
-            '_' => 'concursos',
-            'index' => 'lista',
         ],
 
         'error' => [
@@ -139,7 +135,7 @@ return [
             'messages-index' => 'mensajes',
             'news-index' => 'novedades',
             'news-show' => 'novedades',
-            'password-reset-index' => 'reestablecer contraseña',
+            'password-reset-index' => 'restablecer contraseña',
             'search' => 'buscar',
             'supportTheGame' => 'apoya el juego',
             'team' => 'equipo',
@@ -159,12 +155,12 @@ return [
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => 'beatmaps',
+            '_' => 'mapas',
             'artists' => 'artistas destacados',
-            'beatmap_discussion_posts-index' => 'publicaciones de discusión del beatmap',
-            'beatmap_discussions-index' => 'discusiones del beatmap',
-            'beatmapset_discussion_votes-index' => 'votos de la discusión del beatmap',
-            'beatmapset_events-index' => 'eventos del beatmap',
+            'beatmap_discussion_posts-index' => 'publicaciones de discusión del mapa',
+            'beatmap_discussions-index' => 'discusiones del mapa',
+            'beatmapset_discussion_votes-index' => 'votos de la discusión del mapa',
+            'beatmapset_events-index' => 'eventos del set de mapas',
             'index' => 'listado',
             'packs' => 'paquetes',
             'show' => 'información',
@@ -279,7 +275,7 @@ return [
             '_' => 'General',
             'home' => 'Inicio',
             'changelog-index' => 'Lista de Cambios',
-            'beatmaps' => 'Lista de Beatmaps',
+            'beatmaps' => 'Lista de Mapas',
             'download' => 'Descargar osu!',
             'wiki' => 'Wiki',
         ],

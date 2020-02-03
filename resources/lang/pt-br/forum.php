@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Deseja mesmo a excluir publicação?',
         'confirm_restore' => 'Deseja mesmo restaurar a publicação?',
-        'edited' => 'Última edição por :user :when, editado :count_delimited vezes no total.',
+        'edited' => 'Última edição por :user :when, editado :count vezes no total.',
         'posted_at' => 'publicado :when',
 
         'actions' => [

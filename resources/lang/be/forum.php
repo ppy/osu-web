@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Выдаліць допіс?',
         'confirm_restore' => 'Аднавіць допіс?',
-        'edited' => 'Апошняе рэдагаванне :user а :when, адрэдагавана :count_delimited раз.',
+        'edited' => 'Апошняе рэдагаванне :user а :when, адрэдагавана :count раз.',
         'posted_at' => 'апублікаваны :when',
 
         'actions' => [

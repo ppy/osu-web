@@ -23,6 +23,11 @@ return [
         'small' => 'Konkurrer i flere måter enn bare å trykke på sirkler.',
         'large' => 'Fellesskapskonkurranser',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Avstemmingen for denne konkurransen har avsluttet',
         'login_required' => 'Vennligst logg inn for å stemme.',

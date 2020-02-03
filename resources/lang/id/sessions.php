@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,32 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.icon-fancy {
-  .btn-bg();
-  .default-box-shadow();
-  .center-content();
-  .circle(100px);
-  background-color: @pink;
-  padding: 8px 5px 5px; // manual alignment
-  border: 10px solid #fff;
-  color: #fff;
-  font-size: 40px; // icon size
-  transition: .25s all;
-
-  .link-hover({
-    color: #fff;
-    text-decoration: none;
-  });
-
-  &:focus {
-    .thick-box-shadow();
-  }
-
-  &:hover {
-    .thicker-box-shadow();
-  }
-
-  &:active {
-    .default-box-shadow();
-  }
-}
+return [
+    'create' => [
+        'download' => 'Klik di sini untuk mengunduh osu! dan membuat akun',
+        'label' => 'Pertama-tama, mari masuk ke dalam akun kamu!',
+        'title' => 'Sign-in Akun',
+    ],
+];

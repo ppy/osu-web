@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '社群',
             'comments' => '評論',
+            'contests' => '',
             'forum' => '論壇',
             'livestream' => '直播',
-        ],
-
-        'contests' => [
-            '_' => '評選',
-            'index' => '列表',
         ],
 
         'error' => [
@@ -128,7 +124,7 @@ return [
             'beatmapset-watches-index' => '摸圖',
             'changelog-build' => '版本',
             'changelog-index' => '更新日誌',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'osu!客戶端驗證',
             'forum-topic-watches-index' => '訂閱',
             'friends-index' => '好友',
             'getDownload' => '下載',
@@ -311,7 +307,7 @@ return [
         ],
         '401' => [
             'error' => "沒有權限",
-            'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面（說不定因為沒登錄）',
+            'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面（說不定因為沒登入）',
         ],
         '405' => [
             'error' => '無法找到網頁',
@@ -339,9 +335,9 @@ return [
 
     'popup_login' => [
         'login' => [
-            'forgot' => "我忘記了我的登錄信息",
+            'forgot' => "忘記登入資訊？",
             'password' => '密碼',
-            'title' => '登錄以繼續',
+            'title' => '登入以繼續',
             'username' => '使用者名稱',
 
             'error' => [

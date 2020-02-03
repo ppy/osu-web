@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Cộng đồng',
             'comments' => '',
+            'contests' => '',
             'forum' => 'Diễn đàn',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
