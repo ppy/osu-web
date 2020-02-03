@@ -30,6 +30,6 @@ return [
 
     'forum_topics' => [
         'new' => 'Ultima risposta',
-        'feature_votes' => 'Priorità stelle',
+        'feature_votes' => 'Stelle di priorità',
     ],
 ];

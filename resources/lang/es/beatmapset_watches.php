@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'description' => 'Estas son las discusiones de Beatmap que estás siguiendo. Se te notificará cuando haya nuevas publicaciones o actualizaciones.',
+        'description' => 'Estas son las discusiones de mapas que estás siguiendo. Se te notificará cuando haya nuevas publicaciones o actualizaciones.',
         'title_compact' => 'lista de seguimiento de modificaciones',
 
         'table' => [

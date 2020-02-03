@@ -35,7 +35,7 @@ return [
 
     'buttons' => [
         'admin' => '管理員',
-        'authorise' => '',
+        'authorise' => '授權',
         'back_to_previous' => '返回到上一個位置',
         'back_to_top' => '返回頂部',
         'cancel' => '取消',

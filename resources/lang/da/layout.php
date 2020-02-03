@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Fællesskab',
             'comments' => 'kommentarer',
+            'contests' => '',
             'forum' => 'Forum',
             'livestream' => 'livestreams',
-        ],
-
-        'contests' => [
-            '_' => 'konkurrencer',
-            'index' => 'katalog',
         ],
 
         'error' => [
@@ -91,12 +87,12 @@ return [
         ],
 
         'store' => [
-            '_' => '',
-            'cart' => '',
-            'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            '_' => 'osu!store',
+            'cart' => 'indkøbskurv',
+            'order' => 'faktura',
+            'orders' => 'ordrehistorik',
+            'product' => 'produkt',
+            'products' => 'produkter',
         ],
 
         'tournaments' => [
@@ -128,7 +124,7 @@ return [
             'beatmapset-watches-index' => 'modding overvågningsliste',
             'changelog-build' => 'build',
             'changelog-index' => 'ændringsoversigt',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'osu! kontobekræftelse',
             'forum-topic-watches-index' => 'forum abonnementer',
             'friends-index' => 'venner',
             'getDownload' => 'download',

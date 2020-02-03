@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Sigur dorești să ștergi postarea?',
         'confirm_restore' => 'Sigur dorești să restaurezi postarea?',
-        'edited' => 'Editat ultima dată de către :user :when, editat de :count_delimited ori în total.',
+        'edited' => 'Editat ultima dată de către :user :when, editat de :count ori în total.',
         'posted_at' => 'postat :when',
 
         'actions' => [

@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '社区',
             'comments' => '评论',
+            'contests' => '',
             'forum' => '论坛',
             'livestream' => '直播',
-        ],
-
-        'contests' => [
-            '_' => '评选',
-            'index' => '列表',
         ],
 
         'error' => [

@@ -43,7 +43,7 @@ return [
             'username' => 'Nombre de usuario',
 
             'beatmapset_status' => [
-                '_' => 'Estado de Beatmap',
+                '_' => 'Estado del mapa',
                 'all' => 'Todo',
                 'disqualified' => 'Descalificado',
                 'never_qualified' => 'No calificado',
