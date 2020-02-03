@@ -67,6 +67,16 @@ export class WikiSearchController {
 
   @action
   selectIndex(index: number, direction: number) {
+    if (index < -1 && direction < 0) {
+     this.selectIndex(this.suggestions.length - 1, direction);
+     return;
+    }
+
+    if (index >= this.suggestions.length && direction > 0) {
+      this.selectIndex(-1, direction);
+      return;
+    }
+
     if (index < -1 || index >= this.suggestions.length) return;
 
     this.selectedIndex = index;
