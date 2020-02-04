@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ScoreRetrievalException;
 use App\Models\Beatmap;
+use App\Models\Score\Best\Model as BestModel;
 use Auth;
 use Request;
 
@@ -60,8 +61,12 @@ class BeatmapsController extends Controller
                 }
             }
 
-            $query = $beatmap
-                ->scoresBest($mode)
+            $class = BestModel::getClassByString($mode);
+            $model = new $class;
+            $model->setConnection('mysql-readonly');
+
+            $query = $model
+                ->where('beatmap_id', $beatmap->getKey())
                 ->with(['beatmap', 'user.country'])
                 ->defaultListing();
         } catch (ScoreRetrievalException $ex) {
