@@ -27,7 +27,6 @@ interface SuggestionJSON {
 }
 
 export class WikiSearchController {
-  @observable direction = 0;
   @observable selectedIndex = -1;
   @observable shouldShowSuggestions = false;
   @observable suggestions = observable.array<SuggestionJSON>([]);
@@ -69,28 +68,27 @@ export class WikiSearchController {
   }
 
   @action
-  selectIndex(index: number, direction: number): void {
+  selectIndex(index: number): void {
     if (index < -1) {
-     return this.selectIndex(this.suggestions.length - 1, direction);
+     return this.selectIndex(this.suggestions.length - 1);
     }
 
     if (index >= this.suggestions.length) {
-      return this.selectIndex(-1, direction);
+      return this.selectIndex(-1);
     }
 
     this.selectedIndex = index;
-    this.direction = direction;
     this.shouldShowSuggestions = true;
   }
 
   @action
   shiftSelectedIndex(direction: number) {
-    this.selectIndex(this.selectedIndex + direction, direction);
+    this.selectIndex(this.selectedIndex + direction);
   }
 
   @action
   unselect(leaveOpen: boolean) {
-    this.selectIndex(-1, leaveOpen ? -1 : 0);
+    this.selectIndex(-1);
     this.shouldShowSuggestions = this.shouldShowSuggestions && !leaveOpen;
   }
 

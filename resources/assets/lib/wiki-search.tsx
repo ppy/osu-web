@@ -24,6 +24,7 @@ import { WikiSearchController } from 'wiki-search-controller';
 @observer
 export class WikiSearch extends React.Component {
   private readonly controller = new WikiSearchController();
+  private keepSelectionInView = false;
   private readonly ref = React.createRef<HTMLDivElement>();
 
   componentDidMount() {
@@ -33,9 +34,10 @@ export class WikiSearch extends React.Component {
 
   componentDidUpdate() {
     // scroll highlighted option into view if triggered by keys
-    if (this.controller.direction !== 0) {
+    if (this.keepSelectionInView) {
       // FIXME: probably doesn't work on Edge?
       $('.wiki-search__suggestion--active')[0]?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+      this.keepSelectionInView = false;
     }
   }
 
@@ -65,6 +67,7 @@ export class WikiSearch extends React.Component {
         osu.navigate(route('wiki.show', { page: this.controller.selectedItem.path }));
       }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+      this.keepSelectionInView = true;
       this.controller.shiftSelectedIndex(key === 'ArrowDown' ? 1 : -1);
     }
   }
@@ -113,7 +116,11 @@ export class WikiSearch extends React.Component {
       <div ref={this.ref} className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleMouseLeave}>
         {
           this.controller.suggestions.map((item, index) => {
-            const setIndex = () => this.controller.selectIndex(index, 0);
+            const setIndex = () => {
+              this.keepSelectionInView = false;
+              this.controller.selectIndex(index);
+            };
+
             const href = route('wiki.show', { page: item.path });
 
             return (
