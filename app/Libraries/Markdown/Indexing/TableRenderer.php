@@ -22,7 +22,7 @@ namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\ElementRendererInterface;
-use Webuni\CommonMark\TableExtension\TableRows;
+use League\CommonMark\Ext\Table\TableSection;
 
 class TableRenderer extends BlockRenderer
 {
@@ -35,7 +35,7 @@ class TableRenderer extends BlockRenderer
      */
     public function render(AbstractBlock $block, ElementRendererInterface $renderer, $inTightList = false)
     {
-        if ($block instanceof TableRows) {
+        if ($block instanceof TableSection) {
             // empty rows;
             if (!$block->hasChildren()) {
                 return;
