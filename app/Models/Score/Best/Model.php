@@ -80,8 +80,11 @@ abstract class Model extends BaseModel
     public function macroForListing()
     {
         return function ($query) {
+            $this->setConnection('mysql-readonly');
+            $table = $this->tableName(true);
+
             $limit = config('osu.beatmaps.max-scores');
-            $newQuery = (clone $query)->with('user')->limit($limit * 3);
+            $newQuery = (clone $query)->from($table)->with('user')->limit($limit * 3);
 
             $baseResult = $newQuery->get();
 
