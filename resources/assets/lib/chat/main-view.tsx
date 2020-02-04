@@ -57,7 +57,7 @@ export default class MainView extends React.Component<Props, any> {
   render(): React.ReactNode {
     const lazerLink = 'https://github.com/ppy/osu/releases';
     return (
-      <div>
+      <>
         <HeaderV4
           section={osu.trans('layout.header.community._')}
           subSection={osu.trans('chat.title_compact')}
@@ -86,7 +86,7 @@ export default class MainView extends React.Component<Props, any> {
             </div>
           )}
         </Provider>
-      </div>
+      </>
     );
   }
 }
