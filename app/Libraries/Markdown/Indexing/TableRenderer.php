@@ -22,10 +22,14 @@ namespace App\Libraries\Markdown\Indexing;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\ElementRendererInterface;
+use League\CommonMark\Ext\Table\TableCell;
+use League\CommonMark\Ext\Table\TableRow;
 use League\CommonMark\Ext\Table\TableSection;
 
 class TableRenderer extends BlockRenderer
 {
+    const INLINE_CLASSES = [TableCell::class, TableRow::class];
+
     /**
      * @param AbstractBlock $block
      * @param ElementRendererInterface $htmlRenderer
@@ -35,17 +39,17 @@ class TableRenderer extends BlockRenderer
      */
     public function render(AbstractBlock $block, ElementRendererInterface $renderer, $inTightList = false)
     {
-        if ($block instanceof TableSection) {
-            // empty rows;
-            if (!$block->hasChildren()) {
-                return;
-            }
-
-            // skip header
-            if ($block->isHead()) {
-                return;
-            }
+        if (!$block->hasChildren()) {
+            return '';
         }
+
+        // skip header
+        if ($block instanceof TableSection && $block->isHead()) {
+            return '';
+        }
+
+        $blockClass = get_class($block);
+        $inTightList = !in_array($blockClass, static::INLINE_CLASSES, true);
 
         return parent::render($block, $renderer, $inTightList);
     }
