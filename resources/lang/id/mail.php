@@ -38,24 +38,25 @@ return [
         'keep_free' => 'Terima kasih kepada orang-orang seperti kamu, osu! mampu menjaga game dan komunitasnya tetap berjalan lancar tanpa iklan atau memasang sistem pembayaran.',
         'keep_running' => 'Dukunganmu membuat osu! berjalan sekitar :minutes! Ini mungkin seperti tidak banyak, tetapi nilai berapapun tetap berharga :).',
         'subject' => 'Terima kasih, osu! mencintaimu',
+        'translation' => '',
 
         'benefit' => [
-            'gift' => '',
-            'self' => '',
+            'gift' => 'Pengguna yang dihadiahkan kini dapat secara bebas menggunakan osu!direct dan fitur-fitur lainnya yang dikhususkan untuk para pemilik supporter tag.',
+            'self' => 'Anda kini dapat secara bebas menggunakan osu!direct dan fitur-fitur lainnya yang dikhususkan untuk para pemilik supporter tag selama :duration.',
         ],
 
         'support' => [
-            '_' => '',
-            'first' => '',
-            'repeat' => '',
+            '_' => 'Terima kasih banyak atas :support yang Anda berikan terhadap osu!.',
+            'first' => 'dukungan',
+            'repeat' => 'dukungan yang berlanjut',
         ],
     ],
 
     'forum_new_reply' => [
-        'new' => '',
+        'new' => 'Kami ingin memberitahukan bahwa saat ini terdapat balasan baru pada ":title" sejak kunjungan terakhir Anda.',
         'subject' => '[osu!] Balasan terbaru dari topik ":title"',
-        'unwatch' => '',
-        'visit' => '',
+        'unwatch' => 'Jika kamu tidak lagi ingin mengikuti informasi seputar thread forum ini, Anda dapat meng-klik link "Unsubscripe Topic" yang dapat ditemukan di atas halaman ini, atau melalui laman Langganan Forum berikut:',
+        'visit' => 'Anda dapat segera melihat balasan terbaru melalui link berikut:',
     ],
 
     'password_reset' => [

@@ -52,9 +52,10 @@
 
 // mobile nav
 // TODO: un-bootstrap names
-@navbar-height: 60px;
+@navbar-height: @nav2-height--pinned;
 @navbar-padding-horizontal: 10px;
 @navbar-padding-vertical: 10px;
+@navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
 @bar-size: 3px;
 @logo-size: 100px;
@@ -74,8 +75,6 @@
 @gutter-v2-desktop: 50px;
 
 @height--nav-popup: 210px; // min-height; actual height will be calculated by js.
-
-@navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
 @border-radius--nav-avatar: 10px;
 @border-radius--extra: 20px;

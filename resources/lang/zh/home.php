@@ -21,7 +21,7 @@
 return [
     'landing' => [
         'download' => '立即下载',
-        'online' => '<strong>:players</strong> 名在线玩家, <strong>:games</strong> 个游戏房间',
+        'online' => '<strong>:players</strong> 名在线玩家，<strong>:games</strong> 个游戏房间',
         'peak' => '最高在线人数 :count 人',
         'players' => '<strong>:count</strong> 名已注册玩家',
         'title' => '欢迎',

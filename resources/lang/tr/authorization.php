@@ -20,7 +20,7 @@
 
 return [
     'require_login' => 'Devam etmek için lütfen giriş yapın.',
-    'require_verification' => '',
+    'require_verification' => 'Devam etmek için lütfen hesabınızı doğrulatınız.',
     'restricted' => "Kısıtlanmışken bunu yapamazsınız.",
     'silenced' => "Susturulmuşken bunu yapamazsınız.",
     'unauthorized' => 'Erişim engellendi.',
@@ -54,14 +54,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Sadece kendi paylaşımlarını silebilirsin.',
+            'resolved' => 'Çözümlenmiş bir tartışmanın paylaşımını silinemez.',
+            'system_generated' => 'Otomatikman oluşan paylaşımlar silinemez.',
         ],
 
         'edit' => [
             'not_owner' => 'Gönderileri yalnızca gönderen düzenleyebilir.',
-            'resolved' => '',
+            'resolved' => 'Çözümlenmiş bir tartışmanın paylaşımını değiştirilemez.',
             'system_generated' => 'Otomatik olarak oluşturulmuş gönderiler düzenlenemez.',
         ],
 

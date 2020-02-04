@@ -22,6 +22,7 @@ return [
     'deleted' => 'đã xóa',
     'deleted_count' => ':count_delimited bình luận đã bị xóa',
     'edited' => 'đã chỉnh sửa :timeago bởi :user',
+    'pinned' => '',
     'empty' => 'Chưa có bình luận nào.',
     'load_replies' => 'hiển thị những trả lời',
     'replies' => 'Câu trả lời',

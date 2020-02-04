@@ -23,9 +23,9 @@ return [
 
     'last_visit' => 'Activo recientemente',
     'new' => 'Reciente',
-    'old' => 'Viejo',
-    'rank' => '',
-    'top' => 'Top',
+    'old' => 'Antiguo',
+    'rank' => 'Rango',
+    'top' => 'Mejor',
     'username' => 'Nombre de usuario',
 
     'forum_topics' => [

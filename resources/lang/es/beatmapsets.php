@@ -22,12 +22,12 @@ return [
     'availability' => [
         'disabled' => 'Este Beatmap no está actualmente disponible para descargar.',
         'parts-removed' => 'Algunas partes de este beatmap se han eliminado a petición del creador o de un titular de derechos de autor.',
-        'more-info' => 'Marca aquí para más información.',
+        'more-info' => 'Compruebe aquí para más información.',
     ],
 
     'index' => [
         'title' => 'Listado de Beatmaps',
-        'guest_title' => 'Beatmaps',
+        'guest_title' => 'Mapas',
     ],
 
     'show' => [
@@ -35,14 +35,14 @@ return [
 
         'details' => [
             'approved' => 'aprobado el ',
-            'favourite' => 'Marcar como favorito este beatmapset',
+            'favourite' => 'Marcar como favorito',
             'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier beatmap!',
             'loved' => 'amado el ',
             'mapped_by' => 'mapeado por :mapper',
             'qualified' => 'calificado el ',
             'ranked' => 'clasificado el ',
             'submitted' => 'enviado el ',
-            'unfavourite' => 'Desmarcar como favorito este beatmapset',
+            'unfavourite' => 'Desmarcar como favorito',
             'updated' => 'última actualización en ',
             'updated_timeago' => 'actualizado por última vez el :timeago',
 
@@ -60,7 +60,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Tienes demasiados beatmaps en favoritos! Por favor, desmarca algunos antes de volver a intentarlo.',
+            'limit_reached' => '¡Tienes demasiados mapas favoritos! Por favor, desmarca algunos antes de volver a intentarlo.',
         ],
 
         'hype' => [
@@ -71,20 +71,20 @@ return [
 
                 'status' => [
                     'pending' => 'pendiente',
-                    'qualified' => 'cualificado',
+                    'qualified' => 'calificado',
                     'wip' => 'trabajo en progreso',
                 ],
             ],
 
             'disqualify' => [
-                '_' => '',
-                'button_title' => '',
+                '_' => 'Si encuentras un problema con este mapa, por favor descalifícalo :link.',
+                'button_title' => 'Descalifica un mapa calificado.',
             ],
 
             'report' => [
-                '_' => 'Si encuentras un problema con este beatmap, por favor repórtalo :link para alertar al equipo.',
+                '_' => 'Si encuentras un problema con este mapa, por favor repórtalo :link para alertar al equipo.',
                 'button' => 'Reportar un problema',
-                'button_title' => 'Informe de un problema en un beatmap calificado.',
+                'button_title' => 'Informe de un problema en un mapa calificado.',
                 'link' => 'aquí',
             ],
         ],
@@ -98,16 +98,16 @@ return [
             'source' => 'Fuente',
             'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
-            'unranked' => 'Beatmap no rankeado',
+            'unranked' => 'Mapa no clasificado',
         ],
 
         'scoreboard' => [
             'achieved' => 'logrado :when',
-            'country' => 'Ranking Nacional',
-            'friend' => 'Ranking de Amigos',
-            'global' => 'Ranking Global',
+            'country' => 'Clasificación Nacional',
+            'friend' => 'Clasificación entre Amigos',
+            'global' => 'Clasificación Global',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
-            'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de país!',
+            'supporter-only' => '¡Necesitas ser un osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
             'title' => 'Tabla de puntuaciones',
 
             'headers' => [
@@ -117,7 +117,7 @@ return [
                 'mods' => 'Mods',
                 'player' => 'Jugador',
                 'pp' => 'pp',
-                'rank' => 'Rank',
+                'rank' => 'Puesto',
                 'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
             ],
@@ -127,7 +127,7 @@ return [
                 'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
                 'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar establecer alguna?',
                 'loading' => 'Cargando puntuaciones...',
-                'unranked' => 'Beatmap no rankeado.',
+                'unranked' => 'Mapa no clasificado.',
             ],
             'score' => [
                 'first' => 'A la cabeza',
@@ -153,13 +153,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Clasificado',
+            'approved' => 'Aprobado',
+            'loved' => 'Amado',
+            'qualified' => 'Calificado',
+            'wip' => 'WIP',
+            'pending' => 'Pendiente',
+            'graveyard' => 'Abandonado',
         ],
     ],
 ];

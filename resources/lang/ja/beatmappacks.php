@@ -21,7 +21,7 @@
 return [
     'index' => [
         'description' => '共通のテーマを有するビートマップを集めたパックです。',
-        'nav_title' => '',
+        'nav_title' => '一覧',
         'title' => 'ビートマップパック',
 
         'blurb' => [

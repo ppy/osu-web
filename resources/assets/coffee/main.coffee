@@ -48,7 +48,7 @@ $(document).on 'turbolinks:load', ->
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
-@clickMenu ?= new ClickMenu
+@clickMenu ?= new _exported.ClickMenu
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
 @formError ?= new FormError

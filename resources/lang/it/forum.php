@@ -77,7 +77,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited post|:count_delimited post',
-            'topic_starter' => 'Iniziatore del Topic',
+            'topic_starter' => 'Creatore del Topic',
         ],
     ],
 

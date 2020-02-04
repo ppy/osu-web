@@ -23,6 +23,11 @@ return [
         'small' => 'Kilpaile muillakin tavoilla kuin klikkailemalla ympyröitä.',
         'large' => 'Yhteisön kilpailut',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Äänestys tälle kilpailulle on päättynyt',
         'login_required' => 'Kirjaudu sisään äänestääksesi.',

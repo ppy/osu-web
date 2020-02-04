@@ -24,8 +24,8 @@ class @Nav2
     $.subscribe 'menu:current', @showMenuBg
 
 
-  autoCenterPopup: (_e, currentMenu) =>
-    @currentMenu = currentMenu
+  autoCenterPopup: (_e, {target}) =>
+    @currentMenu = target
 
     $(window).off 'throttled-resize.nav2-center-popup'
 

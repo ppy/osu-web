@@ -23,6 +23,11 @@ return [
         'small' => 'Soutěž i jinak, než jen klikáním kruhů.',
         'large' => 'Komunitní soutěže',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Hlasování pro tuto soutěž bylo ukončeno',
         'login_required' => 'Pro hlasování se prosím přihlaš.',

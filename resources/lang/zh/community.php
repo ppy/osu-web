@@ -21,13 +21,13 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => '可以可以，买买买！',
+            'title' => '太棒了，买买买！OwO',
             'support' => '支持 osu!',
             'gift' => '或者以礼物方式赠送给其它玩家',
             'instructions' => '点击爱心前往 osu! 商店',
         ],
         'why-support' => [
-            'title' => '为什么我应该支持 osu!？钱将用往何处？',
+            'title' => '为什么支持 osu!？钱将用往何处？',
 
             'team' => [
                 'title' => '支持开发团队',
@@ -58,7 +58,7 @@ return [
             ],
         ],
         'perks' => [
-            'title' => '我能得到什么？',
+            'title' => 'Wow，Awesome！那么我能得到什么？',
             'osu_direct' => [
                 'title' => 'osu!direct',
                 'description' => '在游戏客户端内搜索和下载谱面。',
@@ -70,8 +70,8 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => '国内排名',
-                'description' => '征服世界前，先征服你的国家。',
+                'title' => '国内/区内排名',
+                'description' => '征服世界前，先征服你的国家（或者地区）。',
             ],
 
             'mod_filtering' => [
@@ -91,7 +91,7 @@ return [
 
             'early_access' => [
                 'title' => '抢先体验',
-                'description' => '抢先体验正在测试中的新特性！',
+                'description' => '抢先体验正在测试中的新特性！<br/><br/>同时还包含网站的新功能！',
             ],
 
             'customisation' => [
@@ -101,7 +101,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => '筛选谱面',
-                'description' => '可在搜索谱面时从更多方面筛选。',
+                'description' => '可在搜索谱面时以更多调件筛选，例如游玩状态和得分评价。',
             ],
 
             'yellow_fellow' => [
@@ -131,24 +131,24 @@ return [
 
             'sort_options' => [
                 'title' => '详细的排名',
-                'description' => '查看排名时可按 国家/好友/所选MOD 进行排名。',
+                'description' => '查看排名时可按 国家或地区/好友/所选MOD 进行排名。',
             ],
 
             'more_favourites' => [
-                'title' => '更大收藏夹',
-                'description' => '你可以收藏的谱面数量将从 :normally 个增加到 :supporter 个',
+                'title' => '更大的收藏夹',
+                'description' => '你的谱面收藏夹容量将从 :normally 个增加到 :supporter 个',
             ],
             'more_friends' => [
                 'title' => '更多好友位',
-                'description' => '你的好友位数量将从 :normally &rarr; :supporter',
+                'description' => '你的好友位数量将从 :normally 增加到 :supporter',
             ],
             'more_beatmaps' => [
-                'title' => '上传更多谱面',
+                'title' => '上传更多谱面，肝更多谱',
                 'description' => '同一时间你能拥有的未 ranked 的谱面数量由一个基数值和附加奖励相加得到，附加奖励根据你已 ranked 的谱面数量而定，并且有一个上限。<br/><br/>通常情况下，基数为4，每多一张 ranked 的谱面会增加 1，最多增加 2。当你是支持者时，基数变为8，每张 ranked 的谱面会增加 1，最多增加 12。',
             ],
             'friend_filtering' => [
-                'title' => '有人排行榜',
-                'description' => '和你的朋友们一起比赛，看看你如何超过他们的排名！*<br/><br/><small>* 在新版网站上目前尚不支持此功能，新功能即将上线(tm)</small>',
+                'title' => '好友排行榜',
+                'description' => '和你的朋友们一起比赛，看看你如何超过他们的排名！*<br/><br/><small>* 在新版网站上目前尚不支持此功能，即将上线 (tm)</small>',
             ],
 
         ],

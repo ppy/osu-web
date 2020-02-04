@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Pagar',
+        'info' => ':count_delimited producto en carrito ($:subtotal)|:count_delimited productos en el carrito ($:subtotal)',
         'more_goodies' => 'Quiero ver más productos antes de completar el pedido',
         'shipping_fees' => 'gastos de envío',
         'title' => 'Carrito de compras',
@@ -66,7 +67,7 @@ return [
     'discount' => 'ahorra un :percent%',
 
     'invoice' => [
-        'echeck_delay' => 'Como su pago fue un \'eCheck\', por favor, permita hasta 10 días extra para que el pago se reciba a través de PayPal!',
+        'echeck_delay' => 'Como su pago fue un eCheck, ¡por favor permita hasta 10 días adicionales para que el pago se realice a través de PayPal!',
         'status' => [
             'processing' => [
                 'title' => '¡Aún no se ha confirmado tu pago!',
@@ -145,5 +146,9 @@ return [
             '_' => '¡Tienes que :link para cambiar tu nombre de usuario!',
             'link_text' => 'seción iniciada',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

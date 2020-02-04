@@ -78,8 +78,8 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'İnceleme paylaşımını görüntüle',
+        'go_to_child' => 'Tartışmayı görüntüle',
     ],
 
     'system' => [
@@ -90,8 +90,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'genel',
+        'general_all' => 'genel (hepsi)',
     ],
 
     'user_filter' => [

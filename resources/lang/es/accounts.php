@@ -69,9 +69,9 @@ return [
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en beatmaps calificados de los siguientes modos',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => 'recibir notifiaciones por correo',
+            'beatmapset:modding' => 'beatmap modding',
+            'forum_topic_reply' => 'respuesta al tema',
         ],
     ],
 

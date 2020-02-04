@@ -9,6 +9,7 @@ import { LandingNews } from 'landing-news'
 import NotificationWidget from 'notification-widget/main'
 import NotificationWidgetWorker from 'notification-widget/worker'
 import QuickSearch from 'quick-search/main'
+import QuickSearchButton from 'quick-search-button'
 import QuickSearchWorker from 'quick-search/worker'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { UserCard } from 'user-card'
@@ -56,6 +57,9 @@ reactTurbolinks.registerPersistent 'notification', NotificationWidget, true, (el
 
 quickSearchWorker = new QuickSearchWorker()
 reactTurbolinks.registerPersistent 'quick-search', QuickSearch, true, ->
+  worker: quickSearchWorker
+
+reactTurbolinks.registerPersistent 'quick-search-button', QuickSearchButton, true, ->
   worker: quickSearchWorker
 
 reactTurbolinks.register 'user-card', UserCard, (el) ->

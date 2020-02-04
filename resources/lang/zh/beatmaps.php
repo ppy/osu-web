@@ -98,7 +98,7 @@ return [
         'mode' => [
             'events' => '历史',
             'general' => '常规 :scope',
-            'reviews' => '',
+            'reviews' => '审阅记录',
             'timeline' => '时间轴',
             'scopes' => [
                 'general' => '当前难度',

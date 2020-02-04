@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => '管理員',
+        'authorise' => '授權',
         'back_to_previous' => '返回到上一個位置',
         'back_to_top' => '返回頂部',
         'cancel' => '取消',
@@ -48,7 +49,7 @@ return [
         'expand' => '展開',
         'hide' => '隱藏',
         'permalink' => '永久連結',
-        'permalink_copied' => '連結已複製',
+        'pin' => '',
         'post' => '發表',
         'reply' => '回覆',
         'reply_reopen' => '回覆並重新打開',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => '顯示刪除的項目',
         'show_more' => '顯示更多',
         'show_more_options' => '顯示更多選項',
+        'unpin' => '',
         'update' => '更新',
         'upload_image' => '上傳圖片',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => '提醒',
+    ],
+
+    'wrong_user' => [
+        '_' => '您已以 :user 的身分登入。 :logout_link',
+        'logout_link' => '點擊此處以不同帳號登入。',
     ],
 ];

@@ -71,9 +71,6 @@ return [
     'elasticsearch' => [
         'number_of_shards' => env('ES_DEFAULT_SHARDS', 1),
         'prefix' => env('ES_INDEX_PREFIX'),
-        'index' => [
-            'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
-        ],
         'search_timeout' => env('ES_SEARCH_TIMEOUT', '5s'),
     ],
     'emails' => [
@@ -130,6 +127,12 @@ return [
     'scores' => [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
     ],
+
+    'seasonal' => [
+        'contest_id' => get_int(env('SEASONAL_CONTEST_ID')),
+        'ends_at' => env('SEASONAL_ENDS_AT'),
+    ],
+
     'static' => env('LEGACY_STATICS_HOST', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
@@ -215,6 +218,11 @@ return [
     ],
     'user_report_notification' => [
         'endpoint' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT')),
+    ],
+    'wiki' => [
+        'branch' => presence(env('WIKI_BRANCH'), 'master'),
+        'repository' => presence(env('WIKI_REPOSITORY'), 'osu-wiki'),
+        'user' => presence(env('WIKI_USER'), 'ppy'),
     ],
     'changelog' => [
         'build_history_interval' => 60 * intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)), // in minutes, converted to seconds

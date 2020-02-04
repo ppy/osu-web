@@ -62,6 +62,7 @@ interface OsuCommon {
   navigate: (url: string, keepScroll?: boolean, action?: object) => void;
   parseJson: (id: string, remove?: boolean) => any;
   popup: (message: string, type: string) => void;
+  popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;
   promisify: (xhr: JQueryXHR) => Promise<any>;
@@ -153,6 +154,14 @@ interface BeatmapDiscussionPost {
   message: string;
 }
 
+interface Group {
+  description: string;
+  id: number;
+  identifier: string;
+  name: string;
+  short_name: string;
+}
+
 interface LangClass {
   _getPluralForm: (count: number) => number;
   _origGetPluralForm: (count: number) => number;
@@ -167,7 +176,7 @@ interface User {
   cover: Cover;
   current_mode_rank?: number;
   default_group: string;
-  group_badge?: string;
+  group_badge?: Group;
   id: number;
   is_active: boolean;
   is_bot: boolean;

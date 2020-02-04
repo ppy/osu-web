@@ -38,6 +38,7 @@ return [
         'keep_free' => '',
         'keep_running' => '',
         'subject' => 'Mulțumim, osu! te <3',
+        'translation' => '',
 
         'benefit' => [
             'gift' => '',
@@ -111,7 +112,7 @@ return [
 
         'action_from' => [
             '_' => '',
-            'unknown_country' => '',
+            'unknown_country' => 'țară necunoscută',
         ],
     ],
 ];

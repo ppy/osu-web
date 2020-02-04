@@ -52,8 +52,8 @@ return [
         ],
 
         'period' => [
-            'end' => '',
-            'start' => '',
+            'end' => 'Data zakończenia',
+            'start' => 'Data rozpoczęcia',
         ],
 
         'state' => [

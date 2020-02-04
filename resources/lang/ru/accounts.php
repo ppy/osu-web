@@ -77,7 +77,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'подключенные',
-        'own_clients' => 'мои приложения',
+        'own_clients' => 'мои клиенты',
         'title' => 'Приложения и доступ',
     ],
 
@@ -92,11 +92,11 @@ return [
     'privacy' => [
         'friends_only' => 'разрешить писать мне только друзьям',
         'hide_online' => 'скрывать онлайн на сайте',
-        'title' => 'Приватность',
+        'title' => 'Конфиденциальность',
     ],
 
     'security' => [
-        'current_session' => 'это вы',
+        'current_session' => 'текущая',
         'end_session' => 'деавторизовать',
         'end_session_confirmation' => 'Сеанс на этом устройстве будет немедленно завершён. Вы уверены?',
         'last_active' => 'Был активен:',
