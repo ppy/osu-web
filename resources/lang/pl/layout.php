@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'społeczność',
             'comments' => 'komentarze',
+            'contests' => '',
             'forum' => 'forum',
             'livestream' => 'na żywo',
-        ],
-
-        'contests' => [
-            '_' => 'konkursy',
-            'index' => 'lista',
         ],
 
         'error' => [

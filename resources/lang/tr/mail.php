@@ -38,6 +38,7 @@ return [
         'keep_free' => 'Sizin gibi insanlar sayesinde osu!, oyunu ve topluluğu akıcı bir şekilde hiçbir reklam veya zorla ödeme olmadan oyunu devam ettirebiliyor.',
         'keep_running' => 'Senin katkın osu!\'yu :minutes kadardır ayakta tutuyor. Fazla görünmüyor olabilir ama damlaya damlaya göl olur :).',
         'subject' => 'Teşekkürler, osu! sizi seviyor <3',
+        'translation' => '',
 
         'benefit' => [
             'gift' => '',

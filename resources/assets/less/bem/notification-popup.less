@@ -17,9 +17,11 @@
  */
 
 .notification-popup {
+  .thick-box-shadow();
   background-color: @osu-colour-b4;
   color: #fff;
   padding: 10px 10px 15px; // to balance with type header's line height
+  border: 1px solid @osu-colour-b3;
   border-radius: @border-radius-large;
   display: flex;
   flex-direction: column;
@@ -40,9 +42,55 @@
   }
 
   &__show-more {
+    font-size: smaller;
     margin-top: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__expand {
+    margin-left: 10px;
+  }
+
+  &__collapse {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__filters {
+    display: grid;
+    grid-gap: 5px;
+    margin: 10px 0;
+    grid-template-columns: repeat(2, 50%);
+  }
+
+  &__filter {
+    .reset-input();
+    text-align: left;
+    color: @osu-colour-l2;
+
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+
+    &--active {
+      color: @osu-colour-c1;
+    }
+  }
+
+  &__filter-count {
+    margin-left: 5px;
+    padding: 2px 10px;
+    font-size: smaller;
+    color: @osu-colour-c2;
+    background-color: @osu-colour-b2;
+    border-radius: 10000px;
+  }
+
+  &__mark-as-read {
+    width: 40px;
+    // background-color: @osu-colour-b2;
   }
 
   &__empty-with-more {

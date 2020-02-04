@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'ชุมชน',
             'comments' => '',
+            'contests' => '',
             'forum' => 'ฟอรั่ม',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [

@@ -1496,6 +1496,7 @@ function section_to_hue_map($section): int
         'help' => 'orange',
         'home' => 'purple',
         'multiplayer' => 'pink',
+        'notifications' => 'pink',
         'rankings' => 'green',
         'store' => 'darkorange',
         'user' => 'pink',
