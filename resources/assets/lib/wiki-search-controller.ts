@@ -30,9 +30,9 @@ export class WikiSearchController {
   @observable direction = 0;
   @observable selectedIndex = -1;
   @observable shouldShowSuggestions = false;
-  @observable suggestions: SuggestionJSON[] = [];
+  @observable suggestions = observable.array<SuggestionJSON>([]);
 
-  private getSuggestionsDebounced = debounce(this.getSuggestions, 200);
+  private getSuggestionsDebounced = debounce(this.getSuggestions, 500);
   @observable private query = '';
   private xhr?: JQueryXHR;
 
@@ -100,6 +100,7 @@ export class WikiSearchController {
     const previousQuery = this.query.trim();
 
     this.query = query;
+    this.selectedIndex = -1;
 
     // just adding more spaces to either end of the query shouldn't perform more queries
     if (previousQuery === newQuery) return;
@@ -109,16 +110,16 @@ export class WikiSearchController {
     if (newQuery.length > 1) {
       this.getSuggestionsDebounced();
     } else {
-      this.suggestions = [];
+      this.suggestions.clear();
     }
   }
 
   @action
   private getSuggestions() {
     this.xhr = $.getJSON(route('wiki-suggestions'), { query: this.query.trim() })
-    .done(action((response) => {
+    .done(action((response: SuggestionJSON[]) => {
       if (response != null) {
-        this.suggestions = response as SuggestionJSON[];
+        this.suggestions = observable.array(response);
         this.shouldShowSuggestions = true;
       }
     }));
