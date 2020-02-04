@@ -25,81 +25,86 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
+            '_' => 'amministratore',
             'beatmapset' => '',
             'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
+            'contest' => 'concorso',
+            'contests' => 'concorsi',
+            'root' => 'console',
             'store_orders' => '',
         ],
 
         'artists' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'artisti in primo piano',
+            'index' => 'lista',
         ],
 
         'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            '_' => 'beatmap',
+            'discussions' => 'discussione',
+            'index' => 'lista',
+            'show' => 'info',
+            'packs' => 'pacchetti',
         ],
 
         'changelog' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'note di rilascio',
+            'index' => 'lista',
         ],
 
         'community' => [
             '_' => 'Comunità',
-            'comments' => '',
+            'comments' => 'commenti',
+            'contests' => '',
             'forum' => 'Forum',
-            'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
+            'livestream' => 'trasmissioni',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => 'errore',
         ],
 
         'help' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'wiki',
+            'index' => 'indice',
         ],
 
         'home' => [
-            '_' => '',
-            'password_reset' => '',
+            '_' => 'home',
+            'password_reset' => 'reset password',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => 'cronologia partite',
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => 'avviso',
         ],
 
         'rankings' => [
-            '_' => '',
+            '_' => 'classifica',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'carrello',
+            'order' => 'fattura',
+            'orders' => 'cronologia ordini',
+            'product' => 'prodotto',
+            'products' => 'prodotti',
         ],
 
         'tournaments' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'tornei',
+            'index' => 'lista',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            '_' => 'giocatore',
+            'forum_posts' => 'post nel forum',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
@@ -116,10 +121,11 @@ return [
             '_' => 'home',
             'account-edit' => 'impostazioni',
             'account-verifyLink' => 'Verifica Completata',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => 'lista modding',
             'changelog-build' => 'versione',
             'changelog-index' => 'note di rilascio',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => 'verifica client osu!',
+            'forum-topic-watches-index' => 'iscrizioni forum',
             'friends-index' => 'amici',
             'getDownload' => 'download',
             'getIcons' => 'icone',
@@ -133,7 +139,7 @@ return [
             'search' => 'cerca',
             'supportTheGame' => 'sostieni il gioco',
             'team' => 'team',
-            'testflight' => '',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => 'profilo',

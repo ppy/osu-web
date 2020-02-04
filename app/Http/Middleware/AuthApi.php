@@ -29,10 +29,15 @@ class AuthApi
     // TODO: this should be definable per-controller or action.
     public static function skipAuth($request)
     {
+        static $skipGet = [
+            'api/v2/changelog/',
+            'api/v2/comments/',
+            'api/v2/seasonal-backgrounds/',
+        ];
+
         $path = "{$request->decodedPath()}/";
 
-        return starts_with($path, 'api/v2/changelog/')
-            || (starts_with($path, 'api/v2/comments/') && $request->isMethod('GET'));
+        return $request->isMethod('GET') && starts_with($path, $skipGet);
     }
 
     public function handle(Request $request, Closure $next)

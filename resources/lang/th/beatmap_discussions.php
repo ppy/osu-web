@@ -43,8 +43,8 @@ return [
             'username' => 'ชื่อผู้ใช้',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
+                '_' => 'สถานะบีตแมป',
+                'all' => 'ทั้งหมด',
                 'disqualified' => '',
                 'never_qualified' => '',
                 'qualified' => '',

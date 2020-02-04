@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'сообщество',
             'comments' => 'комментарии',
+            'contests' => '',
             'forum' => 'форум',
             'livestream' => 'прямые трансляции',
-        ],
-
-        'contests' => [
-            '_' => 'конкурсы',
-            'index' => 'список',
         ],
 
         'error' => [
@@ -88,6 +84,15 @@ return [
 
         'rankings' => [
             '_' => 'рейтинг',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'корзина',
+            'order' => 'чек',
+            'orders' => 'история заказов',
+            'product' => 'товар',
+            'products' => 'товары',
         ],
 
         'tournaments' => [
@@ -119,6 +124,7 @@ return [
             'beatmapset-watches-index' => 'подписки на карты',
             'changelog-build' => 'сборка',
             'changelog-index' => 'список изменений',
+            'client_verifications-create' => 'верификация клиента osu!',
             'forum-topic-watches-index' => 'подписки на темы',
             'friends-index' => 'друзья',
             'getDownload' => 'скачать игру',

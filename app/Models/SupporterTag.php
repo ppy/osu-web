@@ -96,7 +96,7 @@ class SupporterTag
         throw new \Exception('not a valid duration.');
     }
 
-    public static function getDurationText($length)
+    public static function getDurationText($length, ?string $locale = null)
     {
         // don't forget to update StoreSupporterTagPrice.durationText in coffee
         $years = (int) ($length / 12);
@@ -104,11 +104,11 @@ class SupporterTag
         $texts = [];
 
         if ($years > 0) {
-            $texts[] = trans_choice('common.count.years', $years);
+            $texts[] = trans_choice('common.count.years', $years, [], $locale);
         }
 
         if ($months > 0) {
-            $texts[] = trans_choice('common.count.months', $months);
+            $texts[] = trans_choice('common.count.months', $months, [], $locale);
         }
 
         return implode(', ', $texts);

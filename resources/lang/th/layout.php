@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'ชุมชน',
             'comments' => '',
+            'contests' => '',
             'forum' => 'ฟอรั่ม',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -88,6 +84,15 @@ return [
 
         'rankings' => [
             '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
@@ -119,6 +124,7 @@ return [
             'beatmapset-watches-index' => '',
             'changelog-build' => 'เวอร์ชั่น',
             'changelog-index' => 'บันทึกการเปลี่ยนแปลง',
+            'client_verifications-create' => '',
             'forum-topic-watches-index' => '',
             'friends-index' => 'เพื่อน',
             'getDownload' => 'ดาวน์โหลด',

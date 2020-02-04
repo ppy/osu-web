@@ -25,81 +25,86 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            '_' => 'admin',
+            'beatmapset' => 'set beatmap',
+            'beatmapset_covers' => 'sampul beatmap',
+            'contest' => 'kontes',
+            'contests' => 'kontes',
+            'root' => 'konsol',
+            'store_orders' => 'pengelola toko',
         ],
 
         'artists' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'featured artist',
+            'index' => 'daftar',
         ],
 
         'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            '_' => 'beatmap',
+            'discussions' => 'diskusi',
+            'index' => 'daftar',
+            'show' => 'info',
+            'packs' => 'paket',
         ],
 
         'changelog' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'riwayat perubahan',
+            'index' => 'daftar',
         ],
 
         'community' => [
             '_' => 'Komunitas',
-            'comments' => '',
+            'comments' => 'komentar',
+            'contests' => '',
             'forum' => 'Forum',
-            'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
+            'livestream' => 'siaran langsung',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => 'kesalahan',
         ],
 
         'help' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'wiki',
+            'index' => 'indeks',
         ],
 
         'home' => [
-            '_' => '',
-            'password_reset' => '',
+            '_' => 'beranda',
+            'password_reset' => 'atur ulang kata sandi',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => 'riwayat pertandingan',
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => 'pemberitahuan',
         ],
 
         'rankings' => [
-            '_' => '',
+            '_' => 'peringkat',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'keranjang',
+            'order' => 'faktur',
+            'orders' => 'riwayat transaksi',
+            'product' => 'produk',
+            'products' => 'produk',
         ],
 
         'tournaments' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'turnamen',
+            'index' => 'daftar',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            '_' => 'pemain',
+            'forum_posts' => 'postingan forum',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
@@ -116,10 +121,11 @@ return [
             '_' => 'beranda',
             'account-edit' => 'pengaturan',
             'account-verifyLink' => 'Verifikasi Selesai',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => 'daftar pengamatan modding',
             'changelog-build' => 'versi',
             'changelog-index' => 'riwayat perubahan',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => 'Verifikasi akun osu!',
+            'forum-topic-watches-index' => 'langganan forum',
             'friends-index' => 'teman',
             'getDownload' => 'unduh',
             'getIcons' => 'ikon',
@@ -133,7 +139,7 @@ return [
             'search' => 'cari',
             'supportTheGame' => 'dukung permainan ini',
             'team' => 'tim',
-            'testflight' => '',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => 'profil',

@@ -20,11 +20,12 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Varehus',
+        'warehouse' => 'Lager',
     ],
 
     'cart' => [
         'checkout' => 'Til kassen',
+        'info' => ':count_delimited vare i kurven ($:subtotal)|:count_delimited varer i kurven ($:subtotal)',
         'more_goodies' => 'Jeg ønsker at tjekke flere goodies ud før jeg færdiggører ordren',
         'shipping_fees' => 'fragt gebyrer',
         'title' => 'Indkøbskurv',
@@ -145,5 +146,9 @@ return [
             '_' => 'Du skal være :link for at ændre dit brugernavn!',
             'link_text' => 'logget ind',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

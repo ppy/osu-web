@@ -21,7 +21,7 @@
 return [
     'index' => [
         'description' => '围绕某个相同主题打包好的曲包',
-        'nav_title' => '',
+        'nav_title' => '列表',
         'title' => '曲包',
 
         'blurb' => [

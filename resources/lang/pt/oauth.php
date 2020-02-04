@@ -22,15 +22,9 @@ return [
     'cancel' => 'Cancelar',
 
     'authorise' => [
-        'authorise' => 'Autorizar',
         'request' => 'está a solicitar permissão para aceder à tua conta.',
         'scopes_title' => 'Esta aplicação será capaz de:',
         'title' => 'Pedido de autorização',
-
-        'wrong_user' => [
-            '_' => 'Estás autenticado como :user. :logout_link.',
-            'logout_link' => 'Clica aqui para iniciar sessão como um diferente utilizador',
-        ],
     ],
 
     'authorized_clients' => [

@@ -39,6 +39,7 @@
   &--landing {
     margin: 10px;
     height: 150px;
+    flex: 1;
   }
 
   &__author {
@@ -52,6 +53,10 @@
     object-fit: cover;
 
     .@{_top}--index & {
+      height: 100%;
+    }
+
+    .@{_top}--landing & {
       height: 100%;
     }
   }

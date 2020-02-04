@@ -52,8 +52,8 @@ return [
         ],
 
         'period' => [
-            'end' => '',
-            'start' => '',
+            'end' => '끝',
+            'start' => '시작',
         ],
 
         'state' => [

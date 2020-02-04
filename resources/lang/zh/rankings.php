@@ -20,7 +20,7 @@
 
 return [
     'country' => [
-        'filter' => '',
+        'filter' => '按国家/地区筛选',
     ],
 
     'type' => [

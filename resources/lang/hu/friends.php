@@ -23,8 +23,8 @@ return [
     'too_many' => 'Teli a barátlista.',
 
     'buttons' => [
-      'add' => 'barát hozzáadása',
-      'disabled' => 'barátok',
-      'remove' => 'barát törlése',
+        'add' => 'barát hozzáadása',
+        'disabled' => 'barátok',
+        'remove' => 'barát törlése',
     ],
 ];

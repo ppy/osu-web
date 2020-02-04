@@ -25,81 +25,86 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            '_' => 'admin',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'beatmapset covers',
+            'contest' => 'konkurrence',
+            'contests' => 'konkurrencer',
+            'root' => 'konsol',
+            'store_orders' => 'butik admin',
         ],
 
         'artists' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'udvalgte kunstnere',
+            'index' => 'katalog',
         ],
 
         'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            '_' => 'beatmap',
+            'discussions' => 'diskussion',
+            'index' => 'katalog',
+            'show' => 'info',
+            'packs' => 'pakker',
         ],
 
         'changelog' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'ændringsoversigt',
+            'index' => 'katalog',
         ],
 
         'community' => [
             '_' => 'Fællesskab',
-            'comments' => '',
+            'comments' => 'kommentarer',
+            'contests' => '',
             'forum' => 'Forum',
-            'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
+            'livestream' => 'livestreams',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => 'fejl',
         ],
 
         'help' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'wiki',
+            'index' => 'indeks',
         ],
 
         'home' => [
-            '_' => '',
-            'password_reset' => '',
+            '_' => 'hjem',
+            'password_reset' => 'nulstil adgangskode',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => 'kamp historik',
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => 'meddelelse',
         ],
 
         'rankings' => [
-            '_' => '',
+            '_' => 'rang',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'indkøbskurv',
+            'order' => 'faktura',
+            'orders' => 'ordrehistorik',
+            'product' => 'produkt',
+            'products' => 'produkter',
         ],
 
         'tournaments' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'turneringer',
+            'index' => 'katalog',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            '_' => 'bruger',
+            'forum_posts' => 'forumindlæg',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
@@ -116,10 +121,11 @@ return [
             '_' => 'hjem',
             'account-edit' => 'indstillinger',
             'account-verifyLink' => 'Bekræftelse Gennemført',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => 'modding overvågningsliste',
             'changelog-build' => 'build',
             'changelog-index' => 'ændringsoversigt',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => 'osu! kontobekræftelse',
+            'forum-topic-watches-index' => 'forum abonnementer',
             'friends-index' => 'venner',
             'getDownload' => 'download',
             'getIcons' => 'ikoner',
@@ -133,7 +139,7 @@ return [
             'search' => 'søg',
             'supportTheGame' => 'støt spillet',
             'team' => 'team',
-            'testflight' => '',
+            'testflight' => 'prøveflyvning',
         ],
         'profile' => [
             '_' => 'profil',

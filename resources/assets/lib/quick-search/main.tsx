@@ -18,7 +18,6 @@
 
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
-import { Modal } from 'modal';
 import * as React from 'react';
 import { Spinner } from 'spinner';
 import { StringWithComponent } from 'string-with-component';
@@ -28,27 +27,17 @@ import { ResultMode, Section } from './worker';
 import Worker from './worker';
 
 interface Props {
+  onClose?: () => void;
   worker: Worker;
-}
-
-interface State {
-  open: boolean;
 }
 
 const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
-@observer export default class QuickSearch extends React.Component<Props, State> {
-  searchPath = route('search', null, false);
-  state: State = { open: false };
-
+@observer export default class QuickSearch extends React.Component<Props> {
   private inputRef = React.createRef<HTMLInputElement>();
 
-  private get isSearchPage() {
-    return document.location.pathname === this.searchPath;
-  }
-
-  componentDidUpdate(prevProps: Props, prevState: State) {
-    if (this.inputRef.current != null && prevState.open !== this.state.open && this.state.open) {
+  focus = () => {
+    if (this.inputRef.current != null) {
       this.inputRef.current.selectionStart = 0;
       this.inputRef.current.selectionEnd = this.inputRef.current.value.length;
 
@@ -59,23 +48,37 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   }
 
   render() {
-    let className = 'nav2__menu-link-main nav2__menu-link-main--search js-login-required--click';
-
-    if (this.state.open || document.location.pathname === route('search', null, false)) {
-      className += ' u-section--bg-normal';
-    }
-
     return (
-      <>
-        <a
-          className={className}
-          href={route('search')}
-          onClick={this.toggle}
-        >
-          <span className='fas fa-search' />
-        </a>
-        {this.renderModal()}
-      </>
+      <div className='quick-search u-fancy-scrollbar'>
+        <div className='quick-search-input'>
+          <div className='quick-search-input__field'>
+            <span className='quick-search-input__icon'>
+              {this.props.worker.searching ? <Spinner /> : <span className='fas fa-search' />}
+            </span>
+
+            <input
+              className='quick-search-input__input'
+              ref={this.inputRef}
+              placeholder={osu.trans('home.search.placeholder')}
+              value={this.props.worker.query}
+              onChange={this.updateQuery}
+              onKeyDown={this.onInputKeyDown}
+            />
+          </div>
+
+          {this.props.onClose != null && (
+            <button
+              type='button'
+              className='btn-osu-big btn-osu-big--quick-search-close'
+              onClick={this.props.onClose}
+            >
+              {osu.trans('common.buttons.close')}
+            </button>
+          )}
+        </div>
+
+        {this.renderResult()}
+      </div>
     );
   }
 
@@ -158,45 +161,6 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
           ) : null
         }
       </div>
-    );
-  }
-
-  private renderModal() {
-    if (!this.state.open || this.isSearchPage) {
-      return null;
-    }
-
-    return (
-      <Modal visible={true} onClose={this.toggle}>
-        <div className='quick-search u-fancy-scrollbar'>
-          <div className='quick-search-input'>
-            <div className='quick-search-input__field'>
-              <span className='quick-search-input__icon'>
-                {this.props.worker.searching ? <Spinner /> : <span className='fas fa-search' />}
-              </span>
-
-              <input
-                className='quick-search-input__input'
-                ref={this.inputRef}
-                placeholder={osu.trans('home.search.placeholder')}
-                value={this.props.worker.query}
-                onChange={this.updateQuery}
-                onKeyDown={this.onInputKeyDown}
-              />
-            </div>
-
-            <button
-              type='button'
-              className='btn-osu-big btn-osu-big--quick-search-close'
-              onClick={this.toggle}
-            >
-              {osu.trans('common.buttons.close')}
-            </button>
-          </div>
-
-          {this.renderResult()}
-        </div>
-      </Modal>
     );
   }
 
@@ -373,24 +337,6 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   }
 
   private selectUserOthers = () => this.selectBox('user_others');
-
-  private toggle = (event?: React.SyntheticEvent<HTMLElement>) => {
-    if (event != null) {
-      event.preventDefault();
-    }
-
-    if (currentUser.id == null) {
-      return;
-    }
-
-    if (this.isSearchPage) {
-      $('.js-search--input').focus();
-
-      return;
-    }
-
-    this.setState({ open: !this.state.open });
-  }
 
   private updateQuery = (event: React.SyntheticEvent<HTMLInputElement>) => {
     this.props.worker.updateQuery(event.currentTarget.value);

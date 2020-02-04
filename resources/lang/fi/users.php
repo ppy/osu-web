@@ -65,29 +65,29 @@ return [
     ],
 
     'disabled' => [
-        'title' => '',
+        'title' => 'Jaahas. Käyttäjätilisi taitaa olla lukittu.',
         'warning' => "",
 
         'if_mistake' => [
             '_' => '',
-            'email' => '',
+            'email' => 'sähköposti',
         ],
 
         'reasons' => [
             'compromised' => '',
-            'opening' => '',
+            'opening' => 'Tässä pari mahdollista syytä tilisi lukitsemiseen',
 
             'tos' => [
-                '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                '_' => 'Olet rikkonut yhtä tai useampaa :community_rules tai :tos.',
+                'community_rules' => 'yhteisön sääntöä',
+                'tos' => 'käyttöehtoa',
             ],
         ],
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Käyttäjätiliäsi ei ole käytetty pitkään aikaan.",
         ],
     ],
 
@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => '',
         'failed' => 'Väärät kirjautumistiedot',
         'forgot' => 'Unohditko salasanasi?',
-        'info' => '',
+        'info' => 'Kirjaudu sisään jatkaaksesi',
         'locked_ip' => 'IP-osoitteesi on lukittu. Ole hyvä ja odota muutama minuutti.',
         'password' => 'Salasana',
         'register' => "Eikö sinulla ole osu!-tiliä? Tee yksi",
@@ -222,7 +222,7 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
+                'title' => 'Keskustelut',
                 'title_longer' => '',
                 'show_more' => '',
             ],
@@ -397,9 +397,9 @@ return [
         ],
         'rank' => [
             'country' => 'Maakohtainen sijoitus pelimuodossa :mode',
-            'country_simple' => 'Maakohtaiset sijoitukset',
+            'country_simple' => 'Maakohtainen sijoitus',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
-            'global_simple' => 'Maailmanlaajuiset sijoitukset',
+            'global_simple' => 'Maailmanlaajuinen sijoitus',
         ],
         'stats' => [
             'hit_accuracy' => 'Tarkkuus',

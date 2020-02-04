@@ -25,81 +25,86 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            '_' => 'admin',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'couvertures du beatmapset',
+            'contest' => 'concours',
+            'contests' => 'concours',
+            'root' => 'console',
+            'store_orders' => 'administration de la boutique',
         ],
 
         'artists' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'artistes en vedette',
+            'index' => 'liste',
         ],
 
         'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            '_' => 'beatmap',
+            'discussions' => 'discussion',
+            'index' => 'liste',
+            'show' => 'info',
+            'packs' => 'packs',
         ],
 
         'changelog' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'notes de MàJ',
+            'index' => 'liste',
         ],
 
         'community' => [
             '_' => 'Communauté',
-            'comments' => '',
+            'comments' => 'commentaires',
+            'contests' => '',
             'forum' => 'Forum',
-            'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
+            'livestream' => 'flux en direct',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => 'erreur',
         ],
 
         'help' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'wiki',
+            'index' => 'index',
         ],
 
         'home' => [
-            '_' => '',
-            'password_reset' => '',
+            '_' => 'accueil',
+            'password_reset' => 'réinitialiser le mot de passe',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => 'historique des matchs',
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => 'information',
         ],
 
         'rankings' => [
-            '_' => '',
+            '_' => 'classement',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'panier',
+            'order' => 'facture',
+            'orders' => 'historique des commandes',
+            'product' => 'produit',
+            'products' => 'produits',
         ],
 
         'tournaments' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'tournois',
+            'index' => 'liste',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            '_' => 'joueur',
+            'forum_posts' => 'messages du forum',
+            'modding' => 'modding',
+            'show' => 'infos',
         ],
     ],
 
@@ -116,10 +121,11 @@ return [
             '_' => 'accueil',
             'account-edit' => 'paramètres',
             'account-verifyLink' => 'Vérification terminée',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => 'liste de suivi de modding',
             'changelog-build' => 'build',
             'changelog-index' => 'notes de MàJ',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => 'vérification du client osu!',
+            'forum-topic-watches-index' => 'abonnements aux sujets',
             'friends-index' => 'amis',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
@@ -133,7 +139,7 @@ return [
             'search' => 'rechercher',
             'supportTheGame' => 'supporter le jeu',
             'team' => 'équipe',
-            'testflight' => '',
+            'testflight' => 'vol de test',
         ],
         'profile' => [
             '_' => 'profil',
@@ -309,14 +315,14 @@ return [
         ],
         '500' => [
             'error' => 'Oh non ! Quelque chose s\'est cassé ! ;_;',
-            'description' => "Nous avons été notifié automatiquement de cette erreur.",
+            'description' => "Nous avons automatiquement été notifié de cette erreur.",
         ],
         'fatal' => [
             'error' => 'Oh non ! Quelque chose s\'est cassé ! (gravement) ;_;',
             'description' => "Nous avons été notifié automatiquement de cette erreur.",
         ],
         '503' => [
-            'error' => 'Maitenance en cours!',
+            'error' => 'Maintenance en cours!',
             'description' => "Les maintenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
             'link' => [
                 'text' => '@osustatus',
@@ -342,7 +348,7 @@ return [
 
         'register' => [
             'download' => 'Télécharger',
-            'info' => 'Vous avez besoin d\'un compte, mon cher. Pourquoi n\'en avez vous pas ?',
+            'info' => 'Téléchargez osu! pour créer votre propre compte!',
             'title' => "Vous n'avez pas de compte ?",
         ],
     ],

@@ -35,19 +35,24 @@
     list-style: none;
     display: flex;
     padding: 0;
-    margin: 0;
+    margin: 0 -5px; // 5px margin __item
     justify-content: space-around;
     flex-wrap: wrap;
 
     @media @desktop {
-      margin: -10px -20px;
+      margin: -10px -20px; // 10px margin __item, 10px padding game-mode-link
       justify-content: flex-end;
     }
   }
 
   &__item {
-    margin: 10px;
+    margin: 10px 5px; // linked to __items
     flex: none;
+
+    @media @desktop {
+      margin-left: 10px;
+      margin-right: $margin-left;
+    }
   }
 
   &__set-default {

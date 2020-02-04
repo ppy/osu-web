@@ -23,8 +23,8 @@ return [
     'too_many' => 'Limit znajomych został osiągnięty.',
 
     'buttons' => [
-      'add' => 'dodaj znajomego',
-      'disabled' => 'znajomi',
-      'remove' => 'usuń znajomego',
+        'add' => 'dodaj znajomego',
+        'disabled' => 'znajomi',
+        'remove' => 'usuń znajomego',
     ],
 ];

@@ -77,8 +77,8 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
-                'button_title' => '',
+                '_' => '이 비트맵에 문제가 있다면, :link해 주세요.',
+                'button_title' => 'Qualified 비트맵을 Disqualify 처리',
             ],
 
             'report' => [
@@ -153,13 +153,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
+            'qualified' => 'Qualified',
             'wip' => '작업중',
-            'pending' => '',
-            'graveyard' => '',
+            'pending' => 'Pending',
+            'graveyard' => '무덤에 감',
         ],
     ],
 ];

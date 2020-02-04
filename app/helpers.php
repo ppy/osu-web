@@ -179,6 +179,18 @@ function cleanup_cookies()
     }
 }
 
+function css_var_2x(string $key, string $url)
+{
+    if (!present($url)) {
+        return;
+    }
+
+    $url = e($url);
+    $url2x = retinaify($url);
+
+    return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}')");
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
     $uid = uniqid($stat);
@@ -310,6 +322,18 @@ function html_excerpt($body, $limit = 300)
     $body = html_entity_decode_better(replace_tags_with_spaces($body));
 
     return e(truncate($body, $limit));
+}
+
+function img2x(array $attributes)
+{
+    if (!present($attributes['src'] ?? null)) {
+        return;
+    }
+
+    $src2x = retinaify($attributes['src']);
+    $attributes['srcset'] = "{$attributes['src']} 1x, {$src2x} 1.5x";
+
+    return tag('img', $attributes);
 }
 
 function truncate(string $text, $limit = 100, $ellipsis = '...')
@@ -1191,6 +1215,9 @@ function get_param_value($input, $type)
         case 'file':
             return get_file($input);
             break;
+        case 'float':
+            return get_float($input);
+            break;
         case 'string':
             return get_string($input);
         case 'string_split':
@@ -1483,6 +1510,7 @@ function section_to_hue_map($section): int
         'help' => 'orange',
         'home' => 'purple',
         'multiplayer' => 'pink',
+        'notifications' => 'pink',
         'rankings' => 'green',
         'store' => 'darkorange',
         'user' => 'pink',

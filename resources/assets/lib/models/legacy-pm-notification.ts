@@ -16,17 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { observable } from 'mobx';
 import Notification from './notification';
 
 export default class LegacyPmNotification extends Notification {
-  @observable details = { count: 0 };
+  details = {};
   isRead = false;
   name = 'legacy_pm';
   objectId = -1;
-  objectType = 'legacy_pm';
+
+  get count() {
+    return currentUser?.unread_pm_count ?? 0;
+  }
 
   constructor() {
-    super(-1);
+    super(-1, 'legacy_pm');
   }
 }

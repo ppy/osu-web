@@ -21,7 +21,7 @@
 return [
     'index' => [
         'description' => 'Færdigpakkede samlinger af beatmaps bygget op omkring et fælles tema.',
-        'nav_title' => '',
+        'nav_title' => 'katalog',
         'title' => 'Beatmap Pakker',
 
         'blurb' => [

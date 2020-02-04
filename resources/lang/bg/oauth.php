@@ -22,15 +22,9 @@ return [
     'cancel' => 'Отмени',
 
     'authorise' => [
-        'authorise' => 'Оторизирай',
         'request' => 'иска разрешение за достъп до вашия акаунт.',
         'scopes_title' => 'Това приложение ще може да:',
         'title' => 'Искане за оторизация',
-
-        'wrong_user' => [
-            '_' => 'В момента сте влезли с :user. :logout_link.',
-            'logout_link' => 'Кликнете тук за вход с друг акаунт',
-        ],
     ],
 
     'authorized_clients' => [

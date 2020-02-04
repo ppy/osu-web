@@ -31,7 +31,7 @@ return [
                 'beatmapset_discussion_lock' => '已鎖定「:title」的討論',
                 'beatmapset_discussion_lock_compact' => '討論已被鎖定',
                 'beatmapset_discussion_post_new' => '新帖子於 ":title" 的 :username',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => ':username發布了主題為:title的新貼文',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主題',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 的新主題',
                 'beatmapset_discussion_unlock' => '討論於 ":title" 已解鎖',

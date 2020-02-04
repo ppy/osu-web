@@ -33,7 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'usunięta',
-        'title' => 'Dyskusje',
+        'title' => 'dyskusje',
 
         'form' => [
             '_' => 'Szukaj',

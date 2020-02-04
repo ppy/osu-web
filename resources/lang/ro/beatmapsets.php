@@ -77,15 +77,15 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
-                'button_title' => '',
+                '_' => 'Dacă găsești o problemă cu acest beatmap, vă rugăm descalificați-o :link.',
+                'button_title' => 'Descalifică un beatmap calificat.',
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => 'Dacă găsești o problemă cu acest beatmap, vă rugăm raportați-o :link ca să alertați echipa.',
+                'button' => 'Raportează problemă',
+                'button_title' => 'Raportează o problemă pe un beatmap calificat.',
+                'link' => 'aici',
             ],
         ],
 
@@ -153,13 +153,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Clasat',
+            'approved' => 'Aprobat',
+            'loved' => 'Iubit',
+            'qualified' => 'Calificat',
+            'wip' => 'WIP',
+            'pending' => 'În Așteptare',
+            'graveyard' => 'Cimitir',
         ],
     ],
 ];

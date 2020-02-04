@@ -23,6 +23,11 @@ return [
         'small' => 'Yalnızca dairelere tıklamaktan başka yollarda yarışın.',
         'large' => 'Topluluk Yarışmaları',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Bu yarışma için oylama sona erdi',
         'login_required' => 'Oylamak için lütfen giriş yapınız.',

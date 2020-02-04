@@ -22,15 +22,9 @@ return [
     'cancel' => 'キャンセル',
 
     'authorise' => [
-        'authorise' => '承認',
         'request' => 'アカウントへのアクセス許可を要求しています。',
         'scopes_title' => 'このアプリケーションは次のことができます：',
         'title' => '認証をリクエスト',
-
-        'wrong_user' => [
-            '_' => 'あなたは:userとしてログインしています。:logout_link。',
-            'logout_link' => '別のユーザーとしてログインするにはここをクリック',
-        ],
     ],
 
     'authorized_clients' => [

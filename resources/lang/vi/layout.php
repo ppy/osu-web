@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Cộng đồng',
             'comments' => '',
+            'contests' => '',
             'forum' => 'Diễn đàn',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -88,6 +84,15 @@ return [
 
         'rankings' => [
             '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
@@ -119,6 +124,7 @@ return [
             'beatmapset-watches-index' => '',
             'changelog-build' => 'build',
             'changelog-index' => 'changelog',
+            'client_verifications-create' => '',
             'forum-topic-watches-index' => '',
             'friends-index' => 'bạn bè',
             'getDownload' => 'tải xuống',

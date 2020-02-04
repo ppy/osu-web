@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'community',
             'comments' => 'comments',
+            'contests' => 'contests',
             'forum' => 'forum',
             'livestream' => 'live streams',
-        ],
-
-        'contests' => [
-            '_' => 'contests',
-            'index' => 'listing',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'notice',
+        ],
+
+        'notifications' => [
+            '_' => 'notifications',
+            'index' => 'history',
         ],
 
         'rankings' => [
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'user modding posts',
             'modding-history-votesGiven' => 'user modding votes given',
             'modding-history-votesReceived' => 'user modding votes received',
+            'notifications-index' => 'notifications history',
             'oauth_login' => 'sign in for oauth',
             'oauth_request' => 'oauth authorisation',
             'settings' => 'Settings',
