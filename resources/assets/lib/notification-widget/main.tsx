@@ -16,11 +16,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
+import { Name, TYPES } from 'models/notification-type';
+import { NotificationContext } from 'notifications-context';
+import LegacyPm from 'notifications/legacy-pm';
+import NotificationController from 'notifications/notification-controller';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
-import TypeGroup from './type-group';
+import Stack from './stack';
 import Worker from './worker';
 
 interface Props {
@@ -28,14 +34,28 @@ interface Props {
   worker: Worker;
 }
 
+interface State {
+  hasError: boolean;
+}
+
 @observer
-export default class Main extends React.Component<Props> {
-  private menuId: string;
+export default class Main extends React.Component<Props, State> {
+  readonly links = TYPES.map((obj) => {
+    const type = obj.type;
+    return { title: osu.trans(`notifications.filters.${type ?? '_'}`), data: { 'data-type': type }, type };
+  });
 
-  constructor(props: Props) {
-    super(props);
+  readonly state = {
+    hasError: false,
+  };
 
-    this.menuId = `nav-notification-popup-${osu.uuid()}`;
+  private readonly controller = new NotificationController(core.dataStore.notificationStore, { isWidget: true }, null);
+  private menuId = `nav-notification-popup-${osu.uuid()}`;
+
+  static getDerivedStateFromError(error: Error) {
+    // tslint:disable-next-line: no-console
+    console.error(error);
+    return { hasError: true };
   }
 
   render() {
@@ -44,7 +64,7 @@ export default class Main extends React.Component<Props> {
     }
 
     return (
-      <>
+      <NotificationContext.Provider value={{ isWidget: true }}>
         <button
           className={this.buttonClass()}
           data-click-menu-target={this.menuId}
@@ -63,13 +83,17 @@ export default class Main extends React.Component<Props> {
             data-visibility='hidden'
           >
             <div className='notification-popup__scroll-container'>
-              {this.renderTypeGroup()}
-
-              {this.renderShowMoreButton()}
+              {this.renderFilters()}
+              {this.renderHistoryLink()}
+              {this.renderLegacyPm()}
+              <div className='notification-type-group__items'>
+                {this.renderStacks()}
+                {this.renderShowMore()}
+              </div>
             </div>
           </div>
         </div>
-      </>
+      </NotificationContext.Provider>
     );
   }
 
@@ -83,6 +107,15 @@ export default class Main extends React.Component<Props> {
     }
 
     return ret;
+  }
+
+  private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const type = ((event.currentTarget as HTMLButtonElement).dataset.type ?? null) as Name;
+    this.controller.navigateTo(type);
+  }
+
+  private handleShowMore = () => {
+    this.controller.loadMore();
   }
 
   private mainClass() {
@@ -99,57 +132,87 @@ export default class Main extends React.Component<Props> {
     return ret;
   }
 
-  private renderShowMoreButton() {
-    if (!this.props.worker.hasMore) {
-      return;
-    }
+  private renderFilter = (link: any) => {
+    const type = core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: link.type });
+    const data = { 'data-type': link.type };
+    const modifiers = link.type === this.controller.currentFilter ? ['active'] : [];
 
     return (
-      <div className='notification-popup__show-more'>
-        <ShowMoreLink
-          callback={this.props.worker.loadMore}
-          hasMore={this.props.worker.hasMore}
-          loading={this.props.worker.loadingMore}
-          modifiers={['t-greysky']}
-        />
+      <button
+        className={osu.classWithModifiers('notification-popup__filter', modifiers)}
+        key={link.title}
+        onClick={this.handleFilterClick}
+        {...data}
+      >
+        <span>{link.title}</span>
+        <span className='notification-popup__filter-count'>{type.total}</span>
+      </button>
+    );
+  }
+
+  private renderFilters() {
+    return (
+      <div className='notification-popup__filters'>
+        {this.links.map(this.renderFilter)}
       </div>
     );
   }
 
-  private renderTypeGroup() {
-    const items: React.ReactNode[] = [];
+  private renderHistoryLink() {
+    return (
+      <div className='notification-type-group__items notification-type-group__items--standalone'>
+        <a className='notification-popup__filter' href={route('notifications.index')}>
+          {osu.trans('notifications.see_all')}
+        </a>
+      </div>
+    );
+  }
 
-    this.props.worker.itemsGroupedByType.forEach((value, key) => {
-      const unreadCount = value.filter((v) => !v.isRead).length;
+  private renderLegacyPm() {
+    if (this.controller.currentFilter != null) return;
 
-      if (unreadCount === 0) {
-        return;
-      }
+    return (
+      <div className='notification-type-group__items notification-type-group__items--standalone'>
+        <LegacyPm />
+      </div>
+    );
+  }
 
-      items.push(
-        (
-          <div key={key} className='notification-popup__item'>
-            <TypeGroup
-              item={value[0]}
-              items={value}
-              worker={this.props.worker}
-            />
-          </div>
-        ),
-      );
-    });
+  private renderShowMore() {
+    const type = this.controller.type;
 
-    if (items.length === 0) {
-      items.push(this.props.worker.hasMore ? (
-        <div key='empty-with-more' className='notification-popup__empty-with-more' />
-      ) : (
-        <p key='empty' className='notification-popup__empty'>
-          {osu.trans('notifications.all_read')}
-        </p>
-      ));
+    return (
+      <ShowMoreLink
+        callback={this.handleShowMore}
+        hasMore={type?.hasMore}
+        loading={type?.isLoading}
+        modifiers={['notification-group', 'notification-list']}
+      />
+    );
+  }
+
+  private renderStacks() {
+    if (this.state.hasError) {
+      return;
     }
 
-    return items;
+    const nodes: React.ReactNode[] = [];
+    for (const stack of this.controller.stacks) {
+      if (!stack.hasVisibleNotifications) continue;
+
+      nodes.push(<Stack key={stack.id} stack={stack} />);
+    }
+
+    if (nodes.length === 0) {
+      const transKey = this.controller.currentFilter == null ? 'notifications.all_read' : 'notifications.none';
+      return (
+        <p key='empty' className='notification-popup__empty'>
+          {osu.trans(transKey)}
+        </p>
+      );
+    }
+
+    return nodes;
   }
 
   private unreadCount() {

@@ -116,6 +116,7 @@ export default class HeaderV4 extends React.Component<Props> {
             className={osu.classWithModifiers('header-nav-v4__link', linkModifiers)}
             href={link.url}
             onClick={this.props.onLinkClick}
+            {...link.data}
           >
             {link.title}
           </a>

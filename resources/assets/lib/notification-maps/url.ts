@@ -17,7 +17,6 @@
  */
 
 import { route } from 'laroute';
-import LegacyPmNotification from 'models/legacy-pm-notification';
 import Notification from 'models/notification';
 
 export function urlGroup(item: Notification) {
@@ -43,10 +42,6 @@ export function urlGroup(item: Notification) {
 }
 
 export function urlSingular(item: Notification) {
-  if (item instanceof LegacyPmNotification) {
-    return '/forum/ucp.php?i=pm&folder=inbox';
-  }
-
   switch (item.name) {
     case 'beatmapset_discussion_lock':
     case 'beatmapset_discussion_unlock':
