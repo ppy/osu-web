@@ -16,30 +16,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Notification from 'models/notification';
+import { observer } from 'mobx-react';
+import LegacyPmNotification from 'models/legacy-pm-notification';
+import { nameToIcons } from 'notification-maps/icons';
+import Item from 'notification-widget/item';
+import * as React from 'react';
 
-export function formatMessage(item: Notification, compact: boolean = false) {
-  const replacements = {
-    content: item.details.content,
-    title: item.details.title,
-    username: item.details.username,
-  };
+@observer
+export default class LegacyPm extends React.Component {
+  handleMarkAsRead: any;
+  render() {
+    const item = new LegacyPmNotification();
 
-  let key = `notifications.item.${item.displayType}.${item.category}`;
-  if (item.objectType === 'channel') {
-    key += `.${item.details.type}`;
+    return (
+      <Item
+        icons={nameToIcons.legacy_pm}
+        item={item}
+        message={osu.transChoice('notifications.item.legacy_pm.legacy_pm.legacy_pm', item.count)}
+        modifiers={['one']}
+        url='/forum/ucp.php?i=pm&folder=inbox'
+        withCategory={true}
+        withCoverImage={true}
+      />
+    );
   }
-
-  key += `.${item.name}`;
-
-  if (compact) {
-    key += '_compact';
-  }
-
-  const emptyKey = `${key}_empty`;
-  if (item.details.content == null && osu.transExists(emptyKey)) {
-    key = emptyKey;
-  }
-
-  return osu.trans(key, replacements);
 }

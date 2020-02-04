@@ -67,6 +67,7 @@ export default class UIStateStore extends Store {
 
   // only for the currently visible page
   @observable comments = Object.assign({}, defaultCommentsUIState);
+
   private orderedCommentsByParentId: Dictionary<Comment[]> = {};
 
   exportCommentsUIState() {

@@ -16,30 +16,31 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Notification from 'models/notification';
+import { observer } from 'mobx-react';
+import NotificationStack from 'models/notification-stack';
+import * as React from 'react';
+import ItemGroup from './item-group';
+import ItemSingular from './item-singular';
 
-export function formatMessage(item: Notification, compact: boolean = false) {
-  const replacements = {
-    content: item.details.content,
-    title: item.details.title,
-    username: item.details.username,
-  };
+interface Props {
+  stack: NotificationStack;
+}
 
-  let key = `notifications.item.${item.displayType}.${item.category}`;
-  if (item.objectType === 'channel') {
-    key += `.${item.details.type}`;
+const bn = 'notification-type-group';
+
+@observer
+export default class Stack extends React.Component<Props> {
+  render() {
+    if (!this.props.stack.hasVisibleNotifications) {
+      return null;
+    }
+
+    const Component = this.props.stack.isSingle ? ItemSingular : ItemGroup;
+
+    return (
+      <div className={`${bn}__item`} key={this.props.stack.id}>
+        <Component stack={this.props.stack} />
+      </div>
+    );
   }
-
-  key += `.${item.name}`;
-
-  if (compact) {
-    key += '_compact';
-  }
-
-  const emptyKey = `${key}_empty`;
-  if (item.details.content == null && osu.transExists(emptyKey)) {
-    key = emptyKey;
-  }
-
-  return osu.trans(key, replacements);
 }
