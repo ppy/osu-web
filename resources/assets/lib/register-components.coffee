@@ -53,7 +53,7 @@ $(document).ready resetNotificationWorker
 $.subscribe 'user:update', resetNotificationWorker
 
 reactTurbolinks.registerPersistent 'notification-icon', NotificationIcon, true, (el) ->
-  props = try JSON.parse(el.dataset.notificationIcon) ? {}
+  props = (try JSON.parse(el.dataset.notificationIcon)) ? {}
   props.worker = notificationWorker
 
   props
