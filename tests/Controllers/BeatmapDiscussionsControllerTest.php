@@ -178,7 +178,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
     // posting reviews - fail scenarios ----
 
-    // user missing
+    // guest user
     public function testPostReviewGuest()
     {
         $this

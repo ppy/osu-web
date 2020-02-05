@@ -129,6 +129,8 @@ class BeatmapDiscussionsController extends Controller
             abort(404);
         }
 
+        priv_check('BeatmapDiscussionReviewStore')->ensureCan();
+
         $request = request()->all();
         $beatmapsetId = $request['beatmapset_id'] ?? null;
         $document = $request['document'] ?? [];
