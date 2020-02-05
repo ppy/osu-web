@@ -29,16 +29,21 @@ class BeatmapsetEventTransformer extends TransformerAbstract
         'discussion',
     ];
 
+    protected $defaultIncludes = [
+        'user_id',
+    ];
+
+    protected $permissions = [
+        'user_id' => 'BeatmapsetEventViewUserId',
+    ];
+
     public function transform(BeatmapsetEvent $event = null)
     {
-        $userId = priv_check('BeatmapsetEventViewUserId', $event)->can() ? $event->user_id : null;
-
         return [
             'id' => $event->id,
             'type' => $event->type,
             'comment' => $event->comment,
             'created_at' => json_time($event->created_at),
-            'user_id' => $userId,
         ];
     }
 
@@ -64,5 +69,10 @@ class BeatmapsetEventTransformer extends TransformerAbstract
             $event->beatmapDiscussion,
             new BeatmapDiscussionTransformer()
         );
+    }
+
+    public function includeUserId(BeatmapsetEvent $event)
+    {
+        return $this->primitive($event->user_id);
     }
 }
