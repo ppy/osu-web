@@ -178,6 +178,14 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
     // posting reviews - fail scenarios ----
 
+    // user missing
+    public function testPostReviewGuest()
+    {
+        $this
+            ->post(route('beatmapsets.beatmap-discussions.review'))
+            ->assertUnauthorized();
+    }
+
     // beatmapset id missing
     public function testPostReviewIdMissing()
     {
