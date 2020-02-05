@@ -178,15 +178,9 @@ class BeatmapsetTransformer extends TransformerAbstract
         });
     }
 
-    public function includeDescription(Beatmapset $beatmapset, Fractal\ParamBag $params)
+    public function includeDescription(Beatmapset $beatmapset)
     {
-        $editable = $params->get('editable');
-
-        return $this->item($beatmapset, function ($beatmapset) use ($editable) {
-            return $editable
-                ? ['description' => $beatmapset->description(), 'bbcode' => $beatmapset->editableDescription()]
-                : ['description' => $beatmapset->description()];
-        });
+        return $this->item($beatmapset, new BeatmapsetDescriptionTransformer);
     }
 
     public function includeDiscussions(Beatmapset $beatmapset)
