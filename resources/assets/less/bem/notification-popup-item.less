@@ -31,7 +31,7 @@
   &--compact {
     background-color: transparent;
     margin-left: 10px;
-    width: calc(100% - 10px);
+    width: calc(100% - $margin-left);
 
     &:hover {
       background-color: @osu-colour-b4;
@@ -102,8 +102,8 @@
     .reset-input();
     .full-size();
     .center-content();
-    width: calc(100% - 6px);
-    margin-left: 6px;
+    width: calc(100% - $margin-left);
+    margin-left: @border-radius-large;
     padding-left: 2px;
     color: @osu-colour-f1;
 
@@ -114,10 +114,10 @@
     &::before {
       .full-size();
       content: ' ';
-      width: 6px;
-      border-radius: 0 6px 6px 0;
+      width: @border-radius-large;
+      border-radius: 0 @border-radius-large @border-radius-large 0;
       background-color: transparent;
-      left: -6px;
+      left: -@border-radius-large;
 
       .@{_top}:hover & {
         background-color: @osu-colour-b1;
@@ -171,7 +171,7 @@
   &__side-buttons {
     width: 40px;
     flex: none;
-    border-radius: 0 6px 6px 0;
+    border-radius: 0 @border-radius-large @border-radius-large 0;
     background-color: transparent;
 
     .@{_top}--standalone &, .@{_top}--read & {
@@ -185,10 +185,10 @@
 
   &__unread-stripe {
     position: absolute;
-    left: -3px;
-    width: 7px;
+    left: -2px;
+    width: @border-radius-large - $left;
     height: 100%;
     background-color: @osu-colour-h1;
-    border-radius: 4px 0 0 4px;
+    border-radius: @border-radius-large 0 0 @border-radius-large;
   }
 }
