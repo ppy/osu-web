@@ -38,9 +38,14 @@ interface Props extends WithMarkReadProps {
 export default class Item extends React.Component<Props> {
   static contextType = NotificationContext;
 
+  private get canMarkAsRead() {
+    return this.props.canMarkAsRead ?? this.props.item.canMarkRead;
+  }
+
   render() {
     return (
       <div className={this.blockClass()} onClick={this.handleContainerClick}>
+        {this.renderUnreadStripe()}
         {this.renderCover()}
         <div className='notification-popup-item__main'>
           <div className='notification-popup-item__content'>
@@ -128,7 +133,7 @@ export default class Item extends React.Component<Props> {
   }
 
   private renderMarkAsReadButton() {
-    if (!(this.props.canMarkAsRead ?? this.props.item.canMarkRead)) {
+    if (!this.canMarkAsRead) {
       return null;
     }
 
@@ -175,6 +180,14 @@ export default class Item extends React.Component<Props> {
           __html: osu.timeago(this.props.item.createdAtJson),
         }}
       />
+    );
+  }
+
+  private renderUnreadStripe() {
+    if (this.context.isWidget || !this.canMarkAsRead) return null;
+
+    return (
+      <span className='notification-popup-item__unread-stripe' />
     );
   }
 }
