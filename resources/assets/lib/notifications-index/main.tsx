@@ -89,12 +89,10 @@ export class Main extends React.Component {
 
         <div className='osu-page osu-page--generic-compact'>
           <div className='notification-index'>
-            <div className='notification-popup__item'>
-              {this.renderLegacyPm()}
-              <div className='notification-type-group__items'>
-                {this.renderStacks()}
-                {this.renderShowMore()}
-              </div>
+            {this.renderLegacyPm()}
+            <div className='notification-stacks'>
+              {this.renderStacks()}
+              {this.renderShowMore()}
             </div>
           </div>
         </div>
@@ -105,11 +103,7 @@ export class Main extends React.Component {
   renderLegacyPm() {
     if (this.controller.currentFilter != null) return;
 
-    return (
-      <div className='notification-type-group__items notification-type-group__items--standalone'>
-        <LegacyPm />
-      </div>
-    );
+    return <LegacyPm />;
   }
 
   renderShowMore() {

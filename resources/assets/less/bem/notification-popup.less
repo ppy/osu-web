@@ -20,11 +20,9 @@
   .thick-box-shadow();
   background-color: @osu-colour-b4;
   color: #fff;
-  padding: 10px 10px 15px; // to balance with type header's line height
+  padding: 15px 10px;
   border: 1px solid @osu-colour-b3;
   border-radius: @border-radius-large;
-  display: flex;
-  flex-direction: column;
 
   margin-top: 10px;
   max-width: 400px;
@@ -37,8 +35,10 @@
   &__scroll-container {
     -webkit-overflow-scrolling: touch;
     overflow: auto;
-    padding: 0 10px;
+    padding: 0 5px;
     max-height: calc(var(--vh, 1vh) * 100 - (@nav2-height + 20px));
+    display: grid;
+    grid-gap: 10px;
   }
 
   &__show-more {
@@ -61,8 +61,7 @@
   &__filters {
     display: grid;
     grid-gap: 5px;
-    margin: 10px 0;
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   &__filter {

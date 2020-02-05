@@ -66,7 +66,7 @@ export default class Main extends React.Component<Props, State> {
           {this.renderFilters()}
           {this.renderHistoryLink()}
           {this.renderLegacyPm()}
-          <div className='notification-type-group__items'>
+          <div className='notification-stacks'>
             {this.renderStacks()}
             {this.renderShowMore()}
           </div>
@@ -112,22 +112,16 @@ export default class Main extends React.Component<Props, State> {
 
   private renderHistoryLink() {
     return (
-      <div className='notification-type-group__items notification-type-group__items--standalone'>
-        <a className='notification-popup__filter' href={route('notifications.index')}>
-          {osu.trans('notifications.see_all')}
-        </a>
-      </div>
+      <a className='notification-popup__filter' href={route('notifications.index')}>
+        {osu.trans('notifications.see_all')}
+      </a>
     );
   }
 
   private renderLegacyPm() {
     if (this.controller.currentFilter != null) return;
 
-    return (
-      <div className='notification-type-group__items notification-type-group__items--standalone'>
-        <LegacyPm />
-      </div>
-    );
+    return <LegacyPm />;
   }
 
   private renderShowMore() {
