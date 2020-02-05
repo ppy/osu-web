@@ -28,7 +28,7 @@
 
         <div class="navbar-mobile__header-section navbar-mobile__header-section--buttons">
             @if (Auth::check())
-                <div class="js-react--notification-button" data-notification-type="mobile">
+                <div>
                     <button class="nav-button nav-button--mobile js-click-menu js-react--notification-icon"
                         data-click-menu-target="nav-mobile-notification-widget"
                         data-notification-icon="{{ json_encode(['type' => 'mobile']) }}"
