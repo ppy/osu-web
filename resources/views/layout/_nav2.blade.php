@@ -149,7 +149,7 @@
         </div>
 
         @if (Auth::user() !== null)
-            <div class="nav2__col js-react--notification">
+            <div class="nav2__col js-react--notification-button">
                 <div class="nav-button nav-button--stadium">
                     <span class="notification-icon">
                         <i class="fas fa-inbox"></i>

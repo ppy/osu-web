@@ -28,7 +28,7 @@
 
         <div class="navbar-mobile__header-section navbar-mobile__header-section--buttons">
             @if (Auth::check())
-                <div class="js-react--notification" data-notification-type="mobile">
+                <div class="js-react--notification-button" data-notification-type="mobile">
                     <div class="nav-button nav-button--mobile">
                         <span class="notification-icon notification-icon--mobile">
                             <i class="fas fa-inbox"></i>

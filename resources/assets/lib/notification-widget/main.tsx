@@ -20,18 +20,15 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import { Name, TYPES } from 'models/notification-type';
-import { NotificationContext } from 'notifications-context';
 import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import Stack from './stack';
-import Worker from './worker';
 
 interface Props {
-  type?: string;
-  worker: Worker;
+  extraClasses?: string;
 }
 
 interface State {
@@ -50,7 +47,6 @@ export default class Main extends React.Component<Props, State> {
   };
 
   private readonly controller = new NotificationController(core.dataStore.notificationStore, { isWidget: true }, null);
-  private menuId = `nav-notification-popup-${osu.uuid()}`;
 
   static getDerivedStateFromError(error: Error) {
     // tslint:disable-next-line: no-console
@@ -59,54 +55,24 @@ export default class Main extends React.Component<Props, State> {
   }
 
   render() {
-    if (!this.props.worker.isActive()) {
-      return null;
+    let blockClass = 'notification-popup u-fancy-scrollbar';
+    if (this.props.extraClasses != null) {
+      blockClass += ` ${this.props.extraClasses}`;
     }
 
     return (
-      <NotificationContext.Provider value={{ isWidget: true }}>
-        <button
-          className={this.buttonClass()}
-          data-click-menu-target={this.menuId}
-        >
-          <span className={this.mainClass()}>
-            <i className='fas fa-inbox' />
-            <span className='notification-icon__count'>
-              {this.unreadCount()}
-            </span>
-          </span>
-        </button>
-        <div className='nav-click-popup'>
-          <div
-            className='notification-popup js-click-menu js-nav2--centered-popup u-fancy-scrollbar'
-            data-click-menu-id={this.menuId}
-            data-visibility='hidden'
-          >
-            <div className='notification-popup__scroll-container'>
-              {this.renderFilters()}
-              {this.renderHistoryLink()}
-              {this.renderLegacyPm()}
-              <div className='notification-type-group__items'>
-                {this.renderStacks()}
-                {this.renderShowMore()}
-              </div>
-            </div>
+      <div className={blockClass}>
+        <div className='notification-popup__scroll-container'>
+          {this.renderFilters()}
+          {this.renderHistoryLink()}
+          {this.renderLegacyPm()}
+          <div className='notification-type-group__items'>
+            {this.renderStacks()}
+            {this.renderShowMore()}
           </div>
         </div>
-      </NotificationContext.Provider>
+      </div>
     );
-  }
-
-  private buttonClass() {
-    let ret = 'js-click-menu nav-button';
-
-    if (this.props.type === 'mobile') {
-      ret += ' nav-button--mobile';
-    } else {
-      ret += ' nav-button--stadium';
-    }
-
-    return ret;
   }
 
   private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -116,20 +82,6 @@ export default class Main extends React.Component<Props, State> {
 
   private handleShowMore = () => {
     this.controller.loadMore();
-  }
-
-  private mainClass() {
-    let ret = 'notification-icon';
-
-    if (this.props.worker.unreadCount > 0) {
-      ret += ' notification-icon--glow';
-    }
-
-    if (this.props.type === 'mobile') {
-      ret += ' notification-icon--mobile';
-    }
-
-    return ret;
   }
 
   private renderFilter = (link: any) => {
@@ -213,13 +165,5 @@ export default class Main extends React.Component<Props, State> {
     }
 
     return nodes;
-  }
-
-  private unreadCount() {
-    if (this.props.worker.hasData) {
-      return osu.formatNumber(this.props.worker.unreadCount);
-    } else {
-      return '...';
-    }
   }
 }

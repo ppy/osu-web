@@ -6,8 +6,8 @@ import { CommentsManager } from 'comments-manager'
 import { CountdownTimer } from 'countdown-timer'
 import { FriendButton } from 'friend-button'
 import { LandingNews } from 'landing-news'
-import NotificationWidget from 'notification-widget/main'
-import NotificationWidgetWorker from 'notification-widget/worker'
+import NotificationButton from 'notification-button'
+import NotificationWorker from 'notifications/worker'
 import QuickSearch from 'quick-search/main'
 import QuickSearchButton from 'quick-search-button'
 import QuickSearchWorker from 'quick-search/worker'
@@ -46,12 +46,12 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
 
   props
 
-notificationWorker = new NotificationWidgetWorker()
+notificationWorker = new NotificationWorker()
 resetNotificationWorker = -> notificationWorker.setUserId(currentUser.id)
 $(document).ready resetNotificationWorker
 $.subscribe 'user:update', resetNotificationWorker
 
-reactTurbolinks.registerPersistent 'notification', NotificationWidget, true, (el) ->
+reactTurbolinks.registerPersistent 'notification-button', NotificationButton, true, (el) ->
   type: el.dataset.notificationType
   worker: notificationWorker
 
