@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -150,7 +151,7 @@ class BeatmapDiscussionsController extends Controller
             $blockCount = 0;
             foreach ($document as $block) {
                 if (!isset($block['type'])) {
-                    throw new \Exception(trans('beatmap_discussions.review.validation.invalid_block_type'));
+                    throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
                 switch ($block['type']) {
                     case 'embed':
@@ -187,12 +188,12 @@ class BeatmapDiscussionsController extends Controller
 
             $minIssues = config('osu.beatmapset.discussion_review_min_issues');
             if (empty($childIds) || count($childIds) < $minIssues) {
-                return error_popup(trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues), 422);
+                throw new InvariantException(trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
             }
 
             $maxBlocks = config('osu.beatmapset.discussion_review_max_blocks');
             if ($blockCount > $maxBlocks) {
-                return error_popup(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks), 422);
+                throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
             }
 
             // generate the post body now that the issues have been created
@@ -200,7 +201,7 @@ class BeatmapDiscussionsController extends Controller
                 switch ($block['type']) {
                     case 'paragraph':
                         if (!$block['text']) {
-                            throw new \Exception(trans('beatmap_discussions.review.validation.paragraph_missing_text'));
+                            throw new InvariantException(trans('beatmap_discussions.review.validation.paragraph_missing_text'));
                         }
                         // escape embed injection attempts
                         $text = preg_replace('/%\[\]\(#(\d+)\)/', '%\[\]\(#$1\)', $block['text']);
@@ -214,7 +215,7 @@ class BeatmapDiscussionsController extends Controller
 
                     default:
                         // invalid block type
-                        throw new \Exception(trans('beatmap_discussions.review.validation.invalid_block_type'));
+                        throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
             }
 
