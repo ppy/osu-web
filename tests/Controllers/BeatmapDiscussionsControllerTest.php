@@ -348,8 +348,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         $discussionCount = BeatmapDiscussion::count();
         $discussionPostCount = BeatmapDiscussionPost::count();
+        $timestampedIssueText = '00:01:234 ' . self::$faker->sentence();
         $issueText = self::$faker->sentence();
-        $issueText2 = self::$faker->sentence();
 
         $this
             ->actingAsVerified($this->user)
@@ -358,13 +358,15 @@ class BeatmapDiscussionsControllerTest extends TestCase
                 'document' => [
                     [
                         'type' => 'embed',
-                        'text' => $issueText,
                         'discussion_type' => 'problem',
+                        'text' => $timestampedIssueText,
+                        'timestamp' => true,
+                        'beatmap_id' => $this->beatmapset->beatmaps->first()->getKey(),
                     ],
                     [
                         'type' => 'embed',
-                        'text' => $issueText2,
                         'discussion_type' => 'problem',
+                        'text' => $issueText,
                     ],
                 ],
             ])
@@ -372,13 +374,19 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertJsonFragment(
               [
                   'user_id' => $this->user->getKey(),
-                  'message' => $issueText,
+                  'message' => $timestampedIssueText,
               ]
+            )
+            // ensure timestamp was parsed correctly
+            ->assertJsonFragment(
+                [
+                    'timestamp' => 1234,
+                ]
             )
             ->assertJsonFragment(
               [
                   'user_id' => $this->user->getKey(),
-                  'message' => $issueText2,
+                  'message' => $issueText,
               ]
             );
 

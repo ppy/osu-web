@@ -23,12 +23,13 @@ namespace App\Libraries;
 use App\Exceptions\InvariantException;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
+use App\Models\Beatmapset;
 use Auth;
 use DB;
 
 class BeatmapDiscussionReview
 {
-    public static function create($beatmapset, $document)
+    public static function create(Beatmapset $beatmapset, $document)
     {
         if (!$document || !is_array($document) || empty($document)) {
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
@@ -56,8 +57,8 @@ class BeatmapDiscussionReview
                             'beatmapset_id' => $beatmapset->getKey(),
                             'user_id' => Auth::user()->getKey(),
                             'resolved' => false,
-//                            'timestamp' => $block['timestamp'],
                             'message_type' => $block['discussion_type'],
+                            'timestamp' => $block['timestamp'] ?? null,
                             'beatmap_id' => $beatmapId,
                         ]);
                         $discussion->saveOrExplode();
