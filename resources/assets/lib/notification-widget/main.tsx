@@ -20,6 +20,7 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import { Name, TYPES } from 'models/notification-type';
+import { NotificationContext } from 'notifications-context';
 import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
 import core from 'osu-core-singleton';
@@ -55,23 +56,22 @@ export default class Main extends React.Component<Props, State> {
   }
 
   render() {
-    let blockClass = 'notification-popup u-fancy-scrollbar';
-    if (this.props.extraClasses != null) {
-      blockClass += ` ${this.props.extraClasses}`;
-    }
+    const blockClass = `notification-popup u-fancy-scrollbar ${this.props.extraClasses ?? ''}`;
 
     return (
-      <div className={blockClass}>
-        <div className='notification-popup__scroll-container'>
-          {this.renderFilters()}
-          {this.renderHistoryLink()}
-          {this.renderLegacyPm()}
-          <div className='notification-stacks'>
-            {this.renderStacks()}
-            {this.renderShowMore()}
+      <NotificationContext.Provider value={{ isWidget: true }}>
+        <div className={blockClass}>
+          <div className='notification-popup__scroll-container'>
+            {this.renderFilters()}
+            {this.renderHistoryLink()}
+            {this.renderLegacyPm()}
+            <div className='notification-stacks'>
+              {this.renderStacks()}
+              {this.renderShowMore()}
+            </div>
           </div>
         </div>
-      </div>
+      </NotificationContext.Provider>
     );
   }
 

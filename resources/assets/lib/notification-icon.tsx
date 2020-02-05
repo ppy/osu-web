@@ -16,10 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as _ from 'lodash';
 import { observer } from 'mobx-react';
-import NotificationWidget from 'notification-widget/main';
-import { NotificationContext } from 'notifications-context';
 import Worker from 'notifications/worker';
 import * as React from 'react';
 
@@ -29,50 +26,20 @@ interface Props {
 }
 
 @observer
-export default class NotificationButton extends React.Component<Props> {
-  private menuId = `nav-notification-popup-${osu.uuid()}`;
-
+export default class NotificationIcon extends React.Component<Props> {
   render() {
     if (!this.props.worker.isActive()) {
       return null;
     }
 
     return (
-      <>
-        <button
-          className={this.buttonClass()}
-          data-click-menu-target={this.menuId}
-        >
-          <span className={this.mainClass()}>
-            <i className='fas fa-inbox' />
-            <span className='notification-icon__count'>
-              {this.unreadCount()}
-            </span>
-          </span>
-        </button>
-        <div
-          className='nav-click-popup js-click-menu'
-          data-click-menu-id={this.menuId}
-          data-visibility='hidden'
-        >
-          <NotificationContext.Provider value={{ isWidget: true }}>
-            <NotificationWidget extraClasses='js-nav2--centered-popup'/>
-          </NotificationContext.Provider>
-        </div>
-      </>
+      <span className={this.mainClass()}>
+        <i className='fas fa-inbox' />
+        <span className='notification-icon__count'>
+          {this.unreadCount()}
+        </span>
+      </span>
     );
-  }
-
-  private buttonClass() {
-    let ret = 'js-click-menu nav-button';
-
-    if (this.props.type === 'mobile') {
-      ret += ' nav-button--mobile';
-    } else {
-      ret += ' nav-button--stadium';
-    }
-
-    return ret;
   }
 
   private mainClass() {
