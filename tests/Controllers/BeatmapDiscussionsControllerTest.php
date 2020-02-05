@@ -321,7 +321,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
                 'document' => [
                     [
                         'type' => 'embed',
-                        'discussionType' => 'problem',
+                        'discussion_type' => 'problem',
                         'text' => self::$faker->sentence(),
                     ],
                     [
@@ -358,13 +358,13 @@ class BeatmapDiscussionsControllerTest extends TestCase
                 'document' => [
                     [
                         'type' => 'embed',
-                        'discussionType' => 'problem',
                         'text' => $issueText,
+                        'discussion_type' => 'problem',
                     ],
                     [
                         'type' => 'embed',
-                        'discussionType' => 'problem',
                         'text' => $issueText2,
+                        'discussion_type' => 'problem',
                     ],
                 ],
             ])
@@ -403,7 +403,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
                 'document' => [
                     [
                         'type' => 'embed',
-                        'discussionType' => 'problem',
+                        'discussion_type' => 'problem',
                         'text' => $issueText,
                     ],
                     [

@@ -46,17 +46,18 @@ class BeatmapDiscussionReview
                 if (!isset($block['type'])) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
+
                 switch ($block['type']) {
                     case 'embed':
                         $message = $block['text'];
-                        $beatmapId = $block['beatmapId'] ?? null;
+                        $beatmapId = $block['beatmap_id'] ?? null;
 
                         $discussion = new BeatmapDiscussion([
                             'beatmapset_id' => $beatmapset->getKey(),
                             'user_id' => Auth::user()->getKey(),
                             'resolved' => false,
-                            'message_type' => $block['discussionType'],
 //                            'timestamp' => $block['timestamp'],
+                            'message_type' => $block['discussion_type'],
                             'beatmap_id' => $beatmapId,
                         ]);
                         $discussion->saveOrExplode();
