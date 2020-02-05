@@ -44,7 +44,7 @@
     </div>
 
     <div
-        class="mobile-menu js-click-menu"
+        class="mobile-menu js-click-menu u-fancy-scrollbar"
         data-click-menu-id="mobile-menu"
     >
         <div class="mobile-menu__content">
@@ -78,23 +78,15 @@
                         <span class="fas fa-search"></span>
                     </button>
 
-                    <div class="js-react--notification-button" data-notification-type="mobile">
-                        <button class="mobile-menu-tab js-click-menu js-react--notification-icon"
-                            data-click-menu-target="nav-mobile-notification-widget"
-                            data-notification-icon="{{ json_encode(['type' => 'mobile']) }}"
-                        >
-                            <span class="notification-icon notification-icon--mobile">
-                                <i class="fas fa-inbox"></i>
-                                <span class="notification-icon__count">...</span>
-                            </span>
-                        </button>
-                        <div
-                            class="nav-click-popup js-click-menu js-react--notification-widget"
-                            data-click-menu-id="nav-mobile-notification-widget"
-                            data-visibility="hidden"
-                            data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup']) }}"
-                        ></div>
-                    </div>
+                    <button class="mobile-menu-tab js-click-menu js-react--notification-icon"
+                        data-click-menu-target="mobile-notification"
+                        data-notification-icon="{{ json_encode(['type' => 'mobile']) }}"
+                    >
+                        <span class="notification-icon notification-icon--mobile">
+                            <i class="fas fa-inbox"></i>
+                            <span class="notification-icon__count">...</span>
+                        </span>
+                    </button>
                 @endif
             </div>
 
@@ -109,6 +101,12 @@
             @if (isset($user))
                 <div class="mobile-menu__item mobile-menu__item--search js-click-menu js-react--quick-search" data-click-menu-id="mobile-search">
                 </div>
+
+                <div
+                    class="mobile-menu__item js-click-menu js-react--notification-widget"
+                    data-click-menu-id="mobile-notification"
+                    data-visibility="hidden"
+                ></div>
             @endif
         </div>
     </div>
