@@ -162,6 +162,7 @@ class BeatmapDiscussionsController extends Controller
                             'user_id' => Auth::user()->getKey(),
                             'resolved' => false,
                             'message_type' => $block['discussionType'],
+                            'timestamp' => $block['timestamp'],
                             'beatmap_id' => $beatmapId,
                         ]);
                         $discussion->saveOrExplode();
