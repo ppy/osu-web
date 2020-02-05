@@ -116,7 +116,7 @@ class UserTransformer extends TransformerAbstract
     {
         $histories = $user->accountHistories()->recent();
 
-        if (!priv_check('UserSilenceShowExtendedInfo')->can() || is_api_request()) {
+        if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
             $histories->default();
         } else {
             $histories->with('actor');
