@@ -213,7 +213,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         $discussionCount = BeatmapDiscussion::count();
         $discussionPostCount = BeatmapDiscussionPost::count();
-        $timestampedIssueText = '00:01:234 ' . self::$faker->sentence();
+        $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
         $issueText = self::$faker->sentence();
 
         $this
