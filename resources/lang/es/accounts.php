@@ -26,7 +26,7 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'rules' => 'Por favor asegúrese de que su avatar se adhiere a :link.<br/>Esto significa que debe ser <strong>adecuado para todas las edades</strong>. Es decir, no desnudez, profanidad o contenido sugestivo.',
-            'rules_link' => 'las normas de la comunidad',
+            'rules_link' => 'las reglas de la comunidad',
         ],
 
         'email' => [

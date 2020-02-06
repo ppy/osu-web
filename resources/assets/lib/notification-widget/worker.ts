@@ -16,51 +16,29 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import NotificationJson from 'interfaces/notification-json';
+import { dispatch } from 'app-dispatcher';
+import { NotificationBundleJson } from 'interfaces/notification-json';
 import XHRCollection from 'interfaces/xhr-collection';
 import { route } from 'laroute';
-import { forEach, minBy, orderBy, random } from 'lodash';
+import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
-import LegacyPmNotification from 'models/legacy-pm-notification';
-import Notification from 'models/notification';
-import { fromJson, NotificationIdentity, NotificationIdentityJson } from 'notifications/notification-identity';
+import {
+  NotificationEventLogoutJson,
+  NotificationEventMoreLoaded,
+  NotificationEventNew,
+  NotificationEventNewJson,
+  NotificationEventRead,
+  NotificationEventReadJson,
+  NotificationEventVerifiedJson,
+} from 'notifications/notification-events';
+import core from 'osu-core-singleton';
 
-interface NotificationBundleJson {
-  has_more: boolean;
+interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;
-  notifications: NotificationJson[];
-  unread_count: number;
-}
-
-interface NotificationEventLogoutJson {
-  event: 'logout';
-}
-
-interface NotificationEventNewJson {
-  data: NotificationJson;
-  event: 'new';
-}
-
-interface NotificationEventReadJson {
-  data: NotificationIdsJson | NotificationReadJson;
-  event: 'read';
-}
-
-interface NotificationEventVerifiedJson {
-  event: 'verified';
 }
 
 interface NotificationFeedMetaJson {
   url: string;
-}
-
-interface NotificationIdsJson {
-  ids: number[];
-}
-
-interface NotificationReadJson {
-  notification: NotificationIdentityJson;
-  read_count: number;
 }
 
 interface TimeoutCollection {
@@ -87,64 +65,20 @@ const isNotificationEventVerifiedJson = (arg: any): arg is NotificationEventVeri
   return arg.event === 'verified';
 };
 
-const isNotificationReadJson = (arg: any): arg is NotificationReadJson => {
-  return arg.read_count != null;
-};
-
 export default class Worker {
-  @observable actualUnreadCount: number = -1;
   @observable hasData: boolean = false;
   @observable hasMore: boolean = true;
-  @observable pmNotification = new LegacyPmNotification();
   userId: number | null = null;
   @observable private active: boolean = false;
   private endpoint?: string;
-  @observable private items = observable.map<number, Notification>();
+  private readonly store = core.dataStore.notificationStore.unreadStacks;
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
   private xhr: XHRCollection = {};
   @observable private xhrLoadingState: XHRLoadingStateCollection = {};
 
-  @computed get itemsGroupedByType() {
-    const ret: Map<string, Notification[]> = new Map();
-
-    const sortedItems = orderBy([...this.items.values()], ['id'], ['desc']);
-    sortedItems.unshift(this.pmNotification);
-
-    sortedItems.forEach((item) => {
-      const key = item.displayType;
-
-      if (key == null) {
-        return;
-      }
-
-      let groupedItems = ret.get(key);
-
-      if (groupedItems == null) {
-        groupedItems = [];
-        ret.set(key, groupedItems);
-      }
-
-      groupedItems.push(item);
-    });
-
-    return ret;
-  }
-
   @computed get loadingMore() {
     return this.isPendingXhr('loadMore');
-  }
-
-  @computed get minLoadedId() {
-    let ret: null | number = null;
-
-    this.items.forEach((item) => {
-      if (item.id > 0 && (ret == null || item.id < ret)) {
-        ret = item.id;
-      }
-    });
-
-    return ret;
   }
 
   @computed get refreshing() {
@@ -152,25 +86,14 @@ export default class Worker {
   }
 
   @computed get unreadCount() {
-    let ret = this.actualUnreadCount;
-
-    if (typeof this.pmNotification.details === 'object'
-      && typeof this.pmNotification.details.count === 'number'
-      && this.pmNotification.details.count > 0
-    ) {
-      ret++;
-    }
-
-    return Math.max(ret, 0);
+    return this.store.totalWithPm;
   }
 
   boot = () => {
     this.active = this.userId != null;
 
     if (this.active) {
-      this.updatePmNotification();
       this.startWebSocket();
-      $(document).on('turbolinks:load', this.updatePmNotification);
     }
   }
 
@@ -211,7 +134,7 @@ export default class Worker {
   @action destroy = () => {
     this.active = false;
     this.hasData = false;
-    this.items = observable.map();
+    this.store.flushStore();
     forEach(this.xhr, (xhr) => xhr.abort());
     forEach(this.timeout, (timeout) => Timeout.clear(timeout));
 
@@ -219,29 +142,26 @@ export default class Worker {
       this.ws.close();
       this.ws = null;
     }
-
-    $(document).off('turbolinks:load', this.updatePmNotification);
   }
 
   @action handleNewEvent = (event: MessageEvent) => {
-    let data: any;
+    let eventData: any;
 
     try {
-      data = JSON.parse(event.data);
+      eventData = JSON.parse(event.data);
     } catch {
       console.debug('Failed parsing data:', event.data);
 
       return;
     }
 
-    if (isNotificationEventLogoutJson(data)) {
+    if (isNotificationEventLogoutJson(eventData)) {
       this.destroy();
-    } else if (isNotificationEventNewJson(data)) {
-      this.updateFromServer(data.data);
-      this.actualUnreadCount++;
-    } else if (isNotificationEventReadJson(data)) {
-      this.markRead(data.data);
-    } else if (isNotificationEventVerifiedJson(data)) {
+    } else if (isNotificationEventNewJson(eventData)) {
+      dispatch(new NotificationEventNew(eventData.data));
+    } else if (isNotificationEventReadJson(eventData)) {
+      dispatch(NotificationEventRead.fromJson(eventData));
+    } else if (isNotificationEventVerifiedJson(eventData)) {
       if (!this.hasData) {
         this.loadMore();
       }
@@ -253,10 +173,8 @@ export default class Worker {
     return this.active;
   }
 
-  @action loadBundle = (data: NotificationBundleJson) => {
-    data.notifications.forEach(this.updateFromServer);
-    this.actualUnreadCount = data.unread_count;
-    this.hasMore = data.has_more;
+  @action loadBundle = (data: NotificationBootJson) => {
+    dispatch(new NotificationEventMoreLoaded(data, { isWidget: true }));
     this.hasData = true;
   }
 
@@ -267,11 +185,9 @@ export default class Worker {
 
     Timeout.clear(this.timeout.loadMore);
 
-    const minLoadedId = this.minLoadedId;
-    const params = minLoadedId == null ? null : { max_id: minLoadedId - 1 };
-
     this.xhrLoadingState.loadMore = true;
-    this.xhr.loadMore = $.get(route('notifications.index', params))
+
+    this.xhr.loadMore = $.ajax({ url: route('notifications.index', { unread: 1 }), dataType: 'json' })
       .always(action(() => {
         this.xhrLoadingState.loadMore = false;
       })).done(this.loadBundle)
@@ -281,14 +197,6 @@ export default class Worker {
         }
         this.delayedRetryInitialLoadMore();
       }));
-  }
-
-  @action markRead = (data: NotificationIdsJson | NotificationReadJson) => {
-    if (isNotificationReadJson(data)) {
-      this.markReadByIdentity(data);
-    } else {
-      this.markReadByIds(data.ids);
-    }
   }
 
   @action reconnectWebSocket = () => {
@@ -302,51 +210,8 @@ export default class Worker {
     }));
   }
 
-  @action refresh = (maxId?: number) => {
-    if (!this.active || this.refreshing) {
-      return;
-    }
-
-    const params = { with_read: true, max_id: maxId };
-
-    this.xhrLoadingState.refresh = true;
-    this.xhr.refresh = $.get(route('notifications.index'), params)
-      .always(action(() => {
-        this.xhrLoadingState.refresh = false;
-      })).done((bundleJson: NotificationBundleJson) => {
-        const oldestNotification = minBy(bundleJson.notifications, 'id');
-        const minLoadedId = this.minLoadedId;
-
-        this.loadBundle(bundleJson);
-
-        if (bundleJson.has_more &&
-          oldestNotification != null &&
-          minLoadedId != null &&
-          oldestNotification.id > minLoadedId
-        ) {
-          this.refresh(oldestNotification.id - 1);
-        }
-      });
-  }
-
-  @action sendMarkRead = (ids: number[]) => {
-    const key = `sendMarkRead:${ids.join(':')}`;
-
-    if (this.isPendingXhr(key)) {
-      return this.xhr[key];
-    }
-
-    this.xhrLoadingState[key] = true;
-    return this.xhr[key] = $.ajax({
-      data: { ids },
-      dataType: 'json',
-      method: 'POST',
-      url: route('notifications.mark-read'),
-    }).always(action(() => {
-      this.xhrLoadingState[key] = false;
-    })).done(() => {
-      this.markReadByIds(ids);
-    });
+  @action refresh = () => {
+    // TODO: implement updating existing (and newer?) notifications.
   }
 
   @action setUserId = (id: number | null) => {
@@ -378,65 +243,7 @@ export default class Worker {
       }));
   }
 
-  @action updateFromServer = (json: NotificationJson) => {
-    const item = new Notification(json.id);
-    item.updateFromJson(json);
-    this.items.set(item.id, item);
-
-    return item;
-  }
-
-  @action updatePmNotification = () => {
-    let count = currentUser.unread_pm_count;
-
-    if (count == null) {
-      count = 0;
-    }
-
-    this.pmNotification.details.count = count;
-  }
-
   private isPendingXhr = (id: string) => {
     return this.xhrLoadingState[id] === true;
-  }
-
-  private markReadByIdentity(json: NotificationReadJson) {
-    const identity = fromJson(json.notification);
-    this.actualUnreadCount -= json.read_count;
-
-    for (const [, notification] of this.items) {
-      if (this.match(notification, identity)) {
-        if (!notification.isRead) {
-          notification.isRead = true;
-        }
-      }
-    }
-  }
-
-  private markReadByIds(ids: number[]) {
-    for (const id of ids) {
-      const item = this.items.get(id);
-
-      if (item == null || !item.isRead) {
-        this.actualUnreadCount--;
-      }
-
-      if (item != null) {
-        item.isRead = true;
-      }
-    }
-  }
-
-  private match(notification: Notification, identity: NotificationIdentity) {
-    // partial check, ignore invalid combinations
-    if (identity.category == null || identity.category === notification.category) {
-      if (identity.objectId == null || identity.objectId === notification.objectId) {
-        if (identity.objectType === notification.objectType) {
-          return true;
-        }
-      }
-    }
-
-    return false;
   }
 }

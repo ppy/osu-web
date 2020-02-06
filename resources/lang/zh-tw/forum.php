@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => '刪除此回覆？',
         'confirm_restore' => '恢復此回覆？',
-        'edited' => '最後由 :user 於 :when 編輯，總共編輯了 :count_delimited 次。',
+        'edited' => '最後由 :user 於 :when 編輯，總共編輯了 :count 次。',
         'posted_at' => '發表於 :when',
 
         'actions' => [
@@ -93,7 +93,7 @@ return [
         'latest_post' => ':when :user',
         'latest_reply_by' => '最後回覆: :user',
         'new_topic' => '發表新主題',
-        'new_topic_login' => '登錄以發表新主題',
+        'new_topic_login' => '登入以發表新主題',
         'post_reply' => '發表',
         'reply_box_placeholder' => '輸入回覆',
         'reply_title_prefix' => 'Re',

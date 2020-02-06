@@ -38,6 +38,7 @@ return [
         'keep_free' => '',
         'keep_running' => '',
         'subject' => '非常感謝，osu! 愛你哦~',
+        'translation' => '',
 
         'benefit' => [
             'gift' => '',
@@ -46,7 +47,7 @@ return [
 
         'support' => [
             '_' => '感謝您向 osu! 捐贈的 :support !',
-            'first' => '',
+            'first' => '支援',
             'repeat' => '',
         ],
     ],

@@ -38,6 +38,7 @@ return [
         'keep_free' => 'Det er takket være folk som dig at osu! kan blive ved med at holde spillet og fællesskabet kørende uden problemer eller nogen former for betaling.',
         'keep_running' => 'Din støtte holder osu! kørende for omtrent :minutes! Det ser måske ikke ud af meget, men hver en krone hjælper :).',
         'subject' => 'Tak, osu! elsker dig! <3',
+        'translation' => '',
 
         'benefit' => [
             'gift' => 'Personen/personerne som du har givet supporter til har nu adgang til osu!direct samt mange andre supporter fordele.',

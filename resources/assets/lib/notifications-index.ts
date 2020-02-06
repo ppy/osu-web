@@ -16,32 +16,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.icon-fancy {
-  .btn-bg();
-  .default-box-shadow();
-  .center-content();
-  .circle(100px);
-  background-color: @pink;
-  padding: 8px 5px 5px; // manual alignment
-  border: 10px solid #fff;
-  color: #fff;
-  font-size: 40px; // icon size
-  transition: .25s all;
+import { dispatch } from 'app-dispatcher';
+import { NotificationBundleJson } from 'interfaces/notification-json';
+import { Main } from 'notifications-index/main';
+import { NotificationEventMoreLoaded } from 'notifications/notification-events';
 
-  .link-hover({
-    color: #fff;
-    text-decoration: none;
-  });
+reactTurbolinks.registerPersistent('notifications-index', Main, true, (container: HTMLElement) => {
+  const bundle = osu.parseJson('json-notifications') as NotificationBundleJson;
+  dispatch(new NotificationEventMoreLoaded(bundle, { isWidget: false }));
 
-  &:focus {
-    .thick-box-shadow();
-  }
-
-  &:hover {
-    .thicker-box-shadow();
-  }
-
-  &:active {
-    .default-box-shadow();
-  }
-}
+  return {};
+});
