@@ -17,28 +17,75 @@
  */
 
 import { route } from 'laroute';
+import { observer } from 'mobx-react';
 import * as React from 'react';
+import { WikiSearchController } from 'wiki-search-controller';
 
+@observer
 export class WikiSearch extends React.Component {
-  input = React.createRef<HTMLInputElement>();
+  private readonly controller = new WikiSearchController();
+  private keepSelectionInView = false;
+  private readonly ref = React.createRef<HTMLDivElement>();
 
-  onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.keyCode === 13) { // enter
-      this.performSearch();
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleEsc);
+    document.addEventListener('mousedown', this.handleMouseDown);
+  }
+
+  componentDidUpdate() {
+    // scroll highlighted option into view if triggered by keys
+    if (this.keepSelectionInView) {
+      // FIXME: probably doesn't work on Edge?
+      $('.wiki-search__suggestion--active')[0]?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+      this.keepSelectionInView = false;
     }
   }
 
-  performSearch = () => {
-    const input = this.input.current;
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleEsc);
+    document.removeEventListener('mousedown', this.handleMouseDown);
+    this.controller.cancel();
+  }
 
-    if (input == null || input.value === '') {
-      return;
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.controller.updateQuery(event.target.value);
+  }
+
+  handleEsc = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      this.controller.unselect(true);
     }
+  }
 
-    Turbolinks.visit(route('search', {
-      mode: 'wiki_page',
-      query: input.value,
-    }));
+  handleKeyDown = (e: React.KeyboardEvent) => {
+    const key = e.key;
+
+    if (key === 'Enter') {
+      if (this.controller.selectedItem == null) {
+        this.handleSearch();
+      } else {
+        osu.navigate(route('wiki.show', { page: this.controller.selectedItem.path }));
+      }
+    } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+      this.keepSelectionInView = true;
+      this.controller.shiftSelectedIndex(key === 'ArrowDown' ? 1 : -1);
+    }
+  }
+
+  handleMouseDown = (e: MouseEvent) => {
+    if (this.ref.current == null) return;
+
+    if (!e.composedPath().includes(this.ref.current)) {
+      this.controller.unselect(true);
+    }
+  }
+
+  handleMouseLeave = () => {
+    this.controller.unselect(false);
+  }
+
+  handleSearch = () => {
+    this.controller.search();
   }
 
   render() {
@@ -46,16 +93,48 @@ export class WikiSearch extends React.Component {
       <div className='wiki-search'>
         <div className='wiki-search__bar'>
           <input
-            className='wiki-search__input'
-            ref={this.input}
-            placeholder={osu.trans('common.input.search')}
             autoFocus={true}
-            onKeyDown={this.onKeyDown}
+            className='wiki-search__input'
+            value={this.controller.displayText}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            placeholder={osu.trans('common.input.search')}
           />
-          <button className='wiki-search__button' onClick={this.performSearch}>
+          <button className='wiki-search__button' onClick={this.handleSearch}>
             <i className='fa fa-search'/>
           </button>
         </div>
+        {this.renderSuggestions()}
+      </div>
+    );
+  }
+
+  renderSuggestions() {
+    if (!this.controller.isSuggestionsVisible) return null;
+
+    return (
+      <div ref={this.ref} className='wiki-search__suggestions u-fancy-scrollbar' onMouseLeave={this.handleMouseLeave}>
+        {
+          this.controller.suggestions.map((item, index) => {
+            const setIndex = () => {
+              this.keepSelectionInView = false;
+              this.controller.selectIndex(index);
+            };
+
+            const href = route('wiki.show', { page: item.path });
+
+            return (
+              <a
+                className={osu.classWithModifiers('wiki-search__suggestion', this.controller.selectedIndex === index ? ['active'] : [])}
+                href={href}
+                key={index}
+                onMouseEnter={setIndex}
+              >
+                <span dangerouslySetInnerHTML={{ __html: item.highlight }} />
+              </a>
+            );
+          })
+        }
       </div>
     );
   }
