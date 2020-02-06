@@ -16,9 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import * as _ from 'lodash';
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
-import * as MarkdownEmbedTokenizer from './markdown-embed-tokenizer';
 import { ReviewPostEmbed } from './review-post-embed';
 
 interface Props {
@@ -26,9 +26,16 @@ interface Props {
 }
 
 export class ReviewPost extends React.Component<Props> {
-  render() {
+  embed(id: number) {
     return (
-      <div className='beatmap-discussion-review-post'>
+      <div className='beatmap-discussion-review-post__block' key={osu.uuid()}>
+        <ReviewPostEmbed data={{discussion_id: id}} />
+      </div>
+    );
+  }
+
+  paragraph(source: string) {
+    return (
         <ReactMarkdown
           allowedTypes={[
             'emphasis',
@@ -37,16 +44,39 @@ export class ReviewPost extends React.Component<Props> {
             'strong',
             'text',
           ]}
-          plugins={[
-            MarkdownEmbedTokenizer,
-          ]}
-          source={this.props.message}
+          key={osu.uuid()}
+          source={source}
           renderers={{
-            embed: ReviewPostEmbed,
             link: (props) => <a className='beatmap-discussion-review-post__link' rel='nofollow' {...props}/>,
             paragraph: (props) => <div className='beatmap-discussion-review-post__block' {...props}/>,
           }}
         />
+    );
+  }
+
+  render() {
+    const docBlocks: JSX.Element[] = [];
+
+    try {
+      const document = JSON.parse(this.props.message);
+      _.each(document, (block) => {
+        switch (block.type) {
+          case 'paragraph':
+            // '&nbsp;  ' converts into a newline
+            docBlocks.push(this.paragraph(osu.presence(block.text) || '&nbsp;  '));
+            break;
+          case 'embed':
+            docBlocks.push(this.embed(block.discussion_id));
+            break;
+        }
+      });
+    } catch (e) {
+      docBlocks.push(<div>[error parsing document]</div>);
+    }
+
+    return (
+      <div className='beatmap-discussion-review-post'>
+        {docBlocks}
       </div>
     );
   }

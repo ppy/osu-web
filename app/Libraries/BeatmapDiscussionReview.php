@@ -105,14 +105,17 @@ class BeatmapDiscussionReview
             foreach ($document as $block) {
                 switch ($block['type']) {
                     case 'paragraph':
-                        // escape embed injection attempts
-                        $text = preg_replace('/%\[\]\(#(\d+)\)/', '%\[\]\(#$1\)', $block['text']);
-                        $output[] = "{$text}\n";
+                        array_push($output, [
+                            'type' => 'paragraph',
+                            'text' => $block['text'],
+                        ]);
                         break;
 
                     case 'embed':
-                        $discussionId = array_shift($issues)['discussion'];
-                        $output[] = "%[](#{$discussionId})\n";
+                        array_push($output, [
+                            'type' => 'embed',
+                            'discussion_id' => array_shift($issues)['discussion'],
+                        ]);
                         break;
                 }
             }
@@ -127,7 +130,7 @@ class BeatmapDiscussionReview
             $review->saveOrExplode();
             $post = new BeatmapDiscussionPost([
                 'user_id' => $user->getKey(),
-                'message' => implode('', $output),
+                'message' => json_encode($output),
             ]);
             $post->beatmapDiscussion()->associate($review);
             $post->saveOrExplode();
