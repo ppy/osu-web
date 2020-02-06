@@ -45,7 +45,6 @@ export default class Item extends React.Component<Props> {
   render() {
     return (
       <div className={this.blockClass()} onClick={this.handleContainerClick}>
-        {this.renderUnreadStripe()}
         {this.renderCover()}
         <div className='notification-popup-item__main'>
           <div className='notification-popup-item__content'>
@@ -58,6 +57,7 @@ export default class Item extends React.Component<Props> {
             {this.renderMarkAsReadButton()}
           </div>
         </div>
+        {this.renderUnreadStripe()}
       </div>
     );
   }
