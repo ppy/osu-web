@@ -195,7 +195,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(404);
     }
 
-    // document missing
+    // invalid document
     public function testPostReviewDocumentMissing()
     {
         $this
@@ -206,142 +206,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertStatus(422);
     }
 
-    // invalid document
-    public function testPostReviewDocumentInvalid()
-    {
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'), [
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'document' => 'lol',
-            ])
-            ->assertStatus(422);
-    }
-
-    // empty document
-    public function testPostReviewDocumentEmpty()
-    {
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'), [
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'document' => [],
-            ])
-            ->assertStatus(422);
-    }
-
-    // missing block type
-    public function testPostReviewDocumentMissingBlockType()
-    {
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'), [
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'document' => [
-                    [
-                        'text' => 'invalid lol',
-                    ],
-                ],
-            ])
-            ->assertStatus(422);
-    }
-
-    // invalid block type
-    public function testPostReviewDocumentInvalidBlockType()
-    {
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'), [
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'document' => [
-                    [
-                        'type' => 'invalid lol',
-                    ],
-                ],
-            ])
-            ->assertStatus(422);
-    }
-
-    // invalid paragraph block
-    public function testPostReviewDocumentInvalidParagraphBlockContent()
-    {
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'), [
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'document' => [
-                    [
-                        'type' => 'paragraph',
-                    ],
-                ],
-            ])
-            ->assertStatus(422);
-    }
-
-    // invalid embed block
-    public function testPostReviewDocumentInvalidEmbedBlockContent()
-    {
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'), [
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'document' => [
-                    [
-                        'type' => 'embed',
-                    ],
-                ],
-            ])
-            ->assertStatus(422);
-    }
-
-    // valid document containing zero issue embeds
-    public function testPostReviewDocumentValidParagraphWithNoIssues()
-    {
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'), [
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'document' => [
-                    [
-                        'type' => 'paragraph',
-                        'text' => 'this is a text',
-                    ],
-                ],
-            ])
-            ->assertStatus(422);
-    }
-
-    // document with too many blocks
-    public function testPostReviewDocumentValidWithTooManyBlocks()
-    {
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'), [
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'document' => [
-                    [
-                        'type' => 'embed',
-                        'discussion_type' => 'problem',
-                        'text' => self::$faker->sentence(),
-                    ],
-                    [
-                        'type' => 'paragraph',
-                        'text' => self::$faker->sentence(),
-                    ],
-                    [
-                        'type' => 'paragraph',
-                        'text' => self::$faker->sentence(),
-                    ],
-                    [
-                        'type' => 'paragraph',
-                        'text' => self::$faker->sentence(),
-                    ],
-                ],
-            ])
-            ->assertStatus(422);
-    }
-
-    // posting reviews - success scenarios ----
+    // posting reviews - success scenario ----
 
     // valid document containing issue embeds
     public function testPostReviewDocumentValidWithIssues()
@@ -395,52 +260,11 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
     }
 
-    // valid document containing attempted discussion embed injection
-    public function testPostReviewDocumentEscaping()
-    {
-        $discussionCount = BeatmapDiscussion::count();
-        $discussionPostCount = BeatmapDiscussionPost::count();
-        $issueText = self::$faker->sentence();
-        $problematicText = '%[](#123)';
-        $problematicTextEscaped = '%\\\[\\\]\\\(#123\\\)';
-
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'), [
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'document' => [
-                    [
-                        'type' => 'embed',
-                        'discussion_type' => 'problem',
-                        'text' => $issueText,
-                    ],
-                    [
-                        'type' => 'paragraph',
-                        'text' => $problematicText,
-                    ],
-                ],
-            ])
-            ->assertSuccessful()
-            ->assertJsonFragment(
-              [
-                  'user_id' => $this->user->getKey(),
-                  'message' => $issueText,
-              ]
-            )
-            ->assertDontsee($problematicText)
-            ->assertSee($problematicTextEscaped);
-
-        // ensure 2 discussions/posts are created - one for the review and one for the embedded problem
-        $this->assertSame($discussionCount + 2, BeatmapDiscussion::count());
-        $this->assertSame($discussionPostCount + 2, BeatmapDiscussionPost::count());
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
 
         config()->set('osu.beatmapset.discussion_review_enabled', true);
-        config()->set('osu.beatmapset.discussion_review_max_blocks', 3);
 
         $this->mapper = factory(User::class)->create();
         $this->user = factory(User::class)->create();
