@@ -24,4 +24,18 @@ use League\Fractal;
 
 class Scope extends Fractal\Scope
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected function fireTransformer($transformer, $data)
+    {
+        if ($transformer instanceof TransformerAbstract) {
+            $permission = $transformer->getRequiredPermission();
+            if ($permission !== null && !priv_check($permission, $data)->can()) {
+                return [[], []];
+            }
+        }
+
+        return parent::fireTransformer($transformer, $data);
+    }
 }

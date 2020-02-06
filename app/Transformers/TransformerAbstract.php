@@ -25,10 +25,16 @@ use League\Fractal;
 class TransformerAbstract extends Fractal\TransformerAbstract
 {
     protected $permissions = [];
+    protected $requiredPermission;
 
     public function getPermissions()
     {
         return $this->permissions;
+    }
+
+    public function getRequiredPermission()
+    {
+        return $this->requiredPermission;
     }
 
     /**
