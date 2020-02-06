@@ -77,7 +77,6 @@ export class Discussion extends React.PureComponent
 
     user = @props.users[@props.discussion.user_id]
     badge = if user.id == @props.beatmapset.user_id then mapperGroup else user.group_badge
-    topColour = '--group-colour': badge.colour if badge?
 
     topClasses += " #{bn}--unread" unless _.includes(@props.readPostIds, firstPost.id) || @isOwner(firstPost) || @props.preview
 
@@ -94,7 +93,7 @@ export class Discussion extends React.PureComponent
           div
             className: "#{bn}__top"
             style:
-              color: topColour
+              color: osu.groupColour(badge)
             div className: "#{bn}__discussion-header",
               el UserCard,
                 user: user

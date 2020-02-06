@@ -55,7 +55,7 @@ export class Votes extends React.Component
     bn = 'modding-profile-vote-card'
     userBadge = user.group_badge
     topClasses = bn
-    style = '--group-colour': userBadge.colour if userBadge?
+    style = osu.groupColour(userBadge)
 
     div
       key: user.id

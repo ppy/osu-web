@@ -53,7 +53,7 @@ export class UserFilter extends React.PureComponent
 
   renderItem: ({ cssClasses, children, item, onClick }) =>
     userBadge = if @isOwner(item) then mapperGroup else item.group_badge
-    style = '--group-colour': userBadge.colour if userBadge?
+    style = osu.groupColour(userBadge)
 
     a
       className: cssClasses

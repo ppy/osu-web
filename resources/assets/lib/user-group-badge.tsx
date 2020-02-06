@@ -28,7 +28,7 @@ export default function UserGroupBadge({badge}: Props) {
     return null;
   }
 
-  const style = {'--group-colour': badge.colour} as React.CSSProperties;
+  const style = osu.groupColour(badge);
 
   return (
     <div
