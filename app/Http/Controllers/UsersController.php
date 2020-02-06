@@ -474,7 +474,7 @@ class UsersController extends Controller
                     break;
                 case 'scoresRecent':
                     $transformer = 'Score';
-                    $includes = ['beatmap', 'beatmapset', 'best', 'user'];
+                    $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scores($options['mode'], true)
                         ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
                     break;
