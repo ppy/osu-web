@@ -24,12 +24,12 @@ use App\Exceptions\InvariantException;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
-use Auth;
+use App\Models\User;
 use DB;
 
 class BeatmapDiscussionReview
 {
-    public static function create(Beatmapset $beatmapset, $document)
+    public static function create(Beatmapset $beatmapset, $document, User $user)
     {
         if (!$document || !is_array($document) || empty($document)) {
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
@@ -55,7 +55,7 @@ class BeatmapDiscussionReview
 
                         $discussion = new BeatmapDiscussion([
                             'beatmapset_id' => $beatmapset->getKey(),
-                            'user_id' => Auth::user()->getKey(),
+                            'user_id' => $user->getKey(),
                             'resolved' => false,
                             'message_type' => $block['discussion_type'],
                             'timestamp' => $block['timestamp'] ?? null,
@@ -64,7 +64,7 @@ class BeatmapDiscussionReview
                         $discussion->saveOrExplode();
 
                         $postParams = [
-                            'user_id' => Auth::user()->user_id,
+                            'user_id' => $user->getKey(),
                             'message' => $message,
                         ];
                         $post = new BeatmapDiscussionPost($postParams);
@@ -117,13 +117,13 @@ class BeatmapDiscussionReview
             // create the review post
             $review = new BeatmapDiscussion([
                 'beatmapset_id' => $beatmapset->getKey(),
-                'user_id' => Auth::user()->getKey(),
+                'user_id' => $user->getKey(),
                 'resolved' => false,
                 'message_type' => 'review',
             ]);
             $review->saveOrExplode();
             $post = new BeatmapDiscussionPost([
-                'user_id' => Auth::user()->user_id,
+                'user_id' => $user->getKey(),
                 'message' => implode('', $output),
             ]);
             $post->beatmapDiscussion()->associate($review);

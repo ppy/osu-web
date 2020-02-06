@@ -140,7 +140,7 @@ class BeatmapDiscussionsController extends Controller
             ->findOrFail($beatmapsetId);
 
         try {
-            BeatmapDiscussionReview::create($beatmapset, $document);
+            BeatmapDiscussionReview::create($beatmapset, $document, Auth::user());
         } catch (\Exception $e) {
             return error_popup($e->getMessage(), 422);
         }
