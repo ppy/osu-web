@@ -29,7 +29,7 @@ interface SuggestionJSON {
 export class WikiSearchController {
   @observable selectedIndex = -1;
   @observable shouldShowSuggestions = false;
-  @observable suggestions = observable.array<SuggestionJSON>([]);
+  @observable suggestions = observable<SuggestionJSON>([]);
 
   private debouncedFetchSuggestions = debounce(this.fetchSuggestions, 200);
   @observable private query = '';
@@ -117,7 +117,7 @@ export class WikiSearchController {
     this.xhr = $.getJSON(route('wiki-suggestions'), { query: this.query.trim() })
     .done(action((response: SuggestionJSON[]) => {
       if (response != null) {
-        this.suggestions = observable.array(response);
+        this.suggestions = observable(response);
         this.shouldShowSuggestions = true;
       }
     }));
