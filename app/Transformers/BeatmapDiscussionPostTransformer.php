@@ -28,12 +28,10 @@ class BeatmapDiscussionPostTransformer extends TransformerAbstract
         'beatmap_discussion',
     ];
 
+    protected $requiredPermission = 'BeatmapDiscussionPostShow';
+
     public function transform(BeatmapDiscussionPost $post)
     {
-        if (!priv_check('BeatmapDiscussionPostShow', $post)->can()) {
-            return [];
-        }
-
         return [
             'id' => $post->id,
             'beatmap_discussion_id' => $post->beatmap_discussion_id,

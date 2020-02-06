@@ -34,12 +34,10 @@ class BeatmapDiscussionTransformer extends TransformerAbstract
         'votes',
     ];
 
+    protected $requiredPermission = 'BeatmapDiscussionShow';
+
     public function transform(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
-            return [];
-        }
-
         return [
             'id' => $discussion->id,
             'beatmapset_id' => $discussion->beatmapset_id,
@@ -63,10 +61,6 @@ class BeatmapDiscussionTransformer extends TransformerAbstract
 
     public function includeStartingPost(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
-            return;
-        }
-
         return $this->item(
             $discussion->startingPost,
             new BeatmapDiscussionPostTransformer()
@@ -75,10 +69,6 @@ class BeatmapDiscussionTransformer extends TransformerAbstract
 
     public function includePosts(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
-            return;
-        }
-
         return $this->collection(
             $discussion->beatmapDiscussionPosts,
             new BeatmapDiscussionPostTransformer()
@@ -87,16 +77,12 @@ class BeatmapDiscussionTransformer extends TransformerAbstract
 
     public function includeVotes(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
-            return;
-        }
-
         return $this->primitive($discussion->votesSummary());
     }
 
     public function includeBeatmap(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion) || $discussion->beatmap_id === null) {
+        if ($discussion->beatmap_id === null) {
             return;
         }
 
@@ -108,10 +94,6 @@ class BeatmapDiscussionTransformer extends TransformerAbstract
 
     public function includeBeatmapset(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
-            return;
-        }
-
         return $this->item(
             $discussion->beatmapset,
             new BeatmapsetCompactTransformer()
@@ -120,10 +102,6 @@ class BeatmapDiscussionTransformer extends TransformerAbstract
 
     public function includeCurrentUserAttributes(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
-            return;
-        }
-
         $currentUser = Auth::user();
 
         if ($currentUser === null) {
@@ -152,10 +130,5 @@ class BeatmapDiscussionTransformer extends TransformerAbstract
         return $this->item($discussion, function () use ($ret) {
             return $ret;
         });
-    }
-
-    public function isVisible($discussion)
-    {
-        return priv_check('BeatmapDiscussionShow', $discussion)->can();
     }
 }
