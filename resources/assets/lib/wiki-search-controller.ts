@@ -31,7 +31,7 @@ export class WikiSearchController {
   @observable shouldShowSuggestions = false;
   @observable suggestions = observable.array<SuggestionJSON>([]);
 
-  private getSuggestionsDebounced = debounce(this.getSuggestions, 500);
+  private debouncedFetchSuggestions = debounce(this.fetchSuggestions, 200);
   @observable private query = '';
   private xhr?: JQueryXHR;
 
@@ -50,7 +50,7 @@ export class WikiSearchController {
   @action
   cancel() {
     this.xhr?.abort();
-    this.getSuggestionsDebounced.cancel();
+    this.debouncedFetchSuggestions.cancel();
   }
 
   @action
@@ -106,14 +106,14 @@ export class WikiSearchController {
     this.xhr?.abort();
 
     if (newQuery.length > 1) {
-      this.getSuggestionsDebounced();
+      this.debouncedFetchSuggestions();
     } else {
       this.suggestions.clear();
     }
   }
 
   @action
-  private getSuggestions() {
+  private fetchSuggestions() {
     this.xhr = $.getJSON(route('wiki-suggestions'), { query: this.query.trim() })
     .done(action((response: SuggestionJSON[]) => {
       if (response != null) {
