@@ -40,13 +40,16 @@ class DeclaredPermissionsTest extends TestCase
     /**
      * @dataProvider privilegeDataProvider
      */
-    public function testPrivilegeExists($class, string $include, string $privilege)
+    public function testPrivilegeExists($class, ?string $include, string $privilege)
     {
         /** @var TransformerAbstract */
         $transformer = new $class;
         $allIncludes = array_merge($transformer->getDefaultIncludes(), $transformer->getAvailableIncludes());
 
-        $this->assertContains($include, $allIncludes, "{$class} has permission check for {$include} but does not exist in transformer.");
+        if ($include !== null) {
+            $this->assertContains($include, $allIncludes, "{$class} has permission check for {$include} but does not exist in transformer.");
+        }
+
         $this->assertTrue(method_exists(app('OsuAuthorize'), "check{$privilege}"), "{$class} uses check{$privilege} but is not implemented.");
     }
 
@@ -66,6 +69,11 @@ class DeclaredPermissionsTest extends TestCase
 
         foreach (static::getTransformerClasses() as $class) {
             $transformer = new $class;
+
+            if ($transformer->getRequiredPermission() !== null) {
+                $data[] = [$class, null, $transformer->getRequiredPermission()];
+            }
+
             foreach ($transformer->getPermissions() as $include => $privilege) {
                 $data[] = [$class, $include, $privilege];
             }
@@ -73,7 +81,6 @@ class DeclaredPermissionsTest extends TestCase
 
         return $data;
     }
-
 
     private static function getTransformerClasses()
     {
