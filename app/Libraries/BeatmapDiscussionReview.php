@@ -29,7 +29,7 @@ use DB;
 
 class BeatmapDiscussionReview
 {
-    public static function create(Beatmapset $beatmapset, $document, User $user)
+    public static function create(Beatmapset $beatmapset, array $document, User $user)
     {
         if (!$document || !is_array($document) || empty($document)) {
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
@@ -46,6 +46,9 @@ class BeatmapDiscussionReview
             foreach ($document as $block) {
                 if (!isset($block['type'])) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+                }
+                if (!isset($block['text'])) {
+                    throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
                 }
 
                 switch ($block['type']) {
@@ -77,6 +80,13 @@ class BeatmapDiscussionReview
                         ];
                         $childIds[] = $discussion->getKey();
                         break;
+
+                    case 'paragraph':
+                        break;
+
+                    default:
+                        // invalid block type
+                        throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
                 $blockCount++;
             }
@@ -95,9 +105,6 @@ class BeatmapDiscussionReview
             foreach ($document as $block) {
                 switch ($block['type']) {
                     case 'paragraph':
-                        if (!$block['text']) {
-                            throw new InvariantException(trans('beatmap_discussions.review.validation.paragraph_missing_text'));
-                        }
                         // escape embed injection attempts
                         $text = preg_replace('/%\[\]\(#(\d+)\)/', '%\[\]\(#$1\)', $block['text']);
                         $output[] = "{$text}\n";
@@ -107,10 +114,6 @@ class BeatmapDiscussionReview
                         $discussionId = array_shift($issues)['discussion'];
                         $output[] = "%[](#{$discussionId})\n";
                         break;
-
-                    default:
-                        // invalid block type
-                        throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
             }
 
