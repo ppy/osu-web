@@ -77,7 +77,7 @@ export class Discussion extends React.PureComponent
 
     user = @props.users[@props.discussion.user_id]
     badge = if user.id == @props.beatmapset.user_id then mapperGroup else user.group_badge
-    style = '--group-colour': badge.colour if badge?
+    topColour = '--group-colour': badge.colour if badge?
 
     topClasses += " #{bn}--unread" unless _.includes(@props.readPostIds, firstPost.id) || @isOwner(firstPost) || @props.preview
 
@@ -85,14 +85,16 @@ export class Discussion extends React.PureComponent
       className: topClasses
       'data-id': @props.discussion.id
       onClick: @emitSetHighlight
-      style: style
 
       div className: "#{bn}__timestamp hidden-xs",
         @timestamp()
 
       div className: "#{bn}__compact",
         div className: "#{bn}__discussion",
-          div className: "#{bn}__top",
+          div
+            className: "#{bn}__top"
+            style:
+              color: topColour
             div className: "#{bn}__discussion-header",
               el UserCard,
                 user: user
