@@ -71,6 +71,11 @@
         },
         "title": {
           "fields": {
+            "autocomplete": {
+              "analyzer": "autocomplete",
+              "search_analyzer": "autocomplete_search",
+              "type": "text"
+            },
             "keyword": {
               "ignore_above": 256,
               "type": "keyword"
@@ -86,6 +91,33 @@
   },
   "settings": {
     "index": {
+      "analysis": {
+        "analyzer": {
+          "lowercase": {
+            "tokenizer": "lowercase"
+          },
+          "autocomplete": {
+            "filter": [
+              "lowercase"
+            ],
+            "tokenizer": "autocomplete"
+          },
+          "autocomplete_search": {
+            "tokenizer": "lowercase"
+          }
+        },
+        "tokenizer": {
+          "autocomplete": {
+            "type": "edge_ngram",
+            "min_gram": 1,
+            "max_gram": 20,
+            "token_chars": [
+              "letter",
+              "digit"
+            ]
+          }
+        }
+      },
       "number_of_shards": "1",
       "number_of_replicas": "1"
     }
