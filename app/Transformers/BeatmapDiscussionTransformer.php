@@ -21,7 +21,6 @@
 namespace App\Transformers;
 
 use App\Models\BeatmapDiscussion;
-use Auth;
 
 class BeatmapDiscussionTransformer extends TransformerAbstract
 {
@@ -102,7 +101,7 @@ class BeatmapDiscussionTransformer extends TransformerAbstract
 
     public function includeCurrentUserAttributes(BeatmapDiscussion $discussion)
     {
-        $currentUser = Auth::user();
+        $currentUser = auth()->user();
 
         if ($currentUser === null) {
             return;
