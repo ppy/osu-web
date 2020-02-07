@@ -588,7 +588,8 @@ function with_db_fallback($connection, callable $callable)
         return $callable($connection);
     } catch (Illuminate\Database\QueryException $ex) {
         // string after the error code can change depending on actual state of the server.
-        if (starts_with($ex->getMessage(), 'SQLSTATE[HY000] [2002]')) {
+        static $errorCodes = ['SQLSTATE[HY000] [2002]', 'SQLSTATE[HY000] [2003]'];
+        if (starts_with($ex->getMessage(), $errorCodes)) {
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.db_fallback',
                 1,
