@@ -17,21 +17,31 @@
 --}}
 @php
     $legacyFont = $legacyFont ?? true;
+    $currentRoute = app('route-section')->getCurrent();
 
-    if (!isset($title)) {
-        $titleTree = [];
+    $currentSection = $currentRoute['section'];
+    $currentController = $currentRoute['controller'];
+    $currentNamespace = $currentRoute['namespace'];
+    $currentAction = $currentRoute['action'];
 
+    $titleTree = [];
+
+    if (isset($titleOverride)) {
+        $titleTree[] = $titleOverride;
+    } else {
         if (isset($titlePrepend)) {
             $titleTree[] = $titlePrepend;
         }
 
-        $titleTree[] = trans("layout.menu.{$currentSection}.{$currentAction}");
-        $titleTree[] = trans("layout.menu.{$currentSection}._");
-
-        $title = implode(' · ', $titleTree);
+        $titleTree[] = trans("layout.title.{$currentNamespace}.{$currentController}.{$currentAction}");
     }
 
-    $title .= ' | osu!';
+    $title = implode(' · ', $titleTree);
+    // Titles ending with phrase containing "osu!" like "osu!store" don't need the suffix.
+    if (strpos(array_last($titleTree), 'osu!') === false) {
+        $title .= ' | osu!';
+    }
+
     $currentHue = $currentHue ?? section_to_hue_map($currentSection);
 @endphp
 <!DOCTYPE html>
@@ -119,5 +129,10 @@
         @include('layout.popup-container')
 
         @yield("script")
+
+        <div
+            class="js-route-section"
+            data-route-section="{{ json_encode($currentRoute) }}"
+        ></div>
     </body>
 </html>

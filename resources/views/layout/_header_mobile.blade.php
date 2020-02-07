@@ -22,7 +22,7 @@
         <div class="navbar-mobile__header-section">
             <a class="navbar-mobile__logo" href="{{ route('home') }}"></a>
             <span class="navbar-mobile__brand u-ellipsis-overflow">
-                {{ trans("layout.menu.$currentSection.$currentAction") }}
+                {{ title_header() }}
             </span>
         </div>
 

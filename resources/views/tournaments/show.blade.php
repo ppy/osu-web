@@ -28,11 +28,7 @@
     ];
 @endphp
 
-@extends('master', [
-    'currentAction' => 'tournaments',
-    'currentSection' => 'community',
-    'title' => $tournament->name,
-])
+@extends('master', ['titlePrepend' => $tournament->name])
 
 @section('content')
     @include('objects.css-override', ['mapping' => ['.tournament__banner' => $tournament->header_banner]])
@@ -40,8 +36,6 @@
     @include('layout._page_header_v4', ['params' => [
         'links' => $links,
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.tournaments._'),
-        'subSection' => $tournament->name,
         'theme' => 'tournaments',
     ]])
 

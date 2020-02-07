@@ -15,10 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', ['titlePrepend' => trans('accounts.edit.title_compact')])
 
 @section('content')
-    @include('home._user_header_default', ['title' => trans('accounts.edit.title_compact')])
+    @include('home._user_header_default')
 
     <div class="osu-page u-has-anchor">
         <div class="account-edit account-edit--first">

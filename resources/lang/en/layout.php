@@ -25,7 +25,6 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => 'admin',
             'beatmapset' => 'beatmapset',
             'beatmapset_covers' => 'beatmapset covers',
             'contest' => 'contest',
@@ -35,79 +34,28 @@ return [
         ],
 
         'artists' => [
-            '_' => 'featured artists',
             'index' => 'listing',
-        ],
-
-        'beatmapsets' => [
-            '_' => 'beatmap',
-            'discussions' => 'discussion',
-            'index' => 'listing',
-            'show' => 'info',
-            'packs' => 'packs',
         ],
 
         'changelog' => [
-            '_' => 'changelog',
             'index' => 'listing',
         ],
 
-        'community' => [
-            '_' => 'community',
-            'comments' => 'comments',
-            'contests' => 'contests',
-            'forum' => 'forum',
-            'livestream' => 'live streams',
-        ],
-
-        'error' => [
-            '_' => 'error',
-        ],
-
         'help' => [
-            '_' => 'wiki',
             'index' => 'index',
         ],
 
-        'home' => [
-            '_' => 'home',
-            'password_reset' => 'reset password',
-        ],
-
-        'matches' => [
-            '_' => 'match history',
-        ],
-
-        'notice' => [
-            '_' => 'notice',
-        ],
-
-        'notifications' => [
-            '_' => 'notifications',
-            'index' => 'history',
-        ],
-
-        'rankings' => [
-            '_' => 'ranking',
-        ],
-
         'store' => [
-            '_' => 'osu!store',
             'cart' => 'cart',
-            'order' => 'invoice',
             'orders' => 'order history',
-            'product' => 'product',
             'products' => 'products',
         ],
 
         'tournaments' => [
-            '_' => 'tournaments',
             'index' => 'listing',
         ],
 
         'users' => [
-            '_' => 'player',
-            'forum_posts' => 'forum posts',
             'modding' => 'modding',
             'show' => 'info',
         ],
@@ -166,13 +114,10 @@ return [
             'beatmap_discussions-index' => 'beatmap discussions',
             'beatmapset_discussion_votes-index' => 'beatmap discussion votes',
             'beatmapset_events-index' => 'beatmapset events',
+            'discussion' => 'modding',
             'index' => 'listing',
             'packs' => 'packs',
             'show' => 'info',
-        ],
-        'beatmapsets' => [
-            '_' => 'beatmaps',
-            'discussion' => 'modding',
         ],
         'rankings' => [
             '_' => 'rankings',
@@ -371,5 +316,170 @@ return [
     'popup_search' => [
         'initial' => 'Type to search!',
         'retry' => 'Search failed. Click to retry.',
+    ],
+
+    'title' => [
+        'admin' => [
+            'beatmapsets_controller' => [
+                'covers' => 'admin',
+                'show' => 'admin',
+            ],
+            'contests_controller' => [
+                'index' => 'admin',
+                'show' => 'admin',
+            ],
+            'logs_controller' => [
+                'index' => 'admin',
+            ],
+            'pages_controller' => [
+                'root' => 'admin',
+            ],
+        ],
+        'admin_forum' => [
+            'forum_covers_controller' => [
+                'index' => 'admin',
+            ],
+        ],
+        'admin_store' => [
+            'orders_controller' => [
+                'index' => 'admin',
+            ],
+        ],
+        'error' => [
+            'error' => [
+                '404' => 'missing',
+                '403' => 'forbidden',
+                '401' => 'unauthorized',
+                '405' => 'missing',
+                '500' => 'something broke',
+                '503' => 'maintenance',
+            ],
+        ],
+        'forum' => [
+            'forums_controller' => [
+                'index' => 'forum',
+                'show' => 'forum',
+            ],
+            'topic_watches_controller' => [
+                'index' => 'dashboard',
+            ],
+            'topics_controller' => [
+                'create' => 'forum',
+                'show' => 'forum',
+            ],
+        ],
+        'main' => [
+            'account_controller' => [
+                'edit' => 'dashboard',
+                'verify_link' => 'account verification',
+            ],
+            'artists_controller' => [
+                'index' => 'featured artists',
+                'show' => 'featured artists',
+            ],
+            'beatmap_packs_controller' => [
+                'index' => 'beatmap packs',
+                'show' => 'beatmap packs',
+            ],
+            'beatmap_discussions_controller' => [
+                'index' => 'beatmap discussions',
+            ],
+            'beatmap_discussion_posts_controller' => [
+                'index' => 'beatmap discussion posts',
+            ],
+            'beatmapset_discussion_votes_controller' => [
+                'index' => 'beatmap discussion votes',
+            ],
+            'beatmapset_events_controller' => [
+                'index' => 'beatmap history',
+            ],
+            'beatmapsets_controller' => [
+                'discussion' => 'beatmap discussion',
+                'index' => 'beatmap listing',
+                'show' => 'beatmap info',
+            ],
+            'beatmapset_watches_controller' => [
+                'index' => 'dashboard',
+            ],
+            'changelog_controller' => [
+                'build' => 'changelog',
+                'index' => 'changelog',
+            ],
+            'chat_controller' => [
+                'index' => 'chat',
+            ],
+            'comments_controller' => [
+                'index' => 'comments',
+                'show' => 'comments',
+            ],
+            'contests_controller' => [
+                'index' => 'contests',
+                'show' => 'contests',
+            ],
+            'friends_controller' => [
+                'index' => 'dashboard',
+            ],
+            'home_controller' => [
+                'get_download' => 'download',
+                'index' => 'dashboard',
+                'search' => 'search',
+                'support_the_game' => 'support the game',
+                'testflight' => 'testflight',
+            ],
+            'legal_controller' => [
+                'show' => 'knowledge base', // FIXME
+            ],
+            'livestreams_controller' => [
+                'index' => 'live streams',
+            ],
+            'news_controller' => [
+                'index' => 'news',
+                'show' => 'news',
+            ],
+            'notifications_controller' => [
+                'index' => 'notifications history',
+            ],
+            'ranking_controller' => [
+                'index' => 'ranking',
+            ],
+            'store_controller' => [
+                'get_invoice' => 'osu!store',
+                'get_listing' => 'osu!store',
+            ],
+            'tournaments_controller' => [
+                'index' => 'tournaments',
+                'show' => 'tournaments',
+            ],
+            'users_controller' => [
+                'disabled' => 'notice',
+                'posts' => 'player info',
+                'show' => 'player info',
+            ],
+            'wiki_controller' => [
+                'show' => 'knowledge base',
+            ],
+        ],
+        'store' => [
+            'cart_controller' => [
+                'show' => 'osu!store',
+            ],
+            'checkout_controller' => [
+                'show' => 'osu!store',
+            ],
+            'orders_controller' => [
+                'index' => 'osu!store',
+            ],
+            'products_controller' => [
+                'show' => 'osu!store',
+            ],
+        ],
+        'users' => [
+            'modding_history_controller' => [
+                'discussions' => 'modder info',
+                'events' => 'modder info',
+                'index' => 'modder info',
+                'posts' => 'modder info',
+            ],
+        ],
     ],
 ];

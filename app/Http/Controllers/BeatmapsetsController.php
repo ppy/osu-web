@@ -38,8 +38,6 @@ use Request;
 
 class BeatmapsetsController extends Controller
 {
-    protected $section = 'beatmapsets';
-
     public function destroy($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);

@@ -25,12 +25,8 @@ use Request;
 
 class LivestreamsController extends Controller
 {
-    protected $section = 'community';
-
     public function index()
     {
-        view()->share('currentAction', 'getLive');
-
         $livestream = new LivestreamCollection();
         $streams = $livestream->all();
         $featuredStream = $livestream->featured();

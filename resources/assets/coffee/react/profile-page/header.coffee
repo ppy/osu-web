@@ -76,8 +76,6 @@ export class Header extends React.Component
         backgroundImage: @state.coverUrl
         isCoverUpdating: @state.isCoverUpdating
         links: @headerLinks()
-        section: osu.trans 'layout.header.users._'
-        subSection: osu.trans 'layout.header.users.show'
         theme: 'users'
         contentPrepend: @renderTournamentBanner()
         titleAppend: el GameModeSwitcher,

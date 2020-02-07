@@ -46,8 +46,6 @@ export class Main extends React.PureComponent<Props> {
           backgroundImage={this.props.user.cover.url}
           links={Main.links}
           theme='home'
-          section={osu.trans('layout.header.home._')}
-          subSection={osu.trans('friends.title_compact')}
         />
 
         <div className='osu-page osu-page--users'>

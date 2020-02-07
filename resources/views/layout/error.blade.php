@@ -19,19 +19,21 @@
 
 @section('content')
 @include('layout._page_header_v4', ['params' => [
-    'section' => trans('layout.header.error._'),
-    'subSection' => trans("layout.errors.$currentAction.error"),
     'theme' => 'default',
 ]])
 
 <div class="osu-page osu-page--generic text-center">
+    <p>
+        {{ trans("layout.errors.{$statusCode}.error") }}
+    </p>
+
     @if (isset($exceptionMessage))
         <p>{{ $exceptionMessage }}</p>
     @endif
 
     <p>
-        {!! trans("layout.errors.$currentAction.description", ['link' =>
-            '<a class="blue_normal" href="'.trans("layout.errors.$currentAction.link.href").'">'.trans("layout.errors.$currentAction.link.text").'</a>',
+        {!! trans("layout.errors.{$statusCode}.description", ['link' =>
+            '<a class="blue_normal" href="'.trans("layout.errors.{$statusCode}.link.href").'">'.trans("layout.errors.{$statusCode}.link.text").'</a>',
         ]) !!}
     </p>
 

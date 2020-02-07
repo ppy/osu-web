@@ -24,10 +24,7 @@
 
 {{-- FIXME: move to user modding history --}}
 @section('content')
-    @include('layout._page_header_v4', ['params' => [
-        'section' => trans('layout.header.beatmapsets._'),
-        'subSection' => trans('beatmap_discussions.index.title'),
-    ]])
+    @include('layout._page_header_v4')
     <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
             @if (isset($user))

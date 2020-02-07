@@ -28,8 +28,6 @@ use Request;
 
 class ContestEntriesController extends Controller
 {
-    protected $section = 'community';
-
     public function vote($id)
     {
         $user = Auth::user();

@@ -28,8 +28,6 @@ interface Props {
   links: HeaderLink[];
   linksBreadcrumb?: boolean;
   onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  section: string;
-  subSection: string;
   theme?: string;
   titleAppend?: React.ReactNode;
 }
@@ -38,7 +36,6 @@ export default class HeaderV4 extends React.Component<Props> {
   static defaultProps = {
     links: [],
     linksBreadcrumb: false,
-    subSection: '',
   };
 
   render(): React.ReactNode {
@@ -73,14 +70,7 @@ export default class HeaderV4 extends React.Component<Props> {
             <div className='header-v4__row header-v4__row--title'>
               <div className='header-v4__icon' />
               <div className='header-v4__title'>
-                <span className='header-v4__title-section'>
-                  {this.props.section}
-                </span>
-                {this.props.subSection !== '' &&
-                  <span className='header-v4__title-action'>
-                    {this.props.subSection}
-                  </span>
-                }
+                {this.title()}
               </div>
 
               {this.props.titleAppend}
@@ -134,5 +124,29 @@ export default class HeaderV4 extends React.Component<Props> {
         {items}
       </List>
     );
+  }
+
+  private title() {
+    let title: string = 'unknown';
+
+    const el = document.querySelector('.js-route-section');
+
+    if (el instanceof HTMLElement) {
+      const data = el.dataset.routeSection;
+
+      if (data != null) {
+        try {
+          const routeSection = JSON.parse(data);
+
+          if (routeSection != null) {
+            title = osu.trans(`layout.title.${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`);
+          }
+        } catch (error) {
+          // ??
+        }
+      }
+    }
+
+    return title;
   }
 }

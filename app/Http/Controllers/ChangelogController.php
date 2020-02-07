@@ -29,9 +29,6 @@ use Cache;
 
 class ChangelogController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'changelog-';
-
     private $updateStreams = null;
 
     public function index()

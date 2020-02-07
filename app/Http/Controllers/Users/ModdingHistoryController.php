@@ -30,9 +30,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryController extends Controller
 {
-    protected $actionPrefix = 'modding-history-';
-    protected $section = 'user';
-
     protected $isModerator;
     protected $isKudosuModerator;
     protected $searchParams;

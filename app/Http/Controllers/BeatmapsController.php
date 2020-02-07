@@ -28,8 +28,6 @@ use Request;
 
 class BeatmapsController extends Controller
 {
-    protected $section = 'beatmaps';
-
     public function show($id)
     {
         $beatmap = Beatmap::findOrFail($id);

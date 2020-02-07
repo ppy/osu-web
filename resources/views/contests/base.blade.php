@@ -29,10 +29,8 @@
 @endphp
 
 @extends('master', [
-    'currentSection' => 'community',
-    'currentAction' => 'contests',
     'legacyFont' => false,
-    'title' => "Contest: {$contestMeta->name}",
+    'titlePrepend' => $contestMeta->name,
     'pageDescription' => strip_tags(markdown($contestMeta->currentDescription())),
     'canonicalUrl' => $contestMeta->url(),
     'opengraph' => [
@@ -50,8 +48,6 @@
     @include('layout._page_header_v4', ['params' => [
         'links' => $links,
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.community._'),
-        'subSection' => trans('layout.header.community.contests'),
         'theme' => 'contests',
     ]])
 

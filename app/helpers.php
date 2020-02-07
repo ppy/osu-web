@@ -694,6 +694,13 @@ function is_sql_unique_exception($ex)
     );
 }
 
+function title_header()
+{
+    $currentRoute = app('route-section')->getCurrent();
+
+    return trans("layout.title.{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}");
+}
+
 function ujs_redirect($url, $status = 200)
 {
     if (Request::ajax() && !Request::isMethod('get')) {
@@ -718,11 +725,6 @@ function timeago($date)
     $attribute_date = json_time($date);
 
     return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
-}
-
-function current_action()
-{
-    return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
 function link_to_user($id, $username = null, $color = null, $classNames = null)

@@ -25,8 +25,6 @@
             'url' => wiki_url('Main_Page'),
         ]],
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.help._'),
-        'subSection' => trans('wiki.main.title'),
         'theme' => 'help',
     ]])
         @slot('navAppend')

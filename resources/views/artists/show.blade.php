@@ -29,9 +29,7 @@
 @endphp
 
 @extends('master', [
-    'currentSection' => 'beatmaps',
-    'currentAction' => 'artists',
-    'title' => "Featured Artist: $artist->name",
+    'titlePrepend' => $artist->name,
     'pageDescription' => $artist->description,
     'canonicalUrl' => $artist->url(),
     'opengraph' => [
@@ -51,8 +49,6 @@
     @include('layout._page_header_v4', ['params' => [
         'links' => $headerLinks,
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.artists._'),
-        'subSection' => $artist->name,
         'theme' => 'artist',
     ]])
     <div class="osu-page osu-page--artist">

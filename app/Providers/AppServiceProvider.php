@@ -28,6 +28,7 @@ use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
 use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
+use App\Libraries\RouteSection;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
@@ -100,6 +101,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(RequireScopes::class, function () {
             return new RequireScopes;
+        });
+
+        $this->app->singleton('route-section', function () {
+            return new RouteSection;
         });
 
         $this->app->singleton('cookie', function ($app) {

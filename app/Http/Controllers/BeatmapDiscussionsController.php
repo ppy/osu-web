@@ -30,8 +30,6 @@ use Request;
 
 class BeatmapDiscussionsController extends Controller
 {
-    protected $section = 'beatmaps';
-
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
