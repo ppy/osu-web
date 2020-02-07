@@ -38,7 +38,7 @@ export class ChangelogHeaderStreams extends React.PureComponent
     mainClass += " t-changelog-stream--#{streamNameClass}"
 
     a
-      href: Url.changelogBuild stream.latest_build
+      href: _exported.OsuUrlHelper.changelogBuild stream.latest_build
       key: stream.id
       className: mainClass
       div className: 'update-streams-v2__bar u-changelog-stream--bg'
