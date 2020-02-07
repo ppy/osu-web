@@ -22,44 +22,42 @@ import { action, computed, observable } from 'mobx';
 
 interface SuggestionJSON {
   highlight: string;
-  source: string;
+  path: string;
+  title: string;
 }
 
 export class WikiSearchController {
-  @observable direction = 0;
-  @observable query = '';
   @observable selectedIndex = -1;
   @observable shouldShowSuggestions = false;
   @observable suggestions: SuggestionJSON[] = [];
 
-  private getSuggestionsDebounced = debounce(this.getSuggestions, 200);
-  private saved = '';
+  private debouncedFetchSuggestions = debounce(this.fetchSuggestions, 200);
+  @observable private query = '';
+  private xhr?: JQueryXHR;
 
   @computed get isSuggestionsVisible() {
     return this.shouldShowSuggestions && this.suggestions.length > 0;
   }
 
-  @action
-  cancel() {
-    this.getSuggestionsDebounced.cancel();
+  @computed get selectedItem(): SuggestionJSON | undefined {
+    return this.suggestions[this.selectedIndex];
+  }
+
+  @computed get displayText() {
+    return this.selectedItem == null ? this.query : this.selectedItem.title;
   }
 
   @action
-  getSuggestions() {
-    $.getJSON(route('wiki-suggestions'), { q: this.query.trim() })
-    .done(action((response) => {
-      if (response != null) {
-        this.suggestions = response as SuggestionJSON[];
-        this.shouldShowSuggestions = true;
-      }
-    }));
+  cancel() {
+    this.xhr?.abort();
+    this.debouncedFetchSuggestions.cancel();
   }
 
   @action
   search() {
-    const query = this.query.trim();
+    const query = this.displayText.trim();
 
-    if (query === '') {
+    if (!query.length) {
       return;
     }
 
@@ -70,38 +68,58 @@ export class WikiSearchController {
   }
 
   @action
-  selectIndex(index: number, direction: number) {
-    if (index < -1 || index >= this.suggestions.length) return;
+  selectIndex(index: number): void {
+    if (index < -1) {
+     return this.selectIndex(this.suggestions.length - 1);
+    }
+
+    if (index >= this.suggestions.length) {
+      return this.selectIndex(-1);
+    }
 
     this.selectedIndex = index;
-    this.direction = direction;
-
-    if (direction === 0) return;
-
-    if (index < 0) {
-      this.query = this.saved;
-      this.shouldShowSuggestions = false;
-    } else {
-      this.query = this.suggestions[index].source;
-      this.shouldShowSuggestions = true;
-    }
+    this.shouldShowSuggestions = true;
   }
 
   @action
   shiftSelectedIndex(direction: number) {
-    this.selectIndex(this.selectedIndex + direction, direction);
+    this.selectIndex(this.selectedIndex + direction);
+  }
+
+  @action
+  unselect(leaveOpen: boolean) {
+    this.selectIndex(-1);
+    this.shouldShowSuggestions = this.shouldShowSuggestions && !leaveOpen;
   }
 
   @action
   updateQuery(query: string) {
-    this.saved = this.query = query;
+    const newQuery = query.trim();
+    const previousQuery = this.query.trim();
 
-    if (this.query.trim().length === 0) {
-      this.suggestions = [];
-    }
+    this.query = query;
+    this.selectedIndex = -1;
 
-    if (this.query.trim().length > 1) {
-      this.getSuggestionsDebounced();
+    // just adding more spaces to either end of the query shouldn't perform more queries
+    if (previousQuery === newQuery) return;
+
+    this.xhr?.abort();
+
+    if (newQuery.length > 1) {
+      this.debouncedFetchSuggestions();
+    } else {
+      this.suggestions.length = 0;
     }
+  }
+
+  @action
+  private fetchSuggestions() {
+    this.xhr = $.getJSON(route('wiki-suggestions'), { query: this.query.trim() })
+    .done(action((response: SuggestionJSON[]) => {
+      if (response != null) {
+        this.suggestions = observable(response);
+        this.shouldShowSuggestions = true;
+      }
+    }));
   }
 }

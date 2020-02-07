@@ -23,6 +23,11 @@ return [
         'small' => 'Rivalisez avec d\'autres moyens que juste cliquer sur des cercles',
         'large' => 'Concours Communautaires',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Le vote pour ce concours est terminé',
         'login_required' => 'Veuillez vous connecter pour voter.',

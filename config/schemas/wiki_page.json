@@ -72,9 +72,9 @@
         "title": {
           "fields": {
             "autocomplete": {
-              "type": "text",
               "analyzer": "autocomplete",
-              "search_analyzer": "autocomplete_search"
+              "search_analyzer": "autocomplete_search",
+              "type": "text"
             },
             "keyword": {
               "ignore_above": 256,

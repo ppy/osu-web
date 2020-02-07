@@ -70,12 +70,12 @@ class WikiController extends Controller
         foreach ($search->response() as $hit) {
             $response[] = [
                 'highlight' => $hit->highlights('title.autocomplete')[0],
-                'source' => $hit->source('title'),
+                'path' => $hit->source('path'),
+                'title' => $hit->source('title'),
             ];
         }
 
-        // we don't care if autocomplete shows less results.
-        return collect($response)->unique('source')->values();
+        return $response;
     }
 
     public function update($path)

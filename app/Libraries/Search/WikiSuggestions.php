@@ -34,7 +34,7 @@ class WikiSuggestions extends Search
             $params
         );
 
-        $this->source(['title']);
+        $this->source(['title', 'path']);
         $this->highlight(
             (new Highlight)
                 ->field('title.autocomplete')

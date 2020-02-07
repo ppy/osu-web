@@ -38,6 +38,7 @@ return [
         'keep_free' => 'Terima kasih kepada orang-orang seperti kamu, osu! mampu menjaga game dan komunitasnya tetap berjalan lancar tanpa iklan atau memasang sistem pembayaran.',
         'keep_running' => 'Dukunganmu membuat osu! berjalan sekitar :minutes! Ini mungkin seperti tidak banyak, tetapi nilai berapapun tetap berharga :).',
         'subject' => 'Terima kasih, osu! mencintaimu',
+        'translation' => '',
 
         'benefit' => [
             'gift' => 'Pengguna yang dihadiahkan kini dapat secara bebas menggunakan osu!direct dan fitur-fitur lainnya yang dikhususkan untuk para pemilik supporter tag.',

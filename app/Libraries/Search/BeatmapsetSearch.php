@@ -76,7 +76,7 @@ class BeatmapsetSearch extends RecordSearch
 
         $nested = new BoolQuery;
         $this->addModeFilter($nested);
-        $this->addPlayedFilter($nested);
+        $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
 
@@ -154,12 +154,19 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
-    private function addPlayedFilter($query)
+    private function addPlayedFilter($query, $nested)
     {
         if ($this->params->playedFilter === 'played') {
-            $query->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+            $nested->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
         } elseif ($this->params->playedFilter === 'unplayed') {
-            $query->mustNot(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+            // The inverse of nested:filter/must is must_not:nested, not nested:must_not
+            // https://github.com/elastic/elasticsearch/issues/26264#issuecomment-323668358
+            $query->mustNot([
+                'nested' => [
+                    'path' => 'beatmaps',
+                    'query' => ['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]],
+                ],
+            ]);
         }
     }
 

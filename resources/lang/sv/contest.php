@@ -23,6 +23,11 @@ return [
         'small' => 'Tävla i andra sätt än att bara klicka cirklar.',
         'large' => 'Gemenskapstävlingar',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Möjligheten att rösta i denna tävling har avslutats',
         'login_required' => 'Var vänlig logga in för att rösta.',

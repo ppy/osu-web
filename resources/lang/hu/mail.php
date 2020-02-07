@@ -38,6 +38,7 @@ return [
         'keep_free' => '',
         'keep_running' => '',
         'subject' => 'Köszi, az osu! <3 téged',
+        'translation' => '',
 
         'benefit' => [
             'gift' => '',

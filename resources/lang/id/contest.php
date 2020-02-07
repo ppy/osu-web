@@ -23,6 +23,11 @@ return [
         'small' => 'Karena sesungguhnya persaingan tidak hanya terjadi di dalam lapangan permainan.',
         'large' => 'Turnamen Komunitas',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
         'login_required' => 'Silakan masuk untuk memberikan suara.',

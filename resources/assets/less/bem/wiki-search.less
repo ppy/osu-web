@@ -21,6 +21,9 @@
   @_border-size: 2px;
 
   padding-top: 10px;
+  // so the suggestions draw over the wiki panels.
+  // z-index is set here so the entire component renders at the same level instead of just part of it.
+  z-index: @z-index--wiki-search;
 
   &__bar {
     .default-border-radius();
@@ -66,7 +69,7 @@
     }
 
     &--active {
-      background-color: @osu-colour-b5;
+      background-color: @osu-colour-b3;
     }
   }
 
@@ -80,7 +83,6 @@
     left: @_border-size;
     overflow-y: auto;
 
-    z-index: 1;
     flex: 1;
     display: flex;
     flex-direction: column;
