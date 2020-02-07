@@ -117,79 +117,85 @@ class RankingController extends Controller
             return $this->spotlight($mode);
         }
 
-        $modeInt = Beatmap::modeInt($mode);
+        return with_db_fallback('mysql-readonly', function ($connection) use ($mode, $type) {
+            $modeInt = Beatmap::modeInt($mode);
 
-        if ($type === 'country') {
-            $stats = CountryStatistics::where('display', 1)
-                ->with('country')
-                ->where('mode', $modeInt)
-                ->orderBy('performance', 'desc');
-        } else {
-            $class = UserStatistics\Model::getClass($mode);
-            $table = (new $class)->getTable();
-            $stats = $class
-                ::on('mysql-readonly')
-                ->with(['user', 'user.country'])
-                ->whereHas('user', function ($userQuery) {
-                    $userQuery->default();
-                });
+            if ($type === 'country') {
+                $stats = CountryStatistics::where('display', 1)
+                    ->with('country')
+                    ->where('mode', $modeInt)
+                    ->orderBy('performance', 'desc');
+            } else {
+                $class = UserStatistics\Model::getClass($mode);
+                $table = (new $class)->getTable();
+                $stats = $class
+                    ::on($connection)
+                    ->with(['user', 'user.country'])
+                    ->whereHas('user', function ($userQuery) {
+                        $userQuery->default();
+                    });
 
-            if ($type === 'performance') {
-                if ($this->country !== null) {
+                if ($type === 'performance') {
+                    if ($this->country !== null) {
+                        $stats
+                            ->where('country_acronym', $this->country['acronym'])
+                            // preferrable to rank_score when filtering by country
+                            ->from(DB::raw("{$table} FORCE INDEX (country_acronym_2)"));
+                    } else {
+                        // force to order by rank_score instead of sucking down entire users table first.
+                        $stats->from(DB::raw("{$table} FORCE INDEX (rank_score)"));
+                    }
+
+                    $stats->orderBy('rank_score', 'desc');
+                } else { // 'score'
                     $stats
-                        ->where('country_acronym', $this->country['acronym'])
-                        // preferrable to rank_score when filtering by country
-                        ->from(DB::raw("{$table} FORCE INDEX (country_acronym_2)"));
-                } else {
-                    // force to order by rank_score instead of sucking down entire users table first.
-                    $stats->from(DB::raw("{$table} FORCE INDEX (rank_score)"));
+                        // force to order by ranked_score instead of sucking down entire users table first.
+                        ->from(DB::raw("{$table} FORCE INDEX (ranked_score)"))
+                        ->orderBy('ranked_score', 'desc');
                 }
 
-                $stats->orderBy('rank_score', 'desc');
-            } else { // 'score'
-                $stats
-                    // force to order by ranked_score instead of sucking down entire users table first.
-                    ->from(DB::raw("{$table} FORCE INDEX (ranked_score)"))
-                    ->orderBy('ranked_score', 'desc');
+                if (is_api_request()) {
+                    $stats->with(['user.userProfileCustomization']);
+                }
             }
+
+            $maxResults = $this->maxResults($modeInt);
+            $maxPages = ceil($maxResults / static::PAGE_SIZE);
+            $page = clamp(get_int(request('cursor.page') ?? request('page')), 1, $maxPages);
+
+            $stats = $stats->limit(static::PAGE_SIZE)
+                ->offset(static::PAGE_SIZE * ($page - 1))
+                ->get();
 
             if (is_api_request()) {
-                $stats->with(['user.userProfileCustomization']);
-            }
-        }
+                switch ($type) {
+                    case 'country':
+                        $ranking = json_collection($stats, 'CountryStatistics', ['country']);
+                        break;
 
-        $maxResults = $this->maxResults($modeInt);
-        $maxPages = ceil($maxResults / static::PAGE_SIZE);
-        $page = clamp(get_int(request('cursor.page') ?? request('page')), 1, $maxPages);
+                    default:
+                        $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                        break;
+                }
 
-        $stats = $stats->limit(static::PAGE_SIZE)
-            ->offset(static::PAGE_SIZE * ($page - 1))
-            ->get();
-
-        if (is_api_request()) {
-            switch ($type) {
-                case 'country':
-                    $ranking = json_collection($stats, 'CountryStatistics', ['country']);
-                    break;
-
-                default:
-                    $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
-                    break;
+                return [
+                    // TODO: switch to offset?
+                    'cursor' => empty($ranking) || ($page >= $maxPages) ? null : ['page' => $page + 1],
+                    'ranking' => $ranking,
+                    'total' => $maxResults,
+                ];
             }
 
-            return [
-                // TODO: switch to offset?
-                'cursor' => empty($ranking) || ($page >= $maxPages) ? null : ['page' => $page + 1],
-                'ranking' => $ranking,
-                'total' => $maxResults,
-            ];
-        }
+            $scores = new LengthAwarePaginator(
+                $stats,
+                $maxPages * static::PAGE_SIZE,
+                static::PAGE_SIZE,
+                $page,
+                ['path' => route('rankings', ['mode' => $mode, 'type' => $type])]
+            );
 
-        $scores = new LengthAwarePaginator($stats, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
-            'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
-        ]);
-
-        return view("rankings.{$type}", compact('scores'));
+            return view("rankings.{$type}", compact('scores'));
+        });
     }
 
     public function spotlight($mode)
