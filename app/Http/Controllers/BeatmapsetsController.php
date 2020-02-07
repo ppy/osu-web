@@ -55,7 +55,7 @@ class BeatmapsetsController extends Controller
 
         $filters = BeatmapsetSearchRequestParams::getAvailableFilters();
 
-        return ext_view('beatmaps.index', compact('filters', 'beatmaps'));
+        return ext_view('beatmapsets.index', compact('filters', 'beatmaps'));
     }
 
     public function show($id)
