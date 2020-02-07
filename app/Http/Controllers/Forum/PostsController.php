@@ -70,7 +70,7 @@ class PostsController extends Controller
             return ujs_redirect($redirect);
         }
 
-        return js_view('forum.topics.delete', compact('post'));
+        return ext_view('forum.topics.delete', compact('post'), 'js');
     }
 
     public function restore($id)
@@ -89,7 +89,7 @@ class PostsController extends Controller
 
         $topic->restorePost($post);
 
-        return js_view('forum.topics.restore', compact('post'));
+        return ext_view('forum.topics.restore', compact('post'), 'js');
     }
 
     public function edit($id)

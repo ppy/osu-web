@@ -69,7 +69,7 @@ class ForumsController extends Controller
             }
         }
 
-        return js_view('layout.ujs-reload');
+        return ext_view('layout.ujs-reload', [], 'js');
     }
 
     public function search()

@@ -130,7 +130,7 @@ class TopicsController extends Controller
 
         $topic->$method($issueTag);
 
-        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
+        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
     }
 
     public function lock($id)
@@ -147,7 +147,7 @@ class TopicsController extends Controller
         $this->logModerate($state ? 'LOG_LOCK' : 'LOG_UNLOCK', [$topic->topic_title], $topic);
         $topic->lock($state);
 
-        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state', 'userCanModerate'));
+        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state', 'userCanModerate'), 'js');
     }
 
     public function move($id)
@@ -161,7 +161,7 @@ class TopicsController extends Controller
 
         $this->logModerate('LOG_MOVE', [$originForum->forum_name], $topic);
         if ($topic->moveTo($destinationForum)) {
-            return js_view('layout.ujs-reload');
+            return ext_view('layout.ujs-reload', [], 'js');
         } else {
             abort(422);
         }
@@ -185,7 +185,7 @@ class TopicsController extends Controller
             );
         });
 
-        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
+        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
     }
 
     public function reply(HttpRequest $request, $id)

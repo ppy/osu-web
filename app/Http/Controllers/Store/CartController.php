@@ -57,7 +57,7 @@ class CartController extends Controller
         $error = $this->userCart()->updateItem(request()->input('item', []), $add);
 
         if ($error === null) {
-            return $add ? ujs_redirect(route('store.cart.show')) : js_view('layout.ujs-reload');
+            return $add ? ujs_redirect(route('store.cart.show')) : ext_view('layout.ujs-reload', [], 'js');
         } else {
             return error_popup($error);
         }

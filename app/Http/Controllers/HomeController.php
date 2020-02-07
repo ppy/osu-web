@@ -161,7 +161,7 @@ class HomeController extends Controller
             ]);
         }
 
-        return js_view('layout.ujs-reload')
+        return ext_view('layout.ujs-reload', [], 'js')
             ->withCookie(cookie()->forever('locale', $newLocale));
     }
 

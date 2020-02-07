@@ -44,6 +44,6 @@ class LivestreamsController extends Controller
 
         LivestreamCollection::promote(Request::input('id'));
 
-        return js_view('layout.ujs-reload');
+        return ext_view('layout.ujs-reload', [], 'js');
     }
 }

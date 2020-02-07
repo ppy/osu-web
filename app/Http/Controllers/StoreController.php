@@ -103,7 +103,7 @@ class StoreController extends Controller
                 $order->address()->associate($address);
                 $order->save();
 
-                return js_view('layout.ujs-reload');
+                return ext_view('layout.ujs-reload', [], 'js');
                 break;
             case 'remove':
                 if ($order->address_id === $address_id) {
@@ -116,7 +116,7 @@ class StoreController extends Controller
 
                 Store\Address::destroy($address_id);
 
-                return js_view('store.address-destroy', ['address_id' => $address_id]);
+                return ext_view('store.address-destroy', ['address_id' => $address_id], 'js');
                 break;
         }
     }
@@ -165,6 +165,6 @@ class StoreController extends Controller
         $order->address()->associate($address);
         $order->save();
 
-        return js_view('layout.ujs-reload');
+        return ext_view('layout.ujs-reload', [], 'js');
     }
 }

@@ -71,10 +71,10 @@ class TopicWatchesController extends Controller
                 return response([], 204);
             default:
 
-                return js_view('forum.topics.replace_watch_button', [
+                return ext_view('forum.topics.replace_watch_button', [
                     'topic' => $topic,
                     'state' => $watch,
-                ]);
+                ], 'js');
         }
     }
 }
