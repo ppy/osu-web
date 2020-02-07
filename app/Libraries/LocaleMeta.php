@@ -135,6 +135,10 @@ class LocaleMeta
             'name' => 'Türkçe',
             'flag' => 'TR',
         ],
+        'uk' => [
+            'name' => 'українська мова',
+            'flag' => 'UA',
+        ],
         'vi' => [
             'name' => 'Tiếng Việt',
             'flag' => 'VN',
