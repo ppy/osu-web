@@ -31,7 +31,6 @@ use App\Models\NewsPost;
 use App\Models\UserDonation;
 use Auth;
 use Request;
-use View;
 
 class HomeController extends Controller
 {
