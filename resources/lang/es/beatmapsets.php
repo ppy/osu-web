@@ -27,7 +27,7 @@ return [
 
     'index' => [
         'title' => 'Listado de Beatmaps',
-        'guest_title' => 'Beatmaps',
+        'guest_title' => 'Mapas',
     ],
 
     'show' => [
@@ -71,20 +71,20 @@ return [
 
                 'status' => [
                     'pending' => 'pendiente',
-                    'qualified' => 'cualificado',
+                    'qualified' => 'calificado',
                     'wip' => 'trabajo en progreso',
                 ],
             ],
 
             'disqualify' => [
-                '_' => 'Si encuentras un problema con este beatmap, por favor descalifícalo :link.',
+                '_' => 'Si encuentras un problema con este mapa, por favor descalifícalo :link.',
                 'button_title' => 'Descalifica un mapa calificado.',
             ],
 
             'report' => [
-                '_' => 'Si encuentras un problema con este beatmap, por favor repórtalo :link para alertar al equipo.',
+                '_' => 'Si encuentras un problema con este mapa, por favor repórtalo :link para alertar al equipo.',
                 'button' => 'Reportar un problema',
-                'button_title' => 'Informe de un problema en un beatmap calificado.',
+                'button_title' => 'Informe de un problema en un mapa calificado.',
                 'link' => 'aquí',
             ],
         ],
@@ -98,14 +98,14 @@ return [
             'source' => 'Fuente',
             'success-rate' => 'Tasa de éxito',
             'tags' => 'Etiquetas',
-            'unranked' => 'Beatmap no clasificado',
+            'unranked' => 'Mapa no clasificado',
         ],
 
         'scoreboard' => [
             'achieved' => 'logrado :when',
-            'country' => 'Ranking Nacional',
-            'friend' => 'Ranking de Amigos',
-            'global' => 'Ranking Global',
+            'country' => 'Clasificación Nacional',
+            'friend' => 'Clasificación entre Amigos',
+            'global' => 'Clasificación Global',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
             'supporter-only' => '¡Necesitas ser un osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
             'title' => 'Tabla de puntuaciones',
@@ -127,7 +127,7 @@ return [
                 'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
                 'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar establecer alguna?',
                 'loading' => 'Cargando puntuaciones...',
-                'unranked' => 'Beatmap no clasificado.',
+                'unranked' => 'Mapa no clasificado.',
             ],
             'score' => [
                 'first' => 'A la cabeza',

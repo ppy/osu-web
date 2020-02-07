@@ -38,6 +38,7 @@ return [
         'keep_free' => 'Het is aan mensen zoals jij te danken dat osu! het mogelijk maakt om het spel en de gemeenschap probleemloos draaiende te houden zonder advertenties of gedwongen betalingen.',
         'keep_running' => 'Je support houdt osu! draait gedurende ongeveer :minutes! Het lijkt misschien niet zo veel, maar het voegt allemaal toe :).',
         'subject' => 'Bedankt, osu! <3 van je',
+        'translation' => '',
 
         'benefit' => [
             'gift' => 'De mensen die je supporter hebt gegift zullen nu toegang hebben tot osu! direct en vele andere voordelen.',

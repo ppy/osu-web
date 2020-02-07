@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Удалить ответ?',
         'confirm_restore' => 'Восстановить ответ?',
-        'edited' => 'Последний раз отредактирован :user :when, отредактирован :count_delimited раз.',
+        'edited' => 'Последний раз отредактирован :user :when, отредактирован :count раз.',
         'posted_at' => 'написано :when',
 
         'actions' => [

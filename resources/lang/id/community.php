@@ -27,34 +27,34 @@ return [
             'instructions' => 'klik tombol hati di atas untuk melanjutkan ke osu!store',
         ],
         'why-support' => [
-            'title' => 'Kenapa saya harus mendukung osu!? Ke mana uangnya akan disalurkan?',
+            'title' => 'Kenapa saya harus mendukung osu!? Ke mana saja uangnya akan disalurkan?',
 
             'team' => [
-                'title' => 'Dukung Tim kami',
-                'description' => 'Sebuah tim kecil mengembangkan dan menjalankan layanan osu!. Dukunganmu akan membantu... kehidupan mereka.',
+                'title' => 'Dukung Tim Kami',
+                'description' => 'osu! senantiasa dikembangkan dan dikelola oleh sebuah tim yang berukuran relatif kecil. Dukunganmu akan sangat membantu... keberlangsungan hidup mereka.',
             ],
             'infra' => [
                 'title' => 'Prasarana Server',
-                'description' => 'Kontribusi langsung digunakan untuk kebutuhan server dalam menjalankan situs web, layanan multiplayer, papan peringkat online, dan lainnya.',
+                'description' => 'Kontribusi kamu akan turut digunakan untuk mendanai biaya operasional server-server osu! dalam menjalankan situs web, fasilitas multiplayer, papan peringkat online, dan lainnya.',
             ],
             'featured-artists' => [
                 'title' => 'Featured Artist',
-                'description' => 'Dengan dukunganmu, kami dapat mencari artis - artis berbakat lainnya dan melisensi musiknya untuk digunakan di osu!',
-                'link_text' => 'Lihat daftar saat ini &raquo;',
+                'description' => 'Berkat dukunganmu, kami dapat melisensi lebih banyak musik dari artis-artis berbakat lainnya untuk dapat digunakan secara resmi di osu!',
+                'link_text' => 'Lihat daftar Featured Artist saat ini &raquo;',
             ],
             'ads' => [
-                'title' => 'Bantu osu! untuk tetap berjalan sendiri',
-                'description' => 'Kontribusi kamu menjaga game ini berjalan independen dan bebas dari iklan maupun sponsor dari luar sepenuhnya.',
+                'title' => 'Bantu osu! Untuk Tetap Mandiri',
+                'description' => 'Kontribusi kamu menjaga game ini untuk dapat sepenuhnya berfungsi secara independen tanpa bergantung pada iklan-iklan maupun sponsor-sponsor dari luar.',
             ],
             'tournaments' => [
                 'title' => 'Turnamen Resmi',
-                'description' => 'Bantu mendanai untuk menjalankan (dan menambah hadiah) yang diberikan di turnamen osu! World Cup.',
+                'description' => 'Dukungan yang kamu berikan akan sebagian digunakan untuk mendanai biaya operasional (dan menambah pundi-pundi hadiah yang diberikan) pada turnamen osu! World Cup.',
                 'link_text' => 'Jelajahi turnamen &raquo;',
             ],
             'bounty-program' => [
                 'title' => 'Program Open Source Bounty',
-                'description' => 'Dukung community contributors yang telah menyisihkan waktu dan upaya mereka untuk membantu membuat osu! lebih baik.',
-                'link_text' => 'Temukan lebih banyak lagi &raquo;',
+                'description' => 'Sebagian dari dana yang kamu salurkan juga akan disumbangkan kepada para kontributor yang telah menyisihkan waktu dan upaya mereka untuk membuat osu! menjadi lebih baik.',
+                'link_text' => 'Cari tahu lebih lanjut seputar program Open Source Bounty &raquo;',
             ],
         ],
         'perks' => [
@@ -105,7 +105,7 @@ return [
             ],
 
             'yellow_fellow' => [
-                'title' => 'Pesona Kemuning',
+                'title' => 'Pesona Kuning Cemerlang',
                 'description' => 'Buat dirimu lebih tersorot dengan nama pengguna yang berwarna kuning terang di obrolan.',
             ],
 
@@ -120,7 +120,7 @@ return [
             ],
 
             'skinnables' => [
-                'title' => 'Elemen Skinning',
+                'title' => 'Lebih Banyak Elemen Skinning',
                 'description' => 'Tambahan elemen skin yang bisa Anda kustomisasi, seperti latar belakang menu utama.',
             ],
 
@@ -136,11 +136,11 @@ return [
 
             'more_favourites' => [
                 'title' => 'Lebih Banyak Favorit',
-                'description' => 'Jumlah maksimum beatmap yang dapat kamu favorit bertambah dari :normally &rarr; :supporter',
+                'description' => 'Jumlah maksimum beatmap yang dapat kamu favoritkan bertambah dari :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Lebih Banyak Teman',
-                'description' => 'Jumlah maksimum teman yang dapat kamu miliki bertambah dari :normally &rarr; :supporter',
+                'description' => 'Jumlah maksimum teman yang dapat kamu tambahkan bertambah dari :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
                 'title' => 'Unggah Lebih Banyak Beatmap',

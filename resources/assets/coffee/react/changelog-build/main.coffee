@@ -56,7 +56,7 @@ export class Main extends React.PureComponent
                 if @props.build.versions.previous?
                   a
                     className: 'page-nav__link'
-                    href: Url.changelogBuild @props.build.versions.previous
+                    href: _exported.OsuUrlHelper.changelogBuild @props.build.versions.previous
                     i className: 'fas fa-chevron-left'
                     span className: 'page-nav__label',
                       @props.build.versions.previous.display_version
@@ -65,7 +65,7 @@ export class Main extends React.PureComponent
                 if @props.build.versions.next?
                   a
                     className: 'page-nav__link'
-                    href: Url.changelogBuild @props.build.versions.next
+                    href: _exported.OsuUrlHelper.changelogBuild @props.build.versions.next
                     @props.build.versions.next.display_version
                     span className: 'page-nav__label',
                       i className: 'fas fa-chevron-right'
@@ -109,7 +109,7 @@ export class Main extends React.PureComponent
         title: osu.trans 'layout.header.changelog.index'
       }
       {
-        url: Url.changelogBuild @props.build
+        url: _exported.OsuUrlHelper.changelogBuild @props.build
         title: "#{@props.build.update_stream.display_name} #{@props.build.display_version}"
       }
     ]

@@ -23,6 +23,11 @@ return [
         'small' => 'Competi in altri modi oltre che a cliccare cerchi.',
         'large' => 'Contest della Comunità',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Le votazioni per questo contest sono terminate',
         'login_required' => 'Per favore effettua il login per votare.',

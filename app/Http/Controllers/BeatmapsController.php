@@ -62,9 +62,11 @@ class BeatmapsController extends Controller
             }
 
             $class = BestModel::getClassByString($mode);
-            $table = (new $class)->getTable();
-            $query = $beatmap
-                ->scoresBest($mode)
+            $model = new $class;
+            $model->setConnection('mysql-readonly');
+
+            $query = $model
+                ->where('beatmap_id', $beatmap->getKey())
                 ->with(['beatmap', 'user.country'])
                 ->defaultListing();
         } catch (ScoreRetrievalException $ex) {

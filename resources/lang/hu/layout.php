@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Közösség',
             'comments' => '',
+            'contests' => '',
             'forum' => 'Fórum',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [

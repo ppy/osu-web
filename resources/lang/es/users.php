@@ -79,7 +79,7 @@ return [
 
             'tos' => [
                 '_' => 'Ha infringido una o más de nuestras :community_rules o :tos.',
-                'community_rules' => 'normas de la comunidad',
+                'community_rules' => 'reglas de la comunidad',
                 'tos' => 'términos de servicio',
             ],
         ],
@@ -206,19 +206,19 @@ return [
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps Favoritos',
+                    'title' => 'Mapas Favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps Abandonados',
+                    'title' => 'Mapas Abandonados',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Amados',
+                    'title' => 'Mapas Amados',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Clasificados y Aprobados',
+                    'title' => 'Mapas Clasificados y Aprobados',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps Pendientes',
+                    'title' => 'Mapas Pendientes',
                 ],
             ],
             'discussions' => [
@@ -241,7 +241,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'veces jugadas',
-                    'title' => 'Beatmaps Más Jugados',
+                    'title' => 'Mapas Más Jugados',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisión: :percentage',
@@ -397,9 +397,9 @@ return [
         ],
         'rank' => [
             'country' => 'Rank nacional para :mode',
-            'country_simple' => 'Ranking Nacional',
+            'country_simple' => 'Clasificación Nacional',
             'global' => 'Rank global para :mode',
-            'global_simple' => 'Ranking Global',
+            'global_simple' => 'Clasificación Global',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
@@ -415,10 +415,10 @@ return [
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps Clasificados y Aprobados',
-            'loved_beatmapset_count' => 'Beatmaps Amados',
-            'unranked_beatmapset_count' => 'Beatmaps Pendientes',
-            'graveyard_beatmapset_count' => 'Beatmaps Abandonados',
+            'ranked_and_approved_beatmapset_count' => 'Mapas Clasificados y Aprobados',
+            'loved_beatmapset_count' => 'Mapas Amados',
+            'unranked_beatmapset_count' => 'Mapas Pendientes',
+            'graveyard_beatmapset_count' => 'Mapas Abandonados',
         ],
     ],
 

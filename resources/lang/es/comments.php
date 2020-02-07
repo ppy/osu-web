@@ -29,7 +29,7 @@ return [
     'title' => 'Comentarios',
 
     'commentable_name' => [
-        'beatmapset' => 'Beatmap',
+        'beatmapset' => 'Mapa',
         'build' => 'Historial de cambios',
         'news_post' => 'Noticias',
         '_deleted' => 'Elemento eliminado',

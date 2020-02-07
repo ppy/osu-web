@@ -144,6 +144,7 @@ class Page implements WikiObject
 
         $query = (new BoolQuery())
             ->must(['match' => ['path_clean' => es_query_and_words($searchPath)]])
+            ->must(['exists' => ['field' => 'page']])
             ->should($localeQuery)
             ->shouldMatch(1);
 

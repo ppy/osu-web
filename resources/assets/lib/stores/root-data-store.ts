@@ -24,6 +24,7 @@ import ChannelStore from './channel-store';
 import ClientStore from './client-store';
 import CommentStore from './comment-store';
 import CommentableMetaStore from './commentable-meta-store';
+import NotificationStore from './notification-store';
 import OwnClientStore from './own-client-store';
 import UIStateStore from './ui-state-store';
 import UserStore from './user-store';
@@ -35,6 +36,7 @@ export default class RootDataStore {
   clientStore: ClientStore;
   commentableMetaStore: CommentableMetaStore;
   commentStore: CommentStore;
+  notificationStore: NotificationStore;
   ownClientStore: OwnClientStore;
   uiState: UIStateStore;
   userStore: UserStore;
@@ -48,6 +50,7 @@ export default class RootDataStore {
     this.commentableMetaStore = new CommentableMetaStore(this);
     this.commentStore = new CommentStore(this);
     this.channelStore = new ChannelStore(this);
+    this.notificationStore = new NotificationStore();
     this.ownClientStore = new OwnClientStore(this);
     this.userStore = new UserStore(this);
   }

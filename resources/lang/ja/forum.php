@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => '投稿を本当に削除しますか？',
         'confirm_restore' => '投稿を本当に復元しますか？',
-        'edited' => ':userが:whenに最後に編集、合計:count_delimited回の編集',
+        'edited' => ':userが:whenに最後に編集、合計:count回の編集',
         'posted_at' => '投稿時 :when',
 
         'actions' => [

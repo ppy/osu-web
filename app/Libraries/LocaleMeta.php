@@ -23,6 +23,10 @@ namespace App\Libraries;
 class LocaleMeta
 {
     const MAPPINGS = [
+        'ar' => [
+            'name' => 'اَلْعَرَبِيَّةُ‎',
+            'flag' => 'SA',
+        ],
         'be' => [
             'name' => 'Беларуская мова',
             'flag' => 'BY',
