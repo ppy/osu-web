@@ -582,6 +582,26 @@ function trans_exists($key, $locale)
     return present($translated) && $translated !== $key;
 }
 
+function with_db_fallback($connection, callable $callable)
+{
+    try {
+        return $callable($connection);
+    } catch (Illuminate\Database\QueryException $ex) {
+        // string after the error code can change depending on actual state of the server.
+        if (starts_with($ex->getMessage(), 'SQLSTATE[HY000] [2002]')) {
+            Datadog::increment(
+                config('datadog-helper.prefix_web').'.db_fallback',
+                1,
+                compact('connection')
+            );
+
+            return $callable(config('database.default'));
+        }
+
+        throw $ex;
+    }
+}
+
 function obscure_email($email)
 {
     $email = explode('@', $email);
