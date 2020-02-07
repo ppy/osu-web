@@ -48,7 +48,7 @@ class CartController extends Controller
         $order = $this->userCart();
         $validationErrors = $order !== null ? (new OrderCheckout($order))->validate() : [];
 
-        return view('store.cart.show', compact('order', 'validationErrors'));
+        return ext_view('store.cart.show', compact('order', 'validationErrors'));
     }
 
     public function store()

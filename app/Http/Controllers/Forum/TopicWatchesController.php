@@ -48,7 +48,7 @@ class TopicWatchesController extends Controller
             'unread' => TopicWatch::unreadCount(Auth::user()),
         ];
 
-        return view(
+        return ext_view(
             'forum.topic_watches.index',
             compact('topics', 'topicReadStatus', 'topicWatchStatus', 'counts')
         );

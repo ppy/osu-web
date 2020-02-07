@@ -59,7 +59,7 @@ class WikiController extends Controller
             $status = 404;
         }
 
-        return response()->view($page->template(), compact('page', 'locale'), $status ?? 200);
+        return ext_view($page->template(), compact('page', 'locale'), null, $status ?? null);
     }
 
     public function suggestions()

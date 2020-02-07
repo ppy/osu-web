@@ -90,7 +90,7 @@ class UserVerification
                 ),
             ], 401);
         } else {
-            return response()->view('users.verify', compact('email'))->setStatusCode(401);
+            return ext_view('users.verify', compact('email'), null, 401);
         }
     }
 

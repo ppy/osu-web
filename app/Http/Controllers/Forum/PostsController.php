@@ -98,7 +98,7 @@ class PostsController extends Controller
 
         priv_check('ForumPostEdit', $post)->ensureCan();
 
-        return view('forum.topics._post_edit', compact('post'));
+        return ext_view('forum.topics._post_edit', compact('post'));
     }
 
     public function update($id)
@@ -137,7 +137,7 @@ class PostsController extends Controller
         $topic = $post->topic;
         $firstPostPosition = $topic->postPosition($post->post_id);
 
-        return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+        return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
 
     public function raw($id)

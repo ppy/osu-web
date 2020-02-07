@@ -52,7 +52,7 @@ class ForumsController extends Controller
             return priv_check('ForumView', $forum)->can();
         });
 
-        return view('forum.forums.index', compact('forums', 'lastTopics'));
+        return ext_view('forum.forums.index', compact('forums', 'lastTopics'));
     }
 
     public function markAsRead()
@@ -120,7 +120,7 @@ class ForumsController extends Controller
 
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 
-        return view('forum.forums.show', compact(
+        return ext_view('forum.forums.show', compact(
             'cover',
             'forum',
             'lastTopics',

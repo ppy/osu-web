@@ -62,7 +62,7 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
-        return view(
+        return ext_view(
             'forum.topics.create',
             (new NewForumTopic($forum, Auth::user()))->toArray()
         );
@@ -74,7 +74,7 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicPollEdit', $topic)->ensureCan();
 
-        return view('forum.topics._edit_poll', compact('topic'));
+        return ext_view('forum.topics._edit_poll', compact('topic'));
     }
 
     public function editPollPost($topicId)
@@ -107,7 +107,7 @@ class TopicsController extends Controller
         $pollSummary = PollOption::summary($topic, Auth::user());
         $canEditPoll = $poll->canEdit();
 
-        return view('forum.topics._poll', compact('canEditPoll', 'pollSummary', 'topic'));
+        return ext_view('forum.topics._poll', compact('canEditPoll', 'pollSummary', 'topic'));
     }
 
     public function issueTag($id)
@@ -211,7 +211,7 @@ class TopicsController extends Controller
                 'user' => Auth::user(),
             ]);
 
-            return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+            return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
         }
     }
 
@@ -333,7 +333,7 @@ class TopicsController extends Controller
 
         $featureVotes = $this->groupFeatureVotes($topic);
 
-        return view(
+        return ext_view(
             "forum.topics.{$template}",
             compact(
                 'canEditPoll',

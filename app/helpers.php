@@ -637,7 +637,7 @@ function error_popup($message, $statusCode = 422)
     return response(['error' => $message], $statusCode);
 }
 
-function ext_view($view, $data = [], $type = 'html', $status = 200)
+function ext_view($view, $data = null, $type = null, $status = null)
 {
     static $types = [
         'atom' => 'application/atom+xml',
@@ -647,9 +647,12 @@ function ext_view($view, $data = [], $type = 'html', $status = 200)
         'rss' => 'application/rss+xml',
     ];
 
-    return response()
-        ->view($view, $data, $status)
-        ->header('Content-Type', $types[$type]);
+    return response()->view(
+        $view,
+        $data ?? [],
+        $status ?? 200,
+        ['Content-Type' => $types[$type ?? 'html']]
+    );
 }
 
 function is_api_request()
