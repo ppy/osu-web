@@ -741,6 +741,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->isGroup(app('groups')->byIdentifier('mod'));
     }
 
+    public function isModerator()
+    {
+        return $this->isGMT() || $this->isNAT();
+    }
+
     public function isAlumni()
     {
         return $this->isGroup(app('groups')->byIdentifier('alumni'));

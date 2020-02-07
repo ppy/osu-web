@@ -29,7 +29,7 @@ trait UserPermissions
 
     public function canModerate()
     {
-        return ($this->isGMT() || $this->isNAT()) && !$this->isUsingOAuth();
+        return $this->isModerator() && !$this->isUsingOAuth();
     }
 
     public function isUsingOAuth()
