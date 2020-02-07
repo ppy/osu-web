@@ -20,6 +20,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
 import { ReviewPostEmbed } from './review-post-embed';
+import { timestampTokenizer } from './timestamp-tokenizer';
 
 interface Props {
   message: string;
@@ -44,11 +45,21 @@ export class ReviewPost extends React.Component<Props> {
             'strong',
             'text',
           ]}
+          plugins={[
+            timestampTokenizer,
+          ]}
           key={osu.uuid()}
           source={source}
           renderers={{
             link: (props) => <a className='beatmap-discussion-review-post__link' rel='nofollow' {...props}/>,
-            paragraph: (props) => <div className='beatmap-discussion-review-post__block' {...props}/>,
+            paragraph: (props) => {
+              return <div className='beatmap-discussion-review-post__block'>
+                <div className='beatmapset-discussion-message' {...props}/>
+              </div>;
+            },
+            timestamp: (props) => {
+              return <a className='beatmapset-discussion-message__timestamp' {...props}/>;
+            },
           }}
         />
     );
@@ -59,6 +70,7 @@ export class ReviewPost extends React.Component<Props> {
 
     try {
       const document = JSON.parse(this.props.message);
+
       _.each(document, (block) => {
         switch (block.type) {
           case 'paragraph':
@@ -71,7 +83,7 @@ export class ReviewPost extends React.Component<Props> {
         }
       });
     } catch (e) {
-      docBlocks.push(<div>[error parsing document]</div>);
+      docBlocks.push(<div>[error parsing review]</div>);
     }
 
     return (
