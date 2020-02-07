@@ -153,37 +153,6 @@ class BeatmapDiscussionReviewTest extends TestCase
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
     }
 
-    // valid document containing attempted discussion embed injection
-    public function testPostReviewDocumentEscaping()
-    {
-        $discussionCount = BeatmapDiscussion::count();
-        $discussionPostCount = BeatmapDiscussionPost::count();
-        $issueText = self::$faker->sentence();
-        $problematicText = '%[](#123)';
-        $problematicTextEscaped = '%\\\[\\\]\\\(#123\\\)';
-
-        BeatmapDiscussionReview::create($this->beatmapset,
-            [
-                [
-                    'type' => 'embed',
-                    'discussion_type' => 'problem',
-                    'text' => $issueText,
-                ],
-                [
-                    'type' => 'paragraph',
-                    'text' => $problematicText,
-                ],
-            ], $this->user);
-
-        $discussionJson = json_encode($this->beatmapset->defaultDiscussionJson());
-        $this->assertStringNotContainsString($problematicText, $discussionJson);
-        $this->assertStringContainsString($problematicTextEscaped, $discussionJson);
-
-        // ensure 2 discussions/posts are created - one for the review and one for the embedded problem
-        $this->assertSame($discussionCount + 2, BeatmapDiscussion::count());
-        $this->assertSame($discussionPostCount + 2, BeatmapDiscussionPost::count());
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
