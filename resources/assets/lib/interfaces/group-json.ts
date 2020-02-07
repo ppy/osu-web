@@ -16,22 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussions-user-filter {
-  .select-options(beatmap-discussions-user-filter);
-
-  @media @desktop {
-    width: 200px;
-  }
-
-  &__decoration {
-    color: #fff;
-  }
-
-  &__item {
-    color: var(--group-colour, @osu-colour-c1);
-
-    .link-hover({
-      color: var(--group-colour, @osu-colour-c1);
-    });
-  }
+export default interface GroupJSON {
+  colour: string;
+  name: string;
+  short_name: string;
 }

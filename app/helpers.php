@@ -179,6 +179,11 @@ function cleanup_cookies()
     }
 }
 
+function css_group_colour($group)
+{
+    return '--group-colour: '.(optional($group)->colour ?? 'initial');
+}
+
 function css_var_2x(string $key, string $url)
 {
     if (!present($url)) {

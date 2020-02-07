@@ -16,22 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussions-user-filter {
-  .select-options(beatmap-discussions-user-filter);
+import GroupJSON from 'interfaces/group-json';
 
-  @media @desktop {
-    width: 200px;
-  }
+const mapperGroup: GroupJSON = {
+  colour: 'hsl(200, 60%, 50%)',
+  name: 'Beatmap Mapper',
+  short_name: 'MAP',
+};
 
-  &__decoration {
-    color: #fff;
-  }
-
-  &__item {
-    color: var(--group-colour, @osu-colour-c1);
-
-    .link-hover({
-      color: var(--group-colour, @osu-colour-c1);
-    });
-  }
-}
+export default mapperGroup;
