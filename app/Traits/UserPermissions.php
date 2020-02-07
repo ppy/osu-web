@@ -27,9 +27,29 @@ trait UserPermissions
         return $this->isAdmin() && !$this->isUsingOAuth();
     }
 
+    public function canBNG()
+    {
+        return $this->isBNG() && !$this->isUsingOAuth();
+    }
+
+    public function canFullBN()
+    {
+        return $this->isFullBN() && !$this->isUsingOAuth();
+    }
+
     public function canModerate()
     {
         return $this->isModerator() && !$this->isUsingOAuth();
+    }
+
+    public function canNAT()
+    {
+        return $this->isNAT() && !$this->isUsingOAuth();
+    }
+
+    public function canProjectLoved()
+    {
+        return $this->isProjectLoved() && !$this->isUsingOAuth();
     }
 
     public function isUsingOAuth()

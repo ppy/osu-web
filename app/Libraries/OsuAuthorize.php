@@ -64,7 +64,7 @@ class OsuAuthorize
         ]);
 
         if (!isset($this->cache[$cacheKey])) {
-            if ($user !== null && $user->isAdmin()) {
+            if ($user !== null && $user->canAdmin()) {
                 $message = 'ok';
             } else {
                 $function = "check{$ability}";
@@ -110,7 +110,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->isBNG() || $user->canModerate()) {
+        if ($user->canBNG() || $user->canModerate()) {
             return 'ok';
         }
 
@@ -275,7 +275,7 @@ class OsuAuthorize
         $this->ensureHasPlayed($user);
 
         if ($discussion->message_type === 'mapper_note') {
-            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->canModerate() && !$user->isBNG()) {
+            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->canModerate() && !$user->canBNG()) {
                 return 'beatmap_discussion.store.mapper_note_wrong_user';
             }
         }
@@ -303,7 +303,7 @@ class OsuAuthorize
         ];
 
         if (!in_array($discussion->beatmapset->approved, $votableStates, true)) {
-            if (!$user->isBNG() && !$user->canModerate()) {
+            if (!$user->canBNG() && !$user->canModerate()) {
                 return $prefix.'wrong_beatmapset_state';
             }
         }
@@ -312,7 +312,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        if ($user->isBNG() || $user->canModerate()) {
+        if ($user->canBNG() || $user->canModerate()) {
             return 'ok';
         }
 
@@ -350,7 +350,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        if ($user->isBNG() || $user->canModerate()) {
+        if ($user->canBNG() || $user->canModerate()) {
             return 'ok';
         }
 
@@ -505,7 +505,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isProjectLoved()) {
+        if (!$user->canProjectLoved()) {
             return 'unauthorized';
         }
 
@@ -525,7 +525,7 @@ class OsuAuthorize
 
         static $prefix = 'beatmap_discussion.nominate.';
 
-        if (!$user->isBNG() && !$user->isNAT()) {
+        if (!$user->canBNG() && !$user->canNAT()) {
             return 'unauthorized';
         }
 
@@ -564,7 +564,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isBNG() && !$user->canModerate()) {
+        if (!$user->canBNG() && !$user->canModerate()) {
             return 'unauthorized';
         }
 
@@ -587,7 +587,7 @@ class OsuAuthorize
         }
 
         if ($user !== null) {
-            if ($user->isBNG() || $user->canModerate()) {
+            if ($user->canBNG() || $user->canModerate()) {
                 return 'ok';
             }
 
@@ -626,7 +626,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isFullBN() && !$user->canModerate()) {
+        if (!$user->canFullBN() && !$user->canModerate()) {
             return 'unauthorized';
         }
 
