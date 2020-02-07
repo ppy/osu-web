@@ -44,7 +44,8 @@ trait UserScoreable
                 'by_beatmaps' => [
                     'terms' => [
                         'field' => 'beatmap_id',
-                        'order' => ['max_pp' => 'desc'], // sort by sub-aggregation max_pp
+                        // sort by sub-aggregation max_pp, with score_id as tie breaker
+                        'order' => [['max_pp' => 'desc'], ['min_score_id' => 'asc']],
                         'size' => $size,
                     ],
                     'aggs' => [
@@ -56,6 +57,7 @@ trait UserScoreable
                         ],
                         // top_hits aggregation is not useable for sorting, so we need an extra aggregation to sort on.
                         'max_pp' => ['max' => ['field' => 'pp']],
+                        'min_score_id' => ['min' => ['field' => 'score_id']],
                     ],
                 ],
             ]);
