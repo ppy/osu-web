@@ -533,11 +533,6 @@ function require_login($text_key, $link_text_key)
     return $text;
 }
 
-function render_to_string($view, $variables = [])
-{
-    return view()->make($view, $variables)->render();
-}
-
 function spinner(?array $modifiers = null)
 {
     return tag('div', [
