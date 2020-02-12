@@ -47,7 +47,7 @@ class ModdingHistoryController extends Controller
             $this->user = User::lookupWithHistory($userId, null, $this->isModerator, true);
 
             if ($this->user === null || $this->user->isBot() || !priv_check('UserShow', $this->user)->can()) {
-                return response()->view('users.show_not_found')->setStatusCode(404);
+                return ext_view('users.show_not_found', null, null, 404);
             }
 
             $this->searchParams = array_merge(request()->query(), ['user' => $this->user->user_id]);
@@ -232,7 +232,7 @@ class ModdingHistoryController extends Controller
             ),
         ];
 
-        return view('users.beatmapset_activities', compact(
+        return ext_view('users.beatmapset_activities', compact(
             'jsonChunks',
             'user'
         ));
@@ -261,7 +261,7 @@ class ModdingHistoryController extends Controller
 
         $showUserSearch = false;
 
-        return view('beatmap_discussions.index', compact('discussions', 'search', 'user', 'showUserSearch'));
+        return ext_view('beatmap_discussions.index', compact('discussions', 'search', 'user', 'showUserSearch'));
     }
 
     public function events()
@@ -291,7 +291,7 @@ class ModdingHistoryController extends Controller
 
         $showUserSearch = false;
 
-        return view('beatmapset_events.index', compact('events', 'user', 'search', 'showUserSearch'));
+        return ext_view('beatmapset_events.index', compact('events', 'user', 'search', 'showUserSearch'));
     }
 
     public function posts()
@@ -318,7 +318,7 @@ class ModdingHistoryController extends Controller
             ]
         );
 
-        return view('beatmap_discussion_posts.index', compact('posts', 'user'));
+        return ext_view('beatmap_discussion_posts.index', compact('posts', 'user'));
     }
 
     public function votesGiven()
@@ -344,7 +344,7 @@ class ModdingHistoryController extends Controller
             ]
         );
 
-        return view('beatmapset_discussion_votes.index', compact('votes', 'user'));
+        return ext_view('beatmapset_discussion_votes.index', compact('votes', 'user'));
     }
 
     public function votesReceived()
@@ -373,7 +373,7 @@ class ModdingHistoryController extends Controller
             ]
         );
 
-        return view('beatmapset_discussion_votes.index', compact('votes', 'user'));
+        return ext_view('beatmapset_discussion_votes.index', compact('votes', 'user'));
     }
 
     private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)

@@ -48,6 +48,6 @@ class ChatController extends Controller
             $json['can_message'] = priv_check('ChatStart', $targetUser)->can();
         }
 
-        return view('chat.index', compact('presence', 'messages', 'json'));
+        return ext_view('chat.index', compact('presence', 'messages', 'json'));
     }
 }

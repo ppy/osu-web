@@ -51,6 +51,6 @@ class BeatmapsetDiscussionVotesController extends Controller
             ]
         );
 
-        return view('beatmapset_discussion_votes.index', compact('votes'));
+        return ext_view('beatmapset_discussion_votes.index', compact('votes'));
     }
 }

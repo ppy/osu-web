@@ -27,10 +27,9 @@ class ContestsController extends Controller
 {
     public function index()
     {
-        $contests = Contest::orderBy('id', 'desc')->get();
-
-        return view('admin.contests.index')
-          ->with('contests', $contests);
+        return ext_view('admin.contests.index', [
+            'contests' => Contest::orderBy('id', 'desc')->get(),
+        ]);
     }
 
     public function show($id)
@@ -41,11 +40,10 @@ class ContestsController extends Controller
             ->with('user')
             ->get();
 
-        return view('admin.contests.show')
-            ->with([
-                'contest' => $contest,
-                'entries' => json_collection($entries, 'UserContestEntry', ['user']),
-            ]);
+        return ext_view('admin.contests.show', [
+            'contest' => $contest,
+            'entries' => json_collection($entries, 'UserContestEntry', ['user']),
+        ]);
     }
 
     public function gimmeZip($id)

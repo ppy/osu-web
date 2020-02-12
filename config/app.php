@@ -115,6 +115,7 @@ return [
         'sv',
         'th',
         'tr',
+        'uk',
         'vi',
         'zh',
         'zh-tw',
