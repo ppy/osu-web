@@ -5,6 +5,7 @@ files:
     update_option: update_as_unapproved
     languages_mapping:
       locale:
+        ar: ar
         be: be
         bg: bg
         cs: cs

@@ -65,12 +65,12 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => 'Ranking de Amigos',
+                'title' => 'Clasificación entre Amigos',
                 'description' => "Observa cómo te enfrentas a tus amigos en la tabla de clasificación de un mapa, tanto dentro del juego como en el sitio web.",
             ],
 
             'country_ranking' => [
-                'title' => 'Ranking Nacional',
+                'title' => 'Clasificación Nacional',
                 'description' => 'Conquista tu país antes de conquistar el mundo.',
             ],
 
@@ -136,19 +136,19 @@ return [
 
             'more_favourites' => [
                 'title' => 'Más favoritos',
-                'description' => 'El número máximo de mapas de beatmaps que puedes preferir se incrementa desde :normally &rarr; :supporter',
+                'description' => 'El número máximo de mapas que puede marcar como favorito aumenta de :normally &rarr; :supporter',
             ],
             'more_friends' => [
-                'title' => 'Más Amigos',
-                'description' => 'El número máximo de amigos que puedes tener es aumentado de :normally &rarr; :supporter',
+                'title' => 'Más amigos',
+                'description' => 'El número máximo de amigos que puedes tener aumenta de :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => 'Subir más Beatmaps',
+                'title' => 'Subir más mapas',
                 'description' => 'Se calcula cuántos mapas sin calificar puedes tener a la vez, a partir de un valor base más un bono adicional por cada mapa clasificado que tenga actualmente (hasta un límite).<br/><br/>Normalmente esto es 4 más 1 por mapa clasificado (hasta 2). Con soporte, esto aumenta a 8 más 1 por mapa clasificado (hasta 12).',
             ],
             'friend_filtering' => [
-                'title' => 'Ranking de Amigos',
-                'description' => 'Compite con tus amigos y vea cómo se clasifica contra ellos!*<br/><br/><small>* aún no disponible en la nueva pagina, pronto(tm)</small>',
+                'title' => 'Amigos en la tabla de clasificación',
+                'description' => '¡Compita con sus amigos y vea cómo se clasifica contra ellos!*<br/><br/><small>* aún no disponible en el nuevo sitio, pronto(tm)</small>',
             ],
 
         ],

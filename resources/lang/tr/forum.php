@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Gerçekten gönderiyi silmek istiyor musun?',
         'confirm_restore' => 'Gönderiyi geri yükle?',
-        'edited' => 'En son :user tarafından :when, toplamda :count_delimited defa düzenlendi.',
+        'edited' => 'En son :user tarafından :when, toplamda :count defa düzenlendi.',
         'posted_at' => ':when gönderildi',
 
         'actions' => [

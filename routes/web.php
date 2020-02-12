@@ -265,6 +265,7 @@ Route::group(['prefix' => 'help'], function () {
     // help section
     Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
+    Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
     route_redirect('/', 'wiki.show');
 });
 

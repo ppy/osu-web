@@ -194,10 +194,8 @@
       }
     }
 
-    .osu-group-colours({
-      .@{_top}--review.@{_top}--@{group} & {
-        border-top: 2px solid @@colour;
-      }
-    });
+    .@{_top}--review & {
+      border-top: 2px solid var(--group-colour, transparent);
+    }
   }
 }

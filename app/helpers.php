@@ -179,6 +179,11 @@ function cleanup_cookies()
     }
 }
 
+function css_group_colour($group)
+{
+    return '--group-colour: '.(optional($group)->colour ?? 'initial');
+}
+
 function css_var_2x(string $key, string $url)
 {
     if (!present($url)) {
@@ -526,11 +531,6 @@ function require_login($text_key, $link_text_key)
     $text = trans($text_key, ['link' => $link]);
 
     return $text;
-}
-
-function render_to_string($view, $variables = [])
-{
-    return view()->make($view, $variables)->render();
 }
 
 function spinner(?array $modifiers = null)
@@ -1510,6 +1510,7 @@ function section_to_hue_map($section): int
         'help' => 'orange',
         'home' => 'purple',
         'multiplayer' => 'pink',
+        'notifications' => 'pink',
         'rankings' => 'green',
         'store' => 'darkorange',
         'user' => 'pink',

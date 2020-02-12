@@ -43,6 +43,6 @@ return [
     ],
     'main' => [
         'title' => '',
-        'subtitle' => '',
+        'subtitle' => 'osu!pedia kuulosti tyhmältä :D',
     ],
 ];

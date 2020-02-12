@@ -92,8 +92,10 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        $type = request('commentable_type');
-        $id = request('commentable_id');
+        $params = request()->all();
+
+        $id = $params['commentable_id'] ?? null;
+        $type = $params['commentable_type'] ?? null;
 
         if (isset($type) && isset($id)) {
             if (!Comment::isValidType($type)) {
@@ -104,7 +106,6 @@ class CommentsController extends Controller
             $commentable = $class::findOrFail($id);
         }
 
-        $params = request()->all();
         $params['sort'] = $params['sort'] ?? CommentBundleParams::DEFAULT_SORT;
         $commentBundle = new CommentBundle(
             $commentable ?? null,
@@ -116,12 +117,11 @@ class CommentsController extends Controller
         } else {
             $commentBundle->depth = 0;
             $commentBundle->includeCommentableMeta = true;
-            $commentBundle->includeDeleted = isset($commentable);
-            $commentBundle->includePinned = isset($commentable);
+            $commentBundle->includePinned = false;
 
             $commentPagination = new LengthAwarePaginator(
                 [],
-                Comment::count(),
+                $commentBundle->countForPaginator(),
                 $commentBundle->params->limit,
                 $commentBundle->params->page,
                 [

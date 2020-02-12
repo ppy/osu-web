@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Comunità',
             'comments' => 'commenti',
+            'contests' => '',
             'forum' => 'Forum',
             'livestream' => 'trasmissioni',
-        ],
-
-        'contests' => [
-            '_' => 'concorsi',
-            'index' => 'lista',
         ],
 
         'error' => [
@@ -143,7 +139,7 @@ return [
             'search' => 'cerca',
             'supportTheGame' => 'sostieni il gioco',
             'team' => 'team',
-            'testflight' => '',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => 'profilo',

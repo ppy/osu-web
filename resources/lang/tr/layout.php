@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Topluluk',
             'comments' => 'yorumlar',
+            'contests' => '',
             'forum' => 'Forum',
             'livestream' => 'canlı yayınlar',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [

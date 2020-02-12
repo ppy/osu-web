@@ -21,6 +21,7 @@ import { FriendButton } from 'friend-button';
 import { route } from 'laroute';
 import * as React from 'react';
 import { SupporterIcon } from 'supporter-icon';
+import UserGroupBadge from 'user-group-badge';
 
 export default function User({ user, modifiers = [] }: { modifiers?: string[], user: User }) {
   const url = route('users.show', { user: user.id });
@@ -47,9 +48,9 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[], u
             </div>
           ) : null}
 
-        {user.group_badge == null ? null : (
+        {user.group_badge != null && (
           <div className='user-search-card__col user-search-card__col--icon'>
-            <div className={`user-group-badge user-group-badge--${user.group_badge.identifier}`} />
+            <UserGroupBadge badge={user.group_badge} />
           </div>
         )}
 
