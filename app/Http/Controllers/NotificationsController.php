@@ -101,7 +101,7 @@ class NotificationsController extends Controller
             return response($bundleJson)->header('Cache-Control', 'no-store');
         }
 
-        return view('notifications.index', compact('bundleJson'));
+        return ext_view('notifications.index', compact('bundleJson'));
     }
 
     /**

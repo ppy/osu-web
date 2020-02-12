@@ -194,7 +194,7 @@ class RankingController extends Controller
                 ['path' => route('rankings', ['mode' => $mode, 'type' => $type])]
             );
 
-            return view("rankings.{$type}", compact('scores'));
+            return ext_view("rankings.{$type}", compact('scores'));
         });
     }
 
@@ -244,7 +244,7 @@ class RankingController extends Controller
             }),
         ];
 
-        return view(
+        return ext_view(
             'rankings.charts',
             compact('scores', 'scoreCount', 'selectOptions', 'spotlight', 'beatmapsets')
         );

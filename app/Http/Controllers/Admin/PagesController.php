@@ -24,6 +24,6 @@ class PagesController extends Controller
 {
     public function root()
     {
-        return view('admin.pages.root');
+        return ext_view('admin.pages.root');
     }
 }

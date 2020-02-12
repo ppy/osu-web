@@ -200,6 +200,11 @@ class Beatmap extends Model
         return $this->getScores(Score\Best::class, $mode);
     }
 
+    public function isScoreable()
+    {
+        return $this->approved > 0;
+    }
+
     public function status()
     {
         return array_search($this->approved, Beatmapset::STATES, true);
