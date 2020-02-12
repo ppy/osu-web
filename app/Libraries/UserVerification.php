@@ -84,10 +84,10 @@ class UserVerification
         if ($this->request->ajax()) {
             return response([
                 'authentication' => 'verify',
-                'box' => render_to_string(
+                'box' => view(
                     'users._verify_box',
                     compact('email')
-                ),
+                )->render(),
             ], 401);
         } else {
             return ext_view('users.verify', compact('email'), null, 401);

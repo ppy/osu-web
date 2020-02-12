@@ -52,7 +52,7 @@ class Group extends Model
         return $query->where('group_type', 1);
     }
 
-    public function getGroupColourAttribute($value)
+    public function getColourAttribute($value)
     {
         if (!present($value)) {
             return;

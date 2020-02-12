@@ -33,7 +33,7 @@ class GroupTransformer extends Fractal\TransformerAbstract
             'name' => $group->group_name,
             'short_name' => $group->short_name,
             'description' => $group->group_desc,
-            'colour' => $group->group_colour,
+            'colour' => $group->colour,
         ];
     }
 }
