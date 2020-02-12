@@ -49,6 +49,6 @@ class OrdersController extends Controller
 
         $orders = $orders->paginate(20);
 
-        return view('store.orders.index', compact('orders'));
+        return ext_view('store.orders.index', compact('orders'));
     }
 }
