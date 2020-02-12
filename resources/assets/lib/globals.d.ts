@@ -85,6 +85,13 @@ interface BeatmapHelperInterface {
   getDiffRating(rating: number): string;
 }
 
+interface ChangelogBuild {
+  update_stream: {
+    name: string,
+  };
+  version: string;
+}
+
 interface Country {
   code?: string;
   name?: string;
@@ -189,6 +196,11 @@ interface TooltipDefault {
 
 interface TurbolinksAction {
   action: 'advance' | 'replace' | 'restore';
+}
+
+interface TurbolinksLocation {
+    getPath(): string;
+    isHTML(): boolean;
 }
 
 interface TurbolinksStatic {
