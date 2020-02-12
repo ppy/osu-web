@@ -27,7 +27,7 @@ use App\Models\Beatmapset;
 use App\Models\User;
 use DB;
 
-class BeatmapDiscussionReview
+class BeatmapsetDiscussionReview
 {
     public static function create(Beatmapset $beatmapset, array $document, User $user)
     {

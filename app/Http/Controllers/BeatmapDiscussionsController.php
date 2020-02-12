@@ -21,7 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\BeatmapDiscussionReview;
+use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use Auth;
@@ -129,7 +129,7 @@ class BeatmapDiscussionsController extends Controller
             abort(404);
         }
 
-        priv_check('BeatmapDiscussionReviewStore')->ensureCan();
+        priv_check('BeatmapsetDiscussionReviewStore')->ensureCan();
 
         $request = request()->all();
         $beatmapsetId = $request['beatmapset_id'] ?? null;
@@ -140,7 +140,7 @@ class BeatmapDiscussionsController extends Controller
             ->findOrFail($beatmapsetId);
 
         try {
-            BeatmapDiscussionReview::create($beatmapset, $document, Auth::user());
+            BeatmapsetDiscussionReview::create($beatmapset, $document, Auth::user());
         } catch (\Exception $e) {
             return error_popup($e->getMessage(), 422);
         }

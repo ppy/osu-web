@@ -243,7 +243,7 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationException
      */
-    public function checkBeatmapDiscussionReviewStore(?User $user): string
+    public function checkBeatmapsetDiscussionReviewStore(?User $user): string
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);

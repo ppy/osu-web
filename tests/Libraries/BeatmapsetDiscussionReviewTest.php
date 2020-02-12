@@ -3,7 +3,7 @@
 namespace Tests;
 
 use App\Exceptions\InvariantException;
-use App\Libraries\BeatmapDiscussionReview;
+use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -11,7 +11,7 @@ use App\Models\Beatmapset;
 use App\Models\User;
 use Faker;
 
-class BeatmapDiscussionReviewTest extends TestCase
+class BeatmapsetDiscussionReviewTest extends TestCase
 {
     protected static $faker;
     protected $beatmap;
@@ -27,14 +27,14 @@ class BeatmapDiscussionReviewTest extends TestCase
     public function testPostReviewDocumentEmpty()
     {
         $this->expectException(InvariantException::class);
-        BeatmapDiscussionReview::create($this->beatmapset, [], $this->user);
+        BeatmapsetDiscussionReview::create($this->beatmapset, [], $this->user);
     }
 
     // missing block type
     public function testPostReviewDocumentMissingBlockType()
     {
         $this->expectException(InvariantException::class);
-        BeatmapDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create($this->beatmapset,
             [
                 [
                     'text' => 'invalid lol',
@@ -46,7 +46,7 @@ class BeatmapDiscussionReviewTest extends TestCase
     public function testPostReviewDocumentInvalidBlockType()
     {
         $this->expectException(InvariantException::class);
-        BeatmapDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create($this->beatmapset,
             [
                 [
                     'type' => 'invalid lol',
@@ -58,7 +58,7 @@ class BeatmapDiscussionReviewTest extends TestCase
     public function testPostReviewDocumentInvalidParagraphBlockContent()
     {
         $this->expectException(InvariantException::class);
-        BeatmapDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create($this->beatmapset,
             [
                 [
                     'type' => 'paragraph',
@@ -70,7 +70,7 @@ class BeatmapDiscussionReviewTest extends TestCase
     public function testPostReviewDocumentInvalidEmbedBlockContent()
     {
         $this->expectException(InvariantException::class);
-        BeatmapDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create($this->beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -82,7 +82,7 @@ class BeatmapDiscussionReviewTest extends TestCase
     public function testPostReviewDocumentValidParagraphWithNoIssues()
     {
         $this->expectException(InvariantException::class);
-        BeatmapDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create($this->beatmapset,
             [
                 [
                     'type' => 'paragraph',
@@ -95,7 +95,7 @@ class BeatmapDiscussionReviewTest extends TestCase
     public function testPostReviewDocumentValidWithTooManyBlocks()
     {
         $this->expectException(InvariantException::class);
-        BeatmapDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create($this->beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -127,7 +127,7 @@ class BeatmapDiscussionReviewTest extends TestCase
         $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
         $issueText = self::$faker->sentence();
 
-        BeatmapDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create($this->beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -162,7 +162,7 @@ class BeatmapDiscussionReviewTest extends TestCase
         $problematicText = '%[](#123)';
         $problematicTextEscaped = '%\\\[\\\]\\\(#123\\\)';
 
-        BeatmapDiscussionReview::create($this->beatmapset,
+        BeatmapsetDiscussionReview::create($this->beatmapset,
             [
                 [
                     'type' => 'embed',
