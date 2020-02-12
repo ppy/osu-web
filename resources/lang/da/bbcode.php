@@ -25,7 +25,7 @@ return [
     'italic' => 'Italic',
     'link' => 'Link',
     'list' => 'Liste',
-    'list_numbered' => 'Numereret List',
+    'list_numbered' => 'Numereret Liste',
     'size' => [
         '_' => 'Skriftstørrelse',
         'tiny' => 'Meget lille',

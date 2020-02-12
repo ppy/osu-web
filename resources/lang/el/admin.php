@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Ανανεώνεται...',
             'remove' => 'Αφαίρεση',
             'removing' => 'Αφαίρεση...',
+            'title' => 'Εξώφυλλα Beatmapset',
         ],
         'show' => [
             'covers' => 'Διαχείριση εξωφύλλων Beatmapset',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Κονσόλα Διαχειριστή',
-
             'sections' => [
+                'beatmapsets' => 'Beatmapsets',
                 'forum' => 'Φόρουμ',
                 'general' => 'Γενικά',
                 'store' => 'Κατάστημα',

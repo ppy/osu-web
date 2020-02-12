@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Checkout',
+        'info' => ':count_delimited item in cart ($:subtotal)|:count_delimited items in cart ($:subtotal)',
         'more_goodies' => 'I want to check out more goodies before completing the order',
         'shipping_fees' => 'shipping fees',
         'title' => 'Shopping Cart',
@@ -145,5 +146,9 @@ return [
             '_' => 'You need to be :link to change your name!',
             'link_text' => 'signed in',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => 'Xsolla is an authorised<br>global distributor of osu!',
     ],
 ];

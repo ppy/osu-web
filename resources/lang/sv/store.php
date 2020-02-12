@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Checka ut',
+        'info' => '',
         'more_goodies' => 'Jag vill ta en titt på fler godsaker innan jag fullbordar beställningen',
         'shipping_fees' => 'fraktavgifter',
         'title' => 'Varukorg',
@@ -76,12 +77,6 @@ return [
                     'link_text' => '',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Vi har tagit emot din osu!store-beställning!',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => 'Du behöver var :link för att ändra ditt namn!',
             'link_text' => 'inloggad',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

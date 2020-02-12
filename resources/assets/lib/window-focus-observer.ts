@@ -17,21 +17,18 @@
  */
 
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
-import Dispatcher from './dispatcher';
+import { dispatch } from 'app-dispatcher';
 
 export default class WindowFocusObserver {
-  private dispatcher: Dispatcher;
-
-  constructor(window: Window, dispatcher: Dispatcher) {
-    this.dispatcher = dispatcher;
+  constructor(window: Window) {
     $(window).on('blur focus', this.focusChange);
   }
 
   focusChange = (e: JQuery.TriggeredEvent<EventTarget>) => {
     if (e.type === 'focus') {
-      this.dispatcher.dispatch(new WindowFocusAction());
+      dispatch(new WindowFocusAction());
     } else {
-      this.dispatcher.dispatch(new WindowBlurAction());
+      dispatch(new WindowBlurAction());
     }
   }
 }

@@ -53,7 +53,7 @@ class ChangeUsername
         $this->user = $user;
     }
 
-    public function validate() : ValidationErrors
+    public function validate(): ValidationErrors
     {
         $this->validationErrors()->reset();
         if ($this->user->user_id <= 1) {

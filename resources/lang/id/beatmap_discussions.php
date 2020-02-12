@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Lihat Ulasan',
+        'go_to_child' => 'Lihat Topik Diskusi',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Ditandai selesai oleh :user',
             'false' => 'Dibuka ulang oleh :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'umum',
+        'general_all' => 'umum (semua)',
     ],
 
     'user_filter' => [

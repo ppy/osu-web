@@ -39,7 +39,7 @@ return [
         'empty_result' => 'Nothing found!',
         'keyword_required' => 'A search keyword is required',
         'placeholder' => 'type to search',
-        'title' => 'Search',
+        'title' => 'search',
 
         'beatmapset' => [
             'more' => ':count more beatmap search results',
@@ -120,8 +120,6 @@ return [
             'error' => 'Error loading news, try refreshing the page?...',
         ],
         'header' => [
-            'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have :count_delimited new message|You have :count_delimited new messages',
             'stats' => [
                 'friends' => 'Online Friends',
                 'games' => 'Games',

@@ -25,7 +25,7 @@ use Elasticsearch\ClientBuilder;
 
 class Es
 {
-    public static function getClient(string $name = 'default') : Client
+    public static function getClient(string $name = 'default'): Client
     {
         static $clients = [];
 

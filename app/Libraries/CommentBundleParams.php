@@ -32,6 +32,8 @@ class CommentBundleParams
         'top' => ['votes_count_cache' => 'DESC', 'created_at' => 'DESC', 'id' => 'DESC'],
     ];
 
+    public $commentableId;
+    public $commentableType;
     public $parentId;
     public $cursor;
     public $limit;
@@ -82,6 +84,9 @@ class CommentBundleParams
         if (array_key_exists($params['sort'] ?? null, static::SORTS)) {
             $this->sort = $params['sort'];
         }
+
+        $this->commentableId = $params['commentable_id'] ?? null;
+        $this->commentableType = $params['commentable_type'] ?? null;
     }
 
     public function filterByParentId()
@@ -91,7 +96,10 @@ class CommentBundleParams
 
     public function forUrl()
     {
-        $params = [];
+        $params = [
+            'commentable_id' => $this->commentableId,
+            'commentable_type' => $this->commentableType,
+        ];
 
         if ($this->cursor['createdAt'] !== null) {
             $params['cursor']['created_at'] = json_time($this->cursor['createdAt']);

@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => 'Класиране по :type',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Изпълнение',

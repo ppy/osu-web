@@ -44,7 +44,7 @@ return [
 
             'beatmapset_status' => [
                 '_' => '',
-                'all' => '',
+                'all' => 'Kaikki',
                 'disqualified' => '',
                 'never_qualified' => '',
                 'qualified' => '',
@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => ':user on merkinnyt ratkaistuksi',
             'false' => ':user avasi uudelleen',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

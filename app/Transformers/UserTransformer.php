@@ -71,6 +71,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'avatar_url' => $user->user_avatar,
             'is_supporter' => $user->osu_subscriber,
             'has_supported' => $user->hasSupported(),
+            'is_restricted' => $user->isRestricted(),
             'is_gmt' => $user->isGMT(),
             'is_nat' => $user->isNAT(),
             'is_bng' => $user->isBNG(),
@@ -180,7 +181,11 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeGroupBadge(User $user)
     {
-        return $this->primitive($user->groupBadge());
+        $badge = $user->groupBadge();
+
+        if (isset($badge)) {
+            return $this->item($badge, new GroupTransformer);
+        }
     }
 
     public function includeIsAdmin(User $user)

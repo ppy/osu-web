@@ -1,5 +1,5 @@
 <?php
-    $descriptions = explode("\n---\n", $route['description'] ?? '');
+    $descriptions = explode("\n---\n", $route['metadata']['description'] ?? '');
 
     $topDescription = $descriptions[0];
     $bottomDescription = $descriptions[1] ?? '';
@@ -7,7 +7,7 @@
     $displayUri = substr($route['uri'], strlen('api/v2'));
 ?>
 <!-- START_{{$route['id']}} -->
-@if($route['title'] != '')## {{ $route['title']}}
+@if($route['metadata']['title'] != '')## {{ $route['metadata']['title']}}
 @else## {{$route['uri']}}@endif
 
 @foreach($settings['languages'] as $language)
@@ -16,8 +16,8 @@
 @endforeach
 
 @if(in_array('GET',$route['methods']) || (isset($route['showresponse']) && $route['showresponse']))
-@if(is_array($route['response']))
-@foreach($route['response'] as $response)
+@if(is_array($route['responses']))
+@foreach($route['responses'] as $response)
 > Example response ({{$response['status']}}):
 
 ```json
@@ -32,16 +32,16 @@
 > Example response:
 
 ```json
-@if(is_object($route['response']) || is_array($route['response']))
+@if(is_object($route['responses']) || is_array($route['responses']))
 {!! json_encode($route['response'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
 @else
-{!! json_encode(json_decode($route['response']), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
+{!! json_encode(json_decode($route['responses']), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
 @endif
 ```
 @endif
 @endif
 
-@if($route['authenticated'])
+@if($route['metadata']['authenticated'])
 <small class="authenticated">Requires authentication</small>
 @endif
 

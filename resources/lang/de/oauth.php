@@ -22,15 +22,9 @@ return [
     'cancel' => 'Abbrechen',
 
     'authorise' => [
-        'authorise' => 'Genehmigen',
         'request' => 'fordert die Berechtigung, auf Ihr Konto zuzugreifen.',
         'scopes_title' => 'Diese Anwendung wird in der Lage sein:',
         'title' => 'Autorisierungsanfrage',
-
-        'wrong_user' => [
-            '_' => 'Sie sind angemeldet als :user. :logout_link.',
-            'logout_link' => 'Klicke hier, um dich mit einem anderem Benutzer anzumelden',
-        ],
     ],
 
     'authorized_clients' => [
@@ -50,12 +44,6 @@ return [
         'name' => 'Anwendungsname',
         'redirect' => 'Anwendungs-Callback-URL',
         'secret' => 'Client Secret',
-    ],
-
-    'login' => [
-        'download' => 'Klicke hier, um das Spiel herunterzuladen und ein Konto zu erstellen',
-        'label' => 'Zuerst, melde dich mit deinen Konto an!',
-        'title' => 'Konto-Anmeldung',
     ],
 
     'new_client' => [

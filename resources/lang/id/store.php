@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Checkout',
+        'info' => ':count_delimited barang dalam keranjang ($:subtotal)',
         'more_goodies' => 'Saya ingin melihat barang lain sebelum menyelesaikan pesanan',
         'shipping_fees' => 'biaya pengiriman',
         'title' => 'Keranjang Belanja',
@@ -76,12 +77,6 @@ return [
                     'link_text' => 'klik di sini untuk melanjutkan transaksi Anda',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Kami menerima pesanan osu!store Anda!',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => 'Anda harus :link untuk mengubah nama Anda!',
             'link_text' => 'masuk',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

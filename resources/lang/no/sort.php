@@ -24,6 +24,7 @@ return [
     'last_visit' => 'Nylig aktiv',
     'new' => 'Nylige',
     'old' => '',
+    'rank' => '',
     'top' => 'Mest likt',
     'username' => 'Brukernavn',
 

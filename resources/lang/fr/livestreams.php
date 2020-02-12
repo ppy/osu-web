@@ -25,7 +25,4 @@ return [
 
         'link' => 'la page wiki consacrée au streaming en direct',
     ],
-    'headers' => [
-        'regular' => 'En cours de streaming',
-    ],
 ];

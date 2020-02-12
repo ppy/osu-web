@@ -18,10 +18,13 @@
 @extends('master')
 
 @section('content')
+@include('layout._page_header_v4', ['params' => [
+    'section' => trans('layout.header.error._'),
+    'subSection' => trans("layout.errors.$currentAction.error"),
+    'theme' => 'default',
+]])
 
 <div class="osu-page osu-page--generic text-center">
-    <h1>{{{ trans("layout.errors.$currentAction.error") }}}</h1>
-
     @if (isset($exceptionMessage))
         <p>{{ $exceptionMessage }}</p>
     @endif

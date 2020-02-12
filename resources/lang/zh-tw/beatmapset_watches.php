@@ -22,18 +22,13 @@ return [
     'index' => [
         'description' => '這裡是你關注的圖譜，您將會在它們更新或有新討論的時候收到通知。',
         'title_compact' => '摸圖',
-        'title_main' => '摸圖',
 
         'table' => [
-            'empty' => '沒有正在關注的譜面',
-            'open_issues' => '打開的問題',
+            'empty' => '沒有正在關注的圖譜',
+            'open_issues' => '進行中的議題',
             'state' => '狀態',
             'title' => '標題',
         ],
-    ],
-
-    'mail' => [
-        'update' => '譜面“:title”有更新',
     ],
 
     'status' => [

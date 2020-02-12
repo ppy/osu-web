@@ -21,12 +21,13 @@ import { FriendButton } from 'friend-button';
 import { route } from 'laroute';
 import * as React from 'react';
 import { SupporterIcon } from 'supporter-icon';
+import UserGroupBadge from 'user-group-badge';
 
-export default function User({ user }: { user: User }) {
+export default function User({ user, modifiers = [] }: { modifiers?: string[], user: User }) {
   const url = route('users.show', { user: user.id });
 
   return (
-    <div className='user-search-card clickable-row'>
+    <div className={`${osu.classWithModifiers('user-search-card', modifiers)} clickable-row`}>
       <a className='user-search-card__avatar-container' href={url}>
         <div className='avatar avatar--full' style={{ backgroundImage: osu.urlPresence(user.avatar_url) }} />
       </a>
@@ -47,9 +48,9 @@ export default function User({ user }: { user: User }) {
             </div>
           ) : null}
 
-        {user.group_badge == null ? null : (
+        {user.group_badge != null && (
           <div className='user-search-card__col user-search-card__col--icon'>
-            <div className={`user-group-badge user-group-badge--${user.group_badge}`} />
+            <UserGroupBadge badge={user.group_badge} />
           </div>
         )}
 

@@ -22,8 +22,11 @@
 ])
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page js-user-verification--on-load">
-        <h1>{{ trans('users.verify.title') }}</h1>
+    @include('layout._page_header_v4', ['params' => [
+        'section' => trans('layout.header.notice._'),
+    ]])
+    <div class="osu-page osu-page--generic js-user-verification--on-load">
+        {{ trans('users.verify.title') }}
     </div>
 @endsection
 

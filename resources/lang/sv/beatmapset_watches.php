@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Detta är beatmap diskussioner du följer. Du kommer bli notifierad när det finns nya inlägg eller uppdateringar.',
         'title_compact' => 'modding bevakningslista',
-        'title_main' => 'Modding Bevakningslista',
 
         'table' => [
             'empty' => 'Inga beatmap diskussioner bevakade.',
@@ -30,10 +29,6 @@ return [
             'state' => 'Tillstånd',
             'title' => 'Titel',
         ],
-    ],
-
-    'mail' => [
-        'update' => 'Ny uppdatering för beatmap ":title"',
     ],
 
     'status' => [

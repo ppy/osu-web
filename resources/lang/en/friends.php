@@ -19,21 +19,12 @@
  */
 
 return [
-    'buttons' => [
-      'add' => 'add friend',
-      'disabled' => 'followers',
-      'remove' => 'remove friend',
-    ],
-
-    'index' => [
-        'title' => [
-            '_' => 'Home',
-            'info' => 'Friends',
-        ],
-    ],
-
-    'title' => 'Friends',
     'title_compact' => 'friends',
-
     'too_many' => 'Friend limit reached',
+
+    'buttons' => [
+        'add' => 'add friend',
+        'disabled' => 'followers',
+        'remove' => 'remove friend',
+    ],
 ];

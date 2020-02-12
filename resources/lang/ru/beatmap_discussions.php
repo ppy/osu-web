@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Посмотреть отзыв',
+        'go_to_child' => 'Посмотреть обсуждение',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Помечено решённым пользователем :user',
             'false' => 'Открыто заново пользователем :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'общее',
+        'general_all' => 'общее (все)',
     ],
 
     'user_filter' => [

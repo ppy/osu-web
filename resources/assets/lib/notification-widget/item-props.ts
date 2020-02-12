@@ -17,10 +17,8 @@
  */
 
 import Notification from 'models/notification';
-import Worker from './worker';
 
 export default interface ItemProps {
   item: Notification;
   items: Notification[];
-  worker: Worker;
 }

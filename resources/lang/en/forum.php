@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Really delete post?',
         'confirm_restore' => 'Really restore post?',
-        'edited' => 'Last edited by :user :when, edited :count times in total.',
+        'edited' => 'Last edited by :user :when, edited :count_delimited time in total.|Last edited by :user :when, edited :count_delimited times in total.',
         'posted_at' => 'posted :when',
 
         'actions' => [
@@ -139,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Subscriptions',
             'title_compact' => 'forum subscriptions',
-            'title_main' => 'Forum <strong>Subscriptions</strong>',
 
             'box' => [
                 'total' => 'Topics subscribed',

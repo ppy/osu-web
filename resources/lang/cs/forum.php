@@ -39,12 +39,8 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Nová odpověd téma ":title"',
-    ],
-
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Poslední příspěvek',
 
         'index' => [
             'title' => '',
@@ -105,7 +101,7 @@ return [
         'started_by_verbose' => 'započal :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Zavřít',
             'preview' => 'Náhled',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Sledované příspěvky',
             'title_compact' => 'sledovaná fóra',
-            'title_main' => 'Sledované <strong>příspěvky</strong>',
 
             'box' => [
                 'total' => 'Počet sledovaných témat',
@@ -308,9 +302,9 @@ return [
 
                 'button' => [
                     'change_vote' => '',
-                    'edit' => '',
+                    'edit' => 'Upravit hlasování',
                     'view_results' => '',
-                    'vote' => '',
+                    'vote' => 'Hlasovat',
                 ],
 
                 'detail' => [

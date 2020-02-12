@@ -88,7 +88,7 @@ class BeatmapDiscussionPostsController extends Controller
             ]
         );
 
-        return view('beatmap_discussion_posts.index', compact('posts'));
+        return ext_view('beatmap_discussion_posts.index', compact('posts'));
     }
 
     public function restore($id)

@@ -25,7 +25,4 @@ return [
 
         'link' => 'canlı yayınlar hakkındaki wiki sayfası',
     ],
-    'headers' => [
-        'regular' => 'Şu andaki canlı yayınlar',
-    ],
 ];

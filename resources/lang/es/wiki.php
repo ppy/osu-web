@@ -25,6 +25,7 @@ return [
         'missing' => 'La página solicitada ":keyword" no se pudo encontrar.',
         'missing_title' => 'No encontrado',
         'missing_translation' => 'La página solicitada no se pudo encontrar para el idioma actualmente seleccionado.',
+        'needs_cleanup_or_rewrite' => 'Esta página no cumple con los estándares de la wiki de osu! y necesita ser limpiada o reescrita. Si puedes ayudar, ¡por favor considera actualizar el artículo!',
         'search' => 'Buscar páginas existentes para :link.',
         'toc' => 'Contenidos',
 
@@ -41,7 +42,7 @@ return [
         ],
     ],
     'main' => [
-        'title' => 'Base de Conocimientos',
+        'title' => 'base de conocimientos',
         'subtitle' => 'porque osu!pedia suena aburrido',
     ],
 ];

@@ -23,6 +23,7 @@ return [
     'deleted_count' => ':count_delimited smazaný komentář
 :count_delimited smazané komentáře',
     'edited' => 'upraveno před :timeago uživatelem :user',
+    'pinned' => '',
     'empty' => 'Zatím zde nejsou žádné komentáře.',
     'load_replies' => 'načíst odpovědi',
     'replies' => 'Odpovědi',
@@ -50,10 +51,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Komentáře :info',
-            'info' => 'Výpis',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -63,9 +61,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Komentáře :info',
-            'info' => 'Detail',
-        ],
+        'nav_title' => '',
     ],
 ];

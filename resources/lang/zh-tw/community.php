@@ -31,30 +31,30 @@ return [
 
             'team' => [
                 'title' => '支持團隊',
-                'description' => '',
+                'description' => 'Osu! 是由一小群團隊進行開發和營運。您的贊助可以幫助團隊活久一點。',
             ],
             'infra' => [
                 'title' => '伺服器基礎設施',
-                'description' => '',
+                'description' => '捐款用於網站營運，多人連線服務，在線排行榜...等等。',
             ],
             'featured-artists' => [
                 'title' => '精選藝術家',
-                'description' => '',
-                'link_text' => '',
+                'description' => '在你的支持下，我們可以與更多優秀的藝術家合作，並為 osu! 帶來更多出色的音樂',
+                'link_text' => '查看當前列表 &raquo;',
             ],
             'ads' => [
-                'title' => '保持 osu! 自持',
-                'description' => '',
+                'title' => '維持 osu! 自給自足',
+                'description' => '你的幫助可以讓遊戲保持獨立並遠離廣告，不受外部贊助商的控制。',
             ],
             'tournaments' => [
-                'title' => '官方錦標賽',
-                'description' => '',
-                'link_text' => '',
+                'title' => '官方比賽',
+                'description' => '為官方 osu! 世界杯籌備營運資金（及獎勵）。',
+                'link_text' => '探索比賽 &raquo;',
             ],
             'bounty-program' => [
                 'title' => '開源賞金計劃',
-                'description' => '',
-                'link_text' => '',
+                'description' => '向社群中花費時間及精力幫助 osu! 變得更好的貢獻者獻上支持。',
+                'link_text' => '了解更多 &raquo;',
             ],
         ],
         'perks' => [
@@ -66,17 +66,17 @@ return [
 
             'friend_ranking' => [
                 'title' => '好友排行榜',
-                'description' => "",
+                'description' => "看看你如何在遊戲中與網站內的圖譜排行榜上對抗你的朋友",
             ],
 
             'country_ranking' => [
                 'title' => '國家排行榜',
-                'description' => '',
+                'description' => '在征服世界前先征服你的國家',
             ],
 
             'mod_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => '按 Mods 篩選',
+                'description' => '只想和 HDHR 玩家一起玩？沒問題！',
             ],
 
             'auto_downloads' => [
@@ -86,7 +86,7 @@ return [
 
             'upload_more' => [
                 'title' => '上傳更多圖譜',
-                'description' => '做圖者上傳待批准的圖譜上限增加到 10 張。',
+                'description' => '做圖者上傳待處理的圖譜上限增加到 10 張。',
             ],
 
             'early_access' => [
@@ -100,8 +100,8 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => '譜面篩選器',
-                'description' => '更多角度的去篩選譜面。',
+                'title' => '圖譜篩選器',
+                'description' => '更多角度的去篩選圖譜。',
             ],
 
             'yellow_fellow' => [
@@ -121,7 +121,7 @@ return [
 
             'skinnables' => [
                 'title' => '更多的定製',
-                'description' => '自定義更多的遊戲界面元素，例如主菜單的背景。',
+                'description' => '自定義更多的遊戲界面元素，例如主畫面的背景。',
             ],
 
             'feature_votes' => [
@@ -136,11 +136,11 @@ return [
 
             'more_favourites' => [
                 'title' => '更多收藏',
-                'description' => '',
+                'description' => '你可收藏的圖譜上限將從 :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => '更多好友',
-                'description' => '',
+                'description' => '你的好友上限將從 :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
                 'title' => '上載更多圖譜',
@@ -148,7 +148,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => '好友排行榜',
-                'description' => '',
+                'description' => '和您的朋友一起競賽，看看你如何超越他們的排名!*<br/><br/><small>*此功能目前尚未在新網站啟用，即將上線(tm)</small>',
             ],
 
         ],

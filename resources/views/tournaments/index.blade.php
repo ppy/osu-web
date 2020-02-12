@@ -22,19 +22,19 @@
 ])
 
 @section('content')
-    <div class="osu-layout__row">
-        <div class="osu-page-header-v2 osu-page-header-v2--tournaments">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{trans('tournament.index.header.title')}}</div>
-            <div class="osu-page-header-v2__subtitle">{{trans('tournament.index.header.subtitle')}}</div>
-        </div>
-    </div>
+    @include('layout._page_header_v4', ['params' => [
+        'links' => [['title' => trans('layout.header.tournaments.index'), 'url' => route('tournaments.index')]],
+        'linksBreadcrumb' => true,
+        'section' => trans('layout.header.tournaments._'),
+        'subSection' => trans('layout.header.tournaments.index'),
+        'theme' => 'tournaments',
+    ]])
 
-    <div class="osu-page osu-page--tournament">
+    <div class="osu-page">
         <div class="tournament-list">
             @foreach($listing as $state => $tournaments)
                 @if($tournaments->isEmpty())
-                    @if($state == 'current')
+                    @if($state === 'current')
                         <h1 class="tournament-list__heading">{{trans("tournament.index.state.$state")}}</h1>
                         <p class="tournament-list__none-running">{{trans('tournament.index.none_running')}}</p>
                     @endif

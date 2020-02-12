@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Regenereren...',
             'remove' => 'Verwijder',
             'removing' => 'Verwijderen...',
+            'title' => 'Beatmapset covers',
         ],
         'show' => [
             'covers' => 'Beheer Beatmapset Covers',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Console Ding',
-
             'sections' => [
+                'beatmapsets' => 'Beatmapsets',
                 'forum' => 'Forum',
                 'general' => 'Algemeen',
                 'store' => 'Winkel',

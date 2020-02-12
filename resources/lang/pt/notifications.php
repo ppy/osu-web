@@ -28,18 +28,18 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => 'Discussão do beatmap',
-                'beatmapset_discussion_lock' => 'O beatmap ":title" foi bloqueado para discussão.',
+                'beatmapset_discussion_lock' => 'A discussão em ":title" foi encerrada',
                 'beatmapset_discussion_lock_compact' => 'A discussão foi encerrada',
                 'beatmapset_discussion_post_new' => ':username publicou uma nova mensagem na discussão do beatmap ":title".',
                 'beatmapset_discussion_post_new_empty' => 'Nova publicação em ":title" por :username',
-                'beatmapset_discussion_post_new_compact' => 'Nova publicação por :username',
+                'beatmapset_discussion_post_new_compact' => 'Nova publicação por :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nova publicação por :username',
-                'beatmapset_discussion_unlock' => 'O beatmap ":title" foi desbloqueado para discussão.',
+                'beatmapset_discussion_unlock' => 'A discussão em ":title" foi aberta',
                 'beatmapset_discussion_unlock_compact' => 'A discussão foi aberta',
             ],
 
             'beatmapset_problem' => [
-                '_' => 'Problema do Beatmap Qualificado',
+                '_' => 'Problema do beatmap qualificado',
                 'beatmapset_discussion_qualified_problem' => 'Exposto por :username em ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => 'Exposto por :username em ":title"',
                 'beatmapset_discussion_qualified_problem_compact' => 'Exposto por :username: ":content"',
@@ -48,15 +48,15 @@ return [
 
             'beatmapset_state' => [
                 '_' => 'Estado do beatmap alterado',
-                'beatmapset_disqualify' => 'O beatmap ":title" foi desqualificado por :username.',
+                'beatmapset_disqualify' => 'O beatmap ":title" foi desqualificado',
                 'beatmapset_disqualify_compact' => 'O beatmap foi desqualificado',
-                'beatmapset_love' => 'O beatmap ":title" foi promovido e também adorado por :username.',
+                'beatmapset_love' => 'O beatmap ":title" foi promovido a adorado',
                 'beatmapset_love_compact' => 'O beatmap foi promovido a adorado',
-                'beatmapset_nominate' => 'O beatmap ":title" foi nomeado por :username.',
+                'beatmapset_nominate' => 'O beatmap ":title" foi nomeado',
                 'beatmapset_nominate_compact' => 'O beatmap foi nomeado',
                 'beatmapset_qualify' => 'O beatmap ":title" obteve nomeações suficiente e portanto, entrou na fila para ser classificado.',
                 'beatmapset_qualify_compact' => 'O beatmap entrou na fila para se classificar',
-                'beatmapset_rank' => '":title" foi classificado',
+                'beatmapset_rank' => 'O beatmap ":title" foi classificado',
                 'beatmapset_rank_compact' => 'O beatmap foi classificado',
                 'beatmapset_reset_nominations' => 'A nomeação do ":title" foi reiniciada',
                 'beatmapset_reset_nominations_compact' => 'A nomeação foi reiniciada',
@@ -84,7 +84,7 @@ return [
         ],
 
         'build' => [
-            '_' => 'Registo de Alterações',
+            '_' => 'Registo de alterações',
 
             'comment' => [
                 '_' => 'Novo comentário',
@@ -120,7 +120,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited mensagem não lida.|:count_delimited mensagens não lidas.',
+                'legacy_pm' => ':count_delimited mensagem não lida.|:count_delimited mensagens não lidas',
             ],
         ],
 
@@ -129,7 +129,7 @@ return [
 
             'user_achievement_unlock' => [
                 '_' => 'Nova medalha',
-                'user_achievement_unlock' => '":title" obtida!',
+                'user_achievement_unlock' => 'Desbloqueaste ":title"!',
             ],
         ],
     ],

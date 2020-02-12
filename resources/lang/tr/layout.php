@@ -24,10 +24,87 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => 'yönetici',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => 'konsol',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => 'liste',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => 'tartışma',
+            'index' => '',
+            'show' => 'bilgi',
+            'packs' => 'paketler',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'Topluluk',
-
+            'comments' => 'yorumlar',
+            'contests' => '',
             'forum' => 'Forum',
+            'livestream' => 'canlı yayınlar',
+        ],
+
+        'error' => [
+            '_' => 'hata',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => 'ana sayfa',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => 'sıralama',
+        ],
+
+        'store' => [
+            '_' => 'osu!mağza',
+            'cart' => 'sepet',
+            'order' => '',
+            'orders' => 'sipariş geçmişi',
+            'product' => 'ürün',
+            'products' => 'ürünler',
+        ],
+
+        'tournaments' => [
+            '_' => 'turnuvalar',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => 'oyuncu',
+            'forum_posts' => '',
+            'modding' => 'modding',
+            'show' => 'bilgi',
         ],
     ],
 
@@ -44,9 +121,12 @@ return [
             '_' => 'anasayfa',
             'account-edit' => 'ayarlar',
             'account-verifyLink' => 'Doğrulama Tamamlandı',
-            'friends-index' => 'arkadaşlar',
-            'changelog-index' => 'değişiklikler',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'sürüm',
+            'changelog-index' => 'değişiklikler',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => 'forum abonelikleri',
+            'friends-index' => 'arkadaşlar',
             'getDownload' => 'indir',
             'getIcons' => 'simgeler',
             'groups-show' => 'gruplar',
@@ -59,6 +139,7 @@ return [
             'search' => 'ara',
             'supportTheGame' => 'oyunu destekle',
             'team' => 'takım',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => 'profil',
@@ -78,7 +159,6 @@ return [
             'artists' => 'seçkin sanatçılar',
             'beatmap_discussion_posts-index' => 'beatmap tartışma başlıkları',
             'beatmap_discussions-index' => 'beatmap tartışmaları',
-            'beatmapset-watches-index' => 'modlama izleme listesi',
             'beatmapset_discussion_votes-index' => 'beatmap tartışma oyları',
             'beatmapset_events-index' => 'beatmapset olayları',
             'index' => 'listeleme',
@@ -112,7 +192,6 @@ return [
             'tournaments' => 'turnuvalar',
             'tournaments-index' => 'turnuvalar',
             'tournaments-show' => 'turnuva bilgisi',
-            'forum-topic-watches-index' => 'abonelikler',
             'forum-topics-create' => 'forumlar',
             'forum-topics-show' => 'forumlar',
             'forum-forums-index' => 'forumlar',
@@ -256,10 +335,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'e-posta adresi',
             'forgot' => "Bilgilerimi unuttum",
             'password' => 'şifre',
             'title' => 'Devam etmek için Giriş Yap',
+            'username' => 'kullanıcı adı',
 
             'error' => [
                 'email' => "Kullanıcı adı veya e-posta adresi mevcut değil.",

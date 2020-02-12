@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => '',
         'back_to_previous' => 'Vissza az előző pozícióra',
         'back_to_top' => 'Vissza a lap tetejére',
         'cancel' => 'Mégse',
@@ -48,7 +49,7 @@ return [
         'expand' => 'kibont',
         'hide' => 'elrejtés',
         'permalink' => 'állandó hivatkozás',
-        'permalink_copied' => 'hivatkozás másolva',
+        'pin' => '',
         'post' => 'Küldés',
         'reply' => 'Válasz',
         'reply_reopen' => 'Válaszolás és újranyitás',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Töröltek megjelenítése',
         'show_more' => 'több megjelenítése',
         'show_more_options' => 'további opciók mutatása',
+        'unpin' => '',
         'update' => 'Frissítés',
         'upload_image' => 'kép feltöltése',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Értesítés',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

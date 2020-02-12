@@ -60,7 +60,7 @@ class AuthorizationController extends PassportAuthorizationController
                 $cancelUrl .= "{$separator}error=access_denied";
             }
 
-            return view('sessions.create', [
+            return ext_view('sessions.create', [
                 'cancelUrl' => $cancelUrl,
                 'currentAction' => 'oauth_login',
             ]);
@@ -71,13 +71,18 @@ class AuthorizationController extends PassportAuthorizationController
         return parent::authorize($this->normalizeRequestScopes($psrRequest), $request, $clients, $tokens);
     }
 
+    public function getSection()
+    {
+        return 'user';
+    }
+
     /**
      * Normalizes the authorization request's scopes.
      *
      * @param ServerRequestInterface $request
      * @return ServerRequestInterface
      */
-    private function normalizeRequestScopes(ServerRequestInterface $request) : ServerRequestInterface
+    private function normalizeRequestScopes(ServerRequestInterface $request): ServerRequestInterface
     {
         $params = $request->getQueryParams();
         $scopes = $this->normalizeScopes(
@@ -94,7 +99,7 @@ class AuthorizationController extends PassportAuthorizationController
      * @param array $scopes
      * @return array
      */
-    private function normalizeScopes(array $scopes) : array
+    private function normalizeScopes(array $scopes): array
     {
         if (!in_array('identify', $scopes, true)) {
             $scopes[] = 'identify';

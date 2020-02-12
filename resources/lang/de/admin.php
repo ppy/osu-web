@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Erneuert...',
             'remove' => 'Entfernen',
             'removing' => 'Entfernt...',
+            'title' => 'Beatmapset covers',
         ],
         'show' => [
             'covers' => 'Beatmapset-Banner bearbeiten',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Adminkonsole',
-
             'sections' => [
+                'beatmapsets' => 'Beatmapsets',
                 'forum' => 'Forum',
                 'general' => 'Allgemein',
                 'store' => 'Shop',

@@ -19,13 +19,15 @@
  */
 
 return [
-    'header' => 'Рейтинг по :type',
+    'country' => [
+        'filter' => 'отфильтровано по стране',
+    ],
 
     'type' => [
-        'performance' => 'производительности',
-        'charts' => 'чартам',
-        'score' => 'очкам',
-        'country' => 'странам',
+        'performance' => 'по производительности',
+        'charts' => 'по чартам',
+        'score' => 'по очкам',
+        'country' => 'по странам',
     ],
 
     'spotlight' => [

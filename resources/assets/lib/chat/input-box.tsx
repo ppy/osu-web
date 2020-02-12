@@ -19,6 +19,7 @@
 import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
@@ -28,15 +29,10 @@ import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
 
 @inject('dataStore')
-@inject('dispatcher')
 @observer
+@dispatchListener
 export default class InputBox extends React.Component<any, any> implements DispatchListener {
   private inputBoxRef = React.createRef<HTMLInputElement>();
-
-  constructor(props: {}) {
-    super(props);
-    this.props.dispatcher.register(this);
-  }
 
   buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
     const target = $(e.currentTarget).parent().children('input')[0] as HTMLInputElement;
@@ -136,6 +132,6 @@ export default class InputBox extends React.Component<any, any> implements Dispa
       message.isAction = true;
     }
 
-    this.props.dispatcher.dispatch(new ChatMessageSendAction(message));
+    dispatch(new ChatMessageSendAction(message));
   }
 }

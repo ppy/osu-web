@@ -263,7 +263,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
     }
 
-    public function revertUsername($type = 'revert') : UsernameChangeHistory
+    public function revertUsername($type = 'revert'): UsernameChangeHistory
     {
         // TODO: normalize validation with changeUsername.
         if ($this->user_id <= 1) {
@@ -277,7 +277,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->updateUsername($this->username_previous, $type);
     }
 
-    public function changeUsername(string $newUsername, string $type) : UsernameChangeHistory
+    public function changeUsername(string $newUsername, string $type): UsernameChangeHistory
     {
         $errors = $this->validateChangeUsername($newUsername, $type);
         if ($errors->isAny()) {
@@ -291,7 +291,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         });
     }
 
-    public function renameIfInactive() : ?UsernameChangeHistory
+    public function renameIfInactive(): ?UsernameChangeHistory
     {
         if ($this->getUsernameAvailableAt() <= Carbon::now()) {
             $newUsername = "{$this->username}_old";
@@ -300,7 +300,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
     }
 
-    private function tryUpdateUsername(int $try, string $newUsername, string $type) : UsernameChangeHistory
+    private function tryUpdateUsername(int $try, string $newUsername, string $type): UsernameChangeHistory
     {
         $name = $try > 0 ? "{$newUsername}_{$try}" : $newUsername;
 
@@ -315,7 +315,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         }
     }
 
-    private function updateUsername(string $newUsername, string $type) : UsernameChangeHistory
+    private function updateUsername(string $newUsername, string $type): UsernameChangeHistory
     {
         $oldUsername = $type === 'revert' ? null : $this->getOriginal('username');
         $this->username_previous = $oldUsername;
@@ -354,7 +354,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return strtolower($username);
     }
 
-    public static function findAndRenameUserForInactive($username) : ?self
+    public static function findAndRenameUserForInactive($username): ?self
     {
         $existing = static::findByUsernameForInactive($username);
         if ($existing !== null) {
@@ -366,7 +366,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     }
 
     // TODO: be able to change which connection this runs on?
-    public static function findByUsernameForInactive($username) : ?self
+    public static function findByUsernameForInactive($username): ?self
     {
         return static::whereIn(
             'username',
@@ -374,7 +374,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         )->first();
     }
 
-    public static function checkWhenUsernameAvailable($username) : Carbon
+    public static function checkWhenUsernameAvailable($username): Carbon
     {
         $user = static::findByUsernameForInactive($username);
         if ($user !== null) {
@@ -393,7 +393,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return Carbon::parse($lastUsage->timestamp)->addDays(static::INACTIVE_DAYS);
     }
 
-    public function getUsernameAvailableAt() : Carbon
+    public function getUsernameAvailableAt(): Carbon
     {
         $playCount = $this->playCount();
 
@@ -701,17 +701,17 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function isNAT()
     {
-        return $this->isGroup(UserGroup::GROUPS['nat']);
+        return $this->isGroup(app('groups')->byIdentifier('nat'));
     }
 
     public function isAdmin()
     {
-        return $this->isGroup(UserGroup::GROUPS['admin']);
+        return $this->isGroup(app('groups')->byIdentifier('admin'));
     }
 
     public function isGMT()
     {
-        return $this->isGroup(UserGroup::GROUPS['gmt']);
+        return $this->isGroup(app('groups')->byIdentifier('gmt'));
     }
 
     public function isBNG()
@@ -721,42 +721,42 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function isFullBN()
     {
-        return $this->isGroup(UserGroup::GROUPS['bng']);
+        return $this->isGroup(app('groups')->byIdentifier('bng'));
     }
 
     public function isLimitedBN()
     {
-        return $this->isGroup(UserGroup::GROUPS['bng_limited']);
+        return $this->isGroup(app('groups')->byIdentifier('bng_limited'));
     }
 
     public function isDev()
     {
-        return $this->isGroup(UserGroup::GROUPS['dev']);
+        return $this->isGroup(app('groups')->byIdentifier('dev'));
     }
 
     public function isMod()
     {
-        return $this->isGroup(UserGroup::GROUPS['mod']);
+        return $this->isGroup(app('groups')->byIdentifier('mod'));
     }
 
     public function isAlumni()
     {
-        return $this->isGroup(UserGroup::GROUPS['alumni']);
+        return $this->isGroup(app('groups')->byIdentifier('alumni'));
     }
 
     public function isRegistered()
     {
-        return $this->isGroup(UserGroup::GROUPS['default']);
+        return $this->isGroup(app('groups')->byIdentifier('default'));
     }
 
     public function isProjectLoved()
     {
-        return $this->isGroup(UserGroup::GROUPS['loved']);
+        return $this->isGroup(app('groups')->byIdentifier('loved'));
     }
 
     public function isBot()
     {
-        return $this->group_id === UserGroup::GROUPS['bot'];
+        return $this->group_id === app('groups')->byIdentifier('bot')->getKey();
     }
 
     public function hasSupported()
@@ -844,11 +844,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
      */
     public function defaultGroup()
     {
-        if ($this->group_id === UserGroup::GROUPS['admin']) {
-            return 'default';
+        $groups = app('groups');
+
+        if ($this->group_id === $groups->byIdentifier('admin')->getKey()) {
+            return $groups->byIdentifier('default');
         }
 
-        return array_search_null($this->group_id, UserGroup::GROUPS) ?? 'default';
+        return $groups->byId($this->group_id) ?? $groups->byIdentifier('default');
     }
 
     public function groupIds()
@@ -863,7 +865,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     // check if a user is in a specific group, by ID
     public function isGroup($group)
     {
-        return in_array($group, $this->groupIds(), true);
+        return in_array($group->getKey(), $this->groupIds(), true);
     }
 
     public function badges()
@@ -1309,15 +1311,16 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function groupBadge()
     {
         if ($this->isBot()) {
-            return 'bot';
+            return app('groups')->byIdentifier('bot');
         }
 
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            $groupNames = $this->userGroups->map->name()->all();
-            array_unshift($groupNames, $this->defaultGroup());
+            $ids = $this->groupIds();
+            array_unshift($ids, $this->defaultGroup()->getKey());
 
-            $badge = array_first(array_intersect(UserGroup::DISPLAY_PRIORITY, $groupNames));
-            $this->memoized[__FUNCTION__] = $badge;
+            $idOrder = app('groups')->all()->where('display_order', '!==', null)->pluck('group_id')->all();
+            $badge = array_first(array_intersect($idOrder, $ids));
+            $this->memoized[__FUNCTION__] = app('groups')->byId($badge);
         }
 
         return $this->memoized[__FUNCTION__];
@@ -1903,7 +1906,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->isValid() && parent::save($options);
     }
 
-    protected function newReportableExtraParams() : array
+    protected function newReportableExtraParams(): array
     {
         return [
             'reason' => 'Cheating',

@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Regenererar...',
             'remove' => 'Ta bort',
             'removing' => 'Tar bort...',
+            'title' => '',
         ],
         'show' => [
             'covers' => 'Hantera Beatmapsetomslag',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Administrativ Konsolsak',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => 'Forum',
                 'general' => 'Allmänt',
                 'store' => 'Affär',

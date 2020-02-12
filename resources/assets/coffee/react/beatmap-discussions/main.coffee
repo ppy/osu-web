@@ -371,6 +371,9 @@ export class Main extends React.PureComponent
       $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
       target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
+
+      return if target.length == 0
+
       offsetTop = target.offset().top - @modeSwitcherRef.current.getBoundingClientRect().height
       offsetTop -= @newDiscussionRef.current.getBoundingClientRect().height if @state.pinnedNewDiscussion
 

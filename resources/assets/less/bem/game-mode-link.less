@@ -19,17 +19,42 @@
 .game-mode-link {
   .default-text-shadow();
   .link-plain();
-  font-size: @font-size--title-small-4;
   color: @osu-colour-h1;
-  padding: 0 10px;
+  padding: 0;
+  font-size: @font-size--title-small;
 
   .link-hover({
     color: #fff;
   });
 
+  @media @desktop {
+    font-size: @font-size--title-small-4;
+    padding-left: 10px; // linked to game-mode__items
+    padding-right: $padding-left;
+  }
+
   &--active {
     font-weight: bold;
     color: #fff;
+  }
+
+  &--disabled {
+    color: @osu-colour-f1;
+    cursor: default;
+
+    .link-hover({
+      color: @osu-colour-f1;
+    });
+  }
+
+  &__badge {
+    .default-border-radius();
+    padding: 2px 5px;
+    font-size: 80%;
+    font-weight: bold;
+    margin-left: 5px;
+    background-color: @osu-colour-b6;
+    color: @osu-colour-f1;
   }
 
   &__icon {

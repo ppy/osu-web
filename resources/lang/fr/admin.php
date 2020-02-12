@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Restauration...',
             'remove' => 'Supprimer',
             'removing' => 'Suppression...',
+            'title' => 'Couvertures des beatmapsets',
         ],
         'show' => [
             'covers' => 'Gérer les couvertures de beatmapset',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Bidule console Admin',
-
             'sections' => [
+                'beatmapsets' => 'Sets de beatmaps',
                 'forum' => 'Forum',
                 'general' => 'Général',
                 'store' => 'Boutique',

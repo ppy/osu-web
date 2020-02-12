@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Новы адказ у тэме «:title»',
-    ],
-
     'forums' => [
         'latest_post' => '',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Форум падпіскі',
             'title_compact' => 'форум падпіскі',
-            'title_main' => 'Форум <strong>падпіскі</strong>',
 
             'box' => [
                 'total' => 'Падпіскі на тэмы',

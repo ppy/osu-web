@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => '계속하려면 로그인해 주세요.',
+    'require_verification' => '계속하려면 인증해 주세요.',
+    'restricted' => "제한된 상태에서는 할 수 없습니다.",
+    'silenced' => "사일런스 상태에서는 할 수 없습니다.",
+    'unauthorized' => '접근이 거부되었습니다.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Hype한 것은 되돌릴 수 없습니다.',
@@ -105,7 +111,7 @@ return [
 
             'store' => [
                 'play_more' => '포럼에 글을 올리기 전에 게임을 플레이해주세요, 제발요! 만약 플레이하는데 문제가 있다면, Help and Support 포럼에 글을 남겨주세요.',
-                'too_many_help_posts' => "추가 글을 더 남기려면 게임을 플레이해야 합니다. 만약 아직도 게임을 하는 데 문제가 있다면, support@ppy.sh 에 이메일을 보내주세요.", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "글을 더 남기려면 게임을 플레이해야 합니다. 만약 게임 진행에 문제가 있다면, support@ppy.sh 에 이메일을 보내주세요.", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -161,14 +167,6 @@ return [
             'admin_only' => '관리자만 열람이 가능한 포럼입니다.',
         ],
     ],
-
-    'require_login' => '계속하려면 로그인해 주세요.',
-
-    'unauthorized' => '접근이 거부되었습니다.',
-
-    'silenced' => "사일런스 상태에서는 할 수 없습니다.",
-
-    'restricted' => "제한된 상태에서는 할 수 없습니다.",
 
     'user' => [
         'page' => [

@@ -18,6 +18,10 @@
 @extends('master')
 
 @section('content')
+    @include('layout._page_header_v4', ['params' => [
+        'section' => trans('layout.header.notice._'),
+    ]])
+
     <div class="osu-page osu-page--generic">
         <h1>{{ trans('users.disabled.title') }}</h1>
 

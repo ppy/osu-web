@@ -19,16 +19,17 @@
  */
 
 return [
-    'deleted' => 'borrado',
+    'deleted' => 'eliminado',
     'deleted_count' => ':count_delimited comentario eliminado|:count_delimited comentarios eliminados',
     'edited' => 'editado hace :timeago por :user',
+    'pinned' => 'fijado',
     'empty' => 'Todavía no hay comentarios.',
     'load_replies' => 'cargar respuestas',
     'replies' => 'Respuestas',
     'title' => 'Comentarios',
 
     'commentable_name' => [
-        'beatmapset' => 'Beatmap',
+        'beatmapset' => 'Mapa',
         'build' => 'Historial de cambios',
         'news_post' => 'Noticias',
         '_deleted' => 'Elemento eliminado',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Comentarios :info',
-            'info' => 'Listado',
-        ],
+        'nav_title' => 'listado',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Comentarios :info',
-            'info' => 'Detalles',
-        ],
+        'nav_title' => 'comentarios',
     ],
 ];

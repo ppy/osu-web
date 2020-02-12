@@ -17,12 +17,14 @@
 ###
 
 import { MessageLengthCounter } from './message-length-counter'
+import { UserCard } from './user-card'
+import mapperGroup from 'beatmap-discussions/mapper-group'
+import { ReviewPost } from 'beatmap-discussions/review-post'
 import { BigButton } from 'big-button'
+import ClickToCopy from 'click-to-copy'
 import * as React from 'react'
 import { a, button, div, span } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
-import { ReviewPost } from 'beatmap-discussions/review-post'
-import { UserCard } from './user-card'
 import Editor from 'beatmap-discussions/editor'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
@@ -61,7 +63,6 @@ export class Post extends React.PureComponent
 
   componentWillUnmount: =>
     @throttledUpdatePost.cancel()
-    clearTimeout @state.permalinkTimer if @state.permalinkTimer?
 
     for own _id, xhr of @xhr
       xhr?.abort()
@@ -74,11 +75,7 @@ export class Post extends React.PureComponent
     topClasses += " #{bn}--deleted" if @props.post.deleted_at?
     topClasses += " #{bn}--unread" if !@props.read
 
-    userBadge =
-      if @isOwner()
-        'mapper'
-      else
-        @props.user.group_badge
+    userBadge = if @isOwner() then mapperGroup else @props.user.group_badge
 
     div
       className: topClasses
@@ -226,16 +223,12 @@ export class Post extends React.PureComponent
         div
           className: "#{bn}__actions-group"
           if @props.type == 'discussion'
-            a
-              href: BeatmapDiscussionHelper.url discussion: @props.discussion
-              onClick: @permalink
-              rel: 'nofollow'
+            span
               className: "#{bn}__action #{bn}__action--button"
-
-              if @state.permalinkTimer?
-                osu.trans('common.buttons.permalink_copied')
-              else
-                osu.trans('common.buttons.permalink')
+              el ClickToCopy,
+                value: BeatmapDiscussionHelper.url discussion: @props.discussion
+                label: osu.trans 'common.buttons.permalink'
+                valueAsUrl: true
 
           if @props.canBeEdited
             button
@@ -291,24 +284,8 @@ export class Post extends React.PureComponent
     currentUser.id? && @props.post.user_id != currentUser.id
 
 
-  clearPermalinkClicked: =>
-    @setState permalinkTimer: null
-
-
   isTimeline: =>
     @props.discussion.timestamp?
-
-
-  permalink: (e) =>
-    e.preventDefault()
-
-    # copy url to clipboard
-    clipboard.writeText e.currentTarget.href
-
-    # show feedback
-    permalinkTmer = Timeout.set 2000, @clearPermalinkClicked
-
-    @setState permalinkTimer: permalinkTmer
 
 
   setMessage: (e) =>

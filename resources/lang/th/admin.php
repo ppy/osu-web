@@ -25,6 +25,7 @@ return [
             'regenerating' => 'กำลังสร้างใหม่...',
             'remove' => 'นำออก',
             'removing' => 'กำลังนำออก...',
+            'title' => '',
         ],
         'show' => [
             'covers' => 'จัดการ Beatmapset Covers',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Console ผู้ดูแลระบบ',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => 'ฟอรั่ม',
                 'general' => 'ทั่วไป',
                 'store' => 'ร้านค้า',

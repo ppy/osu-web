@@ -15,22 +15,21 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', [
-    'legacyNav' => false,
-])
+@extends('master')
 
 @section('content')
-    <div class="header-v4 header-v4--supporter">
-        <div class="header-v4__bg-container">
-            <div class="header-v4__bg"></div>
-        </div>
-        <div class="header-v4__content">
+    @component('layout._page_header_v4', ['params' => [
+        'theme' => 'supporter',
+    ]])
+        @slot('contentAppend')
             <div class="supporter-status">
                 <div class="supporter-status__pippi"></div>
                 @if (!empty($supporterStatus))
                     <!-- supporter status  -->
                     <div class="supporter-status__flex-container">
-                        <div class="supporter-heart{{ $supporterStatus['current'] ? ' supporter-heart--active' : '' }}"></div>
+                        <a class="supporter-eyecatch__link" href="{{ route('store.products.show', 'supporter-tag') }}" title="{{ trans('community.support.convinced.support') }}">
+                            <div class="supporter-heart{{ $supporterStatus['current'] ? ' supporter-heart--active' : '' }}"></div>
+                        </a>
                         <div class="supporter-status__flex-container-inner">
                             <div class="supporter-status__progress-bar supporter-status__progress-bar--active">
                                 <div class="supporter-status__progress-bar-fill supporter-status__progress-bar-fill--active" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
@@ -67,8 +66,8 @@
                     <!-- end: supporter status -->
                 @endif
             </div>
-        </div>
-    </div>
+        @endslot
+    @endcomponent
 
     <div class="osu-page osu-page--supporter">
         <div class="supporter">

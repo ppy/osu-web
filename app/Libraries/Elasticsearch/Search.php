@@ -64,7 +64,7 @@ abstract class Search extends HasSearch implements Queryable
      */
     abstract public function getQuery();
 
-    public function client() : Client
+    public function client(): Client
     {
         return Es::getClient($this->connectionName);
     }
@@ -74,7 +74,7 @@ abstract class Search extends HasSearch implements Queryable
      *
      * @return int the number of matches.
      */
-    public function count() : int
+    public function count(): int
     {
         // use total from response if response was already fetched.
         if (isset($this->response)) {
@@ -153,7 +153,7 @@ abstract class Search extends HasSearch implements Queryable
     /**
      * @return SearchResponse
      */
-    public function response() : SearchResponse
+    public function response(): SearchResponse
     {
         if (!isset($this->response)) {
             $this->response = $this->fetch();
@@ -180,7 +180,7 @@ abstract class Search extends HasSearch implements Queryable
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         $body = [
             'size' => $this->getQuerySize(), // TODO: this probably shouldn't be calculated if search_after is used.
@@ -280,7 +280,7 @@ abstract class Search extends HasSearch implements Queryable
         return $this->getQuerySize() < 0;
     }
 
-    private function toCountRequestParams() : array
+    private function toCountRequestParams(): array
     {
         $params = $this->toArray();
         // some arguments need to be stripped from the body as they're not supported by count.

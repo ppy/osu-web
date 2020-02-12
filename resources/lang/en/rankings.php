@@ -19,13 +19,15 @@
  */
 
 return [
-    'header' => ':type Ranking',
+    'country' => [
+        'filter' => 'filtered by country',
+    ],
 
     'type' => [
-        'performance' => 'Performance',
-        'charts' => 'Spotlights',
-        'score' => 'Score',
-        'country' => 'Country',
+        'performance' => 'performance',
+        'charts' => 'spotlights',
+        'score' => 'score',
+        'country' => 'country',
     ],
 
     'spotlight' => [

@@ -23,7 +23,7 @@ return [
     'talking_in' => 'talking in :channel',
     'talking_with' => 'talking with :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'You cannot message this channel at this time. This may be due to any of the following reasons:',
         'user' => 'You cannot message this user at this time. This may be due to any of the following reasons:',

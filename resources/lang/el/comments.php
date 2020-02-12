@@ -22,6 +22,7 @@ return [
     'deleted' => 'διαγράφηκε',
     'deleted_count' => ':count_delimited διαγραμμένο σχόλιο|:count_delimited διαγραμμένα σχόλια',
     'edited' => 'επεξεργάστηκε :timeago απο :user',
+    'pinned' => '',
     'empty' => 'Κανένα σχόλιο ακόμη.',
     'load_replies' => '',
     'replies' => 'Απαντήσεις',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Σχόλια :info',
-            'info' => 'Καταχώρηση',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Σχόλια :info',
-            'info' => 'Λεπτομέρειες',
-        ],
+        'nav_title' => '',
     ],
 ];

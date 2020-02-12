@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'osu! hesap doğrulama',
-    ],
-
     'errors' => [
         'expired' => 'Doğrulama kodunun süresi doldu, yeni doğrulama e-postası yollandı.',
         'incorrect_key' => 'Hatalı doğrulama kodu.',

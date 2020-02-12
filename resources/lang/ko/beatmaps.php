@@ -91,13 +91,14 @@ return [
             'nomination_reset' => '지명 초기화',
             'praise' => '칭찬',
             'problem' => '문제',
-            'review' => '',
+            'review' => '검토',
             'suggestion' => '제안',
         ],
 
         'mode' => [
             'events' => '기록',
             'general' => '일반 :scope',
+            'reviews' => '평가',
             'timeline' => '타임라인',
             'scopes' => [
                 'general' => '해당 난이도',
@@ -127,7 +128,7 @@ return [
             'deleted' => '삭제됨',
             'mapper_notes' => '노트',
             'mine' => '내 글',
-            'pending' => '토론중',
+            'pending' => 'Pending',
             'praises' => '칭찬',
             'resolved' => '해결됨',
             'total' => '모두',

@@ -24,5 +24,5 @@
 {!! trans('mail.supporter_gift.anonymous_gift') !!}
 {!! trans('mail.supporter_gift.anonymous_gift_maybe_not') !!}
 
-{!! trans('email.common.closing') !!}
+{!! trans('mail.common.closing') !!}
 osu! Management

@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Nueva respuesta para el tema ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Último mensaje',
 
@@ -96,7 +92,7 @@ return [
         'go_to_latest' => 'ver la última publicación',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última respuesta por :user',
-        'new_topic' => 'Escribir nuevo tema',
+        'new_topic' => 'Nuevo tema',
         'new_topic_login' => 'Inicia sesión para publicar un nuevo tema',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escribe aquí para responder',
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Suscripciones a Temas',
             'title_compact' => 'suscripciones a foros',
-            'title_main' => '<strong>Suscripciones</strong> de foros',
 
             'box' => [
                 'total' => 'Temas suscritos',
@@ -160,8 +154,8 @@ return [
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => '¿Desuscribirte de este tema??',
-                'title' => 'Desuscribirse',
+                'confirmation' => '¿Cancelar suscripción al tema?',
+                'title' => 'Cancelar suscripción',
             ],
         ],
     ],
@@ -326,7 +320,7 @@ return [
             'to_not_watching' => 'No marcado',
             'to_watching' => 'Marcado',
             'to_watching_mail' => 'Marcado con aviso de notificaciones',
-            'tooltip_mail_disable' => 'Notificación activada. Haga clics para desactivar',
+            'tooltip_mail_disable' => 'Notificación activada. Haga clic para desactivar',
             'tooltip_mail_enable' => 'Notificación desactivada. Haga clic para activar',
         ],
     ],

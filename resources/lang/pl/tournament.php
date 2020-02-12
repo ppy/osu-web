@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Rejestracja: od :start do :end',
 
         'header' => [
-            'subtitle' => 'Lista oficjalnych turniejów osu!',
             'title' => 'Turnieje społeczności',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Anuluj rejestrację',
             'register' => 'Zarejestruj mnie!',
+        ],
+
+        'period' => [
+            'end' => 'Data zakończenia',
+            'start' => 'Data rozpoczęcia',
         ],
 
         'state' => [

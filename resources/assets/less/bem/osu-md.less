@@ -56,6 +56,13 @@
     padding: 0;
   }
 
+  &--store-product {
+    .default-text-shadow();
+    .default-font();
+    padding: 0;
+    font-size: @font-size--title-small-4;
+  }
+
   &__figure-caption {
     margin-top: 5px;
     font-style: normal;
@@ -90,6 +97,16 @@
 
     &--1 {
       margin-top: 40px;
+
+      .@{top}--store-product & {
+        font-weight: 200;
+        font-size: @font-size--large-3;
+        margin: 0;
+      }
+
+      .@{top}--store-product-small & {
+        font-size: @font-size--header-title;
+      }
     }
 
     &--2 {
@@ -147,10 +164,6 @@
 
   &__link {
     .link-default();
-
-    .@{top}--store & {
-      .link-blue-dark()
-    }
   }
 
   &__list {
@@ -171,6 +184,10 @@
 
     .@{top}--store & {
       margin-bottom: 10px;
+    }
+
+    .@{top}--store-product-small & {
+      display: none;
     }
   }
 

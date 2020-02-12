@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => '登入以繼續。',
+    'require_verification' => '需要驗證帳戶!',
+    'restricted' => "帳戶處於限制模式，無法進行該操作。",
+    'silenced' => "帳戶被禁言，無法進行該操作。",
+    'unauthorized' => '沒有權限。',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => '無法撤銷推薦。',
@@ -32,30 +38,30 @@ return [
             'owner' => "不能提名自己的圖譜。",
         ],
         'resolve' => [
-            'not_owner' => '只有樓主和譜面所有者才能標記為已解決。',
+            'not_owner' => '只有樓主和圖譜所有者才能標記為已解決。',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '只有譜面作者或譜面管理團隊/質量保證團隊可以發布備註。',
+            'mapper_note_wrong_user' => '只有圖譜作者或譜面管理團隊/質量保證團隊可以發布備註。',
         ],
 
         'vote' => [
             'limit_exceeded' => '在投更多票之前請稍等一會',
             'owner' => "不能為自己的討論投票。",
-            'wrong_beatmapset_state' => '只能對等待中的譜面討論進行投票。',
+            'wrong_beatmapset_state' => '只能對待處理的圖譜討論進行投票。',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'destroy' => [
             'not_owner' => '您只能刪除自己的發文。',
-            'resolved' => '',
-            'system_generated' => '',
+            'resolved' => '你不能刪除已解決的討論串。',
+            'system_generated' => '自動生成的貼文無法刪除。',
         ],
 
         'edit' => [
             'not_owner' => '只有作者可以編輯。',
-            'resolved' => '',
+            'resolved' => '你不能編輯已解決討論裡的貼文。',
             'system_generated' => '無法編輯自動回覆。',
         ],
 
@@ -79,7 +85,7 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => '投票已結束，無法修改投票。',
+        'voting_over' => '投票已結束，禁止重新投票。',
     ],
 
     'forum' => [
@@ -117,7 +123,7 @@ return [
                 'no_permission' => '沒有權限，無法回覆。',
 
                 'user' => [
-                    'require_login' => '回覆前請先登錄。',
+                    'require_login' => '回覆前請先登入。',
                     'restricted' => "帳戶處於限制模式，無法回覆。",
                     'silenced' => "帳戶被禁言，無法回覆。",
                 ],
@@ -126,17 +132,17 @@ return [
             'store' => [
                 'no_forum_access' => '沒有權限，無法進入該板塊。',
                 'no_permission' => '沒有權限，無法創建新主題。',
-                'forum_closed' => '該板塊已關閉，無法發表新主題。',
+                'forum_closed' => '該討論區已關閉，無法發表新主題。',
             ],
 
             'vote' => [
-                'no_forum_access' => '沒有權限，無法進入該板塊。',
+                'no_forum_access' => '沒有權限，無法進入該討論區。',
                 'over' => '投票已結束！',
                 'play_more' => '你需要在論壇上投票之前多玩一些。',
                 'voted' => '不允許修改投票。',
 
                 'user' => [
-                    'require_login' => '投票前請先登錄。',
+                    'require_login' => '投票前請先登入。',
                     'restricted' => "帳戶處於限制模式，無法投票。",
                     'silenced' => "帳戶被禁言，無法投票。",
                 ],
@@ -158,24 +164,16 @@ return [
         ],
 
         'view' => [
-            'admin_only' => '該板塊僅限管理員查看。',
+            'admin_only' => '該討論區僅限管理員查看。',
         ],
     ],
-
-    'require_login' => '登錄以繼續。',
-
-    'unauthorized' => '沒有權限。',
-
-    'silenced' => "帳戶被禁言，無法進行該操作。",
-
-    'restricted' => "帳戶處於限制模式，無法進行該操作。",
 
     'user' => [
         'page' => [
             'edit' => [
                 'locked' => '個人頁面被鎖定。',
                 'not_owner' => '只能編輯自己的個人頁面。',
-                'require_supporter_tag' => '需要成為支持者。',
+                'require_supporter_tag' => '需要成為osu!贊助者。',
             ],
         ],
     ],

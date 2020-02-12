@@ -39,6 +39,7 @@
   &--landing {
     margin: 10px;
     height: 150px;
+    flex: 1;
   }
 
   &__author {
@@ -52,6 +53,10 @@
     object-fit: cover;
 
     .@{_top}--index & {
+      height: 100%;
+    }
+
+    .@{_top}--landing & {
       height: 100%;
     }
   }
@@ -74,7 +79,7 @@
 
   &__overlay {
     .full-size-overflow();
-    background-image: linear-gradient(to bottom, transparent, .osu-hsla(@osu-colour-b6, 0.5)[@hsla]);
+    background-image: linear-gradient(to bottom, transparent, osu-hsla(@osu-colour-b6, 0.5));
 
     .@{_top}--hover & {
       &::after {
@@ -95,7 +100,7 @@
     .default-border-radius();
     font-size: @font-size--small;
     padding: 5px 10px;
-    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
+    background-color: osu-hsla(@osu-colour-b6, 0.5);
     align-self: flex-end;
     text-transform: uppercase;
     font-weight: 900;

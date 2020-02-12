@@ -12,9 +12,6 @@ language: php
 php:
   - 7.2
 
-matrix:
-  fast_finish: true
-
 services:
   - mysql
   - redis
@@ -61,12 +58,15 @@ install:
   - php artisan es:index-documents --yes
 
 jobs:
+  fast_finish: true
   include:
     - name: phpunit
       addons: skip
       script: ./bin/phpunit
 
     - name: browser tests
+      env:
+        - GROUP_CREATE_IF_MISSING=true
       script: ./bin/run_dusk.sh
 
     - name: tslint

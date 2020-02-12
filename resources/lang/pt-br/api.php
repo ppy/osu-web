@@ -28,7 +28,7 @@ return [
     ],
 
     'scopes' => [
-        'identify' => 'Identifique-se e leia seu perfil público.',
+        'identify' => 'Identificar você e ler seu perfil público.',
 
         'friends' => [
             'read' => 'Veja quem você está seguindo.',

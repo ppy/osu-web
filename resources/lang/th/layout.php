@@ -24,10 +24,87 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'ชุมชน',
-
+            'comments' => '',
+            'contests' => '',
             'forum' => 'ฟอรั่ม',
+            'livestream' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +121,12 @@ return [
             '_' => 'หน้าแรก',
             'account-edit' => 'การตั้งค่า',
             'account-verifyLink' => 'การตรวจสอบยืนยันเสร็จสมบูรณ์',
-            'friends-index' => 'เพื่อน',
-            'changelog-index' => 'บันทึกการเปลี่ยนแปลง',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'เวอร์ชั่น',
+            'changelog-index' => 'บันทึกการเปลี่ยนแปลง',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'เพื่อน',
             'getDownload' => 'ดาวน์โหลด',
             'getIcons' => 'ไอคอน',
             'groups-show' => 'กลุ่ม',
@@ -59,6 +139,7 @@ return [
             'search' => 'ค้นหา',
             'supportTheGame' => 'สนับสนุนเกม',
             'team' => 'ทีม',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => 'โปรไฟล์',
@@ -78,7 +159,6 @@ return [
             'artists' => 'ศิลปินโดดเด่น',
             'beatmap_discussion_posts-index' => 'โพสต์การสนทนาเกี่ยวกับ Beatmap',
             'beatmap_discussions-index' => 'การสนทนาเกี่ยวกับ Beatmap',
-            'beatmapset-watches-index' => 'รายการ Mod ที่ติดตาม',
             'beatmapset_discussion_votes-index' => 'โหวตการสนทนา Beatmap',
             'beatmapset_events-index' => 'กิจกรรมของ Beatmapset',
             'index' => 'รายการ',
@@ -112,7 +192,6 @@ return [
             'tournaments' => 'tournaments',
             'tournaments-index' => 'ทัวร์นาเม้นท์',
             'tournaments-show' => 'ข้อมูลทัวร์นาเมนต์',
-            'forum-topic-watches-index' => 'การ​สมัคร​สมาชิก',
             'forum-topics-create' => 'ฟอรั่ม',
             'forum-topics-show' => 'ฟอรั่ม',
             'forum-forums-index' => 'ฟอรั่ม',
@@ -256,10 +335,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'ที่อยู่อีเมล',
             'forgot' => "ฉันลืมรายละเอียดของฉัน",
             'password' => 'รหัสผ่าน',
             'title' => 'ลงชื่อเข้าใช้เพื่อดำเนินการต่อ',
+            'username' => '',
 
             'error' => [
                 'email' => "ชื่อผู้ใช้หรืออีเมลไม่มีอยู่จริง",

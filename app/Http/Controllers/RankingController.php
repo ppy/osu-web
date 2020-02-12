@@ -156,10 +156,6 @@ class RankingController extends Controller
             if (is_api_request()) {
                 $stats->with(['user.userProfileCustomization']);
             }
-
-            if (is_api_request()) {
-                $stats->with(['user.userProfileCustomization']);
-            }
         }
 
         $maxResults = $this->maxResults($modeInt);
@@ -193,7 +189,7 @@ class RankingController extends Controller
             'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
         ]);
 
-        return view("rankings.{$type}", compact('scores'));
+        return ext_view("rankings.{$type}", compact('scores'));
     }
 
     public function spotlight($mode)
@@ -242,13 +238,13 @@ class RankingController extends Controller
             }),
         ];
 
-        return view(
+        return ext_view(
             'rankings.charts',
             compact('scores', 'scoreCount', 'selectOptions', 'spotlight', 'beatmapsets')
         );
     }
 
-    private function optionFromSpotlight(Spotlight $spotlight) : array
+    private function optionFromSpotlight(Spotlight $spotlight): array
     {
         return ['id' => $spotlight->chart_id, 'text' => $spotlight->name];
     }

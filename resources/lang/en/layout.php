@@ -24,15 +24,92 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => 'admin',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'beatmapset covers',
+            'contest' => 'contest',
+            'contests' => 'contests',
+            'root' => 'console',
+            'store_orders' => 'store admin',
+        ],
+
+        'artists' => [
+            '_' => 'featured artists',
+            'index' => 'listing',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'beatmap',
+            'discussions' => 'discussion',
+            'index' => 'listing',
+            'show' => 'info',
+            'packs' => 'packs',
+        ],
+
         'changelog' => [
-            '_' => 'Changelog',
-            'index' => 'Listing',
+            '_' => 'changelog',
+            'index' => 'listing',
         ],
 
         'community' => [
-            '_' => 'Community',
-            'comments' => 'Comments',
-            'forum' => 'Forum',
+            '_' => 'community',
+            'comments' => 'comments',
+            'contests' => 'contests',
+            'forum' => 'forum',
+            'livestream' => 'live streams',
+        ],
+
+        'error' => [
+            '_' => 'error',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'index',
+        ],
+
+        'home' => [
+            '_' => 'home',
+            'password_reset' => 'reset password',
+        ],
+
+        'matches' => [
+            '_' => 'match history',
+        ],
+
+        'notice' => [
+            '_' => 'notice',
+        ],
+
+        'notifications' => [
+            '_' => 'notifications',
+            'index' => 'history',
+        ],
+
+        'rankings' => [
+            '_' => 'ranking',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'cart',
+            'order' => 'invoice',
+            'orders' => 'order history',
+            'product' => 'product',
+            'products' => 'products',
+        ],
+
+        'tournaments' => [
+            '_' => 'tournaments',
+            'index' => 'listing',
+        ],
+
+        'users' => [
+            '_' => 'player',
+            'forum_posts' => 'forum posts',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
@@ -47,11 +124,14 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
-            'account-edit' => 'settings',
+            'account-edit' => 'account settings',
             'account-verifyLink' => 'Verification Completed',
-            'friends-index' => 'friends',
-            'changelog-index' => 'changelog',
+            'beatmapset-watches-index' => 'modding watchlist',
             'changelog-build' => 'build',
+            'changelog-index' => 'changelog',
+            'client_verifications-create' => 'osu! client verification',
+            'forum-topic-watches-index' => 'forum subscriptions',
+            'friends-index' => 'friends',
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'groups-show' => 'groups',
@@ -64,6 +144,7 @@ return [
             'search' => 'search',
             'supportTheGame' => 'support the game',
             'team' => 'team',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => 'profile',
@@ -83,7 +164,6 @@ return [
             'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'beatmap discussion posts',
             'beatmap_discussions-index' => 'beatmap discussions',
-            'beatmapset-watches-index' => 'modding watchlist',
             'beatmapset_discussion_votes-index' => 'beatmap discussion votes',
             'beatmapset_events-index' => 'beatmapset events',
             'index' => 'listing',
@@ -117,7 +197,6 @@ return [
             'tournaments' => 'tournaments',
             'tournaments-index' => 'tournaments',
             'tournaments-show' => 'tournament info',
-            'forum-topic-watches-index' => 'subscriptions',
             'forum-topics-create' => 'forums',
             'forum-topics-show' => 'forums',
             'forum-forums-index' => 'forums',
@@ -154,6 +233,7 @@ return [
             'modding-history-posts' => 'user modding posts',
             'modding-history-votesGiven' => 'user modding votes given',
             'modding-history-votesReceived' => 'user modding votes received',
+            'notifications-index' => 'notifications history',
             'oauth_login' => 'sign in for oauth',
             'oauth_request' => 'oauth authorisation',
             'settings' => 'Settings',

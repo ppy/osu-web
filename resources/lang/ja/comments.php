@@ -22,6 +22,7 @@ return [
     'deleted' => '削除済み',
     'deleted_count' => ':count_delimited個の削除されたコメント',
     'edited' => ':userが:timeagoに編集済み',
+    'pinned' => 'ピン留め',
     'empty' => 'まだコメントがありません。',
     'load_replies' => '返信を読み込む',
     'replies' => '返信',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'コメント :info',
-            'info' => '一覧',
-        ],
+        'nav_title' => '一覧',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'コメント :info',
-            'info' => '詳細',
-        ],
+        'nav_title' => 'コメント',
     ],
 ];

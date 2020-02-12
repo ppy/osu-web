@@ -81,6 +81,10 @@
     .link-hover({
       text-decoration: underline;
     });
+
+    &--small {
+      font-size: @font-size--normal;
+    }
   }
 
   &__header-overlay {
@@ -123,6 +127,20 @@
       margin-bottom: 25px;
       justify-content: center;
       flex-wrap: wrap;
+    }
+
+    &--client-verification-completed {
+      display: block;
+      margin-top: -20px; // undo --title
+      margin-bottom: 0;
+    }
+
+    &--client-verification-completed-buttons {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 20px;
+      margin-bottom: 30px;
     }
 
     &--error {

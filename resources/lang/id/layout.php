@@ -24,10 +24,87 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => 'admin',
+            'beatmapset' => 'set beatmap',
+            'beatmapset_covers' => 'sampul beatmap',
+            'contest' => 'kontes',
+            'contests' => 'kontes',
+            'root' => 'konsol',
+            'store_orders' => 'pengelola toko',
+        ],
+
+        'artists' => [
+            '_' => 'featured artist',
+            'index' => 'daftar',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'beatmap',
+            'discussions' => 'diskusi',
+            'index' => 'daftar',
+            'show' => 'info',
+            'packs' => 'paket',
+        ],
+
+        'changelog' => [
+            '_' => 'riwayat perubahan',
+            'index' => 'daftar',
+        ],
+
         'community' => [
             '_' => 'Komunitas',
-
+            'comments' => 'komentar',
+            'contests' => '',
             'forum' => 'Forum',
+            'livestream' => 'siaran langsung',
+        ],
+
+        'error' => [
+            '_' => 'kesalahan',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'indeks',
+        ],
+
+        'home' => [
+            '_' => 'beranda',
+            'password_reset' => 'atur ulang kata sandi',
+        ],
+
+        'matches' => [
+            '_' => 'riwayat pertandingan',
+        ],
+
+        'notice' => [
+            '_' => 'pemberitahuan',
+        ],
+
+        'rankings' => [
+            '_' => 'peringkat',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'keranjang',
+            'order' => 'faktur',
+            'orders' => 'riwayat transaksi',
+            'product' => 'produk',
+            'products' => 'produk',
+        ],
+
+        'tournaments' => [
+            '_' => 'turnamen',
+            'index' => 'daftar',
+        ],
+
+        'users' => [
+            '_' => 'pemain',
+            'forum_posts' => 'postingan forum',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
@@ -44,9 +121,12 @@ return [
             '_' => 'beranda',
             'account-edit' => 'pengaturan',
             'account-verifyLink' => 'Verifikasi Selesai',
-            'friends-index' => 'teman',
-            'changelog-index' => 'riwayat perubahan',
+            'beatmapset-watches-index' => 'daftar pengamatan modding',
             'changelog-build' => 'versi',
+            'changelog-index' => 'riwayat perubahan',
+            'client_verifications-create' => 'Verifikasi akun osu!',
+            'forum-topic-watches-index' => 'langganan forum',
+            'friends-index' => 'teman',
             'getDownload' => 'unduh',
             'getIcons' => 'ikon',
             'groups-show' => 'grup',
@@ -59,6 +139,7 @@ return [
             'search' => 'cari',
             'supportTheGame' => 'dukung permainan ini',
             'team' => 'tim',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => 'profil',
@@ -78,7 +159,6 @@ return [
             'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'postingan diskusi beatmap',
             'beatmap_discussions-index' => 'laman diskusi beatmap',
-            'beatmapset-watches-index' => 'daftar pengamatan modding',
             'beatmapset_discussion_votes-index' => 'laman diskusi voting beatmap',
             'beatmapset_events-index' => 'laman peristiwa beatmap',
             'index' => 'daftar',
@@ -112,7 +192,6 @@ return [
             'tournaments' => 'turnamen',
             'tournaments-index' => 'turnamen',
             'tournaments-show' => 'info turnamen',
-            'forum-topic-watches-index' => 'langganan',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -256,10 +335,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'alamat email',
             'forgot' => "Saya lupa identitas saya",
             'password' => 'kata sandi',
             'title' => 'Masuk untuk Melanjutkan',
+            'username' => 'nama pengguna',
 
             'error' => [
                 'email' => "Nama pengguna atau alamat email tidak ada",

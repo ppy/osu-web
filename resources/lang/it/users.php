@@ -64,24 +64,52 @@ return [
         'send_message' => 'Invia messaggio',
     ],
 
+    'disabled' => [
+        'title' => 'Uh-oh! Sembra che il tuo account sia stato disattivato.',
+        'warning' => "Nel caso tu abbia violato una regola, è necessario evidenziare che si tratta di un periodo dalla durata di un mese dove non saranno considerate alcune richieste di scuse. Dopo questo periodo, sarai libero di contattarci se lo ritieni opportuno. La creazione di nuovi account dopo la disattivazione di un altro sarà punita con <strong>l'estensione del periodo di un mese</strong>. È necessario sottolineare che <strong>creando un nuovo account ogni volta, violi ancora di più le regole</strong>. Ti suggeriamo caldamente di non prendere questa strada!",
+
+        'if_mistake' => [
+            '_' => 'Se pensi che si tratti di un\'errore, sei libero di contattarci (via :email o cliccando "?" presente nell\'angolo in basso a destra di questa pagina). Siamo pienamente fiduciosi delle nostre azioni, siccome si basano su prove consolidate. Ci riserviamo il diritto di rifiutare la tua richiesta nel caso capissimo la tua intenzione di essere disonesto.',
+            'email' => 'email',
+        ],
+
+        'reasons' => [
+            'compromised' => 'Il tuo account sembra essere stato compromesso. Potrebbe essere disattivato temporaneamente mentre la sua identità viene confermata.',
+            'opening' => 'Ci sono una serie di motivi che possono causare la disabilitazione del tuo account:',
+
+            'tos' => [
+                '_' => 'Hai violato una o più delle nostre :community_rules, oppure uno o più :tos.',
+                'community_rules' => 'regole della community',
+                'tos' => 'termini di servizio',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "Il tuo account non è stato utilizzato per molto tempo.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Accedi',
-        'locked_ip' => 'il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
-        'username' => 'Nome Utente',
-        'password' => 'Password',
         'button' => 'Accedi',
         'button_posting' => 'Accesso in corso...',
+        'email_login_disabled' => 'L\'accesso con email è attualmente disabilitato. Utilizza il nome utente.',
+        'failed' => 'Login non corretto',
+        'forgot' => 'Hai dimenticato la tua password?',
+        'info' => 'Accedi per continuare',
+        'locked_ip' => 'il tuo indirizzo IP è bloccato. Aspetta qualche minuto per favore.',
+        'password' => 'Password',
+        'register' => "Non hai un account di osu!? Fanne uno nuovo",
         'remember' => 'Ricorda questo computer',
         'title' => 'Per favore accedi per procedere',
-        'failed' => 'Login non corretto',
-        'register' => "Non hai un account di osu!? Fanne uno nuovo",
-        'forgot' => 'Hai dimenticato la tua password?',
+        'username' => 'Nome Utente',
+
         'beta' => [
             'main' => 'L\'accesso alla beta è attualmente limitato ad utenti privilegiati.',
             'small' => '(i supporter lo avranno a breve)',
         ],
-
-        'here' => 'qui', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -334,11 +362,6 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => ':info Giocatore',
-            'info' => 'Informazioni',
         ],
 
         'info' => [

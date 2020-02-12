@@ -21,6 +21,6 @@
 
 {!! trans('mail.password_reset.code') !!} {{ $key }}
 
-{!! trans('email.common.report') !!}
+{!! trans('mail.common.report') !!}
 
 @include('emails._signature')

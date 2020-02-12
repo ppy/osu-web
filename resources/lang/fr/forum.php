@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Nouvelle réponse pour le sujet ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Dernier message',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Abonnements aux Sujets',
             'title_compact' => 'abonnements',
-            'title_main' => '<strong>Abonnements</strong> aux Sujets',
 
             'box' => [
                 'total' => 'Sujets suivis',

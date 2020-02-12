@@ -19,21 +19,12 @@
  */
 
 return [
-    'buttons' => [
-      'add' => 'lisää kaveri',
-      'disabled' => 'kaverit',
-      'remove' => 'poista kaveri',
-    ],
-
-    'index' => [
-        'title' => [
-            '_' => '',
-            'info' => 'Kaverit',
-        ],
-    ],
-
-    'title' => 'Kaverit',
     'title_compact' => 'kaverit',
-
     'too_many' => 'Kaverilista täynnä',
+
+    'buttons' => [
+        'add' => 'lisää kaveri',
+        'disabled' => 'kaverit',
+        'remove' => 'poista kaveri',
+    ],
 ];

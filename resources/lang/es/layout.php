@@ -20,14 +20,91 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - El ritmo está a solo un *clic* de distancia! Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
+        'page_description' => 'osu! - ¡El ritmo está a solo un *clic* de distancia! Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
     ],
 
     'header' => [
-        'community' => [
-            '_' => 'Comunidad',
+        'admin' => [
+            '_' => 'admin',
+            'beatmapset' => 'set de mapas',
+            'beatmapset_covers' => 'portadas del set de mapas',
+            'contest' => 'concurso',
+            'contests' => 'concursos',
+            'root' => 'consola',
+            'store_orders' => 'administrador de tienda',
+        ],
 
-            'forum' => 'Foro',
+        'artists' => [
+            '_' => 'artistas destacados',
+            'index' => 'lista',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'mapa',
+            'discussions' => 'discusión',
+            'index' => 'lista',
+            'show' => 'información',
+            'packs' => 'paquetes',
+        ],
+
+        'changelog' => [
+            '_' => 'cambios',
+            'index' => 'lista',
+        ],
+
+        'community' => [
+            '_' => 'comunidad',
+            'comments' => 'comentarios',
+            'contests' => '',
+            'forum' => 'foro',
+            'livestream' => 'transmisiones en vivo',
+        ],
+
+        'error' => [
+            '_' => 'error',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'índice',
+        ],
+
+        'home' => [
+            '_' => 'inicio',
+            'password_reset' => 'cambiar contraseña',
+        ],
+
+        'matches' => [
+            '_' => 'historial de partidas',
+        ],
+
+        'notice' => [
+            '_' => 'aviso',
+        ],
+
+        'rankings' => [
+            '_' => 'clasificación',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'carrito',
+            'order' => 'factura',
+            'orders' => 'historial de pedidos',
+            'product' => 'producto',
+            'products' => 'productos',
+        ],
+
+        'tournaments' => [
+            '_' => 'torneos',
+            'index' => 'listado',
+        ],
+
+        'users' => [
+            '_' => 'jugador',
+            'forum_posts' => 'publicaciones del foro',
+            'modding' => 'modding',
+            'show' => 'información',
         ],
     ],
 
@@ -42,11 +119,14 @@ return [
     'menu' => [
         'home' => [
             '_' => 'inicio',
-            'account-edit' => 'ajustes',
+            'account-edit' => 'configuración de la cuenta',
             'account-verifyLink' => 'Verificación Completada',
-            'friends-index' => 'amigos',
-            'changelog-index' => 'listado de cambios',
+            'beatmapset-watches-index' => 'lista seguimiento de modding',
             'changelog-build' => 'compilación',
+            'changelog-index' => 'listado de cambios',
+            'client_verifications-create' => 'Verificación del cliente de osu!',
+            'forum-topic-watches-index' => 'suscripciones a foros',
+            'friends-index' => 'amigos',
             'getDownload' => 'descargar',
             'getIcons' => 'iconos',
             'groups-show' => 'grupos',
@@ -55,10 +135,11 @@ return [
             'messages-index' => 'mensajes',
             'news-index' => 'novedades',
             'news-show' => 'novedades',
-            'password-reset-index' => 'reestablecer contraseña',
+            'password-reset-index' => 'restablecer contraseña',
             'search' => 'buscar',
             'supportTheGame' => 'apoya el juego',
             'team' => 'equipo',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => 'perfil',
@@ -74,26 +155,25 @@ return [
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => 'beatmaps',
+            '_' => 'mapas',
             'artists' => 'artistas destacados',
-            'beatmap_discussion_posts-index' => 'publicaciones de discusión del beatmap',
-            'beatmap_discussions-index' => 'discusiones del beatmap',
-            'beatmapset-watches-index' => 'lista de seguimiento del modding',
-            'beatmapset_discussion_votes-index' => 'votos de la discusión del beatmap',
-            'beatmapset_events-index' => 'eventos del beatmap',
+            'beatmap_discussion_posts-index' => 'publicaciones de discusión del mapa',
+            'beatmap_discussions-index' => 'discusiones del mapa',
+            'beatmapset_discussion_votes-index' => 'votos de la discusión del mapa',
+            'beatmapset_events-index' => 'eventos del set de mapas',
             'index' => 'listado',
             'packs' => 'paquetes',
             'show' => 'información',
         ],
         'beatmapsets' => [
-            '_' => 'beatmapsets',
+            '_' => 'mapas',
             'discussion' => 'modding',
         ],
         'rankings' => [
-            '_' => 'rankings',
+            '_' => 'clasificaciones',
             'index' => 'rendimiento',
             'performance' => 'rendimiento',
-            'charts' => 'charts',
+            'charts' => 'destacados',
             'score' => 'puntuación',
             'country' => 'país',
             'kudosu' => 'kudosu',
@@ -112,7 +192,6 @@ return [
             'tournaments' => 'torneos',
             'tournaments-index' => 'torneos',
             'tournaments-show' => 'información de torneos',
-            'forum-topic-watches-index' => 'suscripciones',
             'forum-topics-create' => 'foros',
             'forum-topics-show' => 'foros',
             'forum-forums-index' => 'foros',
@@ -143,9 +222,9 @@ return [
             'help' => 'Ayuda',
             'logout' => 'Cerrar sesión',
             'messages' => 'Mensajes',
-            'modding-history-discussions' => 'discusiones sobre modding',
-            'modding-history-events' => 'eventos sobre modding',
-            'modding-history-index' => 'historial de moddding del usuario',
+            'modding-history-discussions' => 'discusiones de modding del usuario',
+            'modding-history-events' => 'eventos de modding del usuario',
+            'modding-history-index' => 'historial de modding del usuario',
             'modding-history-posts' => 'publicaciones de modding del usuario',
             'modding-history-votesGiven' => 'votos dados sobre modding del usuario',
             'modding-history-votesReceived' => 'votos recibidos sobre modding del usuario',
@@ -196,7 +275,7 @@ return [
             '_' => 'General',
             'home' => 'Inicio',
             'changelog-index' => 'Lista de Cambios',
-            'beatmaps' => 'Lista de Beatmaps',
+            'beatmaps' => 'Lista de Mapas',
             'download' => 'Descargar osu!',
             'wiki' => 'Wiki',
         ],
@@ -256,10 +335,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'correo electrónico',
             'forgot' => "He olvidado mis datos",
             'password' => 'contraseña',
             'title' => 'Iniciar sesión para continuar',
+            'username' => 'nombre de usuario',
 
             'error' => [
                 'email' => "El nombre de usuario o correo electrónico no existe",
@@ -276,7 +355,7 @@ return [
 
     'popup_user' => [
         'links' => [
-            'account-edit' => 'Ajustes',
+            'account-edit' => 'Configuración',
             'friends' => 'Amigos',
             'logout' => 'Cerrar sesión',
             'profile' => 'Mi perfil',

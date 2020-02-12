@@ -23,16 +23,16 @@ return [
     'talking_in' => 'Hablando en :channel',
     'talking_with' => 'Hablando con :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'No puedes enviar mensajes a este canal en este momento. Esto puede ser debido a cualquiera de las siguientes razones:',
         'user' => 'No puedes enviar mensajes a este canal en este momento. Esto puede ser debido a cualquiera de las siguientes razones:',
         'reasons' => [
-            'blocked' => 'As sido bloqueado por el host',
-            'channel_moderated' => 'El canal a actualizado los permisos necesarios para hablar',
-            'friends_only' => 'El host solo acepta mensajes de personas en su lista de amigos',
-            'restricted' => 'Estas bloqueado',
-            'target_restricted' => 'El host esta bloqueado',
+            'blocked' => 'Usted fue bloqueado por el destinatario',
+            'channel_moderated' => 'El canal ha sido moderado',
+            'friends_only' => 'El destinatario sólo acepta mensajes de personas en su lista de amigos',
+            'restricted' => 'Actualmente estás restringido',
+            'target_restricted' => 'El destinatario está actualmente restringido',
         ],
     ],
     'input' => [
@@ -43,7 +43,7 @@ return [
     'no-conversations' => [
         'howto' => "Inicia conversaciones desde el perfil de un usuario o con un usercard popup.",
         'lazer' => 'Los canales a los que te unas por medio de <a href=":link">osu!lazer</a> aparecerán aquí.',
-        'pm_limitations' => 'Sólo las personas que usan <a href=":link">osu!lazer</a> o el nuevo sitio web recibirán PMs.',
+        'pm_limitations' => 'Sólo las personas que usan <a href=":link">osu!lazer</a> o el nuevo sitio web recibirán MPs.',
         'title' => 'Sin conversaciones',
     ],
 ];

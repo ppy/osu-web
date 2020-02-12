@@ -24,10 +24,87 @@ return [
     ],
 
     'header' => [
-        'community' => [
-            '_' => 'Сообщество',
+        'admin' => [
+            '_' => 'админ',
+            'beatmapset' => 'набор карт',
+            'beatmapset_covers' => 'обложки карт',
+            'contest' => 'конкурс',
+            'contests' => 'конкурсы',
+            'root' => 'консоль',
+            'store_orders' => 'администратор магазина',
+        ],
 
-            'forum' => 'Форум',
+        'artists' => [
+            '_' => 'featured artists',
+            'index' => 'список',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'карта',
+            'discussions' => 'обсуждение',
+            'index' => 'список',
+            'show' => 'информация',
+            'packs' => 'сборки',
+        ],
+
+        'changelog' => [
+            '_' => 'история изменений',
+            'index' => 'список',
+        ],
+
+        'community' => [
+            '_' => 'сообщество',
+            'comments' => 'комментарии',
+            'contests' => '',
+            'forum' => 'форум',
+            'livestream' => 'прямые трансляции',
+        ],
+
+        'error' => [
+            '_' => 'ошибка',
+        ],
+
+        'help' => [
+            '_' => 'вики',
+            'index' => 'заглавная',
+        ],
+
+        'home' => [
+            '_' => 'главная',
+            'password_reset' => 'восстановление пароля',
+        ],
+
+        'matches' => [
+            '_' => 'история матчей',
+        ],
+
+        'notice' => [
+            '_' => 'обратите внимание',
+        ],
+
+        'rankings' => [
+            '_' => 'рейтинг',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'корзина',
+            'order' => 'чек',
+            'orders' => 'история заказов',
+            'product' => 'товар',
+            'products' => 'товары',
+        ],
+
+        'tournaments' => [
+            '_' => 'турниры',
+            'index' => 'список',
+        ],
+
+        'users' => [
+            '_' => 'игрок',
+            'forum_posts' => 'сообщения на форуме',
+            'modding' => 'моддинг',
+            'show' => 'информация',
         ],
     ],
 
@@ -44,13 +121,16 @@ return [
             '_' => 'общее',
             'account-edit' => 'настройки',
             'account-verifyLink' => 'Проверка завершена',
-            'friends-index' => 'друзья',
-            'changelog-index' => 'список изменений',
+            'beatmapset-watches-index' => 'подписки на карты',
             'changelog-build' => 'сборка',
+            'changelog-index' => 'список изменений',
+            'client_verifications-create' => 'верификация клиента osu!',
+            'forum-topic-watches-index' => 'подписки на темы',
+            'friends-index' => 'друзья',
             'getDownload' => 'скачать игру',
             'getIcons' => 'иконки',
             'groups-show' => 'группы',
-            'index' => 'главная',
+            'index' => 'инфопанель',
             'legal-show' => 'информация',
             'messages-index' => 'сообщения',
             'news-index' => 'новости',
@@ -59,6 +139,7 @@ return [
             'search' => 'поиск',
             'supportTheGame' => 'поддержать игру',
             'team' => 'команда',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => 'профиль',
@@ -78,7 +159,6 @@ return [
             'artists' => 'osu!featured artists',
             'beatmap_discussion_posts-index' => 'публикации в обсуждений карты',
             'beatmap_discussions-index' => 'обсуждения карты',
-            'beatmapset-watches-index' => 'подписки на карты',
             'beatmapset_discussion_votes-index' => 'голоса в обсуждений карты',
             'beatmapset_events-index' => 'события карты',
             'index' => 'библиотека',
@@ -112,7 +192,6 @@ return [
             'tournaments' => 'турниры',
             'tournaments-index' => 'турниры',
             'tournaments-show' => 'информация о турнире',
-            'forum-topic-watches-index' => 'подписки на темы',
             'forum-topics-create' => 'форумы',
             'forum-topics-show' => 'форумы',
             'forum-forums-index' => 'форумы',
@@ -256,10 +335,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'почта или никнейм',
             'forgot' => "я не помню, помогите",
             'password' => 'пароль',
             'title' => 'Войдите для продолжения',
+            'username' => 'имя пользователя',
 
             'error' => [
                 'email' => "Имя пользователя или электронная почта не существуют",

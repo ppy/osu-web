@@ -23,7 +23,6 @@ namespace App\Libraries;
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Models\User;
-use App\Models\UserGroup;
 use Carbon\Carbon;
 use Datadog;
 use Exception;
@@ -71,7 +70,7 @@ class UserRegistration
                     throw new ValidationException($this->user->validationErrors());
                 }
 
-                $groupAttrs = ['group_id' => UserGroup::GROUPS['default']];
+                $groupAttrs = ['group_id' => app('groups')->byIdentifier('default')->getKey()];
                 if (!$this->user->userGroups()->create($groupAttrs)) {
                     // mystery failure
                     throw new ModelNotSavedException('failed saving model');

@@ -15,29 +15,58 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $links = [
+        [
+            'title' => trans('layout.header.tournaments.index'),
+            'url' => route('tournaments.index'),
+        ],
+        [
+            'title' => $tournament->name,
+            'url' => route('tournaments.show', $tournament),
+        ],
+    ];
+@endphp
+
 @extends('master', [
-    'currentSection' => 'community',
     'currentAction' => 'tournaments',
+    'currentSection' => 'community',
     'title' => $tournament->name,
 ])
 
 @section('content')
     @include('objects.css-override', ['mapping' => ['.tournament__banner' => $tournament->header_banner]])
 
-    <div class="osu-layout__row">
-        <div class="osu-page-header-v2 osu-page-header-v2--tournaments">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{$tournament->name}}</div>
-            <div class="osu-page-header-v2__subtitle">{{
-                trans('tournament.tournament_period', [
-                    'start' => i18n_date($tournament->start_date),
-                    'end' => i18n_date($tournament->end_date)
-                ])
-            }}</div>
+    @include('layout._page_header_v4', ['params' => [
+        'links' => $links,
+        'linksBreadcrumb' => true,
+        'section' => trans('layout.header.tournaments._'),
+        'subSection' => $tournament->name,
+        'theme' => 'tournaments',
+    ]])
+
+    <div class="osu-page osu-page--info-bar">
+        <div class="grid-items">
+            <div class="counter-box counter-box--info">
+                <div class="counter-box__title">
+                    {{ trans('tournament.show.period.start') }}
+                </div>
+                <div class="counter-box__count">
+                    {{ i18n_date($tournament->start_date) }}
+                </div>
+            </div>
+            <div class="counter-box counter-box--info">
+                <div class="counter-box__title">
+                    {{ trans('tournament.show.period.end') }}
+                </div>
+                <div class="counter-box__count">
+                    {{ i18n_date($tournament->end_date) }}
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="osu-page osu-page--tournament">
+    <div class="osu-page">
         <div class="tournament">
             <div class='tournament__banner'></div>
 

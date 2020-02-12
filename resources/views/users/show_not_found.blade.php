@@ -21,6 +21,10 @@
 ])
 
 @section('content')
+    @include('layout._page_header_v4', ['params' => [
+        'section' => trans('layout.header.users._'),
+        'subSection' => trans('layout.header.users.show'),
+    ]])
     <div class="osu-page osu-page--generic">
         <h1>{{ trans('users.show.not_found.title') }}</h1>
 

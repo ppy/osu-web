@@ -64,24 +64,52 @@ return [
         'send_message' => 'trimite mesaj',
     ],
 
+    'disabled' => [
+        'title' => 'Uh-oh! Se pare că contul dumneavoastră a fost dezactivat.',
+        'warning' => "În cazul în care ați încălcat o regulă, vă rugăm să notați că în general este o perioadă de răcire de o lună în care vom considera orice cerere de amnesty. După această perioadă, simtete liber să ne contactezi dacă o găsești necesar. Vă rugăm să notați că după creearea unui cont nou ați avut unul dezactivat va rezulta într-un <strong>extesie în acestă răcire de o lună</strong>. Vă rugăm să notați și că pentru <strong>orice cont creat, încalci regulile în continuare</strong>. Vă recomandăm puternic să nu faceți asta!",
+
+        'if_mistake' => [
+            '_' => 'Dacă credeți că a fost o greșeală, ești bine venit să ne contactezi (prin :email sau să dați click pe "?" din colțul-drept-jos de pe această pagină). Vă rugăm notați că suntem foarte convinși cu acțiunile noastre, care sunt bazate pe date concrete. Rezervăm dreptul să vă respingem dacă simțim că sunteți dezonest.',
+            'email' => 'email',
+        ],
+
+        'reasons' => [
+            'compromised' => 'Contul dumneavoastră a fost compromis. Ar putea fi dezactivat temporar în timp ce identitatea este confirmată.',
+            'opening' => 'Sunt un număr de motive care pot rezulta în contul dumneavoastră să fie dezactivat:',
+
+            'tos' => [
+                '_' => 'Ați încălcat una sau mai multe dintre :community_rules sau :tos.',
+                'community_rules' => 'reguli comunitate',
+                'tos' => 'termeni de utilizare',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "Contul dumneavoastră nu a fost folosit într-un timp îndelungat.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Autentifică-te',
-        'locked_ip' => 'adresa ta IP este blocată. Te rugăm să aștepți câteva minute.',
-        'username' => 'Nume de utilizator',
-        'password' => 'Parolă',
         'button' => 'Autentifică-te',
         'button_posting' => 'Se conectează...',
+        'email_login_disabled' => 'Înregistrarea cu email este momentan dezactivată. Vă rugăm folosiți numele de utilizator în schimb.',
+        'failed' => 'Conectare incorectă',
+        'forgot' => 'Ți-ai uitat parola?',
+        'info' => 'Pentru a continua, vă rugam să vă autentificaţi',
+        'locked_ip' => 'adresa ta IP este blocată. Te rugăm să aștepți câteva minute.',
+        'password' => 'Parolă',
+        'register' => "Nu ai un cont osu!? Fă-ți unul nou",
         'remember' => 'Ține-mă minte pe acest computer',
         'title' => 'Te rog autentifică-te pentru a continua',
-        'failed' => 'Conectare incorectă',
-        'register' => "Nu ai un cont osu!? Fă-ți unul nou",
-        'forgot' => 'Ți-ai uitat parola?',
+        'username' => 'Nume de utilizator',
+
         'beta' => [
             'main' => 'Accesul beta este momentan limitat la utilizatorii autorizați.',
             'small' => '(suporterii osu! vor primi acces curând)',
         ],
-
-        'here' => 'aici', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -129,7 +157,7 @@ return [
         'is_supporter' => 'suporter osu!',
         'joined_at' => 'Încris :date',
         'lastvisit' => 'Văzut ultima dată :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Momentat online',
         'missingtext' => 'S-ar putea să fi făcut o greșeală de scriere! (sau este posibil ca utilizatorul să fi fost restricționat)',
         'origin_country' => 'Din :country',
         'page_description' => 'osu! - Tot ce ai dorit vreodată să știi despre :username!',
@@ -151,8 +179,8 @@ return [
                     'unsupported_format' => 'Format nesuportat.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Încărcare disponibilă pentru :link doar',
+                        'link' => 'osu!suporteri',
                     ],
                 ],
             ],
@@ -164,7 +192,7 @@ return [
         ],
 
         'extra' => [
-            'none' => '',
+            'none' => 'niciunul',
             'unranked' => 'Nu există jocuri recente',
 
             'achievements' => [
@@ -178,7 +206,7 @@ return [
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps favorite',
+                    'title' => 'Beatmap-uri favorite',
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps îngropate',
@@ -194,14 +222,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Discuții',
+                'title_longer' => 'Discuții recente',
+                'show_more' => 'vedeți mai multe discuții',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Evenimente',
+                'title_longer' => 'Evenimente recente',
+                'show_more' => 'vedeți mai multe evenimente',
             ],
             'historical' => [
                 'empty' => 'Nicio înregistrare de performanță. :(',
@@ -271,8 +299,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Bazat pe cât de multă contribuție acest utilizator a făcut la moderarea beatmap-ului. Vezi :link pentru mai multe informații.',
+                    'link' => 'această pagină',
                 ],
             ],
             'me' => [
@@ -284,9 +312,9 @@ return [
                 'title' => 'Medalii',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Postări',
+                'title_longer' => 'Postări recente',
+                'show_more' => 'vedeți mai multe postări',
             ],
             'recent_activity' => [
                 'title' => 'Recent',
@@ -306,11 +334,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Voturi Date (ultimele 3 luni)',
+                'received' => 'Voturi Primite (ultimele 3 luni)',
+                'title' => 'Voturi',
+                'title_longer' => 'Voturi recente',
+                'vote_count' => ':count_delimited vot|:count_delimited voturi',
             ],
             'account_standing' => [
                 'title' => 'Starea contului',
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => ':info jucător',
-            'info' => 'Detalii',
         ],
 
         'info' => [
@@ -364,8 +387,8 @@ return [
             'placeholder' => 'Introdu conținutul paginii aici',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Trebuie să fii un :link să deblochezi acest feature.',
+                'link' => 'osu!ajutător',
             ],
         ],
         'post_count' => [
@@ -392,15 +415,15 @@ return [
             'total_hits' => 'Număr de clicuri',
             'total_score' => 'Scor total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Beatmap-uri Clasate & Aprobate',
+            'loved_beatmapset_count' => 'Beatmap-uri iubite',
+            'unranked_beatmapset_count' => 'Beatmap-uri în așteptare',
+            'graveyard_beatmapset_count' => 'Beatmap-uri Îngropate',
         ],
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Tot',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -412,7 +435,7 @@ return [
     ],
 
     'view_mode' => [
-        'card' => '',
-        'list' => '',
+        'card' => 'Vedere card',
+        'list' => 'Vedere listă',
     ],
 ];

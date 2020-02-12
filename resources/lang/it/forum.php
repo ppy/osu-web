@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Nuova risposta dal topic ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Post più recente',
 
@@ -81,7 +77,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited post|:count_delimited post',
-            'topic_starter' => 'Starter del Topic',
+            'topic_starter' => 'Creatore del Topic',
         ],
     ],
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Iscrizioni Forum',
             'title_compact' => 'iscrizioni forum',
-            'title_main' => '<strong>Iscrizioni</strong> Forum',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',

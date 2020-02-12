@@ -25,9 +25,10 @@ return [
 
     'cart' => [
         'checkout' => 'Afrekenen',
+        'info' => ':count_delimited item in winkelwagen ($:subtotal)##:count_delimited items in winkelwagen ($:subtotal)',
         'more_goodies' => 'Ik wil meer goodies bekijken voordat ik de bestelling voltooi',
         'shipping_fees' => 'verzendkosten',
-        'title' => 'Winkewagen',
+        'title' => 'Winkelwagen',
         'total' => 'totaal',
 
         'errors_no_checkout' => [
@@ -76,12 +77,6 @@ return [
                     'link_text' => 'klik hier om uw afrekenen te hervatten',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'We hebben uw osu!store bestelling ontvangen!',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => 'Je moet :link zijn om je naam te veranderen!',
             'link_text' => 'ingelogd',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

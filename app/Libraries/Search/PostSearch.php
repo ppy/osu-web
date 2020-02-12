@@ -67,7 +67,8 @@ class PostSearch extends Search
     {
         $query = (new BoolQuery())
             ->filter(['term' => ['poster_id' => $this->params->userId]])
-            ->filter(['term' => ['type' => 'posts']]);
+            ->filter(['term' => ['type' => 'posts']])
+            ->mustNot(['term' => ['topic_id' => 0]]);
 
         if (isset($this->params->queryString)) {
             $query->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
@@ -83,7 +84,7 @@ class PostSearch extends Search
         return $this->response();
     }
 
-    public function response() : SearchResponse
+    public function response(): SearchResponse
     {
         return parent::response()->recordType(Post::class)->idField('post_id');
     }
@@ -93,7 +94,7 @@ class PostSearch extends Search
      *
      * @return Builder
      */
-    public function users() : Builder
+    public function users(): Builder
     {
         $ids = $this->response()->ids('poster_id');
 

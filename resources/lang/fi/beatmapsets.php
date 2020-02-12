@@ -76,6 +76,11 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
             'report' => [
                 '_' => '',
                 'button' => '',
@@ -145,6 +150,16 @@ return [
             'rating-spread' => 'Arvioiden jakauma',
             'nominations' => 'Suositukset',
             'playcount' => 'Pelikertojen määrä',
+        ],
+
+        'status' => [
+            'ranked' => '',
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'wip' => '',
+            'pending' => '',
+            'graveyard' => '',
         ],
     ],
 ];

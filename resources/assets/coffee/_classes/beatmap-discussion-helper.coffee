@@ -111,7 +111,7 @@ class @BeatmapDiscussionHelper
   @linkTimestamp: (text, classNames = []) =>
     text
       .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_match, text, m, s, ms, range) =>
-        osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
+        osu.link(_exported.OsuUrlHelper.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
 
 
   @messageType:

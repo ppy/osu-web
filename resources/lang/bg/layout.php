@@ -24,10 +24,87 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => '',
-
+            'comments' => '',
+            'contests' => '',
             'forum' => '',
+            'livestream' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +121,12 @@ return [
             '_' => 'начало',
             'account-edit' => 'настройки',
             'account-verifyLink' => '',
-            'friends-index' => 'приятели',
-            'changelog-index' => 'списък на промените',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'версия',
+            'changelog-index' => 'списък на промените',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'приятели',
             'getDownload' => 'изтегли',
             'getIcons' => 'икони',
             'groups-show' => 'групи',
@@ -59,6 +139,7 @@ return [
             'search' => 'търсене',
             'supportTheGame' => 'подкрепи играта',
             'team' => 'отбор',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => '',
@@ -78,7 +159,6 @@ return [
             'artists' => 'препоръчани изпълнители',
             'beatmap_discussion_posts-index' => 'публикации за обсъждане на бийтмапове',
             'beatmap_discussions-index' => 'бийтмап дискусии',
-            'beatmapset-watches-index' => 'modding списък за наблюдение',
             'beatmapset_discussion_votes-index' => 'гласове от бийтмап дискусии',
             'beatmapset_events-index' => 'бийтмап сет събития',
             'index' => 'списък',
@@ -112,7 +192,6 @@ return [
             'tournaments' => 'турнири',
             'tournaments-index' => 'турнири',
             'tournaments-show' => 'информация за турнири',
-            'forum-topic-watches-index' => 'абонаменти',
             'forum-topics-create' => 'форуми',
             'forum-topics-show' => 'форуми',
             'forum-forums-index' => 'форуми',
@@ -256,10 +335,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'имейл адрес',
             'forgot' => "Забравих си данните",
             'password' => 'парола',
             'title' => 'Влезте, за да продължите',
+            'username' => '',
 
             'error' => [
                 'email' => "Потребителското име или имейл адресът не съществуват",

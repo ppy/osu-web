@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => '重置密码',
-
     'button' => [
         'cancel' => '取消',
         'resend' => '重新发送确认邮件',
         'set' => '设置密码',
         'start' => '开始',
-    ],
-
-    'email' => [
-        'subject' => 'osu! 账户找回',
     ],
 
     'error' => [

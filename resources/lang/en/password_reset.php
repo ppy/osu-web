@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Reset Password',
-
     'button' => [
         'cancel' => 'Cancel',
         'resend' => 'Resend verification email',

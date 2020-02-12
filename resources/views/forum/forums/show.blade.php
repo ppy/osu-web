@@ -17,7 +17,6 @@
 --}}
 @extends('master', [
     'legacyFont' => false,
-    'legacyNav' => false,
     'pageDescription' => $forum->toMetaDescription(),
     'searchParams' => [
         'forum_id' => $forum->getKey(),
@@ -29,7 +28,7 @@
 @section('content')
     @include('forum._header', [
         'background' => $cover['fileUrl'] ?? null,
-        'modifiers' => ['forum']
+        'forum' => $forum,
     ])
 
     <div class="osu-page osu-page--forum t-forum-{{ $forum->categorySlug() }}">

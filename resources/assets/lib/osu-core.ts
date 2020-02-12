@@ -22,7 +22,6 @@ import ChatOrchestrator from 'chat/chat-orchestrator';
 import ChatWorker from 'chat/chat-worker';
 import RootDataStore from 'stores/root-data-store';
 import UserLoginObserver from 'user-login-observer';
-import Dispatcher from './dispatcher';
 import WindowFocusObserver from './window-focus-observer';
 
 declare global {
@@ -37,7 +36,6 @@ export default class OsuCore {
   chatOrchestrator: ChatOrchestrator;
   chatWorker: ChatWorker;
   dataStore: RootDataStore;
-  dispatcher: Dispatcher;
   userLoginObserver: UserLoginObserver;
   window: Window;
   windowFocusObserver: WindowFocusObserver;
@@ -46,12 +44,11 @@ export default class OsuCore {
     this.window = window;
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
-    this.dispatcher = new Dispatcher();
-    this.dataStore = new RootDataStore(this.dispatcher);
-    this.chatWorker = new ChatWorker(this.dispatcher, this.dataStore);
-    this.chatOrchestrator = new ChatOrchestrator(this.dispatcher, this.dataStore);
-    this.userLoginObserver = new UserLoginObserver(this.window, this.dispatcher);
-    this.windowFocusObserver = new WindowFocusObserver(this.window, this.dispatcher);
+    this.dataStore = new RootDataStore();
+    this.chatWorker = new ChatWorker(this.dataStore);
+    this.chatOrchestrator = new ChatOrchestrator(this.dataStore);
+    this.userLoginObserver = new UserLoginObserver(this.window);
+    this.windowFocusObserver = new WindowFocusObserver(this.window);
 
     this.beatmapsetSearchController = new BeatmapsetSearchController(this.dataStore.beatmapsetSearch);
 

@@ -44,11 +44,6 @@ return [
             '_stream_to' => ':streamを:toへ変更',
             '_to' => ':toへ変更',
         ],
-
-        'title' => [
-            '_' => ':infoの更新履歴',
-            'info' => '一覧',
-        ],
     ],
 
     'support' => [

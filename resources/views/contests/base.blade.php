@@ -15,9 +15,23 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $links = [
+        [
+            'url' => route('contests.index'),
+            'title' => trans('contest.index.nav_title'),
+        ],
+        [
+            'url' => $contestMeta->url(),
+            'title' => $contestMeta->name,
+        ],
+    ];
+@endphp
+
 @extends('master', [
     'currentSection' => 'community',
     'currentAction' => 'contests',
+    'legacyFont' => false,
     'title' => "Contest: {$contestMeta->name}",
     'pageDescription' => strip_tags(markdown($contestMeta->currentDescription())),
     'canonicalUrl' => $contestMeta->url(),
@@ -29,18 +43,31 @@
 ])
 
 @section('content')
-    @include('objects.css-override', ['mapping' => [
-        '.osu-page-header-v2--contests' => $contestMeta->header_url,
+    <style>
+        :root { {{ css_var_2x('--header-bg', $contestMeta->header_url) }} }
+    </style>
+
+    @include('layout._page_header_v4', ['params' => [
+        'links' => $links,
+        'linksBreadcrumb' => true,
+        'section' => trans('layout.header.community._'),
+        'subSection' => trans('layout.header.community.contests'),
+        'theme' => 'contests',
     ]])
 
     <div class="osu-page">
-        <div class="osu-page-header-v2 osu-page-header-v2--contests">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{$contestMeta->name}}</div>
+        <div class="page-image">
+            {!! img2x([
+                'src' => $contestMeta->header_url,
+                'class' => 'page-image__image',
+            ]) !!}
+
+            <h1 class="page-image__title">
+                {{ $contestMeta->name }}
+            </h1>
         </div>
-    </div>
-    <div class="osu-page osu-page--contest">
-        <div class='contest'>
+
+        <div class="contest">
             @yield('contest-content')
         </div>
     </div>

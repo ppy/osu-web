@@ -27,7 +27,7 @@
   flex-wrap: wrap;
   margin: 0 -@_gutter-x;
   padding: (10px - @_gutter-y) 0;
-  font-size: @font-size--small;
+  font-size: @font-size--small-2;
 
   @media @desktop {
     font-size: @font-size--title-small;
@@ -109,10 +109,24 @@
       }
 
       &--active {
+        color: @osu-colour-c1;
+
+        .link-hover({
+          color: @osu-colour-c1;
+        });
+
         &::before {
           transform: scaleY(1);
         }
       }
     }
   }
+
+  &__text {
+    @media @desktop {
+      padding-top: @_gutter-y-desktop;
+      padding-bottom: @_gutter-y-desktop;
+    }
+  }
+
 }

@@ -34,6 +34,10 @@ export function categoryGroupKey(item: Notification) {
   return `${item.category}:${item.objectId}`;
 }
 
+export function categoryFromName(name: string) {
+  return nameToCategory[name] ?? name;
+}
+
 export const nameToCategory: CategoryMap = {
   beatmapset_discussion_lock: 'beatmapset_discussion',
   beatmapset_discussion_post_new: 'beatmapset_discussion',
