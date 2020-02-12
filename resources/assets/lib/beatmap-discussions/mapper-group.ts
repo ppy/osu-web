@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,18 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Admin;
+import GroupJSON from 'interfaces/group-json';
 
-use App\Models\Log;
+const mapperGroup: GroupJSON = {
+  colour: 'hsl(200, 60%, 50%)',
+  name: 'Beatmap Mapper',
+  short_name: 'MAP',
+};
 
-class LogsController extends Controller
-{
-    protected $actionPrefix = 'logs-';
-
-    public function index()
-    {
-        return ext_view('admin.logs.index', [
-            'logs' => Log::orderBy('log_id', 'desc')->limit(10),
-        ]);
-    }
-}
+export default mapperGroup;

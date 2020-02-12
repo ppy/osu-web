@@ -240,6 +240,20 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkBeatmapsetDiscussionReviewStore(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
      * @param BeatmapDiscussion $discussion
      * @return string
      */

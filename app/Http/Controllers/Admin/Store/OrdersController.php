@@ -37,7 +37,7 @@ class OrdersController extends Controller
             });
         }
 
-        return view('admin.store.orders.show', compact('orders', 'ordersItemsQuantities'));
+        return ext_view('admin.store.orders.show', compact('orders', 'ordersItemsQuantities'));
     }
 
     public function ship()

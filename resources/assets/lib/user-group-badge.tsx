@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,18 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Admin;
+import GroupJSON from 'interfaces/group-json';
+import * as React from 'react';
 
-use App\Models\Log;
+interface Props {
+  badge?: GroupJSON;
+}
 
-class LogsController extends Controller
-{
-    protected $actionPrefix = 'logs-';
+export default function UserGroupBadge({badge}: Props) {
+  if (badge == null) {
+    return null;
+  }
 
-    public function index()
-    {
-        return ext_view('admin.logs.index', [
-            'logs' => Log::orderBy('log_id', 'desc')->limit(10),
-        ]);
-    }
+  const style = osu.groupColour(badge);
+
+  return (
+    <div
+      className='user-group-badge'
+      data-label={badge.short_name}
+      style={style}
+      title={badge.name}
+    />
+  );
 }

@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,18 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Admin;
-
-use App\Models\Log;
-
-class LogsController extends Controller
-{
-    protected $actionPrefix = 'logs-';
-
-    public function index()
-    {
-        return ext_view('admin.logs.index', [
-            'logs' => Log::orderBy('log_id', 'desc')->limit(10),
-        ]);
-    }
+export default interface GroupJSON {
+  colour: string;
+  name: string;
+  short_name: string;
 }

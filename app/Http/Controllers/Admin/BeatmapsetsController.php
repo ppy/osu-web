@@ -34,7 +34,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        return view('admin.beatmapsets.cover', compact('beatmapset'));
+        return ext_view('admin.beatmapsets.cover', compact('beatmapset'));
     }
 
     public function removeCovers($id)
@@ -61,7 +61,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        return view('admin.beatmapsets.show', compact('beatmapset'));
+        return ext_view('admin.beatmapsets.show', compact('beatmapset'));
     }
 
     public function update($id)

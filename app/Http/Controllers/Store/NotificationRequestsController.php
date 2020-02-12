@@ -54,7 +54,7 @@ class NotificationRequestsController extends Controller
             }
         }
 
-        return js_view('layout.ujs-reload');
+        return ext_view('layout.ujs-reload', [], 'js');
     }
 
     public function destroy($productId)
@@ -64,6 +64,6 @@ class NotificationRequestsController extends Controller
             ->where('user_id', '=', Auth::user()->user_id)
             ->delete();
 
-        return js_view('layout.ujs-reload');
+        return ext_view('layout.ujs-reload', [], 'js');
     }
 }
