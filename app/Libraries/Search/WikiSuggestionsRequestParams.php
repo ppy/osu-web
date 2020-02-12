@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,22 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussions-user-filter {
-  .select-options(beatmap-discussions-user-filter);
+namespace App\Libraries\Search;
 
-  @media @desktop {
-    width: 200px;
-  }
+class WikiSuggestionsRequestParams extends WikiSuggestionsParams
+{
+    public function __construct(array $request)
+    {
+        parent::__construct();
 
-  &__decoration {
-    color: #fff;
-  }
-
-  &__item {
-    color: var(--group-colour, @osu-colour-c1);
-
-    .link-hover({
-      color: var(--group-colour, @osu-colour-c1);
-    });
-  }
+        $this->queryString = trim($request['query'] ?? null);
+    }
 }

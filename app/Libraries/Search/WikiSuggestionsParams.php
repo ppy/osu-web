@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,22 +18,41 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussions-user-filter {
-  .select-options(beatmap-discussions-user-filter);
+namespace App\Libraries\Search;
 
-  @media @desktop {
-    width: 200px;
-  }
+use App\Libraries\Elasticsearch\SearchParams;
 
-  &__decoration {
-    color: #fff;
-  }
+class WikiSuggestionsParams extends SearchParams
+{
+    /** @var string|null */
+    public $queryString = null;
 
-  &__item {
-    color: var(--group-colour, @osu-colour-c1);
+    public $size = 10;
 
-    .link-hover({
-      color: var(--group-colour, @osu-colour-c1);
-    });
-  }
+    /**
+     * {@inheritdoc}
+     */
+    public function getCacheKey(): string
+    {
+        $vars = get_object_vars($this);
+        ksort($vars);
+
+        return 'wiki-suggestions:'.json_encode($vars);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isCacheable(): bool
+    {
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function shouldReturnEmptyResponse(): bool
+    {
+        return $this->isQueryStringTooShort();
+    }
 }

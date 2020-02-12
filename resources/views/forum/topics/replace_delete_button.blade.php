@@ -38,10 +38,10 @@ Timeout.set(0, function () {
         @foreach (['circle', 'menu'] as $type)
             $toggle = $el.find(".js-post-delete-toggle--{{ $type }}");
 
-            $toggle.replaceWith({!! json_encode(render_to_string('forum.posts._button_delete', [
+            $toggle.replaceWith({!! json_encode(view('forum.posts._button_delete', [
                 'post' => $post,
                 'type' => $type,
-            ])) !!});
+            ])->render()) !!});
         @endforeach
         osu.pageChange();
     @endif
