@@ -60,7 +60,7 @@ class AuthorizationController extends PassportAuthorizationController
                 $cancelUrl .= "{$separator}error=access_denied";
             }
 
-            return view('sessions.create', [
+            return ext_view('sessions.create', [
                 'cancelUrl' => $cancelUrl,
                 'currentAction' => 'oauth_login',
             ]);
