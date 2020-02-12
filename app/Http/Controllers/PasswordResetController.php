@@ -52,7 +52,7 @@ class PasswordResetController extends Controller
     {
         $isStarted = Session::exists('password_reset');
 
-        return view('password_reset.index', compact('isStarted'));
+        return ext_view('password_reset.index', compact('isStarted'));
     }
 
     public function create()
