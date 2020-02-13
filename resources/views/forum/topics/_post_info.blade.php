@@ -40,6 +40,12 @@
             data-user-id="{{$user->user_id}}"
             href="{{ route("users.show", $user) }}"
         >{{ $user->username }}</a>
+
+        @if ($user->title())
+            <div class="forum-post-info__row forum-post-info__row--title">
+                {{ $user->title() }}
+            </div>
+        @endif
     @else
         <span class="forum-post-info__row forum-post-info__row--username">
             {{ $user->username }}
