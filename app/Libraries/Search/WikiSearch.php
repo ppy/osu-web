@@ -24,6 +24,7 @@ use App;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\RecordSearch;
+use App\Models\Wiki\Page;
 use App\Models\Wiki\PageSearchResult;
 
 class WikiSearch extends RecordSearch
@@ -31,7 +32,7 @@ class WikiSearch extends RecordSearch
     public function __construct(?WikiSearchParams $params = null)
     {
         parent::__construct(
-            config('osu.elasticsearch.index.wiki_pages'),
+            Page::esIndexName(),
             $params ?? new WikiSearchParams,
             Page::class
         );
@@ -53,7 +54,7 @@ class WikiSearch extends RecordSearch
         $pages = [];
 
         foreach ($response as $hit) {
-            $page = new PageSearchResult($hit);
+            $page = PageSearchResult::fromEs($hit);
 
             $pages[] = $page;
         }
@@ -113,7 +114,10 @@ class WikiSearch extends RecordSearch
             }
         }
 
+        $visibilityQuery = ['exists' => ['field' => 'page']];
+
         return (new BoolQuery)
+            ->must($visibilityQuery)
             ->must($langQuery)
             ->must($matchQuery);
     }

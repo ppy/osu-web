@@ -52,17 +52,15 @@ class AuthorizationController extends PassportAuthorizationController
         view()->share('currentSection', 'user');
 
         if (!auth()->check()) {
-            $cancelUrl = request('redirect_uri');
+            $cancelUrl = presence(request('redirect_uri'));
 
-            if (present($cancelUrl)) {
+            if ($cancelUrl !== null) {
                 // Breaks when url contains hash ("#").
                 $separator = strpos($cancelUrl, '?') === false ? '?' : '&';
                 $cancelUrl .= "{$separator}error=access_denied";
-            } else {
-                $cancelUrl = route('home');
             }
 
-            return view('passport::login', [
+            return ext_view('sessions.create', [
                 'cancelUrl' => $cancelUrl,
                 'currentAction' => 'oauth_login',
             ]);
@@ -73,13 +71,18 @@ class AuthorizationController extends PassportAuthorizationController
         return parent::authorize($this->normalizeRequestScopes($psrRequest), $request, $clients, $tokens);
     }
 
+    public function getSection()
+    {
+        return 'user';
+    }
+
     /**
      * Normalizes the authorization request's scopes.
      *
      * @param ServerRequestInterface $request
      * @return ServerRequestInterface
      */
-    private function normalizeRequestScopes(ServerRequestInterface $request) : ServerRequestInterface
+    private function normalizeRequestScopes(ServerRequestInterface $request): ServerRequestInterface
     {
         $params = $request->getQueryParams();
         $scopes = $this->normalizeScopes(
@@ -96,7 +99,7 @@ class AuthorizationController extends PassportAuthorizationController
      * @param array $scopes
      * @return array
      */
-    private function normalizeScopes(array $scopes) : array
+    private function normalizeScopes(array $scopes): array
     {
         if (!in_array('identify', $scopes, true)) {
             $scopes[] = 'identify';

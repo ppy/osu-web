@@ -30,17 +30,16 @@ class NewsController extends Controller
 
     public function index()
     {
-        $isAtom = request('format') === 'atom';
-        $limit = $isAtom ? 20 : 12;
+        $format = request('format');
+        $isFeed = $format === 'atom' || $format === 'rss';
+        $limit = $isFeed ? 20 : 12;
 
         $search = NewsPost::search(array_merge(['limit' => $limit], request()->all()));
 
         $posts = $search['query']->get();
 
-        if ($isAtom) {
-            return response()
-                ->view('news.index-atom', compact('posts'))
-                ->header('Content-Type', 'application/atom+xml');
+        if ($isFeed) {
+            return ext_view("news.index-{$format}", compact('posts'), $format);
         }
 
         $postsJson = [
@@ -56,7 +55,7 @@ class NewsController extends Controller
                 'title' => 'osu!news Feed',
             ];
 
-            return view('news.index', compact('postsJson', 'atom'));
+            return ext_view('news.index', compact('postsJson', 'atom'));
         }
     }
 
@@ -68,13 +67,13 @@ class NewsController extends Controller
             return ujs_redirect(route('news.show', $post->slug));
         }
 
-        $post = NewsPost::lookupAndSync($slug);
+        $post = NewsPost::lookup($slug)->sync();
 
-        if ($post === null) {
+        if (!$post->isVisible()) {
             abort(404);
         }
 
-        return view('news.show', [
+        return ext_view('news.show', [
             'commentBundle' => CommentBundle::forEmbed($post),
             'post' => $post,
             'postJson' => json_item($post, 'NewsPost', ['content', 'navigation']),

@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type Rangering',
+    'country' => [
+        'filter' => 'filtreret efter land',
+    ],
 
     'type' => [
         'performance' => 'Præstation',
@@ -41,7 +43,7 @@ return [
         'country' => 'Land',
         'play_count' => 'Antal Gange Spillet',
         'performance' => 'Præstation',
-        'total_score' => 'Samlet Score',
+        'total_score' => 'Total Score',
         'ranked_score' => 'Rangeret Score',
         'average_score' => 'Gns. Score',
         'average_performance' => 'Gns. Præs.',

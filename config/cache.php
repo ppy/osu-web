@@ -37,7 +37,7 @@ return [
             'path' => storage_path().'/framework/cache',
         ],
 
-         'memcached' => [
+        'memcached' => [
             'driver' => 'memcached',
             'persistent_id' => env('MEMCACHED_PERSISTENT_ID'),
             'sasl' => [

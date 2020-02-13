@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Paramètres de <strong>Compte</strong>',
         'title_compact' => 'paramètres',
         'username' => 'nom d\'utilisateur',
 
@@ -67,7 +66,13 @@ return [
     'notifications' => [
         'title' => 'Notifications',
         'topic_auto_subscribe' => 'activer automatiquement les notifications sur les nouveaux sujets de forum que vous créez',
-        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_discussion_qualified_problem' => 'recevoir des notifications pour un nouveau problème sur les beatmaps qualifiées des modes suivants',
+
+        'mail' => [
+            '_' => 'recevoir des notifications par mail pour',
+            'beatmapset:modding' => 'modding de beatmap',
+            'forum_topic_reply' => 'réponse à un sujet',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Confirmation du changement d\'email d\'osu!',
         'update' => 'mettre à jour',
     ],
 
     'update_password' => [
-        'email_subject' => 'Confirmation du changement de mot de passe d\'osu!',
         'update' => 'mettre à jour',
     ],
 

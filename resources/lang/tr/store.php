@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Ödeme',
+        'info' => '',
         'more_goodies' => 'Ödememi yapmadan önce başka eşyalara göz atmak istiyorum',
         'shipping_fees' => 'kargo ücretleri',
         'title' => 'Alışveriş Sepeti',
@@ -79,18 +80,12 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'osu!store siparişinizi aldık!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => 'Sipariş verme tarihi :date',
 
         'invoice' => 'Faturayı Görüntüle',
         'no_orders' => 'Görüntülenecek sipariş yok.',
-        'resume' => '',
+        'resume' => 'Sepete Dön',
 
         'item' => [
             'display_name' => [
@@ -151,5 +146,9 @@ return [
             '_' => 'İsmini değiştirmek için :link olman gerekiyor!',
             'link_text' => 'giriş yapmış',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

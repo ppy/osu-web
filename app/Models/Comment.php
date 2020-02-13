@@ -154,6 +154,11 @@ class Comment extends Model
         return $this->validationErrors()->isEmpty();
     }
 
+    public function url()
+    {
+        return route('comments.show', ['comment' => $this->getKey()]);
+    }
+
     public function validationErrorsTranslationPrefix()
     {
         return 'comment';
@@ -211,7 +216,7 @@ class Comment extends Model
         return $this->update(['deleted_at' => null]);
     }
 
-    protected function newReportableExtraParams() : array
+    protected function newReportableExtraParams(): array
     {
         return [
             'reason' => 'Spam',

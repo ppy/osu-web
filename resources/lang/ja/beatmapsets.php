@@ -76,11 +76,16 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => 'このビートマップで問題が見つかった場合は、Disqualifyにしてください。:link',
+                'button_title' => 'Qualifiedビートマップを無効',
+            ],
+
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => 'ビートマップに問題を見つけた場合、:link からチームに報告してください。',
+                'button' => '問題を報告する',
+                'button_title' => 'Qualifiedビートマップの問題を報告。',
+                'link' => 'ここ',
             ],
         ],
 
@@ -145,6 +150,16 @@ return [
             'rating-spread' => '評価分布',
             'nominations' => 'ノミネーション',
             'playcount' => 'プレイ数',
+        ],
+
+        'status' => [
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
+            'qualified' => 'Qualified',
+            'wip' => 'WIP',
+            'pending' => 'Pending',
+            'graveyard' => 'Graveyard',
         ],
     ],
 ];

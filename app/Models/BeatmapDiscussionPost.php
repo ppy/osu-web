@@ -265,6 +265,8 @@ class BeatmapDiscussionPost extends Model
                 return true;
             });
         } catch (ModelNotSavedException $_e) {
+            $this->validationErrors()->merge($this->beatmapDiscussion->validationErrors());
+
             return false;
         }
     }
@@ -380,6 +382,11 @@ class BeatmapDiscussionPost extends Model
     {
         $query->withoutTrashed()
             ->whereHas('visibleBeatmapDiscussion');
+    }
+
+    public function url()
+    {
+        return $this->beatmapDiscussion->url();
     }
 
     protected function newReportableExtraParams(): array

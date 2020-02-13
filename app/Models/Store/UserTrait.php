@@ -24,6 +24,6 @@ trait UserTrait
 {
     public function orders()
     {
-        return $this->hasMany(Order::class, 'user_id');
+        return $this->hasMany(Order::class);
     }
 }

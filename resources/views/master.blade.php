@@ -16,7 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $legacyNav = $legacyNav ?? true;
     $legacyFont = $legacyFont ?? true;
 
     if (!isset($title)) {
@@ -36,7 +35,7 @@
     $currentHue = $currentHue ?? section_to_hue_map($currentSection);
 @endphp
 <!DOCTYPE html>
-<html>
+<html prefix="og: http://ogp.me/ns#">
     <head>
         @include("layout.metadata")
         <title>{{ $title }}</title>
@@ -75,7 +74,7 @@
         @if (!isset($blank))
             @include("layout.header")
 
-            <div class="osu-page {{ $legacyNav ? '' : 'osu-page--notification-banners' }} js-notification-banners">
+            <div class="osu-page osu-page--notification-banners js-notification-banners">
                 @stack('notification_banners')
             </div>
         @endif

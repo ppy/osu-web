@@ -25,7 +25,7 @@ return [
         'peak' => 'Som högst, :count spelare online',
         'players' => '<strong>:count</strong> registrerade spelare',
         'title' => 'välkommen',
-        'see_more_news' => '',
+        'see_more_news' => 'se fler nyheter',
 
         'slogan' => [
             'main' => 'gratis-att-spela rytm spel',
@@ -120,8 +120,6 @@ return [
             'error' => 'Fel med att ladda in nyheter, försök ladda om sidan?...',
         ],
         'header' => [
-            'welcome' => 'Hej, <strong>:username</strong>!',
-            'messages' => 'Du har :count nytt meddelande|Du har :count nya meddelanden',
             'stats' => [
                 'friends' => 'Vänner Online',
                 'games' => 'Spel',
@@ -131,7 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Nya Rankade Beatmaps',
             'popular' => 'Populära Beatmaps',
-            'by_user' => '',
+            'by_user' => 'av :user',
         ],
         'buttons' => [
             'download' => 'Ladda ner osu!',

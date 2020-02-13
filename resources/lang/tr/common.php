@@ -30,25 +30,26 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'YENİ',
     ],
 
     'buttons' => [
         'admin' => 'Yönetici',
+        'authorise' => 'Yetki ver',
         'back_to_previous' => 'Bir önceki pozisyona dön',
         'back_to_top' => 'Yukarıya geri dön',
         'cancel' => 'İptal',
         'change' => 'değiştir',
         'click_to_copy' => 'panoya kopyalamak için tıklayın',
         'click_to_copy_copied' => 'panoya kopyalandı!',
-        'close' => '',
+        'close' => 'Kapat',
         'collapse' => 'daraltın',
         'delete' => 'Sil',
         'edit' => 'Düzenle',
         'expand' => 'genişletin',
         'hide' => 'gizle',
         'permalink' => 'kalıcı bağlantı',
-        'permalink_copied' => 'bağlantı kopyalandı',
+        'pin' => 'sabitle',
         'post' => 'Gönder',
         'reply' => 'Cevapla',
         'reply_reopen' => 'Cevapla ve Yeniden Aç',
@@ -63,7 +64,8 @@ return [
         'show_deleted' => 'Silineni göster',
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',
-        'update' => '',
+        'unpin' => 'sabitlemeyi kaldır',
+        'update' => 'Güncelle',
         'upload_image' => 'görsel yükle',
 
         'watch' => [
@@ -119,7 +121,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'ara...',
     ],
 
     'pagination' => [
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Bildirim',
+    ],
+
+    'wrong_user' => [
+        '_' => ':user olarak giriş yaptınız. :logout_link.',
+        'logout_link' => 'Başka bir kullanıcı olarak giriş yapmak için buraya tıklayınız',
     ],
 ];

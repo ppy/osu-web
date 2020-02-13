@@ -22,6 +22,7 @@ return [
     'deleted' => 'eliminato',
     'deleted_count' => ':count_delimited commento eliminato|:count_delimited commenti eliminati',
     'edited' => 'modificato :timeago da :user',
+    'pinned' => 'fissato',
     'empty' => 'Ancora nessun commento.',
     'load_replies' => 'carica risposte',
     'replies' => 'Risposte',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Commenti :info',
-            'info' => 'Lista',
-        ],
+        'nav_title' => 'lista',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Commenti',
-            'info' => 'Commenti',
-        ],
+        'nav_title' => 'commenti',
     ],
 ];

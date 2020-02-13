@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Återställ Nominering',
             'praise' => 'Beröm',
             'problem' => 'Problem',
+            'review' => '',
             'suggestion' => 'Förslag',
         ],
 
         'mode' => [
             'events' => 'Historik',
             'general' => 'Allmänt :scope',
+            'reviews' => '',
             'timeline' => 'Tidslinje',
             'scopes' => [
                 'general' => 'Denna svårighetsgrad',

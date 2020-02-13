@@ -31,27 +31,27 @@ return [
                 'beatmapset_discussion_lock' => 'A discussão do beatmap ":title" foi trancada.',
                 'beatmapset_discussion_lock_compact' => 'A discussão foi trancada',
                 'beatmapset_discussion_post_new' => ':username publicou uma nova mensagem na discussão do beatmap ":title".',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => 'Nova publicação em ":title" de :username',
                 'beatmapset_discussion_post_new_compact' => 'Nova publicação de :username',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nova publicação de :username',
                 'beatmapset_discussion_unlock' => 'A discussão do beatmap ":title" foi destrancada.',
                 'beatmapset_discussion_unlock_compact' => 'A discussão foi destrancada',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Problema do Beatmap Qualificado',
+                'beatmapset_discussion_qualified_problem' => 'Reportado por :username em ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Reportado por :username em ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Reportado por :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Reportado por :username',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Estado do beatmap alterado',
                 'beatmapset_disqualify' => 'O beatmap ":title" foi desqualificado por :username.',
                 'beatmapset_disqualify_compact' => 'O beatmap foi desqualificado',
-                'beatmapset_love' => 'O beatmap ":title" foi promovido para Loved por :username.',
-                'beatmapset_love_compact' => 'O beatmap foi promovido a Loved',
+                'beatmapset_love' => 'O beatmap ":title" foi promovido a amado',
+                'beatmapset_love_compact' => 'O beatmap foi promovido a amado',
                 'beatmapset_nominate' => 'O beatmap ":title" foi nomeado por :username.',
                 'beatmapset_nominate_compact' => 'O beatmap foi nomeado',
                 'beatmapset_qualify' => 'O beatmap ":title" recebeu indicações suficientes e, portanto, está na fila para se tornar ranqueado.',
@@ -120,7 +120,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited Mensagem não lida.|:count_delimited Mensagens não lidas.',
+                'legacy_pm' => ':count_delimited mensagem não lida|:count_delimited mensagens não lidas',
             ],
         ],
 

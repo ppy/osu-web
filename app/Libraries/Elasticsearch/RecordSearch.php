@@ -43,7 +43,7 @@ abstract class RecordSearch extends Search
         return $this->response()->records()->get();
     }
 
-    public function response() : SearchResponse
+    public function response(): SearchResponse
     {
         return parent::response()->recordType($this->recordType)->idField($this->idField);
     }

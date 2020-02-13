@@ -15,16 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', [
-    'legacyNav' => false,
-    'legacyFont' => false,
-])
+@extends('master', ['legacyFont' => false])
 
 @section('content')
-    @include('forum._header', [
-        'forum' => $forum,
-        'modifiers' => ['forum'],
-    ])
+    @include('forum._header', compact('forum'))
 
     {!! Form::open([
         'url' => route('forum.topics.store', ['forum_id' => $forum]),

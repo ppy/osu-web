@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Administrador',
+        'authorise' => 'Autorizar',
         'back_to_previous' => 'Volver a la última posición',
         'back_to_top' => 'Ir arriba',
         'cancel' => 'Cancelar',
@@ -47,8 +48,8 @@ return [
         'edit' => 'Editar',
         'expand' => 'expandir',
         'hide' => 'ocultar',
-        'permalink' => 'permalink',
-        'permalink_copied' => 'enlace copiado',
+        'permalink' => 'enlace permanente',
+        'pin' => 'fijar',
         'post' => 'Publicar',
         'reply' => 'Responder',
         'reply_reopen' => 'Responder y reabrir',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Mostrar eliminados',
         'show_more' => 'mostrar más',
         'show_more_options' => 'mostrar más opciones',
+        'unpin' => 'quitar fijado',
         'update' => 'Actualizar',
         'upload_image' => 'subir imagen',
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Aviso',
+    ],
+
+    'wrong_user' => [
+        '_' => 'Sesión actual: :user. :logout_link.',
+        'logout_link' => 'Clic aquí para iniciar sesión con otro usuario',
     ],
 ];

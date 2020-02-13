@@ -17,7 +17,6 @@
  */
 
 import { BeatmapsetSearch } from 'beatmaps/beatmapset-search';
-import Dispatcher from 'dispatcher';
 import { CommentBundleJSON } from 'interfaces/comment-json';
 import { action } from 'mobx';
 import { BeatmapsetStore } from './beatmapset-store';
@@ -25,6 +24,7 @@ import ChannelStore from './channel-store';
 import ClientStore from './client-store';
 import CommentStore from './comment-store';
 import CommentableMetaStore from './commentable-meta-store';
+import NotificationStore from './notification-store';
 import OwnClientStore from './own-client-store';
 import UIStateStore from './ui-state-store';
 import UserStore from './user-store';
@@ -36,21 +36,23 @@ export default class RootDataStore {
   clientStore: ClientStore;
   commentableMetaStore: CommentableMetaStore;
   commentStore: CommentStore;
+  notificationStore: NotificationStore;
   ownClientStore: OwnClientStore;
   uiState: UIStateStore;
   userStore: UserStore;
 
-  constructor(dispatcher: Dispatcher) {
+  constructor() {
     // TODO: needs re-re-refactoring
-    this.uiState = new UIStateStore(this, dispatcher);
-    this.beatmapsetStore = new BeatmapsetStore(this, dispatcher);
-    this.beatmapsetSearch = new BeatmapsetSearch(this.beatmapsetStore, dispatcher);
-    this.clientStore = new ClientStore(this, dispatcher);
-    this.commentableMetaStore = new CommentableMetaStore(this, dispatcher);
-    this.commentStore = new CommentStore(this, dispatcher);
-    this.channelStore = new ChannelStore(this, dispatcher);
-    this.ownClientStore = new OwnClientStore(this, dispatcher);
-    this.userStore = new UserStore(this, dispatcher);
+    this.uiState = new UIStateStore(this);
+    this.beatmapsetStore = new BeatmapsetStore(this);
+    this.beatmapsetSearch = new BeatmapsetSearch(this.beatmapsetStore);
+    this.clientStore = new ClientStore(this);
+    this.commentableMetaStore = new CommentableMetaStore(this);
+    this.commentStore = new CommentStore(this);
+    this.channelStore = new ChannelStore(this);
+    this.notificationStore = new NotificationStore();
+    this.ownClientStore = new OwnClientStore(this);
+    this.userStore = new UserStore(this);
   }
 
   @action
@@ -58,6 +60,7 @@ export default class RootDataStore {
     this.commentableMetaStore.updateWithJSON(commentBundle.commentable_meta);
     this.commentStore.updateWithJSON(commentBundle.comments);
     this.commentStore.updateWithJSON(commentBundle.included_comments);
+    this.commentStore.updateWithJSON(commentBundle.pinned_comments);
     this.userStore.updateWithJSON(commentBundle.users);
     this.commentStore.addVoted(commentBundle.user_votes);
   }

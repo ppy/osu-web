@@ -44,17 +44,12 @@ return [
             '_stream_to' => 'veranderingen in :stream tot :to',
             '_to' => 'veranderingen tot :to',
         ],
-
-        'title' => [
-            '_' => 'Changelog :info',
-            'info' => 'Index',
-        ],
     ],
 
     'support' => [
-        'heading' => 'Hou je van deze update?',
+        'heading' => 'Vind je deze update leuk?',
         'text_1' => 'Ondersteun de verdere ontwikkeling van osu! en :link vandaag!',
-        'text_1_link' => 'word een supporter',
-        'text_2' => 'Zo help je niet alleen development te versnellen, maar krijg je ook extra features en costumizations!',
+        'text_1_link' => 'word een osu!supporter',
+        'text_2' => 'Zo help je niet alleen ontwikkeling te versnellen, maar krijg je ook extra functies en aanpassingen!',
     ],
 ];

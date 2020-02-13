@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] 主题 ":title" 有新回复',
-    ],
-
     'forums' => [
         'latest_post' => '最新帖子',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => '订阅的主题',
             'title_compact' => '订阅',
-            'title_main' => '<strong>订阅</strong>主题',
 
             'box' => [
                 'total' => '订阅的主题',

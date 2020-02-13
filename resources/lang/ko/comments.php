@@ -22,6 +22,7 @@ return [
     'deleted' => '삭제됨',
     'deleted_count' => ':count_delimited개의 삭제된 댓글',
     'edited' => ':user에 의해 :timeago전에 수정됨.',
+    'pinned' => '고정됨',
     'empty' => '아직 댓글이 없습니다.',
     'load_replies' => '답글 불러오기',
     'replies' => '답글',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => '댓글 :info',
-            'info' => '목록',
-        ],
+        'nav_title' => '목록',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => '댓글 :info',
-            'info' => '세부 정보',
-        ],
+        'nav_title' => '댓글',
     ],
 ];

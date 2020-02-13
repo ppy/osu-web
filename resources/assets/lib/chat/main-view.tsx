@@ -17,13 +17,12 @@
  */
 
 import { ChatChannelSwitchAction } from 'actions/chat-actions';
-import Dispatcher from 'dispatcher';
-import HeaderV3 from 'header-v3';
+import { dispatch } from 'app-dispatcher';
+import HeaderV4 from 'header-v4';
 import { Img2x } from 'img2x';
 import { observer, Provider } from 'mobx-react';
 import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
-import ChatLogo from './chat-logo';
 import ChatWorker from './chat-worker';
 import ConversationList from './conversation-list';
 import ConversationView from './conversation-view';
@@ -31,7 +30,6 @@ import InputBox from './input-box';
 
 interface Props {
   dataStore: RootDataStore;
-  dispatcher: Dispatcher;
   initialChannel?: number;
   worker: ChatWorker;
 }
@@ -42,7 +40,7 @@ export default class MainView extends React.Component<Props, any> {
     super(props);
 
     if (this.props.initialChannel) {
-      this.props.dispatcher.dispatch(new ChatChannelSwitchAction(this.props.initialChannel));
+      dispatch(new ChatChannelSwitchAction(this.props.initialChannel));
     }
   }
 
@@ -59,13 +57,16 @@ export default class MainView extends React.Component<Props, any> {
   render(): React.ReactNode {
     const lazerLink = 'https://github.com/ppy/osu/releases';
     return (
-      <div>
-        <HeaderV3 compact={true} theme='chat' title='Chat' />
-        <Provider dataStore={this.props.dataStore} dispatcher={this.props.dispatcher}>
+      <>
+        <HeaderV4
+          section={osu.trans('layout.header.community._')}
+          subSection={osu.trans('chat.title_compact')}
+          theme='chat'
+        />
+        <Provider dataStore={this.props.dataStore}>
           {this.props.dataStore.channelStore.loaded ? (
             <div className='chat osu-page osu-page--chat'>
               <div className='chat__sidebar'>
-                <ChatLogo />
                 <ConversationList />
               </div>
               <div className='chat__conversation-area'>
@@ -85,7 +86,7 @@ export default class MainView extends React.Component<Props, any> {
             </div>
           )}
         </Provider>
-      </div>
+      </>
     );
   }
 }

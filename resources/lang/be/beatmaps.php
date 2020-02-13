@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Скід намінацыі',
             'praise' => 'Пахвала',
             'problem' => 'Праблема',
+            'review' => '',
             'suggestion' => 'Прапанова',
         ],
 
         'mode' => [
             'events' => 'Гісторыя',
             'general' => 'Агульнае :scope',
+            'reviews' => '',
             'timeline' => 'Шкала часу',
             'scopes' => [
                 'general' => 'Гэтая цяжкасць',

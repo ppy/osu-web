@@ -22,15 +22,9 @@ return [
     'cancel' => 'Anuluj',
 
     'authorise' => [
-        'authorise' => 'Autoryzuj',
         'request' => 'żąda pozwolenia na dostęp do twojego konta.',
         'scopes_title' => 'Ta aplikacja będzie mogła:',
         'title' => 'Prośba o autoryzację',
-
-        'wrong_user' => [
-            '_' => 'Jesteś zalogowany jako :user. :logout_link.',
-            'logout_link' => 'Kliknij tutaj, aby zalogować się jako inny użytkownik.',
-        ],
     ],
 
     'authorized_clients' => [
@@ -50,12 +44,6 @@ return [
         'name' => 'Nazwa aplikacji',
         'redirect' => 'Adres URL wywołań zwrotnych aplikacji',
         'secret' => 'Klucz klienta',
-    ],
-
-    'login' => [
-        'download' => 'Kliknij tutaj, aby pobrać grę i utworzyć konto.',
-        'label' => 'Na początek zaloguj się na swoje konto!',
-        'title' => 'Logowanie do konta',
     ],
 
     'new_client' => [

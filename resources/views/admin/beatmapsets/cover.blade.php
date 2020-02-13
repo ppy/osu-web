@@ -15,14 +15,16 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('admin/master')
+@extends('master')
 
 @section('content')
-    <div class="osu-page osu-page--generic">
+    @include('admin/_header', ['title' => trans('layout.header.admin.beatmapset_covers')])
+    <div class="osu-page osu-page--admin">
         <div class="beatmapset-cover-admin">
             <h2>{{$beatmapset->title}} - {{$beatmapset->artist}}</h2>
             <br>
             <button
+                class="btn-osu-big btn-osu-big--rounded-thin"
                 data-remote="true"
                 data-method="POST"
                 data-url="{{ route('admin.beatmapsets.covers.regenerate', $beatmapset->beatmapset_id) }}"
@@ -33,6 +35,7 @@
                 {{trans('admin.beatmapsets.covers.regenerate')}}
             </button>
             <button
+                class="btn-osu-big btn-osu-big--rounded-thin"
                 data-remote="true"
                 data-method="POST"
                 data-url="{{ route('admin.beatmapsets.covers.remove', $beatmapset->beatmapset_id) }}"

@@ -24,7 +24,6 @@ return [
         'registration_period' => '报名时间： :start 到 :end',
 
         'header' => [
-            'subtitle' => '官方认可的比赛列表',
             'title' => '社区比赛',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => '取消报名',
             'register' => '我要报名！',
+        ],
+
+        'period' => [
+            'end' => '结束于',
+            'start' => '开始于',
         ],
 
         'state' => [

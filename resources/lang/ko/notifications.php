@@ -31,19 +31,19 @@ return [
                 'beatmapset_discussion_lock' => '비트맵 ":title"의 토론이 잠겼습니다.',
                 'beatmapset_discussion_lock_compact' => '토론이 잠겼습니다.',
                 'beatmapset_discussion_post_new' => ':username님이 ":title"의 비트맵 토론에 새로운 메시지를 게시했습니다.',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => ':username 님이 ":title" 에 새 게시글을 작성하셨습니다.',
                 'beatmapset_discussion_post_new_compact' => ':username 님의 새로운 게시글',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => ':username 님의 새로운 게시글',
                 'beatmapset_discussion_unlock' => '비트맵 ":title"의 토론이 잠금 해제되었습니다.',
                 'beatmapset_discussion_unlock_compact' => '토론이 잠금 해제되었습니다.',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Qualified 비트맵 문제',
+                'beatmapset_discussion_qualified_problem' => '":title": ":content"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_empty' => '":title"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_compact' => '":content"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_compact_empty' => ':username 이(가) 보고함',
             ],
 
             'beatmapset_state' => [

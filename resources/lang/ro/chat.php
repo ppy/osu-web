@@ -23,7 +23,7 @@ return [
     'talking_in' => 'vorbești în :channel',
     'talking_with' => 'vorbești cu :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'Nu poți trimite mesaje în acest canal chiar acum. Acest lucru poate fi din cauza următoarelor motive:',
         'user' => 'Nu poți trimite mesaje acestui utilizator chiar acum. Acest lucru poate fi din cauza următoarelor motive:',

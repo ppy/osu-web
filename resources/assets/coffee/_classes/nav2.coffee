@@ -24,13 +24,17 @@ class @Nav2
     $.subscribe 'menu:current', @showMenuBg
 
 
-  autoCenterPopup: (_e, currentMenu) =>
-    @currentMenu = currentMenu
+  autoCenterPopup: (_e, {target}) =>
+    @currentMenu = target
 
     $(window).off 'throttled-resize.nav2-center-popup'
 
     for popup in document.querySelectorAll('.js-nav2--centered-popup')
-      if popup.dataset.clickMenuId != @currentMenu
+      container = popup.closest('.js-click-menu')
+
+      continue if !container?
+
+      if container.dataset.clickMenuId != @currentMenu
         popup.classList.add 'hidden'
         continue
 

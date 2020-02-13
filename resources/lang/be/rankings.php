@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => 'Рэйтынг па :type',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Прадукцыйнасць',

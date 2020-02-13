@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'รีเซทการเสนอชื่อ',
             'praise' => 'ชื่นชม',
             'problem' => 'ข้อผิดพลาด',
+            'review' => '',
             'suggestion' => 'ข้อเสนอแนะ',
         ],
 
         'mode' => [
             'events' => 'ประวัติ',
             'general' => 'ทั่วไป :scope',
+            'reviews' => '',
             'timeline' => 'เส้นเวลา',
             'scopes' => [
                 'general' => 'ระดับความยากนี้',

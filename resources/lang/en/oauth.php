@@ -22,15 +22,9 @@ return [
     'cancel' => 'Cancel',
 
     'authorise' => [
-        'authorise' => 'Authorise',
         'request' => 'is requesting permission to access your account.',
         'scopes_title' => 'This application will be able to:',
         'title' => 'Authorisation Request',
-
-        'wrong_user' => [
-            '_' => 'You\'re signed in as :user. :logout_link.',
-            'logout_link' => 'Click here to sign in as different user',
-        ],
     ],
 
     'authorized_clients' => [
@@ -50,12 +44,6 @@ return [
         'name' => 'Application Name',
         'redirect' => 'Application Callback URL',
         'secret' => 'Client Secret',
-    ],
-
-    'login' => [
-        'download' => 'Click here to download the game and create an account',
-        'label' => 'First, let\'s sign into your account!',
-        'title' => 'Account Sign-in',
     ],
 
     'new_client' => [

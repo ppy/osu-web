@@ -24,10 +24,87 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '관리자',
+            'beatmapset' => '비트맵셋',
+            'beatmapset_covers' => '비트맵셋 커버',
+            'contest' => '콘테스트',
+            'contests' => '콘테스트',
+            'root' => '콘솔',
+            'store_orders' => '상점 관리자',
+        ],
+
+        'artists' => [
+            '_' => '공식 아티스트',
+            'index' => '목록',
+        ],
+
+        'beatmapsets' => [
+            '_' => '비트맵',
+            'discussions' => '토론',
+            'index' => '목록',
+            'show' => '정보',
+            'packs' => '맵팩',
+        ],
+
+        'changelog' => [
+            '_' => '변경 사항',
+            'index' => '목록',
+        ],
+
         'community' => [
             '_' => '커뮤니티',
-
+            'comments' => '댓글',
+            'contests' => '',
             'forum' => '포럼',
+            'livestream' => '라이브 스트림',
+        ],
+
+        'error' => [
+            '_' => '오류',
+        ],
+
+        'help' => [
+            '_' => '위키',
+            'index' => '목록',
+        ],
+
+        'home' => [
+            '_' => '메인',
+            'password_reset' => '비밀번호 재설정',
+        ],
+
+        'matches' => [
+            '_' => '매치 기록',
+        ],
+
+        'notice' => [
+            '_' => '알림',
+        ],
+
+        'rankings' => [
+            '_' => '순위',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => '장바구니',
+            'order' => '청구서',
+            'orders' => '주문 내역',
+            'product' => '상품',
+            'products' => '상품',
+        ],
+
+        'tournaments' => [
+            '_' => '대회',
+            'index' => '목록',
+        ],
+
+        'users' => [
+            '_' => '플레이어',
+            'forum_posts' => '포럼 게시물',
+            'modding' => '모딩',
+            'show' => '정보',
         ],
     ],
 
@@ -44,9 +121,12 @@ return [
             '_' => '메인',
             'account-edit' => '설정',
             'account-verifyLink' => '인증 완료',
-            'friends-index' => '친구',
-            'changelog-index' => '변경 사항',
+            'beatmapset-watches-index' => '모딩 확인 목록',
             'changelog-build' => '빌드 버전',
+            'changelog-index' => '변경 사항',
+            'client_verifications-create' => 'osu! 클라이언트 인증',
+            'forum-topic-watches-index' => '구독',
+            'friends-index' => '친구',
             'getDownload' => '다운로드',
             'getIcons' => '아이콘',
             'groups-show' => '그룹',
@@ -59,6 +139,7 @@ return [
             'search' => '검색',
             'supportTheGame' => '게임 지원하기',
             'team' => '운영진',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => '프로필',
@@ -78,7 +159,6 @@ return [
             'artists' => '공식 아티스트',
             'beatmap_discussion_posts-index' => '비트맵 토론 글',
             'beatmap_discussions-index' => '비트맵 토론',
-            'beatmapset-watches-index' => '모딩 확인 목록',
             'beatmapset_discussion_votes-index' => '비트맵 토론 투표',
             'beatmapset_events-index' => '비트맵셋 활동',
             'index' => '목록',
@@ -112,7 +192,6 @@ return [
             'tournaments' => '대회',
             'tournaments-index' => '대회',
             'tournaments-show' => '대회 정보',
-            'forum-topic-watches-index' => '구독',
             'forum-topics-create' => '포럼',
             'forum-topics-show' => '포럼',
             'forum-forums-index' => '포럼',
@@ -256,10 +335,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => '이메일 주소',
             'forgot' => "계정 정보를 잊어버렸어요.",
             'password' => '비밀번호',
             'title' => '로그인하여 계속하기',
+            'username' => '사용자 이름',
 
             'error' => [
                 'email' => "존재하지 않는 유저이름 또는 이메일입니다.",

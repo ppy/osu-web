@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type 순위',
+    'country' => [
+        'filter' => '국가별로 필터링 됨',
+    ],
 
     'type' => [
         'performance' => '퍼포먼스',

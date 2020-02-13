@@ -26,6 +26,6 @@ class Token extends PassportToken
 {
     public function refreshToken()
     {
-        return $this->hasOne(RefreshToken::class, 'access_token_id', 'id');
+        return $this->hasOne(RefreshToken::class, 'access_token_id');
     }
 }

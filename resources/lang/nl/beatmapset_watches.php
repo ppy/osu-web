@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Dit zijn de beatmap discussies die je volgt. Je wordt verwittigd bij nieuwe berichten of updates.',
         'title_compact' => 'modding volglijst',
-        'title_main' => 'Modding Volglijst',
 
         'table' => [
             'empty' => 'Geen map discussies aan het volgen.',
@@ -30,10 +29,6 @@ return [
             'state' => 'Staat',
             'title' => 'Titel',
         ],
-    ],
-
-    'mail' => [
-        'update' => 'Nieuwe update voor beatmap ":Titel"',
     ],
 
     'status' => [

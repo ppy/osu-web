@@ -15,29 +15,46 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="js-header--main {{ class_with_modifiers('header-v4', $modifiers) }}">
-    <div class="header-v4__bg-container">
-        <div
-            class="header-v4__bg js-forum-cover--header"
-            {!! background_image($background ?? null, false) !!}
-        ></div>
-    </div>
+@php
+    // assume index page if $forum not set
+    $isIndex = !isset($forum);
 
-    <div class="header-v4__content">
-        <div class="header-v4__row header-v4__row--title">
-            <div class="header-v4__icon"></div>
-            <div class="header-v4__title">
-                <span class="header-v4__title-section">
-                    {{ trans('layout.header.community._') }}
-                </span>
-                <span class="header-v4__title-action">
-                    {{ trans('layout.header.community.forum') }}
-                </span>
-            </div>
-        </div>
+    if ($isIndex) {
+        $links = [
+            [
+                'title' => trans('forum.forums.index.title'),
+                'url' => route('forum.forums.index'),
+            ]
+        ];
+    } else {
+        $links = [];
+        $links[] = [
+            'title' => trans('forum.title'),
+            'url' => route('forum.forums.index'),
+        ];
 
-        <div class="header-v4__row header-v4__row--bar">
-            @include('forum._header_breadcrumb')
-        </div>
-    </div>
-</div>
+        foreach ($forum->forum_parents as $forumId => $forumData) {
+            $url = $forumData[1] === 0
+                ? route('forum.forums.index').'#forum-'.$forumId
+                : route('forum.forums.show', $forumId);
+            $title = $forumData[0];
+
+            $links[] = compact('title', 'url');
+        }
+
+        $links[] = [
+            'title' => $forum->forum_name,
+            'url' => route("forum.forums.show", $forum->forum_id),
+        ];
+    }
+@endphp
+@include('layout._page_header_v4', ['params' => [
+    'backgroundExtraClass' => 'js-forum-cover--header',
+    'backgroundImage' => $background ?? null,
+    'headerExtraClass' => 'js-header--main',
+    'links' => $links,
+    'linksBreadcrumb' => true,
+    'section' => trans('layout.header.community._'),
+    'subSection' => trans('layout.header.community.forum'),
+    'theme' => $isIndex ? 'forums-index' : 'forum',
+]])

@@ -20,11 +20,12 @@
 
 namespace App\Models;
 
+use App\Notifications\UserReportNotification;
 use PDOException;
 
 trait Reportable
 {
-    abstract protected function newReportableExtraParams() : array;
+    abstract protected function newReportableExtraParams(): array;
 
     public function reportedIn()
     {
@@ -38,7 +39,7 @@ trait Reportable
      * @param array $params
      * @return UserReport|null The instance of UserReport saved, null if it is a duplicate.
      */
-    public function reportBy(User $reporter, array $params = []) : ?UserReport
+    public function reportBy(User $reporter, array $params = []): ?UserReport
     {
         try {
             $attributes = $this->newReportableExtraParams();
@@ -49,7 +50,10 @@ trait Reportable
                 $attributes['reason'] = $params['reason'];
             }
 
-            return $this->reportedIn()->create($attributes);
+            $userReport = $this->reportedIn()->create($attributes);
+            $userReport->notify(new UserReportNotification($reporter));
+
+            return $userReport;
         } catch (PDOException $e) {
             // ignore duplicate reports
             if (!is_sql_unique_exception($e)) {

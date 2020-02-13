@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Réinitialiser la nomination',
             'praise' => 'Hommage',
             'problem' => 'Problème',
+            'review' => 'Revue',
             'suggestion' => 'Suggestion',
         ],
 
         'mode' => [
             'events' => 'Historique',
             'general' => 'General :scope',
+            'reviews' => 'Avis',
             'timeline' => 'Chronologie',
             'scopes' => [
                 'general' => 'Cette difficulté',
@@ -183,7 +185,7 @@ return [
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer cette beatmap ?',
         'nominated_by' => 'nominée par :users',
-        'not_enough_hype' => "",
+        'not_enough_hype' => "Il n'y a pas assez de hype.",
         'qualified' => 'La map sera classée le :date environ, si aucun problème n\'est trouvé.',
         'qualified_soon' => 'Beatmap bientôt classée, si aucun problème n\'est trouvé.',
         'required_text' => 'Nominations: :current/:required',

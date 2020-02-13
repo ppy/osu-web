@@ -21,6 +21,8 @@
 namespace App\Http\Controllers;
 
 use App\Libraries\OsuWiki;
+use App\Libraries\Search\WikiSuggestions;
+use App\Libraries\Search\WikiSuggestionsRequestParams;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
 use Request;
@@ -40,10 +42,11 @@ class WikiController extends Controller
             return $this->showImage($path);
         }
 
-        $page = new Wiki\Page($path, $this->locale());
+        $locale = $this->locale();
+        $page = Wiki\Page::lookupForController($path, $locale);
 
-        if ($page->get() === null) {
-            $redirectTarget = (new WikiRedirect())->resolve($path);
+        if (!$page->isVisible()) {
+            $redirectTarget = (new WikiRedirect)->sync()->resolve($path);
             if ($redirectTarget !== null && $redirectTarget !== $path) {
                 return ujs_redirect(wiki_url('').'/'.ltrim($redirectTarget, '/'));
             }
@@ -56,30 +59,46 @@ class WikiController extends Controller
             $status = 404;
         }
 
-        return response()->view($page->template(), compact('page'), $status ?? 200);
+        return ext_view($page->template(), compact('page', 'locale'), null, $status ?? null);
+    }
+
+    public function suggestions()
+    {
+        $search = new WikiSuggestions(new WikiSuggestionsRequestParams(request()->all()));
+
+        $response = [];
+        foreach ($search->response() as $hit) {
+            $response[] = [
+                'highlight' => $hit->highlights('title.autocomplete')[0],
+                'path' => $hit->source('path'),
+                'title' => $hit->source('title'),
+            ];
+        }
+
+        return $response;
     }
 
     public function update($path)
     {
         priv_check('WikiPageRefresh')->ensureCan();
 
-        (new Wiki\Page($path, $this->locale()))->forget();
+        (new Wiki\Page($path, $this->locale()))->sync(true);
 
         return ujs_redirect(Request::getUri());
     }
 
     private function showImage($path)
     {
-        $image = (new Wiki\Image($path, Request::url(), Request::header('referer')))->get();
+        $image = Wiki\Image::lookupForController($path, Request::url(), Request::header('referer'));
 
-        session(['_strip_cookies' => true]);
+        request()->attributes->set('strip_cookies', true);
 
-        if ($image === null) {
+        if (!$image->isVisible()) {
             return response('Not found', 404);
         }
 
-        return response($image['data'], 200)
-            ->header('Content-Type', $image['type'])
+        return response($image->get()['content'], 200)
+            ->header('Content-Type', $image->get()['type'])
             // 10 years max-age
             ->header('Cache-Control', 'max-age=315360000, public');
     }

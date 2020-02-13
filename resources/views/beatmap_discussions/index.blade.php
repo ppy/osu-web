@@ -24,13 +24,15 @@
 
 {{-- FIXME: move to user modding history --}}
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page">
+    @include('layout._page_header_v4', ['params' => [
+        'section' => trans('layout.header.beatmapsets._'),
+        'subSection' => trans('beatmap_discussions.index.title'),
+    ]])
+    <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
             @if (isset($user))
                 <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
             @endif
-
-            <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
 
             <form class="simple-form simple-form--search-box">
                 <h2 class="simple-form__row simple-form__row--title">
@@ -76,6 +78,10 @@
                     </div>
                     <div class="simple-form__checkboxes-inline">
                         @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $messageType)
+                            {{-- TODO: remove this when reviews are released --}}
+                            @if (!config('osu.beatmapset.discussion_review_enabled') && $messageType === 'review')
+                                @continue
+                            @endif
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
                                 @include('objects._switch', [
                                     'checked' => in_array($messageType, $search['params']['message_types'], true),

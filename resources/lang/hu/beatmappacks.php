@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Előre csomagolt, általános témákat körbeölelő beatmap gyűjtemények.',
+        'nav_title' => '',
+        'title' => 'Beatmap Csomagok',
+
         'blurb' => [
             'important' => 'OLVASD EL LETÖLTÉS ELŐTT',
             'instruction' => [
@@ -33,12 +37,9 @@ Mivel az összes szám .zip és/vagy .osz kiterjesztésű, ezért a következő 
                 'scary' => 'legújabb csomagok letöltése',
             ],
         ],
-        'title' => 'Beatmap Csomagok',
-        'description' => 'Előre csomagolt, általános témákat körbeölelő beatmap gyűjtemények.',
     ],
 
     'show' => [
-        'back' => '',
         'download' => 'Letöltés',
         'item' => [
             'cleared' => 'lejátszott',

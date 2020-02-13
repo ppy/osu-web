@@ -58,6 +58,11 @@ abstract class Model extends BaseModel
         return presence($value);
     }
 
+    public function getHitAccuracyAttribute($value)
+    {
+        return $this->accuracy_new ?? round($this->accuracy * 100, 2);
+    }
+
     public function currentLevelProgress()
     {
         return fmod($this->level, 1);
@@ -87,7 +92,7 @@ abstract class Model extends BaseModel
         return get_class_namespace(static::class).'\\'.studly_case($modeStr);
     }
 
-    public static function getMode() : string
+    public static function getMode(): string
     {
         return snake_case(get_class_basename(static::class));
     }
@@ -129,6 +134,12 @@ abstract class Model extends BaseModel
             $this->s_rank_count = 0;
             $this->sh_rank_count = 0;
             $this->a_rank_count = 0;
+
+            $this->accuracy_total = 0;
+            $this->accuracy_count = 0;
+            $this->accuracy = 0;
+            $this->rank = 0;
+            $this->rank_score = 0;
         }
 
         return parent::__construct($attributes);

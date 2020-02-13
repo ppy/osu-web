@@ -52,7 +52,7 @@ class PasswordResetController extends Controller
     {
         $isStarted = Session::exists('password_reset');
 
-        return view('password_reset.index', compact('isStarted'));
+        return ext_view('password_reset.index', compact('isStarted'));
     }
 
     public function create()
@@ -127,7 +127,7 @@ class PasswordResetController extends Controller
 
     private function issue($username)
     {
-        $user = User::findForLogin($username);
+        $user = User::findForLogin($username, true);
 
         if ($user === null) {
             return trans('password_reset.error.user_not_found');
@@ -137,7 +137,7 @@ class PasswordResetController extends Controller
             return trans('password_reset.error.contact_support');
         }
 
-        if ($user->isPrivileged()) {
+        if ($user->isPrivileged() && $user->user_password !== '') {
             return trans('password_reset.error.is_privileged');
         }
 
@@ -151,7 +151,7 @@ class PasswordResetController extends Controller
 
         Session::put('password_reset', $session);
 
-        Mail::to($user->user_email)->send(new PasswordReset([
+        Mail::to($user)->send(new PasswordReset([
             'user' => $user,
             'key' => $session['key'],
         ]));

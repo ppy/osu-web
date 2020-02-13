@@ -78,7 +78,7 @@ class BeatmapsetSearchParams extends SearchParams
     /**
      * {@inheritdoc}
      */
-    public function getCacheKey() : string
+    public function getCacheKey(): string
     {
         $vars = get_object_vars($this);
         unset($vars['user']);
@@ -90,7 +90,7 @@ class BeatmapsetSearchParams extends SearchParams
     /**
      * {@inheritdoc}
      */
-    public function isCacheable() : bool
+    public function isCacheable(): bool
     {
         return !(
             present($this->queryString)
@@ -107,7 +107,7 @@ class BeatmapsetSearchParams extends SearchParams
      *
      * @return float|null The recommended star difficulty; .
      */
-    public function getRecommendedDifficulty() : ?float
+    public function getRecommendedDifficulty(): ?float
     {
         if ($this->user === null) {
             return null;
@@ -121,12 +121,12 @@ class BeatmapsetSearchParams extends SearchParams
         return $this->recommendedDifficulty;
     }
 
-    public function hasSupporterFeatures() : bool
+    public function hasSupporterFeatures(): bool
     {
         return $this->playedFilter !== null || !empty($this->rank);
     }
 
-    public function shouldReturnEmptyResponse() : bool
+    public function shouldReturnEmptyResponse(): bool
     {
         return !optional($this->user)->isSupporter() && $this->hasSupporterFeatures();
     }

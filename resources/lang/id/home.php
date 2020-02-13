@@ -25,7 +25,7 @@ return [
         'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
         'title' => 'selamat datang',
-        'see_more_news' => '',
+        'see_more_news' => 'lihat lebih banyak berita',
 
         'slogan' => [
             'main' => 'game ritme free-to-win terbaik',
@@ -120,8 +120,6 @@ return [
             'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
         ],
         'header' => [
-            'welcome' => 'Halo, <strong>:username</strong>!',
-            'messages' => 'Anda memiliki :count pesan baru',
             'stats' => [
                 'friends' => 'Teman yang Online',
                 'games' => 'Permainan',
@@ -131,7 +129,7 @@ return [
         'beatmaps' => [
             'new' => 'Beatmap Ranked Terbaru',
             'popular' => 'Beatmap yang Sedang Populer',
-            'by_user' => '',
+            'by_user' => 'oleh :user',
         ],
         'buttons' => [
             'download' => 'Unduh osu!',

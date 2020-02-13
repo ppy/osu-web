@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Администратор',
+        'authorise' => 'Авторизовать',
         'back_to_previous' => 'Возвратить предыдущее состояние',
         'back_to_top' => 'В начало',
         'cancel' => 'Отмена',
@@ -48,7 +49,7 @@ return [
         'expand' => 'развернуть',
         'hide' => 'скрыть',
         'permalink' => 'прямая ссылка',
-        'permalink_copied' => 'ссылка скопирована',
+        'pin' => 'закрепить',
         'post' => 'Опубликовать',
         'reply' => 'Ответить',
         'reply_reopen' => 'Ответить и возобновить',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Показать удалённые',
         'show_more' => 'показать больше',
         'show_more_options' => 'показать больше опций',
+        'unpin' => 'открепить',
         'update' => 'Обновить',
         'upload_image' => 'выбрать файл',
 
@@ -81,12 +83,12 @@ return [
         'minute_short_unit' => 'мин',
         'minutes' => ':count минута|:count минуты|:count минут',
         'months' => ':count месяц|:count месяца|:count месяцев',
-        'plus_others' => '',
+        'plus_others' => '+ :count_delimited другой!|+ :count_delimited других!',
         'post' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
         'second_short_unit' => 'сек',
-        'star_priority' => '',
+        'star_priority' => ':count_delimited приоритет|:count_delimited приоритета|:count_delimited приоритетов',
         'update' => ':count_delimited обновление|:count_delimited обновления',
-        'view' => '',
+        'view' => ':count_delimited просмотр|:count_delimited просмотра|:count_delimited просмотров',
         'years' => ':count год|:count года|:count лет',
     ],
 
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Замечание',
+    ],
+
+    'wrong_user' => [
+        '_' => 'Вы вошли как :user. :logout_link.',
+        'logout_link' => 'Нажмите здесь, чтобы войти как другой пользователь',
     ],
 ];

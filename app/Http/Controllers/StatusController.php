@@ -192,8 +192,9 @@ class StatusController extends Controller
             ],
         ];
 
-        return view('status.main')
-        ->with('title', 'Status')
-        ->with('data', $data);
+        return ext_view('status.main', [
+            'title' => 'Status',
+            'data' => $data,
+        ]);
     }
 }

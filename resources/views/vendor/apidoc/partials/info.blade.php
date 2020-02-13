@@ -64,7 +64,7 @@ You must replace <code>@{{token}}</code> with your OAuth2 token.
 # Changelog
 
 For a full list of changes, see the
-[Changelog on the site]({{ route('changelog.show', ['version' => 'web']) }}).
+[Changelog on the site]({{ route('changelog.show', ['changelog' => 'web']) }}).
 
 ## Breaking Changes
 

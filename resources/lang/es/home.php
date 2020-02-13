@@ -25,7 +25,7 @@ return [
         'peak' => ':count usuarios en línea',
         'players' => '<strong>:count</strong> usuarios registrados',
         'title' => 'bienvenido',
-        'see_more_news' => '',
+        'see_more_news' => 'ver más novedades',
 
         'slogan' => [
             'main' => 'el mejor juego de ritmo gratis',
@@ -39,11 +39,11 @@ return [
         'empty_result' => '¡No se ha encontrado nada!',
         'keyword_required' => 'Se requiere una palabra clave de búsqueda',
         'placeholder' => 'escribe para buscar',
-        'title' => 'Buscar',
+        'title' => 'buscar',
 
         'beatmapset' => [
-            'more' => 'Hay :count beatmaps más en los resultados',
-            'more_simple' => 'Ver más resultados de beatmaps',
+            'more' => 'Hay :count mapas más en los resultados',
+            'more_simple' => 'Ver más resultados de mapas',
             'title' => 'Beatmaps',
         ],
 
@@ -103,9 +103,9 @@ return [
                 'description' => 'haz clic en el botón de arriba para descargar el instalador, luego ¡ejecútalo!',
             ],
             'beatmaps' => [
-                'title' => 'obtener beatmaps',
+                'title' => 'obtener mapas',
                 'description' => [
-                    '_' => ':browse a la gran biblioteca de beatmaps creados por otros usuarios y ¡empieza a jugar!',
+                    '_' => ':browse a la gran biblioteca de mapas creados por otros usuarios y ¡empieza a jugar!',
                     'browse' => 'echa un vistazo',
                 ],
             ],
@@ -116,12 +116,10 @@ return [
     'user' => [
         'title' => 'panel',
         'news' => [
-            'title' => 'Noticias',
+            'title' => 'Novedades',
             'error' => 'Error al cargar las novedades, ¿intenta recargando la página?...',
         ],
         'header' => [
-            'welcome' => '¡Hola, <strong>:username</strong>!',
-            'messages' => 'Tienes :count nuevo mensaje|Tienes :count nuevos mensajes',
             'stats' => [
                 'friends' => 'Amigos en línea',
                 'games' => 'Partidas',
@@ -129,9 +127,9 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nuevos Beatmaps Rankeados',
-            'popular' => 'Beatmaps Populares',
-            'by_user' => '',
+            'new' => 'Nuevos Mapas Clasificados',
+            'popular' => 'Mapas Populares',
+            'by_user' => 'por :user',
         ],
         'buttons' => [
             'download' => 'Descargar osu!',
@@ -145,7 +143,7 @@ return [
         'subtitle' => '¡Pareces estar pasando un buen rato! :D',
         'body' => [
             'part-1' => '¿Sabías que osu! se mantiene sin publicidad y confía en sus jugadores para apoyar su desarrollo y costos de mantenimiento?',
-            'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar Beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
+            'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
         ],
         'find-out-more' => '¡Haz clic aquí para obtener más información!',
         'download-starting' => "Ah, y no te preocupes - tu descarga ya se ha iniciado para ti ;)",

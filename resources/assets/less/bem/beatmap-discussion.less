@@ -30,16 +30,45 @@
     overflow: hidden;
   }
 
-  &__actions {
-    flex: none;
-
-    display: flex;
-    justify-content: flex-end;
-
-    height: @beatmap-discussion--avatar-size;
-    margin: 10px;
-    margin-right: 0;
+  &__compact,
+  &__full {
+    flex: 1;
   }
+
+  &__compact {
+    display: none;
+
+    @media @mobile {
+      display: block;
+    }
+
+    .@{_top}--review & {
+      display: block;
+    }
+  }
+
+  &__full {
+    display: block;
+
+    @media @mobile {
+      display: none;
+    }
+
+    .@{_top}--review & {
+      display: none;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
+
+  &__actions-container {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    }
 
   &__action {
     .reset-input();
@@ -51,7 +80,7 @@
         content: ' ';
         width: 1px;
         right: 100%;
-        background-image: linear-gradient(to bottom, .osu-hsla(@osu-colour-b1, 0)[@hsla], @osu-colour-b1 50%, .osu-hsla(@osu-colour-b1, 0)[@hsla]);
+        background-image: linear-gradient(to bottom, osu-hsla(@osu-colour-b1, 0), @osu-colour-b1 50%, osu-hsla(@osu-colour-b1, 0));
       }
     }
   }
@@ -70,7 +99,24 @@
 
     .@{_top}--highlighted & {
       .thicker-box-shadow();
+      &::after {
+        .full-size();
+        content: ' ';
+        background: fade(white, 15%);
+        pointer-events: none;
+        opacity: 0.5;
+        animation: flash .5s;
+        @keyframes flash {
+          0% { opacity: 1; }
+          100% { opacity: 0.5; }
+        }
+      }
     }
+  }
+
+  &__discussion-header {
+    padding-top: 10px;
+    padding-left: 15px;
   }
 
   &__expanded {
@@ -92,6 +138,17 @@
     }
   }
 
+  &__link-to-parent {
+    margin: 10px;
+    margin-right: 15px;
+
+    color: @osu-colour-f1;
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+    .link-plain();
+  }
+
   &__replies {
     .inner-shadow-top();
     display: flex;
@@ -105,6 +162,10 @@
     font-weight: bold;
     text-transform: lowercase;
     margin: 5px 0;
+  }
+
+  &__review-wrapper {
+    background: @osu-colour-b3;
   }
 
   &__timestamp {
@@ -122,11 +183,19 @@
   &__top {
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
     background-color: @osu-colour-b3;
 
-    @media @desktop {
-      flex-direction: row;
+    .@{_top}--unread & {
+      &::before {
+        .full-size();
+        content: ' ';
+        background-color: @blue-darker;
+        width: 5px;
+      }
+    }
+
+    .@{_top}--review & {
+      border-top: 2px solid var(--group-colour, transparent);
     }
   }
 }

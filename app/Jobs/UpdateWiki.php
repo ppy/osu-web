@@ -46,49 +46,29 @@ class UpdateWiki implements ShouldQueue
         $files = OsuWiki::getUpdatedFiles($this->oldHash, $this->newHash);
 
         foreach ($files as $file) {
-            $status = $file['status'];
-
-            $object = $this->getObject($file['filename']);
-
-            if ($object === null) {
-                continue;
+            if ($file['status'] === 'renamed') {
+                optional($this->getObject($file['previous_filename']))->sync(true);
             }
 
-            if ($object instanceof NewsPost) {
-                $object->sync(true);
-            } else {
-                $object->forget(true);
-
-                if ($status === 'renamed') {
-                    $prevObject = $this->getObject($file['previous_filename']);
-
-                    if ($prevObject) {
-                        $prevObject->forget();
-                    }
-                }
-
-                if ($status !== 'removed') {
-                    $object->get(true);
-                }
-            }
+            optional($this->getObject($file['filename']))->sync(true);
         }
     }
 
     /**
-     * @return WikiObject
+     * @return WikiObject|null
      */
     private function getObject($path)
     {
         $parsed = OsuWiki::parseGithubPath($path);
 
         if ($parsed['type'] === 'page') {
-            return new Page($parsed['path'], $parsed['locale']);
+            return Page::lookup($parsed['path'], $parsed['locale']);
         } elseif ($parsed['type'] === 'image') {
             return new Image($parsed['path']);
         } elseif ($parsed['type'] === 'redirect') {
             return new WikiRedirect();
         } elseif ($parsed['type'] === 'news_post') {
-            return NewsPost::lookupAndSync($parsed['slug']);
+            return NewsPost::lookup($parsed['slug']);
         }
     }
 }

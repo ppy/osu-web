@@ -24,10 +24,87 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => '',
-
+            'comments' => '',
+            'contests' => '',
             'forum' => '',
+            'livestream' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +121,12 @@ return [
             '_' => 'etusivu',
             'account-edit' => 'asetukset',
             'account-verifyLink' => '',
-            'friends-index' => 'kaverit',
-            'changelog-index' => 'muutosloki',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'versio',
+            'changelog-index' => 'muutosloki',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'kaverit',
             'getDownload' => 'lataa',
             'getIcons' => 'kuvakkeet',
             'groups-show' => 'ryhmät',
@@ -59,6 +139,7 @@ return [
             'search' => 'haku',
             'supportTheGame' => 'tue peliä',
             'team' => 'tiimi',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => 'profiili',
@@ -78,7 +159,6 @@ return [
             'artists' => 'suositellut artistit',
             'beatmap_discussion_posts-index' => 'viestit beatmapkeskusteluissa',
             'beatmap_discussions-index' => 'beatmapkeskustelut',
-            'beatmapset-watches-index' => 'modiseuranta',
             'beatmapset_discussion_votes-index' => 'äänet beatmapkeskusteluissa',
             'beatmapset_events-index' => 'beatmapin tapahtumat',
             'index' => 'listaus',
@@ -112,7 +192,6 @@ return [
             'tournaments' => 'turnaukset',
             'tournaments-index' => 'turnaukset',
             'tournaments-show' => 'turnausinfo',
-            'forum-topic-watches-index' => 'seurattuna',
             'forum-topics-create' => 'foorumit',
             'forum-topics-show' => 'foorumit',
             'forum-forums-index' => 'foorumit',
@@ -256,10 +335,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'sähköpostiosoite',
             'forgot' => "Olen unohtanut tietoni",
             'password' => 'salasana',
             'title' => 'Kirjaudu sisään jatkaaksesi',
+            'username' => '',
 
             'error' => [
                 'email' => "Käyttäjänimeä tai sähköpostia ei ole",

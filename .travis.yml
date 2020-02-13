@@ -5,16 +5,12 @@ cache:
     - vendor
   yarn: true
 
-dist: xenial
-sudo: false
+dist: bionic
 
 language: php
 
 php:
   - 7.2
-
-matrix:
-  fast_finish: true
 
 services:
   - mysql
@@ -57,11 +53,12 @@ install:
 
   # elasticsearch setup (part 2)
   # wait until es server is up
-  - wget -q --waitretry=1 --retry-connrefused -T 10 -O - http://127.0.0.1:9200
+  - wget -q --waitretry=10 --retry-connrefused -T 60 -O - http://127.0.0.1:9200
   - php artisan es:create-search-blacklist
   - php artisan es:index-documents --yes
 
 jobs:
+  fast_finish: true
   include:
     - name: phpunit
       addons: skip
@@ -89,7 +86,6 @@ jobs:
         - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
       script:
         - yarn
-        - bin/update_locales_and_routes_js
         - yarn karma start --single-run --browsers ChromeHeadless
 
     - name: apidoc

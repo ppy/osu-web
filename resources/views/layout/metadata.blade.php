@@ -28,6 +28,26 @@
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+@if (isset($opengraph))
+    @php
+        $siteName = 'osu!';
+
+        if (isset($opengraph['section'])) {
+            $siteName .= ' » '.$opengraph['section'];
+        }
+    @endphp
+
+    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
+    <meta property="og:title" content="{{ $opengraph['title'] }}">
+    <meta property="og:image" content="{{ $opengraph['image'] }}">
+
+    @if (isset($pageDescription))
+        <meta property="og:description" content="{{ $pageDescription }}">
+    @endif
+@endif
+
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -102,14 +122,13 @@
 <script src="{{ mix("js/commons.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ mix("js/app.js") }}" data-turbolinks-track="reload"></script>
 <script src="/vendor/js/timeago-locales/jquery.timeago.{{ locale_for_timeago(Lang::getLocale()) }}.js" data-turbolinks-track="reload"></script>
-<script src="//s.ppy.sh/js/site-switcher.js?{{config('osu.site-switcher-js-hash')}}" async></script>
 
 @if (($momentLocale = locale_for_moment(Lang::getLocale())) !== null)
     <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
 @endif
 
 @if (isset($atom))
-    <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}" />
+    <link rel="alternate" type="application/atom+xml" title="{{ $atom['title'] }}" href="{{ $atom['url'] }}">
 @endif
 
 @if (isset($canonicalUrl))

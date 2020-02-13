@@ -62,6 +62,11 @@ class Contest extends Model
         return $this->hasMany(ContestEntry::class);
     }
 
+    public function userContestEntries()
+    {
+        return $this->hasMany(UserContestEntry::class);
+    }
+
     public function votes()
     {
         return $this->hasMany(ContestVote::class);
@@ -305,5 +310,10 @@ class Contest extends Model
             UserContestEntry::where(['contest_id' => $this->id, 'user_id' => $user->user_id])->get(),
             new UserContestEntryTransformer
         );
+    }
+
+    public function url()
+    {
+        return route('contests.show', $this->id);
     }
 }

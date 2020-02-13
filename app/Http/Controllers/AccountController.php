@@ -123,7 +123,7 @@ class AccountController extends Controller
 
         $notificationOptions = $user->notificationOptions->keyBy('name');
 
-        return view('accounts.edit', compact(
+        return ext_view('accounts.edit', compact(
             'authorizedClients',
             'blocks',
             'currentSessionId',
@@ -174,7 +174,7 @@ class AccountController extends Controller
                 $addresses[] = $previousEmail;
             }
             foreach ($addresses as $address) {
-                Mail::to($address)->send(new UserEmailUpdated($user));
+                Mail::to($address)->locale($user->preferredLocale())->send(new UserEmailUpdated($user));
             }
 
             UserAccountHistory::logUserUpdateEmail($user, $previousEmail);
@@ -229,7 +229,7 @@ class AccountController extends Controller
 
         if ($user->update($params) === true) {
             if (present($user->user_email)) {
-                Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
+                Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
             return response([], 204);
@@ -248,12 +248,15 @@ class AccountController extends Controller
         $state = UserVerificationState::fromVerifyLink(request('key'));
 
         if ($state === null) {
-            return response()->view('accounts.verification_invalid')->setStatusCode(404);
+            UserVerification::logAttempt('link', 'fail', 'incorrect_key');
+
+            return ext_view('accounts.verification_invalid', null, null, 404);
         }
 
+        UserVerification::logAttempt('link', 'success');
         $state->markVerified();
 
-        return view('accounts.verification_completed');
+        return ext_view('accounts.verification_completed');
     }
 
     public function reissueCode()

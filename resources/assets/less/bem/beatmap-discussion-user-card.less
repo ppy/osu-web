@@ -1,0 +1,106 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.beatmap-discussion-user-card {
+  @_top: beatmap-discussion-user-card;
+  @_content-gutter-base: 15px;
+
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 5px;
+  flex: none;
+
+  @media @desktop {
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+
+  &__avatar {
+    width: @beatmap-discussion--avatar-size;
+    height: @beatmap-discussion--avatar-size;
+    flex: none;
+
+    .@{_top}--new-reply & {
+      margin-bottom: 5px;
+
+      @media @desktop {
+        margin-right: 10px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__user {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0 5px;
+    min-width: 150px;
+    height: @beatmap-discussion--avatar-size;
+
+    @media @desktop {
+      flex: none;
+    }
+  }
+
+  &__user-badge {
+    min-height:16px;
+    margin-top: 5px;
+  }
+
+  &__user-link {
+    .link-default();
+    color: white;
+  }
+
+  &__user-modding-history-link {
+    .link-inverted();
+    color: @osu-colour-l1;
+    font-size: 10px;
+    margin-left: 5px;
+  }
+
+  &__user-row {
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__user-stripe {
+    align-self: stretch;
+    background-color: var(--group-colour, @osu-colour-b5);
+    border-radius: 1px;
+    flex: none;
+    width: 2px;
+
+    .beatmap-discussion-post--discussion & {
+      @media @mobile {
+        display: none;
+      }
+    }
+  }
+
+  &__user-text {
+    color: white;
+    font-size: @font-size--normal-2;
+    font-weight: bold;
+    font-style: italic;
+    max-width: 120px;
+  }
+}

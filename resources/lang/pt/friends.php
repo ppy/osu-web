@@ -19,21 +19,12 @@
  */
 
 return [
-    'buttons' => [
-      'add' => 'adicionar amigo',
-      'disabled' => 'amigos',
-      'remove' => 'remover amigo',
-    ],
-
-    'index' => [
-        'title' => [
-            '_' => 'Início :info',
-            'info' => 'Amigos',
-        ],
-    ],
-
-    'title' => 'Amigos',
     'title_compact' => 'amigos',
-
     'too_many' => 'Limite de amigos alcançado',
+
+    'buttons' => [
+        'add' => 'adicionar amigo',
+        'disabled' => 'amigos',
+        'remove' => 'remover amigo',
+    ],
 ];

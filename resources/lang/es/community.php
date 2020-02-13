@@ -39,7 +39,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Artistas Destacados',
-                'description' => '¡Con tu soporte podemos acercarnos a mas artistas increíbles y licenciar mas músicas geniales para usar en osu!',
+                'description' => 'Con su apoyo, podemos acercarnos a artistas aún más impresionantes y licenciar más música para su uso en osu!',
                 'link_text' => 'Ver la lista actual &raquo;',
             ],
             'ads' => [
@@ -53,55 +53,55 @@ return [
             ],
             'bounty-program' => [
                 'title' => 'Programa de Bounty de Código Abierto',
-                'description' => 'Apoyar a los colaboradores de la comunidad que han dado su tiempo y esfuerzo para ayudar a hacer osu!.',
+                'description' => 'Apoye a los contribuyentes de la comunidad que han dado su tiempo y esfuerzo para ayudar a hacer que osu! sea mejor.',
                 'link_text' => 'Descubre más &raquo;',
             ],
         ],
         'perks' => [
-            'title' => '¿Oh? ¡¿Qué obtengo?!',
+            'title' => '¡Genial! ¿Qué beneficios obtengo?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'acceso rápido y sencillo para buscar Beatmaps sin salir del juego.',
+                'description' => 'Obtén acceso rápido y sencillo para buscar y descargar mapas sin tener que salir del juego.',
             ],
 
             'friend_ranking' => [
-                'title' => 'Ranking de Amigos',
-                'description' => "Vea como lo haces contra tus amigos en un ranking de beatmap, tanto dentro del juego como en la web.",
+                'title' => 'Clasificación entre Amigos',
+                'description' => "Observa cómo te enfrentas a tus amigos en la tabla de clasificación de un mapa, tanto dentro del juego como en el sitio web.",
             ],
 
             'country_ranking' => [
-                'title' => 'Ranking Nacional',
+                'title' => 'Clasificación Nacional',
                 'description' => 'Conquista tu país antes de conquistar el mundo.',
             ],
 
             'mod_filtering' => [
                 'title' => 'Filtrar por Mods',
-                'description' => '¿Asociar sólo a las personas que juegan HDHR? ¡No hay problema!',
+                'description' => '¿Asociarse sólo con personas que juegan con HDHR? ¡No hay problema!',
             ],
 
             'auto_downloads' => [
                 'title' => 'Descargas Automáticas',
-                'description' => '¡Descargas automáticas cuando juegas multijugador, espectas a otros, o al dar clic a enlaces en el chat!',
+                'description' => '¡Los mapas se descargarán automáticamente en partidas multijugador, mientras espectas a otros, o al hacer clic en enlaces relevantes en el chat!',
             ],
 
             'upload_more' => [
                 'title' => 'Sube más',
-                'description' => 'Ranuras de Beatmaps pendientes adicionales (por beatmap rankeado) hasta un máximo de 10.',
+                'description' => 'Espacios para mapas pendientes adicionales (por mapa clasificado) hasta un máximo de 10.',
             ],
 
             'early_access' => [
                 'title' => 'Acceso anticipado',
-                'description' => '¡Acceso a lanzamientos anticipados, donde puedes probar nuevas características antes de que sean públicas!',
+                'description' => '¡Obtén acceso anticipado a nuevos lanzamientos con nuevas características antes de que se hagan públicas!<br/><br/>¡Esto incluye el acceso anticipado a nuevas características en el sitio web también!',
             ],
 
             'customisation' => [
                 'title' => 'Personalización',
-                'description' => "Personaliza tu perfil añadiendo una página de usuario totalmente personalizable.",
+                'description' => "Destaca subiendo una imagen de portada personalizada o creando una sección '¡yo!' totalmente personalizable dentro de tu perfil de usuario.",
             ],
 
             'beatmap_filters' => [
                 'title' => 'Filtros de Beatmap',
-                'description' => 'Filtra búsquedas de beatmaps por mapas jugados, no jugados y por puntuación obtenida. (Sí la hay).',
+                'description' => 'Filtra búsquedas de beatmaps por mapas jugados, no jugados y por puntuación obtenida.',
             ],
 
             'yellow_fellow' => [
@@ -116,7 +116,7 @@ return [
 
             'change_username' => [
                 'title' => 'Cambiar Nombre de usuario',
-                'description' => 'La habilidad de cambiar tu nombre de usuario sin costes adicionales. (máximo una vez)',
+                'description' => 'Un cambio de nombre gratuito se incluye con su primera compra de supporter.',
             ],
 
             'skinnables' => [
@@ -131,33 +131,33 @@ return [
 
             'sort_options' => [
                 'title' => 'Opciones de Orden',
-                'description' => 'La habilidad de ver rankings nacionales / amigos / por mod de un beatmap dentro del juego.',
+                'description' => 'La habilidad de ver las clasificaciones nacionales / amigos / por mod de un mapa dentro del juego.',
             ],
 
             'more_favourites' => [
                 'title' => 'Más favoritos',
-                'description' => 'El número máximo de mapas de beatmaps que puedes preferir se incrementa desde :normally &rarr; :supporter',
+                'description' => 'El número máximo de mapas que puede marcar como favorito aumenta de :normally &rarr; :supporter',
             ],
             'more_friends' => [
-                'title' => 'Más Amigos',
-                'description' => 'El número máximo de amigos que puedes tener es aumentado de :normally &rarr; :supporter',
+                'title' => 'Más amigos',
+                'description' => 'El número máximo de amigos que puedes tener aumenta de :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
-                'title' => 'Subir más Beatmaps',
+                'title' => 'Subir más mapas',
                 'description' => 'Se calcula cuántos mapas sin calificar puedes tener a la vez, a partir de un valor base más un bono adicional por cada mapa clasificado que tenga actualmente (hasta un límite).<br/><br/>Normalmente esto es 4 más 1 por mapa clasificado (hasta 2). Con soporte, esto aumenta a 8 más 1 por mapa clasificado (hasta 12).',
             ],
             'friend_filtering' => [
-                'title' => 'Ranking de Amigos',
-                'description' => 'Compite con tus amigos y vea cómo se clasifica contra ellos!*<br/><br/><small>* aun no disponible en la nueva pagina, pronto(tm)</small>',
+                'title' => 'Amigos en la tabla de clasificación',
+                'description' => '¡Compita con sus amigos y vea cómo se clasifica contra ellos!*<br/><br/><small>* aún no disponible en el nuevo sitio, pronto(tm)</small>',
             ],
 
         ],
         'supporter_status' => [
-            'contribution' => '¡Gracias por tu apoyo hasta ahora! ¡Has contribuido un total de :dollars con la compra de :tags tags!',
-            'gifted' => ":giftedTags de tus compras de tags han sido regaladas (un total de :giftedDollars regalados), ¡qué generoso!",
-            'not_yet' => "Todavía no tienes un tag de supporter aún :(",
-            'valid_until' => 'Tu tag de supporter actual es válida hasta el :date!',
-            'was_valid_until' => 'Tu tag de supporter fue válida hasta :date.',
+            'contribution' => '¡Gracias por tu apoyo hasta ahora! ¡Has contribuido con :dollars con la compra de :tags tag(s)!',
+            'gifted' => "Has regalado :giftedTags de tus compras (eso es un valor de :giftedDollars), ¡qué generoso!",
+            'not_yet' => "Nunca has tenido un tag de osu!supporter :(",
+            'valid_until' => '¡Tu tag de osu!supporter actual es válida hasta el :date!',
+            'was_valid_until' => 'Tu tag de osu!supporter fue válida hasta el :date.',
         ],
     ],
 ];

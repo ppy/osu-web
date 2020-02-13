@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Obnovování...',
             'remove' => 'Odebrat',
             'removing' => 'Odebírání...',
+            'title' => '',
         ],
         'show' => [
             'covers' => 'Spravovat Přebaly Mapsetu',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Adminská Konzole',
-
             'sections' => [
+                'beatmapsets' => '',
                 'forum' => 'Fórum',
                 'general' => 'Obecné',
                 'store' => 'Obchod',

@@ -19,14 +19,10 @@
 
 @section('content')
     @include('home._user_header_default', [
-        'title' => trans('home.user.header.welcome', ['username' => link_to(
-            route('users.show', Auth::user()),
-            Auth::user()->username,
-            ['class' => 'link link--white']
-        )])
+        'title' => trans('home.user.title'),
     ])
 
-    <div class="osu-page osu-page--small">
+    <div class="osu-page">
         <div class="user-home">
             <div class="user-home__news">
                 <h2 class="user-home__news-title">{{ trans('home.user.news.title') }}</h2>
@@ -61,6 +57,9 @@
                 @endif
             </div>
             <div class="user-home__right-sidebar">
+                <div class="user-home__status-box">
+                    @include('home._user_online_status')
+                </div>
                 <div class="user-home__buttons">
                     <div class="user-home__button">
                         @include('home._user_giant_button', [

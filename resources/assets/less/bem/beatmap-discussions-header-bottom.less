@@ -38,12 +38,12 @@
 
     &--details {
       display: flex;
-      margin-top: 20px;
+      margin: -5px;
+      padding: 20px 10px 10px 0;
       flex-direction: column;
-      justify-content: space-between;
 
       @media @mobile {
-        margin-top: 10px;
+        padding: 15px 5px 5px;
         align-self: center;
       }
     }
@@ -58,19 +58,12 @@
     }
   }
 
-  &__subscribe {
-    margin: 10px 0;
+  &__details {
+    margin: 5px;
+    flex: none;
 
-    @media @desktop {
-      margin: 10px 10px 10px 0;
-    }
-  }
-
-  &__info-page {
-    margin-bottom: 10px;
-
-    @media @desktop {
-      margin: 0 10px 10px 0;
+    &--full {
+      flex: 1;
     }
   }
 }

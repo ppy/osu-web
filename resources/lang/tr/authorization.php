@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Devam etmek için lütfen giriş yapın.',
+    'require_verification' => 'Devam etmek için lütfen hesabınızı doğrulatınız.',
+    'restricted' => "Kısıtlanmışken bunu yapamazsınız.",
+    'silenced' => "Susturulmuşken bunu yapamazsınız.",
+    'unauthorized' => 'Erişim engellendi.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Verilen gaz geri alınamaz.',
@@ -48,14 +54,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Sadece kendi paylaşımlarını silebilirsin.',
+            'resolved' => 'Çözümlenmiş bir tartışmanın paylaşımını silinemez.',
+            'system_generated' => 'Otomatikman oluşan paylaşımlar silinemez.',
         ],
 
         'edit' => [
             'not_owner' => 'Gönderileri yalnızca gönderen düzenleyebilir.',
-            'resolved' => '',
+            'resolved' => 'Çözümlenmiş bir tartışmanın paylaşımını değiştirilemez.',
             'system_generated' => 'Otomatik olarak oluşturulmuş gönderiler düzenlenemez.',
         ],
 
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Yalnızca yönetici bu forumu görüntüleyebilir.',
         ],
     ],
-
-    'require_login' => 'Devam etmek için lütfen giriş yapın.',
-
-    'unauthorized' => 'Erişim engellendi.',
-
-    'silenced' => "Susturulmuşken bunu yapamazsınız.",
-
-    'restricted' => "Kısıtlanmışken bunu yapamazsınız.",
 
     'user' => [
         'page' => [

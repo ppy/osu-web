@@ -27,10 +27,6 @@
 
   &:last-child {
     padding-bottom: 80px;
-
-    @media @mobile {
-      padding-bottom: 200px;
-    }
   }
 
   &--own {
@@ -98,7 +94,7 @@
   }
 
   &__message-status {
-    color: .osu-hsla(@osu-colour-h1, 0.5)[@hsla];
+    color: osu-hsla(@osu-colour-h1, 0.5);
     margin-left: 10px;
 
     &--errored {

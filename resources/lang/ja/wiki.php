@@ -25,6 +25,7 @@ return [
         'missing' => '要求されたページ”:keyword”は見つかりませんでした。',
         'missing_title' => 'Not Found',
         'missing_translation' => '要求されたページは選択している言語に翻訳されていません。',
+        'needs_cleanup_or_rewrite' => 'このページはosu!の基準を満たしていません！ wikiをクリーンアップまたは書き換える必要があります。あなたが助けることができる場合は、記事の更新を検討してください！',
         'search' => '既存のページで:linkを検索する',
         'toc' => '目次',
 

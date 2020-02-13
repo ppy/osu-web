@@ -27,7 +27,7 @@ export PlayTime = ({stats}) ->
 
   daysLeftOver = Math.floor playTime.asDays()
   hours = playTime.hours()
-  totalMinutes = Math.round(playTime.asMinutes())
+  totalMinutes = Math.floor playTime.asMinutes()
   minutes = totalMinutes % 60 # account for seconds rounding
 
   titleValue = Math.round(playTime.asHours())

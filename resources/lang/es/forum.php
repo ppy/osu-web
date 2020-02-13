@@ -22,25 +22,21 @@ return [
     'pinned_topics' => 'Temas Fijados',
     'slogan' => "es peligroso jugar solo.",
     'subforums' => 'Subforos',
-    'title' => 'foros de osu!',
+    'title' => 'Foros',
 
     'covers' => [
         'edit' => 'Editar portada',
 
         'create' => [
             '_' => 'Establecer imagen de portada',
-            'button' => 'Subir imagen',
-            'info' => 'El tamaño de la portada debe ser de: dimensions. También puedes soltar tu imagen aquí para subirla.',
+            'button' => 'Subir portada',
+            'info' => 'El tamaño de la portada debe ser de :dimensions. También puedes soltar tu imagen aquí para subirla.',
         ],
 
         'destroy' => [
-            '_' => 'Eliminar imagen de portada',
+            '_' => 'Eliminar portada',
             'confirm' => '¿Estás seguro de que quieres eliminar la imagen de portada?',
         ],
-    ],
-
-    'email' => [
-        'new_reply' => '[osu!] Nueva respuesta para el tema ":title"',
     ],
 
     'forums' => [
@@ -96,7 +92,7 @@ return [
         'go_to_latest' => 'ver la última publicación',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última respuesta por :user',
-        'new_topic' => 'Escribir nuevo tema',
+        'new_topic' => 'Nuevo tema',
         'new_topic_login' => 'Inicia sesión para publicar un nuevo tema',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escribe aquí para responder',
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Suscripciones a Temas',
             'title_compact' => 'suscripciones a foros',
-            'title_main' => '<strong>Suscripciones</strong> de foros',
 
             'box' => [
                 'total' => 'Temas suscritos',
@@ -160,8 +154,8 @@ return [
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => '¿Desuscribirte de este tema??',
-                'title' => 'Desuscribirse',
+                'confirmation' => '¿Cancelar suscripción al tema?',
+                'title' => 'Cancelar suscripción',
             ],
         ],
     ],
@@ -276,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => 'Enseñar publicaciones eliminadas',
-            'hide' => 'Esconder publicaciones eliminadas',
+            'show' => 'Mostrar publicaciones eliminadas',
+            'hide' => 'Ocultar publicaciones eliminadas',
         ],
 
         'show' => [
@@ -289,8 +283,8 @@ return [
                 'do' => 'Apoyar esta solicitud',
 
                 'info' => [
-                    '_' => 'Esto es un :feature_request. Sugerencias pueden ser votadas por :supporters.',
-                    'feature_request' => 'sugerir una idea',
+                    '_' => 'Esta es una :feature_request. Las solicitudes de características pueden ser votadas por :supporters.',
+                    'feature_request' => 'solicitud de característica',
                     'supporters' => 'colaboradores',
                 ],
 
@@ -326,7 +320,7 @@ return [
             'to_not_watching' => 'No marcado',
             'to_watching' => 'Marcado',
             'to_watching_mail' => 'Marcado con aviso de notificaciones',
-            'tooltip_mail_disable' => 'Notificación activada. Haga clics para desactivar',
+            'tooltip_mail_disable' => 'Notificación activada. Haga clic para desactivar',
             'tooltip_mail_enable' => 'Notificación desactivada. Haga clic para activar',
         ],
     ],

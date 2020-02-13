@@ -72,9 +72,10 @@ class Highlight implements Queryable
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
+            'encoder' => 'html',
             'fragment_size' => $this->fragmentSize,
             'fields' => $this->fields,
             'number_of_fragments' => $this->numberOfFragments,

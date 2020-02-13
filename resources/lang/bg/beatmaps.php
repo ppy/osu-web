@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Анулирай Номинацията',
             'praise' => 'Възхвали',
             'problem' => 'Проблем',
+            'review' => '',
             'suggestion' => 'Предложение',
         ],
 
         'mode' => [
             'events' => 'История',
             'general' => 'Обща :scope',
+            'reviews' => '',
             'timeline' => 'Времева лента',
             'scopes' => [
                 'general' => 'Тази трудност',

@@ -25,6 +25,8 @@ use App\Libraries\MorphMap;
 use App\Models\Score\Best;
 use App\Models\Score\Best\Model as BestModel;
 use App\Traits\Validatable;
+use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\RoutesNotifications;
 
 /**
  * @property string $comments
@@ -45,7 +47,7 @@ use App\Traits\Validatable;
  */
 class UserReport extends Model
 {
-    use Validatable;
+    use RoutesNotifications, Validatable;
 
     const POST_TYPE_REASONS = ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'];
     const SCORE_TYPE_REASONS = ['Cheating', 'Other'];
@@ -76,6 +78,11 @@ class UserReport extends Model
     public function reporter()
     {
         return $this->belongsTo(User::class, 'reporter_id');
+    }
+
+    public function routeNotificationForSlack(?Notification $_notification): ?string
+    {
+        return config('osu.user_report_notification.endpoint');
     }
 
     public function score()

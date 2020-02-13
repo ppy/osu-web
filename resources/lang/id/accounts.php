@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Pengaturan <strong>Akun</strong>',
         'title_compact' => 'pengaturan',
         'username' => 'nama pengguna',
 
@@ -66,8 +65,14 @@ return [
 
     'notifications' => [
         'title' => 'Notifikasi',
-        'topic_auto_subscribe' => 'hidupkan notifikasi secara otomatis di topik forum baru yang anda buat',
-        'beatmapset_discussion_qualified_problem' => '',
+        'topic_auto_subscribe' => 'hidupkan notifikasi secara otomatis di topik forum baru yang Anda buat',
+        'beatmapset_discussion_qualified_problem' => 'terima pemberitahuan untuk masalah baru pada qualified beatmap dari mode berikut',
+
+        'mail' => [
+            '_' => 'terima pemberitahuan email tentang',
+            'beatmapset:modding' => 'modding beatmap',
+            'forum_topic_reply' => 'balasan pada topik',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'konfirmasi perubahan email osu!',
         'update' => 'perbarui',
     ],
 
     'update_password' => [
-        'email_subject' => 'konfirmasi perubahan kata sandi osu!',
         'update' => 'perbarui',
     ],
 

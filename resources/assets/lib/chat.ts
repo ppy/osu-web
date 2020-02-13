@@ -59,7 +59,6 @@ reactTurbolinks.register('chat', MainView, () => {
 
   return {
     dataStore: core.dataStore,
-    dispatcher: core.dispatcher,
     initialChannel,
     worker: core.chatWorker,
   };

@@ -15,9 +15,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $title = $post->title();
+@endphp
 @extends('master', [
-    'legacyNav' => false,
-    'titlePrepend' => $post->title(),
+    'titlePrepend' => $title,
+    'canonicalUrl' => $post->url(),
+    'pageDescription' => blade_safe($post->previewText()),
+    'opengraph' => [
+        'title' => $title,
+        'section' => trans('layout.menu.home.news-show'),
+        'image' => $post->firstImage(true),
+    ],
 ])
 
 @section('content')

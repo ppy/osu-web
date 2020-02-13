@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Thanh Toán',
+        'info' => '',
         'more_goodies' => 'Tôi muốn xem thêm nhiều mặt hàng nữa trước khi hoàn thành đơn hàng',
         'shipping_fees' => 'phí vận chuyển',
         'title' => 'Giỏ Hàng',
@@ -76,12 +77,6 @@ return [
                     'link_text' => 'nhấp vào đây để tiếp tục quá trình thanh toán',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Chúng tôi đã nhận được đơn hàng osu!store của bạn!',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => 'Bạn cần phải :link để đổi tên!',
             'link_text' => 'đăng nhập',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

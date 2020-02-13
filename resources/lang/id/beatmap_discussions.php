@@ -38,17 +38,17 @@ return [
         'form' => [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Hanya tampilkan diskusi yang belum selesai',
             'types' => 'Tipe pesan',
             'username' => 'Nama Pengguna',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Status Beatmap',
+                'all' => 'Semua',
+                'disqualified' => 'Disqualified',
+                'never_qualified' => 'Tidak pernah Qualified',
+                'qualified' => 'Qualified',
+                'ranked' => 'Ranked',
             ],
 
             'user' => [
@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Lihat Ulasan',
+        'go_to_child' => 'Lihat Topik Diskusi',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Ditandai selesai oleh :user',
             'false' => 'Dibuka ulang oleh :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'umum',
+        'general_all' => 'umum (semua)',
     ],
 
     'user_filter' => [

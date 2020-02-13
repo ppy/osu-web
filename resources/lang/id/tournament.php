@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Pendaftaran: :start sampai :end',
 
         'header' => [
-            'subtitle' => 'Daftar turnamen resmi yang sedang berlangsung',
             'title' => 'Turnamen Komunitas',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Batalkan Pendaftaran',
             'register' => 'Daftarkan saya!',
+        ],
+
+        'period' => [
+            'end' => 'Berakhir',
+            'start' => 'Mulai',
         ],
 
         'state' => [

@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Rekisteröinti: :start:sta :end:een',
 
         'header' => [
-            'subtitle' => 'Luettelo aktiivisista, virallisesti tunnustetuista turnauksista',
             'title' => 'Yhteisöturnaukset',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Peru Rekisteröityminen',
             'register' => 'Lisää minut mukaan!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

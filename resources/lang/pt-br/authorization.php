@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Por favor, inicie a sessão para continuar.',
+    'require_verification' => 'Por favor verifique para prosseguir.',
+    'restricted' => "Não é possível fazer isso enquanto restrito.",
+    'silenced' => "Não é possível fazer isso enquanto silenciado.",
+    'unauthorized' => 'Acesso negado.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Não é possível desfazer o hype.',
@@ -65,7 +71,7 @@ return [
     ],
 
     'chat' => [
-        'blocked' => 'Não se pode enviar uma mensagem para um usuário que foi bloqueado, ou te bloqueou.',
+        'blocked' => 'Não é possível enviar uma mensagem para um usuário que foi bloqueado ou te bloqueou.',
         'friends_only' => 'O usuário está bloqueando mensagens de pessoas fora de sua lista de amigos.',
         'moderated' => 'O canal atual está sendo moderado.',
         'no_access' => 'Você não tem acesso a esse canal.',
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Apenas administradores podem visualizar este fórum.',
         ],
     ],
-
-    'require_login' => 'Por favor, inicie a sessão para continuar.',
-
-    'unauthorized' => 'Acesso negado.',
-
-    'silenced' => "Não é possível fazer isso enquanto silenciado.",
-
-    'restricted' => "Não é possível fazer isso enquanto restrito.",
 
     'user' => [
         'page' => [

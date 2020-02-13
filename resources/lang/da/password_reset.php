@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Nulstil Adgangskode',
-
     'button' => [
         'cancel' => 'Annuller',
         'resend' => 'Gensend Bekræftelsesemail',
         'set' => 'Indstil adgangskode',
         'start' => 'Start',
-    ],
-
-    'email' => [
-        'subject' => 'osu! konto genoprettelse',
     ],
 
     'error' => [
@@ -57,8 +51,8 @@ return [
         'username' => 'Indtast email-adresse eller brugernavn',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Har du brug for yderligere assistance? Kontakt os via vores :button.',
+            'button' => 'support system',
         ],
     ],
 ];

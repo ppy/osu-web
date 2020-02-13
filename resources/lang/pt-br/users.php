@@ -64,24 +64,52 @@ return [
         'send_message' => 'enviar mensagem',
     ],
 
+    'disabled' => [
+        'title' => 'Oh não! Parece que a sua conta foi desativada.',
+        'warning' => "No caso de você ter infringido uma regra, observe que geralmente há um período de espera de um mês durante o qual não consideraremos nenhum pedido de anistia. Após esse período, você pode entrar em contato conosco caso julgue necessário. Observe que a criação de novas contas após a desativação de uma conta resultará em uma <strong> extensão desse período de espera de um mês </strong>. Observe também que, para <strong> todas as contas criadas, você está violando ainda mais as regras </strong>. É altamente recomendável que você não siga esse caminho!",
+
+        'if_mistake' => [
+            '_' => 'Se você acha que isso é um erro, você pode entrar em contato conosco (através de :email ou clicando no "?" no canto inferior direito desta página). Por favor observe que estamos sempre totalmente confiantes com nossas ações, uma vez que se baseiam em dados muito sólidos. Nós nos reservamos o direito de ignorar o seu pedido se sentirmos que você está sendo intencionalmente desonesto.',
+            'email' => 'email',
+        ],
+
+        'reasons' => [
+            'compromised' => 'Sua conta foi considerada comprometida. Ela pode estar desativada temporariamente enquanto sua identidade for confirmada.',
+            'opening' => 'Há vários motivos que podem resultar na desativação da sua conta:',
+
+            'tos' => [
+                '_' => 'Você quebrou uma ou mais das nossas :community_rules ou :tos.',
+                'community_rules' => 'regras da comunidade',
+                'tos' => 'termos de serviço',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "Sua conta não foi usada há muito tempo.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Conectar-se',
-        'locked_ip' => 'seu endereço IP está bloqueado. Por favor, espere alguns minutos.',
-        'username' => 'Nome de Usuário',
-        'password' => 'Senha',
         'button' => 'Conectar',
         'button_posting' => 'Conectando...',
+        'email_login_disabled' => 'O login com email está desativado no momento. Por favor use o nome de usuário.',
+        'failed' => 'Login incorreto',
+        'forgot' => 'Esqueceu sua senha?',
+        'info' => 'Por favor, conecte-se para continuar',
+        'locked_ip' => 'seu endereço IP está bloqueado. Por favor, espere alguns minutos.',
+        'password' => 'Senha',
+        'register' => "Você não tem uma conta no osu!? Faça uma!",
         'remember' => 'Lembrar deste computador',
         'title' => 'Por favor, conecte-se para prosseguir',
-        'failed' => 'Login incorreto',
-        'register' => "Você não tem uma conta no osu!? Faça uma!",
-        'forgot' => 'Esqueceu sua senha?',
+        'username' => 'Nome de Usuário',
+
         'beta' => [
             'main' => 'Acesso Beta está restrito apenas para usuários privilegiados.',
             'small' => '(osu!supporters terão acesso em breve)',
         ],
-
-        'here' => 'aqui', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -146,7 +174,7 @@ return [
                     'button' => 'Enviar imagem',
                     'dropzone' => 'Solte aqui pare enviar',
                     'dropzone_info' => 'Você também pode soltar sua imagem aqui para enviar',
-                    'size_info' => 'O tamanho da capa deve ser 2800x620',
+                    'size_info' => 'O tamanho da capa deve ser 2400x640',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
 
@@ -184,7 +212,7 @@ return [
                     'title' => 'Beatmaps no Cemitério',
                 ],
                 'loved' => [
-                    'title' => 'Loved Beatmaps',
+                    'title' => 'Beatmaps Amados',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps Ranqueados & Aprovados',
@@ -335,11 +363,6 @@ return [
             ],
         ],
 
-        'header_title' => [
-            '_' => 'Player :info',
-            'info' => 'Info',
-        ],
-
         'info' => [
             'discord' => 'Discord',
             'interests' => 'Interesses',
@@ -393,7 +416,7 @@ return [
             'total_score' => 'Pontuação Total',
             // modding stats
             'ranked_and_approved_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
-            'loved_beatmapset_count' => 'Loved Beatmaps',
+            'loved_beatmapset_count' => 'Beatmaps Amados',
             'unranked_beatmapset_count' => 'Beatmaps Pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no Cemitério',
         ],

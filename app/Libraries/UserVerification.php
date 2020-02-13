@@ -23,6 +23,8 @@ namespace App\Libraries;
 use App\Exceptions\UserVerificationException;
 use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\Country;
+use App\Models\LoginAttempt;
+use Datadog;
 use Mail;
 
 class UserVerification
@@ -33,10 +35,26 @@ class UserVerification
 
     public static function fromCurrentRequest()
     {
-        return new static(
-            auth()->user(),
-            request(),
-            UserVerificationState::fromCurrentRequest()
+        $verification = request()->attributes->get('user_verification');
+
+        if ($verification === null) {
+            $verification = new static(
+                auth()->user(),
+                request(),
+                UserVerificationState::fromCurrentRequest()
+            );
+            request()->attributes->set('user_verification', $verification);
+        }
+
+        return $verification;
+    }
+
+    public static function logAttempt(string $source, string $type, string $reason = null): void
+    {
+        Datadog::increment(
+            config('datadog-helper.prefix_web').'.verification.attempts',
+            1,
+            compact('reason', 'source', 'type')
         );
     }
 
@@ -58,19 +76,21 @@ class UserVerification
         $email = $this->user->user_email;
 
         if (!$this->state->issued()) {
+            static::logAttempt('input', 'new');
+
             $this->issue();
         }
 
         if ($this->request->ajax()) {
             return response([
                 'authentication' => 'verify',
-                'box' => render_to_string(
+                'box' => view(
                     'users._verify_box',
                     compact('email')
-                ),
+                )->render(),
             ], 401);
         } else {
-            return response()->view('users.verify', compact('email'));
+            return ext_view('users.verify', compact('email'), null, 401);
         }
     }
 
@@ -82,16 +102,21 @@ class UserVerification
     public function issue()
     {
         $user = $this->user;
-        $email = $user->user_email;
-        $to = $user->user_email;
+
+        if (!present($user->user_email)) {
+            return;
+        }
+
         $keys = $this->state->issue();
+
+        LoginAttempt::logAttempt($this->request->getClientIp(), $this->user, 'verify');
 
         $requestCountry = Country
             ::where('acronym', request_country($this->request))
             ->pluck('name')
             ->first();
 
-        Mail::to($to)
+        Mail::to($user)
             ->queue(new UserVerificationMail(
                 compact('keys', 'user', 'requestCountry')
             ));
@@ -122,12 +147,20 @@ class UserVerification
         try {
             $this->state->verify($key);
         } catch (UserVerificationException $e) {
+            static::logAttempt('input', 'fail', $e->reasonKey());
+
+            if ($e->reasonKey() === 'incorrect_key') {
+                LoginAttempt::logAttempt($this->request->getClientIp(), $this->user, 'verify-mismatch', $key);
+            }
+
             if ($e->shouldReissue()) {
                 $this->issue();
             }
 
             return error_popup($e->getMessage());
         }
+
+        static::logAttempt('input', 'success');
 
         return $this->markVerifiedAndRespond();
     }

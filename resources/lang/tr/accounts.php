@@ -20,13 +20,12 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Hesap</strong> Ayarları',
         'title_compact' => 'ayarlar',
         'username' => 'kullanıcı adı',
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Avatarının :link\'na uyduğundan emin ol.<br/>Bu avatarının <strong>her yaş grubuna</strong> uygun olması gerektiği anlamına gelir. Yani çıplaklık, küfür veya müstehcen içerik olmamalıdır.',
+            'rules' => 'Lütfen avatarınızın :link\'e göre uygun olduğundan emin olunuz.<br/>Bu, onun <strong>her yaştan kişiye uygun olmasını</strong> yani çıplaklık, küfür veya müsthecen içeriğe yer vermemelidir.',
             'rules_link' => 'topluluk kuralları',
         ],
 
@@ -67,13 +66,19 @@ return [
     'notifications' => [
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'bu beatmap için oluşturduğunuz yeni forum konularında bildirimleri otomatik olarak etkinleştirin',
-        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
+
+        'mail' => [
+            '_' => 'Bunun için bildirim al',
+            'beatmapset:modding' => 'beatmap modding',
+            'forum_topic_reply' => 'Konuya cevap ver',
+        ],
     ],
 
     'oauth' => [
         'authorized_clients' => 'istek yetkilendirildi',
         'own_clients' => '',
-        'title' => 'Otomatik bağlantı',
+        'title' => 'OAuth',
     ],
 
     'playstyles' => [
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! e-posta değişikliği onayı',
         'update' => 'güncelle',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! şifre değişikliği onayı',
         'update' => 'güncelle',
     ],
 

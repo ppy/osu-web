@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Réinitialiser le mot de passe',
-
     'button' => [
         'cancel' => 'Annuler',
         'resend' => 'Renvoyer l\'email de vérification',
         'set' => 'Définir le mot de passe',
         'start' => 'Démarrer',
-    ],
-
-    'email' => [
-        'subject' => 'Récupération de compte osu!',
     ],
 
     'error' => [

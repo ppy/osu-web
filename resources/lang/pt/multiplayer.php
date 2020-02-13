@@ -23,7 +23,7 @@ return [
         'beatmap-deleted' => 'beatmap eliminado',
         'difference' => 'por :difference',
         'failed' => 'FALHADO',
-        'header' => 'Batalhas de Multijogador',
+        'header' => 'Batalhas de multijogador',
         'in-progress' => '(partida em andamento)',
         'in_progress_spinner_label' => 'partida em andamento',
         'loading-events' => 'A carregar eventos...',
@@ -55,7 +55,7 @@ return [
 
         'team-types' => [
             'head-to-head' => 'Frente-a-frente',
-            'tag-coop' => 'Tag Co-op',
+            'tag-coop' => 'Tag cooperativo',
             'team-vs' => 'Equipa VS',
             'tag-team-vs' => 'Equipa Tag VS',
         ],
@@ -67,9 +67,9 @@ return [
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Maior Pontuação',
-            'accuracy' => 'Maior Precisão',
-            'combo' => 'Maior Combo',
+            'score' => 'Maior pontuação',
+            'accuracy' => 'Maior precisão',
+            'combo' => 'Maior combo',
             'scorev2' => 'Pontuação V2',
         ],
     ],

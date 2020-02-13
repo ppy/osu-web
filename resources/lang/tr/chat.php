@@ -23,7 +23,7 @@ return [
     'talking_in' => ':channel kanalındasınız',
     'talking_with' => ':name ile konuşuyorsunuz',
     'title_compact' => 'sohbet',
-    'title' => 'Sohbet',
+
     'cannot_send' => [
         'channel' => 'Şu anda bu kanala mesaj yazamazsınız. Şunlardan herhangi birisi buna sebep olabilir:',
         'user' => 'Şu anda bu kişiye mesaj yazamazsınız. Şunlardan herhangi birisi buna sebep olabilir:',

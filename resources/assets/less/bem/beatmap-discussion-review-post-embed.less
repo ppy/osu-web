@@ -1,0 +1,93 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+.beatmap-discussion-review-post-embed {
+  @_top: beatmap-discussion-review-post-embed;
+  @beatmap-icon-size: 22px; // font-size from beatmap-icon.less
+  @beatmap-icon-padding: 10px;
+  @beatmap-icon-container-size: @beatmap-icon-size + (@beatmap-icon-padding * 2);
+  @message-type-icon-size: 15px;
+
+  display: flex;
+  overflow: hidden;
+  background-color: @osu-colour-b2;
+  flex: 1;
+  margin: 5px 0;
+
+  .default-box-shadow();
+  .default-border-radius();
+
+  &__error {
+    flex: 1;
+    margin: 10px;
+    text-align: center;
+  }
+
+  &__meta {
+    display: flex;
+    width: 100px;
+    height: @beatmap-icon-container-size;
+    align-items: center;
+  }
+
+  &__icon {
+    width: @beatmap-icon-container-size;
+    padding: @beatmap-icon-padding;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link {
+    padding: 10px;
+  }
+
+  &__link-text {
+    color: @osu-colour-f1;
+
+    .link-plain();
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+  }
+
+  &__body {
+    flex: 1;
+    margin: 10px;
+    margin-left: 0;
+  }
+
+  &__timestamp-text {
+    color: @osu-colour-f1;
+    font-size: 9px;
+  }
+
+  &__stripe {
+    align-self: stretch;
+    background-color: @osu-colour-b4;
+    border-radius: 1px;
+    flex: none;
+    width: 2px;
+    margin: 10px;
+
+    .@{_top}--praise & {
+      background-color: @osu-colour-blue-3;
+    }
+    .@{_top}--resolved & {
+      background-color: @osu-colour-lime-3;
+    }
+  }
+}

@@ -22,15 +22,9 @@ return [
     'cancel' => '取消',
 
     'authorise' => [
-        'authorise' => '授权',
         'request' => '正在请求访问你的账户',
         'scopes_title' => '该应用将可以：',
         'title' => '授权请求',
-
-        'wrong_user' => [
-            '_' => '你正以 :user 登录。:logout_link。',
-            'logout_link' => '点此切换用户',
-        ],
     ],
 
     'authorized_clients' => [
@@ -50,12 +44,6 @@ return [
         'name' => '应用名称',
         'redirect' => '应用回调链接',
         'secret' => '客户端密钥',
-    ],
-
-    'login' => [
-        'download' => '点此以下载游戏并创建账号',
-        'label' => '首先，让我们登录你的账号',
-        'title' => '账号登录',
     ],
 
     'new_client' => [

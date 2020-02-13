@@ -24,17 +24,94 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'Közösség',
-
+            'comments' => '',
+            'contests' => '',
             'forum' => 'Fórum',
+            'livestream' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
     'gallery' => [
         'close' => 'Bezár (Esc)',
         'fullscreen' => 'Teljes képernyő be/ki',
-        'zoom' => '',
+        'zoom' => 'Nagyítás/kicsinyítés',
         'previous' => 'Előző (bal kurzor)',
         'next' => 'Következő (jobb kurzor)',
     ],
@@ -44,9 +121,12 @@ return [
             '_' => 'főoldal',
             'account-edit' => 'beállítások',
             'account-verifyLink' => 'Sikeres hitelesítés',
-            'friends-index' => 'barátok',
-            'changelog-index' => 'változtatások',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'verzió',
+            'changelog-index' => 'változtatások',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'barátok',
             'getDownload' => 'letöltés',
             'getIcons' => 'ikonok',
             'groups-show' => 'csoportok',
@@ -59,11 +139,12 @@ return [
             'search' => 'keresés',
             'supportTheGame' => 'támogasd a játékot',
             'team' => 'csapat',
+            'testflight' => '',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profil',
+            'friends' => 'barátok',
+            'settings' => 'beállítások',
         ],
         'help' => [
             '_' => 'segítség',
@@ -78,7 +159,6 @@ return [
             'artists' => 'kiemelt előadók',
             'beatmap_discussion_posts-index' => 'beatmap vita posztok',
             'beatmap_discussions-index' => 'beatmap viták',
-            'beatmapset-watches-index' => 'modolási figyelőlista',
             'beatmapset_discussion_votes-index' => 'beatmap vita szavazatok',
             'beatmapset_events-index' => 'beatmapszett események',
             'index' => 'lista',
@@ -112,7 +192,6 @@ return [
             'tournaments' => 'versenyek',
             'tournaments-index' => 'versenyek',
             'tournaments-show' => 'verseny infó',
-            'forum-topic-watches-index' => 'feliratkozások',
             'forum-topics-create' => 'fórumok',
             'forum-topics-show' => 'fórumok',
             'forum-forums-index' => 'fórumok',
@@ -256,10 +335,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'e-mail cím',
             'forgot' => "Elfelejtettem az adataimat",
             'password' => 'jelszó',
             'title' => 'Jelentkezz Be A Folytatáshoz',
+            'username' => '',
 
             'error' => [
                 'email' => "A felhasználónév vagy e-mail cím nem létezik",
@@ -268,7 +347,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Letöltés',
             'info' => 'Önnek szüksége van egy fiókra uram. Miért nem rendelkezik még egyel?',
             'title' => "Nincs még fiókod?",
         ],

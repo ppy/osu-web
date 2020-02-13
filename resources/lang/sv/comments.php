@@ -22,6 +22,7 @@ return [
     'deleted' => 'raderad',
     'deleted_count' => '',
     'edited' => 'redigerad :timeago av :user',
+    'pinned' => '',
     'empty' => 'Inga kommentarer ännu.',
     'load_replies' => '',
     'replies' => 'Svar',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => '',
-            'info' => '',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => '',
-            'info' => '',
-        ],
+        'nav_title' => '',
     ],
 ];

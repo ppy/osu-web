@@ -79,8 +79,8 @@ class ClientsController extends Controller
         // client doesn't inherit from our base model.
         if (!$client->fill($params)->save()) {
             return response([
-            'form_error' => $client->validationErrors()->all(),
-          ], 422);
+                'form_error' => $client->validationErrors()->all(),
+            ], 422);
         }
 
         return json_item($client, 'OAuth\Client', ['redirect', 'secret']);

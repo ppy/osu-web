@@ -24,7 +24,7 @@ class @BeatmapDiscussionHelper
   @MAX_LENGTH_TIMELINE: 750
 
 
-  @MODES = ['events', 'general', 'generalAll', 'timeline']
+  @MODES = ['events', 'general', 'generalAll', 'timeline', 'reviews']
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
 
 
@@ -61,13 +61,16 @@ class @BeatmapDiscussionHelper
 
 
   @discussionMode: (discussion) ->
-    if discussion.beatmap_id?
-      if discussion.timestamp?
-        'timeline'
-      else
-        'general'
+    if discussion.message_type == 'review'
+      'reviews'
     else
-      'generalAll'
+      if discussion.beatmap_id?
+        if discussion.timestamp?
+          'timeline'
+        else
+          'general'
+      else
+        'generalAll'
 
 
   @format: (text, options = {}) =>
@@ -108,7 +111,7 @@ class @BeatmapDiscussionHelper
   @linkTimestamp: (text, classNames = []) =>
     text
       .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_match, text, m, s, ms, range) =>
-        osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
+        osu.link(_exported.OsuUrlHelper.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
 
 
   @messageType:
@@ -117,6 +120,7 @@ class @BeatmapDiscussionHelper
       mapperNote: 'far fa-sticky-note'
       praise: 'fas fa-heart'
       problem: 'fas fa-exclamation-circle'
+      review: 'fas fa-tasks'
       suggestion: 'far fa-circle'
 
     # used for svg since it doesn't seem to have ::before pseudo-element
@@ -171,7 +175,7 @@ class @BeatmapDiscussionHelper
     params.mode = mode ? @DEFAULT_MODE
 
     params.beatmap =
-      if !beatmapId? || params.mode in ['events', 'generalAll']
+      if !beatmapId? || params.mode in ['events', 'generalAll', 'reviews']
         @DEFAULT_BEATMAP_ID
       else
         beatmapId

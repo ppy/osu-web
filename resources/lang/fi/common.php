@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Ylläpitäjä',
+        'authorise' => '',
         'back_to_previous' => 'Takaisin',
         'back_to_top' => 'Takaisin ylös',
         'cancel' => 'Peruuta',
@@ -48,7 +49,7 @@ return [
         'expand' => 'suurenna',
         'hide' => 'piilota',
         'permalink' => 'pysyvä linkki',
-        'permalink_copied' => 'linkki kopioitu',
+        'pin' => 'kiinnitä',
         'post' => 'Lähetä',
         'reply' => 'Vastaa',
         'reply_reopen' => 'Vastaa ja uudelleenavaa',
@@ -63,6 +64,7 @@ return [
         'show_deleted' => 'Näytä poistetut',
         'show_more' => 'näytä lisää',
         'show_more_options' => 'näytä lisävaihtoehtoja',
+        'unpin' => 'poista kiinnitys',
         'update' => 'Päivitä',
         'upload_image' => 'lataa kuva',
 
@@ -119,7 +121,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'hae...',
     ],
 
     'pagination' => [
@@ -145,5 +147,10 @@ return [
 
     'title' => [
         'notice' => 'Huomaa',
+    ],
+
+    'wrong_user' => [
+        '_' => ':user on kirjautuneena sisään. :logout_link.',
+        'logout_link' => 'Klikkaa tästä kirjautuaksesi toisella käyttäjällä',
     ],
 ];

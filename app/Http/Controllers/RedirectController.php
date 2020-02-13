@@ -24,7 +24,13 @@ class RedirectController extends Controller
 {
     public function __invoke()
     {
-        // Redirect routes should be named 'redirect:<target>'
-        return ujs_redirect(route(explode('redirect:', \Route::currentRouteName(), 2)[1], func_get_args()));
+        // encode args like wiki_url helper.
+        $args = array_map(function ($arg) {
+            // FIXME: remove `rawurlencode` workaround when fixed upstream.
+            // Reference: https://github.com/laravel/framework/issues/26715
+            return str_replace('%2F', '/', rawurlencode($arg));
+        }, func_get_args());
+
+        return ujs_redirect(route(explode('redirect:', \Route::currentRouteName(), 2)[1], $args));
     }
 }

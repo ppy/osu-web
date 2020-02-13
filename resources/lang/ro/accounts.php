@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Setările</strong> contului',
         'title_compact' => 'setări',
         'username' => 'nume de utilizator',
 
@@ -66,14 +65,20 @@ return [
 
     'notifications' => [
         'title' => 'Notificări',
-        'topic_auto_subscribe' => '',
-        'beatmapset_discussion_qualified_problem' => '',
+        'topic_auto_subscribe' => 'activați notificările automat pe noi topici de pe forum pe care le poți creea',
+        'beatmapset_discussion_qualified_problem' => 'primește notificări pentru noi probleme pe hărți calificate de modelele următoare',
+
+        'mail' => [
+            '_' => 'primește notificări mail pentru',
+            'beatmapset:modding' => 'modatul de beatmap',
+            'forum_topic_reply' => 'răspunsul topic',
+        ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
-        'own_clients' => '',
-        'title' => '',
+        'authorized_clients' => 'clienți autorizați',
+        'own_clients' => 'deține Client',
+        'title' => 'OAuth',
     ],
 
     'playstyles' => [
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'confirmarea schimbării e-mailului în osu!',
         'update' => 'actualizează',
     ],
 
     'update_password' => [
-        'email_subject' => 'confirmarea schimbării parolei în osu!',
         'update' => 'actualizează',
     ],
 

@@ -37,7 +37,7 @@ class UserSearch extends RecordSearch
 
     public function records()
     {
-        return $this->response()->records()->with(['country', 'userProfileCustomization'])->get();
+        return $this->response()->records()->with(['country', 'userProfileCustomization', 'userGroups'])->get();
     }
 
     /**
@@ -86,7 +86,7 @@ class UserSearch extends RecordSearch
         return $query;
     }
 
-    protected function maxResults() : int
+    protected function maxResults(): int
     {
         return config('osu.search.max.user');
     }

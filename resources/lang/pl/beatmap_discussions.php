@@ -33,22 +33,22 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'usunięta',
-        'title' => 'Dyskusje',
+        'title' => 'dyskusje',
 
         'form' => [
             '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Pokaż tylko nierozwiązane dyskusje',
             'types' => 'Rodzaj wiadomości',
             'username' => 'Nazwa użytkownika',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Status beatmapy',
+                'all' => 'Wszystkie',
+                'disqualified' => 'Zdyskwalifikowana',
+                'never_qualified' => 'Nigdy nie zakwalifikowana',
+                'qualified' => 'Zakwalifikowana',
+                'ranked' => 'Rankingowa',
             ],
 
             'user' => [
@@ -77,11 +77,21 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Zobacz recenzję',
+        'go_to_child' => 'Zobacz dyskusję',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Oznaczone jako gotowe przez :user',
             'false' => 'Otworzone ponownie przez :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'główne',
+        'general_all' => 'główne (wszystkie)',
     ],
 
     'user_filter' => [

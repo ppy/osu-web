@@ -21,16 +21,16 @@
 ])
 
 @section('content')
-    <div class="oauth-form">
-        <div class="oauth-form__dialog">
-            <div class="oauth-form__row oauth-form__row--header"></div>
+    <div class="dialog-form">
+        <div class="dialog-form__dialog">
+            <div class="dialog-form__row dialog-form__row--header"></div>
 
-            <div class="oauth-form__row oauth-form__row--title">
-                <div class="oauth-form__logo"></div>
-                <h1 class="oauth-form__title">{{ trans('users.verify.title') }}</h1>
+            <div class="dialog-form__row dialog-form__row--title">
+                <div class="dialog-form__logo"></div>
+                <h1 class="dialog-form__title">{{ trans('users.verify.title') }}</h1>
             </div>
 
-            <div class="oauth-form__row oauth-form__row--verification-invalid">
+            <div class="dialog-form__row dialog-form__row--verification-invalid">
                 <div class="account-verification-message">
                     <div class="account-verification-message__title">
                         {{ trans('accounts.verification_invalid.title') }}

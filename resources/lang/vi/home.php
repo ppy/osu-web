@@ -120,8 +120,6 @@ return [
             'error' => 'Có lỗi khi tải tin tức, thử tải lại trang xem?...',
         ],
         'header' => [
-            'welcome' => 'Xin chào, <strong>:username</strong>!',
-            'messages' => 'Bạn có :count tin nhắn mới',
             'stats' => [
                 'friends' => 'Bạn Bè Đang Online',
                 'games' => 'Phòng',

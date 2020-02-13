@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => '相同主題的圖譜合集壓縮檔',
+        'nav_title' => '列表',
+        'title' => '圖譜壓縮檔',
+
         'blurb' => [
             'important' => '下載前必讀',
             'instruction' => [
@@ -33,12 +37,9 @@ return [
                 'scary' => '下載最新的圖譜壓縮檔',
             ],
         ],
-        'title' => '圖譜壓縮檔',
-        'description' => '相同主題的圖譜合集壓縮檔',
     ],
 
     'show' => [
-        'back' => '',
         'download' => '下載',
         'item' => [
             'cleared' => '玩過',

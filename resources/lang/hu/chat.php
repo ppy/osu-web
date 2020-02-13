@@ -23,7 +23,7 @@ return [
     'talking_in' => ':channel-ben beszélés',
     'talking_with' => ':name-el beszélés',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'Nem üzenhetsz ebbe a csatornába jelenleg. Ez emiatt az okok miatt lehet:',
         'user' => 'Nem üzenhetsz ennek a felhasználónak jelenleg. Ez emiatt az okok miatt lehet:',

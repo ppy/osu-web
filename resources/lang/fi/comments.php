@@ -22,6 +22,7 @@ return [
     'deleted' => 'poistettu',
     'deleted_count' => ':count_delimited poistettu kommentti|:count_delimited poistettuja kommentteja',
     'edited' => ':user muokkasi :timeago sitten',
+    'pinned' => '',
     'empty' => 'Ei vielä kommentteja.',
     'load_replies' => '',
     'replies' => 'Vastaukset',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Kommentit :info',
-            'info' => 'Listaus',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Kommentit :info',
-            'info' => 'Tiedot',
-        ],
+        'nav_title' => '',
     ],
 ];

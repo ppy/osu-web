@@ -44,11 +44,6 @@ return [
             '_stream_to' => 'alterações em :stream até :to',
             '_to' => 'alterações até :to',
         ],
-
-        'title' => [
-            '_' => 'Lista de Alterações: :info',
-            'info' => 'Listagem',
-        ],
     ],
 
     'support' => [

@@ -25,7 +25,6 @@ use App\Models\User;
 use App\Transformers\Multiplayer\EventTransformer;
 use App\Transformers\Multiplayer\MatchTransformer;
 use App\Transformers\UserCompactTransformer;
-use Request;
 
 class MatchesController extends Controller
 {
@@ -48,7 +47,7 @@ class MatchesController extends Controller
             new MatchTransformer
         );
 
-        return view('multiplayer.match', compact('matchJson', 'eventsJson'));
+        return ext_view('multiplayer.match', compact('matchJson', 'eventsJson'));
     }
 
     public function history($matchId)

@@ -19,13 +19,15 @@
  */
 
 return [
-    'header' => 'Ranking :type',
+    'country' => [
+        'filter' => 'filtrowanie wg kraju',
+    ],
 
     'type' => [
-        'performance' => 'Globalny',
-        'charts' => 'Wyróżnionych',
-        'score' => 'Punktowy',
-        'country' => 'Krajowy',
+        'performance' => 'globalny',
+        'charts' => 'wyróżnionych',
+        'score' => 'punktowy',
+        'country' => 'krajowy',
     ],
 
     'spotlight' => [

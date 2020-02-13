@@ -22,7 +22,6 @@ const { spawnSync } = require('child_process');
 const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
-const mkdirp = require('mkdirp');
 
 const buildPath = path.resolve(__dirname, 'resources/assets/build');
 const localesPath = path.resolve(buildPath, 'locales');
@@ -59,9 +58,11 @@ function generateTranslations()
 function writeTranslations(languages)
 {
   for (const lang of languages.keys()) {
-    const json = JSON.stringify(languages.get(lang));
+    const json = languages.get(lang);
+    delete json[`${lang}.mail`];
+    const jsonString = JSON.stringify(json);
     const filename = path.resolve(localesPath, `${lang}.js`);
-    const script = `(function() { 'use strict'; Object.assign(Lang.messages, ${json}); })();`;
+    const script = `(function() { 'use strict'; Object.assign(Lang.messages, ${jsonString}); })();`;
 
     fs.writeFileSync(filename, script);
     console.log(`Created: ${filename}`);
@@ -70,7 +71,7 @@ function writeTranslations(languages)
 
 // Remove previous existing files and ensure directory exists.
 glob.sync(path.resolve(localesPath, '*.js')).forEach(fs.unlinkSync);
-mkdirp.sync(localesPath);
+fs.mkdirSync(localesPath, {recursive: true});
 
 generateTranslations();
 writeTranslations(extractLanguages());

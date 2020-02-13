@@ -54,7 +54,7 @@ class RendererExtension implements ExtensionInterface
             Block\ThematicBreak::class => new BlockRenderer,
             TableExtension\Table::class => new TableRenderer,
             TableExtension\TableCaption::class => new NoopRenderer,
-            TableExtension\TableRows::class => new TableRenderer,
+            TableExtension\TableSection::class => new TableRenderer,
             TableExtension\TableRow::class => new TableRenderer,
             TableExtension\TableCell::class => new TableRenderer,
         ];

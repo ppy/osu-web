@@ -76,11 +76,16 @@ return [
                 ],
             ],
 
+            'disqualify' => [
+                '_' => 'Als u een probleem met deze beatmap vindt, alsjeblieft diskwalificeer het :link.',
+                'button_title' => 'Diskwalificeer een gekwalificeerde beatmap.',
+            ],
+
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => 'Als u een probleem met deze beatmap vindt, rapporteer deze dan :link om het team te waarschuwen.',
+                'button' => 'Rapporteer Probleem',
+                'button_title' => 'Meld een probleem op een gekwalificeerde beatmap.',
+                'link' => 'hier',
             ],
         ],
 
@@ -145,6 +150,16 @@ return [
             'rating-spread' => 'Rating Verspreiding',
             'nominations' => 'Nominaties',
             'playcount' => 'Playcount',
+        ],
+
+        'status' => [
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
+            'qualified' => 'Gekwalificeerd',
+            'wip' => 'WIP',
+            'pending' => 'In behandelIng',
+            'graveyard' => 'Begraafplaats',
         ],
     ],
 ];

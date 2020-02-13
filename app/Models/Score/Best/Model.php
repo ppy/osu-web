@@ -63,7 +63,7 @@ abstract class Model extends BaseModel
         );
     }
 
-    public function replayFile() : ?ReplayFile
+    public function replayFile(): ?ReplayFile
     {
         if ($this->replay) {
             return new ReplayFile($this);
@@ -82,23 +82,8 @@ abstract class Model extends BaseModel
         return function ($query) {
             $limit = config('osu.beatmaps.max-scores');
             $newQuery = (clone $query)->with('user')->limit($limit * 3);
-            $newQuery->getQuery()->orders = null;
 
-            $baseResult = $newQuery->orderBy('score', 'desc')->get();
-
-            // Sort scores by score desc and then date asc if scores are equal
-            $baseResult = $baseResult->sort(function ($a, $b) {
-                if ($a->score === $b->score) {
-                    if ($a->date->timestamp === $b->date->timestamp) {
-                        // On the rare chance that both were submitted in the same second, default to submission order
-                        return ($a->score_id < $b->score_id) ? -1 : 1;
-                    }
-
-                    return ($a->date->timestamp < $b->date->timestamp) ? -1 : 1;
-                }
-
-                return ($a->score > $b->score) ? -1 : 1;
-            });
+            $baseResult = $newQuery->get();
 
             $result = [];
             $users = [];
@@ -122,45 +107,47 @@ abstract class Model extends BaseModel
 
     public function userRank($options)
     {
-        $alwaysAccurate = false;
+        return with_db_fallback('mysql-readonly', function ($connection) use ($options) {
+            $alwaysAccurate = false;
 
-        $query = static::on('mysql-readonly')
-            ->where('beatmap_id', '=', $this->beatmap_id)
-            ->where(function ($query) {
-                $query
-                    ->where('score', '>', $this->score)
-                    ->orWhere(function ($query2) {
-                        $query2
-                            ->where('score', '=', $this->score)
-                            ->where('score_id', '<', $this->getKey());
-                    });
-            });
+            $query = static::on($connection)
+                ->where('beatmap_id', '=', $this->beatmap_id)
+                ->where(function ($query) {
+                    $query
+                        ->where('score', '>', $this->score)
+                        ->orWhere(function ($query2) {
+                            $query2
+                                ->where('score', '=', $this->score)
+                                ->where('score_id', '<', $this->getKey());
+                        });
+                });
 
-        if (isset($options['type'])) {
-            $query->withType($options['type'], ['user' => $this->user]);
+            if (isset($options['type'])) {
+                $query->withType($options['type'], ['user' => $this->user]);
 
-            if ($options['type'] === 'country') {
-                $alwaysAccurate = true;
+                if ($options['type'] === 'country') {
+                    $alwaysAccurate = true;
+                }
             }
-        }
 
-        if (isset($options['mods'])) {
-            $query->withMods($options['mods']);
-        }
+            if (isset($options['mods'])) {
+                $query->withMods($options['mods']);
+            }
 
-        $countQuery = DB::raw('DISTINCT user_id');
+            $countQuery = DB::raw('DISTINCT user_id');
 
-        if ($alwaysAccurate) {
-            return 1 + $query->default()->count($countQuery);
-        }
+            if ($alwaysAccurate) {
+                return 1 + $query->default()->count($countQuery);
+            }
 
-        $rank = 1 + $query->count($countQuery);
+            $rank = 1 + $query->count($countQuery);
 
-        if ($rank < config('osu.beatmaps.max-scores') * 3) {
-            return 1 + $query->default()->count($countQuery);
-        } else {
-            return $rank;
-        }
+            if ($rank < config('osu.beatmaps.max-scores') * 3) {
+                return 1 + $query->default()->count($countQuery);
+            } else {
+                return $rank;
+            }
+        });
     }
 
     public function macroUserBest()
@@ -246,9 +233,7 @@ abstract class Model extends BaseModel
     {
         return $query
             ->whereHas('beatmap')
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            });
+            ->where(['hidden' => false]);
     }
 
     public function scopeDefaultListing($query)
@@ -256,7 +241,7 @@ abstract class Model extends BaseModel
         return $query
             ->default()
             ->orderBy('score', 'DESC')
-            ->orderBy('date', 'ASC')
+            ->orderBy('score_id', 'ASC')
             ->limit(config('osu.beatmaps.max-scores'));
     }
 
@@ -336,7 +321,7 @@ abstract class Model extends BaseModel
         return $result;
     }
 
-    protected function newReportableExtraParams() : array
+    protected function newReportableExtraParams(): array
     {
         return [
             'mode' => Beatmap::modeInt($this->getMode()),

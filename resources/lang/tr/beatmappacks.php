@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Benzer bir tema etrafında toplanmış, önceden paketlenmiş beatmap paketleri.',
+        'nav_title' => 'liste',
+        'title' => 'Beatmap Paketleri',
+
         'blurb' => [
             'important' => 'İNDİRMEDEN ÖNCE OKUYUN',
             'instruction' => [
@@ -31,12 +35,9 @@ return [
                 'scary' => 'paketleri en yeniden en eskiye doğru indirmeniz',
             ],
         ],
-        'title' => 'Beatmap Paketleri',
-        'description' => 'Benzer bir tema etrafında toplanmış, önceden paketlenmiş beatmap paketleri.',
     ],
 
     'show' => [
-        'back' => '',
         'download' => 'İndir',
         'item' => [
             'cleared' => 'geçildi',

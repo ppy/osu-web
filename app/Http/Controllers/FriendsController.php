@@ -51,19 +51,23 @@ class FriendsController extends Controller
 
     public function index()
     {
-        $friends = Auth::user()
+        $currentUser = Auth::user();
+        $currentMode = studly_case($currentUser->playmode);
+
+        $friends = $currentUser
             ->friends()
+            ->with('statistics'.$currentMode)
             ->eagerloadForListing()
             ->orderBy('username', 'asc')
             ->get();
 
-        $usersJson = json_collection($friends, 'UserCompact', ['cover', 'country', 'support_level']);
+        $usersJson = json_collection($friends, 'UserCompact', ['cover', 'country', 'current_mode_rank', 'support_level']);
 
         if (is_api_request()) {
             return $usersJson;
         }
 
-        return view('friends.index', compact('usersJson'));
+        return ext_view('friends.index', compact('usersJson'));
     }
 
     public function store()

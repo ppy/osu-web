@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Revivendo...',
             'remove' => 'Remover',
             'removing' => 'Removendo...',
+            'title' => 'Capas de beatmapset',
         ],
         'show' => [
             'covers' => 'Gerenciar capas',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Coisinha fofa da administração. Desu~',
-
             'sections' => [
+                'beatmapsets' => 'Beatmapsets',
                 'forum' => 'Fórum',
                 'general' => 'Geral',
                 'store' => 'Loja',

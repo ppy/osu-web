@@ -15,6 +15,30 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $url = wiki_url($page->path, $locale);
+    $title = $page->title();
+    $subSection = $title;
+
+    $links = [
+        [
+            'title' => trans('layout.header.help.index'),
+            'url' => wiki_url('Main_Page'),
+        ],
+    ];
+
+    $parentTitle = presence($page->subtitle());
+    if ($parentTitle !== null) {
+        $link = ['title' => $parentTitle];
+        $subSection = "{$parentTitle} / {$subSection}";
+        if ($page->hasParent()) {
+            $link['url'] = wiki_url($page->parentPath(), $locale);
+        }
+        $links[] = $link;
+    }
+
+    $links[] = compact('title', 'url');
+@endphp
 
 @extends('master', [
     'title' => null,
@@ -22,31 +46,18 @@
 ])
 
 @section('content')
-    <div class="osu-layout__row">
-        <div class="osu-page-header osu-page-header--wiki">
-            <div class="osu-page-header__title-box">
-                @if (present($page->subtitle()))
-                    <h2 class="osu-page-header__title osu-page-header__title--small">
-                        @if ($page->hasParent())
-                            <a class="osu-page-header__link" href="{{ wiki_url($page->parentPath(), $page->requestedLocale) }}">
-                                {{ $page->subtitle() }}
-                            </a>
-                        @else
-                            {{ $page->subtitle() }}
-                        @endif
-                    </h2>
-                @endif
-
-                <h1 class="osu-page-header__title osu-page-header__title--main">
-                    <a class="osu-page-header__link osu-page-header__link--plain" href="{{ wiki_url($page->path, $page->requestedLocale) }}">
-                        {{ $page->title() }}
-                    </a>
-                </h1>
-            </div>
-
+    @component('layout._page_header_v4', ['params' => [
+        'links' => $links,
+        'linksBreadcrumb' => true,
+        'section' => trans('layout.header.help._'),
+        'subSection' => $subSection,
+        'theme' => 'help',
+    ]])
+        @slot('navAppend')
             @include('wiki._actions')
-        </div>
-    </div>
+        @endslot
+    @endcomponent
+
 
     <div class="osu-page osu-page--wiki">
         @include('wiki._notice')

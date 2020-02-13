@@ -64,24 +64,52 @@ return [
         'send_message' => 'mesaj gönder',
     ],
 
+    'disabled' => [
+        'title' => 'Olamaz! Görünüşe bakılırsa hesabın kilitlenmiş.',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => 'e-posta',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => 'Hesabını dondurmaya sebebiyet verebilecek birtakım sebepler var:',
+
+            'tos' => [
+                '_' => 'Siz, :community_rules ya da :tos kurallarından bir veya daha fazlasını ihlal ettiniz.',
+                'community_rules' => 'topluluk kuralları',
+                'tos' => 'hizmet kullanım şartları',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "Hesabın uzun bir zamandır kullanılmamıştır.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Giriş Yap',
-        'locked_ip' => 'IP adresiniz kilitli. Lütfen birkaç dakika bekleyin.',
-        'username' => 'Kullanıcı adı',
-        'password' => 'Şifre',
         'button' => 'Giriş Yap',
         'button_posting' => 'Giriş yapılıyor...',
+        'email_login_disabled' => 'E-posta ile giriş yapmak şu anlık mümkün değildir. Lütfen kullanıcı adınızı kullanınız.',
+        'failed' => 'Hatalı giriş',
+        'forgot' => 'Şifrenizi mi unuttunuz?',
+        'info' => 'Devam etmek için lütfen giriş yapınız',
+        'locked_ip' => 'IP adresiniz kilitli. Lütfen birkaç dakika bekleyin.',
+        'password' => 'Şifre',
+        'register' => "osu! hesabınız yok mu? Yeni bir tane oluşturun",
         'remember' => 'Bu bilgisayarı hatırla',
         'title' => 'Devam etmek için lütfen giriş yapın',
-        'failed' => 'Hatalı giriş',
-        'register' => "osu! hesabınız yok mu? Yeni bir tane oluşturun",
-        'forgot' => 'Şifrenizi mi unuttunuz?',
+        'username' => 'Kullanıcı adı',
+
         'beta' => [
             'main' => 'Beta erişimi ayrıcalıklı üyelere kısıtlandırılmıştır.',
             'small' => '(osu!supporterlar yakında erişebilecekler)',
         ],
-
-        'here' => 'buraya', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -271,7 +299,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
+                    '_' => 'Beatmap yönetiminine kullanıcının ne kadar çok katkı yapmış olmuşluğuna dayanarak. Daha fazla bilgi için :link\'e bakınız.',
                     'link' => 'bu sayfa',
                 ],
             ],
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Oyuncu bilgisi',
-            'info' => 'Bilgi',
         ],
 
         'info' => [

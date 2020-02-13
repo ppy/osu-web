@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Zapłać',
+        'info' => ':count_delimited produkt w koszyku (:subtotal$)|:count_delimited produkty w koszyku (:subtotal$)|:count_delimited produktów w koszyku (:subtotal$)',
         'more_goodies' => 'Chcę przejrzeć inne produkty przed zakończeniem zamówienia',
         'shipping_fees' => 'koszt wysyłki',
         'title' => 'Koszyk',
@@ -76,12 +77,6 @@ return [
                     'link_text' => 'kliknij tutaj, by kontynuować proces zamówienia',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Otrzymaliśmy twoje zamówienie!',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => 'Aby zmienić swoją nazwę użytkownika, musisz się :link!',
             'link_text' => 'zalogować',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Balasan terbaru dari topik ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Kiriman Terbaru',
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Langganan Forum',
             'title_compact' => 'langganan forum',
-            'title_main' => '<strong>Langganan</strong> Forum',
 
             'box' => [
                 'total' => 'Topik yang dilanggan',
@@ -276,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Tampilkan postingan yang telah dihapus',
+            'hide' => 'Sembunyikan postingan yang telah dihapus',
         ],
 
         'show' => [
