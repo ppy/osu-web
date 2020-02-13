@@ -22,6 +22,7 @@ import XHRCollection from 'interfaces/xhr-collection';
 import { route } from 'laroute';
 import { forEach, random } from 'lodash';
 import { action, computed, observable } from 'mobx';
+import core from 'osu-core-singleton';
 import {
   NotificationEventLogoutJson,
   NotificationEventMoreLoaded,
@@ -30,8 +31,7 @@ import {
   NotificationEventRead,
   NotificationEventReadJson,
   NotificationEventVerifiedJson,
-} from 'notifications/notification-events';
-import core from 'osu-core-singleton';
+} from './notification-events';
 
 interface NotificationBootJson extends NotificationBundleJson {
   notification_endpoint: string;

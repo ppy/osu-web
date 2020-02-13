@@ -26,8 +26,6 @@ interface Props {
   stack: NotificationStack;
 }
 
-const bn = 'notification-type-group';
-
 @observer
 export default class Stack extends React.Component<Props> {
   render() {
@@ -37,10 +35,6 @@ export default class Stack extends React.Component<Props> {
 
     const Component = this.props.stack.isSingle ? ItemSingular : ItemGroup;
 
-    return (
-      <div className={`${bn}__item`} key={this.props.stack.id}>
-        <Component stack={this.props.stack} />
-      </div>
-    );
+    return <Component stack={this.props.stack} key={this.props.stack.id} />;
   }
 }

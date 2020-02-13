@@ -29,6 +29,7 @@ import TextareaAutosize from 'react-autosize-textarea'
 import GalleryContest from 'gallery-contest'
 import WindowVHPatcher from 'window-vh-patcher'
 import TurbolinksReload from 'turbolinks-reload'
+import OsuUrlHelper from 'osu-url-helper'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
@@ -40,6 +41,7 @@ window._exported = {
   Enchant
   ForumPoll
   GalleryContest
+  OsuUrlHelper
   TurbolinksReload
   WindowVHPatcher
 }

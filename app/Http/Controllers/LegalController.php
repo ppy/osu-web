@@ -46,6 +46,6 @@ class LegalController extends Controller
         $locale = $this->locale();
         $page = Wiki\Page::lookupForController($path, $locale);
 
-        return view('wiki.show', compact('locale', 'page'));
+        return ext_view('wiki.show', compact('locale', 'page'));
     }
 }

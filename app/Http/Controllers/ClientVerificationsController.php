@@ -41,7 +41,7 @@ class ClientVerificationsController extends Controller
     public function create()
     {
         if (!auth()->check()) {
-            return response()->view('sessions.create')->setStatusCode(401);
+            return ext_view('sessions.create', null, null, 401);
         }
 
         $hash = request('ch');
@@ -52,10 +52,10 @@ class ClientVerificationsController extends Controller
         }
 
         if ($client->verified) {
-            return view('client_verifications.completed');
+            return ext_view('client_verifications.completed');
         }
 
-        return view('client_verifications.create', compact('hash'));
+        return ext_view('client_verifications.create', compact('hash'));
     }
 
     public function store()
@@ -69,6 +69,6 @@ class ClientVerificationsController extends Controller
 
         $client->fill(['verified' => true])->save();
 
-        return view('client_verifications.completed');
+        return ext_view('client_verifications.completed');
     }
 }
