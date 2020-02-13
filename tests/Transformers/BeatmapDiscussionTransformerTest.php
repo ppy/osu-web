@@ -26,10 +26,12 @@ use Tests\TestCase;
 
 class BeatmapDiscussionTransformerTest extends TestCase
 {
-    public function testAdminDataIsExcludedWhenUsingOAuth()
+    /**
+     * @dataProvider groupsDataProvider
+     */
+    public function testWithOAuth($groupIdentifier)
     {
-        $viewer = factory(User::class)->states('admin')->create();
-        $this->beatmapDiscussion->update(['deleted_at' => now()]);
+        $viewer = factory(User::class)->states($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
 
         $json = json_item($this->beatmapDiscussion, 'BeatmapDiscussion');
@@ -37,15 +39,31 @@ class BeatmapDiscussionTransformerTest extends TestCase
         $this->assertEmpty($json);
     }
 
-    public function testAdminDataIsNotExcludedWhenNotUsingOAuth()
+    /**
+     * @dataProvider groupsDataProvider
+     */
+    public function testWithoutOAuth($groupIdentifier, $visible)
     {
-        $viewer = factory(User::class)->states('admin')->create();
-        $this->beatmapDiscussion->update(['deleted_at' => now()]);
+        $viewer = factory(User::class)->states($groupIdentifier)->create();
         auth()->setUser($viewer);
 
         $json = json_item($this->beatmapDiscussion, 'BeatmapDiscussion');
 
-        $this->assertNotEmpty($json);
+        if ($visible) {
+            $this->assertNotEmpty($json);
+        } else {
+            $this->assertEmpty($json);
+        }
+    }
+
+    public function groupsDataProvider()
+    {
+        return [
+            ['admin', true],
+            ['bng', false],
+            ['gmt', true],
+            ['nat', true],
+        ];
     }
 
     protected function setUp(): void
@@ -58,5 +76,6 @@ class BeatmapDiscussionTransformerTest extends TestCase
         ]);
 
         $this->beatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
+        $this->beatmapDiscussion->update(['deleted_at' => now()]);
     }
 }

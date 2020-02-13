@@ -31,35 +31,46 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
     /** @var BeatmapDiscussion */
     protected $beatmapDiscussion;
 
-    public function testAdminDataIsExcludedWhenUsingOAuth()
+    /** @var BeatmapDiscussionPost */
+    protected $post;
+
+    /**
+     * @dataProvider groupsDataProvider
+     */
+    public function testWithOAuth($groupIdentifier)
     {
-        $viewer = factory(User::class)->states('admin')->create();
-        $post = factory(BeatmapDiscussionPost::class)->create([
-            'beatmap_discussion_id' => $this->beatmapDiscussion->getKey(),
-        ]);
-
-        $post->softDeleteOrExplode($viewer);
-
+        $viewer = factory(User::class)->states($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($post, 'BeatmapDiscussionPost');
+        $json = json_item($this->post, 'BeatmapDiscussionPost');
         $this->assertEmpty($json);
     }
 
-
-    public function testAdminDataIsNotExcludedWhenNotUsingOAuth()
+    /**
+     * @dataProvider groupsDataProvider
+     */
+    public function testWithoutOAuth($groupIdentifier, $visible)
     {
-        $viewer = factory(User::class)->states('admin')->create();
-        $post = factory(BeatmapDiscussionPost::class)->create([
-            'beatmap_discussion_id' => $this->beatmapDiscussion->getKey(),
-        ]);
-
-        $post->softDeleteOrExplode($viewer);
-
+        $viewer = factory(User::class)->states($groupIdentifier)->create();
         auth()->setUser($viewer);
 
-        $json = json_item($post, 'BeatmapDiscussionPost');
-        $this->assertNotEmpty($json);
+        $json = json_item($this->post, 'BeatmapDiscussionPost');
+
+        if ($visible) {
+            $this->assertNotEmpty($json);
+        } else {
+            $this->assertEmpty($json);
+        }
+    }
+
+    public function groupsDataProvider()
+    {
+        return [
+            ['admin', true],
+            ['bng', false],
+            ['gmt', true],
+            ['nat', true],
+        ];
     }
 
     protected function setUp(): void
@@ -72,7 +83,9 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
         ]);
 
         $this->beatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
-        // first post can't be deleted so fill one in for later.
-        $this->beatmapDiscussion->beatmapDiscussionPosts()->save(factory(BeatmapDiscussionPost::class)->make());
+        $this->beatmapDiscussion->beatmapDiscussionPosts()->saveMany(factory(BeatmapDiscussionPost::class, 2)->make());
+        $this->post = $this->beatmapDiscussion->beatmapDiscussionPosts()->last();
+
+        $this->post->softDeleteOrExplode($mapper);
     }
 }

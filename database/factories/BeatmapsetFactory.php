@@ -12,8 +12,9 @@
 */
 
 use App\Models\BeatmapDiscussion;
+use App\Models\Beatmapset;
 
-$factory->define(App\Models\Beatmapset::class, function (Faker\Generator $faker) {
+$factory->define(Beatmapset::class, function (Faker\Generator $faker) {
     $artist = $faker->name;
     $title = $faker->sentence(rand(0, 5));
     $isApproved = (rand(0, 2) > 0);
@@ -42,19 +43,19 @@ $factory->define(App\Models\Beatmapset::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->state(App\Models\Beatmapset::class, 'deleted', function () {
+$factory->state(Beatmapset::class, 'deleted', function () {
     return ['deleted_at' => now()];
 });
 
-$factory->state(App\Models\Beatmapset::class, 'inactive', function () {
+$factory->state(Beatmapset::class, 'inactive', function () {
     return ['active' => 0];
 });
 
-$factory->state(App\Models\Beatmapset::class, 'no_discussion', function () {
+$factory->state(Beatmapset::class, 'no_discussion', function () {
     return ['discussion_enabled' => false];
 });
 
-$factory->afterCreatingState(App\Models\Beatmapset::class, 'with_discussion', function (App\Models\Beatmapset $beatmapset) {
+$factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App\Models\Beatmapset $beatmapset) {
     if (!$beatmapset->beatmaps()->save(
         factory(App\Models\Beatmap::class)->make()
     )) {
