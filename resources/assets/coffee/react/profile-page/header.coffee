@@ -99,12 +99,11 @@ export class Header extends React.Component
 
                 el Stats, stats: @props.stats
 
-          if !@props.user.is_bot
-            el Detail,
-              stats: @props.stats
-              userAchievements: @props.userAchievements
-              rankHistory: @props.rankHistory
-              user: @props.user
+          el Detail,
+            stats: @props.stats
+            userAchievements: @props.userAchievements
+            rankHistory: @props.rankHistory
+            user: @props.user
 
           if @props.user.badges.length > 0
             el Badges, badges: @props.user.badges
