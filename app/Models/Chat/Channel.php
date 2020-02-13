@@ -57,6 +57,20 @@ class Channel extends Model
         'group' => 'GROUP',
     ];
 
+    /**
+     * @param User $user1
+     * @param User $user2
+     *
+     * @return string
+     */
+    public static function getPMChannelName($user1, $user2)
+    {
+        $userIds = [$user1->getKey(), $user2->getKey()];
+        sort($userIds);
+
+        return '#pm_'.implode('-', $userIds);
+    }
+
     public function messages()
     {
         return $this->hasMany(Message::class);
@@ -141,20 +155,6 @@ class Channel extends Model
         }
 
         return $this->users()->where('user_id', '<>', $user->user_id)->first();
-    }
-
-    /**
-     * @param User $user1
-     * @param User $user2
-     *
-     * @return string
-     */
-    public static function getPMName($user1, $user2)
-    {
-        $userIds = [$user1->getKey(), $user2->getKey()];
-        sort($userIds);
-
-        return '#pm_'.implode('-', $userIds);
     }
 
     public function receiveMessage(User $sender, string $content, bool $isAction = false)
