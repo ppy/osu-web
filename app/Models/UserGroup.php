@@ -43,13 +43,4 @@ class UserGroup extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    public function name()
-    {
-        static $lookup;
-
-        $lookup = $lookup ?? array_flip(static::GROUPS);
-
-        return $lookup[$this->group_id] ?? null;
-    }
 }
