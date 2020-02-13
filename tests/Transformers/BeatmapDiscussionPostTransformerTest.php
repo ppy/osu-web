@@ -20,7 +20,6 @@
 
 namespace Tests\Transformers;
 
-use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
@@ -67,16 +66,12 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
     {
         parent::setUp();
 
-        $this->mapper = factory(User::class)->create();
-        $this->beatmapset = factory(Beatmapset::class)->create([
-            'user_id' => $this->mapper->getKey(),
+        $mapper = factory(User::class)->create();
+        $beatmapset = factory(Beatmapset::class)->states('with_discussion')->create([
+            'user_id' => $mapper->getKey(),
         ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $this->beatmapDiscussion = factory(BeatmapDiscussion::class, 'general')->create([
-            'beatmapset_id' => $this->beatmapset->getKey(),
-            'beatmap_id' => $this->beatmap->getKey(),
-            'user_id' => factory(User::class)->create(),
-        ]);
+
+        $this->beatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
         // first post can't be deleted so fill one in for later.
         $this->beatmapDiscussion->beatmapDiscussionPosts()->save(factory(BeatmapDiscussionPost::class)->make());
     }

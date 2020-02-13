@@ -20,7 +20,7 @@
 
 namespace Tests\Transformers;
 
-use App\Models\BeatmapDiscussion;
+use App\Models\Beatmapset;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -29,10 +29,10 @@ class BeatmapDiscussionTransformerTest extends TestCase
     public function testAdminDataIsExcludedWhenUsingOAuth()
     {
         $viewer = factory(User::class)->states('admin')->create();
-        $discussion = factory(BeatmapDiscussion::class)->create(['deleted_at' => now()]);
+        $this->beatmapDiscussion->update(['deleted_at' => now()]);
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($discussion, 'BeatmapDiscussion');
+        $json = json_item($this->beatmapDiscussion, 'BeatmapDiscussion');
 
         $this->assertEmpty($json);
     }
@@ -40,11 +40,23 @@ class BeatmapDiscussionTransformerTest extends TestCase
     public function testAdminDataIsNotExcludedWhenNotUsingOAuth()
     {
         $viewer = factory(User::class)->states('admin')->create();
-        $discussion = factory(BeatmapDiscussion::class)->create(['deleted_at' => now()]);
+        $this->beatmapDiscussion->update(['deleted_at' => now()]);
         auth()->setUser($viewer);
 
-        $json = json_item($discussion, 'BeatmapDiscussion');
+        $json = json_item($this->beatmapDiscussion, 'BeatmapDiscussion');
 
         $this->assertNotEmpty($json);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $mapper = factory(User::class)->create();
+        $beatmapset = factory(Beatmapset::class)->states('with_discussion')->create([
+            'user_id' => $mapper->getKey(),
+        ]);
+
+        $this->beatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
     }
 }
