@@ -273,9 +273,7 @@ abstract class Model extends BaseModel
 
     public function scopeFromCountry($query, $countryAcronym)
     {
-        return $query->whereHas('user', function ($q) use ($countryAcronym) {
-            $q->where('country_acronym', $countryAcronym);
-        });
+        return $query->where('country_acronym', $countryAcronym);
     }
 
     public function scopeFriendsOf($query, $user)
