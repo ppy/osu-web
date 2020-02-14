@@ -25,9 +25,12 @@ use Tests\TestCase;
 
 class UserTransformerTest extends TestCase
 {
-    public function testAdminDataIsExcludedWhenUsingOAuth()
+    /**
+     * @dataProvider groupsDataProvider
+     */
+    public function testWithOAuth($groupIdentifier)
     {
-        $viewer = factory(User::class)->states('admin')->create();
+        $viewer = factory(User::class)->states($groupIdentifier)->create();
         $user = factory(User::class)->states('silenced')->create();
         $this->actAsScopedUser($viewer);
 
@@ -38,17 +41,34 @@ class UserTransformerTest extends TestCase
         $this->assertArrayNotHasKey('supporting_url', $accountHistory);
     }
 
-
-    public function testAdminDataIsNotExcludedWhenNotUsingOAuth()
+    /**
+     * @dataProvider groupsDataProvider
+     */
+    public function testWithoutOAuth($groupIdentifier, $visible)
     {
-        $viewer = factory(User::class)->states('admin')->create();
+        $viewer = factory(User::class)->states($groupIdentifier)->create();
         $user = factory(User::class)->states('silenced')->create();
         auth()->setUser($viewer);
 
         $json = json_item($user, 'User', ['account_history.actor', 'account_history.supporting_url']);
 
         $accountHistory = array_get($json, 'account_history.0');
-        $this->assertArrayHasKey('actor', $accountHistory);
-        $this->assertArrayHasKey('supporting_url', $accountHistory);
+        if ($visible) {
+            $this->assertArrayHasKey('actor', $accountHistory);
+            $this->assertArrayHasKey('supporting_url', $accountHistory);
+        } else {
+            $this->assertArrayNotHasKey('actor', $accountHistory);
+            $this->assertArrayNotHasKey('supporting_url', $accountHistory);
+        }
+    }
+
+    public function groupsDataProvider()
+    {
+        return [
+            ['admin', true],
+            ['bng', false],
+            ['gmt', false],
+            ['nat', false],
+        ];
     }
 }
