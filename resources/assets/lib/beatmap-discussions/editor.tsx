@@ -20,9 +20,11 @@ import isHotkey from 'is-hotkey';
 import * as laroute from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
+import * as markdown from 'remark-parse';
 import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
+import * as unified from 'unified';
 import { BeatmapDiscussionReview } from '../interfaces/beatmap-discussion-review';
 import EditorDiscussionComponent from './editor-discussion-component';
 import { SlateContext } from './slate-context';
@@ -39,6 +41,7 @@ export default class Editor extends React.Component<any, any> {
   menu = React.createRef<HTMLDivElement>();
   menuBody = React.createRef<HTMLDivElement>();
   slateEditor: ReactEditor;
+  temp: string = '';
 
   constructor(props: {}) {
     super(props);
@@ -64,56 +67,102 @@ export default class Editor extends React.Component<any, any> {
     };
   }
 
-  // componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any): void {
-  //   console.log('componentDidUpdate');
-  // }
-
   componentDidMount(): void {
-    // console.log('componentDidMount');
-    //
-    if (this.props.fromMarkdown) {
+    if (this.props.document) {
       if (!this.props.discussions || _.isEmpty(this.props.discussions)) {
         return;
       }
-      const markdown: string = this.props.fromMarkdown;
+
+      let srcDoc: any[];
+      try {
+        srcDoc = JSON.parse(this.props.document);
+      } catch {
+        console.log('failed to parse srcDoc');
+        return;
+      }
       const document: SlateNode[] = [];
 
-      const derp = markdown.split('\n');
-      _.each(derp, (block) => {
-        const regex = new RegExp(/%\[\]\(#(\d+)\)\n*/);
-        const result = regex.exec(block);
-
-        if (!result || result.index !== 0) {
+      _.each(srcDoc, (block) => {
+        switch (block.type) {
           // paragraph
-          document.push({
-            children: [{
-              text: block,
-            }],
-            type: 'paragraph',
-          });
-        } else {
-          // embed
-          const [matched, embed, reference] = result;
-          const discussion: BeatmapDiscussion = this.props.discussions[embed];
-          if (!discussion) {
-            return;
-          }
-          document.push({
-            beatmapId: discussion.beatmap_id,
-            children: [{
-              text: (discussion.starting_post || discussion.posts[0]).message,
-            }],
-            discussionType: discussion.message_type,
-            timestamp: discussion.timestamp,
-            type: 'embed',
-          });
+          case 'paragraph':
+            if (!osu.presence(block.text)) {
+              // empty block (aka newline)
+              document.push({
+                children: [{
+                  text: '',
+                }],
+                type: 'paragraph',
+              });
+            } else {
+              const processor = unified().use(markdown);
+              const parsed = processor.parse(block.text.toString());
+              const child = parsed.children[0];
+              const derp = _.filter(this.squash(child.children), (i) => i);
+
+              document.push({
+                children: derp,
+                type: 'paragraph',
+              });
+
+              console.log(parsed, "=>", derp);
+            }
+            break;
+          case 'embed':
+            // embed
+            const discussion: BeatmapDiscussion = this.props.discussions[block.discussion_id];
+            if (!discussion) {
+              return;
+            }
+            document.push({
+              beatmapId: discussion.beatmap_id,
+              children: [{
+                text: (discussion.starting_post || discussion.posts[0]).message,
+              }],
+              discussionType: discussion.message_type,
+              timestamp: discussion.timestamp,
+              type: 'embed',
+            });
+            break;
         }
       });
 
       this.setState({value: document});
-
-      console.dir(document);
     }
+  }
+
+  squash = (items: [], currentMarks?: {}) => {
+    const flat = [];
+    if (!currentMarks) {
+      currentMarks = {
+        bold: false,
+        italic: false,
+      };
+    }
+
+    items.forEach((item) => {
+      const newMarks = {
+        bold: currentMarks.bold || item.type === 'strong',
+        italic: currentMarks.italic || item.type === 'emphasis',
+      };
+
+      if (Array.isArray(item.children)) {
+        flat.push(this.squash(item.children, newMarks)[0]);
+      } else {
+        const newItem = {
+          text: item.value || '',
+        };
+        if (newMarks.bold) {
+          newItem.bold = true;
+        }
+        if (newMarks.italic) {
+          newItem.italic = true;
+        }
+        flat.push(newItem);
+      }
+    });
+
+    return flat;
   }
 
   decorate = (entry: NodeEntry) => {

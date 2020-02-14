@@ -128,13 +128,10 @@ export class Post extends React.PureComponent
               (beatmaps) =>
                 el Editor,
                   beatmapset: @props.beatmapset
-    #              users: @users()
                   beatmaps: beatmaps
-    #              currentBeatmap: @currentBeatmap()
-    #              currentDiscussions: @currentDiscussions()
+                  document: @state.message
                   discussions: discussions
                   editMode: true
-                  fromMarkdown: @state.message
       else
         el React.Fragment, null,
           el TextareaAutosize,
