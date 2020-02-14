@@ -68,7 +68,7 @@ export class ReviewPost extends React.Component<Props> {
         switch (block.type) {
           case 'paragraph':
             // '&nbsp;  ' converts into a newline
-            docBlocks.push(this.paragraph(osu.presence(block.text) || '&nbsp;  '));
+            docBlocks.push(this.paragraph(osu.presence(block.text.toString()) || '&nbsp;  '));
             break;
           case 'embed':
             docBlocks.push(this.embed(block.discussion_id));
