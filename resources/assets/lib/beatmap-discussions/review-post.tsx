@@ -76,7 +76,7 @@ export class ReviewPost extends React.Component<Props> {
         }
       });
     } catch (e) {
-      docBlocks.push(<div>[error parsing review]</div>);
+      docBlocks.push(<div key={osu.uuid()}>[error parsing review]</div>);
     }
 
     return (
