@@ -282,7 +282,6 @@ class OsuMarkdownProcessor
         }
 
         $this->title = presence($this->node->getStringContent());
-        $this->node->detach();
     }
 
     public function trackListLevel()
