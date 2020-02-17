@@ -82,6 +82,11 @@ return [
             '_' => '通知',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '排名',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => '用户摸图帖',
             'modding-history-votesGiven' => '用户摸图投票数',
             'modding-history-votesReceived' => '用户摸图获得票数',
+            'notifications-index' => '',
             'oauth_login' => '登录以授权',
             'oauth_request' => 'OAuth 授权',
             'settings' => '设置',

@@ -55,7 +55,7 @@ return [
         'community' => [
             '_' => '社群',
             'comments' => '評論',
-            'contests' => '',
+            'contests' => '比賽',
             'forum' => '論壇',
             'livestream' => '直播',
         ],
@@ -80,6 +80,11 @@ return [
 
         'notice' => [
             '_' => '',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => '使用者摸圖貼文',
             'modding-history-votesGiven' => '使用者摸圖投票數',
             'modding-history-votesReceived' => '使用者摸圖得票数',
+            'notifications-index' => '',
             'oauth_login' => '以 OAuth 登入',
             'oauth_request' => 'OAuth 授權',
             'settings' => '設定',
