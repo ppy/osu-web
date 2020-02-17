@@ -1112,7 +1112,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->hasMany(Score\Best\Taiko::class)->default();
     }
 
-    public function scoresBest(string $mode, bool $returnQuery = false)
+    public function scoresBest(string $mode)
     {
         if (!Beatmap::isModeValid($mode)) {
             return;
@@ -1120,7 +1120,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
         $relation = 'scoresBest'.studly_case($mode);
 
-        return $returnQuery ? $this->$relation() : $this->$relation;
+        return $this->$relation();
     }
 
     public function userProfileCustomization()
