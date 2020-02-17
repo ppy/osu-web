@@ -1081,7 +1081,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->belongsToMany(Score\Best\Taiko::class, 'osu_leaders_taiko')->default();
     }
 
-    public function scoresFirst(string $mode, bool $returnQuery = false)
+    public function scoresFirst(string $mode)
     {
         if (!Beatmap::isModeValid($mode)) {
             return;
@@ -1089,7 +1089,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
         $relation = 'scoresFirst'.studly_case($mode);
 
-        return $returnQuery ? $this->$relation() : $this->$relation;
+        return $this->$relation();
     }
 
     public function scoresBestOsu()
