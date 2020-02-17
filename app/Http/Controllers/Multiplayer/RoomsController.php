@@ -111,10 +111,9 @@ class RoomsController extends BaseController
     public function show($roomId)
     {
         return json_item(
-            Room::where('id', $roomId)
-                ->with('host.country')
-                ->with('playlist.beatmap.beatmapset')
-                ->firstOrFail(),
+            Room::findOrFail($roomId)
+                ->load('host.country')
+                ->load('playlist.beatmap.beatmapset'),
             'Multiplayer\Room',
             [
                 'host.country',
@@ -129,7 +128,9 @@ class RoomsController extends BaseController
             $room = (new Room)->startGame(auth()->user(), request()->all());
 
             return json_item(
-                $room,
+                $room
+                    ->load('host.country')
+                    ->load('playlist.beatmap.beatmapset'),
                 'Multiplayer\Room',
                 [
                     'host.country',
