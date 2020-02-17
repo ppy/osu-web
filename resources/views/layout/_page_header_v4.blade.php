@@ -43,7 +43,7 @@
                     @if ($showTitle)
                         <div class="header-v4__icon"></div>
                         <div class="header-v4__title">
-                            {{ title_header() }}
+                            {{ page_title() }}
                         </div>
                     @endif
 

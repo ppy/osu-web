@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('store/layout', ['titlePrepend' => trans('layout.menu.store.getCheckout')])
+@extends('store/layout', ['titlePrepend' => trans('store.checkout.title_compact')])
 
 @php
     // always ignore empty keys.

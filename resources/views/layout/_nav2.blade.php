@@ -94,7 +94,7 @@
             <a
                 href="{{ route('support-the-game') }}"
                 class="nav-button nav-button--support"
-                title="{{ trans('layout.menu.home.supportTheGame') }}"
+                title="{{ trans('page_title.main.home_controller.support_the_game') }}"
             >
                 <span class="fas fa-heart"></span>
             </a>

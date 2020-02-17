@@ -127,8 +127,6 @@ export default class HeaderV4 extends React.Component<Props> {
   }
 
   private title() {
-    let title: string = 'unknown';
-
     const el = document.querySelector('.js-route-section');
 
     if (el instanceof HTMLElement) {
@@ -139,7 +137,17 @@ export default class HeaderV4 extends React.Component<Props> {
           const routeSection = JSON.parse(data);
 
           if (routeSection != null) {
-            title = osu.trans(`layout.title.${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`);
+            const keys = [
+              `page_title.${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`,
+              `page_title.${routeSection.namespace}.${routeSection.controller}._`,
+              `page_title.${routeSection.namespace}._`,
+            ];
+
+            for (const key of keys) {
+              if (osu.transExists(key, fallbackLocale)) {
+                return osu.trans(key);
+              }
+            }
           }
         } catch (error) {
           // ??
@@ -147,6 +155,6 @@ export default class HeaderV4 extends React.Component<Props> {
       }
     }
 
-    return title;
+    return 'unknown';
   }
 }

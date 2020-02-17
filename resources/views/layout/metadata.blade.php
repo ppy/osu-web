@@ -29,15 +29,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 @if (isset($opengraph))
-    @php
-        $siteName = 'osu!';
-
-        if (isset($opengraph['section'])) {
-            $siteName .= ' » '.$opengraph['section'];
-        }
-    @endphp
-
-    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:site_name" content="osu! » {{ page_title() }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ $canonicalUrl }}">
     <meta property="og:title" content="{{ $opengraph['title'] }}">

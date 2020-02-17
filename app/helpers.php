@@ -694,11 +694,23 @@ function is_sql_unique_exception($ex)
     );
 }
 
-function title_header()
+function page_title()
 {
     $currentRoute = app('route-section')->getCurrent();
+    $checkLocale = config('app.fallback_locale');
+    $keys = [
+        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}",
+        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}._",
+        "page_title.{$currentRoute['namespace']}._",
+    ];
 
-    return trans("layout.title.{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}");
+    foreach ($keys as $key) {
+        if (trans_exists($key, $checkLocale)) {
+            return trans($key);
+        }
+    }
+
+    return 'unknown';
 }
 
 function ujs_redirect($url, $status = 200)

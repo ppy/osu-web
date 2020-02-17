@@ -20,8 +20,6 @@
     $currentRoute = app('route-section')->getCurrent();
 
     $currentSection = $currentRoute['section'];
-    $currentController = $currentRoute['controller'];
-    $currentNamespace = $currentRoute['namespace'];
     $currentAction = $currentRoute['action'];
 
     $titleTree = [];
@@ -33,7 +31,7 @@
             $titleTree[] = $titlePrepend;
         }
 
-        $titleTree[] = trans("layout.title.{$currentNamespace}.{$currentController}.{$currentAction}");
+        $titleTree[] = page_title();
     }
 
     $title = implode(' · ', $titleTree);

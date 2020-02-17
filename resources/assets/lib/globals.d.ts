@@ -28,6 +28,8 @@ declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
 declare var Timeout: any;
 declare const Lang: LangClass;
+declare const fallbackLocale: string;
+declare const currentLocale: string;
 
 // Global object types
 interface Comment {
