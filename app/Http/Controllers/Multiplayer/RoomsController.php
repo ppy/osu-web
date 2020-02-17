@@ -131,7 +131,10 @@ class RoomsController extends BaseController
             return json_item(
                 $room,
                 'Multiplayer\Room',
-                'playlist'
+                [
+                    'host.country',
+                    'playlist.beatmap.beatmapset',
+                ]
             );
         } catch (InvariantException $e) {
             return error_popup($e->getMessage(), $e->getStatusCode());
