@@ -107,6 +107,11 @@ abstract class Model extends BaseModel
 
     public function userRank($options)
     {
+        // laravel model has a $hidden property
+        if ($this->getAttribute('hidden')) {
+            return;
+        }
+
         return with_db_fallback('mysql-readonly', function ($connection) use ($options) {
             $alwaysAccurate = false;
 
