@@ -69,30 +69,28 @@ class BeatmapsController extends Controller
                 $query = $model
                     ->where('beatmap_id', $beatmap->getKey())
                     ->with(['beatmap', 'user.country'])
-                    ->defaultListing();
+                    ->withMods($mods)
+                    ->withType($type, compact('user'));
 
-                $query->withMods($mods);
-                $query->withType($type, compact('user'));
+                if ($user !== null) {
+                    $score = (clone $query)->where('user_id', $user->user_id)->first();
+                }
 
                 $results = [
-                    'scores' => json_collection($query->forListing(), 'Score', ['beatmap', 'user', 'user.country']),
+                    'scores' => json_collection($query->defaultListing()->forListing(), 'Score', ['beatmap', 'user', 'user.country']),
                 ];
-            } catch (ScoreRetrievalException $ex) {
-                return error_popup($ex->getMessage());
-            }
 
-            if ($user !== null) {
-                $score = (clone $query)->where('user_id', $user->user_id)->first();
-
-                if ($score !== null) {
+                if (isset($score)) {
                     $results['userScore'] = [
                         'position' => $score->userRank(compact('type', 'mods')),
                         'score' => json_item($score, 'Score', ['user', 'user.country']),
                     ];
                 }
-            }
 
-            return $results;
+                return $results;
+            } catch (ScoreRetrievalException $ex) {
+                return error_popup($ex->getMessage());
+            }
         });
     }
 }
