@@ -179,6 +179,11 @@ function cleanup_cookies()
     }
 }
 
+function css_group_colour($group)
+{
+    return '--group-colour: '.(optional($group)->colour ?? 'initial');
+}
+
 function css_var_2x(string $key, string $url)
 {
     if (!present($url)) {
@@ -528,11 +533,6 @@ function require_login($text_key, $link_text_key)
     return $text;
 }
 
-function render_to_string($view, $variables = [])
-{
-    return view()->make($view, $variables)->render();
-}
-
 function spinner(?array $modifiers = null)
 {
     return tag('div', [
@@ -580,6 +580,27 @@ function trans_exists($key, $locale)
     $translated = app('translator')->get($key, [], $locale, false);
 
     return present($translated) && $translated !== $key;
+}
+
+function with_db_fallback($connection, callable $callable)
+{
+    try {
+        return $callable($connection);
+    } catch (Illuminate\Database\QueryException $ex) {
+        // string after the error code can change depending on actual state of the server.
+        static $errorCodes = ['SQLSTATE[HY000] [2002]', 'SQLSTATE[HY000] [2003]'];
+        if (starts_with($ex->getMessage(), $errorCodes)) {
+            Datadog::increment(
+                config('datadog-helper.prefix_web').'.db_fallback',
+                1,
+                compact('connection')
+            );
+
+            return $callable(config('database.default'));
+        }
+
+        throw $ex;
+    }
 }
 
 function obscure_email($email)
@@ -637,6 +658,24 @@ function error_popup($message, $statusCode = 422)
     return response(['error' => $message], $statusCode);
 }
 
+function ext_view($view, $data = null, $type = null, $status = null)
+{
+    static $types = [
+        'atom' => 'application/atom+xml',
+        'html' => 'text/html',
+        'js' => 'application/javascript',
+        'json' => 'application/json',
+        'rss' => 'application/rss+xml',
+    ];
+
+    return response()->view(
+        $view,
+        $data ?? [],
+        $status ?? 200,
+        ['Content-Type' => $types[$type ?? 'html']]
+    );
+}
+
 function is_api_request()
 {
     return request()->is('api/*');
@@ -655,17 +694,10 @@ function is_sql_unique_exception($ex)
     );
 }
 
-function js_view($view, $vars = [], $status = 200)
-{
-    return response()
-        ->view($view, $vars, $status)
-        ->header('Content-Type', 'application/javascript');
-}
-
 function ujs_redirect($url, $status = 200)
 {
     if (Request::ajax() && !Request::isMethod('get')) {
-        return js_view('layout.ujs-redirect', ['url' => $url], $status);
+        return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
     } else {
         if (Request::header('Turbolinks-Referrer')) {
             Request::session()->put('_turbolinks_location', $url);

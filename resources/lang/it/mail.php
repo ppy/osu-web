@@ -38,7 +38,7 @@ return [
         'keep_free' => 'È grazie a persone come che osu! è in grado di mantenere funzionante il gioco e la community senza alcun annuncio pubblicitario o pagamenti forzati.',
         'keep_running' => 'Il tuo supporto mantiene funzionante osu! per circa :minutes! Potrebbe non sembrare molto, ma ha il suo valore :).',
         'subject' => 'Grazie, osu! ti ama <3',
-        'translation' => '',
+        'translation' => 'Ecco una traduzione fornita da un utente per scopi informativi:',
 
         'benefit' => [
             'gift' => 'I destinatari del tuo regalo hanno ora accesso ad osu!direct e ad altri benefici per i supporter.',

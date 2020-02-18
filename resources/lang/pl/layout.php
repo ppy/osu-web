@@ -55,7 +55,7 @@ return [
         'community' => [
             '_' => 'społeczność',
             'comments' => 'komentarze',
-            'contests' => '',
+            'contests' => 'konkursy',
             'forum' => 'forum',
             'livestream' => 'na żywo',
         ],
@@ -80,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'powiadomienie',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'historia postów',
             'modding-history-votesGiven' => 'głosy oddane',
             'modding-history-votesReceived' => 'głosy otrzymane',
+            'notifications-index' => '',
             'oauth_login' => 'zaloguj się, aby użyć oauth',
             'oauth_request' => 'autoryzacja oauth',
             'settings' => 'Ustawienia',

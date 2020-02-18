@@ -60,6 +60,10 @@
       element.click()
 
 
+  groupColour: (group) ->
+    '--group-colour': group?.colour ? 'initial'
+
+
   setHash: (newHash) ->
     newUrl = location.href.replace /#.*/, ''
     newUrl += newHash

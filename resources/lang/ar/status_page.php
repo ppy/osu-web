@@ -25,7 +25,7 @@ return [
     ],
 
     'incidents' => [
-        'title' => 'الحوادث الحالية',
+        'title' => 'الأحداث الحالية',
         'automated' => 'الآليا',
     ],
 
@@ -40,16 +40,16 @@ return [
 
     'recent' => [
         'incidents' => [
-            'title' => 'الحوادث التي وقعت مؤخرا',
+            'title' => 'الأحداث مؤخراََ',
             'state' => [
                 'resolved' => 'تم حله',
-                'resolving' => 'يتم خله',
+                'resolving' => 'يتم حَلُه',
                 'unknown' => 'مجهول',
             ],
         ],
 
         'uptime' => [
-            'title' => 'مدة التشغيل',
+            'title' => 'الجهوزية',
             'graphs' => [
                 'server' => 'الخادم',
                 'web' => 'ويب',

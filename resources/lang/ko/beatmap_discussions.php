@@ -80,6 +80,13 @@ return [
     'review' => [
         'go_to_parent' => '평가 글 보기',
         'go_to_child' => '토론 글 보기',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [

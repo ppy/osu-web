@@ -82,6 +82,11 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'brukermoddings-innlegg',
             'modding-history-votesGiven' => 'brukermoddingsstemmer gitt',
             'modding-history-votesReceived' => 'brukermoddingsstemmer mottatt',
+            'notifications-index' => '',
             'oauth_login' => 'logg inn for oauth',
             'oauth_request' => 'oauth-godkjennelse',
             'settings' => 'Innstillinger',

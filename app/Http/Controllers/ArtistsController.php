@@ -38,8 +38,9 @@ class ArtistsController extends Controller
             $artists->where('visible', true);
         }
 
-        return view('artists.index')
-            ->with('artists', $artists->get());
+        return ext_view('artists.index', [
+            'artists' => $artists->get(),
+        ]);
     }
 
     public function show($id)
@@ -104,11 +105,12 @@ class ArtistsController extends Controller
             }
         }
 
-        return view('artists.show')
-            ->with('artist', $artist)
-            ->with('links', $links)
-            ->with('albums', json_collection($albums, new ArtistAlbumTransformer, ['tracks']))
-            ->with('tracks', json_collection($tracks, new ArtistTrackTransformer))
-            ->with('images', $images);
+        return ext_view('artists.show', [
+            'artist' => $artist,
+            'links' => $links,
+            'albums' => json_collection($albums, new ArtistAlbumTransformer, ['tracks']),
+            'tracks' => json_collection($tracks, new ArtistTrackTransformer),
+            'images' => $images,
+        ]);
     }
 }

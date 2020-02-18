@@ -35,7 +35,7 @@ return [
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nahlásit',
+        'title' => 'Nahlásit :username?',
     ],
 ];

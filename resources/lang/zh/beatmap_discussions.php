@@ -80,6 +80,13 @@ return [
     'review' => [
         'go_to_parent' => '查看审阅帖',
         'go_to_child' => '查看讨论',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [

@@ -83,7 +83,7 @@ return [
 
             'report' => [
                 '_' => '',
-                'button' => '',
+                'button' => 'Nahlásit problém',
                 'button_title' => '',
                 'link' => 'zde',
             ],
@@ -153,13 +153,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Hodnocené',
+            'approved' => 'Schválené',
+            'loved' => 'Oblíbené',
+            'qualified' => 'Kvalifikované',
+            'wip' => 'Nedodělané',
+            'pending' => 'Nevyřízené',
+            'graveyard' => 'Hřbitov',
         ],
     ],
 ];

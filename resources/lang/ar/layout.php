@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - الأغنية بعيدة *نقرة* واحدة فقط! مع Ouendan/EBA, تايكو واوضاع اللعب الأصليبة, وكذلك معدل مستويات متكامل.',
+        'page_description' => 'osu! - الأغنية قريبة *نقرة* واحدة فقط! مع Ouendan/EBA, تايكو واوضاع اللعب الأصلية, وكذلك مُعدل مستويات متكامل.',
     ],
 
     'header' => [
@@ -55,7 +55,7 @@ return [
         'community' => [
             '_' => 'المجتمع',
             'comments' => 'التعليقات',
-            'contests' => '',
+            'contests' => 'المسابقات',
             'forum' => 'المنتدى',
             'livestream' => 'البث المباشر',
         ],
@@ -80,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'ملحوظة',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -118,7 +123,7 @@ return [
 
     'menu' => [
         'home' => [
-            '_' => 'الصفحة الرئيسية',
+            '_' => 'الرئيسية',
             'account-edit' => 'الاعدادات',
             'account-verifyLink' => 'اكتمل التحقق',
             'beatmapset-watches-index' => 'قائمة مشاهدات الاِقتراحات',
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'منشورات اقتراحات المستخدم',
             'modding-history-votesGiven' => 'الاصوات المعطاة لاقتراحات المستخدم',
             'modding-history-votesReceived' => 'الاصوات المستلمة لاقتراحات المستخدم',
+            'notifications-index' => '',
             'oauth_login' => 'سجل الدخول لـoauth',
             'oauth_request' => 'اذن oauth',
             'settings' => 'الاعدادات',

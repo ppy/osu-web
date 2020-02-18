@@ -55,6 +55,7 @@ interface JQueryStatic {
 interface OsuCommon {
   ajaxError: (xhr: JQueryXHR) => void;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
+  groupColour: (group?: GroupJSON) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: { classNames?: string[]; isRemote?: boolean }) => string;
@@ -82,6 +83,13 @@ interface OsuCommon {
 
 interface BeatmapHelperInterface {
   getDiffRating(rating: number): string;
+}
+
+interface ChangelogBuild {
+  update_stream: {
+    name: string,
+  };
+  version: string;
 }
 
 interface Country {
@@ -154,14 +162,6 @@ interface BeatmapDiscussionPost {
   message: string;
 }
 
-interface Group {
-  description: string;
-  id: number;
-  identifier: string;
-  name: string;
-  short_name: string;
-}
-
 interface LangClass {
   _getPluralForm: (count: number) => number;
   _origGetPluralForm: (count: number) => number;
@@ -176,7 +176,7 @@ interface User {
   cover: Cover;
   current_mode_rank?: number;
   default_group: string;
-  group_badge?: Group;
+  group_badge?: GroupJSON;
   id: number;
   is_active: boolean;
   is_bot: boolean;
@@ -196,6 +196,11 @@ interface TooltipDefault {
 
 interface TurbolinksAction {
   action: 'advance' | 'replace' | 'restore';
+}
+
+interface TurbolinksLocation {
+    getPath(): string;
+    isHTML(): boolean;
 }
 
 interface TurbolinksStatic {
