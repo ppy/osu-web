@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => 'yönetici',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => 'konsol',
-            'store_orders' => '',
-        ],
+        '_' => 'yönetici',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => 'yönetici',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => 'konsol',
-            'store_orders' => '',
-        ],
+        '_' => 'yönetici',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => 'yönetici',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => 'konsol',
-            'store_orders' => '',
-        ],
+        '_' => 'yönetici',
     ],
     'error' => [
         'error' => [

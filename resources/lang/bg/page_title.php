@@ -19,39 +19,6 @@
  */
 
 return [
-    'admin' => [
-        '_' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
-        ],
-    ],
-    'admin_forum' => [
-        '_' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
-        ],
-    ],
-    'admin_store' => [
-        '_' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
-        ],
-    ],
     'error' => [
         'error' => [
             '_' => 'грешка',

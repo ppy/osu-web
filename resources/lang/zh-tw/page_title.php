@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => '管理員',
-            'beatmapset' => '圖譜',
-            'beatmapset_covers' => '圖譜封面',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '商店管理',
-        ],
+        '_' => '管理員',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => '管理員',
-            'beatmapset' => '圖譜',
-            'beatmapset_covers' => '圖譜封面',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '商店管理',
-        ],
+        '_' => '管理員',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => '管理員',
-            'beatmapset' => '圖譜',
-            'beatmapset_covers' => '圖譜封面',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '商店管理',
-        ],
+        '_' => '管理員',
     ],
     'error' => [
         'error' => [

@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => '管理',
-            'beatmapset' => '谱面集',
-            'beatmapset_covers' => '谱面集封面',
-            'contest' => '比赛',
-            'contests' => '竞赛',
-            'root' => '控制中心',
-            'store_orders' => '商店管理',
-        ],
+        '_' => '管理',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => '管理',
-            'beatmapset' => '谱面集',
-            'beatmapset_covers' => '谱面集封面',
-            'contest' => '比赛',
-            'contests' => '竞赛',
-            'root' => '控制中心',
-            'store_orders' => '商店管理',
-        ],
+        '_' => '管理',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => '管理',
-            'beatmapset' => '谱面集',
-            'beatmapset_covers' => '谱面集封面',
-            'contest' => '比赛',
-            'contests' => '竞赛',
-            'root' => '控制中心',
-            'store_orders' => '商店管理',
-        ],
+        '_' => '管理',
     ],
     'error' => [
         'error' => [

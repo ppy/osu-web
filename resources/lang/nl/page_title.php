@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => 'beheerder',
-            'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'beatmapset covers',
-            'contest' => 'competitie',
-            'contests' => 'competities',
-            'root' => 'console',
-            'store_orders' => 'winkel beheerder',
-        ],
+        '_' => 'beheerder',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => 'beheerder',
-            'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'beatmapset covers',
-            'contest' => 'competitie',
-            'contests' => 'competities',
-            'root' => 'console',
-            'store_orders' => 'winkel beheerder',
-        ],
+        '_' => 'beheerder',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => 'beheerder',
-            'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'beatmapset covers',
-            'contest' => 'competitie',
-            'contests' => 'competities',
-            'root' => 'console',
-            'store_orders' => 'winkel beheerder',
-        ],
+        '_' => 'beheerder',
     ],
     'error' => [
         'error' => [

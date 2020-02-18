@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => 'amministratore',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => 'concorso',
-            'contests' => 'concorsi',
-            'root' => 'console',
-            'store_orders' => '',
-        ],
+        '_' => 'amministratore',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => 'amministratore',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => 'concorso',
-            'contests' => 'concorsi',
-            'root' => 'console',
-            'store_orders' => '',
-        ],
+        '_' => 'amministratore',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => 'amministratore',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => 'concorso',
-            'contests' => 'concorsi',
-            'root' => 'console',
-            'store_orders' => '',
-        ],
+        '_' => 'amministratore',
     ],
     'error' => [
         'error' => [

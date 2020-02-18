@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => 'administrator',
-            'beatmapset' => 'zestaw beatmap',
-            'beatmapset_covers' => 'tła zestawów beatmap',
-            'contest' => 'konkurs',
-            'contests' => 'konkursy',
-            'root' => 'konsola',
-            'store_orders' => 'administrator sklepu',
-        ],
+        '_' => 'administrator',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => 'administrator',
-            'beatmapset' => 'zestaw beatmap',
-            'beatmapset_covers' => 'tła zestawów beatmap',
-            'contest' => 'konkurs',
-            'contests' => 'konkursy',
-            'root' => 'konsola',
-            'store_orders' => 'administrator sklepu',
-        ],
+        '_' => 'administrator',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => 'administrator',
-            'beatmapset' => 'zestaw beatmap',
-            'beatmapset_covers' => 'tła zestawów beatmap',
-            'contest' => 'konkurs',
-            'contests' => 'konkursy',
-            'root' => 'konsola',
-            'store_orders' => 'administrator sklepu',
-        ],
+        '_' => 'administrator',
     ],
     'error' => [
         'error' => [

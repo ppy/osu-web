@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => '관리자',
-            'beatmapset' => '비트맵셋',
-            'beatmapset_covers' => '비트맵셋 커버',
-            'contest' => '콘테스트',
-            'contests' => '콘테스트',
-            'root' => '콘솔',
-            'store_orders' => '상점 관리자',
-        ],
+        '_' => '관리자',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => '관리자',
-            'beatmapset' => '비트맵셋',
-            'beatmapset_covers' => '비트맵셋 커버',
-            'contest' => '콘테스트',
-            'contests' => '콘테스트',
-            'root' => '콘솔',
-            'store_orders' => '상점 관리자',
-        ],
+        '_' => '관리자',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => '관리자',
-            'beatmapset' => '비트맵셋',
-            'beatmapset_covers' => '비트맵셋 커버',
-            'contest' => '콘테스트',
-            'contests' => '콘테스트',
-            'root' => '콘솔',
-            'store_orders' => '상점 관리자',
-        ],
+        '_' => '관리자',
     ],
     'error' => [
         'error' => [

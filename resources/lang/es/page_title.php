@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => 'admin',
-            'beatmapset' => 'set de mapas',
-            'beatmapset_covers' => 'portadas del set de mapas',
-            'contest' => 'concurso',
-            'contests' => 'concursos',
-            'root' => 'consola',
-            'store_orders' => 'administrador de tienda',
-        ],
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => 'admin',
-            'beatmapset' => 'set de mapas',
-            'beatmapset_covers' => 'portadas del set de mapas',
-            'contest' => 'concurso',
-            'contests' => 'concursos',
-            'root' => 'consola',
-            'store_orders' => 'administrador de tienda',
-        ],
+        '_' => 'admin',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => 'admin',
-            'beatmapset' => 'set de mapas',
-            'beatmapset_covers' => 'portadas del set de mapas',
-            'contest' => 'concurso',
-            'contests' => 'concursos',
-            'root' => 'consola',
-            'store_orders' => 'administrador de tienda',
-        ],
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [

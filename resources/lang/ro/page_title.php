@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => 'admin',
-            'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'cover-uri beatmapset',
-            'contest' => 'concurs',
-            'contests' => 'concursuri',
-            'root' => 'consolă',
-            'store_orders' => 'magazin admin',
-        ],
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => 'admin',
-            'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'cover-uri beatmapset',
-            'contest' => 'concurs',
-            'contests' => 'concursuri',
-            'root' => 'consolă',
-            'store_orders' => 'magazin admin',
-        ],
+        '_' => 'admin',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => 'admin',
-            'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'cover-uri beatmapset',
-            'contest' => 'concurs',
-            'contests' => 'concursuri',
-            'root' => 'consolă',
-            'store_orders' => 'magazin admin',
-        ],
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [

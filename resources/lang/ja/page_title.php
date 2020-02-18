@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => '管理者',
-            'beatmapset' => 'ビートマップセット',
-            'beatmapset_covers' => 'ビートマップセットカバー',
-            'contest' => 'コンテスト',
-            'contests' => 'コンテスト',
-            'root' => 'コンソール',
-            'store_orders' => 'ストア管理者',
-        ],
+        '_' => '管理者',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => '管理者',
-            'beatmapset' => 'ビートマップセット',
-            'beatmapset_covers' => 'ビートマップセットカバー',
-            'contest' => 'コンテスト',
-            'contests' => 'コンテスト',
-            'root' => 'コンソール',
-            'store_orders' => 'ストア管理者',
-        ],
+        '_' => '管理者',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => '管理者',
-            'beatmapset' => 'ビートマップセット',
-            'beatmapset_covers' => 'ビートマップセットカバー',
-            'contest' => 'コンテスト',
-            'contests' => 'コンテスト',
-            'root' => 'コンソール',
-            'store_orders' => 'ストア管理者',
-        ],
+        '_' => '管理者',
     ],
     'error' => [
         'error' => [

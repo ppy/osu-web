@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => 'admin',
-            'beatmapset' => 'set beatmap',
-            'beatmapset_covers' => 'sampul beatmap',
-            'contest' => 'kontes',
-            'contests' => 'kontes',
-            'root' => 'konsol',
-            'store_orders' => 'pengelola toko',
-        ],
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => 'admin',
-            'beatmapset' => 'set beatmap',
-            'beatmapset_covers' => 'sampul beatmap',
-            'contest' => 'kontes',
-            'contests' => 'kontes',
-            'root' => 'konsol',
-            'store_orders' => 'pengelola toko',
-        ],
+        '_' => 'admin',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => 'admin',
-            'beatmapset' => 'set beatmap',
-            'beatmapset_covers' => 'sampul beatmap',
-            'contest' => 'kontes',
-            'contests' => 'kontes',
-            'root' => 'konsol',
-            'store_orders' => 'pengelola toko',
-        ],
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [

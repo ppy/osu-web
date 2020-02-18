@@ -20,37 +20,13 @@
 
 return [
     'admin' => [
-        '_' => [
-            '_' => 'administrador',
-            'beatmapset' => 'conjunto de beatmaps',
-            'beatmapset_covers' => 'capas de conjunto de beatmaps',
-            'contest' => 'concurso',
-            'contests' => 'concursos',
-            'root' => 'consola',
-            'store_orders' => 'administrador da loja',
-        ],
+        '_' => 'administrador',
     ],
     'admin_forum' => [
-        '_' => [
-            '_' => 'administrador',
-            'beatmapset' => 'conjunto de beatmaps',
-            'beatmapset_covers' => 'capas de conjunto de beatmaps',
-            'contest' => 'concurso',
-            'contests' => 'concursos',
-            'root' => 'consola',
-            'store_orders' => 'administrador da loja',
-        ],
+        '_' => 'administrador',
     ],
     'admin_store' => [
-        '_' => [
-            '_' => 'administrador',
-            'beatmapset' => 'conjunto de beatmaps',
-            'beatmapset_covers' => 'capas de conjunto de beatmaps',
-            'contest' => 'concurso',
-            'contests' => 'concursos',
-            'root' => 'consola',
-            'store_orders' => 'administrador da loja',
-        ],
+        '_' => 'administrador',
     ],
     'error' => [
         'error' => [
