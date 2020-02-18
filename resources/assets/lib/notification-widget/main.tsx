@@ -96,8 +96,8 @@ export default class Main extends React.Component<Props, State> {
         onClick={this.handleFilterClick}
         {...data}
       >
-        <span>{link.title}</span>
         <span className='notification-popup__filter-count'>{type.total}</span>
+        <span>{link.title}</span>
       </button>
     );
   }

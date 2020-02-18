@@ -28,11 +28,10 @@
   }
 
   &__item {
-    .osu-group-colours({
-      &--@{group} {
-        .link-hover({ color: @@colour });
-        color: @@colour;
-      }
+    color: var(--group-colour, @osu-colour-c1);
+
+    .link-hover({
+      color: var(--group-colour, @osu-colour-c1);
     });
   }
 }

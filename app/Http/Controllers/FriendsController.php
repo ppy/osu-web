@@ -67,7 +67,7 @@ class FriendsController extends Controller
             return $usersJson;
         }
 
-        return view('friends.index', compact('usersJson'));
+        return ext_view('friends.index', compact('usersJson'));
     }
 
     public function store()

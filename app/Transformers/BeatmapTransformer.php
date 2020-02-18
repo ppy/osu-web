@@ -64,6 +64,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'count_sliders' => $beatmap->countSlider,
             'count_spinners' => $beatmap->countSpinner,
             'count_total' => $beatmap->countTotal,
+            'is_scoreable' => $beatmap->isScoreable(),
             'last_updated' => json_time($beatmap->last_update),
             'ranked' => $beatmap->approved,
             'status' => $beatmap->status(),
@@ -114,18 +115,12 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
 
     public function includeMaxCombo(Beatmap $beatmap)
     {
-        return $this->item($beatmap, function ($beatmap) {
-            $maxCombo = $beatmap->difficultyAttribs()
-                ->mode($beatmap->playmode)
-                ->noMods()
-                ->maxCombo()
-                ->first();
+        $maxCombo = $beatmap->difficultyAttribs()
+            ->mode($beatmap->playmode)
+            ->noMods()
+            ->maxCombo()
+            ->first();
 
-            if ($maxCombo === null) {
-                return [];
-            }
-
-            return [$maxCombo->getAttribute('value')];
-        });
+        return $this->primitive(optional($maxCombo)->value);
     }
 }

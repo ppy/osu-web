@@ -153,7 +153,7 @@ class Handler extends ExceptionHandler
             if (is_json_request() || $request->ajax()) {
                 $response = response(['error' => $message]);
             } else {
-                $response = response()->view('layout.error', ['exceptionMessage' => $message]);
+                $response = ext_view('layout.error', ['exceptionMessage' => $message]);
             }
         }
 
@@ -171,7 +171,7 @@ class Handler extends ExceptionHandler
             return response(['authentication' => 'basic'], 401);
         }
 
-        return response()->view('users.login')->setStatusCode(401);
+        return ext_view('users.login', null, null, 401);
     }
 
     protected function unverified()
