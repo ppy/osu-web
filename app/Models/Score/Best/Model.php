@@ -137,13 +137,13 @@ abstract class Model extends BaseModel
             $countQuery = DB::raw('DISTINCT user_id');
 
             if ($alwaysAccurate) {
-                return 1 + $query->default()->count($countQuery);
+                return 1 + $query->withoutHidden()->default()->count($countQuery);
             }
 
             $rank = 1 + $query->count($countQuery);
 
             if ($rank < config('osu.beatmaps.max-scores') * 3) {
-                return 1 + $query->default()->count($countQuery);
+                return 1 + $query->withoutHidden()->default()->count($countQuery);
             } else {
                 return $rank;
             }
