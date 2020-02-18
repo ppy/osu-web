@@ -23,7 +23,6 @@ namespace App\Models\Wiki;
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Es;
-use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
@@ -58,34 +57,6 @@ class Page implements WikiObject
     private $defaultTitle;
     private $source;
     private $page;
-
-    public static function allPagesSearch()
-    {
-        return (new BasicSearch(Page::esIndexName(), 'wiki_sitemap'))
-            ->query(['match_all' => new \stdClass])
-            ->sort(new Sort('_id', 'asc'));
-    }
-
-    public static function sitemap()
-    {
-        $sitemap = [];
-
-        $cursor = ['']; // works with Sort(_id, asc) to start at the beginning.
-        while ($cursor !== null) {
-            $search = static::allPagesSearch()->searchAfter(array_values($cursor));
-            $response = $search->response();
-
-            foreach ($response as $hit) {
-                $page = static::fromEs($hit);
-                $key = str_replace('/', '.', $hit->source('path')).'.'.$hit->source('locale');
-                array_set($sitemap, $key, $page->title());
-            }
-
-            $cursor = $search->getSortCursor();
-        }
-
-        return $sitemap;
-    }
 
     public static function cleanupPath($path)
     {
