@@ -32,7 +32,7 @@
                     {{ trans("home.search.mode.{$mode}") }}
                 </span>
 
-                @if ($allSearch->hasQuery() && $search !== null)
+                @if ($allSearch->hasQuery() && $search !== null && (!$search->isLoginRequired() || auth()->check()))
                     <span class="page-mode-link__badge">
                         @if ($search->count() < 100)
                             {{ $search->count() }}
