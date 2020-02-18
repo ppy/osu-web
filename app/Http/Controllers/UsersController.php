@@ -477,7 +477,6 @@ class UsersController extends Controller
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'best', 'user'];
                     $query = $user->scores($options['mode'], true)
-                        ->withoutHidden()
                         ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
                     break;
             }
