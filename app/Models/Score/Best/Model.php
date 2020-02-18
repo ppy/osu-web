@@ -107,45 +107,47 @@ abstract class Model extends BaseModel
 
     public function userRank($options)
     {
-        $alwaysAccurate = false;
+        return with_db_fallback('mysql-readonly', function ($connection) use ($options) {
+            $alwaysAccurate = false;
 
-        $query = static::on('mysql-readonly')
-            ->where('beatmap_id', '=', $this->beatmap_id)
-            ->where(function ($query) {
-                $query
-                    ->where('score', '>', $this->score)
-                    ->orWhere(function ($query2) {
-                        $query2
-                            ->where('score', '=', $this->score)
-                            ->where('score_id', '<', $this->getKey());
-                    });
-            });
+            $query = static::on($connection)
+                ->where('beatmap_id', '=', $this->beatmap_id)
+                ->where(function ($query) {
+                    $query
+                        ->where('score', '>', $this->score)
+                        ->orWhere(function ($query2) {
+                            $query2
+                                ->where('score', '=', $this->score)
+                                ->where('score_id', '<', $this->getKey());
+                        });
+                });
 
-        if (isset($options['type'])) {
-            $query->withType($options['type'], ['user' => $this->user]);
+            if (isset($options['type'])) {
+                $query->withType($options['type'], ['user' => $this->user]);
 
-            if ($options['type'] === 'country') {
-                $alwaysAccurate = true;
+                if ($options['type'] === 'country') {
+                    $alwaysAccurate = true;
+                }
             }
-        }
 
-        if (isset($options['mods'])) {
-            $query->withMods($options['mods']);
-        }
+            if (isset($options['mods'])) {
+                $query->withMods($options['mods']);
+            }
 
-        $countQuery = DB::raw('DISTINCT user_id');
+            $countQuery = DB::raw('DISTINCT user_id');
 
-        if ($alwaysAccurate) {
-            return 1 + $query->default()->count($countQuery);
-        }
+            if ($alwaysAccurate) {
+                return 1 + $query->default()->count($countQuery);
+            }
 
-        $rank = 1 + $query->count($countQuery);
+            $rank = 1 + $query->count($countQuery);
 
-        if ($rank < config('osu.beatmaps.max-scores') * 3) {
-            return 1 + $query->default()->count($countQuery);
-        } else {
-            return $rank;
-        }
+            if ($rank < config('osu.beatmaps.max-scores') * 3) {
+                return 1 + $query->default()->count($countQuery);
+            } else {
+                return $rank;
+            }
+        });
     }
 
     public function macroUserBest()
@@ -271,9 +273,7 @@ abstract class Model extends BaseModel
 
     public function scopeFromCountry($query, $countryAcronym)
     {
-        return $query->whereHas('user', function ($q) use ($countryAcronym) {
-            $q->where('country_acronym', $countryAcronym);
-        });
+        return $query->where('country_acronym', $countryAcronym);
     }
 
     public function scopeFriendsOf($query, $user)

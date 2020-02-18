@@ -70,7 +70,7 @@ return [
 
         'if_mistake' => [
             '_' => '',
-            'email' => '',
+            'email' => 'e-mail',
         ],
 
         'reasons' => [
@@ -79,8 +79,8 @@ return [
 
             'tos' => [
                 '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                'community_rules' => 'pravidla komunity',
+                'tos' => 'smluvní podmínky',
             ],
         ],
     ],
@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => '',
         'failed' => 'Nesprávné přihlášení',
         'forgot' => 'Zapoměl jsi heslo?',
-        'info' => '',
+        'info' => 'Prosím přihlaste se pro pokračování',
         'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
         'password' => 'Heslo',
         'register' => "Nemáš osu! účet? Vytvoř si ho",
@@ -300,7 +300,7 @@ return [
 
                 'total_info' => [
                     '_' => '',
-                    'link' => '',
+                    'link' => 'tuto stránku',
                 ],
             ],
             'me' => [

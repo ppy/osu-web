@@ -82,6 +82,11 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'bài đăng modding của người dùng',
             'modding-history-votesGiven' => 'modding votes đã cho của người dùng',
             'modding-history-votesReceived' => 'modding votes đã nhận của người dùng',
+            'notifications-index' => '',
             'oauth_login' => 'đăng nhập cho oauth',
             'oauth_request' => 'ủy quyền oauth',
             'settings' => 'Cài Đặt',

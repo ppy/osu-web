@@ -130,7 +130,7 @@ class CommentsController extends Controller
                 ]
             );
 
-            return view('comments.index', compact('commentBundle', 'commentPagination'));
+            return ext_view('comments.index', compact('commentBundle', 'commentPagination'));
         }
     }
 
@@ -170,7 +170,7 @@ class CommentsController extends Controller
             return $commentBundle->toArray();
         }
 
-        return view('comments.show', compact('commentBundle'));
+        return ext_view('comments.show', compact('commentBundle'));
     }
 
     /**

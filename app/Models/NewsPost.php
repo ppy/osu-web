@@ -102,13 +102,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public static function syncAll()
     {
-        try {
-            $entries = OsuWiki::fetch('news');
-        } catch (Exception $e) {
-            log_error($e);
-
-            return;
-        }
+        $entries = OsuWiki::fetch('news');
 
         $latestSlugs = [];
 

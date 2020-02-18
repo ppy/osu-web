@@ -21,6 +21,18 @@
 return [
     'all_read' => 'อ่านการแจ้งเตือนทั้งหมดแล้ว!',
     'mark_all_read' => 'ลบทั้ง​หมด',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'เหรียญตราใหม่',
                 'user_achievement_unlock' => 'ปลดล๊อค ":title"!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

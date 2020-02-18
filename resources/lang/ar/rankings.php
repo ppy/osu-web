@@ -26,7 +26,7 @@ return [
     'type' => [
         'performance' => 'الأداء',
         'charts' => 'منطقة ألأضواء',
-        'score' => 'النتيجة',
+        'score' => 'النقاط',
         'country' => 'الدولة',
     ],
 
@@ -38,7 +38,7 @@ return [
     ],
 
     'stat' => [
-        'accuracy' => 'الدقة',
+        'accuracy' => 'ألدِقة',
         'active_users' => 'المستخدمين النشطين',
         'country' => 'الدولة',
         'play_count' => 'مرات اللعب',

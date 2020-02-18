@@ -51,7 +51,7 @@ return [
         'register' => '',
         'terms_of_use' => [
             '_' => '',
-            'link' => '',
+            'link' => 'Smluvní podmínky',
         ],
     ],
 
