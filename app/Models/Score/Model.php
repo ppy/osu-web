@@ -96,9 +96,13 @@ abstract class Model extends BaseModel
         return $query
             ->where('rank', '<>', 'F')
             ->whereHas('beatmap')
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            })
             ->orderBy('score_id', 'desc');
+    }
+
+    public function scopeWithoutHidden($query)
+    {
+        return $query->whereHas('user', function ($userQuery) {
+            $userQuery->default();
+        });
     }
 }

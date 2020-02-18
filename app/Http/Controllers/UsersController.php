@@ -469,6 +469,7 @@ class UsersController extends Controller
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scoresFirst($options['mode'], true)
+                        ->withoutHidden()
                         ->orderBy('score_id', 'desc')
                         ->with('beatmap', 'beatmap.beatmapset', 'user');
                     break;
@@ -476,6 +477,7 @@ class UsersController extends Controller
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'best', 'user'];
                     $query = $user->scores($options['mode'], true)
+                        ->withoutHidden()
                         ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
                     break;
             }

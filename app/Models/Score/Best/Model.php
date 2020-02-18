@@ -231,15 +231,14 @@ abstract class Model extends BaseModel
 
     public function scopeDefault($query)
     {
-        return $query
-            ->whereHas('beatmap')
-            ->where(['hidden' => false]);
+        return $query->whereHas('beatmap');
     }
 
     public function scopeDefaultListing($query)
     {
         return $query
             ->default()
+            ->withoutHidden()
             ->orderBy('score', 'DESC')
             ->orderBy('score_id', 'ASC')
             ->limit(config('osu.beatmaps.max-scores'));
@@ -257,6 +256,11 @@ abstract class Model extends BaseModel
                 $q->orWhere('enabled_mods', $bitset);
             }
         });
+    }
+
+    public function scopeWithoutHidden($query)
+    {
+        return $query->where(['hidden' => false]);
     }
 
     public function scopeWithType($query, $type, $options)
