@@ -80,6 +80,9 @@ return [
         'comments_controller' => [
             '_' => 'kommentare',
         ],
+        'contests_controller' => [
+            '_' => 'wettbewerbe',
+        ],
         'legal_controller' => [
             '_' => 'informationen',
         ],

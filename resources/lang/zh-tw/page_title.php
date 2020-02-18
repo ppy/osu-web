@@ -79,6 +79,9 @@ return [
         'comments_controller' => [
             '_' => '評論',
         ],
+        'contests_controller' => [
+            '_' => '比賽',
+        ],
         'legal_controller' => [
             '_' => '資訊',
         ],

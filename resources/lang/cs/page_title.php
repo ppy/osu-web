@@ -19,6 +19,15 @@
  */
 
 return [
+    'admin' => [
+        '_' => 'admin',
+    ],
+    'admin_forum' => [
+        '_' => 'admin',
+    ],
+    'admin_store' => [
+        '_' => 'admin',
+    ],
     'error' => [
         'error' => [
             '_' => 'chyba',
@@ -58,11 +67,23 @@ return [
         'beatmap_discussion_posts_controller' => [
             '_' => 'příspěvky diskuze o beatmapě',
         ],
+        'changelog_controller' => [
+            '_' => 'seznam změn',
+        ],
         'chat_controller' => [
             '_' => 'chat',
         ],
+        'contests_controller' => [
+            '_' => 'soutěže',
+        ],
         'legal_controller' => [
             '_' => 'informace',
+        ],
+        'tournaments_controller' => [
+            '_' => 'turnaje',
+        ],
+        'users_controller' => [
+            'disabled' => 'oznámení',
         ],
     ],
 ];

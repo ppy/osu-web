@@ -80,6 +80,9 @@ return [
         'comments_controller' => [
             '_' => '댓글',
         ],
+        'contests_controller' => [
+            '_' => '콘테스트',
+        ],
         'legal_controller' => [
             '_' => '정보',
         ],
