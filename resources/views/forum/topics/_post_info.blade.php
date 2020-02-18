@@ -41,7 +41,7 @@
             href="{{ route("users.show", $user) }}"
         >{{ $user->username }}</a>
 
-        @if (isset($user->title()))
+        @if ($user->title() !== null)
             <div class="forum-post-info__row forum-post-info__row--title">
                 {{ $user->title() }}
             </div>
