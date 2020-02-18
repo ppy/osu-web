@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - O ritmo está apenas a um *clique* de distância! Com Ouendan/EBA, Taiko e modos de jogo originais, como também um editor de níveis totalmente funcional.',
+        'page_description' => 'osu! - O ritmo está a um *clique* de distância! Com Ouendan/EBA, Taiko e modos de jogo originais, como também um editor de níveis totalmente funcional.',
     ],
 
     'header' => [
@@ -55,7 +55,7 @@ return [
         'community' => [
             '_' => 'Comunidade',
             'comments' => 'comentários',
-            'contests' => '',
+            'contests' => 'concursos',
             'forum' => 'Fórum',
             'livestream' => 'transmissões ao vivo',
         ],
@@ -80,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'aviso',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'publicações de modificações do utilizador',
             'modding-history-votesGiven' => 'votos de modificações do utilizador dados',
             'modding-history-votesReceived' => 'votos de modificações do utilizador recebidos',
+            'notifications-index' => '',
             'oauth_login' => 'inicia sessão para oauth',
             'oauth_request' => 'autorização oauth',
             'settings' => 'Definições',

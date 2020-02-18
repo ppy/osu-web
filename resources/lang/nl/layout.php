@@ -55,7 +55,7 @@ return [
         'community' => [
             '_' => 'Community',
             'comments' => 'reacties',
-            'contests' => '',
+            'contests' => 'wedstrijden',
             'forum' => 'Forum',
             'livestream' => 'livestreams',
         ],
@@ -80,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'notificatie',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'gebruiker mod post',
             'modding-history-votesGiven' => 'gebruiker mod stemmen gegeven',
             'modding-history-votesReceived' => 'gebruiker mod stemmen ontvangen',
+            'notifications-index' => '',
             'oauth_login' => 'log in voor oauth',
             'oauth_request' => 'oauth-authenticatie',
             'settings' => 'Instellingen',

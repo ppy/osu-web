@@ -82,6 +82,11 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'käyttäjän modausviestit',
             'modding-history-votesGiven' => 'käyttäjän antamat modausäänet',
             'modding-history-votesReceived' => 'käyttäjän saamat modausäänet',
+            'notifications-index' => '',
             'oauth_login' => 'oauth kirjautuminen',
             'oauth_request' => 'oauth yhdistäminen',
             'settings' => 'Asetukset',

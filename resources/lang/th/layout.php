@@ -82,6 +82,11 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'โพสต์การ Mod ของผู้ใช้',
             'modding-history-votesGiven' => 'โหวตการ Mod ที่ถูกให้',
             'modding-history-votesReceived' => 'โหวตการ Mod ที่ได้รับ',
+            'notifications-index' => '',
             'oauth_login' => 'เข้าสู่ระบบเพื่อยืนยัน',
             'oauth_request' => 'ยืนยันตนสำเร็จแล้ว',
             'settings' => 'การตั้งค่า',
