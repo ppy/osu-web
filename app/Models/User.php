@@ -1050,7 +1050,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->hasMany(Score\Taiko::class)->default();
     }
 
-    public function scores(string $mode)
+    public function scores(string $mode, bool $returnQuery = false)
     {
         if (!Beatmap::isModeValid($mode)) {
             return;
@@ -1058,7 +1058,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
         $relation = 'scores'.studly_case($mode);
 
-        return $this->$relation();
+        return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
     public function scoresFirstOsu()
@@ -1081,7 +1081,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->belongsToMany(Score\Best\Taiko::class, 'osu_leaders_taiko')->default();
     }
 
-    public function scoresFirst(string $mode)
+    public function scoresFirst(string $mode, bool $returnQuery = false)
     {
         if (!Beatmap::isModeValid($mode)) {
             return;
@@ -1089,7 +1089,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
         $relation = 'scoresFirst'.studly_case($mode);
 
-        return $this->$relation();
+        return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
     public function scoresBestOsu()
@@ -1112,7 +1112,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->hasMany(Score\Best\Taiko::class)->default();
     }
 
-    public function scoresBest(string $mode)
+    public function scoresBest(string $mode, bool $returnQuery = false)
     {
         if (!Beatmap::isModeValid($mode)) {
             return;
@@ -1120,7 +1120,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
         $relation = 'scoresBest'.studly_case($mode);
 
-        return $this->$relation();
+        return $returnQuery ? $this->$relation() : $this->$relation;
     }
 
     public function userProfileCustomization()
