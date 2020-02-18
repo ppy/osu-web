@@ -142,13 +142,13 @@ abstract class Model extends BaseModel
             $countQuery = DB::raw('DISTINCT user_id');
 
             if ($alwaysAccurate) {
-                return 1 + $query->withoutHidden()->default()->count($countQuery);
+                return 1 + $query->visibleUsers()->default()->count($countQuery);
             }
 
             $rank = 1 + $query->count($countQuery);
 
             if ($rank < config('osu.beatmaps.max-scores') * 3) {
-                return 1 + $query->withoutHidden()->default()->count($countQuery);
+                return 1 + $query->visibleUsers()->default()->count($countQuery);
             } else {
                 return $rank;
             }
@@ -243,10 +243,15 @@ abstract class Model extends BaseModel
     {
         return $query
             ->default()
-            ->withoutHidden()
+            ->visibleUsers()
             ->orderBy('score', 'DESC')
             ->orderBy('score_id', 'ASC')
             ->limit(config('osu.beatmaps.max-scores'));
+    }
+
+    public function scopeVisibleUsers($query)
+    {
+        return $query->where(['hidden' => false]);
     }
 
     public function scopeWithMods($query, $modsArray)
@@ -261,11 +266,6 @@ abstract class Model extends BaseModel
                 $q->orWhere('enabled_mods', $bitset);
             }
         });
-    }
-
-    public function scopeWithoutHidden($query)
-    {
-        return $query->where(['hidden' => false]);
     }
 
     public function scopeWithType($query, $type, $options)

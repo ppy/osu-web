@@ -99,7 +99,7 @@ abstract class Model extends BaseModel
             ->orderBy('score_id', 'desc');
     }
 
-    public function scopeWithoutHidden($query)
+    public function scopeVisibleUsers($query)
     {
         return $query->whereHas('user', function ($userQuery) {
             $userQuery->default();
