@@ -80,6 +80,13 @@ return [
     'review' => [
         'go_to_parent' => 'Побачити відгук',
         'go_to_child' => 'Побачити обговорення',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [

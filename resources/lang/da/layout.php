@@ -82,6 +82,11 @@ return [
             '_' => 'meddelelse',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => 'rang',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'user modding opslag',
             'modding-history-votesGiven' => 'user modding votes givet',
             'modding-history-votesReceived' => 'user modding votes received',
+            'notifications-index' => '',
             'oauth_login' => 'log ind for oauth',
             'oauth_request' => 'OAuth-autorisation',
             'settings' => 'Indstillinger',

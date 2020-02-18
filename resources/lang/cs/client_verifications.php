@@ -20,8 +20,8 @@
 
 return [
     'completed' => [
-        'home' => '',
-        'logout' => '',
+        'home' => 'Přejít na hlavní panel',
+        'logout' => 'Odhlásit se',
         'text' => '',
         'title' => '',
     ],

@@ -108,7 +108,7 @@ return [
             'too_many_options' => 'Byl překročen limit povolených možností.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Název ankety',
             ],
         ],
 
@@ -121,7 +121,7 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'Zadejte prosím platnou adresu URL.',
 
             'attributes' => [
                 'name' => '',
@@ -155,9 +155,9 @@ return [
         'too_long' => 'Překročena maximální délka - maximální délka je :limit znaků.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Uživatelské jméno',
+            'user_email' => 'E-mailová adresa',
+            'password' => 'Heslo',
         ],
 
         'change_username' => [
@@ -178,8 +178,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Množství',
+                'cost' => 'Cena',
             ],
         ],
     ],

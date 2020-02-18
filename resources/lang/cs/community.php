@@ -70,7 +70,7 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => '',
+                'title' => 'Státní žebříčky',
                 'description' => '',
             ],
 
@@ -135,7 +135,7 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
+                'title' => 'Více oblíbených',
                 'description' => '',
             ],
             'more_friends' => [
