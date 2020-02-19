@@ -50,4 +50,9 @@ class WikiSearchParams extends SearchParams
     {
         return false;
     }
+
+    public function isLoginRequired(): bool
+    {
+        return false;
+    }
 }

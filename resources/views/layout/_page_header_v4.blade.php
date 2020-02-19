@@ -62,12 +62,20 @@
                         class="header-nav-v4 header-nav-v4--{{ $linksBreadcrumb ? 'breadcrumb' : 'list' }}"
                     >
                         @foreach ($links as $link)
+                            @php
+                                $active = $link['active'] ?? false;
+
+                                // also used for mobile nav later
+                                if ($active) {
+                                    $activeLink = $link;
+                                }
+                            @endphp
                             <li class="header-nav-v4__item">
                                 @if (isset($link['url']))
                                     <a
                                         class="
                                             header-nav-v4__link
-                                            {{ ($link['active'] ?? false) ? 'header-nav-v4__link--active' : '' }}
+                                            {{ $active ? 'header-nav-v4__link--active' : '' }}
                                         "
                                         href="{{ $link['url'] }}"
                                     >
@@ -79,6 +87,39 @@
                             </li>
                         @endforeach
                     </{!! $linksElement !!}>
+
+                    @if (!$linksBreadcrumb)
+                        <div class="header-nav-mobile">
+                            <a
+                                class="header-nav-mobile__toggle js-click-menu"
+                                data-click-menu-target="header-nav-mobile"
+                                href="{{ $activeLink['url'] }}"
+                            >
+                                {{ $activeLink['title'] }}
+
+                                <span class="header-nav-mobile__toggle-icon">
+                                    <span class="fas fa-chevron-down"></span>
+                                </span>
+                            </a>
+
+                            <ul
+                                class="header-nav-mobile__menu js-click-menu"
+                                data-click-menu-id="header-nav-mobile"
+                                data-visibility="hidden"
+                            >
+                                @foreach ($links as $link)
+                                    <li>
+                                        <a
+                                            class="header-nav-mobile__item"
+                                            href="{{ $link['url'] }}"
+                                        >
+                                            {{ $link['title'] }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     {{ $navAppend ?? null }}
                 </div>

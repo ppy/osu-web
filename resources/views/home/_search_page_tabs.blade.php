@@ -18,15 +18,21 @@
 <div class="page-mode page-mode--search">
     @foreach ($allSearch->searches() as $mode => $search)
         <div class="page-mode__item">
+            @php
+                $cssClasses = class_with_modifiers('page-mode-link', $mode === $allSearch->getMode() ? ['is-active'] : null);
+                if (optional($search)->isLoginRequired()) {
+                    $cssClasses .= ' js-login-required--click';
+                }
+            @endphp
             <a
                 href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
-                class="page-mode-link {{ $mode === $allSearch->getMode() ? 'page-mode-link--is-active' : '' }}"
+                class="{{ $cssClasses }}"
             >
                 <span class="fake-bold" data-content="{{ trans("home.search.mode.{$mode}") }}">
                     {{ trans("home.search.mode.{$mode}") }}
                 </span>
 
-                @if ($allSearch->hasQuery() && $search !== null)
+                @if ($allSearch->hasQuery() && $search !== null && (!$search->isLoginRequired() || auth()->check()))
                     <span class="page-mode-link__badge">
                         @if ($search->count() < 100)
                             {{ $search->count() }}
