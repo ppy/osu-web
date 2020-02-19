@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '',
             'comments' => '',
+            'contests' => '',
             'forum' => 'Forum',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => '',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'brukermoddings-innlegg',
             'modding-history-votesGiven' => 'brukermoddingsstemmer gitt',
             'modding-history-votesReceived' => 'brukermoddingsstemmer mottatt',
+            'notifications-index' => '',
             'oauth_login' => 'logg inn for oauth',
             'oauth_request' => 'oauth-godkjennelse',
             'settings' => 'Innstillinger',

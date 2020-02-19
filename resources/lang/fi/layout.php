@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '',
             'comments' => '',
+            'contests' => '',
             'forum' => '',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => '',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'käyttäjän modausviestit',
             'modding-history-votesGiven' => 'käyttäjän antamat modausäänet',
             'modding-history-votesReceived' => 'käyttäjän saamat modausäänet',
+            'notifications-index' => '',
             'oauth_login' => 'oauth kirjautuminen',
             'oauth_request' => 'oauth yhdistäminen',
             'settings' => 'Asetukset',

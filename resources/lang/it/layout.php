@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Comunità',
             'comments' => 'commenti',
+            'contests' => 'concorsi',
             'forum' => 'Forum',
             'livestream' => 'trasmissioni',
-        ],
-
-        'contests' => [
-            '_' => 'concorsi',
-            'index' => 'lista',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'avviso',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -143,7 +144,7 @@ return [
             'search' => 'cerca',
             'supportTheGame' => 'sostieni il gioco',
             'team' => 'team',
-            'testflight' => '',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => 'profilo',
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'post di modding degli utenti',
             'modding-history-votesGiven' => 'i voti dei giocatori per le modifiche sono stati inviati',
             'modding-history-votesReceived' => 'i voti dei giocatori per le modifiche sono stati ricevuti',
+            'notifications-index' => '',
             'oauth_login' => 'accedi per oauth',
             'oauth_request' => 'autorizzazione oauth',
             'settings' => 'Impostazioni',

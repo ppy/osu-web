@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Communauté',
             'comments' => 'commentaires',
+            'contests' => 'concours',
             'forum' => 'Forum',
             'livestream' => 'flux en direct',
-        ],
-
-        'contests' => [
-            '_' => 'concours',
-            'index' => 'liste',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'information',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'messages de modifications utilisateur',
             'modding-history-votesGiven' => 'votes de modifications utilisateur donnés',
             'modding-history-votesReceived' => 'votes de modifications utilisateur reçus',
+            'notifications-index' => '',
             'oauth_login' => 'se connecter pour oauth',
             'oauth_request' => 'autorisation oauth',
             'settings' => 'Paramètres',

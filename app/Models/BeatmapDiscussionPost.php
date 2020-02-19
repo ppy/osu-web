@@ -265,6 +265,8 @@ class BeatmapDiscussionPost extends Model
                 return true;
             });
         } catch (ModelNotSavedException $_e) {
+            $this->validationErrors()->merge($this->beatmapDiscussion->validationErrors());
+
             return false;
         }
     }

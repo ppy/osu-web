@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '社区',
             'comments' => '评论',
+            'contests' => '',
             'forum' => '论坛',
             'livestream' => '直播',
-        ],
-
-        'contests' => [
-            '_' => '评选',
-            'index' => '列表',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => '通知',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => '用户摸图帖',
             'modding-history-votesGiven' => '用户摸图投票数',
             'modding-history-votesReceived' => '用户摸图获得票数',
+            'notifications-index' => '',
             'oauth_login' => '登录以授权',
             'oauth_request' => 'OAuth 授权',
             'settings' => '设置',

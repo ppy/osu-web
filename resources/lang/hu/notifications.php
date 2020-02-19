@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Összes értesítés elolvasva!',
     'mark_all_read' => 'Összes törlése',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Új medál',
                 'user_achievement_unlock' => 'Feloldottad ":title"!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

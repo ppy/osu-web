@@ -21,6 +21,18 @@
 return [
     'all_read' => 'All notifications read!',
     'mark_all_read' => 'Clear all',
+    'none' => 'No notifications',
+    'see_all' => 'see all notifications',
+
+    'filters' => [
+        '_' => 'all',
+        'user' => 'profile',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'forum',
+        'news_post' => 'news',
+        'build' => 'builds',
+        'channel' => 'chat',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'New medal',
                 'user_achievement_unlock' => 'Unlocked ":title"!',
+                'user_achievement_unlock_compact' => 'Unlocked ":title"!',
             ],
         ],
     ],

@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'コミュニティ',
             'comments' => 'コメント',
+            'contests' => 'コンテスト',
             'forum' => 'フォーラム',
             'livestream' => 'ライブ配信',
-        ],
-
-        'contests' => [
-            '_' => 'コンテスト',
-            'index' => '一覧',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'お知らせ',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'ユーザーのmodding投稿',
             'modding-history-votesGiven' => 'ユーザーがmoddingに与えた投票',
             'modding-history-votesReceived' => 'ユーザーがmoddingで受け取った投票',
+            'notifications-index' => '',
             'oauth_login' => 'oauthでログインする。',
             'oauth_request' => 'oauth認証',
             'settings' => '設定',

@@ -22,11 +22,11 @@ namespace App\Models\Elasticsearch;
 
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
-use App\Traits\EsIndexable;
+use App\Traits\EsIndexableModel;
 
 trait TopicTrait
 {
-    use EsIndexable;
+    use EsIndexableModel;
 
     public function esRouting()
     {

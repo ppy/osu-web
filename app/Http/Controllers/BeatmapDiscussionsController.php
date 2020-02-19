@@ -21,7 +21,9 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
+use App\Models\Beatmapset;
 use Auth;
 use Illuminate\Pagination\Paginator;
 use Request;
@@ -107,7 +109,7 @@ class BeatmapDiscussionsController extends Controller
             ]
         );
 
-        return view('beatmap_discussions.index', compact('discussions', 'search'));
+        return ext_view('beatmap_discussions.index', compact('discussions', 'search'));
     }
 
     public function restore($id)
@@ -118,6 +120,32 @@ class BeatmapDiscussionsController extends Controller
         $discussion->restore(Auth::user());
 
         return $discussion->beatmapset->defaultDiscussionJson();
+    }
+
+    public function review()
+    {
+        // TODO: remove this when reviews are released
+        if (!config('osu.beatmapset.discussion_review_enabled')) {
+            abort(404);
+        }
+
+        priv_check('BeatmapsetDiscussionReviewStore')->ensureCan();
+
+        $request = request()->all();
+        $beatmapsetId = $request['beatmapset_id'] ?? null;
+        $document = $request['document'] ?? [];
+
+        $beatmapset = Beatmapset
+            ::where('discussion_enabled', true)
+            ->findOrFail($beatmapsetId);
+
+        try {
+            BeatmapsetDiscussionReview::create($beatmapset, $document, Auth::user());
+        } catch (\Exception $e) {
+            return error_popup($e->getMessage(), 422);
+        }
+
+        return $beatmapset->defaultDiscussionJson();
     }
 
     public function show($id)

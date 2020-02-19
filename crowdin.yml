@@ -5,6 +5,7 @@ files:
     update_option: update_as_unapproved
     languages_mapping:
       locale:
+        ar: ar
         be: be
         bg: bg
         cs: cs
@@ -31,6 +32,7 @@ files:
         sv-SE: sv
         th: th
         tr: tr
+        uk: uk
         vi: vi
         zh-CN: zh
         zh-TW: zh-tw

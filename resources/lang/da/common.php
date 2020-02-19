@@ -35,7 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
-        'authorise' => '',
+        'authorise' => 'Autoriser',
         'back_to_previous' => 'Vend tilbage til tidligere position',
         'back_to_top' => 'Tilbage til toppen',
         'cancel' => 'Annullér',
@@ -49,7 +49,7 @@ return [
         'expand' => 'udvid',
         'hide' => 'skjul',
         'permalink' => 'permalink',
-        'pin' => '',
+        'pin' => 'fastgør',
         'post' => 'Slå op',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og Genåben',
@@ -62,9 +62,10 @@ return [
         'see_more' => 'se mere',
         'show' => 'vis',
         'show_deleted' => 'Vis slettede',
+        'show_less' => '',
         'show_more' => 'vis mere',
         'show_more_options' => 'vis flere muligheder',
-        'unpin' => '',
+        'unpin' => 'frigør',
         'update' => 'Opdater',
         'upload_image' => 'upload billede',
 
@@ -83,6 +84,7 @@ return [
         'minute_short_unit' => 'min|minutter',
         'minutes' => ':count minut|:count minutter',
         'months' => ':count måned|:count måneder',
+        'notifications' => '',
         'plus_others' => '+ :count_delimited andre!|+ :count_delimited andre!',
         'post' => ':count_delimited opslag|:count_delimited opslag',
         'second_short_unit' => 'sek',
@@ -150,7 +152,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Du er logget ind som :user. :logout_link.',
+        'logout_link' => 'Klik her for at logge ind som en anden bruger',
     ],
 ];

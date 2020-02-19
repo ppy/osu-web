@@ -36,7 +36,7 @@ class BeatmapsetEventsController extends Controller
 
         $search = BeatmapsetEvent::search($params);
 
-        return view('beatmapset_events.index', [
+        return ext_view('beatmapset_events.index', [
             'search' => $search,
             'events' => new LengthAwarePaginator(
                 $search['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get(),

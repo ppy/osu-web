@@ -23,6 +23,11 @@ return [
         'small' => 'Versenyezz kör kattintgatáson kívüli módokban.',
         'large' => 'Közösségi Versenyek',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Erre a versenyre már véget ért a szavazás',
         'login_required' => 'Kérlek jelentkezz be a szavazáshoz.',

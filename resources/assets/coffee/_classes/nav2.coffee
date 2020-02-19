@@ -31,7 +31,11 @@ class @Nav2
     $(window).off 'throttled-resize.nav2-center-popup'
 
     for popup in document.querySelectorAll('.js-nav2--centered-popup')
-      if popup.dataset.clickMenuId != @currentMenu
+      container = popup.closest('.js-click-menu')
+
+      continue if !container?
+
+      if container.dataset.clickMenuId != @currentMenu
         popup.classList.add 'hidden'
         continue
 
@@ -53,11 +57,11 @@ class @Nav2
   autoMobileNav: (e, {target, tree}) =>
     if target == 'mobile-menu'
       @clickMenu.show('mobile-nav')
-      Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideDown()
+      Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideDown(150)
 
     if tree.indexOf('mobile-menu') == -1
       Blackout.hide()
-      Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideUp()
+      Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideUp(150)
     else
       Blackout.show()
 

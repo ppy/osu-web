@@ -23,6 +23,11 @@ return [
         'small' => 'Konkurrér på flere måder end bare at klikke på cirkler.',
         'large' => 'Fællesskabs-turnerninger',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Afstemning for denne konkurrence er slut',
         'login_required' => 'Log venligst ind for at stemme.',

@@ -91,7 +91,7 @@ class ChangelogEntry extends Model
             'update',
         ];
 
-        if ($data['repository']['full_name'] === OsuWiki::USER.'/'.OsuWiki::REPOSITORY) {
+        if ($data['repository']['full_name'] === OsuWiki::user().'/'.OsuWiki::repository()) {
             return;
         }
 

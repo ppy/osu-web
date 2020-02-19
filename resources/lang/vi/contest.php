@@ -23,6 +23,11 @@ return [
         'small' => 'Cạnh tranh bằng nhiều cách khác nhau hơn là chỉ bấm vòng tròn.',
         'large' => 'Cuộc Thi Cộng Đồng',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Bình chọn đã kết thúc cho cuộc thi này',
         'login_required' => 'Hãy đăng nhập để bình chọn.',

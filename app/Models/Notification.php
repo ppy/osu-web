@@ -20,6 +20,9 @@
 
 namespace App\Models;
 
+use App\Models\Chat\Channel;
+use App\Models\Forum\Topic;
+
 class Notification extends Model
 {
     const BEATMAPSET_DISCUSSION_LOCK = 'beatmapset_discussion_lock';
@@ -52,6 +55,15 @@ class Notification extends Model
         self::COMMENT_NEW => 'comment',
         self::FORUM_TOPIC_REPLY => 'forum_topic_reply',
         self::USER_ACHIEVEMENT_UNLOCK => 'user_achievement_unlock',
+    ];
+
+    const NOTIFIABLE_CLASSES = [
+        Beatmapset::class,
+        Build::class,
+        Channel::class,
+        Topic::class,
+        NewsPost::class,
+        User::class,
     ];
 
     const SUBTYPES = [

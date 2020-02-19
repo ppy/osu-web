@@ -49,7 +49,7 @@ return [
         'expand' => 'suurenna',
         'hide' => 'piilota',
         'permalink' => 'pysyvä linkki',
-        'pin' => '',
+        'pin' => 'kiinnitä',
         'post' => 'Lähetä',
         'reply' => 'Vastaa',
         'reply_reopen' => 'Vastaa ja uudelleenavaa',
@@ -62,9 +62,10 @@ return [
         'see_more' => 'katso lisää',
         'show' => 'näytä',
         'show_deleted' => 'Näytä poistetut',
+        'show_less' => '',
         'show_more' => 'näytä lisää',
         'show_more_options' => 'näytä lisävaihtoehtoja',
-        'unpin' => '',
+        'unpin' => 'poista kiinnitys',
         'update' => 'Päivitä',
         'upload_image' => 'lataa kuva',
 
@@ -83,6 +84,7 @@ return [
         'minute_short_unit' => 'm | m',
         'minutes' => ':count_delimited minuutti|:count_delimited minuuttia',
         'months' => ':count kuukausi|:count kuukautta',
+        'notifications' => '',
         'plus_others' => '',
         'post' => '',
         'second_short_unit' => 's|s',
@@ -121,7 +123,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'hae...',
     ],
 
     'pagination' => [
@@ -150,7 +152,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => ':user on kirjautuneena sisään. :logout_link.',
+        'logout_link' => 'Klikkaa tästä kirjautuaksesi toisella käyttäjällä',
     ],
 ];

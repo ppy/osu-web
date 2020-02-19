@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'сообщество',
             'comments' => 'комментарии',
+            'contests' => 'конкурсы',
             'forum' => 'форум',
             'livestream' => 'прямые трансляции',
-        ],
-
-        'contests' => [
-            '_' => 'конкурсы',
-            'index' => 'список',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'обратите внимание',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -160,7 +161,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'карты',
-            'artists' => 'osu!featured artists',
+            'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'публикации в обсуждений карты',
             'beatmap_discussions-index' => 'обсуждения карты',
             'beatmapset_discussion_votes-index' => 'голоса в обсуждений карты',
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'история публикаций',
             'modding-history-votesGiven' => 'голоса',
             'modding-history-votesReceived' => 'полученные голоса',
+            'notifications-index' => '',
             'oauth_login' => 'вход для oauth',
             'oauth_request' => 'авторизация oauth',
             'settings' => 'Настройки',

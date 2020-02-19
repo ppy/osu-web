@@ -42,8 +42,8 @@ return [
         'title' => 'buscar',
 
         'beatmapset' => [
-            'more' => 'Hay :count beatmaps más en los resultados',
-            'more_simple' => 'Ver más resultados de beatmaps',
+            'more' => 'Hay :count mapas más en los resultados',
+            'more_simple' => 'Ver más resultados de mapas',
             'title' => 'Beatmaps',
         ],
 
@@ -103,9 +103,9 @@ return [
                 'description' => 'haz clic en el botón de arriba para descargar el instalador, luego ¡ejecútalo!',
             ],
             'beatmaps' => [
-                'title' => 'obtener beatmaps',
+                'title' => 'obtener mapas',
                 'description' => [
-                    '_' => ':browse a la gran biblioteca de beatmaps creados por otros usuarios y ¡empieza a jugar!',
+                    '_' => ':browse a la gran biblioteca de mapas creados por otros usuarios y ¡empieza a jugar!',
                     'browse' => 'echa un vistazo',
                 ],
             ],
@@ -127,8 +127,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nuevos Beatmaps Clasificados',
-            'popular' => 'Beatmaps Populares',
+            'new' => 'Nuevos Mapas Clasificados',
+            'popular' => 'Mapas Populares',
             'by_user' => 'por :user',
         ],
         'buttons' => [

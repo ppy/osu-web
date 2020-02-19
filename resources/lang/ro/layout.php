@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'comunitate',
             'comments' => 'comentarii',
+            'contests' => '',
             'forum' => 'forum',
             'livestream' => 'transmisiuni în direct',
-        ],
-
-        'contests' => [
-            '_' => 'concursuri',
-            'index' => 'listare',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'observaj',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'postările modificate ale utilizatorului',
             'modding-history-votesGiven' => 'voturile modificate date ale utilizatorului',
             'modding-history-votesReceived' => 'voturile modificate primite ale utilizatorului',
+            'notifications-index' => '',
             'oauth_login' => 'autentifică-te pentru oauth',
             'oauth_request' => 'autorizare oauth',
             'settings' => 'Setări',

@@ -35,7 +35,7 @@ return [
 
     'buttons' => [
         'admin' => '管理員',
-        'authorise' => '',
+        'authorise' => '授權',
         'back_to_previous' => '返回到上一個位置',
         'back_to_top' => '返回頂部',
         'cancel' => '取消',
@@ -62,6 +62,7 @@ return [
         'see_more' => '查看更多',
         'show' => '顯示',
         'show_deleted' => '顯示刪除的項目',
+        'show_less' => '',
         'show_more' => '顯示更多',
         'show_more_options' => '顯示更多選項',
         'unpin' => '',
@@ -83,6 +84,7 @@ return [
         'minute_short_unit' => '分',
         'minutes' => ':count_delimited 分鐘|:count_delimited 分鐘',
         'months' => ':count 個月',
+        'notifications' => '',
         'plus_others' => '+ :count_delimited 其他!|+ :count_delimited 其他!',
         'post' => ':count_delimited 篇貼文',
         'second_short_unit' => '秒',

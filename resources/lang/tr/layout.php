@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Topluluk',
             'comments' => 'yorumlar',
+            'contests' => '',
             'forum' => 'Forum',
             'livestream' => 'canlı yayınlar',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => '',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'kullanıcı modlama gönderileri',
             'modding-history-votesGiven' => 'kullanıcı verilen modlama oyları',
             'modding-history-votesReceived' => 'kullanıcı alınan modlama oyları',
+            'notifications-index' => '',
             'oauth_login' => 'oauth için giriş yapın',
             'oauth_request' => 'oauth doğrulaması',
             'settings' => 'Ayarlar',

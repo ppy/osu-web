@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Komunitas',
             'comments' => 'komentar',
+            'contests' => 'kontes',
             'forum' => 'Forum',
             'livestream' => 'siaran langsung',
-        ],
-
-        'contests' => [
-            '_' => 'kontes',
-            'index' => 'daftar',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'pemberitahuan',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'postingan modding pengguna',
             'modding-history-votesGiven' => 'suara modding yang diberikan pengguna',
             'modding-history-votesReceived' => 'suara modding yang diterima pengguna',
+            'notifications-index' => '',
             'oauth_login' => 'masuk untuk oauth',
             'oauth_request' => 'otorisasi oauth',
             'settings' => 'Pengaturan',

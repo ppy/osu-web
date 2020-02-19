@@ -20,13 +20,13 @@
 
 namespace App\Models\Elasticsearch;
 
-use App\Traits\EsIndexable;
+use App\Traits\EsIndexableModel;
 use Carbon\Carbon;
 use Schema;
 
 trait UserTrait
 {
-    use EsIndexable;
+    use EsIndexableModel;
 
     public function toEsJson()
     {

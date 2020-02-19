@@ -19,10 +19,11 @@
 import { NewReply } from './new-reply'
 import { Post } from './post'
 import { SystemPost } from './system-post'
+import { UserCard } from './user-card'
+import mapperGroup from 'beatmap-discussions/mapper-group'
 import * as React from 'react'
 import { button, div, i, span, a } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
-import { UserCard } from './user-card'
 
 el = React.createElement
 
@@ -75,10 +76,9 @@ export class Discussion extends React.PureComponent
     firstPost = @props.discussion.starting_post || @props.discussion.posts[0]
 
     user = @props.users[@props.discussion.user_id]
-    badge = if user.id == @props.beatmapset.user_id then 'mapper' else user.group_badge?.identifier
+    badge = if user.id == @props.beatmapset.user_id then mapperGroup else user.group_badge
 
     topClasses += " #{bn}--unread" unless _.includes(@props.readPostIds, firstPost.id) || @isOwner(firstPost) || @props.preview
-    topClasses += " #{bn}--#{badge}" if badge?
 
     div
       className: topClasses
@@ -90,7 +90,10 @@ export class Discussion extends React.PureComponent
 
       div className: "#{bn}__compact",
         div className: "#{bn}__discussion",
-          div className: "#{bn}__top",
+          div
+            className: "#{bn}__top"
+            style:
+              color: osu.groupColour(badge)
             div className: "#{bn}__discussion-header",
               el UserCard,
                 user: user

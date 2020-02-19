@@ -696,7 +696,7 @@ class BeatmapDiscussion extends Model
             }
         }
 
-        return $query->whereIn('message_type', $intTypes);
+        return $query->whereIn('message_type', $intTypes ?? []);
     }
 
     public function scopeOpenIssues($query)

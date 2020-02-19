@@ -47,7 +47,7 @@ class MatchesController extends Controller
             new MatchTransformer
         );
 
-        return view('multiplayer.match', compact('matchJson', 'eventsJson'));
+        return ext_view('multiplayer.match', compact('matchJson', 'eventsJson'));
     }
 
     public function history($matchId)
