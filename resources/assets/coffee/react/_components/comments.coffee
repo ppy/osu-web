@@ -93,7 +93,7 @@ export class Comments extends React.PureComponent
       depth: 0
       modifiers: @props.modifiers
       showDeleted: uiState.comments.isShowDeleted
-      showReplies: !pinned
+      expandReplies: if pinned then false else null
 
 
   renderComments: (comments, pinned) =>
