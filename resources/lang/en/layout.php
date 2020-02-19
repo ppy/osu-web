@@ -159,6 +159,7 @@ return [
             'getSupport' => 'no, really, i need help!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
+            'wiki-sitemap' => 'wiki sitemap',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',

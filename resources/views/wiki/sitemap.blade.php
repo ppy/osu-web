@@ -39,11 +39,13 @@
     <div class="osu-page osu-page--wiki">
         <div class="wiki-page">
             <div class="wiki-page__content">
-                <ul>
-                    @foreach ($sitemap as $key => $value)
-                        @include('wiki._sitemap_section', ['titles' => $titles, 'sitemap' => $value, 'parent' => "{$parent}/{$key}"])
-                    @endforeach
-                </ul>
+                <div class="osu-md">
+                    <ul class="osu-md__list">
+                        @foreach ($sitemap as $key => $value)
+                            @include('wiki._sitemap_section', ['titles' => $titles, 'sitemap' => $value, 'parent' => "{$parent}/{$key}"])
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

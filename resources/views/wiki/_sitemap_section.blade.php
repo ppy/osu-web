@@ -26,10 +26,12 @@
     }
 @endphp
 
-<li><a href="{{ route('wiki.show', compact('page')) }}">{{ $title }}
+<li class="osu-md__list-item">
+    <a class="osu-md__link" href="{{ route('wiki.show', compact('page')) }}">{{ $title }}</a>
+</li>
 
 @if (is_array($sitemap))
-    <ul>
+    <ul class="osu-md__list">
         @foreach ($sitemap as $key => $value)
             @include('wiki._sitemap_section', ['titles' => $titles, 'sitemap' => $value, 'parent' => "{$parent}/{$key}"])
         @endforeach
