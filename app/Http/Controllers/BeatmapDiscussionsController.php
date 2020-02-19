@@ -162,7 +162,7 @@ class BeatmapDiscussionsController extends Controller
             ),
         ];
 
-        return ext_view('beatmap_discussions.index', compact('discussions', 'search'));
+        return ext_view('beatmap_discussions.index', compact('jsonChunks', 'search', 'paginator'));
     }
 
     public function restore($id)
