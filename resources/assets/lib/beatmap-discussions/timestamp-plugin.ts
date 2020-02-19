@@ -46,7 +46,7 @@ export function timestampPlugin() {
     }
 
     // iterate over matches and create nodes for each timestamp
-    do {
+    while (match !== null) {
       const [timestamp] = match;
 
       // node for text between matches (including before first match)
@@ -66,8 +66,8 @@ export function timestampPlugin() {
 
       lastIndex = match.index + timestamp.length;
 
-      // tslint:disable-next-line:no-conditional-assignment
-    } while ((match = regex.exec(node.value)) !== null);
+      match = regex.exec(node.value);
+    }
 
     // node for text after last match
     if (lastIndex !== node.value.length) {
