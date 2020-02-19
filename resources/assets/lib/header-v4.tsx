@@ -32,6 +32,13 @@ interface Props {
   titleAppend?: React.ReactNode;
 }
 
+interface RouteSection {
+  action: string;
+  controller: string;
+  namespace: string;
+  section: string;
+}
+
 export default class HeaderV4 extends React.Component<Props> {
   static defaultProps = {
     links: [],
@@ -127,30 +134,18 @@ export default class HeaderV4 extends React.Component<Props> {
   }
 
   private title() {
-    const el = document.querySelector('.js-route-section');
+    const routeSection: RouteSection | null = osu.parseJson('json-route-section');
 
-    if (el instanceof HTMLElement) {
-      const data = el.dataset.routeSection;
+    if (routeSection != null) {
+      const keys = [
+        `page_title.${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`,
+        `page_title.${routeSection.namespace}.${routeSection.controller}._`,
+        `page_title.${routeSection.namespace}._`,
+      ];
 
-      if (data != null) {
-        try {
-          const routeSection = JSON.parse(data);
-
-          if (routeSection != null) {
-            const keys = [
-              `page_title.${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`,
-              `page_title.${routeSection.namespace}.${routeSection.controller}._`,
-              `page_title.${routeSection.namespace}._`,
-            ];
-
-            for (const key of keys) {
-              if (osu.transExists(key, fallbackLocale)) {
-                return osu.trans(key);
-              }
-            }
-          }
-        } catch (error) {
-          // ??
+      for (const key of keys) {
+        if (osu.transExists(key, fallbackLocale)) {
+          return osu.trans(key);
         }
       }
     }

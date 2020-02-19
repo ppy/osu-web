@@ -126,11 +126,10 @@
         @include('layout._loading_overlay')
         @include('layout.popup-container')
 
-        @yield("script")
+        <script id="json-route-section">
+            {!! json_encode($currentRoute) !!}
+        </script>
 
-        <div
-            class="js-route-section"
-            data-route-section="{{ json_encode($currentRoute) }}"
-        ></div>
+        @yield("script")
     </body>
 </html>
