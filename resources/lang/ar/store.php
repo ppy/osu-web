@@ -105,12 +105,12 @@ return [
         ],
 
         'status' => [
-            'cancelled' => 'ملغي',
+            'cancelled' => 'مُلغى',
             'checkout' => 'جاري الإعداد',
             'delivered' => 'وصلت',
             'paid' => 'دُفِعَت',
             'processing' => 'بانتظار التأكيد',
-            'shipped' => 'في التحويل',
+            'shipped' => 'تم الشحن',
         ],
     ],
 

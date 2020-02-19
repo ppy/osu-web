@@ -80,6 +80,13 @@ return [
     'review' => [
         'go_to_parent' => 'Visualizza il post della recensione',
         'go_to_child' => 'Visualizza discussione',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [

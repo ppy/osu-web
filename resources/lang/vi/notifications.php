@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Tất cả các thông báo đã được đọc!',
     'mark_all_read' => 'Xoá tất cả',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Huy chương mới',
                 'user_achievement_unlock' => 'Đã mở khóa ":title"!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

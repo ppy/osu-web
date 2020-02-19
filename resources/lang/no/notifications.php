@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Alle varsler lest!',
     'mark_all_read' => 'Tøm alt',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Ny medalje',
                 'user_achievement_unlock' => '":title" låst opp!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

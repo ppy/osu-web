@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Wszystkie powiadomienia przeczytane!',
     'mark_all_read' => 'Wyczyść wszystko',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nowy medal',
                 'user_achievement_unlock' => 'Odblokowano medal „:title”!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

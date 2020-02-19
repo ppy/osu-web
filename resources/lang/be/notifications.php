@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Усе апавяшчэнні прачытаныя!',
     'mark_all_read' => 'Ачысціць усё',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Новая медаль',
                 'user_achievement_unlock' => 'Адкрыта ":title"!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],
