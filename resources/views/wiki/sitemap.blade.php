@@ -15,33 +15,23 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@php
-    $locale = app()->getLocale();
-    $fallbackLocale = config('app.fallback_locale');
-@endphp
-
 @extends('master')
 
 @section('content')
-    {{-- @component('layout._page_header_v4', ['params' => [
-        'links' => $links,
-        'linksBreadcrumb' => true,
-        'section' => trans('layout.header.help._'),
-        'subSection' => $subSection,
-        'theme' => 'help',
-    ]])
-        @slot('navAppend')
-            @include('wiki._actions')
-        @endslot
-    @endcomponent --}}
     @component('layout._page_header_v4', ['params' => [
-        'links' => [[
-            'title' => trans('layout.header.help.index'),
-            'url' => wiki_url('Main_Page'),
-        ]],
+        'links' => [
+            [
+                'title' => trans('layout.header.help.index'),
+                'url' => wiki_url('Main_Page'),
+            ],
+            [
+                'title' => trans('layout.header.help.sitemap'),
+                'url' => route('wiki.sitemap'),
+            ],
+        ],
         'linksBreadcrumb' => true,
         'section' => trans('layout.header.help._'),
-        'subSection' => trans('wiki.main.title'),
+        'subSection' => trans('wiki.sitemap.title'),
         'theme' => 'help',
     ]])
     @endcomponent

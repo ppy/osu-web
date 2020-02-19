@@ -67,6 +67,7 @@ return [
         'help' => [
             '_' => 'wiki',
             'index' => 'index',
+            'sitemap' => 'sitemap',
         ],
 
         'home' => [
