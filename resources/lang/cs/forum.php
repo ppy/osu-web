@@ -71,7 +71,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Nová odpověď',
             ],
         ],
 
@@ -270,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Zobrazit smazané příspěvky',
+            'hide' => 'Skrýt smazané příspěvky',
         ],
 
         'show' => [
@@ -296,14 +296,14 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
+                'edit' => 'Upravení ankety',
                 'edit_warning' => '',
                 'vote' => 'Hlasovat',
 
                 'button' => [
-                    'change_vote' => '',
+                    'change_vote' => 'Změnit hlas',
                     'edit' => 'Upravit hlasování',
-                    'view_results' => '',
+                    'view_results' => 'Přeskočit na výsledky',
                     'vote' => 'Hlasovat',
                 ],
 

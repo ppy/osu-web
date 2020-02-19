@@ -80,6 +80,13 @@ return [
     'review' => [
         'go_to_parent' => 'レビュー投稿を表示',
         'go_to_child' => 'ディスカッションを表示',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [

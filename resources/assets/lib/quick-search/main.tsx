@@ -27,6 +27,7 @@ import { ResultMode, Section } from './worker';
 import Worker from './worker';
 
 interface Props {
+  modifiers?: string[];
   onClose?: () => void;
   worker: Worker;
 }
@@ -48,8 +49,11 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   }
 
   render() {
+    let blockClass = osu.classWithModifiers('quick-search', this.props.modifiers);
+    blockClass += ' u-fancy-scrollbar';
+
     return (
-      <div className='quick-search u-fancy-scrollbar'>
+      <div className={blockClass}>
         <div className='quick-search-input'>
           <div className='quick-search-input__field'>
             <span className='quick-search-input__icon'>
@@ -57,7 +61,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
             </span>
 
             <input
-              className='quick-search-input__input'
+              className='quick-search-input__input js-click-menu--autofocus'
               ref={this.inputRef}
               placeholder={osu.trans('home.search.placeholder')}
               value={this.props.worker.query}

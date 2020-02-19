@@ -82,6 +82,11 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'modding αναρτήσεις του χρήστη',
             'modding-history-votesGiven' => 'modding ψήφους που έχει δώσει ο χρήστης',
             'modding-history-votesReceived' => 'modding ψήφους που έχει λάβει ο χρήστης',
+            'notifications-index' => '',
             'oauth_login' => 'συνδεθείτε για το oauth',
             'oauth_request' => 'εξουσιοδότηση oauth',
             'settings' => 'Ρυθμίσεις',

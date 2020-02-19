@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Όλες οι ειδοποιήσεις διαβάστηκαν!',
     'mark_all_read' => 'Εκκαθάριση όλων',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '',
                 'user_achievement_unlock' => '',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

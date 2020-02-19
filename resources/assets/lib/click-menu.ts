@@ -22,10 +22,15 @@ export default class ClickMenu {
   private current: string | null | undefined = null;
 
   constructor() {
+    $(document).on('click', '.js-click-menu--close', this.close);
     $(document).on('click', '.js-click-menu[data-click-menu-target]', this.toggle);
     $(document).on('click', this.hide);
     document.addEventListener('turbolinks:load', this.restoreSaved);
     document.addEventListener('turbolinks:before-cache', this.saveCurrent);
+  }
+
+  close = () => {
+    this.show();
   }
 
   closestMenuId(child: Element | null | undefined) {
@@ -41,6 +46,10 @@ export default class ClickMenu {
     if ($(e.target).closest('.js-click-menu').length > 0) return;
 
     this.show();
+  }
+
+  menu(id: string | null | undefined) {
+    return document.querySelector(`.js-click-menu[data-click-menu-id${id == null ? '' : `='${id}'`}]`);
   }
 
   menuLink(id: string | null | undefined) {
@@ -64,6 +73,7 @@ export default class ClickMenu {
 
     const tree = this.tree();
     const menus = document.querySelectorAll('.js-click-menu[data-click-menu-id]');
+    let shownMenu: HTMLElement | null = null;
     let validCurrent = false;
 
     for (const menu of menus) {
@@ -75,13 +85,17 @@ export default class ClickMenu {
 
       if (menuId == null || tree.indexOf(menuId) === -1) {
         Fade.out(menu);
-        this.menuLink(menuId)?.classList.remove('js-click-menu--active');
         menu.classList.remove('js-click-menu--active');
+        this.menuLink(menuId)?.classList.remove('js-click-menu--active');
       } else {
         Fade.in(menu);
-        this.menuLink(menuId)?.classList.add('js-click-menu--active');
         menu.classList.add('js-click-menu--active');
+        this.menuLink(menuId)?.classList.add('js-click-menu--active');
         validCurrent = true;
+
+        if (menuId === this.current) {
+          shownMenu = menu;
+        }
       }
     }
 
@@ -89,7 +103,13 @@ export default class ClickMenu {
       this.current = null;
     }
 
-    $.publish('click-menu:current', { target: this.current });
+    $.publish('click-menu:current', { target: this.current, tree });
+
+    const toFocus = shownMenu?.querySelector('.js-click-menu--autofocus');
+
+    if (toFocus instanceof HTMLElement) {
+      toFocus.focus();
+    }
   }
 
   toggle = (e: JQuery.ClickEvent) => {

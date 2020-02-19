@@ -62,7 +62,7 @@ reactTurbolinks.registerPersistent 'notification-widget', NotificationWidget, tr
   try JSON.parse(el.dataset.notificationWidget)
 
 quickSearchWorker = new QuickSearchWorker()
-reactTurbolinks.registerPersistent 'quick-search', QuickSearch, true, ->
+reactTurbolinks.registerPersistent 'quick-search', QuickSearch, true, (el) ->
   worker: quickSearchWorker
 
 reactTurbolinks.registerPersistent 'quick-search-button', QuickSearchButton, true, ->
