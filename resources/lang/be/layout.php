@@ -82,6 +82,11 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'гісторыя допісаў',
             'modding-history-votesGiven' => 'галасы',
             'modding-history-votesReceived' => 'атрымліныя галасы',
+            'notifications-index' => '',
             'oauth_login' => 'уваход для oauth',
             'oauth_request' => 'аўтарызацыя oauth',
             'settings' => 'Налады',

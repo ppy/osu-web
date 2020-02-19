@@ -17,28 +17,32 @@
  */
 
 .notification-popup {
-  .thick-box-shadow();
   background-color: @osu-colour-b4;
-  color: #fff;
-  padding: 15px 10px;
-  border: 1px solid @osu-colour-b3;
-  border-radius: @border-radius-large;
-
-  margin-top: 10px;
-  max-width: 400px;
-  width: 90vw;
+  color: @osu-colour-c1;
+  padding: 10px @gutter-v2;
 
   @media @desktop {
     margin-top: 0;
+
+    max-width: 400px;
+    width: 90vw;
+    padding: 15px 10px;
+
+    border: 1px solid @osu-colour-b3;
+    border-radius: @border-radius-large;
+    .thick-box-shadow();
   }
 
   &__scroll-container {
-    -webkit-overflow-scrolling: touch;
-    overflow: auto;
-    padding: 0 5px;
-    max-height: calc(var(--vh, 1vh) * 100 - (@nav2-height + 30px)); // 30px is the parent's padding
     display: grid;
     grid-gap: 10px;
+
+    @media @desktop {
+      -webkit-overflow-scrolling: touch;
+      overflow: auto;
+      max-height: calc(var(--vh, 1vh) * 100 - (@nav2-height + 30px)); // 30px is the parent's padding
+      padding: 0 5px;
+    }
   }
 
   &__show-more {
@@ -79,7 +83,7 @@
   }
 
   &__filter-count {
-    margin-left: 5px;
+    margin-right: 5px;
     padding: 2px 10px;
     font-size: smaller;
     color: @osu-colour-c2;

@@ -25,7 +25,7 @@ return [
         'peak' => 'Vrchol, :count online uživatelů',
         'players' => '<strong>:count</strong> registrovaných hráčů',
         'title' => 'vítejte',
-        'see_more_news' => '',
+        'see_more_news' => 'zlédnout více novinek',
 
         'slogan' => [
             'main' => 'nejlepší free-to-win rytmická hra',

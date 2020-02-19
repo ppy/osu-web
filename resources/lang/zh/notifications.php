@@ -21,6 +21,18 @@
 return [
     'all_read' => '已经阅读所有通知！',
     'mark_all_read' => '清除全部',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '新奖章',
                 'user_achievement_unlock' => '解锁 ":title"！',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

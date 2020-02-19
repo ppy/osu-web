@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
     'mark_all_read' => 'Alle schließen',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Neue Medaille',
                 'user_achievement_unlock' => '":title" freigeschaltet!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],
