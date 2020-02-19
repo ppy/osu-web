@@ -126,7 +126,7 @@
         @include('layout._loading_overlay')
         @include('layout.popup-container')
 
-        <script id="json-route-section">
+        <script id="json-route-section" type="application/json">
             {!! json_encode($currentRoute) !!}
         </script>
 
