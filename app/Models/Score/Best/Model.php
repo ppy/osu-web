@@ -236,17 +236,10 @@ abstract class Model extends BaseModel
 
     public function scopeDefault($query)
     {
-        return $query->whereHas('beatmap');
-    }
-
-    public function scopeDefaultListing($query)
-    {
         return $query
-            ->default()
-            ->visibleUsers()
+            ->whereHas('beatmap')
             ->orderBy('score', 'DESC')
-            ->orderBy('score_id', 'ASC')
-            ->limit(config('osu.beatmaps.max-scores'));
+            ->orderBy('score_id', 'ASC');
     }
 
     public function scopeVisibleUsers($query)

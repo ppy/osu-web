@@ -67,6 +67,7 @@ class BeatmapsController extends Controller
                 $model->setConnection($connection);
 
                 $query = $model
+                    ->default()
                     ->where('beatmap_id', $beatmap->getKey())
                     ->with(['beatmap', 'user.country'])
                     ->withMods($mods)
@@ -77,7 +78,7 @@ class BeatmapsController extends Controller
                 }
 
                 $results = [
-                    'scores' => json_collection($query->defaultListing()->forListing(), 'Score', ['beatmap', 'user', 'user.country']),
+                    'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country']),
                 ];
 
                 if (isset($score)) {
