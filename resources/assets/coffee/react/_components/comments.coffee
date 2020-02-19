@@ -46,16 +46,16 @@ export class Comments extends React.PureComponent
           osu.trans('comments.title')
           span className: 'comments__count', osu.formatNumber(uiState.comments.total)
 
+        if pinnedComments.length > 0
+          div className: "comments__items comments__items--pinned",
+            @renderComments pinnedComments, true
+
         div className: 'comments__new',
           el CommentEditor,
             commentableType: @props.commentableType
             commentableId: @props.commentableId
             focus: false
             modifiers: @props.modifiers
-
-        if pinnedComments.length > 0
-          div className: "comments__items comments__items--pinned",
-            @renderComments pinnedComments, true
 
         div className: 'comments__items comments__items--toolbar',
           el CommentsSort,
