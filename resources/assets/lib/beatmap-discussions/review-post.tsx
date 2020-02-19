@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as _ from 'lodash';
+import { BeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
 import { ReviewPostEmbed } from './review-post-embed';
@@ -62,16 +62,18 @@ export class ReviewPost extends React.Component<Props> {
     const docBlocks: JSX.Element[] = [];
 
     try {
-      const document = JSON.parse(this.props.message);
+      const doc: BeatmapDiscussionReview = JSON.parse(this.props.message);
 
-      _.each(document, (block) => {
+      doc.forEach((block) => {
         switch (block.type) {
           case 'paragraph':
             // '&nbsp;  ' converts into a newline
-            docBlocks.push(this.paragraph(osu.presence(block.text.toString()) || '&nbsp;  '));
+            docBlocks.push(this.paragraph(osu.presence(block.text) || '&nbsp;  '));
             break;
           case 'embed':
-            docBlocks.push(this.embed(block.discussion_id));
+            if (block.discussion_id) {
+              docBlocks.push(this.embed(block.discussion_id));
+            }
             break;
         }
       });
