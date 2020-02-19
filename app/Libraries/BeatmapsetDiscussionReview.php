@@ -48,8 +48,8 @@ class BeatmapsetDiscussionReview
                     throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
 
-                $message = get_string($block['text']);
-                if ($message !== null) {
+                $message = get_string($block['text'] ?? null);
+                if ($message === null) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
                 }
 

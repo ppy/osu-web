@@ -91,6 +91,40 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             ], $this->user);
     }
 
+    // valid paragraph but text is JSON
+    public function testPostReviewDocumentValidParagraphButJSON()
+    {
+        $this->expectException(InvariantException::class);
+        BeatmapsetDiscussionReview::create($this->beatmapset,
+            [
+                [
+                    'type' => 'paragraph',
+                    'text' => ['y', 'tho'],
+                ],
+            ], $this->user);
+    }
+
+    // valid review but text is JSON
+    public function testPostReviewDocumentValidIssueButJSON()
+    {
+        $this->expectException(InvariantException::class);
+        BeatmapsetDiscussionReview::create($this->beatmapset,
+            [
+                [
+                    'type' => 'embed',
+                    'discussion_type' => 'problem',
+                    'text' => ['y', 'tho'],
+                    'timestamp' => true,
+                    'beatmap_id' => $this->beatmap->getKey(),
+                ],
+                [
+                    'type' => 'embed',
+                    'discussion_type' => 'problem',
+                    'text' => self::$faker->sentence(),
+                ],
+            ], $this->user);
+    }
+
     // document with too many blocks
     public function testPostReviewDocumentValidWithTooManyBlocks()
     {
