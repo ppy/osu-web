@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute melebihi batas maksimum - hanya bisa hingga :limit karakter.',
     'wrong_confirmation' => 'Konfirmasi tidak cocok.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Diskusi terkunci',
         'first_post' => 'Tidak dapat menghapus postingan awal.',
 
