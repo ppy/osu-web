@@ -68,6 +68,7 @@ class Comment extends Model
 
     protected $casts = [
         'disqus_user_data' => 'array',
+        'pinned' => 'boolean',
     ];
 
     public $allowEmptyCommentable = false;
