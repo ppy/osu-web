@@ -91,6 +91,40 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             ], $this->user);
     }
 
+    // valid paragraph but text is JSON
+    public function testPostReviewDocumentValidParagraphButJSON()
+    {
+        $this->expectException(InvariantException::class);
+        BeatmapsetDiscussionReview::create($this->beatmapset,
+            [
+                [
+                    'type' => 'paragraph',
+                    'text' => ['y', 'tho'],
+                ],
+            ], $this->user);
+    }
+
+    // valid review but text is JSON
+    public function testPostReviewDocumentValidIssueButJSON()
+    {
+        $this->expectException(InvariantException::class);
+        BeatmapsetDiscussionReview::create($this->beatmapset,
+            [
+                [
+                    'type' => 'embed',
+                    'discussion_type' => 'problem',
+                    'text' => ['y', 'tho'],
+                    'timestamp' => true,
+                    'beatmap_id' => $this->beatmap->getKey(),
+                ],
+                [
+                    'type' => 'embed',
+                    'discussion_type' => 'problem',
+                    'text' => self::$faker->sentence(),
+                ],
+            ], $this->user);
+    }
+
     // document with too many blocks
     public function testPostReviewDocumentValidWithTooManyBlocks()
     {
@@ -151,37 +185,6 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         // ensure 3 discussions/posts are created - one for the review and one for each embedded problem
         $this->assertSame($discussionCount + 3, BeatmapDiscussion::count());
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
-    }
-
-    // valid document containing attempted discussion embed injection
-    public function testPostReviewDocumentEscaping()
-    {
-        $discussionCount = BeatmapDiscussion::count();
-        $discussionPostCount = BeatmapDiscussionPost::count();
-        $issueText = self::$faker->sentence();
-        $problematicText = '%[](#123)';
-        $problematicTextEscaped = '%\\\[\\\]\\\(#123\\\)';
-
-        BeatmapsetDiscussionReview::create($this->beatmapset,
-            [
-                [
-                    'type' => 'embed',
-                    'discussion_type' => 'problem',
-                    'text' => $issueText,
-                ],
-                [
-                    'type' => 'paragraph',
-                    'text' => $problematicText,
-                ],
-            ], $this->user);
-
-        $discussionJson = json_encode($this->beatmapset->defaultDiscussionJson());
-        $this->assertStringNotContainsString($problematicText, $discussionJson);
-        $this->assertStringContainsString($problematicTextEscaped, $discussionJson);
-
-        // ensure 2 discussions/posts are created - one for the review and one for the embedded problem
-        $this->assertSame($discussionCount + 2, BeatmapDiscussion::count());
-        $this->assertSame($discussionPostCount + 2, BeatmapDiscussionPost::count());
     }
 
     protected function setUp(): void
