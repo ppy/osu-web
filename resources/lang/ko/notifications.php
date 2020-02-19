@@ -21,6 +21,18 @@
 return [
     'all_read' => '모든 알림을 읽었어요!',
     'mark_all_read' => '모두 지우기',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '새 메달',
                 'user_achievement_unlock' => '":title" 해제!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

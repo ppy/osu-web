@@ -82,6 +82,11 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'історія публікацій',
             'modding-history-votesGiven' => 'дані голоси',
             'modding-history-votesReceived' => 'отримані голоси',
+            'notifications-index' => '',
             'oauth_login' => 'увійдіть для oauth',
             'oauth_request' => 'Oauth автентифікація',
             'settings' => 'Налаштування',

@@ -21,6 +21,18 @@
 return [
     'all_read' => '全ての通知を読む！',
     'mark_all_read' => '全て消去',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '新しいメダル',
                 'user_achievement_unlock' => ':title をアンロック！',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

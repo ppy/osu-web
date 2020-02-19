@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Toate notificările citite!',
     'mark_all_read' => 'Șterge-ți toate',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Medalie nouă',
                 'user_achievement_unlock' => 'Deblocat ":title"!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

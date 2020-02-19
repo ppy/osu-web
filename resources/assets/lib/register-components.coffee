@@ -6,8 +6,9 @@ import { CommentsManager } from 'comments-manager'
 import { CountdownTimer } from 'countdown-timer'
 import { FriendButton } from 'friend-button'
 import { LandingNews } from 'landing-news'
+import NotificationIcon from 'notification-icon'
 import NotificationWidget from 'notification-widget/main'
-import NotificationWidgetWorker from 'notification-widget/worker'
+import NotificationWorker from 'notifications/worker'
 import QuickSearch from 'quick-search/main'
 import QuickSearchButton from 'quick-search-button'
 import QuickSearchWorker from 'quick-search/worker'
@@ -46,17 +47,22 @@ reactTurbolinks.register 'comments', CommentsManager, (el) ->
 
   props
 
-notificationWorker = new NotificationWidgetWorker()
+notificationWorker = new NotificationWorker()
 resetNotificationWorker = -> notificationWorker.setUserId(currentUser.id)
 $(document).ready resetNotificationWorker
 $.subscribe 'user:update', resetNotificationWorker
 
-reactTurbolinks.registerPersistent 'notification', NotificationWidget, true, (el) ->
-  type: el.dataset.notificationType
-  worker: notificationWorker
+reactTurbolinks.registerPersistent 'notification-icon', NotificationIcon, true, (el) ->
+  props = (try JSON.parse(el.dataset.notificationIcon)) ? {}
+  props.worker = notificationWorker
+
+  props
+
+reactTurbolinks.registerPersistent 'notification-widget', NotificationWidget, true, (el) ->
+  try JSON.parse(el.dataset.notificationWidget)
 
 quickSearchWorker = new QuickSearchWorker()
-reactTurbolinks.registerPersistent 'quick-search', QuickSearch, true, ->
+reactTurbolinks.registerPersistent 'quick-search', QuickSearch, true, (el) ->
   worker: quickSearchWorker
 
 reactTurbolinks.registerPersistent 'quick-search-button', QuickSearchButton, true, ->

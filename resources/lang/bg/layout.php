@@ -82,6 +82,11 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'потребителски modding публикации',
             'modding-history-votesGiven' => 'потребителски modding гласове дадени',
             'modding-history-votesReceived' => 'потребителски modding гласове получени',
+            'notifications-index' => '',
             'oauth_login' => 'влезте за oauth',
             'oauth_request' => 'оаuth оторизация',
             'settings' => 'Настройки',

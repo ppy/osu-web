@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Kaikki ilmoitukset luettu!',
     'mark_all_read' => 'Poista kaikki',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Uusi mitali',
                 'user_achievement_unlock' => '',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],
