@@ -97,7 +97,7 @@ export class Comments extends React.PureComponent
 
 
   renderComments: (comments, pinned) =>
-    @renderComment(comment, pinned) for comment in comments
+    @renderComment(comment, pinned) for comment in comments when comment.pinned == pinned
 
 
   renderShowDeletedToggle: =>
