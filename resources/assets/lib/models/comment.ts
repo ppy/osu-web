@@ -80,7 +80,7 @@ export class Comment {
 
   @computed
   get canPin() {
-    return currentUser.is_admin;
+    return currentUser.is_admin && (this.parentId == null || this.pinned);
   }
 
   @computed

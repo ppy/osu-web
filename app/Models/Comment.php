@@ -128,6 +128,10 @@ class Comment extends Model
 
         $messageLength = mb_strlen(trim($this->message));
 
+        if ($this->isDirty('pinned') && $this->pinned && $this->parent_id !== null) {
+            $this->validationErrors()->add('pinned', '.top_only');
+        }
+
         if ($messageLength === 0) {
             $this->validationErrors()->add('message', 'required');
         }
