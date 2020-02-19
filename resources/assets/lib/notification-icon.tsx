@@ -17,24 +17,50 @@
  */
 
 import { observer } from 'mobx-react';
-import NotificationStack from 'models/notification-stack';
+import Worker from 'notifications/worker';
 import * as React from 'react';
-import ItemGroup from './item-group';
-import ItemSingular from './item-singular';
 
 interface Props {
-  stack: NotificationStack;
+  type?: string;
+  worker: Worker;
 }
 
 @observer
-export default class Stack extends React.Component<Props> {
+export default class NotificationIcon extends React.Component<Props> {
   render() {
-    if (!this.props.stack.hasVisibleNotifications) {
+    if (!this.props.worker.isActive()) {
       return null;
     }
 
-    const Component = this.props.stack.isSingle ? ItemSingular : ItemGroup;
+    return (
+      <span className={this.mainClass()}>
+        <i className='fas fa-inbox' />
+        <span className='notification-icon__count'>
+          {this.unreadCount()}
+        </span>
+      </span>
+    );
+  }
 
-    return <Component stack={this.props.stack} key={this.props.stack.id} />;
+  private mainClass() {
+    let ret = 'notification-icon';
+
+    if (this.props.worker.unreadCount > 0) {
+      ret += ' notification-icon--glow';
+    }
+
+    if (this.props.type === 'mobile') {
+      ret += ' notification-icon--mobile';
+    }
+
+    return ret;
+  }
+
+  private unreadCount() {
+    if (this.props.worker.hasData) {
+      return osu.formatNumber(this.props.worker.unreadCount);
+    } else {
+      return '...';
+    }
   }
 }

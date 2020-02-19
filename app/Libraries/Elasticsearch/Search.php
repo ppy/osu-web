@@ -140,6 +140,11 @@ abstract class Search extends HasSearch implements Queryable
         }
     }
 
+    public function isLoginRequired(): bool
+    {
+        return $this->params->isLoginRequired();
+    }
+
     /**
      * Returns if the total number of results found is greater than the allowed limit.
      *

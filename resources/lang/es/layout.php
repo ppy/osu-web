@@ -55,7 +55,7 @@ return [
         'community' => [
             '_' => 'comunidad',
             'comments' => 'comentarios',
-            'contests' => '',
+            'contests' => 'concursos',
             'forum' => 'foro',
             'livestream' => 'transmisiones en vivo',
         ],
@@ -80,6 +80,11 @@ return [
 
         'notice' => [
             '_' => 'aviso',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'publicaciones de modding del usuario',
             'modding-history-votesGiven' => 'votos dados sobre modding del usuario',
             'modding-history-votesReceived' => 'votos recibidos sobre modding del usuario',
+            'notifications-index' => '',
             'oauth_login' => 'inicia sesión para oauth',
             'oauth_request' => 'autorización oauth',
             'settings' => 'Ajustes',

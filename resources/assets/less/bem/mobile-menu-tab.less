@@ -16,51 +16,33 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.notification-type-group {
-  width: 100%;
+.mobile-menu-tab {
+  .reset-input();
+  flex: none;
+  width: 40px;
+  color: @osu-colour-l3;
+  height: $width;
 
-  &__clear-all {
-    .reset-input();
-    font-size: @font-size--title-small;
-    text-transform: uppercase;
+  &--user {
+    margin-right: auto;
+    padding: 8px;
+  }
 
-    &--disabled {
-      pointer-events: none;
+  &:hover,
+  &.js-click-menu--active {
+    color: @osu-colour-c1;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      border-radius: 10000px;
+      background-color: @osu-colour-h1;
+      left: 25%;
+      bottom: -2px;
+      z-index: 1; // inside z-index--nav-bar
     }
-  }
-
-  &__clear-all-spinner {
-    margin-right: 5px;
-    font-size: 75%;
-  }
-
-  &__count {
-    color: @osu-colour-l1;
-    margin-left: 10px;
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 0 5px;
-  }
-
-  &__item {
-    margin: 1px 0;
-  }
-
-  &__items {
-    display: flex;
-    flex-direction: column;
-
-    &--standalone {
-      margin-bottom: 10px;
-    }
-  }
-
-  &__type {
-    font-size: @font-size--title-small;
-    font-weight: bold;
-    text-transform: uppercase;
   }
 }
