@@ -94,12 +94,12 @@ export class Main extends React.PureComponent
 
 
   beatmaps: =>
-    @cache.beatmaps if @cache.beatmaps?
+    return @cache.beatmaps if @cache.beatmaps?
 
     beatmaps = _.map(@discussions(), (d) => d.beatmap)
                 .filter((b) => b != undefined)
 
-    @cache.beatmaps ?= _.keyBy(beatmaps, 'id')
+    @cache.beatmaps = _.keyBy(beatmaps, 'id')
 
 
   saveStateToContainer: =>
