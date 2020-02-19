@@ -101,10 +101,8 @@ class BeatmapDiscussionsController extends Controller
             'startingPost',
         ])->limit($search['params']['limit'] + 1);
 
-        $discussions = $query->get();
-
         $paginator = new Paginator(
-            $discussions,
+            $query->get(),
             $search['params']['limit'],
             $search['params']['page'],
             [
@@ -112,6 +110,8 @@ class BeatmapDiscussionsController extends Controller
                 'query' => $search['params'],
             ]
         );
+
+        $discussions = collect($paginator->items());
 
         // TODO: remove this when reviews are released
         $relatedDiscussions = [];
