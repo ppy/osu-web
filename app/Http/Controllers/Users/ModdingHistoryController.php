@@ -237,7 +237,7 @@ class ModdingHistoryController extends Controller
             'user'
         ));
     }
-    
+
     public function events()
     {
         $user = $this->user;
