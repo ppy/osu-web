@@ -68,6 +68,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2020-02-18
+- Beatmap `max_combo` and build update stream `user_count` now return the values as primitives instead of numbers wrapped in an array.
+
 ### 2019-10-09
 - Ranking API response no longer returns an array at the top level; an object with keys is now returned.
 

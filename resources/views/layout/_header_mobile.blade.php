@@ -28,13 +28,22 @@
 
         <div class="navbar-mobile__header-section navbar-mobile__header-section--buttons">
             @if (Auth::check())
-                <div class="js-react--notification" data-notification-type="mobile">
-                    <div class="nav-button nav-button--mobile">
+                <div>
+                    <button class="nav-button nav-button--mobile js-click-menu js-react--notification-icon"
+                        data-click-menu-target="nav-mobile-notification-widget"
+                        data-notification-icon="{{ json_encode(['type' => 'mobile']) }}"
+                    >
                         <span class="notification-icon notification-icon--mobile">
                             <i class="fas fa-inbox"></i>
                             <span class="notification-icon__count">...</span>
                         </span>
-                    </div>
+                    </button>
+                    <div
+                        class="nav-click-popup js-click-menu js-react--notification-widget"
+                        data-click-menu-id="nav-mobile-notification-widget"
+                        data-visibility="hidden"
+                        data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup']) }}"
+                    ></div>
                 </div>
 
                 <a

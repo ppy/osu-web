@@ -82,7 +82,7 @@ class ChangelogController extends Controller
                 }
             );
 
-            return view('changelog.index', compact('chartConfig', 'indexJson'));
+            return ext_view('changelog.index', compact('chartConfig', 'indexJson'));
         }
     }
 
@@ -166,7 +166,7 @@ class ChangelogController extends Controller
         if (is_json_request()) {
             return $buildJson;
         } else {
-            return view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
+            return ext_view('changelog.build', compact('build', 'buildJson', 'chartConfig', 'commentBundle'));
         }
     }
 

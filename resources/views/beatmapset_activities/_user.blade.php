@@ -18,16 +18,11 @@
 @php
     // this is pretty much a php conversion of beatmap-discussions/user-card.coffee
     $topClasses = $bn = 'beatmap-discussion-user-card';
-    if (isset($user)) {
-        $badge = $user->groupBadge();
-    }
-    if (isset($badge)) {
-        $topClasses .= " {$bn}--{$badge}";
-    }
+    $badge = optional($user)->groupBadge();
     $hideStripe = $hideStripe ?? false;
 @endphp
 
-<div class="{{$topClasses}}">
+<div class="{{$topClasses}}" style="{!! css_group_colour($badge ?? null) !!}">
     <div class="{{$bn}}__avatar">
         <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
             @if ($user)
@@ -50,7 +45,12 @@
         </div>
         <div class="{{$bn}}__user-badge">
             @if (isset($badge))
-                <div class="user-group-badge user-group-badge--{{$badge}}"></div>
+                <div
+                    class="user-group-badge"
+                    title="{{ $badge->group_name }}"
+                    data-label="{{ $badge->short_name }}"
+                    style="{!! css_group_colour($badge) !!}"
+                ></div>
             @endif
         </div>
     </div>

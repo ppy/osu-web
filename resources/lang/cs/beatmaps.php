@@ -91,14 +91,14 @@ return [
             'nomination_reset' => 'Obnovit nominace',
             'praise' => 'Chválit',
             'problem' => 'Problém',
-            'review' => '',
+            'review' => 'Recenze',
             'suggestion' => 'Návrh',
         ],
 
         'mode' => [
             'events' => 'Historie',
             'general' => 'Obecný :scope',
-            'reviews' => '',
+            'reviews' => 'Recenze',
             'timeline' => 'Časová osa',
             'scopes' => [
                 'general' => 'Tato obtížnost',

@@ -35,7 +35,6 @@ export class PlayDetail extends PureComponent
 
   render: =>
     score = @props.score
-    pp = score.best?.pp ? score.pp
 
     blockClass = bn
     if @props.activated
@@ -102,9 +101,9 @@ export class PlayDetail extends PureComponent
 
         div
           className: "#{bn}__pp"
-          if pp > 0
+          if score.pp > 0
             span null,
-              osu.formatNumber(Math.round(pp))
+              osu.formatNumber(Math.round(score.pp))
               span className: "#{bn}__pp-unit", 'pp'
           else
             span

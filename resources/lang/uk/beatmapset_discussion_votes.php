@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -16,51 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.notification-type-group {
-  width: 100%;
+return [
+    'index' => [
+        'title' => 'Голосів в обговоренні карти',
+    ],
 
-  &__clear-all {
-    .reset-input();
-    font-size: @font-size--title-small;
-    text-transform: uppercase;
-
-    &--disabled {
-      pointer-events: none;
-    }
-  }
-
-  &__clear-all-spinner {
-    margin-right: 5px;
-    font-size: 75%;
-  }
-
-  &__count {
-    color: @osu-colour-l1;
-    margin-left: 10px;
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 0 5px;
-  }
-
-  &__item {
-    margin: 1px 0;
-  }
-
-  &__items {
-    display: flex;
-    flex-direction: column;
-
-    &--standalone {
-      margin-bottom: 10px;
-    }
-  }
-
-  &__type {
-    font-size: @font-size--title-small;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-}
+    'item' => [
+        'score' => 'Очки',
+    ],
+];

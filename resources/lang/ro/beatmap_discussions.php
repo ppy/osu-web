@@ -80,6 +80,13 @@ return [
     'review' => [
         'go_to_parent' => 'Vezi review-ul utilizatorului',
         'go_to_child' => 'Vezi Discuția',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [

@@ -60,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'اتريد حقاََ حذف المنشور؟',
         'confirm_restore' => 'اتريد حقاََ اِسترجاع المنشور؟',
-        'edited' => 'التعديل الأخير تم بواسطة :user :when، عُدِلَ :count مرات في المجموع.',
+        'edited' => 'التعديل الأخير تم بواسطة :user :when، عُدِلَ ::count_delimited مرة في المجموع.|التعديل الأخير تم بواسطة :user:when, عُدِلَ ::count_delimited مرات في المجموع.',
         'posted_at' => 'نُشِر :when',
 
         'actions' => [
