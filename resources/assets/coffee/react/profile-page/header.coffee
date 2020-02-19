@@ -27,6 +27,7 @@ import { Stats } from './stats'
 import * as React from 'react'
 import HeaderV4 from 'header-v4'
 import { Img2x } from 'img2x'
+import DetailBot from 'profile-page/detail-bot'
 import { a, button, div, dd, dl, dt, h1, i, img, li, span, ul } from 'react-dom-factories'
 import { Spinner } from 'spinner'
 el = React.createElement
@@ -99,7 +100,9 @@ export class Header extends React.Component
 
                 el Stats, stats: @props.stats
 
-          if !@props.user.is_bot
+          if @props.user.is_bot
+            el DetailBot, user: @props.user
+          else
             el Detail,
               stats: @props.stats
               userAchievements: @props.userAchievements
