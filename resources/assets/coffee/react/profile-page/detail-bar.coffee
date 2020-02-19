@@ -48,16 +48,15 @@ export class DetailBar extends React.PureComponent
     isBlocked = _.find(@state.currentUser.blocks, target_id: @props.user.id)?
 
     div className: bn,
-      if !@props.user.is_bot
-        div className: "#{bn}__page-toggle",
-          button
-            className: 'profile-page-toggle'
-            onClick: @props.toggleExtend
-            title: osu.trans("common.buttons.#{if @props.expanded then 'collapse' else 'expand'}")
-            if @props.expanded
-              span className: 'fas fa-chevron-up'
-            else
-              span className: 'fas fa-chevron-down'
+      div className: "#{bn}__page-toggle",
+        button
+          className: 'profile-page-toggle'
+          onClick: @props.toggleExtend
+          title: osu.trans("common.buttons.#{if @props.expanded then 'collapse' else 'expand'}")
+          if @props.expanded
+            span className: 'fas fa-chevron-up'
+          else
+            span className: 'fas fa-chevron-down'
 
       div className: "#{bn}__column #{bn}__column--left",
         div className: "#{bn}__menu-item",
@@ -67,7 +66,7 @@ export class DetailBar extends React.PureComponent
             followers: @props.user.follower_count
             modifiers: ['profile-page']
             alwaysVisible: true
-        if !@props.user.is_bot && @state.currentUser.id != @props.user.id && !isBlocked
+        if @state.currentUser.id != @props.user.id && !isBlocked
           div className: "#{bn}__menu-item",
             a
               className: 'user-action-button user-action-button--profile-page'
@@ -75,36 +74,34 @@ export class DetailBar extends React.PureComponent
               title: osu.trans('users.card.send_message')
               i className: 'fas fa-envelope'
 
-        if !@props.user.is_bot
-          @renderExtraMenu()
+        @renderExtraMenu()
 
-      if !@props.user.is_bot
-        div className: "#{bn}__column #{bn}__column--right",
-          if @props.expanded
-            div
-              title: osu.trans('users.show.stats.level_progress')
-              className: "#{bn}__entry #{bn}__entry--level-progress"
-              div className: 'bar bar--user-profile',
-                div
-                  className: 'bar__fill'
-                  style:
-                    width: "#{@props.stats.level.progress}%"
-                div className: "bar__text",
-                  "#{@props.stats.level.progress}%"
+      div className: "#{bn}__column #{bn}__column--right",
+        if @props.expanded
+          div
+            title: osu.trans('users.show.stats.level_progress')
+            className: "#{bn}__entry #{bn}__entry--level-progress"
+            div className: 'bar bar--user-profile',
+              div
+                className: 'bar__fill'
+                style:
+                  width: "#{@props.stats.level.progress}%"
+              div className: "bar__text",
+                "#{@props.stats.level.progress}%"
 
-          if !@props.expanded
-            div className: "#{bn}__entry #{bn}__entry--ranking",
-              el Rank, type: 'global', stats: @props.stats
+        if !@props.expanded
+          div className: "#{bn}__entry #{bn}__entry--ranking",
+            el Rank, type: 'global', stats: @props.stats
 
-          if !@props.expanded
-            div className: "#{bn}__entry #{bn}__entry--ranking",
-              el Rank, type: 'country', stats: @props.stats
+        if !@props.expanded
+          div className: "#{bn}__entry #{bn}__entry--ranking",
+            el Rank, type: 'country', stats: @props.stats
 
-          div className: "#{bn}__entry #{bn}__entry--level",
-            div
-              className: "#{bn}__level"
-              title: osu.trans('users.show.stats.level', level: @props.stats.level.current)
-              @props.stats.level.current
+        div className: "#{bn}__entry #{bn}__entry--level",
+          div
+            className: "#{bn}__level"
+            title: osu.trans('users.show.stats.level', level: @props.stats.level.current)
+            @props.stats.level.current
 
   renderExtraMenu: =>
     items = []
