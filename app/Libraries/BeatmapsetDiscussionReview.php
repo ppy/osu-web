@@ -47,13 +47,14 @@ class BeatmapsetDiscussionReview
                 if (!isset($block['type'])) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
-                if (!isset($block['text'])) {
+
+                $message = get_string($block['text']);
+                if ($message !== null) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
                 }
 
                 switch ($block['type']) {
                     case 'embed':
-                        $message = $block['text'];
                         $beatmapId = $block['beatmap_id'] ?? null;
 
                         $discussion = new BeatmapDiscussion([
