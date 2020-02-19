@@ -176,6 +176,7 @@ interface User {
   cover: Cover;
   current_mode_rank?: number;
   default_group: string;
+  follower_count?: number;
   group_badge?: GroupJSON;
   id: number;
   is_active: boolean;
