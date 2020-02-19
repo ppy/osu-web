@@ -27,6 +27,7 @@ declare var BeatmapHelper: BeatmapHelperInterface;
 declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
 declare var Timeout: any;
+declare const Lang: LangClass;
 
 // Global object types
 interface Comment {
@@ -46,20 +47,23 @@ interface BeatmapDiscussionHelperClass {
 }
 
 interface JQueryStatic {
-  publish: any;
-  subscribe: any;
-  unsubscribe: any;
+  publish: (eventName: string, data?: any) => void;
+  subscribe: (eventName: string, handler: (...params: any[]) => void) => void;
+  unsubscribe: (eventName: string) => void;
 }
 
 interface OsuCommon {
   ajaxError: (xhr: JQueryXHR) => void;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
+  groupColour: (group?: GroupJSON) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: { classNames?: string[]; isRemote?: boolean }) => string;
   linkify: (text: string, newWindow?: boolean) => string;
+  navigate: (url: string, keepScroll?: boolean, action?: object) => void;
   parseJson: (id: string, remove?: boolean) => any;
   popup: (message: string, type: string) => void;
+  popupShowing: () => boolean;
   presence: (str?: string | null) => string | null;
   present: (str?: string | null) => boolean;
   promisify: (xhr: JQueryXHR) => Promise<any>;
@@ -79,6 +83,13 @@ interface OsuCommon {
 
 interface BeatmapHelperInterface {
   getDiffRating(rating: number): string;
+}
+
+interface ChangelogBuild {
+  update_stream: {
+    name: string,
+  };
+  version: string;
 }
 
 interface Country {
@@ -151,14 +162,21 @@ interface BeatmapDiscussionPost {
   message: string;
 }
 
+interface LangClass {
+  _getPluralForm: (count: number) => number;
+  _origGetPluralForm: (count: number) => number;
+  locale: string;
+}
+
 // TODO: should look at combining with the other User.ts at some point.
 interface User {
   avatar_url?: string;
   country?: Country;
   country_code?: string;
   cover: Cover;
+  current_mode_rank?: number;
   default_group: string;
-  group_badge?: string;
+  group_badge?: GroupJSON;
   id: number;
   is_active: boolean;
   is_bot: boolean;
@@ -178,6 +196,11 @@ interface TooltipDefault {
 
 interface TurbolinksAction {
   action: 'advance' | 'replace' | 'restore';
+}
+
+interface TurbolinksLocation {
+    getPath(): string;
+    isHTML(): boolean;
 }
 
 interface TurbolinksStatic {

@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Kolekce beatmap s podobnou tématikou.',
+        'nav_title' => '',
+        'title' => 'Balíčky beatmap',
+
         'blurb' => [
             'important' => 'PŘEČTĚTE SI PŘED STAŽENÍM',
             'instruction' => [
@@ -33,12 +37,9 @@ return [
                 'scary' => 'stahovali balíčky od nejnovějšího po nejstarší',
             ],
         ],
-        'title' => 'Balíčky beatmap',
-        'description' => 'Kolekce beatmap s podobnou tématikou.',
     ],
 
     'show' => [
-        'back' => '',
         'download' => 'Stáhnout',
         'item' => [
             'cleared' => 'splněno',

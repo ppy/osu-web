@@ -44,17 +44,12 @@ return [
             '_stream_to' => 'ændringer i :stream op til :to',
             '_to' => 'ændringer op til :to',
         ],
-
-        'title' => [
-            '_' => 'Ændringsoversigt :info',
-            'info' => 'Listning',
-        ],
     ],
 
     'support' => [
-        'heading' => 'Elsker du denne opdatering?',
-        'text_1' => 'Støt yderligere udvikling af osu! og bliv en :link i dag!',
-        'text_1_link' => 'osu! supporter',
-        'text_2' => 'Ikke blot vil du hjælpe hastighed udvikling, men du vil også få nogle ekstra funktioner og tilpasninger!',
+        'heading' => 'Nyder du denne opdatering?',
+        'text_1' => 'Støt den videre udvikling af osu! og :link i dag!',
+        'text_1_link' => 'bliv en osu! supporter',
+        'text_2' => 'Du hjælper ikke blot hastigheden af spillets udvikling, men vil også få ekstra funktioner og forbedringer!',
     ],
 ];

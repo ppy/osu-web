@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'ウォッチ中のディスカッションの一覧です。新しい投稿や更新の時に通知されます。',
         'title_compact' => 'modding ウォッチリスト',
-        'title_main' => 'Modding ウォッチリスト',
 
         'table' => [
             'empty' => 'ウォッチしているビートマップディスカッションがありません',
@@ -30,10 +29,6 @@ return [
             'state' => 'ステータス',
             'title' => 'タイトル',
         ],
-    ],
-
-    'mail' => [
-        'update' => 'ビートマップ":title"に新しい投稿があります',
     ],
 
     'status' => [

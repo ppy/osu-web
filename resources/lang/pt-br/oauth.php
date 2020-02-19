@@ -22,15 +22,9 @@ return [
     'cancel' => 'Cancelar',
 
     'authorise' => [
-        'authorise' => 'Autorizar',
         'request' => 'está pedindo permissão para acessar sua conta.',
         'scopes_title' => 'Essa aplicação será capaz de:',
         'title' => 'Pedido de Autorização',
-
-        'wrong_user' => [
-            '_' => 'Você está conectado como :user. :logout_link.',
-            'logout_link' => 'Clique aqui para entrar com outra conta',
-        ],
     ],
 
     'authorized_clients' => [
@@ -50,12 +44,6 @@ return [
         'name' => 'Nome da Aplicação',
         'redirect' => 'URL de Callback da Aplicação',
         'secret' => 'Client Secret',
-    ],
-
-    'login' => [
-        'download' => 'Clique aqui para baixar o jogo e criar uma nova',
-        'label' => 'Primeiro, vamos entrar em sua conta!',
-        'title' => 'Iniciar Sessão',
     ],
 
     'new_client' => [

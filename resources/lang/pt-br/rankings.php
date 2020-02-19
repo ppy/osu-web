@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => 'Classificação de :type',
+    'country' => [
+        'filter' => 'filtrador por país',
+    ],
 
     'type' => [
         'performance' => 'Desempenho',

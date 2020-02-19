@@ -34,11 +34,11 @@
 
         <div class="store-text store-text--block store-text--emphasis">Some of Xsolla's payment partners</div>
         <div class="store-payment-method__provider-list">
-            <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/apple-pay.png" alt="Apple Pay">
+            <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/apple-pay.svg" alt="Apple Pay">
             <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/unionpay.png" alt="UnionPay">
-            <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/wechat-pay.png" alt="WeChat Pay">
+            <img class="store-payment-method__provider" src="/images/store/providers/wechat-pay.png" alt="WeChat Pay">
             <img class="store-payment-method__provider" src="/images/store/providers/bitcoin.png" alt="bitcoin">
-            <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/bitcash.png" alt="BitCash">
+            <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/bitcash.svg" alt="BitCash">
         </div>
         <div class="store-text store-text--block">and many more.</div>
     </div>

@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => '结账',
+        'info' => '购物车里有 :count_delimited 件商品（$:subtotal）|购物车里有 :count_delimited 件商品（$:subtotal）',
         'more_goodies' => '在完成订单之前，我想看看其他商品',
         'shipping_fees' => '运费',
         'title' => '购物车',
@@ -76,12 +77,6 @@ return [
                     'link_text' => '点击此处以恢复',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => '我们已收到你的 osu!商店 订单！',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => '需要 :link 才能改变用户名！',
             'link_text' => '登录',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

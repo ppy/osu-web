@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Nullstill passord',
-
     'button' => [
         'cancel' => 'Avbryt',
         'resend' => 'Send verifiserings e-posten på nytt',
         'set' => 'Sett passord',
         'start' => 'Start',
-    ],
-
-    'email' => [
-        'subject' => 'gjenopprettelse av osu! konto',
     ],
 
     'error' => [

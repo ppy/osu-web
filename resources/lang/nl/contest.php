@@ -23,6 +23,11 @@ return [
         'small' => 'Concurreer op meer manieren dan enkel het klikken van cirkels.',
         'large' => 'Community Wedstrijden',
     ],
+
+    'index' => [
+        'nav_title' => 'lijst',
+    ],
+
     'voting' => [
         'over' => 'Je kan niet meer stemmen in deze wedstrijd',
         'login_required' => 'Log in om te kunnen stemmen.',

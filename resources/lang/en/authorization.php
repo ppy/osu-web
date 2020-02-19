@@ -19,8 +19,8 @@
  */
 
 return [
-    'play_more' => 'Please play ranked map to post',
     'require_login' => 'Please sign in to proceed.',
+    'require_verification' => 'Please verify to proceed.',
     'restricted' => "Can't do that while restricted.",
     'silenced' => "Can't do that while silenced.",
     'unauthorized' => 'Access denied.',

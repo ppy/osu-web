@@ -30,25 +30,26 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'NOVÝ',
     ],
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => 'Autorizovat',
         'back_to_previous' => 'Zpátky na předchozí pozici',
         'back_to_top' => 'Zpátky nahoru',
         'cancel' => 'Zrušit',
         'change' => 'změnit',
         'click_to_copy' => 'klikněte pro zkopírování do schránky',
         'click_to_copy_copied' => 'zkopírováno do schránky!',
-        'close' => '',
+        'close' => 'Zavřít',
         'collapse' => 'zabalit',
         'delete' => 'Smazat',
         'edit' => 'Upravit',
         'expand' => 'rozbalit',
         'hide' => 'skrýt',
         'permalink' => 'trvalý odkaz',
-        'permalink_copied' => 'odkaz zkopírován',
+        'pin' => 'připnout',
         'post' => 'Přidat příspěvek',
         'reply' => 'Odpovědět',
         'reply_reopen' => 'Odpovědět a znovu otevřít',
@@ -61,9 +62,11 @@ return [
         'see_more' => 'zobrazit více',
         'show' => 'zobrazit',
         'show_deleted' => 'Zobrazit smazané',
+        'show_less' => '',
         'show_more' => 'zobrazit více',
         'show_more_options' => 'zobrazit více možností',
-        'update' => '',
+        'unpin' => 'odepnout',
+        'update' => 'Aktualizovat',
         'upload_image' => 'nahrát obrázek',
 
         'watch' => [
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'min',
         'minutes' => ':count minuta|:count minuty|:count minut',
         'months' => ':count měsíc|:count měsíců',
+        'notifications' => '',
         'plus_others' => '',
         'post' => '',
         'second_short_unit' => 'sek',
@@ -119,7 +123,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'hledat...',
     ],
 
     'pagination' => [
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Oznámení',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

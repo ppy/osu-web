@@ -37,6 +37,7 @@ export class Comments extends React.PureComponent
     el Observer, null, () =>
       # TODO: comments should be passed in as props?
       comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
+      pinnedComments = uiState.comments.pinnedCommentIds.map (id) -> store.comments.get(id)
 
       div className: osu.classWithModifiers('comments', @props.modifiers),
         div className: 'u-has-anchor u-has-anchor--no-event',
@@ -51,6 +52,10 @@ export class Comments extends React.PureComponent
             focus: false
             modifiers: @props.modifiers
         div className: 'comments__content',
+          if pinnedComments.length > 0
+            div className: "comments__items comments__items--pinned",
+              @renderComments pinnedComments, true
+
           div className: 'comments__items comments__items--toolbar',
             el CommentsSort,
               modifiers: @props.modifiers
@@ -58,9 +63,10 @@ export class Comments extends React.PureComponent
               div className: 'sort__items',
                 @renderFollowToggle()
                 @renderShowDeletedToggle()
+
           if comments.length > 0
             div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
-              comments.map @renderComment
+              @renderComments comments, false
 
               el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
 
@@ -77,7 +83,7 @@ export class Comments extends React.PureComponent
               osu.trans('comments.empty')
 
 
-  renderComment: (comment) =>
+  renderComment: (comment, pinned = false) =>
     return null if comment.isDeleted && !uiState.comments.isShowDeleted
 
     el Comment,
@@ -86,6 +92,11 @@ export class Comments extends React.PureComponent
       depth: 0
       modifiers: @props.modifiers
       showDeleted: uiState.comments.isShowDeleted
+      showReplies: !pinned
+
+
+  renderComments: (comments, pinned) =>
+    @renderComment(comment, pinned) for comment in comments
 
 
   renderShowDeletedToggle: =>

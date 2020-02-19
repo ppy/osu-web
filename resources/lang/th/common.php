@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'ผู้ดูแล',
+        'authorise' => '',
         'back_to_previous' => 'กลับไปยังตำแหน่งก่อนหน้านี้',
         'back_to_top' => 'กลับไปด้านบน',
         'cancel' => 'ยกเลิก',
@@ -48,7 +49,7 @@ return [
         'expand' => 'ขยาย',
         'hide' => 'ซ่อน',
         'permalink' => 'ลิงก์ถาวร',
-        'permalink_copied' => 'คัดลอกลิ้งค์แล้ว',
+        'pin' => '',
         'post' => 'โพสต์',
         'reply' => 'ตอบกลับ',
         'reply_reopen' => 'ตอบกลับ และเปิดใหม่',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'ดูเพิ่มเติม',
         'show' => 'แสดง',
         'show_deleted' => 'แสดงรายการที่ลบ',
+        'show_less' => '',
         'show_more' => 'แสดงเพิ่มเติม',
         'show_more_options' => 'แสดงตัวเลือกเพิ่มเติม',
+        'unpin' => '',
         'update' => 'อัปเดต',
         'upload_image' => 'อัพโหลดรูปภาพ',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'นาที|นาที',
         'minutes' => ':count_delimited นาที|:count_delimited นาที',
         'months' => ':count เดือน|:count เดือน',
+        'notifications' => '',
         'plus_others' => '',
         'post' => '',
         'second_short_unit' => 'วินาที|วินาที',
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'แจ้งเตือน',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

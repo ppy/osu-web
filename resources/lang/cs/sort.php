@@ -24,6 +24,7 @@ return [
     'last_visit' => 'Nedávno aktivní',
     'new' => 'Nedávné',
     'old' => 'Nejstarší',
+    'rank' => 'Umístění',
     'top' => 'Nejlepší',
     'username' => 'Uživatelské jméno',
 

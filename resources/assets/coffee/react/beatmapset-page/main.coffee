@@ -22,6 +22,8 @@ import { Info } from './info'
 import { Scoreboard } from './scoreboard'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
+import HeaderV4 from 'header-v4'
+import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
@@ -191,6 +193,7 @@ export class Main extends React.Component
 
   render: ->
     div className: 'osu-layout osu-layout--full',
+      @renderPageHeader()
       div className: 'osu-layout__row osu-layout__row--page-compact',
         el Header,
           beatmapset: @props.beatmapset
@@ -211,7 +214,7 @@ export class Main extends React.Component
               beatmapset: @props.beatmapset
               currentUser: currentUser
 
-        if @props.beatmapset.is_scoreable
+        if @state.currentBeatmap.is_scoreable
           div className: 'osu-page osu-page--generic',
             el Scoreboard,
               type: @state.currentScoreboardType
@@ -222,7 +225,7 @@ export class Main extends React.Component
               enabledMods: @state.enabledMods
               countries: @props.countries
               loading: @state.loading
-              isScoreable: @props.beatmapset.is_scoreable
+              isScoreable: @state.currentBeatmap.is_scoreable
 
         div className: 'osu-page osu-page--generic-compact',
           el CommentsManager,
@@ -231,6 +234,17 @@ export class Main extends React.Component
             commentableId: @props.beatmapset.id
 
 
+  renderPageHeader: =>
+    el HeaderV4,
+      section: osu.trans('layout.header.beatmapsets._')
+      subSection: osu.trans('layout.header.beatmapsets.show')
+      theme: 'beatmapsets'
+      titleAppend: el PlaymodeTabs,
+        beatmaps: @state.beatmaps
+        currentMode: @state.currentBeatmap.mode
+        hrefFunc: @tabHrefFunc
+        showCounts: true
+
   saveStateToContainer: =>
     @props.container.dataset.state = JSON.stringify(@state)
 
@@ -238,3 +252,7 @@ export class Main extends React.Component
   setHash: =>
     osu.setHash BeatmapsetPageHash.generate
       beatmap: @state.currentBeatmap
+
+
+  tabHrefFunc: (mode) ->
+    BeatmapsetPageHash.generate mode: mode

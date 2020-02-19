@@ -31,7 +31,7 @@ function array_search_null($value, $array)
     }
 }
 
-function atom_id(string $namespace, $id = null) : string
+function atom_id(string $namespace, $id = null): string
 {
     return 'tag:'.request()->getHttpHost().',2019:'.$namespace.($id === null ? '' : "/{$id}");
 }
@@ -73,7 +73,7 @@ function broadcast_notification(...$arguments)
 /**
  * Like cache_remember_with_fallback but with a mutex that only allows a single process to run the callback.
  */
-function cache_remember_mutexed(string $key, $seconds, $default, callable $callback)
+function cache_remember_mutexed(string $key, $seconds, $default, callable $callback, ?callable $exceptionHandler = null)
 {
     static $oneMonthInSeconds = 30 * 24 * 60 * 60;
     $fullKey = "{$key}:with_fallback";
@@ -95,8 +95,12 @@ function cache_remember_mutexed(string $key, $seconds, $default, callable $callb
 
                 cache()->put($fullKey, $data, max($oneMonthInSeconds, $seconds * 10));
             } catch (Exception $e) {
-                // Log and continue with data from the first ::get.
-                log_error($e);
+                $handled = $exceptionHandler !== null && $exceptionHandler($e);
+
+                if (!$handled) {
+                    // Log and continue with data from the first ::get.
+                    log_error($e);
+                }
             } finally {
                 cache()->forget($lockKey);
             }
@@ -173,6 +177,23 @@ function cleanup_cookies()
             cookie()->queueForget($key, null, $domain);
         }
     }
+}
+
+function css_group_colour($group)
+{
+    return '--group-colour: '.(optional($group)->colour ?? 'initial');
+}
+
+function css_var_2x(string $key, string $url)
+{
+    if (!present($url)) {
+        return;
+    }
+
+    $url = e($url);
+    $url2x = retinaify($url);
+
+    return blade_safe("{$key}: url('{$url}'); {$key}-2x: url('{$url2x}')");
 }
 
 function datadog_timing(callable $callable, $stat, array $tag = null)
@@ -308,6 +329,18 @@ function html_excerpt($body, $limit = 300)
     return e(truncate($body, $limit));
 }
 
+function img2x(array $attributes)
+{
+    if (!present($attributes['src'] ?? null)) {
+        return;
+    }
+
+    $src2x = retinaify($attributes['src']);
+    $attributes['srcset'] = "{$attributes['src']} 1x, {$src2x} 1.5x";
+
+    return tag('img', $attributes);
+}
+
 function truncate(string $text, $limit = 100, $ellipsis = '...')
 {
     if (mb_strlen($text) > $limit) {
@@ -317,12 +350,12 @@ function truncate(string $text, $limit = 100, $ellipsis = '...')
     return $text;
 }
 
-function json_date(?DateTime $date) : ?string
+function json_date(?DateTime $date): ?string
 {
     return $date === null ? null : $date->format('Y-m-d');
 }
 
-function json_time(?DateTime $time) : ?string
+function json_time(?DateTime $time): ?string
 {
     return $time === null ? null : $time->format(DateTime::ATOM);
 }
@@ -500,11 +533,6 @@ function require_login($text_key, $link_text_key)
     return $text;
 }
 
-function render_to_string($view, $variables = [])
-{
-    return view()->make($view, $variables)->render();
-}
-
 function spinner(?array $modifiers = null)
 {
     return tag('div', [
@@ -552,6 +580,27 @@ function trans_exists($key, $locale)
     $translated = app('translator')->get($key, [], $locale, false);
 
     return present($translated) && $translated !== $key;
+}
+
+function with_db_fallback($connection, callable $callable)
+{
+    try {
+        return $callable($connection);
+    } catch (Illuminate\Database\QueryException $ex) {
+        // string after the error code can change depending on actual state of the server.
+        static $errorCodes = ['SQLSTATE[HY000] [2002]', 'SQLSTATE[HY000] [2003]'];
+        if (starts_with($ex->getMessage(), $errorCodes)) {
+            Datadog::increment(
+                config('datadog-helper.prefix_web').'.db_fallback',
+                1,
+                compact('connection')
+            );
+
+            return $callable(config('database.default'));
+        }
+
+        throw $ex;
+    }
 }
 
 function obscure_email($email)
@@ -609,15 +658,22 @@ function error_popup($message, $statusCode = 422)
     return response(['error' => $message], $statusCode);
 }
 
-function i18n_view($view)
+function ext_view($view, $data = null, $type = null, $status = null)
 {
-    $localViewPath = sprintf('%s-%s', $view, App::getLocale());
+    static $types = [
+        'atom' => 'application/atom+xml',
+        'html' => 'text/html',
+        'js' => 'application/javascript',
+        'json' => 'application/json',
+        'rss' => 'application/rss+xml',
+    ];
 
-    if (view()->exists($localViewPath)) {
-        return $localViewPath;
-    } else {
-        return sprintf('%s-%s', $view, config('app.fallback_locale'));
-    }
+    return response()->view(
+        $view,
+        $data ?? [],
+        $status ?? 200,
+        ['Content-Type' => $types[$type ?? 'html']]
+    );
 }
 
 function is_api_request()
@@ -638,17 +694,10 @@ function is_sql_unique_exception($ex)
     );
 }
 
-function js_view($view, $vars = [], $status = 200)
-{
-    return response()
-        ->view($view, $vars, $status)
-        ->header('Content-Type', 'application/javascript');
-}
-
 function ujs_redirect($url, $status = 200)
 {
     if (Request::ajax() && !Request::isMethod('get')) {
-        return js_view('layout.ujs-redirect', ['url' => $url], $status);
+        return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
     } else {
         if (Request::header('Turbolinks-Referrer')) {
             Request::session()->put('_turbolinks_location', $url);
@@ -726,6 +775,10 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     $postIdParamKey = 'start';
     if ($tail === true) {
         $postIdParamKey = 'end';
+    }
+
+    if ($topicId === null) {
+        return;
     }
 
     $url = route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
@@ -836,18 +889,6 @@ function nav_links()
     ];
 
     return $links;
-}
-
-function nav_links_mobile()
-{
-    $links = [];
-
-    $links['profile'] = [
-        'friends' => route('friends.index'),
-        'settings' => route('account.edit'),
-    ];
-
-    return array_merge($links, nav_links());
 }
 
 function footer_landing_links()
@@ -1192,6 +1233,9 @@ function get_param_value($input, $type)
         case 'file':
             return get_file($input);
             break;
+        case 'float':
+            return get_float($input);
+            break;
         case 'string':
             return get_string($input);
         case 'string_split':
@@ -1278,7 +1322,7 @@ function get_time_or_null($timestamp)
  * Returns 0 if $time is null so mysql doesn't explode because of not null
  * constraints.
  */
-function get_timestamp_or_zero(DateTime $time = null) : int
+function get_timestamp_or_zero(DateTime $time = null): int
 {
     return $time === null ? 0 : $time->getTimestamp();
 }
@@ -1464,12 +1508,13 @@ function mini_asset(string $url): string
 function section_to_hue_map($section): int
 {
     static $colourToHue = [
-        'red' => 0,
-        'pink' => 333,
-        'orange' => 46,
-        'green' => 115,
-        'purple' => 255,
         'blue' => 200,
+        'darkorange' => 20,
+        'green' => 115,
+        'orange' => 46,
+        'pink' => 333,
+        'purple' => 255,
+        'red' => 0,
     ];
 
     static $sectionMapping = [
@@ -1483,8 +1528,9 @@ function section_to_hue_map($section): int
         'help' => 'orange',
         'home' => 'purple',
         'multiplayer' => 'pink',
+        'notifications' => 'pink',
         'rankings' => 'green',
-        'store' => 'pink',
+        'store' => 'darkorange',
         'user' => 'pink',
     ];
 

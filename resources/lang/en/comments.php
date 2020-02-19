@@ -22,6 +22,7 @@ return [
     'deleted' => 'deleted',
     'deleted_count' => ':count_delimited deleted comment|:count_delimited deleted comments',
     'edited' => 'edited :timeago by :user',
+    'pinned' => 'pinned',
     'empty' => 'No comments yet.',
     'load_replies' => 'load replies',
     'replies' => 'Replies',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Comments :info',
-            'info' => 'Listing',
-        ],
+        'nav_title' => 'listing',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Comments',
-            'info' => 'Comments',
-        ],
+        'nav_title' => 'comments',
     ],
 ];

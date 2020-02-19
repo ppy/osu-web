@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Đăng kí: :start đến :end',
 
         'header' => [
-            'subtitle' => 'Danh sách các giải đấu chính thức đang hoạt động',
             'title' => 'Giải Đấu Cộng Đồng',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Hủy Đăng Kí',
             'register' => 'Đăng kí!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => '',
         ],
 
         'state' => [

@@ -22,15 +22,9 @@ return [
     'cancel' => 'Mégse',
 
     'authorise' => [
-        'authorise' => 'Engedélyezés',
         'request' => 'engedélyt kér a fiókodhoz.',
         'scopes_title' => 'Ez az alkalmazás képes lesz a:',
         'title' => 'Hitelesítési Kérelem',
-
-        'wrong_user' => [
-            '_' => ':user-ként vagy bejelentkezve. :logout_link.',
-            'logout_link' => 'Kattints ide másik felhasználóval való bejelentkezéshez',
-        ],
     ],
 
     'authorized_clients' => [
@@ -50,12 +44,6 @@ return [
         'name' => 'Alkalmazás neve',
         'redirect' => '',
         'secret' => 'Ügyfél titkos kódja',
-    ],
-
-    'login' => [
-        'download' => 'Kattints ide a játék letöltése és egy felhasználó létrehozásához',
-        'label' => 'Először is, jelentkezz be a fiókodba!',
-        'title' => 'Felhasználó Bejelentkezés',
     ],
 
     'new_client' => [

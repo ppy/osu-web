@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Pagar',
+        'info' => ':count_delimited item no carrinho ($:subtotal)|:count_delimited itens no carrinho ($:subtotal)',
         'more_goodies' => 'Gostaria de conferir mais coisas antes de finalizar meu pedido',
         'shipping_fees' => 'taxas de envio',
         'title' => 'Carrinho de Compras',
@@ -76,12 +77,6 @@ return [
                     'link_text' => 'clique aqui para continuar com a compra',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Recebemos o seu pedido da osu!store!',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => 'Você precisa estar :link para mudar o seu nome!',
             'link_text' => 'conectado',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

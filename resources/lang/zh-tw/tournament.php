@@ -24,7 +24,6 @@ return [
         'registration_period' => '報名時間： :start 到 :end',
 
         'header' => [
-            'subtitle' => '官方認可的比賽列表',
             'title' => '社區比賽',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => '取消報名',
             'register' => '我要報名！',
+        ],
+
+        'period' => [
+            'end' => '結束',
+            'start' => '開始',
         ],
 
         'state' => [

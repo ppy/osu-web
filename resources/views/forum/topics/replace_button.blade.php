@@ -29,10 +29,10 @@
 Timeout.set(0, function() {
     $('.js-forum-topic-{{ $type }}--extra[data-topic-id={{ $topic->topic_id }}]').remove();
     $('.js-forum-topic-{{ $type }}[data-topic-id={{ $topic->topic_id }}]')
-        .replaceWith({!! json_encode(render_to_string(
+        .replaceWith({!! json_encode(view(
             'forum.topics._'.$type,
             compact('topic', 'state', 'userCanModerate')
-        )) !!});
+        )->render()) !!});
 
     osu.popup({!! json_encode(trans('forum.topics.'.$type.'.to_'.$stateText.'_done')) !!}, 'success');
 });

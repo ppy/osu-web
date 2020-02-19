@@ -19,22 +19,27 @@
 .contest {
   @_top: contest;
   background-color: @osu-colour-b5;
-  color: white;
+  color: @osu-colour-c1;
+
+  @media @desktop {
+    margin-bottom: 10px;
+  }
 
   &__description {
+    .default-gutter-v2();
     .content-font();
 
     background-color: @osu-colour-b4;
     color: white;
     font-size: 14px;
     font-weight: 300;
-    padding: 20px;
-    .default-box-shadow();
-
+    padding-top: 20px;
+    padding-bottom: 20px;
 
     > h1, h2, h3, h4, h5, h6 {
-      color: white;
+      color: @osu-colour-c1;
     }
+
     a {
       .link-default();
     }

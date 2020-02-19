@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Plată',
+        'info' => '',
         'more_goodies' => 'Vreau să-mi verific bunătățile înainte de a completa comanda',
         'shipping_fees' => 'taxe de livrare',
         'title' => 'Coșul de cumpărături',
@@ -76,12 +77,6 @@ return [
                     'link_text' => 'apasă aici pentru a-ți calcula plata',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Am primit comanda ta din magazinul osu!',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => 'Trebuie să fii :link pentru a îți schimba numele!',
             'link_text' => 'conectat',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

@@ -25,7 +25,4 @@ return [
 
         'link' => 'wiki stránku o živém vysílání',
     ],
-    'headers' => [
-        'regular' => 'Právě probíhající vysílání',
-    ],
 ];

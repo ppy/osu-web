@@ -19,21 +19,12 @@
  */
 
 return [
-    'buttons' => [
-      'add' => 'thêm bạn',
-      'disabled' => 'bạn bè',
-      'remove' => 'xóa bạn',
-    ],
-
-    'index' => [
-        'title' => [
-            '_' => 'Trang chủ :info',
-            'info' => 'Bạn bè',
-        ],
-    ],
-
-    'title' => 'Bạn Bè',
     'title_compact' => 'bạn bè',
-
     'too_many' => 'Đã đạt đến giới hạn bạn bè.',
+
+    'buttons' => [
+        'add' => 'thêm bạn',
+        'disabled' => 'bạn bè',
+        'remove' => 'xóa bạn',
+    ],
 ];

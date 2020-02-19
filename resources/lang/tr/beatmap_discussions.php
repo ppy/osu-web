@@ -77,11 +77,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'İnceleme paylaşımını görüntüle',
+        'go_to_child' => 'Tartışmayı görüntüle',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => ':user tarafından çözüldü olarak işaretlendi',
             'false' => ':user tarafından yeniden açıldı',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'genel',
+        'general_all' => 'genel (hepsi)',
     ],
 
     'user_filter' => [

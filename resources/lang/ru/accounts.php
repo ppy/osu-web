@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Настройки <strong>аккаунта</strong>',
         'title_compact' => 'настройки',
         'username' => 'имя пользователя',
 
@@ -68,11 +67,17 @@ return [
         'title' => 'Уведомления',
         'topic_auto_subscribe' => 'отслеживать созданные темы автоматически',
         'beatmapset_discussion_qualified_problem' => 'получать уведомления о новых проблемах с квалифицированными картами у следующих режимов',
+
+        'mail' => [
+            '_' => 'получать уведомления по почте о',
+            'beatmapset:modding' => 'моддинге карт',
+            'forum_topic_reply' => 'ответах на темы',
+        ],
     ],
 
     'oauth' => [
         'authorized_clients' => 'подключенные',
-        'own_clients' => 'мои приложения',
+        'own_clients' => 'мои клиенты',
         'title' => 'Приложения и доступ',
     ],
 
@@ -87,11 +92,11 @@ return [
     'privacy' => [
         'friends_only' => 'разрешить писать мне только друзьям',
         'hide_online' => 'скрывать онлайн на сайте',
-        'title' => 'Приватность',
+        'title' => 'Конфиденциальность',
     ],
 
     'security' => [
-        'current_session' => 'это вы',
+        'current_session' => 'текущая',
         'end_session' => 'деавторизовать',
         'end_session_confirmation' => 'Сеанс на этом устройстве будет немедленно завершён. Вы уверены?',
         'last_active' => 'Был активен:',
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Подтверждение смены почты аккаунта osu!',
         'update' => 'сменить',
     ],
 
     'update_password' => [
-        'email_subject' => 'Подтверждение смены пароля аккаунта osu!',
         'update' => 'сменить',
     ],
 

@@ -28,12 +28,15 @@ use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use App\Libraries\Wiki\MainPageRenderer;
 use App\Libraries\Wiki\MarkdownRenderer;
+use App\Models\Elasticsearch\WikiPageTrait;
 use Carbon\Carbon;
 use Exception;
 use Log;
 
 class Page implements WikiObject
 {
+    use WikiPageTrait;
+
     const CACHE_DURATION = 5 * 60 * 60;
     const VERSION = 1;
 
@@ -63,8 +66,8 @@ class Page implements WikiObject
     public static function searchIndexConfig($params = [])
     {
         return array_merge([
-            'index' => config('osu.elasticsearch.index.wiki_pages'),
-            'type' => 'wiki_page',
+            'index' => static::esIndexName(),
+            'type' => static::esType(),
         ], $params);
     }
 
@@ -141,10 +144,11 @@ class Page implements WikiObject
 
         $query = (new BoolQuery())
             ->must(['match' => ['path_clean' => es_query_and_words($searchPath)]])
+            ->must(['exists' => ['field' => 'page']])
             ->should($localeQuery)
             ->shouldMatch(1);
 
-        $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), 'wiki_searchpath'))
+        $search = (new BasicSearch(static::esIndexName(), 'wiki_searchpath'))
             ->source('path')
             ->query($query);
 
@@ -175,20 +179,21 @@ class Page implements WikiObject
 
     public function editUrl()
     {
-        return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
+        return 'https://github.com/'.OsuWiki::user().'/'.OsuWiki::repository().'/tree/master/wiki/'.$this->pagePath();
     }
 
-    public function esDeleteDocument()
+    public function esDeleteDocument(array $options = [])
     {
         $this->log('delete document');
 
         return Es::getClient()->delete(static::searchIndexConfig([
             'id' => $this->pagePath(),
+            'index' => $options['index'] ?? static::esIndexName(),
             'client' => ['ignore' => 404],
         ]));
     }
 
-    public function esIndexDocument()
+    public function esIndexDocument(array $options = [])
     {
         if ($this->page === null) {
             $this->log('index document empty');
@@ -198,13 +203,14 @@ class Page implements WikiObject
 
         return Es::getClient()->index(static::searchIndexConfig([
             'id' => $this->pagePath(),
+            'index' => $options['index'] ?? static::esIndexName(),
             'body' => $this->source,
         ]));
     }
 
     public function esFetch()
     {
-        $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), 'wiki_page_lookup'))
+        $response = (new BasicSearch(static::esIndexName(), 'wiki_page_lookup'))
             ->source(['page', 'indexed_at', 'version'])
             ->query([
                 'term' => [
@@ -229,23 +235,23 @@ class Page implements WikiObject
             && static::lookup($this->parentPath(), $this->locale)->isVisible();
     }
 
-    public function needsCleanup() : bool
+    public function needsCleanup(): bool
     {
         return $this->page['header']['needs_cleanup'] ?? false;
     }
 
-    public function isLegalTranslation() : bool
+    public function isLegalTranslation(): bool
     {
         return $this->isTranslation()
             && ($this->page['header']['legal'] ?? false);
     }
 
-    public function isOutdated() : bool
+    public function isOutdated(): bool
     {
         return $this->page['header']['outdated'] ?? false;
     }
 
-    public function isTranslation() : bool
+    public function isTranslation(): bool
     {
         return $this->locale !== config('app.fallback_locale');
     }
@@ -308,7 +314,7 @@ class Page implements WikiObject
         return presence($this->page['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
     }
 
-    public function sync($force = false)
+    public function sync($force = false, $indexName = null)
     {
         if (!$force && !$this->needsSync()) {
             return $this;
@@ -356,7 +362,7 @@ class Page implements WikiObject
         }
 
         $this->source = $source;
-        $this->esIndexDocument();
+        $this->esIndexDocument(['index' => $indexName]);
 
         return $this;
     }

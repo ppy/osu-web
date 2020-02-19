@@ -22,6 +22,7 @@ return [
     'deleted' => 'silindi',
     'deleted_count' => ':count_delimited silinmiş yorum|:count_delimited silinmiş yorum',
     'edited' => ':timeago tarihinde :user tarafından düzenlendi',
+    'pinned' => '',
     'empty' => 'Henüz yorum yok.',
     'load_replies' => 'yanıtları yükle',
     'replies' => 'Yanıtlar',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Yorumlar :info',
-            'info' => 'Listeleme',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Yorumlar :info',
-            'info' => 'Ayrıntı',
-        ],
+        'nav_title' => '',
     ],
 ];

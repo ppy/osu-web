@@ -64,24 +64,52 @@ return [
         'send_message' => 'envoyer un message',
     ],
 
+    'disabled' => [
+        'title' => 'Oh-oh ! Il semble que votre compte ait été désactivé.',
+        'warning' => "Dans le cas où vous avez enfreint une règle, veuillez noter qu'il y a généralement une période de temps d'un mois pendant laquelle nous n'examinerons aucune demande d'amnistie. Après cette période, vous êtes libre de nous contacter si vous le jugez nécessaire. Veuillez noter que la création de nouveaux comptes une fois que vous en ayez eu un désactivé, entraînera une prolongation <strong>de ce délai de récupération d'un mois</strong>. Veuillez également noter que pour <strong>chaque compte que vous créez, vous enfreignez à nouveau les règles</strong>. Nous vous suggérons fortement de ne pas suivre cette voie !",
+
+        'if_mistake' => [
+            '_' => 'Si vous pensez que c\'est une erreur, vous êtes invités à nous contacter (via :email ou en cliquant sur le "?" dans le coin en bas à droite de cette page). Veuillez noter que nous sommes confiants en nos actions, car elles reposent sur des données solides. Nous nous réservons le droit de ne pas tenir compte de votre demande si nous pensons que vous êtes délibérément malhonnête.',
+            'email' => 'email',
+        ],
+
+        'reasons' => [
+            'compromised' => 'Votre compte a été considéré comme compromis. Il est désactivé temporairement en attendant que son identité soit confirmée.',
+            'opening' => 'Il y a plusieurs raisons qui peuvent conduire à la désactivation de votre compte :',
+
+            'tos' => [
+                '_' => 'Vous avez enfreint une ou plusieurs de nos :community_rules ou :tos.',
+                'community_rules' => 'règles de la communauté',
+                'tos' => 'conditions de service',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "Votre compte n'a pas été utilisé depuis longtemps.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Se connecter',
-        'locked_ip' => 'votre adresse IP est bloquée. Merci d\'attendre quelques minutes.',
-        'username' => 'Nom d\'utilisateur',
-        'password' => 'Mot de passe',
         'button' => 'Se connecter',
         'button_posting' => 'Connexion...',
+        'email_login_disabled' => 'La connexion par email est actuellement désactivée. Veuillez utiliser le nom d\'utilisateur à la place.',
+        'failed' => 'Identifiants incorrects',
+        'forgot' => 'Mot de passe oublié ?',
+        'info' => 'Veuillez vous connecter pour continuer',
+        'locked_ip' => 'votre adresse IP est bloquée. Merci d\'attendre quelques minutes.',
+        'password' => 'Mot de passe',
+        'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant ici",
         'remember' => 'Se souvenir de moi sur cet ordinateur',
         'title' => 'Merci de vous connecter pour continuer',
-        'failed' => 'Identifiants incorrects',
-        'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant ici",
-        'forgot' => 'Mot de passe oublié ?',
+        'username' => 'Nom d\'utilisateur',
+
         'beta' => [
             'main' => 'Accès bêta restreint aux utilisateurs privilégiés.',
             'small' => '(les supporteurs osu! l\'obtiendront bientôt)',
         ],
-
-        'here' => 'ici', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Joueur :info',
-            'info' => 'Info',
         ],
 
         'info' => [

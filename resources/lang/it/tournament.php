@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Registrazione: :start - :end',
 
         'header' => [
-            'subtitle' => 'Una lista di tutti i tornei attivi e ufficialmente riconosciuti',
             'title' => 'Tornei della Community',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Annulla Iscrizione',
             'register' => 'Iscrivimi!',
+        ],
+
+        'period' => [
+            'end' => 'Fine',
+            'start' => 'Inizio',
         ],
 
         'state' => [

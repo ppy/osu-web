@@ -19,13 +19,15 @@
 
 {{-- FIXME: move to user modding history --}}
 @section('content')
+    @include('layout._page_header_v4', ['params' => [
+        'section' => trans('layout.header.beatmapsets._'),
+        'subSection' => trans('beatmapset_events.index.title'),
+    ]])
     <div class="osu-layout__row osu-layout__row--page">
         <div class="beatmapset-activities">
             @if (isset($user))
                 <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
             @endif
-
-            <h3>{{ trans('beatmapset_events.index.title') }}</h3>
 
             <form class="simple-form simple-form--search-box">
                 <h2 class="simple-form__row simple-form__row--title">

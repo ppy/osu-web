@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use Auth;
 
 class GroupsController extends Controller
 {
@@ -30,16 +31,18 @@ class GroupsController extends Controller
     public function show($id)
     {
         $group = Group::visible()->findOrFail($id);
+        $currentMode = studly_case(Auth::user()->playmode ?? 'osu');
 
         $users = $group->users()
+            ->with('statistics'.$currentMode)
             ->eagerloadForListing()
             ->default()
             ->orderBy('username', 'asc')
             ->get();
 
         $groupJson = $group->only('group_name', 'group_desc');
-        $usersJson = json_collection($users, 'UserCompact', ['cover', 'country', 'support_level']);
+        $usersJson = json_collection($users, 'UserCompact', ['cover', 'country', 'current_mode_rank', 'support_level']);
 
-        return view('groups.show', compact('groupJson', 'usersJson'));
+        return ext_view('groups.show', compact('groupJson', 'usersJson'));
     }
 }

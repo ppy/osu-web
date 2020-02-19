@@ -22,8 +22,9 @@ return [
     'deleted' => 'slettet',
     'deleted_count' => ':count_delimited slettet kommentar|:count_delimited slettede kommentarer',
     'edited' => 'redigeret :timeago af :user',
+    'pinned' => 'fastgjort',
     'empty' => 'Ingen kommentare endnu.',
-    'load_replies' => '',
+    'load_replies' => 'indlæs svar',
     'replies' => 'Svar',
     'title' => 'Kommentarer',
 
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Kommentarer :info',
-            'info' => 'Listning',
-        ],
+        'nav_title' => 'katalog',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Kommentarer :info',
-            'info' => 'Detalje',
-        ],
+        'nav_title' => 'kommentarer',
     ],
 ];

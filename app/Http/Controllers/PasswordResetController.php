@@ -52,7 +52,7 @@ class PasswordResetController extends Controller
     {
         $isStarted = Session::exists('password_reset');
 
-        return view('password_reset.index', compact('isStarted'));
+        return ext_view('password_reset.index', compact('isStarted'));
     }
 
     public function create()
@@ -151,7 +151,7 @@ class PasswordResetController extends Controller
 
         Session::put('password_reset', $session);
 
-        Mail::to($user->user_email)->send(new PasswordReset([
+        Mail::to($user)->send(new PasswordReset([
             'user' => $user,
             'key' => $session['key'],
         ]));

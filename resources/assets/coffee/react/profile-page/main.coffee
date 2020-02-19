@@ -155,10 +155,10 @@ export class Main extends React.PureComponent
             type: 'warning'
             title: osu.trans('users.blocks.banner_text')
             message:
-              div className: 'notification-banner__button-group',
-                div className: 'notification-banner__button',
+              div className: 'grid-items grid-items--notification-banner-buttons',
+                div null,
                   el BlockButton, userId: @props.user.id
-                div className: 'notification-banner__button',
+                div null,
                   button
                     type: 'button'
                     className: 'textual-button'

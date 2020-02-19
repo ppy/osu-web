@@ -20,7 +20,6 @@
 
 namespace App\Mail;
 
-use App\Models\SupporterTag;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -44,7 +43,7 @@ class DonationThanks extends Mailable implements ShouldQueue
         $this->params = [
             'continued' => $continued,
             'donor' => $donor,
-            'duration' => SupporterTag::getDurationText($length),
+            'duration' => $length,
             'amount' => $amount,
             'isGift' => $isGift,
             'minutes' => round($amount / config('payments.running_cost') * 525949, 1), // 365.2425 days
@@ -58,12 +57,12 @@ class DonationThanks extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->text(i18n_view('emails.store.donation_thanks'))
+        return $this->text('emails.store.donation_thanks')
             ->with($this->params)
             ->from(
                 config('store.mail.donation_thanks.sender_address'),
                 config('store.mail.donation_thanks.sender_name')
             )
-            ->subject(trans('fulfillments.mail.donation_thanks.subject'));
+            ->subject(trans('mail.donation_thanks.subject'));
     }
 }

@@ -38,6 +38,7 @@ use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
@@ -62,6 +63,7 @@ use Request;
  * @property string $country_acronym
  * @property mixed $current_password
  * @property mixed $displayed_last_visit
+ * @property string $email
  * @property \Illuminate\Database\Eloquent\Collection $events Event
  * @property \Illuminate\Database\Eloquent\Collection $favourites FavouriteBeatmapset
  * @property \Illuminate\Database\Eloquent\Collection $forumPosts Forum\Post
@@ -178,7 +180,7 @@ use Request;
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
  */
-class User extends Model implements AuthenticatableContract
+class User extends Model implements AuthenticatableContract, HasLocalePreference
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
     use Authenticatable, HasApiTokens, Reportable, UserAvatar, UserScoreable, Validatable;
@@ -238,6 +240,8 @@ class User extends Model implements AuthenticatableContract
     private $emailConfirmation = null;
     private $validateEmailConfirmation = false;
 
+    private $isSessionVerified;
+
     public function getAuthPassword()
     {
         return $this->user_password;
@@ -259,7 +263,7 @@ class User extends Model implements AuthenticatableContract
         }
     }
 
-    public function revertUsername($type = 'revert') : UsernameChangeHistory
+    public function revertUsername($type = 'revert'): UsernameChangeHistory
     {
         // TODO: normalize validation with changeUsername.
         if ($this->user_id <= 1) {
@@ -273,7 +277,7 @@ class User extends Model implements AuthenticatableContract
         return $this->updateUsername($this->username_previous, $type);
     }
 
-    public function changeUsername(string $newUsername, string $type) : UsernameChangeHistory
+    public function changeUsername(string $newUsername, string $type): UsernameChangeHistory
     {
         $errors = $this->validateChangeUsername($newUsername, $type);
         if ($errors->isAny()) {
@@ -287,7 +291,7 @@ class User extends Model implements AuthenticatableContract
         });
     }
 
-    public function renameIfInactive() : ?UsernameChangeHistory
+    public function renameIfInactive(): ?UsernameChangeHistory
     {
         if ($this->getUsernameAvailableAt() <= Carbon::now()) {
             $newUsername = "{$this->username}_old";
@@ -296,7 +300,7 @@ class User extends Model implements AuthenticatableContract
         }
     }
 
-    private function tryUpdateUsername(int $try, string $newUsername, string $type) : UsernameChangeHistory
+    private function tryUpdateUsername(int $try, string $newUsername, string $type): UsernameChangeHistory
     {
         $name = $try > 0 ? "{$newUsername}_{$try}" : $newUsername;
 
@@ -311,7 +315,7 @@ class User extends Model implements AuthenticatableContract
         }
     }
 
-    private function updateUsername(string $newUsername, string $type) : UsernameChangeHistory
+    private function updateUsername(string $newUsername, string $type): UsernameChangeHistory
     {
         $oldUsername = $type === 'revert' ? null : $this->getOriginal('username');
         $this->username_previous = $oldUsername;
@@ -350,7 +354,7 @@ class User extends Model implements AuthenticatableContract
         return strtolower($username);
     }
 
-    public static function findAndRenameUserForInactive($username) : ?self
+    public static function findAndRenameUserForInactive($username): ?self
     {
         $existing = static::findByUsernameForInactive($username);
         if ($existing !== null) {
@@ -362,7 +366,7 @@ class User extends Model implements AuthenticatableContract
     }
 
     // TODO: be able to change which connection this runs on?
-    public static function findByUsernameForInactive($username) : ?self
+    public static function findByUsernameForInactive($username): ?self
     {
         return static::whereIn(
             'username',
@@ -370,7 +374,7 @@ class User extends Model implements AuthenticatableContract
         )->first();
     }
 
-    public static function checkWhenUsernameAvailable($username) : Carbon
+    public static function checkWhenUsernameAvailable($username): Carbon
     {
         $user = static::findByUsernameForInactive($username);
         if ($user !== null) {
@@ -389,7 +393,7 @@ class User extends Model implements AuthenticatableContract
         return Carbon::parse($lastUsage->timestamp)->addDays(static::INACTIVE_DAYS);
     }
 
-    public function getUsernameAvailableAt() : Carbon
+    public function getUsernameAvailableAt(): Carbon
     {
         $playCount = $this->playCount();
 
@@ -482,6 +486,11 @@ class User extends Model implements AuthenticatableContract
         return presence($value);
     }
 
+    public function getEmailAttribute()
+    {
+        return $this->user_email;
+    }
+
     public function getUserFromAttribute($value)
     {
         return presence(html_entity_decode_better($value));
@@ -500,6 +509,11 @@ class User extends Model implements AuthenticatableContract
     public function setUserInterestsAttribute($value)
     {
         $this->attributes['user_interests'] = e($value);
+    }
+
+    public function getUserLangAttribute($value)
+    {
+        return get_valid_locale($value);
     }
 
     public function getUserOccAttribute($value)
@@ -687,17 +701,17 @@ class User extends Model implements AuthenticatableContract
 
     public function isNAT()
     {
-        return $this->isGroup(UserGroup::GROUPS['nat']);
+        return $this->isGroup(app('groups')->byIdentifier('nat'));
     }
 
     public function isAdmin()
     {
-        return $this->isGroup(UserGroup::GROUPS['admin']);
+        return $this->isGroup(app('groups')->byIdentifier('admin'));
     }
 
     public function isGMT()
     {
-        return $this->isGroup(UserGroup::GROUPS['gmt']);
+        return $this->isGroup(app('groups')->byIdentifier('gmt'));
     }
 
     public function isBNG()
@@ -707,42 +721,42 @@ class User extends Model implements AuthenticatableContract
 
     public function isFullBN()
     {
-        return $this->isGroup(UserGroup::GROUPS['bng']);
+        return $this->isGroup(app('groups')->byIdentifier('bng'));
     }
 
     public function isLimitedBN()
     {
-        return $this->isGroup(UserGroup::GROUPS['bng_limited']);
+        return $this->isGroup(app('groups')->byIdentifier('bng_limited'));
     }
 
     public function isDev()
     {
-        return $this->isGroup(UserGroup::GROUPS['dev']);
+        return $this->isGroup(app('groups')->byIdentifier('dev'));
     }
 
     public function isMod()
     {
-        return $this->isGroup(UserGroup::GROUPS['mod']);
+        return $this->isGroup(app('groups')->byIdentifier('mod'));
     }
 
     public function isAlumni()
     {
-        return $this->isGroup(UserGroup::GROUPS['alumni']);
+        return $this->isGroup(app('groups')->byIdentifier('alumni'));
     }
 
     public function isRegistered()
     {
-        return $this->isGroup(UserGroup::GROUPS['default']);
+        return $this->isGroup(app('groups')->byIdentifier('default'));
     }
 
     public function isProjectLoved()
     {
-        return $this->isGroup(UserGroup::GROUPS['loved']);
+        return $this->isGroup(app('groups')->byIdentifier('loved'));
     }
 
     public function isBot()
     {
-        return $this->group_id === UserGroup::GROUPS['bot'];
+        return $this->group_id === app('groups')->byIdentifier('bot')->getKey();
     }
 
     public function hasSupported()
@@ -830,11 +844,13 @@ class User extends Model implements AuthenticatableContract
      */
     public function defaultGroup()
     {
-        if ($this->group_id === UserGroup::GROUPS['admin']) {
-            return 'default';
+        $groups = app('groups');
+
+        if ($this->group_id === $groups->byIdentifier('admin')->getKey()) {
+            return $groups->byIdentifier('default');
         }
 
-        return array_search_null($this->group_id, UserGroup::GROUPS) ?? 'default';
+        return $groups->byId($this->group_id) ?? $groups->byIdentifier('default');
     }
 
     public function groupIds()
@@ -849,7 +865,7 @@ class User extends Model implements AuthenticatableContract
     // check if a user is in a specific group, by ID
     public function isGroup($group)
     {
-        return in_array($group, $this->groupIds(), true);
+        return in_array($group->getKey(), $this->groupIds(), true);
     }
 
     public function badges()
@@ -1295,15 +1311,16 @@ class User extends Model implements AuthenticatableContract
     public function groupBadge()
     {
         if ($this->isBot()) {
-            return 'bot';
+            return app('groups')->byIdentifier('bot');
         }
 
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            $groupNames = $this->userGroups->map->name()->all();
-            array_unshift($groupNames, $this->defaultGroup());
+            $ids = $this->groupIds();
+            array_unshift($ids, $this->defaultGroup()->getKey());
 
-            $badge = array_first(array_intersect(UserGroup::DISPLAY_PRIORITY, $groupNames));
-            $this->memoized[__FUNCTION__] = $badge;
+            $idOrder = app('groups')->all()->where('display_order', '!==', null)->pluck('group_id')->all();
+            $badge = array_first(array_intersect($idOrder, $ids));
+            $this->memoized[__FUNCTION__] = app('groups')->byId($badge);
         }
 
         return $this->memoized[__FUNCTION__];
@@ -1761,6 +1778,18 @@ class User extends Model implements AuthenticatableContract
             ->with('beatmaps');
     }
 
+    public function isSessionVerified()
+    {
+        return $this->isSessionVerified;
+    }
+
+    public function markSessionVerified()
+    {
+        $this->isSessionVerified = true;
+
+        return $this;
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();
@@ -1853,6 +1882,11 @@ class User extends Model implements AuthenticatableContract
         return $this->validationErrors()->isEmpty();
     }
 
+    public function preferredLocale()
+    {
+        return $this->user_lang;
+    }
+
     public function url()
     {
         return route('users.show', ['user' => $this->getKey()]);
@@ -1872,7 +1906,7 @@ class User extends Model implements AuthenticatableContract
         return $this->isValid() && parent::save($options);
     }
 
-    protected function newReportableExtraParams() : array
+    protected function newReportableExtraParams(): array
     {
         return [
             'reason' => 'Cheating',

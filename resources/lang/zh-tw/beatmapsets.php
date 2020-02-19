@@ -20,13 +20,13 @@
 
 return [
     'availability' => [
-        'disabled' => '該譜面現在無法下載。',
+        'disabled' => '該圖譜現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
         'more-info' => '點擊這裡查看更多訊息。',
     ],
 
     'index' => [
-        'title' => '譜面列表',
+        'title' => '圖譜列表',
         'guest_title' => '圖譜',
     ],
 
@@ -34,12 +34,12 @@ return [
         'discussion' => '討論',
 
         'details' => [
-            'approved' => '批准於 ',
+            'approved' => '核準於 ',
             'favourite' => '收藏這張圖譜',
             'logged-out' => '下載圖譜前請先登入！',
             'loved' => 'loved 於 ',
             'mapped_by' => '由 :mapper 製作',
-            'qualified' => '提名於 ',
+            'qualified' => 'qualified 於 ',
             'ranked' => '進榜於 ',
             'submitted' => '發佈於 ',
             'unfavourite' => '取消收藏',
@@ -72,15 +72,20 @@ return [
                 'status' => [
                     'pending' => '待處理',
                     'qualified' => '已提名',
-                    'wip' => '此功能仍在開發中',
+                    'wip' => '製作中',
                 ],
             ],
 
+            'disqualify' => [
+                '_' => '如果你認為此圖譜有問題，可將之取消提名：:link',
+                'button_title' => '取消提名已被Qualified的圖譜',
+            ],
+
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => '如果您發現此圖譜有問題，請在 :link 通知團隊。',
+                'button' => '回報問題',
+                'button_title' => '在 qualified 的圖譜上回報問題。',
+                'link' => '這裡',
             ],
         ],
 
@@ -145,6 +150,16 @@ return [
             'rating-spread' => '評分情況',
             'nominations' => '提名',
             'playcount' => '遊玩次数',
+        ],
+
+        'status' => [
+            'ranked' => '已進榜',
+            'approved' => '已核準',
+            'loved' => 'Loved',
+            'qualified' => '已提名',
+            'wip' => '製作中',
+            'pending' => '待處理',
+            'graveyard' => '拋棄',
         ],
     ],
 ];

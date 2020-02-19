@@ -20,8 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Account</strong> Settings',
-        'title_compact' => 'settings',
+        'title_compact' => 'account settings',
         'username' => 'username',
 
         'avatar' => [
@@ -106,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! email change confirmation',
         'update' => 'update',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! password change confirmation',
         'update' => 'update',
     ],
 

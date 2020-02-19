@@ -77,11 +77,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '평가 글 보기',
+        'go_to_child' => '토론 글 보기',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => ':user님이 토론을 끝마쳤습니다',
             'false' => ':user님이 토론을 재개했습니다',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '일반',
+        'general_all' => '일반 (전체)',
     ],
 
     'user_filter' => [

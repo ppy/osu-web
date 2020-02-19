@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => '관리',
+        'authorise' => '권한 부여',
         'back_to_previous' => '이전 위치로 돌아가기',
         'back_to_top' => '맨 위로',
         'cancel' => '취소',
@@ -48,7 +49,7 @@ return [
         'expand' => '확장',
         'hide' => '숨기기',
         'permalink' => '고유 주소',
-        'permalink_copied' => '링크 복사됨',
+        'pin' => '고정',
         'post' => '게시하기',
         'reply' => '답변하기',
         'reply_reopen' => '답변하고 토론 재개하기',
@@ -61,8 +62,10 @@ return [
         'see_more' => '더 보기',
         'show' => '표시',
         'show_deleted' => '삭제된 내용 표시',
+        'show_less' => '',
         'show_more' => '더 보기',
         'show_more_options' => '더 많은 옵션 보기',
+        'unpin' => '고정 해제',
         'update' => '업데이트',
         'upload_image' => '이미지 올리기',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => '분',
         'minutes' => ':count분',
         'months' => ':count달',
+        'notifications' => '',
         'plus_others' => '+ :count_delimited 기타!',
         'post' => ':count_delimited 게시글',
         'second_short_unit' => '초',
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => '알림',
+    ],
+
+    'wrong_user' => [
+        '_' => ':user로 로그인되어있습니다. :logout_link.',
+        'logout_link' => '다른 사용자로 로그인하려면 이곳을 클릭하세요',
     ],
 ];

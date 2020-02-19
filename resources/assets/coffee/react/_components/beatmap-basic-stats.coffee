@@ -33,19 +33,15 @@ formatDuration = (value) ->
     "#{m}:#{_.padStart s, 2, 0}"
 
 
-export BeatmapBasicStats = ({beatmapset, beatmap}) ->
+export BeatmapBasicStats = ({beatmap}) ->
   div
     className: bn
     for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
-      value =
-        if stat == 'bpm'
-          beatmapset.bpm
-        else
-          beatmap[stat]
+      value = beatmap[stat]
 
       value =
         if stat == 'bpm'
-          if value > 1000 then '—' else osu.formatNumber(value)
+          if value > 1000 then '∞' else osu.formatNumber(value)
         else if stat == 'total_length'
           formatDuration value
         else

@@ -17,13 +17,12 @@
 --}}
 @extends('master', [
     'legacyFont' => false,
-    'legacyNav' => false,
     'pageDescription' => trans('forum.title'),
     'searchParams' => ['mode' => 'forum_post'],
 ])
 
 @section('content')
-    @include('forum._header', ['modifiers' => ['forums-index']])
+    @include('forum._header')
 
     <div class="osu-page osu-page--forum">
         @foreach($forums as $category)

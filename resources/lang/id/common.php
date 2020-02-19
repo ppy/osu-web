@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => 'Izinkan',
         'back_to_previous' => 'Kembali ke posisi sebelumnya',
         'back_to_top' => 'Kembali ke atas',
         'cancel' => 'Batal',
@@ -48,7 +49,7 @@ return [
         'expand' => 'perluas',
         'hide' => 'sembunyikan',
         'permalink' => 'tautan',
-        'permalink_copied' => 'tautan tersalin',
+        'pin' => 'sematkan',
         'post' => 'Posting',
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Kembali',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'perlihatkan lebih banyak',
         'show' => 'tampilkan',
         'show_deleted' => 'Tampilkan yang sudah dihapus',
+        'show_less' => '',
         'show_more' => 'tampilkan lebih banyak',
         'show_more_options' => 'tampilkan pilihan lainnya',
+        'unpin' => 'lepas sematan',
         'update' => 'Perbarui',
         'upload_image' => 'unggah gambar',
 
@@ -73,14 +76,15 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count lencana',
-        'days' => ':count hari',
+        'badges' => ':count_delimited lencana',
+        'days' => ':count_delimited hari',
         'hour_short_unit' => 'jam|jam',
-        'hours' => ':count jam',
-        'item' => ':count unit',
+        'hours' => ':count_delimited jam',
+        'item' => ':count_delimited unit',
         'minute_short_unit' => 'menit|menit',
-        'minutes' => ':count menit |:count menit',
-        'months' => ':count bulan',
+        'minutes' => ':count_delimited menit',
+        'months' => ':count_delimited bulan',
+        'notifications' => '',
         'plus_others' => '+ :count_delimited lainnya!',
         'post' => ':count_delimited kiriman',
         'second_short_unit' => 'detik|detik',
@@ -137,13 +141,18 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count hari yang lalu',
-        'hours_ago' => ':count jam yang lalu',
+        'days_ago' => ':count_delimited hari yang lalu',
+        'hours_ago' => ':count_delimited jam yang lalu',
         'now' => 'sekarang',
         'remaining' => 'Waktu Tersisa',
     ],
 
     'title' => [
         'notice' => 'Pemberitahuan',
+    ],
+
+    'wrong_user' => [
+        '_' => 'Kamu terdaftar masuk sebagai :user. :logout_link.',
+        'logout_link' => 'Klik di sini untuk masuk sebagai pengguna lain',
     ],
 ];

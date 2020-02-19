@@ -30,11 +30,11 @@ return [
             'title' => '',
 
             'team' => [
-                'title' => '',
+                'title' => 'Podpořit tým',
                 'description' => '',
             ],
             'infra' => [
-                'title' => '',
+                'title' => 'Infrastruktura serveru',
                 'description' => '',
             ],
             'featured-artists' => [
@@ -47,7 +47,7 @@ return [
                 'description' => '',
             ],
             'tournaments' => [
-                'title' => '',
+                'title' => 'Oficiální turnaje',
                 'description' => '',
                 'link_text' => '',
             ],
@@ -70,7 +70,7 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => '',
+                'title' => 'Státní žebříčky',
                 'description' => '',
             ],
 
@@ -135,15 +135,15 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
+                'title' => 'Více oblíbených',
                 'description' => '',
             ],
             'more_friends' => [
-                'title' => '',
+                'title' => 'Více přátel',
                 'description' => '',
             ],
             'more_beatmaps' => [
-                'title' => '',
+                'title' => 'Nahrát více Beatmap',
                 'description' => '',
             ],
             'friend_filtering' => [

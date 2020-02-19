@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => 'Authorise',
         'back_to_previous' => 'Return to previous position',
         'back_to_top' => 'Back to top',
         'cancel' => 'Cancel',
@@ -48,7 +49,7 @@ return [
         'expand' => 'expand',
         'hide' => 'hide',
         'permalink' => 'permalink',
-        'permalink_copied' => 'link copied',
+        'pin' => 'pin',
         'post' => 'Post',
         'reply' => 'Reply',
         'reply_reopen' => 'Reply and Reopen',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'see more',
         'show' => 'show',
         'show_deleted' => 'Show deleted',
+        'show_less' => 'show less',
         'show_more' => 'show more',
         'show_more_options' => 'show more options',
+        'unpin' => 'unpin',
         'update' => 'Update',
         'upload_image' => 'upload image',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'min|mins',
         'minutes' => ':count_delimited minute|:count_delimited minutes',
         'months' => ':count_delimited month|:count_delimited months',
+        'notifications' => ':count_delimited notification|:count_delimited notifications',
         'plus_others' => '+ :count_delimited other!|+ :count_delimited others!',
         'post' => ':count_delimited post|:count_delimited posts',
         'second_short_unit' => 'sec|secs',
@@ -118,10 +122,6 @@ return [
         'target' => 'drop here to upload',
     ],
 
-    'email' => [
-        'hello' => 'Hi :user,',
-    ],
-
     'input' => [
         'search' => 'search...',
     ],
@@ -149,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Notice',
+    ],
+
+    'wrong_user' => [
+        '_' => 'You\'re signed in as :user. :logout_link.',
+        'logout_link' => 'Click here to sign in as different user',
     ],
 ];

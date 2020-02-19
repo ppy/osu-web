@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'osu! account verification',
-    ],
-
     'errors' => [
         'expired' => 'Verification code expired, new verification email sent.',
         'incorrect_key' => 'Incorrect verification code.',

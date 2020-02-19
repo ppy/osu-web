@@ -22,6 +22,7 @@ return [
     'deleted' => 'выдалена',
     'deleted_count' => ':count_delimited каментарый выдалены|:count_delimited каментарыяў выдалена',
     'edited' => ':user адрэагаваў :timeago',
+    'pinned' => '',
     'empty' => 'Няма каментарыяў.',
     'load_replies' => 'запампаваць адказы',
     'replies' => 'Адказы',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Каментарыі :info',
-            'info' => 'Спіс',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Каментарыі :info',
-            'info' => 'Дэталі',
-        ],
+        'nav_title' => '',
     ],
 ];

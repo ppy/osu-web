@@ -64,24 +64,52 @@ return [
         'send_message' => 'kirim pesan',
     ],
 
+    'disabled' => [
+        'title' => 'Uh-oh! Sepertinya akun kamu telah dinonaktifkan.',
+        'warning' => "Apabila Anda telah melakukan suatu pelanggaran yang berdampak langsung terhadap status akun Anda, akun Anda akan dikondisikan di dalam masa hukuman percobaan selama satu bulan di mana selama satu bulan ini kami tidak akan menggubris segala laporan dan permintaan yang masuk terkait dengan akun Anda. Setelah masa hukuman ini berakhir, Anda baru akan kemudian dapat mengontak kami apabila Anda ingin kembali bermain dengan akun Anda. Mohon diperhatikan bahwa membuat akun baru di kala akun utama Anda sedang dibatasi <strong>akan menambah masa hukuman Anda</strong>, dan <strong>masa hukuman ini akan senantiasa bertambah panjang dengan setiap akun baru yang Anda coba untuk buat</strong>. Kami harap Anda dapat memetik pelajaran dari kasus ini dan tidak akan melakukan pelanggaran lagi ke depannya!",
+
+        'if_mistake' => [
+            '_' => 'Apabila Anda merasa hal ini merupakan sebuah kesalahpahaman, Anda dianjurkan untuk mengontak pihak kami sesegera mungkin (melalui :email atau tombol "?" yang tersedia pada pojok kanan bawah halaman ini). Mohon diperhatikan bahwa segala keputusan yang kami ambil terkait dengan akun Anda selalu berdasar pada data-data konkrit yang kami punya dan senantiasa diambil dengan penuh keyakinan. Selain itu, kami juga berhak untuk tidak menindaklanjuti laporan Anda lebih lanjut apabila kami merasa Anda dengan sengaja berbohong kepada kami dalam aduan yang Anda ajukan.',
+            'email' => 'email',
+        ],
+
+        'reasons' => [
+            'compromised' => 'Akun kamu telah ditandai berbahaya. Akun kamu mungkin akan dinonaktifkan untuk sementara hingga identitasnya selesai dikonfirmasi.',
+            'opening' => 'Ada sejumlah alasan yang dapat menyebabkan akun kamu dinonaktifkan:',
+
+            'tos' => [
+                '_' => 'Kamu telah melanggar salah satu atau mungkin beberapa :community_rules atau :tos kami.',
+                'community_rules' => 'peraturan komunitas',
+                'tos' => 'ketentuan layanan',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "Akun kamu sudah lama tidak digunakan.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Masuk',
-        'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
-        'username' => 'Nama Pengguna',
-        'password' => 'Kata Sandi',
         'button' => 'Masuk',
         'button_posting' => 'Mencoba masuk...',
+        'email_login_disabled' => 'Masuk menggunakan email saat ini dinonaktifkan. Silakan masuk menggunakan nama pengguna.',
+        'failed' => 'Gagal masuk',
+        'forgot' => 'Lupa kata sandi?',
+        'info' => 'Silahkan sign in untuk melanjutkan',
+        'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
+        'password' => 'Kata Sandi',
+        'register' => "Belum memiliki akun osu!? Buat yang baru sekarang",
         'remember' => 'Ingat perangkat ini',
         'title' => 'Mohon masuk untuk melanjutkan',
-        'failed' => 'Gagal masuk',
-        'register' => "Belum memiliki akun osu!? Buat yang baru sekarang",
-        'forgot' => 'Lupa kata sandi?',
+        'username' => 'Nama Pengguna',
+
         'beta' => [
             'main' => 'Akses beta saat ini dibatasi untuk pengguna istimewa.',
             'small' => '(osu!supporter akan segera masuk)',
         ],
-
-        'here' => 'di sini', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Pemain :info',
-            'info' => 'Info',
         ],
 
         'info' => [

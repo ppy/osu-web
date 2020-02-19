@@ -149,7 +149,7 @@ export class SearchPanel extends React.Component
       ref: @props.innerRef
       className: 'beatmapsets-search'
       div
-        className: 'osu-page-header__background'
+        className: 'beatmapsets-search__background beatmapsets-search__background--guest'
         style:
           backgroundImage: osu.urlPresence(@props.background)
       div className: 'beatmapsets-search__input-container js-user-link',

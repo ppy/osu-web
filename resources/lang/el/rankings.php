@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => 'Κατάταξη :type',
+    'country' => [
+        'filter' => '',
+    ],
 
     'type' => [
         'performance' => 'Επίδοσης',

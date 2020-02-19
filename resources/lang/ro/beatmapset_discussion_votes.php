@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => 'Voturi pentru discuția beatmapului',
+        'title' => 'Voturi pentru discuția beatmap-lui',
     ],
 
     'item' => [

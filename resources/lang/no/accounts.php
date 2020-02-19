@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Konto</strong> Innstillinger',
         'title_compact' => 'innstillinger',
         'username' => 'brukernavn',
 
@@ -68,6 +67,12 @@ return [
         'title' => 'Varsler',
         'topic_auto_subscribe' => 'aktiver automatiske varslinger på nye forum emner som du lager',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! e-post endringsbekreftelse',
         'update' => 'oppdater',
     ],
 
     'update_password' => [
-        'email_subject' => 'bekreft endring av osu! passord',
         'update' => 'oppdater',
     ],
 

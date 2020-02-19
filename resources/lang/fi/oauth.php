@@ -22,15 +22,9 @@ return [
     'cancel' => 'Peruuta',
 
     'authorise' => [
-        'authorise' => 'Salli',
         'request' => 'pyytää lupaa yhdistää tilillesi.',
         'scopes_title' => 'Tämä sovellus voi:',
         'title' => 'Yhdistyspyyntö',
-
-        'wrong_user' => [
-            '_' => 'Olet kirjautunut sisään käyttäjänä :user:. :logout_link.',
-            'logout_link' => 'Paina tästä kirjautuaksesi sisään toisella käyttäjällä',
-        ],
     ],
 
     'authorized_clients' => [
@@ -50,12 +44,6 @@ return [
         'name' => '',
         'redirect' => '',
         'secret' => '',
-    ],
-
-    'login' => [
-        'download' => 'Paina tästä ladataksesi pelin ja luodaksesi käyttäjän',
-        'label' => 'Ensiksi, kirjaudutaan käyttäjällesi!',
-        'title' => 'Kirjaudu Käyttäjälle',
     ],
 
     'new_client' => [

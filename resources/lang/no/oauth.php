@@ -22,15 +22,9 @@ return [
     'cancel' => 'Avbryt',
 
     'authorise' => [
-        'authorise' => 'Godkjenn',
         'request' => 'ber om tilgang til kontoen din.',
         'scopes_title' => 'Dette programmet vil kunne:',
         'title' => 'Forespørsel om godkjenning',
-
-        'wrong_user' => [
-            '_' => 'Du er logget inn som :user. :logout_link.',
-            'logout_link' => 'Klikk her for å logge inn som en annen bruker',
-        ],
     ],
 
     'authorized_clients' => [
@@ -50,12 +44,6 @@ return [
         'name' => 'Applikasjonsnavn',
         'redirect' => 'Applikasjonens omdirigeringslenke',
         'secret' => '',
-    ],
-
-    'login' => [
-        'download' => 'Klikk her for å laste ned spillet og opprette en konto',
-        'label' => 'Først, la oss logge inn på kontoen din!',
-        'title' => 'Kontoinnlogging',
     ],
 
     'new_client' => [

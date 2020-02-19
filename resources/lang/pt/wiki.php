@@ -20,12 +20,13 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'A página solicitada ainda não foi traduzida para a linguagem selecionada (:language). A exibir a versão em Inglês.',
+        'fallback_translation' => 'A página solicitada ainda não foi traduzida para a linguagem selecionada (:language). A exibir a versão em inglês.',
         'incomplete_or_outdated' => 'O conteúdo nesta página está incompleto ou desatualizado. Se és capaz de ajudar, por favor considera atualizar o artigo!',
         'missing' => 'A página requisitada ":keyword" não pôde ser encontrada.',
         'missing_title' => 'Não encontrada',
-        'missing_translation' => 'A página solicitada não pôde ser encontrada para o idioma selecionado.',
-        'search' => 'A pesquisar páginas existentes :link.',
+        'missing_translation' => 'A página solicitada não pôde ser encontrada para a língua selecionada.',
+        'needs_cleanup_or_rewrite' => 'Esta página não cumpre os padrões da wiki do osu! e precisa de ser limpa ou rescrita. Se puderes ajudar, por favor considera atualizar o artigo!',
+        'search' => 'Pesquisar páginas existentes para :link.',
         'toc' => 'Conteúdos',
 
         'edit' => [
@@ -41,7 +42,7 @@ return [
         ],
     ],
     'main' => [
-        'title' => 'Base de Conhecimento',
+        'title' => 'Base de conhecimento',
         'subtitle' => 'porque osu!pedia mete pena',
     ],
 ];

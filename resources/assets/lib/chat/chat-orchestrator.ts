@@ -19,28 +19,26 @@
 import {
   ChatChannelPartAction,
   ChatChannelSwitchAction,
+  ChatMessageAddAction,
   ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
 import { transaction } from 'mobx';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
 
+@dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
   private api: ChatAPI;
-  private dispatcher: Dispatcher;
-  private rootDataStore: RootDataStore;
   private windowIsActive: boolean = true;
 
-  constructor(dispatcher: Dispatcher, rootDataStore: RootDataStore) {
-    this.dispatcher = dispatcher;
+  constructor(private rootDataStore: RootDataStore) {
     this.rootDataStore = rootDataStore;
-    this.dispatcher.register(this);
     this.api = new ChatAPI();
   }
 
@@ -60,11 +58,12 @@ export default class ChatOrchestrator implements DispatchListener {
 
   changeChannel(channelId: number) {
     const uiState = this.rootDataStore.uiState.chat;
-    if (channelId === uiState.selected) {
+    const channelStore = this.rootDataStore.channelStore;
+
+    if (channelId === uiState.selected && !channelStore.getOrCreate(channelId).loaded) {
       return;
     }
 
-    const channelStore = this.rootDataStore.channelStore;
     transaction(() => {
       if (channelStore.getOrCreate(uiState.selected).type !== 'NEW') {
         // don't disable autoScroll if we're 'switching' away from the 'new chat' screen
@@ -100,7 +99,7 @@ export default class ChatOrchestrator implements DispatchListener {
     const channelList = channelStore.channelList;
     if (channelList.length > 0) {
       // TODO: switch to next 'closest' conversation instead of first in list
-      this.dispatcher.dispatch(new ChatChannelSwitchAction(channelList[0].channelId));
+      dispatch(new ChatChannelSwitchAction(channelList[0].channelId));
     } else {
       channelStore.loaded  = false;
     }
@@ -111,6 +110,10 @@ export default class ChatOrchestrator implements DispatchListener {
       this.changeChannel(action.channelId);
     } else if (action instanceof ChatChannelPartAction) {
       this.partChannel(action.channelId);
+    } else if (action instanceof ChatMessageAddAction) {
+      if (this.windowIsActive && this.rootDataStore.channelStore.loaded) {
+        this.markAsRead(this.rootDataStore.uiState.chat.selected);
+      }
     } else if (action instanceof ChatPresenceUpdateAction) {
       this.focusNextChannel();
     } else if (action instanceof WindowFocusAction) {
@@ -147,15 +150,23 @@ export default class ChatOrchestrator implements DispatchListener {
 
   markAsRead(channelId: number) {
     const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-    const lastRead = channel.lastMessageId;
+    const lastReadId = channel.lastMessageId;
 
     if (!channel.isUnread) {
       return;
     }
 
-    this.api.markAsRead(channel.channelId, lastRead)
+    // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
+    const lastSentMessage = channel.messages[channel.messages.length - 1];
+    if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
+      channel.lastReadId = lastReadId;
+
+      return;
+    }
+
+    this.api.markAsRead(channel.channelId, lastReadId)
       .then(() => {
-        channel.lastReadId = lastRead;
+        channel.lastReadId = lastReadId;
       })
       .catch((err) => {
         console.debug('markAsRead error', err);

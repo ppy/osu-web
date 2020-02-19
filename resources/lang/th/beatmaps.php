@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'ประวัติ',
             'general' => 'ทั่วไป :scope',
+            'reviews' => '',
             'timeline' => 'เส้นเวลา',
             'scopes' => [
                 'general' => 'ระดับความยากนี้',

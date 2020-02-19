@@ -98,6 +98,7 @@ return [
         'mode' => [
             'events' => 'Ιστορικό',
             'general' => 'Γενικά :scope',
+            'reviews' => '',
             'timeline' => 'Χρονολόγιο',
             'scopes' => [
                 'general' => 'Αυτή η δυσκολία',

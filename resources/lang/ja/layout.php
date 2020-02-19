@@ -24,15 +24,97 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '管理者',
+            'beatmapset' => 'ビートマップセット',
+            'beatmapset_covers' => 'ビートマップセットカバー',
+            'contest' => 'コンテスト',
+            'contests' => 'コンテスト',
+            'root' => 'コンソール',
+            'store_orders' => 'ストア管理者',
+        ],
+
+        'artists' => [
+            '_' => '注目アーティスト',
+            'index' => '一覧',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'ビートマップ',
+            'discussions' => 'ディスカッション',
+            'index' => '一覧',
+            'show' => '詳細',
+            'packs' => 'パック',
+        ],
+
+        'changelog' => [
+            '_' => '更新履歴',
+            'index' => '一覧',
+        ],
+
         'community' => [
             '_' => 'コミュニティ',
-
+            'comments' => 'コメント',
+            'contests' => 'コンテスト',
             'forum' => 'フォーラム',
+            'livestream' => 'ライブ配信',
+        ],
+
+        'error' => [
+            '_' => 'エラー',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => '目次',
+        ],
+
+        'home' => [
+            '_' => 'ホーム',
+            'password_reset' => 'パスワードのリセット',
+        ],
+
+        'matches' => [
+            '_' => '対戦履歴',
+        ],
+
+        'notice' => [
+            '_' => 'お知らせ',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'rankings' => [
+            '_' => 'ランキング',
+        ],
+
+        'store' => [
+            '_' => 'osu!ストア',
+            'cart' => 'カート',
+            'order' => '請求書',
+            'orders' => '注文履歴',
+            'product' => '製品',
+            'products' => '製品',
+        ],
+
+        'tournaments' => [
+            '_' => 'トーナメント',
+            'index' => '一覧',
+        ],
+
+        'users' => [
+            '_' => 'プレイヤー',
+            'forum_posts' => 'フォーラム投稿',
+            'modding' => 'modding',
+            'show' => '詳細',
         ],
     ],
 
     'gallery' => [
-        'close' => '閉じる (Esc)',
+        'close' => '閉じる（Esc）',
         'fullscreen' => '全画面表示に切り替え',
         'zoom' => 'ズームイン/ズームアウト',
         'previous' => '前（左矢印）',
@@ -44,9 +126,12 @@ return [
             '_' => 'ホーム',
             'account-edit' => '設定',
             'account-verifyLink' => '認証が完了しました。',
-            'friends-index' => 'フレンド',
-            'changelog-index' => '更新履歴',
+            'beatmapset-watches-index' => 'modding ウォッチリスト',
             'changelog-build' => 'ビルド',
+            'changelog-index' => '更新履歴',
+            'client_verifications-create' => 'osu!クライアントの認証',
+            'forum-topic-watches-index' => 'フォーラムサブスクリプション',
+            'friends-index' => 'フレンド',
             'getDownload' => 'ダウンロード',
             'getIcons' => 'アイコン',
             'groups-show' => 'グループ',
@@ -59,6 +144,7 @@ return [
             'search' => '検索',
             'supportTheGame' => 'ゲームを支援する',
             'team' => 'osu!team',
+            'testflight' => 'testflight',
         ],
         'profile' => [
             '_' => 'プロフィール',
@@ -78,7 +164,6 @@ return [
             'artists' => '注目アーティスト',
             'beatmap_discussion_posts-index' => 'ディスカッション投稿',
             'beatmap_discussions-index' => 'ディスカッション',
-            'beatmapset-watches-index' => 'moddingウォッチリスト',
             'beatmapset_discussion_votes-index' => 'ディスカッション評価',
             'beatmapset_events-index' => 'ビートマップセットイベント',
             'index' => '一覧',
@@ -112,7 +197,6 @@ return [
             'tournaments' => 'トーナメント',
             'tournaments-index' => 'トーナメント',
             'tournaments-show' => 'トーナメント情報',
-            'forum-topic-watches-index' => 'サブスクリプション',
             'forum-topics-create' => 'フォーラム',
             'forum-topics-show' => 'フォーラム',
             'forum-forums-index' => 'フォーラム',
@@ -149,6 +233,7 @@ return [
             'modding-history-posts' => 'ユーザーのmodding投稿',
             'modding-history-votesGiven' => 'ユーザーがmoddingに与えた投票',
             'modding-history-votesReceived' => 'ユーザーがmoddingで受け取った投票',
+            'notifications-index' => '',
             'oauth_login' => 'oauthでログインする。',
             'oauth_request' => 'oauth認証',
             'settings' => '設定',
@@ -256,10 +341,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'メールアドレス',
             'forgot' => "ログイン情報を忘れた",
             'password' => 'パスワード',
             'title' => '続行するにはログインしてください',
+            'username' => 'ユーザー名',
 
             'error' => [
                 'email' => "ユーザー名かメールアドレスが存在しません",

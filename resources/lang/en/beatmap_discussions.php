@@ -81,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => 'View Review Post',
         'go_to_child' => 'View Discussion',
+        'validation' => [
+            'invalid_block_type' => 'invalid block type',
+            'invalid_document' => 'invalid review',
+            'minimum_issues' => 'review must contain a minimum of :count issue|review must contain a minimum of :count issues',
+            'missing_text' => 'block is missing text',
+            'too_many_blocks' => 'reviews may only contain :count paragraph/issue|reviews may only contain up to :count paragraphs/issues',
+        ],
     ],
 
     'system' => [

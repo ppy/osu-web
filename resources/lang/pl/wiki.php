@@ -25,6 +25,7 @@ return [
         'missing' => 'Poszukiwana strona ":keyword" nie została odnaleziona.',
         'missing_title' => 'Nie znaleziono',
         'missing_translation' => 'Poszukiwana strona nie została odnaleziona dla obecnie ustawionego języka.',
+        'needs_cleanup_or_rewrite' => 'Ta strona nie spełnia standardów wiki osu! i wymaga poprawek. Jeżeli chcesz pomóc, zaktualizuj artykuł!',
         'search' => 'Przeszukaj istniejące strony używając frazy :link.',
         'toc' => 'Spis treści',
 
@@ -41,7 +42,7 @@ return [
         ],
     ],
     'main' => [
-        'title' => 'osu!wiki',
+        'title' => 'baza wiedzy',
         'subtitle' => 'oficjalna skarbnica wiedzy o osu!',
     ],
 ];

@@ -77,11 +77,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Ver Publicação de Revisão',
+        'go_to_child' => 'Ver Discussão',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marcado como resolvido por :user',
             'false' => 'Reaberto por :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'geral',
+        'general_all' => 'geral (tudo)',
     ],
 
     'user_filter' => [

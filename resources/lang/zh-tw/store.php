@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => '結帳',
+        'info' => '',
         'more_goodies' => '我想在完成訂單之前查看更多的東西',
         'shipping_fees' => '運費',
         'title' => '購物車',
@@ -76,12 +77,6 @@ return [
                     'link_text' => '點擊這裡繼續您的結帳',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => '我們已收到您的 osu!商店 訂單！',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => '需要 :link 才能變更使用者名稱！',
             'link_text' => '登入',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

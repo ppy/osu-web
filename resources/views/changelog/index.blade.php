@@ -35,7 +35,6 @@
     $title = trans('changelog.index.page_title._'.implode('_', array_keys($keys)), $keys);
 @endphp
 @extends('master', [
-    'legacyNav' => false,
     'title' => $title,
 ])
 

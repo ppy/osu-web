@@ -24,10 +24,92 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => '',
-
+            'comments' => '',
+            'contests' => '',
             'forum' => 'Forum',
+            'livestream' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +126,12 @@ return [
             '_' => 'hjem',
             'account-edit' => 'instillinger',
             'account-verifyLink' => 'Verifisering fullført',
-            'friends-index' => 'venner',
-            'changelog-index' => 'endringslogg',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'versjon',
+            'changelog-index' => 'endringslogg',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'venner',
             'getDownload' => 'last ned',
             'getIcons' => 'ikoner',
             'groups-show' => 'grupper',
@@ -59,6 +144,7 @@ return [
             'search' => 'søk',
             'supportTheGame' => 'støtt spillet',
             'team' => 'skapere',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => 'profil',
@@ -78,7 +164,6 @@ return [
             'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'beatmapdiskusjonsinnlegg',
             'beatmap_discussions-index' => 'beatmapdiskusjoner',
-            'beatmapset-watches-index' => 'modding overvåkningsliste',
             'beatmapset_discussion_votes-index' => 'beatmapdiskusjonsstemmer',
             'beatmapset_events-index' => 'beatmapset hendelser',
             'index' => 'liste',
@@ -112,7 +197,6 @@ return [
             'tournaments' => 'turneringer',
             'tournaments-index' => 'turneringer',
             'tournaments-show' => 'turneringsinfo',
-            'forum-topic-watches-index' => 'abonnementer',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -149,6 +233,7 @@ return [
             'modding-history-posts' => 'brukermoddings-innlegg',
             'modding-history-votesGiven' => 'brukermoddingsstemmer gitt',
             'modding-history-votesReceived' => 'brukermoddingsstemmer mottatt',
+            'notifications-index' => '',
             'oauth_login' => 'logg inn for oauth',
             'oauth_request' => 'oauth-godkjennelse',
             'settings' => 'Innstillinger',
@@ -256,10 +341,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'e-postadresse',
             'forgot' => "Jeg har glemt kontoinformasjonen min",
             'password' => 'passord',
             'title' => 'Logg på for å fortsette',
+            'username' => '',
 
             'error' => [
                 'email' => "Brukernavn eller e-postadresse eksisterer ikke",

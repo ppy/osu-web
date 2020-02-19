@@ -22,21 +22,15 @@ return [
     'cancel' => 'Zrušit',
 
     'authorise' => [
-        'authorise' => 'Autorizovat',
         'request' => 'žádá o přístup k vašemu účtu.',
         'scopes_title' => 'Tato aplikace bude moci:',
         'title' => 'Žádost o autorizaci',
-
-        'wrong_user' => [
-            '_' => 'Jsi přihlášen jako :user. :logout_link.',
-            'logout_link' => 'Klikni zde pro přihlášení, jako jiný uživatel',
-        ],
     ],
 
     'authorized_clients' => [
         'confirm_revoke' => '',
         'scopes_title' => '',
-        'owned_by' => '',
+        'owned_by' => 'Vlastní :user',
         'none' => '',
 
         'revoked' => [
@@ -52,18 +46,12 @@ return [
         'secret' => '',
     ],
 
-    'login' => [
-        'download' => 'Klikni zde pro stažení hry a vytvoření účtu',
-        'label' => 'Nejprve se přihlašme k vašemu účtu!',
-        'title' => 'Přihlášení k účtu',
-    ],
-
     'new_client' => [
         'header' => '',
         'register' => '',
         'terms_of_use' => [
             '_' => '',
-            'link' => '',
+            'link' => 'Smluvní podmínky',
         ],
     ],
 
@@ -73,8 +61,8 @@ return [
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Smazat',
+            'true' => 'Smazáno',
         ],
     ],
 ];

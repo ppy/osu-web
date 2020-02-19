@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Uusi vastaus aiheessa ":title"',
-    ],
-
     'forums' => [
         'latest_post' => '',
 
@@ -105,7 +101,7 @@ return [
         'started_by_verbose' => 'aloittanut :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Sulje',
             'preview' => 'Esikatselu',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Foorumilla Seuratut',
             'title_compact' => 'foorumilla seuratut',
-            'title_main' => 'foorumilla <strong>Seuratut</strong>',
 
             'box' => [
                 'total' => 'Seurattuja aiheita',

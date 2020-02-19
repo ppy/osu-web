@@ -11,7 +11,6 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\Notification;
 use App\Models\User;
-use App\Models\UserGroup;
 use App\Models\UserNotification;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
@@ -19,11 +18,13 @@ use Tests\TestCase;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
 {
-    private $minimumLastPlayed;
+    private $minPlays;
     private $user;
 
     public function testPostStoreNewDiscussion()
     {
+        config()->set('osu.user.post_action_verification', false);
+
         $currentDiscussions = BeatmapDiscussion::count();
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
         $currentNotifications = Notification::count();
@@ -32,7 +33,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $otherUser = factory(User::class)->create();
         $this->beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $this->user->statisticsOsu->update(['last_played' => $this->minimumLastPlayed->subDays(2)]);
+        $this->user->statisticsOsu->update(['playcount' => $this->minPlays - 1]);
 
         $params = [
             'beatmapset_id' => $this->beatmapset->beatmapset_id,
@@ -45,9 +46,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         ];
 
         $this
-            ->actingAsVerified($this->user)
+            ->be($this->user)
             ->post(route('beatmap-discussion-posts.store'), $params)
-            ->assertStatus(403);
+            ->assertStatus(401)
+            ->assertViewIs('users.verify');
 
         $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
         $this->assertSame($currentDiscussionPosts, BeatmapDiscussionPost::count());
@@ -57,7 +59,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         Event::assertNotDispatched(NewNotificationEvent::class);
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
 
-        $this->user->statisticsOsu->update(['last_played' => $this->minimumLastPlayed]);
+        $this->user->statisticsOsu->update(['playcount' => $this->minPlays]);
         app()->make('OsuAuthorize')->cacheReset();
 
         $this
@@ -121,7 +123,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $currentDiscussions = BeatmapDiscussion::count();
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
 
-        $this->user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng']]);
+        $this->user->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
 
         $this
             ->actingAsVerified($this->user)
@@ -198,8 +200,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testPostStoreNewReplyReopenByNominator()
     {
         $user = factory(User::class)->create();
-        $user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng']]);
-        $user->statisticsOsu()->create(['last_played' => $this->minimumLastPlayed]);
+        $user->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
+        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
         $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
@@ -215,7 +217,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testPostStoreNewReplyReopenByOtherUser()
     {
         $user = factory(User::class)->create();
-        $user->statisticsOsu()->create(['last_played' => $this->minimumLastPlayed]);
+        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
         $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
@@ -661,7 +663,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         }
 
         $user = $factory->create();
-        $user->statisticsOsu()->create(['last_played' => $this->minimumLastPlayed]);
+        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
 
         $this
             ->actingAsVerified($user)
@@ -724,13 +726,13 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         Event::fake();
 
-        $this->minimumLastPlayed = now()->subDays(config('osu.user.min_last_played_days_for_posting') - 1);
+        $this->minPlays = config('osu.user.min_plays_for_posting');
 
         $this->mapper = factory(User::class)->create();
-        $this->mapper->statisticsOsu()->create(['last_played' => $this->minimumLastPlayed]);
+        $this->mapper->statisticsOsu()->create(['playcount' => $this->minPlays]);
 
         $this->user = factory(User::class)->create();
-        $this->user->statisticsOsu()->create(['last_played' => $this->minimumLastPlayed]);
+        $this->user->statisticsOsu()->create(['playcount' => $this->minPlays]);
 
         $this->beatmapset = factory(Beatmapset::class)->create([
             'user_id' => $this->mapper->getKey(),

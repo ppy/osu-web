@@ -15,12 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('admin/master')
+@extends('master')
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-admin">
-        <h1>{{ trans('admin.forum.forum-covers.index.title') }}</h1>
+    @include('admin/_header', ['title' => trans('admin.forum.forum-covers.index.title')])
 
+    <div class="osu-page osu-page--admin">
         @foreach ($forums as $forum)
             <div class="forum-cover-admin-item" id="forum-{{ $forum->forum_id }}">
                 <h2>

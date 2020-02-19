@@ -53,7 +53,12 @@ class SessionsController extends Controller
         $ip = $request->getClientIp();
 
         $user = User::findForLogin($username);
-        $authError = User::attemptLogin($user, $password, $ip);
+
+        if ($user === null && strpos($username, '@') !== false && !config('osu.user.allow_email_login')) {
+            $authError = trans('users.login.email_login_disabled');
+        } else {
+            $authError = User::attemptLogin($user, $password, $ip);
+        }
 
         if ($authError === null) {
             $forceReactivation = new ForceReactivation($user, $request);
@@ -67,8 +72,8 @@ class SessionsController extends Controller
             $this->login($user, $remember);
 
             return [
-                'header' => render_to_string('layout._header_user'),
-                'header_popup' => render_to_string('layout._popup_user'),
+                'header' => view('layout._header_user')->render(),
+                'header_popup' => view('layout._popup_user')->render(),
                 'user' => Auth::user()->defaultJson(),
             ];
         } else {

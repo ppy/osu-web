@@ -12,10 +12,7 @@ $factory->define(App\Models\Contest::class, function (Faker\Generator $faker) {
             return $faker->paragraph();
         },
         'type' => 'art',
-        'header_url' => function () use ($faker) {
-            // #.jpg is a workaround for 'retinaify' failing on lorempixel not providing a file extension
-            return $faker->imageUrl(1000, 200, 'cats').'#.jpg';
-        },
+        'header_url' => '/images/headers/generic.jpg',
         'visible' => 1,
     ];
 });

@@ -24,10 +24,92 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => 'admin',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'capas de beatmapset',
+            'contest' => 'concurso',
+            'contests' => 'concursos',
+            'root' => 'console',
+            'store_orders' => 'loja admin',
+        ],
+
+        'artists' => [
+            '_' => 'artistas em destaque',
+            'index' => 'listagem',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'beatmap',
+            'discussions' => 'discussão',
+            'index' => 'listagem',
+            'show' => 'info',
+            'packs' => 'pacotes',
+        ],
+
+        'changelog' => [
+            '_' => 'registro de alterações',
+            'index' => 'listagem',
+        ],
+
         'community' => [
             '_' => 'Comunidade',
-
+            'comments' => 'comentários',
+            'contests' => 'concursos',
             'forum' => 'Fórum',
+            'livestream' => 'transmissões ao vivo',
+        ],
+
+        'error' => [
+            '_' => 'erro',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'índice',
+        ],
+
+        'home' => [
+            '_' => 'início',
+            'password_reset' => 'redefinir senha',
+        ],
+
+        'matches' => [
+            '_' => 'histórico de partidas',
+        ],
+
+        'notice' => [
+            '_' => 'aviso',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'rankings' => [
+            '_' => 'classificação',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'carrinho',
+            'order' => 'fatura',
+            'orders' => 'histórico de pedidos',
+            'product' => 'produto',
+            'products' => 'produtos',
+        ],
+
+        'tournaments' => [
+            '_' => 'torneios',
+            'index' => 'listagem',
+        ],
+
+        'users' => [
+            '_' => 'jogador',
+            'forum_posts' => 'publicações do fórum',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
@@ -42,11 +124,14 @@ return [
     'menu' => [
         'home' => [
             '_' => 'início',
-            'account-edit' => 'configurações',
+            'account-edit' => 'configurações de conta',
             'account-verifyLink' => 'Verificação Concluída',
-            'friends-index' => 'amigos',
-            'changelog-index' => 'registro de alterações',
+            'beatmapset-watches-index' => 'notificações de modding',
             'changelog-build' => 'versão',
+            'changelog-index' => 'registro de alterações',
+            'client_verifications-create' => 'Verificação do cliente osu!',
+            'forum-topic-watches-index' => 'inscrições do fórum',
+            'friends-index' => 'amigos',
             'getDownload' => 'baixar',
             'getIcons' => 'ícones',
             'groups-show' => 'grupos',
@@ -58,7 +143,8 @@ return [
             'password-reset-index' => 'redefinir senha',
             'search' => 'busca',
             'supportTheGame' => 'apoie o jogo',
-            'team' => 'time',
+            'team' => 'equipe',
+            'testflight' => 'vôo de teste',
         ],
         'profile' => [
             '_' => 'perfil',
@@ -78,7 +164,6 @@ return [
             'artists' => 'artistas em destaque',
             'beatmap_discussion_posts-index' => 'postagens de discussão sobre beatmaps',
             'beatmap_discussions-index' => 'discussões de beatmaps',
-            'beatmapset-watches-index' => 'supervisão de modding',
             'beatmapset_discussion_votes-index' => 'votos na discussão de beatmaps',
             'beatmapset_events-index' => 'eventos do beatmap',
             'index' => 'listagem',
@@ -112,7 +197,6 @@ return [
             'tournaments' => 'torneios',
             'tournaments-index' => 'torneios',
             'tournaments-show' => 'informações de torneios',
-            'forum-topic-watches-index' => 'inscrições de tópico',
             'forum-topics-create' => 'fóruns',
             'forum-topics-show' => 'fóruns',
             'forum-forums-index' => 'fóruns',
@@ -149,6 +233,7 @@ return [
             'modding-history-posts' => 'postagens de modding do usuário',
             'modding-history-votesGiven' => 'votos de modding dados',
             'modding-history-votesReceived' => 'votos de modding recebidos',
+            'notifications-index' => '',
             'oauth_login' => 'conecte-se para autenticar',
             'oauth_request' => 'autorização oauth',
             'settings' => 'Configurações',
@@ -256,10 +341,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'endereço de e-mail',
             'forgot' => "Esqueci as minhas credenciais",
             'password' => 'senha',
             'title' => 'Inicie a sessão para continuar',
+            'username' => 'nome de usuário',
 
             'error' => [
                 'email' => "O nome de usuário ou o endereço de e-mail não existe",

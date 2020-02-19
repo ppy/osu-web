@@ -19,21 +19,12 @@
  */
 
 return [
-    'buttons' => [
-      'add' => 'barát hozzáadása',
-      'disabled' => 'barátok',
-      'remove' => 'barát törlése',
-    ],
-
-    'index' => [
-        'title' => [
-            '_' => 'Főoldal :info',
-            'info' => 'Barátok',
-        ],
-    ],
-
-    'title' => 'Barátok',
     'title_compact' => 'barátok',
-
     'too_many' => 'Teli a barátlista.',
+
+    'buttons' => [
+        'add' => 'barát hozzáadása',
+        'disabled' => 'barátok',
+        'remove' => 'barát törlése',
+    ],
 ];

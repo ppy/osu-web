@@ -457,6 +457,11 @@ class BeatmapDiscussion extends Model
             return;
         }
 
+        // skip validation if changed timestamp from null to null
+        if ($this->getOriginal('timestamp') === null && $this->timestamp === null) {
+            return;
+        }
+
         if ($this->beatmap === null) {
             return $this->validationErrors()->add('beatmap_id', '.beatmap_missing');
         }
@@ -691,7 +696,7 @@ class BeatmapDiscussion extends Model
             }
         }
 
-        return $query->whereIn('message_type', $intTypes);
+        return $query->whereIn('message_type', $intTypes ?? []);
     }
 
     public function scopeOpenIssues($query)

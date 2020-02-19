@@ -22,6 +22,7 @@ return [
     'deleted' => 'verwijderd',
     'deleted_count' => ':count_delimited verwijderde opmerking|:count_delimited verwijderde opmerkingen',
     'edited' => 'gewijzigd :timeago door :user',
+    'pinned' => 'vast gezet',
     'empty' => 'Nog geen commentaar.',
     'load_replies' => 'antwoorden laden',
     'replies' => 'Reacties',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Opmerkingen :info',
-            'info' => 'Lijst',
-        ],
+        'nav_title' => 'lijst',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Opmerkingen :info',
-            'info' => 'Detail',
-        ],
+        'nav_title' => 'reacties',
     ],
 ];

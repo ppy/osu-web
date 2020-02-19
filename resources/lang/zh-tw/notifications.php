@@ -21,6 +21,18 @@
 return [
     'all_read' => '已閱畢所有通知！',
     'mark_all_read' => '全部清除',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -31,24 +43,24 @@ return [
                 'beatmapset_discussion_lock' => '已鎖定「:title」的討論',
                 'beatmapset_discussion_lock_compact' => '討論已被鎖定',
                 'beatmapset_discussion_post_new' => '新帖子於 ":title" 的 :username',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => ':username發布了主題為:title的新貼文',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主題',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => ':username 的新主題',
                 'beatmapset_discussion_unlock' => '討論於 ":title" 已解鎖',
                 'beatmapset_discussion_unlock_compact' => '討論已被解鎖',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
+                '_' => 'Qualified 圖譜問題',
                 'beatmapset_discussion_qualified_problem' => '',
                 'beatmapset_discussion_qualified_problem_empty' => '',
                 'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                'beatmapset_discussion_qualified_problem_compact_empty' => '由 :username 回報',
             ],
 
             'beatmapset_state' => [
                 '_' => '圖譜狀態已變更',
-                'beatmapset_disqualify' => '":title" 被取消資格',
+                'beatmapset_disqualify' => '「:title」被取消提名',
                 'beatmapset_disqualify_compact' => '圖譜被取消資格',
                 'beatmapset_love' => '":title" 被提升為 loved',
                 'beatmapset_love_compact' => '圖譜被提升為 loved',
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '新成就',
                 'user_achievement_unlock' => '解鎖「:title」！',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

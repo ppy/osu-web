@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Administrador',
+        'authorise' => 'Autorizar',
         'back_to_previous' => 'Voltar à posição anterior',
         'back_to_top' => 'Voltar ao topo',
         'cancel' => 'Cancelar',
@@ -48,21 +49,23 @@ return [
         'expand' => 'expandir',
         'hide' => 'ocultar',
         'permalink' => 'link permanente',
-        'permalink_copied' => 'link copiado',
+        'pin' => 'afixar',
         'post' => 'Publicar',
         'reply' => 'Resposta',
-        'reply_reopen' => 'Responder e Reabrir',
-        'reply_resolve' => 'Responder e Resolver',
+        'reply_reopen' => 'Responder e reabrir',
+        'reply_resolve' => 'Responder e resolver',
         'reset' => 'Reiniciar',
         'restore' => 'Restaurar',
         'save' => 'Guardar',
-        'saving' => 'A Guardar...',
+        'saving' => 'A guardar...',
         'search' => 'Procurar',
         'see_more' => 'ver mais',
         'show' => 'mostrar',
         'show_deleted' => 'Exibir eliminados',
+        'show_less' => '',
         'show_more' => 'mostrar mais',
         'show_more_options' => 'mostrar mais opções',
+        'unpin' => 'despregar',
         'update' => 'Atualizar',
         'upload_image' => 'carregar imagem',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'min|mins',
         'minutes' => ':count minuto|:count minutos',
         'months' => ':count mês|:count meses',
+        'notifications' => '',
         'plus_others' => '+ :count_delimited outro!|+ :count_delimited outros!',
         'post' => ':count_delimited publicação|:count_delimited publicações',
         'second_short_unit' => 'seg|segs',
@@ -111,7 +115,7 @@ return [
         'keyboard' => 'Teclado',
         'mouse' => 'Rato',
         'tablet' => 'Tablet',
-        'touch' => 'Ecrã Tátil',
+        'touch' => 'Ecrã tátil',
     ],
 
     'dropzone' => [
@@ -140,10 +144,15 @@ return [
         'days_ago' => ':count dia atrás|:count dias atrás',
         'hours_ago' => ':count hora atrás|:count horas atrás',
         'now' => 'agora',
-        'remaining' => 'Tempo Restante',
+        'remaining' => 'Tempo restante',
     ],
 
     'title' => [
         'notice' => 'Notícia',
+    ],
+
+    'wrong_user' => [
+        '_' => 'Estás autenticado como :user. :logout_link.',
+        'logout_link' => 'Clica aqui para iniciar sessão com um utilizador diferente',
     ],
 ];

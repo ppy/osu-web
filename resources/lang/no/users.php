@@ -64,24 +64,52 @@ return [
         'send_message' => 'send melding',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Logg inn',
-        'locked_ip' => 'IP-adressen din er blokkert. Vennligst vent et par minutter.',
-        'username' => 'Brukernavn',
-        'password' => 'Passord',
         'button' => 'Logg inn',
         'button_posting' => 'Logger inn...',
+        'email_login_disabled' => '',
+        'failed' => 'Feil innlogging',
+        'forgot' => 'Glemt passordet ditt?',
+        'info' => '',
+        'locked_ip' => 'IP-adressen din er blokkert. Vennligst vent et par minutter.',
+        'password' => 'Passord',
+        'register' => "Har du ikke en osu!-konto? Lag en ny en",
         'remember' => 'Husk denne datamaskinen',
         'title' => 'Vennligst logg inn for å fortsette',
-        'failed' => 'Feil innlogging',
-        'register' => "Har du ikke en osu!-konto? Lag en ny en",
-        'forgot' => 'Glemt passordet ditt?',
+        'username' => 'Brukernavn',
+
         'beta' => [
             'main' => 'Tilgang til beta er for øyeblikket begrenset til privilegerte brukere.',
             'small' => '(osu!supportere vil komme inn snart)',
         ],
-
-        'here' => 'her', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -333,11 +361,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Spiller :info',
-            'info' => 'Informasjon',
         ],
 
         'info' => [

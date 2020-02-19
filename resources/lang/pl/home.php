@@ -39,7 +39,7 @@ return [
         'empty_result' => 'Nie znaleziono!',
         'keyword_required' => 'Wyszukiwana fraza jest wymagana',
         'placeholder' => 'wpisz, by rozpocząć wyszukiwanie',
-        'title' => 'Wyszukiwarka',
+        'title' => 'wyszukiwarka',
 
         'beatmapset' => [
             'more' => 'Zobacz więcej wyszukanych beatmap: :count',
@@ -120,8 +120,6 @@ return [
             'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',
         ],
         'header' => [
-            'welcome' => 'Witaj, <strong>:username</strong>!',
-            'messages' => 'Masz :count_delimited nową wiadomość|Masz :count_delimited nowe wiadomości|Masz :count_delimited nowych wiadomości',
             'stats' => [
                 'friends' => 'Znajomi online',
                 'games' => 'Mecze',

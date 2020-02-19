@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Paiement',
+        'info' => ':count_delimited produit dans le panier ($:subtotal)|:count_delimited produits dans le panier ($:subtotal)',
         'more_goodies' => 'Je souhaite regarder d\'autres goodies avant de passer commande',
         'shipping_fees' => 'frais de livraison',
         'title' => 'Panier',
@@ -76,12 +77,6 @@ return [
                     'link_text' => 'cliquez ici pour reprendre votre commande',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Nous avons bien reçu votre commande osu!store !',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => 'Vous devez être :link pour changer de nom !',
             'link_text' => 'connecté',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

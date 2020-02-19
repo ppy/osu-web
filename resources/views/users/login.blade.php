@@ -18,9 +18,12 @@
 @extends('master')
 
 @section('content')
-<div class="osu-layout__row osu-layout__row--page">
-    <h1>Please login to continue</h1>
-</div>
+    @include('layout._page_header_v4', ['params' => [
+        'section' => trans('layout.header.notice._'),
+    ]])
+    <div class="osu-page osu-page--generic">
+        {{ trans('users.login.info') }}
+    </div>
 @endsection
 
 @section("script")

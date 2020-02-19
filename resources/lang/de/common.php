@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => 'Autorisieren',
         'back_to_previous' => 'Zur vorherigen Position zurückkehren',
         'back_to_top' => 'Zum Seitenanfang',
         'cancel' => 'Abbrechen',
@@ -48,7 +49,7 @@ return [
         'expand' => 'ausklappen',
         'hide' => 'verbergen',
         'permalink' => 'permalink',
-        'permalink_copied' => 'link kopiert',
+        'pin' => 'anheften',
         'post' => 'Senden',
         'reply' => 'Antworten',
         'reply_reopen' => 'Antworten und wiedereröffnen',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'mehr anzeigen',
         'show' => 'anzeigen',
         'show_deleted' => 'Gelöschte anzeigen',
+        'show_less' => '',
         'show_more' => 'mehr anzeigen',
         'show_more_options' => 'mehr Optionen anzeigen',
+        'unpin' => 'lösen',
         'update' => 'Aktualisieren',
         'upload_image' => 'bild hochladen',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'min.|min.',
         'minutes' => ':count Minute|:count Minuten',
         'months' => ':count monat|:count monate',
+        'notifications' => '',
         'plus_others' => '+ :count_delimited anderer!|+ :count_delimited andere!',
         'post' => ':count_delimited Beitrag|:count_delimited Beiträge',
         'second_short_unit' => 'sek.|sek.',
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Anmerkung',
+    ],
+
+    'wrong_user' => [
+        '_' => 'Du bist als :user angemeldet. :logout_link.',
+        'logout_link' => 'Klicke hier, um dich mit einem anderen Benutzer anzumelden',
     ],
 ];

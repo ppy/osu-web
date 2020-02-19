@@ -1,0 +1,50 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.store-xsolla {
+  align-items: center;
+  background-color: osu-hsla(@osu-colour-b6, 0.5);
+  color: @osu-colour-c1;
+  font-size: @font-size--small-2;
+  font-family: var(--font-default-torus);
+  margin-left: -@gutter-v2;
+  display: flex;
+  text-align: right;
+  width: calc(100% + (@gutter-v2 * 2));
+  flex: none;
+  order: -1;
+
+  @media @desktop {
+    display: flex;
+    width: auto;
+    margin-left: auto;
+    order: 0;
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    background-image: url('/images/layout/xsolla.png');
+    background-size: contain;
+  }
+
+  &__text {
+    padding: 0 10px;
+    flex: 1;
+  }
+}

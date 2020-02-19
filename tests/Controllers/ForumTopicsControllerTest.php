@@ -75,6 +75,24 @@ class ForumTopicsControllerTest extends TestCase
             ->assertStatus(200);
     }
 
+    public function testShowNewUser()
+    {
+        $forum = factory(Forum\Forum::class, 'child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $post = factory(Forum\Post::class)->create([
+            'forum_id' => $forum->forum_id,
+            'topic_id' => $topic->topic_id,
+        ]);
+        $user = factory(User::class)->create();
+
+        $this
+            ->be($user)
+            ->get(route('forum.topics.show', $topic->topic_id))
+            ->assertSuccessful();
+    }
+
     public function testStore()
     {
         $forum = factory(Forum\Forum::class, 'child')->create();
@@ -190,7 +208,7 @@ class ForumTopicsControllerTest extends TestCase
 
         $conditions = [
             'user_id' => $user->user_id,
-            'group_id' => UserGroup::GROUPS['default'],
+            'group_id' => app('groups')->byIdentifier('default')->getKey(),
         ];
 
         $existingUserGroup = UserGroup::where($conditions)->first();

@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Înscriere: :start la :end',
 
         'header' => [
-            'subtitle' => 'O listă de turnee active și oficial recunoscute',
             'title' => 'Turnee comunitare',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Anulează înscrierea',
             'register' => 'Înscrie-mă!',
+        ],
+
+        'period' => [
+            'end' => 'Sfârșit',
+            'start' => 'Start',
         ],
 
         'state' => [

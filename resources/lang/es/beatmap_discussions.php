@@ -43,7 +43,7 @@ return [
             'username' => 'Nombre de usuario',
 
             'beatmapset_status' => [
-                '_' => 'Estado de Beatmap',
+                '_' => 'Estado del mapa',
                 'all' => 'Todo',
                 'disqualified' => 'Descalificado',
                 'never_qualified' => 'No calificado',
@@ -67,7 +67,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Ninguna de las publicaciones aborda mi asunto',
-        'notice' => 'Ya hay posts cerca de :timestamp (:existing_timestamps). Por favor revísalos antes de publicar.',
+        'notice' => 'Hay publicaciones cerca de la :timestamp (:existing_timestamps). Por favor revíselas antes de publicar.',
     ],
 
     'reply' => [
@@ -77,11 +77,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Ver post de la reseña',
+        'go_to_child' => 'Ver discusión',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marcado como resuelto por :user',
             'false' => 'Reabierto por :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'general',
+        'general_all' => 'general (todo)',
     ],
 
     'user_filter' => [

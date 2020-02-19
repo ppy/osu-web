@@ -102,13 +102,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public static function syncAll()
     {
-        try {
-            $entries = OsuWiki::fetch('news');
-        } catch (Exception $e) {
-            log_error($e);
-
-            return;
-        }
+        $entries = OsuWiki::fetch('news');
 
         $latestSlugs = [];
 
@@ -195,7 +189,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public function editUrl()
     {
-        return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/news/'.$this->filename();
+        return 'https://github.com/'.OsuWiki::user().'/'.OsuWiki::repository().'/tree/master/news/'.$this->filename();
     }
 
     public function firstImage($absolute = false)

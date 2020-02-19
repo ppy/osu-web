@@ -24,7 +24,11 @@
 
 {{-- FIXME: move to user modding history --}}
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page">
+    @include('layout._page_header_v4', ['params' => [
+        'section' => trans('layout.header.beatmapsets._'),
+        'subSection' => trans('beatmap_discussions.index.title'),
+    ]])
+    <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
             <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
 

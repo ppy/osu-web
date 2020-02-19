@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'För-samlade kollektioner av beatmaps baserad på ett gemensamt tema.',
+        'nav_title' => '',
+        'title' => 'Beatmap Samlingar',
+
         'blurb' => [
             'important' => 'LÄS DETTA INNAN NEDLADDNING',
             'instruction' => [
@@ -34,12 +38,9 @@ return [
                 'scary' => 'ladda ner samlingarna från nyaste till äldsta',
             ],
         ],
-        'title' => 'Beatmap Samlingar',
-        'description' => 'För-samlade kollektioner av beatmaps baserad på ett gemensamt tema.',
     ],
 
     'show' => [
-        'back' => '',
         'download' => 'Ladda ner',
         'item' => [
             'cleared' => 'rensad',

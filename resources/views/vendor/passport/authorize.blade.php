@@ -79,11 +79,11 @@
             @endif
 
             <div class="dialog-form__row dialog-form__row--wrong-user">
-                {!! trans('oauth.authorise.wrong_user._', [
+                {!! trans('common.wrong_user._', [
                     'user' => e($user->username),
                     'logout_link' => link_to_route(
                         'logout',
-                        trans('oauth.authorise.wrong_user.logout_link'),
+                        trans('common.wrong_user.logout_link'),
                         [],
                         [
                             'class' => 'dialog-form__extra-link',
@@ -104,7 +104,7 @@
                     <input type="hidden" name="client_id" value="{{ $client->id }}" />
 
                     <button class="dialog-form__button">
-                        {{ trans('oauth.authorise.authorise') }}
+                        {{ trans('common.buttons.authorise') }}
                     </button>
                 {!! Form::close() !!}
 

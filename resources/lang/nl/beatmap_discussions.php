@@ -77,11 +77,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Bekijk Review Post',
+        'go_to_child' => 'Bekijk discussie',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Gemarkeerd als opgelost door :user',
             'false' => 'Heropend door :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'algemeen',
+        'general_all' => 'algemeen (alles)',
     ],
 
     'user_filter' => [

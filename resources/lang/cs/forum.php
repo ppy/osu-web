@@ -39,12 +39,8 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Nová odpověd téma ":title"',
-    ],
-
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Poslední příspěvek',
 
         'index' => [
             'title' => '',
@@ -75,7 +71,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Nová odpověď',
             ],
         ],
 
@@ -105,7 +101,7 @@ return [
         'started_by_verbose' => 'započal :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Zavřít',
             'preview' => 'Náhled',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Sledované příspěvky',
             'title_compact' => 'sledovaná fóra',
-            'title_main' => 'Sledované <strong>příspěvky</strong>',
 
             'box' => [
                 'total' => 'Počet sledovaných témat',
@@ -276,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Zobrazit smazané příspěvky',
+            'hide' => 'Skrýt smazané příspěvky',
         ],
 
         'show' => [
@@ -302,15 +296,15 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
+                'edit' => 'Upravení ankety',
                 'edit_warning' => '',
                 'vote' => 'Hlasovat',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Změnit hlas',
+                    'edit' => 'Upravit hlasování',
+                    'view_results' => 'Přeskočit na výsledky',
+                    'vote' => 'Hlasovat',
                 ],
 
                 'detail' => [

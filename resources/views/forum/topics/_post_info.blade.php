@@ -48,15 +48,17 @@
 
     @if ($user->groupBadge() !== null)
         <div class="forum-post-info__row forum-post-info__row--group-badge">
-            <div class="{{ class_with_modifiers('user-group-badge', [
-                't-forum',
-                $user->groupBadge(),
-            ]) }}"></div>
+            <div
+                class="user-group-badge user-group-badge--t-forum"
+                data-label="{{ $user->groupBadge()->short_name }}"
+                title="{{ $user->groupBadge()->group_name }}"
+                style="{!! css_group_colour($user->groupBadge()) !!}"
+            ></div>
         </div>
     @endif
 
     @if ($user->country !== null)
-        <div class="forum-post-info__row">
+        <div class="forum-post-info__row forum-post-info__row--flag">
             <a href="{{route('rankings', ['mode' => 'osu', 'type' => 'performance', 'country' => $user->country->getKey()])}}">
                 <img
                     class="flag-country"

@@ -24,10 +24,92 @@ return [
     ],
 
     'header' => [
-        'community' => [
-            '_' => 'Społeczność »',
+        'admin' => [
+            '_' => 'administrator',
+            'beatmapset' => 'zestaw beatmap',
+            'beatmapset_covers' => 'tła zestawów beatmap',
+            'contest' => 'konkurs',
+            'contests' => 'konkursy',
+            'root' => 'konsola',
+            'store_orders' => 'administrator sklepu',
+        ],
 
-            'forum' => 'Forum',
+        'artists' => [
+            '_' => 'wyróżnieni artyści',
+            'index' => 'lista',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'beatmapa',
+            'discussions' => 'dyskusja',
+            'index' => 'lista',
+            'show' => 'informacje',
+            'packs' => 'paczki',
+        ],
+
+        'changelog' => [
+            '_' => 'zmiany',
+            'index' => 'lista',
+        ],
+
+        'community' => [
+            '_' => 'społeczność',
+            'comments' => 'komentarze',
+            'contests' => 'konkursy',
+            'forum' => 'forum',
+            'livestream' => 'na żywo',
+        ],
+
+        'error' => [
+            '_' => 'błąd',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'strona główna',
+        ],
+
+        'home' => [
+            '_' => 'strona główna',
+            'password_reset' => 'zresetuj hasło',
+        ],
+
+        'matches' => [
+            '_' => 'historia meczu',
+        ],
+
+        'notice' => [
+            '_' => 'powiadomienie',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'rankings' => [
+            '_' => 'ranking',
+        ],
+
+        'store' => [
+            '_' => 'sklep osu!',
+            'cart' => 'koszyk',
+            'order' => 'faktura',
+            'orders' => 'historia zamówień',
+            'product' => 'produkt',
+            'products' => 'produkty',
+        ],
+
+        'tournaments' => [
+            '_' => 'turnieje',
+            'index' => 'lista',
+        ],
+
+        'users' => [
+            '_' => 'użytkownik',
+            'forum_posts' => 'posty na forum',
+            'modding' => 'modowanie',
+            'show' => 'informacje',
         ],
     ],
 
@@ -42,11 +124,14 @@ return [
     'menu' => [
         'home' => [
             '_' => 'strona główna',
-            'account-edit' => 'ustawienia',
+            'account-edit' => 'ustawienia konta',
             'account-verifyLink' => 'Weryfikacja zakończona',
-            'friends-index' => 'znajomi',
-            'changelog-index' => 'zmiany',
+            'beatmapset-watches-index' => 'obserwowane dyskusje',
             'changelog-build' => 'kompilacja',
+            'changelog-index' => 'zmiany',
+            'client_verifications-create' => 'Weryfikacja klienta osu!',
+            'forum-topic-watches-index' => 'subskrybcje wątków',
+            'friends-index' => 'znajomi',
             'getDownload' => 'pobierz',
             'getIcons' => 'ikony',
             'groups-show' => 'grupy',
@@ -59,6 +144,7 @@ return [
             'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
             'team' => 'zespół',
+            'testflight' => 'testy beta',
         ],
         'profile' => [
             '_' => 'profil',
@@ -78,7 +164,6 @@ return [
             'artists' => 'wyróżnieni artyści',
             'beatmap_discussion_posts-index' => 'posty w dyskusji',
             'beatmap_discussions-index' => 'dyskusje',
-            'beatmapset-watches-index' => 'obserwowane dyskusje',
             'beatmapset_discussion_votes-index' => 'głosy w dyskusji',
             'beatmapset_events-index' => 'historia zdarzeń zestawów beatmap',
             'index' => 'lista',
@@ -112,7 +197,6 @@ return [
             'tournaments' => 'turnieje',
             'tournaments-index' => 'turnieje',
             'tournaments-show' => 'informacje o turnieju',
-            'forum-topic-watches-index' => 'subskrybcje',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -149,6 +233,7 @@ return [
             'modding-history-posts' => 'historia postów',
             'modding-history-votesGiven' => 'głosy oddane',
             'modding-history-votesReceived' => 'głosy otrzymane',
+            'notifications-index' => '',
             'oauth_login' => 'zaloguj się, aby użyć oauth',
             'oauth_request' => 'autoryzacja oauth',
             'settings' => 'Ustawienia',
@@ -256,10 +341,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'adres e-mail',
             'forgot' => "Nie pamiętam swoich danych logowania",
             'password' => 'hasło',
             'title' => 'Zaloguj się, aby przejść dalej',
+            'username' => 'nazwa użytkownika',
 
             'error' => [
                 'email' => "Nazwa użytkownika bądź adres e-mail nie istnieją",

@@ -16,10 +16,10 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 Timeout.set(0, function() {
-    var $new = $({!! json_encode(render_to_string('forum.topics._watch', [
+    var $new = $({!! json_encode(view('forum.topics._watch', [
         'topic' => $topic,
         'state' => $state,
-    ])) !!});
+    ])->render()) !!});
     var $current = $('.js-forum-topic-watch[data-topic-id={{ $topic->topic_id }}]');
 
     var $newButton = $new.find('.js-forum-topic-watch--button');

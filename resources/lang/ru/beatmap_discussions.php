@@ -77,11 +77,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Посмотреть отзыв',
+        'go_to_child' => 'Посмотреть обсуждение',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Помечено решённым пользователем :user',
             'false' => 'Открыто заново пользователем :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'общее',
+        'general_all' => 'общее (все)',
     ],
 
     'user_filter' => [

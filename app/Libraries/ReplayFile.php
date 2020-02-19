@@ -74,7 +74,7 @@ class ReplayFile
      *
      * @return string Binary string of the chunk.
      */
-    public function headerChunk() : string
+    public function headerChunk(): string
     {
         $score = $this->score;
         $beatmap = $score->beatmap;

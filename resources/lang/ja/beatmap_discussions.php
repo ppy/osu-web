@@ -77,11 +77,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'レビュー投稿を表示',
+        'go_to_child' => 'ディスカッションを表示',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => ':userに解決済とマークされました',
             'false' => ':userによって再開されました。',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '全般',
+        'general_all' => '全般（全て）',
     ],
 
     'user_filter' => [

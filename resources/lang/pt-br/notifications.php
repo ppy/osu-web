@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Todas as notificações foram lidas!',
     'mark_all_read' => 'Limpar tudo',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -50,8 +62,8 @@ return [
                 '_' => 'Estado do beatmap alterado',
                 'beatmapset_disqualify' => 'O beatmap ":title" foi desqualificado por :username.',
                 'beatmapset_disqualify_compact' => 'O beatmap foi desqualificado',
-                'beatmapset_love' => 'O beatmap ":title" foi promovido para Loved por :username.',
-                'beatmapset_love_compact' => 'O beatmap foi promovido a Loved',
+                'beatmapset_love' => 'O beatmap ":title" foi promovido a amado',
+                'beatmapset_love_compact' => 'O beatmap foi promovido a amado',
                 'beatmapset_nominate' => 'O beatmap ":title" foi nomeado por :username.',
                 'beatmapset_nominate_compact' => 'O beatmap foi nomeado',
                 'beatmapset_qualify' => 'O beatmap ":title" recebeu indicações suficientes e, portanto, está na fila para se tornar ranqueado.',
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nova medalha',
                 'user_achievement_unlock' => '":title" desbloqueado!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

@@ -120,8 +120,6 @@ return [
             'error' => 'Fel med att ladda in nyheter, försök ladda om sidan?...',
         ],
         'header' => [
-            'welcome' => 'Hej, <strong>:username</strong>!',
-            'messages' => 'Du har :count nytt meddelande|Du har :count nya meddelanden',
             'stats' => [
                 'friends' => 'Vänner Online',
                 'games' => 'Spel',

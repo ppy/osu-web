@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Админ',
+        'authorise' => '',
         'back_to_previous' => 'Връщане към предишния изглед',
         'back_to_top' => 'Обратно към началото',
         'cancel' => 'Отмяна',
@@ -48,7 +49,7 @@ return [
         'expand' => 'разгъване',
         'hide' => 'скрий',
         'permalink' => 'постоянен линк',
-        'permalink_copied' => 'линк копиран',
+        'pin' => '',
         'post' => 'Публикувай',
         'reply' => 'Отговори',
         'reply_reopen' => 'Отговори и възстанови',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'виж още',
         'show' => 'покажи',
         'show_deleted' => 'Покажи изтритите',
+        'show_less' => '',
         'show_more' => 'покажи още',
         'show_more_options' => 'покажи още опции',
+        'unpin' => '',
         'update' => '',
         'upload_image' => 'качи снимка',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'мин|мин',
         'minutes' => ':count минута|:count минути',
         'months' => ':count месец|:count месеца',
+        'notifications' => '',
         'plus_others' => '',
         'post' => '',
         'second_short_unit' => 'сек|сек',
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Уведомление',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

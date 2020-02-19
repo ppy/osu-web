@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Ρυθμίσεις <strong>Λογαριασμού</strong>',
         'title_compact' => 'ρυθμίσεις',
         'username' => 'όνομα χρήστη',
 
@@ -68,6 +67,12 @@ return [
         'title' => 'Ειδοποιήσεις',
         'topic_auto_subscribe' => 'αυτόματη ενεργοποίηση ειδοποιήσεων για τα νέα θέματα που δημιουργείτε στο φόρουμ',
         'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -100,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'επιβεβαίωση αλλαγής email του osu!',
         'update' => 'ενημέρωση',
     ],
 
     'update_password' => [
-        'email_subject' => 'επιβεβαίωση αλλαγής κωδικού πρόσβασης του osu!',
         'update' => 'ενημέρωση
 ',
     ],

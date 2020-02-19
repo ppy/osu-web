@@ -5,16 +5,12 @@ cache:
     - vendor
   yarn: true
 
-dist: xenial
-sudo: false
+dist: bionic
 
 language: php
 
 php:
   - 7.2
-
-matrix:
-  fast_finish: true
 
 services:
   - mysql
@@ -62,6 +58,7 @@ install:
   - php artisan es:index-documents --yes
 
 jobs:
+  fast_finish: true
   include:
     - name: phpunit
       addons: skip

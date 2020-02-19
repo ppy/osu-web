@@ -21,6 +21,18 @@
 return [
     'all_read' => '已经阅读所有通知！',
     'mark_all_read' => '清除全部',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -31,19 +43,19 @@ return [
                 'beatmapset_discussion_lock' => '谱面 :title 已被锁定以供讨论。',
                 'beatmapset_discussion_lock_compact' => '评论被锁定',
                 'beatmapset_discussion_post_new' => '用户 :username 在 :title 的谱面讨论中发布了新消息。',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => ':username 发布了主题为“:title”新的帖子',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主题',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => ':username 发布了新的帖子',
                 'beatmapset_discussion_unlock' => '谱面 :title 已被解锁以供讨论。',
                 'beatmapset_discussion_unlock_compact' => '评论已解锁',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Qualified 谱面问题',
+                'beatmapset_discussion_qualified_problem' => ':username 在 “:title” 下反馈：“:content”',
+                'beatmapset_discussion_qualified_problem_empty' => ':username 在 “:title” 下反馈了问题',
+                'beatmapset_discussion_qualified_problem_compact' => ':username 反馈如下：“:content”',
+                'beatmapset_discussion_qualified_problem_compact_empty' => ':username 反馈了问题',
             ],
 
             'beatmapset_state' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '新奖章',
                 'user_achievement_unlock' => '解锁 ":title"！',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

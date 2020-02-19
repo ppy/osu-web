@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Anmeldung: :start bis :end',
 
         'header' => [
-            'subtitle' => 'Eine Liste an aktiven, offiziell anerkannten Turnieren',
             'title' => 'Community-Turniere',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Anmeldung abbrechen',
             'register' => 'Meld\' mich an!',
+        ],
+
+        'period' => [
+            'end' => 'Ende',
+            'start' => 'Start',
         ],
 
         'state' => [

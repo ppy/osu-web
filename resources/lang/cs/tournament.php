@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Registrace: :start do :end',
 
         'header' => [
-            'subtitle' => 'Seznam aktivních, oficiálně uznaných turnajů',
             'title' => 'Komunitní turnaje',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Zrušit registraci',
             'register' => 'Přihlaš mě!',
+        ],
+
+        'period' => [
+            'end' => 'Konec',
+            'start' => 'Začít',
         ],
 
         'state' => [

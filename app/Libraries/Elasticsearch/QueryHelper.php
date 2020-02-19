@@ -29,7 +29,7 @@ class QueryHelper
      *
      * @return array
      */
-    public static function clauseToArray($clause) : array
+    public static function clauseToArray($clause): array
     {
         if (is_array($clause)) {
             return $clause;
@@ -50,7 +50,7 @@ class QueryHelper
      *
      * @return array
      */
-    public static function queryString(string $query, array $fields = [], string $operator = 'or', float $boost = 1) : array
+    public static function queryString(string $query, array $fields = [], string $operator = 'or', float $boost = 1): array
     {
         return [
             'simple_query_string' => [

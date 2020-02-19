@@ -17,9 +17,23 @@
 --}}
 @php
     $discussionId = isset($event->comment['beatmap_discussion_id']) ? $event->comment['beatmap_discussion_id'] : null;
-    $discussionLink = route('beatmapsets.discussion', ['beatmapset' => $event->beatmapset]);
-    if ($discussionId) {
-        $discussionLink .= '#/'.$discussionId;
+    if ($event->beatmapset !== null) {
+        $discussionLink = route('beatmapsets.discussion', ['beatmapset' => $event->beatmapset]);
+        if ($discussionId !== null) {
+            $discussionLink .= '#/'.$discussionId;
+        }
+    } else {
+        $discussionLink = null;
+    }
+
+    if (isset($discussionId)) {
+        $discussionLinkHtml = "#{$discussionId}";
+
+        if (isset($discussionLink)) {
+            $discussionLinkHtml = tag('a', ['href' => $discussionLink], $discussionLinkHtml);
+        }
+    } else {
+        $discussionLinkHtml = '';
     }
 
     if ($event->beatmapset !== null) {
@@ -54,7 +68,7 @@
             <div class="beatmapset-event__content">
                 {!! trans('beatmapset_events.event.'.$event->typeForTranslation(), [
                     'user' => link_to_user($event->user),
-                    'discussion' => $discussionId ? "<a href='$discussionLink'>#$discussionId</a>" : '',
+                    'discussion' => $discussionLinkHtml,
                     'text' => is_string($event->comment) ? $event->comment : '[no preview]',
                 ]) !!}
             </div>

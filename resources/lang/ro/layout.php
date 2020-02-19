@@ -24,29 +24,114 @@ return [
     ],
 
     'header' => [
-        'community' => [
-            '_' => '',
+        'admin' => [
+            '_' => 'admin',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'cover-uri beatmapset',
+            'contest' => 'concurs',
+            'contests' => 'concursuri',
+            'root' => 'consolă',
+            'store_orders' => 'magazin admin',
+        ],
 
-            'forum' => '',
+        'artists' => [
+            '_' => 'artiști renumiți',
+            'index' => 'listare',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'beatmap',
+            'discussions' => 'discuție',
+            'index' => 'listare',
+            'show' => 'info',
+            'packs' => 'pachete',
+        ],
+
+        'changelog' => [
+            '_' => 'log de schimbare',
+            'index' => 'listare',
+        ],
+
+        'community' => [
+            '_' => 'comunitate',
+            'comments' => 'comentarii',
+            'contests' => '',
+            'forum' => 'forum',
+            'livestream' => 'transmisiuni în direct',
+        ],
+
+        'error' => [
+            '_' => 'eroare',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'index',
+        ],
+
+        'home' => [
+            '_' => 'acasă',
+            'password_reset' => 'resetare parolă',
+        ],
+
+        'matches' => [
+            '_' => 'aranjează istorie',
+        ],
+
+        'notice' => [
+            '_' => 'observaj',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'rankings' => [
+            '_' => 'clasament',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
+        ],
+
+        'tournaments' => [
+            '_' => 'turnee',
+            'index' => 'listare',
+        ],
+
+        'users' => [
+            '_' => 'jucător',
+            'forum_posts' => 'postări forum',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Închide (Esc)',
+        'fullscreen' => 'Comută ecran mic/mare',
+        'zoom' => 'Mărire/Micșorare',
+        'previous' => 'Precedent (săgeată stânga)',
+        'next' => 'Următor (săgeată dreapta)',
     ],
 
     'menu' => [
         'home' => [
             '_' => 'acasă',
             'account-edit' => 'setări',
-            'account-verifyLink' => '',
-            'friends-index' => 'prieteni',
-            'changelog-index' => 'jurnalul modificărilor',
+            'account-verifyLink' => 'Verificare Completată',
+            'beatmapset-watches-index' => 'modding watchlist',
             'changelog-build' => 'versiune',
+            'changelog-index' => 'jurnalul modificărilor',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => 'abonamente forum',
+            'friends-index' => 'prieteni',
             'getDownload' => 'descarcă',
             'getIcons' => 'pictograme',
             'groups-show' => 'grupuri',
@@ -59,11 +144,12 @@ return [
             'search' => 'căutare',
             'supportTheGame' => 'sprijină jocul',
             'team' => 'echipă',
+            'testflight' => 'zbortest',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profil',
+            'friends' => 'prieteni',
+            'settings' => 'setări',
         ],
         'help' => [
             '_' => 'ajutor',
@@ -78,7 +164,6 @@ return [
             'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'postări de la discuția beatmap',
             'beatmap_discussions-index' => 'discuții beatmap',
-            'beatmapset-watches-index' => 'lista de urmărire a modificărilor',
             'beatmapset_discussion_votes-index' => 'voturi de la discuția beatmap',
             'beatmapset_events-index' => 'evenimente beatmapset',
             'index' => 'listare',
@@ -112,7 +197,6 @@ return [
             'tournaments' => 'turnee',
             'tournaments-index' => 'turnee',
             'tournaments-show' => 'informații turneu',
-            'forum-topic-watches-index' => 'abonamente',
             'forum-topics-create' => 'forumuri',
             'forum-topics-show' => 'forumuri',
             'forum-forums-index' => 'forumuri',
@@ -149,6 +233,7 @@ return [
             'modding-history-posts' => 'postările modificate ale utilizatorului',
             'modding-history-votesGiven' => 'voturile modificate date ale utilizatorului',
             'modding-history-votesReceived' => 'voturile modificate primite ale utilizatorului',
+            'notifications-index' => '',
             'oauth_login' => 'autentifică-te pentru oauth',
             'oauth_request' => 'autorizare oauth',
             'settings' => 'Setări',
@@ -256,10 +341,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'adresa de e-mail',
             'forgot' => "Mi-am uitat detaliile de autentificare",
             'password' => 'parolă',
             'title' => 'Autentifică-te pentru a continua',
+            'username' => 'nume de utilizator',
 
             'error' => [
                 'email' => "Numele de utilizator sau adresa de e-mail nu există",
@@ -268,7 +353,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Descarcă',
             'info' => 'Ai nevoie de un cont, domnule. De ce nu ai unul deja?',
             'title' => "Nu ai un cont?",
         ],

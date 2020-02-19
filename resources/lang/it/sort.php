@@ -24,11 +24,12 @@ return [
     'last_visit' => 'Attivo di recente',
     'new' => 'Recenti',
     'old' => 'Vecchio',
+    'rank' => 'Rank',
     'top' => 'In alto',
     'username' => 'Nome utente',
 
     'forum_topics' => [
         'new' => 'Ultima risposta',
-        'feature_votes' => 'Priorità stelle',
+        'feature_votes' => 'Stelle di priorità',
     ],
 ];

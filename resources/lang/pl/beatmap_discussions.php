@@ -33,7 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'usunięta',
-        'title' => 'Dyskusje',
+        'title' => 'dyskusje',
 
         'form' => [
             '_' => 'Szukaj',
@@ -77,11 +77,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Zobacz recenzję',
+        'go_to_child' => 'Zobacz dyskusję',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Oznaczone jako gotowe przez :user',
             'false' => 'Otworzone ponownie przez :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'główne',
+        'general_all' => 'główne (wszystkie)',
     ],
 
     'user_filter' => [

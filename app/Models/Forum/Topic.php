@@ -803,7 +803,7 @@ class Topic extends Model implements AfterCommit
         $this->delete();
     }
 
-    public function allowsDoublePosting() : bool
+    public function allowsDoublePosting(): bool
     {
         return in_array($this->forum_id, config('osu.forum.double_post_allowed_forum_ids'), true);
     }

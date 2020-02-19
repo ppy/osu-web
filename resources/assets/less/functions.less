@@ -142,7 +142,7 @@
   &::before {
     .full-size();
     content: ' ';
-    background-image: linear-gradient(.osu-hsla(@osu-colour-b6, 0.3)[@hsla], .osu-hsla(@osu-colour-b6, 0.8)[@hsla]);
+    background-image: linear-gradient(osu-hsla(@osu-colour-b6, 0.3), osu-hsla(@osu-colour-b6, 0.8));
   }
 }
 
@@ -252,7 +252,7 @@
 }
 
 .thick-box-shadow() {
-  box-shadow: 0 2px 10px fade(#000, 30%);
+  box-shadow: 0 2px 10px fade(#000, 50%);
 }
 
 .thicker-box-shadow() {
@@ -292,6 +292,15 @@
 
   @media @highdpi {
     background-image: url(@url2x);
+  }
+}
+
+.at2x-fallback(@var, @fallback) {
+  @fallback2x: replace(@fallback, "(\.[^.]+)$", "@2x$1");
+  background-image: var(@var, url(@fallback));
+
+  @media @highdpi {
+    background-image: var(~"@{var}-2x", url(@fallback2x));
   }
 }
 

@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Wszystkie powiadomienia przeczytane!',
     'mark_all_read' => 'Wyczyść wszystko',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -30,7 +42,7 @@ return [
                 '_' => 'Dyskusja beatmapy',
                 'beatmapset_discussion_lock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało zablokowane.',
                 'beatmapset_discussion_lock_compact' => 'Dyskusja została zablokowana',
-                'beatmapset_discussion_post_new' => 'Nowy post w duskusji „:title” od użytkownika :username: ":content"',
+                'beatmapset_discussion_post_new' => 'Nowy post w dyskusji „:title” od użytkownika :username: „:content”',
                 'beatmapset_discussion_post_new_empty' => 'Nowy post od użytkownika :username dla beatmapy „:title”',
                 'beatmapset_discussion_post_new_compact' => 'Nowy post od użytkownika :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nowy post od użytkownika :username',
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nowy medal',
                 'user_achievement_unlock' => 'Odblokowano medal „:title”!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

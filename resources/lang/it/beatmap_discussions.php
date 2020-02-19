@@ -77,11 +77,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Visualizza il post della recensione',
+        'go_to_child' => 'Visualizza discussione',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Segnato come risolto da :user',
             'false' => 'Riaperto da :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'generale',
+        'general_all' => 'generale (tutti)',
     ],
 
     'user_filter' => [

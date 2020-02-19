@@ -17,23 +17,25 @@
  */
 
 import { observer } from 'mobx-react';
+import Notification from 'models/notification';
+import NotificationStack from 'models/notification-stack';
 import { nameToIconsCompact } from 'notification-maps/icons';
 import { formatMessage } from 'notification-maps/message';
 import { urlSingular } from 'notification-maps/url';
 import * as React from 'react';
 import Item from './item';
-import ItemProps from './item-props';
-import { withMarkRead, WithMarkReadProps } from './with-mark-read';
 
-export default withMarkRead(observer(class ItemCompact extends React.Component<ItemProps & WithMarkReadProps> {
+interface Props {
+  item: Notification;
+  stack: NotificationStack;
+}
+
+@observer
+export default class ItemCompact extends React.Component<Props> {
   render() {
     return (
       <Item
-        canMarkRead={this.props.canMarkRead}
-        markRead={this.props.markRead}
-        markReadFallback={this.props.markReadFallback}
-        markingAsRead={this.props.markingAsRead}
-
+        markRead={this.handleMarkAsRead}
         icons={nameToIconsCompact[this.props.item.name || '']}
         item={this.props.item}
         message={formatMessage(this.props.item, true)}
@@ -44,4 +46,8 @@ export default withMarkRead(observer(class ItemCompact extends React.Component<I
       />
     );
   }
-}));
+
+  private handleMarkAsRead = () => {
+    this.props.stack.markAsRead(this.props.item);
+  }
+}

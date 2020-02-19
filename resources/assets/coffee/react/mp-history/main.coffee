@@ -17,7 +17,7 @@
 ###
 
 import { Content } from './content'
-import { Header } from './header'
+import HeaderV4 from 'header-v4'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
@@ -52,8 +52,10 @@ export class Main extends React.Component
 
   render: =>
     div className: 'osu-layout__section',
-      el Header,
-        name: @props.match.name
+      el HeaderV4,
+        section: osu.trans('layout.header.matches._')
+        subSection: @props.match.name
+        theme: 'mp-history'
 
       el Content,
         id: @props.match.id

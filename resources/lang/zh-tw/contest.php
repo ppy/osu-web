@@ -23,12 +23,17 @@ return [
         'small' => '享受遊戲以外的競賽體驗。',
         'large' => '社群賽事',
     ],
+
+    'index' => [
+        'nav_title' => '清單',
+    ],
+
     'voting' => [
         'over' => '這場評選的投票已經結束',
-        'login_required' => '請登錄後再投票.',
+        'login_required' => '請登入後再投票。',
 
         'best_of' => [
-            'none_played' => "沒有符合此次評選條件的譜面！",
+            'none_played' => "沒有符合此次評選條件的圖譜！",
         ],
 
         'button' => [
@@ -39,7 +44,7 @@ return [
     ],
     'entry' => [
         '_' => '參加',
-        'login_required' => '請登錄後再參加評選。',
+        'login_required' => '請登入後再參加評選。',
         'silenced_or_restricted' => '帳戶受限時無法參加評選。',
         'preparation' => '我們正在準備這場評選，請耐心等待！',
         'over' => '感謝參與！提交已經關閉，投票即將開始。',

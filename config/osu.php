@@ -35,6 +35,8 @@ return [
         'client_bundle' => array_map('intval', explode(' ', env('BEATMAPSET_CLIENT_BUNDLE', '3756 163112 140662 151878 190390 123593 241526 299224'))),
         'discussion_kudosu_per_user' => get_int(env('BEATMAPSET_DISCUSSION_KUDOSU_PER_USER')) ?? 10,
         'discussion_review_enabled' => get_bool(env('BEATMAPSET_DISCUSSION_REVIEW_ENABLED', false)),
+        'discussion_review_max_blocks' => get_int(env('BEATMAPSET_DISCUSSION_REVIEW_MAXIMUM_BLOCKS', 10)),
+        'discussion_review_min_issues' => get_int(env('BEATMAPSET_DISCUSSION_REVIEW_MINIMUM_ISSUES', 1)),
         'download_limit' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY', 10)),
         'download_limit_supporter' => intval(env('BEATMAPSET_USER_DOWNLOAD_LIMIT_HOURLY_SUPPORTER', 20)),
         'es_cache_duration' => 60 * (get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0), // in minutes, converted to seconds
@@ -71,9 +73,6 @@ return [
     'elasticsearch' => [
         'number_of_shards' => env('ES_DEFAULT_SHARDS', 1),
         'prefix' => env('ES_INDEX_PREFIX'),
-        'index' => [
-            'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
-        ],
         'search_timeout' => env('ES_SEARCH_TIMEOUT', '5s'),
     ],
     'emails' => [
@@ -130,7 +129,12 @@ return [
     'scores' => [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
     ],
-    'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
+
+    'seasonal' => [
+        'contest_id' => get_int(env('SEASONAL_CONTEST_ID')),
+        'ends_at' => env('SEASONAL_ENDS_AT'),
+    ],
+
     'static' => env('LEGACY_STATICS_HOST', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
@@ -185,12 +189,16 @@ return [
         'help' => [
             'support' => 'http://help.ppy.sh/',
         ],
+        'testflight' => [
+            'public' => env('TESTFLIGHT_LINK'),
+            'supporter' => env('TESTFLIGHT_LINK_SUPPORTER'),
+        ],
     ],
     'user' => [
         'allow_email_login' => get_bool(env('USER_ALLOW_EMAIL_LOGIN')) ?? true,
         'allow_registration' => get_bool(env('ALLOW_REGISTRATION', false)),
         'inactive_days_verification' => get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180,
-        'min_last_played_days_for_posting' => get_int(env('USER_MIN_LAST_PLAYED_DAYS_FOR_POSTING')) ?? 180,
+        'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
         'post_action_verification' => get_bool(env('USER_POST_ACTION_VERIFICATION')) ?? true,
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
@@ -212,6 +220,11 @@ return [
     ],
     'user_report_notification' => [
         'endpoint' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT')),
+    ],
+    'wiki' => [
+        'branch' => presence(env('WIKI_BRANCH'), 'master'),
+        'repository' => presence(env('WIKI_REPOSITORY'), 'osu-wiki'),
+        'user' => presence(env('WIKI_USER'), 'ppy'),
     ],
     'changelog' => [
         'build_history_interval' => 60 * intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)), // in minutes, converted to seconds

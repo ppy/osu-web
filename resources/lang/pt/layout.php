@@ -20,20 +20,102 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Ritmo está apenas a um *clique* de distância! Com Ouendan/EBA, Taiko e modos de jogo originais, como também um editor de níveis totalmente funcional.',
+        'page_description' => 'osu! - O ritmo está a um *clique* de distância! Com Ouendan/EBA, Taiko e modos de jogo originais, como também um editor de níveis totalmente funcional.',
     ],
 
     'header' => [
+        'admin' => [
+            '_' => 'administrador',
+            'beatmapset' => 'conjunto de beatmaps',
+            'beatmapset_covers' => 'capas de conjunto de beatmaps',
+            'contest' => 'concurso',
+            'contests' => 'concursos',
+            'root' => 'consola',
+            'store_orders' => 'administrador da loja',
+        ],
+
+        'artists' => [
+            '_' => 'artistas destacados',
+            'index' => 'listagem',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'beatmap',
+            'discussions' => 'discussão',
+            'index' => 'listagem',
+            'show' => 'informação',
+            'packs' => 'pacotes',
+        ],
+
+        'changelog' => [
+            '_' => 'registo de alterações',
+            'index' => 'listagem',
+        ],
+
         'community' => [
             '_' => 'Comunidade',
-
+            'comments' => 'comentários',
+            'contests' => 'concursos',
             'forum' => 'Fórum',
+            'livestream' => 'transmissões ao vivo',
+        ],
+
+        'error' => [
+            '_' => 'erro',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'índice',
+        ],
+
+        'home' => [
+            '_' => 'início',
+            'password_reset' => 'redefinir palavra-passe',
+        ],
+
+        'matches' => [
+            '_' => 'histórico de partidas',
+        ],
+
+        'notice' => [
+            '_' => 'aviso',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'rankings' => [
+            '_' => 'classificação',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'carrinho',
+            'order' => 'fatura',
+            'orders' => 'historial de pedidos',
+            'product' => 'produto',
+            'products' => 'produtos',
+        ],
+
+        'tournaments' => [
+            '_' => 'torneios',
+            'index' => 'listagem',
+        ],
+
+        'users' => [
+            '_' => 'jogador',
+            'forum_posts' => 'publicações do fórum',
+            'modding' => 'modding',
+            'show' => 'informação',
         ],
     ],
 
     'gallery' => [
         'close' => 'Fechar (Esc)',
-        'fullscreen' => 'Ativar/Desativar ecrã completo',
+        'fullscreen' => 'Ativar/Desativar ecrã inteiro',
         'zoom' => 'Aproximar/Afastar',
         'previous' => 'Anterior (seta esquerda)',
         'next' => 'Seguinte (seta direita)',
@@ -43,10 +125,13 @@ return [
         'home' => [
             '_' => 'início',
             'account-edit' => 'definições',
-            'account-verifyLink' => 'Verificação Concluída',
-            'friends-index' => 'amigos',
-            'changelog-index' => 'lista de mudanças',
+            'account-verifyLink' => 'Verificação concluída',
+            'beatmapset-watches-index' => 'lista de observação de modificações',
             'changelog-build' => 'compilação',
+            'changelog-index' => 'lista de mudanças',
+            'client_verifications-create' => 'Verificação do cliente osu!',
+            'forum-topic-watches-index' => 'subscrições de fóruns',
+            'friends-index' => 'amigos',
             'getDownload' => 'transferir',
             'getIcons' => 'ícones',
             'groups-show' => 'grupos',
@@ -59,6 +144,7 @@ return [
             'search' => 'pesquisar',
             'supportTheGame' => 'apoia o jogo',
             'team' => 'equipa',
+            'testflight' => 'voo de teste',
         ],
         'profile' => [
             '_' => 'perfil',
@@ -69,7 +155,7 @@ return [
             '_' => 'ajuda',
             'getFaq' => 'perguntas frequentes',
             'getRules' => 'regras',
-            'getSupport' => 'não, a sério, preciso mesmo de ajuda!',
+            'getSupport' => 'a sério, preciso mesmo de ajuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -78,7 +164,6 @@ return [
             'artists' => 'artistas destacados',
             'beatmap_discussion_posts-index' => 'publicações de discussão de beatmap',
             'beatmap_discussions-index' => 'discussões de beatmap',
-            'beatmapset-watches-index' => 'lista de observação de modificações',
             'beatmapset_discussion_votes-index' => 'votos de discussão de beatmap',
             'beatmapset_events-index' => 'eventos de conjunto de beatmaps',
             'index' => 'listagem',
@@ -112,7 +197,6 @@ return [
             'tournaments' => 'torneios',
             'tournaments-index' => 'torneios',
             'tournaments-show' => 'informação do torneio',
-            'forum-topic-watches-index' => 'subscrições',
             'forum-topics-create' => 'fóruns',
             'forum-topics-show' => 'fóruns',
             'forum-forums-index' => 'fóruns',
@@ -141,7 +225,7 @@ return [
             'new' => 'novo',
 
             'help' => 'Ajuda',
-            'logout' => 'Terminar Sessão',
+            'logout' => 'Terminar sessão',
             'messages' => 'Mensagens',
             'modding-history-discussions' => 'discussões de modificações do utilizador',
             'modding-history-events' => 'eventos de modificações do utilizador',
@@ -149,6 +233,7 @@ return [
             'modding-history-posts' => 'publicações de modificações do utilizador',
             'modding-history-votesGiven' => 'votos de modificações do utilizador dados',
             'modding-history-votesReceived' => 'votos de modificações do utilizador recebidos',
+            'notifications-index' => '',
             'oauth_login' => 'inicia sessão para oauth',
             'oauth_request' => 'autorização oauth',
             'settings' => 'Definições',
@@ -196,51 +281,51 @@ return [
             '_' => 'Geral',
             'home' => 'Início',
             'changelog-index' => 'Registo de alterações',
-            'beatmaps' => 'Listagem de Beatmaps',
+            'beatmaps' => 'Listagem de beatmaps',
             'download' => 'Descarrega o osu!',
             'wiki' => 'Wiki',
         ],
         'help' => [
-            '_' => 'Ajuda e Comunidade',
-            'faq' => 'Perguntas Frequentes (em brasileiro)',
-            'forum' => 'Fóruns da Comunidade',
-            'livestreams' => 'Transmissões ao Vivo',
-            'report' => 'Comunicar um Problema',
+            '_' => 'Ajuda e comunidade',
+            'faq' => 'Perguntas frequentes (em brasileiro)',
+            'forum' => 'Fóruns da comunidade',
+            'livestreams' => 'Transmissões ao vivo',
+            'report' => 'Comunicar um problema',
         ],
         'legal' => [
             '_' => 'Legalidade e Situação Jurídica',
-            'copyright' => 'Direitos de Autor (DMCA)',
+            'copyright' => 'Direitos de autor (DMCA)',
             'privacy' => 'Privacidade',
-            'server_status' => 'Estado do Servidor',
-            'source_code' => 'Código-Fonte',
-            'terms' => 'Termos de Serviço',
+            'server_status' => 'Estado do servidor',
+            'source_code' => 'Código-fonte',
+            'terms' => 'Termos de serviço',
         ],
     ],
 
     'errors' => [
         '404' => [
-            'error' => 'Página em Falta',
+            'error' => 'Página em falta',
             'description' => "Lamento, mas a página que pediste não está aqui!",
         ],
         '403' => [
-            'error' => "Não devias estar aqui.",
-            'description' => 'Contudo, podias tentar voltar atrás.',
+            'error' => "Tu não devias estar aqui.",
+            'description' => 'Contudo, podias tentar voltar para trás.',
         ],
         '401' => [
-            'error' => "Não devias estar aqui.",
-            'description' => 'Contudo, podias tentar voltar atrás. Ou talvez iniciar sessão.',
+            'error' => "Tu não devias estar aqui.",
+            'description' => 'Contudo, podias tentar voltar para trás ou talvez iniciares sessão.',
         ],
         '405' => [
-            'error' => 'Página em Falta',
+            'error' => 'Página em falta',
             'description' => "Lamento, mas a página que pediste não está aqui!",
         ],
         '500' => [
             'error' => 'Oh não! Algo se quebrou! ;_;',
-            'description' => "Nós somos automaticamente notificados de todos os erros.",
+            'description' => "Somos automaticamente notificados de todos os erros.",
         ],
         'fatal' => [
             'error' => 'Oh não! Algo se quebrou (seriamente)! ;_;',
-            'description' => "Nós somos automaticamente notificados de todos os erros.",
+            'description' => "Somos automaticamente notificados de todos os erros.",
         ],
         '503' => [
             'error' => 'Offline para manutenção!',
@@ -256,10 +341,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'endereço de email',
             'forgot' => "Esqueci-me dos meus detalhes",
             'password' => 'palavra-passe',
-            'title' => 'Inicia Sessão Para Proceder',
+            'title' => 'Inicia sessão para procederes',
+            'username' => 'nome de utilizador',
 
             'error' => [
                 'email' => "Nome de utilizador ou endereço de email não existente",
@@ -269,7 +354,7 @@ return [
 
         'register' => [
             'download' => 'Descarregar',
-            'info' => 'Precisa duma conta, senhor. Porque é que ainda não tem uma?',
+            'info' => 'Transfere o osu! para criar a tua própria conta!',
             'title' => "Não tens uma conta?",
         ],
     ],
@@ -278,13 +363,13 @@ return [
         'links' => [
             'account-edit' => 'Definições',
             'friends' => 'Amigos',
-            'logout' => 'Terminar Sessão',
-            'profile' => 'Meu Perfil',
+            'logout' => 'Terminar sessão',
+            'profile' => 'O meu perfil',
         ],
     ],
 
     'popup_search' => [
-        'initial' => 'Digita para pesquisar!',
+        'initial' => 'Escreve para pesquisar!',
         'retry' => 'Pesquisa falhada. Clica para tentar outra vez.',
     ],
 ];

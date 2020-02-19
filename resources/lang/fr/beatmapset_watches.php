@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Voici les discussions de beatmap que vous suivez. Vous serez notifié quand il y aura de nouveaux posts ou des changements.',
         'title_compact' => 'liste d\'abonnement des modifications',
-        'title_main' => 'Liste d\'abonnement des modifications',
 
         'table' => [
             'empty' => 'Aucune discussion de beatmap suivie.',
@@ -30,10 +29,6 @@ return [
             'state' => 'Statut',
             'title' => 'Titre',
         ],
-    ],
-
-    'mail' => [
-        'update' => 'Nouvelle mise à jour pour la beatmap ":title"',
     ],
 
     'status' => [

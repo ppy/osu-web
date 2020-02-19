@@ -15,9 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@php
-    $legacyNav ?? ($legacyNav = true);
-@endphp
 <div class="nav2 js-nav-button">
     <div class="nav2__colgroup nav2__colgroup--menu js-nav-button--container">
         <div class="nav2__col nav2__col--logo">
@@ -50,7 +47,7 @@
                             simple-menu
                             simple-menu--nav2
                             simple-menu--nav2-left-aligned
-                            {{ $legacyNav ? '' : 'simple-menu--nav2-transparent' }}
+                            simple-menu--nav2-transparent
                             js-menu
                         "
                         data-menu-id="nav2-menu-popup-{{ $section }}"
@@ -69,7 +66,7 @@
             </div>
         @endforeach
 
-        <div class="nav2__col nav2__col--menu js-react--quick-search">
+        <div class="nav2__col nav2__col--menu js-react--quick-search-button">
             <a
                 href="{{ route('search') }}"
                 class="
@@ -152,13 +149,22 @@
         </div>
 
         @if (Auth::user() !== null)
-            <div class="nav2__col js-react--notification">
-                <div class="nav-button nav-button--stadium">
+            <div class="nav2__col">
+                <button
+                    class="nav-button nav-button--stadium js-click-menu js-react--notification-icon"
+                    data-click-menu-target="nav2-notification-widget"
+                >
                     <span class="notification-icon">
                         <i class="fas fa-inbox"></i>
                         <span class="notification-icon__count">...</span>
                     </span>
-                </div>
+                </button>
+                <div
+                    class="nav-click-popup js-click-menu js-react--notification-widget"
+                    data-click-menu-id="nav2-notification-widget"
+                    data-visibility="hidden"
+                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup']) }}"
+                ></div>
             </div>
         @endif
 

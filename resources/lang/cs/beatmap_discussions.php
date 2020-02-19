@@ -43,12 +43,12 @@ return [
             'username' => 'Uživatelské jméno',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
+                '_' => 'Stav Beatmapy',
+                'all' => 'Všechny',
+                'disqualified' => 'Diskvalifikovaný',
                 'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                'qualified' => 'Kvalifikovaný',
+                'ranked' => 'Hodnocené',
             ],
 
             'user' => [
@@ -77,11 +77,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Označeno jako vyřešeno uživatelem :user',
             'false' => 'Znovu otevřeno uživatelem :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'obecné',
+        'general_all' => '',
     ],
 
     'user_filter' => [

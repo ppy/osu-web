@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Registratie: :start tot :end',
 
         'header' => [
-            'subtitle' => 'Een lijst van actieve, officieel erkende toernooien',
             'title' => 'Community Toernooien',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Annuleer registratie',
             'register' => 'Schrijf me in!',
+        ],
+
+        'period' => [
+            'end' => 'Einde',
+            'start' => 'Start',
         ],
 
         'state' => [

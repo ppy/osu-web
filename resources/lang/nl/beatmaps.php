@@ -91,13 +91,14 @@ return [
             'nomination_reset' => 'Reset Nominatie',
             'praise' => 'Prijs',
             'problem' => 'Probleem',
-            'review' => '',
+            'review' => 'Recensie',
             'suggestion' => 'Suggestie',
         ],
 
         'mode' => [
             'events' => 'Geschiedenis',
             'general' => 'Algemeen :scope',
+            'reviews' => 'Recensies',
             'timeline' => 'Tijdlijn',
             'scopes' => [
                 'general' => 'Deze moeilijkheidsgraad',

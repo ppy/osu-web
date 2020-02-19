@@ -19,9 +19,11 @@
 import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
+import { dispatchListener } from 'app-dispatcher';
 import { action, observable } from 'mobx';
 import Store from 'stores/store';
 
+@dispatchListener
 export default class ChatStateStore extends Store {
   @observable autoScroll: boolean = false;
   @observable lastReadId: number = -1;
@@ -35,12 +37,9 @@ export default class ChatStateStore extends Store {
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
     if (dispatchedAction instanceof ChatChannelSwitchAction) {
-      const lastReadId = this.root.channelStore.getOrCreate(dispatchedAction.channelId).lastReadId;
-      if (lastReadId != null) {
-        this.lastReadId = lastReadId;
-      }
+      this.lastReadId = this.root.channelStore.getOrCreate(dispatchedAction.channelId).lastReadId || -1;
     } else if (dispatchedAction instanceof ChatMessageSendAction) {
-      this.lastReadId = this.root.channelStore.getOrCreate(dispatchedAction.message.channelId).lastMessageId;
+      this.lastReadId = this.root.channelStore.getOrCreate(dispatchedAction.message.channelId).lastMessageId || -1;
       this.autoScroll = true;
     } else if (dispatchedAction instanceof UserLogoutAction) {
       this.flushStore();

@@ -27,6 +27,56 @@ use Tests\TestCase;
 
 class ModTest extends TestCase
 {
+    public function testModSettings()
+    {
+        $settings = Mod::filterSettings(Mod::WIND_UP, ['initial_rate' => '1']);
+
+        $this->assertSame(1.0, $settings->initial_rate);
+    }
+
+    public function testModSettingsInvalid()
+    {
+        $this->expectException(InvariantException::class);
+        Mod::filterSettings(Mod::WIND_UP, ['x' => '1']);
+    }
+
+    public function testParseInputArray()
+    {
+        $input = [['acronym' => Mod::WIND_UP, 'settings' => []]];
+        $parsed = Mod::parseInputArray($input, Ruleset::OSU);
+
+        $this->assertSame(1, count($parsed));
+        $this->assertSame(0, count((array) $parsed[0]->settings));
+        $this->assertSame(Mod::WIND_UP, $parsed[0]->acronym);
+    }
+
+    public function testParseInputArrayInvalidMod()
+    {
+        $input = [['acronym' => 'XYZ', 'settings' => []]];
+
+        $this->expectException(InvariantException::class);
+        Mod::parseInputArray($input, Ruleset::OSU);
+    }
+
+    public function testParseInputArrayWithSettings()
+    {
+        $input = [['acronym' => Mod::WIND_UP, 'settings' => ['initial_rate' => '1']]];
+        $parsed = Mod::parseInputArray($input, Ruleset::OSU);
+
+        $this->assertSame(1, count($parsed));
+        $this->assertSame(1, count((array) $parsed[0]->settings));
+        $this->assertSame(1.0, $parsed[0]->settings->initial_rate);
+        $this->assertSame(Mod::WIND_UP, $parsed[0]->acronym);
+    }
+
+    public function testParseInputArrayWithSettingsInvalid()
+    {
+        $input = [['acronym' => Mod::WIND_UP, 'settings' => ['x' => '1']]];
+
+        $this->expectException(InvariantException::class);
+        Mod::parseInputArray($input, Ruleset::OSU);
+    }
+
     public function testValidForRulesetWithValid()
     {
         // This test feels a bit silly and is more implementation-testing than anything...

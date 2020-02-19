@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Dette er beatmapdiskusjonene som du følger. Du vil varsles om nye innlegg eller oppdateringer.',
         'title_compact' => 'modding overvåkningsliste',
-        'title_main' => 'Modding Overvåkningsliste',
 
         'table' => [
             'empty' => 'Ingen beatmapdiskusjon overvåket.',
@@ -30,10 +29,6 @@ return [
             'state' => 'Tilstand',
             'title' => 'Tittel',
         ],
-    ],
-
-    'mail' => [
-        'update' => 'Ny oppdatering for beatmap ":title"',
     ],
 
     'status' => [

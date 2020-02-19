@@ -44,11 +44,6 @@ return [
             '_stream_to' => 'змены ў :stream да :to',
             '_to' => 'змены да :to',
         ],
-
-        'title' => [
-            '_' => 'Гісторыя змен :info',
-            'info' => 'Спіс',
-        ],
     ],
 
     'support' => [

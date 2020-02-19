@@ -86,7 +86,6 @@ vendor.forEach(function (script) {
 
 
 let webpackConfig = {
-  devtool: '#source-map',
   externals: {
     "lodash": "_",
     "moment": "moment",
@@ -195,6 +194,7 @@ if (process.env.SENTRY_RELEASE == 1) {
 
 mix
 .webpackConfig(webpackConfig)
+.sourceMaps(true, 'source-map', 'source-map')
 .js([
   'resources/assets/app.js'
 ], 'js/app.js')
@@ -220,6 +220,7 @@ mix
 .ts('resources/assets/lib/groups-show.ts', 'js/react/groups-show.js')
 .ts('resources/assets/lib/news-index.ts', 'js/react/news-index.js')
 .ts('resources/assets/lib/news-show.ts', 'js/react/news-show.js')
+.ts('resources/assets/lib/notifications-index.ts', 'js/react/notifications-index.js')
 .ts('resources/assets/lib/store-bootstrap.ts', 'js/store-bootstrap.js')
 .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')

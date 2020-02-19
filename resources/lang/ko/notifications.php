@@ -21,6 +21,18 @@
 return [
     'all_read' => '모든 알림을 읽었어요!',
     'mark_all_read' => '모두 지우기',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -40,10 +52,10 @@ return [
 
             'beatmapset_problem' => [
                 '_' => 'Qualified 비트맵 문제',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                'beatmapset_discussion_qualified_problem' => '":title": ":content"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_empty' => '":title"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_compact' => '":content"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_compact_empty' => ':username 이(가) 보고함',
             ],
 
             'beatmapset_state' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '새 메달',
                 'user_achievement_unlock' => '":title" 해제!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

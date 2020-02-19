@@ -38,6 +38,7 @@ class CommentTransformer extends Fractal\TransformerAbstract
             'user_id' => $comment->user_id,
             'message' => $message ?? null,
             'message_html' => $messageHtml ?? null,
+            'pinned' => $comment->pinned,
             'replies_count' => $comment->replies_count_cache ?? 0,
             'votes_count' => $comment->votes_count_cache ?? 0,
 
