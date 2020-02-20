@@ -21,7 +21,6 @@
 namespace App\Http\Controllers;
 
 use App\Libraries\OsuWiki;
-use App\Libraries\Search\BasicSearch;
 use App\Libraries\Search\WikiSuggestions;
 use App\Libraries\Search\WikiSuggestionsRequestParams;
 use App\Libraries\WikiRedirect;
@@ -67,22 +66,7 @@ class WikiController extends Controller
 
     public function sitemap()
     {
-        static $default = [
-            'titles' => [],
-            'sitemap' => [],
-        ];
-
-        $generated = cache_remember_mutexed('wiki:sitemap', Page::CACHE_DURATION, $default, function () {
-            return (new WikiSitemap)->generate();
-        });
-
-        $array = [
-            'parent' => '',
-            'titles' => $generated->titles,
-            'sitemap' => $generated->sitemap,
-        ];
-
-        return ext_view('wiki.sitemap', $array);
+        return ext_view('wiki.sitemap', WikiSitemap::get());
     }
 
     public function suggestions()

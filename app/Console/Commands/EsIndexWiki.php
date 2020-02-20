@@ -9,6 +9,7 @@ use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use App\Models\Wiki\Page;
+use App\Models\Wiki\WikiSitemap;
 use Illuminate\Console\Command;
 
 class EsIndexWiki extends Command
@@ -64,6 +65,8 @@ class EsIndexWiki extends Command
         $this->reindex();
 
         Indexing::updateAlias($alias, [$this->indexName]);
+
+        $this->updateSitemap();
 
         $this->finish();
     }
@@ -154,5 +157,12 @@ class EsIndexWiki extends Command
         }
 
         return $this->yes || $this->confirm("This index to {$this->indexName}, begin indexing?");
+    }
+
+    private function updateSitemap()
+    {
+        $this->line('Updating wiki sitemap...');
+        WikiSitemap::expire();
+        WikiSitemap::get();
     }
 }

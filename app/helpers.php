@@ -139,6 +139,22 @@ function cache_remember_with_fallback($key, $seconds, $callback)
     return $data['value'] ?? null;
 }
 
+// Marks the content in the key as expired but leaves the fallback for a short period.
+// Use with cache_remember_mutexed when the previous value needs to be shown while a key is being updated.
+function cache_expire_with_fallback($key)
+{
+    $fullKey = "{$key}:with_fallback";
+
+    $data = Cache::get($fullKey);
+
+    if ($data === null || $data['expires_at']->isPast()) {
+        return;
+    }
+
+    $data['expires_at'] = now()->addHour(-1);
+    Cache::put($fullKey, $data, 600);
+}
+
 // Just normal Cache::forget but with the suffix.
 function cache_forget_with_fallback($key)
 {

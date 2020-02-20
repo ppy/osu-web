@@ -36,6 +36,23 @@ class WikiSitemap
             ->sort(new Sort('_id', 'asc'));
     }
 
+    public static function get()
+    {
+        static $default = [
+            'titles' => [],
+            'sitemap' => [],
+        ];
+
+        return cache_remember_mutexed('wiki:sitemap', Page::CACHE_DURATION, $default, function () {
+            return (new WikiSitemap)->generate()->toArray();
+        });
+    }
+
+    public static function expire()
+    {
+        cache_expire_with_fallback('wiki:sitemap');
+    }
+
     //  array_set, but with /
     private static function arraySet(&$array, $key, $value)
     {
@@ -78,6 +95,14 @@ class WikiSitemap
         }
 
         return $this;
+    }
+
+    public function toArray()
+    {
+        return [
+            'sitemap' => $this->sitemap,
+            'titles' => $this->titles,
+        ];
     }
 
     private function parse(Hit $hit)
