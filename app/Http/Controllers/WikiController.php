@@ -23,9 +23,9 @@ namespace App\Http\Controllers;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\WikiSuggestions;
 use App\Libraries\Search\WikiSuggestionsRequestParams;
+use App\Libraries\Wiki\WikiSitemap;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
-use App\Models\Wiki\WikiSitemap;
 use Request;
 
 class WikiController extends Controller

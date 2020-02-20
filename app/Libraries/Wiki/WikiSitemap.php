@@ -18,11 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Wiki;
+namespace App\Libraries\Wiki;
 
 use App\Libraries\Elasticsearch\Hit;
 use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\Search\BasicSearch;
+use App\Models\Wiki\Page;
 
 class WikiSitemap
 {

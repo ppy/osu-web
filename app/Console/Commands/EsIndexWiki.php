@@ -8,8 +8,8 @@ use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
+use App\Libraries\Wiki\WikiSitemap;
 use App\Models\Wiki\Page;
-use App\Models\Wiki\WikiSitemap;
 use Illuminate\Console\Command;
 
 class EsIndexWiki extends Command
