@@ -67,7 +67,15 @@ class WikiController extends Controller
 
     public function sitemap()
     {
-        $generated = (new WikiSitemap)->generate();
+        static $default = [
+            'titles' => [],
+            'sitemap' => [],
+        ];
+
+        $generated = cache_remember_mutexed('wiki:sitemap', Page::CACHE_DURATION, $default, function () {
+            return (new WikiSitemap)->generate();
+        });
+
         $array = [
             'parent' => '',
             'titles' => $generated->locales,
