@@ -89,7 +89,11 @@ class WikiController extends Controller
     {
         priv_check('WikiPageRefresh')->ensureCan();
 
-        (new Wiki\Page($path, $this->locale()))->sync(true);
+        if (strtolower($path) === 'sitemap') {
+            WikiSitemap::expire();
+        } else {
+            (new Wiki\Page($path, $this->locale()))->sync(true);
+        }
 
         return ujs_redirect(Request::getUri());
     }

@@ -34,6 +34,25 @@
         'subSection' => trans('wiki.sitemap.title'),
         'theme' => 'help',
     ]])
+
+        @slot('navAppend')
+            <div class="header-buttons">
+                @if (priv_check('WikiPageRefresh')->can())
+                    <div class="header-buttons__item">
+                        <button
+                            type="button"
+                            class="btn-osu-big btn-osu-big--rounded-thin"
+                            data-remote="true"
+                            data-url="{{ route('wiki.sitemap') }}"
+                            data-method="PUT"
+                            title="{{ trans('wiki.show.edit.refresh') }}"
+                        >
+                            <i class="fas fa-sync"></i>
+                        </button>
+                    </div>
+                @endif
+            </div>
+        @endslot
     @endcomponent
 
     <div class="osu-page osu-page--wiki">
