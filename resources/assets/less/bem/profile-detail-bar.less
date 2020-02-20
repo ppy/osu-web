@@ -17,7 +17,6 @@
  */
 
 .profile-detail-bar {
-  @_padding: 5px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -27,21 +26,20 @@
   background-color: @osu-colour-b4;
 
   @media @desktop {
-    padding: @_padding;
-    padding-left: @gutter-profile-page-desktop;
-    padding-right: @gutter-profile-page-desktop;
+    padding: 10px @gutter-profile-page-desktop;
   }
 
   &__column {
     display: flex;
     width: 100%;
+    padding: 5px;
+    flex-wrap: wrap;
 
     @media @desktop {
       width: auto;
-    }
-
-    @media @mobile {
-      padding: 10px;
+      margin: -5px;
+      padding: 0;
+      flex-wrap: nowrap;
     }
 
     &--left {
@@ -50,36 +48,27 @@
 
     &--right {
       align-items: center;
+
       @media @desktop {
-        min-width: @profile-stats-box-width-desktop;
-      }
-      @media @mobile {
-        padding: 0 @gutter-profile-page @gutter-profile-page - @_padding @gutter-profile-page;
-        flex-wrap: wrap;
+        min-width: (@profile-stats-box-width-desktop + 10px);
       }
     }
   }
 
   &__entry {
     flex: none;
-
-    &--ranking {
-      & + & {
-        margin-left: 10px;
-      }
-    }
+    margin: 5px;
+    display: flex;
 
     &--level {
       .center-content();
 
       margin-left: auto;
-      display: flex;
       height: 40px;
     }
 
     &--level-progress {
       flex: 1;
-      display: flex;
       align-items: center;
       padding-right: 10px;
       font-size: @font-size--normal;
@@ -101,11 +90,6 @@
     position: absolute;
     top: 50%;
     right: 0;
-  }
-
-  &__menu-item {
-    margin: 5px;
-    display: flex;
   }
 
   &__page-toggle {
