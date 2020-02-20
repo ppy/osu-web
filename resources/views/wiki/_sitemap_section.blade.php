@@ -33,7 +33,7 @@
 @if (is_array($sitemap))
     <ul class="osu-md__list">
         @foreach ($sitemap as $key => $value)
-            @include('wiki._sitemap_section', ['titles' => $titles, 'sitemap' => $value, 'parent' => "{$parent}/{$key}"])
+            @include('wiki._sitemap_section', ['parent' => "{$parent}/{$key}", 'sitemap' => $value, 'titles' => $titles])
         @endforeach
     </ul>
 @endif
