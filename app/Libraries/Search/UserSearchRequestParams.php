@@ -30,4 +30,9 @@ class UserSearchRequestParams extends UserSearchParams
         $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
         $this->recentOnly = get_bool($request['recent_only'] ?? null);
     }
+
+    public function isLoginRequired(): bool
+    {
+        return true;
+    }
 }
