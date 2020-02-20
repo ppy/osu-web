@@ -25,7 +25,6 @@ use App\Libraries\Search\WikiSuggestions;
 use App\Libraries\Search\WikiSuggestionsRequestParams;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
-use App\Models\Wiki\Page;
 use App\Models\Wiki\WikiSitemap;
 use Request;
 

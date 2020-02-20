@@ -44,7 +44,7 @@ class WikiSitemap
         ];
 
         return cache_remember_mutexed('wiki:sitemap', Page::CACHE_DURATION, $default, function () {
-            return (new WikiSitemap)->generate()->toArray();
+            return (new static)->generate()->toArray();
         });
     }
 
@@ -68,7 +68,7 @@ class WikiSitemap
             // If the key doesn't exist at this depth, we will just create an empty array
             // to hold the next value, allowing us to create the arrays to hold final
             // values at the correct depth. Then we'll keep digging into the array.
-            if (! isset($array[$key]) || ! is_array($array[$key])) {
+            if (!isset($array[$key]) || !is_array($array[$key])) {
                 $array[$key] = [];
             }
 
