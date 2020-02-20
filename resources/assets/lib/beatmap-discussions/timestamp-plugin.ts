@@ -17,85 +17,48 @@
  */
 
 import OsuUrlHelper from 'osu-url-helper';
-import { Node, Parent } from 'unist';
-import * as visit from 'unist-util-visit';
+import { Eat } from 'remark-parse';
+import { Node } from 'unist';
 
-interface NodeWithValue extends Node {
-  value: string;
-}
-
+// plugin to tokenize timestamps
 export function timestampPlugin() {
-  const regexPattern = /((\d{2,}:[0-5]\d[:.]\d{3})( \((?:\d[,|])*\d\))?)/g;
+  function locator(value: string, fromIndex: number) {
+    const match = value.substr(fromIndex).search(/[0-9]{2}/);
 
-  return transformer;
-
-  function transformer(tree: Node) {
-    visit(tree, 'text', visitor);
+    return match < 0 ? match : match + fromIndex;
   }
 
-  function visitor(node: NodeWithValue, position: number, parent: Parent) {
-    const nodes = [];
-    let lastIndex = 0;
+  function inlineTokenizer(eat: Eat, value: string, silent?: true): Node | boolean | void {
+    if (silent) {
+      return true;
+    }
 
-    const regex = new RegExp(regexPattern);
-    let match = regex.exec(node.value);
+    const regex = new RegExp(/((\d{2,}:[0-5]\d[:.]\d{3})( \((?:\d[,|])*\d\))?)/);
+    const result = regex.exec(value);
 
-    // early abort if no timestamps are found
-    if (match === null) {
+    if (!result || result.index !== 0) {
       return;
     }
 
-    // iterate over matches and create nodes for each timestamp
-    while (match !== null) {
-      const [timestamp] = match;
+    const [matched, timestamp] = result;
 
-      // node for text between matches (including before first match)
-      if (match.index !== lastIndex) {
-        nodes.push(
-          addPosition(node.value, lastIndex, match.index),
-        );
-      }
-
-      nodes.push({
-        children: [
-          {type: 'text', value: timestamp},
-        ],
-        href: OsuUrlHelper.openBeatmapEditor(timestamp),
-        type: 'timestamp',
-      });
-
-      lastIndex = match.index + timestamp.length;
-
-      match = regex.exec(node.value);
-    }
-
-    // node for text after last match
-    if (lastIndex !== node.value.length) {
-      nodes.push(
-        addPosition(node.value, lastIndex, node.value.length),
-      );
-    }
-
-    parent.children = nodes;
+    return eat(matched)({
+      children: [
+        {type: 'text', value: timestamp},
+      ],
+      href: OsuUrlHelper.openBeatmapEditor(timestamp),
+      type: 'timestamp',
+    });
   }
 
-  function addPosition(str: string, start: number, end: number) {
-    const startLine = str.slice(0, start).split('\n');
-    const endLine = str.slice(0, end).split('\n');
+  // Ideally 'Parser' here should be typed like Parser from 'remark-parse', but the provided types appear wonky --
+  // they causes issues with the inlineTokenizer definition below, so we're gonna leave it as an implicit 'any' for now.
+  const Parser = this.Parser;
+  const inlineTokenizers = Parser.prototype.inlineTokenizers;
+  const inlineMethods = Parser.prototype.inlineMethods;
 
-    return {
-      position: {
-        end: {
-          column: endLine[endLine.length - 1].length + 1,
-          line: endLine.length,
-        },
-        start: {
-          column: startLine[startLine.length - 1].length + 1,
-          line: startLine.length,
-        },
-      },
-      type: 'text',
-      value: str.slice(start, end),
-    };
-  }
+  // Inject inlineTokenizer
+  inlineTokenizer.locator = locator;
+  inlineTokenizers.timestamp = inlineTokenizer;
+  inlineMethods.unshift('timestamp');
 }
