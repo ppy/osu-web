@@ -29,15 +29,15 @@ export function timestampPlugin() {
   }
 
   function inlineTokenizer(eat: Eat, value: string, silent?: true): Node | boolean | void {
-    if (silent) {
-      return true;
-    }
-
     const regex = new RegExp(/((\d{2,}:[0-5]\d[:.]\d{3})( \((?:\d[,|])*\d\))?)/);
     const result = regex.exec(value);
 
     if (!result || result.index !== 0) {
       return;
+    }
+
+    if (silent) {
+      return true;
     }
 
     const [matched, timestamp] = result;
