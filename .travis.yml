@@ -56,6 +56,7 @@ install:
   - wget -q --waitretry=10 --retry-connrefused -T 60 -O - http://127.0.0.1:9200
   - php artisan es:create-search-blacklist
   - php artisan es:index-documents --yes
+  - php artisan es:index-wiki --create-only --yes
 
 jobs:
   fast_finish: true

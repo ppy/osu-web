@@ -19,7 +19,7 @@ class EsIndexWiki extends Command
      *
      * @var string
      */
-    protected $signature = 'es:index-wiki {--inplace} {--cleanup} {--yes}';
+    protected $signature = 'es:index-wiki {--create-only} {--inplace} {--cleanup} {--yes}';
 
     /**
      * The console command description.
@@ -29,6 +29,7 @@ class EsIndexWiki extends Command
     protected $description = 'Re-indexes wiki pages';
 
     private $cleanup;
+    private $createOnly;
     private $indexName;
     private $indicesToRemove;
     private $inplace;
@@ -93,6 +94,7 @@ class EsIndexWiki extends Command
 
     private function readOptions()
     {
+        $this->createOnly = $this->option('create-only');
         $this->inplace = $this->option('inplace');
         $this->cleanup = $this->option('cleanup');
         $this->yes = $this->option('yes');
@@ -100,6 +102,9 @@ class EsIndexWiki extends Command
 
     private function reindex()
     {
+        if ($this->createOnly) {
+            return;
+        }
         // for storing the paths as keys; the values don't matter in practise.
         $paths = [];
 
