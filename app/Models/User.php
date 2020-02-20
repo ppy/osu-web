@@ -28,7 +28,6 @@ use App\Libraries\ChangeUsername;
 use App\Libraries\UsernameValidation;
 use App\Models\OAuth\Client;
 use App\Traits\UserAvatar;
-use App\Traits\UserPermissions;
 use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
@@ -185,7 +184,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 {
     use Elasticsearch\UserTrait, Store\UserTrait;
     use Authenticatable, HasApiTokens, Reportable, UserAvatar, UserScoreable, Validatable;
-    use UserPermissions;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -861,7 +859,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     // check if a user is in a specific group, by ID
     public function isGroup($group)
     {
-        return in_array($group->getKey(), $this->groupIds(), true);
+        return in_array($group->getKey(), $this->groupIds(), true) && $this->token() === null;
     }
 
     public function badges()
