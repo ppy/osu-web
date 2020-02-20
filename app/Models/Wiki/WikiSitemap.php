@@ -53,21 +53,14 @@ class WikiSitemap
         cache_expire_with_fallback('wiki:sitemap');
     }
 
-    //  array_set, but with /
-    private static function arraySet(&$array, $key, $value)
+    // like array_set, but with / and no null key
+    private static function arraySet(&$array, string $key, $value)
     {
-        if (is_null($key)) {
-            return $array = $value;
-        }
-
         $keys = explode('/', $key);
 
         while (count($keys) > 1) {
             $key = array_shift($keys);
 
-            // If the key doesn't exist at this depth, we will just create an empty array
-            // to hold the next value, allowing us to create the arrays to hold final
-            // values at the correct depth. Then we'll keep digging into the array.
             if (!isset($array[$key]) || !is_array($array[$key])) {
                 $array[$key] = [];
             }
@@ -82,7 +75,7 @@ class WikiSitemap
 
     public function generate()
     {
-        $cursor = ['']; // works with Sort(_id, asc) to start at the beginning.
+        $cursor = [''];
         while ($cursor !== null) {
             $search = static::allPagesSearch()->searchAfter(array_values($cursor));
             $response = $search->response();
