@@ -47,6 +47,8 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         '8' => 'loved',
     ];
 
+    private $requestQuery;
+
     public function __construct(array $request, ?User $user = null)
     {
         parent::__construct();
@@ -56,10 +58,10 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         $this->user = $user;
         $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
+        $this->requestQuery = $request['q'] ?? $request['query'] ?? null;
 
         if ($this->user !== null) {
-            $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query'] ?? null);
-
+            $this->queryString = es_query_escape_with_caveats($this->requestQuery);
             $status = presence($request['s'] ?? null);
             $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
 
@@ -132,6 +134,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         }
 
         return compact('extras', 'general', 'genres', 'languages', 'modes', 'played', 'ranks', 'statuses');
+    }
+
+    public function isLoginRequired(): bool
+    {
+        return present($this->requestQuery);
     }
 
     private function getDefaultSort(string $order): array

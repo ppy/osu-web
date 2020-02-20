@@ -34,4 +34,9 @@ class PostSearchRequestParams extends PostSearchParams
         $this->forumId = get_int($request['forum_id'] ?? null);
         $this->includeSubforums = get_bool($request['forum_children'] ?? null);
     }
+
+    public function isLoginRequired(): bool
+    {
+        return true;
+    }
 }
