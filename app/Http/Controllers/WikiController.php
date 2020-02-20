@@ -78,7 +78,7 @@ class WikiController extends Controller
 
         $array = [
             'parent' => '',
-            'titles' => $generated->locales,
+            'titles' => $generated->titles,
             'sitemap' => $generated->sitemap,
         ];
 

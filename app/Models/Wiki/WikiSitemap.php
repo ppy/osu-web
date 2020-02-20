@@ -26,7 +26,7 @@ use App\Libraries\Search\BasicSearch;
 
 class WikiSitemap
 {
-    public $locales = []; // stores the titles
+    public $titles = []; // stores the titles
     public $sitemap = []; // stores the tree structure
 
     public static function allPagesSearch()
@@ -85,7 +85,7 @@ class WikiSitemap
         $page = Page::fromEs($hit);
         $key = $hit->source('locale').'/'.$hit->source('path');
 
-        $this->locales[$key] = $page->title();
+        $this->titles[$key] = $page->title();
 
         if ($page->locale === config('app.fallback_locale')) {
             static::arraySet($this->sitemap, $page->path, $page->path);
