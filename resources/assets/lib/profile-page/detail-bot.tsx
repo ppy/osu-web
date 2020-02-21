@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,24 +16,31 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Search;
+import { FriendButton } from 'friend-button';
+import * as React from 'react';
 
-class ForumSearchRequestParams extends ForumSearchParams
-{
-    public function __construct(array $request)
-    {
-        parent::__construct();
+interface Props {
+  user: User;
+}
 
-        $this->queryString = presence(trim($request['query'] ?? null));
-        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
-        $this->includeSubforums = get_bool($request['forum_children'] ?? false);
-        $this->username = presence(trim($request['username'] ?? null));
-        $this->forumId = get_int($request['forum_id'] ?? null);
-        $this->topicId = get_int($request['topic_id'] ?? null);
-    }
-
-    public function isLoginRequired(): bool
-    {
-        return true;
-    }
+export default function DetailBot({ user }: Props) {
+  return (
+    <div className='profile-detail'>
+      <div className='profile-detail__bar'>
+        <div className='profile-detail-bar'>
+          <div className='profile-detail-bar__column profile-detail-bar__column--left'>
+            <div className='profile-detail-bar__menu-item'>
+              <FriendButton
+                alwaysVisible={true}
+                followers={user.follower_count}
+                modifiers={['profile-page']}
+                showFollowerCounter={true}
+                userId={user.id}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

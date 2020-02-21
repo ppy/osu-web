@@ -48,11 +48,6 @@ class WikiSuggestionsParams extends SearchParams
         return false;
     }
 
-    public function isLoginRequired(): bool
-    {
-        return false;
-    }
-
     /**
      * {@inheritdoc}
      */

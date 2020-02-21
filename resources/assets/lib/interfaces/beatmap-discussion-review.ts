@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,24 +16,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Search;
-
-class ForumSearchRequestParams extends ForumSearchParams
-{
-    public function __construct(array $request)
-    {
-        parent::__construct();
-
-        $this->queryString = presence(trim($request['query'] ?? null));
-        $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
-        $this->includeSubforums = get_bool($request['forum_children'] ?? false);
-        $this->username = presence(trim($request['username'] ?? null));
-        $this->forumId = get_int($request['forum_id'] ?? null);
-        $this->topicId = get_int($request['topic_id'] ?? null);
-    }
-
-    public function isLoginRequired(): bool
-    {
-        return true;
-    }
+export interface DocumentBlock {
+  text: string;
+  type: 'paragraph' | 'embed';
 }
+
+export interface DocumentParagraph extends DocumentBlock {
+  type: 'paragraph';
+}
+
+export interface DocumentIssueEmbed extends DocumentBlock {
+  beatmap_id: number | null;
+  discussion_id?: number;
+  discussion_type: 'praise' | 'problem' | 'suggestion';
+  timestamp: string;
+  type: 'embed';
+}
+
+export type BeatmapReviewBlock = DocumentIssueEmbed | DocumentParagraph;
+export type BeatmapDiscussionReview = BeatmapReviewBlock[];
