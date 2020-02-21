@@ -21,10 +21,33 @@
 namespace Tests\Transformers;
 
 use App\Models\User;
+use App\Models\UserAccountHistory;
 use Tests\TestCase;
 
 class UserTransformerTest extends TestCase
 {
+    /**
+     * @dataProvider groupsDataProvider
+     */
+    public function testUserSilenceShowExtendedInfo($groupIdentifier)
+    {
+        $viewer = factory(User::class)->states($groupIdentifier)->create();
+        $user = factory(User::class)->states('restricted', 'silenced', 'with_note')->create();
+
+        $this->assertSame(3, $user->accountHistories()->count());
+
+        $this->actAsScopedUser($viewer);
+
+        $json = json_item($user, 'User', ['account_history.actor', 'account_history.supporting_url']);
+
+        $accountHistories = array_get($json, 'account_history');
+        $silences = array_filter($accountHistories, function ($item) {
+            return $item['type'] === 'silence';
+        });
+        $this->assertCount(1, $accountHistories);
+        $this->assertSame($accountHistories, $silences);
+    }
+
     /**
      * @dataProvider groupsDataProvider
      */
