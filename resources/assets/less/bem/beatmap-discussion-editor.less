@@ -26,6 +26,10 @@
   background-color: @osu-colour-b4;
   flex-direction: column;
 
+  &--edit-mode {
+    margin-bottom: 10px;
+  }
+
   &__avatar {
     flex: none;
     width: @_avatar-size;
@@ -48,6 +52,11 @@
     color: white;
     background: @osu-colour-b5;
     .default-border-radius();
+
+    .@{_top}--edit-mode & {
+      margin: 0 -15px;
+      border-radius: 0;
+    }
   }
 
   &__dropdown {
@@ -69,6 +78,10 @@
 
     z-index: @z-index--blackout-visible;
 
+    .@{_top}--edit-mode & {
+      cursor: default;
+    }
+
     &::after {
       .fas();
       .full-size();
@@ -83,6 +96,9 @@
     &:hover {
       &:after {
         opacity: 1;
+        .@{_top}--edit-mode & {
+          opacity: 0;
+        }
       }
     }
   }

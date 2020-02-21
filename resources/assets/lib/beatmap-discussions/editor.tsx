@@ -129,9 +129,10 @@ export default class Editor extends React.Component<Props, any> {
 
   insertEmbed = (event: React.MouseEvent<HTMLElement>) => {
     const type = event.currentTarget.dataset.dtype;
+    const beatmapId = this.props.currentBeatmap ? this.props.currentBeatmap.id : this.props.beatmaps[this.props.beatmapset.beatmaps[0].id];
 
     Transforms.setNodes(this.slateEditor, {
-      beatmapId: this.props.currentBeatmap.id,
+      beatmapId,
       discussionType: type,
       type: 'embed',
     });
@@ -190,94 +191,97 @@ export default class Editor extends React.Component<Props, any> {
 
   render(): React.ReactNode {
     const editorClass = 'beatmap-discussion-editor';
+    const modifiers = this.props.editMode ? ['edit-mode'] : undefined;
 
     return (
-      <div ref={this.editor} className={`${editorClass}__content`}>
-        <SlateContext.Provider
-          value={this.slateEditor}
-        >
-          <Slate
-            editor={this.slateEditor}
-            value={this.state.value}
-            onChange={this.onChange}
+      <div ref={this.editor} className={osu.classWithModifiers(editorClass, modifiers)}>
+        <div className={`${editorClass}__content`}>
+          <SlateContext.Provider
+            value={this.slateEditor}
           >
-            <Editable
-              decorate={this.decorate}
-              onKeyDown={this.onKeyDown}
-              renderElement={this.renderElement}
-              renderLeaf={this.renderLeaf}
-            />
-            <div className={`${editorClass}__button-bar`}>
-              <div className='post-box-toolbar'>
-                  <button
-                      className='btn-circle btn-circle--bbcode'
-                      title='Bold'
-                      type='button'
-                      onClick={this.toggleBold}
-                  >
-                      <span className='btn-circle__content'>
-                          <i className='fas fa-bold'/>
-                      </span>
-                  </button>
-                  <button
-                      className='btn-circle btn-circle--bbcode'
-                      title='Italic'
-                      type='button'
-                      onClick={this.toggleItalic}
-                  >
-                      <span className='btn-circle__content'>
-                          <i className='fas fa-italic'/>
-                      </span>
-                  </button>
-              </div>
-              <div className={`${editorClass}__button-bar-button`}>
-                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
-                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
-                </button>
-                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
-                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
-                </button>
-                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
-                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
-                </button>
-                <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.resetInput}>reset</button>
-                <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.test}>test</button>
-                <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
-                <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
-              </div>
-            </div>
-            <div
-              className={`${editorClass}__menu`}
-              ref={this.menu}
-              style={{
-                left: '-13px',
-                position: 'absolute',
-                top: `${this.state.menuOffset}px`,
-              }}
-              onMouseEnter={this.showMenu}
-              onMouseLeave={this.hideMenu}
+            <Slate
+              editor={this.slateEditor}
+              value={this.state.value}
+              onChange={this.onChange}
             >
-              <div className='forum-post-edit__button'><i className='fa fas fa-plus-circle' /></div>
-              <div
-                className={`${editorClass}__menu-content`}
-                ref={this.menuBody}
-                style={{
-                  display: this.state.menuShown ? 'block' : 'none',
-                }}
-              >
-                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
-                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
-                </button>
-                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
-                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
-                </button>
-                <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
-                  <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
-                </button>
+              <Editable
+                decorate={this.decorate}
+                onKeyDown={this.onKeyDown}
+                renderElement={this.renderElement}
+                renderLeaf={this.renderLeaf}
+              />
+              <div className={`${editorClass}__button-bar`}>
+                <div className='post-box-toolbar'>
+                    <button
+                        className='btn-circle btn-circle--bbcode'
+                        title='Bold'
+                        type='button'
+                        onClick={this.toggleBold}
+                    >
+                        <span className='btn-circle__content'>
+                            <i className='fas fa-bold'/>
+                        </span>
+                    </button>
+                    <button
+                        className='btn-circle btn-circle--bbcode'
+                        title='Italic'
+                        type='button'
+                        onClick={this.toggleItalic}
+                    >
+                        <span className='btn-circle__content'>
+                            <i className='fas fa-italic'/>
+                        </span>
+                    </button>
+                </div>
+                <div className={`${editorClass}__button-bar-button`}>
+                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
+                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
+                  </button>
+                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
+                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
+                  </button>
+                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
+                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
+                  </button>
+                  <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.resetInput}>reset</button>
+                  <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.test}>test</button>
+                  <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
+                  <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
+                </div>
               </div>
-            </div>
-          </Slate>
-        </SlateContext.Provider>
+              <div
+                className={`${editorClass}__menu`}
+                ref={this.menu}
+                style={{
+                  left: '-13px',
+                  position: 'absolute',
+                  top: `${this.state.menuOffset}px`,
+                }}
+                onMouseEnter={this.showMenu}
+                onMouseLeave={this.hideMenu}
+              >
+                <div className='forum-post-edit__button'><i className='fa fas fa-plus-circle' /></div>
+                <div
+                  className={`${editorClass}__menu-content`}
+                  ref={this.menuBody}
+                  style={{
+                    display: this.state.menuShown ? 'block' : 'none',
+                  }}
+                >
+                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
+                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
+                  </button>
+                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
+                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
+                  </button>
+                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
+                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
+                  </button>
+                </div>
+              </div>
+            </Slate>
+          </SlateContext.Provider>
+        </div>
       </div>
     );
   }

@@ -87,6 +87,10 @@ function squash(items: SlateNode[], currentMarks?: {bold: boolean, italic: boole
     italic: false,
   };
 
+  if (!items) {
+    return [{text: ''}];
+  }
+
   items.forEach((item: SlateNode) => {
     const newMarks = {
       bold: marks.bold || item.type === 'strong',

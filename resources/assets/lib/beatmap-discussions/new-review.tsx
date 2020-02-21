@@ -33,30 +33,27 @@ export default class NewReview extends React.Component<any, any> {
 
   render(): React.ReactNode {
     const floatClass = 'beatmap-discussion-new-float';
-    const editorClass = 'beatmap-discussion-editor';
 
     return (
       <div className={floatClass}>
         <div className={`${floatClass}__floatable ${floatClass}__floatable--pinned`}>
           <div className={`${floatClass}__content`}>
             <div className='osu-page osu-page--small'>
-              <div className={editorClass}>
-                <div className='page-title'>{osu.trans('beatmaps.discussions.new.title')}</div>
-                <DiscussionsContext.Consumer>
-                  {
-                    (discussions) => {
-                      return <Editor
-                        beatmapset={this.props.beatmapset}
-                        beatmaps={this.props.beatmaps}
-                        currentBeatmap={this.props.currentBeatmap}
-                        currentDiscussions={this.props.currentDiscussions}
-                        discussions={discussions}
-                        initialValue={this.initialValue}
-                      />;
-                    }
+              <div className='page-title'>{osu.trans('beatmaps.discussions.new.title')}</div>
+              <DiscussionsContext.Consumer>
+                {
+                  (discussions) => {
+                    return <Editor
+                      beatmapset={this.props.beatmapset}
+                      beatmaps={this.props.beatmaps}
+                      currentBeatmap={this.props.currentBeatmap}
+                      currentDiscussions={this.props.currentDiscussions}
+                      discussions={discussions}
+                      initialValue={this.initialValue}
+                    />;
                   }
-                </DiscussionsContext.Consumer>
-              </div>
+                }
+              </DiscussionsContext.Consumer>
             </div>
           </div>
         </div>

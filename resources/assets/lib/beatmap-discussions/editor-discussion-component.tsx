@@ -67,10 +67,11 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
+    const readOnly = this.props.editMode;
     const bn = 'beatmap-discussion-review-post-embed-preview';
     const timestamp = this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general');
     return (
-      <div className='beatmap-discussion beatmap-discussion--preview' {...this.props.attributes}>
+      <div className='beatmap-discussion beatmap-discussion--preview' {...this.props.attributes} contentEditable={!readOnly}>
         <div className='beatmap-discussion__discussion'>
           <div className={bn}>
             <div
@@ -101,21 +102,12 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
             </div>
           </div>
         </div>
-        {this.props.editMode &&
-          <button
-            className={`${bn}__trashcan`}
-            onClick={this.unlink}
-            contentEditable={false}
-          >
-            <i className='fas fa-unlink' />
-          </button>
-        }
         <button
           className={`${bn}__trashcan`}
           onClick={this.remove}
           contentEditable={false}
         >
-          <i className='far fa-trash-alt' />
+          <i className='fas fa-backspace' />
         </button>
       </div>
     );
