@@ -23,16 +23,16 @@ import { Node } from 'unist';
 // plugin to tokenize timestamps
 export function timestampPlugin() {
   function locator(value: string, fromIndex: number) {
-    const match = value.substr(fromIndex).search(/[0-9]{2}/);
+    const match = value.substr(fromIndex).search(/[0-9]{2}:/);
 
     return match < 0 ? match : match + fromIndex;
   }
 
   function inlineTokenizer(eat: Eat, value: string, silent?: true): Node | boolean | void {
-    const regex = new RegExp(/((\d{2,}:[0-5]\d[:.]\d{3})( \((?:\d[,|])*\d\))?)/);
+    const regex = new RegExp(/^((\d{2,}:[0-5]\d[:.]\d{3})( \((?:\d[,|])*\d\))?)/);
     const result = regex.exec(value);
 
-    if (!result || result.index !== 0) {
+    if (!result) {
       return;
     }
 
