@@ -400,6 +400,10 @@ class OsuAuthorize
             return $prefix.'resolved';
         }
 
+        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
+            return 'beatmap_discussion_post.store.beatmapset_locked';
+        }
+
         return 'ok';
     }
 
@@ -426,6 +430,10 @@ class OsuAuthorize
 
         if (!$post->canEdit()) {
             return $prefix.'resolved';
+        }
+
+        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
+            return 'beatmap_discussion_post.store.beatmapset_locked';
         }
 
         return 'ok';
