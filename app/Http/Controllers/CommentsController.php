@@ -77,13 +77,15 @@ class CommentsController extends Controller
     /**
      * Get Comments
      *
-     * Returns a list comments and their replies up to 2 levels deep. `pinned_comments` is only included when `commentable_type` and `commentable_id` are specified.
+     * Returns a list comments and their replies up to 2 levels deep.
      *
      * ---
      *
      * ### Response Format
      *
-     * Returns [CommentBundle](#commentbundle)
+     * Returns [CommentBundle](#commentbundle).
+     *
+     * `pinned_comments` is only included when `commentable_type` and `commentable_id` are specified.
      *
      * @authenticated
      *
