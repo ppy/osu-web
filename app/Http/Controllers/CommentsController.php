@@ -92,7 +92,7 @@ class CommentsController extends Controller
      * @queryParam commentable_type The type of resource to get comments for.
      * @queryParam commentable_id The id of the resource to get comments for.
      * @queryParam parent_id Limit to comments which are reply to the specified id. Specify 0 to get top level comments.
-     * @queryParam sort Sort option as defined in [CommentSort](#commentsort).
+     * @queryParam sort Sort option as defined in [CommentSort](#commentsort). Defaults to `new` for guests and user-specified default when authenticated.
      */
     public function index()
     {
