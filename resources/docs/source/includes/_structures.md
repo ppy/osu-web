@@ -20,6 +20,7 @@ Represents a beatmapset.
   "message": "yes",
   "message_html": "<div class='osu-md-default'><p class=\"osu-md-default__paragraph\">yes</p>\n</div>",
   "parent_id": null,
+  "pinned": true,
   "replies_count": 0,
   "updated_at": "2019-09-05T06:31:20+00:00",
   "user_id": 1,
@@ -42,6 +43,7 @@ legacy_name      | string?    | username displayed on legacy comments
 message          | string?    | markdown of the comment's content
 message_html     | string?    | html version of the comment's content
 parent_id        | number?    | ID of the comment's parent
+pinned           | boolean    | Pin status of the comment
 replies_count    | number     | number of replies to the comment
 updated_at       | string     | ISO 8601 date
 user_id          | number     | user ID of the poster
@@ -118,6 +120,7 @@ url              | string     | url of the object
   "has_more": true,
   "has_more_id": 276,
   "included_comments": [],
+  "pinned_comments": [],
   "sort": "new",
   "user_follow": false,
   "user_votes": [277],
@@ -163,6 +166,7 @@ comments          | [Comment](#comment)[]                 | Array of comments or
 has_more          | boolean                               | If there are more comments or replies available
 has_more_id       | number?                               |
 included_comments | [Comment](#comment)[]                 | Related comments; e.g. parent comments and nested replies
+pinned_comments   | [Comment](#comment)[]?                | Pinned comments
 sort              | string                                | one of the [CommentSort](#commentsort) types
 top_level_count   | number?                               | Number of comments at the top level. Not returned for replies.
 total             | number?                               | Total number of comments. Not retuned for replies.
