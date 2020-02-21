@@ -1029,7 +1029,7 @@ function open_image($path, $dimensions = null)
 
 function json_collection($model, $transformer, $includes = null)
 {
-    $manager = new League\Fractal\Manager(new App\Transformers\ScopeFactory());
+    $manager = new League\Fractal\Manager(new App\Libraries\ScopeFactory());
     if ($includes !== null) {
         $manager->parseIncludes($includes);
     }
