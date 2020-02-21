@@ -89,6 +89,7 @@ class CommentsController extends Controller
      *
      * @queryParam commentable_type The type of resource to get comments for.
      * @queryParam commentable_id The id of the resource to get comments for.
+     * @queryParam parent_id Limit to comments which are reply to the specified id. Specify 0 to get top level comments.
      */
     public function index()
     {
