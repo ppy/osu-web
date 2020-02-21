@@ -66,7 +66,7 @@ abstract class SearchParams
 
     public function isLoginRequired(): bool
     {
-        return true;
+        return false;
     }
 
     public function shouldReturnEmptyResponse(): bool

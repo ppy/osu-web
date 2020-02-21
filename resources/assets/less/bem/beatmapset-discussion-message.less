@@ -21,13 +21,7 @@
   display: inline;
   color: white;
 
-  // TODO: remove once default link style becomes... default
-  a {
-    .link-default();
-  }
-
-  // extra specificity here to override the above rule
-  & > &__timestamp {
+  &__timestamp {
     .link-plain();
 
     border-radius: @border-radius-large;
