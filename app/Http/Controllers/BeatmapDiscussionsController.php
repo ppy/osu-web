@@ -111,7 +111,7 @@ class BeatmapDiscussionsController extends Controller
             ]
         );
 
-        $discussions = collect($paginator->items());
+        $discussions = $paginator->getCollection();
 
         // TODO: remove this when reviews are released
         $relatedDiscussions = [];
