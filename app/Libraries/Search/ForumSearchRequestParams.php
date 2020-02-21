@@ -33,4 +33,9 @@ class ForumSearchRequestParams extends ForumSearchParams
         $this->forumId = get_int($request['forum_id'] ?? null);
         $this->topicId = get_int($request['topic_id'] ?? null);
     }
+
+    public function isLoginRequired(): bool
+    {
+        return true;
+    }
 }

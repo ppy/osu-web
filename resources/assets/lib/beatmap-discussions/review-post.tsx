@@ -20,6 +20,7 @@ import { BeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
 import { ReviewPostEmbed } from './review-post-embed';
+import { timestampPlugin } from './timestamp-plugin';
 
 interface Props {
   message: string;
@@ -44,6 +45,9 @@ export class ReviewPost extends React.Component<Props> {
             'strong',
             'text',
           ]}
+          plugins={[
+            timestampPlugin,
+          ]}
           key={osu.uuid()}
           source={source}
           renderers={{
@@ -53,6 +57,7 @@ export class ReviewPost extends React.Component<Props> {
                 <div className='beatmapset-discussion-message' {...props}/>
               </div>;
             },
+            timestamp: (props) => <a className='beatmapset-discussion-message__timestamp' {...props}/>,
           }}
         />
     );
