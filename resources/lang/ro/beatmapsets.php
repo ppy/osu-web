@@ -34,16 +34,10 @@ return [
         'discussion' => 'Discuție',
 
         'details' => [
-            'approved' => 'aprobat pe ',
             'favourite' => 'Adaugă acest beatmapset la favorite',
             'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
-            'loved' => 'loved pe ',
             'mapped_by' => 'mapat de :mapper',
-            'qualified' => 'calificat pe ',
-            'ranked' => 'clasat pe ',
-            'submitted' => 'trimis pe ',
             'unfavourite' => 'Elimină acest beatmapset de la favorite',
-            'updated' => 'ultima dată actualizat ',
             'updated_timeago' => 'ultima dată actualizat :timeago',
 
             'download' => [

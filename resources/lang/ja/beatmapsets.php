@@ -34,16 +34,10 @@ return [
         'discussion' => 'ディスカッション',
 
         'details' => [
-            'approved' => 'Approved日 ',
             'favourite' => 'ビートマップセットをお気に入りに追加する',
             'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
-            'loved' => 'loved追加日 ',
             'mapped_by' => '作者 :mapper',
-            'qualified' => 'qualifiedされた日',
-            'ranked' => 'Ranked日 ',
-            'submitted' => '投稿日 ',
             'unfavourite' => 'ビートマップをお気に入りから外す',
-            'updated' => '最終更新 ',
             'updated_timeago' => '最終更新 :timeago',
 
             'download' => [
