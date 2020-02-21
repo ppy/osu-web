@@ -42,6 +42,10 @@ use Carbon\Carbon;
 
 class OsuAuthorize
 {
+    const ALWAYS_CHECK = [
+        'IsOwnClient',
+    ];
+
     /** @var AuthorizationResult[] */
     private $cache = [];
 
@@ -65,7 +69,7 @@ class OsuAuthorize
         ]);
 
         if (!isset($this->cache[$cacheKey])) {
-            if ($user !== null && $user->isAdmin()) {
+            if ($user !== null && $user->isAdmin() && !in_array($ability, static::ALWAYS_CHECK, true)) {
                 $message = 'ok';
             } else {
                 $function = "check{$ability}";
