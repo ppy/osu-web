@@ -250,7 +250,7 @@ class BeatmapsetsController extends Controller
                 $beatmapset,
                 new BeatmapsetTransformer(),
                 [
-                    'description:editable',
+                    'description',
                 ]
             );
         }
