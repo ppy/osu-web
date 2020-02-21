@@ -20,13 +20,12 @@ import isHotkey from 'is-hotkey';
 import * as laroute from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
-import * as markdown from 'remark-parse';
 import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
-import * as unified from 'unified';
 import { BeatmapDiscussionReview } from '../interfaces/beatmap-discussion-review';
 import EditorDiscussionComponent from './editor-discussion-component';
+import { parseFromMarkdown } from './review-document';
 import { SlateContext } from './slate-context';
 
 const placeholder: string = '[{"children": [{"text": "placeholder"}], "type": "paragraph"}]';
@@ -36,17 +35,31 @@ interface TimestampRange extends Range {
   timestamp: string;
 }
 
-export default class Editor extends React.Component<any, any> {
+interface Props {
+  editMode?: boolean;
+  [key: string]: any; // TODO: fix
+}
+
+export default class Editor extends React.Component<Props, any> {
   editor = React.createRef<HTMLDivElement>();
   menu = React.createRef<HTMLDivElement>();
   menuBody = React.createRef<HTMLDivElement>();
   slateEditor: ReactEditor;
-  temp: string = '';
 
-  constructor(props: {}) {
+  constructor(props: Props) {
     super(props);
 
     this.slateEditor = this.withNormalization(withHistory(withReact(createEditor())));
+
+    if (props.editMode) {
+      this.state = {
+        menuOffset: -1000,
+        menuShown: false,
+        value: [],
+      };
+
+      return;
+    }
 
     const savedValue = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
     if (savedValue) {
@@ -73,96 +86,10 @@ export default class Editor extends React.Component<any, any> {
         return;
       }
 
-      let srcDoc: any[];
-      try {
-        srcDoc = JSON.parse(this.props.document);
-      } catch {
-        console.log('failed to parse srcDoc');
-        return;
-      }
-      const document: SlateNode[] = [];
-
-      _.each(srcDoc, (block) => {
-        switch (block.type) {
-          // paragraph
-          case 'paragraph':
-            if (!osu.presence(block.text)) {
-              // empty block (aka newline)
-              document.push({
-                children: [{
-                  text: '',
-                }],
-                type: 'paragraph',
-              });
-            } else {
-              const processor = unified().use(markdown);
-              const parsed = processor.parse(block.text.toString());
-              const child = parsed.children[0];
-              const derp = _.filter(this.squash(child.children), (i) => i);
-
-              document.push({
-                children: derp,
-                type: 'paragraph',
-              });
-
-              console.log(parsed, "=>", derp);
-            }
-            break;
-          case 'embed':
-            // embed
-            const discussion: BeatmapDiscussion = this.props.discussions[block.discussion_id];
-            if (!discussion) {
-              return;
-            }
-            document.push({
-              beatmapId: discussion.beatmap_id,
-              children: [{
-                text: (discussion.starting_post || discussion.posts[0]).message,
-              }],
-              discussionType: discussion.message_type,
-              timestamp: discussion.timestamp,
-              type: 'embed',
-            });
-            break;
-        }
+      this.setState({
+        value: parseFromMarkdown(this.props.document, this.props.discussions),
       });
-
-      this.setState({value: document});
     }
-  }
-
-  squash = (items: [], currentMarks?: {}) => {
-    const flat = [];
-    if (!currentMarks) {
-      currentMarks = {
-        bold: false,
-        italic: false,
-      };
-    }
-
-    items.forEach((item) => {
-      const newMarks = {
-        bold: currentMarks.bold || item.type === 'strong',
-        italic: currentMarks.italic || item.type === 'emphasis',
-      };
-
-      if (Array.isArray(item.children)) {
-        flat.push(this.squash(item.children, newMarks)[0]);
-      } else {
-        const newItem = {
-          text: item.value || '',
-        };
-        if (newMarks.bold) {
-          newItem.bold = true;
-        }
-        if (newMarks.italic) {
-          newItem.italic = true;
-        }
-        flat.push(newItem);
-      }
-    });
-
-    return flat;
   }
 
   decorate = (entry: NodeEntry) => {
@@ -368,7 +295,8 @@ export default class Editor extends React.Component<any, any> {
             {...props}
           />
         );
-      case 'other':
+      case 'link':
+        return <a href={props.element.url} rel='nofollow'>{props.children}</a>;
       default:
         return <div {...props.attributes}>{props.children}</div>;
     }

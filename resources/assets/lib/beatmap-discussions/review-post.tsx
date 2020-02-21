@@ -50,6 +50,7 @@ export class ReviewPost extends React.Component<Props> {
           ]}
           key={osu.uuid()}
           source={source}
+          unwrapDisallowed={true}
           renderers={{
             link: (props) => <a className='beatmap-discussion-review-post__link' rel='nofollow' {...props}/>,
             paragraph: (props) => {
