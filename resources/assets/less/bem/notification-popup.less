@@ -33,6 +33,20 @@
     .thick-box-shadow();
   }
 
+  &__clear-button {
+    .reset-input();
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    color: @osu-colour-l2;
+
+    &:hover {
+      color: @osu-colour-c1;
+    };
+  }
+
   &__scroll-container {
     display: grid;
     grid-gap: 10px;
@@ -93,7 +107,6 @@
 
   &__mark-as-read {
     width: 40px;
-    // background-color: @osu-colour-b2;
   }
 
   &__empty-with-more {

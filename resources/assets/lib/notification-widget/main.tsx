@@ -85,6 +85,7 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private handleMarkAsRead =  (event: React.MouseEvent<HTMLButtonElement>) => {
+    this.controller.type.isMarkingAsRead = !this.controller.type.isMarkingAsRead;
   }
 
   private handleShowMore = () => {
@@ -140,12 +141,14 @@ export default class Main extends React.Component<Props, State> {
 
     return (
       <button
+        className='notification-popup__clear-button'
         type='button'
-        className='notification-popup-item__read-button'
         onClick={this.handleMarkAsRead}
       >
         clear all
-        {this.controller.type.isMarkingAsRead ? <Spinner /> : <span className='fas fa-times' />}
+        <div className='notification-popup__mark-as-read'>
+          {this.controller.type.isMarkingAsRead ? <Spinner /> : <span className='fas fa-times' />}
+        </div>
       </button>
     );
   }
