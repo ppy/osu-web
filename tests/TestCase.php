@@ -77,6 +77,22 @@ class TestCase extends BaseTestCase
         $user->withAccessToken($token);
     }
 
+    protected function actAsUser($user, ?bool $verified = null, $driver = null)
+    {
+        $this->be($user, $driver);
+
+        if ($verified !== null) {
+            $this->withSession(['verified' => $verified]);
+        }
+
+        return $this;
+    }
+
+    protected function actingAsVerified($user)
+    {
+        return $this->actAsUser($user, true);
+    }
+
     protected function fileList($path, $suffix)
     {
         return array_map(function ($file) use ($path, $suffix) {
@@ -103,10 +119,5 @@ class TestCase extends BaseTestCase
     protected function normalizeHTML($html)
     {
         return str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html)));
-    }
-
-    protected function actingAsVerified($user)
-    {
-        return $this->be($user)->withSession(['verified' => true]);
     }
 }
