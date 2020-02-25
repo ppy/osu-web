@@ -84,13 +84,13 @@ class TestCase extends BaseTestCase
         if ($verified !== null) {
             $this->withSession(['verified' => $verified]);
         }
-
-        return $this;
     }
 
     protected function actingAsVerified($user)
     {
-        return $this->actAsUser($user, true);
+        $this->actAsUser($user, true);
+
+        return $this;
     }
 
     protected function fileList($path, $suffix)
