@@ -33,7 +33,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
      */
     public function testWithOAuth($groupIdentifier)
     {
-        $viewer = factory(User::class)->states($groupIdentifier)->create();
+        $viewer = $this->createUserWithGroup($groupIdentifier);
         $this->actAsScopedUser($viewer);
 
         $json = json_item($this->deletedBeatmapDiscussion, 'BeatmapDiscussion');
@@ -46,7 +46,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
      */
     public function testWithoutOAuth($groupIdentifier, $visible)
     {
-        $viewer = factory(User::class)->states($groupIdentifier)->create();
+        $viewer = $this->createUserWithGroup($groupIdentifier);
         $this->actAsUser($viewer);
 
         $json = json_item($this->deletedBeatmapDiscussion, 'BeatmapDiscussion');
@@ -65,6 +65,8 @@ class BeatmapDiscussionTransformerTest extends TestCase
             ['bng', false],
             ['gmt', true],
             ['nat', true],
+            [[], false],
+            [null, false],
         ];
     }
 
