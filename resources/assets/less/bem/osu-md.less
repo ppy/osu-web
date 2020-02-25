@@ -63,6 +63,10 @@
     font-size: @font-size--title-small-4;
   }
 
+  &--wiki {
+    padding: 0;
+  }
+
   &__figure-caption {
     margin-top: 5px;
     font-style: normal;
@@ -97,6 +101,7 @@
 
     &--1 {
       margin-top: 40px;
+      font-weight: 600;
 
       .@{top}--store-product & {
         font-weight: 200;
@@ -111,8 +116,8 @@
 
     &--2 {
       font-size: @font-size--header-wiki-2;
-      margin: 20px 0 10px -20px;
-      color: white;
+      font-weight: 600;
+      margin: 20px 0 10px;
 
       .@{top}--news & {
         font-size: @font-size--title;
@@ -122,8 +127,7 @@
 
     &--3 {
       font-size: @font-size--header-wiki-3;
-      margin: 30px 0 10px -20px;
-      color: @osu-colour-l2;
+      margin: 30px 0 10px;
 
       .@{top}--news & {
         font-size: @font-size--title-small-4;
@@ -133,9 +137,7 @@
 
     &--4 {
       font-size: @font-size--header-wiki-4;
-      margin: 30px 0 10px -10px;
-      font-style: italic;
-      color: @osu-colour-l3;
+      margin: 30px 0 10px;
 
       .@{top}--news & {
         font-size: inherit;
@@ -145,15 +147,11 @@
 
     &--5 {
       font-size: @font-size--header-wiki-5;
-      font-weight: normal;
-      font-style: italic;
       margin-top: 20px;
     }
 
     &--6 {
       font-size: @font-size--header-wiki-6;
-      font-weight: normal;
-      font-style: italic;
       margin-top: 20px;
     }
   }

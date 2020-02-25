@@ -322,10 +322,13 @@
 
   &--wiki {
     .default();
-    .default-gutter-v2();
     font-size: @font-size--wiki;
+  }
+
+  &--wiki-main {
+    .default-gutter-v2();
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: $padding-top;
   }
 
   &--chat {

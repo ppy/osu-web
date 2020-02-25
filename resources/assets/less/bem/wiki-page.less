@@ -17,17 +17,44 @@
  */
 
 .wiki-page {
-  margin-top: 20px;
-  display: flex;
+  display: grid;
+  grid-gutter: 10px;
 
-  &__toc {
-    margin-right: 10px;
-    width: (200px - 10px);
-    flex: none;
+  @media @desktop {
+    grid-template-columns: 250px 1fr;
   }
 
   &__content {
-    flex: 1;
     min-width: 0;
+    padding: 20px @gutter-v2;
+
+    @media @desktop {
+      padding-left: 30px;
+      padding-right: @gutter-v2-desktop;
+    }
+  }
+
+  &__toc {
+    background-color: @osu-colour-b4;
+    padding: 20px @gutter-v2;
+    position: sticky;
+    top: @nav2-height--pinned;
+    max-height: calc(100vh - @nav2-height--pinned);
+    overflow-y: auto;
+
+    @media @desktop {
+      padding-right: 30px;
+      padding-left: @gutter-v2-desktop;
+    }
+  }
+
+  &__toc-title {
+    text-transform: uppercase;
+    margin: 0 0 5px;
+    padding: 0;
+    color: #fff;
+    font-size: @font-size--normal;
+    font-style: normal;
+    font-weight: bold;
   }
 }
