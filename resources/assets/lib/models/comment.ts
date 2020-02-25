@@ -75,7 +75,7 @@ export class Comment {
 
   @computed
   get canModerate() {
-    return currentUser.is_admin || currentUser.can_moderate;
+    return currentUser.is_admin || currentUser.is_moderator;
   }
 
   @computed

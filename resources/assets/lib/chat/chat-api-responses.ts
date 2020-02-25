@@ -70,12 +70,12 @@ export interface SendToJSON {
 export interface UserJSON {
   avatar_url: string;
   blocks?: any[];
-  can_moderate: boolean;
   country_code: string; // TODO: country object?
   id: number;
   is_active: boolean;
   is_admin: boolean;
   is_bot: boolean;
+  is_moderator: boolean;
   is_online: boolean;
   is_supporter: boolean;
   pm_friends_only: boolean;
