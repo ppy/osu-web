@@ -46,8 +46,6 @@ class UpdateStreamTransformer extends TransformerAbstract
 
     public function includeUserCount(UpdateStream $stream)
     {
-        return $this->item($stream, function ($stream) {
-            return [$stream->userCount()];
-        });
+        return $this->primitive($stream->userCount());
     }
 }

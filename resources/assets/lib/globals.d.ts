@@ -85,6 +85,13 @@ interface BeatmapHelperInterface {
   getDiffRating(rating: number): string;
 }
 
+interface ChangelogBuild {
+  update_stream: {
+    name: string,
+  };
+  version: string;
+}
+
 interface Country {
   code?: string;
   name?: string;
@@ -169,6 +176,7 @@ interface User {
   cover: Cover;
   current_mode_rank?: number;
   default_group: string;
+  follower_count?: number;
   group_badge?: GroupJSON;
   id: number;
   is_active: boolean;
@@ -189,6 +197,11 @@ interface TooltipDefault {
 
 interface TurbolinksAction {
   action: 'advance' | 'replace' | 'restore';
+}
+
+interface TurbolinksLocation {
+    getPath(): string;
+    isHTML(): boolean;
 }
 
 interface TurbolinksStatic {

@@ -17,13 +17,18 @@
  */
 
 .quick-search-result {
-  .default-gutter();
+  .default-gutter-v2();
   flex: 1;
   overflow-y: auto;
-  padding-top: 25px;
-  padding-bottom: 25px;
   display: flex;
   flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: $padding-top;
+
+  @media @desktop {
+    padding-top: 25px;
+    padding-bottom: $padding-top;
+  }
 
   &__item {
     margin: 15px 0;

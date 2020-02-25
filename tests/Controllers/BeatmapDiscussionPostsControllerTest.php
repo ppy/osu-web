@@ -353,6 +353,21 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($initialMessage, $post->fresh()->message);
     }
 
+    public function testPostUpdateWhenBeatmapsetDiscussionIsLocked()
+    {
+        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+        $message = $reply->message;
+
+        $this->beatmapset->update(['discussion_locked' => true]);
+
+        $this->putPost("{$message} edited", $reply, $this->user)->assertStatus(403);
+        $this->assertSame($message, $reply->fresh()->message);
+    }
+
     public function testPostUpdateWhenDiscussionResolved()
     {
         // reply made before resolve
@@ -468,6 +483,20 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ->assertViewIs('users.login')
             ->assertStatus(401);
 
+        $this->assertFalse($reply->fresh()->trashed());
+    }
+
+    public function testPostDestroyWhenBeatmapsetDiscussionIsLocked()
+    {
+        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->beatmapset->update(['discussion_locked' => true]);
+
+        $this->deletePost($reply, $this->user)->assertStatus(403);
         $this->assertFalse($reply->fresh()->trashed());
     }
 

@@ -52,8 +52,8 @@ return [
         ],
 
         'period' => [
-            'end' => '',
-            'start' => '',
+            'end' => 'Konec',
+            'start' => 'Začít',
         ],
 
         'state' => [

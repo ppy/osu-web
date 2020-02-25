@@ -29,7 +29,6 @@ class ScoreTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'beatmap',
         'beatmapset',
-        'best',
         'weight',
         'user',
         'multiplayer',
@@ -53,7 +52,7 @@ class ScoreTransformer extends TransformerAbstract
                 'count_katu' => $score->countkatu,
                 'count_miss' => $score->countmiss,
             ],
-            'pp' => $score->pp,
+            'pp' => $score instanceof ScoreBest ? $score->pp : optional($score->best)->pp,
             // ranks are hardcoded to "0" for game_scores atm (i.e. scores from a mp game), return null instead for now
             'rank' => $score->rank === '0' ? null : $score->rank,
             'created_at' => json_time($score->date),
@@ -90,19 +89,6 @@ class ScoreTransformer extends TransformerAbstract
     public function includeBeatmapset($score)
     {
         return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer);
-    }
-
-    public function includeBest($score)
-    {
-        if (($score instanceof ScoreBest) === true) {
-            return;
-        }
-
-        return $this->item($score, function ($score) {
-            return [
-                'pp' => optional($score->best)->pp,
-            ];
-        });
     }
 
     public function includeWeight($score)

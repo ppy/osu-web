@@ -67,6 +67,6 @@ class ForumSearchParams extends SearchParams
 
     public function shouldReturnEmptyResponse(): bool
     {
-        return $this->isQueryStringTooShort();
+        return parent::shouldReturnEmptyResponse() || $this->isQueryStringTooShort();
     }
 }

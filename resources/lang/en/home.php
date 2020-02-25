@@ -42,6 +42,7 @@ return [
         'title' => 'search',
 
         'beatmapset' => [
+            'login_required' => 'Sign in to search beatmaps',
             'more' => ':count more beatmap search results',
             'more_simple' => 'See more beatmap search results',
             'title' => 'Beatmaps',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'All forums',
             'link' => 'Search the forum',
+            'login_required' => 'Sign in to search the forum',
             'more_simple' => 'See more forum search results',
             'title' => 'Forum',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => 'Sign in to search users',
             'more' => ':count more player search results',
             'more_simple' => 'See more player search results',
             'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
