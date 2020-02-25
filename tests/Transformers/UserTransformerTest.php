@@ -48,7 +48,7 @@ class UserTransformerTest extends TestCase
     {
         $viewer = factory(User::class)->states($groupIdentifier)->create();
         $user = factory(User::class)->states('silenced')->create();
-        auth()->setUser($viewer);
+        $this->actAsUser($viewer);
 
         $json = json_item($user, 'User', ['account_history.actor', 'account_history.supporting_url']);
 

@@ -51,7 +51,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
     public function testWithoutOAuth($groupIdentifier, $visible)
     {
         $viewer = factory(User::class)->states($groupIdentifier)->create();
-        auth()->setUser($viewer);
+        $this->actAsUser($viewer);
 
         $json = json_item($this->beatmapset, 'BeatmapsetDescription');
 
@@ -72,7 +72,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
 
     public function testUserIsMapper()
     {
-        auth()->setUser($this->mapper);
+        $this->actAsUser($this->mapper);
 
         $json = json_item($this->beatmapset, 'BeatmapsetDescription');
 
@@ -82,7 +82,7 @@ class BeatmapsetDescriptionTransformerTest extends TestCase
 
     public function testUserIsNotMapper()
     {
-        auth()->setUser(factory(User::class)->create());
+        $this->actAsUser(factory(User::class)->create());
 
         $json = json_item($this->beatmapset, 'BeatmapsetDescription');
 

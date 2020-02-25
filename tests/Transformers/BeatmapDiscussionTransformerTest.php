@@ -47,7 +47,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
     public function testWithoutOAuth($groupIdentifier, $visible)
     {
         $viewer = factory(User::class)->states($groupIdentifier)->create();
-        auth()->setUser($viewer);
+        $this->actAsUser($viewer);
 
         $json = json_item($this->deletedBeatmapDiscussion, 'BeatmapDiscussion');
 
