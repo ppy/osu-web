@@ -246,7 +246,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $mode = $params->get('mode')[0];
 
-        return $this->primitive($user->scoresFirst($mode)->count());
+        return $this->primitive($user->scoresFirst($mode, true)->count());
     }
 
     public function includeStatistics(User $user, Fractal\ParamBag $params)

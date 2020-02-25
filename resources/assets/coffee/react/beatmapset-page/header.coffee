@@ -220,7 +220,7 @@ export class Header extends React.Component
           osuDirect: true
           href:
             if currentUser.is_supporter
-              Url.beatmapDownloadDirect @props.currentBeatmap.id
+              _exported.OsuUrlHelper.beatmapDownloadDirect @props.currentBeatmap.id
             else
               laroute.route 'support-the-game'
       ]

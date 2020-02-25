@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Alle meldingen gelezen!',
     'mark_all_read' => 'Alles wissen',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nieuwe medaille',
                 'user_achievement_unlock' => '":title" ontgrendeld!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

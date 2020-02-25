@@ -240,6 +240,20 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkBeatmapsetDiscussionReviewStore(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
      * @param BeatmapDiscussion $discussion
      * @return string
      */
@@ -386,6 +400,10 @@ class OsuAuthorize
             return $prefix.'resolved';
         }
 
+        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
+            return 'beatmap_discussion_post.store.beatmapset_locked';
+        }
+
         return 'ok';
     }
 
@@ -412,6 +430,10 @@ class OsuAuthorize
 
         if (!$post->canEdit()) {
             return $prefix.'resolved';
+        }
+
+        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
+            return 'beatmap_discussion_post.store.beatmapset_locked';
         }
 
         return 'ok';

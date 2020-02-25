@@ -67,7 +67,7 @@ export class ScoreboardTableRow extends React.PureComponent
           href: laroute.route 'users.show', user: score.user.id
           score.user.username
 
-      td className: osu.classWithModifiers(cell, ['perfect'] if score.max_combo == @props.beatmap.max_combo?[0]),
+      td className: osu.classWithModifiers(cell, ['perfect'] if score.max_combo == @props.beatmap.max_combo),
         "#{osu.formatNumber(score.max_combo)}x"
 
       for stat in @props.hitTypeMapping

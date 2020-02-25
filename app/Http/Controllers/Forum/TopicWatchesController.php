@@ -48,7 +48,7 @@ class TopicWatchesController extends Controller
             'unread' => TopicWatch::unreadCount(Auth::user()),
         ];
 
-        return view(
+        return ext_view(
             'forum.topic_watches.index',
             compact('topics', 'topicReadStatus', 'topicWatchStatus', 'counts')
         );
@@ -71,10 +71,10 @@ class TopicWatchesController extends Controller
                 return response([], 204);
             default:
 
-                return js_view('forum.topics.replace_watch_button', [
+                return ext_view('forum.topics.replace_watch_button', [
                     'topic' => $topic,
                     'state' => $watch,
-                ]);
+                ], 'js');
         }
     }
 }
