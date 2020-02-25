@@ -31,7 +31,7 @@ class UserTransformerTest extends TestCase
      */
     public function testUserSilenceShowExtendedInfo($groupIdentifier)
     {
-        $viewer = factory(User::class)->states($groupIdentifier)->create();
+        $viewer = $this->createUserWithGroup($groupIdentifier);
         $user = factory(User::class)->states('restricted', 'silenced', 'with_note')->create();
 
         $this->assertSame(3, $user->accountHistories()->count());
