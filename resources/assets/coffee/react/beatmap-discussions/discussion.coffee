@@ -301,7 +301,7 @@ export class Discussion extends React.PureComponent
     elementName = if post.system then SystemPost else Post
 
     canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
-    canBeEdited = @isOwner(post) && post.id > @resolvedSystemPostId()
+    canBeEdited = @isOwner(post) && post.id > @resolvedSystemPostId() && !@props.beatmapset.discussion_locked
     canBeDeleted =
       if type == 'discussion'
         @props.discussion.current_user_attributes?.can_destroy
