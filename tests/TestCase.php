@@ -61,24 +61,31 @@ class TestCase extends BaseTestCase
         });
     }
 
-    protected function actAsScopedUser($user, array $scopes = ['*'], $guard = 'api')
+    protected function actAsScopedUser($user, array $scopes = ['*'], $driver = 'api')
     {
-        app('auth')->guard($guard)->setUser($user);
+        $guard = app('auth')->guard($driver);
+        if ($user !== null) {
+            $guard->setUser($user);
 
-        app('auth')->shouldUse($guard);
+            $token = Token::unguarded(function () use ($scopes, $user) {
+                return new Token([
+                    'scopes' => $scopes,
+                    'user_id' => $user->user_id,
+                ]);
+            });
 
-        $token = Token::unguarded(function () use ($scopes, $user) {
-            return new Token([
-                'scopes' => $scopes,
-                'user_id' => $user->user_id,
-            ]);
-        });
+            $user->withAccessToken($token);
+        }
 
-        $user->withAccessToken($token);
+        app('auth')->shouldUse($driver);
     }
 
     protected function actAsUser($user, ?bool $verified = null, $driver = null)
     {
+        if ($user === null) {
+            return;
+        }
+
         $this->be($user, $driver);
 
         if ($verified !== null) {
