@@ -261,7 +261,7 @@ class CommentsController extends Controller
         priv_check('CommentPin')->ensureCan();
 
         $comment = Comment::findOrFail($id);
-        $comment->update(['pinned' => false]);
+        $comment->fill(['pinned' => false])->saveOrExplode();
 
         return CommentBundle::forComment($comment)->toArray();
     }
@@ -271,7 +271,7 @@ class CommentsController extends Controller
         priv_check('CommentPin')->ensureCan();
 
         $comment = Comment::findOrFail($id);
-        $comment->update(['pinned' => true]);
+        $comment->fill(['pinned' => true])->saveOrExplode();
 
         return CommentBundle::forComment($comment)->toArray();
     }
