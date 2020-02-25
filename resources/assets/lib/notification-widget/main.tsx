@@ -27,6 +27,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import Stack from './stack';
+import { Spinner } from 'spinner';
 
 interface Props {
   extraClasses?: string;
@@ -63,7 +64,10 @@ export default class Main extends React.Component<Props, State> {
         <div className={blockClass}>
           <div className='notification-popup__scroll-container'>
             {this.renderFilters()}
-            {this.renderHistoryLink()}
+            <div className='notification-popup__filters'>
+              {this.renderHistoryLink()}
+              {this.renderMarkAsReadButton()}
+            </div>
             {this.renderLegacyPm()}
             <div className='notification-stacks'>
               {this.renderStacks()}
@@ -78,6 +82,9 @@ export default class Main extends React.Component<Props, State> {
   private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const type = ((event.currentTarget as HTMLButtonElement).dataset.type ?? null) as Name;
     this.controller.navigateTo(type);
+  }
+
+  private handleMarkAsRead =  (event: React.MouseEvent<HTMLButtonElement>) => {
   }
 
   private handleShowMore = () => {
@@ -126,6 +133,21 @@ export default class Main extends React.Component<Props, State> {
     if (this.controller.currentFilter != null) return;
 
     return <LegacyPm />;
+  }
+
+  private renderMarkAsReadButton() {
+    if (this.controller.type.isEmpty) return null;
+
+    return (
+      <button
+        type='button'
+        className='notification-popup-item__read-button'
+        onClick={this.handleMarkAsRead}
+      >
+        clear all
+        {this.controller.type.isMarkingAsRead ? <Spinner /> : <span className='fas fa-times' />}
+      </button>
+    );
   }
 
   private renderShowMore() {
