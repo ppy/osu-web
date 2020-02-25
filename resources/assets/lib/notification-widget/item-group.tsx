@@ -117,11 +117,11 @@ export default class ItemGroup extends React.Component<Props, State> {
     return (
       <div className='notification-popup-item-group__items'>
         {this.props.stack.orderedNotifications.map(this.renderItem)}
-        <div className='notification-popup__show-more'>
-          <div className='notification-popup__expand'>
+        <div className='notification-popup-item-group__show-more'>
+          <div className='notification-popup-item-group__expand'>
             {this.renderShowMore()}
           </div>
-          <div className='notification-popup__collapse'>
+          <div className='notification-popup-item-group__collapse'>
             {this.renderShowLess()}
             <div className='notification-popup__mark-as-read'>
               {this.renderMarkAsReadButton()}
