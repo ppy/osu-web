@@ -20,6 +20,7 @@
 
 namespace Tests;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Laravel\Passport\Token;
@@ -61,7 +62,7 @@ class TestCase extends BaseTestCase
         });
     }
 
-    protected function actAsScopedUser($user, array $scopes = ['*'], $driver = 'api')
+    protected function actAsScopedUser(?User $user, array $scopes = ['*'], $driver = 'api')
     {
         $guard = app('auth')->guard($driver);
         if ($user !== null) {
@@ -80,7 +81,7 @@ class TestCase extends BaseTestCase
         app('auth')->shouldUse($driver);
     }
 
-    protected function actAsUser($user, ?bool $verified = null, $driver = null)
+    protected function actAsUser(?User $user, ?bool $verified = null, $driver = null)
     {
         if ($user === null) {
             return;
@@ -98,6 +99,15 @@ class TestCase extends BaseTestCase
         $this->actAsUser($user, true);
 
         return $this;
+    }
+
+    protected function createUserWithGroup($groupIdentifier, array $attributes = []): ?User
+    {
+        if ($groupIdentifier === null) {
+            return null;
+        }
+
+        return factory(User::class)->states($groupIdentifier)->create($attributes);
     }
 
     protected function fileList($path, $suffix)
