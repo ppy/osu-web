@@ -88,7 +88,7 @@ export default class Main extends React.Component<Props, State> {
     const type = core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: link.type });
     const isSameFilter = link.type === this.controller.currentFilter;
 
-    if (type.isEmpty && !isSameFilter) return null;
+    if (type.name !== null && type.isEmpty && !isSameFilter) return null;
 
     const data = { 'data-type': link.type };
     const modifiers = isSameFilter ? ['active'] : [];
