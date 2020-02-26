@@ -28,7 +28,7 @@ export ScoreTop = (props) ->
     .map (m) -> "#{bn}--#{m}"
     .join ' '
 
-  position = if props.position? then "##{props.position}" else ''
+  position = if props.position? then "##{props.position}" else '-'
 
   div className: "#{bn} #{topClasses}",
     div className: "#{bn}__section",
