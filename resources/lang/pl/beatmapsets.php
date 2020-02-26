@@ -34,16 +34,10 @@ return [
         'discussion' => 'Dyskusja',
 
         'details' => [
-            'approved' => 'zatwierdzona od ',
             'favourite' => 'Dodaj do ulubionych',
             'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
-            'loved' => 'ulubiona społeczności od ',
             'mapped_by' => 'autorstwa :mapper',
-            'qualified' => 'zakwalifikowana od ',
-            'ranked' => 'rankingowa od ',
-            'submitted' => 'dodana ',
             'unfavourite' => 'Usuń z ulubionych',
-            'updated' => 'ostatnio aktualizowana ',
             'updated_timeago' => 'ostatnio zaktualizowana :timeago',
 
             'download' => [

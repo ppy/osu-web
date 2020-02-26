@@ -34,16 +34,10 @@ return [
         'discussion' => 'Discussie',
 
         'details' => [
-            'approved' => 'goedgekeurd op ',
             'favourite' => 'Markeer deze beatmapset als favoriet',
             'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
-            'loved' => 'loved op ',
             'mapped_by' => 'gemapped door :mapper',
-            'qualified' => 'gekwalificeerd op ',
-            'ranked' => 'gerankt op ',
-            'submitted' => 'ingezonden op ',
             'unfavourite' => 'Verwijder markering als favoriet',
-            'updated' => 'laatst geüpdatet op ',
             'updated_timeago' => 'laatst bijgewerkt :timeago',
 
             'download' => [

@@ -34,16 +34,10 @@ return [
         'discussion' => 'مناقشة',
 
         'details' => [
-            'approved' => 'مقبولة في ',
             'favourite' => 'الاِعجاب بالخريطة',
             'logged-out' => 'يتجوب عليك تسجيل الدخول قبل تحميل اي خريطة!',
-            'loved' => 'تحببت في ',
             'mapped_by' => 'عينت بواسطة :mapper',
-            'qualified' => 'تأهلت في ',
-            'ranked' => 'اِصطُفَت في ',
-            'submitted' => 'تم تقديمه في ',
             'unfavourite' => 'الغاء الاِعجاب بالخريطة',
-            'updated' => 'تاريخ آخر تحديث ',
             'updated_timeago' => 'التحديث الأخير :timeago',
 
             'download' => [
