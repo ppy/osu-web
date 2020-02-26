@@ -76,7 +76,6 @@ class OsuMarkdown
             'block_modifiers' => ['store-product', 'store-product-small'],
         ],
         'wiki' => [
-            'block_modifiers' => ['wiki'],
             'generate_toc' => true,
             'title_from_document' => true,
         ],
