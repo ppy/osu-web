@@ -27,12 +27,12 @@ describe('OsuCore user:update subscriber testing thing', () => {
     const json: UserJSON = {
       avatar_url: '',
       blocks: [],
-      can_moderate: false,
       country_code: '',
       id: 1,
       is_active: true,
       is_admin: true,
       is_bot: false,
+      is_moderator: false,
       is_online: true,
       is_supporter: true,
       pm_friends_only: false,

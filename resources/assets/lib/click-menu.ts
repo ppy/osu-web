@@ -69,6 +69,8 @@ export default class ClickMenu {
   }
 
   show = (target?: string | null | undefined) => {
+    const previousTree = this.tree();
+
     this.current = target;
 
     const tree = this.tree();
@@ -103,7 +105,7 @@ export default class ClickMenu {
       this.current = null;
     }
 
-    $.publish('click-menu:current', { target: this.current, tree });
+    $.publish('click-menu:current', { previousTree, target: this.current, tree });
 
     const toFocus = shownMenu?.querySelector('.js-click-menu--autofocus');
 
