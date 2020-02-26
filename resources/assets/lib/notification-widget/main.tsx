@@ -86,8 +86,12 @@ export default class Main extends React.Component<Props, State> {
 
   private renderFilter = (link: any) => {
     const type = core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: link.type });
+    const isSameFilter = link.type === this.controller.currentFilter;
+
+    if (type.name !== null && type.isEmpty && !isSameFilter) return null;
+
     const data = { 'data-type': link.type };
-    const modifiers = link.type === this.controller.currentFilter ? ['active'] : [];
+    const modifiers = isSameFilter ? ['active'] : [];
 
     return (
       <button
