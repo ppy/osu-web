@@ -54,6 +54,10 @@ export default class NotificationType implements NotificationReadable {
   @observable stacks = new Map<string, NotificationStack>();
   @observable total = 0;
 
+  @computed get isEmpty() {
+    return this.total <= 0;
+  }
+
   @computed get hasVisibleNotifications() {
     return (this.total > 0 && this.stacks.size > 0) || this.name === 'legacy_pm';
   }

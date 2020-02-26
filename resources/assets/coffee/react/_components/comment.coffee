@@ -65,6 +65,8 @@ export class Comment extends React.PureComponent
       expandReplies = false
     else if @props.comment.isDeleted
       expandReplies = false
+    else if @props.expandReplies?
+      expandReplies = @props.expandReplies
     else
       children = uiState.getOrderedCommentsByParentId(@props.comment.id)
       # Collapse if either no children is loaded or current level doesn't add indentation.

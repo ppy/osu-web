@@ -287,7 +287,7 @@ export class Discussion extends React.PureComponent
 
 
   canDownvote: =>
-    @props.currentUser.is_admin || @props.currentUser.can_moderate || @props.currentUser.is_bng
+    @props.currentUser.is_admin || @props.currentUser.is_moderator || @props.currentUser.is_bng
 
 
   canBeRepliedTo: =>
@@ -301,7 +301,7 @@ export class Discussion extends React.PureComponent
     elementName = if post.system then SystemPost else Post
 
     canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
-    canBeEdited = @isOwner(post) && post.id > @resolvedSystemPostId()
+    canBeEdited = @isOwner(post) && post.id > @resolvedSystemPostId() && !@props.beatmapset.discussion_locked
     canBeDeleted =
       if type == 'discussion'
         @props.discussion.current_user_attributes?.can_destroy
