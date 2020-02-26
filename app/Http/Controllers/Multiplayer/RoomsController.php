@@ -118,6 +118,7 @@ class RoomsController extends BaseController
             [
                 'host.country',
                 'playlist.beatmap.beatmapset',
+                'recent_participants',
             ]
         );
     }
@@ -135,6 +136,7 @@ class RoomsController extends BaseController
                 [
                     'host.country',
                     'playlist.beatmap.beatmapset',
+                    'recent_participants',
                 ]
             );
         } catch (InvariantException $e) {
