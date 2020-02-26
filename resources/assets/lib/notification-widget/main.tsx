@@ -26,8 +26,8 @@ import NotificationController from 'notifications/notification-controller';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
-import Stack from './stack';
 import { Spinner } from 'spinner';
+import Stack from './stack';
 
 interface Props {
   extraClasses?: string;
@@ -146,7 +146,7 @@ export default class Main extends React.Component<Props, State> {
         onClick={this.handleMarkAsRead}
       >
         clear all
-        <div className='notification-popup__mark-as-read'>
+        <div className='notification-popup-item__read-button'>
           {this.controller.type.isMarkingAsRead ? <Spinner /> : <span className='fas fa-times' />}
         </div>
       </button>

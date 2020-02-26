@@ -53,9 +53,7 @@ export default class Item extends React.Component<Props> {
             {this.renderTime()}
             {this.renderExpandButton()}
           </div>
-          <div className='notification-popup-item__side-buttons'>
-            {this.renderMarkAsReadButton()}
-          </div>
+          {this.renderMarkAsReadButton()}
         </div>
         {this.renderUnreadStripe()}
       </div>

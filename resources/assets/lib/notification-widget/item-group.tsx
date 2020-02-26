@@ -123,12 +123,9 @@ export default class ItemGroup extends React.Component<Props, State> {
           </div>
           <div className='notification-popup-item-group__collapse'>
             {this.renderShowLess()}
-            <div className='notification-popup__mark-as-read'>
-              {this.renderMarkAsReadButton()}
-            </div>
+            {this.renderMarkAsReadButton()}
           </div>
         </div>
-
       </div>
     );
   }

@@ -17,6 +17,7 @@
  */
 
 .notification-popup-item {
+  @_side-width: 40px;
   @_top: notification-popup-item;
 
   display: flex;
@@ -100,15 +101,27 @@
 
   &__read-button {
     .reset-input();
-    .full-size();
     .center-content();
-    width: calc(100% - $margin-left);
-    margin-left: @border-radius-large;
-    padding-left: 2px;
+    align-self: center;
+
+    height: 100%;
+    width: @_side-width;
+    padding-left: @border-radius-large + 2px; // doesn't look centered without the 2px ?_?
+    border-radius: 0 @border-radius-large @border-radius-large 0;
+
     color: @osu-colour-f1;
+
+    .@{_top}--legacy_pm &, .@{_top}--read & {
+      display: none;
+    }
 
     &:hover {
       color: #fff;
+      background-color: fade(black, 15%);
+
+      .notification-popup-item-group__collapse &, .notification-popup__clear-button & {
+        background-color: unset;
+      }
     }
 
     &::before {
@@ -117,7 +130,6 @@
       width: @border-radius-large;
       border-radius: 0 @border-radius-large @border-radius-large 0;
       background-color: transparent;
-      left: -@border-radius-large;
 
       .@{_top}:hover & {
         background-color: @osu-colour-b1;
@@ -165,21 +177,6 @@
            background-color: @osu-colour-b3;
          }
       }
-    }
-  }
-
-  &__side-buttons {
-    width: 40px;
-    flex: none;
-    border-radius: 0 @border-radius-large @border-radius-large 0;
-    background-color: transparent;
-
-    .@{_top}--legacy_pm &, .@{_top}--read & {
-      display: none;
-    }
-
-    &:hover {
-      background-color: fade(black, 15%);
     }
   }
 
