@@ -21,7 +21,9 @@
   @_icon-width: 32px;
 
   .reset-input();
+  .center-content();
 
+  justify-self: flex-end; // only works because currently, all mark as read buttons are at the end.
   height: 100%;
   color: @osu-colour-f1;
 
@@ -64,7 +66,7 @@
 
   &__icon {
     .center-content();
-    align-self: center;
+    height: 100%;
     width: @_icon-width;
   }
 }

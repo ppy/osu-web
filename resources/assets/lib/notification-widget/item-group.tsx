@@ -22,9 +22,9 @@ import NotificationStack from 'models/notification-stack';
 import { categoryToIcons } from 'notification-maps/icons';
 import { urlGroup } from 'notification-maps/url';
 import { NotificationContext } from 'notifications-context';
+import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
-import { Spinner } from 'spinner';
 import Item from './item';
 import ItemCompact from './item-compact';
 
@@ -123,36 +123,11 @@ export default class ItemGroup extends React.Component<Props, State> {
           </div>
           <div className='notification-popup-item-group__collapse'>
             {this.renderShowLess()}
-            {this.renderMarkAsReadButton()}
+            <NotificationReadButton isMarkingAsRead={this.props.stack.isMarkingAsRead} onMarkAsRead={this.handleMarkAsRead} />
           </div>
         </div>
       </div>
     );
-  }
-
-  private renderMarkAsReadButton() {
-    if (this.props.stack.isMarkingAsRead) {
-      return (
-        <div className='notification-read-button'>
-          <div className='notification-read-button__icon'>
-            <Spinner />
-          </div>
-        </div>
-
-      );
-    } else {
-      return (
-        <button
-          type='button'
-          className='notification-read-button'
-          onClick={this.handleMarkAsRead}
-        >
-          <div className='notification-read-button__icon'>
-            <span className='fas fa-times' />
-          </div>
-        </button>
-      );
-    }
   }
 
   private renderShowLess() {

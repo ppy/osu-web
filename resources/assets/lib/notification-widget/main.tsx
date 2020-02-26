@@ -23,10 +23,10 @@ import { Name, TYPES } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
 import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
+import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
-import { Spinner } from 'spinner';
 import Stack from './stack';
 
 interface Props {
@@ -84,8 +84,8 @@ export default class Main extends React.Component<Props, State> {
     this.controller.navigateTo(type);
   }
 
-  private handleMarkAsRead =  (event: React.MouseEvent<HTMLButtonElement>) => {
-    this.controller.type.isMarkingAsRead = !this.controller.type.isMarkingAsRead;
+  private handleMarkAsRead = () => {
+    this.controller.type.markTypeAsRead();
   }
 
   private handleShowMore = () => {
@@ -140,16 +140,11 @@ export default class Main extends React.Component<Props, State> {
     if (this.controller.type.isEmpty) return null;
 
     return (
-      <button
-        className='notification-read-button'
-        type='button'
-        onClick={this.handleMarkAsRead}
-      >
-        clear all
-        <div className='notification-read-button__icon'>
-          {this.controller.type.isMarkingAsRead ? <Spinner /> : <span className='fas fa-times' />}
-        </div>
-      </button>
+      <NotificationReadButton
+        isMarkingAsRead={this.controller.type.isMarkingAsRead}
+        onMarkAsRead={this.handleMarkAsRead}
+        text={osu.trans('notifications.mark_all_read')}
+      />
     );
   }
 
