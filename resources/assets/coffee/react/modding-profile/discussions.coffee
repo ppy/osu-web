@@ -53,6 +53,6 @@ export class Discussions extends React.Component
             a
               key: 'show-more'
               className: 'modding-profile-list__show-more'
-              href: laroute.route('users.modding.discussions', {user: @props.user.id}),
+              href: laroute.route('beatmap-discussions.index', {user: @props.user.id}),
               osu.trans('users.show.extra.discussions.show_more')
           ]
