@@ -137,18 +137,22 @@ export default class Item extends React.Component<Props> {
 
     if (this.props.markingAsRead ?? this.props.item.isMarkingAsRead) {
       return (
-        <div className='notification-popup-item__read-button'>
-          <Spinner />
+        <div className='notification-read-button notification-read-button--fancy'>
+          <div className='notification-read-button__icon'>
+            <Spinner />
+          </div>
         </div>
       );
     } else {
       return (
         <button
-          type='button'
-          className='notification-popup-item__read-button'
+          className='notification-read-button notification-read-button--fancy'
           onClick={this.props.markRead}
+          type='button'
         >
-          <span className='fas fa-times' />
+          <div className='notification-read-button__icon'>
+            <span className='fas fa-times' />
+          </div>
         </button>
       );
     }

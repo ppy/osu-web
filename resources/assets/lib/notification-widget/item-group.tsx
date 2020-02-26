@@ -133,18 +133,23 @@ export default class ItemGroup extends React.Component<Props, State> {
   private renderMarkAsReadButton() {
     if (this.props.stack.isMarkingAsRead) {
       return (
-        <div className='notification-popup-item__read-button'>
-          <Spinner />
+        <div className='notification-read-button'>
+          <div className='notification-read-button__icon'>
+            <Spinner />
+          </div>
         </div>
+
       );
     } else {
       return (
         <button
           type='button'
-          className='notification-popup-item__read-button'
+          className='notification-read-button'
           onClick={this.handleMarkAsRead}
         >
-          <span className='fas fa-times' />
+          <div className='notification-read-button__icon'>
+            <span className='fas fa-times' />
+          </div>
         </button>
       );
     }

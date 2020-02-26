@@ -17,7 +17,6 @@
  */
 
 .notification-popup-item {
-  @_side-width: 40px;
   @_top: notification-popup-item;
 
   display: flex;
@@ -97,52 +96,6 @@
     flex: 1;
     display: flex;
     min-width: 0;
-  }
-
-  &__read-button {
-    .reset-input();
-    .center-content();
-    align-self: center;
-
-    height: 100%;
-    width: @_side-width;
-    padding-left: @border-radius-large + 2px; // doesn't look centered without the 2px ?_?
-    border-radius: 0 @border-radius-large @border-radius-large 0;
-
-    color: @osu-colour-f1;
-
-    .@{_top}--legacy_pm &, .@{_top}--read & {
-      display: none;
-    }
-
-    &:hover {
-      color: #fff;
-      background-color: fade(black, 15%);
-
-      .notification-popup-item-group__collapse &, .notification-popup__clear-button & {
-        background-color: unset;
-      }
-    }
-
-    &::before {
-      .full-size();
-      content: ' ';
-      width: @border-radius-large;
-      border-radius: 0 @border-radius-large @border-radius-large 0;
-      background-color: transparent;
-
-      .@{_top}:hover & {
-        background-color: @osu-colour-b1;
-      }
-
-      .@{_top}--compact:hover & {
-        background-color: @osu-colour-b4;
-      }
-
-      .@{_top}--group:hover & {
-        background-color: @osu-colour-b2;
-      }
-    }
   }
 
   &__row {

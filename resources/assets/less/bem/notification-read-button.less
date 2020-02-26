@@ -1,0 +1,70 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.notification-read-button {
+  @_notification: notification-popup-item;
+  @_icon-width: 32px;
+
+  .reset-input();
+
+  height: 100%;
+  color: @osu-colour-f1;
+
+  .@{_notification}--legacy_pm &, .@{_notification}--read & {
+    display: none;
+  }
+
+  &:hover {
+    color: #fff;
+  }
+
+  &--fancy {
+    padding-left: @border-radius-large;
+    border-radius: 0 @border-radius-large @border-radius-large 0;
+
+    &:hover {
+      background-color: fade(black, 15%);
+    }
+
+    &::before {
+      .full-size();
+      content: ' ';
+      width: @border-radius-large;
+      border-radius: 0 @border-radius-large @border-radius-large 0;
+      background-color: transparent;
+
+      .@{_notification}:hover & {
+        background-color: @osu-colour-b1;
+      }
+
+      .@{_notification}--compact:hover & {
+        background-color: @osu-colour-b4;
+      }
+
+      .@{_notification}--group:hover & {
+        background-color: @osu-colour-b2;
+      }
+    }
+  }
+
+  &__icon {
+    .center-content();
+    align-self: center;
+    width: @_icon-width;
+  }
+}

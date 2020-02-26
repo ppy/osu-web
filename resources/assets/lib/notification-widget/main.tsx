@@ -141,12 +141,12 @@ export default class Main extends React.Component<Props, State> {
 
     return (
       <button
-        className='notification-popup__clear-button'
+        className='notification-read-button'
         type='button'
         onClick={this.handleMarkAsRead}
       >
         clear all
-        <div className='notification-popup-item__read-button'>
+        <div className='notification-read-button__icon'>
           {this.controller.type.isMarkingAsRead ? <Spinner /> : <span className='fas fa-times' />}
         </div>
       </button>
