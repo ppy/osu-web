@@ -137,9 +137,12 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
 
   private handleTypeRead(identity: NotificationIdentity, readCount: number) {
     const type = this.getOrCreateType(identity);
-    this.total -= type.total;
 
-    type.stacks.forEach((stack) => stack.isRead = true);
+    type.stacks.forEach((stack) => {
+      stack.isRead = true;
+      this.allType.removeStack(stack);
+    });
+
     this.types.delete(identity.objectType);
   }
 }

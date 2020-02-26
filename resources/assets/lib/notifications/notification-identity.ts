@@ -44,6 +44,9 @@ export function resolveIdentityType(identity: NotificationIdentity): Notificatio
       }
       return 'stack';
     }
+  }
+
+  if (identity.objectType !== null) {
     return 'type';
   }
 }
