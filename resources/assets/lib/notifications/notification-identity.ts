@@ -46,9 +46,7 @@ export function resolveIdentityType(identity: NotificationIdentity): Notificatio
     }
   }
 
-  if (identity.objectType !== null) {
-    return 'type';
-  }
+  return 'type';
 }
 
 export function fromJson(json: NotificationIdentityJson): NotificationIdentity {
