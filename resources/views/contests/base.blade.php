@@ -31,7 +31,6 @@
 @extends('master', [
     'currentSection' => 'community',
     'currentAction' => 'contests',
-    'legacyFont' => false,
     'title' => "Contest: {$contestMeta->name}",
     'pageDescription' => strip_tags(markdown($contestMeta->currentDescription())),
     'canonicalUrl' => $contestMeta->url(),
