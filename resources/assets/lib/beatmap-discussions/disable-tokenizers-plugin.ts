@@ -17,14 +17,18 @@
  */
 
 export function disableTokenizersPlugin({allowedBlocks = [] as string[], allowedInlines = [] as string[]} = {}) {
+  // Ensure core required tokenizers are always allowed (otherwise infinite loops and other bad things happen...)
+  allowedBlocks.push('root', 'newline');
+  allowedInlines.push('text');
+
   this.Parser.prototype.blockMethods
-    .filter((key: string) => key !== 'root' && !allowedBlocks.includes(key))
+    .filter((key: string) => !allowedBlocks.includes(key))
     .forEach((key: string) => {
-      this.Parser.prototype.blockMethods[key] = () => true;
+      this.Parser.prototype.blockTokenizers[key] = () => true;
     });
 
   this.Parser.prototype.inlineMethods
-    .filter((key: string) => key !== 'text' && !allowedInlines.includes(key))
+    .filter((key: string) => !allowedInlines.includes(key))
     .forEach((key: string) => {
       this.Parser.prototype.inlineTokenizers[key] = () => true;
       this.Parser.prototype.inlineTokenizers[key].locator = () => -1;
