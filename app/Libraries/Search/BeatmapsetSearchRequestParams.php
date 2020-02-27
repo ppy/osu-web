@@ -60,6 +60,8 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
         $this->requestQuery = $request['q'] ?? $request['query'] ?? null;
 
+        $sort = $request['sort'] ?? null;
+
         if ($this->user !== null) {
             $this->queryString = es_query_escape_with_caveats($this->requestQuery);
             $status = presence($request['s'] ?? null);
@@ -80,9 +82,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
             $generals = explode('.', $request['c'] ?? null) ?? [];
             $this->includeConverts = in_array('converts', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
+        } else {
+            $sort = null;
         }
 
-        $this->parseSortOrder($request['sort'] ?? null);
+        $this->parseSortOrder($sort);
         $this->searchAfter = $this->getSearchAfter($request['cursor'] ?? null);
 
         // Supporter-only options.
