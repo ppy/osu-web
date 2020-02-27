@@ -54,35 +54,8 @@
   &__row {
     word-wrap: break-word;
 
-    // having anything but markdown-formatted page inside may result in sadness.
     &--message {
-      font-size: @font-size--normal;
-      color: @osu-colour-f1;
       margin-top: 2px;
-
-      h1, h2, h3, h4, h5, h6 {
-        font-size: @font-size--title-small;
-        font-weight: bold;
-        font-style: normal;
-        color: inherit;
-        margin: 5px 0;
-      }
-
-      h1 {
-        font-size: @font-size--title-small-3;
-      }
-
-      img {
-        max-width: 100%;
-      }
-
-      ul {
-        padding-left: 20px;
-      }
-
-      a {
-        .link-inverted();
-      }
     }
   }
 
