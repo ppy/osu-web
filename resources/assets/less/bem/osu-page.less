@@ -263,8 +263,8 @@
   }
 
   &--news {
-    .default;
-    .default-gutter();
+    .default();
+    .default-gutter-v2();
     padding-bottom: 20px;
     padding-top: 20px;
   }
@@ -322,10 +322,13 @@
 
   &--wiki {
     .default();
-    .default-gutter-v2();
     font-size: @font-size--wiki;
+  }
+
+  &--wiki-main {
+    .default-gutter-v2();
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: $padding-top;
   }
 
   &--chat {
