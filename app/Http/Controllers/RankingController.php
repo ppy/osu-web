@@ -31,12 +31,13 @@ class RankingController extends Controller
 
         $mode = request('mode');
         $type = request('type');
-        $this->friendsOnly = request('friends_only') ?? true;
+        $this->friendsOnly = get_bool(request('friends_only')) ?? false;
 
         view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
         view()->share('mode', $mode);
         view()->share('type', $type);
         view()->share('spotlight', null); // so variable capture in selector function doesn't die.
+        view()->share('friendsOnly', $this->friendsOnly);
 
         $this->middleware(function ($request, $next) use ($mode, $type) {
             if ($mode === null) {

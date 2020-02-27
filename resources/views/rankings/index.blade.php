@@ -67,6 +67,16 @@
     @endif
 
     <div class="osu-page osu-page--generic">
+        <div class="js-url-selector">
+            @include('objects._switch', [
+                'checked' => $friendsOnly,
+                'type' => 'checkbox',
+                'name' => 'friends_only',
+            ])
+
+            {{ trans('rankings.friends_only') }}
+        </div>
+
         @if ($hasPager)
             @include('objects._pagination_v2', [
                 'object' => $scores

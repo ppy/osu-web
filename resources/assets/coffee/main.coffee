@@ -83,7 +83,12 @@ _exported.WindowVHPatcher.init(window)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
-  osu.navigate e.target.value, (e.target.dataset.keepScroll == '1')
+  target = e.target
+
+  if target.type == 'checkbox'
+    osu.navigate osu.updateQueryString(null, "#{target.name}": target.checked)
+  else
+    osu.navigate target.value, (target.dataset.keepScroll == '1')
 
 
 $(document).on 'keydown', (e) ->
