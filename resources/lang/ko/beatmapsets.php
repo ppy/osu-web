@@ -34,16 +34,10 @@ return [
         'discussion' => '토론',
 
         'details' => [
-            'approved' => 'approved된 날짜: ',
             'favourite' => '즐겨찾기',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
-            'loved' => 'loved된 날짜: ',
             'mapped_by' => ':mapper님의 맵',
-            'qualified' => 'qualified된 날짜: ',
-            'ranked' => 'ranked된 날짜: ',
-            'submitted' => '만든 날짜: ',
             'unfavourite' => '즐겨찾기 해제',
-            'updated' => '마지막 수정 날짜: ',
             'updated_timeago' => ':timeago에 마지막으로 수정됨',
 
             'download' => [

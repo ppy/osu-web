@@ -7,7 +7,7 @@ There are a few different options to get started:
 ### Install prerequisites
 
 - MySQL 5.7
-- PHP 7.1+ (with curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
+- PHP 7.2+ (with curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
 - nginx (or other webserver)
 - Node.js 8 or 9 (and a modern version of npm)
 - elasticsearch 5+
@@ -36,7 +36,7 @@ location / {
 }
 ```
 
-Consult the [laravel documentation](https://laravel.com/docs/5.5/installation#web-server-configuration) for non-nginx
+Consult the [laravel documentation](https://laravel.com/docs/6.x/installation#web-server-configuration) for non-nginx
 
 ### Initialize database
 
@@ -54,34 +54,7 @@ $ ./build.sh
 
 At this point you should be able to access the site via whatever webserver you configured
 
-## 2\. Automated setup for Ubuntu
-
-### Create a fresh Ubuntu environment
-
-On your server, a virtual machine, whatever.
-
-### Clone the git repository:
-
-```
-git clone https://github.com/ppy/osu-web.git
-```
-
-### Run automated configuration
-
-Note these script are intended to be run in a _sandboxed environment_; do not run on a shared development system without first understanding what is being done.
-
-```bash
-$ sudo ./bootstrap.sh
-$ ./build.sh
-```
-
-You can then run the standalone php server from inside the `public` folder:
-
-```
-php -S 127.0.0.1:8080
-```
-
-## 3\. Using Docker
+## 2\. Using Docker
 
 - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/).
 - Export required environment variable `UID` (`export UID`).
@@ -107,7 +80,7 @@ $ php artisan tinker
 
 ## Generating assets
 
-Using Laravel's [Mix](https://laravel.com/docs/5.5/mix).
+Using Laravel's [Mix](https://laravel.com/docs/6.x/mix).
 
 ```bash
 # build assets (should be done automatically if using docker)

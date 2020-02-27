@@ -34,16 +34,10 @@ return [
         'discussion' => 'Diskuze',
 
         'details' => [
-            'approved' => 'schváleno:',
             'favourite' => 'Přidat do mých oblíbených',
             'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
-            'loved' => 'amorem zasažené:',
             'mapped_by' => 'beatmapu vytvořil :mapper',
-            'qualified' => 'kvalifikováno:',
-            'ranked' => 'hodnocené od:',
-            'submitted' => 'nahráno:',
             'unfavourite' => 'Odebrat z mých oblíbených',
-            'updated' => 'naposledy upraveno:',
             'updated_timeago' => 'naposledy aktualizováno :timeago',
 
             'download' => [
