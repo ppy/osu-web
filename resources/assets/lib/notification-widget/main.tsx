@@ -137,13 +137,14 @@ export default class Main extends React.Component<Props, State> {
   }
 
   private renderMarkAsReadButton() {
-    if (this.controller.type.isEmpty) return null;
+    const type = this.controller.type;
+    if (type.isEmpty) return null;
 
     return (
       <NotificationReadButton
-        isMarkingAsRead={this.controller.type.isMarkingAsRead}
+        isMarkingAsRead={type.isMarkingAsRead}
         onMarkAsRead={this.handleMarkAsRead}
-        text={osu.trans('notifications.mark_all_read')}
+        text={osu.trans('notifications.mark_read', { type: osu.trans(`notifications.filters.${type.name ?? '_'}`) })}
       />
     );
   }
