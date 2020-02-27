@@ -129,7 +129,7 @@ class NotificationsController extends Controller
             'id:int',
             'notifications:any',
             'object_id:int',
-            'object_type:string',
+            'object_type',
         ]);
 
         if (isset($params['notifications'])) {
