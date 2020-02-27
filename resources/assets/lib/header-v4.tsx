@@ -161,6 +161,7 @@ export default class HeaderV4 extends React.Component<Props> {
             className='header-nav-mobile__item'
             href={link.url}
             onClick={this.props.onLinkClick}
+            {...link.data}
           >
             {link.title}
           </a>
