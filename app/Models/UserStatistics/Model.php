@@ -165,4 +165,12 @@ abstract class Model extends BaseModel
     {
         return $this->rank_score !== 0.0 && $this->rank_score_index !== 0;
     }
+
+    public function scopeFriendsOf($query, $user)
+    {
+        $userIds = $user->friends()->allRelatedIds();
+        $userIds[] = $user->getKey();
+
+        return $query->whereIn('user_id', $userIds);
+    }
 }

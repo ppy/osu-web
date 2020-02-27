@@ -18,6 +18,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class RankingController extends Controller
 {
     private $country;
+    private $friendsOnly;
 
     const PAGE_SIZE = 50;
     const MAX_RESULTS = 10000;
@@ -30,6 +31,7 @@ class RankingController extends Controller
 
         $mode = request('mode');
         $type = request('type');
+        $this->friendsOnly = request('friends_only') ?? true;
 
         view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
         view()->share('mode', $mode);
@@ -117,6 +119,10 @@ class RankingController extends Controller
                         $userQuery->default();
                     });
 
+                if ($this->friendsOnly) {
+                    $stats->friendsOf(auth()->user());
+                }
+
                 if ($type === 'performance') {
                     if ($this->country !== null) {
                         $stats
@@ -194,6 +200,10 @@ class RankingController extends Controller
         if ($spotlight->hasMode($mode)) {
             $beatmapsets = $spotlight->beatmapsets($mode)->with('beatmaps')->get();
             $scores = $spotlight->ranking($mode);
+
+            if ($this->friendsOnly) {
+                $scores->friendsOf(auth()->user());
+            }
 
             if (is_api_request()) {
                 $scores = $scores->with(['user.userProfileCustomization'])->get();
