@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Alle meldingen gelezen!',
-    'mark_all_read' => 'Alles wissen',
     'none' => '',
     'see_all' => '',
 

@@ -20,7 +20,6 @@
 
 return [
     'all_read' => '모든 알림을 읽었어요!',
-    'mark_all_read' => '모두 지우기',
     'none' => '',
     'see_all' => '',
 

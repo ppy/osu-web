@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Összes értesítés elolvasva!',
-    'mark_all_read' => 'Összes törlése',
     'none' => '',
     'see_all' => '',
 

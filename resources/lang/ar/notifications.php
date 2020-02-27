@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'تم قراءة جميع الإشعارات!',
-    'mark_all_read' => 'مسح الكل',
     'none' => '',
     'see_all' => '',
 

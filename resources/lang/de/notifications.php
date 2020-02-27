@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
-    'mark_all_read' => 'Alle schließen',
     'none' => '',
     'see_all' => '',
 

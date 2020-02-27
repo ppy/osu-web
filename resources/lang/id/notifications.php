@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Semua notifikasi telah dibaca!',
-    'mark_all_read' => 'Hapus semua',
     'none' => '',
     'see_all' => '',
 
