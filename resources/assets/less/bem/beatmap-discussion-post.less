@@ -28,6 +28,10 @@
 
   transition: background-color .1s ease-in-out;
 
+  &--deleted {
+    opacity: 0.5;
+  }
+
   &--discussion {
     min-width: 0;
 
@@ -214,7 +218,6 @@
     }
 
     .@{_top}--deleted & {
-      opacity: 0.5;
       font-style: italic;
     }
 
