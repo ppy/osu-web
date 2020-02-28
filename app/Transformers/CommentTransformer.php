@@ -66,6 +66,6 @@ class CommentTransformer extends TransformerAbstract
 
     public function includeMessageHtml(Comment $comment)
     {
-        return $this->primitive(markdown($comment->message));
+        return $this->primitive(markdown($comment->message, 'comment'));
     }
 }

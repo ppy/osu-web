@@ -34,16 +34,10 @@ return [
         'discussion' => 'Diskusi',
 
         'details' => [
-            'approved' => 'berstatus Approved sejak ',
             'favourite' => 'Masukkan beatmapset ini ke dalam daftar Favorit Anda',
             'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
-            'loved' => 'berstatus Loved sejak ',
             'mapped_by' => 'dibuat oleh :mapper',
-            'qualified' => 'berstatus Qualified sejak ',
-            'ranked' => 'berstatus Ranked sejak ',
-            'submitted' => 'diunggah pada ',
             'unfavourite' => 'Hapus beatmapset ini dari daftar Favorit Anda',
-            'updated' => 'terakhir diperbarui pada ',
             'updated_timeago' => 'terakhir diperbarui :timeago',
 
             'download' => [

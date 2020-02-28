@@ -30,6 +30,7 @@ class RoomTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'host',
         'playlist',
+        'recent_participants',
         'scores',
     ];
 
@@ -54,6 +55,19 @@ class RoomTransformer extends TransformerAbstract
             $room->host,
             new UserCompactTransformer
         );
+    }
+
+    public function includeRecentParticipants(Room $room)
+    {
+        $users = $room
+            ->userHighScores()
+            ->with('user')
+            ->orderBy('updated_at', 'DESC')
+            ->limit(50)
+            ->get()
+            ->pluck('user');
+
+        return $this->collection($users, new UserCompactTransformer);
     }
 
     public function includePlaylist(Room $room)

@@ -114,7 +114,6 @@
 
   &__deleted {
     font-weight: bold;
-    font-style: italic;
     margin: 10px 0;
   }
 
@@ -164,61 +163,7 @@
   }
 
   &__message {
-    .content-font();
     margin: 2px 0;
-    word-wrap: break-word;
-    color: inherit;
-
-    > *:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    h1 {
-      color: inherit;
-      font-size: 1.2em;
-    }
-
-    h2 {
-      color: inherit;
-      font-size: 1.1em;
-    }
-
-    h3 {
-      color: inherit;
-      font-size: 1em;
-    }
-
-    h4 {
-      color: inherit;
-      font-size: 1em;
-    }
-
-    h5 {
-      color: inherit;
-      font-size: 1em;
-    }
-
-    h6 {
-      color: inherit;
-      font-size: 1em;
-    }
-
-    a {
-      .link-default();
-    }
-
-    pre {
-      background-color: @osu-colour-b6;
-      color: @osu-colour-l1;
-      border: none;
-      border-radius: 0px;
-
-      code {
-        border: none;
-        padding: 0px;
-      }
-    }
   }
 
   &__replies {
@@ -246,7 +191,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    font-weight: bold;
+    font-weight: 600;
 
     &--footer {
       color: @osu-colour-f1;
@@ -259,7 +204,6 @@
 
     &--header {
       font-size: @font-size--title-small;
-      font-style: italic;
     }
   }
 
