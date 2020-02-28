@@ -12,7 +12,13 @@ $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
         'commentable_id' => function () {
             return factory(App\Models\Build::class)->create()->build_id;
         },
-        'created_at' => Carbon\Carbon::now(),
-        'updated_at' => Carbon\Carbon::now(),
+        'created_at' => now(),
+        'updated_at' => now(),
+    ];
+});
+
+$factory->state(App\Models\Comment::class, 'deleted', function () {
+    return [
+        'deleted_at' => now(),
     ];
 });
