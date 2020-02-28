@@ -36,7 +36,7 @@ return [
         'details' => [
             'favourite' => 'Dieses Beatmapset zu deinen Favoriten hinzufügen',
             'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
-            'loved' => 'loved am ',
+            'loved' => 'loved am :timeago',
             'mapped_by' => 'erstellt von :mapper',
             'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
             'updated_timeago' => 'zuletzt aktualisiert :timeago',
