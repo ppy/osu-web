@@ -26,6 +26,8 @@ use Tests\TestCase;
 
 class BeatmapDiscussionTransformerTest extends TestCase
 {
+    protected $deletedBeatmapDiscussion;
+
     /**
      * @dataProvider groupsDataProvider
      */
@@ -34,7 +36,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
         $viewer = factory(User::class)->states($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($this->beatmapDiscussion, 'BeatmapDiscussion');
+        $json = json_item($this->deletedBeatmapDiscussion, 'BeatmapDiscussion');
 
         $this->assertEmpty($json);
     }
@@ -47,7 +49,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
         $viewer = factory(User::class)->states($groupIdentifier)->create();
         auth()->setUser($viewer);
 
-        $json = json_item($this->beatmapDiscussion, 'BeatmapDiscussion');
+        $json = json_item($this->deletedBeatmapDiscussion, 'BeatmapDiscussion');
 
         if ($visible) {
             $this->assertNotEmpty($json);
@@ -75,7 +77,7 @@ class BeatmapDiscussionTransformerTest extends TestCase
             'user_id' => $mapper->getKey(),
         ]);
 
-        $this->beatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
-        $this->beatmapDiscussion->update(['deleted_at' => now()]);
+        $this->deletedBeatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
+        $this->deletedBeatmapDiscussion->update(['deleted_at' => now()]);
     }
 }

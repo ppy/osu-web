@@ -106,7 +106,7 @@ class DeclaredPermissionsTest extends TestCase
     {
         $baseName = $fileInfo->getBasename(".{$fileInfo->getExtension()}");
         $namespace = str_replace('/', '\\', $fileInfo->getRelativePath());
-        if (mb_strlen($fileInfo->getRelativePath()) !== 0) {
+        if (mb_strlen($namespace) !== 0) {
             $namespace .= '\\';
         }
 

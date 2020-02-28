@@ -32,7 +32,7 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
     protected $beatmapDiscussion;
 
     /** @var BeatmapDiscussionPost */
-    protected $post;
+    protected $deletedPost;
 
     /**
      * @dataProvider groupsDataProvider
@@ -42,7 +42,7 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
         $viewer = factory(User::class)->states($groupIdentifier)->create();
         $this->actAsScopedUser($viewer);
 
-        $json = json_item($this->post, 'BeatmapDiscussionPost');
+        $json = json_item($this->deletedPost, 'BeatmapDiscussionPost');
         $this->assertEmpty($json);
     }
 
@@ -54,7 +54,7 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
         $viewer = factory(User::class)->states($groupIdentifier)->create();
         auth()->setUser($viewer);
 
-        $json = json_item($this->post, 'BeatmapDiscussionPost');
+        $json = json_item($this->deletedPost, 'BeatmapDiscussionPost');
 
         if ($visible) {
             $this->assertNotEmpty($json);
@@ -84,8 +84,8 @@ class BeatmapDiscussionPostTransformerTest extends TestCase
 
         $this->beatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
         $this->beatmapDiscussion->beatmapDiscussionPosts()->saveMany(factory(BeatmapDiscussionPost::class, 2)->make());
-        $this->post = $this->beatmapDiscussion->beatmapDiscussionPosts()->last();
+        $this->deletedPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->last();
 
-        $this->post->softDeleteOrExplode($mapper);
+        $this->deletedPost->softDeleteOrExplode($mapper);
     }
 }
