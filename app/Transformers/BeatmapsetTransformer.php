@@ -50,12 +50,8 @@ class BeatmapsetTransformer extends TransformerAbstract
 
     protected $requiredPermission = 'BeatmapsetShow';
 
-    public function transform(Beatmapset $beatmapset = null)
+    public function transform(Beatmapset $beatmapset)
     {
-        if ($beatmapset === null) {
-            return [];
-        }
-
         return [
             'id' => $beatmapset->beatmapset_id,
             'title' => $beatmapset->title,

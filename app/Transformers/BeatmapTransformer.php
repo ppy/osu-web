@@ -109,7 +109,11 @@ class BeatmapTransformer extends TransformerAbstract
 
     public function includeBeatmapset(Beatmap $beatmap)
     {
-        return $this->item($beatmap->beatmapset, new BeatmapsetTransformer);
+        $beatmapset = $beatmap->beatmapset;
+
+        return $beatmapset === null
+            ? $this->primitive(null)
+            : $this->primitive($beatmap->beatmapset, new BeatmapsetTransformer);
     }
 
     public function includeMaxCombo(Beatmap $beatmap)
