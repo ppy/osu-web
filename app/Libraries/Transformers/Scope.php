@@ -18,21 +18,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Libraries\Transformers;
 
+use App\Transformers\TransformerAbstract;
 use League\Fractal;
-use League\Fractal\Resource\ResourceInterface;
 
-class ScopeFactory extends Fractal\ScopeFactory
+class Scope extends Fractal\Scope
 {
     /**
-     * @param Manager $manager
-     * @param ResourceInterface $resource
-     * @param string|null $scopeIdentifier
-     * @return Scope
+     * {@inheritdoc}
      */
-    public function createScopeFor(Fractal\Manager $manager, ResourceInterface $resource, $scopeIdentifier = null)
+    protected function fireTransformer($transformer, $data)
     {
-        return new Scope($manager, $resource, $scopeIdentifier);
+        if ($transformer instanceof TransformerAbstract) {
+            $permission = $transformer->getRequiredPermission();
+            if ($permission !== null && !priv_check($permission, $data)->can()) {
+                return [[], []];
+            }
+        }
+
+        return parent::fireTransformer($transformer, $data);
     }
 }
