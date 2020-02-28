@@ -74,7 +74,7 @@ export class ReportForm extends PureComponent
             i className: 'fas fa-exclamation-triangle'
 
           div
-            className: "#{bn}__row"
+            className: "#{bn}__row #{bn}__row--title"
             dangerouslySetInnerHTML:
               __html: "<span>#{title}</span>" # wrap in span to preserve the whitespace in text.
 

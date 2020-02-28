@@ -44,7 +44,6 @@ export const BeatmapIcon: FunctionComponent<Props> = ({beatmap, overrideVersion,
       data-stars={_.round(beatmap.difficulty_rating, 2)}
       data-difficulty={difficultyRating}
     >
-      <div className='beatmap-icon__shadow' />
       <i className={`fal fa-extra-mode-${mode}`} />
     </div>
   );

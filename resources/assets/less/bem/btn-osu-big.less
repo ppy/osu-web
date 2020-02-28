@@ -146,8 +146,8 @@
     transition: background-position 120ms;
 
     flex: none;
-    height: 50px;
-    width: 180px;
+    width: 240px;
+    padding: 10px;
     margin-bottom: 20px;
 
     flex-direction: column;
@@ -362,6 +362,19 @@
     });
   }
 
+  &--tournament-info {
+    font-size: @font-size--title-small-3;
+    padding: 10px 30px;
+    border-radius: 10000px;
+  }
+
+  &--tournament-register {
+    font-size: @font-size--title-small-3;
+    padding: 10px 40px;
+    border-radius: 10000px;
+    margin-top: 10px;
+  }
+
   &--wrap-text {
     white-space: normal;
   }
@@ -497,12 +510,10 @@
     }
 
     .@{top}--download-page & {
-      font-size: 15px;
+      .default-text-shadow();
+      font-size: @font-size--large;
       font-weight: 700;
-
       margin: 0;
-
-      .default-text-shadow;
     }
   }
 
@@ -510,7 +521,8 @@
     font-size: @font-size--small;
 
     .@{top}--download-page & {
-      .default-text-shadow;
+      .default-text-shadow();
+      font-size: @font-size--normal;
     }
   }
 

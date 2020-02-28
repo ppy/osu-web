@@ -21,7 +21,6 @@
   @padding: 10px;
   @hover-transition-duration: 150ms;
   .own-layer();
-  color: @text-color;
 
   &__content {
     height: 75px;
@@ -67,7 +66,7 @@
     display: block;
     .link-white();
     .link-plain();
-    .default-text-shadow();
+    .solid-text-shadow();
 
     .at2x('/images/layout/beatmaps/default-bg.png');
     background-position: center;
@@ -81,8 +80,8 @@
   }
 
   &__header-text {
-    .thick-text-shadow();
     font-weight: 600;
+    font-size: @font-size--title-small;
 
     &--title {
       font-size: 130%;
@@ -90,7 +89,7 @@
   }
 
   &__icon {
-    .link-gray-dark();
+    .link-white();
     padding-left: 5px;
 
     &--disabled {
@@ -113,12 +112,7 @@
 
   &__image-overlay {
     .full-size();
-    content: ' ';
-    background-image: linear-gradient(to bottom, fade(#000, 10%), fade(#000, 70%));
-  }
-
-  &__link {
-    .link-blue-dark();
+    background-color: fade(#000, 40%);
   }
 
   &__mapper-source-box {
@@ -135,7 +129,11 @@
     border-radius: @border-radius-base + 2px @border-radius-base + 2px @border-radius-base @border-radius-base;
 
     width: 100%;
-    background: #fff;
+    background: @osu-colour-b3;
+
+    .@{top}:hover & {
+      background: @osu-colour-b2;
+    }
   }
 
   &__play {
@@ -219,7 +217,7 @@
   &__extra-icon {
     font-size: 14px;
     line-height: 28px;
-    background: fade(black, 50%);
+    background: osu-hsla(@osu-colour-b4, 70%);
     padding: 0px 5px;
     margin-right: 5px;
     border-radius: 14px;

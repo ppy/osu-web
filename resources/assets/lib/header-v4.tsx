@@ -120,7 +120,9 @@ export default class HeaderV4 extends React.Component<Props> {
             onClick={this.props.onLinkClick}
             {...link.data}
           >
-            {link.title}
+            <span className='fake-bold' data-content={link.title}>
+              {link.title}
+            </span>
           </a>
         </li>
       );
