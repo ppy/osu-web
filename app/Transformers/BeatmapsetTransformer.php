@@ -48,13 +48,11 @@ class BeatmapsetTransformer extends TransformerAbstract
         'user',
     ];
 
+    protected $requiredPermission = 'BeatmapsetShow';
+
     public function transform(Beatmapset $beatmapset = null)
     {
         if ($beatmapset === null) {
-            return [];
-        }
-
-        if (!priv_check('BeatmapsetShow', $beatmapset)->can()) {
             return [];
         }
 
