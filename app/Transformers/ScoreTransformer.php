@@ -83,7 +83,9 @@ class ScoreTransformer extends TransformerAbstract
 
     public function includeBeatmap($score)
     {
-        return $this->item($score->beatmap, new BeatmapTransformer);
+        return $score->beatmap === null
+            ? $this->primitive(null)
+            : $this->item($score->beatmap, new BeatmapTransformer);
     }
 
     public function includeBeatmapset($score)

@@ -32,16 +32,10 @@ class BeatmapTransformer extends TransformerAbstract
         'max_combo',
     ];
 
-    public function transform(Beatmap $beatmap = null)
+    protected $requiredPermission = 'BeatmapShow';
+
+    public function transform(Beatmap $beatmap)
     {
-        if ($beatmap === null) {
-            return [];
-        }
-
-        if (!priv_check('BeatmapShow', $beatmap)->can()) {
-            return [];
-        }
-
         return [
             'id' => $beatmap->beatmap_id,
             'beatmapset_id' => $beatmap->beatmapset_id,
