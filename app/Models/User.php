@@ -1453,7 +1453,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count', 'user_preferences']);
+        return json_item($this, 'User', ['blocks', 'friends', 'group_badge', 'is_admin', 'unread_pm_count', 'user_preferences']);
     }
 
     public function supportLength()
