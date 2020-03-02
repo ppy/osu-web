@@ -21,7 +21,6 @@
 namespace Tests\Transformers;
 
 use App\Models\User;
-use App\Models\UserAccountHistory;
 use Tests\TestCase;
 
 class UserTransformerTest extends TestCase
