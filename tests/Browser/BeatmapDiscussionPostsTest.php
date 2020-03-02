@@ -77,6 +77,24 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
         return $user;
     }
 
+    protected function deleteUser(User $user): void
+    {
+        $user->userProfileCustomization()->forceDelete();
+        $user->forceDelete();
+    }
+
+    protected function cleanup(): void
+    {
+        // Delete all models we created.
+        $this->beatmapDiscussion->beatmapDiscussionPosts()->forceDelete();
+        $this->beatmapDiscussion->forceDelete();
+        $this->beatmap->forceDelete();
+        $this->beatmapset->events()->forceDelete();
+        $this->beatmapset->forceDelete();
+        $this->deleteUser($this->user);
+        $this->deleteUser($this->mapper);
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -99,5 +117,10 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
             'user_id' => $this->user->getKey(),
         ]);
         $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
+
+        $this->beforeApplicationDestroyed(function () {
+            // Similar case to SanityTest, cleanup the models we created during the test.
+            $this->cleanup();
+        });
     }
 }
