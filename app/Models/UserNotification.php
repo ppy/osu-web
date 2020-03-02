@@ -73,9 +73,10 @@ class UserNotification extends Model
             ->where('is_read', false)
             ->whereIn('notification_id', $notifications->select('id'));
 
-        $count = $itemsQuery->update(['is_read' => true]);
+        $now = now();
+        $count = $itemsQuery->update(['is_read' => true, 'updated_at' => $now]);
         if ($count > 0) {
-            event(new NotificationReadEvent($user->getKey(), ['notifications' => [$params], 'read_count' => $count]));
+            event(new NotificationReadEvent($user->getKey(), ['notifications' => [$params], 'read_count' => $count, 'timestamp' => $now]));
         }
     }
 

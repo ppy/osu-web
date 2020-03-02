@@ -71,6 +71,7 @@ export default class Worker {
   userId: number | null = null;
   @observable private active: boolean = false;
   private endpoint?: string;
+  private startedAt = new Date();
   private readonly store = core.dataStore.notificationStore.unreadStacks;
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
@@ -160,7 +161,10 @@ export default class Worker {
     } else if (isNotificationEventNewJson(eventData)) {
       dispatch(new NotificationEventNew(eventData.data));
     } else if (isNotificationEventReadJson(eventData)) {
-      dispatch(NotificationEventRead.fromJson(eventData));
+      const timestamp = new Date(eventData.data.timestamp);
+      if (timestamp > this.startedAt) {
+        dispatch(NotificationEventRead.fromJson(eventData));
+      }
     } else if (isNotificationEventVerifiedJson(eventData)) {
       if (!this.hasData) {
         this.loadMore();
