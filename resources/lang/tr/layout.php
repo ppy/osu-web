@@ -82,6 +82,11 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => 'sıralama',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'kullanıcı modlama gönderileri',
             'modding-history-votesGiven' => 'kullanıcı verilen modlama oyları',
             'modding-history-votesReceived' => 'kullanıcı alınan modlama oyları',
+            'notifications-index' => '',
             'oauth_login' => 'oauth için giriş yapın',
             'oauth_request' => 'oauth doğrulaması',
             'settings' => 'Ayarlar',

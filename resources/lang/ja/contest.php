@@ -25,7 +25,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => '一覧',
     ],
 
     'voting' => [

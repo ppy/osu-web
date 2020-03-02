@@ -69,7 +69,7 @@ return [
         'prepare_shipping' => '',
         'processing' => '我們已收到您的付款，並正在處理您的訂單，您可以在這裡追蹤您的訂單進度:',
         'questions' => "",
-        'shipping' => '',
+        'shipping' => '配送',
         'subject' => '我們已收到您的 osu!商店 訂單！',
         'thank_you' => '感謝您在osu!store的購買',
         'total' => '合計',

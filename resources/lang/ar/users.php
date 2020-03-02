@@ -22,8 +22,8 @@ return [
     'deleted' => '[مستخدم محذوف]',
 
     'beatmapset_activities' => [
-        'title' => "تاريخ اقتراحات:user",
-        'title_compact' => 'الاِقتراح',
+        'title' => "سِجِل اِقتراحات:user",
+        'title_compact' => 'ألأِقتِراحات',
 
         'discussions' => [
             'title_recent' => 'مناقشة بدأت مؤخرا',

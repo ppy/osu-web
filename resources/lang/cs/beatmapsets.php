@@ -34,16 +34,10 @@ return [
         'discussion' => 'Diskuze',
 
         'details' => [
-            'approved' => 'schváleno:',
             'favourite' => 'Přidat do mých oblíbených',
             'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
-            'loved' => 'amorem zasažené:',
             'mapped_by' => 'beatmapu vytvořil :mapper',
-            'qualified' => 'kvalifikováno:',
-            'ranked' => 'hodnocené od:',
-            'submitted' => 'nahráno:',
             'unfavourite' => 'Odebrat z mých oblíbených',
-            'updated' => 'naposledy upraveno:',
             'updated_timeago' => 'naposledy aktualizováno :timeago',
 
             'download' => [
@@ -83,7 +77,7 @@ return [
 
             'report' => [
                 '_' => '',
-                'button' => '',
+                'button' => 'Nahlásit problém',
                 'button_title' => '',
                 'link' => 'zde',
             ],
@@ -153,13 +147,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Hodnocené',
+            'approved' => 'Schválené',
+            'loved' => 'Oblíbené',
+            'qualified' => 'Kvalifikované',
+            'wip' => 'Nedodělané',
+            'pending' => 'Nevyřízené',
+            'graveyard' => 'Hřbitov',
         ],
     ],
 ];

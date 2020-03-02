@@ -47,13 +47,14 @@ class BeatmapsetDiscussionReview
                 if (!isset($block['type'])) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
-                if (!isset($block['text'])) {
+
+                $message = get_string($block['text'] ?? null);
+                if ($message === null) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
                 }
 
                 switch ($block['type']) {
                     case 'embed':
-                        $message = $block['text'];
                         $beatmapId = $block['beatmap_id'] ?? null;
 
                         $discussion = new BeatmapDiscussion([
@@ -105,14 +106,17 @@ class BeatmapsetDiscussionReview
             foreach ($document as $block) {
                 switch ($block['type']) {
                     case 'paragraph':
-                        // escape embed injection attempts
-                        $text = preg_replace('/%\[\]\(#(\d+)\)/', '%\[\]\(#$1\)', $block['text']);
-                        $output[] = "{$text}\n";
+                        array_push($output, [
+                            'type' => 'paragraph',
+                            'text' => $block['text'],
+                        ]);
                         break;
 
                     case 'embed':
-                        $discussionId = array_shift($issues)['discussion'];
-                        $output[] = "%[](#{$discussionId})\n";
+                        array_push($output, [
+                            'type' => 'embed',
+                            'discussion_id' => array_shift($issues)['discussion'],
+                        ]);
                         break;
                 }
             }
@@ -127,7 +131,7 @@ class BeatmapsetDiscussionReview
             $review->saveOrExplode();
             $post = new BeatmapDiscussionPost([
                 'user_id' => $user->getKey(),
-                'message' => implode('', $output),
+                'message' => json_encode($output),
             ]);
             $post->beatmapDiscussion()->associate($review);
             $post->saveOrExplode();

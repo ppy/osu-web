@@ -17,6 +17,8 @@
  */
 
 .wiki-toc-list {
+  @_top: wiki-toc-list;
+
   padding: 0 0 0 10px;
   list-style: none;
   font-size: @font-size--title-small-2;
@@ -25,11 +27,16 @@
     padding-left: 0;
   }
 
+  &__item {
+    .@{_top}--top > & {
+      margin-bottom: 5px;
+    }
+  }
+
   &__link {
-    .link-gray-light();
     .link-plain();
     display: inline-block;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 
     &--small {
       font-size: @font-size--normal;

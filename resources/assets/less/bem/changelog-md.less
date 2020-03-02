@@ -16,24 +16,31 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.wiki-toc {
-  position: sticky;
-  top: @nav2-height--pinned;
+.changelog-md {
+  font-size: @font-size--normal;
+  color: @osu-colour-f1;
 
-  padding-top: 10px;
-  padding-right: 10px;
+  a {
+    .link-inverted();
+  }
 
-  // let toc scroll if it's too tall.
-  max-height: calc(100vh - @nav2-height--pinned);
-  overflow-y: auto;
+  img {
+    max-width: 100%;
+  }
 
-  &__title {
-    text-transform: uppercase;
-    margin: 0 0 5px;
-    padding: 0;
-    color: #fff;
-    font-size: @font-size--normal;
-    font-style: normal;
+  &__header {
+    font-size: @font-size--title-small;
     font-weight: bold;
+    font-style: normal;
+    color: inherit;
+    margin: 5px 0;
+
+    &--1 {
+      font-size: @font-size--title-small-3;
+    }
+  }
+
+  &__list {
+    padding-left: 20px;
   }
 }

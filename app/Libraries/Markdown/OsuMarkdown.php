@@ -55,9 +55,10 @@ class OsuMarkdown
             'block_name' => 'changelog-md',
             'html_input' => 'allow',
         ],
-        'default' => [
-            'block_name' => 'osu-md-default',
+        'comment' => [
+            'block_modifiers' => ['comment'],
         ],
+        'default' => [],
         'news' => [
             'block_modifiers' => ['news'],
             'generate_toc' => true,

@@ -38,7 +38,7 @@ return [
         'keep_free' => 'osu! 与其游戏社区能够在没有讨厌的广告与强制付款的环境中稳定运行，正是因为您这样的人的存在。感谢您的支持！',
         'keep_running' => '您的捐赠能够维持 osu! 持续运转 :minutes ！虽然这看起来不多，但是江海来源于小流，不是么？',
         'subject' => '非常感谢， osu! 爱你哦~',
-        'translation' => '',
+        'translation' => '以下是社区提供的翻译，仅供参考：',
 
         'benefit' => [
             'gift' => '您的受赠者将会享受到 osu!direct 等其他 osu! 支持者所享有的的特权。',

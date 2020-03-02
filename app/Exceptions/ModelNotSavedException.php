@@ -22,7 +22,11 @@ namespace App\Exceptions;
 
 use Exception;
 
+// This is used for model's saveOrExplode
 class ModelNotSavedException extends Exception
 {
-    // This is used for model's saveOrExplode
+    public function getStatusCode()
+    {
+        return 422;
+    }
 }

@@ -465,7 +465,7 @@ export class Nominations extends React.PureComponent
 
 
   userCanDisqualify: =>
-    @props.currentUser.is_admin || @props.currentUser.can_moderate || @props.currentUser.is_full_bn
+    @props.currentUser.is_admin || @props.currentUser.is_moderator || @props.currentUser.is_full_bn
 
 
   userIsOwner: =>

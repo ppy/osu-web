@@ -55,7 +55,7 @@ return [
         'community' => [
             '_' => '커뮤니티',
             'comments' => '댓글',
-            'contests' => '',
+            'contests' => '콘테스트',
             'forum' => '포럼',
             'livestream' => '라이브 스트림',
         ],
@@ -80,6 +80,11 @@ return [
 
         'notice' => [
             '_' => '알림',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => '유저 모딩 글',
             'modding-history-votesGiven' => '유저가 준 모딩 투표',
             'modding-history-votesReceived' => '유저가 받은 모딩 투표',
+            'notifications-index' => '',
             'oauth_login' => 'OAuth로 로그인',
             'oauth_request' => 'OAuth 인증',
             'settings' => '설정',
