@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-@extends('master')
+@extends('master', ['legacyFont' => false])
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
@@ -34,9 +34,13 @@
         @endslot
     @endcomponent
 
-    <div class="osu-page osu-page--wiki wiki-main-page">
+    <div class="osu-page osu-page--wiki osu-page--wiki-main">
         @include('wiki._notice')
+
         <div class="js-react--wiki-search"></div>
-        {!! $page->get()["output"] !!}
+
+        <div class="wiki-main-page">
+            {!! $page->get()["output"] !!}
+        </div>
     </div>
 @endsection

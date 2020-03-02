@@ -158,9 +158,10 @@ export default class HeaderV4 extends React.Component<Props> {
       return (
         <li key={`${link.url}-${link.title}`}>
           <a
-            className='header-nav-mobile__item'
+            className='header-nav-mobile__item js-click-menu--close'
             href={link.url}
             onClick={this.props.onLinkClick}
+            {...link.data}
           >
             {link.title}
           </a>
