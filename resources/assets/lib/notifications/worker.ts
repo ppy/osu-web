@@ -71,7 +71,7 @@ export default class Worker {
   userId: number | null = null;
   @observable private active: boolean = false;
   private endpoint?: string;
-  private startedAt = new Date();
+  private firstLoadedAt?: Date;
   private readonly store = core.dataStore.notificationStore.unreadStacks;
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
@@ -161,8 +161,9 @@ export default class Worker {
     } else if (isNotificationEventNewJson(eventData)) {
       dispatch(new NotificationEventNew(eventData.data));
     } else if (isNotificationEventReadJson(eventData)) {
+      // ignore read events that occured before the bundle is loaded
       const timestamp = new Date(eventData.data.timestamp);
-      if (timestamp > this.startedAt) {
+      if (this.firstLoadedAt != null && timestamp > this.firstLoadedAt) {
         dispatch(NotificationEventRead.fromJson(eventData));
       }
     } else if (isNotificationEventVerifiedJson(eventData)) {
@@ -180,6 +181,9 @@ export default class Worker {
   @action loadBundle = (data: NotificationBootJson) => {
     dispatch(new NotificationEventMoreLoaded(data, { isWidget: true }));
     this.hasData = true;
+    if (this.firstLoadedAt == null) {
+      this.firstLoadedAt = new Date(data.timestamp);
+    }
   }
 
   @action loadMore = () => {
