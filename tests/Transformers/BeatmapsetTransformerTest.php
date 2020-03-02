@@ -21,7 +21,6 @@
 namespace Tests\Transformers;
 
 use App\Models\Beatmapset;
-use App\Models\User;
 use Tests\TestCase;
 
 class BeatmapsetTransformerTest extends TestCase

@@ -21,7 +21,6 @@
 namespace Tests\Transformers;
 
 use App\Models\Comment;
-use App\Models\User;
 use Tests\TestCase;
 
 class CommentTransformerTest extends TestCase
