@@ -571,7 +571,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             $this
                 ->postDiscussionWithoutResolveFlag($user)
                 ->assertStatus(200);
-            
+
             // No resolve change, therefore no system posts
             $this->assertSame($lastDiscussionPosts + 1, BeatmapDiscussionPost::count());
             // Should stay unresolved.
@@ -581,14 +581,14 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this
             ->postResolveDiscussion(true, $this->user)
             ->assertStatus(200);
-        
+
         foreach ([$this->user, $otherUser] as $user) {
             $lastDiscussionPosts = BeatmapDiscussionPost::count();
 
             $this
                 ->postDiscussionWithoutResolveFlag($user)
                 ->assertStatus(200);
-            
+
             $this->assertSame($lastDiscussionPosts + 1, BeatmapDiscussionPost::count());
             // Should stay resolved now.
             $this->assertSame(true, $this->beatmapDiscussion->fresh()->resolved);

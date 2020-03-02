@@ -15,7 +15,7 @@ class AdditionalDuskServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::get('/_dusk/verify', function() {
+        Route::get('/_dusk/verify', function () {
             return UserVerification::fromCurrentRequest()->markVerifiedAndRespond();
         });
     }

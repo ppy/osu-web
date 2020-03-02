@@ -2,33 +2,32 @@
 
 namespace Tests\Browser;
 
-use App\Models\User;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
-
+use App\Models\User;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class BeatmapDiscussionPostsTest extends DuskTestCase
 {
-    private $new_reply_widget_selector = ".beatmap-discussion__full .beatmap-discussion-post--new-reply";
+    private $new_reply_widget_selector = '.beatmap-discussion__full .beatmap-discussion-post--new-reply';
 
     public function testConcurrentPostAfterResolve()
     {
         $this->browse(function (Browser $first, Browser $second) {
-            # Setup both browsers.
+            // Setup both browsers.
             $this->visitDiscussionPageAsUser($first, $this->mapper);
             $this->visitDiscussionPageAsUser($second, $this->user);
 
-            # Write a reply...
-            $this->writeReply($first, "Fixed");
-            $this->writeReply($second, "Hey!");
+            // Write a reply...
+            $this->writeReply($first, 'Fixed');
+            $this->writeReply($second, 'Hey!');
 
-            # And send the replies.
-            $this->postReply($first, "resolve");
-            $this->postReply($second, "reply");
+            // And send the replies.
+            $this->postReply($first, 'resolve');
+            $this->postReply($second, 'reply');
 
             $first->pause(2000);
             $second->pause(2000);
@@ -37,11 +36,12 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
         });
     }
 
-    protected function writeReply(Browser $browser, $reply) {
-        $browser->with($this->new_reply_widget_selector, function($new_reply) use ($reply) {
-            $new_reply->press("Respond")
-                ->waitFor("textarea")
-                ->type("textarea", $reply);
+    protected function writeReply(Browser $browser, $reply)
+    {
+        $browser->with($this->new_reply_widget_selector, function ($new_reply) use ($reply) {
+            $new_reply->press('Respond')
+                ->waitFor('textarea')
+                ->type('textarea', $reply);
         });
     }
 
@@ -50,7 +50,7 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
         $browser->with($this->new_reply_widget_selector, function ($new_reply) use ($action) {
             switch ($action) {
                 case 'resolve':
-                    $new_reply->press("Reply and Resolve");
+                    $new_reply->press('Reply and Resolve');
                     break;
                 default:
                     $new_reply->keys('textarea', '{enter}');
@@ -65,7 +65,7 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
             ->visit('/_dusk/verify')
             ->visitRoute('beatmap-discussions.show', [
                 'beatmapset' => $this->beatmapset->getKey(),
-                'beatmap_discussion' => $this->beatmapDiscussion->getKey()
+                'beatmap_discussion' => $this->beatmapDiscussion->getKey(),
             ]);
     }
 
