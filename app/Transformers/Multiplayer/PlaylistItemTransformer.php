@@ -21,9 +21,9 @@ namespace App\Transformers\Multiplayer;
 
 use App\Models\Multiplayer\PlaylistItem;
 use App\Transformers\BeatmapCompactTransformer;
-use League\Fractal;
+use App\Transformers\TransformerAbstract;
 
-class PlaylistItemTransformer extends Fractal\TransformerAbstract
+class PlaylistItemTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap',

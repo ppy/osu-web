@@ -35,12 +35,17 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Multiplayer\Match;
+use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;
 use Carbon\Carbon;
 
 class OsuAuthorize
 {
+    const ALWAYS_CHECK = [
+        'IsOwnClient',
+    ];
+
     /** @var AuthorizationResult[] */
     private $cache = [];
 
@@ -64,7 +69,7 @@ class OsuAuthorize
         ]);
 
         if (!isset($this->cache[$cacheKey])) {
-            if ($user !== null && $user->isAdmin()) {
+            if ($user !== null && $user->isAdmin() && !in_array($ability, static::ALWAYS_CHECK, true)) {
                 $message = 'ok';
             } else {
                 $function = "check{$ability}";
@@ -1439,6 +1444,15 @@ class OsuAuthorize
             if ($topic->poll()->votedBy($user)) {
                 return $prefix.'voted';
             }
+        }
+
+        return 'ok';
+    }
+
+    public function checkIsOwnClient(?User $user, Client $client): string
+    {
+        if ($user === null || $user->getKey() !== $client->user_id) {
+            return 'unauthorized';
         }
 
         return 'ok';

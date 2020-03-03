@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\Language;
-use League\Fractal;
 
-class LanguageTransformer extends Fractal\TransformerAbstract
+class LanguageTransformer extends TransformerAbstract
 {
     public function transform(Language $language)
     {

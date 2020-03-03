@@ -50,6 +50,29 @@ class ClientTransformerTest extends TestCase
         $this->assertArrayNotHasKey('secret', $json);
     }
 
+    /**
+     * @dataProvider groupsDataProvider
+     */
+    public function testRedirectAndSecretNotVisibleToGroup($groupIdentifier)
+    {
+        $user = factory(User::class)->states($groupIdentifier)->create();
+        auth()->setUser($user);
+        $json = json_item($this->client, 'OAuth\Client', ['redirect', 'secret']);
+
+        $this->assertArrayNotHasKey('redirect', $json);
+        $this->assertArrayNotHasKey('secret', $json);
+    }
+
+    public function groupsDataProvider()
+    {
+        return [
+            ['admin'],
+            ['bng'],
+            ['gmt'],
+            ['nat'],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

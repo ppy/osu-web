@@ -22,9 +22,8 @@ namespace App\Transformers;
 
 use App\Models\ChangelogEntry;
 use App\Models\GithubUser;
-use League\Fractal;
 
-class ChangelogEntryTransformer extends Fractal\TransformerAbstract
+class ChangelogEntryTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'github_user',
