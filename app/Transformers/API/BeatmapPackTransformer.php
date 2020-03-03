@@ -21,9 +21,9 @@
 namespace App\Transformers\API;
 
 use App\Models\BeatmapPack;
-use League\Fractal;
+use App\Transformers\TransformerAbstract;
 
-class BeatmapPackTransformer extends Fractal\TransformerAbstract
+class BeatmapPackTransformer extends TransformerAbstract
 {
     public function transform(BeatmapPack $pack)
     {

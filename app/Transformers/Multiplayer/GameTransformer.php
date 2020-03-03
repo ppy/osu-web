@@ -23,9 +23,9 @@ namespace App\Transformers\Multiplayer;
 use App\Models\Multiplayer\Game;
 use App\Transformers\BeatmapCompactTransformer;
 use App\Transformers\ScoreTransformer;
-use League\Fractal;
+use App\Transformers\TransformerAbstract;
 
-class GameTransformer extends Fractal\TransformerAbstract
+class GameTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap',

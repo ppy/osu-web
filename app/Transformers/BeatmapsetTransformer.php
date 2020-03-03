@@ -30,7 +30,7 @@ use App\Models\User;
 use Auth;
 use League\Fractal;
 
-class BeatmapsetTransformer extends Fractal\TransformerAbstract
+class BeatmapsetTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmaps',
@@ -48,16 +48,10 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'user',
     ];
 
-    public function transform(Beatmapset $beatmapset = null)
+    protected $requiredPermission = 'BeatmapsetShow';
+
+    public function transform(Beatmapset $beatmapset)
     {
-        if ($beatmapset === null) {
-            return [];
-        }
-
-        if (!priv_check('BeatmapsetShow', $beatmapset)->can()) {
-            return [];
-        }
-
         return [
             'id' => $beatmapset->beatmapset_id,
             'title' => $beatmapset->title,
@@ -178,15 +172,9 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeDescription(Beatmapset $beatmapset, Fractal\ParamBag $params)
+    public function includeDescription(Beatmapset $beatmapset)
     {
-        $editable = $params->get('editable');
-
-        return $this->item($beatmapset, function ($beatmapset) use ($editable) {
-            return $editable
-                ? ['description' => $beatmapset->description(), 'bbcode' => $beatmapset->editableDescription()]
-                : ['description' => $beatmapset->description()];
-        });
+        return $this->item($beatmapset, new BeatmapsetDescriptionTransformer);
     }
 
     public function includeDiscussions(Beatmapset $beatmapset)

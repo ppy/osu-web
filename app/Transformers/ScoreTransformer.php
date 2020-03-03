@@ -23,9 +23,8 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
-use League\Fractal;
 
-class ScoreTransformer extends Fractal\TransformerAbstract
+class ScoreTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap',
@@ -84,7 +83,9 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmap($score)
     {
-        return $this->item($score->beatmap, new BeatmapTransformer);
+        return $score->beatmap === null
+            ? $this->primitive(null)
+            : $this->item($score->beatmap, new BeatmapTransformer);
     }
 
     public function includeBeatmapset($score)
