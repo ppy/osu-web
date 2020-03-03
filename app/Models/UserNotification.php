@@ -59,6 +59,12 @@ class UserNotification extends Model
 
     public static function markAsReadByNotificationIdentifier(User $user, array $params)
     {
+        $params = get_params($params, null, [
+            'category:string',
+            'object_id:int',
+            'object_type:string',
+        ]);
+
         $category = presence($params['category'] ?? null);
         $objectId = $params['object_id'] ?? null;
         $objectType = presence($params['object_type'] ?? null);
