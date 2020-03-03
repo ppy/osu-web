@@ -112,7 +112,7 @@
                             ])
                         !!}</div>
                     @else
-                        @if(true || $tournament->isValidRank(Auth::user()))
+                        @if($tournament->isValidRank(Auth::user()))
                             @if($tournament->isSignedUp(Auth::user()))
                                 <div>{!!trans('tournament.show.entered')!!}</div>
                             @else
