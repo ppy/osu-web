@@ -1299,7 +1299,7 @@ function get_param_value($input, $type)
             return get_arr($input, 'get_int');
             break;
         default:
-            return presence((string) $input);
+            return presence(get_string($input));
     }
 }
 
