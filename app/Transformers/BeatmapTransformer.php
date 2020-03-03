@@ -70,7 +70,8 @@ class BeatmapTransformer extends TransformerAbstract
     {
         $scores = $beatmap
             ->scoresBest()
-            ->defaultListing()
+            ->default()
+            ->visibleUsers()
             ->limit(config('osu.beatmaps.max-scores'))
             ->get();
 
