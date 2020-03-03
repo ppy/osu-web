@@ -38,6 +38,7 @@ describe('Notification Widget', () => {
   const bundle: NotificationBundleJson = {
     notifications: [identities[0]].map(toJson).map(makeNotificationJson),
     stacks: [makeStackJson(identities[0], 5, 'beatmapset_discussion_post_new', identities[0].id )],
+    timestamp: new Date().toJSON(),
     types: [
       { cursor: { id: identities[0].id }, name: null,  total: 20 },
       { cursor: { id: identities[0].id }, name: 'beatmapset', total: 5 },
@@ -70,6 +71,7 @@ describe('Notification Widget', () => {
       const loadMoreBundle: NotificationBundleJson = {
         notifications: [identities[1]].map(toJson).map(makeNotificationJson),
         stacks: [makeStackJson(identities[1], 5, 'beatmapset_discussion_post_new', identities[1].id )],
+        timestamp: new Date().toJSON(),
         types: [
           { cursor: { id: identities[1].id }, name: null,  total: 20 },
           { cursor: { id: identities[1].id }, name: 'beatmapset', total: 5 },
