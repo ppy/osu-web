@@ -22,9 +22,8 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapFailtimes;
-use League\Fractal;
 
-class BeatmapTransformer extends Fractal\TransformerAbstract
+class BeatmapTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'scoresBest',
@@ -33,16 +32,10 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
         'max_combo',
     ];
 
-    public function transform(Beatmap $beatmap = null)
+    protected $requiredPermission = 'BeatmapShow';
+
+    public function transform(Beatmap $beatmap)
     {
-        if ($beatmap === null) {
-            return [];
-        }
-
-        if (!priv_check('BeatmapShow', $beatmap)->can()) {
-            return [];
-        }
-
         return [
             'id' => $beatmap->beatmap_id,
             'beatmapset_id' => $beatmap->beatmapset_id,
@@ -111,7 +104,11 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmapset(Beatmap $beatmap)
     {
-        return $this->item($beatmap->beatmapset, new BeatmapsetTransformer);
+        $beatmapset = $beatmap->beatmapset;
+
+        return $beatmapset === null
+            ? $this->primitive(null)
+            : $this->primitive($beatmap->beatmapset, new BeatmapsetTransformer);
     }
 
     public function includeMaxCombo(Beatmap $beatmap)

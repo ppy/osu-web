@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\NewsPost;
-use League\Fractal;
 
-class NewsPostTransformer extends Fractal\TransformerAbstract
+class NewsPostTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'content',
