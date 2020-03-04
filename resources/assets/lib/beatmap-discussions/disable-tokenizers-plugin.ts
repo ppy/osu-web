@@ -16,33 +16,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.tournament-list {
-  .default-gutter-v2();
-  background-color: @osu-colour-b5;
-  font-weight: 300;
-  padding-top: 20px;
-  padding-bottom: 20px;
+export function disableTokenizersPlugin({allowedBlocks = [] as string[], allowedInlines = [] as string[]} = {}) {
+  // Ensure core required tokenizers are always allowed (otherwise infinite loops and other bad things happen...)
+  allowedBlocks.push('root', 'newline');
+  allowedInlines.push('text');
 
-  @media @desktop {
-    margin-bottom: 10px;
-  }
+  this.Parser.prototype.blockMethods
+    .filter((key: string) => !allowedBlocks.includes(key))
+    .forEach((key: string) => {
+      this.Parser.prototype.blockTokenizers[key] = () => true;
+    });
 
-  &__heading {
-    color: white;
-  }
-
-  &__group {
-    display: grid;
-    grid-gap: 10px;
-    margin-bottom: 10px;
-
-    &--old {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  &__none-running {
-    color: @osu-colour-l1;
-    margin-left: 10px;
-  }
+  this.Parser.prototype.inlineMethods
+    .filter((key: string) => !allowedInlines.includes(key))
+    .forEach((key: string) => {
+      this.Parser.prototype.inlineTokenizers[key] = () => true;
+      this.Parser.prototype.inlineTokenizers[key].locator = () => -1;
+    });
 }
