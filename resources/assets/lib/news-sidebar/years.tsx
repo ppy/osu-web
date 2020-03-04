@@ -16,16 +16,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.news-index {
-  display: grid;
-  grid-gap: 10px;
+import { route } from 'laroute';
+import * as React from 'react';
 
-  &__item {
-    &--more {
-      height: auto;
-      display: flex;
-      justify-content: center;
-      padding-top: 15px;
-    }
-  }
+interface Props {
+  currentYear: number;
+  years: number[];
+}
+
+export default function Years(props: Props) {
+  return (
+    <div className='news-sidebar-years'>
+      {props.years.map((year) => (
+        <a
+          href={route('news.index', { year })}
+          key={year}
+          className={`news-sidebar-years__item ${year === props.currentYear ? 'news-sidebar-years__item--active' : ''}`}
+        >
+          {year}
+        </a>
+      ))}
+    </div>
+  );
 }

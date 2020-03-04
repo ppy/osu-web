@@ -106,6 +106,11 @@
       }
     }
 
+    &--active {
+      .link-white();
+      .link-plain();
+    }
+
     .@{_top}--list & {
       .link-plain();
 
@@ -114,12 +119,7 @@
       }
 
       &--active {
-        color: @osu-colour-c1;
         font-weight: bold;
-
-        .link-hover({
-          color: @osu-colour-c1;
-        });
 
         &::before {
           transform: scaleY(1);

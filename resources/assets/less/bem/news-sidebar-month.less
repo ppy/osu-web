@@ -16,16 +16,33 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.news-index {
-  display: grid;
-  grid-gap: 10px;
+.news-sidebar-month {
+  margin-bottom: 10px;
+  font-size: @font-size--normal;
 
   &__item {
-    &--more {
-      height: auto;
-      display: flex;
-      justify-content: center;
-      padding-top: 15px;
+    &--active {
+      .link-white();
+      .link-plain();
     }
+  }
+
+  &__items {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0;
+    display: grid;
+    grid-gap: 5px;
+  }
+
+  &__toggle {
+    .reset-input();
+    font-weight: bold;
+    display: flex;
+    width: 100%;
+  }
+
+  &__toggle-icon {
+    margin-left: auto;
   }
 }

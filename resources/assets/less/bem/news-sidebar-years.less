@@ -16,16 +16,30 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.news-index {
+.news-sidebar-years {
+  margin-bottom: 20px;
+
   display: grid;
-  grid-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+
+  padding: 5px;
+
+  background-color: @osu-colour-b3;
+  border-radius: @border-radius-large;
+
+  font-size: @font-size--normal;
+  text-align: center;
 
   &__item {
-    &--more {
-      height: auto;
-      display: flex;
-      justify-content: center;
-      padding-top: 15px;
+    &--active {
+      .link-plain();
+      color: @osu-colour-c1;
+      font-weight: 600;
+
+      .link-hover({
+        color: @osu-colour-c1;
+      });
     }
   }
 }

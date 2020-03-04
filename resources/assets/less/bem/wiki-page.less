@@ -18,6 +18,7 @@
 
 .wiki-page {
   display: grid;
+  .fancy-scrollbar(); // for sidebar/table of contents. Placed here so it works in chromium
 
   @media @desktop {
     grid-template-columns: 250px 1fr;
@@ -28,21 +29,23 @@
     padding: 20px @gutter-v2;
 
     @media @desktop {
-      padding-left: 30px;
+      padding-left: @gutter-sidebar-desktop;
       padding-right: @gutter-v2-desktop;
     }
   }
 
   &__toc {
+    display: none;
     background-color: @osu-colour-b4;
     padding: 20px @gutter-v2;
     position: sticky;
     top: @nav2-height--pinned;
     max-height: calc(100vh - @nav2-height--pinned);
-    overflow-y: auto;
+    overflow-y: scroll;
 
     @media @desktop {
-      padding-right: 30px;
+      display: block;
+      padding-right: @gutter-sidebar-desktop;
       padding-left: @gutter-v2-desktop;
     }
   }

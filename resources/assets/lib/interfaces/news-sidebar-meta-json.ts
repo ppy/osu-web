@@ -16,16 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.news-index {
-  display: grid;
-  grid-gap: 10px;
+import NewsPostJson from './news-post-json';
 
-  &__item {
-    &--more {
-      height: auto;
-      display: flex;
-      justify-content: center;
-      padding-top: 15px;
-    }
-  }
+export default interface NewsSidebarMetaJson {
+  current_year: number;
+  news_posts: NewsPostJson[];
+  years: number[];
 }

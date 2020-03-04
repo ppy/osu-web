@@ -16,16 +16,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.news-index {
-  display: grid;
-  grid-gap: 10px;
+.news-show {
+  &__info {
+    margin: 20px 0;
+  }
 
-  &__item {
-    &--more {
-      height: auto;
-      display: flex;
-      justify-content: center;
-      padding-top: 15px;
-    }
+  &__nav {
+    margin-top: 40px;
+    margin-bottom: -20px;
+  }
+
+  &__title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: @font-size--large-2;
+    color: inherit;
+    padding: 0;
+    margin: 0;
   }
 }

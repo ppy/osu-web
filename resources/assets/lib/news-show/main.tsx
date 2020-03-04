@@ -20,16 +20,45 @@ import AdminMenu from 'admin-menu';
 import { Comments } from 'comments';
 import { CommentsManager } from 'comments-manager';
 import NewsPostJson from 'interfaces/news-post-json';
+import NewsSidebarMetaJson from 'interfaces/news-sidebar-meta-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
-import * as moment from 'moment';
 import NewsHeader from 'news-header';
+import PostItem from 'news-index/post-item';
+import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
+import { StringWithComponent } from 'string-with-component';
 
 interface Props {
-  commentBundle: any;
   container: HTMLElement;
   post: NewsPostJson;
+  sidebarMeta: NewsSidebarMetaJson;
+}
+
+function NavPost({ post, subtitle, modifiers }: { modifiers: string[] post?: NewsPostJson; subtitle: string; }) {
+  if (post == null) {
+    return null;
+  }
+
+  return (
+    <a
+      className={osu.classWithModifiers('page-nav-fancy', modifiers)}
+      href={route('news.show', { news: post.slug })}
+      style={{ backgroundImage: osu.urlPresence(post.first_image) }}
+    >
+      <div className='page-nav-fancy__label'>
+        <div className='page-nav-fancy__subtitle'>
+          {subtitle}
+        </div>
+        <div className='page-nav-fancy__title'>
+          {post.title}
+        </div>
+      </div>
+      <div className='page-nav-fancy__icon'>
+        <i className='fas fa-chevron-right' />
+      </div>
+    </a>
+  );
 }
 
 export default class Main extends React.Component<Props> {
@@ -50,7 +79,7 @@ export default class Main extends React.Component<Props> {
   }
 
   render() {
-    const {content, author} = this.processContent();
+    const { content } = this.processContent();
 
     return (
       <>
@@ -59,23 +88,41 @@ export default class Main extends React.Component<Props> {
           post={this.props.post}
           title={osu.trans('news.show.title.info')}
         />
-        <div className='osu-page osu-page--news'>
-          <div className='news-show'>
-            {this.renderHeader({author})}
 
-            <div
-              ref={this.contentContainer}
-              dangerouslySetInnerHTML={{
-                __html: content,
-              }}
-            />
+        <div className='osu-page osu-page--wiki'>
+          <div className='wiki-page'>
+            <div className='wiki-page__toc'>
+              <NewsSidebar data={this.props.sidebarMeta} currentPost={this.props.post} />
+            </div>
 
-            <div className='news-show__nav'>
-              {this.renderNav()}
+            <div className='wiki-page__content'>
+              <div className='news-show'>
+                <PostItem post={this.props.post} modifiers={['show']} />
+
+                <div className='news-show__info'>
+                    <h1 className='news-show__title'>{this.props.post.title}</h1>
+                    <p className='news-show__author'>
+                      <StringWithComponent
+                        pattern={osu.trans('news.show.by')}
+                        mappings={{ ':user': <strong key='author'>{this.props.post.author}</strong> }}
+                      />
+                    </p>
+                </div>
+
+                <div
+                  ref={this.contentContainer}
+                  dangerouslySetInnerHTML={{
+                    __html: content,
+                  }}
+                />
+
+                <div className='news-show__nav'>
+                  {this.renderNav()}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className='osu-page osu-page---compact'>
+
           <CommentsManager
             commentableType='news_post'
             commentableId={this.props.post.id}
@@ -129,50 +176,9 @@ export default class Main extends React.Component<Props> {
       firstImage.parentElement.remove();
     }
 
-    let author;
-    const authorEl = _.last(contentHTML.querySelectorAll('p'));
-    if (authorEl != null && authorEl.textContent != null && authorEl.textContent.match(/^[—–][^—–]/) != null) {
-      author = authorEl.textContent.slice(1);
-    }
-
     content = contentHTML.innerHTML;
 
-    return {content, author};
-  }
-
-  private renderHeader = ({author}: {author?: string}) => {
-    let authorDiv;
-
-    if (author != null) {
-      authorDiv = <div className='news-card__author'>{osu.trans('news.show.by', {user: author})}</div>;
-    }
-
-    let cover;
-
-    if (this.props.post.first_image != null) {
-      cover = <img className='news-card__cover' src={this.props.post.first_image} />;
-    }
-
-    return (
-      <div className='news-card news-card--show'>
-        {cover}
-        <div className='news-card__overlay' />
-
-        <div className='news-card__content'>
-          <div
-            className='news-card__time js-tooltip-time'
-            title={this.props.post.published_at}
-          >
-            {moment(this.props.post.published_at).format('ll')}
-          </div>
-
-          <div className='news-card__main'>
-            <div className='news-card__title'>{this.props.post.title}</div>
-            {authorDiv}
-          </div>
-        </div>
-      </div>
-    );
+    return { content };
   }
 
   private renderNav = () => {
@@ -180,51 +186,14 @@ export default class Main extends React.Component<Props> {
       return;
     }
 
-    let newerLink;
-    let olderLink;
-
     const newerPost = this.props.post.navigation.newer;
     const olderPost = this.props.post.navigation.older;
 
-    if (newerPost != null) {
-      newerLink = (
-        <a
-          className='page-nav__link'
-          href={route('news.show', {news: newerPost.slug})}
-          title={newerPost.title}
-        >
-          <span className='page-nav__label'>
-            {osu.trans('news.show.nav.newer')}
-          </span>
-          <span className='fas fa-chevron-right' />
-        </a>
-      );
-    }
-
-    if (olderPost != null) {
-      olderLink = (
-        <a
-          className='page-nav__link'
-          href={route('news.show', {news: olderPost.slug})}
-          title={olderPost.title}
-        >
-          <span className='fas fa-chevron-left' />
-          <span className='page-nav__label'>
-            {osu.trans('news.show.nav.older')}
-          </span>
-        </a>
-      );
-    }
-
     return (
-      <div className='page-nav'>
-        <div className='page-nav__item page-nav__item--left'>
-          {olderLink}
-        </div>
-        <div className='page-nav__item page-nav__item--right'>
-          {newerLink}
-        </div>
-      </div>
+      <>
+        <NavPost post={newerPost} modifiers={['next']} subtitle={osu.trans('news.show.nav.newer')} />
+        <NavPost post={olderPost} modifiers={['prev']} subtitle={osu.trans('news.show.nav.older')} />
+      </>
     );
   }
 }

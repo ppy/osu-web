@@ -22,9 +22,15 @@
 @section('content')
     <div class="js-react--news-index osu-layout osu-layout--full"></div>
 
+    <script id="json-sidebar" type="application/json">
+        {!! json_encode($sidebarMeta) !!}
+    </script>
+
     <script id="json-index" type="application/json">
         {!! json_encode($postsJson) !!}
     </script>
+
+    <div class="js-news-sidebar-record"></div>
 
     @include('layout._extra_js', ['src' => 'js/react/news-index.js'])
 @endsection

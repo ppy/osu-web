@@ -23,116 +23,85 @@
   .link-white();
   .default-border-radius();
   display: block;
-  overflow: hidden;
-  .at2x-simple('/images/headers/news-show-default.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+  border-radius: @border-radius-large;
+  background-color: @osu-colour-b4;
+  min-width: 0;
 
-  &--index {
-    height: 100%;
-  }
-
-  &--show {
-    min-height: 150px;
+  &:hover {
+    background-color: @osu-colour-b3;
   }
 
   &--landing {
     margin: 10px;
-    height: 150px;
     flex: 1;
-  }
-
-  &__author {
-    font-size: @font-size--title-small;
-    font-weight: 600;
   }
 
   &__cover {
     width: 100%;
-    min-height: 150px;
+    height: 100%;
     object-fit: cover;
-
-    .@{_top}--index & {
-      height: 100%;
-    }
-
-    .@{_top}--landing & {
-      height: 100%;
-    }
   }
 
-  &__content {
-    .full-size();
-    padding: 20px 25px;
-    display: flex;
-    flex-direction: column;
+  &__cover-container {
+    .at2x-simple('/images/headers/news-show-default.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: @border-radius-large;
+    overflow: hidden;
+    height: 160px;
 
-    .@{_top}--landing & {
-      padding: 10px 15px;
+    .@{_top}--show & {
+      height: 200px;
     }
   }
 
   &__main {
-    .default-text-shadow();
-    margin-top: auto;
-  }
+    padding: 10px 15px;
 
-  &__overlay {
-    .full-size-overflow();
-    background-image: linear-gradient(to bottom, transparent, osu-hsla(@osu-colour-b6, 0.5));
-
-    .@{_top}--hover & {
-      &::after {
-        .full-size-overflow();
-        content: '';
-        opacity: 0;
-        background-image: linear-gradient(to bottom, transparent, @osu-colour-b6);
-        transition: all 200ms;
-
-        .@{_top}:hover& {
-          opacity: 1;
-        }
-      }
-    }
-  }
-
-  &__time {
-    .default-border-radius();
-    font-size: @font-size--small;
-    padding: 5px 10px;
-    background-color: osu-hsla(@osu-colour-b6, 0.5);
-    align-self: flex-end;
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-
-  &__preview {
-    display: block;
-    .webkit-line-clamp(3);
-    font-size: @font-size--normal;
-    line-height: 1.2em;
-    height: 3.6em;
-    overflow: hidden;
-
-    .@{_top}--landing & {
+    .@{_top}--show & {
       display: none;
     }
   }
 
-  &__title {
-    font-size: @font-size--title-small-3;
-    font-weight: bold;
+  &__time {
+    border-radius: 10000px;
+    font-size: @font-size--small;
+    padding: 5px 20px;
+    background-color: osu-hsla(@osu-colour-b6, 0.5);
+    align-self: flex-end;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+  }
 
-    .@{_top}--index & {
-      margin-bottom: 10px;
+  &__row {
+    font-size: @font-size--normal;
+
+    &--author {
+      strong { font-weight: 600; }
     }
 
-    .@{_top}--show & {
-      font-size: @font-size--title;
+    &--preview {
+      .content-font();
+      color: inherit;
+
+      .@{_top}--landing & {
+        display: none;
+      }
     }
 
-    .@{_top}--landing & {
-      font-size: @font-size--title-small;
+    &--title {
+      font-weight: 600;
+
+      .@{_top}--index & {
+        font-size: @font-size--large;
+      }
+
+      .@{_top}--landing & {
+        font-size: @font-size--title-small;
+      }
     }
   }
 }

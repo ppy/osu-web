@@ -89,6 +89,8 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
             $query->orderBy('published_at', 'DESC')->orderBy('id', 'DESC');
         }
 
+        $query->year(get_int($params['year'] ?? null));
+
         $query->limit($limit);
 
         return [
@@ -153,6 +155,32 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     {
         return $query->whereNotNull('published_at')
             ->where('published_at', '<=', Carbon::now());
+    }
+
+    public function scopeYear($query, $year)
+    {
+        if ($year !== null) {
+            return $query
+                ->where('published_at', '>=', Carbon::create($year))
+                ->where('published_at', '<', Carbon::create($year + 1));
+        }
+    }
+
+    public function author()
+    {
+        if (!isset($this->page['header']['author']) && !isset($this->page['author'])) {
+            $authorLine = array_last(explode("\n", trim(strip_tags($this->bodyHtml()))));
+
+            if (preg_match('/^[—–][^—–]/', $authorLine) === false) {
+                $author = 'osu!news Team';
+            } else {
+                $author = mb_substr($authorLine, 1);
+            }
+
+            $this->update(['page' => array_merge($this->page, compact('author'))]);
+        }
+
+        return $this->page['author'];
     }
 
     public function commentableTitle()

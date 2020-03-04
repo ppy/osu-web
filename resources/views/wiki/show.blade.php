@@ -61,7 +61,7 @@
 
     <div class="osu-page osu-page--wiki">
         <div class="wiki-page">
-            <div class="hidden-xs wiki-page__toc u-fancy-scrollbar">
+            <div class="wiki-page__toc">
                 <h2 class="wiki-page__toc-title">
                     {{ trans('wiki.show.toc') }}
                 </h2>

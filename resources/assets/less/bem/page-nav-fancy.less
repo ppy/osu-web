@@ -1,0 +1,71 @@
+/**
+ *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.page-nav-fancy {
+  @_top: page-nav-fancy;
+
+  .at2x-simple('/images/headers/news-show-default.jpg');
+  .link-plain();
+  .link-white();
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px @gutter-v2;
+  margin: 0 -@gutter-v2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media @desktop {
+    margin-left: -@gutter-sidebar-desktop;
+    margin-right: -@gutter-v2-desktop;
+    padding-left: -$margin-left;
+    padding-right: -$margin-right;
+  }
+
+  &::before {
+    .full-size();
+    .fade-element(120ms);
+    will-change: opacity;
+    content: '';
+    background-color: @osu-colour-b6;
+    opacity: 0.75;
+  }
+
+  &:hover::before {
+    opacity: 0.6;
+  }
+
+  &__label {
+    order: 1;
+  }
+
+  &__subtitle {
+    font-weight: 600;
+    font-size: @font-size--normal;
+  }
+
+  &__icon {
+    order: 1;
+
+    .@{_top}--prev & {
+      transform: rotate(0.5turn);
+      order: 0;
+    }
+  }
+}
