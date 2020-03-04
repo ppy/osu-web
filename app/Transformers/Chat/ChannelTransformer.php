@@ -21,10 +21,10 @@
 namespace App\Transformers\Chat;
 
 use App\Models\Chat\Channel;
+use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
-use League\Fractal;
 
-class ChannelTransformer extends Fractal\TransformerAbstract
+class ChannelTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'users',

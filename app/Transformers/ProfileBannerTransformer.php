@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\ProfileBanner;
-use League\Fractal;
 
-class ProfileBannerTransformer extends Fractal\TransformerAbstract
+class ProfileBannerTransformer extends TransformerAbstract
 {
     public function transform(?ProfileBanner $banner)
     {

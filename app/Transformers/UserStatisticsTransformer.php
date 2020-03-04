@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\UserStatistics;
-use League\Fractal;
 
-class UserStatisticsTransformer extends Fractal\TransformerAbstract
+class UserStatisticsTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'rank',

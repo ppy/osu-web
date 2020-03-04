@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\GithubUser;
-use League\Fractal;
 
-class GithubUserTransformer extends Fractal\TransformerAbstract
+class GithubUserTransformer extends TransformerAbstract
 {
     public function transform(GithubUser $githubUser)
     {

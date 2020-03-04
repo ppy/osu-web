@@ -153,6 +153,31 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
 
+    public static function popular()
+    {
+        $ids = cache_remember_mutexed('popularBeatmapsetIds', 300, [], function () {
+            return static::popularIds();
+        });
+
+        return static::whereIn('beatmapset_id', $ids)->orderByField('beatmapset_id', $ids);
+    }
+
+    public static function popularIds()
+    {
+        $recentIds = static::ranked()
+            ->where('approved_date', '>', now()->subDays(30))
+            ->select('beatmapset_id');
+
+        return FavouriteBeatmapset::select('beatmapset_id')
+            ->selectRaw('COUNT(*) as cnt')
+            ->whereIn('beatmapset_id', $recentIds)
+            ->where('dateadded', '>', now()->subDays(7))->groupBy('beatmapset_id')
+            ->orderBy('cnt', 'DESC')
+            ->limit(5)
+            ->pluck('beatmapset_id')
+            ->toArray();
+    }
+
     public function beatmapDiscussions()
     {
         return $this
