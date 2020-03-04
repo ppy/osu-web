@@ -36,8 +36,14 @@ interface TimestampRange extends Range {
 }
 
 interface Props {
+  beatmaps: Beatmap[];
+  beatmapset: Beatmapset;
+  currentBeatmap: Beatmap;
+  currentDiscussions: BeatmapDiscussion[];
+  discussions: BeatmapDiscussion[];
+  document?: string;
   editMode?: boolean;
-  [key: string]: any; // TODO: fix
+  initialValue: string;
 }
 
 export default class Editor extends React.Component<Props, any> {
@@ -149,6 +155,7 @@ export default class Editor extends React.Component<Props, any> {
     this.setState({value}, () => {
       if (!ReactEditor.isFocused(this.slateEditor) && !this.state.menuShown) {
         this.setState({menuOffset: -1000});
+
         return;
       }
 

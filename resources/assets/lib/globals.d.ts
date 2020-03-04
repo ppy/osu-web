@@ -119,7 +119,8 @@ interface BeatmapFailTimesArray {
 
 // TODO: incomplete
 interface Beatmapset {
-  beatmapset_id: number;
+  beatmaps: Beatmap[];
+  id: number;
   // ... and other stuff
 }
 
