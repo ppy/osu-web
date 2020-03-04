@@ -19,6 +19,7 @@
 import { BeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
+import { autolinkPlugin } from './autolink-plugin';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 import { ReviewPostEmbed } from './review-post-embed';
 import { timestampPlugin } from './timestamp-plugin';
@@ -47,6 +48,7 @@ export class ReviewPost extends React.Component<Props> {
                 allowedInlines: ['emphasis', 'strong'],
               },
             ],
+            autolinkPlugin,
             timestampPlugin,
           ]}
           key={osu.uuid()}
