@@ -21,11 +21,11 @@
 namespace App\Transformers\Multiplayer;
 
 use App\Models\Multiplayer\Room;
+use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
 use Carbon\Carbon;
-use League\Fractal;
 
-class RoomTransformer extends Fractal\TransformerAbstract
+class RoomTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'host',

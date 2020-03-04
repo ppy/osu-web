@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\ContestEntry;
-use League\Fractal;
 
-class ContestEntryTransformer extends Fractal\TransformerAbstract
+class ContestEntryTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'results',

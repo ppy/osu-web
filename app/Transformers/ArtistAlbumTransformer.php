@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\ArtistAlbum;
-use League\Fractal;
 
-class ArtistAlbumTransformer extends Fractal\TransformerAbstract
+class ArtistAlbumTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'tracks',
