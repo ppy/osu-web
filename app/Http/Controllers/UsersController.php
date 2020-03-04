@@ -469,12 +469,13 @@ class UsersController extends Controller
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scoresFirst($options['mode'], true)
+                        ->visibleUsers()
                         ->orderBy('score_id', 'desc')
                         ->with('beatmap', 'beatmap.beatmapset', 'user');
                     break;
                 case 'scoresRecent':
                     $transformer = 'Score';
-                    $includes = ['beatmap', 'beatmapset', 'best', 'user'];
+                    $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scores($options['mode'], true)
                         ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
                     break;

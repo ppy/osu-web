@@ -582,6 +582,27 @@ function trans_exists($key, $locale)
     return present($translated) && $translated !== $key;
 }
 
+function with_db_fallback($connection, callable $callable)
+{
+    try {
+        return $callable($connection);
+    } catch (Illuminate\Database\QueryException $ex) {
+        // string after the error code can change depending on actual state of the server.
+        static $errorCodes = ['SQLSTATE[HY000] [2002]', 'SQLSTATE[HY000] [2003]'];
+        if (starts_with($ex->getMessage(), $errorCodes)) {
+            Datadog::increment(
+                config('datadog-helper.prefix_web').'.db_fallback',
+                1,
+                compact('connection')
+            );
+
+            return $callable(config('database.default'));
+        }
+
+        throw $ex;
+    }
+}
+
 function obscure_email($email)
 {
     $email = explode('@', $email);
@@ -870,20 +891,6 @@ function nav_links()
     return $links;
 }
 
-function nav_links_mobile()
-{
-    $links = [];
-
-    if (Auth::check()) {
-        $links['profile'] = [
-            'friends' => route('friends.index'),
-            'settings' => route('account.edit'),
-        ];
-    }
-
-    return array_merge($links, nav_links());
-}
-
 function footer_landing_links()
 {
     return [
@@ -1040,7 +1047,7 @@ function open_image($path, $dimensions = null)
 
 function json_collection($model, $transformer, $includes = null)
 {
-    $manager = new League\Fractal\Manager();
+    $manager = new League\Fractal\Manager(new App\Libraries\Transformers\ScopeFactory());
     if ($includes !== null) {
         $manager->parseIncludes($includes);
     }

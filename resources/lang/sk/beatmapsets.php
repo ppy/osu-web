@@ -34,17 +34,11 @@ return [
         'discussion' => 'Diskusia',
 
         'details' => [
-            'approved' => 'schválené ',
             'favourite' => 'Pridať do mojich obľúbených',
             'favourited_count' => '+ 1 ďalší!|+ :count ďalších!',
             'logged-out' => 'Pre sťahovanie beatmap sa najskôr musíš prihlásiť!',
-            'loved' => 'obľúbené ',
             'mapped_by' => 'beatmapu vytvoril :mapper',
-            'qualified' => 'kvalifikované ',
-            'ranked' => 'hodnotené od ',
-            'submitted' => 'nahrané ',
             'unfavourite' => 'Odobrať z mojich obľúbených',
-            'updated' => 'naposledy upravené ',
             'updated_timeago' => 'naposledy aktualizované :timeago',
 
             'download' => [

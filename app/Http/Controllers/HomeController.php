@@ -42,7 +42,6 @@ class HomeController extends Controller
             'only' => [
                 'downloadQuotaCheck',
                 'quickSearch',
-                'search',
             ],
         ]);
 
@@ -82,11 +81,7 @@ class HomeController extends Controller
 
         if (Auth::check()) {
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
-            $popularBeatmapsets = Beatmapset::ranked()
-                ->where('approved_date', '>', now()->subDays(30))
-                ->orderBy('favourite_count', 'DESC')
-                ->limit(5)
-                ->get();
+            $popularBeatmapsets = Beatmapset::popular()->get();
 
             return ext_view('home.user', compact(
                 'newBeatmapsets',

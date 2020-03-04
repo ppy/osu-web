@@ -54,7 +54,7 @@ class Groups
 
         $group = $this->groupsByIdentifier[$id] ?? null;
 
-        if ($group === null && config('group.create_if_missing')) {
+        if ($group === null) {
             Group::create([
                 'identifier' => $id,
                 'group_name' => $id,

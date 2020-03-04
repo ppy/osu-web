@@ -31,7 +31,7 @@ class @BeatmapDiscussionHelper
   @canModeratePosts: (user) =>
     user ?= currentUser
 
-    user.is_admin || user.can_moderate
+    user.is_admin || user.is_moderator
 
 
   # text should be pre-escaped.

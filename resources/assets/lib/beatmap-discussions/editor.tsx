@@ -382,8 +382,8 @@ export default class Editor extends React.Component<Props, any> {
 
         case 'embed':
           review.push({
-            beatmapId: node.beatmapId,
-            discussionType: node.discussionType,
+            beatmap_id: node.beatmapId,
+            discussion_type: node.discussionType,
             text: node.children[0].text,
             timestamp: node.timestamp,
             type: 'embed',

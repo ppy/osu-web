@@ -26,8 +26,9 @@ export interface DocumentParagraph extends DocumentBlock {
 }
 
 export interface DocumentIssueEmbed extends DocumentBlock {
-  beatmapId: number | null;
-  discussionType: 'praise' | 'problem' | 'suggestion';
+  beatmap_id: number | null;
+  discussion_id?: number;
+  discussion_type: 'praise' | 'problem' | 'suggestion';
   timestamp: string;
   type: 'embed';
 }

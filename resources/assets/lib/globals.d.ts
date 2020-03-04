@@ -73,6 +73,7 @@ interface OsuCommon {
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
   transExists: (key: string, locale?: string) => boolean;
   urlPresence: (url?: string | null) => string;
+  urlRegex: RegExp;
   uuid: () => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
@@ -182,6 +183,7 @@ interface User {
   cover: Cover;
   current_mode_rank?: number;
   default_group: string;
+  follower_count?: number;
   group_badge?: GroupJSON;
   id: number;
   is_active: boolean;

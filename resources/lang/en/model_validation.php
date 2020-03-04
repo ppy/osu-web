@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Replying to deleted comment is not allowed.',
+        'top_only' => 'Pinning comment reply is not allowed.',
 
         'attributes' => [
             'message' => 'The message',

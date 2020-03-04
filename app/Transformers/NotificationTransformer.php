@@ -22,9 +22,8 @@ namespace App\Transformers;
 
 use App\Models\Notification;
 use App\Models\UserNotification;
-use League\Fractal;
 
-class NotificationTransformer extends Fractal\TransformerAbstract
+class NotificationTransformer extends TransformerAbstract
 {
     public function transform($object)
     {

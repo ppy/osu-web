@@ -15,23 +15,6 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
 
 import HeaderV4 from 'header-v4';
 import HeaderLink from 'interfaces/header-link';
@@ -89,12 +72,10 @@ export class Main extends React.Component {
 
         <div className='osu-page osu-page--generic-compact'>
           <div className='notification-index'>
-            <div className='notification-popup__item'>
-              {this.renderLegacyPm()}
-              <div className='notification-type-group__items'>
-                {this.renderStacks()}
-                {this.renderShowMore()}
-              </div>
+            {this.renderLegacyPm()}
+            <div className='notification-stacks'>
+              {this.renderStacks()}
+              {this.renderShowMore()}
             </div>
           </div>
         </div>
@@ -105,11 +86,7 @@ export class Main extends React.Component {
   renderLegacyPm() {
     if (this.controller.currentFilter != null) return;
 
-    return (
-      <div className='notification-type-group__items notification-type-group__items--standalone'>
-        <LegacyPm />
-      </div>
-    );
+    return <LegacyPm />;
   }
 
   renderShowMore() {

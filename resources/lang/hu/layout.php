@@ -82,6 +82,11 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
         ],
@@ -228,6 +233,7 @@ return [
             'modding-history-posts' => 'felhasználói modoló előzmények',
             'modding-history-votesGiven' => 'felhasználói modoló szavazat adva',
             'modding-history-votesReceived' => 'felhasználói modoló szavazat kapva',
+            'notifications-index' => '',
             'oauth_login' => 'jelentkezz be az oauth-ért',
             'oauth_request' => 'oauth felhatalmazás',
             'settings' => 'Beállitások',

@@ -21,10 +21,10 @@
 namespace App\Transformers\Multiplayer;
 
 use App\Models\Multiplayer\Event;
-use App\Transformers;
-use League\Fractal;
+use App\Transformers\TransformerAbstract;
+use App\Transformers\UserCompactTransformer;
 
-class EventTransformer extends Fractal\TransformerAbstract
+class EventTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'user',
@@ -44,7 +44,7 @@ class EventTransformer extends Fractal\TransformerAbstract
     public function includeUser(Event $event)
     {
         if ($event->user) {
-            return $this->item($event->user, new Transformers\UserCompactTransformer);
+            return $this->item($event->user, new UserCompactTransformer);
         }
     }
 

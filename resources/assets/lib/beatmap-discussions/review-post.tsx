@@ -16,11 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import * as _ from 'lodash';
+import { BeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
+import { autolinkPlugin } from './autolink-plugin';
+import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 import { ReviewPostEmbed } from './review-post-embed';
-import { timestampTokenizer } from './timestamp-tokenizer';
+import { timestampPlugin } from './timestamp-plugin';
 
 interface Props {
   message: string;
@@ -38,15 +40,16 @@ export class ReviewPost extends React.Component<Props> {
   paragraph(source: string) {
     return (
         <ReactMarkdown
-          allowedTypes={[
-            'emphasis',
-            'link',
-            'paragraph',
-            'strong',
-            'text',
-          ]}
           plugins={[
-            timestampTokenizer,
+            [
+              disableTokenizersPlugin,
+              {
+                allowedBlocks: ['paragraph'],
+                allowedInlines: ['emphasis', 'strong'],
+              },
+            ],
+            autolinkPlugin,
+            timestampPlugin,
           ]}
           key={osu.uuid()}
           source={source}
@@ -58,9 +61,7 @@ export class ReviewPost extends React.Component<Props> {
                 <div className='beatmapset-discussion-message' {...props}/>
               </div>;
             },
-            timestamp: (props) => {
-              return <a className='beatmapset-discussion-message__timestamp' {...props}/>;
-            },
+            timestamp: (props) => <a className='beatmapset-discussion-message__timestamp' {...props}/>,
           }}
         />
     );
@@ -70,21 +71,23 @@ export class ReviewPost extends React.Component<Props> {
     const docBlocks: JSX.Element[] = [];
 
     try {
-      const document = JSON.parse(this.props.message);
+      const doc: BeatmapDiscussionReview = JSON.parse(this.props.message);
 
-      _.each(document, (block) => {
+      doc.forEach((block) => {
         switch (block.type) {
           case 'paragraph':
             // '&nbsp;  ' converts into a newline
             docBlocks.push(this.paragraph(osu.presence(block.text) || '&nbsp;  '));
             break;
           case 'embed':
-            docBlocks.push(this.embed(block.discussion_id));
+            if (block.discussion_id) {
+              docBlocks.push(this.embed(block.discussion_id));
+            }
             break;
         }
       });
     } catch (e) {
-      docBlocks.push(<div>[error parsing review]</div>);
+      docBlocks.push(<div key={osu.uuid()}>[error parsing review]</div>);
     }
 
     return (

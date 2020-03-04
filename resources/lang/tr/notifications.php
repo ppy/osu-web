@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Tüm bildirimler okundu!',
     'mark_all_read' => 'Hepsini temizle',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Yeni madalya',
                 'user_achievement_unlock' => '":title" \'ın kilidi açıldı!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],
