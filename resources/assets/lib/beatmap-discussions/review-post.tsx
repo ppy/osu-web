@@ -76,8 +76,9 @@ export class ReviewPost extends React.Component<Props> {
       doc.forEach((block) => {
         switch (block.type) {
           case 'paragraph':
-            // '&nbsp;  ' converts into a newline
-            docBlocks.push(this.paragraph(osu.presence(block.text) || '&nbsp;  '));
+            // '&nbsp;  ' parses into a newline
+            const content = osu.presence(block.text.trim()) ? block.text : '&nbsp;  ';
+            docBlocks.push(this.paragraph(content));
             break;
           case 'embed':
             if (block.discussion_id) {
