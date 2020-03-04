@@ -420,11 +420,11 @@ export default class Editor extends React.Component<Props, any> {
     console.log(output);
   }
 
-  toggleBold = (event: React.MouseEvent) => {
+  toggleBold = () => {
     this.toggleMark('bold');
   }
 
-  toggleItalic = (event: React.MouseEvent) => {
+  toggleItalic = () => {
     this.toggleMark('italic');
   }
 
