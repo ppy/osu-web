@@ -19,6 +19,7 @@
 import { BeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
+import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 import { ReviewPostEmbed } from './review-post-embed';
 import { timestampPlugin } from './timestamp-plugin';
 
@@ -38,14 +39,14 @@ export class ReviewPost extends React.Component<Props> {
   paragraph(source: string) {
     return (
         <ReactMarkdown
-          allowedTypes={[
-            'emphasis',
-            'link',
-            'paragraph',
-            'strong',
-            'text',
-          ]}
           plugins={[
+            [
+              disableTokenizersPlugin,
+              {
+                allowedBlocks: ['paragraph'],
+                allowedInlines: ['emphasis', 'strong'],
+              },
+            ],
             timestampPlugin,
           ]}
           key={osu.uuid()}
