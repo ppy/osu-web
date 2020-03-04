@@ -39,7 +39,7 @@ class BeatmapsetEventTransformerTest extends TestCase
             'type' => $eventType,
         ]);
 
-        $viewer = factory(User::class)->states($groupIdentifier)->create();
+        $viewer = $this->createUserWithGroup($groupIdentifier);
         $this->actAsScopedUser($viewer);
 
         $json = json_item($event, 'BeatmapsetEvent');
@@ -60,8 +60,8 @@ class BeatmapsetEventTransformerTest extends TestCase
             'type' => $eventType,
         ]);
 
-        $viewer = factory(User::class)->states($groupIdentifier)->create();
-        auth()->setUser($viewer);
+        $viewer = $this->createUserWithGroup($groupIdentifier);
+        $this->actAsUser($viewer);
 
         $json = json_item($event, 'BeatmapsetEvent');
 
@@ -95,6 +95,10 @@ class BeatmapsetEventTransformerTest extends TestCase
             [[], BeatmapsetEvent::NOMINATE, true, true],
             [[], BeatmapsetEvent::KUDOSU_ALLOW, false, false],
             [[], BeatmapsetEvent::DISCUSSION_DELETE, false, false],
+
+            [null, BeatmapsetEvent::NOMINATE, true, true],
+            [null, BeatmapsetEvent::KUDOSU_ALLOW, false, false],
+            [null, BeatmapsetEvent::DISCUSSION_DELETE, false, false],
         ];
     }
 

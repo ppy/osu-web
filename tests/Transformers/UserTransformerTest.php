@@ -30,7 +30,7 @@ class UserTransformerTest extends TestCase
      */
     public function testWithOAuth($groupIdentifier)
     {
-        $viewer = factory(User::class)->states($groupIdentifier)->create();
+        $viewer = $this->createUserWithGroup($groupIdentifier);
         $user = factory(User::class)->states('silenced')->create();
         $this->actAsScopedUser($viewer);
 
@@ -46,9 +46,9 @@ class UserTransformerTest extends TestCase
      */
     public function testWithoutOAuth($groupIdentifier, $visible)
     {
-        $viewer = factory(User::class)->states($groupIdentifier)->create();
+        $viewer = $this->createUserWithGroup($groupIdentifier);
         $user = factory(User::class)->states('silenced')->create();
-        auth()->setUser($viewer);
+        $this->actAsUser($viewer);
 
         $json = json_item($user, 'User', ['account_history.actor', 'account_history.supporting_url']);
 
@@ -69,6 +69,8 @@ class UserTransformerTest extends TestCase
             ['bng', false],
             ['gmt', false],
             ['nat', false],
+            [[], false],
+            [null, false],
         ];
     }
 }

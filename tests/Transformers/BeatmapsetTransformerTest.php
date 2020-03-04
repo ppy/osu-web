@@ -21,7 +21,6 @@
 namespace Tests\Transformers;
 
 use App\Models\Beatmapset;
-use App\Models\User;
 use Tests\TestCase;
 
 class BeatmapsetTransformerTest extends TestCase
@@ -31,7 +30,7 @@ class BeatmapsetTransformerTest extends TestCase
      */
     public function testWithOAuth($groupIdentifier)
     {
-        $viewer = factory(User::class)->states($groupIdentifier)->create();
+        $viewer = $this->createUserWithGroup($groupIdentifier);
         $beatmapset = factory(Beatmapset::class)->states('deleted')->create();
         $this->actAsScopedUser($viewer);
 
@@ -45,9 +44,9 @@ class BeatmapsetTransformerTest extends TestCase
      */
     public function testWithoutOAuth($groupIdentifier, $visible)
     {
-        $viewer = factory(User::class)->states($groupIdentifier)->create();
+        $viewer = $this->createUserWithGroup($groupIdentifier);
         $beatmapset = factory(Beatmapset::class)->states('deleted')->create();
-        auth()->setUser($viewer);
+        $this->actAsUser($viewer);
 
         $json = json_item($beatmapset, 'Beatmapset');
 
@@ -65,6 +64,8 @@ class BeatmapsetTransformerTest extends TestCase
             ['bng', true],
             ['gmt', true],
             ['nat', true],
+            [[], false],
+            [null, false],
         ];
     }
 }
