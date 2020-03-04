@@ -21,6 +21,7 @@ import * as markdown from 'remark-parse';
 import { Node as SlateNode } from 'slate';
 import * as unified from 'unified';
 import { Node as UnistNode } from 'unist';
+import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
 interface ParsedSlateNode extends UnistNode {
   children: SlateNode[];
@@ -51,7 +52,13 @@ export function parseFromMarkdown(json: string, discussions: BeatmapDiscussion[]
               type: 'paragraph',
             });
           } else {
-            const processor = unified().use(markdown);
+            const processor = unified()
+              .use(markdown)
+              .use(disableTokenizersPlugin,
+                {
+                  allowedBlocks: ['paragraph'],
+                  allowedInlines: ['emphasis', 'strong'],
+                });
             const parsed = processor.parse(block.text) as ParsedSlateNode;
 
             if (!parsed.children || parsed.children.length < 1) {
