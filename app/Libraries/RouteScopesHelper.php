@@ -26,7 +26,7 @@ class RouteScopesHelper
 {
     public $routes;
 
-    public static function importCsv(string $filename)
+    public function fromCsv(string $filename)
     {
         $csv = array_map('str_getcsv', file($filename));
 
@@ -40,15 +40,17 @@ class RouteScopesHelper
 
         array_shift($routes); // remove column header
 
-        $obj = new static;
-        $obj->routes = $routes;
-
-        return $obj;
+        $this->routes = $routes;
     }
 
-    public function toArray()
+    public function fromJson(string $filename)
     {
-        $array = [];
+        $this->routes = json_decode(file_get_contents($filename), true);
+    }
+
+    public function loadRoutes()
+    {
+        $this->routes = [];
 
         foreach (Route::getRoutes() as $route) {
             if (!starts_with($route->uri, 'api/')) {
@@ -76,26 +78,26 @@ class RouteScopesHelper
             sort($scopes);
 
             foreach ($route->methods as $method) {
-                $array[] = compact('uri', 'method', 'controller', 'middlewares', 'scopes');
+                $this->routes[] = compact('uri', 'method', 'controller', 'middlewares', 'scopes');
             }
         }
-
-        return $array;
     }
 
-    public function toJson(string $filename)
+    public function toArray()
     {
-        file_put_contents($filename, str_replace('\/', '/', json_encode($this->toArray(), JSON_PRETTY_PRINT)));
+        if (!isset($this->routes)) {
+            $this->loadRoutes();
+        }
+
+        return $this->routes;
     }
 
     public function toCsv(string $filename)
     {
-        $array = $this->toArray();
-
         $file = fopen($filename, 'w');
         fputcsv($file, ['uri', 'method', 'controller', 'middlewares', 'scopes']);
 
-        foreach ($array as $obj) {
+        foreach ($this->toArray() as $obj) {
             $fields = [
                 $obj['uri'],
                 $obj['method'],
@@ -108,5 +110,10 @@ class RouteScopesHelper
         }
 
         fclose($file);
+    }
+
+    public function toJson(string $filename)
+    {
+        file_put_contents($filename, str_replace('\/', '/', json_encode($this->toArray(), JSON_PRETTY_PRINT)));
     }
 }
