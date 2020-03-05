@@ -34,10 +34,16 @@ return [
         'discussion' => 'Обсуждение',
 
         'details' => [
+            'approved' => 'одобрена ',
             'favourite' => 'Добавить в избранное',
             'logged-out' => 'Вы должны войти для загрузки карты!',
+            'loved' => 'стала любимой ',
             'mapped_by' => 'сделана :mapper',
+            'qualified' => 'квалифицирована ',
+            'ranked' => 'получила рейтинг ',
+            'submitted' => 'опубликована ',
             'unfavourite' => 'Удалить из избранного',
+            'updated' => 'обновлена ',
             'updated_timeago' => 'обновлена :timeago',
 
             'download' => [

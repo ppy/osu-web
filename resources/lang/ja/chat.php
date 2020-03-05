@@ -29,7 +29,7 @@ return [
         'user' => '現在このユーザーへメッセージを送信できません。理由は次のいずれかである可能性があります：',
         'reasons' => [
             'blocked' => 'あなたは受信者にブロックされました',
-            'channel_moderated' => 'このチャンネルは管理されています',
+            'channel_moderated' => 'このチャンネルは制限がかかっています。',
             'friends_only' => 'フレンドリスト上の人からのメッセージのみ受信する',
             'restricted' => 'あなたは現在制限されています',
             'target_restricted' => '受信者は現在制限されています',
@@ -37,7 +37,7 @@ return [
     ],
     'input' => [
         'disabled' => 'メッセージの送信ができません...',
-        'placeholder' => 'メッセージを入力',
+        'placeholder' => 'メッセージを入力...',
         'send' => '送信',
     ],
     'no-conversations' => [

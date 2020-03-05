@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Нельга адказваць на выдалены каментарый.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Паведамленне',

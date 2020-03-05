@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'törölve',
+        'none_found' => '',
         'title' => 'Beatmap Megbeszélés',
 
         'form' => [

@@ -83,8 +83,8 @@ return [
         ],
 
         'notifications' => [
-            '_' => '',
-            'index' => '',
+            '_' => '通知',
+            'index' => '履歴',
         ],
 
         'rankings' => [
@@ -124,7 +124,7 @@ return [
     'menu' => [
         'home' => [
             '_' => 'ホーム',
-            'account-edit' => '設定',
+            'account-edit' => 'アカウント設定',
             'account-verifyLink' => '認証が完了しました。',
             'beatmapset-watches-index' => 'modding ウォッチリスト',
             'changelog-build' => 'ビルド',
@@ -162,9 +162,9 @@ return [
         'beatmaps' => [
             '_' => 'ビートマップ',
             'artists' => '注目アーティスト',
-            'beatmap_discussion_posts-index' => 'ディスカッション投稿',
-            'beatmap_discussions-index' => 'ディスカッション',
-            'beatmapset_discussion_votes-index' => 'ディスカッション評価',
+            'beatmap_discussion_posts-index' => 'ビートマップディスカッション投稿',
+            'beatmap_discussions-index' => 'ビートマップディスカッション',
+            'beatmapset_discussion_votes-index' => 'ビートマップディスカッション評価',
             'beatmapset_events-index' => 'ビートマップセットイベント',
             'index' => '一覧',
             'packs' => 'パック',
@@ -204,7 +204,7 @@ return [
         ],
         'multiplayer' => [
             '_' => 'マルチプレイヤー',
-            'show' => 'マッチ',
+            'show' => '対戦',
         ],
         'error' => [
             '_' => 'エラー',
@@ -221,7 +221,7 @@ return [
             'disabled' => '無効',
 
             'register' => '登録',
-            'reset' => 'リセット',
+            'reset' => '復元',
             'new' => '新しい',
 
             'help' => 'ヘルプ',
@@ -233,7 +233,7 @@ return [
             'modding-history-posts' => 'ユーザーのmodding投稿',
             'modding-history-votesGiven' => 'ユーザーがmoddingに与えた投票',
             'modding-history-votesReceived' => 'ユーザーがmoddingで受け取った投票',
-            'notifications-index' => '',
+            'notifications-index' => '通知履歴',
             'oauth_login' => 'oauthでログインする。',
             'oauth_request' => 'oauth認証',
             'settings' => '設定',
@@ -305,7 +305,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'ページが見つかりません',
-            'description' => "申し訳ありませんが、要求されたページはここにはない様です。",
+            'description' => "申し訳ありませんが、要求されたページはここにはないようです。",
         ],
         '403' => [
             'error' => "何か手違いがあったみたいです。",
@@ -317,7 +317,7 @@ return [
         ],
         '405' => [
             'error' => 'ページが見つかりません',
-            'description' => "ご希望のページはここにはない様です。",
+            'description' => "申し訳ありませんが、要求されたページはここにはないようです。",
         ],
         '500' => [
             'error' => '予期せぬエラーが発生しました ;_;',
@@ -355,21 +355,21 @@ return [
         'register' => [
             'download' => 'ダウンロード',
             'info' => 'アカウントが必要です。作ってみませんか？',
-            'title' => "アカウントを持っていませんか？",
+            'title' => "アカウントが必要です",
         ],
     ],
 
     'popup_user' => [
         'links' => [
             'account-edit' => '設定',
-            'friends' => 'フレンドリスト',
+            'friends' => 'フレンド',
             'logout' => 'ログアウト',
             'profile' => 'プロフィール',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '入力して検索',
+        'initial' => '入力して検索！',
         'retry' => '検索に失敗しました。クリックでリトライします。',
     ],
 ];

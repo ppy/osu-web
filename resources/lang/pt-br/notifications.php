@@ -21,17 +21,17 @@
 return [
     'all_read' => 'Todas as notificações foram lidas!',
     'mark_all_read' => 'Limpar tudo',
-    'none' => '',
-    'see_all' => '',
+    'none' => 'Sem notificações',
+    'see_all' => 'ver todas as notificações',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => 'tudo',
+        'user' => 'perfil',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'fórum',
+        'news_post' => 'notícias',
+        'build' => 'versões',
+        'channel' => 'chat',
     ],
 
     'item' => [
@@ -142,7 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nova medalha',
                 'user_achievement_unlock' => '":title" desbloqueado!',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => '":title" desbloqueado!',
             ],
         ],
     ],

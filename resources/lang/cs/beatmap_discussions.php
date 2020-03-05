@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'odstraněno',
+        'none_found' => '',
         'title' => 'Diskuze o beatmapě',
 
         'form' => [

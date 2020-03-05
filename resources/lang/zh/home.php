@@ -42,6 +42,7 @@ return [
         'title' => '搜索',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => '搜索到 :count 张谱面',
             'more_simple' => '查看更多搜索结果',
             'title' => '谱面',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => '所有论坛',
             'link' => '在论坛中搜索',
+            'login_required' => '',
             'more_simple' => '查看更多搜索结果',
             'title' => '论坛',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => '搜索到 :count 个玩家',
             'more_simple' => '查看更多搜索结果',
             'more_hidden' => '玩家搜索超出 :max 个限制，请修改搜索内容。',

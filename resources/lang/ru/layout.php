@@ -83,8 +83,8 @@ return [
         ],
 
         'notifications' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'уведомления',
+            'index' => 'история',
         ],
 
         'rankings' => [
@@ -233,7 +233,7 @@ return [
             'modding-history-posts' => 'история публикаций',
             'modding-history-votesGiven' => 'голоса',
             'modding-history-votesReceived' => 'полученные голоса',
-            'notifications-index' => '',
+            'notifications-index' => 'история уведомлений',
             'oauth_login' => 'вход для oauth',
             'oauth_request' => 'авторизация oauth',
             'settings' => 'Настройки',

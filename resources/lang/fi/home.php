@@ -42,6 +42,7 @@ return [
         'title' => 'Hae',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count lisää hakutulosta',
             'more_simple' => 'Katso lisää hakutuloksia',
             'title' => 'Beatmapit',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Kaikki foorumit',
             'link' => 'Etsi foorumilta',
+            'login_required' => '',
             'more_simple' => 'Katso lisää foorumien hakutuloksia',
             'title' => 'Foorumi',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count hakutulosta lisää',
             'more_simple' => 'Näytä enemmän pelaajia hakutuloksista',
             'more_hidden' => 'Pelaajien etsintä on rajoitettu :max pelaajalle. Kokeile tarkentaa hakua.',
