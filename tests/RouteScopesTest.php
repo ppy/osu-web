@@ -5,53 +5,59 @@
 
 namespace Tests;
 
-use Request;
-use Route;
+use App\Libraries\RouteScopesHelper;
+use PHPUnit\Framework\ExpectationFailedException;
 
 class RouteScopesTest extends TestCase
 {
-    public function testApiRoutesRequireScope()
+    private $expectations;
+
+    public function testApiRouteScopes()
     {
-        $expected = [
-            'api/v2/friends' => ['friends.read'],
-            'api/v2/me/{mode?}' => ['identify'],
-            'api/v2/users/{user}/kudosu' => ['users.read'],
-            'api/v2/users/{user}/scores/{type}' => ['users.read'],
-            'api/v2/users/{user}/beatmapsets/{type}' => ['users.read'],
-            'api/v2/users/{user}/recent_activity' => ['users.read'],
-            'api/v2/users/{user}/{mode?}' => ['users.read'],
-        ];
+        $failures = [];
+        $this->importExpectations();
 
-        $loaded = [];
-
-        foreach (Route::getRoutes() as $route) {
-            if (!starts_with($route->uri, 'api/')) {
-                continue;
+        $routes = (new RouteScopesHelper)->toArray();
+        foreach ($routes as $route) {
+            try {
+                $this->runSingleTest($route);
+            } catch (ExpectationFailedException $e) {
+                $failures[] = $e;
             }
-
-            // uri will still have the placeholders and wrong verbs, but we don't need them.
-            $request = Request::create($route->uri, 'GET');
-            $this->app->instance('request', $request); // set current request so is_api_request can work.
-
-            $middlewares = $route->gatherMiddleware();
-
-            foreach ($middlewares as $middleware) {
-                if (!is_string($middleware)) {
-                    continue;
-                }
-
-                // FIXME: need something that isn't string checking.
-                if (starts_with($middleware, 'require-scopes:')) {
-                    $scopes = explode(',', substr($middleware, strlen('require-scopes:')));
-                    sort($scopes);
-                    $loaded[$route->uri] = $scopes;
-                }
-            }
-
-            // FIXME: separate this assertion.
-            $this->assertTrue(in_array('require-scopes', $middlewares, true));
         }
 
-        $this->assertSame($expected, $loaded);
+        $this->assertEmpty(
+            $failures,
+            // print errors after tests finish
+            print_r(
+                array_map(
+                    function ($failure) {
+                        return [
+                            'message' => $failure->getMessage(),
+                            'diff' => $failure->getComparisonFailure()->toString()
+                        ];
+                    },
+                    $failures
+                ),
+                true
+            )
+        );
+    }
+
+    private function runSingleTest(array $route)
+    {
+        $key = "{$route['method']}@{$route['controller']}";
+
+        $this->assertSame($this->expectations[$key], $route, $key);
+    }
+
+    private function importExpectations()
+    {
+        $this->expectations = [];
+        $routes = RouteScopesHelper::importCsv('expected.csv')->routes;
+        foreach ($routes as $route) {
+            $key = "{$route['method']}@{$route['controller']}";
+            $this->expectations[$key] = $route;
+        }
     }
 }
