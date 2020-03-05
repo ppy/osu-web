@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\ArtistTrack;
-use League\Fractal;
 
-class ArtistTrackTransformer extends Fractal\TransformerAbstract
+class ArtistTrackTransformer extends TransformerAbstract
 {
     public function transform(ArtistTrack $track)
     {

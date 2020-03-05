@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\KudosuHistory;
-use League\Fractal;
 
-class KudosuHistoryTransformer extends Fractal\TransformerAbstract
+class KudosuHistoryTransformer extends TransformerAbstract
 {
     public function transform(KudosuHistory $kudosuHistory)
     {

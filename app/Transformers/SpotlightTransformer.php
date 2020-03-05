@@ -23,7 +23,7 @@ namespace App\Transformers;
 use App\Models\Spotlight;
 use League\Fractal;
 
-class SpotlightTransformer extends Fractal\TransformerAbstract
+class SpotlightTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'participant_count',
