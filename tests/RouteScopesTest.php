@@ -54,7 +54,10 @@ class RouteScopesTest extends TestCase
     private function importExpectations()
     {
         $this->expectations = [];
-        $routes = RouteScopesHelper::importCsv('expected.csv')->routes;
+
+        $helper = new RouteScopesHelper;
+        $helper->fromJson('tests/api_routes.json');
+        $routes = $helper->routes;
         foreach ($routes as $route) {
             $key = "{$route['method']}@{$route['controller']}";
             $this->expectations[$key] = $route;
