@@ -19,7 +19,6 @@
     $title = $post->title();
 @endphp
 @extends('master', [
-    'legacyFont' => false,
     'titlePrepend' => $title,
     'canonicalUrl' => $post->url(),
     'pageDescription' => blade_safe($post->previewText()),

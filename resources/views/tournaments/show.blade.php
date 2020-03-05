@@ -76,7 +76,7 @@
                         @foreach ($links as $link)
                             <a
                                 href="{{ $link['url'] }}"
-                                class="btn-osu btn-osu-default btn-osu--tournament"
+                                class="btn-osu-big btn-osu-big--tournament-info"
                             >{{ $link['title'] }}</a>
                         @endforeach
                     </div>
@@ -121,7 +121,7 @@
                             @if($tournament->isSignedUp(Auth::user()))
                                 <a
                                     href="{{route("tournaments.unregister", $tournament) }}"
-                                    class="btn-osu btn-osu-default btn-osu--giant"
+                                    class="btn-osu-big btn-osu-big--tournament-register"
                                     data-method="post"
                                     data-remote="1"
                                 >
@@ -130,7 +130,7 @@
                             @else
                                 <a
                                     href="{{ route("tournaments.register", $tournament) }}"
-                                    class="btn-osu btn-osu-default btn-osu--giant"
+                                    class="btn-osu-big btn-osu-big--tournament-register"
                                     data-method="post"
                                     data-remote="1"
                                 >

@@ -18,13 +18,10 @@
 
 @import "app";
 
-@font-content: 'Open Sans', sans-serif;
-@font-content-inter: Inter, sans-serif;
-@font-default-torus: Torus, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
-@font-default: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
-@font-default-vi: Exo, 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
-@font-default-zh: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
-@font-default-zh-tw: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-content: Inter, sans-serif;
+@font-default: Torus, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-zh: Torus, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-default-zh-tw: Torus, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
 
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
@@ -78,6 +75,7 @@
 
 @border-radius--nav-avatar: 10px;
 @border-radius--extra: 20px;
+@border-radius--large: 10px;
 
 @forum-item-overflow: @gutter-v2 - 2px;
 @forum-item-overflow-desktop: @gutter-v2-desktop - 20px;
@@ -305,11 +303,8 @@
 @diff-normal: @blue;
 @diff-hard: @yellow;
 @diff-insane: @pink;
-@diff-expert: @purple;
-@diff-expert--light: @purple-light;
-@diff-expert-plus: #000;
-// for when black text won't just work on dark background
-@diff-expert-plus--light: #999;
+@diff-expert: @purple-light;
+@diff-expert-plus: #999;
 
 // store slider
 @slider-callout--arrow-height: 12px;
