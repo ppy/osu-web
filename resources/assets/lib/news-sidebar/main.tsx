@@ -35,26 +35,42 @@ export default function Main(props: Props) {
   let first = true;
 
   return (
-    <>
-      <Years years={props.data.years} currentYear={props.data.current_year} />
+    <div className='sidebar'>
+      <button
+        type='button'
+        className='sidebar__mobile-toggle sidebar__mobile-toggle--mobile-only js-mobile-toggle'
+        data-mobile-toggle-target='news-archive'
+      >
+        <h2 className='sidebar__title'>
+          {osu.trans('news.sidebar.archive')}
+        </h2>
 
-      {rangeRight(0, 12).map((month) => {
-        if (byMonth[month] == null) {
-          return;
-        }
+        <div className='sidebar__mobile-toggle-icon'>
+          <i className='fas fa-chevron-down' />
+        </div>
+      </button>
 
-        const initialExpand = first;
-        first = false;
+      <div className='sidebar__content hidden-xs js-mobile-toggle' data-mobile-toggle-id='news-archive'>
+        <Years years={props.data.years} currentYear={props.data.current_year} />
 
-        return <MonthListing
-          year={props.data.current_year}
-          initialExpand={initialExpand}
-          key={month}
-          month={month}
-          posts={byMonth[month]}
-          currentPost={props.currentPost}
-        />;
-      })}
-    </>
+        {rangeRight(0, 12).map((month) => {
+          if (byMonth[month] == null) {
+            return;
+          }
+
+          const initialExpand = first;
+          first = false;
+
+          return <MonthListing
+            year={props.data.current_year}
+            initialExpand={initialExpand}
+            key={month}
+            month={month}
+            posts={byMonth[month]}
+            currentPost={props.currentPost}
+          />;
+        })}
+      </div>
+    </div>
   );
 }

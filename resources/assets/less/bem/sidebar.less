@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,46 +16,45 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'index' => [
-        'title_page' => 'osu!news',
+.sidebar {
+  &__mobile-toggle {
+    .reset-input();
+    text-align: inherit;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 
-        'nav' => [
-            'newer' => 'Newer posts',
-            'older' => 'Older posts',
-        ],
+    @media @desktop {
+      cursor: default;
+      margin-bottom: 5px;
+    }
 
-        'title' => [
-            '_' => 'news',
-            'info' => 'frontpage',
-        ],
-    ],
+    &.js-mobile-toggle--active {
+      margin-bottom: 10px;
+    }
 
-    'show' => [
-        'by' => 'by :user',
+    &--mobile-only {
+      @media @desktop {
+        display: none;
+      }
+    }
+  }
 
-        'nav' => [
-            'newer' => 'Newer post',
-            'older' => 'Older post',
-        ],
+  &__mobile-toggle-icon {
+    font-size: @font-size--normal;
 
-        'title' => [
-            '_' => 'news',
-            'info' => 'post',
-        ],
-    ],
+    .js-mobile-toggle--active & {
+      transform: rotateX(0.5turn);
+    }
+  }
 
-    'sidebar' => [
-        'archive' => 'News Archive',
-    ],
-
-    'store' => [
-        'button' => 'Update',
-        'ok' => 'Listing updated.',
-    ],
-
-    'update' => [
-        'button' => 'Update',
-        'ok' => 'Post updated.',
-    ],
-];
+  &__title {
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-size: @font-size--normal;
+    font-style: normal;
+    font-weight: bold;
+  }
+}

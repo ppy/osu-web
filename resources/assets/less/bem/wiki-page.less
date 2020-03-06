@@ -35,28 +35,19 @@
   }
 
   &__toc {
-    display: none;
     background-color: @osu-colour-b4;
-    padding: 20px @gutter-v2;
-    position: sticky;
-    top: @nav2-height--pinned;
-    max-height: calc(100vh - @nav2-height--pinned);
-    overflow-y: scroll;
+    border-radius: @border-radius-large;
+    padding: 10px @gutter-v2;
+    margin: 10px @gutter-v2;
 
     @media @desktop {
-      display: block;
-      padding-right: @gutter-sidebar-desktop;
-      padding-left: @gutter-v2-desktop;
+      border-radius: 0;
+      top: @nav2-height--pinned;
+      position: sticky;
+      padding: 20px @gutter-sidebar-desktop 20px @gutter-v2-desktop;
+      margin: 0;
+      overflow-y: scroll;
+      max-height: calc(100vh - @nav2-height--pinned);
     }
-  }
-
-  &__toc-title {
-    text-transform: uppercase;
-    margin: 0 0 5px;
-    padding: 0;
-    color: #fff;
-    font-size: @font-size--normal;
-    font-style: normal;
-    font-weight: bold;
   }
 }

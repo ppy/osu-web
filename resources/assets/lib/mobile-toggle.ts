@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
  *
@@ -18,46 +16,35 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'index' => [
-        'title_page' => 'osu!news',
+const activeClass = 'js-mobile-toggle--active';
 
-        'nav' => [
-            'newer' => 'Newer posts',
-            'older' => 'Older posts',
-        ],
+export default class MobileToggle {
+  constructor() {
+    $(document).on('click', '.js-mobile-toggle', this.toggle);
+  }
 
-        'title' => [
-            '_' => 'news',
-            'info' => 'frontpage',
-        ],
-    ],
+  toggle = (e: JQuery.ClickEvent) => {
+    const button = e.currentTarget;
 
-    'show' => [
-        'by' => 'by :user',
+    if (!(button instanceof HTMLElement)) {
+      return;
+    }
 
-        'nav' => [
-            'newer' => 'Newer post',
-            'older' => 'Older post',
-        ],
+    const targetId = button.dataset.mobileToggleTarget;
 
-        'title' => [
-            '_' => 'news',
-            'info' => 'post',
-        ],
-    ],
+    if (targetId == null) {
+      return;
+    }
 
-    'sidebar' => [
-        'archive' => 'News Archive',
-    ],
+    const target = document.querySelector(`.js-mobile-toggle[data-mobile-toggle-id=${targetId}]`);
 
-    'store' => [
-        'button' => 'Update',
-        'ok' => 'Listing updated.',
-    ],
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
 
-    'update' => [
-        'button' => 'Update',
-        'ok' => 'Post updated.',
-    ],
-];
+    const toActive = !button.classList.contains(activeClass);
+
+    button.classList.toggle(activeClass, toActive);
+    target.classList.toggle('hidden-xs', !toActive);
+  }
+}

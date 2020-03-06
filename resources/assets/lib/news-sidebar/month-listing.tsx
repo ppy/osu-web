@@ -54,11 +54,15 @@ export default class MonthListing extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    if (props.currentPost == null) {
-      this.state.expanded = props.initialExpand;
+    if (osu.isMobile()) {
+      this.state.expanded = false;
     } else {
-      const currentPostDate = moment.utc(props.currentPost.published_at);
-      this.state.expanded = currentPostDate.year() === props.year && currentPostDate.month() === props.month;
+      if (props.currentPost == null) {
+        this.state.expanded = props.initialExpand;
+      } else {
+        const currentPostDate = moment.utc(props.currentPost.published_at);
+        this.state.expanded = currentPostDate.year() === props.year && currentPostDate.month() === props.month;
+      }
     }
 
     const stateRecord = document.querySelector('.js-news-sidebar-record');
