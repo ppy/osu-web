@@ -157,6 +157,7 @@ interface Beatmap {
 interface BeatmapDiscussion {
   beatmap_id: number | null;
   beatmapset_id: number;
+  id: number;
   message_type: string;
   parent_id: number | null;
   posts: BeatmapDiscussionPost[];

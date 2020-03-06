@@ -40,8 +40,10 @@ interface Props {
   beatmapset: Beatmapset;
   currentBeatmap: Beatmap;
   currentDiscussions: BeatmapDiscussion[];
+  discussion?: BeatmapDiscussion;
   discussions: BeatmapDiscussion[];
   document?: string;
+  editing?: boolean;
   editMode?: boolean;
   initialValue: string;
 }
@@ -86,15 +88,10 @@ export default class Editor extends React.Component<Props, any> {
     };
   }
 
-  componentDidMount(): void {
-    if (this.props.document) {
-      if (!this.props.discussions || _.isEmpty(this.props.discussions)) {
-        return;
-      }
-
-      this.setState({
-        value: parseFromMarkdown(this.props.document, this.props.discussions),
-      });
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
+    const editing = this.props.editing ?? false;
+    if (editing !== (prevProps.editing ?? false)) {
+      this.toggleEditMode(editing);
     }
   }
 
@@ -422,6 +419,18 @@ export default class Editor extends React.Component<Props, any> {
 
   toggleBold = () => {
     this.toggleMark('bold');
+  }
+
+  toggleEditMode = (enabled: boolean) => {
+    if (!this.props.document || !this.props.discussions || _.isEmpty(this.props.discussions)) {
+      return;
+    }
+
+    if (enabled) {
+      this.setState({
+        value: parseFromMarkdown(this.props.document, this.props.discussions),
+      });
+    }
   }
 
   toggleItalic = () => {

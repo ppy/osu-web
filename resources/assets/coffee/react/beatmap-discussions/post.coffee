@@ -42,6 +42,7 @@ export class Post extends React.PureComponent
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @xhr = {}
     @cache = {}
+    @reviewEditor = React.createRef()
 
     @state =
       editing: false
@@ -130,8 +131,11 @@ export class Post extends React.PureComponent
                   beatmapset: @props.beatmapset
                   beatmaps: beatmaps
                   document: @state.message
+                  discussion: @props.discussion
                   discussions: discussions
                   editMode: true
+                  editing: @state.editing
+                  ref: @reviewEditor
       else
         el React.Fragment, null,
           el TextareaAutosize,
@@ -290,7 +294,13 @@ export class Post extends React.PureComponent
 
 
   updatePost: =>
-    if @state.message == @props.post.message
+    messageContent = @state.message
+
+    if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+      messageContent = @reviewEditor.current.serialize()
+      @setState message: messageContent
+
+    if messageContent == @props.post.message
       @setState editing: false
       return
 
@@ -301,7 +311,7 @@ export class Post extends React.PureComponent
       method: 'PUT'
       data:
         beatmap_discussion_post:
-          message: @state.message
+          message: messageContent
 
     .done (data) =>
       @setState editing: false

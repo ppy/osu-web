@@ -23,7 +23,7 @@ import * as unified from 'unified';
 import { Node as UnistNode } from 'unist';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
-interface ParsedSlateNode extends UnistNode {
+interface ParsedDocumentNode extends UnistNode {
   children: SlateNode[];
 }
 
@@ -38,7 +38,7 @@ export function parseFromMarkdown(json: string, discussions: BeatmapDiscussion[]
       return [];
     }
 
-    const doc: ParsedSlateNode[] = [];
+    const doc: ParsedDocumentNode[] = [];
     _.each(srcDoc, (block) => {
       switch (block.type) {
         // paragraph
@@ -59,10 +59,10 @@ export function parseFromMarkdown(json: string, discussions: BeatmapDiscussion[]
                   allowedBlocks: ['paragraph'],
                   allowedInlines: ['emphasis', 'strong'],
                 });
-            const parsed = processor.parse(block.text) as ParsedSlateNode;
+            const parsed = processor.parse(block.text) as ParsedDocumentNode;
 
             if (!parsed.children || parsed.children.length < 1) {
-              console.error('children missing... (this should\'t happen...?)');
+              console.error('children missing... ?');
 
               break;
             }
