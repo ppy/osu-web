@@ -22,9 +22,9 @@ namespace App\Transformers\API;
 
 use App\Models;
 use App\Models\UserStatistics;
-use League\Fractal;
+use App\Transformers\TransformerAbstract;
 
-class StatisticsTransformer extends Fractal\TransformerAbstract
+class StatisticsTransformer extends TransformerAbstract
 {
     public function transform(Models\UserStatistics\Model $stats = null)
     {

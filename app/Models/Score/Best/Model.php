@@ -107,6 +107,11 @@ abstract class Model extends BaseModel
 
     public function userRank($options)
     {
+        // laravel model has a $hidden property
+        if ($this->getAttribute('hidden')) {
+            return;
+        }
+
         return with_db_fallback('mysql-readonly', function ($connection) use ($options) {
             $alwaysAccurate = false;
 
@@ -137,13 +142,13 @@ abstract class Model extends BaseModel
             $countQuery = DB::raw('DISTINCT user_id');
 
             if ($alwaysAccurate) {
-                return 1 + $query->default()->count($countQuery);
+                return 1 + $query->visibleUsers()->default()->count($countQuery);
             }
 
             $rank = 1 + $query->count($countQuery);
 
             if ($rank < config('osu.beatmaps.max-scores') * 3) {
-                return 1 + $query->default()->count($countQuery);
+                return 1 + $query->visibleUsers()->default()->count($countQuery);
             } else {
                 return $rank;
             }
@@ -233,16 +238,13 @@ abstract class Model extends BaseModel
     {
         return $query
             ->whereHas('beatmap')
-            ->where(['hidden' => false]);
+            ->orderBy('score', 'DESC')
+            ->orderBy('score_id', 'ASC');
     }
 
-    public function scopeDefaultListing($query)
+    public function scopeVisibleUsers($query)
     {
-        return $query
-            ->default()
-            ->orderBy('score', 'DESC')
-            ->orderBy('score_id', 'ASC')
-            ->limit(config('osu.beatmaps.max-scores'));
+        return $query->where(['hidden' => false]);
     }
 
     public function scopeWithMods($query, $modsArray)

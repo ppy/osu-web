@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\BeatmapPlaycount;
-use League\Fractal;
 
-class BeatmapPlaycountTransformer extends Fractal\TransformerAbstract
+class BeatmapPlaycountTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
         'beatmap',

@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\BuildPropagationHistory;
-use League\Fractal;
 
-class BuildHistoryChartTransformer extends Fractal\TransformerAbstract
+class BuildHistoryChartTransformer extends TransformerAbstract
 {
     public function transform(BuildPropagationHistory $entry)
     {

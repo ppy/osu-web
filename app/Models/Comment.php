@@ -68,6 +68,7 @@ class Comment extends Model
 
     protected $casts = [
         'disqus_user_data' => 'array',
+        'pinned' => 'boolean',
     ];
 
     public $allowEmptyCommentable = false;
@@ -126,6 +127,10 @@ class Comment extends Model
         $this->validationErrors()->reset();
 
         $messageLength = mb_strlen(trim($this->message));
+
+        if ($this->isDirty('pinned') && $this->pinned && $this->parent_id !== null) {
+            $this->validationErrors()->add('pinned', '.top_only');
+        }
 
         if ($messageLength === 0) {
             $this->validationErrors()->add('message', 'required');

@@ -16,7 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $legacyFont = $legacyFont ?? true;
     $currentRoute = app('route-section')->getCurrent();
 
     $currentSection = $currentRoute['section'];
@@ -60,10 +59,6 @@
     >
         <style>
             :root {
-                @if (!$legacyFont)
-                    --font-default-override: var(--font-default-torus);
-                    --font-content-override: var(--font-content-inter);
-                @endif
                 --base-hue: {{ $currentHue }};
                 --base-hue-deg: {{ $currentHue }}deg;
             }

@@ -17,14 +17,20 @@
  */
 
 .osu-md {
-  @top: osu-md;
-  @paragraph-space: 1.5em;
+  @_top: osu-md;
+  @_paragraph-space: 1.5em;
 
   .content-font();
   color: inherit;
-  padding: 10px 20px 0;
   font-size: @font-size--wiki;
   word-wrap: break-word;
+
+  code {
+    .default-border-radius();
+    background-color: @osu-colour-b6;
+    color: @osu-colour-l1;
+    padding: 1px 4px;
+  }
 
   hr {
     border-color: @osu-colour-b3;
@@ -42,9 +48,26 @@
     max-width: 100%;
   }
 
+  pre {
+    background-color: @osu-colour-b6;
+    color: @osu-colour-l1;
+    border: none;
+    border-radius: 0px;
+
+    > code {
+      border: none;
+      padding: 0px;
+    }
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
   &--news {
     padding: 20px 25px 0;
-    color: white;
+    color: @osu-colour-c1;
     font-size: @font-size--wiki;
 
     @media @mobile {
@@ -52,14 +75,9 @@
     }
   }
 
-  &--store {
-    padding: 0;
-  }
-
   &--store-product {
     .default-text-shadow();
     .default-font();
-    padding: 0;
     font-size: @font-size--title-small-4;
   }
 
@@ -70,7 +88,7 @@
   }
 
   &__figure-container {
-    margin: @paragraph-space 0;
+    margin: @_paragraph-space 0;
     text-align: center;
   }
 
@@ -85,7 +103,7 @@
 
     font-weight: bold;
     font-style: normal;
-    color: white;
+    color: @osu-colour-c1;
 
     &:first-child {
       margin-top: 0;
@@ -97,14 +115,19 @@
 
     &--1 {
       margin-top: 40px;
+      font-weight: 600;
 
-      .@{top}--store-product & {
+      .@{_top}--comment & {
+        font-size: 1.2em;
+      }
+
+      .@{_top}--store-product & {
         font-weight: 200;
         font-size: @font-size--large-3;
         margin: 0;
       }
 
-      .@{top}--store-product-small & {
+      .@{_top}--store-product-small & {
         font-size: @font-size--header-title;
       }
 
@@ -117,33 +140,40 @@
 
     &--2 {
       font-size: @font-size--header-wiki-2;
-      margin: 20px 0 10px -20px;
-      color: white;
+      font-weight: 600;
+      margin: 20px 0 10px;
 
-      .@{top}--news & {
+      .@{_top}--comment & {
+        font-size: 1.1em;
+      }
+
+      .@{_top}--news & {
         font-size: @font-size--title;
-        margin-left: 0;
       }
     }
 
     &--3 {
       font-size: @font-size--header-wiki-3;
-      margin: 30px 0 10px -20px;
-      color: @osu-colour-l2;
+      margin: 30px 0 10px;
 
-      .@{top}--news & {
+      .@{_top}--comment & {
+        font-size: 1em;
+      }
+
+      .@{_top}--news & {
         font-size: @font-size--title-small-4;
-        margin-left: 0;
       }
     }
 
     &--4 {
       font-size: @font-size--header-wiki-4;
-      margin: 30px 0 10px -10px;
-      font-style: italic;
-      color: @osu-colour-l3;
+      margin: 30px 0 10px;
 
-      .@{top}--news & {
+      .@{_top}--comment & {
+        font-size: 1em;
+      }
+
+      .@{_top}--news & {
         font-size: inherit;
         color: inherit;
       }
@@ -151,21 +181,21 @@
 
     &--5 {
       font-size: @font-size--header-wiki-5;
-      font-weight: normal;
-      font-style: italic;
       margin-top: 20px;
+
+      .@{_top}--comment & {
+        font-size: 1em;
+      }
     }
 
     &--6 {
       font-size: @font-size--header-wiki-6;
-      font-weight: normal;
-      font-style: italic;
       margin-top: 20px;
-    }
-  }
 
-  &__image {
-    max-width: 100%;
+      .@{_top}--comment & {
+        font-size: 1em;
+      }
+    }
   }
 
   &__link {
@@ -179,31 +209,30 @@
   &__list-item {
     margin: 5px 0;
 
-    .@{top}--store & {
+    .@{_top}--store & {
       margin-left: 10px;
     }
   }
 
   &__paragraph {
-    margin-bottom: @paragraph-space;
+    margin-bottom: @_paragraph-space;
     line-height: 1.5;
 
-    .@{top}--store & {
+    .@{_top}--store & {
       margin-bottom: 10px;
     }
 
-    .@{top}--store-product-small & {
+    .@{_top}--store-product-small & {
       display: none;
     }
   }
 
   // not actual table but its container
   &__table {
-    .default-font();
     overflow-x: auto;
     margin-bottom: 20px;
 
-    .@{top}--store & {
+    .@{_top}--store & {
       table {
         width: 100%;
       }
@@ -219,6 +248,7 @@
     }
 
     &--header {
+      .default-font();
       border-top: none;
       border-bottom: 2px solid @osu-colour-b3;
       font-weight: bold;
@@ -230,25 +260,6 @@
 
     &--right {
       text-align: right;
-    }
-  }
-
-  code {
-    .default-border-radius();
-    background-color: @osu-colour-b6;
-    color: @osu-colour-l1;
-    padding: 1px 4px;
-  }
-
-  pre {
-    background-color: @osu-colour-b6;
-    color: @osu-colour-l1;
-    border: none;
-    border-radius: 0px;
-
-    code {
-      border: none;
-      padding: 0px;
     }
   }
 }

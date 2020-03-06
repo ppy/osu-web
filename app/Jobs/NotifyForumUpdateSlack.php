@@ -119,7 +119,7 @@ class NotifyForumUpdateSlack implements ShouldQueue
 
     private function isFromSupport()
     {
-        return $this->user->isAdmin() || $this->user->isMod() || $this->user->isDev();
+        return $this->user->isAdmin() || $this->user->isDev();
     }
 
     private function userText()

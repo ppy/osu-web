@@ -155,10 +155,16 @@ class Mod
         self::DOUBLETIME => [
             'speed_change' => 'float',
         ],
+        self::NIGHTCORE => [
+            'speed_change' => 'float',
+        ],
         self::EASY => [
             'retries' => 'int',
         ],
         self::HALFTIME => [
+            'speed_change' => 'float',
+        ],
+        self::DAYCORE => [
             'speed_change' => 'float',
         ],
         self::WIND_UP => [

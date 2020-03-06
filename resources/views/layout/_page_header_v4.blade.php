@@ -79,7 +79,10 @@
                                         "
                                         href="{{ $link['url'] }}"
                                     >
-                                        {{ $link['title'] }}
+                                        <span
+                                            class="fake-bold"
+                                            data-content={{ $link['title'] }}
+                                        >{{ $link['title'] }}</span>
                                     </a>
                                 @else
                                     <span class="header-nav-v4__text">{{ $link['title'] }}</span>

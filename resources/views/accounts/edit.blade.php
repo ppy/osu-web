@@ -117,8 +117,7 @@
                             {!! trans('accounts.edit.avatar.rules', [
                                 'link' => link_to(
                                     wiki_url('Rules'),
-                                    trans('accounts.edit.avatar.rules_link'),
-                                    ['class' => 'account-edit-entry__link']
+                                    trans('accounts.edit.avatar.rules_link')
                                 )
                             ]) !!}
                         </div>

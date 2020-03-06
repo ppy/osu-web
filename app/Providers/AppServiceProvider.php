@@ -118,5 +118,10 @@ class AppServiceProvider extends ServiceProvider
         // The middleware breaks without this. Not sure why.
         // Originally defined in Laravel's SessionServiceProvider.
         $this->app->singleton(StartSession::class);
+
+        // This is needed for testing with Dusk.
+        if ($this->app->environment('testing')) {
+            $this->app->register('\App\Providers\AdditionalDuskServiceProvider');
+        }
     }
 }

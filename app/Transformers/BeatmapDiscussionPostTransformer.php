@@ -21,20 +21,17 @@
 namespace App\Transformers;
 
 use App\Models\BeatmapDiscussionPost;
-use League\Fractal;
 
-class BeatmapDiscussionPostTransformer extends Fractal\TransformerAbstract
+class BeatmapDiscussionPostTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap_discussion',
     ];
 
+    protected $requiredPermission = 'BeatmapDiscussionPostShow';
+
     public function transform(BeatmapDiscussionPost $post)
     {
-        if (!priv_check('BeatmapDiscussionPostShow', $post)->can()) {
-            return [];
-        }
-
         return [
             'id' => $post->id,
             'beatmap_discussion_id' => $post->beatmap_discussion_id,

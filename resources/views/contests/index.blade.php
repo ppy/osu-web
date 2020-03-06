@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-@extends('master', ['legacyFont' => false])
+@extends('master')
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [

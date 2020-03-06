@@ -29,7 +29,6 @@
 @endphp
 
 @extends('master', [
-    'legacyFont' => false,
     'titlePrepend' => $contestMeta->name,
     'pageDescription' => strip_tags(markdown($contestMeta->currentDescription())),
     'canonicalUrl' => $contestMeta->url(),

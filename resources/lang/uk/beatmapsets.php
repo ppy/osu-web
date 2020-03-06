@@ -34,16 +34,10 @@ return [
         'discussion' => 'Обговорення',
 
         'details' => [
-            'approved' => 'одобрена ',
             'favourite' => 'Додати в обране',
             'logged-out' => 'Ви повинні увійти для завантаження карти!',
-            'loved' => 'улюблені ',
             'mapped_by' => 'створена :mapper',
-            'qualified' => 'кваліфікований ',
-            'ranked' => 'рангова від ',
-            'submitted' => 'опублікована ',
             'unfavourite' => 'Видалити з Обраного',
-            'updated' => 'останнє оновлення ',
             'updated_timeago' => 'оновлена :timeago',
 
             'download' => [

@@ -22,9 +22,8 @@ namespace App\Transformers;
 
 use App\Models\Build;
 use App\Models\ChangelogEntry;
-use League\Fractal;
 
-class BuildTransformer extends Fractal\TransformerAbstract
+class BuildTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'changelog_entries',
