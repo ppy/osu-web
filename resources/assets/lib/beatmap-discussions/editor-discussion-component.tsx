@@ -29,6 +29,7 @@ interface Props extends RenderElementProps {
   beatmapset: Beatmapset;
   currentBeatmap: Beatmap;
   currentDiscussions: BeatmapDiscussion[];
+  discussionId?: number;
   editMode?: boolean;
 }
 
@@ -47,7 +48,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
       const content = this.props.element.children[0].text;
       const TS_REGEX = /((\d{2,}):([0-5]\d)[:.](\d{3}))( \((?:\d[,|])*\d\))?/;
       const matches = content.match(TS_REGEX);
-      let timestamp = osu.trans('beatmap_discussions.timestamp_display.general');
+      let timestamp = null;
 
       if (matches !== null) {
         timestamp = matches[1];
@@ -67,11 +68,16 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    const readOnly = this.props.editMode;
     const bn = 'beatmap-discussion-review-post-embed-preview';
     const timestamp = this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general');
+    const attribs = this.props.attributes;
+
+    if (this.props.editMode) {
+      attribs.contentEditable = false;
+    }
+
     return (
-      <div className='beatmap-discussion beatmap-discussion--preview' {...this.props.attributes} contentEditable={!readOnly}>
+      <div className='beatmap-discussion beatmap-discussion--preview' {...attribs}>
         <div className='beatmap-discussion__discussion'>
           <div className={bn}>
             <div

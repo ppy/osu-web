@@ -182,17 +182,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
     public function testPostReviewGuest()
     {
         $this
-            ->post(route('beatmapsets.beatmap-discussions.review'))
+            ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()))
             ->assertUnauthorized();
-    }
-
-    // beatmapset id missing
-    public function testPostReviewIdMissing()
-    {
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'))
-            ->assertStatus(404);
     }
 
     // invalid document
@@ -200,8 +191,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'), [
-                'beatmapset_id' => $this->beatmapset->getKey(),
+            ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()), [
+                'document' => []
             ])
             ->assertStatus(422);
     }
@@ -218,7 +209,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.beatmap-discussions.review'), [
+            ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()), [
                 'beatmapset_id' => $this->beatmapset->getKey(),
                 'document' => [
                     [

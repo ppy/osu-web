@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\BeatmapsetDiscussionReview;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
@@ -382,6 +383,16 @@ class BeatmapDiscussionPost extends Model
     {
         $query->withoutTrashed()
             ->whereHas('visibleBeatmapDiscussion');
+    }
+
+    public function update(array $attributes = [], array $options = [])
+    {
+        if ($this->beatmapDiscussion->message_type === 'review') {
+            // do review-specific stuff here
+            return BeatmapsetDiscussionReview::update($this, $this->beatmapDiscussion, json_decode($attributes['message']));
+        } else {
+            return parent::update($attributes, $options);
+        }
     }
 
     public function url()

@@ -84,6 +84,7 @@ export function parseFromMarkdown(json: string, discussions: BeatmapDiscussion[]
             children: [{
               text: (discussion.starting_post || discussion.posts[0]).message,
             }],
+            discussionId: discussion.id,
             discussionType: discussion.message_type,
             timestamp: discussion.timestamp,
             type: 'embed',

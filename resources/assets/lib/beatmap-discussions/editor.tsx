@@ -23,7 +23,7 @@ import * as React from 'react';
 import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
-import { BeatmapDiscussionReview } from '../interfaces/beatmap-discussion-review';
+import { BeatmapDiscussionReview, DocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import EditorDiscussionComponent from './editor-discussion-component';
 import { parseFromMarkdown } from './review-document';
 import { SlateContext } from './slate-context';
@@ -181,7 +181,7 @@ export default class Editor extends React.Component<Props, any> {
   }
 
   post = () => {
-    $.ajax(laroute.route('beatmap-discussion-posts.review'),
+    $.ajax(laroute.route('beatmap-discussions.review'),
       {
         data: {
           beatmapset_id: this.props.beatmapset.id,
@@ -385,13 +385,19 @@ export default class Editor extends React.Component<Props, any> {
           break;
 
         case 'embed':
-          review.push({
+          const doc: DocumentIssueEmbed = {
             beatmap_id: node.beatmapId,
             discussion_type: node.discussionType,
             text: node.children[0].text,
-            timestamp: node.timestamp,
+            timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp) : null,
             type: 'embed',
-          });
+          };
+
+          if (node.discussionId) {
+            doc.discussion_id = node.discussionId;
+          }
+
+          review.push(doc);
           break;
       }
     });
@@ -406,16 +412,7 @@ export default class Editor extends React.Component<Props, any> {
     this.setState({menuShown: true});
   }
 
-  test = () => {
-    const obj = this.serialize();
-    let output = '';
-    _.each(JSON.parse(obj), (b) => {
-      output += b.text + '\n\n';
-    });
-
-    console.dir(JSON.parse(obj));
-    console.log(output);
-  }
+  test = () => console.dir(JSON.parse(this.serialize()));
 
   toggleBold = () => {
     this.toggleMark('bold');

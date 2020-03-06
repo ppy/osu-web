@@ -151,6 +151,17 @@ class @BeatmapDiscussionHelper
     mode: @discussionMode(discussion)
 
 
+  # this is essentially the opposite of formatTimestamp
+  @timestampToNumber: (value) =>
+    return unless typeof(value) == 'string' && osu.present(value)
+
+    [_match, m, s, ms, range] = value.match(/\b(\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b)/) ? []
+
+    return if !_match
+
+    parseInt(m) * 60*1000 + parseInt(s) * 1000 + parseInt(ms)
+
+
   # Don't forget to update BeatmapDiscussionsController@show when changing this.
   @url: (options = {}, useCurrent = false) =>
     {

@@ -43,6 +43,7 @@ interface BeatmapDiscussionHelperClass {
   messageType: DiscussionMessageType;
   format(text: string, options?: any): string;
   formatTimestamp(value: number): string;
+  parseTimestamp(value: string): number | null;
   url(options: any, useCurrent?: boolean): string;
 }
 
