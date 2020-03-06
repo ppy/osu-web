@@ -35,7 +35,7 @@ interface Props {
   sidebarMeta: NewsSidebarMetaJson;
 }
 
-function NavPost({ post, subtitle, modifiers }: { modifiers: string[] post?: NewsPostJson; subtitle: string; }) {
+function NavPost({ post, subtitle, modifiers }: { modifiers: string[]; post?: NewsPostJson; subtitle: string; }) {
   if (post == null) {
     return null;
   }
