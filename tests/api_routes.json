@@ -521,9 +521,12 @@
         "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/beatmaps/{id}/scores",
@@ -531,9 +534,12 @@
         "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/beatmaps/lookup",
@@ -541,9 +547,12 @@
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@lookup",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/beatmaps/lookup",
@@ -551,9 +560,12 @@
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@lookup",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/beatmaps/{beatmap}",
@@ -561,9 +573,12 @@
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@show",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/beatmaps/{beatmap}",
@@ -571,9 +586,12 @@
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@show",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/beatmapsets/search/{filters?}",
@@ -581,9 +599,12 @@
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@search",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/beatmapsets/search/{filters?}",
@@ -591,9 +612,12 @@
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@search",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/beatmapsets/lookup",
@@ -601,9 +625,12 @@
         "controller": "App\\Http\\Controllers\\API\\BeatmapsetsController@lookup",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/beatmapsets/lookup",
@@ -611,9 +638,12 @@
         "controller": "App\\Http\\Controllers\\API\\BeatmapsetsController@lookup",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/beatmapsets/{beatmapset}/download",
@@ -641,9 +671,12 @@
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@show",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/beatmapsets/{beatmapset}",
@@ -651,9 +684,12 @@
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@show",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:beatmaps.read"
         ],
-        "scopes": []
+        "scopes": [
+            "beatmaps.read"
+        ]
     },
     {
         "uri": "api/v2/friends",
