@@ -174,14 +174,19 @@ export class NewReply extends React.PureComponent
     resolved = switch action
                when 'reply_resolve' then true
                when 'reply_reopen' then false
-               else @props.discussion.resolved
+               else null
 
     @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
       data:
         beatmap_discussion_id: @props.discussion.id
         beatmap_discussion:
-          resolved: resolved
+          # Only add resolved flag to beatmap_discussion if there was an
+          # explicit change (resolve/reopen).
+          if resolved?
+            resolved: resolved
+          else
+            {}
         beatmap_discussion_post:
           message: @state.message
 
