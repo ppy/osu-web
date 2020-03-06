@@ -85,7 +85,7 @@ export default class Main extends React.Component<Props, State> {
         />
         <div className='osu-page osu-page--wiki'>
           <div className='wiki-page'>
-            <div className='wiki-page__toc hidden-xs'>
+            <div className='wiki-page__toc'>
               <NewsSidebar data={this.props.sidebarMeta} />
             </div>
 
