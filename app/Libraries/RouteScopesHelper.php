@@ -26,6 +26,41 @@ class RouteScopesHelper
 {
     public $routes;
 
+    // fills in any missing require-scopes:
+    public function fillMissingMiddlewares()
+    {
+        // pass by reference so middlewares value can be reassigned.
+        foreach ($this->routes as &$route) {
+            $scopes = $route['scopes'];
+            $middlewares = $route['middlewares'];
+
+            $scopesString = presence(implode(',', $scopes));
+            if ($scopesString === null) {
+                continue;
+            }
+
+            // add missing middleware if necessary; exact order might be wrong.
+            $newString = "require-scopes:{$scopesString}";
+            if (!in_array('require-scopes', $middlewares, true)) {
+                $middlewares[] = 'require-scopes';
+            }
+
+            $exists = false;
+            foreach ($middlewares as &$middleware) {
+                if (starts_with($middleware, 'require-scopes:')) {
+                    $middleware = $newString;
+                    $exists = true;
+                }
+            }
+
+            if (!$exists) {
+                $middlewares[] = $newString;
+            }
+
+            $route['middlewares'] = $middlewares;
+        }
+    }
+
     public function fromCsv(string $filename)
     {
         $csv = array_map('str_getcsv', file($filename));
