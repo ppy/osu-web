@@ -153,12 +153,12 @@ export class BeatmapsetPanel extends React.PureComponent
                   pattern: osu.trans 'beatmapsets.show.details.mapped_by'
                   mappings:
                     ':mapper':
-                        a
-                          key: 'mapper'
-                          href: laroute.route('users.show', user: beatmapset.user_id)
-                          className: 'js-usercard'
-                          'data-user-id': beatmapset.user_id
-                          strong null, beatmapset.creator
+                      a
+                        key: 'mapper'
+                        href: laroute.route('users.show', user: beatmapset.user_id)
+                        className: 'js-usercard'
+                        'data-user-id': beatmapset.user_id
+                        strong null, beatmapset.creator
               div
                 className: 'u-ellipsis-overflow'
                 if beatmapset.status in ['graveyard', 'wip', 'pending']
