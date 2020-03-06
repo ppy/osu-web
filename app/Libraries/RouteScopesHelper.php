@@ -41,20 +41,23 @@ class RouteScopesHelper
 
             // add missing middleware if necessary; exact order might be wrong.
             $newString = "require-scopes:{$scopesString}";
-            if (!in_array('require-scopes', $middlewares, true)) {
+            $index = array_search('require-scopes', $middlewares, true);
+            if ($index === false) {
                 $middlewares[] = 'require-scopes';
             }
 
             $exists = false;
             foreach ($middlewares as &$middleware) {
+                // replace existing value if it exists
                 if (starts_with($middleware, 'require-scopes:')) {
                     $middleware = $newString;
                     $exists = true;
                 }
             }
 
+            // otherwise insert new value after require-scopes if possible.
             if (!$exists) {
-                $middlewares[] = $newString;
+                array_splice($middlewares, $index ? $index + 1 : count($middlewares), 0, $newString);
             }
 
             $route['middlewares'] = $middlewares;
