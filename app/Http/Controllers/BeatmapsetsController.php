@@ -23,6 +23,15 @@ use Request;
 
 class BeatmapsetsController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        if (is_api_request()) {
+            $this->middleware('require-scopes:beatmaps.read', ['only' => ['search', 'show']]);
+        }
+    }
+
     public function destroy($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
