@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\Country;
-use League\Fractal;
 
-class CountryTransformer extends Fractal\TransformerAbstract
+class CountryTransformer extends TransformerAbstract
 {
     protected $availableIncludes = ['ranking'];
 
@@ -39,10 +38,10 @@ class CountryTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($country, function ($country) {
             return [
-              'active_users' => $country->usercount,
-              'play_count' => $country->playcount,
-              'ranked_score' => $country->rankedscore,
-              'performance' => $country->pp,
+                'active_users' => $country->usercount,
+                'play_count' => $country->playcount,
+                'ranked_score' => $country->rankedscore,
+                'performance' => $country->pp,
             ];
         });
     }

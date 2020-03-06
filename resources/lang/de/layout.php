@@ -25,81 +25,91 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            '_' => 'admin',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'beatmapset covers',
+            'contest' => 'wettbewerb',
+            'contests' => 'wettbewerbe',
+            'root' => 'konsole',
+            'store_orders' => 'store admin',
         ],
 
         'artists' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'vorgestellte Künstler',
+            'index' => 'liste',
         ],
 
         'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
+            '_' => 'beatmap',
+            'discussions' => 'diskussion',
+            'index' => 'liste',
+            'show' => 'info',
+            'packs' => 'packete',
         ],
 
         'changelog' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'änderungsprotokoll',
+            'index' => 'liste',
         ],
 
         'community' => [
             '_' => 'Community',
-            'comments' => '',
+            'comments' => 'kommentare',
+            'contests' => 'wettbewerbe',
             'forum' => 'Forum',
-            'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
+            'livestream' => 'liveübertragung',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => 'fehler',
         ],
 
         'help' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'wiki',
+            'index' => 'index',
         ],
 
         'home' => [
-            '_' => '',
-            'password_reset' => '',
+            '_' => 'home',
+            'password_reset' => 'passwort zurücksetzten',
         ],
 
         'matches' => [
-            '_' => '',
+            '_' => 'spielverlauf',
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => 'notiz',
         ],
 
-        'rankings' => [
-            '_' => '',
-        ],
-
-        'tournaments' => [
+        'notifications' => [
             '_' => '',
             'index' => '',
         ],
 
+        'rankings' => [
+            '_' => 'rang',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'warenkorb',
+            'order' => 'rechnung',
+            'orders' => 'bestellverlauf',
+            'product' => 'produkt',
+            'products' => 'produkte',
+        ],
+
+        'tournaments' => [
+            '_' => 'turniere',
+            'index' => 'liste',
+        ],
+
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            '_' => 'spieler',
+            'forum_posts' => 'forenbeiträge',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
@@ -116,10 +126,11 @@ return [
             '_' => 'home',
             'account-edit' => 'einstellungen',
             'account-verifyLink' => 'Überprüfung abgeschlossen',
-            'beatmapset-watches-index' => '',
+            'beatmapset-watches-index' => 'modding watchlist',
             'changelog-build' => 'version',
             'changelog-index' => 'changelog',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => 'osu!-Client-Verifizierung',
+            'forum-topic-watches-index' => 'forenabonnements',
             'friends-index' => 'freunde',
             'getDownload' => 'download',
             'getIcons' => 'icons',
@@ -133,7 +144,7 @@ return [
             'search' => 'suche',
             'supportTheGame' => 'Das Spiel unterstützen',
             'team' => 'team',
-            'testflight' => '',
+            'testflight' => 'testflug',
         ],
         'profile' => [
             '_' => 'profil',
@@ -222,6 +233,7 @@ return [
             'modding-history-posts' => 'nutzer-modding-posts',
             'modding-history-votesGiven' => 'vergebene modding-votes',
             'modding-history-votesReceived' => 'erhaltene modding-votes',
+            'notifications-index' => '',
             'oauth_login' => 'anmelden für oauth',
             'oauth_request' => 'oauth Autorisierung',
             'settings' => 'Einstellungen',

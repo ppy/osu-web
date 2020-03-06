@@ -22,11 +22,11 @@ preventUsernameSubmission = ->
 
 checkUsernameValidity = ->
   $status = $('#username-check-status')
-  requestedUsername = $('#username.form-control').val()
+  requestedUsername = $('.js-username-change-input').val()
 
   $.post laroute.route('users.check-username-availability'), username: requestedUsername
   .done (data) ->
-    return unless data.username == $('#username.form-control').val()
+    return unless data.username == $('.js-username-change-input').val()
 
     if data.available
       $('.js-store-add-to-cart').attr 'disabled', false
@@ -45,9 +45,10 @@ checkUsernameValidity = ->
 
 debouncedCheckUsernameValidity = _.debounce checkUsernameValidity, 300
 
-$(document).on 'input', '.js-username-change #username.form-control', ->
+$(document).on 'input', '.js-username-change-input', (e) ->
+  input = e.currentTarget
   $status = $('#username-check-status')
-  requestedUsername = $('#username.form-control').val()
+  requestedUsername = input.value
 
   $status.removeClass 'green-dark'
   $status.removeClass 'pink-dark'
@@ -60,5 +61,5 @@ $(document).on 'input', '.js-username-change #username.form-control', ->
     debouncedCheckUsernameValidity()
 
 $(document).on 'turbolinks:load', ->
-  return if $('.js-username-change #username.form-control').length == 0
+  return if $('.js-username-change-input').length == 0
   preventUsernameSubmission()

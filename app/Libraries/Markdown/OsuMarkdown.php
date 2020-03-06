@@ -55,9 +55,10 @@ class OsuMarkdown
             'block_name' => 'changelog-md',
             'html_input' => 'allow',
         ],
-        'default' => [
-            'block_name' => 'osu-md-default',
+        'comment' => [
+            'block_modifiers' => ['comment'],
         ],
+        'default' => [],
         'news' => [
             'block_modifiers' => ['news'],
             'generate_toc' => true,
@@ -67,6 +68,12 @@ class OsuMarkdown
         'store' => [
             'block_modifiers' => ['store'],
             'html_input' => 'allow',
+        ],
+        'store-product' => [
+            'block_modifiers' => ['store-product'],
+        ],
+        'store-product-small' => [
+            'block_modifiers' => ['store-product', 'store-product-small'],
         ],
         'wiki' => [
             'generate_toc' => true,

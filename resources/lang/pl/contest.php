@@ -23,6 +23,11 @@ return [
         'small' => 'Rywalizacja na więcej sposobów niż tylko klikanie w kółka.',
         'large' => 'Konkursy społeczności',
     ],
+
+    'index' => [
+        'nav_title' => 'lista',
+    ],
+
     'voting' => [
         'over' => 'Głosowanie dla tego konkursu zostało zakończone',
         'login_required' => 'Zaloguj się, aby zagłosować!',

@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => '支払いをする',
+        'info' => ':count_delimited 個がカート内にあります($:subtotal)',
         'more_goodies' => '精算の前に他のグッズをチェックする。',
         'shipping_fees' => '配送料',
         'title' => 'カート',
@@ -145,5 +146,9 @@ return [
             '_' => '名前を変えるには:linkが必要です！',
             'link_text' => 'ログイン',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

@@ -86,7 +86,7 @@ abstract class Model extends BaseModel
         return get_class_namespace(static::class).'\\'.studly_case($mode);
     }
 
-    public static function getMode() : string
+    public static function getMode(): string
     {
         return snake_case(get_class_basename(static::class));
     }
@@ -96,9 +96,13 @@ abstract class Model extends BaseModel
         return $query
             ->where('rank', '<>', 'F')
             ->whereHas('beatmap')
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            })
             ->orderBy('score_id', 'desc');
+    }
+
+    public function scopeVisibleUsers($query)
+    {
+        return $query->whereHas('user', function ($userQuery) {
+            $userQuery->default();
+        });
     }
 }

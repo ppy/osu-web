@@ -16,8 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'legacyFont' => false,
-    'legacyNav' => false,
     'pageDescription' => $forum->toMetaDescription(),
     'searchParams' => [
         'forum_id' => $forum->getKey(),

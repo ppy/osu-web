@@ -16,9 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-@extends('master', [
-    'legacyNav' => false,
-])
+@extends('master')
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
@@ -31,16 +29,18 @@
         'subSection' => trans('wiki.main.title'),
         'theme' => 'help',
     ]])
-        @slot('titleAppend')
+        @slot('navAppend')
             @include('wiki._actions')
         @endslot
     @endcomponent
 
-    <div class="osu-page osu-page--wiki wiki-main-page">
+    <div class="osu-page osu-page--wiki osu-page--wiki-main">
         @include('wiki._notice')
-        @if (Auth::user() !== null)
-            <div class="js-react--wiki-search"></div>
-        @endif
-        {!! $page->get()["output"] !!}
+
+        <div class="js-react--wiki-search"></div>
+
+        <div class="wiki-main-page">
+            {!! $page->get()["output"] !!}
+        </div>
     </div>
 @endsection

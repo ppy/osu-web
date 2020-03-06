@@ -34,16 +34,10 @@ return [
         'discussion' => 'Keskustelu',
 
         'details' => [
-            'approved' => 'vahvistettu ',
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
-            'loved' => 'rakastettu ',
             'mapped_by' => 'luonut: :mapper',
-            'qualified' => 'esihyväksytty ',
-            'ranked' => 'hyväksytty ',
-            'submitted' => 'julkaistu ',
             'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
-            'updated' => 'viimeisin päivitys ',
             'updated_timeago' => 'päivitetty viimeksi :timeago',
 
             'download' => [

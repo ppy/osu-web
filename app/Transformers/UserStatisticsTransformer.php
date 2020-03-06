@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\UserStatistics;
-use League\Fractal;
 
-class UserStatisticsTransformer extends Fractal\TransformerAbstract
+class UserStatisticsTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'rank',
@@ -45,7 +44,7 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
             'pp' => $stats->rank_score,
             'pp_rank' => $stats->rank_score_index,
             'ranked_score' => $stats->ranked_score,
-            'hit_accuracy' => $stats->accuracy_new,
+            'hit_accuracy' => $stats->hit_accuracy,
             'play_count' => $stats->playcount,
             'play_time' => $stats->total_seconds_played,
             'total_score' => $stats->total_score,

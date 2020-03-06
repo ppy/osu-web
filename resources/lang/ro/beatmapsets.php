@@ -34,16 +34,10 @@ return [
         'discussion' => 'Discuție',
 
         'details' => [
-            'approved' => 'aprobat pe ',
             'favourite' => 'Adaugă acest beatmapset la favorite',
             'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
-            'loved' => 'loved pe ',
             'mapped_by' => 'mapat de :mapper',
-            'qualified' => 'calificat pe ',
-            'ranked' => 'clasat pe ',
-            'submitted' => 'trimis pe ',
             'unfavourite' => 'Elimină acest beatmapset de la favorite',
-            'updated' => 'ultima dată actualizat ',
             'updated_timeago' => 'ultima dată actualizat :timeago',
 
             'download' => [
@@ -77,15 +71,15 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
-                'button_title' => '',
+                '_' => 'Dacă găsești o problemă cu acest beatmap, vă rugăm descalificați-o :link.',
+                'button_title' => 'Descalifică un beatmap calificat.',
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => 'Dacă găsești o problemă cu acest beatmap, vă rugăm raportați-o :link ca să alertați echipa.',
+                'button' => 'Raportează problemă',
+                'button_title' => 'Raportează o problemă pe un beatmap calificat.',
+                'link' => 'aici',
             ],
         ],
 
@@ -153,13 +147,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Clasat',
+            'approved' => 'Aprobat',
+            'loved' => 'Iubit',
+            'qualified' => 'Calificat',
+            'wip' => 'WIP',
+            'pending' => 'În Așteptare',
+            'graveyard' => 'Cimitir',
         ],
     ],
 ];

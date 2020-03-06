@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { dispatchListener } from 'app-dispatcher';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
@@ -29,18 +30,16 @@ import { UserAvatar } from 'user-avatar';
 import { ChatChannelSwitchAction } from '../actions/chat-actions';
 import DispatcherAction from '../actions/dispatcher-action';
 import DispatchListener from '../dispatch-listener';
-import Dispatcher from '../dispatcher';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
 interface Props {
   dataStore?: RootDataStore;
-  dispatcher?: Dispatcher;
 }
 
 @inject('dataStore')
-@inject('dispatcher')
 @observer
+@dispatchListener
 export default class ConversationView extends React.Component<Props> implements DispatchListener {
   private assumeHasBacklog: boolean = false;
   private chatViewRef = React.createRef<HTMLDivElement>();
@@ -52,7 +51,6 @@ export default class ConversationView extends React.Component<Props> implements 
     super(props);
 
     this.dataStore = props.dataStore!;
-    props.dispatcher!.register(this);
   }
 
   componentDidMount() {

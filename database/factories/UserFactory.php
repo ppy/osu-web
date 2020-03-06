@@ -74,11 +74,17 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->state(App\Models\User::class, 'bng', function (Faker\Generator $faker) {
-    return [
-        'group_id' => App\Models\UserGroup::GROUPS['bng'],
-    ];
-});
+foreach (['admin', 'bng', 'gmt', 'nat'] as $identifier) {
+    $attribs = ['group_id' => app('groups')->byIdentifier($identifier)->getKey()];
+
+    $factory->state(App\Models\User::class, $identifier, function () use ($attribs) {
+        return $attribs;
+    });
+
+    $factory->afterCreatingState(App\Models\User::class, $identifier, function ($user) use ($attribs) {
+        $user->userGroups()->create($attribs);
+    });
+}
 
 $factory->state(App\Models\User::class, 'restricted', function (Faker\Generator $faker) {
     return [
@@ -86,8 +92,10 @@ $factory->state(App\Models\User::class, 'restricted', function (Faker\Generator 
     ];
 });
 
-$factory->afterCreatingState(App\Models\User::class, 'bng', function ($user, $faker) {
-    $user->userGroups()->create(['group_id' => App\Models\UserGroup::GROUPS['bng']]);
+$factory->afterCreatingState(App\Models\User::class, 'restricted', function ($user, $faker) {
+    $user->accountHistories()->save(
+        factory(App\Models\UserAccountHistory::class)->states('restriction')->make()
+    );
 });
 
 $factory->afterCreatingState(App\Models\User::class, 'silenced', function ($user, $faker) {

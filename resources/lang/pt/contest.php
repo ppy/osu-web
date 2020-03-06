@@ -23,6 +23,11 @@ return [
         'small' => 'Compete em mais maneiras do que só clicar em círculos.',
         'large' => 'Concursos da comunidade',
     ],
+
+    'index' => [
+        'nav_title' => 'listagem',
+    ],
+
     'voting' => [
         'over' => 'A votação para este concurso terminou',
         'login_required' => 'Por favor inicia sessão para votar.',

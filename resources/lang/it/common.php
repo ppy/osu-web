@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Amministratore',
+        'authorise' => 'Autorizza',
         'back_to_previous' => 'Torna alla posizione precedente',
         'back_to_top' => 'Torna in cima',
         'cancel' => 'Cancella',
@@ -48,7 +49,7 @@ return [
         'expand' => 'espandi',
         'hide' => 'nascondi',
         'permalink' => 'permalink',
-        'permalink_copied' => 'link copiato',
+        'pin' => 'fissa',
         'post' => 'Posta',
         'reply' => 'Rispondi',
         'reply_reopen' => 'Rispondi e Riapri',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'mostra altro',
         'show' => 'mostra',
         'show_deleted' => 'Mostra eliminati',
+        'show_less' => '',
         'show_more' => 'mostra altro',
         'show_more_options' => 'mostra più opzioni',
+        'unpin' => 'non fissare',
         'update' => 'Aggiorna',
         'upload_image' => 'carica immagine',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'minuto|minuti',
         'minutes' => ':count_delimited minuto|:count_delimited minuti',
         'months' => ':count_delimited mese|:count_delimited mesi',
+        'notifications' => '',
         'plus_others' => '+ :count_delimited altro!|+ :count_delimited altri!',
         'post' => ':count_delimited post|:count_delimited post',
         'second_short_unit' => 'secondo|secondi',
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Avviso',
+    ],
+
+    'wrong_user' => [
+        '_' => 'Hai effettuato l\'accesso come :user. :logout_link.',
+        'logout_link' => 'Clicca qui per accedere come un utente diverso',
     ],
 ];

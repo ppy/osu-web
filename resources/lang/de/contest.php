@@ -23,6 +23,11 @@ return [
         'small' => 'Tritt gegen mehr als nur Kreise an.',
         'large' => 'Community Wettbewerbe',
     ],
+
+    'index' => [
+        'nav_title' => 'liste',
+    ],
+
     'voting' => [
         'over' => 'Die Abstimmung für diesen Wettbewerb ist beendet',
         'login_required' => 'Zum Abstimmen bitte einloggen.',

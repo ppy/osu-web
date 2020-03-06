@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Administrador',
+        'authorise' => 'Autorizar',
         'back_to_previous' => 'Volver a la última posición',
         'back_to_top' => 'Ir arriba',
         'cancel' => 'Cancelar',
@@ -48,7 +49,7 @@ return [
         'expand' => 'expandir',
         'hide' => 'ocultar',
         'permalink' => 'enlace permanente',
-        'permalink_copied' => 'enlace copiado',
+        'pin' => 'fijar',
         'post' => 'Publicar',
         'reply' => 'Responder',
         'reply_reopen' => 'Responder y reabrir',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'ver más',
         'show' => 'mostrar',
         'show_deleted' => 'Mostrar eliminados',
+        'show_less' => '',
         'show_more' => 'mostrar más',
         'show_more_options' => 'mostrar más opciones',
+        'unpin' => 'quitar fijado',
         'update' => 'Actualizar',
         'upload_image' => 'subir imagen',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'min|mins',
         'minutes' => ':count minuto|:count minutos',
         'months' => ':count mes|:count meses',
+        'notifications' => '',
         'plus_others' => '+ :count_delimited otro!|+ :count_delimited otros!',
         'post' => ':count_delimited publicación|:count_delimited publicaciones',
         'second_short_unit' => 'seg|segs',
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Aviso',
+    ],
+
+    'wrong_user' => [
+        '_' => 'Sesión actual: :user. :logout_link.',
+        'logout_link' => 'Clic aquí para iniciar sesión con otro usuario',
     ],
 ];

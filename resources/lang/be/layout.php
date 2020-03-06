@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '',
             'comments' => '',
+            'contests' => '',
             'forum' => '',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -86,8 +82,22 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
@@ -119,6 +129,7 @@ return [
             'beatmapset-watches-index' => '',
             'changelog-build' => 'зборка',
             'changelog-index' => 'спic змен',
+            'client_verifications-create' => '',
             'forum-topic-watches-index' => '',
             'friends-index' => 'сябры',
             'getDownload' => 'спампаваць',
@@ -222,6 +233,7 @@ return [
             'modding-history-posts' => 'гісторыя допісаў',
             'modding-history-votesGiven' => 'галасы',
             'modding-history-votesReceived' => 'атрымліныя галасы',
+            'notifications-index' => '',
             'oauth_login' => 'уваход для oauth',
             'oauth_request' => 'аўтарызацыя oauth',
             'settings' => 'Налады',

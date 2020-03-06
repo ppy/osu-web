@@ -18,6 +18,8 @@
 
 # Import shim so that globally declared scripts can work without changes.
 
+import ClickMenu from 'click-menu'
+import Fade from 'fade'
 import Enchant from 'enchant'
 import ForumPoll from 'forum-poll'
 import * as laroute from 'laroute'
@@ -27,14 +29,19 @@ import TextareaAutosize from 'react-autosize-textarea'
 import GalleryContest from 'gallery-contest'
 import WindowVHPatcher from 'window-vh-patcher'
 import TurbolinksReload from 'turbolinks-reload'
+import OsuUrlHelper from 'osu-url-helper'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
 
+window.Fade = Fade
+
 window._exported = {
+  ClickMenu
   Enchant
   ForumPoll
   GalleryContest
+  OsuUrlHelper
   TurbolinksReload
   WindowVHPatcher
 }

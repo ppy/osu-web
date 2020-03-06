@@ -34,16 +34,10 @@ return [
         'discussion' => '토론',
 
         'details' => [
-            'approved' => 'approved된 날짜: ',
             'favourite' => '즐겨찾기',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
-            'loved' => 'loved된 날짜: ',
             'mapped_by' => ':mapper님의 맵',
-            'qualified' => 'qualified된 날짜: ',
-            'ranked' => 'ranked된 날짜: ',
-            'submitted' => '만든 날짜: ',
             'unfavourite' => '즐겨찾기 해제',
-            'updated' => '마지막 수정 날짜: ',
             'updated_timeago' => ':timeago에 마지막으로 수정됨',
 
             'download' => [
@@ -77,8 +71,8 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
-                'button_title' => '',
+                '_' => '이 비트맵에 문제가 있다면, :link해 주세요.',
+                'button_title' => 'Qualified 비트맵을 Disqualify 처리',
             ],
 
             'report' => [
@@ -153,13 +147,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
+            'qualified' => 'Qualified',
             'wip' => '작업중',
-            'pending' => '',
-            'graveyard' => '',
+            'pending' => 'Pending',
+            'graveyard' => '무덤에 감',
         ],
     ],
 ];

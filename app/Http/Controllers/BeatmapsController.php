@@ -45,50 +45,53 @@ class BeatmapsController extends Controller
     public function scores($id)
     {
         $beatmap = Beatmap::findOrFail($id);
-        $mode = presence(Request::input('mode')) ?? $beatmap->mode;
-        $mods = get_arr(Request::input('mods'), 'presence') ?? [];
-        $type = Request::input('type', 'global');
-        $user = Auth::user();
-
         if ($beatmap->approved <= 0) {
             return ['scores' => []];
         }
 
-        try {
-            if ($type !== 'global' || !empty($mods)) {
-                if ($user === null || !$user->isSupporter()) {
-                    throw new ScoreRetrievalException(trans('errors.supporter_only'));
+        return with_db_fallback('mysql-readonly', function ($connection) use ($beatmap) {
+            $mode = presence(Request::input('mode')) ?? $beatmap->mode;
+            $mods = get_arr(Request::input('mods'), 'presence') ?? [];
+            $type = Request::input('type', 'global');
+            $user = Auth::user();
+
+            try {
+                if ($type !== 'global' || !empty($mods)) {
+                    if ($user === null || !$user->isSupporter()) {
+                        throw new ScoreRetrievalException(trans('errors.supporter_only'));
+                    }
                 }
-            }
 
-            $class = BestModel::getClassByString($mode);
-            $table = (new $class)->getTable();
-            $query = $beatmap
-                ->scoresBest($mode)
-                ->with(['beatmap', 'user.country'])
-                ->defaultListing();
-        } catch (ScoreRetrievalException $ex) {
-            return error_popup($ex->getMessage());
-        }
+                $class = BestModel::getClassByString($mode);
+                $model = new $class;
+                $model->setConnection($connection);
 
-        $query->withMods($mods);
-        $query->withType($type, compact('user'));
+                $query = $model
+                    ->default()
+                    ->where('beatmap_id', $beatmap->getKey())
+                    ->with(['beatmap', 'user.country'])
+                    ->withMods($mods)
+                    ->withType($type, compact('user'));
 
-        $results = [
-            'scores' => json_collection($query->forListing(), 'Score', ['beatmap', 'user', 'user.country']),
-        ];
+                if ($user !== null) {
+                    $score = (clone $query)->where('user_id', $user->user_id)->first();
+                }
 
-        if ($user !== null) {
-            $score = (clone $query)->where('user_id', $user->user_id)->first();
-
-            if ($score !== null) {
-                $results['userScore'] = [
-                    'position' => $score->userRank(compact('type', 'mods')),
-                    'score' => json_item($score, 'Score', ['user', 'user.country']),
+                $results = [
+                    'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country']),
                 ];
-            }
-        }
 
-        return $results;
+                if (isset($score)) {
+                    $results['userScore'] = [
+                        'position' => $score->userRank(compact('type', 'mods')),
+                        'score' => json_item($score, 'Score', ['user', 'user.country']),
+                    ];
+                }
+
+                return $results;
+            } catch (ScoreRetrievalException $ex) {
+                return error_popup($ex->getMessage());
+            }
+        });
     }
 }

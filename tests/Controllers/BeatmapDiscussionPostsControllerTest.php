@@ -11,7 +11,6 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\Notification;
 use App\Models\User;
-use App\Models\UserGroup;
 use App\Models\UserNotification;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
@@ -124,7 +123,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $currentDiscussions = BeatmapDiscussion::count();
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
 
-        $this->user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng']]);
+        $this->user->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
 
         $this
             ->actingAsVerified($this->user)
@@ -201,7 +200,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
     public function testPostStoreNewReplyReopenByNominator()
     {
         $user = factory(User::class)->create();
-        $user->userGroups()->create(['group_id' => UserGroup::GROUPS['bng']]);
+        $user->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
         $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
         $this->beatmapDiscussion->update(['message_type' => 'problem', 'resolved' => true]);
         $lastDiscussionPosts = BeatmapDiscussionPost::count();
@@ -354,6 +353,21 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($initialMessage, $post->fresh()->message);
     }
 
+    public function testPostUpdateWhenBeatmapsetDiscussionIsLocked()
+    {
+        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+        $message = $reply->message;
+
+        $this->beatmapset->update(['discussion_locked' => true]);
+
+        $this->putPost("{$message} edited", $reply, $this->user)->assertStatus(403);
+        $this->assertSame($message, $reply->fresh()->message);
+    }
+
     public function testPostUpdateWhenDiscussionResolved()
     {
         // reply made before resolve
@@ -469,6 +483,20 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ->assertViewIs('users.login')
             ->assertStatus(401);
 
+        $this->assertFalse($reply->fresh()->trashed());
+    }
+
+    public function testPostDestroyWhenBeatmapsetDiscussionIsLocked()
+    {
+        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->beatmapset->update(['discussion_locked' => true]);
+
+        $this->deletePost($reply, $this->user)->assertStatus(403);
         $this->assertFalse($reply->fresh()->trashed());
     }
 

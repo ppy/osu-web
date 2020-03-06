@@ -20,6 +20,7 @@ Represents a beatmapset.
   "message": "yes",
   "message_html": "<div class='osu-md-default'><p class=\"osu-md-default__paragraph\">yes</p>\n</div>",
   "parent_id": null,
+  "pinned": true,
   "replies_count": 0,
   "updated_at": "2019-09-05T06:31:20+00:00",
   "user_id": 1,
@@ -42,6 +43,7 @@ legacy_name      | string?    | username displayed on legacy comments
 message          | string?    | markdown of the comment's content
 message_html     | string?    | html version of the comment's content
 parent_id        | number?    | ID of the comment's parent
+pinned           | boolean    | Pin status of the comment
 replies_count    | number     | number of replies to the comment
 updated_at       | string     | ISO 8601 date
 user_id          | number     | user ID of the poster
@@ -118,6 +120,7 @@ url              | string     | url of the object
   "has_more": true,
   "has_more_id": 276,
   "included_comments": [],
+  "pinned_comments": [],
   "sort": "new",
   "user_follow": false,
   "user_votes": [277],
@@ -163,6 +166,7 @@ comments          | [Comment](#comment)[]                 | Array of comments or
 has_more          | boolean                               | If there are more comments or replies available
 has_more_id       | number?                               |
 included_comments | [Comment](#comment)[]                 | Related comments; e.g. parent comments and nested replies
+pinned_comments   | [Comment](#comment)[]?                | Pinned comments
 sort              | string                                | one of the [CommentSort](#commentsort) types
 top_level_count   | number?                               | Number of comments at the top level. Not returned for replies.
 total             | number?                               | Total number of comments. Not retuned for replies.
@@ -175,6 +179,17 @@ users             | [UserCompact](#usercompact)[]         | array of users relat
 
 Available sort types are `new`, `old`, `top`.
 
+Type  | Sort Fields
+----- | ------------------------------------------------------------------------
+new   | `created_at` (descending), `id` (descending)
+old   | `created_at` (ascending), `id` (ascending)
+top   | `votes_count` (descending), `created_at` (descending), `id` (descending)
+
+### Building cursor for comments listing
+
+The returned response will be for comments after the specified sort fields.
+
+For example, use last loaded comment for the fields value to load more comments. Also make sure to use same `sort` and `parent_id` values.
 
 ## ChatChannel
 ```json
@@ -597,6 +612,35 @@ spotlight      | [Spotlight](#spotlight)?            | Spotlight details; only a
 total          | number                              | An approximate count of ranks available
 
 
+## Spotlight Response
+```json
+{
+  "spotlights": [
+    {
+      "end_date": "2019-03-22T00:00:00+00:00",
+      "id": 1,
+      "mode_specific": false,
+      "name": "Best spinning circles 2019",
+      "start_date": "2019-02-22T00:00:00+00:00",
+      "type": "yearly",
+    },
+    {
+      "end_date": "2019-03-22T00:00:00+00:00",
+      "id": 2,
+      "mode_specific": true,
+      "name": "Ultimate fruit collector February 2019",
+      "start_date": "2019-02-22T00:00:00+00:00",
+      "type": "monthly",
+    }
+  ],
+}
+```
+
+Field          | Type                                | Description
+-------------- | ----------------------------------- | --------------------------------------------------------------------
+spotlights     | [Spotlight](#spotlight)[]           | An array of spotlights
+
+
 ## RankingType
 
 Available ranking types:
@@ -623,14 +667,15 @@ score       | Score
 
 The details of a spotlight.
 
-Field         | Type     | Description
-------------- | -------- | ----------------------------------------------------------------------------
-end_date      | DateTime | The end date of the spotlight.
-id            | number   | The ID of this spotlight.
-mode_specific | number   | If the spotlight has different mades specific to each [GameMode](#gamemode).
-name          | number   | The name of the spotlight.
-start_date    | DateTime | The starting date of the spotlight.
-type          | string   | The type of spotlight.
+Field             | Type     | Description
+----------------- | -------- | ----------------------------------------------------------------------------
+end_date          | DateTime | The end date of the spotlight.
+id                | number   | The ID of this spotlight.
+mode_specific     | number   | If the spotlight has different mades specific to each [GameMode](#gamemode).
+participant_count | number?  | The number of users participating in this spotlight. This is only shown when viewing a single spotlight.
+name              | number   | The name of the spotlight.
+start_date        | DateTime | The starting date of the spotlight.
+type              | string   | The type of spotlight.
 
 
 ## User

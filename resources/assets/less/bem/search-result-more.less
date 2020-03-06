@@ -21,19 +21,25 @@
   .fade-element(120ms);
   border-radius: @border-radius-large;
   background-color: @osu-colour-b4;
-  height: 40px;
-  padding: 0 20px;
+  min-height: 40px;
+  padding: 2px 10px;
   display: flex;
   align-items: center;
   color: @osu-colour-c1;
-  font-size: @font-size--title-small-3;
+  font-size: @font-size--normal;
 
-  &:hover {
+  @media @desktop {
+    font-size: @font-size--title-small-3;
+    padding-left: 20px;
+    padding-right: $padding-left;
+  }
+
+  &--active {
     background-color: @osu-colour-b2;
     color: @osu-colour-c1;
   }
 
-  &:focus, &:active {
+  &:focus, &:active, &:hover {
     color: @osu-colour-c1;
   }
 

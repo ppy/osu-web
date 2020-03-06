@@ -19,9 +19,11 @@
 import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
+import { dispatchListener } from 'app-dispatcher';
 import { action, observable } from 'mobx';
 import Store from 'stores/store';
 
+@dispatchListener
 export default class ChatStateStore extends Store {
   @observable autoScroll: boolean = false;
   @observable lastReadId: number = -1;

@@ -78,8 +78,15 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'İnceleme paylaşımını görüntüle',
+        'go_to_child' => 'Tartışmayı görüntüle',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [
@@ -90,8 +97,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'genel',
+        'general_all' => 'genel (hepsi)',
     ],
 
     'user_filter' => [

@@ -74,6 +74,11 @@ class Room extends Model
         return $this->hasMany(RoomScore::class);
     }
 
+    public function userHighScores()
+    {
+        return $this->hasMany(RoomUserHighScore::class);
+    }
+
     public function scopeActive($query)
     {
         return $query

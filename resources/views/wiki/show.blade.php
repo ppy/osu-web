@@ -41,7 +41,6 @@
 @endphp
 
 @extends('master', [
-    'legacyNav' => false,
     'title' => null,
     'titlePrepend' => $page->title(true),
 ])
@@ -54,29 +53,27 @@
         'subSection' => $subSection,
         'theme' => 'help',
     ]])
-        @slot('titleAppend')
+        @slot('navAppend')
             @include('wiki._actions')
         @endslot
     @endcomponent
 
 
     <div class="osu-page osu-page--wiki">
-        @include('wiki._notice')
-
         <div class="wiki-page">
             <div class="hidden-xs wiki-page__toc u-fancy-scrollbar">
-                <div class="wiki-toc">
-                    <h2 class="wiki-toc__title">
-                        {{ trans('wiki.show.toc') }}
-                    </h2>
+                <h2 class="wiki-page__toc-title">
+                    {{ trans('wiki.show.toc') }}
+                </h2>
 
-                    @if ($page->get() !== null)
-                        @include('wiki._toc')
-                    @endif
-                </div>
+                @if ($page->get() !== null)
+                    @include('wiki._toc')
+                @endif
             </div>
 
             <div class="wiki-page__content">
+                @include('wiki._notice')
+
                 @if ($page->get() !== null)
                     {!! $page->get()['output'] !!}
                 @else

@@ -17,6 +17,8 @@
  */
 
 .modding-profile-list {
+  @_top: modding-profile-list;
+
   &--votes {
     display: flex;
     flex-wrap: wrap;
@@ -28,8 +30,12 @@
 
   &__empty {
     color: @osu-colour-f1;
-    font-style: italic;
     margin-bottom: 10px;
+
+    .@{_top}--index & {
+      margin-top: 20px;
+      text-align: center;
+    }
   }
 
   &__row {

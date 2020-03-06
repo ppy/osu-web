@@ -45,10 +45,10 @@ return [
             'beatmapset_status' => [
                 '_' => '谱面状态',
                 'all' => '所有',
-                'disqualified' => '丧失 资格',
-                'never_qualified' => '从不合格',
-                'qualified' => '合格',
-                'ranked' => '排名',
+                'disqualified' => '已被Disqualified',
+                'never_qualified' => '从未被Qualified',
+                'qualified' => '已被Qualified',
+                'ranked' => '已被Ranked',
             ],
 
             'user' => [
@@ -78,8 +78,15 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
+        'go_to_parent' => '查看审阅帖',
         'go_to_child' => '查看讨论',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [
@@ -90,8 +97,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => '常规（当前难度）',
+        'general_all' => '常规（所有难度）',
     ],
 
     'user_filter' => [

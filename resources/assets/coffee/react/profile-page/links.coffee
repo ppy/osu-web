@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { ClickToCopy } from 'click-to-copy'
+import ClickToCopy from 'click-to-copy'
 import * as React from 'react'
 import { a, div, span } from 'react-dom-factories'
 el = React.createElement
@@ -48,7 +48,7 @@ export class Links extends React.PureComponent
     discord: (val) ->
       icon: 'fab fa-discord'
       text:
-        el ClickToCopy, value: val, modifiers: ['profile-header-extra']
+        el ClickToCopy, value: val, showIcon: true
     interests: ->
       icon: 'far fa-heart'
     skype: (val) ->

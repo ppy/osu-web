@@ -25,8 +25,8 @@
   background-color: @osu-colour-b5;
   color: white;
 
-  &__content {
-    background-color: @osu-colour-b4;
+  @media @desktop {
+    margin-bottom: 10px;
   }
 
   &__count {
@@ -34,14 +34,13 @@
     padding: 5px 10px;
     margin-left: 5px;
     border-radius: 10000px;
-    font-style: normal;
     font-weight: bold;
     background-color: @osu-colour-b6;
     color: @osu-colour-f1;
   }
 
   &__items {
-    padding-top: 10px;
+    padding: 10px 0;
 
     &--empty {
       .default-gutter();
@@ -57,6 +56,12 @@
       .default-gutter();
       display: flex;
       justify-content: space-between;
+      background-color: @osu-colour-b4;
+    }
+
+    &--pinned {
+      margin-top: 20px;
+      background-color: @osu-colour-b4;
     }
   }
 
@@ -71,6 +76,7 @@
     padding-top: @_header-spacing;
     padding-bottom: 0;
     font-size: @font-size--title-small-4;
+    font-style: normal;
     margin: 0;
     color: @osu-colour-l1;
   }

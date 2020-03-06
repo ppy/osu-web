@@ -55,7 +55,7 @@ class BeatmapsetsController extends Controller
 
         $filters = BeatmapsetSearchRequestParams::getAvailableFilters();
 
-        return view('beatmaps.index', compact('filters', 'beatmaps'));
+        return ext_view('beatmaps.index', compact('filters', 'beatmaps'));
     }
 
     public function show($id)
@@ -70,9 +70,6 @@ class BeatmapsetsController extends Controller
             ])
             ->findOrFail($id);
 
-        $editable = priv_check('BeatmapsetDescriptionEdit', $beatmapset)->can();
-        $descriptionInclude = $editable ? 'description:editable' : 'description';
-
         $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
@@ -83,7 +80,7 @@ class BeatmapsetsController extends Controller
                 'converts',
                 'converts.failtimes',
                 'current_user_attributes',
-                $descriptionInclude,
+                'description',
                 'genre',
                 'language',
                 'ratings',
@@ -99,7 +96,7 @@ class BeatmapsetsController extends Controller
             $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
-            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset', 'commentBundle'));
+            return ext_view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset', 'commentBundle'));
         }
     }
 
@@ -142,7 +139,7 @@ class BeatmapsetsController extends Controller
         if ($returnJson) {
             return $initialData;
         } else {
-            return view('beatmapsets.discussion', compact('beatmapset', 'initialData'));
+            return ext_view('beatmapsets.discussion', compact('beatmapset', 'initialData'));
         }
     }
 
@@ -253,7 +250,7 @@ class BeatmapsetsController extends Controller
                 $beatmapset,
                 new BeatmapsetTransformer(),
                 [
-                    'description:editable',
+                    'description',
                 ]
             );
         }

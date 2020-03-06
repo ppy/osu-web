@@ -47,6 +47,8 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         '8' => 'loved',
     ];
 
+    private $requestQuery;
+
     public function __construct(array $request, ?User $user = null)
     {
         parent::__construct();
@@ -56,10 +58,10 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         $this->user = $user;
         $this->from = $this->pageAsFrom(get_int($request['page'] ?? null));
+        $this->requestQuery = $request['q'] ?? $request['query'] ?? null;
 
         if ($this->user !== null) {
-            $this->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query'] ?? null);
-
+            $this->queryString = es_query_escape_with_caveats($this->requestQuery);
             $status = presence($request['s'] ?? null);
             $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
 
@@ -134,7 +136,12 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         return compact('extras', 'general', 'genres', 'languages', 'modes', 'played', 'ranks', 'statuses');
     }
 
-    private function getDefaultSort(string $order) : array
+    public function isLoginRequired(): bool
+    {
+        return present($this->requestQuery);
+    }
+
+    private function getDefaultSort(string $order): array
     {
         if (present($this->queryString)) {
             return [new Sort('_score', $order)];
@@ -160,7 +167,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
      * The search_after value passed to elasticsearch needs to be the same length as the number of
      * sorts given.
      */
-    private function getSearchAfter($cursor) : ?array
+    private function getSearchAfter($cursor): ?array
     {
         if (!is_array($cursor)) {
             return null;
@@ -183,7 +190,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
     /**
      * Generate sort parameters for the elasticsearch query.
      */
-    private function normalizeSort(Sort $sort) : array
+    private function normalizeSort(Sort $sort): array
     {
         // additional options
         static $orderOptions = [

@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'сообщество',
             'comments' => 'комментарии',
+            'contests' => 'конкурсы',
             'forum' => 'форум',
             'livestream' => 'прямые трансляции',
-        ],
-
-        'contests' => [
-            '_' => 'конкурсы',
-            'index' => 'список',
         ],
 
         'error' => [
@@ -86,8 +82,22 @@ return [
             '_' => 'обратите внимание',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => 'рейтинг',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'корзина',
+            'order' => 'чек',
+            'orders' => 'история заказов',
+            'product' => 'товар',
+            'products' => 'товары',
         ],
 
         'tournaments' => [
@@ -119,6 +129,7 @@ return [
             'beatmapset-watches-index' => 'подписки на карты',
             'changelog-build' => 'сборка',
             'changelog-index' => 'список изменений',
+            'client_verifications-create' => 'верификация клиента osu!',
             'forum-topic-watches-index' => 'подписки на темы',
             'friends-index' => 'друзья',
             'getDownload' => 'скачать игру',
@@ -150,7 +161,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'карты',
-            'artists' => 'osu!featured artists',
+            'artists' => 'featured artists',
             'beatmap_discussion_posts-index' => 'публикации в обсуждений карты',
             'beatmap_discussions-index' => 'обсуждения карты',
             'beatmapset_discussion_votes-index' => 'голоса в обсуждений карты',
@@ -222,6 +233,7 @@ return [
             'modding-history-posts' => 'история публикаций',
             'modding-history-votesGiven' => 'голоса',
             'modding-history-votesReceived' => 'полученные голоса',
+            'notifications-index' => '',
             'oauth_login' => 'вход для oauth',
             'oauth_request' => 'авторизация oauth',
             'settings' => 'Настройки',

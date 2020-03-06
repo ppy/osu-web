@@ -49,7 +49,7 @@ class UserVerification
         return $verification;
     }
 
-    public static function logAttempt(string $source, string $type, string $reason = null) : void
+    public static function logAttempt(string $source, string $type, string $reason = null): void
     {
         Datadog::increment(
             config('datadog-helper.prefix_web').'.verification.attempts',
@@ -84,13 +84,13 @@ class UserVerification
         if ($this->request->ajax()) {
             return response([
                 'authentication' => 'verify',
-                'box' => render_to_string(
+                'box' => view(
                     'users._verify_box',
                     compact('email')
-                ),
+                )->render(),
             ], 401);
         } else {
-            return response()->view('users.verify', compact('email'))->setStatusCode(401);
+            return ext_view('users.verify', compact('email'), null, 401);
         }
     }
 

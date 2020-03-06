@@ -21,7 +21,6 @@
   &__index {
     background-color: @osu-colour-b4;
     padding: 10px;
-    font-weight: 300;
     .default-box-shadow();
     display: flex;
     justify-content: space-around;
@@ -66,7 +65,8 @@
   &__name {
     white-space: nowrap;
     color: @osu-colour-l1;
-    font-size: 14px;
+    font-size: @font-size--title-small-3;
+    font-weight: bold;
     margin-top: 5px;
     display: block;
     &:hover {
@@ -81,9 +81,9 @@
   }
 
   &__description {
+    .content-font();
     .default-gutter-v2();
     background-color: @osu-colour-b5;
-    color: white;
     font-size: 14px;
     font-weight: 300;
     padding-top: 20px;
@@ -136,7 +136,7 @@
     }
 
     &--new {
-      box-shadow: 25px -10px 50px .osu-hsla(@osu-colour-orange-1, 0.2)[@hsla];
+      box-shadow: 25px -10px 50px osu-hsla(@osu-colour-orange-1, 0.2);
     }
   }
 

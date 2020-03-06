@@ -22,8 +22,8 @@
   @avatar-size: 60px;
   @avatar-size--list: 40px;
   @background-color: @osu-colour-b4;
-  @background-overlay-fade--online: .osu-hsla(@osu-colour-b5, 0.6)[@hsla];
-  @background-overlay-fade--offline: .osu-hsla(@osu-colour-b5, 0.7)[@hsla];
+  @background-overlay-fade--online: osu-hsla(@osu-colour-b5, 0.6);
+  @background-overlay-fade--offline: osu-hsla(@osu-colour-b5, 0.7);
   @card-border-radius: 10px;
   @card-item-spacing: 10px;
   @flag-width: @user-card-icon-size * 1.5;
@@ -363,7 +363,6 @@
   &__username {
     display: flex;
     align-items: center;
-    font-style: italic;
     min-width: 0;
     font-weight: 600;
   }

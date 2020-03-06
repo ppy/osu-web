@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => '',
         'back_to_previous' => 'Trở về vị trí trước',
         'back_to_top' => 'Quay lại đầu trang',
         'cancel' => 'Hủy',
@@ -48,7 +49,7 @@ return [
         'expand' => 'mở rộng',
         'hide' => 'ẩn',
         'permalink' => 'permalink',
-        'permalink_copied' => 'đã sao chép link',
+        'pin' => '',
         'post' => 'Đăng',
         'reply' => 'Trả lời',
         'reply_reopen' => 'Trả lời và mở lại',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'xem thêm',
         'show' => 'hiện',
         'show_deleted' => 'Hiển thị bình luận đã xóa',
+        'show_less' => '',
         'show_more' => 'hiển thị thêm',
         'show_more_options' => 'hiển thị thêm tùy chọn',
+        'unpin' => '',
         'update' => 'Cập nhật',
         'upload_image' => 'tải ảnh lên',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'phút',
         'minutes' => ':count phút',
         'months' => ':count tháng',
+        'notifications' => '',
         'plus_others' => '',
         'post' => ':count_delimited bài viết',
         'second_short_unit' => 'giây',
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Notice',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

@@ -23,6 +23,11 @@ return [
         'small' => '享受游戏以外的竞赛体验。',
         'large' => '社区评选',
     ],
+
+    'index' => [
+        'nav_title' => '列表',
+    ],
+
     'voting' => [
         'over' => '这场评选的投票已经结束',
         'login_required' => '请登录后再投票.',

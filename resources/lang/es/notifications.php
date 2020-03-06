@@ -21,13 +21,25 @@
 return [
     'all_read' => '¡Todas las notificaciones leídas!',
     'mark_all_read' => 'Borrar todo',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Beatmap',
+            '_' => 'Mapa',
 
             'beatmapset_discussion' => [
-                '_' => 'Discusión de beatmap',
+                '_' => 'Discusión del mapa',
                 'beatmapset_discussion_lock' => 'La discusión en ":title" se ha cerrado',
                 'beatmapset_discussion_lock_compact' => 'La discusión fue cerrada',
                 'beatmapset_discussion_post_new' => 'Nueva publicación en ":title" por :username: ":content"',
@@ -39,7 +51,7 @@ return [
             ],
 
             'beatmapset_problem' => [
-                '_' => 'Problema con Beatmap calificado',
+                '_' => 'Problema con mapa calificado',
                 'beatmapset_discussion_qualified_problem' => 'Reportado por :username en ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => 'Reportado por :username en ":title"',
                 'beatmapset_discussion_qualified_problem_compact' => 'Reportado por :username: ":content"',
@@ -47,17 +59,17 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => 'Cambió el estado del Beatmap',
+                '_' => 'Cambió el estado del mapa',
                 'beatmapset_disqualify' => '":title" ha sido descalificado',
-                'beatmapset_disqualify_compact' => 'El Beatmap fue descalificado',
+                'beatmapset_disqualify_compact' => 'El mapa fue descalificado',
                 'beatmapset_love' => '":title" fue promovido a amado',
-                'beatmapset_love_compact' => 'Beatmap fue promovido a amado',
+                'beatmapset_love_compact' => 'El mapa fue promovido a amado',
                 'beatmapset_nominate' => '":title" ha sido nominado',
-                'beatmapset_nominate_compact' => 'Beatmap fue nominado',
-                'beatmapset_qualify' => '":title" hha ganado suficientes nominaciones e ingresó a la cola de clasificación',
-                'beatmapset_qualify_compact' => 'Beatmap ingresó a la cola de clasificación',
+                'beatmapset_nominate_compact' => 'El mapa fue nominado',
+                'beatmapset_qualify' => '":title" ha ganado suficientes nominaciones e ingresó a la cola de clasificación',
+                'beatmapset_qualify_compact' => 'El mapa ingresó a la cola de clasificación',
                 'beatmapset_rank' => '":title" ha sido clasificado',
-                'beatmapset_rank_compact' => 'Beatmap fue clasificado',
+                'beatmapset_rank_compact' => 'El mapa fue clasificado',
                 'beatmapset_reset_nominations' => 'La nominación de ":title" ha sido reiniciada',
                 'beatmapset_reset_nominations_compact' => 'La nominación fue reiniciada',
             ],
@@ -116,7 +128,7 @@ return [
         ],
 
         'legacy_pm' => [
-            '_' => 'Legacy Forum PM',
+            '_' => 'MP del foro antiguo',
 
             'legacy_pm' => [
                 '_' => '',
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nueva medalla',
                 'user_achievement_unlock' => '¡Desbloqueado ":title"!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

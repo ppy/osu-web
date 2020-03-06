@@ -22,15 +22,9 @@ return [
     'cancel' => 'Batal',
 
     'authorise' => [
-        'authorise' => 'Berikan Izin',
         'request' => 'meminta izin untuk mengakses ke dalam akun Anda.',
         'scopes_title' => 'Ke depannya, aplikasi ini akan mampu untuk:',
         'title' => 'Permohonan Otorisasi',
-
-        'wrong_user' => [
-            '_' => 'Anda terdaftar masuk sebagai :user. :logout_link.',
-            'logout_link' => 'Klik di sini untuk masuk sebagai pengguna lain',
-        ],
     ],
 
     'authorized_clients' => [

@@ -23,8 +23,8 @@ return [
     'too_many' => 'Dosažen limit počtu přátel.',
 
     'buttons' => [
-      'add' => 'přidat přítele',
-      'disabled' => 'přátelé',
-      'remove' => 'odebrat z přátel',
+        'add' => 'přidat přítele',
+        'disabled' => 'přátelé',
+        'remove' => 'odebrat z přátel',
     ],
 ];

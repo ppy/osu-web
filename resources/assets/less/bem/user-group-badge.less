@@ -19,75 +19,16 @@
 .user-group-badge {
   border-radius: 20px;
   font-size: 10px;
-  background-color: .osu-hsla(@osu-colour-b6, 0.75)[@hsla];
-  color: white;
+  background-color: osu-hsla(@osu-colour-b6, 0.75);
   padding: 2px 10px;
-  font-weight: bold;
+  font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--group-colour, @osu-colour-c1);
 
-  // mapping group to display-name
-  .osu-group-names() {
-    @alumni: {
-      full: 'ALUMNI';
-      short: 'OLD';
-    }
-    @bng: {
-      full: 'BN';
-      short: 'BN';
-    }
-    @bng_limited: {
-      full: 'BN';
-      short: 'BN';
-    }
-    @bot: {
-      full: 'BOT';
-      short: 'BOT';
-    }
-    @dev: {
-      full: 'DEV';
-      short: 'DEV';
-    }
-    @gmt: {
-      full: 'GMT';
-      short: 'GMT';
-    }
-    @mapper: {
-      full: 'MAPPER';
-      short: 'MAP';
-    }
-    @nat: {
-      full: 'NAT';
-      short: 'NAT';
-    }
-    @ppy: {
-      full: 'PPY';
-      short: 'PPY';
-    }
-    @support: {
-      full: 'SUPPORT';
-      short: 'SPT';
-    }
-  }
-
-  .osu-group-colours({
-    &--@{group} {
-      color: @@colour;
-
-      &::before {
-        content: .osu-group-names[@@group][short];
-        @media @desktop {
-          content: .osu-group-names[@@group][full];
-        }
-      }
-    }
-  });
-
-  // we need to override this, as bot badge colours are inverted
-  &--bot {
-    color: .osu-hsla(@osu-colour-b6, 0.75)[@hsla];
-    background-color: @osu-colour-group-bot;
+  &::before {
+    content: attr(data-label);
   }
 
   // actual modifiers start here

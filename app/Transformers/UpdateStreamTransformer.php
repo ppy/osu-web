@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\UpdateStream;
-use League\Fractal;
 
-class UpdateStreamTransformer extends Fractal\TransformerAbstract
+class UpdateStreamTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'latest_build',
@@ -47,8 +46,6 @@ class UpdateStreamTransformer extends Fractal\TransformerAbstract
 
     public function includeUserCount(UpdateStream $stream)
     {
-        return $this->item($stream, function ($stream) {
-            return [$stream->userCount()];
-        });
+        return $this->primitive($stream->userCount());
     }
 }

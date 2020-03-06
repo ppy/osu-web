@@ -37,6 +37,7 @@ export class Comments extends React.PureComponent
     el Observer, null, () =>
       # TODO: comments should be passed in as props?
       comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
+      pinnedComments = uiState.comments.pinnedCommentIds.map (id) -> store.comments.get(id)
 
       div className: osu.classWithModifiers('comments', @props.modifiers),
         div className: 'u-has-anchor u-has-anchor--no-event',
@@ -44,40 +45,46 @@ export class Comments extends React.PureComponent
         h2 className: 'comments__title',
           osu.trans('comments.title')
           span className: 'comments__count', osu.formatNumber(uiState.comments.total)
+
+        if pinnedComments.length > 0
+          div className: "comments__items comments__items--pinned",
+            @renderComments pinnedComments, true
+
         div className: 'comments__new',
           el CommentEditor,
             commentableType: @props.commentableType
             commentableId: @props.commentableId
             focus: false
             modifiers: @props.modifiers
-        div className: 'comments__content',
-          div className: 'comments__items comments__items--toolbar',
-            el CommentsSort,
-              modifiers: @props.modifiers
-            div className: osu.classWithModifiers('sort', @props.modifiers),
-              div className: 'sort__items',
-                @renderFollowToggle()
-                @renderShowDeletedToggle()
-          if comments.length > 0
-            div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
-              comments.map @renderComment
 
-              el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
+        div className: 'comments__items comments__items--toolbar',
+          el CommentsSort,
+            modifiers: @props.modifiers
+          div className: osu.classWithModifiers('sort', @props.modifiers),
+            div className: 'sort__items',
+              @renderFollowToggle()
+              @renderShowDeletedToggle()
 
-              el CommentShowMore,
-                commentableType: @props.commentableType
-                commentableId: @props.commentableId
-                comments: comments
-                total: uiState.comments.topLevelCount
-                sort: uiState.comments.currentSort
-                modifiers: _.concat 'top', @props.modifiers
-          else
-            div
-              className: 'comments__items comments__items--empty'
-              osu.trans('comments.empty')
+        if comments.length > 0
+          div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
+            @renderComments comments, false
+
+            el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
+
+            el CommentShowMore,
+              commentableType: @props.commentableType
+              commentableId: @props.commentableId
+              comments: comments
+              total: uiState.comments.topLevelCount
+              sort: uiState.comments.currentSort
+              modifiers: _.concat 'top', @props.modifiers
+        else
+          div
+            className: 'comments__items comments__items--empty'
+            osu.trans('comments.empty')
 
 
-  renderComment: (comment) =>
+  renderComment: (comment, pinned = false) =>
     return null if comment.isDeleted && !uiState.comments.isShowDeleted
 
     el Comment,
@@ -86,6 +93,11 @@ export class Comments extends React.PureComponent
       depth: 0
       modifiers: @props.modifiers
       showDeleted: uiState.comments.isShowDeleted
+      expandReplies: if pinned then false else null
+
+
+  renderComments: (comments, pinned) =>
+    @renderComment(comment, pinned) for comment in comments when comment.pinned == pinned
 
 
   renderShowDeletedToggle: =>

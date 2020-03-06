@@ -19,6 +19,10 @@
 .header-v4 {
   @_top: header-v4;
 
+  @media print {
+    display: none;
+  }
+
   &__bg {
     margin: auto;
     width: 100%;
@@ -28,10 +32,10 @@
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.7;
-    .at2x-simple('/images/headers/generic.jpg');
     display: flex;
     justify-content: center;
     overflow: hidden;
+    .at2x-fallback(--header-bg, '/images/headers/generic.jpg');
 
     &::before {
       content: '';
@@ -65,7 +69,7 @@
     }
 
     .@{_top}--contests & {
-      .at2x-simple('/images/headers/contest.jpg');
+      .at2x-fallback(--header-bg, '/images/headers/contest.jpg');
     }
 
     .@{_top}--download & {
@@ -109,6 +113,11 @@
       .at2x-simple('/images/headers/search.jpg');
     }
 
+    .@{_top}--store & {
+      opacity: 0.7;
+      .at2x-simple('/images/headers/store.png');
+    }
+
     .@{_top}--supporter & {
       opacity: 0.2;
       .at2x-simple('/images/headers/supporter.jpg');
@@ -140,11 +149,19 @@
       .large() {
         @media @desktop {
           min-height: 450px;
+
+          .@{_top}--restricted & {
+            min-height: 450px;
+          }
         }
       }
 
       @media @desktop {
         height: (@nav2-height + 70px);
+
+        .@{_top}--restricted & {
+          height: (@nav2-height + 70px + 70px);
+        }
       }
 
       .@{_top}--download & {
@@ -224,6 +241,11 @@
       background-size: 75%;
     }
 
+    .@{_top}--store & {
+      background-image: url('/images/icons/store.svg');
+      background-size: 75%;
+    }
+
     .@{_top}--users & {
       background-image: url('/images/icons/profile.svg');
     }
@@ -235,6 +257,7 @@
     .default-gutter-v2();
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 
     &--bar {
       background-color: @osu-colour-d4;
@@ -247,13 +270,16 @@
       @media @desktop {
         font-size: @font-size--large;
       }
-
-      display: flex;
-      flex-wrap: wrap;
     }
 
     .@{_top}--users & {
-      .default-gutter();
+      padding-left: @gutter-profile-page;
+      padding-right: $padding-left;
+
+      @media @desktop {
+        padding-left: @gutter-profile-page-desktop;
+        padding-right: $padding-left;
+      }
     }
   }
 
@@ -261,7 +287,7 @@
     .center-content();
     .full-size();
     font-size: 60px;
-    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
+    background-color: osu-hsla(@osu-colour-b6, 0.5);
     color: @osu-colour-c1;
     display: none;
 
@@ -273,7 +299,11 @@
   &__title {
     padding-top: 15px;
     padding-bottom: 15px;
-    display: flex;
+    display: none;
+
+    @media @desktop {
+      display: flex;
+    }
   }
 
   &__title-action {

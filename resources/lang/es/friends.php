@@ -23,8 +23,8 @@ return [
     'too_many' => 'Límite de amigos alcanzado.',
 
     'buttons' => [
-      'add' => 'agregar amigo',
-      'disabled' => 'amigos',
-      'remove' => 'eliminar amigo',
+        'add' => 'agregar amigo',
+        'disabled' => 'amigos',
+        'remove' => 'eliminar amigo',
     ],
 ];

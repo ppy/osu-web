@@ -25,7 +25,7 @@ return [
             'regenerating' => '',
             'remove' => '',
             'removing' => '',
-            'title' => '',
+            'title' => 'Capas de conjuntos de beatmaps',
         ],
         'show' => [
             'covers' => '',
@@ -72,7 +72,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '',
+                'beatmapsets' => 'Conjuntos de beatmaps',
                 'forum' => '',
                 'general' => '',
                 'store' => '',

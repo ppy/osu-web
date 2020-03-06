@@ -89,6 +89,7 @@ return [
         'en',
 
         // sort by name
+        'ar',
         'be',
         'bg',
         'cs',
@@ -114,6 +115,7 @@ return [
         'sv',
         'th',
         'tr',
+        'uk',
         'vi',
         'zh',
         'zh-tw',

@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\UserBadge;
-use League\Fractal;
 
-class UserBadgeTransformer extends Fractal\TransformerAbstract
+class UserBadgeTransformer extends TransformerAbstract
 {
     public function transform(UserBadge $badge)
     {

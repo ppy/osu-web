@@ -70,7 +70,7 @@ class PostsController extends Controller
             return ujs_redirect($redirect);
         }
 
-        return js_view('forum.topics.delete', compact('post'));
+        return ext_view('forum.topics.delete', compact('post'), 'js');
     }
 
     public function restore($id)
@@ -89,7 +89,7 @@ class PostsController extends Controller
 
         $topic->restorePost($post);
 
-        return js_view('forum.topics.restore', compact('post'));
+        return ext_view('forum.topics.restore', compact('post'), 'js');
     }
 
     public function edit($id)
@@ -98,7 +98,7 @@ class PostsController extends Controller
 
         priv_check('ForumPostEdit', $post)->ensureCan();
 
-        return view('forum.topics._post_edit', compact('post'));
+        return ext_view('forum.topics._post_edit', compact('post'));
     }
 
     public function update($id)
@@ -137,7 +137,7 @@ class PostsController extends Controller
         $topic = $post->topic;
         $firstPostPosition = $topic->postPosition($post->post_id);
 
-        return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+        return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
 
     public function raw($id)

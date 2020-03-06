@@ -65,12 +65,12 @@ return [
     ],
 
     'disabled' => [
-        'title' => '',
-        'warning' => "",
+        'title' => '哎唷！看起來你的帳號已被禁用。',
+        'warning' => "若你沒有遵守規則，我們原則上在一個月的期限以內不會考慮解禁您的帳號。在此之後，您如有需要，可以隨時聯絡我們。請注意，在一個帳號被封禁後創建新帳號會<strong>使您的封禁期限被延長</strong>。而且<strong>每當您創建一個新帳號，您都是在更嚴重地破壞規則</strong>。我們強烈建議您不要誤入歧途。",
 
         'if_mistake' => [
             '_' => '',
-            'email' => '',
+            'email' => '電子郵件',
         ],
 
         'reasons' => [
@@ -78,7 +78,7 @@ return [
             'opening' => '',
 
             'tos' => [
-                '_' => '',
+                '_' => '您已違反一條或多條:community_rules或:tos',
                 'community_rules' => '社群規則',
                 'tos' => '服務條款',
             ],
@@ -98,7 +98,7 @@ return [
         'email_login_disabled' => '目前沒辦法使用Email登入了，請使用使用者名稱登入。',
         'failed' => '登入失敗',
         'forgot' => '忘記密碼？',
-        'info' => '',
+        'info' => '請先登入以繼續',
         'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
         'password' => '密碼',
         'register' => "沒有 osu! 帳號嗎？現在就註冊一個吧！",
@@ -157,7 +157,7 @@ return [
         'is_supporter' => 'osu! 贊助者',
         'joined_at' => '註冊時間：:date',
         'lastvisit' => '最後登入於：:date',
-        'lastvisit_online' => '正在線上',
+        'lastvisit_online' => '上線中',
         'missingtext' => '未找到的使用者！（或者該使用者已經被封鎖）',
         'origin_country' => '來自 :country',
         'page_description' => 'osu! - 您想知道關於 :username 的資訊!',
@@ -196,7 +196,7 @@ return [
             'unranked' => '近期沒有遊玩記錄',
 
             'achievements' => [
-                'achieved-on' => '達成於 :date',
+                'achieved-on' => '於 :date達成',
                 'locked' => '已鎖定',
                 'title' => '成就',
             ],
@@ -206,19 +206,19 @@ return [
                 'title' => '圖譜',
 
                 'favourite' => [
-                    'title' => '收藏的譜面',
+                    'title' => '收藏的圖譜',
                 ],
                 'graveyard' => [
-                    'title' => '墳場裡的譜面',
+                    'title' => '已拋棄的圖譜',
                 ],
                 'loved' => [
-                    'title' => '喜歡的譜面',
+                    'title' => '喜歡的圖譜',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked 和 Approved 的譜面',
+                    'title' => '已進榜和批准的譜面',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps',
+                    'title' => '待處理的圖譜',
                 ],
             ],
             'discussions' => [
@@ -261,7 +261,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "該使用者尚未收到任何 kudosu ！",
+                    'empty' => "該使用者尚未收到任何 kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -409,16 +409,16 @@ return [
             'medals' => '成就',
             'play_count' => '遊玩次數',
             'play_time' => '總遊玩時間',
-            'ranked_score' => 'Ranked 圖譜總分',
-            'replays_watched_by_others' => '重播觀看的次數',
+            'ranked_score' => '進榜圖譜總分',
+            'replays_watched_by_others' => '重播被觀看的次數',
             'score_ranks' => '得分等級',
             'total_hits' => '總命中次數',
             'total_score' => '總分',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '進榜 & 批准圖譜',
+            'ranked_and_approved_beatmapset_count' => '已進榜 & 批准的圖譜',
             'loved_beatmapset_count' => 'Loved 圖譜',
-            'unranked_beatmapset_count' => 'Pending 的譜面',
-            'graveyard_beatmapset_count' => '墳場裡的譜面',
+            'unranked_beatmapset_count' => '待處理的圖譜',
+            'graveyard_beatmapset_count' => '已拋棄的圖譜',
         ],
     ],
 

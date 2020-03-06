@@ -18,7 +18,6 @@
 @extends('master', [
     'currentSection' => 'beatmaps',
     'currentAction' => 'artists',
-    'legacyNav' => false,
     'title' => trans('artist.title'),
     'pageDescription' => trans('artist.page_description'),
 ])

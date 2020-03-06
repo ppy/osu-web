@@ -95,9 +95,9 @@ class PollOption extends Model
     {
         $staticTable = (new static)->table;
         $countQuery = PollVote::where([
-                'topic_id' => DB::raw($staticTable.'.topic_id'),
-                'poll_option_id' => DB::raw($staticTable.'.poll_option_id'),
-            ])
+            'topic_id' => DB::raw($staticTable.'.topic_id'),
+            'poll_option_id' => DB::raw($staticTable.'.poll_option_id'),
+        ])
             // raw because ->count() immediately executes the query.
             // DISTINCT because lack of unique index causing duplicated votes.
             ->select(DB::raw('COUNT(DISTINCT vote_user_id)'))

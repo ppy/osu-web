@@ -17,22 +17,19 @@
  */
 
 import { UserLoginAction, UserLogoutAction } from 'actions/user-login-actions';
-import Dispatcher from './dispatcher';
+import { dispatch } from 'app-dispatcher';
 
 export default class UserLoginObserver {
-  private dispatcher: Dispatcher;
-
-  constructor(window: Window, dispatcher: Dispatcher) {
-    this.dispatcher = dispatcher;
+  constructor(window: Window) {
     $(window.document).on('ajax:success', '.js-logout-link', this.userLogout);
     $(window.document).on('ajax:success', '.js-login-form', this.userLogin);
   }
 
   userLogin = () => {
-    this.dispatcher.dispatch(new UserLoginAction());
+    dispatch(new UserLoginAction());
   }
 
   userLogout = () => {
-    this.dispatcher.dispatch(new UserLogoutAction());
+    dispatch(new UserLogoutAction());
   }
 }

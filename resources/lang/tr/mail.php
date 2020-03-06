@@ -29,23 +29,24 @@ return [
     'common' => [
         'closing' => '',
         'hello' => '',
-        'report' => '',
+        'report' => 'Eğer bu değişim istemediğseniz, lütfen ACİLEN bu e-maile cevap yazın.',
     ],
 
     'donation_thanks' => [
         'benefit_more' => '',
-        'feedback' => "",
-        'keep_free' => '',
-        'keep_running' => '',
+        'feedback' => "Eğer herhangi bir sorunuz veya geribildiriminiz varsa, bu postaya cevap yazmaktan çekinmeyin; Size en kısa zamanda geri döneceğim!",
+        'keep_free' => 'Sizin gibi insanlar sayesinde osu!, oyunu ve topluluğu akıcı bir şekilde hiçbir reklam veya zorla ödeme olmadan oyunu devam ettirebiliyor.',
+        'keep_running' => 'Senin katkın osu!\'yu :minutes kadardır ayakta tutuyor. Fazla görünmüyor olabilir ama damlaya damlaya göl olur :).',
         'subject' => 'Teşekkürler, osu! sizi seviyor <3',
+        'translation' => '',
 
         'benefit' => [
             'gift' => '',
-            'self' => '',
+            'self' => 'Şu andan itibaren osu!direct ve diğer başka destekçi avantajlarına :duration kadar erişim hakkın vardır.',
         ],
 
         'support' => [
-            '_' => '',
+            '_' => 'osu!\'ya karşı olan :support \'un için çokça teşekkür ederiz!.',
             'first' => '',
             'repeat' => '',
         ],

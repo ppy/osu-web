@@ -25,7 +25,7 @@ return [
             'regenerating' => 'Memperbarui...',
             'remove' => 'Hapus',
             'removing' => 'Menghapus...',
-            'title' => '',
+            'title' => 'Sampul beatmap',
         ],
         'show' => [
             'covers' => 'Kelola Sampul Beatmapset',
@@ -72,7 +72,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '',
+                'beatmapsets' => 'Set beatmap',
                 'forum' => 'Forum',
                 'general' => 'Umum',
                 'store' => 'Toko',

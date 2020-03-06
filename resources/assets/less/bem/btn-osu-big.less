@@ -131,7 +131,6 @@
   &--download-landing {
     .default-box-shadow();
     .default-text-shadow();
-    font-style: italic;
     font-size: @font-size--title-small;
     padding: 10px 5px;
   }
@@ -147,8 +146,8 @@
     transition: background-position 120ms;
 
     flex: none;
-    height: 50px;
-    width: 180px;
+    width: 240px;
+    padding: 10px;
     margin-bottom: 20px;
 
     flex-direction: column;
@@ -304,6 +303,7 @@
     font-size: @font-size--title-small-3;
     line-height: normal;
     flex: none;
+    margin-left: 20px;
   }
 
   &--rounded {
@@ -325,6 +325,54 @@
   &--settings-oauth {
     margin: 0 5px 5px 5px;
     min-width: 70px;
+  }
+
+  &--store-action {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    margin: 0 auto;
+    font-size: @font-size--title-small;
+    padding: 10px 50px;
+    border-radius: 10000px;
+    line-height: normal;
+    text-align: center;
+  }
+
+  &--store-cart {
+    padding: 5px 15px;
+    border-radius: 10000px;
+    margin: 10px 0;
+    width: 100%;
+
+    @media @desktop {
+      margin: 0 0 0 auto;
+      width: auto;
+    }
+  }
+
+  &--store-cart-delete {
+    background: none;
+    padding: 5px 10px;
+    line-height: normal;
+    font-size: @font-size--title-small-3;
+
+    .link-hover({
+      background: none;
+    });
+  }
+
+  &--tournament-info {
+    font-size: @font-size--title-small-3;
+    padding: 10px 30px;
+    border-radius: 10000px;
+  }
+
+  &--tournament-register {
+    font-size: @font-size--title-small-3;
+    padding: 10px 40px;
+    border-radius: 10000px;
+    margin-top: 10px;
   }
 
   &--wrap-text {
@@ -462,13 +510,10 @@
     }
 
     .@{top}--download-page & {
-      font-size: 15px;
-      font-style: italic;
+      .default-text-shadow();
+      font-size: @font-size--large;
       font-weight: 700;
-
       margin: 0;
-
-      .default-text-shadow;
     }
   }
 
@@ -476,8 +521,8 @@
     font-size: @font-size--small;
 
     .@{top}--download-page & {
-      font-style: italic;
-      .default-text-shadow;
+      .default-text-shadow();
+      font-size: @font-size--normal;
     }
   }
 

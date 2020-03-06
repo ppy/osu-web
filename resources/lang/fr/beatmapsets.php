@@ -34,16 +34,10 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
-            'approved' => 'approuvée le ',
             'favourite' => 'Ajouter ce beatmapset aux favoris',
             'logged-out' => 'Vous devez vous connecter pour pouvoir télécharger des beatmaps !',
-            'loved' => 'loved le ',
             'mapped_by' => 'mappée par :mapper',
-            'qualified' => 'qualifiée le ',
-            'ranked' => 'classée le ',
-            'submitted' => 'envoyée le ',
             'unfavourite' => 'Retirer ce beatmapset des favoris',
-            'updated' => 'dernière mise à jour le ',
             'updated_timeago' => 'dernière mise à jour :timeago',
 
             'download' => [
@@ -157,7 +151,7 @@ return [
             'approved' => 'Approuvée',
             'loved' => 'Aimée',
             'qualified' => 'Qualifiée',
-            'wip' => 'En construction',
+            'wip' => 'WIP',
             'pending' => 'En attente',
             'graveyard' => 'Cimetière',
         ],

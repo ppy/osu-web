@@ -17,21 +17,19 @@
  */
 
 .store-payment-method {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px;
+  display: grid;
+  grid-gap: 5px 20px;
+  margin-bottom: 20px;
 
-  @media @mobile {
-    flex-direction: column;
+  @media @desktop {
+    grid-template-columns: 1fr 1fr;
   }
 
   &__cell {
-    margin: 8px;
-    padding: 8px;
-    width: 50%;
-    @media @mobile {
-      width: 100%;
-      text-align: center;
+    text-align: center;
+
+    @media @desktop {
+      text-align: start;
     }
   }
 
@@ -42,6 +40,13 @@
     // stop the bitcash icon from flying around
     &:last-child {
       margin-right: 0;
+    }
+
+    &--light {
+      height: 30px;
+      padding: 5px 10px;
+      background-color: @osu-colour-c1;
+      border-radius: @border-radius-large;
     }
 
     &--tall {

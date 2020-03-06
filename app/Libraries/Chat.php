@@ -53,9 +53,7 @@ class Chat
 
         priv_check_user($sender, 'ChatStart', $target)->ensureCan();
 
-        $userIds = [$sender->getKey(), $target->getKey()];
-        sort($userIds);
-        $channelName = '#pm_'.implode('-', $userIds);
+        $channelName = Channel::getPMChannelName($target, $sender);
         $channel = Channel::where('name', $channelName)->first();
 
         if ($channel === null) {

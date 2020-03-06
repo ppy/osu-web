@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', ['legacyNav' => false])
+@extends('master')
 
 @section('content')
     @include('home._user_header_default', ['title' => trans('accounts.edit.title_compact')])
@@ -117,8 +117,7 @@
                             {!! trans('accounts.edit.avatar.rules', [
                                 'link' => link_to(
                                     wiki_url('Rules'),
-                                    trans('accounts.edit.avatar.rules_link'),
-                                    ['class' => 'account-edit-entry__link']
+                                    trans('accounts.edit.avatar.rules_link')
                                 )
                             ]) !!}
                         </div>

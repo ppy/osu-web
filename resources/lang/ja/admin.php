@@ -25,7 +25,7 @@ return [
             'regenerating' => '生成中・・・',
             'remove' => '削除',
             'removing' => '削除中・・・',
-            'title' => '',
+            'title' => 'ビートマップセットカバー',
         ],
         'show' => [
             'covers' => '譜面のカバーを管理する',
@@ -72,7 +72,7 @@ return [
     'pages' => [
         'root' => [
             'sections' => [
-                'beatmapsets' => '',
+                'beatmapsets' => 'ビートマップセット',
                 'forum' => 'フォーラム',
                 'general' => '全般',
                 'store' => 'ストア',

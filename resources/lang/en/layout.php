@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'community',
             'comments' => 'comments',
+            'contests' => 'contests',
             'forum' => 'forum',
             'livestream' => 'live streams',
-        ],
-
-        'contests' => [
-            '_' => 'contests',
-            'index' => 'listing',
         ],
 
         'error' => [
@@ -86,8 +82,22 @@ return [
             '_' => 'notice',
         ],
 
+        'notifications' => [
+            '_' => 'notifications',
+            'index' => 'history',
+        ],
+
         'rankings' => [
             '_' => 'ranking',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'cart',
+            'order' => 'invoice',
+            'orders' => 'order history',
+            'product' => 'product',
+            'products' => 'products',
         ],
 
         'tournaments' => [
@@ -119,6 +129,7 @@ return [
             'beatmapset-watches-index' => 'modding watchlist',
             'changelog-build' => 'build',
             'changelog-index' => 'changelog',
+            'client_verifications-create' => 'osu! client verification',
             'forum-topic-watches-index' => 'forum subscriptions',
             'friends-index' => 'friends',
             'getDownload' => 'download',
@@ -222,6 +233,7 @@ return [
             'modding-history-posts' => 'user modding posts',
             'modding-history-votesGiven' => 'user modding votes given',
             'modding-history-votesReceived' => 'user modding votes received',
+            'notifications-index' => 'notifications history',
             'oauth_login' => 'sign in for oauth',
             'oauth_request' => 'oauth authorisation',
             'settings' => 'Settings',

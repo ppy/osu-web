@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '',
             'comments' => '',
+            'contests' => '',
             'forum' => '',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -86,8 +82,22 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
@@ -119,6 +129,7 @@ return [
             'beatmapset-watches-index' => '',
             'changelog-build' => 'versio',
             'changelog-index' => 'muutosloki',
+            'client_verifications-create' => '',
             'forum-topic-watches-index' => '',
             'friends-index' => 'kaverit',
             'getDownload' => 'lataa',
@@ -222,6 +233,7 @@ return [
             'modding-history-posts' => 'käyttäjän modausviestit',
             'modding-history-votesGiven' => 'käyttäjän antamat modausäänet',
             'modding-history-votesReceived' => 'käyttäjän saamat modausäänet',
+            'notifications-index' => '',
             'oauth_login' => 'oauth kirjautuminen',
             'oauth_request' => 'oauth yhdistäminen',
             'settings' => 'Asetukset',

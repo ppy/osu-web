@@ -25,26 +25,26 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
+            '_' => 'yönetici',
             'beatmapset' => '',
             'beatmapset_covers' => '',
             'contest' => '',
             'contests' => '',
-            'root' => '',
+            'root' => 'konsol',
             'store_orders' => '',
         ],
 
         'artists' => [
             '_' => '',
-            'index' => '',
+            'index' => 'liste',
         ],
 
         'beatmapsets' => [
             '_' => '',
-            'discussions' => '',
+            'discussions' => 'tartışma',
             'index' => '',
-            'show' => '',
-            'packs' => '',
+            'show' => 'bilgi',
+            'packs' => 'paketler',
         ],
 
         'changelog' => [
@@ -54,27 +54,23 @@ return [
 
         'community' => [
             '_' => 'Topluluk',
-            'comments' => '',
+            'comments' => 'yorumlar',
+            'contests' => '',
             'forum' => 'Forum',
-            'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
+            'livestream' => 'canlı yayınlar',
         ],
 
         'error' => [
-            '_' => '',
+            '_' => 'hata',
         ],
 
         'help' => [
-            '_' => '',
+            '_' => 'wiki',
             'index' => '',
         ],
 
         'home' => [
-            '_' => '',
+            '_' => 'ana sayfa',
             'password_reset' => '',
         ],
 
@@ -86,20 +82,34 @@ return [
             '_' => '',
         ],
 
-        'rankings' => [
-            '_' => '',
-        ],
-
-        'tournaments' => [
+        'notifications' => [
             '_' => '',
             'index' => '',
         ],
 
+        'rankings' => [
+            '_' => 'sıralama',
+        ],
+
+        'store' => [
+            '_' => 'osu!mağza',
+            'cart' => 'sepet',
+            'order' => '',
+            'orders' => 'sipariş geçmişi',
+            'product' => 'ürün',
+            'products' => 'ürünler',
+        ],
+
+        'tournaments' => [
+            '_' => 'turnuvalar',
+            'index' => '',
+        ],
+
         'users' => [
-            '_' => '',
+            '_' => 'oyuncu',
             'forum_posts' => '',
-            'modding' => '',
-            'show' => '',
+            'modding' => 'modding',
+            'show' => 'bilgi',
         ],
     ],
 
@@ -119,7 +129,8 @@ return [
             'beatmapset-watches-index' => '',
             'changelog-build' => 'sürüm',
             'changelog-index' => 'değişiklikler',
-            'forum-topic-watches-index' => '',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => 'forum abonelikleri',
             'friends-index' => 'arkadaşlar',
             'getDownload' => 'indir',
             'getIcons' => 'simgeler',
@@ -222,6 +233,7 @@ return [
             'modding-history-posts' => 'kullanıcı modlama gönderileri',
             'modding-history-votesGiven' => 'kullanıcı verilen modlama oyları',
             'modding-history-votesReceived' => 'kullanıcı alınan modlama oyları',
+            'notifications-index' => '',
             'oauth_login' => 'oauth için giriş yapın',
             'oauth_request' => 'oauth doğrulaması',
             'settings' => 'Ayarlar',
@@ -332,7 +344,7 @@ return [
             'forgot' => "Bilgilerimi unuttum",
             'password' => 'şifre',
             'title' => 'Devam etmek için Giriş Yap',
-            'username' => '',
+            'username' => 'kullanıcı adı',
 
             'error' => [
                 'email' => "Kullanıcı adı veya e-posta adresi mevcut değil.",

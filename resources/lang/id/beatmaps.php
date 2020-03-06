@@ -98,7 +98,7 @@ return [
         'mode' => [
             'events' => 'Riwayat',
             'general' => 'Umum :scope',
-            'reviews' => '',
+            'reviews' => 'Ulasan',
             'timeline' => 'Linimasa',
             'scopes' => [
                 'general' => 'Tingkat kesulitan ini',

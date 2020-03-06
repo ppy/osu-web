@@ -24,8 +24,8 @@ return [
         'title_compact' => '摸圖',
 
         'table' => [
-            'empty' => '沒有正在關注的譜面',
-            'open_issues' => '打開的問題',
+            'empty' => '沒有正在關注的圖譜',
+            'open_issues' => '進行中的議題',
             'state' => '狀態',
             'title' => '標題',
         ],

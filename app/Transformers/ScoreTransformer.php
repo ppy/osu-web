@@ -23,14 +23,12 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
-use League\Fractal;
 
-class ScoreTransformer extends Fractal\TransformerAbstract
+class ScoreTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap',
         'beatmapset',
-        'best',
         'weight',
         'user',
         'multiplayer',
@@ -54,7 +52,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
                 'count_katu' => $score->countkatu,
                 'count_miss' => $score->countmiss,
             ],
-            'pp' => $score->pp,
+            'pp' => $score instanceof ScoreBest ? $score->pp : optional($score->best)->pp,
             // ranks are hardcoded to "0" for game_scores atm (i.e. scores from a mp game), return null instead for now
             'rank' => $score->rank === '0' ? null : $score->rank,
             'created_at' => json_time($score->date),
@@ -85,25 +83,14 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmap($score)
     {
-        return $this->item($score->beatmap, new BeatmapTransformer);
+        return $score->beatmap === null
+            ? $this->primitive(null)
+            : $this->item($score->beatmap, new BeatmapTransformer);
     }
 
     public function includeBeatmapset($score)
     {
         return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer);
-    }
-
-    public function includeBest($score)
-    {
-        if (($score instanceof ScoreBest) === true) {
-            return;
-        }
-
-        return $this->item($score, function ($score) {
-            return [
-                'pp' => optional($score->best)->pp,
-            ];
-        });
     }
 
     public function includeWeight($score)

@@ -36,7 +36,7 @@ class ForumCoversController extends Controller
     {
         $forums = Forum::with('cover')->get();
 
-        return view('admin.forum.forum_covers.index', compact('forums'));
+        return ext_view('admin.forum.forum_covers.index', compact('forums'));
     }
 
     public function store()

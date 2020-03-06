@@ -22,6 +22,7 @@ return [
     'deleted' => 'silindi',
     'deleted_count' => ':count_delimited silinmiş yorum|:count_delimited silinmiş yorum',
     'edited' => ':timeago tarihinde :user tarafından düzenlendi',
+    'pinned' => '',
     'empty' => 'Henüz yorum yok.',
     'load_replies' => 'yanıtları yükle',
     'replies' => 'Yanıtlar',

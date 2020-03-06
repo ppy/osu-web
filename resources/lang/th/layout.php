@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'ชุมชน',
             'comments' => '',
+            'contests' => '',
             'forum' => 'ฟอรั่ม',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -86,8 +82,22 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
@@ -119,6 +129,7 @@ return [
             'beatmapset-watches-index' => '',
             'changelog-build' => 'เวอร์ชั่น',
             'changelog-index' => 'บันทึกการเปลี่ยนแปลง',
+            'client_verifications-create' => '',
             'forum-topic-watches-index' => '',
             'friends-index' => 'เพื่อน',
             'getDownload' => 'ดาวน์โหลด',
@@ -222,6 +233,7 @@ return [
             'modding-history-posts' => 'โพสต์การ Mod ของผู้ใช้',
             'modding-history-votesGiven' => 'โหวตการ Mod ที่ถูกให้',
             'modding-history-votesReceived' => 'โหวตการ Mod ที่ได้รับ',
+            'notifications-index' => '',
             'oauth_login' => 'เข้าสู่ระบบเพื่อยืนยัน',
             'oauth_request' => 'ยืนยันตนสำเร็จแล้ว',
             'settings' => 'การตั้งค่า',

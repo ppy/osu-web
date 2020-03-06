@@ -208,7 +208,7 @@ class ForumTopicsControllerTest extends TestCase
 
         $conditions = [
             'user_id' => $user->user_id,
-            'group_id' => UserGroup::GROUPS['default'],
+            'group_id' => app('groups')->byIdentifier('default')->getKey(),
         ];
 
         $existingUserGroup = UserGroup::where($conditions)->first();

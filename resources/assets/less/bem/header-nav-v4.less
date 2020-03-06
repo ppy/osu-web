@@ -23,16 +23,21 @@
   @_gutter-y: 4px;
   @_gutter-y-desktop: 15px;
   list-style: none;
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   margin: 0 -@_gutter-x;
   padding: (10px - @_gutter-y) 0;
-  font-size: @font-size--small;
+  font-size: @font-size--normal;
 
   @media @desktop {
     font-size: @font-size--title-small;
     padding-top: 0;
     padding-bottom: 0;
+    display: flex;
+  }
+
+  &--breadcrumb {
+    display: flex;
   }
 
   &--list {
@@ -110,6 +115,7 @@
 
       &--active {
         color: @osu-colour-c1;
+        font-weight: bold;
 
         .link-hover({
           color: @osu-colour-c1;

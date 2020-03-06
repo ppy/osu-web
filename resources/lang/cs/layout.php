@@ -25,12 +25,12 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
+            '_' => 'admin',
             'beatmapset' => '',
             'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
+            'contest' => 'soutěž',
+            'contests' => 'soutěže',
+            'root' => 'konzole',
             'store_orders' => '',
         ],
 
@@ -43,38 +43,34 @@ return [
             '_' => '',
             'discussions' => '',
             'index' => '',
-            'show' => '',
-            'packs' => '',
+            'show' => 'informace',
+            'packs' => 'balíčky',
         ],
 
         'changelog' => [
-            '_' => '',
+            '_' => 'seznam změn',
             'index' => '',
         ],
 
         'community' => [
             '_' => 'Komunita',
             'comments' => '',
+            'contests' => 'soutěže',
             'forum' => 'Fórum',
             'livestream' => '',
         ],
 
-        'contests' => [
-            '_' => '',
-            'index' => '',
-        ],
-
         'error' => [
-            '_' => '',
+            '_' => 'chyba',
         ],
 
         'help' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'wiki',
+            'index' => 'index',
         ],
 
         'home' => [
-            '_' => '',
+            '_' => 'domů',
             'password_reset' => '',
         ],
 
@@ -83,23 +79,37 @@ return [
         ],
 
         'notice' => [
+            '_' => 'oznámení',
+        ],
+
+        'notifications' => [
             '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
             '_' => '',
         ],
 
-        'tournaments' => [
+        'store' => [
             '_' => '',
+            'cart' => 'košík',
+            'order' => '',
+            'orders' => 'historie objednávek',
+            'product' => 'položka',
+            'products' => 'položky',
+        ],
+
+        'tournaments' => [
+            '_' => 'turnaje',
             'index' => '',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
+            '_' => 'hráč',
+            'forum_posts' => 'příspěvky na fóru',
             'modding' => '',
-            'show' => '',
+            'show' => 'informace',
         ],
     ],
 
@@ -119,6 +129,7 @@ return [
             'beatmapset-watches-index' => '',
             'changelog-build' => 'sestavení',
             'changelog-index' => 'seznam změn',
+            'client_verifications-create' => '',
             'forum-topic-watches-index' => '',
             'friends-index' => 'přátelé',
             'getDownload' => 'stáhnout',
@@ -222,6 +233,7 @@ return [
             'modding-history-posts' => 'uživatelské modding příspěvky',
             'modding-history-votesGiven' => 'uživatelské modding hlasy dány',
             'modding-history-votesReceived' => 'uživatelské modding hlasy obdrženy',
+            'notifications-index' => '',
             'oauth_login' => '',
             'oauth_request' => '',
             'settings' => 'Nastavení',
@@ -332,7 +344,7 @@ return [
             'forgot' => "Zapomněl jsem své údaje",
             'password' => 'heslo',
             'title' => 'Pro pokračování se přihlašte',
-            'username' => '',
+            'username' => 'uživatelské jméno',
 
             'error' => [
                 'email' => "Uživatelské jméno nebo emailová adresa neexistují",

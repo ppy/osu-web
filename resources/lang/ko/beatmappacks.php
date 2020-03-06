@@ -21,7 +21,7 @@
 return [
     'index' => [
         'description' => '비슷한 테마를 기준으로 모아놓은 비트맵 모음집입니다.',
-        'nav_title' => '',
+        'nav_title' => '목록',
         'title' => '비트맵 팩',
 
         'blurb' => [

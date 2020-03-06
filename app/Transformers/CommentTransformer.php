@@ -21,23 +21,26 @@
 namespace App\Transformers;
 
 use App\Models\Comment;
-use League\Fractal;
 
-class CommentTransformer extends Fractal\TransformerAbstract
+class CommentTransformer extends TransformerAbstract
 {
+    protected $defaultIncludes = [
+        'message',
+        'message_html',
+    ];
+
+    protected $permissions = [
+        'message' => 'CommentShow',
+        'message_html' => 'CommentShow',
+    ];
+
     public function transform(Comment $comment)
     {
-        if (priv_check('CommentShow', $comment)->can()) {
-            $message = $comment->message;
-            $messageHtml = markdown($comment->message);
-        }
-
         return [
             'id' => $comment->id,
             'parent_id' => $comment->parent_id,
             'user_id' => $comment->user_id,
-            'message' => $message ?? null,
-            'message_html' => $messageHtml ?? null,
+            'pinned' => $comment->pinned ?? false,
             'replies_count' => $comment->replies_count_cache ?? 0,
             'votes_count' => $comment->votes_count_cache ?? 0,
 
@@ -54,5 +57,15 @@ class CommentTransformer extends Fractal\TransformerAbstract
             'edited_at' => json_time($comment->edited_at),
             'edited_by_id' => $comment->edited_by_id,
         ];
+    }
+
+    public function includeMessage(Comment $comment)
+    {
+        return $this->primitive($comment->message);
+    }
+
+    public function includeMessageHtml(Comment $comment)
+    {
+        return $this->primitive(markdown($comment->message, 'comment'));
     }
 }

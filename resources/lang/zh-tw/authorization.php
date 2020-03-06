@@ -19,7 +19,7 @@
  */
 
 return [
-    'require_login' => '登錄以繼續。',
+    'require_login' => '登入以繼續。',
     'require_verification' => '需要驗證帳戶!',
     'restricted' => "帳戶處於限制模式，無法進行該操作。",
     'silenced' => "帳戶被禁言，無法進行該操作。",
@@ -38,17 +38,17 @@ return [
             'owner' => "不能提名自己的圖譜。",
         ],
         'resolve' => [
-            'not_owner' => '只有樓主和譜面所有者才能標記為已解決。',
+            'not_owner' => '只有樓主和圖譜所有者才能標記為已解決。',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '只有譜面作者或譜面管理團隊/質量保證團隊可以發布備註。',
+            'mapper_note_wrong_user' => '只有圖譜作者或譜面管理團隊/質量保證團隊可以發布備註。',
         ],
 
         'vote' => [
             'limit_exceeded' => '在投更多票之前請稍等一會',
             'owner' => "不能為自己的討論投票。",
-            'wrong_beatmapset_state' => '只能對等待中的譜面討論進行投票。',
+            'wrong_beatmapset_state' => '只能對待處理的圖譜討論進行投票。',
         ],
     ],
 
@@ -123,7 +123,7 @@ return [
                 'no_permission' => '沒有權限，無法回覆。',
 
                 'user' => [
-                    'require_login' => '回覆前請先登錄。',
+                    'require_login' => '回覆前請先登入。',
                     'restricted' => "帳戶處於限制模式，無法回覆。",
                     'silenced' => "帳戶被禁言，無法回覆。",
                 ],
@@ -142,7 +142,7 @@ return [
                 'voted' => '不允許修改投票。',
 
                 'user' => [
-                    'require_login' => '投票前請先登錄。',
+                    'require_login' => '投票前請先登入。',
                     'restricted' => "帳戶處於限制模式，無法投票。",
                     'silenced' => "帳戶被禁言，無法投票。",
                 ],

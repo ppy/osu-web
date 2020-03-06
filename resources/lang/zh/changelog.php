@@ -49,7 +49,7 @@ return [
     'support' => [
         'heading' => '喜欢这次更新吗？',
         'text_1' => '支持 osu! 的后续开发， :link 吧！',
-        'text_1_link' => '成为 Supporter',
+        'text_1_link' => '成为 osu!supporter',
         'text_2' => '你不仅仅能加快开发进度，还能获得一些额外的功能，甚至个性化你的游戏界面！',
     ],
 ];

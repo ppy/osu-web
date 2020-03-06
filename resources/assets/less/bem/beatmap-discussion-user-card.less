@@ -84,7 +84,7 @@
 
   &__user-stripe {
     align-self: stretch;
-    background-color: @osu-colour-b5;
+    background-color: var(--group-colour, @osu-colour-b5);
     border-radius: 1px;
     flex: none;
     width: 2px;
@@ -94,19 +94,12 @@
         display: none;
       }
     }
-
-    .osu-group-colours({
-      .@{_top}--@{group} & {
-        background-color: @@colour;
-      }
-    });
   }
 
   &__user-text {
     color: white;
     font-size: @font-size--normal-2;
-    font-weight: bold;
-    font-style: italic;
+    font-weight: 600;
     max-width: 120px;
   }
 }

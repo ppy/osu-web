@@ -24,11 +24,10 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Libraries\Search\BasicSearch;
 use App\Models\Score\Best;
-use Cache;
 
 trait UserScoreable
 {
-    public function aggregatedScoresBest(string $mode, int $size) : SearchResponse
+    public function aggregatedScoresBest(string $mode, int $size): SearchResponse
     {
         $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
 
@@ -45,7 +44,8 @@ trait UserScoreable
                 'by_beatmaps' => [
                     'terms' => [
                         'field' => 'beatmap_id',
-                        'order' => ['max_pp' => 'desc'], // sort by sub-aggregation max_pp
+                        // sort by sub-aggregation max_pp, with score_id as tie breaker
+                        'order' => [['max_pp' => 'desc'], ['min_score_id' => 'asc']],
                         'size' => $size,
                     ],
                     'aggs' => [
@@ -57,6 +57,7 @@ trait UserScoreable
                         ],
                         // top_hits aggregation is not useable for sorting, so we need an extra aggregation to sort on.
                         'max_pp' => ['max' => ['field' => 'pp']],
+                        'min_score_id' => ['min' => ['field' => 'score_id']],
                     ],
                 ],
             ]);
@@ -86,6 +87,10 @@ trait UserScoreable
         $key = "search-cache:beatmapBestScores:{$this->getKey()}:{$mode}";
         $ids = cache_remember_mutexed($key, config('osu.scores.es_cache_duration'), [], function () use ($mode) {
             return $this->beatmapBestScoreIds($mode, 100);
+        }, function () {
+            // TODO: propagate a more useful message back to the client
+            // for now we just mark the exception as handled.
+            return true;
         });
 
         $ids = array_slice($ids, $offset, $limit);

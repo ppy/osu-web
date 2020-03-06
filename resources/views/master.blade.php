@@ -16,9 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $legacyNav = $legacyNav ?? true;
-    $legacyFont = $legacyFont ?? true;
-
     if (!isset($title)) {
         $titleTree = [];
 
@@ -53,10 +50,6 @@
     >
         <style>
             :root {
-                @if (!$legacyFont)
-                    --font-default-override: var(--font-default-torus);
-                    --font-content-override: var(--font-content-inter);
-                @endif
                 --base-hue: {{ $currentHue }};
                 --base-hue-deg: {{ $currentHue }}deg;
             }
@@ -75,7 +68,7 @@
         @if (!isset($blank))
             @include("layout.header")
 
-            <div class="osu-page {{ $legacyNav ? '' : 'osu-page--notification-banners' }} js-notification-banners">
+            <div class="osu-page osu-page--notification-banners js-notification-banners">
                 @stack('notification_banners')
             </div>
         @endif

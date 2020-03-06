@@ -39,9 +39,15 @@
     flex: 1 0 100%;
   }
 
+  &--minimum {
+    flex: none;
+  }
+
   .grid--gutters > & {
-    padding-left: @flex-grid--gutter-width;
-    padding-right: @flex-grid--gutter-width;
+    @media @desktop {
+      padding-left: @flex-grid--gutter-width;
+      padding-right: @flex-grid--gutter-width;
+    }
   }
 
   .grid--row-gaps > & {

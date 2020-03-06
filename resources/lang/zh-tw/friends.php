@@ -23,8 +23,8 @@ return [
     'too_many' => '好友數量達到最大上限。',
 
     'buttons' => [
-      'add' => '新增好友',
-      'disabled' => '好友',
-      'remove' => '刪除好友',
+        'add' => '新增好友',
+        'disabled' => '好友',
+        'remove' => '刪除好友',
     ],
 ];

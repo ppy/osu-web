@@ -17,7 +17,6 @@
 --}}
 @extends('master', [
     'currentAction' => 'packs',
-    'legacyNav' => false,
     'title' => $pack->name.' · '.trans('beatmappacks.index.title'),
 ])
 

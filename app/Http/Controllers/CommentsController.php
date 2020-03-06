@@ -83,17 +83,24 @@ class CommentsController extends Controller
      *
      * ### Response Format
      *
-     * Returns [CommentBundle](#commentbundle)
+     * Returns [CommentBundle](#commentbundle).
+     *
+     * `pinned_comments` is only included when `commentable_type` and `commentable_id` are specified.
      *
      * @authenticated
      *
      * @queryParam commentable_type The type of resource to get comments for.
      * @queryParam commentable_id The id of the resource to get comments for.
+     * @queryParam cursor Pagination option. See [CommentSort](#commentsort) for detail. The format follows [Cursor](#cursor) except it's not currently included in the response.
+     * @queryParam parent_id Limit to comments which are reply to the specified id. Specify 0 to get top level comments.
+     * @queryParam sort Sort option as defined in [CommentSort](#commentsort). Defaults to `new` for guests and user-specified default when authenticated.
      */
     public function index()
     {
-        $type = request('commentable_type');
-        $id = request('commentable_id');
+        $params = request()->all();
+
+        $id = $params['commentable_id'] ?? null;
+        $type = $params['commentable_type'] ?? null;
 
         if (isset($type) && isset($id)) {
             if (!Comment::isValidType($type)) {
@@ -104,7 +111,6 @@ class CommentsController extends Controller
             $commentable = $class::findOrFail($id);
         }
 
-        $params = request()->all();
         $params['sort'] = $params['sort'] ?? CommentBundleParams::DEFAULT_SORT;
         $commentBundle = new CommentBundle(
             $commentable ?? null,
@@ -116,11 +122,11 @@ class CommentsController extends Controller
         } else {
             $commentBundle->depth = 0;
             $commentBundle->includeCommentableMeta = true;
-            $commentBundle->includeDeleted = isset($commentable);
+            $commentBundle->includePinned = false;
 
             $commentPagination = new LengthAwarePaginator(
                 [],
-                Comment::count(),
+                $commentBundle->countForPaginator(),
                 $commentBundle->params->limit,
                 $commentBundle->params->page,
                 [
@@ -129,7 +135,7 @@ class CommentsController extends Controller
                 ]
             );
 
-            return view('comments.index', compact('commentBundle', 'commentPagination'));
+            return ext_view('comments.index', compact('commentBundle', 'commentPagination'));
         }
     }
 
@@ -169,7 +175,7 @@ class CommentsController extends Controller
             return $commentBundle->toArray();
         }
 
-        return view('comments.show', compact('commentBundle'));
+        return ext_view('comments.show', compact('commentBundle'));
     }
 
     /**
@@ -246,6 +252,26 @@ class CommentsController extends Controller
         if ($comment->user_id !== auth()->user()->getKey()) {
             $this->logModerate('LOG_COMMENT_UPDATE', $comment);
         }
+
+        return CommentBundle::forComment($comment)->toArray();
+    }
+
+    public function pinDestroy($id)
+    {
+        priv_check('CommentPin')->ensureCan();
+
+        $comment = Comment::findOrFail($id);
+        $comment->fill(['pinned' => false])->saveOrExplode();
+
+        return CommentBundle::forComment($comment)->toArray();
+    }
+
+    public function pinStore($id)
+    {
+        priv_check('CommentPin')->ensureCan();
+
+        $comment = Comment::findOrFail($id);
+        $comment->fill(['pinned' => true])->saveOrExplode();
 
         return CommentBundle::forComment($comment)->toArray();
     }

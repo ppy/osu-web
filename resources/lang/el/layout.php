@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '',
             'comments' => '',
+            'contests' => '',
             'forum' => '',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -86,8 +82,22 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
@@ -119,6 +129,7 @@ return [
             'beatmapset-watches-index' => '',
             'changelog-build' => 'έκδοση',
             'changelog-index' => 'αρχείο καταγραφής αλλαγών',
+            'client_verifications-create' => '',
             'forum-topic-watches-index' => '',
             'friends-index' => 'φίλοι',
             'getDownload' => 'λήψη',
@@ -222,6 +233,7 @@ return [
             'modding-history-posts' => 'modding αναρτήσεις του χρήστη',
             'modding-history-votesGiven' => 'modding ψήφους που έχει δώσει ο χρήστης',
             'modding-history-votesReceived' => 'modding ψήφους που έχει λάβει ο χρήστης',
+            'notifications-index' => '',
             'oauth_login' => 'συνδεθείτε για το oauth',
             'oauth_request' => 'εξουσιοδότηση oauth',
             'settings' => 'Ρυθμίσεις',

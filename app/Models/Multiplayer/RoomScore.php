@@ -59,9 +59,20 @@ class RoomScore extends Model
     protected $dates = ['started_at', 'ended_at'];
     protected $casts = [
         'passed' => 'boolean',
-        'mods' => 'array',
+        'mods' => 'object',
         'statistics' => 'array',
     ];
+
+    public static function start(array $params)
+    {
+        // TODO: move existence checks here?
+        $score = new static($params);
+        $score->started_at = Carbon::now();
+
+        $score->save();
+
+        return $score;
+    }
 
     public function playlistItem()
     {
@@ -91,17 +102,6 @@ class RoomScore extends Model
     public function isCompleted()
     {
         return present($this->ended_at);
-    }
-
-    public static function start(array $params)
-    {
-        // TODO: move existence checks here?
-        $score = new static($params);
-        $score->started_at = Carbon::now();
-
-        $score->save();
-
-        return $score;
     }
 
     public function complete(array $params)

@@ -20,13 +20,13 @@
 
 return [
     'availability' => [
-        'disabled' => '該譜面現在無法下載。',
+        'disabled' => '該圖譜現在無法下載。',
         'parts-removed' => '因作者或第三方版權擁有者的要求，故該圖譜已經下架。',
         'more-info' => '點擊這裡查看更多訊息。',
     ],
 
     'index' => [
-        'title' => '譜面列表',
+        'title' => '圖譜列表',
         'guest_title' => '圖譜',
     ],
 
@@ -34,16 +34,10 @@ return [
         'discussion' => '討論',
 
         'details' => [
-            'approved' => '批准於 ',
             'favourite' => '收藏這張圖譜',
             'logged-out' => '下載圖譜前請先登入！',
-            'loved' => 'loved 於 ',
             'mapped_by' => '由 :mapper 製作',
-            'qualified' => 'qualified 於 ',
-            'ranked' => '進榜於 ',
-            'submitted' => '發佈於 ',
             'unfavourite' => '取消收藏',
-            'updated' => '上次更新於 ',
             'updated_timeago' => '最後更新時間 :timeago',
 
             'download' => [
@@ -71,14 +65,14 @@ return [
 
                 'status' => [
                     'pending' => '待處理',
-                    'qualified' => 'qualified',
-                    'wip' => '此功能仍在開發中',
+                    'qualified' => '已提名',
+                    'wip' => '製作中',
                 ],
             ],
 
             'disqualify' => [
-                '_' => '',
-                'button_title' => '',
+                '_' => '如果你認為此圖譜有問題，可將之取消提名：:link',
+                'button_title' => '取消提名已被Qualified的圖譜',
             ],
 
             'report' => [
@@ -153,13 +147,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '已批准。',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
+            'ranked' => '已進榜',
+            'approved' => '已核準',
+            'loved' => 'Loved',
+            'qualified' => '已提名',
+            'wip' => '製作中',
             'pending' => '待處理',
-            'graveyard' => '',
+            'graveyard' => '拋棄',
         ],
     ],
 ];

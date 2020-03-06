@@ -76,6 +76,7 @@ Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
     Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
         Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
     });
+    Route::post('beatmapsets/discussions/review', 'BeatmapDiscussionsController@review')->name('beatmap-discussions.review');
 
     Route::group(['namespace' => 'Beatmapsets'], function () {
         Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
@@ -94,7 +95,11 @@ Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
     Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
 });
 
+Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);
+
 Route::resource('comments', 'CommentsController', ['except' => ['create', 'edit']]);
+Route::post('comments/{comment}/pin', 'CommentsController@pinStore')->name('comments.pin');
+Route::delete('comments/{comment}/pin', 'CommentsController@pinDestroy');
 Route::post('comments/{comment}/restore', 'CommentsController@restore')->name('comments.restore');
 Route::post('comments/{comment}/vote', 'CommentsController@voteStore')->name('comments.vote');
 Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
@@ -247,7 +252,6 @@ Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
 Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
     Route::get('/', 'ModdingHistoryController@index')->name('index');
     Route::get('/events', 'ModdingHistoryController@events')->name('events');
-    Route::get('/discussions', 'ModdingHistoryController@discussions')->name('discussions');
     Route::get('/posts', 'ModdingHistoryController@posts')->name('posts');
     Route::get('/votes-given', 'ModdingHistoryController@votesGiven')->name('votes-given');
     Route::get('/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');
@@ -260,6 +264,7 @@ Route::group(['prefix' => 'help'], function () {
     // help section
     Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
+    Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
     route_redirect('/', 'wiki.show');
 });
 
@@ -324,6 +329,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
             });
+            Route::post('discussions/review', 'BeatmapDiscussionsController@review')->name('beatmap-discussions.review');
         });
 
         Route::apiResource('comments', 'CommentsController');
@@ -359,6 +365,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         Route::resource('reports', 'ReportsController', ['only' => ['store']]);
 
         Route::apiResource('rooms', 'Multiplayer\RoomsController', ['only' => ['show', 'store']]);
+
+        Route::apiResource('seasonal-backgrounds', 'SeasonalBackgroundsController', ['only' => ['index']]);
 
         Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
             // GET /api/v2/scores/:mode/:score_id/download
@@ -400,6 +408,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
 
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', 'RankingController@index');
+        Route::resource('spotlights', 'SpotlightsController', ['only' => ['index']]);
 
         //  GET /api/v2/users/:user_id/kudosu
         Route::get('users/{user}/kudosu', 'UsersController@kudosu');

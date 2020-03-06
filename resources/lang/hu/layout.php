@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Közösség',
             'comments' => '',
+            'contests' => '',
             'forum' => 'Fórum',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -86,8 +82,22 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
@@ -119,6 +129,7 @@ return [
             'beatmapset-watches-index' => '',
             'changelog-build' => 'verzió',
             'changelog-index' => 'változtatások',
+            'client_verifications-create' => '',
             'forum-topic-watches-index' => '',
             'friends-index' => 'barátok',
             'getDownload' => 'letöltés',
@@ -222,6 +233,7 @@ return [
             'modding-history-posts' => 'felhasználói modoló előzmények',
             'modding-history-votesGiven' => 'felhasználói modoló szavazat adva',
             'modding-history-votesReceived' => 'felhasználói modoló szavazat kapva',
+            'notifications-index' => '',
             'oauth_login' => 'jelentkezz be az oauth-ért',
             'oauth_request' => 'oauth felhatalmazás',
             'settings' => 'Beállitások',

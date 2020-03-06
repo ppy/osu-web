@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '',
             'comments' => '',
+            'contests' => '',
             'forum' => 'Forum',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -86,8 +82,22 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'rankings' => [
             '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
         ],
 
         'tournaments' => [
@@ -119,6 +129,7 @@ return [
             'beatmapset-watches-index' => '',
             'changelog-build' => 'versjon',
             'changelog-index' => 'endringslogg',
+            'client_verifications-create' => '',
             'forum-topic-watches-index' => '',
             'friends-index' => 'venner',
             'getDownload' => 'last ned',
@@ -222,6 +233,7 @@ return [
             'modding-history-posts' => 'brukermoddings-innlegg',
             'modding-history-votesGiven' => 'brukermoddingsstemmer gitt',
             'modding-history-votesReceived' => 'brukermoddingsstemmer mottatt',
+            'notifications-index' => '',
             'oauth_login' => 'logg inn for oauth',
             'oauth_request' => 'oauth-godkjennelse',
             'settings' => 'Innstillinger',

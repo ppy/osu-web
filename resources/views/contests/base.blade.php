@@ -19,7 +19,7 @@
     $links = [
         [
             'url' => route('contests.index'),
-            'title' => trans('layout.header.contests.index'),
+            'title' => trans('contest.index.nav_title'),
         ],
         [
             'url' => $contestMeta->url(),
@@ -31,7 +31,6 @@
 @extends('master', [
     'currentSection' => 'community',
     'currentAction' => 'contests',
-    'legacyNav' => false,
     'title' => "Contest: {$contestMeta->name}",
     'pageDescription' => strip_tags(markdown($contestMeta->currentDescription())),
     'canonicalUrl' => $contestMeta->url(),
@@ -43,20 +42,31 @@
 ])
 
 @section('content')
-    @include('objects.css-override', ['mapping' => [
-        '.header-v4--contests .header-v4__bg' => $contestMeta->header_url,
-    ]])
+    <style>
+        :root { {{ css_var_2x('--header-bg', $contestMeta->header_url) }} }
+    </style>
 
     @include('layout._page_header_v4', ['params' => [
         'links' => $links,
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.contests._'),
-        'subSection' => $contestMeta->name,
+        'section' => trans('layout.header.community._'),
+        'subSection' => trans('layout.header.community.contests'),
         'theme' => 'contests',
     ]])
 
-    <div class="osu-page osu-page--contest">
-        <div class='contest'>
+    <div class="osu-page">
+        <div class="page-image">
+            {!! img2x([
+                'src' => $contestMeta->header_url,
+                'class' => 'page-image__image',
+            ]) !!}
+
+            <h1 class="page-image__title">
+                {{ $contestMeta->name }}
+            </h1>
+        </div>
+
+        <div class="contest">
             @yield('contest-content')
         </div>
     </div>
