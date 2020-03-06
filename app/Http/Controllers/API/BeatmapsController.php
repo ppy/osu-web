@@ -10,6 +10,11 @@ use Request;
 
 class BeatmapsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('require-scopes:beatmaps.read');
+    }
+
     public function show($id)
     {
         $beatmap = Beatmap::findOrFail($id);

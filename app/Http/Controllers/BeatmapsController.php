@@ -13,6 +13,15 @@ use Request;
 
 class BeatmapsController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        if (is_api_request()) {
+            $this->middleware('require-scopes:beatmaps.read');
+        }
+    }
+
     public function show($id)
     {
         $beatmap = Beatmap::findOrFail($id);
