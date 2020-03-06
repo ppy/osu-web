@@ -41,7 +41,6 @@
 @endphp
 
 @extends('master', [
-    'legacyFont' => false,
     'title' => null,
     'titlePrepend' => $page->title(true),
 ])

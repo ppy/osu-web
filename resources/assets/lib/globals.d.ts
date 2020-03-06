@@ -73,6 +73,7 @@ interface OsuCommon {
   transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;
   transExists: (key: string, locale?: string) => boolean;
   urlPresence: (url?: string | null) => string;
+  urlRegex: RegExp;
   uuid: () => string;
   formatNumber(num: number, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): string;
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;

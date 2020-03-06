@@ -42,7 +42,7 @@ function background_image($url, $proxy = true)
         return '';
     }
 
-    $url = $proxy ? proxy_image($url) : $url;
+    $url = $proxy ? proxy_media($url) : $url;
 
     return sprintf(' style="background-image:url(\'%s\');" ', e($url));
 }
@@ -809,7 +809,7 @@ function bbcode_for_editor($text, $uid = null)
     return (new App\Libraries\BBCodeFromDB($text, $uid))->toEditor();
 }
 
-function proxy_image($url)
+function proxy_media($url)
 {
     // turn relative urls into absolute urls
     if (!preg_match('/^https?\:\/\//', $url)) {
@@ -1047,7 +1047,7 @@ function open_image($path, $dimensions = null)
 
 function json_collection($model, $transformer, $includes = null)
 {
-    $manager = new League\Fractal\Manager();
+    $manager = new League\Fractal\Manager(new App\Libraries\Transformers\ScopeFactory());
     if ($includes !== null) {
         $manager->parseIncludes($includes);
     }

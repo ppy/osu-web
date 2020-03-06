@@ -159,7 +159,7 @@ use Request;
  * @property string $user_post_sortby_type
  * @property int $user_posts
  * @property int $user_rank
- * @property int $user_regdate
+ * @property \Carbon\Carbon $user_regdate
  * @property mixed $user_sig
  * @property string $user_sig_bbcode_bitfield
  * @property string $user_sig_bbcode_uid
