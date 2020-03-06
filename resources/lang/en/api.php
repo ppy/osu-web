@@ -35,7 +35,7 @@ return [
         ],
 
         'users' => [
-            'read' => 'Read the public profile of any user.',
+            'read' => 'Read the public profile of any user on your behalf.',
         ],
     ],
 ];
