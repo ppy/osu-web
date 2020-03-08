@@ -107,13 +107,12 @@
   }
 
   &__icon {
-    .center-content();
-    border-radius: 10000px;
     font-size: 18px; // icon size
     height: 30px;
-    color: white;
+    color: @osu-colour-c1;
+    display: flex;
     text-shadow: none;
-    padding: 0 10px;
+    margin: 2px;
 
     @media @desktop {
       font-size: 12px; // icon size
@@ -121,7 +120,10 @@
     }
 
     &--supporter {
+      .center-content();
+      border-radius: 10000px;
       background-color: @osu-colour-h1;
+      padding: 0 10px;
     }
   }
 
@@ -138,8 +140,11 @@
 
   &__icons {
     display: flex;
+    margin: -2px;
 
     &--flag {
+      margin: 0;
+
       @media @desktop {
         margin-top: 10px;
       }
