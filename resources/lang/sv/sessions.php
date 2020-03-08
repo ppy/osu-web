@@ -20,8 +20,8 @@
 
 return [
     'create' => [
-        'download' => '',
+        'download' => 'Klicka här för att ladda ner spelet och skapa ett konto',
         'label' => '',
-        'title' => '',
+        'title' => 'Kontoinloggning',
     ],
 ];

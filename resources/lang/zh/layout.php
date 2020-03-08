@@ -28,7 +28,7 @@ return [
             '_' => '管理',
             'beatmapset' => '谱面集',
             'beatmapset_covers' => '谱面集封面',
-            'contest' => '比赛',
+            'contest' => '竞赛',
             'contests' => '竞赛',
             'root' => '控制中心',
             'store_orders' => '商店管理',
@@ -55,7 +55,7 @@ return [
         'community' => [
             '_' => '社区',
             'comments' => '评论',
-            'contests' => '',
+            'contests' => '评选',
             'forum' => '论坛',
             'livestream' => '直播',
         ],
@@ -83,8 +83,8 @@ return [
         ],
 
         'notifications' => [
-            '_' => '',
-            'index' => '',
+            '_' => '通知',
+            'index' => '历史记录',
         ],
 
         'rankings' => [
@@ -233,7 +233,7 @@ return [
             'modding-history-posts' => '用户摸图帖',
             'modding-history-votesGiven' => '用户摸图投票数',
             'modding-history-votesReceived' => '用户摸图获得票数',
-            'notifications-index' => '',
+            'notifications-index' => '通知历史记录',
             'oauth_login' => '登录以授权',
             'oauth_request' => 'OAuth 授权',
             'settings' => '设置',

@@ -42,14 +42,16 @@ return [
         'title' => 'buscar',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => 'Hay :count mapas más en los resultados',
             'more_simple' => 'Ver más resultados de mapas',
-            'title' => 'Beatmaps',
+            'title' => 'Mapas',
         ],
 
         'forum_post' => [
             'all' => 'Todos los foros',
             'link' => 'Busca en el foro',
+            'login_required' => '',
             'more_simple' => 'Ver más resultados de los foros',
             'title' => 'Foro',
 
@@ -63,13 +65,14 @@ return [
 
         'mode' => [
             'all' => 'todos',
-            'beatmapset' => 'beatmap',
+            'beatmapset' => 'mapa',
             'forum_post' => 'foro',
             'user' => 'jugador',
             'wiki_page' => 'wiki',
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count jugadores más coinciden con la búsqueda',
             'more_simple' => 'Ver más resultados de jugadores',
             'more_hidden' => 'La búsqueda de jugadores está limitada a :max jugadores. Intenta refinando tus términos de búsqueda.',

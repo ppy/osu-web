@@ -24,8 +24,8 @@ return [
         'difference' => ':difference点差',
         'failed' => '失敗',
         'header' => 'マルチプレイ部屋',
-        'in-progress' => '（試合進行中）',
-        'in_progress_spinner_label' => '試合進行中',
+        'in-progress' => '（対戦中）',
+        'in_progress_spinner_label' => '対戦中',
         'loading-events' => 'イベントの読み込み中・・・',
         'winner' => ':teamの勝利',
 

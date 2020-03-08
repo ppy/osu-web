@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Không cho phép trả lời bình luận đã xóa.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Tin nhắn',

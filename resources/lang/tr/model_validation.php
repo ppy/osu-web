@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Silinmiş yorumlara cevap verilemez.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Mesaj',

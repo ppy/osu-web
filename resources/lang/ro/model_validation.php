@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Nu este permis să răspunzi la un comentariu șters.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Mesajul',

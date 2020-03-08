@@ -42,6 +42,7 @@ return [
         'title' => '搜尋',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => '搜尋到 :count 張圖譜',
             'more_simple' => '查看更多搜尋結果',
             'title' => '圖譜',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => '所有論壇',
             'link' => '在論壇中搜尋',
+            'login_required' => '',
             'more_simple' => '查看更多搜尋結果',
             'title' => '論壇',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => '搜尋到 :count 張圖譜',
             'more_simple' => '查看更多搜尋結果',
             'more_hidden' => '搜尋玩家的人數不可超過 :max 人，請修改搜尋內容。',

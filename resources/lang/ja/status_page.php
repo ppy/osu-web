@@ -62,7 +62,7 @@ return [
             'month' => '今月',
             'all_time' => '全期間',
             'last_week' => '先週',
-            'weeks_ago' => ':count週間前',
+            'weeks_ago' => ':count_delimited 週間前',
         ],
     ],
 ];

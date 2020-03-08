@@ -47,10 +47,10 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => 'このユーザーにブロックされています。',
+        'banner_text' => 'このユーザーをブロックしています',
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
-        'not_blocked' => 'このユーザーにはブロックされていません。',
+        'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
         'too_many' => 'ブロックできる上限に達しました。',
         'button' => [
@@ -98,8 +98,8 @@ return [
         'email_login_disabled' => '現在、メールでのログインは無効になっています。代わりにユーザー名を使用してください。',
         'failed' => 'ログインに失敗しました',
         'forgot' => 'パスワードを忘れましたか？',
-        'info' => 'サインインして続行してください',
-        'locked_ip' => 'あなたのIPアドレスは規制されています。数分後もう一度お試しください。',
+        'info' => 'ログインして続行してください',
+        'locked_ip' => 'あなたのIPアドレスはロックされています。数分後もう一度お試しください。',
         'password' => 'パスワード',
         'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
         'remember' => 'ログイン状態を保持する',
@@ -107,7 +107,7 @@ return [
         'username' => 'ユーザー名',
 
         'beta' => [
-            'main' => 'ベータアクセスは権限があるユーザーのみに付与されます',
+            'main' => 'ベータアクセスは権限があるユーザーのみに付与されます。',
             'small' => '(osu!サポーターはすぐ手に入ります)',
         ],
     ],
@@ -151,7 +151,7 @@ return [
     ],
     'show' => [
         'age' => ':age歳',
-        'change_avatar' => 'アバター画像の変更',
+        'change_avatar' => 'プロフィール画像の変更',
         'first_members' => '創設時からのメンバー',
         'is_developer' => 'osu!開発者',
         'is_supporter' => 'osu!サポーター',
@@ -196,7 +196,7 @@ return [
             'unranked' => '最近のプレイはありません',
 
             'achievements' => [
-                'achieved-on' => '取得日時 :date',
+                'achieved-on' => '達成日 :date',
                 'locked' => 'ロック',
                 'title' => '実績',
             ],
@@ -347,7 +347,7 @@ return [
 
                 'recent_infringements' => [
                     'title' => '最近の違反',
-                    'date' => '日付',
+                    'date' => '発生日',
                     'action' => 'アクション',
                     'length' => '期間',
                     'length_permanent' => '永久',
@@ -393,10 +393,10 @@ return [
         ],
         'post_count' => [
             '_' => 'フォーラム投稿数 :link',
-            'count' => ':count個',
+            'count' => ':count_delimited個',
         ],
         'rank' => [
-            'country' => ':modeの国内ランク',
+            'country' => ':modeの国別ランク',
             'country_simple' => '国別ランキング',
             'global' => ':modeの世界ランク',
             'global_simple' => '世界ランキング',

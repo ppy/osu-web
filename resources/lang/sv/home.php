@@ -42,6 +42,7 @@ return [
         'title' => 'Sök',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count fler sökresultat på beatmaps',
             'more_simple' => 'Se fler sökresultat på beatmaps',
             'title' => 'Beatmaps',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Alla forum',
             'link' => 'Sök på forumet',
+            'login_required' => '',
             'more_simple' => 'Se fler sökresultat på forum',
             'title' => 'Forum',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count fler sökresultat på spelare',
             'more_simple' => 'Se fler sökresultat på spelare',
             'more_hidden' => 'Sökning på spelare är begränsad till :max spelare. Försök att förfina sökningen.',
@@ -105,12 +108,12 @@ return [
             'beatmaps' => [
                 'title' => 'skaffa beatmaps',
                 'description' => [
-                    '_' => ':browse i det stora bibloteket av beatmaps skapade av användare och börja spela!',
+                    '_' => ':browse det stora biblioteket av beatmaps skapade av användare och börja spela!',
                     'browse' => 'bläddra',
                 ],
             ],
         ],
-        'video-guide' => 'video guide',
+        'video-guide' => 'videoguide',
     ],
 
     'user' => [

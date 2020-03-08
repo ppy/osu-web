@@ -38,7 +38,7 @@ return [
         'keep_free' => '',
         'keep_running' => '',
         'subject' => '非常感謝，osu! 愛你哦~',
-        'translation' => '',
+        'translation' => '以下為社群提供的翻譯，僅供參考:',
 
         'benefit' => [
             'gift' => '',
@@ -85,21 +85,21 @@ return [
     ],
 
     'user_email_updated' => [
-        'changed_to' => '',
+        'changed_to' => '提醒您，您的osu!電子信箱已被更改為:email',
         'check' => '',
-        'sent' => '',
+        'sent' => '為了確保帳號安全，我們已將此郵件發送至您的原信箱和修改後的信箱',
         'subject' => 'osu! 帳號電子郵件變更',
     ],
 
     'user_force_reactivation' => [
         'main' => '',
-        'perform_reset' => '',
+        'perform_reset' => '您可以點擊此連結來重設密碼:url',
         'reason' => '原因:',
         'subject' => '您需要重新驗證您的 osu! 帳戶',
     ],
 
     'user_password_updated' => [
-        'confirmation' => '',
+        'confirmation' => '提醒您，您的osu!密碼已被修改',
         'subject' => 'osu! 帳號密碼變更',
     ],
 

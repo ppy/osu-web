@@ -34,10 +34,16 @@ return [
         'discussion' => '討論',
 
         'details' => [
+            'approved' => '核準於 ',
             'favourite' => '收藏這張圖譜',
             'logged-out' => '下載圖譜前請先登入！',
+            'loved' => 'loved 於 ',
             'mapped_by' => '由 :mapper 製作',
+            'qualified' => 'qualified 於 ',
+            'ranked' => '進榜於 ',
+            'submitted' => '發佈於 ',
             'unfavourite' => '取消收藏',
+            'updated' => '上次更新於 ',
             'updated_timeago' => '最後更新時間 :timeago',
 
             'download' => [

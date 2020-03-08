@@ -913,13 +913,12 @@ function footer_landing_links()
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => route('download'),
-            'wiki' => wiki_url('Main_Page'),
         ],
         'help' => [
             'faq' => wiki_url('FAQ'),
             'forum' => route('forum.forums.index'),
             'livestreams' => route('livestreams.index'),
-            'report' => route('forum.topics.create', ['forum_id' => 5]),
+            'wiki' => wiki_url('Main_Page'),
         ],
         'legal' => footer_legal_links(),
     ];
