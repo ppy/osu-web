@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Nie możesz odpowiedzieć na usunięty komentarz.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Wiadomość',

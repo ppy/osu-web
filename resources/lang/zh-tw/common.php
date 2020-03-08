@@ -49,7 +49,7 @@ return [
         'expand' => '展開',
         'hide' => '隱藏',
         'permalink' => '永久連結',
-        'pin' => '',
+        'pin' => '置頂',
         'post' => '發表',
         'reply' => '回覆',
         'reply_reopen' => '回覆並重新打開',
@@ -65,7 +65,7 @@ return [
         'show_less' => '',
         'show_more' => '顯示更多',
         'show_more_options' => '顯示更多選項',
-        'unpin' => '',
+        'unpin' => '取消置頂',
         'update' => '更新',
         'upload_image' => '上傳圖片',
 

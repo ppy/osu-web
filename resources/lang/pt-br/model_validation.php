@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Não é permitido responder comentários excluídos.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'A mensagem',

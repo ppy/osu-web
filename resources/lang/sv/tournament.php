@@ -39,8 +39,8 @@ return [
 
     'show' => [
         'banner' => 'Stöd ditt lag',
-        'entered' => 'Du är registrerad för denna turnering.<br><br>Notera att detta betyder inte att du har blivit tilldelad ett lag.<br><br>Ytterligare instruktioner kommer att skickas till dig via e-post när datumet för turneringen närmar sig, så var vänlig att kontrollera att din e-postadress för ditt osu!-konto är korrekt!',
-        'info_page' => 'Information',
+        'entered' => 'Du är registrerad för denna turnering.<br><br>Vänligen notera att detta <b>inte</b> betyder att du har blivit tilldelad ett lag.<br><br>Ytterligare instruktioner kommer att skickas till dig via e-post när datumet för turneringen närmar sig, så var vänlig att kontrollera att din e-postadress för ditt osu!-konto är korrekt!',
+        'info_page' => 'Informationssida',
         'login_to_register' => 'Var vänlig :login för att visa registreringsdetaljer!',
         'not_yet_entered' => 'Du är inte registrerad för denna turnering.',
         'rank_too_low' => 'Tyvärr, men du möter inte kraven på rank för denna turnering!',
@@ -53,7 +53,7 @@ return [
 
         'period' => [
             'end' => '',
-            'start' => '',
+            'start' => 'Start',
         ],
 
         'state' => [

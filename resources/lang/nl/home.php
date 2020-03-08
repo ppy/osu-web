@@ -42,6 +42,7 @@ return [
         'title' => 'Zoek',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count andere beatmap zoekresultaten',
             'more_simple' => 'Zie meer beatmap zoekresultaten',
             'title' => 'Beatmaps',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Alle forums',
             'link' => 'Doorzoek het forum',
+            'login_required' => '',
             'more_simple' => 'Zie meer forum zoekresultaten',
             'title' => 'Forum',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count meer speler zoekresultaten',
             'more_simple' => 'Zie meer speler zoekresultaten',
             'more_hidden' => 'Speler zoekopdracht is beperkt tot :max spelers. Probeer je zoekopdracht te verfijnen.',

@@ -84,7 +84,7 @@ return [
 
         'notifications' => [
             '_' => '',
-            'index' => '',
+            'index' => 'historik',
         ],
 
         'rankings' => [
@@ -93,32 +93,32 @@ return [
 
         'store' => [
             '_' => '',
-            'cart' => '',
+            'cart' => 'kundvagn',
             'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            'orders' => 'orderhistorik',
+            'product' => 'produkt',
+            'products' => 'produkter',
         ],
 
         'tournaments' => [
-            '_' => '',
+            '_' => 'turneringar',
             'index' => '',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
+            '_' => 'spelare',
+            'forum_posts' => 'forumsinlägg',
             'modding' => '',
-            'show' => '',
+            'show' => 'info',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
+        'close' => 'Stäng (Esc)',
         'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'zoom' => 'Zooma in/ut',
+        'previous' => 'Föregående (vänsterpil)',
+        'next' => 'Nästa (högerpil)',
     ],
 
     'menu' => [

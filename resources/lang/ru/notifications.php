@@ -21,17 +21,17 @@
 return [
     'all_read' => 'Все уведомления прочтены!',
     'mark_all_read' => 'Очистить все',
-    'none' => '',
-    'see_all' => '',
+    'none' => 'Уведомлений нет',
+    'see_all' => 'см. все уведомления',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
+        '_' => 'все',
+        'user' => 'профиль',
+        'beatmapset' => 'карты',
+        'forum_topic' => 'форум',
+        'news_post' => 'новости',
         'build' => '',
-        'channel' => '',
+        'channel' => 'чат',
     ],
 
     'item' => [
@@ -142,7 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Новая медаль',
                 'user_achievement_unlock' => 'Разблокировано ":title"!',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => 'Разблокировано: «:title»!',
             ],
         ],
     ],

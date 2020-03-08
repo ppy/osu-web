@@ -83,8 +83,8 @@ return [
         ],
 
         'notifications' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'notifikasi',
+            'index' => 'riwayat',
         ],
 
         'rankings' => [
@@ -233,7 +233,7 @@ return [
             'modding-history-posts' => 'postingan modding pengguna',
             'modding-history-votesGiven' => 'suara modding yang diberikan pengguna',
             'modding-history-votesReceived' => 'suara modding yang diterima pengguna',
-            'notifications-index' => '',
+            'notifications-index' => 'riwayat notifikasi',
             'oauth_login' => 'masuk untuk oauth',
             'oauth_request' => 'otorisasi oauth',
             'settings' => 'Pengaturan',

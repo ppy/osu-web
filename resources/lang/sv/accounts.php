@@ -26,7 +26,7 @@ return [
         'avatar' => [
             'title' => 'Profilbild',
             'rules' => '',
-            'rules_link' => 'gemenskaps regler',
+            'rules_link' => 'gemenskapsreglerna',
         ],
 
         'email' => [

@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Poistettuun kommenttiin ei voida vastata.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '',

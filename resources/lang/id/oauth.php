@@ -57,7 +57,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Apakah anda yakin untuk menghapus klien ini?',
-        'new' => 'Aplikasi OAuth anyar',
+        'new' => 'Buat aplikasi OAuth baru',
         'none' => 'Tidak ada klien',
 
         'revoked' => [

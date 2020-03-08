@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'silindi',
+        'none_found' => '',
         'title' => 'Beatmap Tartışmaları',
 
         'form' => [
