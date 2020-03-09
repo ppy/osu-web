@@ -28,8 +28,6 @@ use App\Transformers\UserCompactTransformer;
 
 class MatchesController extends Controller
 {
-    protected $section = 'multiplayer';
-
     public function show($id)
     {
         $match = Match::findOrFail($id);

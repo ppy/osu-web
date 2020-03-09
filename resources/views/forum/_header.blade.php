@@ -54,7 +54,5 @@
     'headerExtraClass' => 'js-header--main',
     'links' => $links,
     'linksBreadcrumb' => true,
-    'section' => trans('layout.header.community._'),
-    'subSection' => trans('layout.header.community.forum'),
     'theme' => $isIndex ? 'forums-index' : 'forum',
 ]])

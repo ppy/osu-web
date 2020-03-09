@@ -49,8 +49,6 @@ class AuthorizationController extends PassportAuthorizationController
                               ClientRepository $clients,
                               TokenRepository $tokens)
     {
-        view()->share('currentSection', 'user');
-
         if (!auth()->check()) {
             $cancelUrl = presence(request('redirect_uri'));
 
@@ -62,18 +60,10 @@ class AuthorizationController extends PassportAuthorizationController
 
             return ext_view('sessions.create', [
                 'cancelUrl' => $cancelUrl,
-                'currentAction' => 'oauth_login',
             ]);
         }
 
-        view()->share('currentAction', 'oauth_request');
-
         return parent::authorize($this->normalizeRequestScopes($psrRequest), $request, $clients, $tokens);
-    }
-
-    public function getSection()
-    {
-        return 'user';
     }
 
     /**

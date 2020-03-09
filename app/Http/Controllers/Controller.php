@@ -36,20 +36,8 @@ abstract class Controller extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;
 
-    /**
-     * Set up CSRF Protection and Authentication Beta filters.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        view()->share('currentSection', $this->getSection());
-        view()->share('currentAction', ($this->actionPrefix ?? '').current_action());
-    }
-
-    public function getSection()
-    {
-        return $this->section ?? '';
     }
 
     protected function formatValidationErrors(Validator $validator)

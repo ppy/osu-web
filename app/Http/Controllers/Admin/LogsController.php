@@ -24,8 +24,6 @@ use App\Models\Log;
 
 class LogsController extends Controller
 {
-    protected $actionPrefix = 'logs-';
-
     public function index()
     {
         return ext_view('admin.logs.index', [

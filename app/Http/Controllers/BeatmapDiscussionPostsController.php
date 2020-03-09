@@ -35,8 +35,6 @@ use Request;
 
 class BeatmapDiscussionPostsController extends Controller
 {
-    protected $section = 'beatmaps';
-
     public function __construct()
     {
         $this->middleware('auth', ['except' => 'index']);

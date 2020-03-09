@@ -29,13 +29,9 @@ use Request;
 
 class ForumCoversController extends Controller
 {
-    protected $section = 'community';
-
     public function __construct()
     {
         parent::__construct();
-
-        view()->share('currentAction', 'forum-forum-covers-'.current_action());
 
         $this->middleware('auth', ['only' => [
             'destroy',

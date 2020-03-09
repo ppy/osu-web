@@ -19,6 +19,7 @@
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
+        'showTitle' => false,
         'theme' => 'supporter',
     ]])
         @slot('contentAppend')

@@ -24,7 +24,6 @@
     'pageDescription' => blade_safe($post->previewText()),
     'opengraph' => [
         'title' => $title,
-        'section' => trans('layout.menu.home.news-show'),
         'image' => $post->firstImage(true),
     ],
 ])

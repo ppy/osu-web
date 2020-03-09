@@ -22,6 +22,7 @@ namespace Tests\Libraries\Search;
 
 use App\Exceptions\InvariantException;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
+use App\Models\User;
 use Tests\TestCase;
 
 class BeatmapsetSearchRequestParamsTest extends TestCase
@@ -30,6 +31,29 @@ class BeatmapsetSearchRequestParamsTest extends TestCase
      * @dataProvider cursorsDataProvider
      */
     public function testCursors(?string $sort, ?array $cursor, bool $throws, ?array $expected)
+    {
+        $requestParams = [];
+        if ($sort !== null) {
+            $requestParams['sort'] = $sort;
+        }
+
+        if ($cursor !== null) {
+            $requestParams['cursor'] = $cursor;
+        }
+
+        if ($throws) {
+            $this->expectException(InvariantException::class);
+        }
+
+        $searchAfter = (new BeatmapsetSearchRequestParams($requestParams, new User))->searchAfter;
+
+        $this->assertSame($expected, $searchAfter);
+    }
+
+    /**
+     * @dataProvider cursorsGuestDataProvider
+     */
+    public function testCursorsGuest(?string $sort, ?array $cursor, bool $throws, ?array $expected)
     {
         $requestParams = [];
         if ($sort !== null) {
@@ -61,6 +85,21 @@ class BeatmapsetSearchRequestParamsTest extends TestCase
             ['title_desc', ['title.raw' => 'a', '_id' => 1], false, ['a', 1]],
             ['title_desc', ['_id' => 1, 'title.raw' => 'a'], false, ['a', 1]],
             ['title_desc', ['ignored' => 'hi', 'title.raw' => 'a', '_id' => 1], false, ['a', 1]],
+        ];
+    }
+
+    public function cursorsGuestDataProvider()
+    {
+        return [
+            [null, null, false, null],
+            ['', null, false, null],
+            [null, [], true, null],
+            ['', [], true, null],
+            ['title_desc', null, false, null],
+            ['title_desc', ['title.raw' => 'a'], true, null],
+            ['title_desc', ['title.raw' => 'a', '_id' => 1], true, null],
+            ['title_desc', ['_id' => 1, 'title.raw' => 'a'], true, null],
+            ['title_desc', ['ignored' => 'hi', 'title.raw' => 'a', '_id' => 1], true, null],
         ];
     }
 }

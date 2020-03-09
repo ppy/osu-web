@@ -22,8 +22,6 @@ namespace App\Http\Controllers;
 
 class StatusController extends Controller
 {
-    protected $section = 'status';
-
     public function getMain()
     {
         $data = [

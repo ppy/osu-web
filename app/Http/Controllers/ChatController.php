@@ -28,9 +28,6 @@ use Request;
 
 class ChatController extends Controller
 {
-    protected $section = 'community';
-    protected $actionPrefix = 'chat-';
-
     public function __construct()
     {
         $this->middleware('auth');

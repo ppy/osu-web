@@ -25,8 +25,6 @@ use Auth;
 
 abstract class Controller extends BaseController
 {
-    protected $section = 'admin';
-
     public function __construct()
     {
         $this->middleware('auth');

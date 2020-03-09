@@ -53,8 +53,6 @@ export class Main extends React.Component
   render: =>
     div className: 'osu-layout__section',
       el HeaderV4,
-        section: osu.trans('layout.header.matches._')
-        subSection: @props.match.name
         theme: 'mp-history'
 
       el Content,

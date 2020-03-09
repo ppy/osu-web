@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'title' => trans('changelog.build.title', ['version' => "{$build['update_stream']['display_name']} {$build['version']}"]),
+    'titlePrepend' => "{$build->updateStream->pretty_name} {$build->version}",
 ])
 
 @section('content')

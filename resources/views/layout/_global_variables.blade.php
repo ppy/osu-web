@@ -17,8 +17,6 @@
 --}}
 <script data-turbolinks-eval="always">
     var csrf = "{{ csrf_token() }}";
-    var section = "{{ $currentSection }}";
-    var page = "{{ $currentAction }}";
     var canonicalUrl = "{{ $canonicalUrl ?? '' }}";
     var reloadUrl = "{{ $reloadUrl ?? '' }}";
 </script>

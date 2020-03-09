@@ -16,18 +16,12 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-@extends('master', [
-    'currentAction' => 'contests',
-    'currentSection' => 'community',
-    'title' => "Contests",
-])
+@extends('master')
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
         'links' => [['url' => route('contests.index'), 'title' => trans('contest.index.nav_title')]],
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.community._'),
-        'subSection' => trans('layout.header.community.contests'),
         'theme' => 'contests',
     ]])
 
