@@ -63,6 +63,7 @@ class NotificationsBundle
         $response = [
             'notifications' => json_collection($this->notifications, 'Notification'),
             'stacks' => array_values($this->stacks),
+            'timestamp' => json_time(now()),
             'types' => array_values($this->types),
         ];
 

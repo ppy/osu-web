@@ -51,6 +51,7 @@ class AuthServiceProvider extends ServiceProvider
         Passport::tokensCan([
             'friends.read' => trans('api.scopes.friends.read'),
             'identify' => trans('api.scopes.identify'),
+            'users.read' => trans('api.scopes.users.read'),
         ]);
     }
 }
