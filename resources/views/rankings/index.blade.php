@@ -81,7 +81,7 @@
         </div>
     @endif
 
-    <div class="osu-page osu-page--rankings">
+    <div class="osu-page osu-page--generic">
         @if ($hasPager)
             @include('objects._pagination_v2', [
                 'object' => $scores
