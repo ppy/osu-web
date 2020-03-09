@@ -356,7 +356,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
             Route::get('{mode?}', 'Multiplayer\RoomsController@index')->name('index')->where('mode', 'owned|participated|ended');
             Route::put('{room}/users/{user}', 'Multiplayer\RoomsController@join')->name('join');
             Route::delete('{room}/users/{user}', 'Multiplayer\RoomsController@part')->name('part');
-            Route::get('{room}/leaderboard', 'Multiplayer\RoomsController@leaderboard');
+            Route::get('{room}/leaderboard', 'Multiplayer\RoomsController@leaderboard')->name('leaderboard');
             Route::group(['as' => 'playlist.', 'prefix' => '{room}/playlist'], function () {
                 Route::apiResource('{playlist}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['store', 'update']]);
             });
@@ -375,19 +375,19 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
 
         // Beatmaps
         //   GET /api/v2/beatmaps/:beatmap_id/scores
-        Route::get('beatmaps/{id}/scores', 'BeatmapsController@scores');
+        Route::get('beatmaps/{id}/scores', 'BeatmapsController@scores')->name('beatmaps.scores');
         //   GET /api/v2/beatmaps/lookup
-        Route::get('beatmaps/lookup', 'API\BeatmapsController@lookup');
+        Route::get('beatmaps/lookup', 'API\BeatmapsController@lookup')->name('beatmaps.lookup');
         //   GET /api/v2/beatmaps/:beatmap_id
         Route::resource('beatmaps', 'API\BeatmapsController', ['only' => ['show']]);
 
         // Beatmapsets
         //   GET /api/v2/beatmapsets/search/:filters
-        Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search');
+        Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
         //   GET /api/v2/beatmapsets/lookup
-        Route::get('beatmapsets/lookup', 'API\BeatmapsetsController@lookup');
+        Route::get('beatmapsets/lookup', 'API\BeatmapsetsController@lookup')->name('beatmapsets.lookup');
         //   GET /api/v2/beatmapsets/:beatmapset/download
-        Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download');
+        Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
         //   GET /api/v2/beatmapsets/:beatmapset_id
         Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show']]);
 
@@ -396,9 +396,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         Route::resource('friends', 'FriendsController', ['only' => ['index']]);
 
         //  GET /api/v2/me
-        Route::get('me/{mode?}', 'UsersController@me');
+        Route::get('me/{mode?}', 'UsersController@me')->name('me');
         //  GET /api/v2/me/download-quota-check
-        Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
+        Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
 
         // Notifications
         //  GET /api/v2/notifications
@@ -407,19 +407,19 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
 
         //  GET /api/v2/rankings/:mode/:type
-        Route::get('rankings/{mode}/{type}', 'RankingController@index');
+        Route::get('rankings/{mode}/{type}', 'RankingController@index')->name('rankings');
         Route::resource('spotlights', 'SpotlightsController', ['only' => ['index']]);
 
         //  GET /api/v2/users/:user_id/kudosu
-        Route::get('users/{user}/kudosu', 'UsersController@kudosu');
+        Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
         //  GET /api/v2/users/:user_id/scores/:type [best, firsts, recent]
-        Route::get('users/{user}/scores/{type}', 'UsersController@scores');
+        Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
         //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked_and_approved, unranked, graveyard]
-        Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets');
+        Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
         // GET /api/v2/users/:user_id/recent_activity
-        Route::get('users/{user}/recent_activity', 'UsersController@recentActivity');
+        Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->name('users.recent-activity');
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
-        Route::get('users/{user}/{mode?}', 'UsersController@show');
+        Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
     });
 });
 
