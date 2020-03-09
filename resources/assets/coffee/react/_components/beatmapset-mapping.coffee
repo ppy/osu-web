@@ -56,9 +56,11 @@ export class BeatmapsetMapping extends React.PureComponent
 
 
   renderDate: (key, attribute) =>
-    div dangerouslySetInnerHTML: __html:
-      osu.trans "beatmapsets.show.details_date.#{key}",
-        timeago: osu.timeago(@props.beatmapset[attribute])
+    div
+      className: "#{bn}__date"
+      dangerouslySetInnerHTML: __html:
+        osu.trans "beatmapsets.show.details_date.#{key}",
+          timeago: osu.timeago(@props.beatmapset[attribute])
 
 
   userLink: (user) ->
