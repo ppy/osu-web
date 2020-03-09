@@ -123,7 +123,6 @@ return [
             'changelog-index' => 'Changelog',
             'beatmaps' => 'Beatmap Listing',
             'download' => 'Download osu!',
-            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => 'Help & Community',
@@ -131,6 +130,7 @@ return [
             'forum' => 'Community Forums',
             'livestreams' => 'Live Streams',
             'report' => 'Report an Issue',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Legal & Status',
