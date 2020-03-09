@@ -42,6 +42,7 @@ return [
         'title' => 'Rechercher',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count résultats de recherche de beatmap en plus',
             'more_simple' => 'Voir plus de résultats de la recherche de beatmaps',
             'title' => 'Beatmaps',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Tous les forums',
             'link' => 'Rechercher sur le forum',
+            'login_required' => '',
             'more_simple' => 'Voir plus de résultats de la recherche du forum',
             'title' => 'Forum',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count résultats de la recherche de joueur',
             'more_simple' => 'Voir plus de résultats de la recherche de joueurs',
             'more_hidden' => 'La recherche de joueurs est limitée à :max joueurs. Essayez d\'affiner votre recherche.',
@@ -127,8 +130,8 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nouvelles Beatmaps Approuvées',
-            'popular' => 'Beatmaps Populaires',
+            'new' => 'Nouvelles beatmaps approuvées',
+            'popular' => 'Beatmaps populaires',
             'by_user' => 'par :user',
         ],
         'buttons' => [

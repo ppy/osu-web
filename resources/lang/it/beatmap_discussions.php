@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'eliminato',
+        'none_found' => '',
         'title' => 'Discussioni Beatmap',
 
         'form' => [
@@ -81,11 +82,11 @@ return [
         'go_to_parent' => 'Visualizza il post della recensione',
         'go_to_child' => 'Visualizza discussione',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_block_type' => 'tipo di blocco non valido',
+            'invalid_document' => 'recensione non valida',
+            'minimum_issues' => 'la recensione deve contenere almeno :count problema|la recensione deve contenere almeno :count problemi',
+            'missing_text' => 'il blocco non ha testo',
+            'too_many_blocks' => 'le recensioni possono contenere solo :count paragrafo/problema|le recensioni possono contenere fino a :count paragrafi/problemi',
         ],
     ],
 

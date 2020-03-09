@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Répondre à un commentaire supprimé n\'est pas autorisé.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Le message',

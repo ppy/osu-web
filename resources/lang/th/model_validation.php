@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'ไม่อนุญาตให้ตอบกลับในคอมเม้นต์ที่ถูกลบไปแล้ว',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '',

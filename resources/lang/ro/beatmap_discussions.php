@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'șters',
+        'none_found' => '',
         'title' => 'Discuții despre beatmap',
 
         'form' => [

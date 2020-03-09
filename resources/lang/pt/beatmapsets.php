@@ -34,10 +34,16 @@ return [
         'discussion' => 'Discussão',
 
         'details' => [
+            'approved' => 'aprovado em ',
             'favourite' => 'Marcar este beatmapset como favorito',
             'logged-out' => 'Precisas de iniciar sessão antes de transferir quaisquer beatmaps!',
+            'loved' => 'adorado em ',
             'mapped_by' => 'mapeado por :mapper',
+            'qualified' => 'qualificado em ',
+            'ranked' => 'classificado em ',
+            'submitted' => 'submetido em ',
             'unfavourite' => 'Desmarcar este beatmapset como favorito',
+            'updated' => 'última atualização em ',
             'updated_timeago' => 'última atualização :timeago',
 
             'download' => [

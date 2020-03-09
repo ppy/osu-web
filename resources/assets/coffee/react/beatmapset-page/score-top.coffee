@@ -78,7 +78,7 @@ export ScoreTop = (props) ->
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
               osu.trans 'beatmapsets.show.scoreboard.headers.accuracy'
             div className: "#{bn}__stat-value #{bn}__stat-value--score",
-              "#{_.round props.score.accuracy * 100, 2}%"
+              "#{osu.formatNumber(props.score.accuracy * 100, 2)}%"
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",

@@ -21,17 +21,17 @@
 return [
     'all_read' => 'تم قراءة جميع الإشعارات!',
     'mark_all_read' => 'مسح الكل',
-    'none' => '',
-    'see_all' => '',
+    'none' => 'لا إشعارات',
+    'see_all' => 'أِظهار جميع الإشعارات',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => 'الكل',
+        'user' => 'الملف الشخصي',
+        'beatmapset' => 'الخرائط',
+        'forum_topic' => 'المنتدى',
+        'news_post' => 'الأخبار',
+        'build' => 'النُسَخ',
+        'channel' => 'محادثة',
     ],
 
     'item' => [
@@ -142,7 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'ميدالية جديدة',
                 'user_achievement_unlock' => 'تم فتح !:title',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => 'تم فتح ":title"!',
             ],
         ],
     ],

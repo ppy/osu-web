@@ -34,10 +34,16 @@ return [
         'discussion' => 'Góc Thảo Luận',
 
         'details' => [
+            'approved' => 'được chấp nhận vào ',
             'favourite' => 'Yêu thích beatmapset này',
             'logged-out' => 'Bạn cần phải đăng nhập trước khi tải xuống beatmap!',
+            'loved' => 'loved vào ',
             'mapped_by' => 'được tạo bởi :mapper',
+            'qualified' => 'qualified vào ',
+            'ranked' => 'được xếp hạng vào ',
+            'submitted' => 'tải lên vào ',
             'unfavourite' => 'Bỏ yêu thích beatmapset này',
+            'updated' => 'cập nhật lần cuối lúc ',
             'updated_timeago' => 'cập nhật lần cuối vào :timeago',
 
             'download' => [

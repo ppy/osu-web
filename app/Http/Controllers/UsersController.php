@@ -271,6 +271,7 @@ class UsersController extends Controller
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
+            'group_badge',
             'loved_beatmapset_count',
             'monthly_playcounts',
             'page',
@@ -477,7 +478,7 @@ class UsersController extends Controller
                     $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scoresFirst($options['mode'], true)
                         ->visibleUsers()
-                        ->orderBy('score_id', 'desc')
+                        ->reorderBy('score_id', 'desc')
                         ->with('beatmap', 'beatmap.beatmapset', 'user');
                     break;
                 case 'scoresRecent':

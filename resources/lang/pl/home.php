@@ -42,6 +42,7 @@ return [
         'title' => 'wyszukiwarka',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => 'Zobacz więcej wyszukanych beatmap: :count',
             'more_simple' => 'Zobacz więcej wyszukanych beatmap',
             'title' => 'Beatmapy',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Całe forum',
             'link' => 'Przeszukaj forum',
+            'login_required' => '',
             'more_simple' => 'Zobacz więcej wyszukanych wątków na forum',
             'title' => 'Forum',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => 'Zobacz więcej wyszukanych użytkowników: :count',
             'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
             'more_hidden' => 'Wyniki wyszukiwania są ograniczone do :max użytkowników. Spróbuj zmienić wyszukiwaną frazę.',

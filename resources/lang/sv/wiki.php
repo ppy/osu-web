@@ -21,11 +21,11 @@
 return [
     'show' => [
         'fallback_translation' => 'Den begärda sidan är inte översatt till det valda språket (:language). Visar den Engelska versionen.',
-        'incomplete_or_outdated' => '',
+        'incomplete_or_outdated' => 'Innehållet på denna sidan är ofullständigt eller föråldrat. Om du har möjlighet att hjälpa till, vänligen överväg att uppdatera artikeln!',
         'missing' => 'Begärd sida kunde ej hittas.',
         'missing_title' => 'Hittades inte',
         'missing_translation' => 'Den begärda sidan kunde inte hittas för nuvarande valt språk.',
-        'needs_cleanup_or_rewrite' => '',
+        'needs_cleanup_or_rewrite' => 'Denna sidan lever inte upp till standarden för osu! wikin och behöver städas upp eller omskrivas. Om du har möjlighet att hjälpa till, vänligen överväg att uppdatera artikeln!',
         'search' => 'Sök befintliga sidor för: länk.',
         'toc' => 'Innehåll',
 
@@ -35,14 +35,14 @@ return [
         ],
 
         'translation' => [
-            'legal' => '',
-            'outdated' => '',
+            'legal' => 'Den här översättningen tillhandahålls endast för bekvämlighets skull. Originalet :default är den enda juridiskt bindande versionen av denna text.',
+            'outdated' => 'Denna sidan innehåller en utdaterad översättning av det ursprungliga innehållet. Vänligen se :default för den mest precisa informationen (och överväg att uppdatera översättningen om du har möjlighet att hjälpa till)!',
 
             'default' => 'Engelsk version',
         ],
     ],
     'main' => [
-        'title' => '',
-        'subtitle' => '',
+        'title' => 'kunskapsbas',
+        'subtitle' => 'eftersom osu!pedia låter lamt',
     ],
 ];

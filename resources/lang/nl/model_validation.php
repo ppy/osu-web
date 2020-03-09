@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Op een verwijderde comment reageren is niet toegestaan.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Het bericht',
