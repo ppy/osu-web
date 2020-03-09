@@ -25,9 +25,7 @@ class RemoveMultiplayerRoomsHighAccuracyPrecision extends Migration
      */
     public function down()
     {
-        // This won't actually do anything; change() won't add precision,
-        Schema::table('multiplayer_rooms_high', function (Blueprint $table) {
-            $table->float('accuracy', 5, 4)->default(0)->change();
-        });
+        // raw because change() won't add precision.
+        DB::statement('ALTER TABLE multiplayer_rooms_high MODIFY COLUMN accuracy double(5, 4) NOT NULL DEFAULT 0');
     }
 }
