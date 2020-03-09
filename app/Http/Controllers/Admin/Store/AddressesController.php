@@ -8,8 +8,6 @@ use Request;
 
 class AddressesController extends Controller
 {
-    protected $section = 'storeAdmin';
-
     public function update($id)
     {
         $address = Store\Address::findOrFail($id);

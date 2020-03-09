@@ -45,8 +45,6 @@ export class Header extends React.PureComponent
   render: =>
     el React.Fragment, null,
       el HeaderV4,
-        section: osu.trans('layout.header.beatmapsets._')
-        subSection: osu.trans('layout.header.beatmapsets.discussions')
         theme: 'beatmapsets'
         titleAppend: el PlaymodeTabs,
           currentMode: @props.currentBeatmap.mode

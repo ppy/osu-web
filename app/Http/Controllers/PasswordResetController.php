@@ -30,9 +30,6 @@ use Session;
 
 class PasswordResetController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'password-reset-';
-
     public function __construct()
     {
         parent::__construct();

@@ -26,7 +26,6 @@ use Request;
 class CartController extends Controller
 {
     protected $layout = 'master';
-    protected $actionPrefix = 'cart-';
 
     public function __construct()
     {

@@ -26,8 +26,6 @@ use Auth;
 
 abstract class Controller extends BaseController
 {
-    protected $section = 'store';
-
     protected $pendingCheckout;
 
     public function __construct()

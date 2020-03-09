@@ -18,9 +18,7 @@
 @extends('master')
 
 @section('content')
-    @include('home._user_header_default', [
-        'title' => trans('home.user.title'),
-    ])
+    @include('home._user_header_default')
 
     <div class="osu-page">
         <div class="user-home">

@@ -15,12 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', [
-    'currentSection' => 'home',
-])
+@extends('master', ['titlePrepend' => trans('beatmapset_watches.index.title_compact')])
 
 @section('content')
-    @include('home._user_header_default', ['title' => trans('beatmapset_watches.index.title_compact')])
+    @include('home._user_header_default')
 
     <div class="osu-page osu-page--full osu-page--generic">
         <div class="beatmapset-watches">

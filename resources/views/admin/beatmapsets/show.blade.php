@@ -15,10 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', ['titlePrepend' => trans('layout.header.admin.beatmapset')])
 
 @section('content')
-    @include('admin/_header', ['title' => trans('layout.header.admin.beatmapset')])
+    @include('admin/_header')
     <div class="osu-page osu-page--admin">
         <h1>{{ $beatmapset->title }} - {{ $beatmapset->artist }}</h1>
 

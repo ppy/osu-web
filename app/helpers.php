@@ -694,6 +694,25 @@ function is_sql_unique_exception($ex)
     );
 }
 
+function page_title()
+{
+    $currentRoute = app('route-section')->getCurrent();
+    $checkLocale = config('app.fallback_locale');
+    $keys = [
+        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}",
+        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}._",
+        "page_title.{$currentRoute['namespace']}._",
+    ];
+
+    foreach ($keys as $key) {
+        if (trans_exists($key, $checkLocale)) {
+            return trans($key);
+        }
+    }
+
+    return 'unknown';
+}
+
 function ujs_redirect($url, $status = 200)
 {
     if (Request::ajax() && !Request::isMethod('get')) {
@@ -718,11 +737,6 @@ function timeago($date)
     $attribute_date = json_time($date);
 
     return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
-}
-
-function current_action()
-{
-    return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
 function link_to_user($id, $username = null, $color = null, $classNames = null)
@@ -1518,16 +1532,12 @@ function section_to_hue_map($section): int
 
     static $sectionMapping = [
         'admin' => 'red',
-        'admin-forum' => 'red',
-        'admin-store' => 'red',
         'beatmaps' => 'blue',
-        'beatmapsets' => 'blue',
         'community' => 'pink',
         'error' => 'pink',
         'help' => 'orange',
         'home' => 'purple',
         'multiplayer' => 'pink',
-        'notifications' => 'pink',
         'rankings' => 'green',
         'store' => 'darkorange',
         'user' => 'pink',

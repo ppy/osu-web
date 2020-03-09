@@ -36,8 +36,6 @@ export class Main extends React.PureComponent
         el HeaderV4,
           links: @headerLinks()
           linksBreadcrumb: true
-          section: osu.trans 'layout.header.community._'
-          subSection: osu.trans 'layout.header.community.comments'
           theme: 'comments'
 
         div className: 'osu-page osu-page--comment',

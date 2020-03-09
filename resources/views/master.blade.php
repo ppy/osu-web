@@ -16,20 +16,29 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    if (!isset($title)) {
-        $titleTree = [];
+    $currentRoute = app('route-section')->getCurrent();
 
+    $currentSection = $currentRoute['section'];
+    $currentAction = $currentRoute['action'];
+
+    $titleTree = [];
+
+    if (isset($titleOverride)) {
+        $titleTree[] = $titleOverride;
+    } else {
         if (isset($titlePrepend)) {
             $titleTree[] = $titlePrepend;
         }
 
-        $titleTree[] = trans("layout.menu.{$currentSection}.{$currentAction}");
-        $titleTree[] = trans("layout.menu.{$currentSection}._");
-
-        $title = implode(' · ', $titleTree);
+        $titleTree[] = page_title();
     }
 
-    $title .= ' | osu!';
+    $title = implode(' · ', $titleTree);
+    // Titles ending with phrase containing "osu!" like "osu!store" don't need the suffix.
+    if (strpos(array_last($titleTree), 'osu!') === false) {
+        $title .= ' | osu!';
+    }
+
     $currentHue = $currentHue ?? section_to_hue_map($currentSection);
 @endphp
 <!DOCTYPE html>
@@ -111,6 +120,10 @@
         @include("layout._global_variables")
         @include('layout._loading_overlay')
         @include('layout.popup-container')
+
+        <script id="json-route-section" type="application/json">
+            {!! json_encode($currentRoute) !!}
+        </script>
 
         @yield("script")
     </body>

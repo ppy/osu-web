@@ -15,16 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', [
-    // Verification doesn't inherit from App\Controller, thus these variables aren't set. Thus we set them here:
-    'currentSection' => 'error',
-    'currentAction' => '401',
-])
+@extends('master')
 
 @section('content')
-    @include('layout._page_header_v4', ['params' => [
-        'section' => trans('layout.header.notice._'),
-    ]])
+    @include('layout._page_header_v4')
+
     <div class="osu-page osu-page--generic js-user-verification--on-load">
         {{ trans('users.verify.title') }}
     </div>

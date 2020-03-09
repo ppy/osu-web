@@ -27,8 +27,6 @@ use Auth;
 
 class ArtistsController extends Controller
 {
-    protected $section = 'community';
-
     public function index()
     {
         $artists = Artist::with('label')->withCount('tracks')->orderBy('name', 'asc');

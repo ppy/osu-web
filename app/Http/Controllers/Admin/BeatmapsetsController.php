@@ -27,9 +27,6 @@ use Request;
 
 class BeatmapsetsController extends Controller
 {
-    protected $section = 'admin';
-    protected $actionPrefix = 'beatmapsets-';
-
     public function covers($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);

@@ -40,7 +40,6 @@ use Request;
 
 class UsersController extends Controller
 {
-    protected $section = 'user';
     protected $maxResults = 100;
 
     public function __construct()

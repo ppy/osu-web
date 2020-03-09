@@ -26,9 +26,6 @@ use Request;
 
 class ClientVerificationsController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'client_verifications-';
-
     public function __construct()
     {
         $this->middleware('auth', ['only' => 'store']);
