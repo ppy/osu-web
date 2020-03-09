@@ -28,6 +28,7 @@ use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
 use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
+use App\Libraries\RouteSection;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
@@ -102,6 +103,10 @@ class AppServiceProvider extends ServiceProvider
             return new RequireScopes;
         });
 
+        $this->app->singleton('route-section', function () {
+            return new RouteSection;
+        });
+
         $this->app->singleton('cookie', function ($app) {
             $config = $app->make('config')->get('session');
 
@@ -113,5 +118,10 @@ class AppServiceProvider extends ServiceProvider
         // The middleware breaks without this. Not sure why.
         // Originally defined in Laravel's SessionServiceProvider.
         $this->app->singleton(StartSession::class);
+
+        // This is needed for testing with Dusk.
+        if ($this->app->environment('testing')) {
+            $this->app->register('\App\Providers\AdditionalDuskServiceProvider');
+        }
     }
 }

@@ -44,6 +44,6 @@ return [
 
     'logged_out' => 'ログアウトされています。ログインしてから再度お試しください。',
     'supporter_only' => 'osu!サポーター限定の機能です。',
-    'no_restricted_access' => 'アカウントが制限中は無効です。',
+    'no_restricted_access' => 'アカウントが制限されている状態では実行できません。',
     'unknown' => '不明のエラーが発生しました。',
 ];

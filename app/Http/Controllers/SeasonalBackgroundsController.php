@@ -26,9 +26,6 @@ use stdClass;
 
 class SeasonalBackgroundsController extends Controller
 {
-    protected $section = 'community';
-    protected $actionPrefix = 'seasonal_backgrounds-';
-
     public function index()
     {
         $contest = Contest::find(config('osu.seasonal.contest_id'));

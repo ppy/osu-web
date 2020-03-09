@@ -16,8 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'currentAction' => 'packs',
-    'title' => trans('beatmappacks.index.title'),
     'pageDescription' => trans('beatmappacks.index.description'),
 ])
 

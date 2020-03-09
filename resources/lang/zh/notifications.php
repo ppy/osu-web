@@ -21,17 +21,17 @@
 return [
     'all_read' => '已经阅读所有通知！',
     'mark_all_read' => '清除全部',
-    'none' => '',
-    'see_all' => '',
+    'none' => '没有新通知',
+    'see_all' => '显示所有通知',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => '所有',
+        'user' => '个人资料',
+        'beatmapset' => '谱面',
+        'forum_topic' => '论坛',
+        'news_post' => '新闻',
+        'build' => '版本',
+        'channel' => '聊天',
     ],
 
     'item' => [
@@ -142,7 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '新奖章',
                 'user_achievement_unlock' => '解锁 ":title"！',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => '您已解锁 ":title" 成就！',
             ],
         ],
     ],

@@ -19,13 +19,11 @@
     $title = $post->title();
 @endphp
 @extends('master', [
-    'legacyFont' => false,
     'titlePrepend' => $title,
     'canonicalUrl' => $post->url(),
     'pageDescription' => blade_safe($post->previewText()),
     'opengraph' => [
         'title' => $title,
-        'section' => trans('layout.menu.home.news-show'),
         'image' => $post->firstImage(true),
     ],
 ])

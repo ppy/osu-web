@@ -108,9 +108,6 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
-        view()->share('currentAction', static::statusCode($e));
-        view()->share('currentSection', 'error');
-
         // immediately done if the error should not be reported
         if ($this->shouldntReport($e)) {
             return;
@@ -145,6 +142,10 @@ class Handler extends ExceptionHandler
             return $this->unauthenticated($request, $e);
         }
 
+        $statusCode = static::statusCode($e);
+
+        app('route-section')->setError($statusCode);
+
         if (config('app.debug')) {
             $response = parent::render($request, $e);
         } else {
@@ -153,7 +154,10 @@ class Handler extends ExceptionHandler
             if (is_json_request() || $request->ajax()) {
                 $response = response(['error' => $message]);
             } else {
-                $response = ext_view('layout.error', ['exceptionMessage' => $message]);
+                $response = ext_view('layout.error', [
+                    'exceptionMessage' => $message,
+                    'statusCode' => $statusCode,
+                ]);
             }
         }
 

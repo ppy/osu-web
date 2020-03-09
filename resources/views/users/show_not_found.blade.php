@@ -15,16 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', [
-    'currentSection' => 'community',
-    'currentAction' => 'profile',
-])
+@extends('master')
 
 @section('content')
-    @include('layout._page_header_v4', ['params' => [
-        'section' => trans('layout.header.users._'),
-        'subSection' => trans('layout.header.users.show'),
-    ]])
+    @include('layout._page_header_v4')
     <div class="osu-page osu-page--generic">
         <h1>{{ trans('users.show.not_found.title') }}</h1>
 

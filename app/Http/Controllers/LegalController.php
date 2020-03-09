@@ -24,9 +24,6 @@ use App\Models\Wiki;
 
 class LegalController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'legal-';
-
     public function show($page)
     {
         switch ($page) {

@@ -28,9 +28,6 @@ use Request;
 
 class FriendsController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'friends-';
-
     public function __construct()
     {
         $this->middleware('auth');

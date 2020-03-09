@@ -17,26 +17,25 @@
  */
 
 .profile-detail-mobile {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  padding: @gutter-v2;
 
   @media @desktop {
     display: none;
   }
 
   &__item {
-    padding: 5px;
-    flex: none;
-    width: 50%;
+    grid-column-end: span 2;
 
     &--rank-chart {
-      width: 100%;
+      grid-column-end: span 4;
       height: 100px;
     }
 
     &--half {
-      width: 25%;
+      grid-column-end: span 1;
     }
   }
 }

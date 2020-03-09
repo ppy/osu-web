@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => '無法回覆給已刪除評論。',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '訊息',

@@ -19,8 +19,6 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'section' => trans('layout.header.home._'),
-        'subSection' => 'testflight',
         'theme' => 'home',
     ]])
     <div class="osu-page osu-page--generic">

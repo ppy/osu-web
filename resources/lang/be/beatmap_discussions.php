@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'выдалена',
+        'none_found' => '',
         'title' => 'Абмеркаванне бітмап',
 
         'form' => [

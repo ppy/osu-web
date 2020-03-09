@@ -9,8 +9,6 @@ use Request;
 
 class OrderItemsController extends Controller
 {
-    protected $section = 'storeAdmin';
-
     public function update($orderId, $orderItemId)
     {
         $item = OrderItem::where('order_id', $orderId)->findOrFail($orderItemId);

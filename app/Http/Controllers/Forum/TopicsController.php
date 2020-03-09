@@ -39,13 +39,9 @@ use Request;
 
 class TopicsController extends Controller
 {
-    protected $section = 'community';
-
     public function __construct()
     {
         parent::__construct();
-
-        view()->share('currentAction', 'forum-topics-'.current_action());
 
         $this->middleware('auth', ['only' => [
             'create',

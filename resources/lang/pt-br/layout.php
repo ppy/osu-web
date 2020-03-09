@@ -83,8 +83,8 @@ return [
         ],
 
         'notifications' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'notificações',
+            'index' => 'histórico',
         ],
 
         'rankings' => [
@@ -233,7 +233,7 @@ return [
             'modding-history-posts' => 'postagens de modding do usuário',
             'modding-history-votesGiven' => 'votos de modding dados',
             'modding-history-votesReceived' => 'votos de modding recebidos',
-            'notifications-index' => '',
+            'notifications-index' => 'histórico de notificações',
             'oauth_login' => 'conecte-se para autenticar',
             'oauth_request' => 'autorização oauth',
             'settings' => 'Configurações',

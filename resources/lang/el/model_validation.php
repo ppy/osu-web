@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Δεν επιτρέπεται η απάντηση σε διαγραμμένο σχόλιο.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '',

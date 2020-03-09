@@ -55,7 +55,7 @@ return [
         'community' => [
             '_' => 'Fællesskab',
             'comments' => 'kommentarer',
-            'contests' => '',
+            'contests' => 'konkurrencer',
             'forum' => 'Forum',
             'livestream' => 'livestreams',
         ],
@@ -83,8 +83,8 @@ return [
         ],
 
         'notifications' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'notifikationer',
+            'index' => 'historik',
         ],
 
         'rankings' => [
@@ -233,7 +233,7 @@ return [
             'modding-history-posts' => 'user modding opslag',
             'modding-history-votesGiven' => 'user modding votes givet',
             'modding-history-votesReceived' => 'user modding votes received',
-            'notifications-index' => '',
+            'notifications-index' => 'notifikationshistorik',
             'oauth_login' => 'log ind for oauth',
             'oauth_request' => 'OAuth-autorisation',
             'settings' => 'Indstillinger',

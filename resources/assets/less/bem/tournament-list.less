@@ -29,16 +29,17 @@
 
   &__heading {
     color: white;
+    padding: 10px 0 10px;
+    margin: 0;
   }
 
   &__group {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-gap: 10px;
     margin-bottom: 10px;
 
     &--old {
-      flex-direction: row;
-      flex-wrap: wrap;
+      grid-template-columns: 1fr 1fr;
     }
   }
 

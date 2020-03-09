@@ -49,7 +49,7 @@ export class DetailBar extends React.PureComponent
 
     div className: bn,
       div className: "#{bn}__column #{bn}__column--left",
-        div className: "#{bn}__menu-item",
+        div className: "#{bn}__entry",
           el FriendButton,
             userId: @props.user.id
             showFollowerCounter: true
@@ -57,7 +57,7 @@ export class DetailBar extends React.PureComponent
             modifiers: ['profile-page']
             alwaysVisible: true
         if @state.currentUser.id != @props.user.id && !isBlocked
-          div className: "#{bn}__menu-item",
+          div className: "#{bn}__entry",
             a
               className: 'user-action-button user-action-button--profile-page'
               href: laroute.route 'messages.users.show', user: @props.user.id
@@ -67,10 +67,10 @@ export class DetailBar extends React.PureComponent
         @renderExtraMenu()
 
       div className: "#{bn}__column #{bn}__column--right",
-        div className: "#{bn}__entry #{bn}__entry--ranking",
+        div className: "#{bn}__entry",
           el Rank, type: 'global', stats: @props.stats
 
-        div className: "#{bn}__entry #{bn}__entry--ranking",
+        div className: "#{bn}__entry",
           el Rank, type: 'country', stats: @props.stats
 
         div className: "#{bn}__entry #{bn}__entry--level",
@@ -101,7 +101,7 @@ export class DetailBar extends React.PureComponent
 
     return null if items.length == 0
 
-    div className: "#{bn}__menu-item",
+    div className: "#{bn}__entry",
       button
         className: 'profile-page-toggle js-click-menu'
         title: osu.trans('common.buttons.show_more_options')

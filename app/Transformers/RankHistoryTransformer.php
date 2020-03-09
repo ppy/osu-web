@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\RankHistory;
-use League\Fractal;
 
-class RankHistoryTransformer extends Fractal\TransformerAbstract
+class RankHistoryTransformer extends TransformerAbstract
 {
     public function transform(RankHistory $rankHistory)
     {

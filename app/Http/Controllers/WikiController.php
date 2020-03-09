@@ -29,9 +29,6 @@ use Request;
 
 class WikiController extends Controller
 {
-    protected $section = 'help';
-    protected $actionPrefix = 'wiki-';
-
     public function show($path = null)
     {
         if ($path === null) {

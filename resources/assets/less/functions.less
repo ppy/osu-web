@@ -141,8 +141,16 @@
 .default-header-overlay() {
   &::before {
     .full-size();
-    content: ' ';
-    background-image: linear-gradient(osu-hsla(@osu-colour-b6, 0.3), osu-hsla(@osu-colour-b6, 0.8));
+    content: '';
+    background-color: osu-hsla(@osu-colour-b1, 80%);
+  }
+}
+
+.light-header-overlay() {
+  &::before {
+    .full-size();
+    content: '';
+    background-color: osu-hsla(@osu-colour-b5, 60%);
   }
 }
 
@@ -259,6 +267,10 @@
   box-shadow: 0 10px 20px fade(#000, 25%);
 }
 
+.solid-text-shadow() {
+  text-shadow: 0 1px 1px fade(#000, 75%);
+}
+
 .default-text-shadow() {
   text-shadow: 0 1px 3px fade(#000, 75%);
 }
@@ -352,7 +364,6 @@
 .content-font() {
   font-family: var(--font-content-override, var(--font-content));
   line-height: 1.35;
-  color: #444;
 }
 
 .default-font() {

@@ -16,9 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-  'currentSection' => 'beatmaps',
-  'currentAction' => 'index',
-  'title' => trans('beatmapsets.index.title'),
   'pageDescription' => trans('beatmapsets.index.title'),
 ])
 

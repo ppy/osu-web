@@ -29,15 +29,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 @if (isset($opengraph))
-    @php
-        $siteName = 'osu!';
-
-        if (isset($opengraph['section'])) {
-            $siteName .= ' » '.$opengraph['section'];
-        }
-    @endphp
-
-    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:site_name" content="osu! » {{ page_title() }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ $canonicalUrl }}">
     <meta property="og:title" content="{{ $opengraph['title'] }}">
@@ -57,17 +49,7 @@
     <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif
 
-<link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,200italic,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
-
-@if (App::getLocale() === 'vi')
-    <link href='//fonts.googleapis.com/css?family=Exo:300,300italic,200,200italic,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
-    <style>
-        :root {
-            --font-default-override: var(--font-default-vi);
-        }
-    </style>
-@elseif (App::getLocale() === 'zh')
+@if (App::getLocale() === 'zh')
     <style>
         :root {
             --font-default-override: var(--font-default-zh);

@@ -33,7 +33,7 @@ class ClientTransformerTest extends TestCase
 
     public function testRedirectAndSecretVisibleToOwner()
     {
-        auth()->setUser($this->owner);
+        $this->actAsUser($this->owner);
         $json = json_item($this->client, 'OAuth\Client', ['redirect', 'secret']);
 
         $this->assertSame($this->client->redirect, $json['redirect']);
@@ -43,11 +43,34 @@ class ClientTransformerTest extends TestCase
     public function testRedirectAndSecretNotVisibleToOtherUsers()
     {
         $user = factory(User::class)->create();
-        auth()->setUser($user);
+        $this->actAsUser($user);
         $json = json_item($this->client, 'OAuth\Client', ['redirect', 'secret']);
 
         $this->assertArrayNotHasKey('redirect', $json);
         $this->assertArrayNotHasKey('secret', $json);
+    }
+
+    /**
+     * @dataProvider groupsDataProvider
+     */
+    public function testRedirectAndSecretNotVisibleToGroup($groupIdentifier)
+    {
+        $user = factory(User::class)->states($groupIdentifier)->create();
+        $this->actAsUser($user);
+        $json = json_item($this->client, 'OAuth\Client', ['redirect', 'secret']);
+
+        $this->assertArrayNotHasKey('redirect', $json);
+        $this->assertArrayNotHasKey('secret', $json);
+    }
+
+    public function groupsDataProvider()
+    {
+        return [
+            ['admin'],
+            ['bng'],
+            ['gmt'],
+            ['nat'],
+        ];
     }
 
     protected function setUp(): void

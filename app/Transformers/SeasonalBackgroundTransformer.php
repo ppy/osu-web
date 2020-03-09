@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\UserContestEntry;
-use League\Fractal;
 
-class SeasonalBackgroundTransformer extends Fractal\TransformerAbstract
+class SeasonalBackgroundTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'user',

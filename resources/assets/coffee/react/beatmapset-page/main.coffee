@@ -236,8 +236,6 @@ export class Main extends React.Component
 
   renderPageHeader: =>
     el HeaderV4,
-      section: osu.trans('layout.header.beatmapsets._')
-      subSection: osu.trans('layout.header.beatmapsets.show')
       theme: 'beatmapsets'
       titleAppend: el PlaymodeTabs,
         beatmaps: @state.beatmaps

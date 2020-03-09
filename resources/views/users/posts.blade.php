@@ -16,16 +16,12 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'currentAction' => 'profile',
-    'currentSection' => 'community',
-    'title' => trans('users.posts.title', ['username' => $user->username]),
+    'titlePrepend' => trans('users.posts.title', ['username' => $user->username]),
 ])
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
         'backgroundImage' => $user->profileCustomization()->cover()->url(),
-        'section' => trans('layout.header.users._'),
-        'subSection' => trans('layout.header.users.forum_posts'),
     ]])
     <form action="{{ route('users.posts', request()->route('user')) }}">
         <div class="osu-page">

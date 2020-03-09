@@ -44,7 +44,7 @@ return [
         'play_count' => 'プレイ回数',
         'performance' => 'パフォーマンス',
         'total_score' => '合計スコア',
-        'ranked_score' => 'ランクスコア',
+        'ranked_score' => 'Rankedスコア',
         'average_score' => '平均スコア',
         'average_performance' => '平均パフォーマンス',
         'ss' => 'SS',
