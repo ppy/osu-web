@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'title' => trans('home.landing.title'),
+    'titleOverride' => trans('home.landing.title'),
     'blank' => 'true',
     'bodyAdditionalClasses' => 'osu-layout--body-landing'
 ])

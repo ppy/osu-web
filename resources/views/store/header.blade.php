@@ -58,8 +58,6 @@
 
 @component('layout._page_header_v4', ['params' => [
     'links' => $links,
-    'section' => trans('layout.header.store._'),
-    'subSection' => trans("layout.header.store.{$currentNav}"),
     'theme' => 'store',
 ]])
     @slot('titleAppend')

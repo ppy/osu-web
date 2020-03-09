@@ -34,10 +34,16 @@ return [
         'discussion' => 'Beszélgetés',
 
         'details' => [
+            'approved' => 'elfogadva ',
             'favourite' => 'A beatmap szett kedvencek közé tétele',
             'logged-out' => 'Beatmap letöltéshez be kell jelentkezned!',
+            'loved' => 'kedvelve ',
             'mapped_by' => 'mappolva :mapper által',
+            'qualified' => 'qualified ',
+            'ranked' => 'rangsorolva ',
+            'submitted' => 'beküldve ',
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
+            'updated' => 'utoljára frissítve ',
             'updated_timeago' => 'utóljára frissítve: :timeago',
 
             'download' => [

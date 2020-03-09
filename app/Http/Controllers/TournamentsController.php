@@ -25,8 +25,6 @@ use Auth;
 
 class TournamentsController extends Controller
 {
-    protected $section = 'community';
-
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
@@ -34,8 +32,6 @@ class TournamentsController extends Controller
         ]]);
 
         parent::__construct();
-
-        view()->share('currentAction', 'tournaments-'.current_action());
     }
 
     public function index()

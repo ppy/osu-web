@@ -29,14 +29,11 @@
 @endphp
 
 @extends('master', [
-    'currentSection' => 'beatmaps',
-    'currentAction' => 'artists',
-    'title' => "Featured Artist: $artist->name",
+    'titlePrepend' => $artist->name,
     'pageDescription' => $artist->description,
     'canonicalUrl' => $artist->url(),
     'opengraph' => [
         'title' => $artist->name,
-        'section' => trans('layout.menu.beatmaps.artists'),
         'image' => $artist->cover_url,
     ],
 ])
@@ -51,8 +48,6 @@
     @include('layout._page_header_v4', ['params' => [
         'links' => $headerLinks,
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.artists._'),
-        'subSection' => $artist->name,
         'theme' => 'artist',
     ]])
     <div class="osu-page osu-page--artist">
@@ -61,7 +56,11 @@
                 @if (!$artist->visible)
                     <div class="artist__admin-note">{{ trans('artist.admin.hidden') }}</div>
                 @endif
-                <div class="artist__description">{!! markdown($artist->description) !!}</div>
+                <div class="artist__description">
+                    <h1>{{ $artist->name }}</h1>
+
+                    {!! markdown($artist->description) !!}
+                </div>
                 @if (count($albums) > 0)
                     <div class="artist__albums">
                         @foreach ($albums as $album)

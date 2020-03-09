@@ -44,7 +44,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Eventos del Beatmapset',
+        'title' => 'Eventos del set de mapas',
 
         'form' => [
             'period' => 'Período',

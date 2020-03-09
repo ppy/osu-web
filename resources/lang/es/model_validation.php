@@ -35,10 +35,10 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'La marca de tiempo ha sido especificada pero el mapa no se encontró.',
-        'beatmapset_no_hype' => "El beatmap no puede ser hypeado.",
+        'beatmapset_no_hype' => "El mapa no puede ser hypeado.",
         'hype_requires_null_beatmap' => 'El hype debe ser realizado en la sección de General (todas las dificultades).',
-        'invalid_beatmap_id' => 'Dificultad especificada inválida.',
-        'invalid_beatmapset_id' => 'Beatmap especificado inválido',
+        'invalid_beatmap_id' => 'Dificultad especificada no válido.',
+        'invalid_beatmapset_id' => 'Mapa especificado no válido.',
         'locked' => 'La discusión está cerrada.',
 
         'attributes' => [
@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Responder a un comentario eliminado no esta permitido.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'El mensaje',

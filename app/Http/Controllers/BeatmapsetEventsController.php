@@ -25,9 +25,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class BeatmapsetEventsController extends Controller
 {
-    protected $section = 'beatmaps';
-    protected $actionPrefix = 'beatmapset_events-';
-
     public function index()
     {
         $params = request()->all();

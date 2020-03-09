@@ -23,7 +23,6 @@
     @endphp
 @endif
 @extends('master', [
-    'currentSection' => 'beatmaps',
     'pageDescription' => $beatmapset->toMetaDescription(),
     'titlePrepend' => "{$beatmapset->artist} - {$beatmapset->title}",
     'extraFooterLinks' => $extraFooterLinks ?? [],

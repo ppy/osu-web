@@ -694,6 +694,25 @@ function is_sql_unique_exception($ex)
     );
 }
 
+function page_title()
+{
+    $currentRoute = app('route-section')->getCurrent();
+    $checkLocale = config('app.fallback_locale');
+    $keys = [
+        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}",
+        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}._",
+        "page_title.{$currentRoute['namespace']}._",
+    ];
+
+    foreach ($keys as $key) {
+        if (trans_exists($key, $checkLocale)) {
+            return trans($key);
+        }
+    }
+
+    return 'unknown';
+}
+
 function ujs_redirect($url, $status = 200)
 {
     if (Request::ajax() && !Request::isMethod('get')) {
@@ -718,11 +737,6 @@ function timeago($date)
     $attribute_date = json_time($date);
 
     return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
-}
-
-function current_action()
-{
-    return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
 function link_to_user($id, $username = null, $color = null, $classNames = null)
@@ -899,13 +913,12 @@ function footer_landing_links()
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => route('download'),
-            'wiki' => wiki_url('Main_Page'),
         ],
         'help' => [
             'faq' => wiki_url('FAQ'),
             'forum' => route('forum.forums.index'),
             'livestreams' => route('livestreams.index'),
-            'report' => route('forum.topics.create', ['forum_id' => 5]),
+            'wiki' => wiki_url('Main_Page'),
         ],
         'legal' => footer_legal_links(),
     ];
@@ -1519,16 +1532,12 @@ function section_to_hue_map($section): int
 
     static $sectionMapping = [
         'admin' => 'red',
-        'admin-forum' => 'red',
-        'admin-store' => 'red',
         'beatmaps' => 'blue',
-        'beatmapsets' => 'blue',
         'community' => 'pink',
         'error' => 'pink',
         'help' => 'orange',
         'home' => 'purple',
         'multiplayer' => 'pink',
-        'notifications' => 'pink',
         'rankings' => 'green',
         'store' => 'darkorange',
         'user' => 'pink',

@@ -21,17 +21,17 @@
 return [
     'all_read' => 'Alle notifikationer læst!',
     'mark_all_read' => 'Ryd alt',
-    'none' => '',
-    'see_all' => '',
+    'none' => 'Ingen notifikationer',
+    'see_all' => 'se alle notifikationer',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => 'alle',
+        'user' => 'profil',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'forum',
+        'news_post' => 'nyheder',
+        'build' => 'builds',
+        'channel' => 'chat',
     ],
 
     'item' => [
@@ -142,7 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Ny medalje',
                 'user_achievement_unlock' => 'Optjent ":title"!',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => 'Opnået ":title"!',
             ],
         ],
     ],

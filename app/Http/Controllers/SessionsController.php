@@ -27,8 +27,6 @@ use Request;
 
 class SessionsController extends Controller
 {
-    protected $section = 'user';
-
     public function __construct()
     {
         $this->middleware('guest', ['only' => [

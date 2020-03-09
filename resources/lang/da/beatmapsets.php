@@ -34,10 +34,16 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'approved' => 'godkendt den ',
             'favourite' => 'Markér dette beatmapset som favorit',
             'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!',
+            'loved' => 'elsket den ',
             'mapped_by' => 'mappet af :mapper',
+            'qualified' => 'kvalificeret den ',
+            'ranked' => 'ranked den ',
+            'submitted' => 'uploadet den ',
             'unfavourite' => 'Fjern dette beatmapset fra dine favoritter',
+            'updated' => 'sidst opdateret den ',
             'updated_timeago' => 'sidst opdateret :timeago',
 
             'download' => [

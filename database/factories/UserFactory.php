@@ -92,6 +92,12 @@ $factory->state(App\Models\User::class, 'restricted', function (Faker\Generator 
     ];
 });
 
+$factory->afterCreatingState(App\Models\User::class, 'with_note', function ($user, $faker) {
+    $user->accountHistories()->save(
+        factory(App\Models\UserAccountHistory::class)->states('note')->make()
+    );
+});
+
 $factory->afterCreatingState(App\Models\User::class, 'restricted', function ($user, $faker) {
     $user->accountHistories()->save(
         factory(App\Models\UserAccountHistory::class)->states('restriction')->make()

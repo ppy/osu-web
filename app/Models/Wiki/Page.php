@@ -38,7 +38,7 @@ class Page implements WikiObject
     use WikiPageTrait;
 
     const CACHE_DURATION = 5 * 60 * 60;
-    const VERSION = 1;
+    const VERSION = 2;
 
     const TEMPLATES = [
         'markdown_page' => 'wiki.show',

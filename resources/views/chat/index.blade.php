@@ -17,8 +17,6 @@
 --}}
 @extends('master', [
     'bodyAdditionalClasses' => 'osu-layout__no-scroll',
-    'currentSection' => 'community',
-    'title' => trans('chat.title_compact'),
 ])
 
 @section("content")

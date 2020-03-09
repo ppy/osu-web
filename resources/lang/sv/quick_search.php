@@ -21,7 +21,7 @@
 return [
     'mode' => [
         'beatmapset' => '',
-        'forum_post' => '',
+        'forum_post' => 'Forum',
         'other' => '',
         'user' => '',
         'wiki_page' => '',
@@ -31,6 +31,6 @@ return [
         'empty' => '',
         'empty_for' => '',
         'more' => '',
-        'title' => '',
+        'title' => ':mode Sökresultat',
     ],
 ];

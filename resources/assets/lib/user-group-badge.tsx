@@ -21,9 +21,10 @@ import * as React from 'react';
 
 interface Props {
   badge?: GroupJSON;
+  modifiers?: string[];
 }
 
-export default function UserGroupBadge({badge}: Props) {
+export default function UserGroupBadge({badge, modifiers}: Props) {
   if (badge == null) {
     return null;
   }
@@ -32,7 +33,7 @@ export default function UserGroupBadge({badge}: Props) {
 
   return (
     <div
-      className='user-group-badge'
+      className={osu.classWithModifiers('user-group-badge', modifiers)}
       data-label={badge.short_name}
       style={style}
       title={badge.name}

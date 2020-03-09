@@ -28,8 +28,6 @@ use Request;
 
 class ForumCoversController extends Controller
 {
-    protected $section = 'admin-forum';
-    protected $actionPrefix = 'forum-covers-';
     private $params = [];
 
     public function index()

@@ -16,9 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'currentSection' => 'beatmaps',
-    'currentAction' => 'artists',
-    'title' => trans('artist.title'),
     'pageDescription' => trans('artist.page_description'),
 ])
 
@@ -29,8 +26,6 @@
             'url' => route('artists.index'),
         ]],
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.artists._'),
-        'subSection' => trans('layout.header.artists.index'),
         'theme' => 'artists',
     ]])
     <div class="osu-page osu-page--artists">

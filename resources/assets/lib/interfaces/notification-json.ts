@@ -33,6 +33,7 @@ export default interface NotificationJson {
 export interface NotificationBundleJson {
   notifications?: NotificationJson[];
   stacks?: NotificationStackJson[];
+  timestamp: string;
   types?: NotificationTypeJson[];
   unread_count?: number;
 }

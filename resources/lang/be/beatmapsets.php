@@ -34,10 +34,16 @@ return [
         'discussion' => 'Абмеркаванне',
 
         'details' => [
+            'approved' => 'ухваліны ',
             'favourite' => 'Дадаць да абраных',
             'logged-out' => 'Каб спампаваць нейкую бітмапу, вам трэба ўвайсці!',
+            'loved' => 'абраны ',
             'mapped_by' => 'створана :mapper',
+            'qualified' => 'кваліфікаваны ',
+            'ranked' => 'ранкаваны ',
+            'submitted' => 'апублікаваны ',
             'unfavourite' => 'Выдаліць з абраных',
+            'updated' => 'абноўлены ',
             'updated_timeago' => 'абноўлены :timeago',
 
             'download' => [

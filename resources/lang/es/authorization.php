@@ -42,7 +42,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Sólo el propietario del mapa o el nominador/miembro del grupo NAT puede publicar notas de mapeo.',
+            'mapper_note_wrong_user' => 'Sólo el dueño del mapa o el nominador/miembro del grupo NAT puede publicar notas de mapeo.',
         ],
 
         'vote' => [
@@ -66,7 +66,7 @@ return [
         ],
 
         'store' => [
-            'beatmapset_locked' => 'Este beatmap está bloqueado para discusión.',
+            'beatmapset_locked' => 'Este mapa está bloqueado para discusión.',
         ],
     ],
 

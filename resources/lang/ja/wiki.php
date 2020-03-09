@@ -20,10 +20,10 @@
 
 return [
     'show' => [
-        'fallback_translation' => '要求されたページは選択された言語（:language）に翻訳されていません。英語版を表示します。',
+        'fallback_translation' => '要求されたページはまだ選択された言語（:language）に翻訳されていません。英語版を表示します。',
         'incomplete_or_outdated' => 'このページのコンテンツは不完全または古いです。これ助けることができる場合は、記事の更新を検討してください！',
         'missing' => '要求されたページ”:keyword”は見つかりませんでした。',
-        'missing_title' => 'Not Found',
+        'missing_title' => '見つかりませんでした',
         'missing_translation' => '要求されたページは選択している言語に翻訳されていません。',
         'needs_cleanup_or_rewrite' => 'このページはosu!の基準を満たしていません！ wikiをクリーンアップまたは書き換える必要があります。あなたが助けることができる場合は、記事の更新を検討してください！',
         'search' => '既存のページで:linkを検索する',

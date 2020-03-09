@@ -34,8 +34,6 @@ use Request;
 
 class HomeController extends Controller
 {
-    protected $section = 'home';
-
     public function __construct()
     {
         $this->middleware('auth', [

@@ -34,8 +34,6 @@
 @include('layout._page_header_v4', ['params' => [
     'links' => $links,
     'linksBreadcrumb' => true,
-    'section' => trans('layout.header.beatmapsets._'),
-    'subSection' => trans('layout.header.beatmapsets.packs'),
     'theme' => 'beatmappacks',
 ]])
 

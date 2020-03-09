@@ -21,7 +21,7 @@
 return [
     'index' => [
         'none_running' => 'Jelenleg nincs futó bajnokság, nézz vissza később!',
-        'registration_period' => 'Regisztráció: :start a :end -ig',
+        'registration_period' => 'Regisztráció: :start és :end között',
 
         'header' => [
             'title' => 'Közösségi versenyek',
@@ -52,8 +52,8 @@ return [
         ],
 
         'period' => [
-            'end' => '',
-            'start' => '',
+            'end' => 'Befejezés',
+            'start' => 'Kezdés',
         ],
 
         'state' => [
@@ -63,5 +63,5 @@ return [
             'running' => 'Ez a verseny jelenleg zajlik. Részletekért nézd meg az információs oldalt.',
         ],
     ],
-    'tournament_period' => ':start a :end',
+    'tournament_period' => ':start és :end között',
 ];

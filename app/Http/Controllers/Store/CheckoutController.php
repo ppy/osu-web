@@ -34,7 +34,6 @@ class CheckoutController extends Controller
     use CheckoutErrorSettable, StoreNotifiable;
 
     protected $layout = 'master';
-    protected $actionPrefix = 'checkout-';
 
     public function __construct()
     {

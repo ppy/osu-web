@@ -27,9 +27,6 @@ use Auth;
 
 class TopicWatchesController extends Controller
 {
-    protected $section = 'community';
-    protected $actionPrefix = 'forum-topic-watches-';
-
     public function __construct()
     {
         parent::__construct();

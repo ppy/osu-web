@@ -27,8 +27,6 @@ use App\Models\Spotlight;
  */
 class SpotlightsController extends Controller
 {
-    protected $section = 'rankings';
-
     /**
      * Get Spotlights
      *

@@ -40,7 +40,6 @@ use Request;
 
 class UsersController extends Controller
 {
-    protected $section = 'user';
     protected $maxResults = 100;
 
     public function __construct()
@@ -57,6 +56,13 @@ class UsersController extends Controller
 
         if (is_api_request()) {
             $this->middleware('require-scopes:identify', ['only' => ['me']]);
+            $this->middleware('require-scopes:users.read', ['only' => [
+                'beatmapsets',
+                'kudosu',
+                'recentActivity',
+                'scores',
+                'show',
+            ]]);
         }
 
         $this->middleware(function ($request, $next) {
@@ -264,6 +270,7 @@ class UsersController extends Controller
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
+            'group_badge',
             'loved_beatmapset_count',
             'monthly_playcounts',
             'page',

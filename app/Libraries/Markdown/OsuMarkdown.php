@@ -78,6 +78,7 @@ class OsuMarkdown
         'wiki' => [
             'generate_toc' => true,
             'title_from_document' => true,
+            'block_modifiers' => ['wiki'],
         ],
     ];
 

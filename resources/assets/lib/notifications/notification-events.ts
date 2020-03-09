@@ -35,6 +35,7 @@ export interface NotificationEventReadJson {
   data: {
     notifications: NotificationIdentityJson[],
     read_count: number,
+    timestamp: string,
   };
   event: 'read';
 }

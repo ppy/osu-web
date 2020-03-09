@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => '已刪除',
+        'none_found' => '',
         'title' => '圖譜討論',
 
         'form' => [

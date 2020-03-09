@@ -43,13 +43,11 @@
     }
 @endphp
 
-@extends('master')
+@extends('master', ['titlePrepend' => trans("rankings.type.{$type}")])
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
         'links' => $links,
-        'section' => trans('layout.header.rankings._'),
-        'subSection' => trans("rankings.type.{$type}"),
         'theme' => 'rankings',
     ]])
         @slot('titleAppend')
