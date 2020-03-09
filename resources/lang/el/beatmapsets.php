@@ -34,10 +34,16 @@ return [
         'discussion' => 'Συζήτηση',
 
         'details' => [
+            'approved' => 'έγινε approved στις ',
             'favourite' => 'Προσθέστε αυτό το beatmapset στα αγαπημένα',
             'logged-out' => 'Πρέπει να συνδεθείτε πριν κάνετε λήψη κάποιου beatmap!',
+            'loved' => 'έγινε loved στις ',
             'mapped_by' => 'δημιουργήθηκε από :mapper',
+            'qualified' => 'έγινε qualified στις ',
+            'ranked' => 'έγινε ranked στις ',
+            'submitted' => 'υποβλήθηκε στις ',
             'unfavourite' => 'Αφαιρέστε αυτό το beatmapset από τα αγαπημένα',
+            'updated' => 'τελευταία ενημέρωση στις ',
             'updated_timeago' => 'τελευταία ενημέρωση :timeago',
 
             'download' => [

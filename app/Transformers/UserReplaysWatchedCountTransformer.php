@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\UserReplaysWatchedCount;
-use League\Fractal;
 
-class UserReplaysWatchedCountTransformer extends Fractal\TransformerAbstract
+class UserReplaysWatchedCountTransformer extends TransformerAbstract
 {
     public function transform(UserReplaysWatchedCount $count)
     {

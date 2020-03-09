@@ -20,17 +20,17 @@
 
 return [
     'index' => [
-        'description' => 'Colecciones preempaquetadas de beatmaps basadas en un tema común.',
+        'description' => 'Colecciones preempaquetadas de mapas basadas en un tema común.',
         'nav_title' => 'listado',
         'title' => 'Paquetes de Beatmap',
 
         'blurb' => [
             'important' => 'LEE ESTO ANTES DE DESCARGAR',
             'instruction' => [
-                '_' => "Instalación: Una vez que un paquete haya sido descargado, extrae el archivo .rar en tu carpeta de canciones de osu!.
-                    Todas las canciones siguen en formato .zip y/o .osz dentro del paquete, así que osu! necesitará extraer los beatmaps por sí mismo la próxima vez que ingreses en Modos de Juego.
-                    :scary extraigas los zip's/osz's por ti mismo,
-                    o los beatmaps se mostratran incorrectamente en osu!, y no funcionarán correctamente.",
+                '_' => "Instalación: Una vez que un paquete ha sido descargado, extrae el archivo .rar en la carpeta Songs de osu!.
+                    Todas las canciones siguen siendo archivos .zip y/o .osz dentro del paquete, así que osu! tendrá que extraer los mapas por sí mismo la próxima vez que entres al modo de juego.
+                    :scary extraigas los archivos zip/osz por ti mismo,
+                    o los mapas se mostrarán incorrectamente en osu! y no funcionarán correctamente.",
                 'scary' => 'NUNCA',
             ],
             'note' => [
@@ -56,7 +56,7 @@ return [
     ],
 
     'require_login' => [
-        '_' => 'Necesitas :link para descargar',
+        '_' => 'Necesitas tener la :link para descargar',
         'link_text' => 'sesión iniciada',
     ],
 ];

@@ -28,7 +28,7 @@ return [
             '_' => '管理員',
             'beatmapset' => '圖譜',
             'beatmapset_covers' => '圖譜封面',
-            'contest' => '',
+            'contest' => '比賽',
             'contests' => '',
             'root' => '',
             'store_orders' => '商店管理',
@@ -66,7 +66,7 @@ return [
 
         'help' => [
             '_' => 'wiki',
-            'index' => '',
+            'index' => '主頁',
         ],
 
         'home' => [
@@ -79,12 +79,12 @@ return [
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => '通知',
         ],
 
         'notifications' => [
-            '_' => '',
-            'index' => '',
+            '_' => '通知',
+            'index' => '紀錄',
         ],
 
         'rankings' => [
@@ -94,7 +94,7 @@ return [
         'store' => [
             '_' => 'osu! 商店',
             'cart' => '購物車',
-            'order' => '',
+            'order' => '發票',
             'orders' => '訂單記錄',
             'product' => '商品',
             'products' => '商品',
@@ -233,7 +233,7 @@ return [
             'modding-history-posts' => '使用者摸圖貼文',
             'modding-history-votesGiven' => '使用者摸圖投票數',
             'modding-history-votesReceived' => '使用者摸圖得票数',
-            'notifications-index' => '',
+            'notifications-index' => '通知記錄',
             'oauth_login' => '以 OAuth 登入',
             'oauth_request' => 'OAuth 授權',
             'settings' => '設定',

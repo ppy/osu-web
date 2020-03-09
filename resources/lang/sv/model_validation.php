@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => '',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '',

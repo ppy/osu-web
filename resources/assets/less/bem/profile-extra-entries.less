@@ -64,16 +64,11 @@
 
   &__kudosu-amount {
     font-weight: inherit;
-    font-style: italic;
     color: @osu-colour-l1;
   }
 
   &__link {
     .link-default();
-
-    &--kudosu {
-      font-style: italic;
-    }
   }
 
   &__detail {
@@ -103,24 +98,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     margin-right: 20px;
-  }
 
-  &__text-score {
-    font-style: italic;
-    font-size: 11px;
-
-    &--title {
-      font-size: 16px;
-      font-weight: 400;
-    }
-
-    &--pp {
-      font-size: 18px;
-      font-weight: bold;
-      color: @pink-text;
-    }
-
-    &--time {
+    // FIXME: remove <em> in translation. Or any tags, even.
+    em {
       font-style: normal;
     }
   }

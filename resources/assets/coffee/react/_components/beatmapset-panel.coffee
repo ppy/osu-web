@@ -19,7 +19,8 @@
 import { BeatmapIcon } from 'beatmap-icon'
 import { Img2x } from 'img2x'
 import * as React from 'react'
-import { div,a,i,span } from 'react-dom-factories'
+import { a, div, i, span, strong } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
 el = React.createElement
 
 export class BeatmapsetPanel extends React.PureComponent
@@ -148,15 +149,16 @@ export class BeatmapsetPanel extends React.PureComponent
             div className: 'beatmapset-panel__mapper-source-box',
               div
                 className: 'u-ellipsis-overflow'
-                dangerouslySetInnerHTML:
-                  __html:
-                    osu.trans 'beatmapsets.show.details.mapped_by',
-                      mapper:
-                        laroute.link_to_route 'users.show',
-                            beatmapset.creator,
-                            user: beatmapset.user_id,
-                              'class': 'beatmapset-panel__link js-usercard'
-                              'data-user-id': beatmapset.user_id
+                el StringWithComponent,
+                  pattern: osu.trans 'beatmapsets.show.details.mapped_by'
+                  mappings:
+                    ':mapper':
+                      a
+                        key: 'mapper'
+                        href: laroute.route('users.show', user: beatmapset.user_id)
+                        className: 'js-usercard'
+                        'data-user-id': beatmapset.user_id
+                        strong null, beatmapset.creator
               div
                 className: 'u-ellipsis-overflow'
                 if beatmapset.status in ['graveyard', 'wip', 'pending']

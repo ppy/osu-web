@@ -21,9 +21,9 @@
 namespace App\Transformers\Forum;
 
 use App\Models\Forum\ForumCover;
-use League\Fractal;
+use App\Transformers\TransformerAbstract;
 
-class ForumCoverTransformer extends Fractal\TransformerAbstract
+class ForumCoverTransformer extends TransformerAbstract
 {
     public function transform(ForumCover $cover = null)
     {

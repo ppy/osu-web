@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'raderad',
+        'none_found' => '',
         'title' => 'Beatmap diskussioner',
 
         'form' => [

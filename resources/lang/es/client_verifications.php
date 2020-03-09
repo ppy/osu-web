@@ -22,12 +22,12 @@ return [
     'completed' => [
         'home' => 'Ir al panel de control',
         'logout' => 'Cerrar sesión',
-        'text' => 'Ya puedes cerrar esta ventana',
+        'text' => 'Ahora puede cerrar esta ventana',
         'title' => 'Verificación del cliente osu! completada',
     ],
 
     'create' => [
-        'confirm' => 'Clic en el botón de autorizar para finalizar la verificación del cliente.',
+        'confirm' => 'Haga clic en el botón de autorización de abajo para finalizar la verificación del cliente.',
         'title' => 'Verificación del cliente osu!',
     ],
 ];

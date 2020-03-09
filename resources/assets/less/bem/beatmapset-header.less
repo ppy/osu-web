@@ -38,7 +38,8 @@
 
     &--stats {
       padding-bottom: 0;
-      flex: none;
+      align-self: stretch;
+      justify-content: space-between;
     }
   }
 
@@ -53,20 +54,20 @@
   }
 
   &__content {
-    .default-header-overlay();
     display: flex;
     flex-direction: column;
     padding: 0 30px;
+    .light-header-overlay();
+    background-size: cover;
+    background-position: center;
+    background-color: #333;
+    min-height: @header-height;
 
     @media @desktop {
       align-items: flex-end;
       flex-direction: row;
     }
 
-    background-size: cover;
-    background-position: center;
-    background-color: #333;
-    min-height: @header-height;
   }
 
   &__availability-info {
@@ -85,7 +86,6 @@
   &__details-text {
     .default-text-shadow();
     color: #fff;
-    font-style: italic;
     align-self: flex-start;
     max-width: 100%;
 
@@ -97,6 +97,9 @@
     &--title {
       font-size: 30px;
       font-weight: 600;
+      line-height: 1;
+      margin-bottom: 5px;
+      margin-top: 10px;
     }
 
     &--artist {
@@ -167,9 +170,5 @@
         color: @pink-darker;
       }
     }
-  }
-
-  &__value-name {
-    font-style: italic;
   }
 }

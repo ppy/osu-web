@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Libraries\Commentable;
-use League\Fractal;
 
-class CommentableMetaTransformer extends Fractal\TransformerAbstract
+class CommentableMetaTransformer extends TransformerAbstract
 {
     public function transform(?Commentable $commentable)
     {

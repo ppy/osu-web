@@ -261,7 +261,7 @@ class OsuMarkdownProcessor
         $url = $this->node->getUrl();
 
         if (present($url)) {
-            $this->node->setUrl(proxy_image($url));
+            $this->node->setUrl(proxy_media($url));
         }
     }
 

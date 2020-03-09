@@ -70,9 +70,6 @@ class BeatmapsetsController extends Controller
             ])
             ->findOrFail($id);
 
-        $editable = priv_check('BeatmapsetDescriptionEdit', $beatmapset)->can();
-        $descriptionInclude = $editable ? 'description:editable' : 'description';
-
         $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
@@ -83,7 +80,7 @@ class BeatmapsetsController extends Controller
                 'converts',
                 'converts.failtimes',
                 'current_user_attributes',
-                $descriptionInclude,
+                'description',
                 'genre',
                 'language',
                 'ratings',
@@ -253,7 +250,7 @@ class BeatmapsetsController extends Controller
                 $beatmapset,
                 new BeatmapsetTransformer(),
                 [
-                    'description:editable',
+                    'description',
                 ]
             );
         }

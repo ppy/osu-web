@@ -25,7 +25,7 @@ return [
 
         'avatar' => [
             'title' => '头像',
-            'rules' => '请确保你的头像符合 :link。<br/>这意味着必须是<strong>全年龄</strong>头像。即没有裸露、亵渎或暗示的内容',
+            'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、亵渎或暗示的内容。',
             'rules_link' => '社群规则',
         ],
 
@@ -58,7 +58,7 @@ return [
         ],
 
         'signature' => [
-            'title' => '签名',
+            'title' => '个性签名',
             'update' => '更新',
         ],
     ],
@@ -66,17 +66,17 @@ return [
     'notifications' => [
         'title' => '通知',
         'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
-        'beatmapset_discussion_qualified_problem' => '在以下模式的合格节拍图上接收新问题通知',
+        'beatmapset_discussion_qualified_problem' => '在以下模式的合格谱面上接收新问题通知：',
 
         'mail' => [
-            '_' => '接收有关下列哪些的邮件通知？',
+            '_' => '接收有关下列项目中的邮件通知：',
             'beatmapset:modding' => '谱面审核',
             'forum_topic_reply' => '帖子回复',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '已授权的第三方',
+        'authorized_clients' => '已授权的第三应用',
         'own_clients' => '拥有的客户端',
         'title' => '开放授权',
     ],

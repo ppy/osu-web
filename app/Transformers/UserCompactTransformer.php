@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\User;
-use League\Fractal;
 
-class UserCompactTransformer extends Fractal\TransformerAbstract
+class UserCompactTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'country',

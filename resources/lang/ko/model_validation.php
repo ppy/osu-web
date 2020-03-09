@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => '삭제된 댓글에 답글을 달 수 없습니다.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '메시지',

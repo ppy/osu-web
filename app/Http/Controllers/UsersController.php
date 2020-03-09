@@ -57,6 +57,13 @@ class UsersController extends Controller
 
         if (is_api_request()) {
             $this->middleware('require-scopes:identify', ['only' => ['me']]);
+            $this->middleware('require-scopes:users.read', ['only' => [
+                'beatmapsets',
+                'kudosu',
+                'recentActivity',
+                'scores',
+                'show',
+            ]]);
         }
 
         $this->middleware(function ($request, $next) {
@@ -264,6 +271,7 @@ class UsersController extends Controller
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
+            'group_badge',
             'loved_beatmapset_count',
             'monthly_playcounts',
             'page',
@@ -469,7 +477,8 @@ class UsersController extends Controller
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scoresFirst($options['mode'], true)
-                        ->orderBy('score_id', 'desc')
+                        ->visibleUsers()
+                        ->reorderBy('score_id', 'desc')
                         ->with('beatmap', 'beatmap.beatmapset', 'user');
                     break;
                 case 'scoresRecent':

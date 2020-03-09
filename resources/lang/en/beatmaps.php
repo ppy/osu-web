@@ -218,7 +218,7 @@ return [
                 'status' => 'Categories',
                 'genre' => 'Genre',
                 'language' => 'Language',
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'rank' => 'Rank Achieved',
                 'played' => 'Played',
             ],
