@@ -27,7 +27,6 @@ import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-action
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { transaction } from 'mobx';
-import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
