@@ -126,14 +126,6 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
       return null;
     }
 
-    if (this.count('beatmapset') === 0) {
-      return (
-        <span className='quick-search-items quick-search-items--empty'>
-          {osu.trans('quick_search.result.empty', { mode: osu.trans('quick_search.mode.beatmapset') })}
-        </span>
-      );
-    }
-
     return (
       <div className='quick-search-items'>
         {this.props.worker.searchResult.beatmapset.beatmapsets.map((beatmapset, idx) => {
@@ -153,17 +145,13 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
           );
         })}
 
-        {this.count('beatmapset') > this.props.worker.searchResult.beatmapset.beatmapsets.length
-          ? (
-            <div
-              className='quick-search-items__item'
-              onMouseEnter={this.selectBeatmapsetOthers}
-              onMouseLeave={this.onMouseLeave}
-            >
-              {this.renderResultLink('beatmapset', this.boxIsActive('beatmapset_others', 0))}
-            </div>
-          ) : null
-        }
+        <div
+          className='quick-search-items__item'
+          onMouseEnter={this.selectBeatmapsetOthers}
+          onMouseLeave={this.onMouseLeave}
+        >
+          {this.renderResultLink('beatmapset', this.boxIsActive('beatmapset_others', 0))}
+        </div>
       </div>
     );
   }

@@ -189,7 +189,7 @@ export default class Worker {
       case 'beatmapset':
         return searchResult.beatmapset.beatmapsets.length;
       case 'beatmapset_others':
-        return searchResult.beatmapset.total > searchResult.beatmapset.beatmapsets.length ? 1 : 0;
+        return 1;
       case 'others':
         return otherModes.filter((mode) => searchResult[mode].total > 0).length;
     }
