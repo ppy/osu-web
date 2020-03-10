@@ -92,30 +92,14 @@ export default class ChatOrchestrator implements DispatchListener {
 
   focusChannelAtIndex(index: number) {
     const channelList = this.rootDataStore.channelStore.channelList;
-    const nextIndex = Math.min(index, channelList.length - 1);
-    const channel: Channel | undefined = this.rootDataStore.channelStore.channelList[nextIndex];
-
-    if (channel == null) {
-      return this.focusNextChannel();
+    if (channelList.length === 0) {
+      return this.rootDataStore.channelStore.loaded = false;
     }
+
+    const nextIndex = Math.min(index, channelList.length - 1);
+    const channel = this.rootDataStore.channelStore.channelList[nextIndex];
 
     dispatch(new ChatChannelSwitchAction(channel.channelId));
-  }
-
-  focusNextChannel() {
-    const channelStore = this.rootDataStore.channelStore;
-    const channel = channelStore.get(this.rootDataStore.uiState.chat.selected);
-    if (channel && (channel.exists || channel.newChannel)) {
-      return;
-    }
-
-    const channelList = channelStore.channelList;
-    if (channelList.length > 0) {
-      // TODO: switch to next 'closest' conversation instead of first in list
-      dispatch(new ChatChannelSwitchAction(channelList[0].channelId));
-    } else {
-      channelStore.loaded  = false;
-    }
   }
 
   handleDispatchAction(action: DispatcherAction) {
@@ -128,7 +112,7 @@ export default class ChatOrchestrator implements DispatchListener {
         this.markAsRead(this.rootDataStore.uiState.chat.selected);
       }
     } else if (action instanceof ChatPresenceUpdateAction) {
-      this.focusNextChannel();
+      this.handleChatPresenceUpdateAction();
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
       if (this.rootDataStore.channelStore.loaded) {
@@ -190,7 +174,6 @@ export default class ChatOrchestrator implements DispatchListener {
     const channelStore = this.rootDataStore.channelStore;
     const channel = channelStore.get(action.channelId);
     const index = channel != null ? channelStore.channelList.indexOf(channel) : null;
-
     channelStore.partChannel(action.channelId);
 
     if (this.rootDataStore.uiState.chat.selected === channel?.channelId) {
@@ -202,6 +185,15 @@ export default class ChatOrchestrator implements DispatchListener {
         .catch((err) => {
           console.debug('leaveChannel error', err);
         });
+    }
+  }
+
+  // ensure a channel is selected if available
+  private handleChatPresenceUpdateAction() {
+    const channelStore = this.rootDataStore.channelStore;
+    const channel = channelStore.get(this.rootDataStore.uiState.chat.selected);
+    if (channel == null) {
+      this.focusChannelAtIndex(0);
     }
   }
 }
