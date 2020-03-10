@@ -69,6 +69,11 @@ class MigrateFreshAllCommand extends FreshCommand
             '--yes' => $this->option('yes'),
         ]);
 
+        $this->call('es:index-wiki', [
+            '--create-only' => true,
+            '--yes' => $this->option('yes'),
+        ]);
+
         $this->call('es:create-search-blacklist');
 
         if ($this->needsSeeding()) {
