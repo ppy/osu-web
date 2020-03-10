@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'slettet',
+        'none_found' => '',
         'title' => 'Beatmapdiskusjoner',
 
         'form' => [

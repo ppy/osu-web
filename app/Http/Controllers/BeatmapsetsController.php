@@ -38,8 +38,6 @@ use Request;
 
 class BeatmapsetsController extends Controller
 {
-    protected $section = 'beatmapsets';
-
     public function destroy($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
@@ -55,7 +53,7 @@ class BeatmapsetsController extends Controller
 
         $filters = BeatmapsetSearchRequestParams::getAvailableFilters();
 
-        return ext_view('beatmaps.index', compact('filters', 'beatmaps'));
+        return ext_view('beatmapsets.index', compact('filters', 'beatmaps'));
     }
 
     public function show($id)
@@ -70,9 +68,6 @@ class BeatmapsetsController extends Controller
             ])
             ->findOrFail($id);
 
-        $editable = priv_check('BeatmapsetDescriptionEdit', $beatmapset)->can();
-        $descriptionInclude = $editable ? 'description:editable' : 'description';
-
         $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
@@ -83,7 +78,7 @@ class BeatmapsetsController extends Controller
                 'converts',
                 'converts.failtimes',
                 'current_user_attributes',
-                $descriptionInclude,
+                'description',
                 'genre',
                 'language',
                 'ratings',
@@ -253,7 +248,7 @@ class BeatmapsetsController extends Controller
                 $beatmapset,
                 new BeatmapsetTransformer(),
                 [
-                    'description:editable',
+                    'description',
                 ]
             );
         }

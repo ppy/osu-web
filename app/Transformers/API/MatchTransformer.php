@@ -21,9 +21,9 @@
 namespace App\Transformers\API;
 
 use App\Models\Multiplayer\Match;
-use League\Fractal;
+use App\Transformers\TransformerAbstract;
 
-class MatchTransformer extends Fractal\TransformerAbstract
+class MatchTransformer extends TransformerAbstract
 {
     protected $availableIncludes = ['games'];
 

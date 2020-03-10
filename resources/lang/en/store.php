@@ -52,6 +52,7 @@ return [
         'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
         'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Checkout with Paypal',
+        'title_compact' => 'checkout',
 
         'has_pending' => [
             '_' => 'You have incomplete checkouts, click :link to view them.',
@@ -68,6 +69,8 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'As your payment was an eCheck, please allow up to 10 extra days for the payment to clear through PayPal!',
+        'title_compact' => 'invoice',
+
         'status' => [
             'processing' => [
                 'title' => 'Your payment has not yet been confirmed!',

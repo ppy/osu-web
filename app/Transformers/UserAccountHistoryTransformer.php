@@ -21,13 +21,17 @@
 namespace App\Transformers;
 
 use App\Models\UserAccountHistory;
-use League\Fractal;
 
-class UserAccountHistoryTransformer extends Fractal\TransformerAbstract
+class UserAccountHistoryTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'actor',
         'supporting_url',
+    ];
+
+    protected $permissions = [
+        'actor' => 'UserSilenceShowExtendedInfo',
+        'supporting_url' => 'UserSilenceShowExtendedInfo',
     ];
 
     public function transform(UserAccountHistory $h)

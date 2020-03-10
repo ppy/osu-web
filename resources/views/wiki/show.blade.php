@@ -18,7 +18,6 @@
 @php
     $url = wiki_url($page->path, $locale);
     $title = $page->title();
-    $subSection = $title;
 
     $links = [
         [
@@ -30,7 +29,6 @@
     $parentTitle = presence($page->subtitle());
     if ($parentTitle !== null) {
         $link = ['title' => $parentTitle];
-        $subSection = "{$parentTitle} / {$subSection}";
         if ($page->hasParent()) {
             $link['url'] = wiki_url($page->parentPath(), $locale);
         }
@@ -41,8 +39,6 @@
 @endphp
 
 @extends('master', [
-    'legacyFont' => false,
-    'title' => null,
     'titlePrepend' => $page->title(true),
 ])
 
@@ -50,8 +46,6 @@
     @component('layout._page_header_v4', ['params' => [
         'links' => $links,
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.help._'),
-        'subSection' => $subSection,
         'theme' => 'help',
     ]])
         @slot('navAppend')

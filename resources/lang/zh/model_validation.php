@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => '不能回复已删除的评论。',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '消息',

@@ -28,11 +28,7 @@
     ];
 @endphp
 
-@extends('master', [
-    'currentAction' => 'tournaments',
-    'currentSection' => 'community',
-    'title' => $tournament->name,
-])
+@extends('master', ['titlePrepend' => $tournament->name])
 
 @section('content')
     @include('objects.css-override', ['mapping' => ['.tournament__banner' => $tournament->header_banner]])
@@ -40,8 +36,6 @@
     @include('layout._page_header_v4', ['params' => [
         'links' => $links,
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.tournaments._'),
-        'subSection' => $tournament->name,
         'theme' => 'tournaments',
     ]])
 
@@ -76,7 +70,7 @@
                         @foreach ($links as $link)
                             <a
                                 href="{{ $link['url'] }}"
-                                class="btn-osu btn-osu-default btn-osu--tournament"
+                                class="btn-osu-big btn-osu-big--tournament-info"
                             >{{ $link['title'] }}</a>
                         @endforeach
                     </div>
@@ -121,7 +115,7 @@
                             @if($tournament->isSignedUp(Auth::user()))
                                 <a
                                     href="{{route("tournaments.unregister", $tournament) }}"
-                                    class="btn-osu btn-osu-default btn-osu--giant"
+                                    class="btn-osu-big btn-osu-big--tournament-register"
                                     data-method="post"
                                     data-remote="1"
                                 >
@@ -130,7 +124,7 @@
                             @else
                                 <a
                                     href="{{ route("tournaments.register", $tournament) }}"
-                                    class="btn-osu btn-osu-default btn-osu--giant"
+                                    class="btn-osu-big btn-osu-big--tournament-register"
                                     data-method="post"
                                     data-remote="1"
                                 >

@@ -26,7 +26,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Listado de Beatmaps',
+        'title' => 'Listado de Mapas',
         'guest_title' => 'Mapas',
     ],
 
@@ -34,10 +34,16 @@ return [
         'discussion' => 'Discusión',
 
         'details' => [
+            'approved' => 'aprobado el ',
             'favourite' => 'Marcar como favorito',
-            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier beatmap!',
+            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier mapa!',
+            'loved' => 'amado el ',
             'mapped_by' => 'mapeado por :mapper',
+            'qualified' => 'calificado el ',
+            'ranked' => 'clasificado el ',
+            'submitted' => 'enviado el ',
             'unfavourite' => 'Desmarcar como favorito',
+            'updated' => 'última actualización en ',
             'updated_timeago' => 'actualizado por última vez el :timeago',
 
             'download' => [
@@ -58,7 +64,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Apoya este mapa si te gusto para ayudarlo a legar a <strong>Ranked</strong>.',
+            'action' => 'Hypea este mapa si te gustó jugarlo para ayudar a que progrese al estado de <strong>Clasificado</strong>.',
 
             'current' => [
                 '_' => 'El mapa esta :status.',

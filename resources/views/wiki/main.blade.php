@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-@extends('master', ['legacyFont' => false])
+@extends('master')
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
@@ -25,8 +25,6 @@
             'url' => wiki_url('Main_Page'),
         ]],
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.help._'),
-        'subSection' => trans('wiki.main.title'),
         'theme' => 'help',
     ]])
         @slot('navAppend')

@@ -32,8 +32,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
  */
 class RankingController extends Controller
 {
-    protected $section = 'rankings';
-
     private $country;
 
     const PAGE_SIZE = 50;
@@ -49,7 +47,6 @@ class RankingController extends Controller
         $type = request('type');
 
         view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
-        view()->share('currentAction', $type);
         view()->share('mode', $mode);
         view()->share('type', $type);
         view()->share('spotlight', null); // so variable capture in selector function doesn't die.

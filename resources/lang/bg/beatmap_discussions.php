@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'изтрито',
+        'none_found' => '',
         'title' => 'Бийтмап Дискусии',
 
         'form' => [

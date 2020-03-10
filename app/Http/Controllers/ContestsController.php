@@ -25,8 +25,6 @@ use Auth;
 
 class ContestsController extends Controller
 {
-    protected $section = 'community';
-
     public function index()
     {
         $contests = Contest::orderBy('id', 'desc');

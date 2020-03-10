@@ -29,13 +29,9 @@ use Request;
 
 class ForumsController extends Controller
 {
-    protected $section = 'community';
-
     public function __construct()
     {
         parent::__construct();
-
-        view()->share('currentAction', 'forum-forums-'.current_action());
     }
 
     public function index()

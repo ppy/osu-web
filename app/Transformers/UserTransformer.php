@@ -23,7 +23,7 @@ namespace App\Transformers;
 use App\Models\User;
 use League\Fractal;
 
-class UserTransformer extends Fractal\TransformerAbstract
+class UserTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'account_history',
@@ -116,7 +116,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $histories = $user->accountHistories()->recent();
 
-        if (!priv_check('UserSilenceShowExtendedInfo')->can() || is_api_request()) {
+        if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
             $histories->default();
         } else {
             $histories->with('actor');
@@ -246,7 +246,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $mode = $params->get('mode')[0];
 
-        return $this->primitive($user->scoresFirst($mode, true)->count());
+        return $this->primitive($user->scoresFirst($mode, true)->visibleUsers()->count());
     }
 
     public function includeStatistics(User $user, Fractal\ParamBag $params)

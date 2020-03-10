@@ -42,6 +42,7 @@ return [
         'title' => 'Søg',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count flere beatmap søgeresultater',
             'more_simple' => 'Se flere beatmap søgeresultater',
             'title' => 'Beatmaps',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Alle forumer',
             'link' => 'Søg i forumet',
+            'login_required' => '',
             'more_simple' => 'Se flere forum-søgeresultater',
             'title' => 'Forum',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count flere spiller-søgeresultater',
             'more_simple' => 'Se flere spiller-søgeresultater',
             'more_hidden' => 'Spillersøgningen er begrænset til højest :max spillere. Prøv at søge igen.',

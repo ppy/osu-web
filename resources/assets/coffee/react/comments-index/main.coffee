@@ -46,8 +46,6 @@ export class Main extends React.Component
       el HeaderV4,
         links: @headerLinks()
         linksBreadcrumb: true
-        section: osu.trans 'layout.header.community._'
-        subSection: osu.trans 'layout.header.community.comments'
         theme: 'comments'
 
       el Observer, null, () =>

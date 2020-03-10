@@ -27,7 +27,6 @@ use Request;
 
 class BeatmapPacksController extends Controller
 {
-    protected $section = 'beatmaps';
     private const PER_PAGE = 20;
 
     public function index()

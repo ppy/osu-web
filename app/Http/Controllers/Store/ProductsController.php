@@ -26,7 +26,6 @@ use Auth;
 class ProductsController extends Controller
 {
     protected $layout = 'master';
-    protected $actionPrefix = 'products-';
 
     public function show($id)
     {

@@ -21,9 +21,8 @@
     $headerExtraClass = $params['headerExtraClass'] ?? '';
     $links = $params['links'] ?? null;
     $linksBreadcrumb = $params['linksBreadcrumb'] ?? false;
-    $section = $params['section'] ?? null;
-    $subSection = $params['subSection'] ?? null;
     $theme = $params['theme'] ?? null;
+    $showTitle = $params['showTitle'] ?? true;
 
     $linksElement = $linksBreadcrumb ? 'ol' : 'ul';
 @endphp
@@ -39,19 +38,14 @@
         </div>
 
         <div class="header-v4__content">
-            @if ($section !== null || isset($titleAppend))
+            @if ($showTitle || isset($titleAppend))
                 <div class="header-v4__row header-v4__row--title">
-                    <div class="header-v4__icon"></div>
-                    <div class="header-v4__title">
-                        <span class="header-v4__title-section">
-                            {{ $section }}
-                        </span>
-                        @if (present($subSection))
-                            <span class="header-v4__title-action">
-                                {{ $subSection }}
-                            </span>
-                        @endif
-                    </div>
+                    @if ($showTitle)
+                        <div class="header-v4__icon"></div>
+                        <div class="header-v4__title">
+                            {{ page_title() }}
+                        </div>
+                    @endif
 
                     {{ $titleAppend ?? null }}
                 </div>
@@ -85,7 +79,10 @@
                                         "
                                         href="{{ $link['url'] }}"
                                     >
-                                        {{ $link['title'] }}
+                                        <span
+                                            class="fake-bold"
+                                            data-content={{ $link['title'] }}
+                                        >{{ $link['title'] }}</span>
                                     </a>
                                 @else
                                     <span class="header-nav-v4__text">{{ $link['title'] }}</span>

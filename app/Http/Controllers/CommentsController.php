@@ -36,9 +36,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
  */
 class CommentsController extends Controller
 {
-    protected $section = 'community';
-    protected $actionPrefix = 'comments-';
-
     public function __construct()
     {
         parent::__construct();

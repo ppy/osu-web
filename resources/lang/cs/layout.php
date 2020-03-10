@@ -83,8 +83,8 @@ return [
         ],
 
         'notifications' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'oznámení',
+            'index' => 'historie',
         ],
 
         'rankings' => [

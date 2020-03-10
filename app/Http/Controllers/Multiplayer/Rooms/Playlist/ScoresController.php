@@ -29,8 +29,6 @@ use Carbon\Carbon;
 
 class ScoresController extends BaseController
 {
-    protected $section = 'multiplayer';
-
     public function __construct()
     {
         $this->middleware('auth');

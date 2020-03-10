@@ -30,9 +30,6 @@ class NotificationsController extends Controller
 {
     const LIMIT = 51;
 
-    protected $section = 'user';
-    protected $actionPrefix = 'notifications-';
-
     public function __construct()
     {
         parent::__construct();

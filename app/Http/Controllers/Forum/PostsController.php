@@ -28,8 +28,6 @@ use Request;
 
 class PostsController extends Controller
 {
-    protected $section = 'community';
-
     public function __construct()
     {
         $this->middleware('auth', ['only' => [

@@ -128,7 +128,7 @@ export class Header extends React.Component
                   osu.transChoice 'common.count.plus_others', @props.favcount - @favouritesToShow
 
           a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'
+            className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
             href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
             @props.beatmapset.title
 

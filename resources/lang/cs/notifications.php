@@ -24,13 +24,13 @@ return [
     'see_all' => '',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => 'vše',
+        'user' => 'profil',
+        'beatmapset' => 'beatmapy',
+        'forum_topic' => 'fórum',
+        'news_post' => 'novinky',
+        'build' => 'sestavení',
+        'channel' => 'chat',
     ],
 
     'item' => [
@@ -141,7 +141,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nová medaile',
                 'user_achievement_unlock' => 'Odemčeno ":title"\'!',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => 'Odemčeno ":title"\'!',
             ],
         ],
     ],

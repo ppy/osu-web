@@ -20,17 +20,17 @@
 
 return [
     'all_read' => '已閱畢所有通知！',
-    'none' => '',
-    'see_all' => '',
+    'none' => '沒有通知',
+    'see_all' => '查看所有通知',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
+        '_' => '全部',
+        'user' => '個人簡介',
+        'beatmapset' => '圖譜',
+        'forum_topic' => '討論區',
+        'news_post' => '最新消息',
         'build' => '',
-        'channel' => '',
+        'channel' => '聊天',
     ],
 
     'item' => [
@@ -131,7 +131,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited 未讀信息',
+                'legacy_pm' => ':count_delimited 則未讀訊息',
             ],
         ],
 
@@ -141,7 +141,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '新成就',
                 'user_achievement_unlock' => '解鎖「:title」！',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => '解鎖「:title」！',
             ],
         ],
     ],

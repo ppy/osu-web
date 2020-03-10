@@ -83,8 +83,8 @@ return [
         ],
 
         'notifications' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'الإشعارات',
+            'index' => 'السّجل',
         ],
 
         'rankings' => [
@@ -233,7 +233,7 @@ return [
             'modding-history-posts' => 'منشورات اقتراحات المستخدم',
             'modding-history-votesGiven' => 'الاصوات المعطاة لاقتراحات المستخدم',
             'modding-history-votesReceived' => 'الاصوات المستلمة لاقتراحات المستخدم',
-            'notifications-index' => '',
+            'notifications-index' => 'سجل الإشعارات',
             'oauth_login' => 'سجل الدخول لـoauth',
             'oauth_request' => 'اذن oauth',
             'settings' => 'الاعدادات',

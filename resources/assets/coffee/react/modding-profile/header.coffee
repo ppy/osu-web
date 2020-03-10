@@ -36,8 +36,6 @@ export class Header extends React.Component
         backgroundImage: @props.user.cover_url
         contentPrepend: @renderTournamentBanner()
         links: @headerLinks()
-        section: osu.trans 'layout.header.users._'
-        subSection: osu.trans 'layout.header.users.modding'
         theme: 'users'
       div className: 'osu-page osu-page--users',
         div className: 'profile-header',

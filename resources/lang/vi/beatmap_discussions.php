@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'đã xóa',
+        'none_found' => '',
         'title' => 'Góc Thảo Luận Beatmap',
 
         'form' => [

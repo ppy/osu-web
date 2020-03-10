@@ -46,8 +46,6 @@ export default function NewsHeader(props: Props) {
 
   return (
     <HeaderV4
-      section={osu.trans('news.index.title._', { info: '' })}
-      subSection={props.title}
       theme='news'
       links={links}
       linksBreadcrumb={true}

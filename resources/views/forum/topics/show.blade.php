@@ -25,7 +25,6 @@
         'url' => route('forum.forums.search'),
     ],
     'pageDescription' => $topic->toMetaDescription(),
-    'legacyFont' => false,
 ])
 
 @php

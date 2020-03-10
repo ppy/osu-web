@@ -21,10 +21,10 @@
 namespace App\Transformers\Chat;
 
 use App\Models\DeletedUser;
+use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
-use League\Fractal;
 
-class MessageTransformer extends Fractal\TransformerAbstract
+class MessageTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'sender',

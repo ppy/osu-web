@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\UserAchievement;
-use League\Fractal;
 
-class UserAchievementTransformer extends Fractal\TransformerAbstract
+class UserAchievementTransformer extends TransformerAbstract
 {
     public function transform(UserAchievement $userAchievement)
     {

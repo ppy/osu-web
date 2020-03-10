@@ -91,14 +91,14 @@ return [
             'nomination_reset' => 'Reiniciar Nominación',
             'praise' => 'Elogio',
             'problem' => 'Problema',
-            'review' => 'Reseña',
+            'review' => 'Revisión',
             'suggestion' => 'Sugerencia',
         ],
 
         'mode' => [
             'events' => 'Historial',
             'general' => 'General :scope',
-            'reviews' => 'Reseñas',
+            'reviews' => 'Revisiones',
             'timeline' => 'Línea de tiempo',
             'scopes' => [
                 'general' => 'Esta dificultad',
@@ -181,7 +181,7 @@ return [
         'disqualify' => 'Descalificar',
         'incorrect_state' => 'Error al realizar esa acción, intente actualizando la página.',
         'love' => 'Amor',
-        'love_confirm' => '¿Te encanta este beatmap?',
+        'love_confirm' => '¿Te gusta este mapa?',
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este Beatmap?',
         'nominated_by' => 'nominado por :users',
@@ -242,7 +242,7 @@ return [
     ],
     'general' => [
         'recommended' => 'Dificultades recomendadas',
-        'converts' => 'Incluir beatmaps convertidos',
+        'converts' => 'Incluir mapas convertidos',
     ],
     'mode' => [
         'any' => 'Cualquiera',

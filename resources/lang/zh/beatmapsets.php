@@ -34,10 +34,16 @@ return [
         'discussion' => '讨论',
 
         'details' => [
+            'approved' => 'approved 于 ',
             'favourite' => '收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
+            'loved' => 'loved 于 ',
             'mapped_by' => '作者: :mapper',
+            'qualified' => 'qualified 于 ',
+            'ranked' => 'ranked 于 ',
+            'submitted' => '提交于 ',
             'unfavourite' => '取消收藏',
+            'updated' => '上次更新于 ',
             'updated_timeago' => '上次更新于 :timeago',
 
             'download' => [

@@ -20,17 +20,17 @@
 
 return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
-    'none' => '',
-    'see_all' => '',
+    'none' => 'Keine Benachrichtigungen',
+    'see_all' => 'alle Benachrichtigungen ansehen',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => 'alle',
+        'user' => 'profil',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'forum',
+        'news_post' => 'neuigkeiten',
+        'build' => 'versionen',
+        'channel' => 'chat',
     ],
 
     'item' => [
@@ -141,7 +141,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Neue Medaille',
                 'user_achievement_unlock' => '":title" freigeschaltet!',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => '":title" freigeschaltet!',
             ],
         ],
     ],
