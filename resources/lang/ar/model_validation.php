@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'الرد على تعليق محذوف غير مسموح.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'الرسالة',

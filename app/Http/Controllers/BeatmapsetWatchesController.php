@@ -27,9 +27,6 @@ use Exception;
 
 class BeatmapsetWatchesController extends Controller
 {
-    protected $section = 'beatmaps';
-    protected $actionPrefix = 'beatmapset-watches-';
-
     public function __construct()
     {
         parent::__construct();

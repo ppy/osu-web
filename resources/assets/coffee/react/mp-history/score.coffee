@@ -67,7 +67,7 @@ export class Score extends React.Component
                 when 'combo'
                   osu.formatNumber(@props.score.max_combo)
                 when 'accuracy'
-                  "#{_.round @props.score.accuracy * 100, 2}%"
+                  "#{osu.formatNumber(@props.score.accuracy * 100, 2)}%"
                 when 'score'
                   modifier = 'large'
                   osu.formatNumber(@props.score.score)

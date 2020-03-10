@@ -15,10 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', [
-    'legacyFont' => false,
-    'title' => trans('news.index.title_page'),
-])
+@extends('master')
 
 @section('content')
     <div class="js-react--news-index osu-layout osu-layout--full"></div>

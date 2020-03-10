@@ -25,9 +25,6 @@ use Auth;
 
 class GroupsController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'groups-';
-
     public function show($id)
     {
         $group = Group::visible()->findOrFail($id);

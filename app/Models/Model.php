@@ -121,6 +121,13 @@ abstract class Model extends BaseModel
         }
     }
 
+    public function scopeReorderBy($query, $field, $order)
+    {
+        $query->getQuery()->orders = null;
+
+        return $query->orderBy($field, $order);
+    }
+
     public function scopeOrderByField($query, $field, $ids)
     {
         $size = count($ids);

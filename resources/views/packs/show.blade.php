@@ -15,10 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', [
-    'currentAction' => 'packs',
-    'title' => $pack->name.' · '.trans('beatmappacks.index.title'),
-])
+@extends('master', ['titlePrepend' => $pack->name])
 
 @section('content')
     @include('packs._header')

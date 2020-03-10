@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\UserMonthlyPlaycount;
-use League\Fractal;
 
-class UserMonthlyPlaycountTransformer extends Fractal\TransformerAbstract
+class UserMonthlyPlaycountTransformer extends TransformerAbstract
 {
     public function transform(UserMonthlyPlaycount $playcount)
     {

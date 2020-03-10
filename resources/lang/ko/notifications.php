@@ -21,17 +21,17 @@
 return [
     'all_read' => '모든 알림을 읽었어요!',
     'mark_all_read' => '모두 지우기',
-    'none' => '',
-    'see_all' => '',
+    'none' => '알림 없음',
+    'see_all' => '모든 알림 보기',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => '전체',
+        'user' => '프로필',
+        'beatmapset' => '비트맵',
+        'forum_topic' => '포럼',
+        'news_post' => '소식',
+        'build' => '빌드 버전',
+        'channel' => '채팅',
     ],
 
     'item' => [
@@ -142,7 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '새 메달',
                 'user_achievement_unlock' => '":title" 해제!',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => '":title" 달성!',
             ],
         ],
     ],

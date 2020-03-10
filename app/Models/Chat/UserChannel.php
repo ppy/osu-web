@@ -85,12 +85,21 @@ class UserChannel extends Model
             ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
             ->selectRaw('channels.*')
             ->selectRaw('user_channels.last_read_id')
-            ->selectRaw('(select max(messages.message_id) from messages where messages.channel_id = user_channels.channel_id) as last_message_id')
             ->get();
+
+        $channelIds = $userChannels->pluck('channel_id');
+
+        // including MAX(message_id) in above query is slow for large channels.
+        $lastMessageIds = Message::whereIn('channel_id', $channelIds)
+            ->groupBy('channel_id')
+            ->select('channel_id')
+            ->selectRaw('MAX(message_id) as last_message_id')
+            ->get()
+            ->keyBy('channel_id');
 
         // fetch the users in each of the channels (and whether they're restricted and/or blocked)
         $userRelationTableName = (new UserRelation)->tableName(true);
-        $userChannelMembers = self::whereIn('user_channels.channel_id', $userChannels->pluck('channel_id'))
+        $userChannelMembers = self::whereIn('user_channels.channel_id', $channelIds)
             ->selectRaw('user_channels.*')
             ->selectRaw('phpbb_zebra.foe')
             ->leftJoin($userRelationTableName, function ($join) use ($userRelationTableName, $userId) {
@@ -119,14 +128,14 @@ class UserChannel extends Model
 
         $collection = json_collection(
             $userChannels,
-            function ($userChannel) use ($byChannelId, $byUserId, $userId) {
+            function ($userChannel) use ($byChannelId, $byUserId, $lastMessageIds, $userId) {
                 $presence = [
                     'channel_id' => $userChannel->channel_id,
                     'type' => $userChannel->type,
                     'name' => $userChannel->name,
                     'description' => presence($userChannel->description),
                     'last_read_id' => $userChannel->last_read_id,
-                    'last_message_id' => $userChannel->last_message_id,
+                    'last_message_id' => optional($lastMessageIds[$userChannel->channel_id] ?? null)->last_message_id,
                 ];
 
                 if ($userChannel->type !== Channel::TYPES['public']) {

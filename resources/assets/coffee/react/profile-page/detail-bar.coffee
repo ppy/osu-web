@@ -59,7 +59,7 @@ export class DetailBar extends React.PureComponent
             span className: 'fas fa-chevron-down'
 
       div className: "#{bn}__column #{bn}__column--left",
-        div className: "#{bn}__menu-item",
+        div className: "#{bn}__entry",
           el FriendButton,
             userId: @props.user.id
             showFollowerCounter: true
@@ -67,7 +67,7 @@ export class DetailBar extends React.PureComponent
             modifiers: ['profile-page']
             alwaysVisible: true
         if @state.currentUser.id != @props.user.id && !isBlocked
-          div className: "#{bn}__menu-item",
+          div className: "#{bn}__entry",
             a
               className: 'user-action-button user-action-button--profile-page'
               href: laroute.route 'messages.users.show', user: @props.user.id
@@ -80,7 +80,7 @@ export class DetailBar extends React.PureComponent
         if @props.expanded
           div
             title: osu.trans('users.show.stats.level_progress')
-            className: "#{bn}__entry #{bn}__entry--level-progress"
+            className: "#{bn}__entry #{bn}__entry--level-progress hidden-xs"
             div className: 'bar bar--user-profile',
               div
                 className: 'bar__fill'
@@ -89,13 +89,11 @@ export class DetailBar extends React.PureComponent
               div className: "bar__text",
                 "#{@props.stats.level.progress}%"
 
-        if !@props.expanded
-          div className: "#{bn}__entry #{bn}__entry--ranking",
-            el Rank, type: 'global', stats: @props.stats
+        div className: "#{bn}__entry #{if @props.expanded then 'visible-xs' else ''}",
+          el Rank, type: 'global', stats: @props.stats
 
-        if !@props.expanded
-          div className: "#{bn}__entry #{bn}__entry--ranking",
-            el Rank, type: 'country', stats: @props.stats
+        div className: "#{bn}__entry #{if @props.expanded then 'visible-xs' else ''}",
+          el Rank, type: 'country', stats: @props.stats
 
         div className: "#{bn}__entry #{bn}__entry--level",
           div
@@ -125,7 +123,7 @@ export class DetailBar extends React.PureComponent
 
     return null if items.length == 0
 
-    div className: "#{bn}__menu-item",
+    div className: "#{bn}__entry",
       button
         className: 'profile-page-toggle js-click-menu'
         title: osu.trans('common.buttons.show_more_options')

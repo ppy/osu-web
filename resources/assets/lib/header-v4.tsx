@@ -28,17 +28,21 @@ interface Props {
   links: HeaderLink[];
   linksBreadcrumb?: boolean;
   onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  section: string;
-  subSection: string;
   theme?: string;
   titleAppend?: React.ReactNode;
+}
+
+interface RouteSection {
+  action: string;
+  controller: string;
+  namespace: string;
+  section: string;
 }
 
 export default class HeaderV4 extends React.Component<Props> {
   static defaultProps = {
     links: [],
     linksBreadcrumb: false,
-    subSection: '',
   };
 
   render(): React.ReactNode {
@@ -73,14 +77,7 @@ export default class HeaderV4 extends React.Component<Props> {
             <div className='header-v4__row header-v4__row--title'>
               <div className='header-v4__icon' />
               <div className='header-v4__title'>
-                <span className='header-v4__title-section'>
-                  {this.props.section}
-                </span>
-                {this.props.subSection !== '' &&
-                  <span className='header-v4__title-action'>
-                    {this.props.subSection}
-                  </span>
-                }
+                {this.title()}
               </div>
 
               {this.props.titleAppend}
@@ -120,7 +117,9 @@ export default class HeaderV4 extends React.Component<Props> {
             onClick={this.props.onLinkClick}
             {...link.data}
           >
-            {link.title}
+            <span className='fake-bold' data-content={link.title}>
+              {link.title}
+            </span>
           </a>
         </li>
       );
@@ -192,5 +191,25 @@ export default class HeaderV4 extends React.Component<Props> {
         </ul>
       </div>
     );
+  }
+
+  private title() {
+    const routeSection: RouteSection | null = osu.parseJson('json-route-section');
+
+    if (routeSection != null) {
+      const keys = [
+        `page_title.${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`,
+        `page_title.${routeSection.namespace}.${routeSection.controller}._`,
+        `page_title.${routeSection.namespace}._`,
+      ];
+
+      for (const key of keys) {
+        if (osu.transExists(key, fallbackLocale)) {
+          return osu.trans(key);
+        }
+      }
+    }
+
+    return 'unknown';
   }
 }

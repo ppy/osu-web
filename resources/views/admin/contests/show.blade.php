@@ -15,16 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', [
-    'title' => $contest->name,
-])
+@extends('master', ['titlePrepend' => trans('layout.header.admin.contest').' / '.$contest->name])
 
 @section('content')
     @include('objects.css-override', ['mapping' => [
         '.header-v4__bg' => $contest->header_url,
     ]])
 
-    @include('admin/_header', ['title' => trans('layout.header.admin.contest').' / '.$contest->name])
+    @include('admin/_header')
 
     <div class="osu-page osu-page--admin">
         <div class="row">

@@ -159,7 +159,7 @@ use Request;
  * @property string $user_post_sortby_type
  * @property int $user_posts
  * @property int $user_rank
- * @property int $user_regdate
+ * @property \Carbon\Carbon $user_regdate
  * @property mixed $user_sig
  * @property string $user_sig_bbcode_bitfield
  * @property string $user_sig_bbcode_uid
@@ -1453,7 +1453,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count', 'user_preferences']);
+        return json_item($this, 'User', ['blocks', 'friends', 'group_badge', 'is_admin', 'unread_pm_count', 'user_preferences']);
     }
 
     public function supportLength()

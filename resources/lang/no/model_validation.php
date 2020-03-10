@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Å svare til slettede kommentarer er ikke tillatt.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '',

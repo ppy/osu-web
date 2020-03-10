@@ -31,9 +31,6 @@ class StoreController extends Controller
     // bootstrap setup in BaseController
     protected $layout = 'master';
 
-    // Section display for the menu at the top
-    protected $section = 'store';
-
     public function __construct()
     {
         $this->middleware('auth', ['only' => [

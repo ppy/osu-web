@@ -40,6 +40,7 @@ describe('Widget Notification Stack', () => {
       makeStackJson(identities[0], 2, 'beatmapset_discussion_post_new'),
       makeStackJson(identities[1], 1, 'beatmapset_discussion_post_new'),
     ],
+    timestamp: new Date().toJSON(),
     types: [
       { cursor: null, name: null,  total: identities.length },
       { cursor: null, name: 'beatmapset', total: identities.length },

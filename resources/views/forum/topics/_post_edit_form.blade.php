@@ -51,7 +51,8 @@
                 js-ujs-submit-disable
                 js-forum-post-preview--body
                 {{ $type === 'create' ? 'js-post-preview--auto' : '' }}
-                {{ $type === 'reply' ? 'js-quick-submit js-forum-topic-reply--input' : '' }}
+                {{ $type === 'reply' ? 'js-forum-topic-reply--input' : '' }}
+                {{ in_array($type, ['edit', 'reply'], true) ? 'js-quick-submit' : '' }}
             "
             name="body"
             placeholder="{{ trans('forum.topic.create.placeholder.body') }}"

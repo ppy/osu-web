@@ -42,6 +42,7 @@ return [
         'title' => 'ค้นหา',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count more beatmap search results',
             'more_simple' => 'ดูผลการค้นหาบีทแมพเพิ่มเติม',
             'title' => 'บีทแมพ',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'ฟอรั่มทั้งหมด',
             'link' => 'ค้นหาตามฟอรัม',
+            'login_required' => '',
             'more_simple' => 'See more forum search results',
             'title' => 'Forum',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count more player search results',
             'more_simple' => 'See more player search results',
             'more_hidden' => 'ผลลัพธ์การค้นหาผู้เล่นจำกัดไว้ที่ :max คน ถ้าไม่เจอให้ลองเปลี่ยนคำค้นใหม่',

@@ -62,7 +62,7 @@ return [
         'see_more' => 'zobrazit více',
         'show' => 'zobrazit',
         'show_deleted' => 'Zobrazit smazané',
-        'show_less' => '',
+        'show_less' => 'ukázat méně',
         'show_more' => 'zobrazit více',
         'show_more_options' => 'zobrazit více možností',
         'unpin' => 'odepnout',

@@ -36,6 +36,6 @@ return [
 
     'user' => [
         'button' => '',
-        'title' => '',
+        'title' => 'Rapportera :username?',
     ],
 ];
