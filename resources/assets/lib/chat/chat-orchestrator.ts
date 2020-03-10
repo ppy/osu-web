@@ -31,6 +31,7 @@ import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
+import Channel from 'models/chat/channel';
 
 @dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
@@ -87,6 +88,18 @@ export default class ChatOrchestrator implements DispatchListener {
 
       uiState.selected = channelId;
     });
+  }
+
+  focusChannelAtIndex(index: number) {
+    const channelList = this.rootDataStore.channelStore.channelList;
+    const nextIndex = Math.min(index, channelList.length - 1);
+    const channel: Channel | undefined = this.rootDataStore.channelStore.channelList[nextIndex];
+
+    if (channel == null) {
+      return this.focusNextChannel();
+    }
+
+    dispatch(new ChatChannelSwitchAction(channel.channelId));
   }
 
   focusNextChannel() {
@@ -175,9 +188,16 @@ export default class ChatOrchestrator implements DispatchListener {
 
   partChannel(channelId: number) {
     const channelStore = this.rootDataStore.channelStore;
+    const channel = channelStore.get(channelId);
+    const index = channel != null ? channelStore.channelList.indexOf(channel) : null;
+
     channelStore.partChannel(channelId);
 
-    this.focusNextChannel();
+    if (this.rootDataStore.uiState.chat.selected === channel?.channelId) {
+      this.focusChannelAtIndex(index ?? 0);
+    }
+
+    // this.focusNextChannel(channel);
 
     if (channelId !== -1) {
       return this.api.partChannel(channelId, window.currentUser.id)
