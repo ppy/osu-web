@@ -126,7 +126,7 @@ return [
             'disabled' => 'notice',
         ],
         'wiki_controller' => [
-            'show' => 'knowledge base',
+            '_' => 'knowledge base',
         ],
     ],
     'store' => [
