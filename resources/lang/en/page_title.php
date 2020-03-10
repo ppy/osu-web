@@ -106,6 +106,9 @@ return [
         'livestreams_controller' => [
             '_' => 'live streams',
         ],
+        'matches_controller' => [
+            '_' => 'matches',
+        ],
         'news_controller' => [
             '_' => 'news',
         ],
