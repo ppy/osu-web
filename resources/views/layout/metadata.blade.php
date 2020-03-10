@@ -49,7 +49,14 @@
     <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif
 
-@if (App::getLocale() === 'zh')
+@if (App::getLocale() === 'vi')
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
+    <style>
+        :root {
+            --font-default-override: var(--font-default-vi);
+        }
+    </style>
+@elseif (App::getLocale() === 'zh')
     <style>
         :root {
             --font-default-override: var(--font-default-zh);
@@ -62,6 +69,7 @@
         }
     </style>
 @endif
+
 <link rel="stylesheet" media="all" href="/vendor/_photoswipe-default-skin/default-skin.css">
 <link rel="stylesheet" media="all" href="{{ mix("css/app.css") }}" data-turbolinks-track="reload">
 
