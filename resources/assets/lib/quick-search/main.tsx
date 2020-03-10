@@ -167,7 +167,12 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
       <div className='quick-search-items'>
         {modes.map((mode, idx) => {
           return (
-            <div key={mode} className='quick-search-items__item'>
+            <div
+              key={mode}
+              className='quick-search-items__item'
+              onMouseEnter={() => this.selectBox('others', idx)}
+              onMouseLeave={this.onMouseLeave}
+            >
               {this.renderResultLink(mode, this.boxIsActive('others', idx))}
             </div>
           );
