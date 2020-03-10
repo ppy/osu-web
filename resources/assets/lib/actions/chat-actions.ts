@@ -21,7 +21,7 @@ import { PresenceJSON } from '../chat/chat-api-responses';
 import DispatcherAction from './dispatcher-action';
 
 export class ChatChannelPartAction implements DispatcherAction {
-  constructor(public channelId: number) {
+  constructor(public channelId: number, public shouldSync = true) {
   }
 }
 

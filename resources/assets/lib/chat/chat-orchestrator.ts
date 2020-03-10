@@ -27,11 +27,11 @@ import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-action
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { transaction } from 'mobx';
+import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
-import Channel from 'models/chat/channel';
 
 @dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
@@ -122,7 +122,7 @@ export default class ChatOrchestrator implements DispatchListener {
     if (action instanceof ChatChannelSwitchAction) {
       this.changeChannel(action.channelId);
     } else if (action instanceof ChatChannelPartAction) {
-      this.partChannel(action.channelId);
+      this.handleChatChannelPartAction(action);
     } else if (action instanceof ChatMessageAddAction) {
       if (this.windowIsActive && this.rootDataStore.channelStore.loaded) {
         this.markAsRead(this.rootDataStore.uiState.chat.selected);
@@ -186,21 +186,19 @@ export default class ChatOrchestrator implements DispatchListener {
       });
   }
 
-  partChannel(channelId: number) {
+  private handleChatChannelPartAction(action: ChatChannelPartAction) {
     const channelStore = this.rootDataStore.channelStore;
-    const channel = channelStore.get(channelId);
+    const channel = channelStore.get(action.channelId);
     const index = channel != null ? channelStore.channelList.indexOf(channel) : null;
 
-    channelStore.partChannel(channelId);
+    channelStore.partChannel(action.channelId);
 
     if (this.rootDataStore.uiState.chat.selected === channel?.channelId) {
       this.focusChannelAtIndex(index ?? 0);
     }
 
-    // this.focusNextChannel(channel);
-
-    if (channelId !== -1) {
-      return this.api.partChannel(channelId, window.currentUser.id)
+    if (action.shouldSync && action.channelId !== -1) {
+      return this.api.partChannel(action.channelId, window.currentUser.id)
         .catch((err) => {
           console.debug('leaveChannel error', err);
         });
