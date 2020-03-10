@@ -42,6 +42,7 @@ return [
         'title' => 'Pencarian',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count hasil pencarian beatmap lainnya',
             'more_simple' => 'Lihat hasil pencarian beatmap lainnya',
             'title' => 'Beatmaps',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Semua forum',
             'link' => 'Cari di forum',
+            'login_required' => '',
             'more_simple' => 'Lihat hasil pencarian forum lainnya',
             'title' => 'Forum',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count hasil pencarian pengguna lainnya',
             'more_simple' => 'Lihat hasil pencarian pengguna lainnya',
             'more_hidden' => 'Pencarian pengguna terbatas untuk :max pengguna saja. Perbaiki kata kunci pencarian Anda.',

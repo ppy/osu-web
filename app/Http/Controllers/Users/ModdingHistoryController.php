@@ -30,9 +30,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryController extends Controller
 {
-    protected $actionPrefix = 'modding-history-';
-    protected $section = 'user';
-
     protected $isModerator;
     protected $isKudosuModerator;
     protected $searchParams;
@@ -236,32 +233,6 @@ class ModdingHistoryController extends Controller
             'jsonChunks',
             'user'
         ));
-    }
-
-    public function discussions()
-    {
-        $user = $this->user;
-
-        $search = BeatmapDiscussion::search($this->searchParams);
-        unset($search['params']['user']);
-        $discussions = new LengthAwarePaginator(
-            $search['query']->with([
-                'user',
-                'beatmapset',
-                'startingPost',
-            ])->get(),
-            $search['query']->realCount(),
-            $search['params']['limit'],
-            $search['params']['page'],
-            [
-                'path' => LengthAwarePaginator::resolveCurrentPath(),
-                'query' => $search['params'],
-            ]
-        );
-
-        $showUserSearch = false;
-
-        return ext_view('beatmap_discussions.index', compact('discussions', 'search', 'user', 'showUserSearch'));
     }
 
     public function events()

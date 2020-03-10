@@ -17,7 +17,7 @@
 --}}
 @extends('master', [
     'blank' => true,
-    'title' => trans('accounts.verification_invalid.title'),
+    'titlePrepend' => trans('accounts.verification_invalid.title'),
 ])
 
 @section('content')

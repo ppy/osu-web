@@ -24,7 +24,7 @@ return [
     'edited' => 'redigerad :timeago av :user',
     'pinned' => '',
     'empty' => 'Inga kommentarer ännu.',
-    'load_replies' => '',
+    'load_replies' => 'ladda svar ',
     'replies' => 'Svar',
     'title' => 'Kommentarer',
 
@@ -46,7 +46,7 @@ return [
 
     'guest_button' => [
         'new' => '',
-        'reply' => '',
+        'reply' => 'Logga in för att svara',
     ],
 
     'index' => [
@@ -56,10 +56,10 @@ return [
     'placeholder' => [
         'edit' => 'Redigera kommentaren här',
         'new' => 'Skriv en ny kommentar här',
-        'reply' => 'Skriv ditt respons här',
+        'reply' => 'Skriv ditt svar här',
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'kommentarer',
     ],
 ];

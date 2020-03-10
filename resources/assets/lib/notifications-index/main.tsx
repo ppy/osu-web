@@ -65,8 +65,6 @@ export class Main extends React.Component {
         <HeaderV4
           links={this.links}
           onLinkClick={this.handleLinkClick}
-          section={osu.trans('layout.header.notifications._')}
-          subSection={osu.trans('layout.header.notifications.index')}
           theme='notifications'
         />
 

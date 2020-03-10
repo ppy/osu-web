@@ -83,8 +83,8 @@ return [
         ],
 
         'notifications' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'notificaciones',
+            'index' => 'historial',
         ],
 
         'rankings' => [
@@ -149,7 +149,7 @@ return [
         'profile' => [
             '_' => 'perfil',
             'friends' => 'amigos',
-            'settings' => 'ajustes',
+            'settings' => 'configuración',
         ],
         'help' => [
             '_' => 'ayuda',
@@ -233,10 +233,10 @@ return [
             'modding-history-posts' => 'publicaciones de modding del usuario',
             'modding-history-votesGiven' => 'votos dados sobre modding del usuario',
             'modding-history-votesReceived' => 'votos recibidos sobre modding del usuario',
-            'notifications-index' => '',
+            'notifications-index' => 'historial de notificaciones',
             'oauth_login' => 'inicia sesión para oauth',
             'oauth_request' => 'autorización oauth',
-            'settings' => 'Ajustes',
+            'settings' => 'Configuración',
         ],
         'store' => [
             '_' => 'tienda',

@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\Country;
-use League\Fractal;
 
-class CountryTransformer extends Fractal\TransformerAbstract
+class CountryTransformer extends TransformerAbstract
 {
     protected $availableIncludes = ['ranking'];
 

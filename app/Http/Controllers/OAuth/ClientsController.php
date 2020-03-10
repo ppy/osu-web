@@ -25,8 +25,6 @@ use App\Models\OAuth\Client;
 
 class ClientsController extends Controller
 {
-    protected $section = 'user';
-
     public function __construct()
     {
         parent::__construct();

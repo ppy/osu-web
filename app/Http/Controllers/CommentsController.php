@@ -36,9 +36,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
  */
 class CommentsController extends Controller
 {
-    protected $section = 'community';
-    protected $actionPrefix = 'comments-';
-
     public function __construct()
     {
         parent::__construct();
@@ -83,12 +80,17 @@ class CommentsController extends Controller
      *
      * ### Response Format
      *
-     * Returns [CommentBundle](#commentbundle)
+     * Returns [CommentBundle](#commentbundle).
+     *
+     * `pinned_comments` is only included when `commentable_type` and `commentable_id` are specified.
      *
      * @authenticated
      *
      * @queryParam commentable_type The type of resource to get comments for.
      * @queryParam commentable_id The id of the resource to get comments for.
+     * @queryParam cursor Pagination option. See [CommentSort](#commentsort) for detail. The format follows [Cursor](#cursor) except it's not currently included in the response.
+     * @queryParam parent_id Limit to comments which are reply to the specified id. Specify 0 to get top level comments.
+     * @queryParam sort Sort option as defined in [CommentSort](#commentsort). Defaults to `new` for guests and user-specified default when authenticated.
      */
     public function index()
     {
@@ -256,7 +258,7 @@ class CommentsController extends Controller
         priv_check('CommentPin')->ensureCan();
 
         $comment = Comment::findOrFail($id);
-        $comment->update(['pinned' => false]);
+        $comment->fill(['pinned' => false])->saveOrExplode();
 
         return CommentBundle::forComment($comment)->toArray();
     }
@@ -266,7 +268,7 @@ class CommentsController extends Controller
         priv_check('CommentPin')->ensureCan();
 
         $comment = Comment::findOrFail($id);
-        $comment->update(['pinned' => true]);
+        $comment->fill(['pinned' => true])->saveOrExplode();
 
         return CommentBundle::forComment($comment)->toArray();
     }

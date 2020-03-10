@@ -104,15 +104,15 @@ return [
     ],
 
     'user_verification' => [
-        'code' => '',
-        'code_hint' => '',
-        'link' => '',
-        'report' => '',
+        'code' => 'Din verifieringskod är:',
+        'code_hint' => 'Du kan ange koden med eller utan mellanslag.',
+        'link' => 'Alternativt, kan du också besöka denna länk nedan för att slutföra verifieringen:',
+        'report' => 'Om du inte efterfrågade detta, vänligen SVARA OMEDELBART då ditt konto kan vara i fara.',
         'subject' => 'osu! kontobekräftelse',
 
         'action_from' => [
             '_' => '',
-            'unknown_country' => '',
+            'unknown_country' => 'okänt land',
         ],
     ],
 ];

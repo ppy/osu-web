@@ -31,7 +31,7 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Se ha especificado un modo inválido.',
+        'invalid_mode' => 'Se ha especificado un modo no válido.',
         'standard_converts_only' => 'No hay puntuaciones disponibles para el modo solicitado en esta dificultad del mapa.',
     ],
     'checkout' => [

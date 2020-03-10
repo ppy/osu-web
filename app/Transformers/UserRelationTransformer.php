@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\UserRelation;
-use League\Fractal;
 
-class UserRelationTransformer extends Fractal\TransformerAbstract
+class UserRelationTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'target',

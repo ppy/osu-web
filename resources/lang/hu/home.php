@@ -42,6 +42,7 @@ return [
         'title' => 'Keresés',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count talált beatmap',
             'more_simple' => 'Több beatmap keresése',
             'title' => 'Beatmap-ek',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Összes forum',
             'link' => 'Forum keresése',
+            'login_required' => '',
             'more_simple' => 'Több forum keresése',
             'title' => 'Forum',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count talált játékos',
             'more_simple' => 'Több játékos mutatása keresésben',
             'more_hidden' => 'Játékos kereső limitálva van :max játékosra. Próbálj pontosabb lenni.',

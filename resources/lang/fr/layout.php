@@ -83,8 +83,8 @@ return [
         ],
 
         'notifications' => [
-            '_' => '',
-            'index' => '',
+            '_' => 'notifications',
+            'index' => 'historique',
         ],
 
         'rankings' => [
@@ -233,7 +233,7 @@ return [
             'modding-history-posts' => 'messages de modifications utilisateur',
             'modding-history-votesGiven' => 'votes de modifications utilisateur donnés',
             'modding-history-votesReceived' => 'votes de modifications utilisateur reçus',
-            'notifications-index' => '',
+            'notifications-index' => 'historique des notifications',
             'oauth_login' => 'se connecter pour oauth',
             'oauth_request' => 'autorisation oauth',
             'settings' => 'Paramètres',

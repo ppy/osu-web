@@ -33,7 +33,7 @@ return [
         'login_required' => 'Por favor, inicia sesión para votar.',
 
         'best_of' => [
-            'none_played' => "¡No parece que hayas jugado algún beatmap que califique para este concurso!",
+            'none_played' => "¡No parece que hayas jugado a ningún mapa que califique para este concurso!",
         ],
 
         'button' => [

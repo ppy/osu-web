@@ -18,15 +18,28 @@
 
 .user-list {
   padding: 0 0 20px;
+  color: @osu-colour-c1;
+
+  &__items {
+    .default-gutter-v2();
+  }
+
+  &__title {
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: 0;
+    margin: 0;
+  }
 
   &__toolbar {
     display: flex;
-    padding: 20px 40px;
+    padding: 20px @gutter-v2;
     font-size: @font-size--title-small;
     justify-content: flex-end;
 
-    @media @narrow {
-      padding: 20px 10px;
+    @media @desktop {
+      padding-left: @gutter-v2-desktop;
+      padding-right: $padding-left;
     }
   }
 
@@ -39,8 +52,6 @@
   &__view-mode {
     .reset-input();
     .default-border-radius();
-
-    color: white;
     padding: 5px;
 
     &:hover {

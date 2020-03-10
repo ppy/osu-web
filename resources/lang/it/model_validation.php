@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Non è permesso rispondere ad un commento eliminato.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Il messaggio',

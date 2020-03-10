@@ -66,11 +66,7 @@ export class Main extends React.Component<Props> {
   render() {
     return (
       <>
-        <HeaderV4
-          theme='beatmapsets'
-          section={osu.trans('layout.header.beatmapsets._')}
-          subSection={osu.trans('layout.header.beatmapsets.index')}
-        />
+        <HeaderV4 theme='beatmapsets' />
         <SearchContent
           availableFilters={this.props.availableFilters}
           backToTopAnchor={this.backToTopAnchor}

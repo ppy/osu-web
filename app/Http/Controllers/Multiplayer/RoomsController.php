@@ -26,8 +26,6 @@ use App\Models\Multiplayer\Room;
 
 class RoomsController extends BaseController
 {
-    protected $section = 'multiplayer';
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -118,6 +116,7 @@ class RoomsController extends BaseController
             [
                 'host.country',
                 'playlist.beatmap.beatmapset',
+                'recent_participants',
             ]
         );
     }
@@ -135,6 +134,7 @@ class RoomsController extends BaseController
                 [
                     'host.country',
                     'playlist.beatmap.beatmapset',
+                    'recent_participants',
                 ]
             );
         } catch (InvariantException $e) {

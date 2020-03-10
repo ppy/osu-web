@@ -353,6 +353,21 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($initialMessage, $post->fresh()->message);
     }
 
+    public function testPostUpdateWhenBeatmapsetDiscussionIsLocked()
+    {
+        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+        $message = $reply->message;
+
+        $this->beatmapset->update(['discussion_locked' => true]);
+
+        $this->putPost("{$message} edited", $reply, $this->user)->assertStatus(403);
+        $this->assertSame($message, $reply->fresh()->message);
+    }
+
     public function testPostUpdateWhenDiscussionResolved()
     {
         // reply made before resolve
@@ -471,6 +486,20 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertFalse($reply->fresh()->trashed());
     }
 
+    public function testPostDestroyWhenBeatmapsetDiscussionIsLocked()
+    {
+        $reply = $this->beatmapDiscussion->beatmapDiscussionPosts()->save(
+            factory(BeatmapDiscussionPost::class, 'timeline')->make([
+                'user_id' => $this->user->getKey(),
+            ])
+        );
+
+        $this->beatmapset->update(['discussion_locked' => true]);
+
+        $this->deletePost($reply, $this->user)->assertStatus(403);
+        $this->assertFalse($reply->fresh()->trashed());
+    }
+
     public function testPostDestroyWhenDiscussionResolved()
     {
         // reply made before resolve
@@ -525,6 +554,45 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->deletePost($reply2, $this->user)->assertStatus(403);
         $this->assertFalse($reply1->fresh()->trashed());
         $this->assertFalse($reply2->fresh()->trashed());
+    }
+
+    public function testPostWithoutResolveFlag()
+    {
+        $this->beatmapDiscussion->update([
+            'resolved' => false,
+        ]);
+
+        $otherUser = factory(User::class)->create();
+        $otherUser->statisticsOsu()->create(['playcount' => $this->minPlays]);
+
+        foreach ([$this->user, $otherUser] as $user) {
+            $lastDiscussionPosts = BeatmapDiscussionPost::count();
+
+            $this
+                ->postDiscussionWithoutResolveFlag($user)
+                ->assertStatus(200);
+
+            // No resolve change, therefore no system posts
+            $this->assertSame($lastDiscussionPosts + 1, BeatmapDiscussionPost::count());
+            // Should stay unresolved.
+            $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
+        }
+
+        $this
+            ->postResolveDiscussion(true, $this->user)
+            ->assertStatus(200);
+
+        foreach ([$this->user, $otherUser] as $user) {
+            $lastDiscussionPosts = BeatmapDiscussionPost::count();
+
+            $this
+                ->postDiscussionWithoutResolveFlag($user)
+                ->assertStatus(200);
+
+            $this->assertSame($lastDiscussionPosts + 1, BeatmapDiscussionPost::count());
+            // Should stay resolved now.
+            $this->assertSame(true, $this->beatmapDiscussion->fresh()->resolved);
+        }
     }
 
     public function testProblemOnQualifiedBeatmapsetWithoutMatchingMode()
@@ -767,6 +835,19 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                 'beatmap_discussion' => [
                     'resolved' => $resolved,
                 ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+    }
+
+    private function postDiscussionWithoutResolveFlag(User $user)
+    {
+        return $this
+            ->actingAsVerified($user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+                'beatmap_discussion' => [],
                 'beatmap_discussion_post' => [
                     'message' => 'Hello',
                 ],

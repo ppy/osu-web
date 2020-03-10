@@ -27,9 +27,6 @@ use Exception;
 
 class FollowsController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'follows-';
-
     public function __construct()
     {
         parent::__construct();

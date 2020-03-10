@@ -18,7 +18,7 @@
 <div class="grid grid--gutters store-page">
     <div class="grid-cell grid-cell--fill">
         <div class="grid grid--xs">
-            <div class="grid-cell grid-cell--5of12">
+            <div class="grid-cell">
                 <div>
                     <h1 class="store-text store-text--title">Invoice</h1>
                 </div>
@@ -33,7 +33,7 @@
                     @endif
                 </div>
             </div>
-            <div class="grid-cell">
+            <div class="grid-cell grid-cell--minimum">
                 <p>
                     <em class="store-text store-text--emphasis">ppy Pty Ltd</em><br />
                     ACN 163 593 413 a.t.f. Dean Herbert Family Trust

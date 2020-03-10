@@ -25,8 +25,6 @@
             'url' => wiki_url('Main_Page'),
         ]],
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.help._'),
-        'subSection' => trans('wiki.main.title'),
         'theme' => 'help',
     ]])
         @slot('navAppend')
@@ -34,9 +32,13 @@
         @endslot
     @endcomponent
 
-    <div class="osu-page osu-page--wiki wiki-main-page">
+    <div class="osu-page osu-page--wiki osu-page--wiki-main">
         @include('wiki._notice')
+
         <div class="js-react--wiki-search"></div>
-        {!! $page->get()["output"] !!}
+
+        <div class="wiki-main-page">
+            {!! $page->get()["output"] !!}
+        </div>
     </div>
 @endsection

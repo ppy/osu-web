@@ -25,9 +25,6 @@ use App\Models\NewsPost;
 
 class NewsController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'news-';
-
     public function index()
     {
         $format = request('format');

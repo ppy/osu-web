@@ -22,7 +22,7 @@
   display: block;
   color: white;
   height: 70px;
-  margin: 5px;
+  margin: 5px 0;
   background-color: @osu-colour-b4;
   .default-box-shadow();
 
@@ -113,8 +113,10 @@
   &__name {
     font-size: 14px;
     padding-bottom: 5px;
+    font-weight: bold;
+
     @media @desktop {
-      font-size: 17px;
+      font-size: @font-size--title-small-4;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;

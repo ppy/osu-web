@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\UserContestEntry;
-use League\Fractal;
 
-class UserContestEntryTransformer extends Fractal\TransformerAbstract
+class UserContestEntryTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'user',

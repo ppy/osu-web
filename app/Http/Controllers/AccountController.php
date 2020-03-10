@@ -34,9 +34,6 @@ use Request;
 
 class AccountController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'account-';
-
     public function __construct()
     {
         $this->middleware('auth', ['except' => [

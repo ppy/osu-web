@@ -30,8 +30,6 @@
             ],
         ],
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.help._'),
-        'subSection' => trans('wiki.sitemap.title'),
         'theme' => 'help',
     ]])
 

@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Odpovídat na smazaný komentář není povoleno.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Zpráva',

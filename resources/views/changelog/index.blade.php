@@ -32,11 +32,9 @@
         }
     }
 
-    $title = trans('changelog.index.page_title._'.implode('_', array_keys($keys)), $keys);
+    $titlePrepend = count($keys) > 0 ? trans('changelog.index.page_title._'.implode('_', array_keys($keys)), $keys) : null;
 @endphp
-@extends('master', [
-    'title' => $title,
-])
+@extends('master', compact('titlePrepend'))
 
 @section('content')
     <div class="js-react--changelog-index osu-layout osu-layout--full"></div>

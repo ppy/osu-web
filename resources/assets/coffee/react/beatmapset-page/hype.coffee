@@ -114,4 +114,4 @@ export class Hype extends React.PureComponent
     "#{route('beatmapsets.discussion', beatmapset: @props.beatmapset.id, beatmap: '-', mode: 'generalAll')}#new"
 
   userCanDisqualify: =>
-    @props.currentUser? && (@props.currentUser.can_moderate || @props.currentUser.is_admin || @props.currentUser.is_full_bn)
+    @props.currentUser? && (@props.currentUser.is_moderator || @props.currentUser.is_admin || @props.currentUser.is_full_bn)

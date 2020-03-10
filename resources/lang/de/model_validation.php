@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Das Antworten auf den gelöschten Kommentar ist nicht erlaubt.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Die Nachricht',

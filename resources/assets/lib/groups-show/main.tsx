@@ -34,12 +34,10 @@ export class Main extends React.PureComponent<Props> {
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
-        <HeaderV4
-          section={this.props.group.group_name}
-        />
+        <HeaderV4 />
 
         <div className='osu-page osu-page--users'>
-          <UserList users={this.props.users} />
+          <UserList users={this.props.users} title={this.props.group.group_name} />
         </div>
       </div>
     );
