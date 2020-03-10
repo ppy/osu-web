@@ -53,17 +53,13 @@
         @endslot
     @endcomponent
 
-    <div class="osu-page osu-page--wiki">
-        <div class="wiki-page">
-            <div class="wiki-page__content">
-                <div class="osu-md">
-                    <ul class="osu-md__list">
-                        @foreach ($sitemap as $key => $value)
-                            @include('wiki._sitemap_section', ['parent' => "/{$key}", 'sitemap' => $value, 'titles' => $titles])
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+    <div class="osu-page osu-page--generic">
+        <div class="osu-md">
+            <ul class="osu-md__list">
+                @foreach ($sitemap as $key => $value)
+                    @include('wiki._sitemap_section', ['parent' => "/{$key}", 'sitemap' => $value, 'titles' => $titles])
+                @endforeach
+            </ul>
         </div>
     </div>
 @endsection
