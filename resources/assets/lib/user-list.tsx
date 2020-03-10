@@ -133,13 +133,20 @@ export class UserList extends React.PureComponent<Props> {
     return (
       <>
         {this.renderSelections()}
+
         <div className='user-list'>
+          {this.props.title != null && (
+            <h1 className='user-list__title'>{this.props.title}</h1>
+          )}
+
           <div className='user-list__toolbar'>
             <div className='user-list__toolbar-item'>{this.renderSorter()}</div>
             <div className='user-list__toolbar-item'>{this.renderViewMode()}</div>
           </div>
 
-          <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} />
+          <div className='user-list__items'>
+            <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} />
+          </div>
         </div>
       </>
     );

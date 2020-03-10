@@ -90,6 +90,9 @@ return [
         'friends_controller' => [
             'index' => 'dashboard',
         ],
+        'groups_controller' => [
+            'show' => 'groups',
+        ],
         'home_controller' => [
             'get_download' => 'download',
             'index' => 'dashboard',
