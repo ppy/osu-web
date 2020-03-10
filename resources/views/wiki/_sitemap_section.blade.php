@@ -28,12 +28,13 @@
 
 <li class="osu-md__list-item">
     <a class="osu-md__link" href="{{ route('wiki.show', compact('page')) }}">{{ $title }}</a>
+
+    @if (is_array($sitemap))
+        <ul class="osu-md__list">
+            @foreach ($sitemap as $key => $value)
+                @include('wiki._sitemap_section', ['parent' => "{$parent}/{$key}", 'sitemap' => $value, 'titles' => $titles])
+            @endforeach
+        </ul>
+    @endif
 </li>
 
-@if (is_array($sitemap))
-    <ul class="osu-md__list">
-        @foreach ($sitemap as $key => $value)
-            @include('wiki._sitemap_section', ['parent' => "{$parent}/{$key}", 'sitemap' => $value, 'titles' => $titles])
-        @endforeach
-    </ul>
-@endif
