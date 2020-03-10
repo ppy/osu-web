@@ -15,7 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', [
+    'titlePrepend' => trans('layout.header.help.sitemap'),
+]);
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
@@ -54,6 +56,7 @@
     @endcomponent
 
     <div class="osu-page osu-page--generic">
+        <h1>{{ trans('layout.header.help.sitemap') }}</h1>
         <div class="osu-md">
             <ul class="osu-md__list">
                 @foreach ($sitemap as $key => $value)
