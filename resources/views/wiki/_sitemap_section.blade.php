@@ -18,16 +18,22 @@
 
 @php
     if (!is_array($sitemap)) {
-        $title = $titles[app()->getLocale().'/'.$sitemap] ?? $titles[config('app.fallback_locale').'/'.$sitemap];
+        $title = $titles[app()->getLocale().'/'.$sitemap] ?? $titles[config('app.fallback_locale').'/'.$sitemap] ?? null;
         $page = $sitemap;
     } else {
-        $title = $titles[app()->getLocale().$parent] ?? $titles[config('app.fallback_locale').$parent];
+        $title = $titles[app()->getLocale().$parent] ?? $titles[config('app.fallback_locale').$parent] ?? null;
         $page = $parent;
     }
+
+    $page = ltrim($page, '/');
 @endphp
 
 <li class="osu-md__list-item">
-    <a class="osu-md__link" href="{{ route('wiki.show', compact('page')) }}">{{ $title }}</a>
+    @if (isset($title))
+        <a class="osu-md__link" href="{{ route('wiki.show', compact('page')) }}">{{ $title }}</a>
+    @else
+        {{ $page }}
+    @endif
 
     @if (is_array($sitemap))
         <ul class="osu-md__list">
