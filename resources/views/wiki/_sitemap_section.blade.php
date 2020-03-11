@@ -17,15 +17,8 @@
 --}}
 
 @php
-    if (!is_array($sitemap)) {
-        $title = $titles[app()->getLocale().'/'.$sitemap] ?? $titles[config('app.fallback_locale').'/'.$sitemap] ?? null;
-        $page = $sitemap;
-    } else {
-        $title = $titles[app()->getLocale().$parent] ?? $titles[config('app.fallback_locale').$parent] ?? null;
-        $page = $parent;
-    }
-
-    $page = ltrim($page, '/');
+    $page = is_array($sitemap) ? $parent : $sitemap;
+    $title = $titles[app()->getLocale().'/'.$page] ?? $titles[config('app.fallback_locale').'/'.$page] ?? null;
 @endphp
 
 <li class="osu-md__list-item">
