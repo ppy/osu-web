@@ -83,4 +83,10 @@
       opacity: 1;
     }
   }
+
+  &__unsaved-indicator {
+    align-self: center;
+    color: @osu-colour-blue-3;
+    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+  }
 }

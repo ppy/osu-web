@@ -51,7 +51,7 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
       problem: 'fas fa-exclamation-circle',
       suggestion: 'far fa-circle',
     };
-    if (this.props.editMode) {
+    if (this.props.readOnly) {
       toggle = () => { /* do nothing */ };
     }
 

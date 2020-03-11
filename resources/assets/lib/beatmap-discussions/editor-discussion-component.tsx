@@ -67,19 +67,25 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     // if editmode, do callback to server to nuke?
   }
 
+  readOnly = () => {
+    return this.props.editMode && this.props.element.discussionId;
+  }
+
   render(): React.ReactNode {
     const bn = 'beatmap-discussion-review-post-embed-preview';
     const timestamp = this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general');
     const attribs = this.props.attributes;
+    const extraClasses = [];
 
-    if (this.props.editMode) {
+    if (this.readOnly()) {
       attribs.contentEditable = false;
+      extraClasses.push('read-only');
     }
 
     return (
       <div className='beatmap-discussion beatmap-discussion--preview' {...attribs}>
         <div className='beatmap-discussion__discussion'>
-          <div className={bn}>
+          <div className={osu.classWithModifiers(bn, extraClasses)}>
             <div
               className={`${bn}__content`}
             >
@@ -87,8 +93,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 className={`${bn}__selectors`}
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
               >
-                <EditorBeatmapSelector {...this.props}/>
-                <EditorIssueTypeSelector {...this.props}/>
+                <EditorBeatmapSelector {...this.props} readOnly={this.readOnly()}/>
+                <EditorIssueTypeSelector {...this.props} readOnly={this.readOnly()}/>
                 <div
                   className={`${bn}__timestamp`}
                   contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
@@ -105,16 +111,38 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               >
                 <div className='beatmapset-discussion-message'>{this.props.children}</div>
               </div>
+              {this.props.editMode && !this.readOnly() &&
+                <div
+                  className={`${bn}__unsaved-indicator`}
+                  contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+                  title='unsaved'
+                >
+                  <i className='fas fa-pencil-alt'/>
+                </div>
+              }
             </div>
           </div>
         </div>
-        <button
-          className={`${bn}__trashcan`}
-          onClick={this.remove}
-          contentEditable={false}
-        >
-          <i className='fas fa-backspace' />
-        </button>
+        {!this.props.editMode || !this.readOnly() &&
+          <button
+            className={`${bn}__trashcan`}
+            onClick={this.remove}
+            contentEditable={false}
+            title='delete'
+          >
+            <i className='fas fa-trash-alt'/>
+          </button>
+        }
+        {this.props.editMode && this.readOnly() &&
+          <button
+            className={`${bn}__trashcan`}
+            onClick={this.remove}
+            contentEditable={false}
+            title='unlink'
+          >
+            <i className='fas fa-link' />
+          </button>
+        }
       </div>
     );
   }
