@@ -726,6 +726,12 @@ function ujs_redirect($url, $status = 200)
     }
 }
 
+// strips combining characters after x levels deep
+function unzalgo(?string $text, int $level = 2)
+{
+    return preg_replace("/(\pM{{$level}})\pM+/u", '\1', $text);
+}
+
 function route_redirect($path, $target)
 {
     return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
