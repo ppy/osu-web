@@ -27,8 +27,24 @@ use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
 use Request;
 
+/**
+ * @group Wiki
+ */
 class WikiController extends Controller
 {
+    /**
+     * Get Wiki Page
+     *
+     * The a wiki article.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [WikiPage](#wikipage).
+     *
+     * @urlParam page The path name of the wiki page.
+     */
     public function show($path = null)
     {
         if ($path === null) {
