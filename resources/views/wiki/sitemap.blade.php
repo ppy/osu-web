@@ -17,7 +17,7 @@
 --}}
 @extends('master', [
     'titlePrepend' => trans('layout.header.help.sitemap'),
-]);
+])
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [

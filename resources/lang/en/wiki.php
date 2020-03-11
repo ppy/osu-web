@@ -41,11 +41,4 @@ return [
             'default' => 'English version',
         ],
     ],
-    'main' => [
-        'title' => 'knowledge base',
-        'subtitle' => 'because osu!pedia sounds lame',
-    ],
-    'sitemap' => [
-        'title' => 'sitemap',
-    ],
 ];
