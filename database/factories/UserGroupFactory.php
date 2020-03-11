@@ -16,9 +16,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
- $factory->define(App\Models\UserGroup::class, function (Faker\Generator $faker) {
-     return [
-         'group_leader' => 0,
-         'user_pending' => 0,
-     ];
- });
+$factory->define(App\Models\UserGroup::class, function (Faker\Generator $faker) {
+    return [
+        'group_leader' => 0,
+        'user_pending' => 0,
+    ];
+});
