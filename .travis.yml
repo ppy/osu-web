@@ -67,7 +67,7 @@ jobs:
     - name: browser tests
       script: ./bin/run_dusk.sh
 
-    - name: tslint
+    - name: lint
       env:
         - OSU_SKIP_ASSET_BUILD=1
       addons: skip
@@ -76,6 +76,7 @@ jobs:
       script:
         - yarn
         - yarn lint
+        - ./bin/update-licence -nf
 
     - name: karma
       env:
