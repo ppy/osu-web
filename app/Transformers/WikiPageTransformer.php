@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\Wiki\Page;
-use League\Fractal;
 
-class WikiPageTransformer extends Fractal\TransformerAbstract
+class WikiPageTransformer extends TransformerAbstract
 {
     public function transform(Page $page)
     {
