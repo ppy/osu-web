@@ -33,6 +33,7 @@ class AuthApi
             'api/v2/changelog/',
             'api/v2/comments/',
             'api/v2/seasonal-backgrounds/',
+            'api/v2/wiki/',
         ];
 
         $path = "{$request->decodedPath()}/";
