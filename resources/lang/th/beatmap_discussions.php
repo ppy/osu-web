@@ -33,22 +33,23 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'ถูกลบไปแล้ว',
+        'none_found' => '',
         'title' => 'การสนทนาเกี่ยวกับ Beatmap',
 
         'form' => [
             '_' => 'ค้นหา',
             'deleted' => 'รวมการสนทนาที่ถูกลบ',
-            'only_unresolved' => '',
+            'only_unresolved' => 'มองเห็นเฉพาะการสนทนา/ปัญหาที่ยังไม่ได้แก้',
             'types' => 'ชนิดของข้อความ',
             'username' => 'ชื่อผู้ใช้',
 
             'beatmapset_status' => [
                 '_' => 'สถานะบีตแมป',
                 'all' => 'ทั้งหมด',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                'disqualified' => 'คัดออกแล้ว',
+                'never_qualified' => 'ไม่เคยถูกคัดออก',
+                'qualified' => 'ผ่านเกณฑ์',
+                'ranked' => 'ถูกจัดอันดับแล้ว',
             ],
 
             'user' => [
@@ -78,8 +79,15 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'ดูโพสต์รีวิว',
+        'go_to_child' => 'ดูการสนทนา',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [

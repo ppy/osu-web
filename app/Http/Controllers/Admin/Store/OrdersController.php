@@ -8,9 +8,6 @@ use Request;
 
 class OrdersController extends Controller
 {
-    protected $section = 'admin-store';
-    protected $actionPrefix = 'orders-';
-
     public function index()
     {
         return $this->show();
@@ -37,7 +34,7 @@ class OrdersController extends Controller
             });
         }
 
-        return view('admin.store.orders.show', compact('orders', 'ordersItemsQuantities'));
+        return ext_view('admin.store.orders.show', compact('orders', 'ordersItemsQuantities'));
     }
 
     public function ship()

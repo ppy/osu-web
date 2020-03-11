@@ -62,9 +62,10 @@ return [
         'see_more' => 'ver más',
         'show' => 'mostrar',
         'show_deleted' => 'Mostrar eliminados',
+        'show_less' => 'mostrar menos',
         'show_more' => 'mostrar más',
         'show_more_options' => 'mostrar más opciones',
-        'unpin' => 'quitar fijado',
+        'unpin' => 'dejar de fijar',
         'update' => 'Actualizar',
         'upload_image' => 'subir imagen',
 
@@ -83,6 +84,7 @@ return [
         'minute_short_unit' => 'min|mins',
         'minutes' => ':count minuto|:count minutos',
         'months' => ':count mes|:count meses',
+        'notifications' => ':count_delimited notificación|:count_delimited notificaciones',
         'plus_others' => '+ :count_delimited otro!|+ :count_delimited otros!',
         'post' => ':count_delimited publicación|:count_delimited publicaciones',
         'second_short_unit' => 'seg|segs',
@@ -150,7 +152,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => 'Sesión actual: :user. :logout_link.',
-        'logout_link' => 'Clic aquí para iniciar sesión con otro usuario',
+        '_' => 'Ha iniciado sesión como :user. :logout_link.',
+        'logout_link' => 'Haga clic aquí para iniciar sesión como otro usuario',
     ],
 ];

@@ -31,19 +31,15 @@ use App\Models\NewsPost;
 use App\Models\UserDonation;
 use Auth;
 use Request;
-use View;
 
 class HomeController extends Controller
 {
-    protected $section = 'home';
-
     public function __construct()
     {
         $this->middleware('auth', [
             'only' => [
                 'downloadQuotaCheck',
                 'quickSearch',
-                'search',
             ],
         ]);
 
@@ -66,7 +62,7 @@ class HomeController extends Controller
 
     public function getDownload()
     {
-        return view('home.download');
+        return ext_view('home.download');
     }
 
     public function index()
@@ -83,13 +79,9 @@ class HomeController extends Controller
 
         if (Auth::check()) {
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
-            $popularBeatmapsets = Beatmapset::ranked()
-                ->where('approved_date', '>', now()->subDays(30))
-                ->orderBy('favourite_count', 'DESC')
-                ->limit(5)
-                ->get();
+            $popularBeatmapsets = Beatmapset::popular()->get();
 
-            return view('home.user', compact(
+            return ext_view('home.user', compact(
                 'newBeatmapsets',
                 'news',
                 'popularBeatmapsets'
@@ -97,7 +89,7 @@ class HomeController extends Controller
         } else {
             $news = json_collection($news, 'NewsPost');
 
-            return view('home.landing', ['stats' => new CurrentStats(), 'news' => $news]);
+            return ext_view('home.landing', ['stats' => new CurrentStats(), 'news' => $news]);
         }
     }
 
@@ -108,7 +100,7 @@ class HomeController extends Controller
 
     public function osuSupportPopup()
     {
-        return view('objects._popup_support_osu');
+        return ext_view('objects._popup_support_osu');
     }
 
     public function quickSearch()
@@ -147,7 +139,7 @@ class HomeController extends Controller
         $allSearch = new AllSearch(request(), ['user' => Auth::user()]);
         $isSearchPage = true;
 
-        return view('home.search', compact('allSearch', 'isSearchPage'));
+        return ext_view('home.search', compact('allSearch', 'isSearchPage'));
     }
 
     public function setLocale()
@@ -161,7 +153,7 @@ class HomeController extends Controller
             ]);
         }
 
-        return js_view('layout.ujs-reload')
+        return ext_view('layout.ujs-reload', [], 'js')
             ->withCookie(cookie()->forever('locale', $newLocale));
     }
 
@@ -336,13 +328,14 @@ class HomeController extends Controller
             ],
         ];
 
-        return view('home.support-the-game')
-            ->with('supporterStatus', $supporterStatus ?? [])
-            ->with('data', $pageLayout);
+        return ext_view('home.support-the-game', [
+            'supporterStatus' => $supporterStatus ?? [],
+            'data' => $pageLayout,
+        ]);
     }
 
     public function testflight()
     {
-        return view('home.testflight');
+        return ext_view('home.testflight');
     }
 }

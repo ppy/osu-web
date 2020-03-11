@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Törölt hozzászólásokra nem lehet válaszolni.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Az üzenet',

@@ -26,7 +26,7 @@ return [
         'avatar' => [
             'title' => 'Avatar',
             'rules' => 'Por favor asegúrese de que su avatar se adhiere a :link.<br/>Esto significa que debe ser <strong>adecuado para todas las edades</strong>. Es decir, no desnudez, profanidad o contenido sugestivo.',
-            'rules_link' => 'las normas de la comunidad',
+            'rules_link' => 'las reglas de la comunidad',
         ],
 
         'email' => [
@@ -66,11 +66,11 @@ return [
     'notifications' => [
         'title' => 'Notificaciones',
         'topic_auto_subscribe' => 'activa automáticamente las notificaciones en nuevos temas del foro que crees',
-        'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en beatmaps calificados de los siguientes modos',
+        'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
 
         'mail' => [
             '_' => 'recibir notifiaciones por correo',
-            'beatmapset:modding' => 'beatmap modding',
+            'beatmapset:modding' => 'modding de mapas',
             'forum_topic_reply' => 'respuesta al tema',
         ],
     ],
@@ -118,6 +118,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => 'Enlace de verificación inválido o caducado',
+        'title' => 'Enlace de verificación no válido o caducado',
     ],
 ];

@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Semua notifikasi telah dibaca!',
     'mark_all_read' => 'Hapus semua',
+    'none' => 'Tidak ada notifikasi',
+    'see_all' => 'lihat semua notifikasi',
+
+    'filters' => [
+        '_' => 'semua',
+        'user' => 'profil',
+        'beatmapset' => 'beatmap',
+        'forum_topic' => 'forum',
+        'news_post' => 'berita',
+        'build' => 'build',
+        'channel' => 'chat',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Medali baru',
                 'user_achievement_unlock' => '":title" Terbuka!',
+                'user_achievement_unlock_compact' => 'Anda berhasil mendapatkan medali ":title"!',
             ],
         ],
     ],

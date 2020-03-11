@@ -25,8 +25,6 @@ use Auth;
 
 class ContestsController extends Controller
 {
-    protected $section = 'community';
-
     public function index()
     {
         $contests = Contest::orderBy('id', 'desc');
@@ -35,8 +33,9 @@ class ContestsController extends Controller
             $contests->where('visible', true);
         }
 
-        return view('contests.index')
-            ->with('contests', $contests->get());
+        return ext_view('contests.index', [
+            'contests' => $contests->get(),
+        ]);
     }
 
     public function show($id)
@@ -58,13 +57,15 @@ class ContestsController extends Controller
         }
 
         if ($contest->isVotingStarted()) {
-            return view('contests.voting')
-                    ->with('contestMeta', $contest)
-                    ->with('contests', $contests);
+            return ext_view('contests.voting', [
+                'contestMeta' => $contest,
+                'contests' => $contests,
+            ]);
         } else {
-            return view('contests.enter')
-                ->with('contestMeta', $contest)
-                ->with('contest', $contests->first());
+            return ext_view('contests.enter', [
+                'contestMeta' => $contest,
+                'contest' => $contests->first(),
+            ]);
         }
     }
 }

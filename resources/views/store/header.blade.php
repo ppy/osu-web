@@ -39,7 +39,7 @@
 
     $links = [
         [
-            'active' => $currentNav === 'products',
+            'active' => $currentNav === 'products' || $currentNav === 'product',
             'title' => trans('layout.header.store.products'),
             'url' => route('store.products.index'),
         ],
@@ -49,7 +49,7 @@
             'url' => route('store.cart.show'),
         ],
         [
-            'active' => $currentNav === 'orders',
+            'active' => $currentNav === 'orders' || $currentNav === 'order',
             'title' => trans('layout.header.store.orders'),
             'url' => route('store.orders.index'),
         ],
@@ -58,8 +58,6 @@
 
 @component('layout._page_header_v4', ['params' => [
     'links' => $links,
-    'section' => trans('layout.header.store._'),
-    'subSection' => trans("layout.header.store.{$currentNav}"),
     'theme' => 'store',
 ]])
     @slot('titleAppend')

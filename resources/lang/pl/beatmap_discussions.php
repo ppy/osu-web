@@ -33,7 +33,8 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'usunięta',
-        'title' => 'Dyskusje',
+        'none_found' => '',
+        'title' => 'dyskusje',
 
         'form' => [
             '_' => 'Szukaj',
@@ -80,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => 'Zobacz recenzję',
         'go_to_child' => 'Zobacz dyskusję',
+        'validation' => [
+            'invalid_block_type' => 'nieprawidłowy typ bloku',
+            'invalid_document' => 'niewłaściwa recenzja',
+            'minimum_issues' => 'recenzja musi zawierać przynajmniej :count zagadnienie|recenzja musi zawierać przynajmniej :count zagadnień',
+            'missing_text' => 'blok nie zawiera tekstu',
+            'too_many_blocks' => 'recenzje mogą zawierać wyłącznie :count akapit/problem|recenzje mogą zawierać do :count akapitów/problemów|recenzje mogą zawierać do :count akapitów/problemów',
+        ],
     ],
 
     'system' => [

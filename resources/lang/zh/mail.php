@@ -20,24 +20,25 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => '提醒您谱面 ":title" 在您上次访问之后有了新动态。',
-        'subject' => '谱面“:title”有更新',
+        'new' => '就是要提醒您谱面 ":title" 在您上次访问之后有了新动态。',
+        'subject' => '谱面 “:title” 有新动态',
         'unwatch' => '如果您不想再关注该谱面，您可以点击之前页面或谱面关注列表中的 “取消关注” 链接：',
         'visit' => '点击此处访问讨论区',
     ],
 
     'common' => [
         'closing' => '祝您生活顺利',
-        'hello' => '您好，:user，',
+        'hello' => '您好 :user ，',
         'report' => '如果您没有进行此操作，请立刻回复此邮件！',
     ],
 
     'donation_thanks' => [
         'benefit_more' => '将来还会有更多的支持者的独有功能！',
         'feedback' => "如果您有什么问题，或者有什么意见的话，您可以直接回复这封邮件。我会尽快回应的！",
-        'keep_free' => 'osu! 与其游戏社区能够在没有讨厌的广告与强制付款的环境中稳定运行，正是因为您这样的人的存在。感谢您的支持！',
-        'keep_running' => '您的捐赠能够维持 osu! 持续运转 :minutes 分钟！虽然这看起来不多，但是江海来源于小流，不是么？',
+        'keep_free' => '正是因为您这样的人的存在，osu! 和 osu! 社区才能够在没有讨厌的广告和强制付款的环境中稳定运行。感谢您的支持！',
+        'keep_running' => '您的捐赠能够维持 osu! 持续运转 :minutes ！虽然这看起来不多，但是江海来源于小流，不是么？',
         'subject' => '非常感谢， osu! 爱你哦~',
+        'translation' => '以下是社区提供的翻译，仅供参考：',
 
         'benefit' => [
             'gift' => '您的受赠者将会享受到 osu!direct 等其他 osu! 支持者所享有的的特权。',
@@ -45,14 +46,14 @@ return [
         ],
 
         'support' => [
-            '_' => '感谢您向 osu! 捐赠的 :support ！',
+            '_' => '感谢您向 osu! 付出的:support ！',
             'first' => '支持',
             'repeat' => '持续支持',
         ],
     ],
 
     'forum_new_reply' => [
-        'new' => ':title 话题下又有了新的回复。',
+        'new' => '就是要提醒您，自上次浏览以来谱面 :title 的话题下又有了新的回复。',
         'subject' => '[osu!] 主题 ":title" 有新回复',
         'unwatch' => '如果您不想再关注本主题，您可以点击主题页下面的 “取消关注该主题” 链接，或者从订阅管理页面中取消订阅。',
         'visit' => '点击下面的链接跳转到最新的回复：',
@@ -69,23 +70,23 @@ return [
         'processing' => '我们已收到您的付款，目前正在处理您的订单。您可以在这里关注您的订单进度：',
         'questions' => "如果您有什么问题的话，您可以直接回复这封邮件。",
         'shipping' => '配送',
-        'subject' => '我们已收到你的 osu!商店 订单！',
+        'subject' => '我们已收到你的 osu!store 订单！',
         'thank_you' => '感谢您在 osu!store 的购买！',
         'total' => '总计',
     ],
 
     'supporter_gift' => [
         'anonymous_gift' => '赠予您支持者标签的人想要保持匿名，所以在这个通知中并没有提到他（们）。',
-        'anonymous_gift_maybe_not' => '话虽如此，您可能已经猜到是谁了。 =w=',
+        'anonymous_gift_maybe_not' => '话虽如此，不过您可能已经猜到是谁啦嘿嘿嘿~',
         'duration' => '感谢赠送者，您可以在接下来的 :duration 内享受到 osu!direct 等 osu! 支持者所享有的特权。',
         'features' => '您可以在此处找到更多关于特权的信息：',
         'gifted' => '有人刚刚赠予您 osu!supporter 标签！',
-        'subject' => '你收到了一份礼物：osu! 支持者标签。',
+        'subject' => '你收到了一份礼物：osu!supporter 标签。',
     ],
 
     'user_email_updated' => [
-        'changed_to' => '您的osu账户邮箱地址已被更改为:email。',
-        'check' => '请确认您修改后的新邮箱收到了此邮件，以防绑定失败造成您以后无法登录osu!账号。',
+        'changed_to' => '您 osu! 账户绑定的邮箱地址已被更改为 :email 。',
+        'check' => '请确认您修改后的新邮箱收到了此邮件，以防绑定失败导致您以后无法再登录 osu! 账户。',
         'sent' => '为了保证账户安全，我们将此邮件发送给了您的原邮箱和修改后的邮箱地址。',
         'subject' => 'osu! 帐户邮箱更改确认',
     ],
@@ -98,19 +99,19 @@ return [
     ],
 
     'user_password_updated' => [
-        'confirmation' => '您的osu!账户密码已被修改。',
+        'confirmation' => '您的 osu! 账户密码已被修改。',
         'subject' => 'osu! 帐户密码更改确认',
     ],
 
     'user_verification' => [
         'code' => '您的验证码是：',
-        'code_hint' => '您可以带/不带空格地输入该验证码',
+        'code_hint' => '您可以带/不带空格地输入该验证码。',
         'link' => '如果您无法完成验证，您还可以访问下面的链接来完成验证。',
         'report' => '如果您没有进行此操作，请立刻回复此邮件！您的账户信息可能遭到了泄漏。',
         'subject' => 'osu! 账户认证',
 
         'action_from' => [
-            '_' => '您的帐号有一次来自 :country 的操作需要认证。',
+            '_' => '您的帐号有一个来自 :country 的操作需要验证。',
             'unknown_country' => '未知国家',
         ],
     ],

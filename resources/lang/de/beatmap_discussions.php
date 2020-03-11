@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'gelöscht',
+        'none_found' => '',
         'title' => 'Beatmapdiskussion',
 
         'form' => [
@@ -80,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => 'Rezensionsbeitrag anzeigen',
         'go_to_child' => 'Diskussion anzeigen',
+        'validation' => [
+            'invalid_block_type' => 'ungültiger Block-Typ',
+            'invalid_document' => 'ungültige Rezension',
+            'minimum_issues' => 'Rezension muss ein Minimum von :count Problem beinhalten|Rezensionen müssen ein Minimum von :count Problemen beinhalten',
+            'missing_text' => 'block fehlt Text',
+            'too_many_blocks' => 'Rezensionen dürfen nur :count Paragraph/Problem enthalten|Rezensionen dürfen nur bis zu :count Paragraphen/Probleme enthalten',
+        ],
     ],
 
     'system' => [

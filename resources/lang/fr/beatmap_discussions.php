@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'supprimé',
+        'none_found' => '',
         'title' => 'Discussions de Beatmap',
 
         'form' => [
@@ -80,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => 'Voir l\'avis',
         'go_to_child' => 'Voir la discussion',
+        'validation' => [
+            'invalid_block_type' => 'type de bloc invalide',
+            'invalid_document' => 'revue invalide',
+            'minimum_issues' => 'la revue doit contenir un minimum de :count problèmes|la revue doit contenir un minimum de :count problèmes',
+            'missing_text' => 'le bloc manque du texte',
+            'too_many_blocks' => 'les revues ne doivent contenir que :count paragraphes/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
+        ],
     ],
 
     'system' => [

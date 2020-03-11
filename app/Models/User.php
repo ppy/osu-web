@@ -159,7 +159,7 @@ use Request;
  * @property string $user_post_sortby_type
  * @property int $user_posts
  * @property int $user_rank
- * @property int $user_regdate
+ * @property \Carbon\Carbon $user_regdate
  * @property mixed $user_sig
  * @property string $user_sig_bbcode_bitfield
  * @property string $user_sig_bbcode_uid
@@ -734,9 +734,9 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->isGroup(app('groups')->byIdentifier('dev'));
     }
 
-    public function isMod()
+    public function isModerator()
     {
-        return $this->isGroup(app('groups')->byIdentifier('mod'));
+        return $this->isGMT() || $this->isNAT();
     }
 
     public function isAlumni()
@@ -794,7 +794,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     {
         return $this->isAdmin()
             || $this->isDev()
-            || $this->isMod()
             || $this->isGMT()
             || $this->isBNG()
             || $this->isNAT();
@@ -832,11 +831,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->memoized[__FUNCTION__];
     }
 
-    public function canModerate()
-    {
-        return $this->isGMT() || $this->isNAT();
-    }
-
     /**
      * User group to be displayed in preference over other groups.
      *
@@ -865,7 +859,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     // check if a user is in a specific group, by ID
     public function isGroup($group)
     {
-        return in_array($group->getKey(), $this->groupIds(), true);
+        return in_array($group->getKey(), $this->groupIds(), true) && $this->token() === null;
     }
 
     public function badges()
@@ -1318,7 +1312,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             $ids = $this->groupIds();
             array_unshift($ids, $this->defaultGroup()->getKey());
 
-            $idOrder = app('groups')->all()->where('group_type', 1)->pluck('group_id')->all();
+            $idOrder = app('groups')->all()->where('display_order', '!==', null)->pluck('group_id')->all();
             $badge = array_first(array_intersect($idOrder, $ids));
             $this->memoized[__FUNCTION__] = app('groups')->byId($badge);
         }
@@ -1459,7 +1453,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count', 'user_preferences']);
+        return json_item($this, 'User', ['blocks', 'friends', 'group_badge', 'is_admin', 'unread_pm_count', 'user_preferences']);
     }
 
     public function supportLength()

@@ -233,10 +233,6 @@
     .default-gutter-v2();
     padding-top: 20px;
     padding-bottom: 20px;
-
-    a {
-      .link-default();
-    }
   }
 
   &--generic-compact {
@@ -259,12 +255,11 @@
     padding-bottom: 5px;
     background-color: @osu-colour-d3;
     display: flex;
-    justify-content: flex-end;
   }
 
   &--news {
-    .default;
-    .default-gutter();
+    .default();
+    .default-gutter-v2();
     padding-bottom: 20px;
     padding-top: 20px;
   }
@@ -322,10 +317,13 @@
 
   &--wiki {
     .default();
-    .default-gutter-v2();
     font-size: @font-size--wiki;
+  }
+
+  &--wiki-main {
+    .default-gutter-v2();
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: $padding-top;
   }
 
   &--chat {
@@ -337,7 +335,7 @@
     margin-bottom: 0;
 
     @media @mobile {
-      height: calc((var(--vh, 1vh) * 100) - 110px);
+      height: calc((var(--vh, 1vh) * 100) - 90px);
     }
   }
 }

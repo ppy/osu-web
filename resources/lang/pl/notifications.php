@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Wszystkie powiadomienia przeczytane!',
     'mark_all_read' => 'Wyczyść wszystko',
+    'none' => 'Brak powiadomień',
+    'see_all' => 'zobacz wszystkie powiadomienia',
+
+    'filters' => [
+        '_' => 'wszystkie',
+        'user' => 'profil',
+        'beatmapset' => 'beatmapy',
+        'forum_topic' => 'forum',
+        'news_post' => 'aktualności',
+        'build' => 'kompilacje',
+        'channel' => 'czat',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nowy medal',
                 'user_achievement_unlock' => 'Odblokowano medal „:title”!',
+                'user_achievement_unlock_compact' => 'Odblokowano medal „:title”!',
             ],
         ],
     ],

@@ -39,7 +39,7 @@ return [
         'empty' => [
             'text' => 'カートには何もありません。',
             'return_link' => [
-                '_' => ':linkに戻って商品を見つける',
+                '_' => ':linkに戻って他のグッズを見つける',
                 'link_text' => '商品一覧',
             ],
         ],
@@ -110,7 +110,7 @@ return [
             'delivered' => '発送済み',
             'paid' => '支払い済み',
             'processing' => '承認待ち',
-            'shipped' => '輸送中',
+            'shipped' => '発送済み',
         ],
     ],
 
@@ -132,7 +132,7 @@ return [
     ],
 
     'supporter_tag' => [
-        'gift' => 'プレイヤーにギフト',
+        'gift' => 'プレイヤーにギフトを贈る',
         'require_login' => [
             '_' => 'サポータータグを入手するには:linkが必要です！',
             'link_text' => 'ログイン',

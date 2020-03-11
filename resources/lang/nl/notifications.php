@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Alle meldingen gelezen!',
     'mark_all_read' => 'Alles wissen',
+    'none' => 'Geen meldingen',
+    'see_all' => 'alle meldingen bekijken',
+
+    'filters' => [
+        '_' => 'alle',
+        'user' => 'profiel',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'forum',
+        'news_post' => 'nieuws',
+        'build' => 'versie',
+        'channel' => 'chat',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nieuwe medaille',
                 'user_achievement_unlock' => '":title" ontgrendeld!',
+                'user_achievement_unlock_compact' => '":title" ontgrendeld!',
             ],
         ],
     ],

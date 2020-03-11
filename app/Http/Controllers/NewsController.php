@@ -25,9 +25,6 @@ use App\Models\NewsPost;
 
 class NewsController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'news-';
-
     public function index()
     {
         $format = request('format');
@@ -39,9 +36,7 @@ class NewsController extends Controller
         $posts = $search['query']->get();
 
         if ($isFeed) {
-            return response()
-                ->view("news.index-{$format}", compact('posts'))
-                ->header('Content-Type', "application/{$format}+xml");
+            return ext_view("news.index-{$format}", compact('posts'), $format);
         }
 
         $postsJson = [
@@ -57,7 +52,7 @@ class NewsController extends Controller
                 'title' => 'osu!news Feed',
             ];
 
-            return view('news.index', compact('postsJson', 'atom'));
+            return ext_view('news.index', compact('postsJson', 'atom'));
         }
     }
 
@@ -75,7 +70,7 @@ class NewsController extends Controller
             abort(404);
         }
 
-        return view('news.show', [
+        return ext_view('news.show', [
             'commentBundle' => CommentBundle::forEmbed($post),
             'post' => $post,
             'postJson' => json_item($post, 'NewsPost', ['content', 'navigation']),

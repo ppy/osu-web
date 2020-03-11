@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\NotificationsBundle;
 use App\Models\UserNotification;
 
 /**
@@ -28,9 +29,6 @@ use App\Models\UserNotification;
 class NotificationsController extends Controller
 {
     const LIMIT = 51;
-
-    protected $section = 'community';
-    protected $actionPrefix = 'notifications_';
 
     public function __construct()
     {
@@ -91,42 +89,16 @@ class NotificationsController extends Controller
      */
     public function index()
     {
-        $withRead = get_bool(request('with_read')) ?? false;
-        $hasMore = false;
-        $userNotificationsQuery = auth()
-            ->user()
-            ->userNotifications()
-            ->with('notification.notifiable')
-            ->with('notification.source')
-            ->orderBy('notification_id', 'DESC')
-            ->limit(static::LIMIT);
+        $bundle = new NotificationsBundle(auth()->user(), request()->all());
+        $bundleJson = $bundle->toArray();
 
-        if (!$withRead) {
-            $userNotificationsQuery->where('is_read', false);
+        if (is_json_request()) {
+            $bundleJson['notification_endpoint'] = $this->endpointUrl();
+
+            return response($bundleJson)->header('Cache-Control', 'no-store');
         }
 
-        $maxId = get_int(request('max_id'));
-        if (isset($maxId)) {
-            $userNotificationsQuery->where('notification_id', '<=', $maxId);
-        }
-
-        $userNotifications = $userNotificationsQuery->get();
-
-        if ($userNotifications->count() === static::LIMIT) {
-            $hasMore = true;
-            $userNotifications->pop();
-        }
-
-        $json = json_collection($userNotifications, 'Notification');
-
-        $unreadCount = auth()->user()->userNotifications()->where('is_read', false)->count();
-
-        return response([
-            'has_more' => $hasMore,
-            'notifications' => $json,
-            'unread_count' => $unreadCount,
-            'notification_endpoint' => $this->endpointUrl(),
-        ])->header('Cache-Control', 'no-store');
+        return ext_view('notifications.index', compact('bundleJson'));
     }
 
     /**
@@ -148,17 +120,10 @@ class NotificationsController extends Controller
      */
     public function markRead()
     {
-        // TODO: params validation
-        $params = get_params(request()->all(), null, [
-            'category:string',
-            'id:int',
-            'ids:int[]',
-            'object_id:int',
-            'object_type:string',
-        ]);
+        $params = request()->all();
 
-        if (isset($params['ids'])) {
-            UserNotification::markAsReadByIds(auth()->user(), $params['ids']);
+        if (isset($params['notifications'])) {
+            UserNotification::markAsReadByIds(auth()->user(), $params['notifications']);
         } else {
             UserNotification::markAsReadByNotificationIdentifier(auth()->user(), $params);
         }

@@ -21,9 +21,8 @@
 namespace App\Transformers;
 
 use App\Models\Group;
-use League\Fractal;
 
-class GroupTransformer extends Fractal\TransformerAbstract
+class GroupTransformer extends TransformerAbstract
 {
     public function transform(Group $group)
     {
@@ -33,7 +32,7 @@ class GroupTransformer extends Fractal\TransformerAbstract
             'name' => $group->group_name,
             'short_name' => $group->short_name,
             'description' => $group->group_desc,
-            'colour' => $group->group_colour,
+            'colour' => $group->colour,
         ];
     }
 }

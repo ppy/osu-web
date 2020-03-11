@@ -101,7 +101,7 @@ return [
         'started_by_verbose' => 'aloittanut :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Sulje',
             'preview' => 'Esikatselu',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply

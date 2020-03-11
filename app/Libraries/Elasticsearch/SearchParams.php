@@ -64,9 +64,14 @@ abstract class SearchParams
         return mb_strlen($this->queryString) < config('osu.search.minimum_length');
     }
 
-    public function shouldReturnEmptyResponse(): bool
+    public function isLoginRequired(): bool
     {
         return false;
+    }
+
+    public function shouldReturnEmptyResponse(): bool
+    {
+        return $this->isLoginRequired() && !auth()->check();
     }
 
     /**

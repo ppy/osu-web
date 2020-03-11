@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'excluído',
+        'none_found' => '',
         'title' => 'Discussão do Beatmap',
 
         'form' => [
@@ -80,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => 'Ver Publicação de Revisão',
         'go_to_child' => 'Ver Discussão',
+        'validation' => [
+            'invalid_block_type' => 'tipo de bloco inválido',
+            'invalid_document' => 'revisão inválida',
+            'minimum_issues' => 'revisão deve conter um mínimo de :count problema|revisão deve conter um mínimo de :count problemas',
+            'missing_text' => 'bloco está sem texto',
+            'too_many_blocks' => 'revisões podem conter apenas :count parágrafo/problema|revisões só podem conter até :count parágrafos/problemas',
+        ],
     ],
 
     'system' => [

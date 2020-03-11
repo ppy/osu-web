@@ -46,23 +46,7 @@ class DatadogMetrics extends LaravelDatadogMiddleware
             'status_code' => $response->getStatusCode(),
         ];
 
-        $route = $request->route();
-        if ($route !== null) {
-            $controller = $route->controller;
-            if ($controller !== null) {
-                $className = get_class($controller);
-
-                $tags['section'] = method_exists($controller, 'getSection') ? $controller->getSection() : 'unknown';
-
-                $namespace = get_class_namespace($className);
-                $namespace = str_replace('App\\Http\\Controllers', '', $namespace);
-                $namespace = snake_case(str_replace('\\', '', $namespace));
-                $tags['namespace'] = presence($namespace) ?? 'main';
-
-                $tags['controller'] = snake_case(get_class_basename($className));
-                $tags['action'] = snake_case($route->getActionMethod());
-            }
-        }
+        $tags = array_merge($tags, app('route-section')->getCurrent());
 
         Datadog::timing(config('datadog-helper.prefix_web').'.request_time', $duration, 1, $tags);
     }

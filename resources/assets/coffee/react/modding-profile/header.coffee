@@ -36,13 +36,11 @@ export class Header extends React.Component
         backgroundImage: @props.user.cover_url
         contentPrepend: @renderTournamentBanner()
         links: @headerLinks()
-        section: osu.trans 'layout.header.users._'
-        subSection: osu.trans 'layout.header.users.modding'
         theme: 'users'
       div className: 'osu-page osu-page--users',
         div className: 'profile-header',
           div className: 'profile-header__top',
-            el HeaderInfo, user: @props.user, currentMode: @props.currentMode, coverUrl: @props.user.cover_url
+            el HeaderInfo, user: @props.user, currentMode: @props.user.playmode, coverUrl: @props.user.cover_url
 
             if !@props.user.is_bot
               el Stats, user: @props.user

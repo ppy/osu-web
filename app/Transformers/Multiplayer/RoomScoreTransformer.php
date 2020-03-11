@@ -21,10 +21,10 @@
 namespace App\Transformers\Multiplayer;
 
 use App\Models\Multiplayer\RoomScore;
+use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
-use League\Fractal;
 
-class RoomScoreTransformer extends Fractal\TransformerAbstract
+class RoomScoreTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'user',

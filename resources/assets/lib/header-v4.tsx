@@ -28,17 +28,21 @@ interface Props {
   links: HeaderLink[];
   linksBreadcrumb?: boolean;
   onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  section: string;
-  subSection: string;
   theme?: string;
   titleAppend?: React.ReactNode;
+}
+
+interface RouteSection {
+  action: string;
+  controller: string;
+  namespace: string;
+  section: string;
 }
 
 export default class HeaderV4 extends React.Component<Props> {
   static defaultProps = {
     links: [],
     linksBreadcrumb: false,
-    subSection: '',
   };
 
   render(): React.ReactNode {
@@ -73,14 +77,7 @@ export default class HeaderV4 extends React.Component<Props> {
             <div className='header-v4__row header-v4__row--title'>
               <div className='header-v4__icon' />
               <div className='header-v4__title'>
-                <span className='header-v4__title-section'>
-                  {this.props.section}
-                </span>
-                {this.props.subSection !== '' &&
-                  <span className='header-v4__title-action'>
-                    {this.props.subSection}
-                  </span>
-                }
+                {this.title()}
               </div>
 
               {this.props.titleAppend}
@@ -95,7 +92,9 @@ export default class HeaderV4 extends React.Component<Props> {
             <div className='header-v4__content'>
               <div className='header-v4__row header-v4__row--bar'>
                 {this.renderLinks()}
+                {this.renderLinksMobile()}
               </div>
+
             </div>
           </div>
         }
@@ -116,8 +115,11 @@ export default class HeaderV4 extends React.Component<Props> {
             className={osu.classWithModifiers('header-nav-v4__link', linkModifiers)}
             href={link.url}
             onClick={this.props.onLinkClick}
+            {...link.data}
           >
-            {link.title}
+            <span className='fake-bold' data-content={link.title}>
+              {link.title}
+            </span>
           </a>
         </li>
       );
@@ -133,5 +135,81 @@ export default class HeaderV4 extends React.Component<Props> {
         {items}
       </List>
     );
+  }
+
+  private renderLinksMobile() {
+    if (this.props.linksBreadcrumb) {
+      return null;
+    }
+
+    if (this.props.links.length === 0) {
+      return null;
+    }
+
+    let activeLink: HeaderLink = this.props.links[0];
+    const items = this.props.links.map((link) => {
+      const linkModifiers = [];
+      if (link.active) {
+        linkModifiers.push('active');
+        activeLink = link;
+      }
+
+      return (
+        <li key={`${link.url}-${link.title}`}>
+          <a
+            className='header-nav-mobile__item js-click-menu--close'
+            href={link.url}
+            onClick={this.props.onLinkClick}
+            {...link.data}
+          >
+            {link.title}
+          </a>
+        </li>
+      );
+    });
+
+    return (
+      <div className='header-nav-mobile'>
+        <a
+          className='header-nav-mobile__toggle js-click-menu'
+          data-click-menu-target='header-nav-mobile'
+          href={activeLink.url}
+        >
+          {activeLink.title}
+
+          <span className='header-nav-mobile__toggle-icon'>
+            <span className='fas fa-chevron-down' />
+          </span>
+        </a>
+
+        <ul
+          className='header-nav-mobile__menu js-click-menu'
+          data-click-menu-id='header-nav-mobile'
+          data-visibility='hidden'
+        >
+            {items}
+        </ul>
+      </div>
+    );
+  }
+
+  private title() {
+    const routeSection: RouteSection | null = osu.parseJson('json-route-section');
+
+    if (routeSection != null) {
+      const keys = [
+        `page_title.${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`,
+        `page_title.${routeSection.namespace}.${routeSection.controller}._`,
+        `page_title.${routeSection.namespace}._`,
+      ];
+
+      for (const key of keys) {
+        if (osu.transExists(key, fallbackLocale)) {
+          return osu.trans(key);
+        }
+      }
+    }
+
+    return 'unknown';
   }
 }

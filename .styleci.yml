@@ -11,6 +11,7 @@ disabled:
 
 finder:
   not-path:
+    - resources/lang/ar
     - resources/lang/be
     - resources/lang/bg
     - resources/lang/cs
@@ -36,6 +37,7 @@ finder:
     - resources/lang/sv
     - resources/lang/th
     - resources/lang/tr
+    - resources/lang/uk
     - resources/lang/vi
     - resources/lang/zh
     - resources/lang/zh-tw

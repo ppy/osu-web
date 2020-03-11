@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'poistettu',
+        'none_found' => '',
         'title' => 'Beatmapkeskustelut',
 
         'form' => [
@@ -80,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => '',
         'go_to_child' => '',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [

@@ -25,8 +25,6 @@ use Auth;
 
 class TournamentsController extends Controller
 {
-    protected $section = 'community';
-
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
@@ -34,20 +32,20 @@ class TournamentsController extends Controller
         ]]);
 
         parent::__construct();
-
-        view()->share('currentAction', 'tournaments-'.current_action());
     }
 
     public function index()
     {
-        return view('tournaments.index')
-            ->with('listing', Tournament::getGroupedListing());
+        return ext_view('tournaments.index', [
+            'listing' => Tournament::getGroupedListing(),
+        ]);
     }
 
     public function show($id)
     {
-        return view('tournaments.show')
-            ->with('tournament', Tournament::findOrFail($id));
+        return ext_view('tournaments.show', [
+            'tournament' => Tournament::findOrFail($id),
+        ]);
     }
 
     public function unregister($id)

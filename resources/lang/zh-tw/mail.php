@@ -38,6 +38,7 @@ return [
         'keep_free' => '',
         'keep_running' => '',
         'subject' => '非常感謝，osu! 愛你哦~',
+        'translation' => '以下為社群提供的翻譯，僅供參考:',
 
         'benefit' => [
             'gift' => '',
@@ -46,7 +47,7 @@ return [
 
         'support' => [
             '_' => '感謝您向 osu! 捐贈的 :support !',
-            'first' => '',
+            'first' => '支援',
             'repeat' => '',
         ],
     ],
@@ -68,7 +69,7 @@ return [
         'prepare_shipping' => '',
         'processing' => '我們已收到您的付款，並正在處理您的訂單，您可以在這裡追蹤您的訂單進度:',
         'questions' => "",
-        'shipping' => '',
+        'shipping' => '配送',
         'subject' => '我們已收到您的 osu!商店 訂單！',
         'thank_you' => '感謝您在osu!store的購買',
         'total' => '合計',
@@ -84,21 +85,21 @@ return [
     ],
 
     'user_email_updated' => [
-        'changed_to' => '',
+        'changed_to' => '提醒您，您的osu!電子信箱已被更改為:email',
         'check' => '',
-        'sent' => '',
+        'sent' => '為了確保帳號安全，我們已將此郵件發送至您的原信箱和修改後的信箱',
         'subject' => 'osu! 帳號電子郵件變更',
     ],
 
     'user_force_reactivation' => [
         'main' => '',
-        'perform_reset' => '',
+        'perform_reset' => '您可以點擊此連結來重設密碼:url',
         'reason' => '原因:',
         'subject' => '您需要重新驗證您的 osu! 帳戶',
     ],
 
     'user_password_updated' => [
-        'confirmation' => '',
+        'confirmation' => '提醒您，您的osu!密碼已被修改',
         'subject' => 'osu! 帳號密碼變更',
     ],
 

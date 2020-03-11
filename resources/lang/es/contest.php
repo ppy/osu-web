@@ -23,12 +23,17 @@ return [
         'small' => 'Compite de más formas que solo presionando círculos.',
         'large' => 'Concursos de la comunidad',
     ],
+
+    'index' => [
+        'nav_title' => 'listado',
+    ],
+
     'voting' => [
         'over' => 'Las votaciones para este concurso ya han terminado',
         'login_required' => 'Por favor, inicia sesión para votar.',
 
         'best_of' => [
-            'none_played' => "¡No parece que hayas jugado algún beatmap que califique para este concurso!",
+            'none_played' => "¡No parece que hayas jugado a ningún mapa que califique para este concurso!",
         ],
 
         'button' => [

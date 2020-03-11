@@ -15,18 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', [
-    'currentSection' => 'community',
-    'currentAction' => 'tournaments',
-    'title' => trans('tournament.index.header.title'),
-])
+@extends('master')
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
         'links' => [['title' => trans('layout.header.tournaments.index'), 'url' => route('tournaments.index')]],
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.tournaments._'),
-        'subSection' => trans('layout.header.tournaments.index'),
         'theme' => 'tournaments',
     ]])
 

@@ -155,16 +155,24 @@ class Mod
         self::DOUBLETIME => [
             'speed_change' => 'float',
         ],
+        self::NIGHTCORE => [
+            'speed_change' => 'float',
+        ],
         self::EASY => [
             'retries' => 'int',
         ],
         self::HALFTIME => [
             'speed_change' => 'float',
         ],
+        self::DAYCORE => [
+            'speed_change' => 'float',
+        ],
         self::WIND_UP => [
+            'initial_rate' => 'float',
             'final_rate' => 'float',
         ],
         self::WIND_DOWN => [
+            'initial_rate' => 'float',
             'final_rate' => 'float',
         ],
     ];
@@ -180,8 +188,10 @@ class Mod
         foreach ($settings as $key => $value) {
             $type = static::SETTINGS[$mod][$key] ?? null;
 
-            if ($type !== null) {
+            if (isset($type)) {
                 $cleanSettings[$key] = get_param_value($value, $type);
+            } else {
+                throw new InvariantException("unknown setting for {$mod} ({$key})");
             }
         }
 

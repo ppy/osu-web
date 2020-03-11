@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Все уведомления прочтены!',
     'mark_all_read' => 'Очистить все',
+    'none' => 'Уведомлений нет',
+    'see_all' => 'см. все уведомления',
+
+    'filters' => [
+        '_' => 'все',
+        'user' => 'профиль',
+        'beatmapset' => 'карты',
+        'forum_topic' => 'форум',
+        'news_post' => 'новости',
+        'build' => '',
+        'channel' => 'чат',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Новая медаль',
                 'user_achievement_unlock' => 'Разблокировано ":title"!',
+                'user_achievement_unlock_compact' => 'Разблокировано: «:title»!',
             ],
         ],
     ],

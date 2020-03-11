@@ -40,7 +40,6 @@ use Request;
 
 class UsersController extends Controller
 {
-    protected $section = 'user';
     protected $maxResults = 100;
 
     public function __construct()
@@ -57,6 +56,13 @@ class UsersController extends Controller
 
         if (is_api_request()) {
             $this->middleware('require-scopes:identify', ['only' => ['me']]);
+            $this->middleware('require-scopes:users.read', ['only' => [
+                'beatmapsets',
+                'kudosu',
+                'recentActivity',
+                'scores',
+                'show',
+            ]]);
         }
 
         $this->middleware(function ($request, $next) {
@@ -81,7 +87,7 @@ class UsersController extends Controller
 
     public function disabled()
     {
-        return view('users.disabled');
+        return ext_view('users.disabled');
     }
 
     public function checkUsernameAvailability()
@@ -189,7 +195,7 @@ class UsersController extends Controller
         $search = (new PostSearch(new PostSearchRequestParams(request()->all(), $user)))
             ->size(50);
 
-        return view('users.posts', compact('search', 'user'));
+        return ext_view('users.posts', compact('search', 'user'));
     }
 
     public function kudosu($_userId)
@@ -242,7 +248,7 @@ class UsersController extends Controller
                 abort(404);
             }
 
-            return response()->view('users.show_not_found')->setStatusCode(404);
+            return ext_view('users.show_not_found', null, null, 404);
         }
 
         if ((string) $user->user_id !== (string) $id) {
@@ -264,6 +270,7 @@ class UsersController extends Controller
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
+            'group_badge',
             'loved_beatmapset_count',
             'monthly_playcounts',
             'page',
@@ -340,7 +347,7 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            return view('users.show', compact(
+            return ext_view('users.show', compact(
                 'user',
                 'jsonChunks'
             ));
@@ -469,12 +476,13 @@ class UsersController extends Controller
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scoresFirst($options['mode'], true)
-                        ->orderBy('score_id', 'desc')
+                        ->visibleUsers()
+                        ->reorderBy('score_id', 'desc')
                         ->with('beatmap', 'beatmap.beatmapset', 'user');
                     break;
                 case 'scoresRecent':
                     $transformer = 'Score';
-                    $includes = ['beatmap', 'beatmapset', 'best', 'user'];
+                    $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scores($options['mode'], true)
                         ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
                     break;

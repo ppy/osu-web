@@ -15,12 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', [
-    'currentSection' => 'home',
-])
+@extends('master', ['titlePrepend' => trans('forum.topic_watches.index.title_compact')])
 
 @section('content')
-    @include('home._user_header_default', ['title' => trans('forum.topic_watches.index.title_compact')])
+    @include('home._user_header_default')
 
     <div class="osu-page osu-page--info-bar">
         <div class="grid-items">

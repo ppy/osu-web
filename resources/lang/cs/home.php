@@ -25,7 +25,7 @@ return [
         'peak' => 'Vrchol, :count online uživatelů',
         'players' => '<strong>:count</strong> registrovaných hráčů',
         'title' => 'vítejte',
-        'see_more_news' => '',
+        'see_more_news' => 'zlédnout více novinek',
 
         'slogan' => [
             'main' => 'nejlepší free-to-win rytmická hra',
@@ -42,6 +42,7 @@ return [
         'title' => 'Hledat',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count dalších výsledků vyhledávání map',
             'more_simple' => 'Zobrazit další výsledky vyhledávání map',
             'title' => 'Beatmapy',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Všechna fóra',
             'link' => 'Prohledat fórum',
+            'login_required' => '',
             'more_simple' => 'Zobrazit další výsledky prohledávání fór',
             'title' => 'Fórum',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count dalších výsledků vyhledávání hráčů',
             'more_simple' => 'Zobrazit další výsledky vyhledávání hráčů',
             'more_hidden' => 'Vyhledávání hráčů je omezeno na :max hráčů. Zkus upravit tvé vyhledávání.',

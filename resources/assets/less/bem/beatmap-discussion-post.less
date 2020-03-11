@@ -28,6 +28,10 @@
 
   transition: background-color .1s ease-in-out;
 
+  &--deleted {
+    opacity: 0.5;
+  }
+
   &--discussion {
     min-width: 0;
 
@@ -172,10 +176,6 @@
     font-size: @_info-text-size;
     margin-right: 10px;
     color: @osu-colour-f1;
-
-    &--edited {
-      font-style: italic;
-    }
   }
 
   &__info-container {
@@ -211,11 +211,6 @@
 
     .@{_top}--reply & {
       font-size: @_reply-text-size;
-    }
-
-    .@{_top}--deleted & {
-      opacity: 0.5;
-      font-style: italic;
     }
 
     &::placeholder {

@@ -21,15 +21,14 @@
 namespace App\Http\Controllers;
 
 use App\Libraries\OsuWiki;
+use App\Libraries\Search\WikiSuggestions;
+use App\Libraries\Search\WikiSuggestionsRequestParams;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
 use Request;
 
 class WikiController extends Controller
 {
-    protected $section = 'help';
-    protected $actionPrefix = 'wiki-';
-
     public function show($path = null)
     {
         if ($path === null) {
@@ -65,7 +64,23 @@ class WikiController extends Controller
             return json_item($page, 'WikiPage');
         }
 
-        return response()->view($page->template(), compact('page', 'locale'), $status ?? 200);
+        return ext_view($page->template(), compact('page', 'locale'), null, $status ?? null);
+    }
+
+    public function suggestions()
+    {
+        $search = new WikiSuggestions(new WikiSuggestionsRequestParams(request()->all()));
+
+        $response = [];
+        foreach ($search->response() as $hit) {
+            $response[] = [
+                'highlight' => $hit->highlights('title.autocomplete')[0],
+                'path' => $hit->source('path'),
+                'title' => $hit->source('title'),
+            ];
+        }
+
+        return $response;
     }
 
     public function update($path)

@@ -18,13 +18,11 @@
 
 @import "app";
 
-@font-content: 'Open Sans', sans-serif;
-@font-content-inter: Inter, sans-serif;
-@font-default-torus: Torus, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
-@font-default: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
-@font-default-vi: Exo, 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
-@font-default-zh: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
-@font-default-zh-tw: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-content: Inter, sans-serif;
+@font-default: Torus, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-vi: Quicksand, Torus, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-default-zh: Torus, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-default-zh-tw: Torus, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
 
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
@@ -62,7 +60,7 @@
 // header left margin (20) + logo (100) + menu left margin (10)
 @padding-big: (20px + @logo-size + 10px);
 
-@gutter-profile-page: 20px;
+@gutter-profile-page: @gutter-v2;
 @gutter-profile-page-desktop: @gutter-desktop;
 @padding-profile-page: 10px;
 @profile-page-action: 20px;
@@ -78,6 +76,7 @@
 
 @border-radius--nav-avatar: 10px;
 @border-radius--extra: 20px;
+@border-radius--large: 10px;
 
 @forum-item-overflow: @gutter-v2 - 2px;
 @forum-item-overflow-desktop: @gutter-v2-desktop - 20px;
@@ -99,19 +98,22 @@
 @z-index--notification-banner-v2: 1;
 @z-index--forum-post-edit-mode: 1;
 @z-index--forum-topic-reply-stick: 1; // inside fixed-bar
+@z-index--wiki-search: 1;
 
 @z-index--beatmaps-panel: 4;
 @z-index--profile-page-cover-selector: 5;
 @z-index--profile-previous-usernames: 10;
 @z-index--profile-tournament-banner: 11;
 @z-index--simple-menu: 101;
+@z-index--simple-menu-hover-object: 102;
 @z-index--admin-menu: 499;
 @z-index--back-to-top: 500;
-@z-index--nav-bar: 501;
 @z-index--fixed-bar: 502;
 @z-index--user-card-tooltip: 509;
 @z-index--blackout: 510;
-@z-index--blackout-visible: 511;
+// FIXME: this should be lower than blackout and increased on mobile when the menu is active
+@z-index--nav-bar: 511;
+@z-index--blackout-visible: 512;
 @z-index--nav-float: 999;
 // Xsolla overlay: 1000
 // navbar-static-top: 1000 (bootstrap nav for mobile)
@@ -302,11 +304,8 @@
 @diff-normal: @blue;
 @diff-hard: @yellow;
 @diff-insane: @pink;
-@diff-expert: @purple;
-@diff-expert--light: @purple-light;
-@diff-expert-plus: #000;
-// for when black text won't just work on dark background
-@diff-expert-plus--light: #999;
+@diff-expert: @purple-light;
+@diff-expert-plus: #121415;
 
 // store slider
 @slider-callout--arrow-height: 12px;

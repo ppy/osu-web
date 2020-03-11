@@ -25,17 +25,13 @@ use Request;
 
 class LivestreamsController extends Controller
 {
-    protected $section = 'community';
-
     public function index()
     {
-        view()->share('currentAction', 'getLive');
-
         $livestream = new LivestreamCollection();
         $streams = $livestream->all();
         $featuredStream = $livestream->featured();
 
-        return view('livestreams.index', compact('streams', 'featuredStream'));
+        return ext_view('livestreams.index', compact('streams', 'featuredStream'));
     }
 
     public function promote()
@@ -44,6 +40,6 @@ class LivestreamsController extends Controller
 
         LivestreamCollection::promote(Request::input('id'));
 
-        return js_view('layout.ujs-reload');
+        return ext_view('layout.ujs-reload', [], 'js');
     }
 }

@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '',
             'comments' => '',
+            'contests' => '',
             'forum' => '',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -86,38 +82,43 @@ return [
             '_' => '',
         ],
 
+        'notifications' => [
+            '_' => '',
+            'index' => 'historik',
+        ],
+
         'rankings' => [
             '_' => '',
         ],
 
         'store' => [
             '_' => '',
-            'cart' => '',
+            'cart' => 'kundvagn',
             'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            'orders' => 'orderhistorik',
+            'product' => 'produkt',
+            'products' => 'produkter',
         ],
 
         'tournaments' => [
-            '_' => '',
+            '_' => 'turneringar',
             'index' => '',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
+            '_' => 'spelare',
+            'forum_posts' => 'forumsinlägg',
             'modding' => '',
-            'show' => '',
+            'show' => 'info',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
+        'close' => 'Stäng (Esc)',
         'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'zoom' => 'Zooma in/ut',
+        'previous' => 'Föregående (vänsterpil)',
+        'next' => 'Nästa (högerpil)',
     ],
 
     'menu' => [
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'användarmoddingsinlägg',
             'modding-history-votesGiven' => 'användarmoddingsröster givna',
             'modding-history-votesReceived' => 'användarmoddningsröster givna',
+            'notifications-index' => '',
             'oauth_login' => '',
             'oauth_request' => '',
             'settings' => 'Inställningar',

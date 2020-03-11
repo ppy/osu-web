@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => '已刪除',
+        'none_found' => '',
         'title' => '圖譜討論',
 
         'form' => [
@@ -80,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => '檢視其他人的評論',
         'go_to_child' => '查看討論',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [

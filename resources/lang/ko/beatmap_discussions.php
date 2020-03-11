@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => '삭제됨',
+        'none_found' => '',
         'title' => '비트맵 토론',
 
         'form' => [
@@ -80,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => '평가 글 보기',
         'go_to_child' => '토론 글 보기',
+        'validation' => [
+            'invalid_block_type' => '잘못된 블럭 종류',
+            'invalid_document' => '잘못된 리뷰',
+            'minimum_issues' => '리뷰는 최소한 :count개의 이슈를 포함해야 합니다',
+            'missing_text' => '블럭이 텍스트를 포함하고 있지 않음',
+            'too_many_blocks' => '리뷰는 최대 :count개의 문단 및 이슈를 포함할 수 있습니다.',
+        ],
     ],
 
     'system' => [

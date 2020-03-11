@@ -19,7 +19,6 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'section' => trans('home.search.title'),
         'theme' => 'search',
     ]])
 

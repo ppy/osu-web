@@ -21,15 +21,16 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
+use App\Models\Beatmapset;
+use App\Models\User;
 use Auth;
 use Illuminate\Pagination\Paginator;
 use Request;
 
 class BeatmapDiscussionsController extends Controller
 {
-    protected $section = 'beatmaps';
-
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
@@ -92,12 +93,13 @@ class BeatmapDiscussionsController extends Controller
         $search = BeatmapDiscussion::search($params);
 
         $query = $search['query']->with([
-            'user',
+            'beatmap',
+            'beatmapDiscussionVotes',
             'beatmapset',
             'startingPost',
         ])->limit($search['params']['limit'] + 1);
 
-        $discussions = new Paginator(
+        $paginator = new Paginator(
             $query->get(),
             $search['params']['limit'],
             $search['params']['page'],
@@ -107,7 +109,58 @@ class BeatmapDiscussionsController extends Controller
             ]
         );
 
-        return view('beatmap_discussions.index', compact('discussions', 'search'));
+        $discussions = $paginator->getCollection();
+
+        // TODO: remove this when reviews are released
+        $relatedDiscussions = [];
+        if (config('osu.beatmapset.discussion_review_enabled')) {
+            $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
+                ->with([
+                    'beatmap',
+                    'beatmapDiscussionVotes',
+                    'beatmapset',
+                    'startingPost',
+                ]);
+
+            if ($isModerator) {
+                $children->visibleWithTrashed();
+            } else {
+                $children->visible();
+            }
+
+            $relatedDiscussions = $children->get();
+        }
+
+        $userIds = [];
+        foreach ($discussions->merge($relatedDiscussions) as $discussion) {
+            $userIds[$discussion->user_id] = true;
+            $userIds[$discussion->startingPost->last_editor_id] = true;
+        }
+
+        $users = User::whereIn('user_id', array_keys($userIds))
+            ->with('userGroups')
+            ->default()
+            ->get();
+
+        $jsonChunks = [
+            'discussions' => json_collection(
+                $discussions,
+                'BeatmapDiscussion',
+                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
+            ),
+            'related-discussions' => json_collection(
+                $relatedDiscussions,
+                'BeatmapDiscussion',
+                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
+            ),
+            'users' => json_collection(
+                $users,
+                'UserCompact',
+                ['group_badge']
+            ),
+        ];
+
+        return ext_view('beatmap_discussions.index', compact('jsonChunks', 'search', 'paginator'));
     }
 
     public function restore($id)
@@ -118,6 +171,32 @@ class BeatmapDiscussionsController extends Controller
         $discussion->restore(Auth::user());
 
         return $discussion->beatmapset->defaultDiscussionJson();
+    }
+
+    public function review()
+    {
+        // TODO: remove this when reviews are released
+        if (!config('osu.beatmapset.discussion_review_enabled')) {
+            abort(404);
+        }
+
+        priv_check('BeatmapsetDiscussionReviewStore')->ensureCan();
+
+        $request = request()->all();
+        $beatmapsetId = $request['beatmapset_id'] ?? null;
+        $document = $request['document'] ?? [];
+
+        $beatmapset = Beatmapset
+            ::where('discussion_enabled', true)
+            ->findOrFail($beatmapsetId);
+
+        try {
+            BeatmapsetDiscussionReview::create($beatmapset, $document, Auth::user());
+        } catch (\Exception $e) {
+            return error_popup($e->getMessage(), 422);
+        }
+
+        return $beatmapset->defaultDiscussionJson();
     }
 
     public function show($id)

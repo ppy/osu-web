@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '',
             'comments' => '',
+            'contests' => '',
             'forum' => '',
             'livestream' => '',
-        ],
-
-        'contests' => [
-            '_' => '',
-            'index' => '',
         ],
 
         'error' => [
@@ -84,6 +80,11 @@ return [
 
         'notice' => [
             '_' => '',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
         ],
 
         'rankings' => [
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'потребителски modding публикации',
             'modding-history-votesGiven' => 'потребителски modding гласове дадени',
             'modding-history-votesReceived' => 'потребителски modding гласове получени',
+            'notifications-index' => '',
             'oauth_login' => 'влезте за oauth',
             'oauth_request' => 'оаuth оторизация',
             'settings' => 'Настройки',

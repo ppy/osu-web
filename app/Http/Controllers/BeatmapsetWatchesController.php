@@ -27,9 +27,6 @@ use Exception;
 
 class BeatmapsetWatchesController extends Controller
 {
-    protected $section = 'beatmaps';
-    protected $actionPrefix = 'beatmapset-watches-';
-
     public function __construct()
     {
         parent::__construct();
@@ -39,10 +36,9 @@ class BeatmapsetWatchesController extends Controller
 
     public function index()
     {
-        return view('beatmapset_watches.index')
-            ->with([
-                'watches' => Auth::user()->beatmapsetWatches()->visible()->paginate(50),
-            ]);
+        return ext_view('beatmapset_watches.index', [
+            'watches' => Auth::user()->beatmapsetWatches()->visible()->paginate(50),
+        ]);
     }
 
     public function update($beatmapsetId)

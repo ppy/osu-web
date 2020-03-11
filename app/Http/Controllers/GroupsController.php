@@ -25,9 +25,6 @@ use Auth;
 
 class GroupsController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'groups-';
-
     public function show($id)
     {
         $group = Group::visible()->findOrFail($id);
@@ -43,6 +40,6 @@ class GroupsController extends Controller
         $groupJson = $group->only('group_name', 'group_desc');
         $usersJson = json_collection($users, 'UserCompact', ['cover', 'country', 'current_mode_rank', 'support_level']);
 
-        return view('groups.show', compact('groupJson', 'usersJson'));
+        return ext_view('groups.show', compact('groupJson', 'usersJson'));
     }
 }

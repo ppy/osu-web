@@ -24,12 +24,10 @@ use App\Models\Log;
 
 class LogsController extends Controller
 {
-    protected $actionPrefix = 'logs-';
-
     public function index()
     {
-        $logs = Log::orderBy('log_id', 'desc')->limit(10);
-
-        return view('admin.logs.index', compact('logs'));
+        return ext_view('admin.logs.index', [
+            'logs' => Log::orderBy('log_id', 'desc')->limit(10),
+        ]);
     }
 }

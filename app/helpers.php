@@ -42,7 +42,7 @@ function background_image($url, $proxy = true)
         return '';
     }
 
-    $url = $proxy ? proxy_image($url) : $url;
+    $url = $proxy ? proxy_media($url) : $url;
 
     return sprintf(' style="background-image:url(\'%s\');" ', e($url));
 }
@@ -177,6 +177,11 @@ function cleanup_cookies()
             cookie()->queueForget($key, null, $domain);
         }
     }
+}
+
+function css_group_colour($group)
+{
+    return '--group-colour: '.(optional($group)->colour ?? 'initial');
 }
 
 function css_var_2x(string $key, string $url)
@@ -528,11 +533,6 @@ function require_login($text_key, $link_text_key)
     return $text;
 }
 
-function render_to_string($view, $variables = [])
-{
-    return view()->make($view, $variables)->render();
-}
-
 function spinner(?array $modifiers = null)
 {
     return tag('div', [
@@ -580,6 +580,27 @@ function trans_exists($key, $locale)
     $translated = app('translator')->get($key, [], $locale, false);
 
     return present($translated) && $translated !== $key;
+}
+
+function with_db_fallback($connection, callable $callable)
+{
+    try {
+        return $callable($connection);
+    } catch (Illuminate\Database\QueryException $ex) {
+        // string after the error code can change depending on actual state of the server.
+        static $errorCodes = ['SQLSTATE[HY000] [2002]', 'SQLSTATE[HY000] [2003]'];
+        if (starts_with($ex->getMessage(), $errorCodes)) {
+            Datadog::increment(
+                config('datadog-helper.prefix_web').'.db_fallback',
+                1,
+                compact('connection')
+            );
+
+            return $callable(config('database.default'));
+        }
+
+        throw $ex;
+    }
 }
 
 function obscure_email($email)
@@ -637,6 +658,24 @@ function error_popup($message, $statusCode = 422)
     return response(['error' => $message], $statusCode);
 }
 
+function ext_view($view, $data = null, $type = null, $status = null)
+{
+    static $types = [
+        'atom' => 'application/atom+xml',
+        'html' => 'text/html',
+        'js' => 'application/javascript',
+        'json' => 'application/json',
+        'rss' => 'application/rss+xml',
+    ];
+
+    return response()->view(
+        $view,
+        $data ?? [],
+        $status ?? 200,
+        ['Content-Type' => $types[$type ?? 'html']]
+    );
+}
+
 function is_api_request()
 {
     return request()->is('api/*');
@@ -655,17 +694,29 @@ function is_sql_unique_exception($ex)
     );
 }
 
-function js_view($view, $vars = [], $status = 200)
+function page_title()
 {
-    return response()
-        ->view($view, $vars, $status)
-        ->header('Content-Type', 'application/javascript');
+    $currentRoute = app('route-section')->getCurrent();
+    $checkLocale = config('app.fallback_locale');
+    $keys = [
+        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}",
+        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}._",
+        "page_title.{$currentRoute['namespace']}._",
+    ];
+
+    foreach ($keys as $key) {
+        if (trans_exists($key, $checkLocale)) {
+            return trans($key);
+        }
+    }
+
+    return 'unknown';
 }
 
 function ujs_redirect($url, $status = 200)
 {
     if (Request::ajax() && !Request::isMethod('get')) {
-        return js_view('layout.ujs-redirect', ['url' => $url], $status);
+        return ext_view('layout.ujs-redirect', compact('url'), 'js', $status);
     } else {
         if (Request::header('Turbolinks-Referrer')) {
             Request::session()->put('_turbolinks_location', $url);
@@ -686,11 +737,6 @@ function timeago($date)
     $attribute_date = json_time($date);
 
     return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
-}
-
-function current_action()
-{
-    return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
 function link_to_user($id, $username = null, $color = null, $classNames = null)
@@ -781,7 +827,7 @@ function bbcode_for_editor($text, $uid = null)
     return (new App\Libraries\BBCodeFromDB($text, $uid))->toEditor();
 }
 
-function proxy_image($url)
+function proxy_media($url)
 {
     // turn relative urls into absolute urls
     if (!preg_match('/^https?\:\/\//', $url)) {
@@ -863,20 +909,6 @@ function nav_links()
     return $links;
 }
 
-function nav_links_mobile()
-{
-    $links = [];
-
-    if (Auth::check()) {
-        $links['profile'] = [
-            'friends' => route('friends.index'),
-            'settings' => route('account.edit'),
-        ];
-    }
-
-    return array_merge($links, nav_links());
-}
-
 function footer_landing_links()
 {
     return [
@@ -885,13 +917,12 @@ function footer_landing_links()
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => route('download'),
-            'wiki' => wiki_url('Main_Page'),
         ],
         'help' => [
             'faq' => wiki_url('FAQ'),
             'forum' => route('forum.forums.index'),
             'livestreams' => route('livestreams.index'),
-            'report' => route('forum.topics.create', ['forum_id' => 5]),
+            'wiki' => wiki_url('Main_Page'),
         ],
         'legal' => footer_legal_links(),
     ];
@@ -1033,7 +1064,7 @@ function open_image($path, $dimensions = null)
 
 function json_collection($model, $transformer, $includes = null)
 {
-    $manager = new League\Fractal\Manager();
+    $manager = new League\Fractal\Manager(new App\Libraries\Transformers\ScopeFactory());
     if ($includes !== null) {
         $manager->parseIncludes($includes);
     }
@@ -1505,10 +1536,7 @@ function section_to_hue_map($section): int
 
     static $sectionMapping = [
         'admin' => 'red',
-        'admin-forum' => 'red',
-        'admin-store' => 'red',
         'beatmaps' => 'blue',
-        'beatmapsets' => 'blue',
         'community' => 'pink',
         'error' => 'pink',
         'help' => 'orange',

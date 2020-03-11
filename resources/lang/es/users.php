@@ -79,7 +79,7 @@ return [
 
             'tos' => [
                 '_' => 'Ha infringido una o más de nuestras :community_rules o :tos.',
-                'community_rules' => 'normas de la comunidad',
+                'community_rules' => 'reglas de la comunidad',
                 'tos' => 'términos de servicio',
             ],
         ],
@@ -157,7 +157,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto por última vez :date',
-        'lastvisit_online' => 'En línea',
+        'lastvisit_online' => 'Actualmente en línea',
         'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
@@ -203,22 +203,22 @@ return [
             'beatmaps' => [
                 'by_artist' => 'por :artist',
                 'none' => 'Ninguno... aún.',
-                'title' => 'Beatmaps',
+                'title' => 'Mapas',
 
                 'favourite' => [
-                    'title' => 'Beatmaps Favoritos',
+                    'title' => 'Mapas Favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps Abandonados',
+                    'title' => 'Mapas Abandonados',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Amados',
+                    'title' => 'Mapas Amados',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Clasificados y Aprobados',
+                    'title' => 'Mapas Clasificados y Aprobados',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps Pendientes',
+                    'title' => 'Mapas Pendientes',
                 ],
             ],
             'discussions' => [
@@ -241,7 +241,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'veces jugadas',
-                    'title' => 'Beatmaps Más Jugados',
+                    'title' => 'Mapas Más Jugados',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisión: :percentage',
@@ -254,7 +254,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',
-                'available_info' => "Los kudosu pueden ser intercambiados por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.",
+                'available_info' => "Los kudosu pueden ser intercambiados por estrellas kudosu, que ayudarán a tu mapa a obtener más atención. Este es el número de kudosu que no has intercambiado aún.",
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu obtenido',
@@ -299,7 +299,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Basado en qué tanto ha colaborado el usuario a la moderación de beatmaps. Vea :link para más información.',
+                    '_' => 'Basado en qué tanto ha colaborado el usuario a la moderación de mapas. Vea :link para más información.',
                     'link' => 'esta página',
                 ],
             ],
@@ -312,8 +312,8 @@ return [
                 'title' => 'Medallas',
             ],
             'posts' => [
-                'title' => 'Entradas',
-                'title_longer' => 'Entradas recientes',
+                'title' => 'Publicaciones',
+                'title_longer' => 'Publicaciones recientes',
                 'show_more' => 'ver más publicaciones',
             ],
             'recent_activity' => [
@@ -397,9 +397,9 @@ return [
         ],
         'rank' => [
             'country' => 'Rank nacional para :mode',
-            'country_simple' => 'Ranking Nacional',
+            'country_simple' => 'Clasificación Nacional',
             'global' => 'Rank global para :mode',
-            'global_simple' => 'Ranking Global',
+            'global_simple' => 'Clasificación Global',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
@@ -415,17 +415,17 @@ return [
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps Clasificados y Aprobados',
-            'loved_beatmapset_count' => 'Beatmaps Amados',
-            'unranked_beatmapset_count' => 'Beatmaps Pendientes',
-            'graveyard_beatmapset_count' => 'Beatmaps Abandonados',
+            'ranked_and_approved_beatmapset_count' => 'Mapas Clasificados y Aprobados',
+            'loved_beatmapset_count' => 'Mapas Amados',
+            'unranked_beatmapset_count' => 'Mapas Pendientes',
+            'graveyard_beatmapset_count' => 'Mapas Abandonados',
         ],
     ],
 
     'status' => [
-        'all' => 'Todo',
-        'online' => 'Conectados',
-        'offline' => 'Desconectados',
+        'all' => 'Todos',
+        'online' => 'En línea',
+        'offline' => 'Sin conexión',
     ],
     'store' => [
         'saved' => 'Usuario creado',

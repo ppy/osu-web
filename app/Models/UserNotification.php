@@ -30,15 +30,42 @@ class UserNotification extends Model
         'is_read' => 'boolean',
     ];
 
-    public static function markAsReadByIds(User $user, $ids)
+    public static function markAsReadByIds(User $user, array $params)
     {
-        if ($user->userNotifications()->whereIn('notification_id', $ids)->update(['is_read' => true])) {
-            event(new NotificationReadEvent($user->getKey(), ['ids' => $ids]));
+        $ids = [];
+        $identities = array_map(function ($param) use (&$ids) {
+            $identity = get_params($param, null, [
+                'category',
+                'id:int',
+                'object_id:int',
+                'object_type',
+            ]);
+
+            $ids[] = $identity['id'] ?? null;
+
+            return $identity;
+        }, $params);
+
+        $now = now();
+        $count = $user
+            ->userNotifications()
+            ->where('is_read', false)
+            ->whereIn('notification_id', $ids)
+            ->update(['is_read' => true, 'updated_at' => $now]);
+
+        if ($count > 0) {
+            event(new NotificationReadEvent($user->getKey(), ['notifications' => $identities, 'read_count' => $count, 'timestamp' => $now]));
         }
     }
 
-    public static function markAsReadByNotificationIdentifier(User $user, $params)
+    public static function markAsReadByNotificationIdentifier(User $user, array $params)
     {
+        $params = get_params($params, null, [
+            'category:string',
+            'object_id:int',
+            'object_type:string',
+        ]);
+
         $category = presence($params['category'] ?? null);
         $objectId = $params['object_id'] ?? null;
         $objectType = presence($params['object_type'] ?? null);
@@ -64,9 +91,10 @@ class UserNotification extends Model
             ->where('is_read', false)
             ->whereIn('notification_id', $notifications->select('id'));
 
-        $count = $itemsQuery->update(['is_read' => true]);
+        $now = now();
+        $count = $itemsQuery->update(['is_read' => true, 'updated_at' => $now]);
         if ($count > 0) {
-            event(new NotificationReadEvent($user->getKey(), ['notification' => $params, 'read_count' => $count]));
+            event(new NotificationReadEvent($user->getKey(), ['notifications' => [$params], 'read_count' => $count, 'timestamp' => $now]));
         }
     }
 

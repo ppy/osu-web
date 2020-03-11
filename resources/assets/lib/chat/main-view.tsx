@@ -57,12 +57,8 @@ export default class MainView extends React.Component<Props, any> {
   render(): React.ReactNode {
     const lazerLink = 'https://github.com/ppy/osu/releases';
     return (
-      <div>
-        <HeaderV4
-          section={osu.trans('layout.header.community._')}
-          subSection={osu.trans('chat.title_compact')}
-          theme='chat'
-        />
+      <>
+        <HeaderV4 theme='chat' />
         <Provider dataStore={this.props.dataStore}>
           {this.props.dataStore.channelStore.loaded ? (
             <div className='chat osu-page osu-page--chat'>
@@ -81,12 +77,11 @@ export default class MainView extends React.Component<Props, any> {
                 <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
                 <div className='chat__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
                 <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: lazerLink})}} />
-                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.pm_limitations', {link: lazerLink})}} />
               </div>
             </div>
           )}
         </Provider>
-      </div>
+      </>
     );
   }
 }

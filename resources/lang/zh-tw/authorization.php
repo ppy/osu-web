@@ -19,7 +19,7 @@
  */
 
 return [
-    'require_login' => '登錄以繼續。',
+    'require_login' => '登入以繼續。',
     'require_verification' => '需要驗證帳戶!',
     'restricted' => "帳戶處於限制模式，無法進行該操作。",
     'silenced' => "帳戶被禁言，無法進行該操作。",
@@ -123,7 +123,7 @@ return [
                 'no_permission' => '沒有權限，無法回覆。',
 
                 'user' => [
-                    'require_login' => '回覆前請先登錄。',
+                    'require_login' => '回覆前請先登入。',
                     'restricted' => "帳戶處於限制模式，無法回覆。",
                     'silenced' => "帳戶被禁言，無法回覆。",
                 ],
@@ -142,7 +142,7 @@ return [
                 'voted' => '不允許修改投票。',
 
                 'user' => [
-                    'require_login' => '投票前請先登錄。',
+                    'require_login' => '投票前請先登入。',
                     'restricted' => "帳戶處於限制模式，無法投票。",
                     'silenced' => "帳戶被禁言，無法投票。",
                 ],

@@ -34,7 +34,6 @@
   }
 
   &__advanced {
-    font-size: @font-size--small;
     display: none;
 
     .@{_top}--expanded & {
@@ -44,15 +43,11 @@
 
   &__background {
     .full-size();
+    .default-header-overlay();
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.1;
-
-    &--guest {
-      .default-header-overlay();
-      opacity: 0.5;
-    }
+    opacity: 0.5;
   }
 
   &__expand-link {
@@ -94,25 +89,28 @@
   }
 
   &__input {
-    border: 1px solid #ccc;
+    border: 1px solid @osu-colour-b4;
     width: 100%;
     padding: 10px;
     padding-right: 10px + @_icon-width + 20px;
-
-    font-style: italic;
-    font-weight: lighter;
-
-    color: @osu-colour-b3;
+    background-color: @osu-colour-b2;
+    color: @osu-colour-c1;
 
     &:focus {
       outline: none;
-      border-color: @osu-colour-l1;
       box-shadow: 0 0 10px @osu-colour-l1;
+      border-color: @osu-colour-c1;
     }
 
     .@{_top}--sticky & {
       padding: 5px;
       padding-right: 5px + @_icon-width--sticky + 20px;
+    }
+
+    &[disabled] {
+      background-color: @osu-colour-b2;
+      border-color: @osu-colour-b4;
+      color: @osu-colour-c1;
     }
   }
 

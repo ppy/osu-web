@@ -128,7 +128,7 @@ export class Header extends React.Component
                   osu.transChoice 'common.count.plus_others', @props.favcount - @favouritesToShow
 
           a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'
+            className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
             href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
             @props.beatmapset.title
 
@@ -187,7 +187,7 @@ export class Header extends React.Component
             @renderLoginButton()
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
-          div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.beatmapset.status}")
+          div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
           el Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
@@ -220,7 +220,7 @@ export class Header extends React.Component
           osuDirect: true
           href:
             if currentUser.is_supporter
-              Url.beatmapDownloadDirect @props.currentBeatmap.id
+              _exported.OsuUrlHelper.beatmapDownloadDirect @props.currentBeatmap.id
             else
               laroute.route 'support-the-game'
       ]

@@ -24,15 +24,10 @@
 
 {{-- FIXME: move to user modding history --}}
 @section('content')
-    @include('layout._page_header_v4', ['params' => [
-        'section' => trans('layout.header.beatmapsets._'),
-        'subSection' => trans('beatmap_discussions.index.title'),
-    ]])
+    @include('layout._page_header_v4')
     <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
-            @if (isset($user))
-                <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
-            @endif
+            <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
 
             <form class="simple-form simple-form--search-box">
                 <h2 class="simple-form__row simple-form__row--title">
@@ -130,13 +125,23 @@
                 </div>
             </form>
 
-            <div class="beatmap-discussions__discussion">
-                @foreach ($discussions as $discussion)
-                    @include('beatmap_discussions._item', compact('discussion'))
-                @endforeach
+            <div class="js-react--beatmap-discussions-history">
+                <div class="beatmapset-activities__spinner">{!! spinner() !!}</div>
             </div>
 
-            @include('objects._pagination_simple', ['object' => $discussions])
+            @include('objects._pagination_simple', ['object' => $paginator])
         </div>
     </div>
+@endsection
+
+@section ("script")
+    @parent
+
+    @foreach ($jsonChunks as $name => $data)
+        <script id="json-{{$name}}" type="application/json">
+            {!! json_encode($data) !!}
+        </script>
+    @endforeach
+
+    @include('layout._extra_js', ['src' => 'js/react/beatmap-discussions-history.js'])
 @endsection

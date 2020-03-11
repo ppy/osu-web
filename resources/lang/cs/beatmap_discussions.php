@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'odstraněno',
+        'none_found' => '',
         'title' => 'Diskuze o beatmapě',
 
         'form' => [
@@ -48,7 +49,7 @@ return [
                 'disqualified' => 'Diskvalifikovaný',
                 'never_qualified' => '',
                 'qualified' => 'Kvalifikovaný',
-                'ranked' => '',
+                'ranked' => 'Hodnocené',
             ],
 
             'user' => [
@@ -80,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => '',
         'go_to_child' => '',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
     ],
 
     'system' => [
@@ -90,7 +98,7 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
+        'general' => 'obecné',
         'general_all' => '',
     ],
 

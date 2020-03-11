@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Не е позволено отговарянето на изтрит коментар.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '',

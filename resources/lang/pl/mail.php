@@ -38,6 +38,7 @@ return [
         'keep_free' => 'Dzięki Tobie osu! jest w stanie utrzymać się bez żadnych reklam czy wymuszanych płatności.',
         'keep_running' => 'Twoje wsparcie utrzymuje osu! przez około :minutes! Może nie wydaje się to zbyt wiele, ale to wszystko się dodaje. :)',
         'subject' => 'Dziękujemy, osu! cię <3',
+        'translation' => 'Poniżej zawarliśmy tłumaczenie dla celów informacyjnych:',
 
         'benefit' => [
             'gift' => 'Odbiorca(-y) Twojego zakupu otrzymają dostęp do osu!direct i innych korzyści wynikających z posiadania statusu donatora osu!.',

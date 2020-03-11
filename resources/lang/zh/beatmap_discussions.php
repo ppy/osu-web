@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => '删除',
+        'none_found' => '',
         'title' => '谱面讨论',
 
         'form' => [
@@ -80,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => '查看审阅帖',
         'go_to_child' => '查看讨论',
+        'validation' => [
+            'invalid_block_type' => '板块类型无效',
+            'invalid_document' => '审阅无效',
+            'minimum_issues' => '审阅时必须提出最少 :count 个 issue |审阅时必须提出最少 :count 个 issue',
+            'missing_text' => '该版块缺少文本。',
+            'too_many_blocks' => '审阅只能包含 :count 个段落或 issue|审阅最多只能包含 :count 个段落或 issue',
+        ],
     ],
 
     'system' => [

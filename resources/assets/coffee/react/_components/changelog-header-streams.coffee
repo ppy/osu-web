@@ -38,13 +38,13 @@ export class ChangelogHeaderStreams extends React.PureComponent
     mainClass += " t-changelog-stream--#{streamNameClass}"
 
     a
-      href: Url.changelogBuild stream.latest_build
+      href: _exported.OsuUrlHelper.changelogBuild stream.latest_build
       key: stream.id
       className: mainClass
       div className: 'update-streams-v2__bar u-changelog-stream--bg'
       p className: 'update-streams-v2__row update-streams-v2__row--name', stream.display_name
       p className: 'update-streams-v2__row update-streams-v2__row--version', stream.latest_build.display_version
-      if stream.user_count[0] > 0
+      if stream.user_count > 0
         p
           className: 'update-streams-v2__row update-streams-v2__row--users'
-          osu.transChoice 'changelog.builds.users_online', stream.user_count[0]
+          osu.transChoice 'changelog.builds.users_online', stream.user_count

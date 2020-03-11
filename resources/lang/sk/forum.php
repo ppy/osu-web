@@ -64,7 +64,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Naozaj chceš tento príspevok odstrániť?',
         'confirm_restore' => 'Naozaj chceš tento príspevok obnoviť?',
-        'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count.',
+        'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count_delimited.',
         'posted_at' => 'publikované :when',
 
         'actions' => [

@@ -35,12 +35,17 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Multiplayer\Match;
+use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;
 use Carbon\Carbon;
 
 class OsuAuthorize
 {
+    const ALWAYS_CHECK = [
+        'IsOwnClient',
+    ];
+
     /** @var AuthorizationResult[] */
     private $cache = [];
 
@@ -64,7 +69,7 @@ class OsuAuthorize
         ]);
 
         if (!isset($this->cache[$cacheKey])) {
-            if ($user !== null && $user->isAdmin()) {
+            if ($user !== null && $user->isAdmin() && !in_array($ability, static::ALWAYS_CHECK, true)) {
                 $message = 'ok';
             } else {
                 $function = "check{$ability}";
@@ -110,7 +115,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->isBNG() || $user->canModerate()) {
+        if ($user->isBNG() || $user->isModerator()) {
             return 'ok';
         }
 
@@ -130,7 +135,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->canModerate()) {
+        if ($user->isModerator()) {
             return 'ok';
         }
 
@@ -172,7 +177,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->canModerate()) {
+        if ($user->isModerator()) {
             return 'ok';
         }
 
@@ -214,7 +219,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->canModerate()) {
+        if ($user->isModerator()) {
             return 'ok';
         }
 
@@ -231,11 +236,25 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->canModerate()) {
+        if ($user->isModerator()) {
             return 'ok';
         }
 
         return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkBeatmapsetDiscussionReviewStore(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
+
+        return 'ok';
     }
 
     /**
@@ -255,7 +274,7 @@ class OsuAuthorize
             }
         }
 
-        if ($user !== null && $user->canModerate()) {
+        if ($user !== null && $user->isModerator()) {
             return 'ok';
         }
 
@@ -275,7 +294,7 @@ class OsuAuthorize
         $this->ensureHasPlayed($user);
 
         if ($discussion->message_type === 'mapper_note') {
-            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->canModerate() && !$user->isBNG()) {
+            if ($user->getKey() !== $discussion->beatmapset->user_id && !$user->isModerator() && !$user->isBNG()) {
                 return 'beatmap_discussion.store.mapper_note_wrong_user';
             }
         }
@@ -303,7 +322,7 @@ class OsuAuthorize
         ];
 
         if (!in_array($discussion->beatmapset->approved, $votableStates, true)) {
-            if (!$user->isBNG() && !$user->canModerate()) {
+            if (!$user->isBNG() && !$user->isModerator()) {
                 return $prefix.'wrong_beatmapset_state';
             }
         }
@@ -312,7 +331,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        if ($user->isBNG() || $user->canModerate()) {
+        if ($user->isBNG() || $user->isModerator()) {
             return 'ok';
         }
 
@@ -350,7 +369,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        if ($user->isBNG() || $user->canModerate()) {
+        if ($user->isBNG() || $user->isModerator()) {
             return 'ok';
         }
 
@@ -374,7 +393,7 @@ class OsuAuthorize
             return $prefix.'system_generated';
         }
 
-        if ($user->canModerate()) {
+        if ($user->isModerator()) {
             return 'ok';
         }
 
@@ -384,6 +403,10 @@ class OsuAuthorize
 
         if (!$post->canEdit()) {
             return $prefix.'resolved';
+        }
+
+        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
+            return 'beatmap_discussion_post.store.beatmapset_locked';
         }
 
         return 'ok';
@@ -414,6 +437,10 @@ class OsuAuthorize
             return $prefix.'resolved';
         }
 
+        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
+            return 'beatmap_discussion_post.store.beatmapset_locked';
+        }
+
         return 'ok';
     }
 
@@ -427,7 +454,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->canModerate()) {
+        if ($user->isModerator()) {
             return 'ok';
         }
 
@@ -445,7 +472,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user !== null && $user->canModerate()) {
+        if ($user !== null && $user->isModerator()) {
             return 'ok';
         }
 
@@ -464,7 +491,7 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
-        if ($user->canModerate()) {
+        if ($user->isModerator()) {
             return 'ok';
         }
 
@@ -489,7 +516,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$beatmapset->isScoreable() && $user->canModerate()) {
+        if (!$beatmapset->isScoreable() && $user->isModerator()) {
             return 'ok';
         }
 
@@ -564,7 +591,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isBNG() && !$user->canModerate()) {
+        if (!$user->isBNG() && !$user->isModerator()) {
             return 'unauthorized';
         }
 
@@ -587,7 +614,7 @@ class OsuAuthorize
         }
 
         if ($user !== null) {
-            if ($user->isBNG() || $user->canModerate()) {
+            if ($user->isBNG() || $user->isModerator()) {
                 return 'ok';
             }
 
@@ -609,7 +636,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->user_id === $beatmapset->user_id || $user->canModerate()) {
+        if ($user->user_id === $beatmapset->user_id || $user->isModerator()) {
             return 'ok';
         }
 
@@ -626,7 +653,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if (!$user->isFullBN() && !$user->canModerate()) {
+        if (!$user->isFullBN() && !$user->isModerator()) {
             return 'unauthorized';
         }
 
@@ -646,7 +673,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->canModerate()) {
+        if ($user->isModerator()) {
             return 'ok';
         }
 
@@ -661,7 +688,7 @@ class OsuAuthorize
      */
     public function checkBeatmapsetEventViewUserId(?User $user, BeatmapsetEvent $event): string
     {
-        if ($user !== null && $user->canModerate()) {
+        if ($user !== null && $user->isModerator()) {
             return 'ok';
         }
 
@@ -851,7 +878,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->canModerate()) {
+        if ($user->isModerator()) {
             return 'ok';
         }
 
@@ -1028,7 +1055,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->canModerate()) {
+        if ($user->isModerator()) {
             return 'ok';
         }
 
@@ -1422,6 +1449,15 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkIsOwnClient(?User $user, Client $client): string
+    {
+        if ($user === null || $user->getKey() !== $client->user_id) {
+            return 'unauthorized';
+        }
+
+        return 'ok';
+    }
+
     /**
      * @param User|null $user
      * @return string
@@ -1451,7 +1487,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->canModerate()) {
+        if ($user->isModerator()) {
             return 'ok';
         }
 
@@ -1504,7 +1540,7 @@ class OsuAuthorize
                 return $prefix.'require_supporter_tag';
             }
         } else {
-            if ($user->canModerate()) {
+            if ($user->isModerator()) {
                 return 'ok';
             }
 
@@ -1555,7 +1591,7 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
 
-        if ($user->canModerate() || $match->hadPlayer($user)) {
+        if ($user->isModerator() || $match->hadPlayer($user)) {
             return 'ok';
         }
 

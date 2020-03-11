@@ -31,9 +31,6 @@ class StoreController extends Controller
     // bootstrap setup in BaseController
     protected $layout = 'master';
 
-    // Section display for the menu at the top
-    protected $section = 'store';
-
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
@@ -60,9 +57,10 @@ class StoreController extends Controller
 
     public function getListing()
     {
-        return view('store.index')
-            ->with('cart', $this->userCart())
-            ->with('products', Store\Product::listing()->get());
+        return ext_view('store.index', [
+            'cart' => $this->userCart(),
+            'products' => Store\Product::listing()->get(),
+        ]);
     }
 
     public function getInvoice($id = null)
@@ -79,7 +77,7 @@ class StoreController extends Controller
         $forShipping = Auth::user()->isAdmin() && get_bool(Request::input('for_shipping'));
         $copies = clamp(get_int(request('copies')), 1, config('store.invoice.max_copies'));
 
-        return view('store.invoice', compact('order', 'forShipping', 'copies', 'sentViaAddress'));
+        return ext_view('store.invoice', compact('order', 'forShipping', 'copies', 'sentViaAddress'));
     }
 
     public function missingMethod($parameters = [])
@@ -103,7 +101,7 @@ class StoreController extends Controller
                 $order->address()->associate($address);
                 $order->save();
 
-                return js_view('layout.ujs-reload');
+                return ext_view('layout.ujs-reload', [], 'js');
                 break;
             case 'remove':
                 if ($order->address_id === $address_id) {
@@ -116,7 +114,7 @@ class StoreController extends Controller
 
                 Store\Address::destroy($address_id);
 
-                return js_view('store.address-destroy', ['address_id' => $address_id]);
+                return ext_view('store.address-destroy', ['address_id' => $address_id], 'js');
                 break;
         }
     }
@@ -165,6 +163,6 @@ class StoreController extends Controller
         $order->address()->associate($address);
         $order->save();
 
-        return js_view('layout.ujs-reload');
+        return ext_view('layout.ujs-reload', [], 'js');
     }
 }

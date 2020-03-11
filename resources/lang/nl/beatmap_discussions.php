@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'verwijderd',
+        'none_found' => '',
         'title' => 'Beatmap Discussies',
 
         'form' => [
@@ -80,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => 'Bekijk Review Post',
         'go_to_child' => 'Bekijk discussie',
+        'validation' => [
+            'invalid_block_type' => 'ongeldige bloktype',
+            'invalid_document' => 'ongeldige beoordeling',
+            'minimum_issues' => 'beoordeling moet een minimum van :count issue|review moeten een minimum :count issues bevatten',
+            'missing_text' => 'blok mist tekst',
+            'too_many_blocks' => 'beoordelingen kunnen alleen :count alinea/issuemaybe beoordelingen bevatten max. :count alinea/issues',
+        ],
     ],
 
     'system' => [

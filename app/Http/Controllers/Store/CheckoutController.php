@@ -34,7 +34,6 @@ class CheckoutController extends Controller
     use CheckoutErrorSettable, StoreNotifiable;
 
     protected $layout = 'master';
-    protected $actionPrefix = 'checkout-';
 
     public function __construct()
     {
@@ -63,7 +62,7 @@ class CheckoutController extends Controller
         // an array and will cause issues in shared views.
         $validationErrors = session('checkout.error.errors') ?? $checkout->validate();
 
-        return view('store.checkout.show', compact('order', 'addresses', 'checkout', 'validationErrors'));
+        return ext_view('store.checkout.show', compact('order', 'addresses', 'checkout', 'validationErrors'));
     }
 
     public function store()

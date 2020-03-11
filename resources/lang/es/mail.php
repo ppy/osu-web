@@ -20,8 +20,8 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Para informarte, ha habido una nueva actualización en el beatmap ":title" desde tu última visita.',
-        'subject' => 'Nueva actualización para el Beatmap ":title"',
+        'new' => 'Para informarte, ha habido una nueva actualización en el mapa ":title" desde tu última visita.',
+        'subject' => 'Nueva actualización para el mapa ":title"',
         'unwatch' => 'Si no deseas seguir viendo este mapa, puedes hacer clic en en enlace "Dejar de ver" que se encuentra en la página de arriba, o desde la página de lista de seguimiento de modding:',
         'visit' => 'Visita la página de discusión aquí:',
     ],
@@ -38,6 +38,7 @@ return [
         'keep_free' => 'Es gracias a gente como tú que osu! es capaz de mantener el juego y la comunidad funcionando sin problemas, sin anuncios o pagos forzados.',
         'keep_running' => '¡Tu apoyo mantiene a osu! funcionando durante :minutes! Puede que no parezca mucho, pero todo suma :).',
         'subject' => 'Gracias, osu! te <3',
+        'translation' => 'Se muestra a continuación una traducción proporcionada por la comunidad con fines informativos:',
 
         'benefit' => [
             'gift' => 'A quien(es) le regaló ahora tendrá(n) acceso a osu!direct y a muchos otros beneficios para supporter.',

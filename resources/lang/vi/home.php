@@ -42,6 +42,7 @@ return [
         'title' => 'Tìm Kiếm',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => 'còn :count kết quả tìm kiếm beatmap khác',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm beatmap',
             'title' => 'Beatmaps',
@@ -50,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Tất cả diễn đàn',
             'link' => 'Tìm trong diễn đàn',
+            'login_required' => '',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm trong diễn đàn',
             'title' => 'Diễn Đàn',
 
@@ -70,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => 'còn :count kết quả tìm kiếm người chơi khác',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm người chơi',
             'more_hidden' => 'Kết quả tìm kiếm người chơi chỉ hiện thị :max người chơi. Hãy thử tinh chỉnh truy vấn tìm kiếm.',

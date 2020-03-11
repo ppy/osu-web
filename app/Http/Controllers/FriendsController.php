@@ -28,9 +28,6 @@ use Request;
 
 class FriendsController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'friends-';
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -67,7 +64,7 @@ class FriendsController extends Controller
             return $usersJson;
         }
 
-        return view('friends.index', compact('usersJson'));
+        return ext_view('friends.index', compact('usersJson'));
     }
 
     public function store()

@@ -26,7 +26,6 @@ use Request;
 class CartController extends Controller
 {
     protected $layout = 'master';
-    protected $actionPrefix = 'cart-';
 
     public function __construct()
     {
@@ -48,7 +47,7 @@ class CartController extends Controller
         $order = $this->userCart();
         $validationErrors = $order !== null ? (new OrderCheckout($order))->validate() : [];
 
-        return view('store.cart.show', compact('order', 'validationErrors'));
+        return ext_view('store.cart.show', compact('order', 'validationErrors'));
     }
 
     public function store()
@@ -57,7 +56,7 @@ class CartController extends Controller
         $error = $this->userCart()->updateItem(request()->input('item', []), $add);
 
         if ($error === null) {
-            return $add ? ujs_redirect(route('store.cart.show')) : js_view('layout.ujs-reload');
+            return $add ? ujs_redirect(route('store.cart.show')) : ext_view('layout.ujs-reload', [], 'js');
         } else {
             return error_popup($error);
         }

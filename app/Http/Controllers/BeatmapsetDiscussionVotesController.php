@@ -25,9 +25,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class BeatmapsetDiscussionVotesController extends Controller
 {
-    protected $section = 'beatmaps';
-    protected $actionPrefix = 'beatmapset_discussion_votes-';
-
     public function index()
     {
         $params = request();
@@ -51,6 +48,6 @@ class BeatmapsetDiscussionVotesController extends Controller
             ]
         );
 
-        return view('beatmapset_discussion_votes.index', compact('votes'));
+        return ext_view('beatmapset_discussion_votes.index', compact('votes'));
     }
 }

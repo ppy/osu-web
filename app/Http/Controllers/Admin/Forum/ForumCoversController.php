@@ -28,15 +28,13 @@ use Request;
 
 class ForumCoversController extends Controller
 {
-    protected $section = 'admin-forum';
-    protected $actionPrefix = 'forum-covers-';
     private $params = [];
 
     public function index()
     {
         $forums = Forum::with('cover')->get();
 
-        return view('admin.forum.forum_covers.index', compact('forums'));
+        return ext_view('admin.forum.forum_covers.index', compact('forums'));
     }
 
     public function store()

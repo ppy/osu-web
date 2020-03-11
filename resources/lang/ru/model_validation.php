@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Нельзя ответить на удалённый комментарий.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Сообщение',

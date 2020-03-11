@@ -26,8 +26,6 @@ use App\Models\Multiplayer\Room;
 
 class RoomsController extends BaseController
 {
-    protected $section = 'multiplayer';
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -111,14 +109,14 @@ class RoomsController extends BaseController
     public function show($roomId)
     {
         return json_item(
-            Room::where('id', $roomId)
-                ->with('host.country')
-                ->with('playlist.beatmap.beatmapset')
-                ->firstOrFail(),
+            Room::findOrFail($roomId)
+                ->load('host.country')
+                ->load('playlist.beatmap.beatmapset'),
             'Multiplayer\Room',
             [
                 'host.country',
                 'playlist.beatmap.beatmapset',
+                'recent_participants',
             ]
         );
     }
@@ -129,9 +127,15 @@ class RoomsController extends BaseController
             $room = (new Room)->startGame(auth()->user(), request()->all());
 
             return json_item(
-                $room,
+                $room
+                    ->load('host.country')
+                    ->load('playlist.beatmap.beatmapset'),
                 'Multiplayer\Room',
-                'playlist'
+                [
+                    'host.country',
+                    'playlist.beatmap.beatmapset',
+                    'recent_participants',
+                ]
             );
         } catch (InvariantException $e) {
             return error_popup($e->getMessage(), $e->getStatusCode());

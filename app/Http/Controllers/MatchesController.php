@@ -28,8 +28,6 @@ use App\Transformers\UserCompactTransformer;
 
 class MatchesController extends Controller
 {
-    protected $section = 'multiplayer';
-
     public function show($id)
     {
         $match = Match::findOrFail($id);
@@ -47,7 +45,7 @@ class MatchesController extends Controller
             new MatchTransformer
         );
 
-        return view('multiplayer.match', compact('matchJson', 'eventsJson'));
+        return ext_view('multiplayer.match', compact('matchJson', 'eventsJson'));
     }
 
     public function history($matchId)

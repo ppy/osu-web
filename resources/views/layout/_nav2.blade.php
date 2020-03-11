@@ -66,7 +66,7 @@
             </div>
         @endforeach
 
-        <div class="nav2__col nav2__col--menu js-react--quick-search">
+        <div class="nav2__col nav2__col--menu js-react--quick-search-button">
             <a
                 href="{{ route('search') }}"
                 class="
@@ -94,7 +94,7 @@
             <a
                 href="{{ route('support-the-game') }}"
                 class="nav-button nav-button--support"
-                title="{{ trans('layout.menu.home.supportTheGame') }}"
+                title="{{ trans('page_title.main.home_controller.support_the_game') }}"
             >
                 <span class="fas fa-heart"></span>
             </a>
@@ -149,13 +149,22 @@
         </div>
 
         @if (Auth::user() !== null)
-            <div class="nav2__col js-react--notification">
-                <div class="nav-button nav-button--stadium">
+            <div class="nav2__col">
+                <button
+                    class="nav-button nav-button--stadium js-click-menu js-react--notification-icon"
+                    data-click-menu-target="nav2-notification-widget"
+                >
                     <span class="notification-icon">
                         <i class="fas fa-inbox"></i>
                         <span class="notification-icon__count">...</span>
                     </span>
-                </div>
+                </button>
+                <div
+                    class="nav-click-popup js-click-menu js-react--notification-widget"
+                    data-click-menu-id="nav2-notification-widget"
+                    data-visibility="hidden"
+                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup']) }}"
+                ></div>
             </div>
         @endif
 

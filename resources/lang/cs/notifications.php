@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Všechna oznámení přečtena!',
     'mark_all_read' => 'Vymazat vše',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => 'vše',
+        'user' => 'profil',
+        'beatmapset' => 'beatmapy',
+        'forum_topic' => 'fórum',
+        'news_post' => 'novinky',
+        'build' => 'sestavení',
+        'channel' => 'chat',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -130,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nová medaile',
                 'user_achievement_unlock' => 'Odemčeno ":title"\'!',
+                'user_achievement_unlock_compact' => 'Odemčeno ":title"\'!',
             ],
         ],
     ],

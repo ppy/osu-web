@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => 'Fællesskab',
             'comments' => 'kommentarer',
+            'contests' => 'konkurrencer',
             'forum' => 'Forum',
             'livestream' => 'livestreams',
-        ],
-
-        'contests' => [
-            '_' => 'konkurrencer',
-            'index' => 'katalog',
         ],
 
         'error' => [
@@ -86,17 +82,22 @@ return [
             '_' => 'meddelelse',
         ],
 
+        'notifications' => [
+            '_' => 'notifikationer',
+            'index' => 'historik',
+        ],
+
         'rankings' => [
             '_' => 'rang',
         ],
 
         'store' => [
-            '_' => '',
-            'cart' => '',
-            'order' => '',
-            'orders' => '',
-            'product' => '',
-            'products' => '',
+            '_' => 'osu!store',
+            'cart' => 'indkøbskurv',
+            'order' => 'faktura',
+            'orders' => 'ordrehistorik',
+            'product' => 'produkt',
+            'products' => 'produkter',
         ],
 
         'tournaments' => [
@@ -128,7 +129,7 @@ return [
             'beatmapset-watches-index' => 'modding overvågningsliste',
             'changelog-build' => 'build',
             'changelog-index' => 'ændringsoversigt',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'osu! kontobekræftelse',
             'forum-topic-watches-index' => 'forum abonnementer',
             'friends-index' => 'venner',
             'getDownload' => 'download',
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => 'user modding opslag',
             'modding-history-votesGiven' => 'user modding votes givet',
             'modding-history-votesReceived' => 'user modding votes received',
+            'notifications-index' => 'notifikationshistorik',
             'oauth_login' => 'log ind for oauth',
             'oauth_request' => 'OAuth-autorisation',
             'settings' => 'Indstillinger',

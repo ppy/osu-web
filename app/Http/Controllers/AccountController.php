@@ -34,9 +34,6 @@ use Request;
 
 class AccountController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'account-';
-
     public function __construct()
     {
         $this->middleware('auth', ['except' => [
@@ -123,7 +120,7 @@ class AccountController extends Controller
 
         $notificationOptions = $user->notificationOptions->keyBy('name');
 
-        return view('accounts.edit', compact(
+        return ext_view('accounts.edit', compact(
             'authorizedClients',
             'blocks',
             'currentSessionId',
@@ -250,13 +247,13 @@ class AccountController extends Controller
         if ($state === null) {
             UserVerification::logAttempt('link', 'fail', 'incorrect_key');
 
-            return response()->view('accounts.verification_invalid')->setStatusCode(404);
+            return ext_view('accounts.verification_invalid', null, null, 404);
         }
 
         UserVerification::logAttempt('link', 'success');
         $state->markVerified();
 
-        return view('accounts.verification_completed');
+        return ext_view('accounts.verification_completed');
     }
 
     public function reissueCode()

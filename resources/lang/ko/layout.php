@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '커뮤니티',
             'comments' => '댓글',
+            'contests' => '콘테스트',
             'forum' => '포럼',
             'livestream' => '라이브 스트림',
-        ],
-
-        'contests' => [
-            '_' => '콘테스트',
-            'index' => '목록',
         ],
 
         'error' => [
@@ -86,6 +82,11 @@ return [
             '_' => '알림',
         ],
 
+        'notifications' => [
+            '_' => '알림',
+            'index' => '기록',
+        ],
+
         'rankings' => [
             '_' => '순위',
         ],
@@ -100,7 +101,7 @@ return [
         ],
 
         'tournaments' => [
-            '_' => '대회',
+            '_' => '토너먼트',
             'index' => '목록',
         ],
 
@@ -193,9 +194,9 @@ return [
             'comments-show' => '댓글',
             'contests' => '콘테스트',
             'profile' => '프로필',
-            'tournaments' => '대회',
-            'tournaments-index' => '대회',
-            'tournaments-show' => '대회 정보',
+            'tournaments' => '토너먼트',
+            'tournaments-index' => '토너먼트',
+            'tournaments-show' => '토너먼트 정보',
             'forum-topics-create' => '포럼',
             'forum-topics-show' => '포럼',
             'forum-forums-index' => '포럼',
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => '유저 모딩 글',
             'modding-history-votesGiven' => '유저가 준 모딩 투표',
             'modding-history-votesReceived' => '유저가 받은 모딩 투표',
+            'notifications-index' => '알림 기록',
             'oauth_login' => 'OAuth로 로그인',
             'oauth_request' => 'OAuth 인증',
             'settings' => '설정',
@@ -352,7 +354,7 @@ return [
 
         'register' => [
             'download' => '다운로드',
-            'info' => '계정이 필요합니다, 하나 만들어보시는 건 어때요?',
+            'info' => 'osu!를 다운로드하여 계정을 만들어보세요.',
             'title' => "아직 계정이 없으신가요?",
         ],
     ],

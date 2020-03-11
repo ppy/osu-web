@@ -17,7 +17,7 @@
 --}}
 @extends('master', [
     'blank' => true,
-    'title' => trans('client_verifications.completed.title'),
+    'titlePrepend' => trans('client_verifications.completed.title'),
 ])
 
 @section('content')

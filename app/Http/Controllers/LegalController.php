@@ -24,9 +24,6 @@ use App\Models\Wiki;
 
 class LegalController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'legal-';
-
     public function show($page)
     {
         switch ($page) {
@@ -46,6 +43,6 @@ class LegalController extends Controller
         $locale = $this->locale();
         $page = Wiki\Page::lookupForController($path, $locale);
 
-        return view('wiki.show', compact('locale', 'page'));
+        return ext_view('wiki.show', compact('locale', 'page'));
     }
 }

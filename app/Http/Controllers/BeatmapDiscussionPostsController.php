@@ -35,8 +35,6 @@ use Request;
 
 class BeatmapDiscussionPostsController extends Controller
 {
-    protected $section = 'beatmaps';
-
     public function __construct()
     {
         $this->middleware('auth', ['except' => 'index']);
@@ -89,7 +87,7 @@ class BeatmapDiscussionPostsController extends Controller
             ]
         );
 
-        return view('beatmap_discussion_posts.index', compact('posts'));
+        return ext_view('beatmap_discussion_posts.index', compact('posts'));
     }
 
     public function restore($id)

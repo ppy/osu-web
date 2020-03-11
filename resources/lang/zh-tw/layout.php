@@ -28,7 +28,7 @@ return [
             '_' => '管理員',
             'beatmapset' => '圖譜',
             'beatmapset_covers' => '圖譜封面',
-            'contest' => '',
+            'contest' => '比賽',
             'contests' => '',
             'root' => '',
             'store_orders' => '商店管理',
@@ -55,13 +55,9 @@ return [
         'community' => [
             '_' => '社群',
             'comments' => '評論',
+            'contests' => '比賽',
             'forum' => '論壇',
             'livestream' => '直播',
-        ],
-
-        'contests' => [
-            '_' => '評選',
-            'index' => '列表',
         ],
 
         'error' => [
@@ -70,7 +66,7 @@ return [
 
         'help' => [
             '_' => 'wiki',
-            'index' => '',
+            'index' => '主頁',
         ],
 
         'home' => [
@@ -83,7 +79,12 @@ return [
         ],
 
         'notice' => [
-            '_' => '',
+            '_' => '通知',
+        ],
+
+        'notifications' => [
+            '_' => '通知',
+            'index' => '紀錄',
         ],
 
         'rankings' => [
@@ -93,7 +94,7 @@ return [
         'store' => [
             '_' => 'osu! 商店',
             'cart' => '購物車',
-            'order' => '',
+            'order' => '發票',
             'orders' => '訂單記錄',
             'product' => '商品',
             'products' => '商品',
@@ -128,7 +129,7 @@ return [
             'beatmapset-watches-index' => '摸圖',
             'changelog-build' => '版本',
             'changelog-index' => '更新日誌',
-            'client_verifications-create' => '',
+            'client_verifications-create' => 'osu!客戶端驗證',
             'forum-topic-watches-index' => '訂閱',
             'friends-index' => '好友',
             'getDownload' => '下載',
@@ -232,6 +233,7 @@ return [
             'modding-history-posts' => '使用者摸圖貼文',
             'modding-history-votesGiven' => '使用者摸圖投票數',
             'modding-history-votesReceived' => '使用者摸圖得票数',
+            'notifications-index' => '通知記錄',
             'oauth_login' => '以 OAuth 登入',
             'oauth_request' => 'OAuth 授權',
             'settings' => '設定',
@@ -311,7 +313,7 @@ return [
         ],
         '401' => [
             'error' => "沒有權限",
-            'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面（說不定因為沒登錄）',
+            'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面（說不定因為沒登入）',
         ],
         '405' => [
             'error' => '無法找到網頁',
@@ -339,9 +341,9 @@ return [
 
     'popup_login' => [
         'login' => [
-            'forgot' => "我忘記了我的登錄信息",
+            'forgot' => "忘記登入資訊？",
             'password' => '密碼',
-            'title' => '登錄以繼續',
+            'title' => '登入以繼續',
             'username' => '使用者名稱',
 
             'error' => [

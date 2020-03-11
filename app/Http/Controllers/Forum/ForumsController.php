@@ -29,13 +29,9 @@ use Request;
 
 class ForumsController extends Controller
 {
-    protected $section = 'community';
-
     public function __construct()
     {
         parent::__construct();
-
-        view()->share('currentAction', 'forum-forums-'.current_action());
     }
 
     public function index()
@@ -52,7 +48,7 @@ class ForumsController extends Controller
             return priv_check('ForumView', $forum)->can();
         });
 
-        return view('forum.forums.index', compact('forums', 'lastTopics'));
+        return ext_view('forum.forums.index', compact('forums', 'lastTopics'));
     }
 
     public function markAsRead()
@@ -69,7 +65,7 @@ class ForumsController extends Controller
             }
         }
 
-        return js_view('layout.ujs-reload');
+        return ext_view('layout.ujs-reload', [], 'js');
     }
 
     public function search()
@@ -120,7 +116,7 @@ class ForumsController extends Controller
 
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 
-        return view('forum.forums.show', compact(
+        return ext_view('forum.forums.show', compact(
             'cover',
             'forum',
             'lastTopics',

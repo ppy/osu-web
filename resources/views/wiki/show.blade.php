@@ -18,7 +18,6 @@
 @php
     $url = wiki_url($page->path, $locale);
     $title = $page->title();
-    $subSection = $title;
 
     $links = [
         [
@@ -30,7 +29,6 @@
     $parentTitle = presence($page->subtitle());
     if ($parentTitle !== null) {
         $link = ['title' => $parentTitle];
-        $subSection = "{$parentTitle} / {$subSection}";
         if ($page->hasParent()) {
             $link['url'] = wiki_url($page->parentPath(), $locale);
         }
@@ -41,7 +39,6 @@
 @endphp
 
 @extends('master', [
-    'title' => null,
     'titlePrepend' => $page->title(true),
 ])
 
@@ -49,8 +46,6 @@
     @component('layout._page_header_v4', ['params' => [
         'links' => $links,
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.help._'),
-        'subSection' => $subSection,
         'theme' => 'help',
     ]])
         @slot('navAppend')
@@ -60,22 +55,20 @@
 
 
     <div class="osu-page osu-page--wiki">
-        @include('wiki._notice')
-
         <div class="wiki-page">
             <div class="hidden-xs wiki-page__toc u-fancy-scrollbar">
-                <div class="wiki-toc">
-                    <h2 class="wiki-toc__title">
-                        {{ trans('wiki.show.toc') }}
-                    </h2>
+                <h2 class="wiki-page__toc-title">
+                    {{ trans('wiki.show.toc') }}
+                </h2>
 
-                    @if ($page->get() !== null)
-                        @include('wiki._toc')
-                    @endif
-                </div>
+                @if ($page->get() !== null)
+                    @include('wiki._toc')
+                @endif
             </div>
 
             <div class="wiki-page__content">
+                @include('wiki._notice')
+
                 @if ($page->get() !== null)
                     {!! $page->get()['output'] !!}
                 @else

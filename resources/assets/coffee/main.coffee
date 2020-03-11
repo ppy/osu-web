@@ -48,7 +48,7 @@ $(document).on 'turbolinks:load', ->
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
-@clickMenu ?= new ClickMenu
+@clickMenu ?= new _exported.ClickMenu
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
 @formError ?= new FormError
@@ -65,7 +65,6 @@ $(document).on 'turbolinks:load', ->
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
 @menu ?= new Menu
-@nav2 ?= new Nav2
 @navButton ?= new NavButton
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
@@ -80,11 +79,12 @@ $(document).on 'turbolinks:load', ->
 @userLogin ?= new UserLogin
 @userVerification ?= new UserVerification
 
-@osuEnchant ?= new _exported.Enchant(@, @turbolinksReload)
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply({ @forum, @forumPostPreview, @stickyFooter })
+@nav2 ?= new Nav2(@clickMenu)
+@osuEnchant ?= new _exported.Enchant(@, @turbolinksReload)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
 _exported.WindowVHPatcher.init(window)
 

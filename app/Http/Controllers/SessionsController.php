@@ -27,8 +27,6 @@ use Request;
 
 class SessionsController extends Controller
 {
-    protected $section = 'user';
-
     public function __construct()
     {
         $this->middleware('guest', ['only' => [
@@ -72,8 +70,8 @@ class SessionsController extends Controller
             $this->login($user, $remember);
 
             return [
-                'header' => render_to_string('layout._header_user'),
-                'header_popup' => render_to_string('layout._popup_user'),
+                'header' => view('layout._header_user')->render(),
+                'header_popup' => view('layout._popup_user')->render(),
                 'user' => Auth::user()->defaultJson(),
             ];
         } else {

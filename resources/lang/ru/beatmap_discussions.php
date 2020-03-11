@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'удалено',
+        'none_found' => '',
         'title' => 'Обсуждение карты',
 
         'form' => [
@@ -80,6 +81,13 @@ return [
     'review' => [
         'go_to_parent' => 'Посмотреть отзыв',
         'go_to_child' => 'Посмотреть обсуждение',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => 'отзыв должен содержать как минимум :count проблему|отзыв должен содержать как минимум :count проблемы|отзыв должен содержать как минимум :count проблем',
+            'missing_text' => '',
+            'too_many_blocks' => 'отзывы могут содержать только :count параграф/проблему|отзывы могут содержать только до :count параграфов/проблем',
+        ],
     ],
 
     'system' => [

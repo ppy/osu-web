@@ -30,9 +30,6 @@ use Session;
 
 class PasswordResetController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'password-reset-';
-
     public function __construct()
     {
         parent::__construct();
@@ -52,7 +49,7 @@ class PasswordResetController extends Controller
     {
         $isStarted = Session::exists('password_reset');
 
-        return view('password_reset.index', compact('isStarted'));
+        return ext_view('password_reset.index', compact('isStarted'));
     }
 
     public function create()

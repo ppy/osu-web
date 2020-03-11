@@ -19,8 +19,6 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'section' => trans('layout.header.home._'),
-        'subSection' => trans('layout.header.home.password_reset'),
         'theme' => 'password-reset',
     ]])
     <div class="osu-page osu-page--generic-compact">

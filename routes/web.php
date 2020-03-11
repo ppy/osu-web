@@ -76,6 +76,7 @@ Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
     Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
         Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
     });
+    Route::post('beatmapsets/discussions/review', 'BeatmapDiscussionsController@review')->name('beatmap-discussions.review');
 
     Route::group(['namespace' => 'Beatmapsets'], function () {
         Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
@@ -251,7 +252,6 @@ Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
 Route::group(['as' => 'users.modding.', 'prefix' => 'users/{user}/modding', 'namespace' => 'Users'], function () {
     Route::get('/', 'ModdingHistoryController@index')->name('index');
     Route::get('/events', 'ModdingHistoryController@events')->name('events');
-    Route::get('/discussions', 'ModdingHistoryController@discussions')->name('discussions');
     Route::get('/posts', 'ModdingHistoryController@posts')->name('posts');
     Route::get('/votes-given', 'ModdingHistoryController@votesGiven')->name('votes-given');
     Route::get('/votes-received', 'ModdingHistoryController@votesReceived')->name('votes-received');
@@ -264,6 +264,7 @@ Route::group(['prefix' => 'help'], function () {
     // help section
     Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
+    Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
     route_redirect('/', 'wiki.show');
 });
 
@@ -328,6 +329,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
             });
+            Route::post('discussions/review', 'BeatmapDiscussionsController@review')->name('beatmap-discussions.review');
         });
 
         Route::apiResource('comments', 'CommentsController');

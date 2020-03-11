@@ -34,16 +34,10 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
-            'approved' => 'approved on ',
             'favourite' => 'Favourite this beatmapset',
             'logged-out' => 'You need to sign in before downloading any beatmaps!',
-            'loved' => 'loved on ',
             'mapped_by' => 'mapped by :mapper',
-            'qualified' => 'qualified on ',
-            'ranked' => 'ranked on ',
-            'submitted' => 'submitted on ',
             'unfavourite' => 'Unfavourite this beatmapset',
-            'updated' => 'last updated on ',
             'updated_timeago' => 'last updated :timeago',
 
             'download' => [
@@ -57,6 +51,15 @@ return [
                 'bottom' => 'to access more features',
                 'top' => 'Sign In',
             ],
+        ],
+
+        'details_date' => [
+            'approved' => 'approved :timeago',
+            'loved' => 'loved :timeago',
+            'qualified' => 'qualified :timeago',
+            'ranked' => 'ranked :timeago',
+            'submitted' => 'submitted :timeago',
+            'updated' => 'last updated :timeago',
         ],
 
         'favourites' => [

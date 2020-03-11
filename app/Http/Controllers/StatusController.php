@@ -22,8 +22,6 @@ namespace App\Http\Controllers;
 
 class StatusController extends Controller
 {
-    protected $section = 'status';
-
     public function getMain()
     {
         $data = [
@@ -192,8 +190,9 @@ class StatusController extends Controller
             ],
         ];
 
-        return view('status.main')
-        ->with('title', 'Status')
-        ->with('data', $data);
+        return ext_view('status.main', [
+            'title' => 'Status',
+            'data' => $data,
+        ]);
     }
 }

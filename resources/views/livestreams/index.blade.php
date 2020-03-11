@@ -18,10 +18,7 @@
 @extends('master')
 
 @section('content')
-    @include('layout._page_header_v4', ['params' => [
-        'section' => trans('layout.header.community._'),
-        'subSection' => trans('layout.header.community.livestream'),
-    ]])
+    @include('layout._page_header_v4')
 
     <div class="osu-page osu-page--description">
         {!! trans('livestreams.top-headers.description', [
