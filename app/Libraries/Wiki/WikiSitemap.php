@@ -34,6 +34,7 @@ class WikiSitemap
     {
         return (new BasicSearch(Page::esIndexName(), 'wiki_sitemap'))
             ->query(['exists' => ['field' => 'page']])
+            ->sort(new Sort('path.keyword', 'asc'))
             ->sort(new Sort('_id', 'asc'));
     }
 
@@ -76,7 +77,7 @@ class WikiSitemap
 
     public function generate()
     {
-        $cursor = [''];
+        $cursor = ['', ''];
         while ($cursor !== null) {
             $search = static::allPagesSearch()->searchAfter(array_values($cursor));
             $response = $search->response();
