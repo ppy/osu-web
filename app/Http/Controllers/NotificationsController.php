@@ -120,14 +120,7 @@ class NotificationsController extends Controller
      */
     public function markRead()
     {
-        // TODO: params validation
-        $params = get_params(request()->all(), null, [
-            'category:string',
-            'id:int',
-            'notifications:any',
-            'object_id:int',
-            'object_type',
-        ]);
+        $params = request()->all();
 
         if (isset($params['notifications'])) {
             UserNotification::markAsReadByIds(auth()->user(), $params['notifications']);

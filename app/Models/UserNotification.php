@@ -30,10 +30,21 @@ class UserNotification extends Model
         'is_read' => 'boolean',
     ];
 
-    public static function markAsReadByIds(User $user, $identities)
+    public static function markAsReadByIds(User $user, array $params)
     {
-        // TODO: validate schema
-        $ids = collect($identities)->pluck('id');
+        $ids = [];
+        $identities = array_map(function ($param) use (&$ids) {
+            $identity = get_params($param, null, [
+                'category',
+                'id:int',
+                'object_id:int',
+                'object_type',
+            ]);
+
+            $ids[] = $identity['id'] ?? null;
+
+            return $identity;
+        }, $params);
 
         $now = now();
         $count = $user
@@ -47,8 +58,14 @@ class UserNotification extends Model
         }
     }
 
-    public static function markAsReadByNotificationIdentifier(User $user, $params)
+    public static function markAsReadByNotificationIdentifier(User $user, array $params)
     {
+        $params = get_params($params, null, [
+            'category:string',
+            'object_id:int',
+            'object_type:string',
+        ]);
+
         $category = presence($params['category'] ?? null);
         $objectId = $params['object_id'] ?? null;
         $objectType = presence($params['object_type'] ?? null);
