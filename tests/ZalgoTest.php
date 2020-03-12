@@ -23,15 +23,11 @@ namespace Tests;
 class ZalgoTest extends TestCase
 {
     /**
-     * This does not seem like the best idea.
-     *
-     * @dataProvider examples
+     * @dataProvider zalgoExamples
      */
-    public function testUnzalgo($expected, $level)
+    public function testCombination($text)
     {
-        $text = 't́̌͌̌͘e̎̀́͐̅s̐̑̈͋͡ť̎̅̌̅i͛̋̋͋̽ñ̈́̌̽̿g̈́̆͋͡͞';
-
-        $this->assertSame(unzalgo($text, $level), $expected);
+        $this->assertSame(unzalgo($text), $text);
     }
 
     // Quick test that unzalgo isn't eating the wrong characters.
@@ -43,7 +39,28 @@ class ZalgoTest extends TestCase
         }
     }
 
-    public function examples()
+    /**
+     * This does not seem like the best idea.
+     *
+     * @dataProvider zalgoExamples
+     */
+    public function testUnzalgo($expected, $level)
+    {
+        $text = 't́̌͌̌͘e̎̀́͐̅s̐̑̈͋͡ť̎̅̌̅i͛̋̋͋̽ñ̈́̌̽̿g̈́̆͋͡͞';
+
+        $this->assertSame(unzalgo($text, $level), $expected);
+    }
+
+    public function combinationExamples()
+    {
+        return [
+            ['👩🏻‍⚕️'],
+            ['再⃝'],
+            ['N⃝H⃝K⃝'],
+        ];
+    }
+
+    public function zalgoExamples()
     {
         return [
             ['testing', 0],
