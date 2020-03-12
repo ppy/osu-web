@@ -60,7 +60,7 @@
         <div class="osu-md">
             <ul class="osu-md__list">
                 @foreach ($sitemap as $key => $value)
-                    @include('wiki._sitemap_section', ['parent' => $key, 'sitemap' => $value, 'titles' => $titles])
+                    @include('wiki._sitemap_section', ['section' => $key, 'sitemap' => $value, 'titles' => $titles])
                 @endforeach
             </ul>
         </div>

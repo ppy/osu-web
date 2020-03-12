@@ -17,21 +17,20 @@
 --}}
 
 @php
-    $page = is_array($sitemap) ? $parent : $sitemap;
-    $title = $titles[app()->getLocale().'/'.$page] ?? $titles[config('app.fallback_locale').'/'.$page] ?? null;
+    $title = $titles[app()->getLocale().'/'.$section] ?? $titles[config('app.fallback_locale').'/'.$section] ?? null;
 @endphp
 
 <li class="osu-md__list-item">
     @if (isset($title))
-        <a class="osu-md__link" href="{{ route('wiki.show', compact('page')) }}">{{ $title }}</a>
+        <a class="osu-md__link" href="{{ route('wiki.show', ['page' => $section]) }}">{{ $title }}</a>
     @else
-        {{ $page }}
+        {{ $section }}
     @endif
 
     @if (is_array($sitemap))
         <ul class="osu-md__list">
             @foreach ($sitemap as $key => $value)
-                @include('wiki._sitemap_section', ['parent' => "{$parent}/{$key}", 'sitemap' => $value, 'titles' => $titles])
+                @include('wiki._sitemap_section', ['section' => "{$section}/{$key}", 'sitemap' => $value, 'titles' => $titles])
             @endforeach
         </ul>
     @endif
