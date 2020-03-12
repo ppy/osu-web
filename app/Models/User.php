@@ -627,8 +627,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function setUserTwitterAttribute($value)
     {
-        // twitter is alphanumeric + underscore only.
-        $this->attributes['user_twitter'] = unzalgo($value, 0);
+        $this->attributes['user_twitter'] = ltrim($value, '@');
     }
 
     public function getUserLastfmAttribute($value)
@@ -1874,6 +1873,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             // - ends with a # and 4-digit discriminator
             if (!preg_match('/^[^@#:]{2,32}#\d{4}$/i', $this->user_discord)) {
                 $this->validationErrors()->add('user_discord', '.invalid_discord');
+            }
+        }
+
+        if ($this->isDirty('user_twitter') && present($this->user_twitter)) {
+            // https://help.twitter.com/en/managing-your-account/twitter-username-rules
+            if (!preg_match('/^[a-zA-Z0-9_]{1,15}$/i', $this->user_twitter)) {
+                $this->validationErrors()->add('user_twitter', '.invalid_twitter');
             }
         }
 
