@@ -16,6 +16,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @if ($userCanModerate)
+    @php
+        $actionInt = $topic->isLocked() ? 0 : 1;
+    @endphp
     <button
         type="button"
         class="
@@ -26,13 +29,14 @@
             {{ $topic->isLocked() ? 'btn-circle--activated' : '' }}
         "
         data-topic-id="{{ $topic->topic_id }}"
-        title="{{ trans('forum.topics.lock.to_'.(int) !$topic->isLocked()) }}"
+        title="{{ trans("forum.topics.lock.to_{$actionInt}") }}"
         data-remote="1"
         data-url="{{ route('forum.topics.lock', [
             $topic,
-            'lock' => !$topic->isLocked(),
+            'lock' => $actionInt,
         ]) }}"
         data-method="post"
+        data-confirm="{{ trans("forum.topics.lock.to_{$actionInt}_confirm") }}"
     >
         <span class="btn-circle__content">
             <i class="fas fa-lock"></i>
