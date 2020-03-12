@@ -835,17 +835,21 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             if ($this->user_id === $user->getKey()) {
                 $message = 'owner';
             } else {
-                $hyped = $this
-                    ->beatmapDiscussions()
-                    ->withoutTrashed()
-                    ->ofType('hype')
-                    ->where('user_id', '=', $user->getKey())
-                    ->exists();
+                if ($this->discussion_locked) {
+                    $message = 'discussion_locked';
+                } else {
+                    $hyped = $this
+                        ->beatmapDiscussions()
+                        ->withoutTrashed()
+                        ->ofType('hype')
+                        ->where('user_id', '=', $user->getKey())
+                        ->exists();
 
-                if ($hyped) {
-                    $message = 'hyped';
-                } elseif ($user->remainingHype() <= 0) {
-                    $message = 'limit_exceeded';
+                    if ($hyped) {
+                        $message = 'hyped';
+                    } elseif ($user->remainingHype() <= 0) {
+                        $message = 'limit_exceeded';
+                    }
                 }
             }
         }
