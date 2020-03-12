@@ -262,6 +262,7 @@ Route::resource('users', 'UsersController', ['only' => 'store']);
 
 Route::group(['prefix' => 'help'], function () {
     // help section
+    Route::get('wiki/sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
     Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
     Route::get('wiki-suggestions', 'WikiController@suggestions')->name('wiki-suggestions');
