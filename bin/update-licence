@@ -90,7 +90,19 @@ _fix() {
             continue
         fi
 
-        test "$NO_UPDATE" = 1 && continue
+        if [ "$NO_UPDATE" = 1 ]; then
+            echo "! $file"
+
+            if [ "$QUICK_FAIL" = 1 ]; then
+                echo "Found file with outdated licence header."
+                echo "QUICK_FAIL (-f) and NO_UPDATE (-n) option enabled, stopping check."
+                echo "Run without -f and -n to update headers."
+                exit 1
+            fi
+
+            continue
+        fi
+
 
         lines=$(cat "$file" | wc -l)
         content=$(tail -n $(($lines - $old_header_lines)) "$file")
