@@ -99,6 +99,7 @@ class BeatmapsetDiscussionReview
             }
 
             // generate the post body now that the issues have been created
+            $i = 0;
             foreach ($document as $block) {
                 switch ($block['type']) {
                     case 'paragraph':
@@ -111,7 +112,7 @@ class BeatmapsetDiscussionReview
                     case 'embed':
                         array_push($output, [
                             'type' => 'embed',
-                            'discussion_id' => array_shift($childIds),
+                            'discussion_id' => $childIds[$i++],
                         ]);
                         break;
                 }
@@ -174,7 +175,6 @@ class BeatmapsetDiscussionReview
                     case 'embed':
                         // if there's a discussion_id, this is an existing embed
                         if (isset($block['discussion_id'])) {
-                            // TODO: ensure discussion is valid for linking (i.e. already exists and is linked to this review)
                             $childIds[] = $block['discussion_id'];
                             continue;
                         }
@@ -222,7 +222,14 @@ class BeatmapsetDiscussionReview
                 throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
             }
 
+            // ensure all referenced embeds belong to this discussion
+            $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', '<>', $discussion->getKey())->count();
+            if ($externalEmbeds > 0) {
+                throw new InvariantException(trans('beatmap_discussions.review.validation.external_references'));
+            }
+
             // generate the post body now that the issues have been created
+            $i = 0;
             foreach ($document as $block) {
                 switch ($block['type']) {
                     case 'paragraph':
@@ -235,7 +242,7 @@ class BeatmapsetDiscussionReview
                     case 'embed':
                         array_push($output, [
                             'type' => 'embed',
-                            'discussion_id' => array_shift($childIds),
+                            'discussion_id' => $childIds[$i++],
                         ]);
                         break;
                 }
@@ -245,7 +252,7 @@ class BeatmapsetDiscussionReview
             $post['message'] = json_encode($output);
             $post->saveOrExplode();
 
-            // unlink any children that were removed from the review
+            // unlink any embeds that were removed from the review
             BeatmapDiscussion::where('parent_id', $discussion->getKey())
                 ->whereNotIn('id', $childIds)
                 ->update(['parent_id' => null]);

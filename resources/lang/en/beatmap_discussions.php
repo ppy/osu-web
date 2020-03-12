@@ -82,6 +82,7 @@ return [
         'go_to_parent' => 'View Review Post',
         'go_to_child' => 'View Discussion',
         'validation' => [
+            'external_references' => 'review contains references to issues that don\'t belong to this review',
             'invalid_block_type' => 'invalid block type',
             'invalid_document' => 'invalid review',
             'minimum_issues' => 'review must contain a minimum of :count issue|review must contain a minimum of :count issues',
