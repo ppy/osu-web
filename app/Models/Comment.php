@@ -108,6 +108,11 @@ class Comment extends Model
         return $this->hasMany(static::class, 'parent_id');
     }
 
+    public function setMessageAttribute($value)
+    {
+        return $this->attributes['message'] = unzalgo($value, 2);
+    }
+
     public function votes()
     {
         return $this->hasMany(CommentVote::class);
