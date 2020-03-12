@@ -143,7 +143,7 @@ class BeatmapsetDiscussionReview
         }
     }
 
-    // TODO: combine with create() somehow?
+    // TODO: combine with create()?
     public static function update(BeatmapDiscussionPost $post, BeatmapDiscussion $discussion, array $document) {
         $user = auth()->user(); // TODO: move?
         if (!$document || !is_array($document) || empty($document)) {
@@ -161,32 +161,32 @@ class BeatmapsetDiscussionReview
             $blockCount = 0;
 
             foreach ($document as $block) {
-                if (!isset($block->type)) {
+                if (!isset($block['type'])) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
                 }
 
-                $message = get_string($block->text ?? null);
+                $message = get_string($block['text'] ?? null);
                 if ($message === null) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
                 }
 
-                switch ($block->type) {
+                switch ($block['type']) {
                     case 'embed':
                         // if there's a discussion_id, this is an existing embed
-                        if (isset($block->discussion_id)) {
+                        if (isset($block['discussion_id'])) {
                             // TODO: ensure discussion is valid for linking (i.e. already exists and is linked to this review)
-                            $childIds[] = $block->discussion_id;
+                            $childIds[] = $block['discussion_id'];
                             continue;
                         }
 
                         // otherwise, create new discussion
-                        $beatmapId = $block->beatmap_id ?? null;
+                        $beatmapId = $block['beatmap_id'] ?? null;
                         $newDiscussion = new BeatmapDiscussion([
                             'beatmapset_id' => $beatmapset->getKey(),
                             'user_id' => $user->getKey(),
                             'resolved' => false,
-                            'message_type' => $block->discussion_type,
-                            'timestamp' => $block->timestamp ?? null,
+                            'message_type' => $block['discussion_type'],
+                            'timestamp' => $block['timestamp'] ?? null,
                             'beatmap_id' => $beatmapId,
                         ]);
                         $newDiscussion->saveOrExplode();
@@ -224,11 +224,11 @@ class BeatmapsetDiscussionReview
 
             // generate the post body now that the issues have been created
             foreach ($document as $block) {
-                switch ($block->type) {
+                switch ($block['type']) {
                     case 'paragraph':
                         array_push($output, [
                             'type' => 'paragraph',
-                            'text' => $block->text,
+                            'text' => $block['text'],
                         ]);
                         break;
 

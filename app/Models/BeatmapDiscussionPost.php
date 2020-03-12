@@ -387,9 +387,14 @@ class BeatmapDiscussionPost extends Model
 
     public function update(array $attributes = [], array $options = [])
     {
-        if ($this->beatmapDiscussion->message_type === 'review') {
-            // do review-specific stuff here
-            return BeatmapsetDiscussionReview::update($this, $this->beatmapDiscussion, json_decode($attributes['message']));
+        if ($this->beatmapDiscussion->message_type === 'review' && $this->isFirstPost()) {
+            // handle reviews (but not replies to the reviews)
+            try {
+                $document = json_decode($attributes['message'], true);
+            } catch (\Exception $e) {
+                return false;
+            }
+            return BeatmapsetDiscussionReview::update($this, $this->beatmapDiscussion, $document);
         } else {
             return parent::update($attributes, $options);
         }

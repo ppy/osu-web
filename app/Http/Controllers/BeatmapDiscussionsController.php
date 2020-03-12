@@ -175,7 +175,7 @@ class BeatmapDiscussionsController extends Controller
         return $discussion->beatmapset->defaultDiscussionJson();
     }
 
-    public function review()
+    public function review($beatmapsetId)
     {
         // TODO: remove this when reviews are released
         if (!config('osu.beatmapset.discussion_review_enabled')) {
@@ -184,15 +184,12 @@ class BeatmapDiscussionsController extends Controller
 
         priv_check('BeatmapsetDiscussionReviewStore')->ensureCan();
 
-        $request = request()->all();
-        $beatmapsetId = $request['beatmapset_id'] ?? null;
-        $document = $request['document'] ?? [];
-
         $beatmapset = Beatmapset
             ::where('discussion_enabled', true)
             ->findOrFail($beatmapsetId);
 
         try {
+            $document = json_decode(request()->all()['document'] ?? '[]', true);
             BeatmapsetDiscussionReview::create($beatmapset, $document, Auth::user());
         } catch (\Exception $e) {
             return error_popup($e->getMessage(), 422);

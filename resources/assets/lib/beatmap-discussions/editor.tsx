@@ -181,10 +181,9 @@ export default class Editor extends React.Component<Props, any> {
   }
 
   post = () => {
-    $.ajax(laroute.route('beatmap-discussions.review'),
+    $.ajax(laroute.route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}),
       {
         data: {
-          beatmapset_id: this.props.beatmapset.id,
           document: this.serialize(),
         },
         method: 'POST',

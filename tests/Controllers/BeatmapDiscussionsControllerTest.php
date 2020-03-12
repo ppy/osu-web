@@ -191,9 +191,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         $this
             ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()), [
-                'document' => []
-            ])
+            ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()))
             ->assertStatus(422);
     }
 
@@ -207,24 +205,27 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
         $issueText = self::$faker->sentence();
 
+        $document = json_encode(
+            [
+                [
+                    'type' => 'embed',
+                    'discussion_type' => 'problem',
+                    'text' => $timestampedIssueText,
+                    'timestamp' => true,
+                    'beatmap_id' => $this->beatmapset->beatmaps->first()->getKey(),
+                ],
+                [
+                    'type' => 'embed',
+                    'discussion_type' => 'problem',
+                    'text' => $issueText,
+                ],
+            ]
+        );
+
         $this
             ->actingAsVerified($this->user)
             ->post(route('beatmapsets.discussion.review', $this->beatmapset->getKey()), [
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'document' => [
-                    [
-                        'type' => 'embed',
-                        'discussion_type' => 'problem',
-                        'text' => $timestampedIssueText,
-                        'timestamp' => true,
-                        'beatmap_id' => $this->beatmapset->beatmaps->first()->getKey(),
-                    ],
-                    [
-                        'type' => 'embed',
-                        'discussion_type' => 'problem',
-                        'text' => $issueText,
-                    ],
-                ],
+                'document' => $document,
             ])
             ->assertSuccessful()
             ->assertJsonFragment(
