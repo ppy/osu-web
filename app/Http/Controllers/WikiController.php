@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Libraries\OsuWiki;
 use App\Libraries\Search\WikiSuggestions;
 use App\Libraries\Search\WikiSuggestionsRequestParams;
+use App\Libraries\Wiki\WikiSitemap;
 use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
 use Request;
@@ -59,6 +60,11 @@ class WikiController extends Controller
         return ext_view($page->template(), compact('page', 'locale'), null, $status ?? null);
     }
 
+    public function sitemap()
+    {
+        return ext_view('wiki.sitemap', WikiSitemap::get());
+    }
+
     public function suggestions()
     {
         $search = new WikiSuggestions(new WikiSuggestionsRequestParams(request()->all()));
@@ -79,7 +85,11 @@ class WikiController extends Controller
     {
         priv_check('WikiPageRefresh')->ensureCan();
 
-        (new Wiki\Page($path, $this->locale()))->sync(true);
+        if (strtolower($path) === 'sitemap') {
+            WikiSitemap::expire();
+        } else {
+            (new Wiki\Page($path, $this->locale()))->sync(true);
+        }
 
         return ujs_redirect(Request::getUri());
     }

@@ -43,6 +43,7 @@ return [
 
         'help' => [
             'index' => 'index',
+            'sitemap' => 'Sitemap',
         ],
 
         'store' => [
