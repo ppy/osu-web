@@ -23,10 +23,14 @@ namespace Tests;
 class ZalgoTest extends TestCase
 {
     /**
+     * This does not seem like the best idea.
+     *
      * @dataProvider examples
      */
-    public function testUnzalgo($text, $expected, $level)
+    public function testUnzalgo($expected, $level)
     {
+        $text = 't́̌͌̌͘e̎̀́͐̅s̐̑̈͋͡ť̎̅̌̅i͛̋̋͋̽ñ̈́̌̽̿g̈́̆͋͡͞';
+
         $this->assertSame(unzalgo($text, $level), $expected);
     }
 
@@ -39,13 +43,12 @@ class ZalgoTest extends TestCase
         }
     }
 
-    // THis does not seem like the best idea.
     public function examples()
     {
         return [
-            ['t̡̡̟̮̥̗̳͎͚́̌͌̌͒͘ę̳̥͙̥̪̣̎̀́͐̅̔̀̐͒̉ş̷̠̖̗̼̞̪̼̐̑̈͋̌͘͟͡͡ť̮̫̬̘̥̻͈̎̅̌̅̅̊̎i̶̩͔̝͚͕̣̘̪̫͛̋̋͋̽͜ñ̹̺̩̝̮̭̞͉̜̈́̌̽̿̔̌͜g̞̣̻̤͇̈́̆͋̈́͡͞', 'testing', 0],
-            ['t̡̡̟̮̥̗̳͎͚́̌͌̌͒͘ę̳̥͙̥̪̣̎̀́͐̅̔̀̐͒̉ş̷̠̖̗̼̞̪̼̐̑̈͋̌͘͟͡͡ť̮̫̬̘̥̻͈̎̅̌̅̅̊̎i̶̩͔̝͚͕̣̘̪̫͛̋̋͋̽͜ñ̹̺̩̝̮̭̞͉̜̈́̌̽̿̔̌͜g̞̣̻̤͇̈́̆͋̈́͡͞', 't͘e̎s̐ťi͛ñg̈́', 1],
-            ['t̡̡̟̮̥̗̳͎͚́̌͌̌͒͘ę̳̥͙̥̪̣̎̀́͐̅̔̀̐͒̉ş̷̠̖̗̼̞̪̼̐̑̈͋̌͘͟͡͡ť̮̫̬̘̥̻͈̎̅̌̅̅̊̎i̶̩͔̝͚͕̣̘̪̫͛̋̋͋̽͜ñ̹̺̩̝̮̭̞͉̜̈́̌̽̿̔̌͜g̞̣̻̤͇̈́̆͋̈́͡͞', 't́͘e̎̀s̐̑ť̎i͛̋ñ̈́g̈́͡', 2],
+            ['testing', 0],
+            ['t͘e̎s̐ťi͛ñg̈́', 1],
+            ['t́͘e̎̀s̐̑ť̎i͛̋ñ̈́g̈́͡', 2],
         ];
     }
 }
