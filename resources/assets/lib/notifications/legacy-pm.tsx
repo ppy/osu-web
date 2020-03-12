@@ -28,6 +28,8 @@ export default class LegacyPm extends React.Component {
   render() {
     const item = new LegacyPmNotification();
 
+    if (item.count === 0) return null;
+
     return (
       <Item
         icons={nameToIcons.legacy_pm}
