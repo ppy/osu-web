@@ -35,10 +35,6 @@ export class Comment extends React.PureComponent
       _.truncate makePreviewElement.textContent, length: 100
 
 
-  @defaultProps =
-    showReplies: true
-
-
   constructor: (props) ->
     super props
 
@@ -150,7 +146,7 @@ export class Comment extends React.PureComponent
 
             @renderReplyBox()
 
-        if @props.showReplies && @props.comment.repliesCount > 0
+        if @props.comment.repliesCount > 0
           div
             className: repliesClass
             @children.map @renderComment
@@ -176,6 +172,7 @@ export class Comment extends React.PureComponent
       depth: @props.depth + 1
       parent: @props.comment
       modifiers: @props.modifiers
+      expandReplies: @props.expandReplies
 
 
   renderDelete: =>
@@ -236,31 +233,25 @@ export class Comment extends React.PureComponent
   renderRepliesText: =>
     return if @props.comment.repliesCount == 0
 
-    if @props.showReplies
-      if !@state.expandReplies && @children.length == 0
-        onClick = @loadReplies
-        label = osu.trans('comments.load_replies')
-      else
-        onClick = @toggleReplies
-        label = "#{osu.trans('comments.replies')} (#{osu.formatNumber(@props.comment.repliesCount)})"
-
-      label = "[#{if @state.expandReplies then '-' else '+'}] #{label}"
-
-      div className: 'comment__row-item',
-        button
-          type: 'button'
-          className: 'comment__action'
-          onClick: onClick
-          label
+    if !@state.expandReplies && @children.length == 0
+      onClick = @loadReplies
+      label = osu.trans('comments.load_replies')
     else
-      div className: 'comment__row-item',
-        osu.trans('comments.replies')
-        ': '
-        osu.formatNumber(@props.comment.repliesCount)
+      onClick = @toggleReplies
+      label = "#{osu.trans('comments.replies')} (#{osu.formatNumber(@props.comment.repliesCount)})"
+
+    label = "[#{if @state.expandReplies then '-' else '+'}] #{label}"
+
+    div className: 'comment__row-item',
+      button
+        type: 'button'
+        className: 'comment__action'
+        onClick: onClick
+        label
 
 
   renderRepliesToggle: =>
-    if @props.showReplies && @props.depth == 0 && @children.length > 0
+    if @props.depth == 0 && @children.length > 0
       div className: 'comment__float-container comment__float-container--right',
         button
           className: 'comment__top-show-replies'
@@ -280,7 +271,7 @@ export class Comment extends React.PureComponent
 
 
   renderReplyButton: =>
-    if @props.showReplies && !@props.comment.isDeleted
+    if !@props.comment.isDeleted
       div className: 'comment__row-item',
         button
           type: 'button'
