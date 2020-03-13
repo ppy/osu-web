@@ -5,8 +5,14 @@
 
 namespace Tests;
 
+use App\Http\Middleware\AuthApi;
 use App\Libraries\RouteScopesHelper;
+use App\Models\Build;
+use App\Models\Changelog;
+use App\Models\Comment;
+use App\Models\UpdateStream;
 use PHPUnit\Framework\ExpectationFailedException;
+use Route;
 
 class RouteScopesTest extends TestCase
 {
@@ -26,6 +32,66 @@ class RouteScopesTest extends TestCase
             }
         }
 
+        $this->printFailures($failures);
+    }
+
+    public function testUnscopedRequestsRequireAuthentication()
+    {
+        // factory some objects so unauthed endpoints don't 404.
+        $stream = factory(UpdateStream::class)->create(['name' => '1']);
+
+        factory(Changelog::class)->create(['stream_id' => $stream->getKey()]);
+
+        $build = factory(Build::class)->create([
+            'version' => '1',
+            'stream_id' => $stream->getKey(),
+        ]);
+
+        factory(Comment::class)->create([
+            'commentable_id' => $build->getKey(),
+            'commentable_type' => 'build',
+            'id' => 1,
+        ]);
+
+        $failures = [];
+        foreach (Route::getRoutes() as $route) {
+             /** @var \Illuminate\Routing\Route $route */
+            if (!starts_with($route->uri, 'api/')) {
+                continue;
+            }
+
+            foreach ($route->methods() as $method) {
+                // Only need the url to be valid so they can be routed.
+                $parameters = [];
+                foreach ($route->parameterNames() as $parameterName) {
+                    $parameters[$parameterName] = '1';
+                }
+
+                $url = app('url')->toRoute($route, $parameters, false);
+                $key = "{$method}@{$route->getAction('controller')}";
+
+                $status = $this->call($method, $url)->getStatusCode();
+                $middlewares = $route->gatherMiddleware();
+
+                try {
+                    if ($method === 'GET' && starts_with(ltrim($url, '/').'/', AuthApi::SKIP_GET)) {
+                        $this->assertTrue(in_array($status, [200, 302], true), $key);
+                    } else if (in_array('require-scopes', $middlewares)) {
+                        $this->assertSame(401, $status, $key);
+                    } else {
+                        $this->assertNotSame(401, $status, $key);
+                    }
+                } catch (ExpectationFailedException $e) {
+                    $failures[] = $e;
+                }
+            }
+        }
+
+        $this->printFailures($failures);
+    }
+
+    private function printFailures(array $failures)
+    {
         $this->assertEmpty(
             $failures,
             // print errors after tests finish
@@ -34,7 +100,7 @@ class RouteScopesTest extends TestCase
                     function ($failure) {
                         return [
                             'message' => $failure->getMessage(),
-                            'diff' => $failure->getComparisonFailure()->toString()
+                            'diff' => optional($failure->getComparisonFailure())->toString()
                         ];
                     },
                     $failures
