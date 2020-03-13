@@ -70,6 +70,39 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
                 <div class="account-edit-entry__checkboxes-label">
+                    {{ 'Receive push notifications for' }}
+                </div>
+                <div class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical">
+                    @foreach (App\Models\UserNotificationOption::HAS_PUSH_NOTIFICATION as $name)
+                        <label
+                            class="account-edit-entry__checkbox account-edit-entry__checkbox--inline js-account-edit"
+                            data-account-edit-auto-submit="1"
+                            data-skip-ajax-error-popup="1"
+                            data-url="{{ route('account.notification-options', compact('name')) }}"
+                        >
+                            @include('objects._switch', [
+                                'additionalClass'=> 'js-account-edit__input',
+                                'checked' => $notificationOptions[$name]->details['push'] ?? true,
+                                'defaultValue' => '0',
+                                'name' => 'user_notification_option[details][push]',
+                            ])
+
+                            <span class="account-edit-entry__checkbox-label">
+                                {{ trans("accounts.notifications.push.{$name}") }}
+                            </span>
+
+                            <div class="account-edit-entry__checkbox-status">
+                                @include('accounts._edit_entry_status')
+                            </div>
+                        </label>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div class="account-edit__input-group">
+            <div class="account-edit-entry account-edit-entry--no-label">
+                <div class="account-edit-entry__checkboxes-label">
                     {{ trans('accounts.notifications.mail._') }}
                 </div>
                 <div class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical">

@@ -30,6 +30,23 @@ class UserNotificationOption extends Model
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
 
     const HAS_MAIL_NOTIFICATION = [self::BEATMAPSET_MODDING, self::FORUM_TOPIC_REPLY];
+    const HAS_PUSH_NOTIFICATION = [
+        Notification::BEATMAPSET_DISCUSSION_LOCK,
+        Notification::BEATMAPSET_DISCUSSION_POST_NEW,
+        Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+        Notification::BEATMAPSET_DISCUSSION_UNLOCK,
+        Notification::BEATMAPSET_DISQUALIFY,
+        Notification::BEATMAPSET_LOVE,
+        Notification::BEATMAPSET_NOMINATE,
+        Notification::BEATMAPSET_QUALIFY,
+        Notification::BEATMAPSET_RANK,
+        Notification::BEATMAPSET_RESET_NOMINATIONS,
+        Notification::CHANNEL_MESSAGE,
+        Notification::COMMENT_NEW,
+        Notification::FORUM_TOPIC_REPLY,
+        Notification::USER_ACHIEVEMENT_UNLOCK,
+    ];
+
 
     protected $casts = [
         'details' => 'array',
@@ -60,6 +77,12 @@ class UserNotificationOption extends Model
         if ($this->hasMailNotification()) {
             if (isset($value['mail'])) {
                 $details['mail'] = get_bool($value['mail'] ?? null);
+            }
+        }
+
+        if ($this->supportsPushNotification()) {
+            if (isset($value['push'])) {
+                $details['push'] = get_bool($value['push'] ?? null);
             }
         }
 
@@ -107,5 +130,10 @@ class UserNotificationOption extends Model
     public function validationErrorsTranslationPrefix()
     {
         return 'user_notification_option';
+    }
+
+    private function supportsPushNotification()
+    {
+        return in_array($this->name, static::HAS_PUSH_NOTIFICATION, true);
     }
 }
