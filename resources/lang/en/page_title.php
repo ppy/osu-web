@@ -100,6 +100,9 @@ return [
         'notifications_controller' => [
             '_' => 'notifications history',
         ],
+        'password_reset_controller' => [
+            '_' => 'password reset',
+        ],
         'ranking_controller' => [
             '_' => 'ranking',
         ],
