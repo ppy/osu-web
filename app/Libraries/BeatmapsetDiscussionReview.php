@@ -255,6 +255,7 @@ class BeatmapsetDiscussionReview
 
             // update the review post
             $post['message'] = json_encode($output);
+            $post['last_editor_id'] = $user->getKey();
             $post->saveOrExplode();
 
             // unlink any embeds that were removed from the review
