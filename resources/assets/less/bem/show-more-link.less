@@ -32,6 +32,13 @@
     margin: 40px 0;
   }
 
+  &--comment-replies {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: $padding-left;
+    font-weight: normal;
+  }
+
   &--comments {
     margin: 10px auto;
   }
@@ -96,10 +103,21 @@
     .@{_top}--no-icon & {
       display: none;
     }
+
+    &--left {
+      .@{_top}--comment-replies & {
+        display: none;
+      }
+    }
   }
 
   &__label-text {
     margin: 0 5px;
     text-transform: uppercase;
+
+    .@{_top}--comment-replies & {
+      padding-right: 10px;
+      text-transform: none;
+    }
   }
 }
