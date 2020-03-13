@@ -170,7 +170,10 @@ class BeatmapsetDiscussionReview
 
                 $message = get_string($block['text'] ?? null);
                 if ($message === null) {
-                    throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
+                    // skip empty message check if this is an existing embed
+                    if ($block['type'] !== 'embed' || !isset($block['discussion_id'])) {
+                        throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
+                    }
                 }
 
                 switch ($block['type']) {
