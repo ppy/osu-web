@@ -23,15 +23,19 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         self::$faker = Faker\Factory::create();
     }
 
+    //region BeatmapsetDiscussionReview::create()
+
+    //region Failure Scenarios
+
     // empty document
-    public function testPostReviewDocumentEmpty()
+    public function testCreateDocumentEmpty()
     {
         $this->expectException(InvariantException::class);
         BeatmapsetDiscussionReview::create($this->beatmapset, [], $this->user);
     }
 
     // missing block type
-    public function testPostReviewDocumentMissingBlockType()
+    public function testCreateDocumentMissingBlockType()
     {
         $this->expectException(InvariantException::class);
         BeatmapsetDiscussionReview::create($this->beatmapset,
@@ -43,7 +47,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     }
 
     // invalid block type
-    public function testPostReviewDocumentInvalidBlockType()
+    public function testCreateDocumentInvalidBlockType()
     {
         $this->expectException(InvariantException::class);
         BeatmapsetDiscussionReview::create($this->beatmapset,
@@ -55,7 +59,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     }
 
     // invalid paragraph block
-    public function testPostReviewDocumentInvalidParagraphBlockContent()
+    public function testCreateDocumentInvalidParagraphBlockContent()
     {
         $this->expectException(InvariantException::class);
         BeatmapsetDiscussionReview::create($this->beatmapset,
@@ -67,7 +71,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     }
 
     // invalid embed block
-    public function testPostReviewDocumentInvalidEmbedBlockContent()
+    public function testCreateDocumentInvalidEmbedBlockContent()
     {
         $this->expectException(InvariantException::class);
         BeatmapsetDiscussionReview::create($this->beatmapset,
@@ -79,7 +83,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     }
 
     // valid document containing zero issue embeds
-    public function testPostReviewDocumentValidParagraphWithNoIssues()
+    public function testCreateDocumentValidParagraphWithNoIssues()
     {
         $this->expectException(InvariantException::class);
         BeatmapsetDiscussionReview::create($this->beatmapset,
@@ -92,7 +96,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     }
 
     // valid paragraph but text is JSON
-    public function testPostReviewDocumentValidParagraphButJSON()
+    public function testCreateDocumentValidParagraphButJSON()
     {
         $this->expectException(InvariantException::class);
         BeatmapsetDiscussionReview::create($this->beatmapset,
@@ -105,7 +109,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     }
 
     // valid review but text is JSON
-    public function testPostReviewDocumentValidIssueButJSON()
+    public function testCreateDocumentValidIssueButJSON()
     {
         $this->expectException(InvariantException::class);
         BeatmapsetDiscussionReview::create($this->beatmapset,
@@ -126,7 +130,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     }
 
     // document with too many blocks
-    public function testPostReviewDocumentValidWithTooManyBlocks()
+    public function testCreateDocumentValidWithTooManyBlocks()
     {
         $this->expectException(InvariantException::class);
         BeatmapsetDiscussionReview::create($this->beatmapset,
@@ -151,10 +155,12 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             ], $this->user);
     }
 
-    // posting reviews - success scenarios ----
+    //endregion
+
+    //region Success Scenarios
 
     // valid document containing issue embeds
-    public function testPostReviewDocumentValidWithIssues()
+    public function testCreateDocumentDocumentValidWithIssues()
     {
         $discussionCount = BeatmapDiscussion::count();
         $discussionPostCount = BeatmapDiscussionPost::count();
@@ -186,6 +192,217 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($discussionCount + 3, BeatmapDiscussion::count());
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
     }
+    //endregion
+
+    //endregion
+
+    //region BeatmapsetDiscussionReview::update()
+
+    //region Failure Scenarios
+
+    // empty document
+    public function testUpdateDocumentEmpty()
+    {
+        $this->expectException(InvariantException::class);
+        $this->updateReview([]);
+    }
+
+    // missing block type
+    public function testUpdateDocumentMissingBlockType()
+    {
+        $this->expectException(InvariantException::class);
+        $this->updateReview([
+            [
+                'text' => 'invalid lol',
+            ],
+        ]);
+    }
+
+    // invalid block type
+    public function testUpdateDocumentInvalidBlockType()
+    {
+        $this->expectException(InvariantException::class);
+        $this->updateReview([
+            [
+                'type' => 'invalid lol',
+            ],
+        ]);
+    }
+
+    // invalid paragraph block
+    public function testUpdateDocumentInvalidParagraphBlockContent()
+    {
+        $this->expectException(InvariantException::class);
+        $this->updateReview([
+            [
+                'type' => 'paragraph',
+            ],
+        ]);
+    }
+
+    // invalid embed block
+    public function testUpdateDocumentInvalidEmbedBlockContent()
+    {
+        $this->expectException(InvariantException::class);
+        $this->updateReview([
+            [
+                'type' => 'embed',
+            ],
+        ]);
+    }
+
+    // valid document containing zero issue embeds
+    public function testUpdateDocumentValidParagraphWithNoIssues()
+    {
+        $this->expectException(InvariantException::class);
+        $this->updateReview([
+            [
+                'type' => 'paragraph',
+                'text' => 'this is a text',
+            ],
+        ]);
+    }
+
+    // valid paragraph but text is JSON
+    public function testUpdateDocumentValidParagraphButJSON()
+    {
+        $this->expectException(InvariantException::class);
+        $this->updateReview([
+            [
+                'type' => 'paragraph',
+                'text' => ['y', 'tho'],
+            ],
+        ]);
+    }
+
+    // valid review but text is JSON
+    public function testUpdateDocumentValidIssueButJSON()
+    {
+        $this->expectException(InvariantException::class);
+        $this->updateReview([
+            [
+                'type' => 'embed',
+                'discussion_type' => 'problem',
+                'text' => ['y', 'tho'],
+                'timestamp' => true,
+                'beatmap_id' => $this->beatmap->getKey(),
+            ],
+            [
+                'type' => 'embed',
+                'discussion_type' => 'problem',
+                'text' => self::$faker->sentence(),
+            ],
+        ]);
+    }
+
+    // document with too many blocks
+    public function testUpdateDocumentValidWithTooManyBlocks()
+    {
+        $this->expectException(InvariantException::class);
+        $this->updateReview([
+            [
+                'type' => 'embed',
+                'discussion_type' => 'problem',
+                'text' => self::$faker->sentence(),
+            ],
+            [
+                'type' => 'paragraph',
+                'text' => self::$faker->sentence(),
+            ],
+            [
+                'type' => 'paragraph',
+                'text' => self::$faker->sentence(),
+            ],
+            [
+                'type' => 'paragraph',
+                'text' => self::$faker->sentence(),
+            ],
+        ]);
+    }
+
+    // document referencing issues belonging to another review
+    public function testUpdateDocumentValidWithExternalReference()
+    {
+        $review = $this->setUpReview();
+
+        $differentReview = $this->setUpReview();
+        $document = json_decode($differentReview->startingPost->message, true);
+
+        $this->expectException(InvariantException::class);
+        BeatmapsetDiscussionReview::update($review, $document, $this->user);
+    }
+    //endregion
+
+    //region Success Scenarios
+
+    // valid document containing issue embeds
+    public function testUpdateDocumentValidWithIssues()
+    {
+        $review = $this->setUpReview();
+
+        $discussionCount = BeatmapDiscussion::count();
+        $discussionPostCount = BeatmapDiscussionPost::count();
+
+        $document = json_decode($review->startingPost->message, true);
+
+        BeatmapsetDiscussionReview::update($review, $document, $this->user);
+
+        // ensure number of discussions/issues hasn't changed
+        $this->assertSame($discussionCount, BeatmapDiscussion::count());
+        $this->assertSame($discussionPostCount, BeatmapDiscussionPost::count());
+    }
+
+    // adding a new embed to an existing issue
+    public function testUpdateDocumentWithNewIssue()
+    {
+        $review = $this->setUpReview();
+
+        $discussionCount = BeatmapDiscussion::count();
+        $discussionPostCount = BeatmapDiscussionPost::count();
+
+        $document = json_decode($review->startingPost->message, true);
+        $document[] = [
+            'type' => 'embed',
+            'discussion_type' => 'problem',
+            'text' => 'whee',
+        ];
+
+        BeatmapsetDiscussionReview::update($review, $document, $this->user);
+
+        // ensure new issue was created
+        $this->assertSame($discussionCount + 1, BeatmapDiscussion::count());
+        $this->assertSame($discussionPostCount +  1, BeatmapDiscussionPost::count());
+    }
+
+    // removing/unlinking an embed from an existing issue
+    public function testUpdateDocumentRemoveIssue()
+    {
+        $review = $this->setUpReview();
+
+        $discussionCount = BeatmapDiscussion::count();
+        $discussionPostCount = BeatmapDiscussionPost::count();
+
+        $document = json_decode($review->startingPost->message, true);
+        $issue = array_shift($document); // drop the first issue
+
+        BeatmapsetDiscussionReview::update($review, $document, $this->user);
+
+        // ensure number of discussions/issues hasn't changed
+        $this->assertSame($discussionCount, BeatmapDiscussion::count());
+        $this->assertSame($discussionPostCount, BeatmapDiscussionPost::count());
+
+        $unlinked = BeatmapDiscussion::find($issue['discussion_id']);
+
+        // ensure embed is no longer in message
+        $this->assertStringNotContainsString((string)$unlinked->id, $review->startingPost->message);
+
+        // ensure parent_id is removed from child issue
+        $this->assertNull($unlinked->parent_id);
+    }
+
+    //endregion
+
+    //endregion
 
     protected function setUp(): void
     {
@@ -200,5 +417,32 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+    }
+
+    protected function setUpReview() : BeatmapDiscussion
+    {
+        $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
+        $issueText = self::$faker->sentence();
+
+        return BeatmapsetDiscussionReview::create($this->beatmapset,
+            [
+                [
+                    'type' => 'embed',
+                    'discussion_type' => 'problem',
+                    'text' => $timestampedIssueText,
+                    'timestamp' => true,
+                    'beatmap_id' => $this->beatmap->getKey(),
+                ],
+                [
+                    'type' => 'embed',
+                    'discussion_type' => 'problem',
+                    'text' => $issueText,
+                ],
+            ], $this->user);
+    }
+
+    protected function updateReview($document) {
+        $review = $this->setUpReview();
+        BeatmapsetDiscussionReview::update($review, $document, $this->user);
     }
 }
