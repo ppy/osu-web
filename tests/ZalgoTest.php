@@ -20,6 +20,8 @@
 
 namespace Tests;
 
+use Symfony\Component\Finder\Finder;
+
 class ZalgoTest extends TestCase
 {
     /**
@@ -31,11 +33,14 @@ class ZalgoTest extends TestCase
     }
 
     // Quick test that unzalgo isn't eating the wrong characters.
-    public function testTextDoesNotChange()
+    public function testTranslations()
     {
-        foreach (config('app.available_locales') as $locale) {
-            $text = trans('layout.defaults.page_description', [], $locale);
-            $this->assertSame(unzalgo($text), $text);
+        $path = realpath(__DIR__.'/../resources/lang');
+
+        $files = Finder::create()->files()->in($path)->sortByName();
+        foreach ($files as $file) {
+            $contents = $file->getContents();
+            $this->assertSame($contents, unzalgo($contents), $file->getRelativePathname());
         }
     }
 
