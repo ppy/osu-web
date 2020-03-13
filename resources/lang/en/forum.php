@@ -236,8 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'This topic is locked and can not be replied to',
             'to_0' => 'Unlock topic',
+            'to_0_confirm' => 'Unlock topic?',
             'to_0_done' => 'Topic has been unlocked',
             'to_1' => 'Lock topic',
+            'to_1_confirm' => 'Lock topic?',
             'to_1_done' => 'Topic has been locked',
         ],
 
@@ -247,10 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Unpin topic',
+            'to_0_confirm' => 'Unpin topic?',
             'to_0_done' => 'Topic has been unpinned',
             'to_1' => 'Pin topic',
+            'to_1_confirm' => 'Pin topic?',
             'to_1_done' => 'Topic has been pinned',
             'to_2' => 'Pin topic and mark as announcement',
+            'to_2_confirm' => 'Pin topic and mark as announcement?',
             'to_2_done' => 'Topic has been pinned and marked as announcement',
         ],
 
