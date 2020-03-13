@@ -394,7 +394,7 @@ class BeatmapDiscussionPost extends Model
             } catch (\Exception $e) {
                 return false;
             }
-            return BeatmapsetDiscussionReview::update($this, $this->beatmapDiscussion, $document);
+            return BeatmapsetDiscussionReview::update($this->beatmapDiscussion, $document, auth()->user());
         } else {
             return parent::update($attributes, $options);
         }

@@ -145,13 +145,13 @@ class BeatmapsetDiscussionReview
     }
 
     // TODO: combine with create()?
-    public static function update(BeatmapDiscussionPost $post, BeatmapDiscussion $discussion, array $document) {
-        $user = auth()->user(); // TODO: move?
+    public static function update(BeatmapDiscussion $discussion, array $document, User $user) {
         if (!$document || !is_array($document) || empty($document)) {
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
         $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id); // handle deleted beatmapsets
+        $post = $discussion->startingPost;
 
         $output = [];
         try {
