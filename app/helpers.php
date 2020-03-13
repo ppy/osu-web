@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 /*
  * Like array_search but returns null if not found instead of false.
@@ -137,6 +122,28 @@ function cache_remember_with_fallback($key, $seconds, $callback)
     }
 
     return $data['value'] ?? null;
+}
+
+/**
+ * Marks the content in the key as expired but leaves the fallback set amount of time.
+ * Use with cache_remember_mutexed when the previous value needs to be shown while a key is being updated.
+ *
+ * @param string $key The key of the item to expire.
+ * @param int $duration The duration the fallback should still remain available for, in seconds. Default: 1 month.
+ * @return void
+ */
+function cache_expire_with_fallback(string $key, int $duration = 2592000)
+{
+    $fullKey = "{$key}:with_fallback";
+
+    $data = Cache::get($fullKey);
+
+    if ($data === null || $data['expires_at']->isPast()) {
+        return;
+    }
+
+    $data['expires_at'] = now()->addHour(-1);
+    Cache::put($fullKey, $data, $duration);
 }
 
 // Just normal Cache::forget but with the suffix.
