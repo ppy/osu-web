@@ -138,6 +138,8 @@ class BeatmapsetDiscussionReview
                 ->update(['parent_id' => $review->getKey()]);
 
             DB::commit();
+
+            return $review;
         } catch (\Exception $e) {
             DB::rollBack();
             throw $e;
