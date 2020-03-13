@@ -1,19 +1,6 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
 @php
     $user = Auth::user();
@@ -77,6 +64,17 @@
                     <button class="mobile-menu-tab js-click-menu" data-click-menu-target="mobile-search">
                         <span class="fas fa-search"></span>
                     </button>
+
+                    <a
+                        class="mobile-menu-tab js-click-menu js-react--chat-icon"
+                        data-chat-icon="{{ json_encode(['type' => 'mobile']) }}"
+                        href="{{ route('chat.index') }}"
+                    >
+                        <span class="notification-icon notification-icon--mobile">
+                            <i class="fas fa-comment-alt"></i>
+                            <span class="notification-icon__count">...</span>
+                        </span>
+                    </a>
 
                     <button class="mobile-menu-tab js-click-menu js-react--notification-icon"
                         data-click-menu-target="mobile-notification"
