@@ -23,6 +23,7 @@ class ChatController extends Controller
     public function index()
     {
         $json = [];
+        $messages = [];
 
         $targetUser = User::lookup(Request::input('sendto'), 'id');
         if ($targetUser) {
