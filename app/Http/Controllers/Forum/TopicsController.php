@@ -95,7 +95,10 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($id);
 
-        priv_check('ForumModerate', $topic->forum)->ensureCan();
+        $moderationPriv = priv_check('ForumModerate', $topic->forum);
+
+        $moderationPriv->ensureCan();
+        $userCanModerate = $moderationPriv->can();
 
         $issueTag = presence(Request::input('issue_tag'));
         $state = get_bool(Request::input('state'));
@@ -111,7 +114,7 @@ class TopicsController extends Controller
 
         $topic->$method($issueTag);
 
-        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
+        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state', 'userCanModerate'), 'js');
     }
 
     public function lock($id)
@@ -152,7 +155,10 @@ class TopicsController extends Controller
     {
         $topic = Topic::withTrashed()->findOrFail($id);
 
-        priv_check('ForumModerate', $topic->forum)->ensureCan();
+        $moderationPriv = priv_check('ForumModerate', $topic->forum);
+
+        $moderationPriv->ensureCan();
+        $userCanModerate = $moderationPriv->can();
 
         $type = 'moderate_pin';
         $state = get_int(Request::input('pin'));
@@ -166,7 +172,7 @@ class TopicsController extends Controller
             );
         });
 
-        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
+        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state', 'userCanModerate'), 'js');
     }
 
     public function reply(HttpRequest $request, $id)
