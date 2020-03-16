@@ -101,6 +101,8 @@ class BroadcastNotification implements ShouldQueue
                 $notification->userNotifications()->create(['user_id' => $id]);
             }
         });
+
+        return $notification;
     }
 
     private function assignBeatmapsetDiscussionNotificationDetails()
