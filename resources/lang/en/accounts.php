@@ -58,6 +58,10 @@ return [
             'beatmapset:modding' => 'beatmap modding',
             'forum_topic_reply' => 'topic reply',
         ],
+
+        'push' => [
+            '_' => 'receive push notifications for',
+        ],
     ],
 
     'oauth' => [

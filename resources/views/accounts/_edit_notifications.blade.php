@@ -70,7 +70,7 @@
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
                 <div class="account-edit-entry__checkboxes-label">
-                    {{ 'Receive push notifications for' }}
+                    {{ trans('accounts.notifications.push._') }}
                 </div>
                 <div class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical">
                     @foreach (App\Models\UserNotificationOption::HAS_PUSH_NOTIFICATION as $name)
@@ -88,7 +88,7 @@
                             ])
 
                             <span class="account-edit-entry__checkbox-label">
-                                {{ trans("accounts.notifications.push.{$name}") }}
+                                {{ trans("notifications.names.{$name}") }}
                             </span>
 
                             <div class="account-edit-entry__checkbox-status">
