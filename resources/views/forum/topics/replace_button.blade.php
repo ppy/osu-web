@@ -3,6 +3,8 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    $userCanModerate = priv_check('ForumModerate', $topic->forum)->can();
+
     if (!isset($stateText)) {
         if (method_exists($state, 'stateText')) {
             $stateText = $state->stateText();
