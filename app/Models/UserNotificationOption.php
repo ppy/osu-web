@@ -19,12 +19,6 @@ class UserNotificationOption extends Model
 {
     use Validatable;
 
-    const VALID_NAMES = [
-        self::BEATMAPSET_MODDING,
-        self::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
-        self::FORUM_TOPIC_REPLY,
-    ];
-
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
     const BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM = Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM;
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
@@ -74,7 +68,7 @@ class UserNotificationOption extends Model
             }
         }
 
-        if ($this->hasMailNotification()) {
+        if ($this->supportsMailNotification()) {
             if (isset($value['mail'])) {
                 $details['mail'] = get_bool($value['mail'] ?? null);
             }
@@ -95,16 +89,14 @@ class UserNotificationOption extends Model
 
     public function setNameAttribute($value)
     {
-        if (!in_array($value, static::VALID_NAMES, true)) {
+        if (!(
+            $this->supportsPushNotification($value)
+            || $this->supportsMailNotification($value)
+        )) {
             $value = null;
         }
 
         $this->attributes['name'] = $value;
-    }
-
-    public function hasMailNotification()
-    {
-        return in_array($this->name, static::HAS_MAIL_NOTIFICATION, true);
     }
 
     public function isValid()
@@ -132,8 +124,13 @@ class UserNotificationOption extends Model
         return 'user_notification_option';
     }
 
-    private function supportsPushNotification()
+    private function supportsMailNotification(?string $name = null)
     {
-        return in_array($this->name, static::HAS_PUSH_NOTIFICATION, true);
+        return in_array($name ?? $this->name, static::HAS_MAIL_NOTIFICATION, true);
+    }
+
+    private function supportsPushNotification(?string $name = null)
+    {
+        return in_array($name ?? $this->name, static::HAS_PUSH_NOTIFICATION, true);
     }
 }
