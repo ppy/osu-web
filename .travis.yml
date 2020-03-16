@@ -38,8 +38,8 @@ env:
     - SLACK_ENDPOINT=https://myconan.net/null/
 
 before_install:
-  - travis_retry nvm install 10
-  - nvm use 10
+  - travis_retry nvm install 12
+  - nvm use 12
 
 install:
   # elasticsearch setup (part 1)
