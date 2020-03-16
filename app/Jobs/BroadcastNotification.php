@@ -80,7 +80,8 @@ class BroadcastNotification implements ShouldQueue
             $this->receiverIds = $this->receiverIds->all();
         }
 
-        $this->receiverIds = array_values(array_diff($this->receiverIds, [optional($this->source)->getKey()]));
+        $this->receiverIds = $this->filterReceiverIds();
+
         if (empty($this->receiverIds)) {
             return;
         }
@@ -112,6 +113,25 @@ class BroadcastNotification implements ShouldQueue
             'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
             'cover_url' => $this->notifiable->coverURL('card'),
         ];
+    }
+
+    private function filterReceiverIds()
+    {
+        // FIXME: filtering all the ids could get quite large?
+        $notificationOptions = UserNotificationOption
+            ::whereIn('user_id', $this->receiverIds)
+            ->where(['name' => $this->name])
+            ->get()
+            ->keyBy('user_id');
+
+        $receiverIds = [];
+        foreach ($this->receiverIds as $receiverId) {
+            if ($notificationOptions[$receiverId]->details['push'] ?? true) {
+                $receiverIds[] = $receiverId;
+            }
+        }
+
+        return array_values(array_diff($receiverIds, [optional($this->source)->getKey()]));
     }
 
     private function onBeatmapsetDiscussionLock()
