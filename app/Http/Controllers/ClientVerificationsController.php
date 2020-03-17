@@ -41,6 +41,6 @@ class ClientVerificationsController extends Controller
         $hash = request('ch');
         UserClient::markVerified(auth()->user()->getKey(), $hash);
 
-        return ext_view('client_verifications.completed');
+        return ujs_redirect(route('client-verifications.create', ['ch' => $hash]));
     }
 }
