@@ -55,7 +55,7 @@ curl "{{ trim(config('app.url'), '/') }}/api/[version]/[endpoint]"
 Public access is not yet available, thus this section is incomplete.
 </aside>
 
-osu!api uses OAuth2 to grant access to the API. You can register for access `[somewhere eventually]`.
+osu!api uses OAuth2 to grant access to the API. You can register for access [here]({{ route('account.edit').'#oauth' }}).
 
 osu!api requires a valid token to be included with all API requests in a header that looks like the following:
 
