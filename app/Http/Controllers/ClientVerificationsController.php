@@ -29,10 +29,6 @@ class ClientVerificationsController extends Controller
         $hash = request('ch');
         $client = UserClient::lookupOrNew(auth()->user()->getKey(), $hash);
 
-        if ($client === null) {
-            abort(422); // TODO: add page mentioning invalid hash
-        }
-
         if ($client->verified) {
             return ext_view('client_verifications.completed');
         }
@@ -43,13 +39,7 @@ class ClientVerificationsController extends Controller
     public function store()
     {
         $hash = request('ch');
-        $client = UserClient::lookupOrNew(auth()->user()->getKey(), $hash);
-
-        if ($client === null) {
-            abort(422); // TODO: add page mentioning invalid hash
-        }
-
-        $client->fill(['verified' => true])->save();
+        UserClient::markVerified(auth()->user()->getKey(), $hash);
 
         return ext_view('client_verifications.completed');
     }
