@@ -1,3 +1,6 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 // interfaces for using process.env
 interface Process {
   env: ProcessEnv;
@@ -28,6 +31,8 @@ declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
 declare var Timeout: any;
 declare const Lang: LangClass;
+declare const fallbackLocale: string;
+declare const currentLocale: string;
 
 // Global object types
 interface Comment {

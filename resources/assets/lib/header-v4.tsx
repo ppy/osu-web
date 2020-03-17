@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import HeaderLink from 'interfaces/header-link';
 import * as React from 'react';
@@ -28,17 +13,21 @@ interface Props {
   links: HeaderLink[];
   linksBreadcrumb?: boolean;
   onLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  section: string;
-  subSection: string;
   theme?: string;
   titleAppend?: React.ReactNode;
+}
+
+interface RouteSection {
+  action: string;
+  controller: string;
+  namespace: string;
+  section: string;
 }
 
 export default class HeaderV4 extends React.Component<Props> {
   static defaultProps = {
     links: [],
     linksBreadcrumb: false,
-    subSection: '',
   };
 
   render(): React.ReactNode {
@@ -73,14 +62,7 @@ export default class HeaderV4 extends React.Component<Props> {
             <div className='header-v4__row header-v4__row--title'>
               <div className='header-v4__icon' />
               <div className='header-v4__title'>
-                <span className='header-v4__title-section'>
-                  {this.props.section}
-                </span>
-                {this.props.subSection !== '' &&
-                  <span className='header-v4__title-action'>
-                    {this.props.subSection}
-                  </span>
-                }
+                {this.title()}
               </div>
 
               {this.props.titleAppend}
@@ -194,5 +176,25 @@ export default class HeaderV4 extends React.Component<Props> {
         </ul>
       </div>
     );
+  }
+
+  private title() {
+    const routeSection: RouteSection | null = osu.parseJson('json-route-section');
+
+    if (routeSection != null) {
+      const keys = [
+        `page_title.${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`,
+        `page_title.${routeSection.namespace}.${routeSection.controller}._`,
+        `page_title.${routeSection.namespace}._`,
+      ];
+
+      for (const key of keys) {
+        if (osu.transExists(key, fallbackLocale)) {
+          return osu.trans(key);
+        }
+      }
+    }
+
+    return 'unknown';
   }
 }

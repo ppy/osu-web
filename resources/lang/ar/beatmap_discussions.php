@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'حُذفت',
+        'none_found' => '',
         'title' => 'مناقشات الخريطة',
 
         'form' => [
@@ -81,11 +82,11 @@ return [
         'go_to_parent' => 'مشاهدة منشور المراجعة',
         'go_to_child' => 'مشاهدة المناقشة',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_block_type' => 'نوع كتلة غير صالح',
+            'invalid_document' => 'مراجعة غير صالحة',
+            'minimum_issues' => 'ألمراجعة يجب ان تحوي :count مشكلة على الأقل|المراجعة يجب ان تحوي :count مشاكل على الأقل',
+            'missing_text' => 'الكتلة تفتقد للنص',
+            'too_many_blocks' => 'المراجعة يمكن ان تحتوي :count فقرة\مشكلة فقط| المراجعة يمكن ان تحتوي على اكثر من :count فقرات\مشاكل',
         ],
     ],
 

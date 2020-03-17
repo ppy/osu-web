@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import { ChatChannelSwitchAction } from 'actions/chat-actions';
 import { dispatch } from 'app-dispatcher';
@@ -58,11 +43,7 @@ export default class MainView extends React.Component<Props, any> {
     const lazerLink = 'https://github.com/ppy/osu/releases';
     return (
       <>
-        <HeaderV4
-          section={osu.trans('layout.header.community._')}
-          subSection={osu.trans('chat.title_compact')}
-          theme='chat'
-        />
+        <HeaderV4 theme='chat' />
         <Provider dataStore={this.props.dataStore}>
           {this.props.dataStore.channelStore.loaded ? (
             <div className='chat osu-page osu-page--chat'>
@@ -81,7 +62,6 @@ export default class MainView extends React.Component<Props, any> {
                 <div className='chat__title'>{osu.trans('chat.no-conversations.title')}</div>
                 <div className='chat__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
                 <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', {link: lazerLink})}} />
-                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.pm_limitations', {link: lazerLink})}} />
               </div>
             </div>
           )}

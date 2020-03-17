@@ -34,10 +34,16 @@ return [
         'discussion' => 'Discussione',
 
         'details' => [
+            'approved' => 'approvata il ',
             'favourite' => 'Mi piace questo beatmapset',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
+            'loved' => 'amata il ',
             'mapped_by' => 'mappata da :mapper',
+            'qualified' => 'qualificata il ',
+            'ranked' => 'classificata il ',
+            'submitted' => 'inviata il ',
             'unfavourite' => 'Non mi piace questo set di beatmap',
+            'updated' => 'ultimo aggiornamento il ',
             'updated_timeago' => 'ultimo aggiornamento :timeago',
 
             'download' => [

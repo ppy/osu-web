@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
@@ -126,14 +111,6 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
       return null;
     }
 
-    if (this.count('beatmapset') === 0) {
-      return (
-        <span className='quick-search-items quick-search-items--empty'>
-          {osu.trans('quick_search.result.empty', { mode: osu.trans('quick_search.mode.beatmapset') })}
-        </span>
-      );
-    }
-
     return (
       <div className='quick-search-items'>
         {this.props.worker.searchResult.beatmapset.beatmapsets.map((beatmapset, idx) => {
@@ -153,17 +130,13 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
           );
         })}
 
-        {this.count('beatmapset') > this.props.worker.searchResult.beatmapset.beatmapsets.length
-          ? (
-            <div
-              className='quick-search-items__item'
-              onMouseEnter={this.selectBeatmapsetOthers}
-              onMouseLeave={this.onMouseLeave}
-            >
-              {this.renderResultLink('beatmapset', this.boxIsActive('beatmapset_others', 0))}
-            </div>
-          ) : null
-        }
+        <div
+          className='quick-search-items__item'
+          onMouseEnter={this.selectBeatmapsetOthers}
+          onMouseLeave={this.onMouseLeave}
+        >
+          {this.renderResultLink('beatmapset', this.boxIsActive('beatmapset_others', 0))}
+        </div>
       </div>
     );
   }
@@ -178,8 +151,15 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return (
       <div className='quick-search-items'>
         {modes.map((mode, idx) => {
+          const selectOthers = () => this.selectBox('others', idx);
+
           return (
-            <div key={mode} className='quick-search-items__item'>
+            <div
+              key={mode}
+              className='quick-search-items__item'
+              onMouseEnter={selectOthers}
+              onMouseLeave={this.onMouseLeave}
+            >
               {this.renderResultLink(mode, this.boxIsActive('others', idx))}
             </div>
           );

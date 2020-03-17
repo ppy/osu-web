@@ -23,7 +23,7 @@ return [
         'update' => [
             'null_user' => '編集するにはログインが必要です。',
             'system_generated' => '自動生成された投稿は編集できません。',
-            'wrong_user' => '投稿者にのみ編集できます。',
+            'wrong_user' => '投稿者以外は編集できません。',
         ],
     ],
 
@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => '削除済み',
+        'none_found' => '',
         'title' => 'ビートマップディスカッション',
 
         'form' => [
@@ -53,7 +54,7 @@ return [
 
             'user' => [
                 'label' => 'ユーザー',
-                'overview' => 'アクティビティ',
+                'overview' => 'アクティビティ概要',
             ],
         ],
     ],
@@ -81,11 +82,11 @@ return [
         'go_to_parent' => 'レビュー投稿を表示',
         'go_to_child' => 'ディスカッションを表示',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_block_type' => '不正なブロックタイプ',
+            'invalid_document' => '無効なレビュー',
+            'minimum_issues' => 'レビューには最低:count件の問題が含まれている必要があります',
+            'missing_text' => 'ブロックにテキストがありません',
+            'too_many_blocks' => 'レビューには:count件の段落/問題のみが含まれている場合があります',
         ],
     ],
 

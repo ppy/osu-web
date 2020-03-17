@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     $existing_users = DB::table('phpbb_users')->get();
     $countries = DB::table('osu_countries')->get()->toArray();
@@ -90,6 +93,12 @@ $factory->state(App\Models\User::class, 'restricted', function (Faker\Generator 
     return [
         'user_warnings' => 1,
     ];
+});
+
+$factory->afterCreatingState(App\Models\User::class, 'with_note', function ($user, $faker) {
+    $user->accountHistories()->save(
+        factory(App\Models\UserAccountHistory::class)->states('note')->make()
+    );
 });
 
 $factory->afterCreatingState(App\Models\User::class, 'restricted', function ($user, $faker) {

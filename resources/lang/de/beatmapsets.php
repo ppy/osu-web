@@ -34,11 +34,16 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'approved' => 'approved am ',
             'favourite' => 'Dieses Beatmapset zu deinen Favoriten hinzufügen',
             'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
             'loved' => 'loved am ',
             'mapped_by' => 'erstellt von :mapper',
+            'qualified' => 'qualifziert am ',
+            'ranked' => 'ranked am ',
+            'submitted' => 'eingereicht am ',
             'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
+            'updated' => 'letztes update am ',
             'updated_timeago' => 'zuletzt aktualisiert :timeago',
 
             'download' => [

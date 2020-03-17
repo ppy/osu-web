@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import { dispatchListener } from 'app-dispatcher';
 import { route } from 'laroute';
@@ -140,8 +125,6 @@ export default class ConversationView extends React.Component<Props> implements 
       return <div className='conversation' />;
     }
 
-    const lazerLink = 'https://github.com/ppy/osu/releases';
-    const oldPMLink = `https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u=${channel.pmTarget}`;
     const conversationStack: JSX.Element[] = [];
     let currentGroup: Message[] = [];
     let unreadMarkerShown = false;
@@ -210,9 +193,6 @@ export default class ConversationView extends React.Component<Props> implements 
             osu.trans('chat.talking_in', {channel: channel.name})
           )}
         </div>
-        {channel.newChannel &&
-          <div className='chat-conversation__limitation-notice' dangerouslySetInnerHTML={{__html: osu.trans('chat.limitation_notice', {lazer_link: lazerLink, oldpm_link: oldPMLink})}} />
-        }
         {channel.description &&
           <div className='chat-conversation__chat-label'>
             {channel.description}

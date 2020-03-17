@@ -34,10 +34,16 @@ return [
         'discussion' => 'Tartışma',
 
         'details' => [
+            'approved' => 'tarihinde onaylandı ',
             'favourite' => 'Haritayı favorilere ekle',
             'logged-out' => 'Herhangi bir beatmapi indirmeden önce giriş yapmalısınız!',
+            'loved' => 'sevilme tarihi: ',
             'mapped_by' => ':mapper tarafından yapıldı',
+            'qualified' => 'aday olma tarihi ',
+            'ranked' => 'dereceli olma tarihi: ',
+            'submitted' => 'gönderilme tarihi: ',
             'unfavourite' => 'Haritayı favorilerden çıkar',
+            'updated' => 'son güncelleme ',
             'updated_timeago' => 'son güncelleme :timeago',
 
             'download' => [

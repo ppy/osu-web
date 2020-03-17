@@ -34,10 +34,16 @@ return [
         'discussion' => 'Diskussion',
 
         'details' => [
+            'approved' => 'godkänd den ',
             'favourite' => 'Favorisera denna beatmapset',
             'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
+            'loved' => 'älskad den ',
             'mapped_by' => 'skapad av :mapper',
+            'qualified' => 'kvalificerad den ',
+            'ranked' => 'rankad den ',
+            'submitted' => 'uppladdad den ',
             'unfavourite' => 'Ta bort favorisering på denna beatmapset',
+            'updated' => 'senast uppdaterad den ',
             'updated_timeago' => 'senast ändrad :timeago',
 
             'download' => [

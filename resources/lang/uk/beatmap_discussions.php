@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'видалено',
+        'none_found' => '',
         'title' => 'Обговорення карти',
 
         'form' => [

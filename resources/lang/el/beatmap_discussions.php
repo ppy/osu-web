@@ -33,6 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'διαγραμμένο',
+        'none_found' => '',
         'title' => 'Συζητήσεις περί Beatmap',
 
         'form' => [
