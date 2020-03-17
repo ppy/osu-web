@@ -144,6 +144,8 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
         if (key === null) continue;
         this.typeRead(value);
       }
+
+      type.total = 0;
     } else {
       this.typeRead(type);
     }
