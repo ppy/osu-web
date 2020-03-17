@@ -138,6 +138,28 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
 
+    public static function coverSizes()
+    {
+        $shapes = ['cover', 'card', 'list', 'slimcover'];
+        $scales = ['', '@2x'];
+
+        $sizes = [];
+        foreach ($shapes as $shape) {
+            foreach ($scales as $scale) {
+                $sizes[] = "$shape$scale";
+            }
+        }
+
+        return $sizes;
+    }
+
+    public static function isValidCoverSize($coverSize)
+    {
+        $validSizes = array_merge(['raw', 'fullsize'], self::coverSizes());
+
+        return in_array($coverSize, $validSizes, true);
+    }
+
     public static function popular()
     {
         $ids = cache_remember_mutexed('popularBeatmapsetIds', 300, [], function () {
@@ -161,6 +183,28 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             ->limit(5)
             ->pluck('beatmapset_id')
             ->toArray();
+    }
+
+    public static function latestRankedOrApproved($count = 5)
+    {
+        // TODO: add filtering by game mode after mode-toggle UI/UX happens
+
+        return Cache::remember("beatmapsets_latest_{$count}", 3600, function () use ($count) {
+            // We union here so mysql can use indexes to speed this up
+            $ranked = self::ranked()->active()->orderBy('approved_date', 'desc')->limit($count);
+            $approved = self::approved()->active()->orderBy('approved_date', 'desc')->limit($count);
+
+            return $ranked->union($approved)->orderBy('approved_date', 'desc')->limit($count)->get();
+        });
+    }
+
+    public static function removeMetadataText($text)
+    {
+        // TODO: see if can be combined with description extraction thingy without
+        // exploding
+        static $pattern = '/^(.*?)-{15}/s';
+
+        return preg_replace($pattern, '', $text);
     }
 
     public function beatmapDiscussions()
@@ -367,34 +411,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return $this->approved > 0;
     }
 
-    public static function latestRankedOrApproved($count = 5)
-    {
-        // TODO: add filtering by game mode after mode-toggle UI/UX happens
-
-        return Cache::remember("beatmapsets_latest_{$count}", 3600, function () use ($count) {
-            // We union here so mysql can use indexes to speed this up
-            $ranked = self::ranked()->active()->orderBy('approved_date', 'desc')->limit($count);
-            $approved = self::approved()->active()->orderBy('approved_date', 'desc')->limit($count);
-
-            return $ranked->union($approved)->orderBy('approved_date', 'desc')->limit($count)->get();
-        });
-    }
-
-    public static function coverSizes()
-    {
-        $shapes = ['cover', 'card', 'list', 'slimcover'];
-        $scales = ['', '@2x'];
-
-        $sizes = [];
-        foreach ($shapes as $shape) {
-            foreach ($scales as $scale) {
-                $sizes[] = "$shape$scale";
-            }
-        }
-
-        return $sizes;
-    }
-
     public function allCoverURLs()
     {
         $urls = [];
@@ -403,13 +419,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         }
 
         return $urls;
-    }
-
-    public static function isValidCoverSize($coverSize)
-    {
-        $validSizes = array_merge(['raw', 'fullsize'], self::coverSizes());
-
-        return in_array($coverSize, $validSizes, true);
     }
 
     public function coverURL($coverSize = 'cover', $customTimestamp = null)
@@ -1156,15 +1165,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     public function url()
     {
         return route('beatmapsets.show', $this);
-    }
-
-    public static function removeMetadataText($text)
-    {
-        // TODO: see if can be combined with description extraction thingy without
-        // exploding
-        static $pattern = '/^(.*?)-{15}/s';
-
-        return preg_replace($pattern, '', $text);
     }
 
     protected static function boot()
