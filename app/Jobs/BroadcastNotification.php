@@ -123,6 +123,7 @@ class BroadcastNotification implements ShouldQueue
         $notificationOptions = UserNotificationOption
             ::whereIn('user_id', $this->receiverIds)
             ->where(['name' => $this->name])
+            ->whereNotNull('details')
             ->get()
             ->keyBy('user_id');
 
