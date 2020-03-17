@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-info {
+  @_top: beatmapset-info;
   @min-height: 220px;
   @max-height: 270px;
   @box-margin--top: 15px;
@@ -73,16 +74,16 @@
     flex: 1;
   }
 
-  &__edit-description {
+  &__edit-button {
     position: absolute;
     top: 5px;
-    right: -10px;
+    right: 0;
 
     opacity: 0;
     transition: opacity 120ms;
     z-index: 1; // place above sibling elements
 
-    .beatmapset-info__box--description:hover & {
+    .@{_top}__box:hover & {
       opacity: 1;
     }
   }

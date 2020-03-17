@@ -15,6 +15,7 @@ use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
 use App\Traits\CommentableDefaults;
+use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -85,7 +86,7 @@ use Illuminate\Database\QueryException;
  */
 class Beatmapset extends Model implements AfterCommit, Commentable
 {
-    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, SoftDeletes;
+    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, SoftDeletes, Validatable;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -1160,6 +1161,31 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     public function notificationCover()
     {
         return $this->coverURL('card');
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'beatmapset';
+    }
+
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        if ($this->isDirty('language_id') && $this->language === null) {
+            $this->validationErrors()->add('language_id', '.invalid');
+        }
+
+        if ($this->isDirty('genre_id') && $this->genre === null) {
+            $this->validationErrors()->add('genre_id', '.invalid');
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function save(array $options = [])
+    {
+        return $this->isValid() && parent::save($options);
     }
 
     public function url()

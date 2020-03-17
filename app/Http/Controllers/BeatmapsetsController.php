@@ -15,6 +15,8 @@ use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetWatch;
 use App\Models\Country;
+use App\Models\Genre;
+use App\Models\Language;
 use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryTransformer;
 use Auth;
@@ -43,34 +45,9 @@ class BeatmapsetsController extends Controller
 
     public function show($id)
     {
-        $beatmapset = Beatmapset
-            ::with([
-                'beatmaps.difficulty',
-                'beatmaps.failtimes',
-                'genre',
-                'language',
-                'user',
-            ])
-            ->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
-        $set = json_item(
-            $beatmapset,
-            new BeatmapsetTransformer(),
-            [
-                'beatmaps',
-                'beatmaps.failtimes',
-                'beatmaps.max_combo',
-                'converts',
-                'converts.failtimes',
-                'current_user_attributes',
-                'description',
-                'genre',
-                'language',
-                'ratings',
-                'recent_favourites',
-                'user',
-            ]
-        );
+        $set = $this->showJson($beatmapset);
 
         if (is_api_request()) {
             return $set;
@@ -79,7 +56,23 @@ class BeatmapsetsController extends Controller
             $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
-            return ext_view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset', 'commentBundle'));
+            if (priv_check('BeatmapsetMetadataEdit', $beatmapset)->can()) {
+                $genres = Genre::listing();
+                $languages = Language::listing();
+            } else {
+                $genres = [];
+                $languages = [];
+            }
+
+            return ext_view('beatmapsets.show', compact(
+                'beatmapset',
+                'commentBundle',
+                'countries',
+                'genres',
+                'hasDiscussion',
+                'languages',
+                'set'
+            ));
         }
     }
 
@@ -221,24 +214,31 @@ class BeatmapsetsController extends Controller
     public function update($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
+        $params = request()->all();
 
-        priv_check('BeatmapsetDescriptionEdit', $beatmapset)->ensureCan();
+        if (isset($params['description']) && is_string($params['description'])) {
+            priv_check('BeatmapsetDescriptionEdit', $beatmapset)->ensureCan();
 
-        $description = Request::input('description');
+            $description = $params['description'];
 
-        if ($beatmapset->updateDescription($description, Auth::user())) {
+            if (!$beatmapset->updateDescription($description, Auth::user())) {
+                abort(422, 'failed updating description');
+            }
+
             $beatmapset->refresh();
-
-            return json_item(
-                $beatmapset,
-                new BeatmapsetTransformer(),
-                [
-                    'description',
-                ]
-            );
         }
 
-        return response([], 500); // ?????
+        $metadataParams = get_params($params, 'beatmapset', [
+            'language_id:int',
+            'genre_id:int',
+        ]);
+
+        if (count($metadataParams) > 0) {
+            priv_check('BeatmapsetMetadataEdit', $beatmapset)->ensureCan();
+            $beatmapset->fill($metadataParams)->saveOrExplode();
+        }
+
+        return $this->showJson($beatmapset);
     }
 
     private function getSearchResponse()
@@ -261,5 +261,31 @@ class BeatmapsetsController extends Controller
             'error' => search_error_message($search->getError()),
             'total' => $search->count(),
         ];
+    }
+
+    private function showJson($beatmapset)
+    {
+        $beatmapset->load([
+            'beatmaps.difficulty',
+            'beatmaps.failtimes',
+            'genre',
+            'language',
+            'user',
+        ]);
+
+        return json_item($beatmapset, 'Beatmapset', [
+            'beatmaps',
+            'beatmaps.failtimes',
+            'beatmaps.max_combo',
+            'converts',
+            'converts.failtimes',
+            'current_user_attributes',
+            'description',
+            'genre',
+            'language',
+            'ratings',
+            'recent_favourites',
+            'user',
+        ]);
     }
 }
