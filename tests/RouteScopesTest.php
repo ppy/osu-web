@@ -55,7 +55,7 @@ class RouteScopesTest extends TestCase
 
         $failures = [];
         foreach (Route::getRoutes() as $route) {
-             /** @var \Illuminate\Routing\Route $route */
+            /** @var \Illuminate\Routing\Route $route */
             if (!starts_with($route->uri, 'api/')) {
                 continue;
             }
@@ -76,7 +76,7 @@ class RouteScopesTest extends TestCase
                 try {
                     if ($method === 'GET' && starts_with(ltrim($url, '/').'/', AuthApi::SKIP_GET)) {
                         $this->assertTrue(in_array($status, [200, 302], true), $key);
-                    } else if (in_array('require-scopes', $middlewares)) {
+                    } elseif (in_array('require-scopes', $middlewares, true)) {
                         $this->assertSame(401, $status, $key);
                     } else {
                         $this->assertNotSame(401, $status, $key);
@@ -100,7 +100,7 @@ class RouteScopesTest extends TestCase
                     function ($failure) {
                         return [
                             'message' => $failure->getMessage(),
-                            'diff' => optional($failure->getComparisonFailure())->toString()
+                            'diff' => optional($failure->getComparisonFailure())->toString(),
                         ];
                     },
                     $failures

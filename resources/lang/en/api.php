@@ -16,7 +16,7 @@ return [
         'identify' => 'Identify you and read your public profile.',
 
         'beatmaps' => [
-            'read' => 'View beatmaps and your activity on them on your behalf.'
+            'read' => 'View beatmaps and your activity on them on your behalf.',
         ],
 
         'friends' => [

@@ -19,6 +19,6 @@ $factory->define(App\Models\Build::class, function (Faker\Generator $faker) {
         'users' => rand(100, 10000),
         'stream_id' => function () use ($streams, $streamCount) {
             return $streams[rand(0, $streamCount - 1)];
-        }
+        },
     ];
 });

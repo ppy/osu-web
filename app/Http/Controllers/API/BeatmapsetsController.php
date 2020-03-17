@@ -15,7 +15,6 @@ class BeatmapsetsController extends Controller
         $this->middleware('require-scopes:beatmaps.read');
     }
 
-
     public function lookup()
     {
         $beatmapId = Request::input('beatmap_id');
