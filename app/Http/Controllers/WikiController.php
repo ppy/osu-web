@@ -35,7 +35,7 @@ class WikiController extends Controller
     /**
      * Get Wiki Page
      *
-     * The a wiki article.
+     * The wiki article.
      *
      * ---
      *
