@@ -205,13 +205,19 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderListModeIcons() {
-    if (this.props.mode !== 'list' || !this.isUserLoaded || !this.user.is_supporter) { return null; }
+    if (this.props.mode !== 'list' || !this.isUserLoaded) { return null; }
 
     return (
       <div className='user-card__icons'>
-        <a className='user-card__icon' href={route('support-the-game')}>
-          <SupporterIcon level={this.user.support_level} />
-        </a>
+        {this.user.is_supporter && (
+          <a className='user-card__icon' href={route('support-the-game')}>
+            <SupporterIcon level={this.user.support_level} modifiers={['user-list']} />
+          </a>
+        )}
+
+        <div className='user-card__icon'>
+          <FriendButton userId={this.user.id} modifiers={['user-list']} />
+        </div>
       </div>
     );
   }

@@ -41,13 +41,6 @@
     }
   }
 
-  &--user-card {
-    height: @user-card-icon-size;
-    width: @user-card-icon-size;
-    font-size: @user-card-icon-size / 2;
-    border-radius: 50%;
-  }
-
   &--profile-page {
     .default-text-shadow();
     min-width: 80px;
@@ -67,6 +60,19 @@
 
   &--right-margin {
     margin-right: 10px;
+  }
+
+  &--user-card {
+    height: @user-card-icon-size;
+    width: @user-card-icon-size;
+    font-size: @user-card-icon-size / 2;
+    border-radius: 50%;
+  }
+
+  &--user-list {
+    height: @user-list-icon-size;
+    width: ($height * 1.5);
+    font-size: ($height * 0.6);
   }
 
   &[disabled] {
