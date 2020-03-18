@@ -43,27 +43,151 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 # Authentication
 
+osu!api uses OAuth2 to grant access to the API. Your [account settings]({{ route('account.edit').'#oauth' }}) page will show your registered OAuth applications, and all the OAuth applications you have granted permissions to.
+
+Only the [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/) type is currently supported for public use.
+
+Before you can use the osu!api, you will need to:
+1. have registered an OAuth Application.
+2. authorize users for your application.
+
+
+## Registering an OAuth application
+
+Before you can get an OAuth token, you will need to register an OAuth application on your [account settings page]({{ route('account.edit').'#new-oauth-application' }})
+
+To register an OAuth application you will need to provide the:
+
+Name                     | Description
+-------------------------|--------------------------
+Application Name         | This is the name that will be visible to users of your application. The name of your application cannot be changed.
+Application Callback URL | The URL in your application where users will be sent after authorization.
+
+Your new OAuth application will have a `Client ID` and `Client Secret`; the `Client Secret` is like a password for your OAuth application, it should be kept private and **do not share it with anyone else**.
+
+
+## Authorize users for your application
+
+The flow to authorize users for your application is:
+1. Requesting authorization from users
+2. Users are redirected back to your site
+3. Your application accesses the API with the user's access token
+
+
+### Request authorization from a user
+
+To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should to redirected to:
+
+`GET {{ route('oauth.authorizations.authorize') }}`
+
+Parameters
+
+Name         | Type   | Description
+-------------|--------|-------------------------------------------------------
+client_id    | number | The Client ID you received when you [registered]({{ route('account.edit').'#new-oauth-application' }})
+redirect_uri | string | The URL in your application where users will be sent after authorization. This must match the registered Application Callback URL exactly.
+scope        | string | A space-delimited string of [scopes](#scopes).
+
+
+### User is redirected back to your site
+
+If the user accepts your request, they will be redirect back to your site with a temporary single-use `code` contained in the URL paramater.
+
+Exchange this `code` for an access token:
+
+```javascript
+fetch("{!! route('oauth.passport.token') !!}", {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        "grant_type": "authorization_code",
+        "client_id": 1,
+        "client_secret": "secret",
+        "redirect_uri": "https://notarealaddress.local/oauth/osu",
+        "code": "code"
+    })
+})
+.then(response => {
+    return response.json();
+});
+```
+
+`POST {!! route('oauth.passport.token') !!}`
+
+Parameters
+
+Name          | Type   | Description
+--------------|--------|-------------------------------
+client_id     | number | The client ID of your application.
+client_secret | string | The client secret of your application.
+code          | string | The code you received.
+grant_type    | string | This must always be `authorization_code`
+redirect_uri  | string | The URL in your application where users will be sent after authorization.
+
+
+```json
+{
+    "token_type": "Bearer",
+    "expires_in": 86400,
+    "access_token": "verylongstring",
+    "refresh_token": "anotherlongstring",
+}
+```
+
+Successful requests will be issued an access token:
+
+Name          | Type   | Description
+--------------|--------|-----------------------------
+token_type    | string | The type of token, this should always be `Bearer`.
+expires_in    | number | The number of seconds the token will be valid for.
+access_token  | string | The access token.
+refresh_token | string | The refresh token.
+
+
+## Using the access token to access the API
+
+With the access token, you can make requests to osu!api on behalf of a user.
+
+The token should in included in the header of requests to the API.
+
+`Authorization: Bearer @{{token}}`
+
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "{{ trim(config('app.url'), '/') }}/api/[version]/[endpoint]"
   -H "Authorization: Bearer @{{token}}"
 ```
 
+```javascript
+// This javascript example uses fetch()
+fetch("{{ trim(config('app.url'), '/') }}/api/[version]/[endpoint]", {
+    headers: {
+      Authorization: 'Bearer @{{token}}'
+    }
+});
+```
+
 > Make sure to replace `@{{token}}` with your OAuth2 token.
-
-<aside class="warning">
-Public access is not yet available, thus this section is incomplete.
-</aside>
-
-osu!api uses OAuth2 to grant access to the API. You can register for access `[somewhere eventually]`.
-
-osu!api requires a valid token to be included with all API requests in a header that looks like the following:
-
-`Authorization: Bearer @{{token}}`
 
 <aside class="notice">
 You must replace <code>@{{token}}</code> with your OAuth2 token.
 </aside>
+
+
+## Scopes
+
+The following scopes are currently supported:
+
+Name          | Description
+--------------|-------------------------------
+identify      | Allows reading of the public profile of the authorizing user (`/me`).
+friends.read  | Allows reading of the authorizing user's friend list.
+users.read    | Allows reading of public user profiles on behalf of the authorizing user.
+
+`identify` is the default scope and always implicitly provided.
 
 # Changelog
 
