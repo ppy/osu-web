@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NotificationOptionChangeEvent;
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\UserVerification;
@@ -177,6 +178,8 @@ class AccountController extends Controller
         $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $name]);
 
         if ($option->update($params)) {
+            event(new NotificationOptionChangeEvent(auth()->user(), $option));
+
             return response(null, 204);
         } else {
             return response(['form_error' => [
