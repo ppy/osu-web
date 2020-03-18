@@ -11,11 +11,13 @@ import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
 import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
+import UserCardBrick from 'user-card-brick';
 
-export type ViewMode = 'card' | 'list';
+export type ViewMode = 'brick' | 'card' | 'list';
 
 interface Props {
   activated: boolean;
+  isFriendsPage: boolean;
   mode: ViewMode;
   modifiers: string[];
   user?: User;
@@ -29,6 +31,7 @@ interface State {
 export class UserCard extends React.PureComponent<Props, State> {
   static defaultProps = {
     activated: false,
+    isFriendsPage: false,
     mode: 'card',
     modifiers: [],
   };
@@ -84,6 +87,14 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   render() {
+    if (this.props.mode === 'brick') {
+      if (this.props.user == null) {
+        return null;
+      }
+
+      return <UserCardBrick {...this.props} user={this.props.user} />;
+    }
+
     const modifiers = this.props.modifiers.slice();
     // Setting the active modifiers from the parent causes unwanted renders unless deep comparison is used.
     modifiers.push(this.props.activated ? 'active' : 'highlightable');

@@ -12,9 +12,10 @@ type SortMode = 'last_visit' | 'rank' | 'username';
 
 const filters: Filter[] = ['all', 'online', 'offline'];
 const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
-const viewModes: ViewMode[] = ['card', 'list'];
+const viewModes: ViewMode[] = ['card', 'list', 'brick'];
 
 interface Props {
+  isFriendsPage: boolean;
   title?: string;
   users: User[];
 }
@@ -40,6 +41,10 @@ function usernameSortAscending(x: User, y: User) {
 }
 
 export class UserList extends React.PureComponent<Props> {
+  static defaultProps = {
+    isFriendsPage: false,
+  };
+
   readonly state: State = {
     filter: this.filterFromUrl,
     sortMode: this.sortFromUrl,
@@ -130,7 +135,7 @@ export class UserList extends React.PureComponent<Props> {
           </div>
 
           <div className='user-list__items'>
-            <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} />
+            <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} isFriendsPage={this.props.isFriendsPage} />
           </div>
         </div>
       </>
@@ -201,6 +206,14 @@ export class UserList extends React.PureComponent<Props> {
           onClick={this.onViewSelected}
         >
           <span className='fas fa-bars' />
+        </button>
+        <button
+          className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'brick' ? ['active'] : [])}
+          data-value='brick'
+          title={osu.trans('users.view_mode.brick')}
+          onClick={this.onViewSelected}
+        >
+          <span className='fas fa-th' />
         </button>
       </div>
     );

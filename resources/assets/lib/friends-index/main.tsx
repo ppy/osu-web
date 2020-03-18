@@ -34,7 +34,7 @@ export class Main extends React.PureComponent<Props> {
         />
 
         <div className='osu-page osu-page--users'>
-          <UserList users={this.props.friends} />
+          <UserList users={this.props.friends} isFriendsPage={true} />
         </div>
       </div>
     );
