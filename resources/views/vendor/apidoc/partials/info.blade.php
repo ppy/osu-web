@@ -87,11 +87,17 @@ Name         | Type   | Description
 client_id    | number | The Client ID you received when you [registered]({{ route('account.edit').'#new-oauth-application' }})
 redirect_uri | string | The URL in your application where users will be sent after authorization. This must match the registered Application Callback URL exactly.
 scope        | string | A space-delimited string of [scopes](#scopes).
+state        | string | Data that will be returned when a temporary code is issued. It can be used to provide a token for protecting against cross-site request forgery attacks.
 
 
 ### User is redirected back to your site
 
 If the user accepts your request, they will be redirect back to your site with a temporary single-use `code` contained in the URL paramater.
+If a `state` value was provided in the previous request, it will be returned here.
+
+<aside class="notice">
+If you are using `state` as protection against CSRF attacks, your OAuth client is responsible for validating this value.
+</aside>
 
 Exchange this `code` for an access token:
 
