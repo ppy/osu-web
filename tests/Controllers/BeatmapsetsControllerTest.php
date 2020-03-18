@@ -11,7 +11,7 @@ use App\Models\Language;
 use App\Models\User;
 use Tests\TestCase;
 
-class BeatmapsetControllerTest extends TestCase
+class BeatmapsetsControllerTest extends TestCase
 {
     public function testBeatmapsetIsActive()
     {
