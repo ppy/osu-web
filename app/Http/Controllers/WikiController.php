@@ -21,13 +21,13 @@ class WikiController extends Controller
     /**
      * Get Wiki Page
      *
-     * The wiki article.
+     * The wiki article or image data.
      *
      * ---
      *
      * ### Response Format
      *
-     * Returns [WikiPage](#wikipage).
+     * Returns [WikiPage](#wikipage) if the content is a wiki page; a binary blob, otherwise.
      *
      * @urlParam page The path name of the wiki page.
      */
