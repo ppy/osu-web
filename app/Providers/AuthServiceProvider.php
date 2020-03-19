@@ -52,10 +52,9 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Passport::tokensCan([
-            'beatmaps.read' => trans('api.scopes.beatmaps.read'),
             'friends.read' => trans('api.scopes.friends.read'),
             'identify' => trans('api.scopes.identify'),
-            'users.read' => trans('api.scopes.users.read'),
+            'public' => trans('api.scopes.public'),
         ]);
     }
 }
