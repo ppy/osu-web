@@ -228,11 +228,18 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     {
         if (!array_key_exists('newer', $this->adjacent)) {
             $this->adjacent['newer'] = static
-                ::where('published_at', '>=', $this->published_at)
-                ->where('id', '<>', $this->getKey())
-                ->orderBy('published_at', 'ASC')
-                ->orderBy('id', 'ASC')
-                ->first() ?? null;
+                ::cursorWhere([
+                    [
+                        'column' => 'published_at',
+                        'order' => 'ASC',
+                        'value' => $this->published_at,
+                    ],
+                    [
+                        'column' => 'id',
+                        'order' => 'ASC',
+                        'value' => $this->getKey(),
+                    ],
+                ])->first() ?? null;
         }
 
         return $this->adjacent['newer'];
@@ -242,11 +249,18 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     {
         if (!array_key_exists('older', $this->adjacent)) {
             $this->adjacent['older'] = static
-                ::where('published_at', '<=', $this->published_at)
-                ->where('id', '<>', $this->getKey())
-                ->orderBy('published_at', 'DESC')
-                ->orderBy('id', 'DESC')
-                ->first() ?? null;
+                ::cursorWhere([
+                    [
+                        'column' => 'published_at',
+                        'order' => 'DESC',
+                        'value' => $this->published_at,
+                    ],
+                    [
+                        'column' => 'id',
+                        'order' => 'DESC',
+                        'value' => $this->getKey(),
+                    ],
+                ])->first() ?? null;
         }
 
         return $this->adjacent['older'];
