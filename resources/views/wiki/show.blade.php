@@ -43,14 +43,28 @@
 
     <div class="osu-page osu-page--wiki">
         <div class="wiki-page">
-            <div class="hidden-xs wiki-page__toc u-fancy-scrollbar">
-                <h2 class="wiki-page__toc-title">
-                    {{ trans('wiki.show.toc') }}
-                </h2>
+            <div class="wiki-page__toc">
+                <div class="sidebar">
+                    <button
+                        type="button"
+                        class="sidebar__mobile-toggle js-mobile-toggle"
+                        data-mobile-toggle-target="wiki-toc"
+                    >
+                        <h2 class="sidebar__title">
+                            {{ trans('wiki.show.toc') }}
+                        </h2>
 
-                @if ($page->get() !== null)
-                    @include('wiki._toc')
-                @endif
+                        <div class="visible-xs sidebar__mobile-toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </button>
+
+                    <div class="js-mobile-toggle hidden-xs sidebar__content" data-mobile-toggle-id="wiki-toc">
+                        @if ($page->get() !== null)
+                            @include('wiki._toc')
+                        @endif
+                    </div>
+                </div>
             </div>
 
             <div class="wiki-page__content">
