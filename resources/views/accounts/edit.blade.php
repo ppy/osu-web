@@ -143,6 +143,7 @@
     </div>
 
     <div class="osu-page u-has-anchor">
+        <div id="oauth" class="fragment-target"></div>
         @include('accounts._edit_oauth')
     </div>
 @endsection

@@ -26,6 +26,11 @@
         {!! json_encode($commentBundle->toArray()) !!}
     </script>
 
+    <script id="json-sidebar" type="application/json">
+        {!! json_encode($sidebarMeta) !!}
+    </script>
+
+    <div class="js-news-sidebar-record"></div>
 
     @include('layout._extra_js', ['src' => 'js/react/news-show.js'])
 @endsection
