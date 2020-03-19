@@ -32,12 +32,14 @@ class NewsController extends Controller
         if (is_json_request()) {
             return $postsJson;
         } else {
-            $atom = [
-                'url' => route('news.index', ['format' => 'atom']),
-                'title' => 'osu!news Feed',
-            ];
-
-            return ext_view('news.index', compact('postsJson', 'atom'));
+            return ext_view('news.index', [
+                'atom' => [
+                    'url' => route('news.index', ['format' => 'atom']),
+                    'title' => 'osu!news Feed',
+                ],
+                'postsJson' => $postsJson,
+                'sidebarMeta' => $this->sidebarMeta($posts[0] ?? null),
+            ]);
         }
     }
 
@@ -59,6 +61,7 @@ class NewsController extends Controller
             'commentBundle' => CommentBundle::forEmbed($post),
             'post' => $post,
             'postJson' => json_item($post, 'NewsPost', ['content', 'navigation']),
+            'sidebarMeta' => $this->sidebarMeta($post),
         ]);
     }
 
@@ -78,5 +81,28 @@ class NewsController extends Controller
         NewsPost::findOrFail($id)->sync(true);
 
         return ['message' => trans('news.update.ok')];
+    }
+
+    private function sidebarMeta($post)
+    {
+        if ($post !== null && $post->published_at !== null) {
+            $currentYear = $post->published_at->year;
+        }
+
+        $currentYear = $currentYear ?? date('Y');
+
+        $years = NewsPost::selectRaw('DISTINCT YEAR(published_at) year')
+            ->whereNotNull('published_at')
+            ->orderBy('year', 'DESC')
+            ->pluck('year')
+            ->toArray();
+
+        $posts = NewsPost::default()->year($currentYear)->get();
+
+        return [
+            'current_year' => $currentYear,
+            'news_posts' => json_collection($posts, 'NewsPost'),
+            'years' => $years,
+        ];
     }
 }

@@ -64,7 +64,7 @@ abstract class Model extends BaseModel
             $query->getQuery()->offset = null;
             $query->limit(null);
 
-            return $query->count();
+            return min($query->count(), config('osu.pagination.max_count'));
         };
     }
 

@@ -38,6 +38,6 @@ class ChatController extends Controller
 
         $presence = UserChannel::presenceForUser(Auth::user());
 
-        return ext_view('chat.index', compact('presence', 'messages', 'json'));
+        return ext_view('chat.index', compact('presence', 'json'));
     }
 }

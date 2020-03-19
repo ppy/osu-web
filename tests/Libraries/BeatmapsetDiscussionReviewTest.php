@@ -3,7 +3,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace Tests;
+namespace Tests\Libraries;
 
 use App\Exceptions\InvariantException;
 use App\Libraries\BeatmapsetDiscussionReview;
@@ -13,6 +13,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\User;
 use Faker;
+use Tests\TestCase;
 
 class BeatmapsetDiscussionReviewTest extends TestCase
 {

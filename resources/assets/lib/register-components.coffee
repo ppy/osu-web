@@ -4,6 +4,7 @@
 import { ReactTurbolinks } from 'react-turbolinks'
 import { BeatmapsetPanel } from 'beatmapset-panel'
 import { BlockButton } from 'block-button'
+import ChatIcon from 'chat-icon'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
 import { CountdownTimer } from 'countdown-timer'
@@ -54,6 +55,12 @@ notificationWorker = new NotificationWorker()
 resetNotificationWorker = -> notificationWorker.setUserId(currentUser.id)
 $(document).ready resetNotificationWorker
 $.subscribe 'user:update', resetNotificationWorker
+
+reactTurbolinks.registerPersistent 'chat-icon', ChatIcon, true, (el) ->
+  props = (try JSON.parse(el.dataset.chatIcon)) ? {}
+  props.worker = notificationWorker
+
+  props
 
 reactTurbolinks.registerPersistent 'notification-icon', NotificationIcon, true, (el) ->
   props = (try JSON.parse(el.dataset.notificationIcon)) ? {}

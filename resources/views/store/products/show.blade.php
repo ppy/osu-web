@@ -38,8 +38,8 @@
                             <?php $imageSize = fast_imagesize($image[1]); ?>
                             <a
                                 class="gallery-previews__item js-gallery"
-                                data-width="{{ $imageSize[0] }}"
-                                data-height="{{ $imageSize[1] }}"
+                                data-width="{{ $imageSize[0] ?? null }}"
+                                data-height="{{ $imageSize[1] ?? null }}"
                                 data-gallery-id="product-{{ $product->product_id }}"
                                 data-index="{{ $i }}"
                                 href="{{ $image[1] }}"

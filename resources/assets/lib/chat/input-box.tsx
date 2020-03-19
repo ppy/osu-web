@@ -68,6 +68,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
           placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
           onKeyDown={this.checkIfEnterPressed}
           disabled={disableInput}
+          autoComplete='off'
           ref={this.inputBoxRef}
         />
 
