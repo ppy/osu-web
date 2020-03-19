@@ -37,6 +37,10 @@ class UserTransformer extends TransformerAbstract
         'user_preferences',
     ];
 
+    protected $permissions = [
+        'friends' => 'IsNotOAuth',
+    ];
+
     public function transform(User $user)
     {
         $profileCustomization = $user->profileCustomization();

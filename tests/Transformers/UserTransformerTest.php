@@ -6,14 +6,25 @@
 namespace Tests\Transformers;
 
 use App\Models\User;
+use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class UserTransformerTest extends TestCase
 {
+    public function testFriendsIsNotVisibleWithOAuth()
+    {
+        $viewer = $this->createUserWithGroup([]);
+
+        $this->actAsScopedUser($viewer, Passport::scopes()->pluck('id')->all());
+
+        $json = json_item($viewer, 'User', ['friends']);
+        $this->assertArrayNotHasKey('friends', $json);
+    }
+
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testUserSilenceShowExtendedInfo($groupIdentifier)
+    public function testGroupPermissionsUserSilenceShowExtendedInfo($groupIdentifier)
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
         $user = factory(User::class)->states('restricted', 'silenced', 'with_note')->create();
@@ -35,7 +46,7 @@ class UserTransformerTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testWithOAuth($groupIdentifier)
+    public function testGroupPermissionsWithOAuth($groupIdentifier)
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
         $user = factory(User::class)->states('silenced')->create();
@@ -51,7 +62,7 @@ class UserTransformerTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testWithoutOAuth($groupIdentifier, $visible)
+    public function testGroupPermissionsWithoutOAuth($groupIdentifier, $visible)
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
         $user = factory(User::class)->states('silenced')->create();
