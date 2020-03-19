@@ -8,6 +8,7 @@ import Fade from 'fade'
 import Enchant from 'enchant'
 import ForumPoll from 'forum-poll'
 import * as laroute from 'laroute'
+import MobileToggle from 'mobile-toggle'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -26,6 +27,7 @@ window._exported = {
   Enchant
   ForumPoll
   GalleryContest
+  MobileToggle
   OsuUrlHelper
   TurbolinksReload
   WindowVHPatcher
@@ -39,7 +41,7 @@ window._styles =
   header:
     height: 90 # @nav2-height
     heightSticky: 50 # @nav2-height--pinned
-    heightMobile: 60 # @navbar-height
+    heightMobile: 50 # @navbar-height
 
 window.StoreCheckout = StoreCheckout
 window.TextareaAutosize = TextareaAutosize

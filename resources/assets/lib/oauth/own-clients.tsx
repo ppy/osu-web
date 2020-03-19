@@ -33,6 +33,7 @@ export class OwnClients extends React.Component {
         <div className='oauth-clients'>
           {store.clients.size > 0 ? this.renderClients() : this.renderEmpty()}
         </div>
+        <div id='new-oauth-application' className='fragment-target' />
         <BigButton
           icon={'fas fa-plus'}
           props={{
