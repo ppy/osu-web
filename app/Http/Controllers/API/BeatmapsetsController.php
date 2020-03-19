@@ -12,7 +12,7 @@ class BeatmapsetsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('require-scopes:beatmaps.read');
+        $this->middleware('require-scopes:public');
     }
 
     public function lookup()

@@ -30,7 +30,7 @@ class BeatmapsetsController extends Controller
         parent::__construct();
 
         if (is_api_request()) {
-            $this->middleware('require-scopes:beatmaps.read', ['only' => ['search', 'show']]);
+            $this->middleware('require-scopes:public', ['only' => ['search', 'show']]);
         }
     }
 

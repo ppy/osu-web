@@ -41,7 +41,7 @@ class UsersController extends Controller
 
         if (is_api_request()) {
             $this->middleware('require-scopes:identify', ['only' => ['me']]);
-            $this->middleware('require-scopes:users.read', ['only' => [
+            $this->middleware('require-scopes:public', ['only' => [
                 'beatmapsets',
                 'kudosu',
                 'recentActivity',

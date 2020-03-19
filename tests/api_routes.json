@@ -522,10 +522,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -535,10 +535,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -548,10 +548,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -561,10 +561,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -574,10 +574,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -587,10 +587,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -600,10 +600,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -613,10 +613,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -626,10 +626,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -639,10 +639,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -672,10 +672,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -685,10 +685,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:beatmaps.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "beatmaps.read"
+            "public"
         ]
     },
     {
@@ -847,10 +847,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:users.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "users.read"
+            "public"
         ]
     },
     {
@@ -860,10 +860,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:users.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "users.read"
+            "public"
         ]
     },
     {
@@ -873,10 +873,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:users.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "users.read"
+            "public"
         ]
     },
     {
@@ -886,10 +886,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:users.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "users.read"
+            "public"
         ]
     },
     {
@@ -899,10 +899,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:users.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "users.read"
+            "public"
         ]
     },
     {
@@ -912,10 +912,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:users.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "users.read"
+            "public"
         ]
     },
     {
@@ -925,10 +925,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:users.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "users.read"
+            "public"
         ]
     },
     {
@@ -938,10 +938,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:users.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "users.read"
+            "public"
         ]
     },
     {
@@ -951,10 +951,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:users.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "users.read"
+            "public"
         ]
     },
     {
@@ -964,10 +964,10 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "require-scopes:users.read"
+            "require-scopes:public"
         ],
         "scopes": [
-            "users.read"
+            "public"
         ]
     },
     {
