@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
 
@@ -30,10 +15,21 @@ class UserNotification extends Model
         'is_read' => 'boolean',
     ];
 
-    public static function markAsReadByIds(User $user, $identities)
+    public static function markAsReadByIds(User $user, array $params)
     {
-        // TODO: validate schema
-        $ids = collect($identities)->pluck('id');
+        $ids = [];
+        $identities = array_map(function ($param) use (&$ids) {
+            $identity = get_params($param, null, [
+                'category',
+                'id:int',
+                'object_id:int',
+                'object_type',
+            ]);
+
+            $ids[] = $identity['id'] ?? null;
+
+            return $identity;
+        }, $params);
 
         $now = now();
         $count = $user
@@ -47,8 +43,14 @@ class UserNotification extends Model
         }
     }
 
-    public static function markAsReadByNotificationIdentifier(User $user, $params)
+    public static function markAsReadByNotificationIdentifier(User $user, array $params)
     {
+        $params = get_params($params, null, [
+            'category:string',
+            'object_id:int',
+            'object_type:string',
+        ]);
+
         $category = presence($params['category'] ?? null);
         $objectId = $params['object_id'] ?? null;
         $objectType = presence($params['object_type'] ?? null);
