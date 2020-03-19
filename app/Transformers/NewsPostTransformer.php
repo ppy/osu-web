@@ -20,6 +20,7 @@ class NewsPostTransformer extends TransformerAbstract
         return [
             'id' => $post->id,
 
+            'author' => $post->author(),
             'edit_url' => $post->editUrl(),
             'first_image' => $post->firstImage(),
             'published_at' => json_time($post->published_at),

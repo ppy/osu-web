@@ -5,6 +5,7 @@ import PostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
+import { StringWithComponent } from 'string-with-component';
 
 export default function PostItem({modifiers, post}: {modifiers?: string[], post: PostJson}) {
   let cover;
@@ -21,22 +22,30 @@ export default function PostItem({modifiers, post}: {modifiers?: string[], post:
 
   return (
     <a
-      href={route('news.show', {news: post.slug})}
-      className={osu.classWithModifiers('news-card', modifiers || ['index', 'hover'])}
+      className={osu.classWithModifiers('news-card', modifiers ?? ['index', 'hover'])}
+      href={route('news.show', { news: post.slug })}
     >
-      {cover}
-      <div className='news-card__overlay' />
-      <div className='news-card__content'>
+      <div className='news-card__cover-container'>
+        {cover}
         <div
           className='news-card__time js-tooltip-time'
           title={post.published_at}
         >
-          {moment(post.published_at).format('ll')}
+          {moment.utc(post.published_at).format('ll')}
         </div>
+      </div>
 
-        <div className='news-card__main'>
-          <div className='news-card__title'>{post.title}</div>
-          <div className='news-card__preview' dangerouslySetInnerHTML={{__html: preview}} />
+      <div className='news-card__main'>
+        <div className='news-card__row news-card__row--title'>{post.title}</div>
+        <div
+          className='news-card__row news-card__row--preview'
+          dangerouslySetInnerHTML={{ __html: preview }}
+        />
+        <div className='news-card__row news-card__row--author'>
+          <StringWithComponent
+            pattern={osu.trans('news.show.by')}
+            mappings={{ ':user': <strong key='author'>{post.author}</strong> }}
+          />
         </div>
       </div>
     </a>
