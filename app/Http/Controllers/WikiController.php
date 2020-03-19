@@ -25,8 +25,7 @@ class WikiController extends Controller
             return $this->showImage($path);
         }
 
-        $locale = $this->locale();
-        $page = Wiki\Page::lookupForController($path, $locale);
+        $page = Wiki\Page::lookupForController($path, $this->locale());
 
         if (!$page->isVisible()) {
             $redirectTarget = (new WikiRedirect)->sync()->resolve($path);
@@ -42,7 +41,7 @@ class WikiController extends Controller
             $status = 404;
         }
 
-        return ext_view($page->template(), compact('page', 'locale'), null, $status ?? null);
+        return ext_view($page->template(), compact('page'), null, $status ?? null);
     }
 
     public function sitemap()
