@@ -19,6 +19,7 @@ return [
             '403' => 'forbidden',
             '401' => 'unauthorized',
             '405' => 'missing',
+            '422' => 'invalid request',
             '500' => 'something broke',
             '503' => 'maintenance',
         ],
