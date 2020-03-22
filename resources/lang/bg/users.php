@@ -253,8 +253,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Неизползвано Kudosu',
-                'available_info' => "Kudosu може да се обменено за kudosu звезди, които ще ти помогнат на бийтмапа ти да получи повече внимание. Това е броят на kudosu, което все още не си обменил.",
                 'recent_entries' => 'Скорошна Kudosu история',
                 'title' => 'Kudosu!',
                 'total' => 'Общо получено Kudosu',

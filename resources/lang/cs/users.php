@@ -253,8 +253,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu k dispozici',
-                'available_info' => "Kudosu mohou být směněny za kudosu hvězdy, které pomohou Vaší mapě získat víc pozornosti. Toto je počet kudosu které jste ještě nesměnili.",
                 'recent_entries' => 'Nedávná Kudosu historie',
                 'title' => 'Kudosu!',
                 'total' => 'Celkově získané Kudosu',

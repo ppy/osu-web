@@ -253,8 +253,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu Available',
-                'available_info' => "Kudosu สามารถแลกเปลี่ยนเป็นดาว kudosu ได้, ซึ่งจะช่วยให้ บีทแมพของคุณได้รับการสนใจมากขึ้น. นี่คือตัวเลข kudosu ของคุณที่ยังไม่ได้แลกเปลี่ยน",
                 'recent_entries' => 'ประวัติ Kudosu ล่าสุด',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu ที่ได้รับ',

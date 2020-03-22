@@ -253,8 +253,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu Tillängligt',
-                'available_info' => "Kudosu kan bli bytade mot kudosu stjärnor, vilket kommer hjälpa din beatmap att få mer uppmärksamhet. Detta är antalet kudosu du inte har bytt in än.",
                 'recent_entries' => 'Nyligen Kudosu Historia',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Intjänad',

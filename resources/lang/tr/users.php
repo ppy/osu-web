@@ -253,8 +253,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Mevcut Kudosu',
-                'available_info' => "Kudosu'larınızı yaptığınız beatmapler'in daha çok dikkat çekmesi için kullanabilirsiniz. Bu sayı, henüz kullanmadığınız kudosu'ların sayısını gösterir.",
                 'recent_entries' => 'Son Kudosu Geçmişi',
                 'title' => 'Kudosu!',
                 'total' => 'Kazanılan Toplam Kudosu',
