@@ -225,8 +225,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu avabili',
-                'available_info' => "Kudosu pot fi tranzacționați pentru stele kudosu, ce pot ajuta ca beatmapul tău să obțină mai multă atenție. Acesta este numărul de kudosu ce nu au fost tranzacționați încă.",
                 'recent_entries' => 'Istoricul Kudosu recent',
                 'title' => 'Kudosu!',
                 'total' => 'Suma totală de Kudosu câștigați',

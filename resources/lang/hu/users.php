@@ -225,8 +225,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Elérhető Kudosu',
-                'available_info' => "A kudosu becserélhető kudosu csillagokra, amely segít a beatmapjeidnek figyelmet gyüjteni. Ez az kudosu mennyiség amit még nem cseréltél be.",
                 'recent_entries' => 'Legutóbbi Kudosu történelem',
                 'title' => 'Kudosu!',
                 'total' => 'Összesen megszerzett Kudosu',

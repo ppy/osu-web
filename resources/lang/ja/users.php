@@ -225,8 +225,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => '使用可能なKudosu',
-                'available_info' => "KudosuはKudosuスターと交換ができ、ビートマップに注目を集めるのに役立ちます。これは交換されていないKudosuの数です。",
                 'recent_entries' => '最近のKudosu履歴',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosuの累計獲得数',

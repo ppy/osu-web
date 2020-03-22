@@ -225,8 +225,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => '可用 kudosu',
-                'available_info' => "kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意。这是你还没有兑换的 kudosu 数。",
                 'recent_entries' => '最近 Kudosu 记录',
                 'title' => 'Kudosu!',
                 'total' => '总共获得 kudosu',
