@@ -24,10 +24,92 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => '',
-
+            'comments' => '',
+            'contests' => '',
             'forum' => '',
+            'livestream' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => '',
+            'order' => '',
+            'orders' => '',
+            'product' => '',
+            'products' => '',
+        ],
+
+        'tournaments' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => '',
+            'forum_posts' => '',
+            'modding' => '',
+            'show' => '',
         ],
     ],
 
@@ -44,9 +126,12 @@ return [
             '_' => 'αρχική σελίδα',
             'account-edit' => 'ρυθμίσεις',
             'account-verifyLink' => '',
-            'friends-index' => 'φίλοι',
-            'changelog-index' => 'αρχείο καταγραφής αλλαγών',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'έκδοση',
+            'changelog-index' => 'αρχείο καταγραφής αλλαγών',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'φίλοι',
             'getDownload' => 'λήψη',
             'getIcons' => 'εικονίδια',
             'groups-show' => 'ομάδες',
@@ -59,6 +144,7 @@ return [
             'search' => 'αναζήτηση',
             'supportTheGame' => 'υποστηρίξτε το παιχνίδι',
             'team' => 'ομάδα',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => '',
@@ -78,7 +164,6 @@ return [
             'artists' => 'επιλεγμένοι καλλιτέχνες',
             'beatmap_discussion_posts-index' => 'αναρτήσεις της συζήτησης περί του beatmap',
             'beatmap_discussions-index' => 'συζητήσεις περί του beatmap',
-            'beatmapset-watches-index' => 'modding λίστα παρακολούθησης',
             'beatmapset_discussion_votes-index' => 'ψήφοι συζήτησης περί του beatmap',
             'beatmapset_events-index' => 'beatmapset εκδηλώσεις',
             'index' => 'λίστα',
@@ -112,7 +197,6 @@ return [
             'tournaments' => 'τουρνουά',
             'tournaments-index' => 'τουρνουά',
             'tournaments-show' => 'πληροφορίες τουρνουά',
-            'forum-topic-watches-index' => 'συνδρομές',
             'forum-topics-create' => 'φόρουμ',
             'forum-topics-show' => 'φόρουμ',
             'forum-forums-index' => 'φόρουμ',
@@ -149,6 +233,7 @@ return [
             'modding-history-posts' => 'modding αναρτήσεις του χρήστη',
             'modding-history-votesGiven' => 'modding ψήφους που έχει δώσει ο χρήστης',
             'modding-history-votesReceived' => 'modding ψήφους που έχει λάβει ο χρήστης',
+            'notifications-index' => '',
             'oauth_login' => 'συνδεθείτε για το oauth',
             'oauth_request' => 'εξουσιοδότηση oauth',
             'settings' => 'Ρυθμίσεις',
@@ -256,10 +341,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'διεύθυνση email',
             'forgot' => "Έχω ξεχάσει τα στοιχεία μου",
             'password' => 'κωδικός',
             'title' => 'Συνδεθείτε Για Να Συνεχίσετε',
+            'username' => '',
 
             'error' => [
                 'email' => "Το όνομα χρήστη ή η διεύθυνση ηλεκτρονικού ταχυδρομείου δεν υπάρχει",

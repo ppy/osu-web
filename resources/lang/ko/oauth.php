@@ -22,15 +22,9 @@ return [
     'cancel' => '취소',
 
     'authorise' => [
-        'authorise' => '권한 부여',
         'request' => '는 당신의 계정에 접근할 수 있는 권한을 요청합니다.',
         'scopes_title' => '이 애플리케이션은 다음 기능을 할 수 있습니다:',
         'title' => '권한 요청',
-
-        'wrong_user' => [
-            '_' => ':user로 로그인되었습니다. :logout_link.',
-            'logout_link' => '다른 사용자로 로그인하려면 이곳을 클릭하세요',
-        ],
     ],
 
     'authorized_clients' => [
@@ -52,17 +46,11 @@ return [
         'secret' => '클라이언트 비밀 키',
     ],
 
-    'login' => [
-        'download' => '이곳을 눌러 게임을 다운로드하고 계정을 생성하세요',
-        'label' => '우선 로그인해봅시다!',
-        'title' => '계정 로그인',
-    ],
-
     'new_client' => [
         'header' => '새 OAuth 애플리케이션 등록',
         'register' => '애플리케이션 등록',
         'terms_of_use' => [
-            '_' => 'API를 사용함으로써 :link을 동의하는 것으로 간주됩니다.',
+            '_' => 'API를 사용함으로써 :link에 동의하는 것으로 간주됩니다.',
             'link' => '이용약관',
         ],
     ],

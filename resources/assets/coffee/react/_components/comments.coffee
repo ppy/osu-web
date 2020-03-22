@@ -1,20 +1,5 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 import { Comment } from 'comment'
 import { CommentEditor } from 'comment-editor'
@@ -37,6 +22,7 @@ export class Comments extends React.PureComponent
     el Observer, null, () =>
       # TODO: comments should be passed in as props?
       comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
+      pinnedComments = uiState.comments.pinnedCommentIds.map (id) -> store.comments.get(id)
 
       div className: osu.classWithModifiers('comments', @props.modifiers),
         div className: 'u-has-anchor u-has-anchor--no-event',
@@ -44,40 +30,46 @@ export class Comments extends React.PureComponent
         h2 className: 'comments__title',
           osu.trans('comments.title')
           span className: 'comments__count', osu.formatNumber(uiState.comments.total)
+
+        if pinnedComments.length > 0
+          div className: "comments__items comments__items--pinned",
+            @renderComments pinnedComments, true
+
         div className: 'comments__new',
           el CommentEditor,
             commentableType: @props.commentableType
             commentableId: @props.commentableId
             focus: false
             modifiers: @props.modifiers
-        div className: 'comments__content',
-          div className: 'comments__items comments__items--toolbar',
-            el CommentsSort,
-              modifiers: @props.modifiers
-            div className: osu.classWithModifiers('sort', @props.modifiers),
-              div className: 'sort__items',
-                @renderFollowToggle()
-                @renderShowDeletedToggle()
-          if comments.length > 0
-            div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
-              comments.map @renderComment
 
-              el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
+        div className: 'comments__items comments__items--toolbar',
+          el CommentsSort,
+            modifiers: @props.modifiers
+          div className: osu.classWithModifiers('sort', @props.modifiers),
+            div className: 'sort__items',
+              @renderFollowToggle()
+              @renderShowDeletedToggle()
 
-              el CommentShowMore,
-                commentableType: @props.commentableType
-                commentableId: @props.commentableId
-                comments: comments
-                total: uiState.comments.topLevelCount
-                sort: uiState.comments.currentSort
-                modifiers: _.concat 'top', @props.modifiers
-          else
-            div
-              className: 'comments__items comments__items--empty'
-              osu.trans('comments.empty')
+        if comments.length > 0
+          div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
+            @renderComments comments, false
+
+            el DeletedCommentsCount, { comments, showDeleted: uiState.comments.isShowDeleted, modifiers: ['top'] }
+
+            el CommentShowMore,
+              commentableType: @props.commentableType
+              commentableId: @props.commentableId
+              comments: comments
+              total: uiState.comments.topLevelCount
+              sort: uiState.comments.currentSort
+              modifiers: _.concat 'top', @props.modifiers
+        else
+          div
+            className: 'comments__items comments__items--empty'
+            osu.trans('comments.empty')
 
 
-  renderComment: (comment) =>
+  renderComment: (comment, pinned = false) =>
     return null if comment.isDeleted && !uiState.comments.isShowDeleted
 
     el Comment,
@@ -86,6 +78,11 @@ export class Comments extends React.PureComponent
       depth: 0
       modifiers: @props.modifiers
       showDeleted: uiState.comments.isShowDeleted
+      expandReplies: if pinned then false else null
+
+
+  renderComments: (comments, pinned) =>
+    @renderComment(comment, pinned) for comment in comments when comment.pinned == pinned
 
 
   renderShowDeletedToggle: =>

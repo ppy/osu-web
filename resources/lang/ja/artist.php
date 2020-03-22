@@ -43,7 +43,7 @@ return [
 
     'songs' => [
         '_' => '楽曲一覧',
-        'count' => ':count 曲',
+        'count' => ':count_delimited 曲',
         'exclusive' => 'osu! 限定',
     ],
 

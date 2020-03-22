@@ -1,32 +1,16 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Transformers;
 
 use App\Models\BeatmapDiscussion;
-use Auth;
-use League\Fractal;
 
-class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
+class BeatmapDiscussionTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'beatmap',
         'beatmapset',
         'posts',
         'current_user_attributes',
@@ -34,12 +18,10 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         'votes',
     ];
 
+    protected $requiredPermission = 'BeatmapDiscussionShow';
+
     public function transform(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
-            return [];
-        }
-
         return [
             'id' => $discussion->id,
             'beatmapset_id' => $discussion->beatmapset_id,
@@ -47,6 +29,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'user_id' => $discussion->user_id,
             'deleted_by_id' => $discussion->deleted_by_id,
             'message_type' => $discussion->message_type,
+            'parent_id' => $discussion->parent_id,
             'timestamp' => $discussion->timestamp,
             'resolved' => $discussion->resolved,
             'can_be_resolved' => $discussion->canBeResolved(),
@@ -62,10 +45,6 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includeStartingPost(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
-            return;
-        }
-
         return $this->item(
             $discussion->startingPost,
             new BeatmapDiscussionPostTransformer()
@@ -74,10 +53,6 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includePosts(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
-            return;
-        }
-
         return $this->collection(
             $discussion->beatmapDiscussionPosts,
             new BeatmapDiscussionPostTransformer()
@@ -86,19 +61,23 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includeVotes(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
+        return $this->primitive($discussion->votesSummary());
+    }
+
+    public function includeBeatmap(BeatmapDiscussion $discussion)
+    {
+        if ($discussion->beatmap_id === null) {
             return;
         }
 
-        return $this->primitive($discussion->votesSummary());
+        return $this->item(
+            $discussion->beatmap,
+            new BeatmapCompactTransformer()
+        );
     }
 
     public function includeBeatmapset(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
-            return;
-        }
-
         return $this->item(
             $discussion->beatmapset,
             new BeatmapsetCompactTransformer()
@@ -107,11 +86,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includeCurrentUserAttributes(BeatmapDiscussion $discussion)
     {
-        if (!$this->isVisible($discussion)) {
-            return;
-        }
-
-        $currentUser = Auth::user();
+        $currentUser = auth()->user();
 
         if ($currentUser === null) {
             return;
@@ -139,10 +114,5 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         return $this->item($discussion, function () use ($ret) {
             return $ret;
         });
-    }
-
-    public function isVisible($discussion)
-    {
-        return priv_check('BeatmapDiscussionShow', $discussion)->can();
     }
 }

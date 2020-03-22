@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'изтрито',
+        'none_found' => '',
         'title' => 'Бийтмап Дискусии',
 
         'form' => [
             '_' => 'Търсене',
             'deleted' => 'Включете изтрити дискусии',
+            'only_unresolved' => '',
             'types' => 'Тип съобщения',
             'username' => 'Потребителско име',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => '',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Потребител',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Маркирано като разрешено от :user',
             'false' => 'Подновено от :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

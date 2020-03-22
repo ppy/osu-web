@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'raderad',
+        'none_found' => '',
         'title' => 'Beatmap diskussioner',
 
         'form' => [
             '_' => 'Sök',
             'deleted' => 'Inkludera raderade diskussioner',
+            'only_unresolved' => '',
             'types' => 'Typ av meddelande',
             'username' => 'Användarnamn',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => 'Alla',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Användare',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Markerad som löst av :user',
             'false' => 'Öppnad igen av :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Thiết Lập Lại Đề Cử',
             'praise' => 'Khen Ngợi',
             'problem' => 'Vấn Đề',
+            'review' => '',
             'suggestion' => 'Đề Nghị',
         ],
 
         'mode' => [
             'events' => 'Lịch sử',
             'general' => 'Chung :scope',
+            'reviews' => '',
             'timeline' => 'Timeline',
             'scopes' => [
                 'general' => 'Difficulty này',
@@ -183,6 +185,7 @@ return [
         'nominate' => 'Đề Cử',
         'nominate_confirm' => 'Đề cử (nominate) beatmap này?',
         'nominated_by' => 'Được :users đề cử',
+        'not_enough_hype' => "",
         'qualified' => 'Dự tính sẽ xếp hạng (rank) vào :date, nếu không tìm thấy vấn đề gì.',
         'qualified_soon' => 'Dự tính sẽ sớm được xếp hạng (rank), nếu không tìm thấy vấn đề gì.',
         'required_text' => 'Trạng thái đề cử: :current/:required',

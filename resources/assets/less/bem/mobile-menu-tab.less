@@ -1,0 +1,34 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.mobile-menu-tab {
+  .reset-input();
+  .link-plain();
+  flex: none;
+  width: 40px;
+  color: @osu-colour-l3;
+  height: $width;
+
+  &--user {
+    margin-right: auto;
+    padding: 8px;
+  }
+
+  &:hover,
+  &.js-click-menu--active {
+    color: @osu-colour-c1;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      border-radius: 10000px;
+      background-color: @osu-colour-h1;
+      left: 25%;
+      bottom: -2px;
+      z-index: 1; // inside z-index--nav-bar
+    }
+  }
+}

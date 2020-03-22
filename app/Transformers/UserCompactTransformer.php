@@ -1,33 +1,18 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Transformers;
 
 use App\Models\User;
-use League\Fractal;
 
-class UserCompactTransformer extends Fractal\TransformerAbstract
+class UserCompactTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'country',
         'cover',
+        'current_mode_rank',
         'group_badge',
         'support_level',
     ];
@@ -40,7 +25,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             'profile_colour' => $user->user_colour,
             'avatar_url' => $user->user_avatar,
             'country_code' => $user->country_acronym,
-            'default_group' => $user->defaultGroup(),
+            'default_group' => $user->defaultGroup()->identifier,
             'is_active' => $user->isActive(),
             'is_bot' => $user->isBot(),
             'is_online' => $user->isOnline(),
@@ -70,9 +55,20 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
         });
     }
 
+    public function includeCurrentModeRank(User $user)
+    {
+        $currentModeStatistics = $user->statistics(auth()->user()->playmode ?? 'osu');
+
+        return $this->primitive($currentModeStatistics ? $currentModeStatistics->globalRank() : null);
+    }
+
     public function includeGroupBadge(User $user)
     {
-        return $this->primitive($user->groupBadge());
+        $badge = $user->groupBadge();
+
+        if (isset($badge)) {
+            return $this->item($badge, new GroupTransformer);
+        }
     }
 
     public function includeSupportLevel(User $user)

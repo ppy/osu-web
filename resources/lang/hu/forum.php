@@ -25,7 +25,7 @@ return [
     'title' => 'osu! fórumok',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Borító szerkesztése',
 
         'create' => [
             '_' => 'Borítókép megadása',
@@ -37,10 +37,6 @@ return [
             '_' => 'Boritókép eltávolítása',
             'confirm' => 'Biztos vagy benne, hogy el szeretnéd távolitani a boritóképet?',
         ],
-    ],
-
-    'email' => [
-        'new_reply' => '[osu!] Új válasz a ":title" témában',
     ],
 
     'forums' => [
@@ -75,7 +71,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Új válasz',
             ],
         ],
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Fórum Feliratkozások',
             'title_compact' => 'fórum feliratkozások',
-            'title_main' => 'Fórum <strong>Feliratkozások</strong>',
 
             'box' => [
                 'total' => 'Követett témák',
@@ -308,7 +302,7 @@ return [
 
                 'button' => [
                     'change_vote' => '',
-                    'edit' => '',
+                    'edit' => 'Kérdőív szerkesztése',
                     'view_results' => '',
                     'vote' => 'Szavaz',
                 ],

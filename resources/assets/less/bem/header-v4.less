@@ -1,30 +1,11 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .header-v4 {
   @_top: header-v4;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
 
-  @media @desktop {
-    height: 290px;
+  @media print {
+    display: none;
   }
 
   &__bg {
@@ -35,13 +16,54 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.5;
+    opacity: 0.7;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    .at2x-fallback(--header-bg, '/images/headers/generic.jpg');
 
     &::before {
-      .full-size();
       content: '';
       background-image: linear-gradient(to right, @osu-colour-d5, transparent 200px, transparent 1000px, @osu-colour-d5 1200px);
       background-position: center;
+      height: 100%;
+      width: 1200px;
+      display: block;
+      flex: none;
+    }
+
+    .@{_top}--artists & {
+      .at2x-simple("/images/headers/featured-artists.jpg");
+    }
+
+    .@{_top}--beatmappacks & {
+      .at2x-simple('/images/headers/beatmappacks.jpg');
+    }
+
+    .@{_top}--changelog & {
+      .at2x-simple('/images/headers/changelog.jpg');
+    }
+
+    .@{_top}--chat & {
+      .at2x-simple('/images/headers/chat.jpg');
+      filter: hue-rotate(115deg); // fix colour
+
+      &::before {
+        filter: hue-rotate(-115deg); // undo the one in parent
+      }
+    }
+
+    .@{_top}--contests & {
+      .at2x-fallback(--header-bg, '/images/headers/contest.jpg');
+    }
+
+    .@{_top}--download & {
+      .at2x-simple('/images/headers/download.jpg');
+      opacity: 0.5;
+
+      @media @desktop {
+        opacity: 0.9;
+      }
     }
 
     .@{_top}--forum & {
@@ -51,12 +73,96 @@
     .@{_top}--forums-index & {
       .at2x-simple('/images/headers/forum-index.jpg');
     }
+
+    .@{_top}--help & {
+      .at2x-simple("/images/headers/wiki.jpg");
+    }
+
+    .@{_top}--mp-history & {
+      .at2x-simple('/images/headers/mp-history.jpg');
+    }
+
+    .@{_top}--news & {
+      .at2x-simple('/images/headers/news.png');
+    }
+
+    .@{_top}--password-reset & {
+      .at2x-simple('/images/headers/password-reset.jpg');
+    }
+
+    .@{_top}--rankings & {
+      .at2x-simple('/images/headers/rankings.jpg');
+    }
+
+    .@{_top}--search & {
+      .at2x-simple('/images/headers/search.jpg');
+    }
+
+    .@{_top}--store & {
+      opacity: 0.7;
+      .at2x-simple('/images/headers/store.png');
+    }
+
+    .@{_top}--supporter & {
+      opacity: 0.2;
+      .at2x-simple('/images/headers/supporter.jpg');
+    }
+
+    .@{_top}--tournaments & {
+      .at2x-simple('/images/headers/tournament-v2.jpg');
+    }
+
+    .@{_top}--users & {
+      opacity: 1;
+      .at2x-simple('/images/headers/supporter.jpg');
+    }
   }
 
   &__bg-container {
     .full-size();
     .default-box-shadow();
     background-color: @osu-colour-d5;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    &--main {
+      .large() {
+        @media @desktop {
+          min-height: 450px;
+
+          .@{_top}--restricted & {
+            min-height: 450px;
+          }
+        }
+      }
+
+      @media @desktop {
+        height: (@nav2-height + 70px);
+
+        .@{_top}--restricted & {
+          height: (@nav2-height + 70px + 70px);
+        }
+      }
+
+      .@{_top}--download & {
+        .large();
+      }
+
+      .@{_top}--supporter & {
+        .large();
+      }
+
+      .@{_top}--users & {
+        @media @desktop {
+          min-height: 320px;
+        }
+      }
+    }
   }
 
   &__content {
@@ -73,6 +179,61 @@
     width: 40px;
     margin-right: 10px;
     flex: none;
+
+    .@{_top}--artists & {
+      background-image: url('/images/icons/artists.svg');
+      background-size: 75%;
+    }
+
+    .@{_top}--beatmappacks & {
+      background-image: url('/images/icons/beatmappacks.svg');
+      background-size: 75%;
+    }
+
+    .@{_top}--changelog & {
+      background-image: url('/images/icons/changelog.svg');
+    }
+
+    .@{_top}--chat & {
+      background-image: url('/images/icons/chat.svg');
+    }
+
+    .@{_top}--comments & {
+      background-image: url('/images/icons/chat.svg');
+    }
+
+    .@{_top}--contests & {
+      background-image: url('/images/icons/contests.svg');
+      background-size: 75%;
+    }
+
+    .@{_top}--help & {
+      background-image: url('/images/icons/help.svg');
+      background-size: 75%;
+    }
+
+    .@{_top}--news & {
+      background-image: url('/images/icons/news.svg');
+    }
+
+    .@{_top}--rankings & {
+      background-image: url('/images/icons/rankings.svg');
+      background-size: 75%;
+    }
+
+    .@{_top}--search & {
+      background-image: url('/images/icons/search.svg');
+      background-size: 75%;
+    }
+
+    .@{_top}--store & {
+      background-image: url('/images/icons/store.svg');
+      background-size: 75%;
+    }
+
+    .@{_top}--users & {
+      background-image: url('/images/icons/profile.svg');
+    }
   }
 
   &__row {
@@ -81,41 +242,52 @@
     .default-gutter-v2();
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 
     &--bar {
       background-color: @osu-colour-d4;
-
-      padding-top: 10px;
-      padding-bottom: 10px;
-
-      @media @desktop {
-        padding-top: 15px;
-        padding-bottom: 15px;
-      }
     }
 
     &--title {
       background-color: @osu-colour-d5;
-      font-size: @font-size--large;
-
-      display: none;
+      font-size: @font-size--title-small;
 
       @media @desktop {
-        display: flex;
+        font-size: @font-size--large;
       }
+    }
+
+    .@{_top}--users & {
+      padding-left: @gutter-profile-page;
+      padding-right: $padding-left;
+
+      @media @desktop {
+        padding-left: @gutter-profile-page-desktop;
+        padding-right: $padding-left;
+      }
+    }
+  }
+
+  &__spinner {
+    .center-content();
+    .full-size();
+    font-size: 60px;
+    background-color: osu-hsla(@osu-colour-b6, 0.5);
+    color: @osu-colour-c1;
+    display: none;
+
+    @media @desktop {
+      display: flex;
     }
   }
 
   &__title {
     padding-top: 15px;
     padding-bottom: 15px;
-  }
+    display: none;
 
-  &__title-action {
-    color: @osu-colour-h1;
-  }
-
-  &__title-section {
-    font-weight: 600;
+    @media @desktop {
+      display: flex;
+    }
   }
 }

@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .supporter-eyecatch {
   .at2x-simple('/images/layout/supporter/banner-bg.jpg');
@@ -27,7 +12,7 @@
   &::before {
     content: ' ';
     .full-size();
-    background: linear-gradient(to bottom, .osu-hsla(@osu-colour-b5, 1)[@hsla] 4%, .osu-hsla(@osu-colour-b5, 0)[@hsla] 100%);
+    background: linear-gradient(to bottom, osu-hsla(@osu-colour-b5, 1) 4%, osu-hsla(@osu-colour-b5, 0) 100%);
   }
 
   &::after {
@@ -49,7 +34,7 @@
 
     @media @mobile {
       z-index: 1;
-      background: .osu-hsla(@osu-colour-b4, 0.9)[@hsla];
+      background: osu-hsla(@osu-colour-b4, 0.9);
       width: 100%;
     }
   }
@@ -60,7 +45,6 @@
 
   &__text {
     font-size: @font-size--title-small-3;
-    font-style: italic;
     color: @osu-colour-l1;
     margin: 10px 0 0;
 

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models\UserStatistics;
 
@@ -58,6 +43,11 @@ abstract class Model extends BaseModel
         return presence($value);
     }
 
+    public function getHitAccuracyAttribute($value)
+    {
+        return $this->accuracy_new ?? round($this->accuracy * 100, 2);
+    }
+
     public function currentLevelProgress()
     {
         return fmod($this->level, 1);
@@ -87,7 +77,7 @@ abstract class Model extends BaseModel
         return get_class_namespace(static::class).'\\'.studly_case($modeStr);
     }
 
-    public static function getMode() : string
+    public static function getMode(): string
     {
         return snake_case(get_class_basename(static::class));
     }
@@ -129,6 +119,12 @@ abstract class Model extends BaseModel
             $this->s_rank_count = 0;
             $this->sh_rank_count = 0;
             $this->a_rank_count = 0;
+
+            $this->accuracy_total = 0;
+            $this->accuracy_count = 0;
+            $this->accuracy = 0;
+            $this->rank = 0;
+            $this->rank_score = 0;
         }
 
         return parent::__construct($attributes);

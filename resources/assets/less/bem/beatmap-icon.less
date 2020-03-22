@@ -1,104 +1,39 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .beatmap-icon {
-  @top: beatmap-icon;
-
-  color: #fff;
-  font-size: 22px;
+  font-size: 22px; // icon size
   display: flex;
 
-  &::before {
-    .full-size();
-    .icon-bg();
-
-    content: ' ';
-    @margin: 2px;
-    @size: calc(100% - (@margin * 2));
-    height: auto;
-    width: @size;
-    padding-bottom: @size;
-    top: @margin;
-    left: @margin;
-    border-radius: 50%;
-    background-color: @pink;
-  }
-
   &--large {
-    font-size: 30px;
+    font-size: 30px; // icon size
   }
 
   &--beatmapset {
-    font-size: 40px;
+    font-size: 24px; // icon size
   }
 
   &--easy {
-    &::before {
-      background-color: @diff-easy;
-    }
+    color: @diff-easy;
   }
 
   &--normal {
-    &::before {
-      background-color: @diff-normal;
-    }
+    color: @diff-normal;
   }
 
   &--hard {
-    &::before {
-      background-color: @diff-hard;
-    }
+    color: @diff-hard;
   }
 
   &--insane {
-    &::before {
-      background-color: @diff-insane;
-    }
+    color: @diff-insane;
   }
 
   &--expert {
-    &::before {
-      background-color: @diff-expert;
-    }
+    color: @diff-expert;
   }
 
   &--expert-plus {
-    &::before {
-      background-color: @diff-expert-plus;
-    }
-  }
-
-  &__shadow {
-    .default-box-shadow();
-    .full-size();
-
-    .@{top}--with-hover:hover & {
-      .thicker-box-shadow();
-      transition: all 90ms ease-in-out; // 90ms to be in line with the tooltip (qtip2 default)
-    }
-
-    @margin: 1px;
-    @size: calc(100% - (@margin * 2));
-    height: auto;
-    width: @size;
-    padding-bottom: @size;
-    top: @margin;
-    left: @margin;
-    border-radius: 50%;
+    color: @diff-expert-plus;
   }
 }

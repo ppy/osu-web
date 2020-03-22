@@ -19,9 +19,9 @@
  */
 
 return [
-    'confirmation' => '本当にいいですか？',
+    'confirmation' => '本当によろしいですか？',
     'confirmation_unsaved' => '保存されていない変更は残りません。よろしいですか？',
-    'saved' => '保存完了',
+    'saved' => '保存しました',
 
     'array_and' => [
         'words_connector' => '、',
@@ -35,11 +35,12 @@ return [
 
     'buttons' => [
         'admin' => '管理者',
+        'authorise' => '承認',
         'back_to_previous' => '直前の状態に戻す',
         'back_to_top' => 'トップに戻る',
         'cancel' => 'キャンセル',
         'change' => '変更',
-        'click_to_copy' => 'クリックでコピー',
+        'click_to_copy' => 'クリックしてクリップボードにコピー',
         'click_to_copy_copied' => 'クリップボードにコピーされました！',
         'close' => '閉じる',
         'collapse' => '折りたたむ',
@@ -48,7 +49,7 @@ return [
         'expand' => '展開',
         'hide' => '隠す',
         'permalink' => 'パーマリンク',
-        'permalink_copied' => 'コピーしました',
+        'pin' => 'ピン',
         'post' => '投稿',
         'reply' => '返信',
         'reply_reopen' => '返信して再開',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'もっと見る',
         'show' => '表示',
         'show_deleted' => '削除済みを表示',
+        'show_less' => '表示を縮小する',
         'show_more' => '展開する',
         'show_more_options' => '詳細オプションを表示する',
+        'unpin' => 'ピン解除',
         'update' => 'アップデート',
         'upload_image' => '画像をアップロード',
 
@@ -73,21 +76,22 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count個のバッジ',
-        'days' => ':count日',
+        'badges' => ':count_delimited個のバッジ',
+        'days' => ':count_delimited日',
         'hour_short_unit' => '時間',
-        'hours' => ':count時間',
-        'item' => ':count個',
+        'hours' => ':count_delimited時間',
+        'item' => ':count_delimited個',
         'minute_short_unit' => '分',
         'minutes' => ':count_delimited分',
-        'months' => ':countヶ月',
+        'months' => ':count_delimitedヶ月',
+        'notifications' => ':count_delimited 件の通知',
         'plus_others' => '+ :count_delimited',
         'post' => ':count_delimited 投稿',
         'second_short_unit' => '秒',
         'star_priority' => ':count_delimited スタープライオリティ',
         'update' => ':count_delimited アップデート',
         'view' => ':count_delimited ビュー',
-        'years' => ':count年',
+        'years' => ':count_delimited年',
     ],
 
     'countdown' => [
@@ -111,11 +115,11 @@ return [
         'keyboard' => 'キーボード',
         'mouse' => 'マウス',
         'tablet' => 'ペンタブ',
-        'touch' => 'タッチ画面',
+        'touch' => 'タッチスクリーン',
     ],
 
     'dropzone' => [
-        'target' => 'ここにドロップでアップロード',
+        'target' => 'ここにドロップしてアップロード',
     ],
 
     'input' => [
@@ -137,13 +141,18 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count日前',
-        'hours_ago' => ':count時間前',
+        'days_ago' => ':count_delimited日前',
+        'hours_ago' => ':count_delimited時間前',
         'now' => '今',
         'remaining' => '残り時間',
     ],
 
     'title' => [
         'notice' => 'お知らせ',
+    ],
+
+    'wrong_user' => [
+        '_' => 'あなたは:userとしてログインしています。:logout_link。',
+        'logout_link' => '別のユーザーとしてログインするにはここをクリック',
     ],
 ];

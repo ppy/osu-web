@@ -64,24 +64,52 @@ return [
         'send_message' => 'изпрати съобщението',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Вход',
-        'locked_ip' => 'Вашият IP адрес е блокиран. Моля изчакайте няколко минути.',
-        'username' => 'Потребителско име',
-        'password' => 'Парола',
         'button' => 'Вход',
         'button_posting' => 'Влизане...',
+        'email_login_disabled' => '',
+        'failed' => 'Неправилен опит за влизане',
+        'forgot' => 'Забравихте си паролата?',
+        'info' => '',
+        'locked_ip' => 'Вашият IP адрес е блокиран. Моля изчакайте няколко минути.',
+        'password' => 'Парола',
+        'register' => "Нямате osu! акаунт? Направете си един",
         'remember' => 'Запомни ме на този компютър',
         'title' => 'Моля влезте в профила си, за да продължите',
-        'failed' => 'Неправилен опит за влизане',
-        'register' => "Нямате osu! акаунт? Направете си един",
-        'forgot' => 'Забравихте си паролата?',
+        'username' => 'Потребителско име',
+
         'beta' => [
             'main' => 'Ранният достъп е ограничен само за привилегировани потребители.',
             'small' => '(osu!supporter ще има достъп скоро)',
         ],
-
-        'here' => 'тук', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -331,11 +359,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Играч :info',
-            'info' => 'Информация',
         ],
 
         'info' => [

@@ -1,20 +1,5 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 class @BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
@@ -24,14 +9,14 @@ class @BeatmapDiscussionHelper
   @MAX_LENGTH_TIMELINE: 750
 
 
-  @MODES = ['events', 'general', 'generalAll', 'timeline']
+  @MODES = ['events', 'general', 'generalAll', 'timeline', 'reviews']
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
 
 
   @canModeratePosts: (user) =>
     user ?= currentUser
 
-    user.is_admin || user.can_moderate
+    user.is_admin || user.is_moderator
 
 
   # text should be pre-escaped.
@@ -61,13 +46,16 @@ class @BeatmapDiscussionHelper
 
 
   @discussionMode: (discussion) ->
-    if discussion.beatmap_id?
-      if discussion.timestamp?
-        'timeline'
-      else
-        'general'
+    if discussion.message_type == 'review'
+      'reviews'
     else
-      'generalAll'
+      if discussion.beatmap_id?
+        if discussion.timestamp?
+          'timeline'
+        else
+          'general'
+      else
+        'generalAll'
 
 
   @format: (text, options = {}) =>
@@ -108,7 +96,7 @@ class @BeatmapDiscussionHelper
   @linkTimestamp: (text, classNames = []) =>
     text
       .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_match, text, m, s, ms, range) =>
-        osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
+        osu.link(_exported.OsuUrlHelper.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
 
 
   @messageType:
@@ -117,6 +105,7 @@ class @BeatmapDiscussionHelper
       mapperNote: 'far fa-sticky-note'
       praise: 'fas fa-heart'
       problem: 'fas fa-exclamation-circle'
+      review: 'fas fa-tasks'
       suggestion: 'far fa-circle'
 
     # used for svg since it doesn't seem to have ::before pseudo-element
@@ -171,7 +160,7 @@ class @BeatmapDiscussionHelper
     params.mode = mode ? @DEFAULT_MODE
 
     params.beatmap =
-      if !beatmapId? || params.mode in ['events', 'generalAll']
+      if !beatmapId? || params.mode in ['events', 'generalAll', 'reviews']
         @DEFAULT_BEATMAP_ID
       else
         beatmapId

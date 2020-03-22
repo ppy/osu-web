@@ -1,18 +1,30 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 namespace Tests\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Models\UserGroup;
 use DB;
+use Faker;
 use Tests\TestCase;
 
 class BeatmapDiscussionsControllerTest extends TestCase
 {
+    protected static $faker;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$faker = Faker\Factory::create();
+    }
+
     // normal vote
     public function testPutVoteInitial()
     {
@@ -21,7 +33,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentScore = $this->currentScore($this->discussion);
 
         $this
-            ->actingAs($this->user)
+            ->actingAsVerified($this->user)
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
@@ -74,8 +86,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentScore = $this->currentScore($this->discussion);
 
         $this
-            ->actingAs($this->bngUser)
-            ->withSession(['verified' => true])
+            ->actingAsVerified($this->bngUser)
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
@@ -97,7 +108,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentScore = $this->currentScore($this->discussion);
 
         $this
-            ->actingAs($this->anotherUser)
+            ->actingAsVerified($this->anotherUser)
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
@@ -119,7 +130,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentScore = $this->currentScore($this->discussion);
 
         $this
-            ->actingAs($this->anotherUser)
+            ->actingAsVerified($this->anotherUser)
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '0'],
             ])
@@ -141,7 +152,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentScore = $this->currentScore($this->discussion);
 
         $this
-            ->actingAs($this->anotherUser)
+            ->actingAsVerified($this->anotherUser)
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
@@ -158,8 +169,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $currentScore = $this->currentScore($this->discussion);
 
         $this
-            ->actingAs($this->bngUser)
-            ->withSession(['verified' => true])
+            ->actingAsVerified($this->bngUser)
             ->put(route('beatmap-discussions.vote', $this->discussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
@@ -169,9 +179,95 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore - 1, $this->currentScore($this->discussion));
     }
 
+    // posting reviews - fail scenarios ----
+
+    // guest user
+    public function testPostReviewGuest()
+    {
+        $this
+            ->post(route('beatmapsets.beatmap-discussions.review'))
+            ->assertUnauthorized();
+    }
+
+    // beatmapset id missing
+    public function testPostReviewIdMissing()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'))
+            ->assertStatus(404);
+    }
+
+    // invalid document
+    public function testPostReviewDocumentMissing()
+    {
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+            ])
+            ->assertStatus(422);
+    }
+
+    // posting reviews - success scenario ----
+
+    // valid document containing issue embeds
+    public function testPostReviewDocumentValidWithIssues()
+    {
+        $discussionCount = BeatmapDiscussion::count();
+        $discussionPostCount = BeatmapDiscussionPost::count();
+        $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
+        $issueText = self::$faker->sentence();
+
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('beatmapsets.beatmap-discussions.review'), [
+                'beatmapset_id' => $this->beatmapset->getKey(),
+                'document' => [
+                    [
+                        'type' => 'embed',
+                        'discussion_type' => 'problem',
+                        'text' => $timestampedIssueText,
+                        'timestamp' => true,
+                        'beatmap_id' => $this->beatmapset->beatmaps->first()->getKey(),
+                    ],
+                    [
+                        'type' => 'embed',
+                        'discussion_type' => 'problem',
+                        'text' => $issueText,
+                    ],
+                ],
+            ])
+            ->assertSuccessful()
+            ->assertJsonFragment(
+              [
+                  'user_id' => $this->user->getKey(),
+                  'message' => $timestampedIssueText,
+              ]
+            )
+            // ensure timestamp was parsed correctly
+            ->assertJsonFragment(
+                [
+                    'timestamp' => 1234,
+                ]
+            )
+            ->assertJsonFragment(
+              [
+                  'user_id' => $this->user->getKey(),
+                  'message' => $issueText,
+              ]
+            );
+
+        // ensure 3 discussions/posts are created - one for the review and one for each embedded problem
+        $this->assertSame($discussionCount + 3, BeatmapDiscussion::count());
+        $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
+
+        config()->set('osu.beatmapset.discussion_review_enabled', true);
 
         $this->mapper = factory(User::class)->create();
         $this->user = factory(User::class)->create();
@@ -201,7 +297,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $conditions = [
             'user_id' => $user->user_id,
-            'group_id' => UserGroup::GROUPS['bng'],
+            'group_id' => app('groups')->byIdentifier('bng')->getKey(),
         ];
 
         $existingUserGroup = UserGroup::where($conditions)->first();

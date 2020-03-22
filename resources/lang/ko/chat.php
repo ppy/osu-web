@@ -19,12 +19,11 @@
  */
 
 return [
-    'coming_soon' => '곧 출시 예정',
     'limitation_notice' => '참고: <a href=":lazer_link">osu!lazer</a> 나 새 웹사이트를 쓰는 유저만 이 시스템을 통해서 PM을 받습니다.<br/>상대방이 사용하는지에 대한 여부가 불확실하다면, <a href=":oldpm_link">예전 포럼 PM 페이지</a>에서 메시지를 보내세요.',
     'talking_in' => ':channel에서 대화 중',
     'talking_with' => ':name님과 대화 중',
     'title_compact' => '채팅',
-    'title' => '채팅',
+
     'cannot_send' => [
         'channel' => '이 채널에서 메시지를 보낼 수 없습니다. 다음과 같은 이유 때문일 수도 있습니다:',
         'user' => '이 유저에게 메시지를 보낼 수 없습니다. 다음과 같은 이유 때문일 수도 있습니다:',

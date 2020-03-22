@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 'use strict';
 
@@ -86,7 +71,6 @@ vendor.forEach(function (script) {
 
 
 let webpackConfig = {
-  devtool: '#source-map',
   externals: {
     "lodash": "_",
     "moment": "moment",
@@ -193,20 +177,15 @@ if (process.env.SENTRY_RELEASE == 1) {
   );
 }
 
-// use polling if watcher is bugged.
-if (process.env.WEBPACK_POLL == 1) {
-  webpackConfig['watchOptions'] = {
-    poll: true
-  };
-}
-
 mix
 .webpackConfig(webpackConfig)
+.sourceMaps(true, 'source-map', 'source-map')
 .js([
   'resources/assets/app.js'
 ], 'js/app.js')
 .js(...reactComponentSet('artist-page'))
 .js(...reactComponentSet('beatmap-discussions'))
+.js(...reactComponentSet('beatmap-discussions-history'))
 .js(...reactComponentSet('beatmapset-page'))
 .js(...reactComponentSet('changelog-build'))
 .js(...reactComponentSet('changelog-index'))
@@ -226,6 +205,7 @@ mix
 .ts('resources/assets/lib/groups-show.ts', 'js/react/groups-show.js')
 .ts('resources/assets/lib/news-index.ts', 'js/react/news-index.js')
 .ts('resources/assets/lib/news-show.ts', 'js/react/news-show.js')
+.ts('resources/assets/lib/notifications-index.ts', 'js/react/notifications-index.js')
 .ts('resources/assets/lib/store-bootstrap.ts', 'js/store-bootstrap.js')
 .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
@@ -243,6 +223,10 @@ mix
 
 // include locales in manifest
 const locales = glob.sync('resources/assets/build/locales/*.js');
+if (locales.length === 0) {
+  throw new Error('missing locale files.');
+}
+
 for (const locale of locales) {
   mix.scripts([locale], `public/js/locales/${path.basename(locale)}`);
 }

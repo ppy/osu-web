@@ -25,6 +25,7 @@ return [
         'missing' => 'İstenilen ":keyword" sayfası bulunamadı.',
         'missing_title' => 'Bulunamadı',
         'missing_translation' => 'İstenilen sayfa seçilen dilde bulunamadı.',
+        'needs_cleanup_or_rewrite' => 'Görüntülenen sayfa osu! wiki\'nin standartlarına uyuşmamaktadır ve silinmeli veya tekrardan yazılmalıdır. Eğer yardım edebilirseniz lütfen makaleyi güncellemeyi düşününüz!',
         'search' => ':link için var olan sayfaları ara.',
         'toc' => 'İçerik',
 
@@ -41,10 +42,7 @@ return [
         ],
     ],
     'main' => [
-        'title' => '',
+        'title' => 'bilgi tabanı',
         'subtitle' => '',
-    ],
-    'search' => [
-        'path' => '',
     ],
 ];

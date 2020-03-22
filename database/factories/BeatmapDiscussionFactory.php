@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -14,9 +17,9 @@
 use App\Models\BeatmapDiscussion;
 
 $factory->define(BeatmapDiscussion::class, function (Faker\Generator $faker) use ($factory) {
-    return [
-        'type' => rand(0, 1) === 0 ? 'timeline' : 'general',
-    ];
+    $type = rand(0, 1) === 0 ? 'timeline' : 'general';
+
+    return $factory->raw(BeatmapDiscussion::class, [], $type);
 });
 
 $factory->defineAs(BeatmapDiscussion::class, 'timeline', function () {

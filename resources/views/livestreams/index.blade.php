@@ -1,51 +1,30 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master')
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-compact">
-        <div class="osu-page-header osu-page-header--live">
-                <h1 class="osu-page-header__title">{{ trans('livestreams.top-headers.headline') }}</h1>
+    @include('layout._page_header_v4')
 
-                <p class="osu-page-header__title osu-page-header__title--smaller">
-                    {!! trans('livestreams.top-headers.description', [
-                    'link' => link_to(
-                    wiki_url('Guides/Live_Streaming_osu!'),
-                    trans('livestreams.top-headers.link'),
-                    ['class' => 'osu-page-header__description-link']
-                    ),
-                    ]) !!}
-                </p>
-        </div>
+    <div class="osu-page osu-page--description">
+        {!! trans('livestreams.top-headers.description', [
+            'link' => link_to(
+                wiki_url('Guides/Live_Streaming_osu!'),
+                trans('livestreams.top-headers.link'),
+                ['class' => 'link link--default']
+            ),
+        ]) !!}
     </div>
 
     @if ($featuredStream !== null)
-        <div class="osu-layout__row osu-layout__row--page-compact">
+        <div class="osu-page">
             @include('livestreams._featured', compact('featuredStream'))
         </div>
     @endif
 
-    <div class="osu-layout__row osu-layout__row--page-compact">
+    <div class="osu-page">
         <div class="livestream-page">
-            <h2 class="livestream-page__header">
-                {{ trans('livestreams.headers.regular') }}
-            </h2>
-
             <div class="livestream-page__items">
                 @foreach ($streams as $stream)
                     <div class="livestream-page__item">

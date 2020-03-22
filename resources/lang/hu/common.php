@@ -30,25 +30,26 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'ÚJ',
     ],
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => '',
         'back_to_previous' => 'Vissza az előző pozícióra',
         'back_to_top' => 'Vissza a lap tetejére',
         'cancel' => 'Mégse',
         'change' => 'változtat',
         'click_to_copy' => 'kattints ide a vágólapra helyezéshez',
         'click_to_copy_copied' => 'vágólapra helyezve!',
-        'close' => '',
+        'close' => 'Bezárás',
         'collapse' => 'összecsuk',
         'delete' => 'Törlés',
         'edit' => 'Szerkesztés',
         'expand' => 'kibont',
         'hide' => 'elrejtés',
         'permalink' => 'állandó hivatkozás',
-        'permalink_copied' => 'hivatkozás másolva',
+        'pin' => '',
         'post' => 'Küldés',
         'reply' => 'Válasz',
         'reply_reopen' => 'Válaszolás és újranyitás',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'továbbiak mutatása',
         'show' => 'mutat',
         'show_deleted' => 'Töröltek megjelenítése',
+        'show_less' => '',
         'show_more' => 'több megjelenítése',
         'show_more_options' => 'további opciók mutatása',
+        'unpin' => '',
         'update' => 'Frissítés',
         'upload_image' => 'kép feltöltése',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'p|p',
         'minutes' => ':count perc |:count percek',
         'months' => ':count hónap|:count hónap',
+        'notifications' => '',
         'plus_others' => '',
         'post' => ':count_delimited poszt|:count_delimited posztok',
         'second_short_unit' => 'mp|mp',
@@ -119,7 +123,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'keresés...',
     ],
 
     'pagination' => [
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Értesítés',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

@@ -1,54 +1,29 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .navbar-mobile {
+  background-color: @osu-colour-h2;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: @z-index--nav-bar;
   color: #fff;
+  display: flex;
+  align-items: center;
+  height: @navbar-height;
+  padding: 0 10px;
 
   &__brand {
-    float: none;
     padding: 0 10px;
-    height: auto;
     min-width: 0;
-    font-size: 20px;
-    line-height: 1.5; // avoid clipping
-  }
-
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: @navbar-height;
-    padding: 0 10px;
-
-    &::after,
-    &::before {
-      display: none;
-    }
+    font-size: @font-size--title-small;
   }
 
   &__header-section {
     display: flex;
     align-items: center;
     min-width: 0;
+    flex: 1;
 
     &--buttons {
       flex: none;
@@ -57,55 +32,35 @@
 
   &__logo {
     flex: none;
-    display: inline-block;
-    background-image: url('/images/layout/osu-logo.png');
-    background-size: 100%;
+    display: block;
+    background-image: url('/images/layout/osu-logo-white.svg');
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: @navbar-mobile--content-height;
-    height: @navbar-mobile--content-height;
-  }
-
-  &__menu {
-    position: fixed;
-    top: @navbar-height;
-    padding: 0 10px;
-    background-color: @osu-colour-b5;
-    width: 100%;
-    max-height: calc((var(--vh, 1vh) * 100) - @navbar-height);
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    z-index: @z-index--nav-bar;
-
-    &:focus,
-    &:hover,
-    &:active,
-    & {
-      color: #fff;
-    }
-  }
-
-  &__menu-items {
-    margin-top: 0;
+    width: (@navbar-mobile--content-height + 10px);
+    height: $width;
+    margin: -5px;
   }
 
   &__toggle {
+    .reset-input();
     flex: none;
-    float: none;
     width: @navbar-mobile--content-height;
     height: @navbar-mobile--content-height;
     padding: 0;
     margin: 0;
 
     border-width: 2px;
-    color: #fff;
+    color: @osu-colour-c1;
 
     display: block;
 
-    &:focus,
-    &:hover,
-    &:active {
-      border-color: transparent;
+    &:hover {
+      color: @osu-colour-l1;
+    }
+
+    &.js-click-menu--active {
+      transform: rotateX(0.5turn);
     }
   }
 

@@ -19,8 +19,6 @@
  */
 
 return [
-    'title' => 'Reestablecer contraseña',
-
     'button' => [
         'cancel' => 'Cancelar',
         'resend' => 'Reenviar verificación por correo electrónico',
@@ -28,13 +26,9 @@ return [
         'start' => 'Empezar',
     ],
 
-    'email' => [
-        'subject' => 'Recuperación de tu cuenta de osu!',
-    ],
-
     'error' => [
         'contact_support' => 'Contacta al soporte técnico para recuperar tu contraseña.',
-        'is_privileged' => 'Contacta a peppy lol.',
+        'is_privileged' => 'Por favor, póngase en contacto con un administrador de alto nivel para recuperar la cuenta.',
         'missing_key' => 'Requerido.',
         'too_many_tries' => 'Demasiados intentos fallidos.',
         'user_not_found' => 'El usuario solicitado no existe.',

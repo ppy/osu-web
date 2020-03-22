@@ -24,7 +24,6 @@ return [
         'registration_period' => 'Kayıt :start - :end',
 
         'header' => [
-            'subtitle' => 'Resmen tanınmış, aktif turnuvaların listesi',
             'title' => 'Topluluk Turnuvaları',
         ],
 
@@ -50,6 +49,11 @@ return [
         'button' => [
             'cancel' => 'Kaydı İptal Et',
             'register' => 'Beni Kaydet!',
+        ],
+
+        'period' => [
+            'end' => '',
+            'start' => 'Başlat',
         ],
 
         'state' => [

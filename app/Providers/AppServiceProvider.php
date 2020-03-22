@@ -1,30 +1,19 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
 use App\Http\Middleware\RequireScopes;
 use App\Http\Middleware\StartSession;
+use App\Libraries\Groups;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
+use App\Libraries\OsuCookieJar;
+use App\Libraries\OsuMessageSelector;
+use App\Libraries\RouteSection;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
@@ -49,9 +38,18 @@ class AppServiceProvider extends ServiceProvider
 
         Queue::after(function (JobProcessed $event) {
             if (config('datadog-helper.enabled')) {
-                Datadog::increment(config('datadog-helper.prefix_web').'.queue.run', 1, ['queue' => $event->job->getQueue()]);
+                Datadog::increment(
+                    config('datadog-helper.prefix_web').'.queue.run',
+                    1,
+                    [
+                        'job' => $event->job->resolveName(),
+                        'queue' => $event->job->getQueue(),
+                    ]
+                );
             }
         });
+
+        $this->app->make('translator')->setSelector(new OsuMessageSelector);
     }
 
     /**
@@ -70,6 +68,10 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\Registrar'
         );
 
+        $this->app->singleton('groups', function () {
+            return new Groups;
+        });
+
         $this->app->singleton('hash', function ($app) {
             return new OsuHashManager($app);
         });
@@ -86,8 +88,25 @@ class AppServiceProvider extends ServiceProvider
             return new RequireScopes;
         });
 
+        $this->app->singleton('route-section', function () {
+            return new RouteSection;
+        });
+
+        $this->app->singleton('cookie', function ($app) {
+            $config = $app->make('config')->get('session');
+
+            return (new OsuCookieJar)->setDefaultPathAndDomain(
+                $config['path'], $config['domain'], $config['secure'], $config['same_site'] ?? null
+            );
+        });
+
         // The middleware breaks without this. Not sure why.
         // Originally defined in Laravel's SessionServiceProvider.
         $this->app->singleton(StartSession::class);
+
+        // This is needed for testing with Dusk.
+        if ($this->app->environment('testing')) {
+            $this->app->register('\App\Providers\AdditionalDuskServiceProvider');
+        }
     }
 }

@@ -1,0 +1,23 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.store-transaction-info {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  @media @desktop {
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    grid-template-rows: auto auto;
+  }
+
+  &__entry {
+    padding: 5px 10px;
+
+    &--term {
+      background-color: @osu-colour-b3;
+      font-weight: 600;
+    }
+  }
+}

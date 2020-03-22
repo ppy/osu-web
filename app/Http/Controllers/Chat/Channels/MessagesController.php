@@ -1,27 +1,12 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers\Chat\Channels;
 
-use App\Exceptions\API;
 use App\Http\Controllers\Chat\Controller as BaseController;
+use App\Libraries\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use Auth;
@@ -175,30 +160,14 @@ class MessagesController extends BaseController
      */
     public function store($channelId)
     {
-        $channel = Channel::findOrFail($channelId);
+        $params = request()->all();
 
-        if ($channel->isPM()) {
-            // restricted users should be treated as if they do not exist
-            if (optional($channel->pmTargetFor(Auth::user()))->isRestricted()) {
-                abort(404);
-            }
-        }
-
-        priv_check('ChatChannelSend', $channel)->ensureCan();
-
-        try {
-            $message = $channel->receiveMessage(
-                Auth::user(),
-                Request::input('message'),
-                get_bool(Request::input('is_action', false))
-            );
-        } catch (API\ChatMessageEmptyException $e) {
-            abort(422, $e->getMessage());
-        } catch (API\ChatMessageTooLongException $e) {
-            abort(422, $e->getMessage());
-        } catch (API\ExcessiveChatMessagesException $e) {
-            abort(429, $e->getMessage());
-        }
+        $message = Chat::sendMessage(
+            auth()->user(),
+            get_int($channelId),
+            presence($params['message'] ?? null),
+            get_bool($params['is_action'] ?? null) ?? false
+        );
 
         return json_item(
             $message,

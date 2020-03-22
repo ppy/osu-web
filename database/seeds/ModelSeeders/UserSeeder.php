@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
@@ -107,7 +110,7 @@ class UserSeeder extends Seeder
             $u->accountHistories()->save(factory(App\Models\UserAccountHistory::class)->states('note')->make());
 
             // USER GROUP
-            $u->userGroups()->save(new App\Models\UserGroup(['group_id' => App\Models\UserGroup::GROUPS['default']]));
+            $u->userGroups()->save(new App\Models\UserGroup(['group_id' => app('groups')->byIdentifier('default')->group_id]));
         }); // end each user
     }
 }

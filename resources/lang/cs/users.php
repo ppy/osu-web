@@ -64,24 +64,52 @@ return [
         'send_message' => 'odeslat zprávu',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => 'e-mail',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => 'pravidla komunity',
+                'tos' => 'smluvní podmínky',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Přihlásit se',
-        'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
-        'username' => 'Uživatelské jméno',
-        'password' => 'Heslo',
         'button' => 'Přihlásit se',
         'button_posting' => 'Probíhá přihlášení...',
+        'email_login_disabled' => '',
+        'failed' => 'Nesprávné přihlášení',
+        'forgot' => 'Zapoměl jsi heslo?',
+        'info' => 'Prosím přihlaste se pro pokračování',
+        'locked_ip' => 'vaše IP adresa je uzamčena. Počkejte, prosím, několik minut.',
+        'password' => 'Heslo',
+        'register' => "Nemáš osu! účet? Vytvoř si ho",
         'remember' => 'Pamatovat si tento počítač',
         'title' => 'Pro pokračování se prosím přihlašte',
-        'failed' => 'Nesprávné přihlášení',
-        'register' => "Nemáš osu! účet? Vytvoř si ho",
-        'forgot' => 'Zapoměl jsi heslo?',
+        'username' => 'Uživatelské jméno',
+
         'beta' => [
             'main' => 'Beta přístup je momentálně omezen na oprávněné uživatele.',
             'small' => '(brzy pro podporovatele)',
         ],
-
-        'here' => 'zde', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -164,7 +192,7 @@ return [
         ],
 
         'extra' => [
-            'none' => '',
+            'none' => 'nic',
             'unranked' => 'Žádné poslední údaje o hraní',
 
             'achievements' => [
@@ -194,13 +222,13 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
+                'title' => 'Diskuze',
+                'title_longer' => 'Poslední diskuze',
                 'show_more' => '',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
+                'title' => 'Události',
+                'title_longer' => 'Poslední údálosti',
                 'show_more' => '',
             ],
             'historical' => [
@@ -270,7 +298,7 @@ return [
 
                 'total_info' => [
                     '_' => '',
-                    'link' => '',
+                    'link' => 'tuto stránku',
                 ],
             ],
             'me' => [
@@ -282,8 +310,8 @@ return [
                 'title' => 'Medaile',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
+                'title' => 'Příspěvky',
+                'title_longer' => 'Poslední příspěvky',
                 'show_more' => '',
             ],
             'recent_activity' => [
@@ -306,8 +334,8 @@ return [
             'votes' => [
                 'given' => '',
                 'received' => '',
-                'title' => '',
-                'title_longer' => '',
+                'title' => 'Hlasy',
+                'title_longer' => 'Poslední hlasy',
                 'vote_count' => '',
             ],
             'account_standing' => [
@@ -331,11 +359,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => ':info o hráči',
-            'info' => 'Informace',
         ],
 
         'info' => [
@@ -391,8 +414,8 @@ return [
             'total_score' => 'Celkové skóre',
             // modding stats
             'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
+            'loved_beatmapset_count' => 'Oblíbené Beatmapy',
+            'unranked_beatmapset_count' => 'Čekající Beatmapy',
             'graveyard_beatmapset_count' => '',
         ],
     ],

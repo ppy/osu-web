@@ -1,3 +1,7 @@
+{{--
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
+--}}
 ```javascript
 const url = new URL("{{ rtrim(config('app.docs_url') ?: config('app.url'), '/') }}/{{ ltrim($route['boundUri'], '/') }}");
 @if(count($route['queryParameters']))
@@ -11,7 +15,7 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 @endif
 
 let headers = {
-@if($route['authenticated'])
+@if($route['metadata']['authenticated'])
     "Authorization": "Bearer @{{token}}"
 @endif
 @foreach($route['headers'] as $header => $value)

@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'izinkan kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Laman Beatmap',
         'delete' => 'hapus',
         'deleted' => 'Dihapus oleh :editor :delete_time.',
         'deny_kudosu' => 'tolak kudosu',
@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Hilangkan Status Nominasi',
             'praise' => 'Pujian',
             'problem' => 'Masalah',
+            'review' => 'Ulasan',
             'suggestion' => 'Saran',
         ],
 
         'mode' => [
             'events' => 'Riwayat',
             'general' => 'Umum :scope',
+            'reviews' => 'Ulasan',
             'timeline' => 'Linimasa',
             'scopes' => [
                 'general' => 'Tingkat kesulitan ini',
@@ -183,6 +185,7 @@ return [
         'nominate' => 'Nominasi',
         'nominate_confirm' => 'Nominasikan beatmap ini?',
         'nominated_by' => 'dinominasikan oleh :users',
+        'not_enough_hype' => "Beatmap tidak memiliki hype yang cukup.",
         'qualified' => 'Diperkirakan akan berstatus Ranked pada :date jika tidak ada masalah yang ditemukan.',
         'qualified_soon' => 'Diperkirakan akan segera berstatus Ranked jika tidak ada masalah yang ditemukan.',
         'required_text' => 'Nominasi: :current/:required',

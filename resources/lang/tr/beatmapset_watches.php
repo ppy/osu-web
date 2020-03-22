@@ -22,7 +22,6 @@ return [
     'index' => [
         'description' => 'Bunlar sizin takip ettiğiniz beatmap tartışmaları. Yeni bir gönderi veya güncelleme olduğunda bildirileceksiniz.',
         'title_compact' => 'modlama izleme listesi',
-        'title_main' => 'Modlama İzleme Listesi',
 
         'table' => [
             'empty' => 'Takip edilen beatmap tartışması yok.',
@@ -30,10 +29,6 @@ return [
             'state' => 'Durum',
             'title' => 'Başlık',
         ],
-    ],
-
-    'mail' => [
-        'update' => '":title" beatmapi için yeni bir güncelleme',
     ],
 
     'status' => [

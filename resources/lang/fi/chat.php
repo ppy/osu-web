@@ -19,12 +19,11 @@
  */
 
 return [
-    'coming_soon' => 'tulossa pian',
     'limitation_notice' => 'HUOMAA: Vain käyttäjät jotka käyttävät <a href=":lazer_link">osu!lazeria</a> tai uutta nettisivua saavat yksityisviestejä tämän järjestelmän kautta.<br/>Lähetä viesti <a href=":oldpm_link"> vanhalta yksityisviestisivulta</a>, jos olet epävarma.',
-    'talking_in' => 'keskustellaan kanavalla :channel',
-    'talking_with' => 'keskustellaan käyttäjän :name kanssa',
+    'talking_in' => 'keskustellaan :channel:ssa',
+    'talking_with' => 'keskustelu :name:n kanssa',
     'title_compact' => 'viestit',
-    'title' => 'Viestit',
+
     'cannot_send' => [
         'channel' => 'Et voi lähettää tälle kanavalle viestejä juuri nyt, koska',
         'user' => 'Et voi lähettää tälle käyttäjälle viestejä, koska',
@@ -45,6 +44,6 @@ return [
         'howto' => "Aloita keskusteluja käyttäjän profiilista tai käyttäjäkortti-ikkunasta.",
         'lazer' => 'Julkiset kanavat joihin olet liittynyt <a href=":link">osu!lazerilla</a> näkyvät myös täällä.',
         'pm_limitations' => 'Vain <a href=":link">osu!lazerin</a> tai uuden nettisivun käyttäjät voivat vastaanottaa yksityisviestejä.',
-        'title' => 'ei vielä keskusteluja',
+        'title' => 'ei keskusteluja...',
     ],
 ];

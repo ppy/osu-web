@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => '删除',
+        'none_found' => '',
         'title' => '谱面讨论',
 
         'form' => [
             '_' => '搜索',
             'deleted' => '包含已经删除的讨论',
+            'only_unresolved' => '只显示未解决的讨论',
             'types' => '评论类型',
             'username' => '用户名',
+
+            'beatmapset_status' => [
+                '_' => '谱面状态',
+                'all' => '所有',
+                'disqualified' => '已被Disqualified',
+                'never_qualified' => '从未被Qualified',
+                'qualified' => '已被Qualified',
+                'ranked' => '已被Ranked',
+            ],
 
             'user' => [
                 'label' => '用户',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '查看审阅帖',
+        'go_to_child' => '查看讨论',
+        'validation' => [
+            'invalid_block_type' => '板块类型无效',
+            'invalid_document' => '审阅无效',
+            'minimum_issues' => '审阅时必须提出最少 :count 个 issue |审阅时必须提出最少 :count 个 issue',
+            'missing_text' => '该版块缺少文本。',
+            'too_many_blocks' => '审阅只能包含 :count 个段落或 issue|审阅最多只能包含 :count 个段落或 issue',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => '被 :user 标记为 “已解决”',
             'false' => '被 :user 重新打开',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '常规（当前难度）',
+        'general_all' => '常规（所有难度）',
     ],
 
     'user_filter' => [

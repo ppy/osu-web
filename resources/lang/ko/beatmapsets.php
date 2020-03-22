@@ -75,6 +75,18 @@ return [
                     'wip' => '제작 중',
                 ],
             ],
+
+            'disqualify' => [
+                '_' => '이 비트맵에 문제가 있다면, :link해 주세요.',
+                'button_title' => 'Qualified 비트맵을 Disqualify 처리',
+            ],
+
+            'report' => [
+                '_' => '이 비트맵에서 문제를 찾으셨다면 :link에서 저희에게 신고해 주세요.',
+                'button' => '문제 보고',
+                'button_title' => 'Qualified 비트맵의 문제를 신고합니다.',
+                'link' => '여기',
+            ],
         ],
 
         'info' => [
@@ -138,6 +150,16 @@ return [
             'rating-spread' => '평점 분포도',
             'nominations' => '지명',
             'playcount' => '플레이 횟수',
+        ],
+
+        'status' => [
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
+            'qualified' => 'Qualified',
+            'wip' => '작업중',
+            'pending' => 'Pending',
+            'graveyard' => '무덤에 감',
         ],
     ],
 ];

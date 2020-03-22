@@ -43,7 +43,7 @@ return [
 
         'attributes' => [
             'message_type' => 'Mesaj türü',
-            'timestamp' => '',
+            'timestamp' => 'Zaman damgası',
         ],
 
         'hype' => [
@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Silinmiş yorumlara cevap verilemez.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Mesaj',
@@ -121,10 +122,10 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'Lütfen geçerli bir URL giriniz.',
 
             'attributes' => [
-                'name' => '',
+                'name' => 'Uygulama Adı',
                 'redirect' => '',
             ],
         ],
@@ -171,7 +172,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason sebebi bu rapor türü için geçerli değil.',
         'self' => "Kendinizi raporlayamazsınız!",
     ],
 

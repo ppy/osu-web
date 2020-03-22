@@ -44,11 +44,6 @@ return [
             '_stream_to' => 'terjadi perubahan dalam :stream hingga :to',
             '_to' => 'terjadi perubahan hingga :to',
         ],
-
-        'title' => [
-            '_' => ':info Riwayat Perubahan',
-            'info' => 'Daftar',
-        ],
     ],
 
     'support' => [

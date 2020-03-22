@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type Sıralaması',
+    'country' => [
+        'filter' => 'ülkeye göre filtrelenmiş',
+    ],
 
     'type' => [
         'performance' => 'Performans',

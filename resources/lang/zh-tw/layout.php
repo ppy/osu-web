@@ -24,10 +24,92 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '管理員',
+            'beatmapset' => '圖譜',
+            'beatmapset_covers' => '圖譜封面',
+            'contest' => '比賽',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '商店管理',
+        ],
+
+        'artists' => [
+            '_' => '精選藝術家',
+            'index' => '清單',
+        ],
+
+        'beatmapsets' => [
+            '_' => '圖譜',
+            'discussions' => '討論',
+            'index' => '列表',
+            'show' => '資訊',
+            'packs' => '圖譜壓縮檔',
+        ],
+
+        'changelog' => [
+            '_' => '更新日誌',
+            'index' => '列表',
+        ],
+
         'community' => [
             '_' => '社群',
-
+            'comments' => '評論',
+            'contests' => '比賽',
             'forum' => '論壇',
+            'livestream' => '直播',
+        ],
+
+        'error' => [
+            '_' => '錯誤',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => '主頁',
+        ],
+
+        'home' => [
+            '_' => '首頁',
+            'password_reset' => '重設密碼',
+        ],
+
+        'matches' => [
+            '_' => '對戰紀錄',
+        ],
+
+        'notice' => [
+            '_' => '通知',
+        ],
+
+        'notifications' => [
+            '_' => '通知',
+            'index' => '紀錄',
+        ],
+
+        'rankings' => [
+            '_' => '排行榜',
+        ],
+
+        'store' => [
+            '_' => 'osu! 商店',
+            'cart' => '購物車',
+            'order' => '發票',
+            'orders' => '訂單記錄',
+            'product' => '商品',
+            'products' => '商品',
+        ],
+
+        'tournaments' => [
+            '_' => '官方比賽',
+            'index' => '清單',
+        ],
+
+        'users' => [
+            '_' => '玩家',
+            'forum_posts' => '論壇貼文',
+            'modding' => '摸圖',
+            'show' => '資訊',
         ],
     ],
 
@@ -35,8 +117,8 @@ return [
         'close' => '關閉 (Esc)',
         'fullscreen' => '切換全螢幕',
         'zoom' => '放大/縮小',
-        'previous' => '',
-        'next' => '',
+        'previous' => '前一個（左箭頭）',
+        'next' => '下一個（右箭頭）',
     ],
 
     'menu' => [
@@ -44,9 +126,12 @@ return [
             '_' => '首頁',
             'account-edit' => '設定',
             'account-verifyLink' => '驗證已完成',
-            'friends-index' => '好友',
-            'changelog-index' => '更新日誌',
+            'beatmapset-watches-index' => '摸圖',
             'changelog-build' => '版本',
+            'changelog-index' => '更新日誌',
+            'client_verifications-create' => 'osu!客戶端驗證',
+            'forum-topic-watches-index' => '訂閱',
+            'friends-index' => '好友',
             'getDownload' => '下載',
             'getIcons' => '圖示',
             'groups-show' => '群組',
@@ -59,16 +144,17 @@ return [
             'search' => '搜尋',
             'supportTheGame' => '贊助 osu!',
             'team' => '團隊',
+            'testflight' => '',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => '個人簡介',
+            'friends' => '好友',
+            'settings' => '設定',
         ],
         'help' => [
             '_' => '幫助',
             'getFaq' => '常見問題',
-            'getRules' => '規則準則',
+            'getRules' => '規則',
             'getSupport' => '支援服務',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
@@ -76,18 +162,17 @@ return [
         'beatmaps' => [
             '_' => '圖譜',
             'artists' => '精選藝術家',
-            'beatmap_discussion_posts-index' => '譜面討論帖',
-            'beatmap_discussions-index' => '譜面討論',
-            'beatmapset-watches-index' => '譜面關注列表',
-            'beatmapset_discussion_votes-index' => '譜面討論投票',
-            'beatmapset_events-index' => '譜面事件',
+            'beatmap_discussion_posts-index' => '圖譜討論帖',
+            'beatmap_discussions-index' => '圖譜討論',
+            'beatmapset_discussion_votes-index' => '圖譜討論投票',
+            'beatmapset_events-index' => '圖譜事件',
             'index' => '圖譜列表',
             'packs' => '圖譜壓縮檔',
             'show' => '資訊',
         ],
         'beatmapsets' => [
             '_' => '圖譜',
-            'discussion' => '修改',
+            'discussion' => '摸圖',
         ],
         'rankings' => [
             '_' => '排行榜',
@@ -100,8 +185,8 @@ return [
         ],
         'community' => [
             '_' => '社群',
-            'chat' => '對話',
-            'chat-index' => '對話',
+            'chat' => '聊天',
+            'chat-index' => '聊天',
             'dev' => '開發',
             'getForum' => '論壇',
             'getLive' => '直播',
@@ -112,7 +197,6 @@ return [
             'tournaments' => '官方比賽',
             'tournaments-index' => '官方比賽',
             'tournaments-show' => '官方比賽訊息',
-            'forum-topic-watches-index' => '訂閱',
             'forum-topics-create' => '論壇',
             'forum-topics-show' => '論壇',
             'forum-forums-index' => '論壇',
@@ -149,6 +233,7 @@ return [
             'modding-history-posts' => '使用者摸圖貼文',
             'modding-history-votesGiven' => '使用者摸圖投票數',
             'modding-history-votesReceived' => '使用者摸圖得票数',
+            'notifications-index' => '通知記錄',
             'oauth_login' => '以 OAuth 登入',
             'oauth_request' => 'OAuth 授權',
             'settings' => '設定',
@@ -228,7 +313,7 @@ return [
         ],
         '401' => [
             'error' => "沒有權限",
-            'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面（說不定因為沒登錄）',
+            'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面（說不定因為沒登入）',
         ],
         '405' => [
             'error' => '無法找到網頁',
@@ -256,10 +341,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => '用戶名/郵箱',
-            'forgot' => "我忘記了我的登錄信息",
+            'forgot' => "忘記登入資訊？",
             'password' => '密碼',
-            'title' => '登錄以繼續',
+            'title' => '登入以繼續',
+            'username' => '使用者名稱',
 
             'error' => [
                 'email' => "用戶名或郵箱不存在",
@@ -268,7 +353,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => '下載',
             'info' => '點擊下方的註冊按鈕以成為 osu! 大家庭中的一員！',
             'title' => "沒有帳號？",
         ],

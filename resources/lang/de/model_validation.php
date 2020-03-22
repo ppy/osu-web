@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Das Antworten auf den gelöschten Kommentar ist nicht erlaubt.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Die Nachricht',
@@ -171,7 +172,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason ist für diesen Meldungstyp nicht gültig.',
         'self' => "Du kannst dich nicht selbst melden!",
     ],
 

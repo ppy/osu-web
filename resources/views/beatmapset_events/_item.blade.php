@@ -1,25 +1,26 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
 @php
     $discussionId = isset($event->comment['beatmap_discussion_id']) ? $event->comment['beatmap_discussion_id'] : null;
-    $discussionLink = route('beatmapsets.discussion', ['beatmapset' => $event->beatmapset]);
-    if ($discussionId) {
-        $discussionLink .= '#/'.$discussionId;
+    if ($event->beatmapset !== null) {
+        $discussionLink = route('beatmapsets.discussion', ['beatmapset' => $event->beatmapset]);
+        if ($discussionId !== null) {
+            $discussionLink .= '#/'.$discussionId;
+        }
+    } else {
+        $discussionLink = null;
+    }
+
+    if (isset($discussionId)) {
+        $discussionLinkHtml = "#{$discussionId}";
+
+        if (isset($discussionLink)) {
+            $discussionLinkHtml = tag('a', ['href' => $discussionLink], $discussionLinkHtml);
+        }
+    } else {
+        $discussionLinkHtml = '';
     }
 
     if ($event->beatmapset !== null) {
@@ -54,7 +55,7 @@
             <div class="beatmapset-event__content">
                 {!! trans('beatmapset_events.event.'.$event->typeForTranslation(), [
                     'user' => link_to_user($event->user),
-                    'discussion' => $discussionId ? "<a href='$discussionLink'>#$discussionId</a>" : '',
+                    'discussion' => $discussionLinkHtml,
                     'text' => is_string($event->comment) ? $event->comment : '[no preview]',
                 ]) !!}
             </div>

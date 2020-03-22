@@ -75,6 +75,18 @@ return [
                     'wip' => 'work-in-progress',
                 ],
             ],
+
+            'disqualify' => [
+                '_' => 'Wenn Du ein Problem mit dieser Beatmap findest, bitte disqualifiziere diese :link.',
+                'button_title' => 'Eine qualifizierte Beatmap disqualifizieren.',
+            ],
+
+            'report' => [
+                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, bitte melde es :link, um das Team zu informieren.',
+                'button' => 'Problem melden',
+                'button_title' => 'Melde ein Problem auf qualifizierten Beatmaps.',
+                'link' => 'hier',
+            ],
         ],
 
         'info' => [
@@ -138,6 +150,16 @@ return [
             'rating-spread' => 'Bewertungsverteilung',
             'nominations' => 'Nominierungen',
             'playcount' => 'Playcount',
+        ],
+
+        'status' => [
+            'ranked' => 'Ranked',
+            'approved' => 'Bestätigt',
+            'loved' => 'Loved',
+            'qualified' => 'Qualifiziert',
+            'wip' => 'WIP',
+            'pending' => 'Ausstehend',
+            'graveyard' => 'Friedhof',
         ],
     ],
 ];

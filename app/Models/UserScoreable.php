@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
 
@@ -24,11 +9,10 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Libraries\Search\BasicSearch;
 use App\Models\Score\Best;
-use Cache;
 
 trait UserScoreable
 {
-    public function aggregatedScoresBest(string $mode, int $size) : SearchResponse
+    public function aggregatedScoresBest(string $mode, int $size): SearchResponse
     {
         $index = config('osu.elasticsearch.prefix')."high_scores_{$mode}";
 
@@ -45,7 +29,8 @@ trait UserScoreable
                 'by_beatmaps' => [
                     'terms' => [
                         'field' => 'beatmap_id',
-                        'order' => ['max_pp' => 'desc'], // sort by sub-aggregation max_pp
+                        // sort by sub-aggregation max_pp, with score_id as tie breaker
+                        'order' => [['max_pp' => 'desc'], ['min_score_id' => 'asc']],
                         'size' => $size,
                     ],
                     'aggs' => [
@@ -57,6 +42,7 @@ trait UserScoreable
                         ],
                         // top_hits aggregation is not useable for sorting, so we need an extra aggregation to sort on.
                         'max_pp' => ['max' => ['field' => 'pp']],
+                        'min_score_id' => ['min' => ['field' => 'score_id']],
                     ],
                 ],
             ]);
@@ -86,6 +72,10 @@ trait UserScoreable
         $key = "search-cache:beatmapBestScores:{$this->getKey()}:{$mode}";
         $ids = cache_remember_mutexed($key, config('osu.scores.es_cache_duration'), [], function () use ($mode) {
             return $this->beatmapBestScoreIds($mode, 100);
+        }, function () {
+            // TODO: propagate a more useful message back to the client
+            // for now we just mark the exception as handled.
+            return true;
         });
 
         $ids = array_slice($ids, $offset, $limit);

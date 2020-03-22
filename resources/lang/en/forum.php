@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'pinned_topics' => 'Pinned Topics',
@@ -37,10 +22,6 @@ return [
             '_' => 'Remove cover',
             'confirm' => 'Are you sure you want to remove the cover image?',
         ],
-    ],
-
-    'email' => [
-        'new_reply' => '[osu!] New reply for topic ":title"',
     ],
 
     'forums' => [
@@ -64,7 +45,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Really delete post?',
         'confirm_restore' => 'Really restore post?',
-        'edited' => 'Last edited by :user :when, edited :count times in total.',
+        'edited' => 'Last edited by :user :when, edited :count_delimited time in total.|Last edited by :user :when, edited :count_delimited times in total.',
         'posted_at' => 'posted :when',
 
         'actions' => [
@@ -143,9 +124,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Subscriptions',
             'title_compact' => 'forum subscriptions',
-            'title_main' => 'Forum <strong>Subscriptions</strong>',
 
             'box' => [
                 'total' => 'Topics subscribed',
@@ -257,8 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'This topic is locked and can not be replied to',
             'to_0' => 'Unlock topic',
+            'to_0_confirm' => 'Unlock topic?',
             'to_0_done' => 'Topic has been unlocked',
             'to_1' => 'Lock topic',
+            'to_1_confirm' => 'Lock topic?',
             'to_1_done' => 'Topic has been locked',
         ],
 
@@ -268,10 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Unpin topic',
+            'to_0_confirm' => 'Unpin topic?',
             'to_0_done' => 'Topic has been unpinned',
             'to_1' => 'Pin topic',
+            'to_1_confirm' => 'Pin topic?',
             'to_1_done' => 'Topic has been pinned',
             'to_2' => 'Pin topic and mark as announcement',
+            'to_2_confirm' => 'Pin topic and mark as announcement?',
             'to_2_done' => 'Topic has been pinned and marked as announcement',
         ],
 

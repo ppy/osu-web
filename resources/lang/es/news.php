@@ -28,8 +28,8 @@ return [
         ],
 
         'title' => [
-            '_' => 'Noticias:info',
-            'info' => 'Portada',
+            '_' => 'novedades',
+            'info' => 'portada',
         ],
     ],
 
@@ -42,8 +42,8 @@ return [
         ],
 
         'title' => [
-            '_' => 'Noticias :info',
-            'info' => 'Publicación',
+            '_' => 'novedades',
+            'info' => 'publicación',
         ],
     ],
 

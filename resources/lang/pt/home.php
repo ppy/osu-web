@@ -25,6 +25,7 @@ return [
         'peak' => 'Pico, :count utilizadores online',
         'players' => '<strong>:count</strong> jogadores registados',
         'title' => 'bem-vindo',
+        'see_more_news' => 'ver mais notícias',
 
         'slogan' => [
             'main' => 'o melhor jogo de ritmo grátis',
@@ -41,6 +42,7 @@ return [
         'title' => 'Procurar',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => 'Há mais :count resultados de pesquisa de beatmap',
             'more_simple' => 'Ver mais resultados de pesquisa de beatmap',
             'title' => 'Beatmaps',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Todos os fóruns',
             'link' => 'Pesquisar o fórum',
+            'login_required' => '',
             'more_simple' => 'Ver mais resultados de pesquisa de fórum',
             'title' => 'Fórum',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => 'Há mais :count resultados de pesquisa de jogador',
             'more_simple' => 'Ver mais resultados de pesquisa de jogador',
             'more_hidden' => 'A pesquisa de jogador está limitada a :max jogadores. Tenta redefinir a questão de pesquisa.',
@@ -99,7 +103,7 @@ return [
             ],
             'download' => [
                 'title' => 'descarrega o jogo',
-                'description' => 'clica no botão acima para transferir o instalador, e depois abre-o!',
+                'description' => 'clica no botão acima para transferir o instalador e depois abre-o!',
             ],
             'beatmaps' => [
                 'title' => 'obtém beatmaps',
@@ -116,22 +120,19 @@ return [
         'title' => 'painel de controlo',
         'news' => [
             'title' => 'Notícias',
-            'error' => 'Erro ao carregar notícias, tenta recarregar a página?...',
+            'error' => 'Erro ao carregar notícias, melhor tentares recarregar a página?...',
         ],
         'header' => [
-            'welcome' => 'Olá, <strong>:username</strong>!',
-            'messages' => 'Tu tens :count nova mensagem|Tu tens :count novas mensagens',
             'stats' => [
-                'friends' => 'Amigos Online',
+                'friends' => 'Amigos online',
                 'games' => 'Jogos',
-                'online' => 'Utilizadores Online',
+                'online' => 'Utilizadores online',
             ],
         ],
         'beatmaps' => [
-            'new' => 'Novos Beatmaps Classificados',
-            'popular' => 'Beatmaps Populares',
-            'by' => 'por',
-            'plays' => ':count partidas',
+            'new' => 'Novos beatmaps classificados',
+            'popular' => 'Beatmaps populares',
+            'by_user' => 'por :user',
         ],
         'buttons' => [
             'download' => 'Transfere o osu!',
@@ -142,12 +143,12 @@ return [
 
     'support-osu' => [
         'title' => 'Uau!',
-        'subtitle' => 'Pareces estar a ter um momento agradável! :D',
+        'subtitle' => 'Pareces estar a passar um momento agradável! :D',
         'body' => [
-            'part-1' => 'Sabias que o osu! corre sem nenhuma publicidade, e que depende de jogadores para apoiar o seu desenvolvimento e custos de manutenção?',
+            'part-1' => 'Sabias que o osu! corre sem nenhuma publicidade e que depende de jogadores para apoiar o seu desenvolvimento e custos de manutenção?',
             'part-2' => 'Também sabias que ao apoiar o osu! recebes um monte de funcionalidades úteis, tal como <strong>downloads dentro do jogo</strong> que aciona automaticamente em jogos de espectador e multijogador?',
         ],
         'find-out-more' => 'Clica aqui para descobrir mais!',
-        'download-starting' => "Ah, e não te preocupes - o teu download já foi iniciado para ti ;)",
+        'download-starting' => "Ah e não te preocupes - o teu download já foi iniciado para ti ;)",
     ],
 ];

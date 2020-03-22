@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .beatmapsets-search {
   @_icon-width: @font-size--large + 5px;
@@ -34,7 +19,6 @@
   }
 
   &__advanced {
-    font-size: @font-size--small;
     display: none;
 
     .@{_top}--expanded & {
@@ -44,10 +28,11 @@
 
   &__background {
     .full-size();
+    .default-header-overlay();
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.1;
+    opacity: 0.5;
   }
 
   &__expand-link {
@@ -89,34 +74,35 @@
   }
 
   &__input {
-    border: 1px solid #ccc;
+    border: 1px solid @osu-colour-b4;
     width: 100%;
     padding: 10px;
     padding-right: 10px + @_icon-width + 20px;
-
-    font-style: italic;
-    font-weight: lighter;
-
-    color: @osu-colour-b3;
+    background-color: @osu-colour-b2;
+    color: @osu-colour-c1;
 
     &:focus {
       outline: none;
-      border-color: @osu-colour-l1;
       box-shadow: 0 0 10px @osu-colour-l1;
+      border-color: @osu-colour-c1;
     }
 
     .@{_top}--sticky & {
       padding: 5px;
       padding-right: 5px + @_icon-width--sticky + 20px;
     }
+
+    &[disabled] {
+      background-color: @osu-colour-b2;
+      border-color: @osu-colour-b4;
+      color: @osu-colour-c1;
+    }
   }
 
   &__input-container {
     color: @osu-colour-l1;
     font-size: @font-size--large;
-    margin: 0 -10px;
-    margin-top: 100px;
-    margin-bottom: 20px;
+    margin: 20px -10px;
 
     .@{_top}--sticky & {
       font-size: @font-size--normal-2;

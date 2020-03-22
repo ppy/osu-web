@@ -4,7 +4,7 @@
     "tslint:recommended",
     "tslint-react"
   ],
-  "jsRules": {},
+  "jsRules": true,
   "rules": {
     "curly": [true, "ignore-same-line"],
     "eofline": true,

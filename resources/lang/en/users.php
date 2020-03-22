@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'deleted' => '[deleted user]',
@@ -64,24 +49,52 @@ return [
         'send_message' => 'Send message',
     ],
 
+    'disabled' => [
+        'title' => 'Uh-oh! It looks like your account has been disabled.',
+        'warning' => "In the case you have broken a rule, please note that there is generally a cool-down period of one month during which we will not consider any amnesty requests. After this period, you are free to contact us should you deem it necessary. Please note that creating new accounts after you have had one disabled will result in an <strong>extension of this one month cool-down</strong>. Please also note that for <strong>every account you create, you are further breaking rules</strong>. We highly suggest you don't go down this path!",
+
+        'if_mistake' => [
+            '_' => 'If you feel this is a mistake, you are welcome to contact us (via :email or by clicking the "?" in the bottom-right-hand corner of this page). Please note that we are always fully confident with our actions, as they are based on very solid data. We reserve the right to disregard your request should we feel you are being intentionally dishonest.',
+            'email' => 'email',
+        ],
+
+        'reasons' => [
+            'compromised' => 'Your account has deemed to be compromised. It may be disabled temporarily while its identity is confirmed.',
+            'opening' => 'There are a number of reasons that can result in your account being disabled:',
+
+            'tos' => [
+                '_' => 'You have broken one or more of our :community_rules or :tos.',
+                'community_rules' => 'community rules',
+                'tos' => 'terms of service',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "Your account hasn't been used in a long time.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Sign in',
-        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
-        'username' => 'Username',
-        'password' => 'Password',
         'button' => 'Sign in',
         'button_posting' => 'Signing in...',
+        'email_login_disabled' => 'Signing in with email is currently disabled. Please use username instead.',
+        'failed' => 'Incorrect sign in',
+        'forgot' => 'Forgotten your password?',
+        'info' => 'Please sign in to continue',
+        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
+        'password' => 'Password',
+        'register' => "Don't have an osu! account? Make a new one",
         'remember' => 'Remember this computer',
         'title' => 'Please sign in to proceed',
-        'failed' => 'Incorrect sign in',
-        'register' => "Don't have an osu! account? Make a new one",
-        'forgot' => 'Forgotten your password?',
+        'username' => 'Username',
+
         'beta' => [
             'main' => 'Beta access is currently restricted to privileged users.',
             'small' => '(osu!supporters will get in soon)',
         ],
-
-        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -146,7 +159,7 @@ return [
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
-                    'size_info' => 'Cover size should be 2800x620',
+                    'size_info' => 'Cover size should be 2400x640',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
 
@@ -331,11 +344,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Player :info',
-            'info' => 'Info',
         ],
 
         'info' => [

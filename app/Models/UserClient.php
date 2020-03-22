@@ -1,24 +1,12 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
+
+use App\Exceptions\InvariantException;
+use Exception;
 
 /**
  * @property Build $build
@@ -34,13 +22,69 @@ class UserClient extends Model
 {
     const CREATED_AT = 'timestamp';
 
+    protected $casts = [
+        'verified' => 'boolean',
+    ];
+
     protected $table = 'osu_user_security';
 
     protected $dates = ['timestamp'];
 
     protected $primaryKeys = ['user_id', 'osu_md5', 'unique_md5'];
 
+    public $incrementing = false;
     public $timestamps = false;
+
+    public static function lookupOrNew($userId, $hash)
+    {
+        $splitHash = static::splitHash($hash);
+
+        return static::firstOrNew([
+            'user_id' => $userId,
+            'unique_md5' => $splitHash['unique'],
+            'osu_md5' => $splitHash['osu'],
+        ], [
+            'mac_md5' => $splitHash['mac'],
+            'disk_md5' => $splitHash['disk'],
+        ]);
+    }
+
+    public static function markVerified($userId, $hash)
+    {
+        $client = static::lookupOrNew($userId, $hash);
+
+        try {
+            $client->fill(['verified' => true])->save();
+        } catch (Exception $e) {
+            if (is_sql_unique_exception($e)) {
+                return static::markVerified($userId, $hash);
+            }
+
+            throw $e;
+        }
+    }
+
+    public static function splitHash($hash)
+    {
+        $hashes = explode(':', $hash);
+
+        if (count($hashes) < 5) {
+            throw new InvariantException('invalid client hash format');
+        }
+
+        return array_map(function ($value) {
+            if (!ctype_xdigit($value) || strlen($value) !== 32) {
+                throw new InvariantException('invalid md5 hash inside client hash');
+            }
+
+            return hex2bin($value);
+        }, [
+            'osu' => $hashes[0],
+            'mac' => $hashes[2],
+            'unique' => $hashes[3],
+            'disk' => $hashes[4],
+        ]);
+    }
 
     public function build()
     {

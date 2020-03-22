@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import { CommentJSON } from 'interfaces/comment-json';
 import { computed } from 'mobx';
@@ -33,6 +18,7 @@ export class Comment {
   message: string;
   messageHtml: string;
   parentId: number | null;
+  pinned: boolean;
   repliesCount: number;
   updatedAt: string;
   userId: number;
@@ -50,6 +36,7 @@ export class Comment {
     this.message = json.message;
     this.messageHtml = json.message_html;
     this.parentId = json.parent_id;
+    this.pinned = json.pinned;
     this.repliesCount = json.replies_count;
     this.updatedAt = json.updated_at;
     this.userId = json.user_id;
@@ -73,7 +60,12 @@ export class Comment {
 
   @computed
   get canModerate() {
-    return currentUser.is_admin || currentUser.can_moderate;
+    return currentUser.is_admin || currentUser.is_moderator;
+  }
+
+  @computed
+  get canPin() {
+    return currentUser.is_admin && (this.parentId == null || this.pinned);
   }
 
   @computed

@@ -25,7 +25,4 @@ return [
 
         'link' => '在wiki頁面於直播串流',
     ],
-    'headers' => [
-        'regular' => '正在直播',
-    ],
 ];

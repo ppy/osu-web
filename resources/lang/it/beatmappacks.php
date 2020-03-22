@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => 'Collezioni pre-confezionate di beatmap con un tema comune.',
+        'nav_title' => 'lista',
+        'title' => 'Pacchetti Beatmap',
+
         'blurb' => [
             'important' => 'LEGGI PRIMA DI SCARICARE',
             'instruction' => [
@@ -34,8 +38,6 @@ return [
                 'scary' => 'scaricare i pacchetti dal più recente al più vecchio',
             ],
         ],
-        'title' => 'Pacchetti Beatmap',
-        'description' => 'Collezioni pre-confezionate di beatmap con un tema comune.',
     ],
 
     'show' => [

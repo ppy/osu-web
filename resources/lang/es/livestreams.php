@@ -25,7 +25,4 @@ return [
 
         'link' => 'la página wiki en streaming',
     ],
-    'headers' => [
-        'regular' => 'Transmitiendo ahora',
-    ],
 ];

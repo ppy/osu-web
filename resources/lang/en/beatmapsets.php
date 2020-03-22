@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'availability' => [
@@ -34,16 +19,10 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
-            'approved' => 'approved on ',
             'favourite' => 'Favourite this beatmapset',
             'logged-out' => 'You need to sign in before downloading any beatmaps!',
-            'loved' => 'loved on ',
             'mapped_by' => 'mapped by :mapper',
-            'qualified' => 'qualified on ',
-            'ranked' => 'ranked on ',
-            'submitted' => 'submitted on ',
             'unfavourite' => 'Unfavourite this beatmapset',
-            'updated' => 'last updated on ',
             'updated_timeago' => 'last updated :timeago',
 
             'download' => [
@@ -57,6 +36,15 @@ return [
                 'bottom' => 'to access more features',
                 'top' => 'Sign In',
             ],
+        ],
+
+        'details_date' => [
+            'approved' => 'approved :timeago',
+            'loved' => 'loved :timeago',
+            'qualified' => 'qualified :timeago',
+            'ranked' => 'ranked :timeago',
+            'submitted' => 'submitted :timeago',
+            'updated' => 'last updated :timeago',
         ],
 
         'favourites' => [
@@ -74,6 +62,11 @@ return [
                     'qualified' => 'qualified',
                     'wip' => 'work in progress',
                 ],
+            ],
+
+            'disqualify' => [
+                '_' => 'If you find an issue with this beatmap, please disqualify it :link.',
+                'button_title' => 'Disqualify a qualified beatmap.',
             ],
 
             'report' => [
@@ -145,6 +138,16 @@ return [
             'rating-spread' => 'Rating Spread',
             'nominations' => 'Nominations',
             'playcount' => 'Playcount',
+        ],
+
+        'status' => [
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
+            'qualified' => 'Qualified',
+            'wip' => 'WIP',
+            'pending' => 'Pending',
+            'graveyard' => 'Graveyard',
         ],
     ],
 ];

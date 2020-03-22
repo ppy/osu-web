@@ -1,20 +1,5 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react'
 import { div, span } from 'react-dom-factories'
@@ -33,19 +18,15 @@ formatDuration = (value) ->
     "#{m}:#{_.padStart s, 2, 0}"
 
 
-export BeatmapBasicStats = ({beatmapset, beatmap}) ->
+export BeatmapBasicStats = ({beatmap}) ->
   div
     className: bn
     for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
-      value =
-        if stat == 'bpm'
-          beatmapset.bpm
-        else
-          beatmap[stat]
+      value = beatmap[stat]
 
       value =
         if stat == 'bpm'
-          if value > 1000 then '—' else osu.formatNumber(value)
+          if value > 1000 then '∞' else osu.formatNumber(value)
         else if stat == 'total_length'
           formatDuration value
         else

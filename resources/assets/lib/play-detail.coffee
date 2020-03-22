@@ -1,20 +1,5 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 import { Mods } from 'mods'
 import { PlayDetailMenu } from 'play-detail-menu'
@@ -35,7 +20,6 @@ export class PlayDetail extends PureComponent
 
   render: =>
     score = @props.score
-    pp = score.best?.pp ? score.pp
 
     blockClass = bn
     if @props.activated
@@ -102,9 +86,9 @@ export class PlayDetail extends PureComponent
 
         div
           className: "#{bn}__pp"
-          if pp > 0
+          if score.pp > 0
             span null,
-              osu.formatNumber(Math.round(pp))
+              osu.formatNumber(Math.round(score.pp))
               span className: "#{bn}__pp-unit", 'pp'
           else
             span

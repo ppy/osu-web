@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => '',
+        'authorise' => '',
         'back_to_previous' => '',
         'back_to_top' => '',
         'cancel' => 'Avbryt',
@@ -48,7 +49,7 @@ return [
         'expand' => '',
         'hide' => 'dölj',
         'permalink' => 'permalänk',
-        'permalink_copied' => 'länk kopierad',
+        'pin' => '',
         'post' => 'Lägg upp',
         'reply' => 'Svara',
         'reply_reopen' => 'Svara och Öppna Igen',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'se mer',
         'show' => 'visa',
         'show_deleted' => '',
+        'show_less' => '',
         'show_more' => 'visa mer',
         'show_more_options' => '',
+        'unpin' => '',
         'update' => '',
         'upload_image' => 'ladda upp bild',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'm|m',
         'minutes' => '',
         'months' => ':count månad|:count månader',
+        'notifications' => '',
         'plus_others' => '',
         'post' => '',
         'second_short_unit' => 's|s',
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Lägg märke till',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

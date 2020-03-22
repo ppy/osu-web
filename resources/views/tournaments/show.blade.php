@@ -1,43 +1,53 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('master', [
-    'currentSection' => 'community',
-    'currentAction' => 'tournaments',
-    'title' => $tournament->name,
-])
+@php
+    $links = [
+        [
+            'title' => trans('layout.header.tournaments.index'),
+            'url' => route('tournaments.index'),
+        ],
+        [
+            'title' => $tournament->name,
+            'url' => route('tournaments.show', $tournament),
+        ],
+    ];
+@endphp
+
+@extends('master', ['titlePrepend' => $tournament->name])
 
 @section('content')
     @include('objects.css-override', ['mapping' => ['.tournament__banner' => $tournament->header_banner]])
 
-    <div class="osu-layout__row">
-        <div class="osu-page-header-v2 osu-page-header-v2--tournaments">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{$tournament->name}}</div>
-            <div class="osu-page-header-v2__subtitle">{{
-                trans('tournament.tournament_period', [
-                    'start' => i18n_date($tournament->start_date),
-                    'end' => i18n_date($tournament->end_date)
-                ])
-            }}</div>
+    @include('layout._page_header_v4', ['params' => [
+        'links' => $links,
+        'linksBreadcrumb' => true,
+        'theme' => 'tournaments',
+    ]])
+
+    <div class="osu-page osu-page--info-bar">
+        <div class="grid-items">
+            <div class="counter-box counter-box--info">
+                <div class="counter-box__title">
+                    {{ trans('tournament.show.period.start') }}
+                </div>
+                <div class="counter-box__count">
+                    {{ i18n_date($tournament->start_date) }}
+                </div>
+            </div>
+            <div class="counter-box counter-box--info">
+                <div class="counter-box__title">
+                    {{ trans('tournament.show.period.end') }}
+                </div>
+                <div class="counter-box__count">
+                    {{ i18n_date($tournament->end_date) }}
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="osu-page osu-page--tournament">
+    <div class="osu-page">
         <div class="tournament">
             <div class='tournament__banner'></div>
 
@@ -47,7 +57,7 @@
                         @foreach ($links as $link)
                             <a
                                 href="{{ $link['url'] }}"
-                                class="btn-osu btn-osu-default btn-osu--tournament"
+                                class="btn-osu-big btn-osu-big--tournament-info"
                             >{{ $link['title'] }}</a>
                         @endforeach
                     </div>
@@ -92,7 +102,7 @@
                             @if($tournament->isSignedUp(Auth::user()))
                                 <a
                                     href="{{route("tournaments.unregister", $tournament) }}"
-                                    class="btn-osu btn-osu-default btn-osu--giant"
+                                    class="btn-osu-big btn-osu-big--tournament-register"
                                     data-method="post"
                                     data-remote="1"
                                 >
@@ -101,7 +111,7 @@
                             @else
                                 <a
                                     href="{{ route("tournaments.register", $tournament) }}"
-                                    class="btn-osu btn-osu-default btn-osu--giant"
+                                    class="btn-osu-big btn-osu-big--tournament-register"
                                     data-method="post"
                                     data-remote="1"
                                 >

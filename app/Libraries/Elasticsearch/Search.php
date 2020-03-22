@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Libraries\Elasticsearch;
 
@@ -64,7 +49,7 @@ abstract class Search extends HasSearch implements Queryable
      */
     abstract public function getQuery();
 
-    public function client() : Client
+    public function client(): Client
     {
         return Es::getClient($this->connectionName);
     }
@@ -74,7 +59,7 @@ abstract class Search extends HasSearch implements Queryable
      *
      * @return int the number of matches.
      */
-    public function count() : int
+    public function count(): int
     {
         // use total from response if response was already fetched.
         if (isset($this->response)) {
@@ -140,6 +125,11 @@ abstract class Search extends HasSearch implements Queryable
         }
     }
 
+    public function isLoginRequired(): bool
+    {
+        return $this->params->isLoginRequired();
+    }
+
     /**
      * Returns if the total number of results found is greater than the allowed limit.
      *
@@ -153,7 +143,7 @@ abstract class Search extends HasSearch implements Queryable
     /**
      * @return SearchResponse
      */
-    public function response() : SearchResponse
+    public function response(): SearchResponse
     {
         if (!isset($this->response)) {
             $this->response = $this->fetch();
@@ -180,7 +170,7 @@ abstract class Search extends HasSearch implements Queryable
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         $body = [
             'size' => $this->getQuerySize(), // TODO: this probably shouldn't be calculated if search_after is used.
@@ -280,7 +270,7 @@ abstract class Search extends HasSearch implements Queryable
         return $this->getQuerySize() < 0;
     }
 
-    private function toCountRequestParams() : array
+    private function toCountRequestParams(): array
     {
         $params = $this->toArray();
         // some arguments need to be stripped from the body as they're not supported by count.

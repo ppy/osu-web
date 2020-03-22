@@ -1,59 +1,48 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
-<li class="navbar-mobile-item navbar-mobile-item--user">
+<div class="navbar-mobile-item js-click-menu--close">
     @if (Auth::check())
-        <a
-            class="navbar-mobile-item__main navbar-mobile-item__main--user"
-            href="{{ route('users.show', Auth::user()) }}"
-            data-toggle="collapse"
-            data-target=".js-navbar-mobile--menu"
-        >
-            <span
-                class="avatar avatar--navbar-mobile"
-                style="background-image: url('{{ Auth::user()->user_avatar }}');"
-            ></span>
+        <div
+            class="navbar-mobile-item__main js-react--user-card"
+            data-user="{{ json_encode(Auth::user()->defaultJson()) }}"
+        ></div>
 
-            {{ Auth::user()->username }}
+        <a
+            class="navbar-mobile-item__main"
+            href="{{ route('users.show', Auth::user()) }}"
+        >
+            {{ trans('layout.popup_user.links.profile') }}
+        </a>
+
+        <a class="navbar-mobile-item__main" href="{{ route('friends.index') }}">
+            {{ trans('layout.popup_user.links.friends') }}
+        </a>
+
+        <a class="navbar-mobile-item__main" href="{{ route('account.edit') }}">
+            {{ trans('layout.popup_user.links.account-edit') }}
         </a>
 
         <button
-            class="navbar-mobile-item__main navbar-mobile-item__main--logout js-logout-link"
+            class="js-logout-link navbar-mobile-item__main"
             type="button"
             data-url="{{ route('logout') }}"
-            data-method="DELETE"
             data-confirm="{{ trans('users.logout_confirm') }}"
+            data-method="delete"
             data-remote="1"
-            data-toggle="collapse"
-            data-target=".js-navbar-mobile--menu"
         >
-            <i class="fas fa-sign-out-alt"></i>
+            {{ trans('layout.popup_user.links.logout') }}
         </button>
     @else
         <a
             class="js-user-link navbar-mobile-item__main navbar-mobile-item__main--user"
             href="#"
             title="{{ trans('users.anonymous.login_link') }}"
-            data-toggle="collapse"
-            data-target=".js-navbar-mobile--menu"
         >
             <span class="avatar avatar--guest avatar--navbar-mobile"></span>
 
             {{ trans('users.anonymous.username') }}
         </a>
     @endif
-</li>
+</div>

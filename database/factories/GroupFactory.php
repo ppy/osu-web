@@ -1,13 +1,10 @@
 <?php
 
-use App\Models\Group;
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 $factory->define(App\Models\Group::class, function (Faker\Generator $faker) {
     return [
-        // try to avoid accidentally granting permissions based on hardcoded group ids
-        'group_id' => function () {
-            return max(Group::max('group_id'), 40) + 1;
-        },
         'group_name' => function () use ($faker) {
             return $faker->colorName().' '.$faker->domainWord();
         },

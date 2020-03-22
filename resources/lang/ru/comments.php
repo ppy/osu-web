@@ -22,6 +22,7 @@ return [
     'deleted' => 'удалено',
     'deleted_count' => ':count_delimited комментарий удален|:count_delimited комментариев удалено',
     'edited' => ':user отредактировал :timeago',
+    'pinned' => 'закреплён',
     'empty' => 'Нет комментариев.',
     'load_replies' => 'загрузить ответы',
     'replies' => 'Ответы',
@@ -36,7 +37,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Нажмите Enter для :action. Используйте Shift+Enter для перевода на новую строку.',
+            '_' => 'Нажмите Enter для :action. Используйте Shift+Enter для перехода на новую строку.',
             'edit' => 'сохранения',
             'new' => 'отправки',
             'reply' => 'ответа',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Комментарии :info',
-            'info' => 'Список',
-        ],
+        'nav_title' => 'список',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Комментарии :info',
-            'info' => 'Детали',
-        ],
+        'nav_title' => 'комментарии',
     ],
 ];

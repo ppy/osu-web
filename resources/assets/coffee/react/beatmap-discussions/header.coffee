@@ -1,20 +1,5 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapList } from './beatmap-list'
 import { BigButton } from 'big-button'
@@ -23,6 +8,7 @@ import { Subscribe } from './subscribe'
 import { UserFilter } from './user-filter'
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
+import HeaderV4 from 'header-v4'
 import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { a, div, h1, h2, p } from 'react-dom-factories'
@@ -42,7 +28,14 @@ export class Header extends React.PureComponent
 
 
   render: =>
-    div null,
+    el React.Fragment, null,
+      el HeaderV4,
+        theme: 'beatmapsets'
+        titleAppend: el PlaymodeTabs,
+          currentMode: @props.currentBeatmap.mode
+          beatmaps: @props.beatmaps
+          counts: @props.currentDiscussions.countsByPlaymode
+
       div
         className: 'osu-page'
         @headerTop()
@@ -57,14 +50,15 @@ export class Header extends React.PureComponent
 
     div className: bn,
       div className: "#{bn}__content #{bn}__content--details",
-        el BeatmapsetMapping,
-          beatmapset: @props.beatmapset
-          user: @props.users[@props.beatmapset.user_id]
+        div className: "#{bn}__details #{bn}__details--full",
+          el BeatmapsetMapping,
+            beatmapset: @props.beatmapset
+            user: @props.users[@props.beatmapset.user_id]
 
-        div className: "#{bn}__subscribe",
+        div className: "#{bn}__details",
           el Subscribe, beatmapset: @props.beatmapset
 
-        div className: "#{bn}__info-page",
+        div className: "#{bn}__details",
           el BigButton,
             modifiers: ['full']
             text: osu.trans('beatmaps.discussions.beatmap_information')
@@ -87,11 +81,6 @@ export class Header extends React.PureComponent
 
     div
       className: bn
-
-      el PlaymodeTabs,
-        currentMode: @props.currentBeatmap.mode
-        beatmaps: @props.beatmaps
-        counts: @props.currentDiscussions.countsByPlaymode
 
       div
         className: "#{bn}__content"
@@ -134,9 +123,7 @@ export class Header extends React.PureComponent
           div ref: 'chartArea', className: "#{bn}__chart"
 
           div className: "#{bn}__beatmap-stats",
-            el BeatmapBasicStats,
-              beatmapset: @props.beatmapset
-              beatmap: @props.currentBeatmap
+            el BeatmapBasicStats, beatmap: @props.currentBeatmap
 
 
   setFilter: (e) =>

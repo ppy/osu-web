@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Toate notificările citite!',
     'mark_all_read' => 'Șterge-ți toate',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -31,11 +43,19 @@ return [
                 'beatmapset_discussion_lock' => 'Discuția pe ":title" a fost închisă',
                 'beatmapset_discussion_lock_compact' => 'Discuția a fost închisă',
                 'beatmapset_discussion_post_new' => 'Postare nouă pe ":title" de :username',
+                'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => 'Postare nouă de :username',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => '',
                 'beatmapset_discussion_unlock' => 'Discuția pe ":title" a fost redeschisă',
                 'beatmapset_discussion_unlock_compact' => 'Discuția a fost redeschisă',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => '',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_empty' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_qualified_problem_compact_empty' => '',
             ],
 
             'beatmapset_state' => [
@@ -122,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Medalie nouă',
                 'user_achievement_unlock' => 'Deblocat ":title"!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

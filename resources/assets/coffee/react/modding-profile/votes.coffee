@@ -1,24 +1,10 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react'
 import { a, div, h1, h2, span } from 'react-dom-factories'
-import {UserAvatar} from 'user-avatar'
+import { UserAvatar } from 'user-avatar'
+import UserGroupBadge from 'user-group-badge'
 
 el = React.createElement
 
@@ -54,11 +40,12 @@ export class Votes extends React.Component
     bn = 'modding-profile-vote-card'
     userBadge = user.group_badge
     topClasses = bn
-    topClasses += " #{bn}--#{userBadge}" if userBadge?
+    style = osu.groupColour(userBadge)
 
     div
       key: user.id
       className: topClasses
+      style: style
 
       div className: "#{bn}__avatar",
         a
@@ -78,8 +65,7 @@ export class Votes extends React.Component
 
         div
           className: "#{bn}__user-badge"
-          if userBadge?
-            div className: "user-group-badge user-group-badge--#{userBadge}"
+          el UserGroupBadge, badge: userBadge
 
       div
         className: "#{bn}__user-stripe"

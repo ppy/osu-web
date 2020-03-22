@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Administrator',
+        'authorise' => 'Autoryzuj',
         'back_to_previous' => 'Powrót do poprzedniej pozycji',
         'back_to_top' => 'Powrót na górę',
         'cancel' => 'Anuluj',
@@ -48,7 +49,7 @@ return [
         'expand' => 'rozwiń',
         'hide' => 'ukryj',
         'permalink' => 'odnośnik bezpośredni',
-        'permalink_copied' => 'odnośnik skopiowany',
+        'pin' => 'przypnij',
         'post' => 'Opublikuj',
         'reply' => 'Odpowiedz',
         'reply_reopen' => 'Odpowiedz i otwórz ponownie',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'zobacz więcej',
         'show' => 'pokaż',
         'show_deleted' => 'Pokaż usunięte',
+        'show_less' => 'pokaż mniej',
         'show_more' => 'pokaż więcej',
         'show_more_options' => 'pokaż więcej opcji',
+        'unpin' => 'odepnij',
         'update' => 'Zaktualizuj',
         'upload_image' => 'prześlij obraz',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'min|min|min',
         'minutes' => ':count_delimited minuta|:count_delimited minuty|:count_delimited minut',
         'months' => ':count_delimited miesiąc|:count_delimited miesiące|:count_delimited miesięcy',
+        'notifications' => ':count_delimited powiadomienie|:count_delimited powiadomienia|:count_delimited powiadomień',
         'plus_others' => '+ jeszcze :count_delimited!',
         'post' => ':count_delimited post|:count_delimited posty|:count_delimited postów',
         'second_short_unit' => 's|s|s',
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Uwaga',
+    ],
+
+    'wrong_user' => [
+        '_' => 'Jesteś zalogowany jako :user. :logout_link.',
+        'logout_link' => 'Kliknij tutaj, aby zalogować się jako inny użytkownik',
     ],
 ];

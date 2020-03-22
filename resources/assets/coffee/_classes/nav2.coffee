@@ -1,36 +1,26 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 class @Nav2
-  constructor: ->
+  constructor: (@clickMenu) ->
     @menuBg = document.getElementsByClassName('js-nav2--menu-bg')
 
     $.subscribe 'click-menu:current', @autoCenterPopup
+    $.subscribe 'click-menu:current', @autoMobileNav
     $.subscribe 'menu:current', @showMenuBg
 
 
-  autoCenterPopup: (_e, currentMenu) =>
-    @currentMenu = currentMenu
+  autoCenterPopup: (_e, {target}) =>
+    @currentMenu = target
 
     $(window).off 'throttled-resize.nav2-center-popup'
 
     for popup in document.querySelectorAll('.js-nav2--centered-popup')
-      if popup.dataset.clickMenuId != @currentMenu
+      container = popup.closest('.js-click-menu')
+
+      continue if !container?
+
+      if container.dataset.clickMenuId != @currentMenu
         popup.classList.add 'hidden'
         continue
 
@@ -47,6 +37,19 @@ class @Nav2
     osu.pageChangeImmediate() if @loginBoxVisible()
     doCenter()
     currentPopup.querySelector('.js-nav2--autofocus')?.focus()
+
+
+  autoMobileNav: (e, {previousTree, target, tree}) =>
+    if target == 'mobile-menu'
+      @clickMenu.show('mobile-nav')
+      Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideDown(150)
+
+    if tree.indexOf('mobile-menu') == -1
+      if previousTree.indexOf('mobile-menu') != -1
+        Blackout.hide()
+        Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideUp(150)
+    else
+      Blackout.show()
 
 
   centerPopup: (popup, reference) ->

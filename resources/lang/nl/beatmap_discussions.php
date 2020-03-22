@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'verwijderd',
+        'none_found' => '',
         'title' => 'Beatmap Discussies',
 
         'form' => [
             '_' => 'Zoeken',
             'deleted' => 'Verwijderde discussies toevoegen',
+            'only_unresolved' => 'Alleen niet-afgehandelde discussies weergeven',
             'types' => 'Berichttypen',
             'username' => 'Gebruikersnaam',
+
+            'beatmapset_status' => [
+                '_' => 'Beatmap status',
+                'all' => 'Alle',
+                'disqualified' => 'Gediskwalificeerd',
+                'never_qualified' => 'Nooit gekwalificeerd',
+                'qualified' => 'Gekwalificeerd',
+                'ranked' => 'Ranked',
+            ],
 
             'user' => [
                 'label' => 'Gebruiker',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Bekijk Review Post',
+        'go_to_child' => 'Bekijk discussie',
+        'validation' => [
+            'invalid_block_type' => 'ongeldige bloktype',
+            'invalid_document' => 'ongeldige beoordeling',
+            'minimum_issues' => 'beoordeling moet een minimum van :count issue|review moeten een minimum :count issues bevatten',
+            'missing_text' => 'blok mist tekst',
+            'too_many_blocks' => 'beoordelingen kunnen alleen :count alinea/issuemaybe beoordelingen bevatten max. :count alinea/issues',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Gemarkeerd als opgelost door :user',
             'false' => 'Heropend door :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'algemeen',
+        'general_all' => 'algemeen (alles)',
     ],
 
     'user_filter' => [

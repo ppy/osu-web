@@ -30,11 +30,12 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'NOUVEAU',
     ],
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => 'Autoriser',
         'back_to_previous' => 'Retour à la position précédente',
         'back_to_top' => 'Retour en haut',
         'cancel' => 'Annuler',
@@ -48,7 +49,7 @@ return [
         'expand' => 'agrandir',
         'hide' => 'masquer',
         'permalink' => 'permalien',
-        'permalink_copied' => 'lien copié',
+        'pin' => 'épingler',
         'post' => 'Poster',
         'reply' => 'Répondre',
         'reply_reopen' => 'Répondre et rouvrir',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'voir plus',
         'show' => 'afficher',
         'show_deleted' => 'Afficher supprimé',
+        'show_less' => 'afficher moins',
         'show_more' => 'Plus de résultats',
         'show_more_options' => 'afficher plus d’options',
+        'unpin' => 'désépingler',
         'update' => 'Modifier',
         'upload_image' => 'mettre en ligne une image',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'min|mins',
         'minutes' => ':count minute|:count minutes',
         'months' => ':count mois|:count mois',
+        'notifications' => ':count_delimited notification|:count_delimited notifications',
         'plus_others' => '+ :count_delimited autre !|+ :count_delimited autres !',
         'post' => ':count_delimited discussion|:count_delimited discussions',
         'second_short_unit' => 'sec|secs',
@@ -119,7 +123,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'rechercher...',
     ],
 
     'pagination' => [
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Information',
+    ],
+
+    'wrong_user' => [
+        '_' => 'Vous êtes connecté en tant que :user. :logout_link.',
+        'logout_link' => 'Cliquez ici pour vous connecter en tant qu\'utilisateur différent',
     ],
 ];

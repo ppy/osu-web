@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 namespace Tests;
 
 use Facebook\WebDriver\Chrome\ChromeOptions;
@@ -20,7 +23,9 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
-        static::startChromeDriver();
+        if (!present(env('DUSK_WEBDRIVER_URL'))) {
+            static::startChromeDriver();
+        }
     }
 
     /**
@@ -36,7 +41,7 @@ abstract class DuskTestCase extends BaseTestCase
         ]);
 
         $driver = RemoteWebDriver::create(
-            'http://localhost:9515',
+            presence(env('DUSK_WEBDRIVER_URL')) ?? 'http://localhost:9515',
             DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY,
                 $options

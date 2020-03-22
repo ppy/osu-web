@@ -64,24 +64,52 @@ return [
         'send_message' => '傳送訊息',
     ],
 
+    'disabled' => [
+        'title' => '哎唷！看起來你的帳號已被禁用。',
+        'warning' => "若你沒有遵守規則，我們原則上在一個月的期限以內不會考慮解禁您的帳號。在此之後，您如有需要，可以隨時聯絡我們。請注意，在一個帳號被封禁後創建新帳號會<strong>使您的封禁期限被延長</strong>。而且<strong>每當您創建一個新帳號，您都是在更嚴重地破壞規則</strong>。我們強烈建議您不要誤入歧途。",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '電子郵件',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '您已違反一條或多條:community_rules或:tos',
+                'community_rules' => '社群規則',
+                'tos' => '服務條款',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "你的帳號已經一段時間沒有登入了",
+        ],
+    ],
+
     'login' => [
         '_' => '登入',
-        'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
-        'username' => '使用者名稱',
-        'password' => '密碼',
         'button' => '登入',
         'button_posting' => '登入中...',
+        'email_login_disabled' => '目前沒辦法使用Email登入了，請使用使用者名稱登入。',
+        'failed' => '登入失敗',
+        'forgot' => '忘記密碼？',
+        'info' => '請先登入以繼續',
+        'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
+        'password' => '密碼',
+        'register' => "沒有 osu! 帳號嗎？現在就註冊一個吧！",
         'remember' => '記住我這台裝置',
         'title' => '登入以繼續',
-        'failed' => '登入失敗',
-        'register' => "沒有 osu! 帳號嗎？現在就註冊一個吧！",
-        'forgot' => '忘記密碼？',
+        'username' => '使用者名稱',
+
         'beta' => [
             'main' => 'Beta 版僅限於特定使用者存取',
             'small' => '(osu!贊助者將在不久後開放)',
         ],
-
-        'here' => '這裡', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -129,7 +157,7 @@ return [
         'is_supporter' => 'osu! 贊助者',
         'joined_at' => '註冊時間：:date',
         'lastvisit' => '最後登入於：:date',
-        'lastvisit_online' => '正在線上',
+        'lastvisit_online' => '上線中',
         'missingtext' => '未找到的使用者！（或者該使用者已經被封鎖）',
         'origin_country' => '來自 :country',
         'page_description' => 'osu! - 您想知道關於 :username 的資訊!',
@@ -164,11 +192,11 @@ return [
         ],
 
         'extra' => [
-            'none' => '',
+            'none' => '無',
             'unranked' => '近期沒有遊玩記錄',
 
             'achievements' => [
-                'achieved-on' => '達成於 :date',
+                'achieved-on' => '於 :date達成',
                 'locked' => '已鎖定',
                 'title' => '成就',
             ],
@@ -178,30 +206,30 @@ return [
                 'title' => '圖譜',
 
                 'favourite' => [
-                    'title' => '收藏的譜面',
+                    'title' => '收藏的圖譜',
                 ],
                 'graveyard' => [
-                    'title' => '墳場裡的譜面',
+                    'title' => '已拋棄的圖譜',
                 ],
                 'loved' => [
-                    'title' => '喜歡的譜面',
+                    'title' => '喜歡的圖譜',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked 和 Approved 的譜面',
+                    'title' => '已進榜和批准的譜面',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps',
+                    'title' => '待處理的圖譜',
                 ],
             ],
             'discussions' => [
                 'title' => '討論',
                 'title_longer' => '最近討論',
-                'show_more' => '',
+                'show_more' => '顯示更多討論',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '活動',
+                'title_longer' => '近期活動',
+                'show_more' => '顯示更多活動',
             ],
             'historical' => [
                 'empty' => '尚無遊戲分數。:(',
@@ -231,7 +259,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "該使用者尚未收到任何 kudosu ！",
+                    'empty' => "該使用者尚未收到任何 kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -282,9 +310,9 @@ return [
                 'title' => '成就',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => '貼文',
+                'title_longer' => '最新貼文',
+                'show_more' => '顯示更多貼文',
             ],
             'recent_activity' => [
                 'title' => '最近活動',
@@ -304,11 +332,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
+                'given' => '給予投票（最近三個月）',
+                'received' => '獲得的投票（最近三個月）',
                 'title' => '投票',
                 'title_longer' => '最近投票',
-                'vote_count' => '',
+                'vote_count' => ':count_delimited 票',
             ],
             'account_standing' => [
                 'title' => '帳號狀態',
@@ -331,11 +359,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => ':info 玩家',
-            'info' => '資訊',
         ],
 
         'info' => [
@@ -384,16 +407,16 @@ return [
             'medals' => '成就',
             'play_count' => '遊玩次數',
             'play_time' => '總遊玩時間',
-            'ranked_score' => 'Ranked 圖譜總分',
-            'replays_watched_by_others' => '重播觀看的次數',
+            'ranked_score' => '進榜圖譜總分',
+            'replays_watched_by_others' => '重播被觀看的次數',
             'score_ranks' => '得分等級',
             'total_hits' => '總命中次數',
             'total_score' => '總分',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '進榜 & 批准圖譜',
+            'ranked_and_approved_beatmapset_count' => '已進榜 & 批准的圖譜',
             'loved_beatmapset_count' => 'Loved 圖譜',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'unranked_beatmapset_count' => '待處理的圖譜',
+            'graveyard_beatmapset_count' => '已拋棄的圖譜',
         ],
     ],
 

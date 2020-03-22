@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'eliminado',
+        'none_found' => '',
         'title' => 'Discusiones del beatmap',
 
         'form' => [
             '_' => 'Buscar',
             'deleted' => 'Incluir discusiones eliminadas',
+            'only_unresolved' => 'Mostrar sólo discusiones no resueltas',
             'types' => 'Tipos de mensaje',
             'username' => 'Nombre de usuario',
+
+            'beatmapset_status' => [
+                '_' => 'Estado del mapa',
+                'all' => 'Todo',
+                'disqualified' => 'Descalificado',
+                'never_qualified' => 'No calificado',
+                'qualified' => 'Calificado',
+                'ranked' => 'Clasificado',
+            ],
 
             'user' => [
                 'label' => 'Usuario',
@@ -52,12 +63,12 @@ return [
         'created_at' => 'Fecha de publicación',
         'deleted_at' => 'Fecha de eliminación',
         'message_type' => 'Tipo',
-        'permalink' => 'Permalink',
+        'permalink' => 'Enlace permanente',
     ],
 
     'nearby_posts' => [
         'confirm' => 'Ninguna de las publicaciones aborda mi asunto',
-        'notice' => 'Ya hay posts cerca de :timestamp (:existing_timestamps). Por favor revísalos antes de publicar.',
+        'notice' => 'Hay publicaciones cerca de la :timestamp (:existing_timestamps). Por favor revíselas antes de publicar.',
     ],
 
     'reply' => [
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Ver publicación de revisión',
+        'go_to_child' => 'Ver discusión',
+        'validation' => [
+            'invalid_block_type' => 'tipo de bloque no válido',
+            'invalid_document' => 'revisión no válida',
+            'minimum_issues' => 'la revisión debe contener un mínimo de :count problema|la revisión debe contener un mínimo de :count problemas',
+            'missing_text' => 'el bloque no tiene texto',
+            'too_many_blocks' => 'las revisiones sólo pueden contener :count párrafo/problema|las revisiones sólo pueden contener hasta :count párrafos/problemas',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marcado como resuelto por :user',
             'false' => 'Reabierto por :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'general',
+        'general_all' => 'general (todo)',
     ],
 
     'user_filter' => [

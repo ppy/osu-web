@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 use App\Models\Beatmap;
 use App\Models\BeatmapDifficulty;
 use App\Models\BeatmapFailtimes;
@@ -117,6 +120,7 @@ class BeatmapSeeder extends Seeder
             'version' => $json->version,
             'total_length' => $json->total_length,
             'hit_length' => $json->hit_length,
+            'bpm' => $json->bpm,
             'countTotal' => $json->max_combo !== null ? $json->max_combo : 1500,
             'countNormal' => round(intval($json->max_combo) - (0.2 * intval($json->max_combo))),
             'countSlider' => round(intval($json->max_combo) - (0.8 * intval($json->max_combo))),

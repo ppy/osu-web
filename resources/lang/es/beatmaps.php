@@ -74,8 +74,8 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Esta publicación irá a la discusión general del Beatmapset. Para modificar este Beatmap, comienca el mensaje con una marca de tiempo (Ej: 00:12:345).',
-            'in_timeline' => 'Para modificar varias marcas de tiempo, publíca varias veces (una publicación por marca de tiempo).',
+            'in_general' => 'Esta publicación irá a la discusión general del set de mapas. Para moddear este mapa, empieza un mensaje con una marca de tiempo (por ejemplo, 00:12:345).',
+            'in_timeline' => 'Para moddear varias marcas de tiempo, publique varias veces (un mensaje por marca de tiempo).',
         ],
 
         'message_placeholder' => [
@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Reiniciar Nominación',
             'praise' => 'Elogio',
             'problem' => 'Problema',
+            'review' => 'Revisión',
             'suggestion' => 'Sugerencia',
         ],
 
         'mode' => [
             'events' => 'Historial',
             'general' => 'General :scope',
+            'reviews' => 'Revisiones',
             'timeline' => 'Línea de tiempo',
             'scopes' => [
                 'general' => 'Esta dificultad',
@@ -113,7 +115,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title mappeado por :mapper',
+            'title' => ':title mapeado por :mapper',
         ],
 
         'sort' => [
@@ -134,9 +136,9 @@ return [
 
         'status-messages' => [
             'approved' => '¡Este beatmap fue aprobado el :date!',
-            'graveyard' => "Este beatmap no se ha actualizado desde el :date y muy probablemente haya sido abandonado por el creador...",
+            'graveyard' => "Este mapa no ha sido actualizado desde el :date por lo que fue abandonado...",
             'loved' => '¡Este Beatmap fue agregado a Amados el :date!',
-            'ranked' => '¡Este Beatmap fue rankeado el :date!',
+            'ranked' => '¡Este beatmap fue clasificado el :date!',
             'wip' => 'Nota: Este Beatmap fue marcado como trabajo en proceso por el creador.',
         ],
 
@@ -156,8 +158,8 @@ return [
         'button' => '¡Hypear este Beatmap!',
         'button_done' => '¡Hypeado!',
         'confirm' => "¿Estás seguro? Esto usará uno de tus :n Hype restantes y no se puede deshacer.",
-        'explanation' => '¡Hypea este Beatmap para hacerlo más visible para la nominación y el ranking!',
-        'explanation_guest' => '¡Inicia sesión y Hypea este Beatmap para hacerlo más visible para la nominación y el ranking!',
+        'explanation' => '¡Hypea este mapa para hacerlo más visible para la nominación y la clasificación!',
+        'explanation_guest' => '¡Inicia sesión y hypea este mapa para hacerlo más visible para la nominación y la clasificación!',
         'new_time' => "Obtendrás otro hype :new_time.",
         'remaining' => 'Te quedan :remaining Hypes.',
         'required_text' => 'Hype: :current/:required',
@@ -170,21 +172,22 @@ return [
     ],
 
     'nominations' => [
-        'delete' => 'Borrar',
-        'delete_own_confirm' => '¿Estás seguro? El beatmap será eliminado y serás redirijido de vuelta a tu perfil.',
-        'delete_other_confirm' => '¿Estás seguro? El beatmap será eliminado y serás redirijido de vuelta al perfil de usuario.',
+        'delete' => 'Eliminar',
+        'delete_own_confirm' => '¿Está seguro? El mapa será eliminado y serás redirigido de vuelta a tu perfil.',
+        'delete_other_confirm' => '¿Está seguro? El mapa será eliminado y serás redirigido de vuelta al perfil de usuario.',
         'disqualification_prompt' => '¿Motivo de la descalificación?',
         'disqualified_at' => 'Descalificado :time_ago (:reason).',
         'disqualified_no_reason' => 'motivo no especificado',
         'disqualify' => 'Descalificar',
         'incorrect_state' => 'Error al realizar esa acción, intente actualizando la página.',
         'love' => 'Amor',
-        'love_confirm' => '¿Te encanta este beatmap?',
+        'love_confirm' => '¿Te gusta este mapa?',
         'nominate' => 'Nominar',
         'nominate_confirm' => '¿Nominar este Beatmap?',
         'nominated_by' => 'nominado por :users',
-        'qualified' => 'Se estima que será rankeado el :date, si no se encuentra ningún problema.',
-        'qualified_soon' => 'Se estima que será rankeado pronto, si no se encuentra ningún problema.',
+        'not_enough_hype' => "No hay suficiente hype.",
+        'qualified' => 'Se estima que se clasificará el :date, si no se encuentran problemas.',
+        'qualified_soon' => 'Se estima que se clasificará pronto, si no se encuentran problemas.',
         'required_text' => 'Nominaciones: :current/:required',
         'reset_message_deleted' => 'eliminado',
         'title' => 'Estado de Nominación',
@@ -197,7 +200,7 @@ return [
 
         'reset_confirm' => [
             'nomination_reset' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',
-            'disqualify' => '¿Estás seguro? Esto removerá el beatmap de qualifying y reiniciará el proceso de nominación.',
+            'disqualify' => '¿Está seguro? Esto eliminará el mapa de la calificación y restablecerá el proceso de nominación.',
         ],
     ],
 
@@ -225,7 +228,7 @@ return [
                 'difficulty' => 'Dificultad',
                 'favourites' => 'Favoritos',
                 'updated' => 'Actualizado',
-                'ranked' => 'Ranked',
+                'ranked' => 'Tiempo clasificado',
                 'rating' => 'Calificación',
                 'plays' => 'Veces jugado',
                 'relevance' => 'Relevancia',
@@ -239,7 +242,7 @@ return [
     ],
     'general' => [
         'recommended' => 'Dificultades recomendadas',
-        'converts' => 'Incluir beatmaps convertidos',
+        'converts' => 'Incluir mapas convertidos',
     ],
     'mode' => [
         'any' => 'Cualquiera',

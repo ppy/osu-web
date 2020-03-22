@@ -25,7 +25,8 @@ return [
 
     'cart' => [
         'checkout' => '결제',
-        'more_goodies' => '주문을 끝내기 전에 더 둘러볼게요',
+        'info' => '장바구니에 담긴 :count_delimited개의 항목 ($:subtotal)',
+        'more_goodies' => '주문을 끝내기 전에 더 둘러볼게요.',
         'shipping_fees' => '배송료',
         'title' => '장바구니',
         'total' => '합계',
@@ -53,12 +54,12 @@ return [
         'pay' => 'Paypal로 결제',
 
         'has_pending' => [
-            '_' => '미완료한 결재가 있습니다. :link를 눌러 확인하세요.',
+            '_' => '완료되지 않은 결제가 있습니다. :link를 눌러 확인하세요.',
             'link_text' => '여기',
         ],
 
         'pending_checkout' => [
-            'line_1' => '이전 결제가 시작 됐지만 끝나지 않았습니다.',
+            'line_1' => '이전에 시작했던 결제가 끝나지 않았습니다.',
             'line_2' => '결제 수단을 선택하여 결제를 계속하세요.',
         ],
     ],
@@ -66,22 +67,16 @@ return [
     'discount' => ':percent% 절약 가능',
 
     'invoice' => [
-        'echeck_delay' => 'eCheck로 결제하셧다면 10일까지 PayPal을 통해 결재할 수 있도록 허용해주세요.',
+        'echeck_delay' => 'eCheck로 결제하셨다면 10일까지 PayPal을 통해 결제할 수 있도록 허용해주세요.',
         'status' => [
             'processing' => [
                 'title' => '당신의 결제가 아직 확인되지 않았습니다!',
                 'line_1' => '당신이 이미 결제하셨다면, 저희는 아직 당신의 결제의 확인을 받는것을 기다리고 있을 수 있습니다. 1~2분 후 이 페이지를 새로고침 해주세요!',
                 'line_2' => [
                     '_' => '결제 도중 문제가 발생하셨다면, :link',
-                    'link_text' => '여기를 눌러 결재를 계속하세요',
+                    'link_text' => '여기를 눌러 결제를 계속하세요',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => '귀하의 osu!store 주문을 받았습니다!',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => '유저이름을 바꾸려면 :link하셔야 합니다!',
             'link_text' => '로그인',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

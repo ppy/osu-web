@@ -35,10 +35,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'subject' => 'osu!-Accountverifizierung',
-    ],
-
     'errors' => [
         'expired' => 'Der Bestätigungscode ist abgelaufen, eine neue E-Mail wurde gesendet.',
         'incorrect_key' => 'Inkorrekter Bestätigungscode.',

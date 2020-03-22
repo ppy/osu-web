@@ -25,6 +25,7 @@ return [
         'peak' => 'Vrchol, :count online uživatelů',
         'players' => '<strong>:count</strong> registrovaných hráčů',
         'title' => 'vítejte',
+        'see_more_news' => 'zlédnout více novinek',
 
         'slogan' => [
             'main' => 'nejlepší free-to-win rytmická hra',
@@ -41,6 +42,7 @@ return [
         'title' => 'Hledat',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count dalších výsledků vyhledávání map',
             'more_simple' => 'Zobrazit další výsledky vyhledávání map',
             'title' => 'Beatmapy',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Všechna fóra',
             'link' => 'Prohledat fórum',
+            'login_required' => '',
             'more_simple' => 'Zobrazit další výsledky prohledávání fór',
             'title' => 'Fórum',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count dalších výsledků vyhledávání hráčů',
             'more_simple' => 'Zobrazit další výsledky vyhledávání hráčů',
             'more_hidden' => 'Vyhledávání hráčů je omezeno na :max hráčů. Zkus upravit tvé vyhledávání.',
@@ -119,8 +123,6 @@ return [
             'error' => 'Chyba načítání novinek, zkuste obnovit stránku?...',
         ],
         'header' => [
-            'welcome' => 'Vítej, <strong>:username</strong>!',
-            'messages' => 'Máte :count novou zprávu|Máte :count nové zprávy|Máte :count nových zpráv',
             'stats' => [
                 'friends' => 'Přátelé online',
                 'games' => 'Her',
@@ -130,8 +132,7 @@ return [
         'beatmaps' => [
             'new' => 'Nově hodnocené beatmapy',
             'popular' => 'Populární Beatmapy',
-            'by' => 'od',
-            'plays' => ':count zahrání',
+            'by_user' => 'od :user',
         ],
         'buttons' => [
             'download' => 'Stáhnout osu!',

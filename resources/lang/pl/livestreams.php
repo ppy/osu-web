@@ -25,7 +25,4 @@ return [
 
         'link' => 'artykuł na wiki',
     ],
-    'headers' => [
-        'regular' => 'Obecnie na żywo',
-    ],
 ];

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models\Forum;
 
@@ -305,7 +290,7 @@ class Topic extends Model implements AfterCommit
 
     public function posts()
     {
-        return $this->hasMany(Post::class, 'topic_id');
+        return $this->hasMany(Post::class);
     }
 
     public function forum()
@@ -315,17 +300,17 @@ class Topic extends Model implements AfterCommit
 
     public function cover()
     {
-        return $this->hasOne(TopicCover::class, 'topic_id');
+        return $this->hasOne(TopicCover::class);
     }
 
     public function userTracks()
     {
-        return $this->hasMany(TopicTrack::class, 'topic_id');
+        return $this->hasMany(TopicTrack::class);
     }
 
     public function logs()
     {
-        return $this->hasMany(Log::class, 'topic_id');
+        return $this->hasMany(Log::class);
     }
 
     public function notifications()
@@ -335,22 +320,22 @@ class Topic extends Model implements AfterCommit
 
     public function featureVotes()
     {
-        return $this->hasMany(FeatureVote::class, 'topic_id');
+        return $this->hasMany(FeatureVote::class);
     }
 
     public function pollOptions()
     {
-        return $this->hasMany(PollOption::class, 'topic_id');
+        return $this->hasMany(PollOption::class);
     }
 
     public function pollVotes()
     {
-        return $this->hasMany(PollVote::class, 'topic_id');
+        return $this->hasMany(PollVote::class);
     }
 
     public function watches()
     {
-        return $this->hasMany(TopicWatch::class, 'topic_id');
+        return $this->hasMany(TopicWatch::class);
     }
 
     public function getPollLastVoteAttribute($value)
@@ -801,6 +786,11 @@ class Topic extends Model implements AfterCommit
         $this->featureVotes()->delete();
 
         $this->delete();
+    }
+
+    public function allowsDoublePosting(): bool
+    {
+        return in_array($this->forum_id, config('osu.forum.double_post_allowed_forum_ids'), true);
     }
 
     public function isDoublePostBy(User $user)

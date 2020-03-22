@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Libraries\Search;
 
@@ -76,7 +61,7 @@ class BeatmapsetSearch extends RecordSearch
 
         $nested = new BoolQuery;
         $this->addModeFilter($nested);
-        $this->addPlayedFilter($nested);
+        $this->addPlayedFilter($query, $nested);
         $this->addRankFilter($nested);
         $this->addRecommendedFilter($nested);
 
@@ -154,12 +139,19 @@ class BeatmapsetSearch extends RecordSearch
         }
     }
 
-    private function addPlayedFilter($query)
+    private function addPlayedFilter($query, $nested)
     {
         if ($this->params->playedFilter === 'played') {
-            $query->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+            $nested->filter(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
         } elseif ($this->params->playedFilter === 'unplayed') {
-            $query->mustNot(['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]]);
+            // The inverse of nested:filter/must is must_not:nested, not nested:must_not
+            // https://github.com/elastic/elasticsearch/issues/26264#issuecomment-323668358
+            $query->mustNot([
+                'nested' => [
+                    'path' => 'beatmaps',
+                    'query' => ['terms' => ['beatmaps.beatmap_id' => $this->getPlayedBeatmapIds()]],
+                ],
+            ]);
         }
     }
 

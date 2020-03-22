@@ -64,24 +64,52 @@ return [
         'send_message' => 'αποστολή μηνύματος',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Σύνδεση',
-        'locked_ip' => 'η διεύθυνση IP σας είναι κλειδωμένη. Παρακαλώ περιμένετε λίγα λεπτά.',
-        'username' => 'Όνομα χρήστη',
-        'password' => 'Κωδικός',
         'button' => 'Είσοδος',
         'button_posting' => 'Είσοδος...',
+        'email_login_disabled' => '',
+        'failed' => 'Λάθος σύνδεση',
+        'forgot' => 'Ξεχάσατε τον κωδικό σας;',
+        'info' => '',
+        'locked_ip' => 'η διεύθυνση IP σας είναι κλειδωμένη. Παρακαλώ περιμένετε λίγα λεπτά.',
+        'password' => 'Κωδικός',
+        'register' => "Δεν έχετε λογαριασμό στο osu!; Φτιάξτε ένα νέο",
         'remember' => 'Απομνημόνευση της σύνδεσης',
         'title' => 'Παρακαλώ συνδεθείτε για να συνεχίσετε',
-        'failed' => 'Λάθος σύνδεση',
-        'register' => "Δεν έχετε λογαριασμό στο osu!; Φτιάξτε ένα νέο",
-        'forgot' => 'Ξεχάσατε τον κωδικό σας;',
+        'username' => 'Όνομα χρήστη',
+
         'beta' => [
             'main' => 'Η πρόσβαση στην έκδοση Beta είναι περιορισμένη σε προνομιούχους χρήστες.',
             'small' => '(οι osu!supporters θα έχουν πρόσβαση σύντομα)',
         ],
-
-        'here' => 'εδώ', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -331,11 +359,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Παίκτης :info',
-            'info' => 'Πληροφορίες',
         ],
 
         'info' => [

@@ -21,10 +21,11 @@
 return [
     'landing' => [
         'download' => '立即下载',
-        'online' => '<strong>:players</strong> 名在线玩家, <strong>:games</strong> 个游戏房间',
+        'online' => '<strong>:players</strong> 名在线玩家，<strong>:games</strong> 个游戏房间',
         'peak' => '最高在线人数 :count 人',
         'players' => '<strong>:count</strong> 名已注册玩家',
         'title' => '欢迎',
+        'see_more_news' => '查看更多新闻',
 
         'slogan' => [
             'main' => '棒到不行的免费音乐游戏',
@@ -41,6 +42,7 @@ return [
         'title' => '搜索',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => '搜索到 :count 张谱面',
             'more_simple' => '查看更多搜索结果',
             'title' => '谱面',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => '所有论坛',
             'link' => '在论坛中搜索',
+            'login_required' => '',
             'more_simple' => '查看更多搜索结果',
             'title' => '论坛',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => '搜索到 :count 个玩家',
             'more_simple' => '查看更多搜索结果',
             'more_hidden' => '玩家搜索超出 :max 个限制，请修改搜索内容。',
@@ -119,8 +123,6 @@ return [
             'error' => '载入新闻失败，刷新页面试试看？...',
         ],
         'header' => [
-            'welcome' => '哈喽，<strong>:username</strong>！',
-            'messages' => '你有 :count 条新消息',
             'stats' => [
                 'friends' => '在线好友',
                 'games' => '房间',
@@ -130,8 +132,7 @@ return [
         'beatmaps' => [
             'new' => '新 Ranked 谱面',
             'popular' => '高人气谱面',
-            'by' => '作者：',
-            'plays' => ':count 次游玩',
+            'by_user' => '由 :user',
         ],
         'buttons' => [
             'download' => '下载 osu!',

@@ -64,24 +64,52 @@ return [
         'send_message' => 'адправіць паведамленне',
     ],
 
+    'disabled' => [
+        'title' => '',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => '',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => '',
+
+            'tos' => [
+                '_' => '',
+                'community_rules' => '',
+                'tos' => '',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
+    ],
+
     'login' => [
         '_' => 'Увайсці',
-        'locked_ip' => 'ваш IP-адрас заблакаваны. Пачакайце некалькі хвілін.',
-        'username' => 'Імя карыстальніка',
-        'password' => 'Пароль',
         'button' => 'Увайсці',
         'button_posting' => 'Уваход...',
+        'email_login_disabled' => '',
+        'failed' => 'Няправільны ўваход',
+        'forgot' => 'Забылі свой пароль?',
+        'info' => '',
+        'locked_ip' => 'ваш IP-адрас заблакаваны. Пачакайце некалькі хвілін.',
+        'password' => 'Пароль',
+        'register' => "Вы яшчэ не маеце ўліковага запісу osu!? Стварыце новы",
         'remember' => 'Запомніць гэта камп\'ютар',
         'title' => 'Каб працягнуць, увайдзіце',
-        'failed' => 'Няправільны ўваход',
-        'register' => "Вы яшчэ не маеце ўліковага запісу osu!? Стварыце новы",
-        'forgot' => 'Забылі свой пароль?',
+        'username' => 'Імя карыстальніка',
+
         'beta' => [
             'main' => 'Доступ да бэта-версіі абмежаваны.',
             'small' => '(osu!supporters хутка атрымаць доступ)',
         ],
-
-        'here' => 'тут', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -331,11 +359,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Гулец :info',
-            'info' => 'Інфармацыя',
         ],
 
         'info' => [

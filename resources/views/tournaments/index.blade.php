@@ -1,40 +1,21 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('master', [
-    'currentSection' => 'community',
-    'currentAction' => 'tournaments',
-    'title' => trans('tournament.index.header.title'),
-])
+@extends('master')
 
 @section('content')
-    <div class="osu-layout__row">
-        <div class="osu-page-header-v2 osu-page-header-v2--tournaments">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{trans('tournament.index.header.title')}}</div>
-            <div class="osu-page-header-v2__subtitle">{{trans('tournament.index.header.subtitle')}}</div>
-        </div>
-    </div>
+    @include('layout._page_header_v4', ['params' => [
+        'links' => [['title' => trans('layout.header.tournaments.index'), 'url' => route('tournaments.index')]],
+        'linksBreadcrumb' => true,
+        'theme' => 'tournaments',
+    ]])
 
-    <div class="osu-page osu-page--tournament">
+    <div class="osu-page">
         <div class="tournament-list">
             @foreach($listing as $state => $tournaments)
                 @if($tournaments->isEmpty())
-                    @if($state == 'current')
+                    @if($state === 'current')
                         <h1 class="tournament-list__heading">{{trans("tournament.index.state.$state")}}</h1>
                         <p class="tournament-list__none-running">{{trans('tournament.index.none_running')}}</p>
                     @endif

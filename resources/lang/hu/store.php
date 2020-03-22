@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Fizetés',
+        'info' => ':count_delimited elem a kosárban ($:subtotal)|:count_delimited elem a kosárban ($:subtotal)',
         'more_goodies' => 'Még több cuccot szeretnék megnézni mielőtt befejezném a rendelésem',
         'shipping_fees' => 'szállítási költség',
         'title' => 'Kosár',
@@ -76,12 +77,6 @@ return [
                     'link_text' => 'kattints ide a fizetés folytatásához',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Megkaptuk az osu!boltban elhelyezett rendelésed!',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => ':link kell lenned a neved megváltoztatásához!',
             'link_text' => 'bejelentkezve',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

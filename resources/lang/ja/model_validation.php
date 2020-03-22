@@ -37,7 +37,7 @@ return [
         'beatmap_missing' => 'タイムスタンプは存在しますがビートマップが見つかりませんでした',
         'beatmapset_no_hype' => "このビートマップはHypeできません。",
         'hype_requires_null_beatmap' => 'Hypeは一般（全ての難易度）セクションで行ってください。',
-        'invalid_beatmap_id' => '無効の難易度が指定されました。',
+        'invalid_beatmap_id' => '無効な難易度が指定されました。',
         'invalid_beatmapset_id' => '無効なビートマップが指定されました。',
         'locked' => 'ディスカッションはロックされています。',
 
@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => '削除されたコメントに返信することはできません。',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'メッセージ',
@@ -83,8 +84,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'ビートマップのメタデータ投稿を削除するのは許可されていません。',
-            'beatmapset_post_no_edit' => 'ビートマップのメタデータ投稿を編集するのは許可されていません。',
+            'beatmapset_post_no_delete' => 'ビートマップのメタデータ投稿を削除することは許可されていません。',
+            'beatmapset_post_no_edit' => 'ビートマップのメタデータ投稿を編集することは許可されていません。',
             'only_quote' => 'あなたの返信には引用しかありません。',
 
             'attributes' => [
@@ -101,7 +102,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => '選択肢の重複があります。',
             'grace_period_expired' => ':limit時間以上後に投票を編集できません。',
-            'hiding_results_forever' => '終了しない投票の結果を隠すことはできません。',
+            'hiding_results_forever' => '投票期限が設定されていない投票の結果を隠すことはできません。',
             'invalid_max_options' => '選択数の上限に選択肢の数以上の数値は使用不可能です。',
             'minimum_one_selection' => '選択数は１が最低の数値です。',
             'minimum_two_options' => '選択肢は最低2つ必要です。',
@@ -144,14 +145,14 @@ return [
         'username_in_use' => '既に使用されているユーザー名です！',
         'username_locked' => '既に使用されているユーザー名です！', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'アンダーバーかスペースのどちらかに統一してください。',
-        'username_no_spaces' => "ユーザーネームの端にスペースは使用できません。",
-        'username_not_allowed' => 'このユーザーネームの使用は許可されていません。',
-        'username_too_short' => 'ユーザーネームが短すぎます。',
-        'username_too_long' => 'ユーザーネームが長すぎます。',
+        'username_no_spaces' => "ユーザー名の端にスペースは使用できません。",
+        'username_not_allowed' => 'このユーザー名の使用は許可されていません。',
+        'username_too_short' => 'ユーザー名が短すぎます。',
+        'username_too_long' => 'ユーザー名が長すぎます。',
         'weak' => 'ブラックリストに載っているパスワードです。',
-        'wrong_current_password' => 'パスワードが違います',
+        'wrong_current_password' => 'パスワードが間違っています。',
         'wrong_email_confirmation' => 'メールアドレスが一致しません。',
-        'wrong_password_confirmation' => 'パスワードの確認が一致しません。',
+        'wrong_password_confirmation' => 'パスワードが一致しません。',
         'too_long' => '使用文字数の制限を超えています。上限は:limit文字です。',
 
         'attributes' => [
@@ -166,12 +167,12 @@ return [
                 '_' => ':linkになったことがないと名前を変更できません！',
                 'link_text' => 'サポーター',
             ],
-            'username_is_same' => '既に使用しているユーザーネームです！',
+            'username_is_same' => '既に使用しているユーザー名です！',
         ],
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason はこのテレポートタイプでは無効です。',
         'self' => "自分自身を報告することはできません！",
     ],
 

@@ -1,20 +1,5 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 preventUsernameSubmission = ->
   StoreCart.setEnabled(false)
@@ -22,11 +7,11 @@ preventUsernameSubmission = ->
 
 checkUsernameValidity = ->
   $status = $('#username-check-status')
-  requestedUsername = $('#username.form-control').val()
+  requestedUsername = $('.js-username-change-input').val()
 
   $.post laroute.route('users.check-username-availability'), username: requestedUsername
   .done (data) ->
-    return unless data.username == $('#username.form-control').val()
+    return unless data.username == $('.js-username-change-input').val()
 
     if data.available
       $('.js-store-add-to-cart').attr 'disabled', false
@@ -45,9 +30,10 @@ checkUsernameValidity = ->
 
 debouncedCheckUsernameValidity = _.debounce checkUsernameValidity, 300
 
-$(document).on 'input', '.js-username-change #username.form-control', ->
+$(document).on 'input', '.js-username-change-input', (e) ->
+  input = e.currentTarget
   $status = $('#username-check-status')
-  requestedUsername = $('#username.form-control').val()
+  requestedUsername = input.value
 
   $status.removeClass 'green-dark'
   $status.removeClass 'pink-dark'
@@ -60,5 +46,5 @@ $(document).on 'input', '.js-username-change #username.form-control', ->
     debouncedCheckUsernameValidity()
 
 $(document).on 'turbolinks:load', ->
-  return if $('.js-username-change #username.form-control').length == 0
+  return if $('.js-username-change-input').length == 0
   preventUsernameSubmission()

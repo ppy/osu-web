@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
 
@@ -35,8 +20,16 @@ class UserNotificationOption extends Model
     use Validatable;
 
     const VALID_NAMES = [
-        Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+        self::BEATMAPSET_MODDING,
+        self::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+        self::FORUM_TOPIC_REPLY,
     ];
+
+    const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
+    const BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM = Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM;
+    const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
+
+    const HAS_MAIL_NOTIFICATION = [self::BEATMAPSET_MODDING, self::FORUM_TOPIC_REPLY];
 
     protected $casts = [
         'details' => 'array',
@@ -49,19 +42,32 @@ class UserNotificationOption extends Model
 
     public function setDetailsAttribute($value)
     {
-        if ($this->name === Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM) {
-            if (is_array($value)) {
+        $details = $this->details ?? [];
+
+        if (!is_array($value)) {
+            $value = null;
+        }
+
+        if ($this->name === static::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM) {
+            if (is_array($value['modes'] ?? null)) {
+                $modes = array_filter($value['modes'], 'is_string');
                 $validModes = array_keys(Beatmap::MODES);
 
-                $modes = array_values(array_intersect($value, $validModes));
-
-                if (count($modes) > 0) {
-                    $details = compact('modes');
-                }
+                $details['modes'] = array_values(array_intersect($modes, $validModes));
             }
         }
 
-        $this->attributes['details'] = isset($details) ? json_encode($details) : null;
+        if ($this->hasMailNotification()) {
+            if (isset($value['mail'])) {
+                $details['mail'] = get_bool($value['mail'] ?? null);
+            }
+        }
+
+        if (!empty($details)) {
+            $detailsString = json_encode($details);
+        }
+
+        $this->attributes['details'] = $detailsString ?? null;
     }
 
     public function setNameAttribute($value)
@@ -71,6 +77,11 @@ class UserNotificationOption extends Model
         }
 
         $this->attributes['name'] = $value;
+    }
+
+    public function hasMailNotification()
+    {
+        return in_array($this->name, static::HAS_MAIL_NOTIFICATION, true);
     }
 
     public function isValid()

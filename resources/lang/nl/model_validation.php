@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Op een verwijderde comment reageren is niet toegestaan.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Het bericht',
@@ -171,7 +172,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason is niet geldig voor dit rapporttype.',
         'self' => "Je kunt jezelf niet rapporteren!",
     ],
 

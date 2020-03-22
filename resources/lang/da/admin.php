@@ -25,6 +25,7 @@ return [
             'regenerating' => 'Regenererer...',
             'remove' => 'Fjern',
             'removing' => 'Fjerner...',
+            'title' => 'Beatmapset covers',
         ],
         'show' => [
             'covers' => 'Administrer Beatmapset Covers',
@@ -70,9 +71,8 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Administrator Konsol Tingest',
-
             'sections' => [
+                'beatmapsets' => 'Beatmapset',
                 'forum' => 'Forum',
                 'general' => 'Generelt',
                 'store' => 'Butik',

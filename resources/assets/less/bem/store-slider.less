@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .store-slider {
   @preset-font-size: 12px;
@@ -22,11 +7,16 @@
   @preset-margin: 4px;
   @preset-width: 36px;
   @callout-padding: 6px;
-  @callout-extension: 64px;
+  @callout-extension: 32px;
 
   // inset slider to prevent overflows making the page wider.
   // the 2px is to add a gap between the callout and the page edge.
   padding: 0 ((@callout-extension / 2) - (@callout-padding * 2) + 2px);
+  padding: 0 (@slider-callout--width / 2 - @gutter-v2 + 2px);
+
+  @media @desktop {
+    padding: 0 ((@slider-callout--width + @callout-extension) / 2 - @gutter-v2-desktop + 2px);
+  }
 
   &__bigtext { // stupid name
     font-size: @font-size--large;
@@ -42,8 +32,8 @@
   }
 
   &__callout {
-    background-color: #333;
-    color: #fff;
+    background-color: @osu-colour-b3;
+    color: @osu-colour-c1;
     font-size: @font-size--normal;
     text-align: center;
     border-radius: 10px;
@@ -68,14 +58,14 @@
     }
 
     &::after {
-      border-top-color: #333;
+      border-top-color: @osu-colour-b3;
       border-width: @slider-callout--arrow-height;
       margin-left: -@slider-callout--arrow-height;
     }
   }
 
   &__preset {
-    background-color: #666;
+    background-color: @osu-colour-b3;
     color: #fff;
     cursor: pointer;
     margin: @preset-margin;
@@ -86,15 +76,15 @@
     border-radius: 10px;
 
     .js-store--disabled & {
-      background-color: #999;
+      background-color: @osu-colour-b1;
       pointer-events: none;
       cursor: default;
     }
 
     &.js-slider-preset--active {
-      background-color: @pink-darker;
+      background-color: @osu-colour-pink-1;
       .js-store--disabled & {
-        background-color: #999;
+        background-color: @osu-colour-b1;
       }
     }
   }
@@ -110,18 +100,21 @@
 
   &__subtext { // stupid name
     margin-top: 2px;
-    color: #999;
+    color: @osu-colour-c2;
   }
 
   .ui-slider {
-    background-color: darkgray;
+    background-color: @osu-colour-b3;
     .js-store--disabled & {
       .ui-slider-handle, .ui-slider-range {
-        background-color: #999;
+        background-color: @osu-colour-b1;
       }
     }
+    .ui-slider-handle {
+      background-color: @osu-colour-pink-1;
+    }
     .ui-slider-range {
-      background-color: @pink-darker;
+      background-color: @osu-colour-pink-1;
     }
   }
 }

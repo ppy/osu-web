@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
 
@@ -41,21 +26,17 @@ class UpdateStream extends Model
 
     public function builds()
     {
-        return $this->hasMany(Build::class, 'stream_id', 'stream_id');
+        return $this->hasMany(Build::class);
     }
 
     public function changelogs()
     {
-        return $this->hasMany(Changelog::class, 'stream_id', 'stream_id');
+        return $this->hasMany(Changelog::class);
     }
 
     public function changelogEntries()
     {
-        return $this->hasManyThrough(
-            ChangelogEntry::class, // target class
-            Repository::class, // bridge class
-            'stream_id' // column name in bridge linking to this
-        );
+        return $this->hasManyThrough(ChangelogEntry::class, Repository::class);
     }
 
     public function scopeWhereHasBuilds($query)

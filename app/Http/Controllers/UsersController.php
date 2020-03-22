@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers;
 
@@ -40,11 +25,11 @@ use Request;
 
 class UsersController extends Controller
 {
-    protected $section = 'user';
     protected $maxResults = 100;
 
     public function __construct()
     {
+        $this->middleware('guest', ['only' => 'store']);
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
             'checkUsernameExists',
@@ -56,6 +41,13 @@ class UsersController extends Controller
 
         if (is_api_request()) {
             $this->middleware('require-scopes:identify', ['only' => ['me']]);
+            $this->middleware('require-scopes:users.read', ['only' => [
+                'beatmapsets',
+                'kudosu',
+                'recentActivity',
+                'scores',
+                'show',
+            ]]);
         }
 
         $this->middleware(function ($request, $next) {
@@ -80,7 +72,7 @@ class UsersController extends Controller
 
     public function disabled()
     {
-        return view('users.disabled');
+        return ext_view('users.disabled');
     }
 
     public function checkUsernameAvailability()
@@ -185,10 +177,10 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $search = (new PostSearch(new PostSearchRequestParams(request(), $user)))
+        $search = (new PostSearch(new PostSearchRequestParams(request()->all(), $user)))
             ->size(50);
 
-        return view('users.posts', compact('search', 'user'));
+        return ext_view('users.posts', compact('search', 'user'));
     }
 
     public function kudosu($_userId)
@@ -241,7 +233,7 @@ class UsersController extends Controller
                 abort(404);
             }
 
-            return response()->view('users.show_not_found')->setStatusCode(404);
+            return ext_view('users.show_not_found', null, null, 404);
         }
 
         if ((string) $user->user_id !== (string) $id) {
@@ -263,6 +255,7 @@ class UsersController extends Controller
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
+            'group_badge',
             'loved_beatmapset_count',
             'monthly_playcounts',
             'page',
@@ -339,7 +332,7 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            return view('users.show', compact(
+            return ext_view('users.show', compact(
                 'user',
                 'jsonChunks'
             ));
@@ -468,12 +461,13 @@ class UsersController extends Controller
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scoresFirst($options['mode'], true)
-                        ->orderBy('score_id', 'desc')
+                        ->visibleUsers()
+                        ->reorderBy('score_id', 'desc')
                         ->with('beatmap', 'beatmap.beatmapset', 'user');
                     break;
                 case 'scoresRecent':
                     $transformer = 'Score';
-                    $includes = ['beatmap', 'beatmapset', 'best', 'user'];
+                    $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scores($options['mode'], true)
                         ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
                     break;

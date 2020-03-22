@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .notification-popup-item {
   @_top: notification-popup-item;
@@ -31,7 +16,7 @@
   &--compact {
     background-color: transparent;
     margin-left: 10px;
-    width: calc(100% - 10px);
+    width: calc(100% - $margin-left);
 
     &:hover {
       background-color: @osu-colour-b4;
@@ -102,8 +87,8 @@
     .reset-input();
     .full-size();
     .center-content();
-    width: calc(100% - 6px);
-    margin-left: 6px;
+    width: calc(100% - $margin-left);
+    margin-left: @border-radius-large;
     padding-left: 2px;
     color: @osu-colour-f1;
 
@@ -114,10 +99,10 @@
     &::before {
       .full-size();
       content: ' ';
-      width: 6px;
-      border-radius: 0 6px 6px 0;
+      width: @border-radius-large;
+      border-radius: 0 @border-radius-large @border-radius-large 0;
       background-color: transparent;
-      left: -6px;
+      left: -@border-radius-large;
 
       .@{_top}:hover & {
         background-color: @osu-colour-b1;
@@ -140,6 +125,10 @@
       font-weight: bold;
       font-size: @font-size--small;
       text-transform: uppercase;
+    }
+
+    &--expand {
+      margin-top: 10px;
     }
 
     &--message {
@@ -167,10 +156,10 @@
   &__side-buttons {
     width: 40px;
     flex: none;
-    border-radius: 0 6px 6px 0;
+    border-radius: 0 @border-radius-large @border-radius-large 0;
     background-color: transparent;
 
-    .@{_top}--legacy_pm & {
+    .@{_top}--legacy_pm &, .@{_top}--read & {
       display: none;
     }
 
@@ -179,4 +168,11 @@
     }
   }
 
+  &__unread-stripe {
+    position: absolute;
+    width: @border-radius-large;
+    height: 100%;
+    border-radius: @border-radius-large 0 0 @border-radius-large;
+    box-shadow: inset 2px 0 @osu-colour-h1;
+  }
 }

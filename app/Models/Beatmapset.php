@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
 
@@ -153,9 +138,37 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
 
+    public static function popular()
+    {
+        $ids = cache_remember_mutexed('popularBeatmapsetIds', 300, [], function () {
+            return static::popularIds();
+        });
+
+        return static::whereIn('beatmapset_id', $ids)->orderByField('beatmapset_id', $ids);
+    }
+
+    public static function popularIds()
+    {
+        $recentIds = static::ranked()
+            ->where('approved_date', '>', now()->subDays(30))
+            ->select('beatmapset_id');
+
+        return FavouriteBeatmapset::select('beatmapset_id')
+            ->selectRaw('COUNT(*) as cnt')
+            ->whereIn('beatmapset_id', $recentIds)
+            ->where('dateadded', '>', now()->subDays(7))->groupBy('beatmapset_id')
+            ->orderBy('cnt', 'DESC')
+            ->limit(5)
+            ->pluck('beatmapset_id')
+            ->toArray();
+    }
+
     public function beatmapDiscussions()
     {
-        return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
+        return $this
+            ->hasMany(BeatmapDiscussion::class)
+            // TODO: remove this when reviews are released
+            ->hideReviews();
     }
 
     public function recentFavourites($limit = 50)
@@ -174,7 +187,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function watches()
     {
-        return $this->hasMany(BeatmapsetWatch::class, 'beatmapset_id', 'beatmapset_id');
+        return $this->hasMany(BeatmapsetWatch::class);
     }
 
     public function lastDiscussionTime()
@@ -776,17 +789,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function beatmaps()
     {
-        return $this->hasMany(Beatmap::class, 'beatmapset_id');
+        return $this->hasMany(Beatmap::class);
     }
 
     public function allBeatmaps()
     {
-        return $this->hasMany(Beatmap::class, 'beatmapset_id')->withTrashed();
+        return $this->hasMany(Beatmap::class)->withTrashed();
     }
 
     public function events()
     {
-        return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
+        return $this->hasMany(BeatmapsetEvent::class);
     }
 
     public function genre()
@@ -822,17 +835,21 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             if ($this->user_id === $user->getKey()) {
                 $message = 'owner';
             } else {
-                $hyped = $this
-                    ->beatmapDiscussions()
-                    ->withoutTrashed()
-                    ->ofType('hype')
-                    ->where('user_id', '=', $user->getKey())
-                    ->exists();
+                if ($this->discussion_locked) {
+                    $message = 'discussion_locked';
+                } else {
+                    $hyped = $this
+                        ->beatmapDiscussions()
+                        ->withoutTrashed()
+                        ->ofType('hype')
+                        ->where('user_id', '=', $user->getKey())
+                        ->exists();
 
-                if ($hyped) {
-                    $message = 'hyped';
-                } elseif ($user->remainingHype() <= 0) {
-                    $message = 'limit_exceeded';
+                    if ($hyped) {
+                        $message = 'hyped';
+                    } elseif ($user->remainingHype() <= 0) {
+                        $message = 'limit_exceeded';
+                    }
                 }
             }
         }
@@ -979,7 +996,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function defaultBeatmaps()
     {
-        return $this->hasMany(Beatmap::class, 'beatmapset_id')->default();
+        return $this->hasMany(Beatmap::class)->default();
     }
 
     public function user()
@@ -994,7 +1011,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function userRatings()
     {
-        return $this->hasMany(BeatmapsetUserRating::class, 'beatmapset_id');
+        return $this->hasMany(BeatmapsetUserRating::class);
     }
 
     public function ratingsCount()
@@ -1019,7 +1036,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function favourites()
     {
-        return $this->hasMany(FavouriteBeatmapset::class, 'beatmapset_id');
+        return $this->hasMany(FavouriteBeatmapset::class);
     }
 
     public function description()

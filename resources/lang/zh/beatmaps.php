@@ -91,12 +91,14 @@ return [
             'nomination_reset' => '取消提名',
             'praise' => '赞',
             'problem' => '问题',
+            'review' => '审核',
             'suggestion' => '建议',
         ],
 
         'mode' => [
             'events' => '历史',
             'general' => '常规 :scope',
+            'reviews' => '审阅记录',
             'timeline' => '时间轴',
             'scopes' => [
                 'general' => '当前难度',
@@ -183,6 +185,7 @@ return [
         'nominate' => '提名',
         'nominate_confirm' => '提名这张谱面？',
         'nominated_by' => '由 :users 提名',
+        'not_enough_hype' => "没有足够的推荐。",
         'qualified' => '如果没有问题，预计将于 :date 被 Ranked 。',
         'qualified_soon' => '如果没有问题，预计不久将被 Ranked 。',
         'required_text' => '提名数: :current/:required',
@@ -287,7 +290,7 @@ return [
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
         'HT' => 'Half Time',
-        'MR' => '镜像 Mod',
+        'MR' => 'Mirror',
         'NC' => 'Nightcore',
         'NF' => 'No Fail',
         'NM' => 'No mods',

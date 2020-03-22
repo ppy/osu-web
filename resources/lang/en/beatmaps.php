@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'discussion-posts' => [
@@ -91,12 +76,14 @@ return [
             'nomination_reset' => 'Reset Nomination',
             'praise' => 'Praise',
             'problem' => 'Problem',
+            'review' => 'Review',
             'suggestion' => 'Suggestion',
         ],
 
         'mode' => [
             'events' => 'History',
             'general' => 'General :scope',
+            'reviews' => 'Reviews',
             'timeline' => 'Timeline',
             'scopes' => [
                 'general' => 'This difficulty',
@@ -216,7 +203,7 @@ return [
                 'status' => 'Categories',
                 'genre' => 'Genre',
                 'language' => 'Language',
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'rank' => 'Rank Achieved',
                 'played' => 'Played',
             ],

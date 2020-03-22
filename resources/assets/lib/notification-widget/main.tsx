@@ -1,160 +1,152 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import { observer } from 'mobx-react';
+import { Name, TYPES } from 'models/notification-type';
+import { NotificationContext } from 'notifications-context';
+import LegacyPm from 'notifications/legacy-pm';
+import NotificationController from 'notifications/notification-controller';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
-import TypeGroup from './type-group';
-import Worker from './worker';
+import Stack from './stack';
 
 interface Props {
-  type?: string;
-  worker: Worker;
+  extraClasses?: string;
+}
+
+interface State {
+  hasError: boolean;
 }
 
 @observer
-export default class Main extends React.Component<Props> {
-  private menuId: string;
+export default class Main extends React.Component<Props, State> {
+  readonly links = TYPES.map((obj) => {
+    const type = obj.type;
+    return { title: osu.trans(`notifications.filters.${type ?? '_'}`), data: { 'data-type': type }, type };
+  });
 
-  constructor(props: Props) {
-    super(props);
+  readonly state = {
+    hasError: false,
+  };
 
-    this.menuId = `nav-notification-popup-${osu.uuid()}`;
+  private readonly controller = new NotificationController(core.dataStore.notificationStore, { isWidget: true }, null);
+
+  static getDerivedStateFromError(error: Error) {
+    // tslint:disable-next-line: no-console
+    console.error(error);
+    return { hasError: true };
   }
 
   render() {
-    if (!this.props.worker.isActive()) {
-      return null;
-    }
+    const blockClass = `notification-popup u-fancy-scrollbar ${this.props.extraClasses ?? ''}`;
 
     return (
-      <>
-        <button
-          className={this.buttonClass()}
-          data-click-menu-target={this.menuId}
-        >
-          <span className={this.mainClass()}>
-            <i className='fas fa-inbox' />
-            <span className='notification-icon__count'>
-              {this.unreadCount()}
-            </span>
-          </span>
-        </button>
-        <div className='nav-click-popup'>
-          <div
-            className='notification-popup js-click-menu js-nav2--centered-popup u-fancy-scrollbar'
-            data-click-menu-id={this.menuId}
-            data-visibility='hidden'
-          >
-            <div className='notification-popup__scroll-container'>
-              {this.renderTypeGroup()}
-
-              {this.renderShowMoreButton()}
+      <NotificationContext.Provider value={{ isWidget: true }}>
+        <div className={blockClass}>
+          <div className='notification-popup__scroll-container'>
+            {this.renderFilters()}
+            {this.renderHistoryLink()}
+            {this.renderLegacyPm()}
+            <div className='notification-stacks'>
+              {this.renderStacks()}
+              {this.renderShowMore()}
             </div>
           </div>
         </div>
-      </>
+      </NotificationContext.Provider>
     );
   }
 
-  private buttonClass() {
-    let ret = 'js-click-menu nav-button';
-
-    if (this.props.type === 'mobile') {
-      ret += ' nav-button--mobile';
-    } else {
-      ret += ' nav-button--stadium';
-    }
-
-    return ret;
+  private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const type = ((event.currentTarget as HTMLButtonElement).dataset.type ?? null) as Name;
+    this.controller.navigateTo(type);
   }
 
-  private mainClass() {
-    let ret = 'notification-icon';
-
-    if (this.props.worker.unreadCount > 0) {
-      ret += ' notification-icon--glow';
-    }
-
-    if (this.props.type === 'mobile') {
-      ret += ' notification-icon--mobile';
-    }
-
-    return ret;
+  private handleShowMore = () => {
+    this.controller.loadMore();
   }
 
-  private renderShowMoreButton() {
-    if (!this.props.worker.hasMore) {
-      return;
-    }
+  private renderFilter = (link: any) => {
+    const type = core.dataStore.notificationStore.unreadStacks.getOrCreateType({ objectType: link.type });
+    const isSameFilter = link.type === this.controller.currentFilter;
+
+    if (type.name !== null && type.isEmpty && !isSameFilter) return null;
+
+    const data = { 'data-type': link.type };
+    const modifiers = isSameFilter ? ['active'] : [];
 
     return (
-      <div className='notification-popup__show-more'>
-        <ShowMoreLink
-          callback={this.props.worker.loadMore}
-          hasMore={this.props.worker.hasMore}
-          loading={this.props.worker.loadingMore}
-          modifiers={['t-greysky']}
-        />
+      <button
+        className={osu.classWithModifiers('notification-popup__filter', modifiers)}
+        key={link.title}
+        onClick={this.handleFilterClick}
+        {...data}
+      >
+        <span className='notification-popup__filter-count'>{type.total}</span>
+        <span>{link.title}</span>
+      </button>
+    );
+  }
+
+  private renderFilters() {
+    return (
+      <div className='notification-popup__filters'>
+        {this.links.map(this.renderFilter)}
       </div>
     );
   }
 
-  private renderTypeGroup() {
-    const items: React.ReactNode[] = [];
-
-    this.props.worker.itemsGroupedByType.forEach((value, key) => {
-      if (value.length === 0) {
-        return;
-      }
-
-      items.push(
-        (
-          <div key={key} className='notification-popup__item'>
-            <TypeGroup
-              item={value[0]}
-              items={value}
-              worker={this.props.worker}
-            />
-          </div>
-        ),
-      );
-    });
-
-    if (items.length === 0) {
-      items.push(this.props.worker.hasMore ? (
-        <div key='empty-with-more' className='notification-popup__empty-with-more' />
-      ) : (
-        <p key='empty' className='notification-popup__empty'>
-          {osu.trans('notifications.all_read')}
-        </p>
-      ));
-    }
-
-    return items;
+  private renderHistoryLink() {
+    return (
+      <a className='notification-popup__filter' href={route('notifications.index')}>
+        {osu.trans('notifications.see_all')}
+      </a>
+    );
   }
 
-  private unreadCount() {
-    if (this.props.worker.hasData) {
-      return osu.formatNumber(this.props.worker.unreadCount);
-    } else {
-      return '...';
+  private renderLegacyPm() {
+    if (this.controller.currentFilter != null) return;
+
+    return <LegacyPm />;
+  }
+
+  private renderShowMore() {
+    const type = this.controller.type;
+
+    return (
+      <ShowMoreLink
+        callback={this.handleShowMore}
+        hasMore={type?.hasMore}
+        loading={type?.isLoading}
+        modifiers={['notification-group', 'notification-list']}
+      />
+    );
+  }
+
+  private renderStacks() {
+    if (this.state.hasError) {
+      return;
     }
+
+    const nodes: React.ReactNode[] = [];
+    for (const stack of this.controller.stacks) {
+      if (!stack.hasVisibleNotifications) continue;
+
+      nodes.push(<Stack key={stack.id} stack={stack} />);
+    }
+
+    if (nodes.length === 0) {
+      const transKey = this.controller.currentFilter == null ? 'notifications.all_read' : 'notifications.none';
+      return (
+        <p key='empty' className='notification-popup__empty'>
+          {osu.trans(transKey)}
+        </p>
+      );
+    }
+
+    return nodes;
   }
 }

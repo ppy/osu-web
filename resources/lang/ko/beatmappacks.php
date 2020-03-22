@@ -20,6 +20,10 @@
 
 return [
     'index' => [
+        'description' => '비슷한 테마를 기준으로 모아놓은 비트맵 모음집입니다.',
+        'nav_title' => '목록',
+        'title' => '비트맵 팩',
+
         'blurb' => [
             'important' => '[[ 다운로드 하기 전에 읽어주세요 ]]',
             'instruction' => [
@@ -34,8 +38,6 @@ return [
                 'scary' => '최근에 나온 맵팩 순으로 내려받는 것',
             ],
         ],
-        'title' => '비트맵 팩',
-        'description' => '비슷한 테마를 기준으로 모아놓은 비트맵 모음집입니다.',
     ],
 
     'show' => [

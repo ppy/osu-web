@@ -23,6 +23,11 @@ return [
         'small' => 'Tävla i andra sätt än att bara klicka cirklar.',
         'large' => 'Gemenskapstävlingar',
     ],
+
+    'index' => [
+        'nav_title' => '',
+    ],
+
     'voting' => [
         'over' => 'Möjligheten att rösta i denna tävling har avslutats',
         'login_required' => 'Var vänlig logga in för att rösta.',
@@ -32,8 +37,8 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
+            'add' => 'Rösta',
+            'remove' => 'Ta bort röstning',
             'used_up' => '',
         ],
     ],
@@ -45,7 +50,7 @@ return [
         'over' => 'Tack för era bidrag! Möjligheten att lägga till bidrag har stängt och röstning kommer öppnas snart.',
         'limit_reached' => 'Du har uppnått max antal bidrag i denna tävling',
         'drop_here' => 'Släpp ditt bidrag här',
-        'download' => '',
+        'download' => 'Ladda ner .osz',
         'wrong_type' => [
             'art' => 'Endast .jpg och .png filer är tillåtna i denna tävling.',
             'beatmap' => 'Endast .osu filer är tillåtna i denna tävling.',

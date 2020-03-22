@@ -1,46 +1,15 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .product-box {
   @_top: product-box;
 
   display: block;
-  padding-left: 20px;
-  padding-top: 20px;
-  height: 100%;
-  width: 100%;
-  .product-header-base();
-
-  &,
-  &:focus,
-  &:hover,
-  &:active {
-    color: #fff;
-    text-decoration: none;
-  }
-
-  &::before, &::after {
-    .full-size();
-    content: ' ';
-    will-change: opacity;
-    transition: opacity 120ms;
-    pointer-events: none;
-  }
+  background-size: cover;
+  background-position: center;
+  background-color: osu-hsla(@osu-colour-b4, 0.25);
+  .link-white();
+  .link-plain();
 
   &::before {
     .default-box-shadow();
@@ -60,12 +29,39 @@
     opacity: 1;
   }
 
-  &--large {
-    height: 300px;
+  &--card {
+    padding: 20px;
+
+    &::before, &::after {
+      .full-size();
+      content: '';
+      will-change: opacity;
+      transition: opacity 120ms;
+      pointer-events: none;
+    }
   }
 
-  &--small {
+  &--card-large {
+    height: 300px;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    order: -1;
+  }
+
+  &--card-small {
     height: 200px;
+  }
+
+  &--header {
+    .default-gutter-v2();
+    height: 300px;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  &--oos {
+    order: 1;
   }
 
   &__text {
@@ -74,23 +70,21 @@
     .@{_top}:hover & {
       opacity: 0;
     }
-
-    .@{_top}--small & {
-      h1 { font-size: 30px; }
-
-      p { display: none; }
-    }
   }
 
-  &__bar {
-    &--oos {
-      width: 233px;
-      height: 136px;
-      .at2x('/images/layout/store-out-of-stock-bar.png', 233px, 136px);
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      margin: 0;
+  &__oos-bar {
+    width: 233px;
+    height: 136px;
+    .at2x-simple('/images/layout/store-out-of-stock-bar.png');
+    background-size: contain;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    display: none;
+
+    .@{_top}--oos & {
+      display: block;
     }
   }
 }

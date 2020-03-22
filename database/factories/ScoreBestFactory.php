@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 use App\Models\Score\Best\Osu;
 
 $factory->define(App\Models\Score\Best\Osu::class, function (Faker\Generator $faker) {
@@ -35,8 +38,7 @@ $factory
         return [
             'replay' => true,
         ];
+    })
+    ->afterCreatingState(App\Models\Score\Best\Osu::class, 'with_replay', function ($score, $faker) {
+        $score->replayFile()->disk()->put($score->getKey(), 'this-is-totally-a-legit-replay');
     });
-    // TODO: uncomment after Laravel 5.6+ upgrade
-    // ->afterCreatingState(App\Models\Score\Best\Osu::class, 'with_replay', function ($score, $faker) {
-    //     $score->replayFile()->disk()->put($score->getKey(), 'this-is-totally-a-legit-replay');
-    // });

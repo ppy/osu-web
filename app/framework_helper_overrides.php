@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 // Fixes laravel/framework#12065.
 function e($value)
 {
@@ -36,7 +39,7 @@ function trans_choice($key, $number, array $replace = [], $locale = null)
     }
 
     if (!isset($replace['count_delimited'])) {
-        $replace['count_delimited'] = i18n_number_format($number, null, null, $locale);
+        $replace['count_delimited'] = i18n_number_format($number, null, null, null, $locale);
     }
 
     return app('translator')->choice($key, $number, $replace, $locale);

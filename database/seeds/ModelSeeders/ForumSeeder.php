@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
@@ -99,7 +102,7 @@ class ForumSeeder extends Seeder
                 foreach ($authOptionIds as $optionId) {
                     $group = new App\Models\Forum\Authorize;
 
-                    $group->group_id = App\Models\UserGroup::GROUPS['default'];
+                    $group->group_id = app('groups')->byIdentifier('default')->getKey();
                     $group->forum_id = $forum->forum_id;
                     $group->auth_option_id = $optionId;
                     $group->auth_setting = 1;

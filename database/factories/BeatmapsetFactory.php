@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -11,7 +14,10 @@
 |
 */
 
-$factory->define(App\Models\Beatmapset::class, function (Faker\Generator $faker) {
+use App\Models\BeatmapDiscussion;
+use App\Models\Beatmapset;
+
+$factory->define(Beatmapset::class, function (Faker\Generator $faker) {
     $artist = $faker->name;
     $title = $faker->sentence(rand(0, 5));
     $isApproved = (rand(0, 2) > 0);
@@ -37,17 +43,32 @@ $factory->define(App\Models\Beatmapset::class, function (Faker\Generator $faker)
         },
         'approved_date' => $faker->dateTime(),
         'submit_date' => $faker->dateTime(),
+        'thread_id' => 0,
     ];
 });
 
-$factory->state(App\Models\Beatmapset::class, 'deleted', function () {
+$factory->state(Beatmapset::class, 'deleted', function () {
     return ['deleted_at' => now()];
 });
 
-$factory->state(App\Models\Beatmapset::class, 'inactive', function () {
+$factory->state(Beatmapset::class, 'inactive', function () {
     return ['active' => 0];
 });
 
-$factory->state(App\Models\Beatmapset::class, 'no_discussion', function () {
+$factory->state(Beatmapset::class, 'no_discussion', function () {
     return ['discussion_enabled' => false];
+});
+
+$factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App\Models\Beatmapset $beatmapset) {
+    if (!$beatmapset->beatmaps()->save(
+        factory(App\Models\Beatmap::class)->make()
+    )) {
+        throw new Exception();
+    }
+
+    if (!$beatmapset->beatmapDiscussions()->save(
+        factory(BeatmapDiscussion::class, 'general')->make(['user_id' => $beatmapset->user_id])
+    )) {
+        throw new Exception();
+    }
 });

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
 
@@ -101,7 +86,7 @@ class Beatmap extends Model
 
     public function beatmapDiscussions()
     {
-        return $this->hasMany(BeatmapDiscussion::class, 'beatmap_id');
+        return $this->hasMany(BeatmapDiscussion::class);
     }
 
     public function creator()
@@ -111,12 +96,12 @@ class Beatmap extends Model
 
     public function difficulty()
     {
-        return $this->hasMany(BeatmapDifficulty::class, 'beatmap_id');
+        return $this->hasMany(BeatmapDifficulty::class);
     }
 
     public function difficultyAttribs()
     {
-        return $this->hasMany(BeatmapDifficultyAttrib::class, 'beatmap_id');
+        return $this->hasMany(BeatmapDifficultyAttrib::class);
     }
 
     public function getDifficultyratingAttribute($value)
@@ -187,7 +172,27 @@ class Beatmap extends Model
 
     public function failtimes()
     {
-        return $this->hasMany(BeatmapFailtimes::class, 'beatmap_id');
+        return $this->hasMany(BeatmapFailtimes::class);
+    }
+
+    public function scores($mode = null)
+    {
+        return $this->getScores(Score::class, $mode);
+    }
+
+    public function scoresBest($mode = null)
+    {
+        return $this->getScores(Score\Best::class, $mode);
+    }
+
+    public function isScoreable()
+    {
+        return $this->approved > 0;
+    }
+
+    public function status()
+    {
+        return array_search($this->approved, Beatmapset::STATES, true);
     }
 
     private function getScores($modelPath, $mode)
@@ -204,21 +209,6 @@ class Beatmap extends Model
 
         $mode = studly_case($mode);
 
-        return $this->hasMany("{$modelPath}\\{$mode}", 'beatmap_id');
-    }
-
-    public function scores($mode = null)
-    {
-        return $this->getScores("App\Models\Score", $mode);
-    }
-
-    public function scoresBest($mode = null)
-    {
-        return $this->getScores("App\Models\Score\Best", $mode);
-    }
-
-    public function status()
-    {
-        return array_search($this->approved, Beatmapset::STATES, true);
+        return $this->hasMany("{$modelPath}\\{$mode}");
     }
 }

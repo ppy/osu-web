@@ -1,27 +1,13 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('store/layout')
-
+@extends('store/layout', ['titlePrepend' => trans('layout.menu.store.orders-index')])
 
 @section('content')
     @include('store.header')
 
-    <div class="osu-layout__row osu-layout__row--page osu-layout--store">
+    <div class="osu-page osu-page--generic">
         <div class="store-orders">
             @if (count($orders) === 0)
                 <span>{{ trans('store.order.no_orders') }}</span>
@@ -61,7 +47,7 @@
                     </ul>
                     @if ($order->isShopify())
                         <button
-                            class="js-store-resume-checkout btn-osu-big"
+                            class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
                             data-order-id="{{ $order->getKey() }}"
                             data-provider="{{ $order->getPaymentProvider() }}"
                             data-provider-reference="{{ $order->getProviderReference() }}"
@@ -70,7 +56,7 @@
                         </button>
                     @elseif ($order->hasInvoice())
                         <button
-                            class="js-store-resume-checkout btn-osu-big"
+                            class="js-store-resume-checkout btn-osu-big btn-osu-big--rounded-thin"
                             data-order-id="{{ $order->getKey() }}"
                             data-provider="{{ $order->getPaymentProvider() }}"
                         >

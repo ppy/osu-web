@@ -21,6 +21,18 @@
 return [
     'all_read' => '',
     'mark_all_read' => '',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -31,11 +43,19 @@ return [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_lock_compact' => '',
                 'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => '',
                 'beatmapset_discussion_unlock' => '',
                 'beatmapset_discussion_unlock_compact' => '',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => '',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_empty' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_qualified_problem_compact_empty' => '',
             ],
 
             'beatmapset_state' => [
@@ -122,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '',
                 'user_achievement_unlock' => '',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Libraries\Search;
 
@@ -78,7 +63,7 @@ class BeatmapsetSearchParams extends SearchParams
     /**
      * {@inheritdoc}
      */
-    public function getCacheKey() : string
+    public function getCacheKey(): string
     {
         $vars = get_object_vars($this);
         unset($vars['user']);
@@ -90,7 +75,7 @@ class BeatmapsetSearchParams extends SearchParams
     /**
      * {@inheritdoc}
      */
-    public function isCacheable() : bool
+    public function isCacheable(): bool
     {
         return !(
             present($this->queryString)
@@ -107,7 +92,7 @@ class BeatmapsetSearchParams extends SearchParams
      *
      * @return float|null The recommended star difficulty; .
      */
-    public function getRecommendedDifficulty() : ?float
+    public function getRecommendedDifficulty(): ?float
     {
         if ($this->user === null) {
             return null;
@@ -121,12 +106,12 @@ class BeatmapsetSearchParams extends SearchParams
         return $this->recommendedDifficulty;
     }
 
-    public function hasSupporterFeatures() : bool
+    public function hasSupporterFeatures(): bool
     {
         return $this->playedFilter !== null || !empty($this->rank);
     }
 
-    public function shouldReturnEmptyResponse() : bool
+    public function shouldReturnEmptyResponse(): bool
     {
         return !optional($this->user)->isSupporter() && $this->hasSupporterFeatures();
     }

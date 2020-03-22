@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers;
 
@@ -27,8 +12,6 @@ use Auth;
 
 class ArtistsController extends Controller
 {
-    protected $section = 'community';
-
     public function index()
     {
         $artists = Artist::with('label')->withCount('tracks')->orderBy('name', 'asc');
@@ -38,8 +21,9 @@ class ArtistsController extends Controller
             $artists->where('visible', true);
         }
 
-        return view('artists.index')
-            ->with('artists', $artists->get());
+        return ext_view('artists.index', [
+            'artists' => $artists->get(),
+        ]);
     }
 
     public function show($id)
@@ -104,11 +88,12 @@ class ArtistsController extends Controller
             }
         }
 
-        return view('artists.show')
-            ->with('artist', $artist)
-            ->with('links', $links)
-            ->with('albums', json_collection($albums, new ArtistAlbumTransformer, ['tracks']))
-            ->with('tracks', json_collection($tracks, new ArtistTrackTransformer))
-            ->with('images', $images);
+        return ext_view('artists.show', [
+            'artist' => $artist,
+            'links' => $links,
+            'albums' => json_collection($albums, new ArtistAlbumTransformer, ['tracks']),
+            'tracks' => json_collection($tracks, new ArtistTrackTransformer),
+            'images' => $images,
+        ]);
     }
 }

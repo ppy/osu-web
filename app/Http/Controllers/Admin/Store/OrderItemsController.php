@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 namespace App\Http\Controllers\Admin\Store;
 
 use App\Http\Controllers\Admin\Controller;
@@ -9,8 +12,6 @@ use Request;
 
 class OrderItemsController extends Controller
 {
-    protected $section = 'storeAdmin';
-
     public function update($orderId, $orderItemId)
     {
         $item = OrderItem::where('order_id', $orderId)->findOrFail($orderItemId);

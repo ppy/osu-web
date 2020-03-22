@@ -29,7 +29,7 @@ return [
         'first_post' => 'ไม่สามารถลบโพสต์ที่เริ่มต้น',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'ข้อความ',
         ],
     ],
 
@@ -42,7 +42,7 @@ return [
         'locked' => 'การสนทนาได้ถูกล็อกไว้',
 
         'attributes' => [
-            'message_type' => '',
+            'message_type' => 'ประเภทของข้อความ',
             'timestamp' => '',
         ],
 
@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'ไม่อนุญาตให้ตอบกลับในคอมเม้นต์ที่ถูกลบไปแล้ว',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '',
@@ -94,7 +95,7 @@ return [
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'ชื่อหัวข้อ',
             ],
         ],
 

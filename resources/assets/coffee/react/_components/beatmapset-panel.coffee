@@ -1,25 +1,11 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapIcon } from 'beatmap-icon'
 import { Img2x } from 'img2x'
 import * as React from 'react'
-import { div,a,i,span } from 'react-dom-factories'
+import { a, div, i, span, strong } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
 el = React.createElement
 
 export class BeatmapsetPanel extends React.PureComponent
@@ -111,7 +97,7 @@ export class BeatmapsetPanel extends React.PureComponent
             if beatmapset.storyboard
               div className: 'beatmapset-panel__extra-icon',
                 i className: 'fas fa-image fa-fw'
-            div className: 'beatmapset-status', beatmapset.status
+            div className: 'beatmapset-status', osu.trans("beatmapsets.show.status.#{beatmapset.status}")
 
           div className: 'beatmapset-panel__title-artist-box',
             div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',
@@ -148,15 +134,16 @@ export class BeatmapsetPanel extends React.PureComponent
             div className: 'beatmapset-panel__mapper-source-box',
               div
                 className: 'u-ellipsis-overflow'
-                dangerouslySetInnerHTML:
-                  __html:
-                    osu.trans 'beatmapsets.show.details.mapped_by',
-                      mapper:
-                        laroute.link_to_route 'users.show',
-                            beatmapset.creator,
-                            user: beatmapset.user_id,
-                              'class': 'js-usercard'
-                              'data-user-id': beatmapset.user_id
+                el StringWithComponent,
+                  pattern: osu.trans 'beatmapsets.show.details.mapped_by'
+                  mappings:
+                    ':mapper':
+                      a
+                        key: 'mapper'
+                        href: laroute.route('users.show', user: beatmapset.user_id)
+                        className: 'js-usercard'
+                        'data-user-id': beatmapset.user_id
+                        strong null, beatmapset.creator
               div
                 className: 'u-ellipsis-overflow'
                 if beatmapset.status in ['graveyard', 'wip', 'pending']

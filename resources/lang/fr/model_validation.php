@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Répondre à un commentaire supprimé n\'est pas autorisé.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Le message',
@@ -171,7 +172,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason n\'est pas valide pour ce type de signalement.',
         'self' => "Vous ne pouvez pas vous signaler vous-même !",
     ],
 

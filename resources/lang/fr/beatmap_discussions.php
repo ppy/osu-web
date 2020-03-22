@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'supprimé',
+        'none_found' => '',
         'title' => 'Discussions de Beatmap',
 
         'form' => [
             '_' => 'Rechercher',
             'deleted' => 'Inclure les discussions supprimées',
+            'only_unresolved' => 'Afficher uniquement les discussions non résolues',
             'types' => 'Types de message',
             'username' => 'Nom d’utilisateur',
+
+            'beatmapset_status' => [
+                '_' => 'État de la beatmap',
+                'all' => 'Tous',
+                'disqualified' => 'Disqualifiée',
+                'never_qualified' => 'Jamais qualifiée',
+                'qualified' => 'Qualifiée',
+                'ranked' => 'Classée',
+            ],
 
             'user' => [
                 'label' => 'Utilisateur',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Voir l\'avis',
+        'go_to_child' => 'Voir la discussion',
+        'validation' => [
+            'invalid_block_type' => 'type de bloc invalide',
+            'invalid_document' => 'revue invalide',
+            'minimum_issues' => 'la revue doit contenir un minimum de :count problèmes|la revue doit contenir un minimum de :count problèmes',
+            'missing_text' => 'le bloc manque du texte',
+            'too_many_blocks' => 'les revues ne doivent contenir que :count paragraphes/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marqué comme résolu par :user',
             'false' => 'Réouvert par :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'général',
+        'general_all' => 'général (tous)',
     ],
 
     'user_filter' => [

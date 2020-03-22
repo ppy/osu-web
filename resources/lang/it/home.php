@@ -25,6 +25,7 @@ return [
         'peak' => 'Picco, :count utenti online',
         'players' => '<strong>:count</strong> utenti registrati',
         'title' => 'benvenuto',
+        'see_more_news' => 'guarda più notizie',
 
         'slogan' => [
             'main' => 'il miglior gioco di ritmo free-to-win',
@@ -41,6 +42,7 @@ return [
         'title' => 'Cerca',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => 'altri :count risultati di ricerca delle beatmap',
             'more_simple' => 'Vedi più risultati di ricerca delle beatmap',
             'title' => 'Beatmap',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Tutti i forum',
             'link' => 'Cerca nel forum',
+            'login_required' => '',
             'more_simple' => 'Vedi più risultati di ricerca del forum',
             'title' => 'Forum',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => 'altri :count risultati di ricerca di giocatori',
             'more_simple' => 'Vedi più risultati di ricerca di giocatori',
             'more_hidden' => 'La ricerca di giocatori è limitata a :max giocatori. Prova a ridefinire la ricerca.',
@@ -119,8 +123,6 @@ return [
             'error' => 'Errore nel caricamento delle notizie, prova a riavviare la pagina?...',
         ],
         'header' => [
-            'welcome' => 'Ciao <strong>:username</strong>!',
-            'messages' => 'Hai :count_delimited nuovo messaggio|Hai :count_delimited nuovi messaggi',
             'stats' => [
                 'friends' => 'Amici Online',
                 'games' => 'Partite',
@@ -130,8 +132,7 @@ return [
         'beatmaps' => [
             'new' => 'Nuove Beatmap Classificate',
             'popular' => 'Beatmap Popolari',
-            'by' => 'di',
-            'plays' => ':count giocate',
+            'by_user' => 'di :user',
         ],
         'buttons' => [
             'download' => 'Scarica osu!',

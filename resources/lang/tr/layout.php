@@ -24,19 +24,101 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => 'yönetici',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => 'konsol',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => 'liste',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => 'tartışma',
+            'index' => '',
+            'show' => 'bilgi',
+            'packs' => 'paketler',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => 'Topluluk',
-
+            'comments' => 'yorumlar',
+            'contests' => '',
             'forum' => 'Forum',
+            'livestream' => 'canlı yayınlar',
+        ],
+
+        'error' => [
+            '_' => 'hata',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => 'ana sayfa',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'rankings' => [
+            '_' => 'sıralama',
+        ],
+
+        'store' => [
+            '_' => 'osu!mağza',
+            'cart' => 'sepet',
+            'order' => '',
+            'orders' => 'sipariş geçmişi',
+            'product' => 'ürün',
+            'products' => 'ürünler',
+        ],
+
+        'tournaments' => [
+            '_' => 'turnuvalar',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => 'oyuncu',
+            'forum_posts' => '',
+            'modding' => 'modding',
+            'show' => 'bilgi',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Kapat (Esc)',
+        'fullscreen' => 'Tam ekrana geç',
+        'zoom' => 'Yakınlaştır/Uzaklaştır',
+        'previous' => 'Bir önceki (sol ok)',
+        'next' => 'Bir sonraki (sağ ok)',
     ],
 
     'menu' => [
@@ -44,9 +126,12 @@ return [
             '_' => 'anasayfa',
             'account-edit' => 'ayarlar',
             'account-verifyLink' => 'Doğrulama Tamamlandı',
-            'friends-index' => 'arkadaşlar',
-            'changelog-index' => 'değişiklikler',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'sürüm',
+            'changelog-index' => 'değişiklikler',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => 'forum abonelikleri',
+            'friends-index' => 'arkadaşlar',
             'getDownload' => 'indir',
             'getIcons' => 'simgeler',
             'groups-show' => 'gruplar',
@@ -59,11 +144,12 @@ return [
             'search' => 'ara',
             'supportTheGame' => 'oyunu destekle',
             'team' => 'takım',
+            'testflight' => '',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profil',
+            'friends' => 'arkadaşlar',
+            'settings' => 'ayarlar',
         ],
         'help' => [
             '_' => 'yardım',
@@ -78,7 +164,6 @@ return [
             'artists' => 'seçkin sanatçılar',
             'beatmap_discussion_posts-index' => 'beatmap tartışma başlıkları',
             'beatmap_discussions-index' => 'beatmap tartışmaları',
-            'beatmapset-watches-index' => 'modlama izleme listesi',
             'beatmapset_discussion_votes-index' => 'beatmap tartışma oyları',
             'beatmapset_events-index' => 'beatmapset olayları',
             'index' => 'listeleme',
@@ -112,7 +197,6 @@ return [
             'tournaments' => 'turnuvalar',
             'tournaments-index' => 'turnuvalar',
             'tournaments-show' => 'turnuva bilgisi',
-            'forum-topic-watches-index' => 'abonelikler',
             'forum-topics-create' => 'forumlar',
             'forum-topics-show' => 'forumlar',
             'forum-forums-index' => 'forumlar',
@@ -149,6 +233,7 @@ return [
             'modding-history-posts' => 'kullanıcı modlama gönderileri',
             'modding-history-votesGiven' => 'kullanıcı verilen modlama oyları',
             'modding-history-votesReceived' => 'kullanıcı alınan modlama oyları',
+            'notifications-index' => '',
             'oauth_login' => 'oauth için giriş yapın',
             'oauth_request' => 'oauth doğrulaması',
             'settings' => 'Ayarlar',
@@ -256,10 +341,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'e-posta adresi',
             'forgot' => "Bilgilerimi unuttum",
             'password' => 'şifre',
             'title' => 'Devam etmek için Giriş Yap',
+            'username' => 'kullanıcı adı',
 
             'error' => [
                 'email' => "Kullanıcı adı veya e-posta adresi mevcut değil.",
@@ -268,7 +353,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'İndir',
             'info' => 'Bir hesaba ihtiyacınız var, efendim. Neden hemen bir tane oluşturmuyorsunuz?',
             'title' => "Hesabın yok mu?",
         ],

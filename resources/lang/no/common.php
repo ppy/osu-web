@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
+        'authorise' => '',
         'back_to_previous' => 'Returner til forrige posisjon',
         'back_to_top' => 'Tilbake til toppen',
         'cancel' => 'Avbryt',
@@ -48,7 +49,7 @@ return [
         'expand' => 'utvid',
         'hide' => 'skjul',
         'permalink' => 'permalenke',
-        'permalink_copied' => 'lenke kopiert',
+        'pin' => '',
         'post' => 'Del',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og åpne igjen',
@@ -61,8 +62,10 @@ return [
         'see_more' => 'se mer',
         'show' => 'vis',
         'show_deleted' => 'Vis slettede',
+        'show_less' => '',
         'show_more' => 'vis mer',
         'show_more_options' => 'vis flere valg',
+        'unpin' => '',
         'update' => 'Oppdater',
         'upload_image' => 'last opp bilde',
 
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'm|m',
         'minutes' => '::count_delimited minutt|:count_delimited minutter',
         'months' => '::count_delimited måned|:count_delimited måneder',
+        'notifications' => '',
         'plus_others' => '+ :count_delimited annen!|+ :count_delimited andre!',
         'post' => ':count_delimited innlegg|:count_delimited innlegg',
         'second_short_unit' => 's|s',
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Varsel',
+    ],
+
+    'wrong_user' => [
+        '_' => '',
+        'logout_link' => '',
     ],
 ];

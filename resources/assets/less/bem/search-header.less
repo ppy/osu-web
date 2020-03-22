@@ -1,35 +1,17 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .search-header {
   @_top: search-header;
   @_search-icon-width: 40px;
 
-  .default-header-overlay();
-  .default-box-shadow();
-  .at2x-simple('/images/headers/search.jpg');
-  background-size: cover;
-  height: 200px;
-  color: #fff;
+  .default-gutter-v2();
+  color: @osu-colour-c1;
+  background-color: @osu-colour-b4;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 20px 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
   &__box {
     position: relative;
@@ -73,7 +55,7 @@
     font-weight: normal;
     min-width: 0;
     .default-border-radius();
-    background-color: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
+    background-color: osu-hsla(@osu-colour-b6, 0.5);
     display: flex;
 
     &::placeholder {

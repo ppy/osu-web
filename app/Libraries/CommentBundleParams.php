@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Libraries;
 
@@ -32,6 +17,8 @@ class CommentBundleParams
         'top' => ['votes_count_cache' => 'DESC', 'created_at' => 'DESC', 'id' => 'DESC'],
     ];
 
+    public $commentableId;
+    public $commentableType;
     public $parentId;
     public $cursor;
     public $limit;
@@ -82,6 +69,9 @@ class CommentBundleParams
         if (array_key_exists($params['sort'] ?? null, static::SORTS)) {
             $this->sort = $params['sort'];
         }
+
+        $this->commentableId = $params['commentable_id'] ?? null;
+        $this->commentableType = $params['commentable_type'] ?? null;
     }
 
     public function filterByParentId()
@@ -91,7 +81,10 @@ class CommentBundleParams
 
     public function forUrl()
     {
-        $params = [];
+        $params = [
+            'commentable_id' => $this->commentableId,
+            'commentable_type' => $this->commentableType,
+        ];
 
         if ($this->cursor['createdAt'] !== null) {
             $params['cursor']['created_at'] = json_time($this->cursor['createdAt']);

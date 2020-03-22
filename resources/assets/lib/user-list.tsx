@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import * as moment from 'moment';
 import * as React from 'react';
@@ -23,10 +8,10 @@ import { ViewMode } from 'user-card';
 import { UserCards } from 'user-cards';
 
 type Filter = 'all' | 'online' | 'offline';
-type SortMode = 'last_visit' | 'username';
+type SortMode = 'last_visit' | 'rank' | 'username';
 
 const filters: Filter[] = ['all', 'online', 'offline'];
-const sortModes: SortMode[] = ['last_visit', 'username'];
+const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 const viewModes: ViewMode[] = ['card', 'list'];
 
 interface Props {
@@ -38,6 +23,16 @@ interface State {
   filter: Filter;
   sortMode: SortMode;
   viewMode: ViewMode;
+}
+
+function rankSortDescending(x: User, y: User) {
+  if (x.current_mode_rank != null && y.current_mode_rank != null) {
+    return x.current_mode_rank > y.current_mode_rank ? 1 : -1;
+  } else if (x.current_mode_rank === null) {
+    return 1;
+  } else {
+    return -1;
+  }
 }
 
 function usernameSortAscending(x: User, y: User) {
@@ -61,6 +56,9 @@ export class UserList extends React.PureComponent<Props> {
     const users = this.getFilteredUsers(this.state.filter).slice();
 
     switch (this.state.sortMode) {
+      case 'rank':
+        return users.sort(rankSortDescending);
+
       case 'username':
         return users.sort(usernameSortAscending);
 
@@ -120,13 +118,20 @@ export class UserList extends React.PureComponent<Props> {
     return (
       <>
         {this.renderSelections()}
+
         <div className='user-list'>
+          {this.props.title != null && (
+            <h1 className='user-list__title'>{this.props.title}</h1>
+          )}
+
           <div className='user-list__toolbar'>
             <div className='user-list__toolbar-item'>{this.renderSorter()}</div>
             <div className='user-list__toolbar-item'>{this.renderViewMode()}</div>
           </div>
 
-          <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} />
+          <div className='user-list__items'>
+            <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} />
+          </div>
         </div>
       </>
     );

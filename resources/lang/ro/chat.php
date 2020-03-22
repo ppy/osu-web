@@ -19,12 +19,11 @@
  */
 
 return [
-    'coming_soon' => 'în curând',
     'limitation_notice' => 'NOTĂ: Doar cei ce folosesc <a href=":lazer_link">osu!lazer</a> sau noul website vor primi mesaje directe prin acest sistem.<br/>Dacă nu ești sigur, trimite-le un mesaj prin intermediul <a href=":oldpm_link">vechii pagini de trimis mesaje</a> în schimb.',
     'talking_in' => 'vorbești în :channel',
     'talking_with' => 'vorbești cu :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
         'channel' => 'Nu poți trimite mesaje în acest canal chiar acum. Acest lucru poate fi din cauza următoarelor motive:',
         'user' => 'Nu poți trimite mesaje acestui utilizator chiar acum. Acest lucru poate fi din cauza următoarelor motive:',

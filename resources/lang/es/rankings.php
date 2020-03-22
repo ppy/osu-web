@@ -19,13 +19,15 @@
  */
 
 return [
-    'header' => 'Clasificación por :type',
+    'country' => [
+        'filter' => 'filtrado por país',
+    ],
 
     'type' => [
-        'performance' => 'Rendimiento',
-        'charts' => 'Destacados',
-        'score' => 'Puntuación',
-        'country' => 'País',
+        'performance' => 'rendimiento',
+        'charts' => 'destacados',
+        'score' => 'puntuación',
+        'country' => 'país',
     ],
 
     'spotlight' => [
@@ -42,7 +44,7 @@ return [
         'play_count' => 'Conteo de jugadas',
         'performance' => 'Rendimiento',
         'total_score' => 'Puntuación total',
-        'ranked_score' => 'Puntuación rankeada',
+        'ranked_score' => 'Puntuación clasificada',
         'average_score' => 'Puntuación promedio',
         'average_performance' => 'Rendimiento promedio',
         'ss' => 'SS',

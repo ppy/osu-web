@@ -39,15 +39,10 @@ return [
             '_from' => ':fromからの変更点',
             '_from_to' => ':fromから:toへの変更',
             '_stream' => ':streamの変更点',
-            '_stream_from' => ':fromからの:streamの変更',
-            '_stream_from_to' => ':fromから:toの:streamの変更',
+            '_stream_from' => ':fromからの:streamの変更点',
+            '_stream_from_to' => ':fromから:toの:streamの変更点',
             '_stream_to' => ':streamを:toへ変更',
             '_to' => ':toへ変更',
-        ],
-
-        'title' => [
-            '_' => ':infoの更新履歴',
-            'info' => '一覧',
         ],
     ],
 

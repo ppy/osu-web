@@ -1,0 +1,48 @@
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
+import { UserAvatar } from 'user-avatar'
+import UserGroupBadge from 'user-group-badge'
+import { a, div, i, span } from 'react-dom-factories'
+
+el = React.createElement
+bn = 'beatmap-discussion-user-card'
+
+export class UserCard extends React.PureComponent
+  render: =>
+    additionalClasses = @props.additionalClasses ? []
+    hideStripe = @props.hideStripe ? false
+
+    div
+      className: osu.classWithModifiers(bn, additionalClasses)
+      style: osu.groupColour(@props.badge)
+
+      div className: "#{bn}__avatar",
+        a
+          className: "#{bn}__user-link"
+          href: laroute.route('users.show', user: @props.user.id)
+          el UserAvatar, user: @props.user, modifiers: ['full-rounded']
+      div
+        className: "#{bn}__user"
+        div
+          className: "#{bn}__user-row"
+          a
+            className: "#{bn}__user-link"
+            href: laroute.route('users.show', user: @props.user.id)
+            span
+              className: "#{bn}__user-text u-ellipsis-overflow"
+              @props.user.username
+
+          if !@props.user.is_bot
+            a
+              className: "#{bn}__user-modding-history-link"
+              href: laroute.route('users.modding.index', user: @props.user.id)
+              title: osu.trans('beatmap_discussion_posts.item.modding_history_link')
+              i className: 'fas fa-align-left'
+
+        div
+          className: "#{bn}__user-badge"
+          el UserGroupBadge, badge: @props.badge
+
+      if (!hideStripe)
+        div
+          className: "#{bn}__user-stripe"

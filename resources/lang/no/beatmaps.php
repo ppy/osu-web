@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Tilbakestill Nominasjon',
             'praise' => 'Ros',
             'problem' => 'Problem',
+            'review' => '',
             'suggestion' => 'Forslag',
         ],
 
         'mode' => [
             'events' => 'Historie',
             'general' => 'Generell :scope',
+            'reviews' => '',
             'timeline' => 'Tidslinje',
             'scopes' => [
                 'general' => 'Denne vanskelighetsgraden',
@@ -183,6 +185,7 @@ return [
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer dette beatmappet?',
         'nominated_by' => 'nominert av :users',
+        'not_enough_hype' => "",
         'qualified' => 'Beregnes for å bli rangert :date, hvis ingen problemer blir funnet.',
         'qualified_soon' => 'Beregnet for å bli rangert snart, hvis ingen problemer blir funnet.',
         'required_text' => 'Nominasjoner :current/:required',

@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => 'Налады <strong>ўлік. запісу</strong>',
         'title_compact' => 'налады',
         'username' => 'імя карыстальніка',
 
@@ -67,6 +66,13 @@ return [
     'notifications' => [
         'title' => 'Апавяшчэнні',
         'topic_auto_subscribe' => 'аўтаматычна ўключаць апавяшчэнні для вашых тэм з форума',
+        'beatmapset_discussion_qualified_problem' => '',
+
+        'mail' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+        ],
     ],
 
     'oauth' => [
@@ -99,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Пацвярджэнне змены эл. пошты osu!',
         'update' => 'абнавіць',
     ],
 
     'update_password' => [
-        'email_subject' => 'Пацвярджэнне змены паролю osu! ',
         'update' => 'абнавіць',
     ],
 

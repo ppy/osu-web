@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => '삭제된 댓글에 답글을 달 수 없습니다.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '메시지',
@@ -171,7 +172,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason 은(는) 이 신고 형식에 맞지 않습니다.',
         'self' => "자기 자신은 신고할 수 없습니다!",
     ],
 

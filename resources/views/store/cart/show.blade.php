@@ -1,21 +1,8 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('store.layout')
+@extends('store.layout', ['titlePrepend' => trans('layout.header.store.cart')])
 
 @php
     // always ignore empty keys.
@@ -26,62 +13,29 @@
 @section('content')
     @include("store.header")
 
-    @if(!$order || !count($order->items))
-        <div class="osu-layout__row osu-layout__row--page osu-layout--store">
-            <h1>{{ trans('store.cart.title') }}</h1>
+    <div class="osu-page osu-page--store">
+        @if(!$order || !count($order->items))
+            <div class="store-page">
+                <h1 class="store-text store-text--title">
+                    {{ trans('store.cart.title') }}
+                </h1>
 
-            <p>{{ trans('store.cart.empty.text') }}</p>
-            <p>{!! trans('store.cart.empty.return_link._', [
-                'link' => Html::link(route('store.products.index'), trans('store.cart.empty.return_link.link_text')),
-                ]) !!}
-            </p>
-        </div>
-    @else
-        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout--store">
-            <div class="osu-layout__sub-row osu-layout__sub-row--lg1 osu-layout--store">
-                <h1>{{ trans('store.cart.title') }}</h1>
+                <p>{{ trans('store.cart.empty.text') }}</p>
+                <p>{!! trans('store.cart.empty.return_link._', [
+                    'link' => Html::link(route('store.products.index'), trans('store.cart.empty.return_link.link_text')),
+                    ]) !!}
+                </p>
+            </div>
+        @else
+            <div class="store-page">
+                <h1 class="store-text store-text--title">
+                    {{ trans('store.cart.title') }}
+                </h1>
 
-                <ul class="table cart-items">
-                    @foreach($order->items as $i)
-                        <li class="js-store-order-item store-order-item"
-                            data-shopify-id="{{ $i->product->shopify_id }}"
-                            data-quantity="{{ $i->quantity }}"
-                        >
-                            <div class="store-order-item__line">
-                                <span class="store-order-item__name">
-                                    {{ $i->getDisplayName() }}
-                                </span>
-
-                                {!! Form::open(['class' => 'store-order-item__options', "url" => route('store.cart.store'), "data-remote" => true]) !!}
-                                    <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
-                                    <input type="hidden" name="item[id]" value="{{ $i->id }}">
-                                    {{-- anything where stock is null either allows multiple or is max_quantity 1--}}
-                                    @if($i->product->allow_multiple || $i->product->stock <= 0)
-                                        <span class="store-order-item__quantity">{{ trans_choice('common.count.item', $i->quantity) }}</span>
-                                    @else
-                                        {!!
-                                            Form::select(
-                                                "item[quantity]",
-                                                product_quantity_options($i->product, $i->quantity),
-                                                $i->quantity,
-                                                ['class' => 'store-order-item__quantity form-control js-auto-submit']
-                                            )
-                                        !!}
-                                    @endif
-                                    <span class="store-order-item__subtotal">{{ currency($i->subtotal()) }}</span>
-                                    <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fas fa-times"></i></button>
-                                {!! Form::close() !!}
-                            </div>
-
-                            @if (isset($itemErrors[$i->id]))
-                                <div class="store-order-item__line">
-                                    <ul class="store-order-item__errors">
-                                        @foreach ($itemErrors[$i->id] as $message)
-                                            <li class="store-order-item__error">{{ $message }}
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+                <ul class="cart-items">
+                    @foreach($order->items as $item)
+                        <li class="cart-items__item">
+                            @include('store.cart._item', compact('item'))
                         </li>
                     @endforeach
                 </ul>
@@ -107,26 +61,24 @@
                 </div>
             </div>
 
-            <div class="osu-layout__sub-row">
+            <div class="store-page store-page--footer">
                 @if ($hasErrors)
-                    <div class="alert alert-danger">
+                    <ul class="store-page__alert">
                         @foreach (trans('store.cart.errors_no_checkout') as $_k => $v)
-                            <p>{{ $v }}</p>
+                            <li>{{ $v }}</li>
                         @endforeach
-                    </div>
+                    </ul>
                 @else
-                    <div class="big-button">
-                        <button
-                            class="js-store-checkout btn-osu btn-osu-default"
-                            data-order-id="{{ $order->order_id }}"
-                            data-shopify="{{ $order->isShouldShopify() }}"
-                            disabled
-                        >
-                            {{ trans('store.cart.checkout' ) }}
-                        </button>
-                    </div>
+                    <button
+                        class="js-store-checkout btn-osu-big btn-osu-big--store-action"
+                        data-order-id="{{ $order->order_id }}"
+                        data-shopify="{{ $order->isShouldShopify() }}"
+                        disabled
+                    >
+                        {{ trans('store.cart.checkout' ) }}
+                    </button>
                 @endif
             </div>
-        </div>
-    @endif
+        @endif
+    </div>
 @endsection

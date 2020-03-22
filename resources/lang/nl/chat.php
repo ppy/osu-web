@@ -19,14 +19,13 @@
  */
 
 return [
-    'coming_soon' => 'binnenkort beschikbaar',
-    'limitation_notice' => 'ATTENTIE: Alleen mensen die <a href=":lazer_link">osu!lazer</a> of de nieuwe site gebruiken zullen PMs via dit systeem krijgen.<br/> Als jij niet zeker bent of dit het geval is, stuur dan een bericht via <a href=":oldpm_link">old forum PM page</a>.',
+    'limitation_notice' => 'LET OP: Alleen mensen die <a href=":lazer_link">osu!lazer</a> of de nieuwe site gebruiken zullen PMs via dit systeem krijgen.<br/> Als je niet zeker bent of dit het geval is, stuur dan een bericht via <a href=":oldpm_link">old forum PM page</a>.',
     'talking_in' => 'praten in :channel',
     'talking_with' => 'aan het praten met :name',
     'title_compact' => 'chat',
-    'title' => 'Chat',
+
     'cannot_send' => [
-        'channel' => 'Je kan op het moment geen berichten sturen in dit kanaal. Dit kan worden veroorzaakt door een van de volgende redenen:',
+        'channel' => 'Je kan helaas nu geen berichten sturen in dit kanaal. Dit kan worden veroorzaakt door een van de volgende redenen:',
         'user' => 'Je kan op het moment geen berichten sturen naar deze gebruiker. Dit kan worden veroorzaakt door een van de volgende redenen:',
         'reasons' => [
             'blocked' => 'Je bent geblokkeerd door de ontvanger',
@@ -39,7 +38,7 @@ return [
     'input' => [
         'disabled' => 'niet in staat om bericht te verzenden...',
         'placeholder' => 'stuur een bericht...',
-        'send' => 'Versturen',
+        'send' => 'Stuur',
     ],
     'no-conversations' => [
         'howto' => "Start gesprekken vanuit het profiel van een gebruiker of een pop-up usercard.",

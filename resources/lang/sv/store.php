@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Checka ut',
+        'info' => '',
         'more_goodies' => 'Jag vill ta en titt på fler godsaker innan jag fullbordar beställningen',
         'shipping_fees' => 'fraktavgifter',
         'title' => 'Varukorg',
@@ -54,7 +55,7 @@ return [
 
         'has_pending' => [
             '_' => '',
-            'link_text' => '',
+            'link_text' => 'här',
         ],
 
         'pending_checkout' => [
@@ -79,16 +80,10 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Vi har tagit emot din osu!store-beställning!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => '',
 
-        'invoice' => '',
+        'invoice' => 'Visa Faktura',
         'no_orders' => '',
         'resume' => '',
 
@@ -110,12 +105,12 @@ return [
         ],
 
         'status' => [
-            'cancelled' => '',
-            'checkout' => '',
-            'delivered' => '',
+            'cancelled' => 'Avbruten',
+            'checkout' => 'Förbereder',
+            'delivered' => 'Levererad',
             'paid' => '',
             'processing' => '',
-            'shipped' => '',
+            'shipped' => 'Skickad',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => 'Du behöver var :link för att ändra ditt namn!',
             'link_text' => 'inloggad',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

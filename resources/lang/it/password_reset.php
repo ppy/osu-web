@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Resetta password',
-
     'button' => [
         'cancel' => 'Annulla',
         'resend' => 'Rimanda email di verifica',
         'set' => 'Imposta password',
         'start' => 'Inizia',
-    ],
-
-    'email' => [
-        'subject' => 'Ripristino account osu!',
     ],
 
     'error' => [

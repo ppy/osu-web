@@ -35,6 +35,7 @@ return [
 
     'buttons' => [
         'admin' => '管理員',
+        'authorise' => '授權',
         'back_to_previous' => '返回到上一個位置',
         'back_to_top' => '返回頂部',
         'cancel' => '取消',
@@ -48,7 +49,7 @@ return [
         'expand' => '展開',
         'hide' => '隱藏',
         'permalink' => '永久連結',
-        'permalink_copied' => '連結已複製',
+        'pin' => '置頂',
         'post' => '發表',
         'reply' => '回覆',
         'reply_reopen' => '回覆並重新打開',
@@ -61,8 +62,10 @@ return [
         'see_more' => '查看更多',
         'show' => '顯示',
         'show_deleted' => '顯示刪除的項目',
+        'show_less' => '',
         'show_more' => '顯示更多',
         'show_more_options' => '顯示更多選項',
+        'unpin' => '取消置頂',
         'update' => '更新',
         'upload_image' => '上傳圖片',
 
@@ -81,12 +84,13 @@ return [
         'minute_short_unit' => '分',
         'minutes' => ':count_delimited 分鐘|:count_delimited 分鐘',
         'months' => ':count 個月',
+        'notifications' => '',
         'plus_others' => '+ :count_delimited 其他!|+ :count_delimited 其他!',
-        'post' => '',
+        'post' => ':count_delimited 篇貼文',
         'second_short_unit' => '秒',
         'star_priority' => ':count_delimited 星數優先|:count_delimited 星數優先',
         'update' => ':count_delimited 更新|:count_delimited 更新',
-        'view' => '',
+        'view' => ':count_delimited 次瀏覽',
         'years' => ':count 年',
     ],
 
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => '提醒',
+    ],
+
+    'wrong_user' => [
+        '_' => '您已以 :user 的身分登入。 :logout_link',
+        'logout_link' => '點擊此處以不同帳號登入。',
     ],
 ];

@@ -1,3 +1,6 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 import 'jquery-prefilter.coffee';
 
 // import-glob-loader doesn't seem to work with resolve: {}?
@@ -17,6 +20,7 @@ import 'bootstrap-modal.coffee';
 import 'logout.coffee';
 import 'shared.coffee';
 import 'turbolinks-overrides.coffee';
+import 'lang-overrides';
 
 import 'import-shims';  // shim imports to window
 import 'main.coffee';

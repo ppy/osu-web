@@ -1,19 +1,6 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', ['titlePrepend' => $product->name])
 
@@ -21,21 +8,17 @@
     @include('store.header')
 
     {!! Form::open([
-        "url" => route('store.cart.store', ['add' => true]),
-        "data-remote" => true,
-        "id" => "product-form",
-        "class" => "osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout--store"
+        'url' => route('store.cart.store', ['add' => true]),
+        'data-remote' => true,
+        'id' => 'product-form',
+        'class' => 'osu-page osu-page--store',
     ]) !!}
-        <div class="osu-layout__sub-row osu-layout__sub-row--lg1" id="product-header" style="background-image: url({{ $product->header_image }})">
-            <div>{!! markdown($product->header_description) !!}</div>
+        <div class="product-box product-box--header" {!! background_image($product->header_image) !!}>
+            <div>{!! markdown($product->header_description, 'store-product') !!}</div>
         </div>
 
-        <div class="osu-layout__sub-row">
-            <div class="grid">
-                <div class="grid-cell grid-cell--fill">
-                    <h1>{{ $product->name }}</h1>
-                </div>
-            </div>
+        <div class="store-page">
+            <h1 class="store-text store-text--title">{{ $product->name }}</h1>
 
             @if($product->custom_class && View::exists("store.products.{$product->custom_class}"))
 
@@ -55,8 +38,8 @@
                             <?php $imageSize = fast_imagesize($image[1]); ?>
                             <a
                                 class="gallery-previews__item js-gallery"
-                                data-width="{{ $imageSize[0] }}"
-                                data-height="{{ $imageSize[1] }}"
+                                data-width="{{ $imageSize[0] ?? null }}"
+                                data-height="{{ $imageSize[1] ?? null }}"
                                 data-gallery-id="product-{{ $product->product_id }}"
                                 data-index="{{ $i }}"
                                 href="{{ $image[1] }}"
@@ -87,11 +70,11 @@
                             {!! markdown($product->description, 'store') !!}
                         </div>
                     </div>
-                    <div class="grid price-box">
+                    <div class="grid">
                         <div class="grid-cell grid-cell--fill">
-                            <p class="price">{{ currency($product->cost) }}</p>
+                            <p class="store-text store-text--price">{{ currency($product->cost) }}</p>
                             @if($product->requiresShipping())
-                                <p class="notes">excluding shipping fees</p>
+                                <p class="store-text store-text--price-note">excluding shipping fees</p>
                             @endif
                         </div>
                     </div>
@@ -105,13 +88,18 @@
                                 <div class="form-group">
                                     <label for="select-product-{{ $type }}">{{ $type }}</label>
 
-                                    <select id="select-product-{{ $type }}" class="form-control js-url-selector" data-keep-scroll="1">
-                                        @foreach($values as $value => $product_id)
-                                            <option {{ $product_id === $product->product_id ? "selected" : "" }} value="{{ route('store.products.show', $product_id) }}">
-                                                {{ $value }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <div class="form-select">
+                                        <select id="select-product-{{ $type }}" class="form-select__input js-url-selector" data-keep-scroll="1">
+                                            @foreach($values as $value => $product_id)
+                                                <option
+                                                    {{ $product_id === $product->product_id ? 'selected' : '' }}
+                                                    value="{{ route('store.products.show', $product_id) }}"
+                                                >
+                                                    {{ $value }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             @endif
                         @endforeach
@@ -123,7 +111,14 @@
                             <div class='form-group'>
                                 <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
                                 {!! Form::label('item[quantity]', 'Quantity') !!}
-                                {!! Form::select("item[quantity]", product_quantity_options($product), 1, ['class' => 'js-store-item-quantity form-control']) !!}
+
+                                <div class="form-select">
+                                    {!! Form::select(
+                                        "item[quantity]",
+                                        product_quantity_options($product), 1,
+                                        ['class' => 'js-store-item-quantity form-select__input']
+                                    ) !!}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -145,24 +140,22 @@
             @endif
         </div>
 
-        <div class="osu-layout__sub-row osu-layout__sub-row--with-separator" id="add-to-cart">
-            <div class="big-button">
-                @if($product->inStock())
-                    <button type="submit" class="js-store-add-to-cart btn-osu btn-osu-default">
-                        {{ trans('store.product.add_to_cart') }}
-                    </button>
+        <div class="store-page store-page--footer" id="add-to-cart">
+            @if($product->inStock())
+                <button type="submit" class="btn-osu-big btn-osu-big--store-action js-store-add-to-cart js-login-required--click">
+                    {{ trans('store.product.add_to_cart') }}
+                </button>
 
-                @elseif(!$requestedNotification)
-                    <a
-                        class="btn-osu btn-osu-default"
-                        href="{{ route('store.notification-request', ['product' => $product->product_id]) }}"
-                        data-remote="true"
-                        data-method="POST"
-                    >
-                        {{ trans('store.product.notify') }}
-                    </a>
-                @endif
-            </div>
+            @elseif(!$requestedNotification)
+                <a
+                    class="btn-osu-big btn-osu-big--action"
+                    href="{{ route('store.notification-request', ['product' => $product->product_id]) }}"
+                    data-remote="true"
+                    data-method="POST"
+                >
+                    {{ trans('store.product.notify') }}
+                </a>
+            @endif
 
             @if($requestedNotification && !$product->inStock())
                 <div class="store-notification-requested-alert">

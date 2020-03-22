@@ -75,6 +75,18 @@ return [
                     'wip' => '制作中',
                 ],
             ],
+
+            'disqualify' => [
+                '_' => '如果你认为此谱面有问题，可以取消提名：:link',
+                'button_title' => '取消提名已被Qualified的图',
+            ],
+
+            'report' => [
+                '_' => '如果您发现此谱面有问题，请在 :link 通知审核团。',
+                'button' => '报告问题',
+                'button_title' => '在合格的节拍图上报告问题。',
+                'link' => '这里',
+            ],
         ],
 
         'info' => [
@@ -138,6 +150,16 @@ return [
             'rating-spread' => '评分情况',
             'nominations' => '提名状态',
             'playcount' => '游玩次数',
+        ],
+
+        'status' => [
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
+            'qualified' => 'Qualified',
+            'wip' => 'WIP',
+            'pending' => 'Pending',
+            'graveyard' => 'Graveyard',
         ],
     ],
 ];

@@ -20,7 +20,6 @@
 
 return [
     'edit' => [
-        'title' => '<strong>アカウント</strong>設定',
         'title_compact' => '設定',
         'username' => 'ユーザー名',
 
@@ -67,6 +66,13 @@ return [
     'notifications' => [
         'title' => '通知',
         'topic_auto_subscribe' => '作成した新しいフォーラムトピックに関する通知を自動的に有効にします',
+        'beatmapset_discussion_qualified_problem' => '次のモードのQualifiedビートマップで新しい問題の通知を受け取る',
+
+        'mail' => [
+            '_' => '次のメール通知を受け取る：',
+            'beatmapset:modding' => 'ビートマップmodding',
+            'forum_topic_reply' => 'トピックの返信',
+        ],
     ],
 
     'oauth' => [
@@ -99,12 +105,10 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'メールアドレス変更の確認',
         'update' => '更新',
     ],
 
     'update_password' => [
-        'email_subject' => 'パスワード変更の確認',
         'update' => '更新',
     ],
 

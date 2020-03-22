@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace Tests\Models;
 
@@ -26,7 +11,6 @@ use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\Notification;
 use App\Models\User;
-use App\Models\UserGroup;
 use App\Models\UserNotification;
 use Tests\TestCase;
 
@@ -92,7 +76,7 @@ class BeatmapsetTest extends TestCase
         $this->fillNominationsExceptLast($beatmapset, 'bng');
 
         $nominator = factory(User::class)->create();
-        $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
+        $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng_limited')->getKey()]);
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
         $beatmapset->nominate($nominator);
@@ -105,7 +89,7 @@ class BeatmapsetTest extends TestCase
         $this->fillNominationsExceptLast($beatmapset, 'nat');
 
         $nominator = factory(User::class)->create();
-        $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
+        $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng_limited')->getKey()]);
 
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
         $beatmapset->nominate($nominator);
@@ -118,7 +102,7 @@ class BeatmapsetTest extends TestCase
         $this->fillNominationsExceptLast($beatmapset, 'bng_limited');
 
         $nominator = factory(User::class)->create();
-        $nominator->userGroups()->create(['group_id' => UserGroup::GROUPS['bng_limited']]);
+        $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng_limited')->getKey()]);
 
         $this->expectException(AuthorizationException::class);
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
@@ -190,7 +174,7 @@ class BeatmapsetTest extends TestCase
         $this->assertNull(Beatmapset::withTrashed()->find($id));
     }
 
-    private function createBeatmapset($params = []) : Beatmapset
+    private function createBeatmapset($params = []): Beatmapset
     {
         $defaultParams = [
             'discussion_enabled' => true,
@@ -222,7 +206,7 @@ class BeatmapsetTest extends TestCase
     private function fillNominationsExceptLast(Beatmapset $beatmapset, string $group)
     {
         $user = factory(User::class)->create();
-        $user->userGroups()->create(['group_id' => UserGroup::GROUPS[$group]]);
+        $user->userGroups()->create(['group_id' => app('groups')->byIdentifier($group)->getKey()]);
         $beatmapset->nominate($user);
 
         $count = $beatmapset->requiredNominationCount() - $beatmapset->currentNominationCount() - 1;

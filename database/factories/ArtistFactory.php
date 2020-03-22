@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 $factory->define(App\Models\Artist::class, function (Faker\Generator $faker) {
     return  [
         'name' => function () use ($faker) {
@@ -11,14 +14,8 @@ $factory->define(App\Models\Artist::class, function (Faker\Generator $faker) {
         'website' => function () use ($faker) {
             return $faker->safeEmailDomain();
         },
-        'cover_url' => function () use ($faker) {
-            // #.jpg is a workaround for 'retinaify' failing on lorempixel not providing a file extension
-            return $faker->imageUrl(500, 500, 'cats').'#.jpg';
-        },
-        'header_url' => function () use ($faker) {
-            // #.jpg is a workaround for 'retinaify' failing on lorempixel not providing a file extension
-            return $faker->imageUrl(1000, 200).'#.jpg';
-        },
+        'cover_url' => '/images/headers/generic.jpg',
+        'header_url' => '/images/headers/generic.jpg',
         'visible' => 1,
     ];
 });

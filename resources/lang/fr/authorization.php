@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Merci de vous connecter pour continuer.',
+    'require_verification' => 'Veuillez vous vérifier pour continuer.',
+    'restricted' => "Action impossible quand votre compte est restreint.",
+    'silenced' => "Action impossible quand votre compte est réduit au silence.",
+    'unauthorized' => 'Accès refusé.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Vous ne pouvez pas retirer votre hype.',
@@ -48,14 +54,14 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Vous ne pouvez uniquement supprimer vos propres messages.',
+            'resolved' => 'Vous ne pouvez pas supprimer un message d\'une discussion résolue.',
+            'system_generated' => 'Les messages automatiquement générés ne peuvent être supprimés.',
         ],
 
         'edit' => [
             'not_owner' => 'Seul l\'auteur de ce post peut l\'éditer.',
-            'resolved' => '',
+            'resolved' => 'Vous ne pouvez pas modifier un message d\'une discussion résolue.',
             'system_generated' => 'Un sujet posté automatiquement ne peut être édité.',
         ],
 
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Ce forum n\'est accessible qu\'aux administrateurs.',
         ],
     ],
-
-    'require_login' => 'Merci de vous connecter pour continuer.',
-
-    'unauthorized' => 'Accès refusé.',
-
-    'silenced' => "Action impossible quand votre compte est réduit au silence.",
-
-    'restricted' => "Action impossible quand votre compte est restreint.",
 
     'user' => [
         'page' => [

@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'törölve',
+        'none_found' => '',
         'title' => 'Beatmap Megbeszélés',
 
         'form' => [
             '_' => 'Keresés',
             'deleted' => 'Törölt beszélgetések mellékelése',
+            'only_unresolved' => '',
             'types' => 'Üzenettípusok',
             'username' => 'Felhasználónév',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => 'Mind',
+                'disqualified' => 'Diszkvalifikálva',
+                'never_qualified' => 'Minősítetlen',
+                'qualified' => 'Minősített',
+                'ranked' => 'Rangsorolt',
+            ],
 
             'user' => [
                 'label' => 'Felhasználó',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Megoldottnak jelölve :user által',
             'false' => 'Újranyitva :user által',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

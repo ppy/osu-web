@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'landing' => [
@@ -39,9 +24,10 @@ return [
         'empty_result' => 'Nothing found!',
         'keyword_required' => 'A search keyword is required',
         'placeholder' => 'type to search',
-        'title' => 'Search',
+        'title' => 'search',
 
         'beatmapset' => [
+            'login_required' => 'Sign in to search beatmaps',
             'more' => ':count more beatmap search results',
             'more_simple' => 'See more beatmap search results',
             'title' => 'Beatmaps',
@@ -50,6 +36,7 @@ return [
         'forum_post' => [
             'all' => 'All forums',
             'link' => 'Search the forum',
+            'login_required' => 'Sign in to search the forum',
             'more_simple' => 'See more forum search results',
             'title' => 'Forum',
 
@@ -70,6 +57,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => 'Sign in to search users',
             'more' => ':count more player search results',
             'more_simple' => 'See more player search results',
             'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
@@ -120,8 +108,6 @@ return [
             'error' => 'Error loading news, try refreshing the page?...',
         ],
         'header' => [
-            'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have :count_delimited new message|You have :count_delimited new messages',
             'stats' => [
                 'friends' => 'Online Friends',
                 'games' => 'Games',

@@ -34,11 +34,11 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'La marca de tiempo ha sido especificada pero el beatmap no se encontró.',
-        'beatmapset_no_hype' => "El beatmap no puede ser hypeado.",
+        'beatmap_missing' => 'La marca de tiempo ha sido especificada pero el mapa no se encontró.',
+        'beatmapset_no_hype' => "El mapa no puede ser hypeado.",
         'hype_requires_null_beatmap' => 'El hype debe ser realizado en la sección de General (todas las dificultades).',
-        'invalid_beatmap_id' => 'Dificultad especificada inválida.',
-        'invalid_beatmapset_id' => 'Beatmap especificado inválido',
+        'invalid_beatmap_id' => 'Dificultad especificada no válido.',
+        'invalid_beatmapset_id' => 'Mapa especificado no válido.',
         'locked' => 'La discusión está cerrada.',
 
         'attributes' => [
@@ -49,19 +49,20 @@ return [
         'hype' => [
             'guest' => 'Debes iniciar sesión para hypear.',
             'hyped' => 'Ya hypeaste este mapa.',
-            'limit_exceeded' => 'Ya has utilizado todos tus hypes.',
-            'not_hypeable' => 'Este beatmap no puede ser hypeado',
-            'owner' => 'No puedes hypear tu propio beatmapa.',
+            'limit_exceeded' => 'Ya has utilizado todos tus hype.',
+            'not_hypeable' => 'Este mapa no puede ser hypeado.',
+            'owner' => 'No puedes hypear tu propio mapa.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'La marca de tiempo especificada está más alla de la duración del beatmapa.',
+            'exceeds_beatmapset_length' => 'La marca de tiempo especificada está más allá de la duración del mapa.',
             'negative' => "La marca de tiempo no puede ser negativa.",
         ],
     ],
 
     'comment' => [
         'deleted_parent' => 'Responder a un comentario eliminado no esta permitido.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'El mensaje',
@@ -83,7 +84,7 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Eliminar la publicación de los metadatos del beatmapa no está permitido.',
+            'beatmapset_post_no_delete' => 'Eliminar la publicación de los metadatos del mapa no está permitido.',
             'beatmapset_post_no_edit' => 'Editar la publicación de los metadatos del mapa no está permitido.',
             'only_quote' => 'Tu respuesta sólo contiene una cita.',
 
@@ -171,7 +172,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason no es válido para este tipo de reporte.',
         'self' => "¡No puedes denunciarte a ti mismo!",
     ],
 

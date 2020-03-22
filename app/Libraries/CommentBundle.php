@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Libraries;
 
@@ -28,6 +13,8 @@ class CommentBundle
 {
     public $depth;
     public $includeCommentableMeta;
+    public $includeDeleted;
+    public $includePinned;
     public $params;
 
     private $commentable;
@@ -64,13 +51,15 @@ class CommentBundle
         $this->comment = $options['comment'] ?? null;
         $this->depth = $options['depth'] ?? 2;
         $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
-        $this->includeDeleted = $options['includeDeleted'] ?? true;
+        $this->includeDeleted = isset($commentable);
+        $this->includePinned = isset($commentable);
     }
 
     public function toArray()
     {
         $hasMore = false;
         $includedComments = collect();
+        $pinnedComments = collect();
 
         // Either use the provided comment as a base, or look for matching comments.
         if (isset($this->comment)) {
@@ -111,13 +100,19 @@ class CommentBundle
         $includedComments = $includedComments->unique('id', true)->reject(function ($comment) use ($commentIds) {
             return $commentIds->contains($comment->getKey());
         });
-        $allComments = $comments->concat($includedComments);
+
+        if ($this->includePinned) {
+            $pinnedComments = $this->getComments($this->commentsQuery()->where('pinned', true), true, true);
+        }
+
+        $allComments = $comments->concat($includedComments)->concat($pinnedComments);
 
         $result = [
             'comments' => json_collection($comments, 'Comment'),
             'has_more' => $hasMore,
             'has_more_id' => $this->params->parentId,
             'included_comments' => json_collection($includedComments, 'Comment'),
+            'pinned_comments' => json_collection($pinnedComments, 'Comment'),
             'user_votes' => $this->getUserVotes($allComments),
             'user_follow' => $this->getUserFollow(),
             'users' => json_collection($this->getUsers($comments->concat($allComments)), 'UserCompact'),
@@ -146,9 +141,21 @@ class CommentBundle
         }
     }
 
-    private function getComments($query, $isChildren = true)
+    // This is named explictly for the paginator because there's another count
+    // in ::toArray() which always includes deleted comments.
+    public function countForPaginator()
     {
-        $sort = $this->params->sortDbOptions();
+        $query = $this->commentsQuery();
+        if (!$this->includeDeleted) {
+            $query->withoutTrashed();
+        }
+
+        return min($query->count(), config('osu.pagination.max_count'));
+    }
+
+    private function getComments($query, $isChildren = true, $pinnedOnly = false)
+    {
+        $sort = $pinnedOnly ? CommentBundleParams::SORTS['new'] : $this->params->sortDbOptions();
         $sorted = false;
         $queryLimit = $this->params->limit;
 
@@ -176,7 +183,7 @@ class CommentBundle
                 $query->cursorWhere($queryCursor);
                 $sorted = true;
             } else {
-                $query->offset($this->params->limit * ($this->params->page - 1));
+                $query->offset(max_offset($this->params->page, $this->params->limit));
             }
         }
 
@@ -194,7 +201,11 @@ class CommentBundle
             }
         }
 
-        return $query->limit($queryLimit)->get();
+        if (!$pinnedOnly) {
+            $query->limit($queryLimit);
+        }
+
+        return $query->get();
     }
 
     private function getUserFollow()

@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Нельзя ответить на удалённый комментарий.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Сообщение',
@@ -125,7 +126,7 @@ return [
 
             'attributes' => [
                 'name' => 'Имя приложения',
-                'redirect' => '',
+                'redirect' => 'Callback URL приложения',
             ],
         ],
     ],
@@ -171,7 +172,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason не подходит для данного типа отчета.',
         'self' => "Вы не можете пожаловаться на себя!",
     ],
 

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers;
 
@@ -34,9 +19,6 @@ use Request;
 
 class AccountController extends Controller
 {
-    protected $section = 'home';
-    protected $actionPrefix = 'account-';
-
     public function __construct()
     {
         $this->middleware('auth', ['except' => [
@@ -123,7 +105,7 @@ class AccountController extends Controller
 
         $notificationOptions = $user->notificationOptions->keyBy('name');
 
-        return view('accounts.edit', compact(
+        return ext_view('accounts.edit', compact(
             'authorizedClients',
             'blocks',
             'currentSessionId',
@@ -174,7 +156,7 @@ class AccountController extends Controller
                 $addresses[] = $previousEmail;
             }
             foreach ($addresses as $address) {
-                Mail::to($address)->send(new UserEmailUpdated($user));
+                Mail::to($address)->locale($user->preferredLocale())->send(new UserEmailUpdated($user));
             }
 
             UserAccountHistory::logUserUpdateEmail($user, $previousEmail);
@@ -229,7 +211,7 @@ class AccountController extends Controller
 
         if ($user->update($params) === true) {
             if (present($user->user_email)) {
-                Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
+                Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
             return response([], 204);
@@ -248,12 +230,15 @@ class AccountController extends Controller
         $state = UserVerificationState::fromVerifyLink(request('key'));
 
         if ($state === null) {
-            return response()->view('accounts.verification_invalid')->setStatusCode(404);
+            UserVerification::logAttempt('link', 'fail', 'incorrect_key');
+
+            return ext_view('accounts.verification_invalid', null, null, 404);
         }
 
+        UserVerification::logAttempt('link', 'success');
         $state->markVerified();
 
-        return view('accounts.verification_completed');
+        return ext_view('accounts.verification_completed');
     }
 
     public function reissueCode()

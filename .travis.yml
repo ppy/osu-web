@@ -5,16 +5,12 @@ cache:
     - vendor
   yarn: true
 
-dist: xenial
-sudo: false
+dist: bionic
 
 language: php
 
 php:
-  - 7.2
-
-matrix:
-  fast_finish: true
+  - 7.4
 
 services:
   - mysql
@@ -42,8 +38,8 @@ env:
     - SLACK_ENDPOINT=https://myconan.net/null/
 
 before_install:
-  - travis_retry nvm install 10
-  - nvm use 10
+  - travis_retry nvm install 12
+  - nvm use 12
 
 install:
   # elasticsearch setup (part 1)
@@ -57,11 +53,13 @@ install:
 
   # elasticsearch setup (part 2)
   # wait until es server is up
-  - wget -q --waitretry=1 --retry-connrefused -T 10 -O - http://127.0.0.1:9200
+  - wget -q --waitretry=10 --retry-connrefused -T 60 -O - http://127.0.0.1:9200
   - php artisan es:create-search-blacklist
   - php artisan es:index-documents --yes
+  - php artisan es:index-wiki --create-only --yes
 
 jobs:
+  fast_finish: true
   include:
     - name: phpunit
       addons: skip
@@ -70,7 +68,7 @@ jobs:
     - name: browser tests
       script: ./bin/run_dusk.sh
 
-    - name: tslint
+    - name: lint
       env:
         - OSU_SKIP_ASSET_BUILD=1
       addons: skip
@@ -79,6 +77,7 @@ jobs:
       script:
         - yarn
         - yarn lint
+        - ./bin/update-licence -nf
 
     - name: karma
       env:
@@ -89,7 +88,6 @@ jobs:
         - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
       script:
         - yarn
-        - bin/update_locales_and_routes_js
         - yarn karma start --single-run --browsers ChromeHeadless
 
     - name: apidoc

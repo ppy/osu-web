@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'odstraněno',
+        'none_found' => '',
         'title' => 'Diskuze o beatmapě',
 
         'form' => [
             '_' => 'Hledat',
             'deleted' => 'Zahrnout smazané diskuze',
+            'only_unresolved' => '',
             'types' => 'Typy zpráv',
             'username' => 'Uživatelské jméno',
+
+            'beatmapset_status' => [
+                '_' => 'Stav Beatmapy',
+                'all' => 'Všechny',
+                'disqualified' => 'Diskvalifikovaný',
+                'never_qualified' => '',
+                'qualified' => 'Kvalifikovaný',
+                'ranked' => 'Hodnocené',
+            ],
 
             'user' => [
                 'label' => 'Uživatel',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Označeno jako vyřešeno uživatelem :user',
             'false' => 'Znovu otevřeno uživatelem :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'obecné',
+        'general_all' => '',
     ],
 
     'user_filter' => [

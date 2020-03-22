@@ -25,6 +25,7 @@ return [
         'peak' => 'Đỉnh điểm, :count người chơi online',
         'players' => '<strong>:count</strong> người chơi đã đăng kí',
         'title' => 'chào mừng',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'game nhịp điệu free-to-win hay nhất',
@@ -41,6 +42,7 @@ return [
         'title' => 'Tìm Kiếm',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => 'còn :count kết quả tìm kiếm beatmap khác',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm beatmap',
             'title' => 'Beatmaps',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Tất cả diễn đàn',
             'link' => 'Tìm trong diễn đàn',
+            'login_required' => '',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm trong diễn đàn',
             'title' => 'Diễn Đàn',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => 'còn :count kết quả tìm kiếm người chơi khác',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm người chơi',
             'more_hidden' => 'Kết quả tìm kiếm người chơi chỉ hiện thị :max người chơi. Hãy thử tinh chỉnh truy vấn tìm kiếm.',
@@ -119,8 +123,6 @@ return [
             'error' => 'Có lỗi khi tải tin tức, thử tải lại trang xem?...',
         ],
         'header' => [
-            'welcome' => 'Xin chào, <strong>:username</strong>!',
-            'messages' => 'Bạn có :count tin nhắn mới',
             'stats' => [
                 'friends' => 'Bạn Bè Đang Online',
                 'games' => 'Phòng',
@@ -130,8 +132,7 @@ return [
         'beatmaps' => [
             'new' => 'Beatmap Được Xếp Hạng Mới',
             'popular' => 'Beatmaps Phổ Biến',
-            'by' => 'bởi',
-            'plays' => ':count lần chơi',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Tải Xuống osu!',

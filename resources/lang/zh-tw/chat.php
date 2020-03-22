@@ -19,12 +19,11 @@
  */
 
 return [
-    'coming_soon' => '即將上線',
     'limitation_notice' => '注意: 只有使用 <a href=":lazer_link">osu! lazer</a> 或新網站的人才能在此系統收到私訊。<br/>如果您不確定, 請使用 <a href=":oldpm_link">舊論壇</a> 私訊他們。',
     'talking_in' => '在 :channel 聊天',
     'talking_with' => '與 :name 聊天',
     'title_compact' => '聊天',
-    'title' => '聊天',
+
     'cannot_send' => [
         'channel' => '您現在無法在頻道中發送訊息。可能是Bug或是以下原因:',
         'user' => '您現在無法對這個玩家發送訊息。可能是Bug或是以下原因:',
@@ -38,7 +37,7 @@ return [
     ],
     'input' => [
         'disabled' => '無法傳送訊息...',
-        'placeholder' => '輸入訊息中...',
+        'placeholder' => '輸入訊息...',
         'send' => '發送',
     ],
     'no-conversations' => [

@@ -1,40 +1,13 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('master')
+@extends('master', ['titlePrepend' => trans('beatmapset_watches.index.title_compact')])
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout__row--full t-forum-category-osu">
-        <div class="osu-layout__sub-row osu-layout__sub-row--lg1-compact ">
-            @include('home._user_header_nav')
+    @include('home._user_header_default')
 
-            <div class="osu-page-header osu-page-header--home-user js-current-user-cover">
-                <div class="osu-page-header__box">
-                    <h1 class="osu-page-header__title">
-                        {!! trans('beatmapset_watches.index.title_main') !!}
-                    </h1>
-                </div>
-
-                <div class="osu-page-header__box osu-page-header__box--status">
-                    {{-- prevent pushed to the right --}}
-                </div>
-            </div>
-        </div>
-
+    <div class="osu-page osu-page--full osu-page--generic">
         <div class="beatmapset-watches">
             <div class="beatmapset-watches__description">
                 {{ trans('beatmapset_watches.index.description') }}
@@ -80,7 +53,7 @@
                                 </td>
 
                                 <td class="beatmapset-watches__col">
-                                    {{ $watch->beatmapset->status() }}
+                                    {{ trans("beatmapsets.show.status.{$watch->beatmapset->status()}") }}
                                 </td>
 
                                 <td class="beatmapset-watches__col">

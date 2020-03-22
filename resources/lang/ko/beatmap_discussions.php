@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => '삭제됨',
+        'none_found' => '',
         'title' => '비트맵 토론',
 
         'form' => [
             '_' => '검색',
             'deleted' => '삭제된 토론 포함',
+            'only_unresolved' => '미해결 토론만 보기',
             'types' => '메시지 종류',
             'username' => '사용자 이름',
+
+            'beatmapset_status' => [
+                '_' => '비트맵 상태',
+                'all' => '전체',
+                'disqualified' => 'Disqualified',
+                'never_qualified' => 'Qualified 된 적 없음',
+                'qualified' => 'Qualified',
+                'ranked' => 'Ranked',
+            ],
 
             'user' => [
                 'label' => '사용자',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '평가 글 보기',
+        'go_to_child' => '토론 글 보기',
+        'validation' => [
+            'invalid_block_type' => '잘못된 블럭 종류',
+            'invalid_document' => '잘못된 리뷰',
+            'minimum_issues' => '리뷰는 최소한 :count개의 이슈를 포함해야 합니다',
+            'missing_text' => '블럭이 텍스트를 포함하고 있지 않음',
+            'too_many_blocks' => '리뷰는 최대 :count개의 문단 및 이슈를 포함할 수 있습니다.',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => ':user님이 토론을 끝마쳤습니다',
             'false' => ':user님이 토론을 재개했습니다',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '일반',
+        'general_all' => '일반 (전체)',
     ],
 
     'user_filter' => [

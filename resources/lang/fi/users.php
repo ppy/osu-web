@@ -64,24 +64,52 @@ return [
         'send_message' => 'lähetä viesti',
     ],
 
+    'disabled' => [
+        'title' => 'Jaahas. Käyttäjätilisi taitaa olla lukittu.',
+        'warning' => "",
+
+        'if_mistake' => [
+            '_' => '',
+            'email' => 'sähköposti',
+        ],
+
+        'reasons' => [
+            'compromised' => '',
+            'opening' => 'Tässä pari mahdollista syytä tilisi lukitsemiseen',
+
+            'tos' => [
+                '_' => 'Olet rikkonut yhtä tai useampaa :community_rules tai :tos.',
+                'community_rules' => 'yhteisön sääntöä',
+                'tos' => 'käyttöehtoa',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "Käyttäjätiliäsi ei ole käytetty pitkään aikaan.",
+        ],
+    ],
+
     'login' => [
         '_' => 'Kirjaudu',
-        'locked_ip' => 'IP-osoitteesi on lukittu. Ole hyvä ja odota muutama minuutti.',
-        'username' => 'Käyttäjänimi',
-        'password' => 'Salasana',
         'button' => 'Kirjaudu',
         'button_posting' => 'Kirjaudutaan...',
+        'email_login_disabled' => '',
+        'failed' => 'Väärät kirjautumistiedot',
+        'forgot' => 'Unohditko salasanasi?',
+        'info' => 'Kirjaudu sisään jatkaaksesi',
+        'locked_ip' => 'IP-osoitteesi on lukittu. Ole hyvä ja odota muutama minuutti.',
+        'password' => 'Salasana',
+        'register' => "Eikö sinulla ole osu!-tiliä? Tee yksi",
         'remember' => 'Muista tämä laite',
         'title' => 'Kirjaudu sisään jatkaaksesi',
-        'failed' => 'Väärät kirjautumistiedot',
-        'register' => "Eikö sinulla ole osu!-tiliä? Tee yksi",
-        'forgot' => 'Unohditko salasanasi?',
+        'username' => 'Käyttäjänimi',
+
         'beta' => [
             'main' => 'Beta on tällä hetkellä käytössä vain siihen oikeutetuilla käyttäjillä.',
             'small' => '(osu!tukijat tulevat kohta)',
         ],
-
-        'here' => 'täällä', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -194,7 +222,7 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
+                'title' => 'Keskustelut',
                 'title_longer' => '',
                 'show_more' => '',
             ],
@@ -333,11 +361,6 @@ return [
             ],
         ],
 
-        'header_title' => [
-            '_' => 'Pelaajan :info',
-            'info' => 'tiedot',
-        ],
-
         'info' => [
             'discord' => '',
             'interests' => 'Kiinnostuksen kohteet',
@@ -372,9 +395,9 @@ return [
         ],
         'rank' => [
             'country' => 'Maakohtainen sijoitus pelimuodossa :mode',
-            'country_simple' => 'Maakohtaiset sijoitukset',
+            'country_simple' => 'Maakohtainen sijoitus',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
-            'global_simple' => 'Maailmanlaajuiset sijoitukset',
+            'global_simple' => 'Maailmanlaajuinen sijoitus',
         ],
         'stats' => [
             'hit_accuracy' => 'Tarkkuus',

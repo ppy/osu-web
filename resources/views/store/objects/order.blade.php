@@ -1,86 +1,78 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
 @php
     $itemErrors = $validationErrors['orderItems'] ?? [];
-    if (!isset($checkout)) {
-        $checkout = true;
-    }
 
-    if (!isset($forShipping)) {
-        $forShipping = false;
-    }
+    $checkout = $checkout ?? true;
+    $forShipping = $forShipping ?? false;
+
+    $modifiers = $modifiers ?? [];
+    $extraClasses = presence($extraClasses ?? null);
 @endphp
 
-<table class='table order-line-items {{ $table_class ?? "table-striped" }}'>
-    <tbody>
-        @foreach ($order->items as $i)
-            @if (!$forShipping || $i->product->requiresShipping())
-                <tr>
-                    <td>
-                        {{ $i->getDisplayName() }}
+<ul class="{{ class_with_modifiers('order-line-items', $modifiers) }} {{ $extraClasses }}">
+    @foreach ($order->items as $i)
+        @if (!$forShipping || $i->product->requiresShipping())
+            <li class="order-line-items__item order-line-items__item--main">
+                <div class="order-line-items__data order-line-items__data--name">
+                    {{ $i->getDisplayName() }}
 
-                        @if (isset($itemErrors[$i->id]))
-                            <ul class="store-order-item__errors">
-                                @foreach ($itemErrors[$i->id] as $message)
-                                    <li class="store-order-item__error">{{ $message }}
-                                @endforeach
-                            </ul>
-                        @endif
-
-                    </td>
-                    @if (isset($weight))
-                        @if ($i->product->weight !== null)
-                            <td>{{ $i->product->weight }}g</td>
-                        @else
-                            <td></td>
-                        @endif
+                    @if (isset($itemErrors[$i->id]))
+                        <ul class="order-line-items__errors">
+                            @foreach ($itemErrors[$i->id] as $message)
+                                <li>{{ $message }}</li>
+                            @endforeach
+                        </ul>
                     @endif
-                    <td>{{ trans_choice('common.count.item', $i->quantity) }}</td>
-                    <td class="text-right">{{ currency($i->subtotal()) }}</td>
-                </tr>
-            @endif
-        @endforeach
-    </tbody>
 
-    <tfoot>
-        @if ($checkout && $order->shipping > 0)
-            <tr class="warning">
-                <td>Subtotal</td>
-                <td></td>
-                @if (isset($weight))<td></td>@endif
-                <td class="text-right">{{ currency($order->getSubtotal()) }}</td>
-            </tr>
-            <tr class="warning">
-                <td>Shipping &amp; Handling</td>
-                <td></td>
-                @if (isset($weight))<td></td>@endif
-                <td class="text-right">{{ currency($order->shipping) }}</td>
-            </tr>
+                </div>
+                @if (isset($weight))
+                    <div class="order-line-items__data order-line-items__data--weight">
+                        @if ($i->product->weight !== null)
+                            {{ $i->product->weight }}g
+                        @endif
+                    </div>
+                @endif
+                <div class="order-line-items__data order-line-items__data--quantity">
+                    {{ trans_choice('common.count.item', $i->quantity) }}
+                </div>
+                <div class="order-line-items__data order-line-items__data--value">
+                    {{ currency($i->subtotal()) }}
+                </td>
+            </li>
         @endif
-        <tr class="warning total">
-            <td>Total</td>
-            <td></td>
-            @if (isset($weight))<td></td>@endif
-            @if ($checkout && $order->shipping > 0)
-                <td class="text-right">{{ currency($order->getTotal()) }}</td>
-            @else
-                <td class="text-right">{{ currency($order->getSubtotal($forShipping)) }}</td>
-            @endif
-        </tr>
-    </tfoot>
-</table>
+    @endforeach
+
+    @if ($checkout && $order->shipping > 0)
+        <li class="order-line-items__item order-line-items__item--footer">
+            <div class="order-line-items__data order-line-items__data--name">
+                Subtotal
+            </div>
+            <div class="order-line-items__data order-line-items__data--value">
+                {{ currency($order->getSubtotal()) }}
+            </div>
+        </li>
+
+        <li class="order-line-items__item order-line-items__item--footer">
+            <div class="order-line-items__data order-line-items__data--name">
+                Shipping &amp; Handling
+            </div>
+            <div class="order-line-items__data order-line-items__data--value">
+                {{ currency($order->shipping) }}
+            </div>
+        </li>
+    @endif
+
+    @if (!$checkout)
+        <li class="order-line-items__item order-line-items__item--footer order-line-items__item--footer-total">
+            <div class="order-line-items__data order-line-items__data--name">
+                Total
+            </div>
+            <div class="order-line-items__data order-line-items__data--value">
+                {{ currency($order->getSubtotal($forShipping)) }}
+            </div>
+        </li>
+    @endif
+</ul>

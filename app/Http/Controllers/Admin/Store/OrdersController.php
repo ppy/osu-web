@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 namespace App\Http\Controllers\Admin\Store;
 
 use App\Http\Controllers\Admin\Controller;
@@ -8,9 +11,6 @@ use Request;
 
 class OrdersController extends Controller
 {
-    protected $section = 'admin-store';
-    protected $actionPrefix = 'orders-';
-
     public function index()
     {
         return $this->show();
@@ -37,7 +37,7 @@ class OrdersController extends Controller
             });
         }
 
-        return view('admin.store.orders.show', compact('orders', 'ordersItemsQuantities'));
+        return ext_view('admin.store.orders.show', compact('orders', 'ordersItemsQuantities'));
     }
 
     public function ship()

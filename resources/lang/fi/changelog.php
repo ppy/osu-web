@@ -44,11 +44,6 @@ return [
             '_stream_to' => 'muutoksia :stream\'ssa :to asti',
             '_to' => 'muutokset :to asti',
         ],
-
-        'title' => [
-            '_' => 'Muutosloki :info',
-            'info' => 'Listaus',
-        ],
     ],
 
     'support' => [

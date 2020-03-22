@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 namespace Tests\Browser;
 
 use App\Models\User;
@@ -23,9 +26,10 @@ class LoginTest extends DuskTestCase
                 ->type('username', $user->user_email)
                 ->type('password', 'password') // User factory generates users with the password hardcoded as 'password'
                 ->press('Sign in')
-                ->waitFor('.osu-page-header--home-user')
+                ->waitFor('.user-home')
                 ->assertPathIs('/home')
-                ->assertSee("Hello, {$user->username}!")
+                ->assertSee('dashboard')
+                ->assertSee('account settings')
                 ->assertDontSee('Incorrect sign in');
         });
     }

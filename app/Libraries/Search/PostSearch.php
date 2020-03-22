@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Libraries\Search;
 
@@ -67,7 +52,8 @@ class PostSearch extends Search
     {
         $query = (new BoolQuery())
             ->filter(['term' => ['poster_id' => $this->params->userId]])
-            ->filter(['term' => ['type' => 'posts']]);
+            ->filter(['term' => ['type' => 'posts']])
+            ->mustNot(['term' => ['topic_id' => 0]]);
 
         if (isset($this->params->queryString)) {
             $query->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
@@ -83,7 +69,7 @@ class PostSearch extends Search
         return $this->response();
     }
 
-    public function response() : SearchResponse
+    public function response(): SearchResponse
     {
         return parent::response()->recordType(Post::class)->idField('post_id');
     }
@@ -93,7 +79,7 @@ class PostSearch extends Search
      *
      * @return Builder
      */
-    public function users() : Builder
+    public function users(): Builder
     {
         $ids = $this->response()->ids('poster_id');
 

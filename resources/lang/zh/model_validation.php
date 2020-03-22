@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => '不能回复已删除的评论。',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '消息',
@@ -171,7 +172,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason 不符合此报告类型。',
         'self' => "无法举报自己",
     ],
 

@@ -75,14 +75,26 @@ return [
                     'wip' => '作業中',
                 ],
             ],
+
+            'disqualify' => [
+                '_' => 'このビートマップで問題が見つかった場合は、Disqualifyにしてください。:link',
+                'button_title' => 'Qualifiedビートマップを無効',
+            ],
+
+            'report' => [
+                '_' => 'ビートマップに問題を見つけた場合、:link からチームに報告してください。',
+                'button' => '問題を報告する',
+                'button_title' => 'Qualifiedビートマップの問題を報告。',
+                'link' => 'ここ',
+            ],
         ],
 
         'info' => [
             'description' => '概要',
             'genre' => 'ジャンル',
             'language' => '言語',
-            'no_scores' => 'データはまだ現在計算中です・・・',
-            'points-of-failure' => 'Fail地点',
+            'no_scores' => 'データはまだ計算中です・・・',
+            'points-of-failure' => '失敗地点',
             'source' => 'ソース',
             'success-rate' => 'クリア率',
             'tags' => 'タグ',
@@ -127,7 +139,7 @@ return [
             'cs' => 'サークルサイズ',
             'cs-mania' => 'キー数',
             'drain' => 'HPの厳しさ',
-            'accuracy' => '判定の厳しさ',
+            'accuracy' => '精度',
             'ar' => 'アプローチ速度',
             'stars' => '難易度（★）',
             'total_length' => '長さ',
@@ -138,6 +150,16 @@ return [
             'rating-spread' => '評価分布',
             'nominations' => 'ノミネーション',
             'playcount' => 'プレイ数',
+        ],
+
+        'status' => [
+            'ranked' => 'Ranked',
+            'approved' => 'Approved',
+            'loved' => 'Loved',
+            'qualified' => 'Qualified',
+            'wip' => 'WIP',
+            'pending' => 'Pending',
+            'graveyard' => 'Graveyard',
         ],
     ],
 ];

@@ -1,0 +1,17 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.quick-search {
+  .page-width-default();
+  color: @osu-colour-c1;
+  overflow: hidden;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: @osu-colour-b5;
+
+  @media @desktop {
+    border-radius: @border-radius-large;
+    max-height: calc(100% - 40px);
+  }
+}

@@ -75,6 +75,18 @@ return [
                     'wip' => 'muncă în desfășurare',
                 ],
             ],
+
+            'disqualify' => [
+                '_' => 'Dacă găsești o problemă cu acest beatmap, vă rugăm descalificați-o :link.',
+                'button_title' => 'Descalifică un beatmap calificat.',
+            ],
+
+            'report' => [
+                '_' => 'Dacă găsești o problemă cu acest beatmap, vă rugăm raportați-o :link ca să alertați echipa.',
+                'button' => 'Raportează problemă',
+                'button_title' => 'Raportează o problemă pe un beatmap calificat.',
+                'link' => 'aici',
+            ],
         ],
 
         'info' => [
@@ -138,6 +150,16 @@ return [
             'rating-spread' => 'Clasament grafic',
             'nominations' => 'Nominalizări',
             'playcount' => 'Numărul de jocuri',
+        ],
+
+        'status' => [
+            'ranked' => 'Clasat',
+            'approved' => 'Aprobat',
+            'loved' => 'Iubit',
+            'qualified' => 'Calificat',
+            'wip' => 'WIP',
+            'pending' => 'În Așteptare',
+            'graveyard' => 'Cimitir',
         ],
     ],
 ];

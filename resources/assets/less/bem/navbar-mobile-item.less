@@ -1,46 +1,29 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .navbar-mobile-item {
-  text-transform: lowercase;
+  @_top: navbar-mobile-item;
+
+  flex: none;
+  display: flex;
+  flex-direction: column;
 
   &--user {
-    && {
-      display: flex;
-      align-items: center;
-      background-color: @osu-colour-b4;
-      text-transform: unset;
-    }
+    flex-direction: row;
+    align-items: center;
+    background-color: @osu-colour-b4;
   }
 
   &__icon {
     width: @navbar-mobile--content-height;
     margin-right: 10px;
-
-    &--main {
-      text-align: center;
-    }
+    text-align: center;
 
     // state changes at bottom
     &--closed {
       display: inline-block;
 
-      .open > a > & {
+      .@{_top}__main.js-click-menu--active > & {
         display: none;
       }
     }
@@ -48,7 +31,7 @@
     &--opened {
       display: none;
 
-      .open > a > & {
+      .@{_top}__main.js-click-menu--active > & {
         display: inline-block;
       }
     }
@@ -65,63 +48,52 @@
   }
 
   &__main {
-    // to win over bootstrap's selector
-    && {
-      color: fade(#fff, 50%);
-      display: flex;
-      align-items: center;
+    @_colour-base: osu-hsla(@osu-colour-c1, 50%);
+    @_colour-hover: @osu-colour-c1;
 
-      &:focus,
-      &:hover,
-      &:active,
-      .open > & {
-        color: #fff;
-      }
+    .reset-input();
+    .link-plain();
+    color: @_colour-base;
+    display: flex;
+    align-items: center;
+    padding: 10px @navbar-padding-horizontal;
 
-      &--user {
-        flex: 1 0 auto;
-        color: #fff;
-      }
+    &:focus {
+      color: @_colour-base;
+    }
 
-      &--logout {
-        .reset-input();
-        .default-border-radius();
-        width: @navbar-mobile--content-height;
-        height: @navbar-mobile--content-height;
-        border: 2px solid fade(#fff, 50%);
-        color: #fff;
+    &:hover, &:active {
+      color: @_colour-hover;
+    }
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        margin-right: @navbar-padding-horizontal;
-
-        &:focus,
-        &:hover,
-        &:active {
-          background-color: @osu-colour-b3;
-          color: @osu-colour-b5;
-          border-color: transparent;
-        }
-      }
+    &.js-click-menu--active {
+      color: @_colour-hover;
     }
   }
 
   &__submenu {
-    // to win over bootstrap's selector
-    &&&& {
-      color: #fff;
-      display: flex;
-      align-items: center;
-      padding-left: (@navbar-mobile--content-height + 20px);
+    display: none;
+    list-style: none;
+    padding: 0;
 
-      &:focus,
-      &:hover,
-      &:active {
-        color: #fff;
-        background-color: @osu-colour-b3;
-      }
+    &.js-click-menu--active {
+      display: block;
     }
+  }
+
+  &__submenu-item {
+    .link-plain();
+    display: flex;
+    align-items: center;
+    padding: 5px @navbar-padding-horizontal 5px (@navbar-mobile--content-height + 30px);
+    color: @osu-colour-c2;
+
+    &:hover {
+      background-color: @osu-colour-b3;
+    }
+
+    .link-hover({
+      color: @osu-colour-c2;
+    });
   }
 }

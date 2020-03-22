@@ -30,25 +30,26 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'UUSI',
     ],
 
     'buttons' => [
         'admin' => 'Ylläpitäjä',
+        'authorise' => '',
         'back_to_previous' => 'Takaisin',
         'back_to_top' => 'Takaisin ylös',
         'cancel' => 'Peruuta',
         'change' => 'vaihda',
         'click_to_copy' => 'kopioi leikepöydälle',
         'click_to_copy_copied' => 'kopioitu leikepöydälle!',
-        'close' => '',
+        'close' => 'Sulje',
         'collapse' => 'kutista',
         'delete' => 'Poista',
         'edit' => 'Muokkaa',
         'expand' => 'suurenna',
         'hide' => 'piilota',
         'permalink' => 'pysyvä linkki',
-        'permalink_copied' => 'linkki kopioitu',
+        'pin' => 'kiinnitä',
         'post' => 'Lähetä',
         'reply' => 'Vastaa',
         'reply_reopen' => 'Vastaa ja uudelleenavaa',
@@ -61,9 +62,11 @@ return [
         'see_more' => 'katso lisää',
         'show' => 'näytä',
         'show_deleted' => 'Näytä poistetut',
+        'show_less' => '',
         'show_more' => 'näytä lisää',
         'show_more_options' => 'näytä lisävaihtoehtoja',
-        'update' => '',
+        'unpin' => 'poista kiinnitys',
+        'update' => 'Päivitä',
         'upload_image' => 'lataa kuva',
 
         'watch' => [
@@ -81,6 +84,7 @@ return [
         'minute_short_unit' => 'm | m',
         'minutes' => ':count_delimited minuutti|:count_delimited minuuttia',
         'months' => ':count kuukausi|:count kuukautta',
+        'notifications' => '',
         'plus_others' => '',
         'post' => '',
         'second_short_unit' => 's|s',
@@ -119,7 +123,7 @@ return [
     ],
 
     'input' => [
-        'search' => '',
+        'search' => 'hae...',
     ],
 
     'pagination' => [
@@ -145,5 +149,10 @@ return [
 
     'title' => [
         'notice' => 'Huomaa',
+    ],
+
+    'wrong_user' => [
+        '_' => ':user on kirjautuneena sisään. :logout_link.',
+        'logout_link' => 'Klikkaa tästä kirjautuaksesi toisella käyttäjällä',
     ],
 ];

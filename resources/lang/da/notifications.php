@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Alle notifikationer læst!',
     'mark_all_read' => 'Ryd alt',
+    'none' => 'Ingen notifikationer',
+    'see_all' => 'se alle notifikationer',
+
+    'filters' => [
+        '_' => 'alle',
+        'user' => 'profil',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'forum',
+        'news_post' => 'nyheder',
+        'build' => 'builds',
+        'channel' => 'chat',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -28,72 +40,80 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => 'Beatmap diskussion',
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_lock_compact' => '',
+                'beatmapset_discussion_lock' => 'Diskussion på ":title" er blevet låst',
+                'beatmapset_discussion_lock_compact' => 'Diskussion er låst',
                 'beatmapset_discussion_post_new' => ':username har indsendt en ny besked i ":title" beatmap diskussion.',
-                'beatmapset_discussion_post_new_compact' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_unlock' => '',
-                'beatmapset_discussion_unlock_compact' => '',
+                'beatmapset_discussion_post_new_empty' => 'Nyt opslag på ":title" af :username',
+                'beatmapset_discussion_post_new_compact' => 'Nyt oplsag af :username: ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nyt oplsag af :username',
+                'beatmapset_discussion_unlock' => 'Diskussion på ":title" er blevet åbnet',
+                'beatmapset_discussion_unlock_compact' => 'Diskussion er blevet åbnet',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => 'Kvalificeret Beatmap problem',
+                'beatmapset_discussion_qualified_problem' => 'Rapporteret af :username på ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Rapporteret af :username på ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Rapporteret af :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Rapporteret af :username',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Beatmap status ændret',
                 'beatmapset_disqualify' => 'Beatmap ":title" er blevet diskvalificeret af :username.',
-                'beatmapset_disqualify_compact' => '',
+                'beatmapset_disqualify_compact' => 'Beatmap blev diskvalificeret',
                 'beatmapset_love' => 'Beatmap ":title" er blevet forfremmet som elsket af :username.',
-                'beatmapset_love_compact' => '',
+                'beatmapset_love_compact' => 'Beatmap blev ophøjet til elsket',
                 'beatmapset_nominate' => 'Beatmap ":title" er blevet nomineret af :username.',
-                'beatmapset_nominate_compact' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_qualify_compact' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_rank_compact' => '',
-                'beatmapset_reset_nominations' => '',
-                'beatmapset_reset_nominations_compact' => '',
+                'beatmapset_nominate_compact' => 'Beatmap blev nomineret',
+                'beatmapset_qualify' => '":title" har optjent nok nomineringer og er gået ind i ranking ventelisten',
+                'beatmapset_qualify_compact' => 'Beatmap er gået ind i ranking ventelisten',
+                'beatmapset_rank' => '":title" er blevet ranked',
+                'beatmapset_rank_compact' => 'Beatmap blev ranked',
+                'beatmapset_reset_nominations' => 'Nominering af ":title" blev nulstillet',
+                'beatmapset_reset_nominations_compact' => 'Nominering blev nulstillet',
             ],
 
             'comment' => [
-                '_' => '',
+                '_' => 'Ny kommentar',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username kommenterede ":content" på ":title"',
+                'comment_new_compact' => ':username kommenterede ":content"',
             ],
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Chat',
 
             'channel' => [
-                '_' => '',
+                '_' => 'Ny besked',
                 'pm' => [
-                    'channel_message' => '',
-                    'channel_message_compact' => '',
-                    'channel_message_group' => '',
+                    'channel_message' => ':username siger ":title"',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => 'fra :username',
                 ],
             ],
         ],
 
         'build' => [
-            '_' => '',
+            '_' => 'Ændringsoversigt',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Ny kommentar',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username kommenterede ":content" på ":title"',
+                'comment_new_compact' => ':username kommenterede ":content"',
             ],
         ],
 
         'news_post' => [
-            '_' => '',
+            '_' => 'Nyheder',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Ny kommentar',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username kommenterede ":content" på ":title"',
+                'comment_new_compact' => ':username kommenterede ":content"',
             ],
         ],
 
@@ -103,25 +123,26 @@ return [
             'forum_topic_reply' => [
                 '_' => 'Nyt forum svar',
                 'forum_topic_reply' => ':username svarede til forum emne ":title".',
-                'forum_topic_reply_compact' => '',
+                'forum_topic_reply_compact' => ':username svarede',
             ],
         ],
 
         'legacy_pm' => [
-            '_' => '',
+            '_' => 'Legacy Forum PM',
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => '',
+                'legacy_pm' => ':count_delimited ulæst besked|:count_delimited ulæste beskeder',
             ],
         ],
 
         'user_achievement' => [
-            '_' => '',
+            '_' => 'Medaljer',
 
             'user_achievement_unlock' => [
-                '_' => '',
-                'user_achievement_unlock' => '',
+                '_' => 'Ny medalje',
+                'user_achievement_unlock' => 'Optjent ":title"!',
+                'user_achievement_unlock_compact' => 'Opnået ":title"!',
             ],
         ],
     ],

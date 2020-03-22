@@ -19,7 +19,7 @@
  */
 
 return [
-    'pinned_topics' => 'ピン付けされたトピック',
+    'pinned_topics' => 'ピン留めされたトピック',
     'slogan' => "ひとりで遊ぶにはキケンじゃ",
     'subforums' => 'サブフォーラム',
     'title' => 'osu! フォーラム',
@@ -37,10 +37,6 @@ return [
             '_' => 'カバー画像を削除',
             'confirm' => 'カバー画像を本当に削除しますか？',
         ],
-    ],
-
-    'email' => [
-        'new_reply' => '[osu!] トピック":title"に新しい返信があります',
     ],
 
     'forums' => [
@@ -64,8 +60,8 @@ return [
     'post' => [
         'confirm_destroy' => '投稿を本当に削除しますか？',
         'confirm_restore' => '投稿を本当に復元しますか？',
-        'edited' => ':userが:whenに最後に編集、合計:count回の編集',
-        'posted_at' => '投稿時 :when',
+        'edited' => ':userが:whenに最終編集、合計:count_delimited回の編集',
+        'posted_at' => '投稿日時 :when',
 
         'actions' => [
             'destroy' => '投稿を削除',
@@ -96,7 +92,7 @@ return [
         'go_to_latest' => '最新の投稿を見る',
         'latest_post' => ':when by :user',
         'latest_reply_by' => '最新の投稿 by :user',
-        'new_topic' => 'トピックを新規で作成する',
+        'new_topic' => 'トピックの新規作成',
         'new_topic_login' => 'ログインして新規トピックを投稿',
         'post_reply' => '投稿',
         'reply_box_placeholder' => '返信をここに入力',
@@ -143,17 +139,15 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'フォーラムサブスクリプション',
             'title_compact' => 'フォーラムサブスクリプション',
-            'title_main' => 'フォーラム<strong>サブスクリプション</strong>',
 
             'box' => [
-                'total' => 'サブスクライブしているトピック',
+                'total' => 'サブスクライブ中のトピック',
                 'unread' => '新しい投稿があるトピック',
             ],
 
             'info' => [
-                'total' => ':total個のトピックにサブスクライブしています。',
+                'total' => ':total個のトピックをサブスクライブしています。',
                 'unread' => ':unread個の未読の返信があります。',
             ],
         ],
@@ -189,9 +183,9 @@ return [
             'poll' => [
                 'hide_results' => '投票結果を非表示にする。',
                 'hide_results_info' => '投票が終わった後にだけ表示されます。',
-                'length' => 'ポールの期限を設定する',
+                'length' => '投票期限を設定する',
                 'length_days_suffix' => '日間',
-                'length_info' => '空白で無期限に設定されます',
+                'length_info' => '投票期限を設定しない場合は空白のままにしてください',
                 'max_options' => '選択数',
                 'max_options_info' => '一人のユーザーが選べる選択肢の数の上限です',
                 'options' => '選択肢',
@@ -256,8 +250,8 @@ return [
 
         'lock' => [
             'is_locked' => 'このトピックはロックされていて投稿が制限されています。',
-            'to_0' => 'トピックのロックを外す',
-            'to_0_done' => 'ロックが外されました',
+            'to_0' => 'トピックのロックを解除する',
+            'to_0_done' => 'ロックが解除されました',
             'to_1' => 'トピックをロックする',
             'to_1_done' => 'ロックされました',
         ],
@@ -269,15 +263,15 @@ return [
         'moderate_pin' => [
             'to_0' => 'トピックのピンを外す',
             'to_0_done' => 'ピンが外されました',
-            'to_1' => 'トピックをピン付けする',
-            'to_1_done' => 'ピン付けされました',
-            'to_2' => 'トピックをピン付けしてアナウンスメントとしてマークする',
-            'to_2_done' => 'ピン付けされてアナウンスメントになりました',
+            'to_1' => 'トピックをピン留めする',
+            'to_1_done' => 'ピン留めされました',
+            'to_2' => 'トピックをピン留めしてアナウンスメントとしてマークする',
+            'to_2_done' => 'ピン留めされてアナウンスメントになりました',
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => '削除された投稿を表示',
+            'hide' => '削除された投稿を非表示',
         ],
 
         'show' => [
@@ -295,7 +289,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} 投票なし|[1,*] :count票',
+                    'count' => '{0} 投票なし|{1,*} :count_delimited 票',
                     'current' => '自分の持ち票数は:votes回です。',
                     'not_enough' => "票が足りません。",
                 ],
@@ -303,7 +297,7 @@ return [
 
             'poll' => [
                 'edit' => '投票編集',
-                'edit_warning' => '編集中の投票フォームは現在の編集状況が削除されます！',
+                'edit_warning' => '投票フォームを編集すると現在の投票結果が削除されます！',
                 'vote' => '投票',
 
                 'button' => [
@@ -314,8 +308,8 @@ return [
                 ],
 
                 'detail' => [
-                    'end_time' => 'ポールの期限終了は :time です',
-                    'ended' => 'ポールの期限は :time に終了しました',
+                    'end_time' => '投票期限は :time までです',
+                    'ended' => '投票は :time に受付終了しました',
                     'results_hidden' => '投票後に結果が表示されます。',
                     'total' => '総票数: :count',
                 ],

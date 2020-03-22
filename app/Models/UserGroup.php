@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
 
@@ -34,33 +19,6 @@ class UserGroup extends Model
     public $timestamps = false;
     protected $primaryKeys = ['user_id', 'group_id'];
 
-    // taken from current forum
-    const GROUPS = [
-        'default' => 2,
-        'gmt' => 4,
-        'admin' => 5,
-        'nat' => 7,
-        'dev' => 11,
-        'alumni' => 16,
-        'mod' => 18,
-        'bng' => 28,
-        'bot' => 29,
-        'loved' => 31,
-        'bng_limited' => 32,
-        'ppy' => 33,
-    ];
-
-    const DISPLAY_PRIORITY = [
-        'ppy',
-        'dev',
-        'gmt',
-        'nat',
-        'bng',
-        'bng_limited',
-        'support',
-        'alumni',
-    ];
-
     public function group()
     {
         return $this->belongsTo(Group::class, 'group_id');
@@ -69,14 +27,5 @@ class UserGroup extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function name()
-    {
-        static $lookup;
-
-        $lookup = $lookup ?? array_flip(static::GROUPS);
-
-        return $lookup[$this->group_id] ?? null;
     }
 }

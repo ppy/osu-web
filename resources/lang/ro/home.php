@@ -25,6 +25,7 @@ return [
         'peak' => 'Maxim, :count utilizatori online',
         'players' => '<strong>:count</strong> jucători înregistrați',
         'title' => 'bine ai venit',
+        'see_more_news' => 'vezi mai multe noutăți',
 
         'slogan' => [
             'main' => 'cel mai bun joc de ritm free-to-win',
@@ -36,11 +37,12 @@ return [
         'advanced_link' => 'Căutare avansată',
         'button' => 'Căutare',
         'empty_result' => 'Nimic găsit!',
-        'keyword_required' => '',
+        'keyword_required' => 'Un cuvânt cheie este necesar',
         'placeholder' => 'tastează pentru a căuta',
         'title' => 'Caută',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count mai multe rezultate de căutare pentru acest beatmap',
             'more_simple' => 'Vezi mai multe rezultate de căutare pentru acest beatmap',
             'title' => 'Beatmaps',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Toate forumurile',
             'link' => 'Caută pe forum',
+            'login_required' => '',
             'more_simple' => 'Vezi mai multe rezultate de căutare pe forum',
             'title' => 'Forum',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count mai multe rezultate de căutare pentru acest jucător',
             'more_simple' => 'Vezi mai multe rezultate de căutare pentru acest jucător',
             'more_hidden' => 'Căutarea jucătorului este limitată la :max jucători. Încearcă să îți redefinești căutarea.',
@@ -119,8 +123,6 @@ return [
             'error' => 'Eroare la încărcarea știrilor, încearcă să reîmrospătezi pagina?...',
         ],
         'header' => [
-            'welcome' => 'Salut, <strong>:username</strong>!',
-            'messages' => 'Tu ai :count mesaj nou|Tu ai :count mesaje noi',
             'stats' => [
                 'friends' => 'Prieteni online',
                 'games' => 'Jocuri',
@@ -130,8 +132,7 @@ return [
         'beatmaps' => [
             'new' => 'Noi beatmaps clasate',
             'popular' => 'Beatmaps populare',
-            'by' => 'de',
-            'plays' => 'jucat de :count de ori',
+            'by_user' => 'de :user',
         ],
         'buttons' => [
             'download' => 'Descarcă osu!',

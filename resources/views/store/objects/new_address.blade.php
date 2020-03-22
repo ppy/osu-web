@@ -1,25 +1,15 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $showForm = count($addresses) === 0;
+@endphp
 {!! Form::open(['action' => 'StoreController@postNewAddress', "data-remote" => true]) !!}
-<div class="{{{ count($addresses) ? "initially-hidden" : "" }}}" id="new-address-form">
+<div id="new-address-form" {!! $showForm ? '' : 'style="display: none;"' !!}>
     <div class="grid grid--gutters">
         <div class="grid-cell grid-cell--fill">
-            <h3>Adding new shipping address</h3>
+            <h3 class="store-text store-text--title store-text--title-small">Adding new shipping address</h3>
         </div>
 
         <div class='form-group grid-cell grid-cell--1of2'>
@@ -58,9 +48,15 @@
 </div>
 
 <div class='form-group big-button' id="new-address-switch">
-    <button type="submit" class="btn-osu btn-osu-default {{{ count($addresses) ? "initially-hidden" : "" }}}">Add address</button>
-    @if(count($addresses))
-    <a href="#" class="btn-osu btn-osu-default">Add new shipping address</a>
+    <button
+        type="submit"
+        class="btn-osu-big btn-osu-big--store-action"
+        {!! $showForm ? '' : 'style="display: none;"' !!}
+    >
+        Add address
+    </button>
+    @if (!$showForm)
+        <a href="#" class="btn-osu-big btn-osu-big--store-action">Add new shipping address</a>
     @endif
 </div>
 {!! Form::close() !!}

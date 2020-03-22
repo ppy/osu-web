@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers\Forum;
 
@@ -28,8 +13,6 @@ use Request;
 
 class PostsController extends Controller
 {
-    protected $section = 'community';
-
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
@@ -70,7 +53,7 @@ class PostsController extends Controller
             return ujs_redirect($redirect);
         }
 
-        return js_view('forum.topics.delete', compact('post'));
+        return ext_view('forum.topics.delete', compact('post'), 'js');
     }
 
     public function restore($id)
@@ -89,7 +72,7 @@ class PostsController extends Controller
 
         $topic->restorePost($post);
 
-        return js_view('forum.topics.restore', compact('post'));
+        return ext_view('forum.topics.restore', compact('post'), 'js');
     }
 
     public function edit($id)
@@ -98,7 +81,7 @@ class PostsController extends Controller
 
         priv_check('ForumPostEdit', $post)->ensureCan();
 
-        return view('forum.topics._post_edit', compact('post'));
+        return ext_view('forum.topics._post_edit', compact('post'));
     }
 
     public function update($id)
@@ -137,7 +120,7 @@ class PostsController extends Controller
         $topic = $post->topic;
         $firstPostPosition = $topic->postPosition($post->post_id);
 
-        return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+        return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
 
     public function raw($id)
@@ -148,7 +131,7 @@ class PostsController extends Controller
             priv_check('ForumModerate', $post->forum)->ensureCan();
         }
 
-        if ($post->forum === null) {
+        if ($post->forum === null || $post->topic === null) {
             abort(404);
         }
 
@@ -171,7 +154,7 @@ class PostsController extends Controller
             priv_check('ForumModerate', $post->forum)->ensureCan();
         }
 
-        if ($post->forum === null) {
+        if ($post->forum === null || $post->topic === null) {
             abort(404);
         }
 

@@ -24,8 +24,9 @@ return [
     'last_visit' => '',
     'new' => '',
     'old' => '',
+    'rank' => '',
     'top' => '',
-    'username' => '',
+    'username' => 'Användarnamn',
 
     'forum_topics' => [
         'new' => '',

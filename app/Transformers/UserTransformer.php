@@ -1,29 +1,14 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Transformers;
 
 use App\Models\User;
 use League\Fractal;
 
-class UserTransformer extends Fractal\TransformerAbstract
+class UserTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'account_history',
@@ -71,6 +56,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'avatar_url' => $user->user_avatar,
             'is_supporter' => $user->osu_subscriber,
             'has_supported' => $user->hasSupported(),
+            'is_restricted' => $user->isRestricted(),
             'is_gmt' => $user->isGMT(),
             'is_nat' => $user->isNAT(),
             'is_bng' => $user->isBNG(),
@@ -78,7 +64,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'is_limited_bn' => $user->isLimitedBN(),
             'is_bot' => $user->isBot(),
             'is_active' => $user->isActive(),
-            'can_moderate' => $user->canModerate(),
+            'is_moderator' => $user->isModerator(),
             'interests' => $user->user_interests,
             'occupation' => $user->user_occ,
             'title' => $user->title(),
@@ -115,7 +101,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $histories = $user->accountHistories()->recent();
 
-        if (!priv_check('UserSilenceShowExtendedInfo')->can() || is_api_request()) {
+        if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
             $histories->default();
         } else {
             $histories->with('actor');
@@ -180,7 +166,11 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeGroupBadge(User $user)
     {
-        return $this->primitive($user->groupBadge());
+        $badge = $user->groupBadge();
+
+        if (isset($badge)) {
+            return $this->item($badge, new GroupTransformer);
+        }
     }
 
     public function includeIsAdmin(User $user)
@@ -241,7 +231,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $mode = $params->get('mode')[0];
 
-        return $this->primitive($user->scoresFirst($mode)->count());
+        return $this->primitive($user->scoresFirst($mode, true)->visibleUsers()->count());
     }
 
     public function includeStatistics(User $user, Fractal\ParamBag $params)

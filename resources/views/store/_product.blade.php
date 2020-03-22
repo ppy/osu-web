@@ -1,43 +1,33 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
-<?php
-    $_inStock = $product->inStock(1, true);
-    $_large = $product->promoted && $_inStock;
+@php
+    $inStock = $product->inStock(1, true);
+    $blockClass = 'product-box product-box--card';
 
-    $_topClass = 'osu-layout__col';
-
-    if (!$_large) {
-        $_topClass .= ' osu-layout__col--sm-6';
+    if (!$inStock) {
+        $blockClass .= ' product-box--oos';
     }
-?>
 
-<div class="{{ $_topClass }}" style="order: {{ $_inStock ? '0' : '1' }};">
-    <a
-        href="{{ route('store.products.show', $product) }}"
-        class="product-box product-box--{{ $_large ? 'large' : 'small' }}"
-        style="background-image: url('{{ $_large ? $product->header_image : $product->image }}')"
-    >
-        <div class="product-box__text">
-            {!! markdown($product->header_description) !!}
-        </div>
+    if ($product->promoted && $inStock) {
+        $backgroundImage = $product->header_image;
+        $blockClass .= ' product-box--card-large';
+        $markdownPreset = 'store-product';
+    } else {
+        $backgroundImage = $product->image;
+        $blockClass .= ' product-box--card-small';
+        $markdownPreset = 'store-product-small';
+    }
+@endphp
+<a
+    href="{{ route('store.products.show', $product) }}"
+    class="{{ $blockClass }}"
+    {!! background_image($backgroundImage) !!}
+>
+    <div class="product-box__text">
+        {!! markdown($product->header_description, $markdownPreset) !!}
+    </div>
 
-        @if(!$_inStock)
-            <i class="product-box__bar product-box__bar--oos"></i>
-        @endif
-    </a>
-</div>
+    <i class="product-box__oos-bar"></i>
+</a>

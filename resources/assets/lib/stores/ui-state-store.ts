@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import ChatStateStore from 'chat/chat-state-store';
 import { CommentBundleJSON } from 'interfaces/comment-json';
@@ -36,6 +21,7 @@ interface CommentsUIState {
   isShowDeleted: boolean;
   loadingFollow: boolean | null;
   loadingSort: CommentSort | null;
+  pinnedCommentIds: number[];
   topLevelCommentIds: number[];
   topLevelCount: number;
   total: number;
@@ -48,6 +34,7 @@ const defaultCommentsUIState: CommentsUIState = {
   isShowDeleted: false,
   loadingFollow: null,
   loadingSort: null,
+  pinnedCommentIds: [],
   topLevelCommentIds: [],
   topLevelCount: 0,
   total: 0,
@@ -61,10 +48,11 @@ export default class UIStateStore extends Store {
     newClientVisible: false,
   };
 
-  chat = new ChatStateStore(this.root, this.dispatcher);
+  chat = new ChatStateStore(this.root);
 
   // only for the currently visible page
   @observable comments = Object.assign({}, defaultCommentsUIState);
+
   private orderedCommentsByParentId: Dictionary<Comment[]> = {};
 
   exportCommentsUIState() {
@@ -99,6 +87,8 @@ export default class UIStateStore extends Store {
     if (commentBundle.comments != null) {
       this.comments.topLevelCommentIds = commentBundle.comments.map((x) => x.id);
     }
+
+    this.updatePinnedCommentIds(commentBundle);
 
     this.orderedCommentsByParentId = {};
   }
@@ -140,6 +130,11 @@ export default class UIStateStore extends Store {
     }
   }
 
+  @action
+  updateFromCommentUpdated(commentBundle: CommentBundleJSON) {
+    this.updatePinnedCommentIds(commentBundle);
+  }
+
   private orderComments(comments: Comment[]) {
     switch (this.comments.currentSort) {
       case 'old':
@@ -155,6 +150,12 @@ export default class UIStateStore extends Store {
     if (this.orderedCommentsByParentId[parentId] == null) {
       const comments = this.root.commentStore.getRepliesByParentId(parentId);
       this.orderedCommentsByParentId[parentId] = this.orderComments(comments);
+    }
+  }
+
+  private updatePinnedCommentIds(commentBundle: CommentBundleJSON) {
+    if (commentBundle.pinned_comments != null) {
+      this.comments.pinnedCommentIds = commentBundle.pinned_comments.map((x) => x.id);
     }
   }
 }

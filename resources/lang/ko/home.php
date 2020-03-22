@@ -21,10 +21,11 @@
 return [
     'landing' => [
         'download' => '지금 바로 다운로드하기',
-        'online' => '<strong>:players</strong>명의 플레이어가 현재 접속 중이며, <strong>:games</strong> 개의 게임이 개설되어 있습니다.',
+        'online' => '<strong>:players</strong>명이 현재 접속 중이며, <strong>:games</strong>개의 게임이 개설되어 있습니다.',
         'peak' => '최다 동시 접속자 수: :count명',
         'players' => '가입된 플레이어: <strong>:count</strong>명',
         'title' => '환영합니다',
+        'see_more_news' => '소식 더 보기',
 
         'slogan' => [
             'main' => '최고의 무료 리듬 게임',
@@ -41,6 +42,7 @@ return [
         'title' => '검색',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count개의 비트맵 검색 결과 더 보기',
             'more_simple' => '비트맵 검색 결과 더 보기',
             'title' => '비트맵',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => '모든 포럼',
             'link' => '포럼 검색하기',
+            'login_required' => '',
             'more_simple' => '포럼 검색 결과 더 보기',
             'title' => '포럼',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count명의 플레이어 검색 결과 더 보기',
             'more_simple' => '플레이어 검색 결과 더 보기',
             'more_hidden' => '플레이어 검색은 최대 :max명 까지 가능합니다. 다른 검색어로 시도해보세요.',
@@ -119,8 +123,6 @@ return [
             'error' => '소식을 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',
         ],
         'header' => [
-            'welcome' => '<strong>:username</strong>님, 안녕하세요!',
-            'messages' => '새로 받은 메시지 :count건이 있습니다',
             'stats' => [
                 'friends' => '접속 중인 친구',
                 'games' => '게임 수',
@@ -130,8 +132,7 @@ return [
         'beatmaps' => [
             'new' => '새로 Ranked된 비트맵',
             'popular' => '인기 비트맵',
-            'by' => '제작:',
-            'plays' => ':count번 플레이됨',
+            'by_user' => ':user 님이 만듦',
         ],
         'buttons' => [
             'download' => 'osu! 다운로드',

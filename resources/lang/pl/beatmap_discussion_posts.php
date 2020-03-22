@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => 'Posty w dyskusji',
+        'title' => 'posty w dyskusji',
     ],
 
     'item' => [

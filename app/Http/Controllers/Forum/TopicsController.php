@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers\Forum;
 
@@ -39,13 +24,9 @@ use Request;
 
 class TopicsController extends Controller
 {
-    protected $section = 'community';
-
     public function __construct()
     {
         parent::__construct();
-
-        view()->share('currentAction', 'forum-topics-'.current_action());
 
         $this->middleware('auth', ['only' => [
             'create',
@@ -62,7 +43,7 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
-        return view(
+        return ext_view(
             'forum.topics.create',
             (new NewForumTopic($forum, Auth::user()))->toArray()
         );
@@ -74,7 +55,7 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicPollEdit', $topic)->ensureCan();
 
-        return view('forum.topics._edit_poll', compact('topic'));
+        return ext_view('forum.topics._edit_poll', compact('topic'));
     }
 
     public function editPollPost($topicId)
@@ -107,7 +88,7 @@ class TopicsController extends Controller
         $pollSummary = PollOption::summary($topic, Auth::user());
         $canEditPoll = $poll->canEdit();
 
-        return view('forum.topics._poll', compact('canEditPoll', 'pollSummary', 'topic'));
+        return ext_view('forum.topics._poll', compact('canEditPoll', 'pollSummary', 'topic'));
     }
 
     public function issueTag($id)
@@ -130,24 +111,21 @@ class TopicsController extends Controller
 
         $topic->$method($issueTag);
 
-        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
+        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
     }
 
     public function lock($id)
     {
         $topic = Topic::withTrashed()->findOrFail($id);
 
-        $moderationPriv = priv_check('ForumModerate', $topic->forum);
-
-        $moderationPriv->ensureCan();
-        $userCanModerate = $moderationPriv->can();
+        priv_check('ForumModerate', $topic->forum)->ensureCan();
 
         $type = 'lock';
         $state = get_bool(Request::input('lock'));
         $this->logModerate($state ? 'LOG_LOCK' : 'LOG_UNLOCK', [$topic->topic_title], $topic);
         $topic->lock($state);
 
-        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state', 'userCanModerate'));
+        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
     }
 
     public function move($id)
@@ -161,7 +139,7 @@ class TopicsController extends Controller
 
         $this->logModerate('LOG_MOVE', [$originForum->forum_name], $topic);
         if ($topic->moveTo($destinationForum)) {
-            return js_view('layout.ujs-reload');
+            return ext_view('layout.ujs-reload', [], 'js');
         } else {
             abort(422);
         }
@@ -185,7 +163,7 @@ class TopicsController extends Controller
             );
         });
 
-        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
+        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
     }
 
     public function reply(HttpRequest $request, $id)
@@ -211,7 +189,7 @@ class TopicsController extends Controller
                 'user' => Auth::user(),
             ]);
 
-            return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+            return ext_view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
         }
     }
 
@@ -333,7 +311,7 @@ class TopicsController extends Controller
 
         $featureVotes = $this->groupFeatureVotes($topic);
 
-        return view(
+        return ext_view(
             "forum.topics.{$template}",
             compact(
                 'canEditPoll',

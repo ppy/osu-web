@@ -25,6 +25,7 @@ return [
         'peak' => 'Tercatat maksimal sebanyak :count pengguna online',
         'players' => '<strong>:count</strong> pengguna terdaftar',
         'title' => 'selamat datang',
+        'see_more_news' => 'lihat lebih banyak berita',
 
         'slogan' => [
             'main' => 'game ritme free-to-win terbaik',
@@ -41,6 +42,7 @@ return [
         'title' => 'Pencarian',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count hasil pencarian beatmap lainnya',
             'more_simple' => 'Lihat hasil pencarian beatmap lainnya',
             'title' => 'Beatmaps',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Semua forum',
             'link' => 'Cari di forum',
+            'login_required' => '',
             'more_simple' => 'Lihat hasil pencarian forum lainnya',
             'title' => 'Forum',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count hasil pencarian pengguna lainnya',
             'more_simple' => 'Lihat hasil pencarian pengguna lainnya',
             'more_hidden' => 'Pencarian pengguna terbatas untuk :max pengguna saja. Perbaiki kata kunci pencarian Anda.',
@@ -119,8 +123,6 @@ return [
             'error' => 'Terjadi kesalahan dalam memuat berita. Coba untuk memuat ulang laman?...',
         ],
         'header' => [
-            'welcome' => 'Halo, <strong>:username</strong>!',
-            'messages' => 'Anda memiliki :count pesan baru',
             'stats' => [
                 'friends' => 'Teman yang Online',
                 'games' => 'Permainan',
@@ -130,8 +132,7 @@ return [
         'beatmaps' => [
             'new' => 'Beatmap Ranked Terbaru',
             'popular' => 'Beatmap yang Sedang Populer',
-            'by' => 'oleh',
-            'plays' => ':count kali dimainkan',
+            'by_user' => 'oleh :user',
         ],
         'buttons' => [
             'download' => 'Unduh osu!',

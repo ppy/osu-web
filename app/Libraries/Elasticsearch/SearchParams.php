@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Libraries\Elasticsearch;
 
@@ -43,14 +28,14 @@ abstract class SearchParams
      *
      * @return string the cache key.
      */
-    abstract public function getCacheKey() : string;
+    abstract public function getCacheKey(): string;
 
     /**
      * Checks if the current set of parameters is eligible for caching.
      *
      * @return bool true if the parameters are eligible for caching; false, otherwise.
      */
-    abstract public function isCacheable() : bool;
+    abstract public function isCacheable(): bool;
 
     public function blockedUserIds()
     {
@@ -64,9 +49,14 @@ abstract class SearchParams
         return mb_strlen($this->queryString) < config('osu.search.minimum_length');
     }
 
-    public function shouldReturnEmptyResponse() : bool
+    public function isLoginRequired(): bool
     {
         return false;
+    }
+
+    public function shouldReturnEmptyResponse(): bool
+    {
+        return $this->isLoginRequired() && !auth()->check();
     }
 
     /**
@@ -76,7 +66,7 @@ abstract class SearchParams
      * @param $page
      * @return int
      */
-    public function pageAsFrom($page) : int
+    public function pageAsFrom($page): int
     {
         $page = max(1, $page ?? 1);
 

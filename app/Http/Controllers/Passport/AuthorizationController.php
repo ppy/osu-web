@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers\Passport;
 
@@ -49,26 +34,19 @@ class AuthorizationController extends PassportAuthorizationController
                               ClientRepository $clients,
                               TokenRepository $tokens)
     {
-        view()->share('currentSection', 'user');
-
         if (!auth()->check()) {
-            $cancelUrl = request('redirect_uri');
+            $cancelUrl = presence(request('redirect_uri'));
 
-            if (present($cancelUrl)) {
+            if ($cancelUrl !== null) {
                 // Breaks when url contains hash ("#").
                 $separator = strpos($cancelUrl, '?') === false ? '?' : '&';
                 $cancelUrl .= "{$separator}error=access_denied";
-            } else {
-                $cancelUrl = route('home');
             }
 
-            return view('passport::login', [
+            return ext_view('sessions.create', [
                 'cancelUrl' => $cancelUrl,
-                'currentAction' => 'oauth_login',
             ]);
         }
-
-        view()->share('currentAction', 'oauth_request');
 
         return parent::authorize($this->normalizeRequestScopes($psrRequest), $request, $clients, $tokens);
     }
@@ -79,7 +57,7 @@ class AuthorizationController extends PassportAuthorizationController
      * @param ServerRequestInterface $request
      * @return ServerRequestInterface
      */
-    private function normalizeRequestScopes(ServerRequestInterface $request) : ServerRequestInterface
+    private function normalizeRequestScopes(ServerRequestInterface $request): ServerRequestInterface
     {
         $params = $request->getQueryParams();
         $scopes = $this->normalizeScopes(
@@ -96,7 +74,7 @@ class AuthorizationController extends PassportAuthorizationController
      * @param array $scopes
      * @return array
      */
-    private function normalizeScopes(array $scopes) : array
+    private function normalizeScopes(array $scopes): array
     {
         if (!in_array('identify', $scopes, true)) {
             $scopes[] = 'identify';

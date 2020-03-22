@@ -22,6 +22,7 @@ return [
     'deleted' => 'đã xóa',
     'deleted_count' => ':count_delimited bình luận đã bị xóa',
     'edited' => 'đã chỉnh sửa :timeago bởi :user',
+    'pinned' => '',
     'empty' => 'Chưa có bình luận nào.',
     'load_replies' => 'hiển thị những trả lời',
     'replies' => 'Câu trả lời',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'Bình luận :info',
-            'info' => 'Danh Sách',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'Bình luận :info',
-            'info' => 'Chi tiết',
-        ],
+        'nav_title' => '',
     ],
 ];

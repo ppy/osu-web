@@ -1,19 +1,6 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
 @php
     $statusOptions = App\Models\BeatmapDiscussion::VALID_BEATMAPSET_STATUSES;
@@ -24,12 +11,9 @@
 
 {{-- FIXME: move to user modding history --}}
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page">
+    @include('layout._page_header_v4')
+    <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
-            @if (isset($user))
-                <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
-            @endif
-
             <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
 
             <form class="simple-form simple-form--search-box">
@@ -76,6 +60,10 @@
                     </div>
                     <div class="simple-form__checkboxes-inline">
                         @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $messageType)
+                            {{-- TODO: remove this when reviews are released --}}
+                            @if (!config('osu.beatmapset.discussion_review_enabled') && $messageType === 'review')
+                                @continue
+                            @endif
                             <label class="simple-form__checkbox simple-form__checkbox--inline">
                                 @include('objects._switch', [
                                     'checked' => in_array($messageType, $search['params']['message_types'], true),
@@ -124,13 +112,23 @@
                 </div>
             </form>
 
-            <div class="beatmap-discussions__discussion">
-                @foreach ($discussions as $discussion)
-                    @include('beatmap_discussions._item', compact('discussion'))
-                @endforeach
+            <div class="js-react--beatmap-discussions-history">
+                <div class="beatmapset-activities__spinner">{!! spinner() !!}</div>
             </div>
 
-            @include('objects._pagination_simple', ['object' => $discussions])
+            @include('objects._pagination_simple', ['object' => $paginator])
         </div>
     </div>
+@endsection
+
+@section ("script")
+    @parent
+
+    @foreach ($jsonChunks as $name => $data)
+        <script id="json-{{$name}}" type="application/json">
+            {!! json_encode($data) !!}
+        </script>
+    @endforeach
+
+    @include('layout._extra_js', ['src' => 'js/react/beatmap-discussions-history.js'])
 @endsection

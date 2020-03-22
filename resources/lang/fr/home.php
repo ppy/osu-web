@@ -25,6 +25,7 @@ return [
         'peak' => 'Pic, :count joueurs connectés',
         'players' => '<strong>:count</strong> joueurs inscrits',
         'title' => 'bienvenue',
+        'see_more_news' => 'voir plus de nouvelles',
 
         'slogan' => [
             'main' => 'le meilleur jeu de rythme free-to-win',
@@ -41,6 +42,7 @@ return [
         'title' => 'Rechercher',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count résultats de recherche de beatmap en plus',
             'more_simple' => 'Voir plus de résultats de la recherche de beatmaps',
             'title' => 'Beatmaps',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Tous les forums',
             'link' => 'Rechercher sur le forum',
+            'login_required' => '',
             'more_simple' => 'Voir plus de résultats de la recherche du forum',
             'title' => 'Forum',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count résultats de la recherche de joueur',
             'more_simple' => 'Voir plus de résultats de la recherche de joueurs',
             'more_hidden' => 'La recherche de joueurs est limitée à :max joueurs. Essayez d\'affiner votre recherche.',
@@ -119,8 +123,6 @@ return [
             'error' => 'Erreur lors du chargement des nouvelles, essayez de recharger la page ?...',
         ],
         'header' => [
-            'welcome' => 'Bonjour, <strong>:username</strong> !',
-            'messages' => 'Vous avez :count nouveau message|Vous avez :count nouveaux messages',
             'stats' => [
                 'friends' => 'Amis en ligne',
                 'games' => 'Parties',
@@ -128,10 +130,9 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nouvelles Beatmaps Approuvées',
-            'popular' => 'Beatmaps Populaires',
-            'by' => 'par',
-            'plays' => ':count fois jouée',
+            'new' => 'Nouvelles beatmaps approuvées',
+            'popular' => 'Beatmaps populaires',
+            'by_user' => 'par :user',
         ],
         'buttons' => [
             'download' => 'Télécharger osu!',

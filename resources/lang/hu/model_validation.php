@@ -43,7 +43,7 @@ return [
 
         'attributes' => [
             'message_type' => 'Üzenet típus',
-            'timestamp' => '',
+            'timestamp' => 'Időbélyeg',
         ],
 
         'hype' => [
@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Törölt hozzászólásokra nem lehet válaszolni.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Az üzenet',
@@ -121,10 +122,10 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'Kérjük adjon meg egy helyes URL-t.',
 
             'attributes' => [
-                'name' => '',
+                'name' => 'Alkalmazás neve',
                 'redirect' => '',
             ],
         ],

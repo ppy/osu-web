@@ -25,6 +25,7 @@ return [
         'missing' => 'Pyydettyä sivua ":keyword" ei voitu löytää.',
         'missing_title' => 'Ei löytynyt',
         'missing_translation' => 'Pyydettyä sivua ei voitu löytää valitulle kielelle.',
+        'needs_cleanup_or_rewrite' => '',
         'search' => 'Etsi olemassa olevilta sivuilta :link.',
         'toc' => 'Sisältö',
 
@@ -42,9 +43,6 @@ return [
     ],
     'main' => [
         'title' => '',
-        'subtitle' => '',
-    ],
-    'search' => [
-        'path' => '',
+        'subtitle' => 'osu!pedia kuulosti tyhmältä :D',
     ],
 ];

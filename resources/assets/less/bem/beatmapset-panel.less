@@ -1,27 +1,11 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-panel {
   @top: beatmapset-panel;
   @padding: 10px;
   @hover-transition-duration: 150ms;
   .own-layer();
-  color: @text-color;
 
   &__content {
     height: 75px;
@@ -67,14 +51,13 @@
     display: block;
     .link-white();
     .link-plain();
-    .default-text-shadow();
+    .solid-text-shadow();
 
     .at2x('/images/layout/beatmaps/default-bg.png');
     background-position: center;
     background-size: cover;
 
     font-weight: 400;
-    font-style: italic;
     height: 120px;
 
     border-radius: @border-radius-base @border-radius-base 0 0;
@@ -82,8 +65,8 @@
   }
 
   &__header-text {
-    .thick-text-shadow();
     font-weight: 600;
+    font-size: @font-size--title-small;
 
     &--title {
       font-size: 130%;
@@ -91,7 +74,7 @@
   }
 
   &__icon {
-    .link-gray-dark();
+    .link-white();
     padding-left: 5px;
 
     &--disabled {
@@ -114,13 +97,11 @@
 
   &__image-overlay {
     .full-size();
-    content: ' ';
-    background-image: linear-gradient(to bottom, fade(#000, 10%), fade(#000, 70%));
+    background-color: fade(#000, 40%);
   }
 
   &__mapper-source-box {
     font-size: 70%;
-    font-weight: 600;
     flex: 1;
     // avoid extending beyond container on long line
     min-width: 0;
@@ -132,7 +113,11 @@
     border-radius: @border-radius-base + 2px @border-radius-base + 2px @border-radius-base @border-radius-base;
 
     width: 100%;
-    background: #fff;
+    background: @osu-colour-b3;
+
+    .@{top}:hover & {
+      background: @osu-colour-b2;
+    }
   }
 
   &__play {
@@ -216,7 +201,7 @@
   &__extra-icon {
     font-size: 14px;
     line-height: 28px;
-    background: fade(black, 50%);
+    background: osu-hsla(@osu-colour-b4, 70%);
     padding: 0px 5px;
     margin-right: 5px;
     border-radius: 14px;

@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'poistettu',
+        'none_found' => '',
         'title' => 'Beatmapkeskustelut',
 
         'form' => [
             '_' => 'Hae',
             'deleted' => 'Sisällytä poistetut keskustelut',
+            'only_unresolved' => '',
             'types' => 'Viestityypit',
             'username' => 'Käyttäjänimi',
+
+            'beatmapset_status' => [
+                '_' => '',
+                'all' => 'Kaikki',
+                'disqualified' => '',
+                'never_qualified' => '',
+                'qualified' => '',
+                'ranked' => '',
+            ],
 
             'user' => [
                 'label' => 'Käyttäjä',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => '',
+        'go_to_child' => '',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => ':user on merkinnyt ratkaistuksi',
             'false' => ':user avasi uudelleen',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => '',
+        'general_all' => '',
     ],
 
     'user_filter' => [

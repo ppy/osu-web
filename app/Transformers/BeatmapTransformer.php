@@ -1,30 +1,14 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapFailtimes;
-use League\Fractal;
 
-class BeatmapTransformer extends Fractal\TransformerAbstract
+class BeatmapTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'scoresBest',
@@ -33,16 +17,10 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
         'max_combo',
     ];
 
-    public function transform(Beatmap $beatmap = null)
+    protected $requiredPermission = 'BeatmapShow';
+
+    public function transform(Beatmap $beatmap)
     {
-        if ($beatmap === null) {
-            return [];
-        }
-
-        if (!priv_check('BeatmapShow', $beatmap)->can()) {
-            return [];
-        }
-
         return [
             'id' => $beatmap->beatmap_id,
             'beatmapset_id' => $beatmap->beatmapset_id,
@@ -53,6 +31,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'version' => $beatmap->version,
             'total_length' => $beatmap->total_length,
             'hit_length' => $beatmap->hit_length,
+            'bpm' => $beatmap->bpm,
             'cs' => $beatmap->diff_size,
             'drain' => $beatmap->diff_drain,
             'accuracy' => $beatmap->diff_overall,
@@ -63,6 +42,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'count_sliders' => $beatmap->countSlider,
             'count_spinners' => $beatmap->countSpinner,
             'count_total' => $beatmap->countTotal,
+            'is_scoreable' => $beatmap->isScoreable(),
             'last_updated' => json_time($beatmap->last_update),
             'ranked' => $beatmap->approved,
             'status' => $beatmap->status(),
@@ -75,7 +55,8 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
     {
         $scores = $beatmap
             ->scoresBest()
-            ->defaultListing()
+            ->default()
+            ->visibleUsers()
             ->limit(config('osu.beatmaps.max-scores'))
             ->get();
 
@@ -108,23 +89,21 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmapset(Beatmap $beatmap)
     {
-        return $this->item($beatmap->beatmapset, new BeatmapsetTransformer);
+        $beatmapset = $beatmap->beatmapset;
+
+        return $beatmapset === null
+            ? $this->primitive(null)
+            : $this->primitive($beatmap->beatmapset, new BeatmapsetTransformer);
     }
 
     public function includeMaxCombo(Beatmap $beatmap)
     {
-        return $this->item($beatmap, function ($beatmap) {
-            $maxCombo = $beatmap->difficultyAttribs()
-                ->mode($beatmap->playmode)
-                ->noMods()
-                ->maxCombo()
-                ->first();
+        $maxCombo = $beatmap->difficultyAttribs()
+            ->mode($beatmap->playmode)
+            ->noMods()
+            ->maxCombo()
+            ->first();
 
-            if ($maxCombo === null) {
-                return [];
-            }
-
-            return [$maxCombo->getAttribute('value')];
-        });
+        return $this->primitive(optional($maxCombo)->value);
     }
 }

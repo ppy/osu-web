@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Zresetuj hasło',
-
     'button' => [
         'cancel' => 'Anuluj',
         'resend' => 'Wyślij ponownie e-mail weryfikacyjny',
         'set' => 'Ustaw hasło',
         'start' => 'Rozpocznij',
-    ],
-
-    'email' => [
-        'subject' => 'odzyskiwanie konta osu!',
     ],
 
     'error' => [

@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 use Illuminate\Database\Seeder;
 
 class CountrySeeder extends Seeder
@@ -92,7 +95,7 @@ class CountrySeeder extends Seeder
             ['acronym' => 'CO', 'name' => 'Colombia', 'display' => 1],
             ['acronym' => 'CR', 'name' => 'Costa Rica', 'display' => 1],
             ['acronym' => 'CU', 'name' => 'Cuba', 'display' => 1],
-            ['acronym' => 'CV', 'name' => 'Cape Verde', 'display' => 0],
+            ['acronym' => 'CV', 'name' => 'Cabo Verde', 'display' => 0],
             ['acronym' => 'CX', 'name' => 'Christmas Island', 'display' => 0],
             ['acronym' => 'CY', 'name' => 'Cyprus', 'display' => 1],
             ['acronym' => 'CZ', 'name' => 'Czech Republic', 'display' => 1],
@@ -185,7 +188,7 @@ class CountrySeeder extends Seeder
             ['acronym' => 'MF', 'name' => 'Saint Martin', 'display' => 0],
             ['acronym' => 'MG', 'name' => 'Madagascar', 'display' => 1],
             ['acronym' => 'MH', 'name' => 'Marshall Islands', 'display' => 0],
-            ['acronym' => 'MK', 'name' => 'Macedonia, the Former Yugoslav Republic of', 'display' => 1],
+            ['acronym' => 'MK', 'name' => 'North Macedonia', 'display' => 1],
             ['acronym' => 'ML', 'name' => 'Mali', 'display' => 0],
             ['acronym' => 'MM', 'name' => 'Myanmar', 'display' => 1],
             ['acronym' => 'MN', 'name' => 'Mongolia', 'display' => 1],
@@ -253,7 +256,7 @@ class CountrySeeder extends Seeder
             ['acronym' => 'ST', 'name' => 'Sao Tome and Principe', 'display' => 0],
             ['acronym' => 'SV', 'name' => 'El Salvador', 'display' => 1],
             ['acronym' => 'SY', 'name' => 'Syrian Arab Republic', 'display' => 1],
-            ['acronym' => 'SZ', 'name' => 'Swaziland', 'display' => 0],
+            ['acronym' => 'SZ', 'name' => 'Eswatini', 'display' => 0],
             ['acronym' => 'TC', 'name' => 'Turks and Caicos Islands', 'display' => 0],
             ['acronym' => 'TD', 'name' => 'Chad', 'display' => 0],
             ['acronym' => 'TF', 'name' => 'French Southern Territories', 'display' => 0],

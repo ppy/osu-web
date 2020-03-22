@@ -75,6 +75,18 @@ return [
                     'wip' => 'rozpracované',
                 ],
             ],
+
+            'disqualify' => [
+                '_' => '',
+                'button_title' => '',
+            ],
+
+            'report' => [
+                '_' => '',
+                'button' => 'Nahlásit problém',
+                'button_title' => '',
+                'link' => 'zde',
+            ],
         ],
 
         'info' => [
@@ -138,6 +150,16 @@ return [
             'rating-spread' => 'Graf hodnocení',
             'nominations' => 'Nominace',
             'playcount' => 'Počet zahrání',
+        ],
+
+        'status' => [
+            'ranked' => 'Hodnocené',
+            'approved' => 'Schválené',
+            'loved' => 'Oblíbené',
+            'qualified' => 'Kvalifikované',
+            'wip' => 'Nedodělané',
+            'pending' => 'Nevyřízené',
+            'graveyard' => 'Hřbitov',
         ],
     ],
 ];

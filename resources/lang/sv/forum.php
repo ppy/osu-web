@@ -28,19 +28,15 @@ return [
         'edit' => '',
 
         'create' => [
-            '_' => 'Sätt omslags bild',
+            '_' => 'Välj omslagsbild',
             'button' => 'Ladda upp bild',
-            'info' => 'Omslags storlek bör vara :dimensions. Du kan också släppa din bild här för att ladda upp.',
+            'info' => 'Omslagsstorlek bör vara :dimensions. Du kan också släppa din bild här för att ladda upp.',
         ],
 
         'destroy' => [
-            '_' => 'Ta bort omslags bild',
-            'confirm' => 'Är du säker på att du vill ta bort omslags bilden?',
+            '_' => 'Ta bort omslagsbild',
+            'confirm' => 'Är du säker på att du vill ta bort omslagsbilden?',
         ],
-    ],
-
-    'email' => [
-        'new_reply' => '[osu!] Nytt svar på ämne ":title"',
     ],
 
     'forums' => [
@@ -62,9 +58,9 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Verkligen radera inlägg?',
-        'confirm_restore' => 'Verkligen återställa inlägg?',
-        'edited' => 'Senast redigerad av :user den :when, redigerad :count gånger totalt.',
+        'confirm_destroy' => 'Vill du verkligen radera inlägget?',
+        'confirm_restore' => 'Vill du verkligen återställa inlägget?',
+        'edited' => 'Senast redigerad av :user :when, redigerad :count gånger totalt.',
         'posted_at' => 'upplagd :when',
 
         'actions' => [
@@ -87,7 +83,7 @@ return [
 
     'search' => [
         'go_to_post' => 'Gå till inlägg',
-        'post_number_input' => 'skriv inläggs nummer',
+        'post_number_input' => 'skriv inläggsnummer',
         'total_posts' => ':posts_count inlägg totalt',
     ],
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Prenumerationer',
             'title_compact' => 'forum prenumerationer',
-            'title_main' => 'Forum <strong>Prenumerationer</strong>',
 
             'box' => [
                 'total' => 'Ämne prenumererade',

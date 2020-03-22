@@ -1,21 +1,7 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
+import ClickToCopy from 'click-to-copy'
 import { CommentEditor } from 'comment-editor'
 import { CommentShowMore } from 'comment-show-more'
 import DeletedCommentsCount from 'deleted-comments-count'
@@ -49,10 +35,6 @@ export class Comment extends React.PureComponent
       _.truncate makePreviewElement.textContent, length: 100
 
 
-  @defaultProps =
-    showReplies: true
-
-
   constructor: (props) ->
     super props
 
@@ -64,6 +46,8 @@ export class Comment extends React.PureComponent
       expandReplies = false
     else if @props.comment.isDeleted
       expandReplies = false
+    else if @props.expandReplies?
+      expandReplies = @props.expandReplies
     else
       children = uiState.getOrderedCommentsByParentId(@props.comment.id)
       # Collapse if either no children is loaded or current level doesn't add indentation.
@@ -110,6 +94,13 @@ export class Comment extends React.PureComponent
             div className: 'comment__row comment__row--header',
               @renderUsername user
 
+              if @props.comment.pinned
+                span
+                  className: 'comment__row-item  comment__row-item--pinned'
+                  span className: 'fa fa-thumbtack'
+                  ' '
+                  osu.trans 'comments.pinned'
+
               if parent?
                 span
                   className: 'comment__row-item comment__row-item--parent'
@@ -148,13 +139,14 @@ export class Comment extends React.PureComponent
               @renderEdit()
               @renderRestore()
               @renderDelete()
+              @renderPin()
               @renderReport()
               @renderRepliesText()
               @renderEditedBy()
 
             @renderReplyBox()
 
-        if @props.showReplies && @props.comment.repliesCount > 0
+        if @props.comment.repliesCount > 0
           div
             className: repliesClass
             @children.map @renderComment
@@ -180,6 +172,7 @@ export class Comment extends React.PureComponent
       depth: @props.depth + 1
       parent: @props.comment
       modifiers: @props.modifiers
+      expandReplies: @props.expandReplies
 
 
   renderDelete: =>
@@ -190,6 +183,16 @@ export class Comment extends React.PureComponent
           className: 'comment__action'
           onClick: @delete
           osu.trans('common.buttons.delete')
+
+
+  renderPin: =>
+    if @props.comment.canPin
+      div className: 'comment__row-item',
+        button
+          type: 'button'
+          className: 'comment__action'
+          onClick: @togglePinned
+          osu.trans 'common.buttons.' + if @props.comment.pinned then 'unpin' else 'pin'
 
 
   renderEdit: =>
@@ -219,40 +222,36 @@ export class Comment extends React.PureComponent
 
   renderPermalink: =>
     div className: 'comment__row-item',
-      a
-        href: laroute.route('comments.show', comment: @props.comment.id)
+      span
         className: 'comment__action comment__action--permalink'
-        osu.trans('common.buttons.permalink')
+        el ClickToCopy,
+          value: laroute.route('comments.show', comment: @props.comment.id)
+          label: osu.trans 'common.buttons.permalink'
+          valueAsUrl: true
 
 
   renderRepliesText: =>
     return if @props.comment.repliesCount == 0
 
-    if @props.showReplies
-      if !@state.expandReplies && @children.length == 0
-        onClick = @loadReplies
-        label = osu.trans('comments.load_replies')
-      else
-        onClick = @toggleReplies
-        label = "#{osu.trans('comments.replies')} (#{osu.formatNumber(@props.comment.repliesCount)})"
-
-      label = "[#{if @state.expandReplies then '-' else '+'}] #{label}"
-
-      div className: 'comment__row-item',
-        button
-          type: 'button'
-          className: 'comment__action'
-          onClick: onClick
-          label
+    if !@state.expandReplies && @children.length == 0
+      onClick = @loadReplies
+      label = osu.trans('comments.load_replies')
     else
-      div className: 'comment__row-item',
-        osu.trans('comments.replies')
-        ': '
-        osu.formatNumber(@props.comment.repliesCount)
+      onClick = @toggleReplies
+      label = "#{osu.trans('comments.replies')} (#{osu.formatNumber(@props.comment.repliesCount)})"
+
+    label = "[#{if @state.expandReplies then '-' else '+'}] #{label}"
+
+    div className: 'comment__row-item',
+      button
+        type: 'button'
+        className: 'comment__action'
+        onClick: onClick
+        label
 
 
   renderRepliesToggle: =>
-    if @props.showReplies && @props.depth == 0 && @children.length > 0
+    if @props.depth == 0 && @children.length > 0
       div className: 'comment__float-container comment__float-container--right',
         button
           className: 'comment__top-show-replies'
@@ -272,7 +271,7 @@ export class Comment extends React.PureComponent
 
 
   renderReplyButton: =>
-    if @props.showReplies && !@props.comment.isDeleted
+    if !@props.comment.isDeleted
       div className: 'comment__row-item',
         button
           type: 'button'
@@ -396,6 +395,20 @@ export class Comment extends React.PureComponent
     @xhr.delete?.abort()
     @xhr.delete = $.ajax laroute.route('comments.destroy', comment: @props.comment.id),
       method: 'DELETE'
+    .done (data) =>
+      $.publish 'comment:updated', data
+    .fail (xhr, status) =>
+      return if status == 'abort'
+
+      osu.ajaxError xhr
+
+
+  togglePinned: =>
+    return unless @props.comment.canPin
+
+    @xhr.pin?.abort()
+    @xhr.pin = $.ajax laroute.route('comments.pin', comment: @props.comment.id),
+      method: if @props.comment.pinned then 'DELETE' else 'POST'
     .done (data) =>
       $.publish 'comment:updated', data
     .fail (xhr, status) =>

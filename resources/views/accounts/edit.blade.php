@@ -1,26 +1,13 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('master')
+@extends('master', ['titlePrepend' => trans('accounts.edit.title_compact')])
 
 @section('content')
-    @include('home._user_header_default', ['title' => trans('accounts.edit.title')])
+    @include('home._user_header_default')
 
-    <div class="osu-page osu-page--small u-has-anchor">
+    <div class="osu-page u-has-anchor">
         <div class="account-edit account-edit--first">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
@@ -68,7 +55,7 @@
         </div>
     </div>
 
-    <div class="osu-page osu-page--small u-has-anchor">
+    <div class="osu-page u-has-anchor">
         <div id="avatar" class="fragment-target">{{-- anchor won't offset properly if included in the flex container below --}}</div>
         <div class="account-edit">
             <div class="account-edit__section">
@@ -117,8 +104,7 @@
                             {!! trans('accounts.edit.avatar.rules', [
                                 'link' => link_to(
                                     wiki_url('Rules'),
-                                    trans('accounts.edit.avatar.rules_link'),
-                                    ['class' => 'account-edit-entry__link']
+                                    trans('accounts.edit.avatar.rules_link')
                                 )
                             ]) !!}
                         </div>
@@ -128,35 +114,36 @@
         </div>
     </div>
 
-    <div class="osu-page osu-page--small u-has-anchor">
+    <div class="osu-page u-has-anchor">
         @include('accounts._edit_signature')
     </div>
 
-    <div class="osu-page osu-page--small u-has-anchor">
+    <div class="osu-page u-has-anchor">
         @include('accounts._edit_playstyles')
     </div>
 
-    <div class="osu-page osu-page--small u-has-anchor">
+    <div class="osu-page u-has-anchor">
         @include('accounts._edit_privacy')
     </div>
 
-    <div class="osu-page osu-page--small u-has-anchor">
+    <div class="osu-page u-has-anchor">
         @include('accounts._edit_notifications')
     </div>
 
-    <div class="osu-page osu-page--small u-has-anchor">
+    <div class="osu-page u-has-anchor">
         @include('accounts._edit_password')
     </div>
 
-    <div class="osu-page osu-page--small u-has-anchor">
+    <div class="osu-page u-has-anchor">
         @include('accounts._edit_email')
     </div>
 
-    <div class="osu-page osu-page--small u-has-anchor">
+    <div class="osu-page u-has-anchor">
         @include('accounts._edit_sessions')
     </div>
 
-    <div class="osu-page osu-page--small u-has-anchor">
+    <div class="osu-page u-has-anchor">
+        <div id="oauth" class="fragment-target"></div>
         @include('accounts._edit_oauth')
     </div>
 @endsection

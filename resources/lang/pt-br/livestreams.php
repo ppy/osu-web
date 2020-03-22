@@ -25,7 +25,4 @@ return [
 
         'link' => 'pagina da wiki sobre transmissões ao vivo',
     ],
-    'headers' => [
-        'regular' => 'Ao Vivo',
-    ],
 ];

@@ -22,15 +22,9 @@ return [
     'cancel' => 'Annuler',
 
     'authorise' => [
-        'authorise' => 'Autoriser',
         'request' => 'demande la permission d\'accéder à votre compte.',
         'scopes_title' => 'Cette application pourra :',
         'title' => 'Demande d’autorisation',
-
-        'wrong_user' => [
-            '_' => 'Vous êtes connecté en tant que :user. :logout_link.',
-            'logout_link' => 'Cliquez ici pour vous connecter en tant qu\'utilisateur différent',
-        ],
     ],
 
     'authorized_clients' => [
@@ -52,18 +46,12 @@ return [
         'secret' => 'Client Secret',
     ],
 
-    'login' => [
-        'download' => 'Cliquez ici pour télécharger le jeu et créer un compte',
-        'label' => 'Tout d\'abord, connectez-vous à votre compte !',
-        'title' => 'Connexion au compte',
-    ],
-
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Inscrire une nouvelle application OAuth',
+        'register' => 'Inscrire une application',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'En utilisant cette API vous acceptez :link.',
+            'link' => 'Termes d\'utilisation',
         ],
     ],
 

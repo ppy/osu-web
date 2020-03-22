@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Återställ Lösenord',
-
     'button' => [
         'cancel' => 'Avbryt',
         'resend' => 'Skicka bekräftelsemail igen',
         'set' => 'Ange lösenord',
         'start' => 'Starta',
-    ],
-
-    'email' => [
-        'subject' => 'osu! konto återhämtning',
     ],
 
     'error' => [
@@ -57,8 +51,8 @@ return [
         'username' => 'Fyll i din e-postadress eller ditt användarnamn',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Behöver du mer hjälp? Kontakta oss via våran :button.',
+            'button' => 'support system',
         ],
     ],
 ];

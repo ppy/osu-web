@@ -44,11 +44,6 @@ return [
             '_stream_to' => 'modificări în :stream până în :to',
             '_to' => 'modificări până în :to',
         ],
-
-        'title' => [
-            '_' => 'Jurnalul modificărilor :info',
-            'info' => 'Listare',
-        ],
     ],
 
     'support' => [

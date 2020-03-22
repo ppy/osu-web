@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .chat-message-group {
   @top: chat-message-group;
@@ -27,10 +12,6 @@
 
   &:last-child {
     padding-bottom: 80px;
-
-    @media @mobile {
-      padding-bottom: 200px;
-    }
   }
 
   &--own {
@@ -46,8 +27,6 @@
     flex-direction: column;
     font-size: 10px;
     color: white;
-    text-decoration: italic;
-    font-style: italic;
     flex-shrink: 0;
   }
 
@@ -75,14 +54,8 @@
   }
 
   &__message-content {
-    display: flex;
-    word-break: break-word;
-    justify-content: space-between;
     font-family: @font-content;
-
-    a {
-      .link-default();
-    }
+    word-break: break-word;
 
     &--action {
       color: @osu-colour-l1;
@@ -98,7 +71,7 @@
   }
 
   &__message-status {
-    color: .osu-hsla(@osu-colour-h1, 0.5)[@hsla];
+    color: osu-hsla(@osu-colour-h1, 0.5);
     margin-left: 10px;
 
     &--errored {
@@ -107,6 +80,7 @@
   }
 
   &__message-timestamp {
+    font-family: @font-content;
     color: @osu-colour-f1;
     font-size: 10px;
     margin-top: 5px;

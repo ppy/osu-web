@@ -21,10 +21,11 @@
 return [
     'landing' => [
         'download' => 'ดาวน์โหลดเลย',
-        'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
+        'online' => 'มีผู้เล่นออนไลน์ <strong>:players</strong> คน และมีห้องเล่นหลายคน <strong>:games</strong> ห้อง',
         'peak' => 'Peak, :count online users',
         'players' => 'มีผู้เล่นลงทะเบียนแล้ว <strong>:count</strong> คน',
         'title' => 'ยินดีต้อนรับ',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'เกมดนตรีเล่นฟรีที่เริศที่สุดในสามโลก',
@@ -41,6 +42,7 @@ return [
         'title' => 'ค้นหา',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count more beatmap search results',
             'more_simple' => 'ดูผลการค้นหาบีทแมพเพิ่มเติม',
             'title' => 'บีทแมพ',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'ฟอรั่มทั้งหมด',
             'link' => 'ค้นหาตามฟอรัม',
+            'login_required' => '',
             'more_simple' => 'See more forum search results',
             'title' => 'Forum',
 
@@ -69,9 +72,10 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count more player search results',
             'more_simple' => 'See more player search results',
-            'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
+            'more_hidden' => 'ผลลัพธ์การค้นหาผู้เล่นจำกัดไว้ที่ :max คน ถ้าไม่เจอให้ลองเปลี่ยนคำค้นใหม่',
             'title' => 'ผู้เล่น',
         ],
 
@@ -105,7 +109,7 @@ return [
                 'title' => 'ไปโหลดบีตแมป',
                 'description' => [
                     '_' => ':browse the vast library of user-created beatmaps and start playing!',
-                    'browse' => 'browse',
+                    'browse' => 'ค้นหา',
                 ],
             ],
         ],
@@ -119,19 +123,16 @@ return [
             'error' => 'โหลดข่าวสารไม่ได้ ลองรีเฟรชดู เผื่อติดนะ',
         ],
         'header' => [
-            'welcome' => 'สวัสดี <strong>:username</strong>',
-            'messages' => 'คุณมี :count ข้อความใหม่|คุณมี :count ข้อความใหม่',
             'stats' => [
                 'friends' => 'จำนวนเพื่อนที่ออนไลน์',
-                'games' => 'Games',
+                'games' => 'เกมที่เล่นอยู่',
                 'online' => 'จำนวนผู้ใช้ที่ออนไลน์',
             ],
         ],
         'beatmaps' => [
             'new' => 'Ranked Beatmaps อันใหม่',
             'popular' => 'บีตแมปยอดฮิต',
-            'by' => 'โดย',
-            'plays' => ':count plays',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'ดาวน์โหลด osu!',

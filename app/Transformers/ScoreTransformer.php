@@ -1,36 +1,19 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Score\Model as ScoreModel;
-use League\Fractal;
 
-class ScoreTransformer extends Fractal\TransformerAbstract
+class ScoreTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap',
         'beatmapset',
-        'best',
         'weight',
         'user',
         'multiplayer',
@@ -54,7 +37,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
                 'count_katu' => $score->countkatu,
                 'count_miss' => $score->countmiss,
             ],
-            'pp' => $score->pp,
+            'pp' => $score instanceof ScoreBest ? $score->pp : optional($score->best)->pp,
             // ranks are hardcoded to "0" for game_scores atm (i.e. scores from a mp game), return null instead for now
             'rank' => $score->rank === '0' ? null : $score->rank,
             'created_at' => json_time($score->date),
@@ -85,25 +68,14 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmap($score)
     {
-        return $this->item($score->beatmap, new BeatmapTransformer);
+        return $score->beatmap === null
+            ? $this->primitive(null)
+            : $this->item($score->beatmap, new BeatmapTransformer);
     }
 
     public function includeBeatmapset($score)
     {
         return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer);
-    }
-
-    public function includeBest($score)
-    {
-        if (($score instanceof ScoreBest) === true) {
-            return;
-        }
-
-        return $this->item($score, function ($score) {
-            return [
-                'pp' => optional($score->best)->pp,
-            ];
-        });
     }
 
     public function includeWeight($score)

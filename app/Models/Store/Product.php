@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models\Store;
 
@@ -73,17 +58,17 @@ class Product extends Model
 
     public function masterProduct()
     {
-        return $this->belongsTo(self::class, 'master_product_id', 'product_id');
+        return $this->belongsTo(static::class, 'master_product_id');
     }
 
     public function variations()
     {
-        return $this->hasMany(static::class, 'master_product_id', 'product_id');
+        return $this->hasMany(static::class, 'master_product_id');
     }
 
     public function notificationRequests()
     {
-        return $this->hasMany(NotificationRequest::class, 'product_id');
+        return $this->hasMany(NotificationRequest::class);
     }
 
     public function inStock($quantity = 1, $includeVariations = false)
@@ -128,7 +113,7 @@ class Product extends Model
         }
     }
 
-    public function isAvailable() : bool
+    public function isAvailable(): bool
     {
         return $this->enabled
             && ($this->available_until === null ? true : $this->available_until->isFuture());
@@ -208,12 +193,12 @@ class Product extends Model
      *
      * @return string|null
      */
-    public function getShopifyVariantGid() : ?string
+    public function getShopifyVariantGid(): ?string
     {
         return $this->isShopify() ? base64_encode("gid://shopify/ProductVariant/{$this->shopify_id}") : null;
     }
 
-    public function isShopify() : bool
+    public function isShopify(): bool
     {
         return $this->shopify_id !== null;
     }

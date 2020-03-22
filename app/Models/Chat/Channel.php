@@ -1,31 +1,19 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models\Chat;
 
 use App\Events\UserSubscriptionChangeEvent;
 use App\Exceptions\API;
+use App\Models\Multiplayer\Match;
 use App\Models\Notification;
 use App\Models\User;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
+use Illuminate\Support\Str;
+use LaravelRedis as Redis;
 
 /**
  * @property string[] $allowed_groups
@@ -54,9 +42,23 @@ class Channel extends Model
         'group' => 'GROUP',
     ];
 
+    /**
+     * @param User $user1
+     * @param User $user2
+     *
+     * @return string
+     */
+    public static function getPMChannelName($user1, $user2)
+    {
+        $userIds = [$user1->getKey(), $user2->getKey()];
+        sort($userIds);
+
+        return '#pm_'.implode('-', $userIds);
+    }
+
     public function messages()
     {
-        return $this->hasMany(Message::class, 'channel_id');
+        return $this->hasMany(Message::class);
     }
 
     public function filteredMessages()
@@ -113,6 +115,24 @@ class Channel extends Model
         return $this->type === self::TYPES['group'];
     }
 
+    public function isBanchoMultiplayerChat()
+    {
+        return $this->type === self::TYPES['temporary'] && starts_with($this->name, '#mp_');
+    }
+
+    public function getMatchIdAttribute()
+    {
+        // TODO: add lazer mp support?
+        if ($this->isBanchoMultiplayerChat()) {
+            return intval(str_replace('#mp_', '', $this->name));
+        }
+    }
+
+    public function multiplayerMatch()
+    {
+        return $this->belongsTo(Match::class, 'match_id');
+    }
+
     public function pmTargetFor(User $user)
     {
         if (!$this->isPM()) {
@@ -124,6 +144,33 @@ class Channel extends Model
 
     public function receiveMessage(User $sender, string $content, bool $isAction = false)
     {
+        if ($this->isPM()) {
+            $limit = config('osu.chat.rate_limits.private.limit');
+            $window = config('osu.chat.rate_limits.private.window');
+            $keySuffix = 'PM';
+        } else {
+            $limit = config('osu.chat.rate_limits.public.limit');
+            $window = config('osu.chat.rate_limits.public.window');
+            $keySuffix = 'PUBLIC';
+        }
+
+        $key = "message_throttle:{$sender->user_id}:{$keySuffix}";
+        $now = now();
+
+        // This works by keeping a sorted set of when the last messages were sent by the user (per message type).
+        // The timestamp of the message is used as the score, which allows for zremrangebyscore to cull old messages
+        // in a rolling window fashion.
+        [,$sent] = Redis::transaction()
+            ->zremrangebyscore($key, 0, $now->timestamp - $window)
+            ->zrange($key, 0, -1, 'WITHSCORES')
+            ->zadd($key, $now->timestamp, (string) Str::uuid())
+            ->expire($key, $window)
+            ->exec();
+
+        if (count($sent) >= $limit) {
+            throw new API\ExcessiveChatMessagesException(trans('api.error.chat.limit_exceeded'));
+        }
+
         $content = trim($content);
 
         if (mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
@@ -134,30 +181,11 @@ class Channel extends Model
             throw new API\ChatMessageEmptyException(trans('api.error.chat.empty'));
         }
 
-        $sentMessages = Message::where('user_id', $sender->user_id)
-            ->join('channels', 'channels.channel_id', '=', 'messages.channel_id');
-
-        if ($this->isPM()) {
-            $limit = config('osu.chat.rate_limits.private.limit');
-            $window = config('osu.chat.rate_limits.private.window');
-            $sentMessages->where('type', self::TYPES['pm']);
-        } else {
-            $limit = config('osu.chat.rate_limits.public.limit');
-            $window = config('osu.chat.rate_limits.public.window');
-            $sentMessages->where('type', '!=', self::TYPES['pm']);
-        }
-
-        $sentMessages->where('timestamp', '>=', Carbon::now()->subSecond($window));
-
-        if ($sentMessages->count() > $limit) {
-            throw new API\ExcessiveChatMessagesException(trans('api.error.chat.limit_exceeded'));
-        }
-
         $message = new Message();
         $message->user_id = $sender->user_id;
         $message->content = $content;
         $message->is_action = $isAction;
-        $message->timestamp = Carbon::now();
+        $message->timestamp = $now;
         $message->channel()->associate($this);
         $message->save();
 
@@ -167,7 +195,7 @@ class Channel extends Model
         ])->first();
 
         if ($userChannel) {
-            $userChannel->update(['last_read_id' => $message->message_id]);
+            $userChannel->markAsRead($message->message_id);
         }
 
         if ($this->isPM()) {

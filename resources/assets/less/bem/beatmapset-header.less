@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-header {
   @header-height: 350px;
@@ -38,7 +23,8 @@
 
     &--stats {
       padding-bottom: 0;
-      flex: none;
+      align-self: stretch;
+      justify-content: space-between;
     }
   }
 
@@ -53,20 +39,20 @@
   }
 
   &__content {
-    .default-header-overlay();
     display: flex;
     flex-direction: column;
     padding: 0 30px;
+    .light-header-overlay();
+    background-size: cover;
+    background-position: center;
+    background-color: #333;
+    min-height: @header-height;
 
     @media @desktop {
       align-items: flex-end;
       flex-direction: row;
     }
 
-    background-size: cover;
-    background-position: center;
-    background-color: #333;
-    min-height: @header-height;
   }
 
   &__availability-info {
@@ -85,7 +71,6 @@
   &__details-text {
     .default-text-shadow();
     color: #fff;
-    font-style: italic;
     align-self: flex-start;
     max-width: 100%;
 
@@ -97,6 +82,9 @@
     &--title {
       font-size: 30px;
       font-weight: 600;
+      line-height: 1;
+      margin-bottom: 5px;
+      margin-top: 10px;
     }
 
     &--artist {
@@ -137,12 +125,12 @@
     .default-text-shadow;
 
     &--has-favourites {
-      background: .osu-hsla(@osu-colour-b6, 0.25)[@hsla];
+      background: osu-hsla(@osu-colour-b6, 0.25);
       padding: 2px 5px;
       .default-border-radius();
 
       &:hover {
-        background: .osu-hsla(@osu-colour-b6, 0.5)[@hsla];
+        background: osu-hsla(@osu-colour-b6, 0.5);
       }
     }
   }
@@ -167,9 +155,5 @@
         color: @pink-darker;
       }
     }
-  }
-
-  &__value-name {
-    font-style: italic;
   }
 }

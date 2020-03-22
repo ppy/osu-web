@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -30,6 +33,7 @@ $factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
         'countNormal' => $hitsNormal,
         'countSlider' => $hitsSlider,
         'countSpinner' => $hitsSpinner,
+        'bpm' => rand(100, 200),
         'diff_drain' => rand(0, 10),
         'diff_size' => rand(0, 10),
         'diff_overall' => rand(0, 10),

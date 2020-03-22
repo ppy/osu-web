@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'povolit kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Stránka Beatmapy',
         'delete' => 'odstranit',
         'deleted' => 'Smazal uživatel :editor v :delete_time.',
         'deny_kudosu' => 'odepřít kudosu',
@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Obnovit nominace',
             'praise' => 'Chválit',
             'problem' => 'Problém',
+            'review' => 'Recenze',
             'suggestion' => 'Návrh',
         ],
 
         'mode' => [
             'events' => 'Historie',
             'general' => 'Obecný :scope',
+            'reviews' => 'Recenze',
             'timeline' => 'Časová osa',
             'scopes' => [
                 'general' => 'Tato obtížnost',
@@ -183,6 +185,7 @@ return [
         'nominate' => 'Nominovat',
         'nominate_confirm' => 'Nominovat tuto beatmapu?',
         'nominated_by' => 'nominováno od :users',
+        'not_enough_hype' => "",
         'qualified' => 'Předpokládané datum zhodnocení této mapy je :date, pokud se nenaleznou žádné chyby.',
         'qualified_soon' => 'Již brzy bude tato mapa hodnocená, pokud se nenaleznou žádné chyby.',
         'required_text' => 'Nominace: :current/:required',
@@ -253,7 +256,7 @@ return [
         'approved' => 'Schválené',
         'favourites' => 'Oblíbené',
         'graveyard' => 'Hřbitov',
-        'leaderboard' => '',
+        'leaderboard' => 'Má žebříček',
         'loved' => 'Oblíbené',
         'mine' => 'Moje mapy',
         'pending' => 'Čekající & Rozpracované',

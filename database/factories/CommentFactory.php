@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
     return [
         'user_id' => function () {
@@ -12,7 +15,13 @@ $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
         'commentable_id' => function () {
             return factory(App\Models\Build::class)->create()->build_id;
         },
-        'created_at' => Carbon\Carbon::now(),
-        'updated_at' => Carbon\Carbon::now(),
+        'created_at' => now(),
+        'updated_at' => now(),
+    ];
+});
+
+$factory->state(App\Models\Comment::class, 'deleted', function () {
+    return [
+        'deleted_at' => now(),
     ];
 });

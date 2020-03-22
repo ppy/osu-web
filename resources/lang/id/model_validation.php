@@ -50,7 +50,7 @@ return [
             'guest' => 'Silakan masuk untuk dapat memberikan hype.',
             'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
             'limit_exceeded' => 'Anda telah menggunakan semua hype Anda.',
-            'not_hypeable' => 'Beatmap ini tidak dapat dihype.',
+            'not_hypeable' => 'Beatmap ini tidak dapat di-hype.',
             'owner' => 'Tidak dapat memberikan hype pada beatmap anda sendiri.',
         ],
 
@@ -62,6 +62,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Membalas komentar yang sudah dihapus tidak diperbolehkan.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => 'Isi pesan',
@@ -171,7 +172,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => 'alasan :reason tidak sah untuk jenis laporan ini.',
         'self' => "Anda tidak dapat melaporkan diri Anda sendiri!",
     ],
 

@@ -22,15 +22,9 @@ return [
     'cancel' => 'Annuleren',
 
     'authorise' => [
-        'authorise' => 'Autorisatie',
         'request' => 'vraagt om toestemming om toegang tot uw account.',
         'scopes_title' => 'Deze applicatie krijgt toegang tot:',
         'title' => 'Inloggen verplicht',
-
-        'wrong_user' => [
-            '_' => 'U bent ingelogd als :user. :logout_link.',
-            'logout_link' => 'Klik hier om in te loggen als een andere gebruiker',
-        ],
     ],
 
     'authorized_clients' => [
@@ -50,12 +44,6 @@ return [
         'name' => 'Applicatienaam',
         'redirect' => 'Applicatie Terugbel URL',
         'secret' => 'Client Secret',
-    ],
-
-    'login' => [
-        'download' => 'Klik hier om het spel te downloaden en een account aan te maken',
-        'label' => 'Eerst, laten we inloggen op je account!',
-        'title' => 'Account aanmelden',
     ],
 
     'new_client' => [

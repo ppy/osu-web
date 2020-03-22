@@ -1,43 +1,31 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .wiki-search {
+  @_gutter: 20px;
+  @_border-size: 2px;
+
   padding-top: 10px;
+  // so the suggestions draw over the wiki panels.
+  // z-index is set here so the entire component renders at the same level instead of just part of it.
+  z-index: @z-index--wiki-search;
 
   &__bar {
     .default-border-radius();
     display: flex;
     flex-direction: row;
 
-    width: 100%;
-    padding: 13px 20px;
-
+    padding: 13px @_gutter;
     font-size: @font-size--wiki-search;
-
     background-color: @osu-colour-b6;
 
-    border: 2px solid @osu-colour-orange-1;
+    border: @_border-size solid @osu-colour-orange-1;
   }
 
   &__input {
     .reset-input();
     color: @osu-colour-c1;
-    flex-grow: 1;
+    flex: 1;
 
     &::placeholder {
       color: @osu-colour-c2;
@@ -49,5 +37,41 @@
     .reset-input();
 
     color: @osu-colour-c1;
+    margin-left: 10px;
+  }
+
+  &__suggestion {
+    .link-plain();
+    color: @osu-colour-c1;
+    .link-hover({ color: @osu-colour-c1 });
+
+    padding: 5px @_gutter;
+
+    em {
+      color: @osu-colour-l2;
+      font-style: normal;
+      font-weight: bold;
+    }
+
+    &--active {
+      background-color: @osu-colour-b3;
+    }
+  }
+
+  &__suggestions {
+    position: absolute;
+    background-color: @osu-colour-b6;
+    color: @osu-colour-c1;
+
+    max-height: 500px;
+    width: calc(100% - @_border-size * 2);
+    left: @_border-size;
+    overflow-y: auto;
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 0 0 @border-radius-large @border-radius-large;
   }
 }

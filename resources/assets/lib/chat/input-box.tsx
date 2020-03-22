@@ -1,24 +1,10 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import { ChatChannelSwitchAction, ChatMessageSendAction } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowFocusAction } from 'actions/window-focus-actions';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import { BigButton } from 'big-button';
 import DispatchListener from 'dispatch-listener';
 import * as _ from 'lodash';
@@ -28,15 +14,10 @@ import * as React from 'react';
 import RootDataStore from 'stores/root-data-store';
 
 @inject('dataStore')
-@inject('dispatcher')
 @observer
+@dispatchListener
 export default class InputBox extends React.Component<any, any> implements DispatchListener {
   private inputBoxRef = React.createRef<HTMLInputElement>();
-
-  constructor(props: {}) {
-    super(props);
-    this.props.dispatcher.register(this);
-  }
 
   buttonClicked = (e: React.MouseEvent<HTMLElement>) => {
     const target = $(e.currentTarget).parent().children('input')[0] as HTMLInputElement;
@@ -87,6 +68,7 @@ export default class InputBox extends React.Component<any, any> implements Dispa
           placeholder={disableInput ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
           onKeyDown={this.checkIfEnterPressed}
           disabled={disableInput}
+          autoComplete='off'
           ref={this.inputBoxRef}
         />
 
@@ -136,6 +118,6 @@ export default class InputBox extends React.Component<any, any> implements Dispa
       message.isAction = true;
     }
 
-    this.props.dispatcher.dispatch(new ChatMessageSendAction(message));
+    dispatch(new ChatMessageSendAction(message));
   }
 }

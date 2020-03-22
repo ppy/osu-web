@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
@@ -25,6 +10,7 @@ return [
 
     'cart' => [
         'checkout' => 'Checkout',
+        'info' => ':count_delimited item in cart ($:subtotal)|:count_delimited items in cart ($:subtotal)',
         'more_goodies' => 'I want to check out more goodies before completing the order',
         'shipping_fees' => 'shipping fees',
         'title' => 'Shopping Cart',
@@ -51,6 +37,7 @@ return [
         'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
         'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Checkout with Paypal',
+        'title_compact' => 'checkout',
 
         'has_pending' => [
             '_' => 'You have incomplete checkouts, click :link to view them.',
@@ -67,6 +54,8 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'As your payment was an eCheck, please allow up to 10 extra days for the payment to clear through PayPal!',
+        'title_compact' => 'invoice',
+
         'status' => [
             'processing' => [
                 'title' => 'Your payment has not yet been confirmed!',
@@ -76,12 +65,6 @@ return [
                     'link_text' => 'click here to resume your checkout',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'We received your osu!store order!',
         ],
     ],
 
@@ -151,5 +134,9 @@ return [
             '_' => 'You need to be :link to change your name!',
             'link_text' => 'signed in',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => 'Xsolla is an authorised<br>global distributor of osu!',
     ],
 ];

@@ -24,19 +24,101 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => '',
+            'beatmapset' => '',
+            'beatmapset_covers' => '',
+            'contest' => '',
+            'contests' => '',
+            'root' => '',
+            'store_orders' => '',
+        ],
+
+        'artists' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'beatmapsets' => [
+            '_' => '',
+            'discussions' => '',
+            'index' => '',
+            'show' => '',
+            'packs' => '',
+        ],
+
+        'changelog' => [
+            '_' => '',
+            'index' => '',
+        ],
+
         'community' => [
             '_' => '',
-
+            'comments' => '',
+            'contests' => '',
             'forum' => '',
+            'livestream' => '',
+        ],
+
+        'error' => [
+            '_' => '',
+        ],
+
+        'help' => [
+            '_' => '',
+            'index' => '',
+        ],
+
+        'home' => [
+            '_' => '',
+            'password_reset' => '',
+        ],
+
+        'matches' => [
+            '_' => '',
+        ],
+
+        'notice' => [
+            '_' => '',
+        ],
+
+        'notifications' => [
+            '_' => '',
+            'index' => 'historik',
+        ],
+
+        'rankings' => [
+            '_' => '',
+        ],
+
+        'store' => [
+            '_' => '',
+            'cart' => 'kundvagn',
+            'order' => '',
+            'orders' => 'orderhistorik',
+            'product' => 'produkt',
+            'products' => 'produkter',
+        ],
+
+        'tournaments' => [
+            '_' => 'turneringar',
+            'index' => '',
+        ],
+
+        'users' => [
+            '_' => 'spelare',
+            'forum_posts' => 'forumsinlägg',
+            'modding' => '',
+            'show' => 'info',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
+        'close' => 'Stäng (Esc)',
         'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'zoom' => 'Zooma in/ut',
+        'previous' => 'Föregående (vänsterpil)',
+        'next' => 'Nästa (högerpil)',
     ],
 
     'menu' => [
@@ -44,9 +126,12 @@ return [
             '_' => 'hem',
             'account-edit' => 'inställningar',
             'account-verifyLink' => '',
-            'friends-index' => 'vänner',
-            'changelog-index' => 'ändringslogg',
+            'beatmapset-watches-index' => '',
             'changelog-build' => 'bygget',
+            'changelog-index' => 'ändringslogg',
+            'client_verifications-create' => '',
+            'forum-topic-watches-index' => '',
+            'friends-index' => 'vänner',
             'getDownload' => 'ladda ner',
             'getIcons' => 'ikoner',
             'groups-show' => 'grupper',
@@ -59,6 +144,7 @@ return [
             'search' => 'sök',
             'supportTheGame' => 'stötta spelet',
             'team' => 'lag',
+            'testflight' => '',
         ],
         'profile' => [
             '_' => '',
@@ -78,7 +164,6 @@ return [
             'artists' => 'utvalda artister',
             'beatmap_discussion_posts-index' => 'beatmapdiskussionsinlägg',
             'beatmap_discussions-index' => 'beatmapdiskussioner',
-            'beatmapset-watches-index' => 'modding övervakningslista',
             'beatmapset_discussion_votes-index' => 'beatmapdiskussionsröster',
             'beatmapset_events-index' => 'beatmapset händelser',
             'index' => 'listning',
@@ -112,7 +197,6 @@ return [
             'tournaments' => 'turneringar',
             'tournaments-index' => 'turneringar',
             'tournaments-show' => 'turnering info',
-            'forum-topic-watches-index' => 'prenumerationer',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -149,6 +233,7 @@ return [
             'modding-history-posts' => 'användarmoddingsinlägg',
             'modding-history-votesGiven' => 'användarmoddingsröster givna',
             'modding-history-votesReceived' => 'användarmoddningsröster givna',
+            'notifications-index' => '',
             'oauth_login' => '',
             'oauth_request' => '',
             'settings' => 'Inställningar',
@@ -256,10 +341,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'email adress',
             'forgot' => "Jag har glömt mina detaljer",
             'password' => 'lösenord',
             'title' => 'Logga In För Att Fortsätta',
+            'username' => '',
 
             'error' => [
                 'email' => "Användarnamn eller email adress finns inte",

@@ -25,6 +25,7 @@ return [
         'peak' => 'Huipussaan :count käyttäjää paikalla',
         'players' => '<strong>:count</strong> rekisteröitynyttä pelaajaa',
         'title' => 'tervetuloa',
+        'see_more_news' => '',
 
         'slogan' => [
             'main' => 'parastakin parempi ilmainen rytmipeli',
@@ -41,6 +42,7 @@ return [
         'title' => 'Hae',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count lisää hakutulosta',
             'more_simple' => 'Katso lisää hakutuloksia',
             'title' => 'Beatmapit',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Kaikki foorumit',
             'link' => 'Etsi foorumilta',
+            'login_required' => '',
             'more_simple' => 'Katso lisää foorumien hakutuloksia',
             'title' => 'Foorumi',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count hakutulosta lisää',
             'more_simple' => 'Näytä enemmän pelaajia hakutuloksista',
             'more_hidden' => 'Pelaajien etsintä on rajoitettu :max pelaajalle. Kokeile tarkentaa hakua.',
@@ -119,8 +123,6 @@ return [
             'error' => 'Virhe ladattaessa uutisia. Kokeile sivun päivittämistä.',
         ],
         'header' => [
-            'welcome' => 'Hei <strong>:username</strong>!',
-            'messages' => 'Sinulle on :count uusi viesti|Sinulle on :count uutta viestiä',
             'stats' => [
                 'friends' => 'Kavereita paikalla',
                 'games' => 'Pelejä',
@@ -130,8 +132,7 @@ return [
         'beatmaps' => [
             'new' => 'Uudet Hyväksytyt Beatmapit',
             'popular' => 'Suositut Beatmapit',
-            'by' => 'luonut',
-            'plays' => ':count pelikertaa',
+            'by_user' => '',
         ],
         'buttons' => [
             'download' => 'Lataa osu!',

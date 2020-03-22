@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 'use strict';
 
@@ -22,7 +7,6 @@ const { spawnSync } = require('child_process');
 const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
-const mkdirp = require('mkdirp');
 
 const buildPath = path.resolve(__dirname, 'resources/assets/build');
 const localesPath = path.resolve(buildPath, 'locales');
@@ -59,9 +43,11 @@ function generateTranslations()
 function writeTranslations(languages)
 {
   for (const lang of languages.keys()) {
-    const json = JSON.stringify(languages.get(lang));
+    const json = languages.get(lang);
+    delete json[`${lang}.mail`];
+    const jsonString = JSON.stringify(json);
     const filename = path.resolve(localesPath, `${lang}.js`);
-    const script = `(function() { 'use strict'; Object.assign(Lang.messages, ${json}); })();`;
+    const script = `(function() { 'use strict'; Object.assign(Lang.messages, ${jsonString}); })();`;
 
     fs.writeFileSync(filename, script);
     console.log(`Created: ${filename}`);
@@ -70,7 +56,7 @@ function writeTranslations(languages)
 
 // Remove previous existing files and ensure directory exists.
 glob.sync(path.resolve(localesPath, '*.js')).forEach(fs.unlinkSync);
-mkdirp.sync(localesPath);
+fs.mkdirSync(localesPath, {recursive: true});
 
 generateTranslations();
 writeTranslations(extractLanguages());

@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'silindi',
+        'none_found' => '',
         'title' => 'Beatmap Tartışmaları',
 
         'form' => [
             '_' => 'Ara',
             'deleted' => 'Silinmiş tartışmaları içer',
+            'only_unresolved' => 'Sadece çözülmemiş tartışmaları göster',
             'types' => 'Mesaj türü',
             'username' => 'Kullanıcı adı',
+
+            'beatmapset_status' => [
+                '_' => 'Beatmap durumu',
+                'all' => 'Tümü',
+                'disqualified' => 'Diskalifiye edildi',
+                'never_qualified' => 'Nitelikli Değildi',
+                'qualified' => 'Nitelikli',
+                'ranked' => 'Dereceli',
+            ],
 
             'user' => [
                 'label' => 'Kullanıcı',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'İnceleme paylaşımını görüntüle',
+        'go_to_child' => 'Tartışmayı görüntüle',
+        'validation' => [
+            'invalid_block_type' => '',
+            'invalid_document' => '',
+            'minimum_issues' => '',
+            'missing_text' => '',
+            'too_many_blocks' => '',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => ':user tarafından çözüldü olarak işaretlendi',
             'false' => ':user tarafından yeniden açıldı',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'genel',
+        'general_all' => 'genel (hepsi)',
     ],
 
     'user_filter' => [

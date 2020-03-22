@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
     'mark_all_read' => 'Alle schließen',
+    'none' => 'Keine Benachrichtigungen',
+    'see_all' => 'alle Benachrichtigungen ansehen',
+
+    'filters' => [
+        '_' => 'alle',
+        'user' => 'profil',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'forum',
+        'news_post' => 'neuigkeiten',
+        'build' => 'versionen',
+        'channel' => 'chat',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -31,11 +43,19 @@ return [
                 'beatmapset_discussion_lock' => 'Die Diskussion der Beatmap ":title" wurde gesperrt.',
                 'beatmapset_discussion_lock_compact' => 'Die Diskussion ist gesperrt',
                 'beatmapset_discussion_post_new' => ':username hat eine neue Nachricht in der Diskussion zur Beatmap ":title" gepostet.',
+                'beatmapset_discussion_post_new_empty' => 'Neuer Beitrag auf ":title" von :username',
                 'beatmapset_discussion_post_new_compact' => 'Neuer Beitrag von :username',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Neuer Beitrag von :username',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" wurde zur Diskussion freigegeben.',
                 'beatmapset_discussion_unlock_compact' => 'Die Diskussion ist freigegeben',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => 'Problem mit qualifizierter Beatmap',
+                'beatmapset_discussion_qualified_problem' => 'Gemeldet von :username auf ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Gemeldet von :username auf ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Gemeldet von :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Gemeldet von :username',
             ],
 
             'beatmapset_state' => [
@@ -122,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Neue Medaille',
                 'user_achievement_unlock' => '":title" freigeschaltet!',
+                'user_achievement_unlock_compact' => '":title" freigeschaltet!',
             ],
         ],
     ],

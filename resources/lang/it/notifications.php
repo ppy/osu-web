@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Tutte le notifiche sono state lette!',
     'mark_all_read' => 'Cancella tutto',
+    'none' => 'Nessuna notifica',
+    'see_all' => 'vedi tutte le notifiche',
+
+    'filters' => [
+        '_' => 'tutto',
+        'user' => 'profilo',
+        'beatmapset' => 'beatmap',
+        'forum_topic' => 'forum',
+        'news_post' => 'notizie',
+        'build' => 'versioni',
+        'channel' => 'chat',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -30,12 +42,20 @@ return [
                 '_' => 'Discussione beatmap',
                 'beatmapset_discussion_lock' => 'La discussione su ":title" è stata bloccata',
                 'beatmapset_discussion_lock_compact' => 'La discussione è stata bloccata',
-                'beatmapset_discussion_post_new' => 'Nuovo post su ":title" da :username',
-                'beatmapset_discussion_post_new_compact' => 'Nuovo post da :username',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new' => 'Nuovo post su ":title" da :username: ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Nuovo post su ":title" di :username',
+                'beatmapset_discussion_post_new_compact' => 'Nuovo post da :username: ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nuovo post di :username',
                 'beatmapset_discussion_unlock' => 'La discussione su ":title" è stata sbloccata',
                 'beatmapset_discussion_unlock_compact' => 'La discussione è stata sbloccata',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => 'Problema con una beatmap qualificata',
+                'beatmapset_discussion_qualified_problem' => 'Segnalato da :username su ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Segnalato da :username su ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Segnalato da :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Segnalato da :username',
             ],
 
             'beatmapset_state' => [
@@ -122,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nuova medaglia',
                 'user_achievement_unlock' => 'Sbloccato ":title"!',
+                'user_achievement_unlock_compact' => 'Sbloccato ":title"!',
             ],
         ],
     ],

@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 @purple-lighter: #eeeeff;
 @purple-light: #aa88ff;
@@ -147,26 +132,6 @@
 @osu-colour-red-1: hsl(@osu-colour-red-hue, 100%, 70%);
 @osu-colour-red-2: hsl(@osu-colour-red-hue, 80%, 60%);
 @osu-colour-red-3: hsl(@osu-colour-red-hue, 60%, 50%);
-
-//
-// New group colours (as of 2019)
-// TODO: replace group_colour in phpbb_groups and use that instead?
-//
-@osu-colour-group-bot: @osu-colour-f1; // note: bot badges are inverted, so this is actually the background colour
-@osu-colour-group-ppy: #0066FF;
-@osu-colour-group-dev: #EB47D0;
-@osu-colour-group-gmt: #99EB47;
-@osu-colour-group-nat: #EB8C47;
-@osu-colour-group-bng: #A347EB;
-@osu-colour-group-alumni: #999999;
-@osu-colour-group-support: #EBD047;
-
-// Use this instead of fade(colour, amount) - LESS tries to parse the css var as a colour and fails.
-// This is not ideal, but not sure of a better way to do this (without modifying LESS at least)
-.osu-hsla(@colour, @alpha) {
-  @string: replace("@{colour}", "hsl\(([^,]+), ([^,]+), ([^,]+)\)", "hsla($1, $2, $3, @{alpha})");
-  @hsla: ~"@{string}";
-}
 
 @pink-text: @pink-dark;
 @green-text: @green-darker;

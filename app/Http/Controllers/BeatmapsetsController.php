@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers;
 
@@ -38,8 +23,6 @@ use Request;
 
 class BeatmapsetsController extends Controller
 {
-    protected $section = 'beatmapsets';
-
     public function destroy($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
@@ -55,7 +38,7 @@ class BeatmapsetsController extends Controller
 
         $filters = BeatmapsetSearchRequestParams::getAvailableFilters();
 
-        return view('beatmaps.index', compact('filters', 'beatmaps'));
+        return ext_view('beatmapsets.index', compact('filters', 'beatmaps'));
     }
 
     public function show($id)
@@ -70,9 +53,6 @@ class BeatmapsetsController extends Controller
             ])
             ->findOrFail($id);
 
-        $editable = priv_check('BeatmapsetDescriptionEdit', $beatmapset)->can();
-        $descriptionInclude = $editable ? 'description:editable' : 'description';
-
         $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
@@ -83,7 +63,7 @@ class BeatmapsetsController extends Controller
                 'converts',
                 'converts.failtimes',
                 'current_user_attributes',
-                $descriptionInclude,
+                'description',
                 'genre',
                 'language',
                 'ratings',
@@ -99,7 +79,7 @@ class BeatmapsetsController extends Controller
             $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
-            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset', 'commentBundle'));
+            return ext_view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset', 'commentBundle'));
         }
     }
 
@@ -134,6 +114,7 @@ class BeatmapsetsController extends Controller
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
+            'reviews_enabled' => config('osu.beatmapset.discussion_review_enabled'),
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
@@ -141,7 +122,7 @@ class BeatmapsetsController extends Controller
         if ($returnJson) {
             return $initialData;
         } else {
-            return view('beatmapsets.discussion', compact('beatmapset', 'initialData'));
+            return ext_view('beatmapsets.discussion', compact('beatmapset', 'initialData'));
         }
     }
 
@@ -252,7 +233,7 @@ class BeatmapsetsController extends Controller
                 $beatmapset,
                 new BeatmapsetTransformer(),
                 [
-                    'description:editable',
+                    'description',
                 ]
             );
         }
@@ -262,7 +243,7 @@ class BeatmapsetsController extends Controller
 
     private function getSearchResponse()
     {
-        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
+        $params = new BeatmapsetSearchRequestParams(request()->all(), Auth::user());
         $search = (new BeatmapsetSearchCached($params));
 
         $records = datadog_timing(function () use ($search) {

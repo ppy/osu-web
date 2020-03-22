@@ -1,72 +1,77 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $url = wiki_url($page->path, $page->requestedLocale);
+    $title = $page->title();
+
+    $links = [
+        [
+            'title' => trans('layout.header.help.index'),
+            'url' => wiki_url('Main_Page'),
+        ],
+    ];
+
+    $parentTitle = presence($page->subtitle());
+    if ($parentTitle !== null) {
+        $link = ['title' => $parentTitle];
+        if ($page->hasParent()) {
+            $link['url'] = wiki_url($page->parentPath(), $page->requestedLocale);
+        }
+        $links[] = $link;
+    }
+
+    $links[] = compact('title', 'url');
+@endphp
 
 @extends('master', [
-    'title' => null,
     'titlePrepend' => $page->title(true),
 ])
 
 @section('content')
-    <div class="osu-layout__row">
-        <div class="osu-page-header osu-page-header--wiki">
-            <div class="osu-page-header__title-box">
-                @if (present($page->subtitle()))
-                    <h2 class="osu-page-header__title osu-page-header__title--small">
-                        @if ($page->hasParent())
-                            <a class="osu-page-header__link" href="{{ wiki_url($page->parentPath(), $page->requestedLocale) }}">
-                                {{ $page->subtitle() }}
-                            </a>
-                        @else
-                            {{ $page->subtitle() }}
-                        @endif
-                    </h2>
-                @endif
-
-                <h1 class="osu-page-header__title osu-page-header__title--main">
-                    <a class="osu-page-header__link osu-page-header__link--plain" href="{{ wiki_url($page->path, $page->requestedLocale) }}">
-                        {{ $page->title() }}
-                    </a>
-                </h1>
-            </div>
-
+    @component('layout._page_header_v4', ['params' => [
+        'links' => $links,
+        'linksBreadcrumb' => true,
+        'theme' => 'help',
+    ]])
+        @slot('navAppend')
             @include('wiki._actions')
-        </div>
-    </div>
+        @endslot
+    @endcomponent
+
 
     <div class="osu-page osu-page--wiki">
-        @include('wiki._notice')
-
         <div class="wiki-page">
-            <div class="hidden-xs wiki-page__toc u-fancy-scrollbar">
-                <div class="wiki-toc">
-                    <h2 class="wiki-toc__title">
-                        {{ trans('wiki.show.toc') }}
-                    </h2>
+            <div class="wiki-page__toc">
+                <div class="sidebar">
+                    <button
+                        type="button"
+                        class="sidebar__mobile-toggle js-mobile-toggle"
+                        data-mobile-toggle-target="wiki-toc"
+                    >
+                        <h2 class="sidebar__title">
+                            {{ trans('wiki.show.toc') }}
+                        </h2>
 
-                    @if ($page->page() !== null)
-                        @include('wiki._toc')
-                    @endif
+                        <div class="visible-xs sidebar__mobile-toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </button>
+
+                    <div class="js-mobile-toggle hidden-xs sidebar__content" data-mobile-toggle-id="wiki-toc">
+                        @if ($page->get() !== null)
+                            @include('wiki._toc')
+                        @endif
+                    </div>
                 </div>
             </div>
 
             <div class="wiki-page__content">
-                @if ($page->page() !== null)
-                    {!! $page->page()['output'] !!}
+                @include('wiki._notice')
+
+                @if ($page->get() !== null)
+                    {!! $page->get()['output'] !!}
                 @else
                     <div class="wiki-content">
                         <p>

@@ -1,0 +1,78 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+.beatmap-discussion-review-post-embed {
+  @_top: beatmap-discussion-review-post-embed;
+  @beatmap-icon-size: 22px; // font-size from beatmap-icon.less
+  @beatmap-icon-padding: 10px;
+  @beatmap-icon-container-size: @beatmap-icon-size + (@beatmap-icon-padding * 2);
+  @message-type-icon-size: 15px;
+
+  display: flex;
+  overflow: hidden;
+  background-color: @osu-colour-b2;
+  flex: 1;
+  margin: 5px 0;
+
+  .default-box-shadow();
+  .default-border-radius();
+
+  &__error {
+    flex: 1;
+    margin: 10px;
+    text-align: center;
+  }
+
+  &__meta {
+    display: flex;
+    width: 100px;
+    height: @beatmap-icon-container-size;
+    align-items: center;
+  }
+
+  &__icon {
+    width: @beatmap-icon-container-size;
+    padding: @beatmap-icon-padding;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link {
+    padding: 10px;
+  }
+
+  &__link-text {
+    color: @osu-colour-f1;
+
+    .link-plain();
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+  }
+
+  &__body {
+    flex: 1;
+    margin: 10px;
+    margin-left: 0;
+  }
+
+  &__timestamp-text {
+    color: @osu-colour-f1;
+    font-size: 9px;
+  }
+
+  &__stripe {
+    align-self: stretch;
+    background-color: @osu-colour-b4;
+    border-radius: 1px;
+    flex: none;
+    width: 2px;
+    margin: 10px;
+
+    .@{_top}--praise & {
+      background-color: @osu-colour-blue-3;
+    }
+    .@{_top}--resolved & {
+      background-color: @osu-colour-lime-3;
+    }
+  }
+}

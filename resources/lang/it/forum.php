@@ -39,10 +39,6 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Nuova risposta dal topic ":title"',
-    ],
-
     'forums' => [
         'latest_post' => 'Post più recente',
 
@@ -64,7 +60,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Vuoi veramente eliminare il post?',
         'confirm_restore' => 'Vuoi veramente ripristinare il post?',
-        'edited' => 'Ultima modifica di :user :when, modificato :count volte in totale.',
+        'edited' => 'Ultima modifica di :user :when, modificato :count_delimited volta in totale.|Ultima modifica di :user :when, modificato :count_delimited volte in totale.',
         'posted_at' => 'postato :when',
 
         'actions' => [
@@ -81,7 +77,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited post|:count_delimited post',
-            'topic_starter' => 'Starter del Topic',
+            'topic_starter' => 'Creatore del Topic',
         ],
     ],
 
@@ -143,9 +139,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Iscrizioni Forum',
             'title_compact' => 'iscrizioni forum',
-            'title_main' => '<strong>Iscrizioni</strong> Forum',
 
             'box' => [
                 'total' => 'Topic a cui sei iscritto',
@@ -276,8 +270,8 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Mostra post eliminati',
+            'hide' => 'Nascondi post eliminati',
         ],
 
         'show' => [

@@ -1,35 +1,19 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 @import "app";
 
-@font-content: 'Open Sans', sans-serif;
-@font-content-inter: Inter, sans-serif;
-@font-default-torus: Torus, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
-@font-default: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
-@font-default-vi: Exo, 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
-@font-default-zh: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
-@font-default-zh-tw: 'Exo 2', 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-content: Inter, sans-serif;
+@font-default: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-vi: Quicksand, Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-default-zh: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-default-zh-tw: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
 
 @screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
 @mobile: ~"(max-width: @{screen-mobile-max})";
-@narrow: ~"(max-width: 480px)";
+@narrow: ~"(max-width: 479px)";
+@narrow-up: ~"(min-width: 480px)";
 
 @highdpi: ~"(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
 
@@ -51,18 +35,17 @@
 
 // mobile nav
 // TODO: un-bootstrap names
-@navbar-height: 60px;
+@navbar-height: @nav2-height--pinned; // also in lib/import-shims.coffee
 @navbar-padding-horizontal: 10px;
 @navbar-padding-vertical: 10px;
+@navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
 @bar-size: 3px;
 @logo-size: 100px;
 // header left margin (20) + logo (100) + menu left margin (10)
 @padding-big: (20px + @logo-size + 10px);
-// ┐(ﾟ ヮﾟ)┌
-@padding-wiki-desktop: 40px;
 
-@gutter-profile-page: 20px;
+@gutter-profile-page: @gutter-v2;
 @gutter-profile-page-desktop: @gutter-desktop;
 @padding-profile-page: 10px;
 @profile-page-action: 20px;
@@ -74,12 +57,13 @@
 @gutter-v2: 10px;
 @gutter-v2-desktop: 50px;
 
-@height--nav-popup: 210px; // min-height; actual height will be calculated by js.
+@gutter-sidebar-desktop: 30px;
 
-@navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
+@height--nav-popup: 210px; // min-height; actual height will be calculated by js.
 
 @border-radius--nav-avatar: 10px;
 @border-radius--extra: 20px;
+@border-radius--large: 10px;
 
 @forum-item-overflow: @gutter-v2 - 2px;
 @forum-item-overflow-desktop: @gutter-v2-desktop - 20px;
@@ -96,25 +80,27 @@
 
 @z-index--beatmapset-header: 1;
 @z-index--contest-header: 1;
-@z-index--download-header: 1;
+@z-index--header-nav-v4-active: 1;
 @z-index--page-header: 1;
-@z-index--tournament-header: 1;
 @z-index--notification-banner-v2: 1;
 @z-index--forum-post-edit-mode: 1;
 @z-index--forum-topic-reply-stick: 1; // inside fixed-bar
+@z-index--wiki-search: 1;
 
 @z-index--beatmaps-panel: 4;
 @z-index--profile-page-cover-selector: 5;
 @z-index--profile-previous-usernames: 10;
 @z-index--profile-tournament-banner: 11;
 @z-index--simple-menu: 101;
+@z-index--simple-menu-hover-object: 102;
 @z-index--admin-menu: 499;
 @z-index--back-to-top: 500;
-@z-index--nav-bar: 501;
 @z-index--fixed-bar: 502;
 @z-index--user-card-tooltip: 509;
 @z-index--blackout: 510;
-@z-index--blackout-visible: 511;
+// FIXME: this should be lower than blackout and increased on mobile when the menu is active
+@z-index--nav-bar: 511;
+@z-index--blackout-visible: 512;
 @z-index--nav-float: 999;
 // Xsolla overlay: 1000
 // navbar-static-top: 1000 (bootstrap nav for mobile)
@@ -178,18 +164,12 @@
 @font-size--header-wiki-6: @font-size--title-small;
 
 @font-size--new-header-title: 30px;
-@font-size--new-header-subtitle: 14px;
-
-@font-size--new-header-title-mobile: 24px;
-@font-size--new-header-subtitle-mobile: 12px;
 
 @font-size--forum-topic-entry-icon: 16px;
 @font-size--forum-topic-entry-icon-small: 10px;
 @font-size--forum-post-heading: 20px;
 @font-size--forum-quote-heading: 13px;
 
-@font-size--store-header-link-icon: 18px;
-@font-size--store-header-link-text: 12px;
 @font-size--store-notice-text: 15px;
 @font-size--store-notice-title: 13px;
 
@@ -257,6 +237,7 @@
 @beatmap-discussion--color-praise: @osu-colour-blue-3;
 @beatmap-discussion--color-problem: @osu-colour-red-3;
 @beatmap-discussion--color-resolved: @osu-colour-lime-3;
+@beatmap-discussion--color-review: @osu-colour-c2;
 @beatmap-discussion--color-suggestion: @osu-colour-orange-3;
 
 @beatmappack-listing--gutter: 20px;
@@ -310,11 +291,8 @@
 @diff-normal: @blue;
 @diff-hard: @yellow;
 @diff-insane: @pink;
-@diff-expert: @purple;
-@diff-expert--light: @purple-light;
-@diff-expert-plus: #000;
-// for when black text won't just work on dark background
-@diff-expert-plus--light: #999;
+@diff-expert: @purple-light;
+@diff-expert-plus: #121415;
 
 // store slider
 @slider-callout--arrow-height: 12px;

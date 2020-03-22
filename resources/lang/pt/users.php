@@ -22,7 +22,7 @@ return [
     'deleted' => '[utilizador eliminado]',
 
     'beatmapset_activities' => [
-        'title' => "Histórico de Modificações do :user",
+        'title' => "Histórico de modificações do :user",
         'title_compact' => 'Modding',
 
         'discussions' => [
@@ -49,39 +49,67 @@ return [
     'blocks' => [
         'banner_text' => 'Tu bloqueaste este utilizador.',
         'blocked_count' => 'utilizadores bloqueados (:count)',
-        'hide_profile' => 'ocultar perfil',
+        'hide_profile' => 'Ocultar perfil',
         'not_blocked' => 'Esse utilizador não está bloqueado.',
-        'show_profile' => 'mostrar perfil',
+        'show_profile' => 'Mostrar perfil',
         'too_many' => 'Limite de bloqueios atingido.',
         'button' => [
-            'block' => 'bloquear',
-            'unblock' => 'desbloquear',
+            'block' => 'Bloquear',
+            'unblock' => 'Desbloquear',
         ],
     ],
 
     'card' => [
         'loading' => 'A carregar...',
-        'send_message' => 'enviar mensagem',
+        'send_message' => 'Enviar mensagem',
+    ],
+
+    'disabled' => [
+        'title' => 'Oh não! Parece que a tua conta foi desativada.',
+        'warning' => "No caso de teres desrespeitado uma regra, por favor nota que geralmente há um período de espera de 1 mês durante o qual não iremos considerar nenhum pedido de amnistia. Após este período, podes entrar em contacto connosco caso aches necessário. Por favor nota que a criação de novas contas após teres tido uma desativada resultará numa <strong>extensão deste período de espera de 1 mês </strong>. Por favor nota também que para <strong>cada conta que cries, estás a violar ainda mais as regras</strong>. Sugerimos muito que não sigas este caminho!",
+
+        'if_mistake' => [
+            '_' => 'Se achas que isto é um engano, poderás entrar em contacto connosco (via :email ou ao clicar em "?" no canto inferior direito desta página). Por favor nota que estamos sempre totalmente confiantes com as nossas ações, uma vez que se baseiam em dados fidedignos. Nós reservamo-nos ao direito de ignorar o teu pedido se sentirmos que estás a ser intencionalmente desonesto.',
+            'email' => 'email',
+        ],
+
+        'reasons' => [
+            'compromised' => 'A tua conta foi considerada como comprometida. Poderá estar desativada temporariamente enquanto a sua identidade for confirmada.',
+            'opening' => 'Há uma série de razões pelas quais podem resultar na desativação da tua conta:',
+
+            'tos' => [
+                '_' => 'Desrespeitaste pelo menos uma das nossas :community_rules ou :tos.',
+                'community_rules' => 'regras da comunidade',
+                'tos' => 'termos de serviço',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "A tua conta não foi usada há muito tempo.",
+        ],
     ],
 
     'login' => [
         '_' => 'Iniciar sessão',
-        'locked_ip' => 'o teu endereço de IP foi bloqueado. Por favor espera uns minutos.',
-        'username' => 'Nome de utilizador',
-        'password' => 'Palavra-passe',
         'button' => 'Iniciar sessão',
         'button_posting' => 'A iniciar sessão...',
+        'email_login_disabled' => 'Neste momento, a autenticação por email está desativada. Por favor usa o nome de utilizador como alternativa.',
+        'failed' => 'Início de sessão incorreto',
+        'forgot' => 'Esqueceste-te da palavra-passe?',
+        'info' => 'Por favor inicia sessão para continuar',
+        'locked_ip' => 'o teu endereço de IP foi bloqueado. Por favor espera uns minutos.',
+        'password' => 'Palavra-passe',
+        'register' => "Não tens uma conta osu? Cria uma nova",
         'remember' => 'Lembrar este computador',
         'title' => 'Por favor inicia sessão para proceder',
-        'failed' => 'Início de sessão incorreto',
-        'register' => "Não tens uma conta osu? Cria uma nova",
-        'forgot' => 'Esqueceste-te da palavra-passe?',
+        'username' => 'Nome de utilizador',
+
         'beta' => [
             'main' => 'O acesso beta está atualmente restrito a utilizadores privilegiados.',
             'small' => '(osu!supporters terão acesso em breve)',
         ],
-
-        'here' => 'aqui', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
@@ -97,21 +125,21 @@ return [
     'logout_confirm' => 'Tens a certeza que queres terminar a sessão? :(',
     'report' => [
         'button_text' => 'denunciar',
-        'comments' => 'Comentários Adicionais',
+        'comments' => 'Comentários adicionais',
         'placeholder' => 'Por favor fornece qualquer informação que acredites ser útil.',
         'reason' => 'Motivo',
         'thanks' => 'Obrigado pela tua denúncia!',
-        'title' => 'Denunciar :username?',
+        'title' => 'Queres denunciar :username?',
 
         'actions' => [
-            'send' => 'Enviar Relatório',
+            'send' => 'Enviar denúncia',
             'cancel' => 'Cancelar',
         ],
 
         'options' => [
             'cheating' => 'Jogada suja / Fazer batota',
-            'insults' => 'Insultar-me / outros',
-            'spam' => 'Spamar',
+            'insults' => 'Insulto a mim ou a outros',
+            'spam' => 'Spam',
             'unwanted_content' => 'Enviar ligações com conteúdo impróprio',
             'nonsense' => 'Disparate',
             'other' => 'Outro (escreve abaixo)',
@@ -139,14 +167,14 @@ return [
 
         'edit' => [
             'cover' => [
-                'button' => 'Mudar a Capa do Perfil',
+                'button' => 'Mudar a capa do perfil',
                 'defaults_info' => 'Mais opções de capa estarão disponíveis no futuro',
                 'upload' => [
-                    'broken_file' => 'Falha ao processar imagem. Verifica a imagem carregada e tenta outra vez.',
+                    'broken_file' => 'Falha ao processar a imagem. Verifica a imagem carregada e tenta outra vez.',
                     'button' => 'Carregar imagem',
                     'dropzone' => 'Larga aqui para carregar',
-                    'dropzone_info' => 'Também podes largar aqui a tua imagem para carregar',
-                    'size_info' => 'O tamanho da capa deveria ser 2800x620',
+                    'dropzone_info' => 'Também podes largar aqui a tua imagem para carregá-la',
+                    'size_info' => 'O tamanho da capa deverá ter 2800x620',
                     'too_large' => 'O ficheiro carregado é demasiado grande.',
                     'unsupported_format' => 'Formato não suportado.',
 
@@ -168,8 +196,8 @@ return [
             'unranked' => 'Nenhuma partida recente',
 
             'achievements' => [
-                'achieved-on' => 'Conseguida em :date',
-                'locked' => 'Bloqueado',
+                'achieved-on' => 'Alcançada em :date',
+                'locked' => 'Bloqueada',
                 'title' => 'Proezas',
             ],
             'beatmaps' => [
@@ -178,56 +206,56 @@ return [
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Beatmaps Favoritos',
+                    'title' => 'Beatmaps favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps no Cemitério',
+                    'title' => 'Beatmaps no cemitério',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Adorados',
+                    'title' => 'Beatmaps adorados',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Classificados e Aprovados',
+                    'title' => 'Beatmaps classificados e aprovados',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps Pendentes',
+                    'title' => 'Beatmaps pendentes',
                 ],
             ],
             'discussions' => [
                 'title' => 'Discussões',
-                'title_longer' => 'Discussões Recentes',
+                'title_longer' => 'Discussões recentes',
                 'show_more' => 'ver mais discussões',
             ],
             'events' => [
                 'title' => 'Eventos',
-                'title_longer' => 'Eventos Recentes',
+                'title_longer' => 'Eventos recentes',
                 'show_more' => 'ver mais eventos',
             ],
             'historical' => [
-                'empty' => 'Sem registos de desempenho. :(',
+                'empty' => 'Sem registos de desempenho :(',
                 'title' => 'Historial',
 
                 'monthly_playcounts' => [
-                    'title' => 'Histórico de Jogos',
+                    'title' => 'Histórico de jogos',
                     'count_label' => 'Partidas',
                 ],
                 'most_played' => [
                     'count' => 'vezes jogados',
-                    'title' => 'Beatmaps Mais Jogados',
+                    'title' => 'Os beatmaps mais jogados',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisão: :percentage',
-                    'title' => 'Partidas Recentes (24h)',
+                    'title' => 'Partidas recentes (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Historial de Repetições Vistas',
-                    'count_label' => 'Repetições Assistidas',
+                    'title' => 'Historial de repetições vistas',
+                    'count_label' => 'Repetições assistidas',
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => 'Historial Recente de Kudosu',
+                'recent_entries' => 'Historial recente de kudosu',
                 'title' => 'Kudosu!',
-                'total' => 'Total de Kudosu Ganhos',
+                'total' => 'Total de kudosu ganhos',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -235,34 +263,34 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Recebido :amount da revogação negada de kudosu da publicação modificada :post',
+                            'give' => ':amount recebido da revogação negada de kudosu da publicação de modding :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Negado :amount da publicação modificada :post',
+                            'reset' => ':amount recusado da publicação de modding :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Perdido :amount de modificares a eliminação da publicação de :post',
+                            'reset' => ':amount perdido da publicação de modding :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Recebido :amount de modificares a restauração da publicação de :post',
+                            'give' => ':amount recebido da restauração da publicação de modding :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Recebido :amount de obteres votos em modificares a publicação de :post',
-                            'reset' => 'Perdido :amount de perderes votos em modificares a publicação de :post',
+                            'give' => ':amount recebido de obteres votos na publicação de modding :post',
+                            'reset' => ':amount perdido de perderes votos na publicação de modding :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Recebido :amount da recalculação dos votos em modificares a publicação de :post',
-                            'reset' => 'Perdido :amount da recalculação de votos em modificares a publicação de :post',
+                            'give' => ':amount recebido da recalculação dos votos na publicação de modding :post',
+                            'reset' => ':amount perdido da recalculação de votos na publicação de modding :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Recebido :amount de :giver por uma publicação em :post',
+                        'give' => ':amount recebido de :giver por uma publicação em :post',
                         'reset' => 'Kudosu reiniciado por :giver para a publicação :post',
                         'revoke' => 'Kudosu negado por :giver para a publicação :post',
                     ],
@@ -283,40 +311,40 @@ return [
             ],
             'posts' => [
                 'title' => 'Publicações',
-                'title_longer' => 'Publicações Recentes',
+                'title_longer' => 'Publicações recentes',
                 'show_more' => 'ver mais publicações',
             ],
             'recent_activity' => [
                 'title' => 'Recente',
             ],
             'top_ranks' => [
-                'download_replay' => 'Transferir Repetição',
-                'empty' => 'Nenhum registo de desempenhos espectaculares ainda. :(',
+                'download_replay' => 'Transferir repetição',
+                'empty' => 'Nenhum registo de desempenhos espectaculares ainda :(',
                 'not_ranked' => 'Somente beatmaps classificados é que dão pp.',
-                'pp_weight' => 'ponderada :percentage',
+                'pp_weight' => ':percentage ponderada',
                 'title' => 'Classificações',
 
                 'best' => [
-                    'title' => 'Melhor Desempenho',
+                    'title' => 'Melhor desempenho',
                 ],
                 'first' => [
-                    'title' => 'Classificações de Primeiro Lugar',
+                    'title' => 'Classificações de primeiro lugar',
                 ],
             ],
             'votes' => [
-                'given' => 'Votos Dados (últimos 3 meses)',
-                'received' => 'Votos Recebidos (últimos 3 meses)',
+                'given' => 'Votos dados (últimos 3 meses)',
+                'received' => 'Votos recebidos (últimos 3 meses)',
                 'title' => 'Votos',
-                'title_longer' => 'Votos Recentes',
+                'title_longer' => 'Votos recentes',
                 'vote_count' => ':count_delimited voto|:count_delimited votos',
             ],
             'account_standing' => [
-                'title' => 'Reputação da Conta',
+                'title' => 'Reputação da conta',
                 'bad_standing' => "A conta de <strong>:username</strong> não tem uma boa reputação :(",
                 'remaining_silence' => '<strong>:username</strong> será capaz de falar outra vez em :duration.',
 
                 'recent_infringements' => [
-                    'title' => 'Infrações Recentes',
+                    'title' => 'Infrações recentes',
                     'date' => 'data',
                     'action' => 'ação',
                     'length' => 'duração',
@@ -325,31 +353,26 @@ return [
                     'actor' => 'por :username',
 
                     'actions' => [
-                        'restriction' => 'Banimento',
+                        'restriction' => 'Banido',
                         'silence' => 'Silenciado',
-                        'note' => 'Nota',
+                        'note' => 'Notificado',
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'Jogador :info',
-            'info' => 'Informação',
         ],
 
         'info' => [
             'discord' => '',
             'interests' => 'Interesses',
             'lastfm' => 'Last.fm',
-            'location' => 'Localização Atual',
+            'location' => 'Localização atual',
             'occupation' => 'Ocupação',
             'skype' => '',
             'twitter' => '',
-            'website' => 'Website',
+            'website' => 'Sítio web',
         ],
         'not_found' => [
-            'reason_1' => 'Ele/ela poderá ter mudado de nome de utilizador.',
+            'reason_1' => 'É capaz de ter mudado o nome de utilizador.',
             'reason_2' => 'A conta poderá estar indisponível devido a problemas de segurança ou de abuso.',
             'reason_3' => 'Poderás ter cometido um erro de escrita!',
             'reason_header' => 'Há algumas possíveis razões para isto:',
@@ -362,7 +385,7 @@ return [
             'placeholder' => 'Escreve o conteúdo da página aqui',
 
             'restriction_info' => [
-                '_' => 'Tu precisas de ser um :link para desbloquear esta funcionalidade.',
+                '_' => 'Precisas de ser um :link para desbloquear esta funcionalidade.',
                 'link' => 'osu!supporter',
             ],
         ],
@@ -372,28 +395,28 @@ return [
         ],
         'rank' => [
             'country' => 'Classificação nacional para :mode',
-            'country_simple' => 'Classificação Nacional',
+            'country_simple' => 'Classificação nacional',
             'global' => 'Classificação global para :mode',
-            'global_simple' => 'Classificação Global',
+            'global_simple' => 'Classificação global',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precisão de Acertos',
+            'hit_accuracy' => 'Precisão de acertos',
             'level' => 'Nível :level',
             'level_progress' => 'Progresso para o próximo nível',
-            'maximum_combo' => 'Combo Máximo',
+            'maximum_combo' => 'Combo máximo',
             'medals' => 'Medalhas',
-            'play_count' => 'Número de Partidas',
-            'play_time' => 'Tempo Total de Jogo',
-            'ranked_score' => 'Pontuação Classificada',
-            'replays_watched_by_others' => 'Repetições Vistas por Outros',
-            'score_ranks' => 'Classificações de Pontuação',
-            'total_hits' => 'Acertos Totais',
-            'total_score' => 'Pontuação Total',
+            'play_count' => 'Número de partidas',
+            'play_time' => 'Tempo total de jogo',
+            'ranked_score' => 'Pontuação classificada',
+            'replays_watched_by_others' => 'Repetições vistas por outros',
+            'score_ranks' => 'Classificações das pontuações',
+            'total_hits' => 'Acertos totais',
+            'total_score' => 'Pontuação total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps Classificados e Aprovados',
-            'loved_beatmapset_count' => 'Beatmaps Adorados',
-            'unranked_beatmapset_count' => 'Beatmaps Pendentes',
-            'graveyard_beatmapset_count' => 'Beatmaps no Cemitério',
+            'ranked_and_approved_beatmapset_count' => 'Beatmaps classificados e aprovados',
+            'loved_beatmapset_count' => 'Beatmaps adorados',
+            'unranked_beatmapset_count' => 'Beatmaps pendentes',
+            'graveyard_beatmapset_count' => 'Beatmaps no cemitério',
         ],
     ],
 
@@ -406,7 +429,7 @@ return [
         'saved' => 'Criado por utilizadores',
     ],
     'verify' => [
-        'title' => 'Verificação da Conta',
+        'title' => 'Verificação da conta',
     ],
 
     'view_mode' => [

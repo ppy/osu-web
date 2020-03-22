@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'terhapus',
+        'none_found' => '',
         'title' => 'Laman Diskusi Beatmap',
 
         'form' => [
             '_' => 'Cari',
             'deleted' => 'Sertakan diskusi yang telah dihapus',
+            'only_unresolved' => 'Hanya tampilkan diskusi yang belum selesai',
             'types' => 'Tipe pesan',
             'username' => 'Nama Pengguna',
+
+            'beatmapset_status' => [
+                '_' => 'Status Beatmap',
+                'all' => 'Semua',
+                'disqualified' => 'Disqualified',
+                'never_qualified' => 'Tidak pernah Qualified',
+                'qualified' => 'Qualified',
+                'ranked' => 'Ranked',
+            ],
 
             'user' => [
                 'label' => 'Pengguna',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Lihat Ulasan',
+        'go_to_child' => 'Lihat Topik Diskusi',
+        'validation' => [
+            'invalid_block_type' => 'tipe blok tidak sah',
+            'invalid_document' => 'kajian tidak sah',
+            'minimum_issues' => 'kajian harus tersusun atas setidaknya :count isu|kajian harus tersusun atas setidaknya :count isu',
+            'missing_text' => 'tidak terdapat tulisan pada blok',
+            'too_many_blocks' => 'kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu|kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Ditandai selesai oleh :user',
             'false' => 'Dibuka ulang oleh :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'umum',
+        'general_all' => 'umum (semua)',
     ],
 
     'user_filter' => [

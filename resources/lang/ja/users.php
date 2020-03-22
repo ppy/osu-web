@@ -47,10 +47,10 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => 'このユーザーにブロックされています。',
+        'banner_text' => 'このユーザーをブロックしています',
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
-        'not_blocked' => 'このユーザーにはブロックされていません。',
+        'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
         'too_many' => 'ブロックできる上限に達しました。',
         'button' => [
@@ -64,24 +64,52 @@ return [
         'send_message' => 'メッセージの送信',
     ],
 
-    'login' => [
-        '_' => 'ログイン',
-        'locked_ip' => 'あなたのIPアドレスは規制されています。数分後もう一度お試しください。',
-        'username' => 'ユーザー名',
-        'password' => 'パスワード',
-        'button' => 'ログイン',
-        'button_posting' => 'ログイン中・・・',
-        'remember' => 'ログイン状態を保持する',
-        'title' => '続行するにはログインが必要です',
-        'failed' => 'ログインに失敗しました',
-        'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
-        'forgot' => 'パスワードを忘れましたか？',
-        'beta' => [
-            'main' => 'ベータアクセスは権限があるユーザーのみに付与されます',
-            'small' => '(osu!サポーターはすぐ手に入ります)',
+    'disabled' => [
+        'title' => 'ああ！アカウントが無効になっているようです。',
+        'warning' => "ルールに違反した場合は、通常１か月のクールダウン期間があり、その間のリクエストは考慮されません。この期間の後、必要と思われる場合はお気軽にお問い合わせください。無効にしたアカウントを1つ作成した後に新しいアカウントを作成すると、<strong>１か月のクールダウンが延長される</strong>ことに注意してください。また、<strong>作成するすべてのアカウントが、さらなる規則に違反することに注意してください</strong>。この道をたどらないでください！",
+
+        'if_mistake' => [
+            '_' => 'これが間違いだと思われる場合は、お気軽にお問い合わせください（:email を使用するか、このページの右下にある[?]をクリックしてください）。これは非常に堅実なデータに基づいて行われています。意図的な不正であると判断した場合、私達はリクエストを無視する権利を留保します。',
+            'email' => 'メールアドレス',
         ],
 
-        'here' => 'こちら', // this is substituted in when generating a link above. change it to suit the language.
+        'reasons' => [
+            'compromised' => 'アカウントが侵害されたとみなされました。 IDが確認されるまでの間、一時的に無効にされる場合があります。',
+            'opening' => 'アカウントが無効になる原因にはいくつかの理由があります:',
+
+            'tos' => [
+                '_' => 'あなたは一つ以上の:community_rules もしくは :tos に違反しています。',
+                'community_rules' => 'コミュニティルール',
+                'tos' => '利用規約',
+            ],
+        ],
+    ],
+
+    'force_reactivation' => [
+        'reason' => [
+            'inactive_different_country' => "あなたのアカウントは長期間使用されていません。",
+        ],
+    ],
+
+    'login' => [
+        '_' => 'ログイン',
+        'button' => 'ログイン',
+        'button_posting' => 'ログイン中・・・',
+        'email_login_disabled' => '現在、メールでのログインは無効になっています。代わりにユーザー名を使用してください。',
+        'failed' => 'ログインに失敗しました',
+        'forgot' => 'パスワードを忘れましたか？',
+        'info' => 'ログインして続行してください',
+        'locked_ip' => 'あなたのIPアドレスはロックされています。数分後もう一度お試しください。',
+        'password' => 'パスワード',
+        'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
+        'remember' => 'ログイン状態を保持する',
+        'title' => '続行するにはログインが必要です',
+        'username' => 'ユーザー名',
+
+        'beta' => [
+            'main' => 'ベータアクセスは権限があるユーザーのみに付与されます。',
+            'small' => '(osu!サポーターはすぐ手に入ります)',
+        ],
     ],
 
     'posts' => [
@@ -123,7 +151,7 @@ return [
     ],
     'show' => [
         'age' => ':age歳',
-        'change_avatar' => 'アバター画像の変更',
+        'change_avatar' => 'プロフィール画像の変更',
         'first_members' => '創設時からのメンバー',
         'is_developer' => 'osu!開発者',
         'is_supporter' => 'osu!サポーター',
@@ -168,7 +196,7 @@ return [
             'unranked' => '最近のプレイはありません',
 
             'achievements' => [
-                'achieved-on' => '取得日時 :date',
+                'achieved-on' => '達成日 :date',
                 'locked' => 'ロック',
                 'title' => '実績',
             ],
@@ -317,7 +345,7 @@ return [
 
                 'recent_infringements' => [
                     'title' => '最近の違反',
-                    'date' => '日付',
+                    'date' => '発生日',
                     'action' => 'アクション',
                     'length' => '期間',
                     'length_permanent' => '永久',
@@ -331,11 +359,6 @@ return [
                     ],
                 ],
             ],
-        ],
-
-        'header_title' => [
-            '_' => 'プレイヤー :info',
-            'info' => '情報',
         ],
 
         'info' => [
@@ -368,10 +391,10 @@ return [
         ],
         'post_count' => [
             '_' => 'フォーラム投稿数 :link',
-            'count' => ':count個',
+            'count' => ':count_delimited個',
         ],
         'rank' => [
-            'country' => ':modeの国内ランク',
+            'country' => ':modeの国別ランク',
             'country_simple' => '国別ランキング',
             'global' => ':modeの世界ランク',
             'global_simple' => '世界ランキング',

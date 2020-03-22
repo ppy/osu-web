@@ -19,17 +19,11 @@
  */
 
 return [
-    'title' => 'Resetare parolă',
-
     'button' => [
         'cancel' => 'Anulează',
         'resend' => 'Retrimite e-mailul de verificare',
         'set' => 'Setează parola',
         'start' => 'Începe',
-    ],
-
-    'email' => [
-        'subject' => 'recuperarea contului osu!',
     ],
 
     'error' => [

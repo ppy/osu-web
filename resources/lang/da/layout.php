@@ -20,37 +20,122 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rytmen er kun et *klik* væk!  Med Ouendan/EBA, Taiko og originale spilmodes, såvel som en fuld funktionel beatmap-editor.',
+        'page_description' => 'osu! - Rytme er kun et *klik* væk!  Med Ouendan/EBA, Taiko og originale spil-modes, såvel som en fuld funktionel level-editor.',
     ],
 
     'header' => [
-        'community' => [
-            '_' => '',
+        'admin' => [
+            '_' => 'admin',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'beatmapset covers',
+            'contest' => 'konkurrence',
+            'contests' => 'konkurrencer',
+            'root' => 'konsol',
+            'store_orders' => 'butik admin',
+        ],
 
-            'forum' => '',
+        'artists' => [
+            '_' => 'udvalgte kunstnere',
+            'index' => 'katalog',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'beatmap',
+            'discussions' => 'diskussion',
+            'index' => 'katalog',
+            'show' => 'info',
+            'packs' => 'pakker',
+        ],
+
+        'changelog' => [
+            '_' => 'ændringsoversigt',
+            'index' => 'katalog',
+        ],
+
+        'community' => [
+            '_' => 'Fællesskab',
+            'comments' => 'kommentarer',
+            'contests' => 'konkurrencer',
+            'forum' => 'Forum',
+            'livestream' => 'livestreams',
+        ],
+
+        'error' => [
+            '_' => 'fejl',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'indeks',
+        ],
+
+        'home' => [
+            '_' => 'hjem',
+            'password_reset' => 'nulstil adgangskode',
+        ],
+
+        'matches' => [
+            '_' => 'kamp historik',
+        ],
+
+        'notice' => [
+            '_' => 'meddelelse',
+        ],
+
+        'notifications' => [
+            '_' => 'notifikationer',
+            'index' => 'historik',
+        ],
+
+        'rankings' => [
+            '_' => 'rang',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'indkøbskurv',
+            'order' => 'faktura',
+            'orders' => 'ordrehistorik',
+            'product' => 'produkt',
+            'products' => 'produkter',
+        ],
+
+        'tournaments' => [
+            '_' => 'turneringer',
+            'index' => 'katalog',
+        ],
+
+        'users' => [
+            '_' => 'bruger',
+            'forum_posts' => 'forumindlæg',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
+        'close' => 'Luk (Esc)',
+        'fullscreen' => 'Skift til fuldskærm',
         'zoom' => 'Zoom ind/ud',
-        'previous' => '',
-        'next' => '',
+        'previous' => 'Forrige (højre pil)',
+        'next' => 'Næste (ventre pil)',
     ],
 
     'menu' => [
         'home' => [
             '_' => 'hjem',
             'account-edit' => 'indstillinger',
-            'account-verifyLink' => '',
+            'account-verifyLink' => 'Bekræftelse Gennemført',
+            'beatmapset-watches-index' => 'modding overvågningsliste',
+            'changelog-build' => 'build',
+            'changelog-index' => 'ændringsoversigt',
+            'client_verifications-create' => 'osu! kontobekræftelse',
+            'forum-topic-watches-index' => 'forum abonnementer',
             'friends-index' => 'venner',
-            'changelog-index' => 'changelog',
-            'changelog-build' => 'byg',
             'getDownload' => 'download',
             'getIcons' => 'ikoner',
             'groups-show' => 'grupper',
-            'index' => 'dashboard',
+            'index' => 'instrumentbræt',
             'legal-show' => 'information',
             'messages-index' => 'beskeder',
             'news-index' => 'nyheder',
@@ -59,27 +144,27 @@ return [
             'search' => 'søg',
             'supportTheGame' => 'støt spillet',
             'team' => 'team',
+            'testflight' => 'prøveflyvning',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profil',
+            'friends' => 'venner',
+            'settings' => 'indstillinger',
         ],
         'help' => [
             '_' => 'hjælp',
             'getFaq' => 'faq',
-            'getRules' => 'rules',
-            'getSupport' => 'support',
+            'getRules' => 'regler',
+            'getSupport' => 'nej, jeg behøver virkelig noget hjælp!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
             'artists' => 'udvalgte kunstnere',
-            'beatmap_discussion_posts-index' => 'beatmap discussion posts',
-            'beatmap_discussions-index' => 'beatmap discussions',
-            'beatmapset-watches-index' => 'modding watchlist',
-            'beatmapset_discussion_votes-index' => 'beatmap discussion votes',
+            'beatmap_discussion_posts-index' => 'beatmap diskussion opslag',
+            'beatmap_discussions-index' => 'beatmap diskussioner',
+            'beatmapset_discussion_votes-index' => 'beatmap diskussion votes',
             'beatmapset_events-index' => 'beatmapset events',
             'index' => 'liste',
             'packs' => 'pakker',
@@ -93,7 +178,7 @@ return [
             '_' => 'rangering',
             'index' => 'præstation',
             'performance' => 'præstation',
-            'charts' => 'baner',
+            'charts' => 'spotlights',
             'score' => 'score',
             'country' => 'land',
             'kudosu' => 'kudosu',
@@ -103,7 +188,7 @@ return [
             'chat' => 'chat',
             'chat-index' => 'chat',
             'dev' => 'udvikling',
-            'getForum' => 'forum',
+            'getForum' => 'forummer',
             'getLive' => 'live',
             'comments-index' => 'kommentarer',
             'comments-show' => 'kommentar',
@@ -112,15 +197,14 @@ return [
             'tournaments' => 'turneringer',
             'tournaments-index' => 'turneringer',
             'tournaments-show' => 'turneringsinfo',
-            'forum-topic-watches-index' => 'abonnementer',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forummer',
+            'forum-topics-show' => 'forummer',
+            'forum-forums-index' => 'forummer',
+            'forum-forums-show' => 'forummer',
         ],
         'multiplayer' => [
             '_' => 'multiplayer',
-            'show' => 'match',
+            'show' => 'kamp',
         ],
         'error' => [
             '_' => 'fejl',
@@ -128,7 +212,7 @@ return [
             '403' => 'nægtet',
             '401' => 'uautoriseret',
             '405' => 'mangler',
-            '500' => 'noget er galt',
+            '500' => 'mm, der er noget der gået i stykker',
             '503' => 'vedligeholdelse',
         ],
         'user' => [
@@ -143,14 +227,15 @@ return [
             'help' => 'Hjælp',
             'logout' => 'Log Ud',
             'messages' => 'Beskeder',
-            'modding-history-discussions' => 'user modding discussions',
+            'modding-history-discussions' => 'user modding diskussioner',
             'modding-history-events' => 'user modding events',
             'modding-history-index' => 'user modding history',
-            'modding-history-posts' => 'user modding posts',
-            'modding-history-votesGiven' => 'user modding votes given',
+            'modding-history-posts' => 'user modding opslag',
+            'modding-history-votesGiven' => 'user modding votes givet',
             'modding-history-votesReceived' => 'user modding votes received',
+            'notifications-index' => 'notifikationshistorik',
             'oauth_login' => 'log ind for oauth',
-            'oauth_request' => '',
+            'oauth_request' => 'OAuth-autorisation',
             'settings' => 'Indstillinger',
         ],
         'store' => [
@@ -220,7 +305,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Siden findes ikke',
-            'description' => "Beklager, men siden, du forsøger at finde, eksisterer ikke!",
+            'description' => "Beklager, men siden du forsøger at finde, eksisterer ikke!",
         ],
         '403' => [
             'error' => "Du burde ikke være her.",
@@ -239,7 +324,7 @@ return [
             'description' => "Vi er blevet informeret om fejlen.",
         ],
         'fatal' => [
-            'error' => 'Åh nej! Der er noget galt! ;_;',
+            'error' => 'Åh nej! Der er noget (voldsomt) galt! ;_;',
             'description' => "Vi er blevet informeret om fejlen.",
         ],
         '503' => [
@@ -256,19 +341,19 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'email-adresse',
             'forgot' => "Jeg har glemt min login-info",
             'password' => 'adgangskode',
             'title' => 'Log ind for at fortsætte',
+            'username' => 'brugernavn',
 
             'error' => [
-                'email' => "Brugernavn eller adgangskode eksisterer ikke",
+                'email' => "Brugernavn eller email-addresse eksisterer ikke",
                 'password' => 'Forkert adgangskode',
             ],
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Hent',
             'info' => 'Du skal have en konto, min gode mand! Hvor har du ikke én endnu?',
             'title' => "Har du ikke en konto?",
         ],

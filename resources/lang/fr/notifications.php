@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Toutes les notifications lues !',
     'mark_all_read' => 'Tout effacer',
+    'none' => 'Pas de notifications',
+    'see_all' => 'voir toutes les notifications',
+
+    'filters' => [
+        '_' => 'tout',
+        'user' => 'profil',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'forum',
+        'news_post' => 'nouvelles',
+        'build' => 'versions',
+        'channel' => 'chat',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -31,11 +43,19 @@ return [
                 'beatmapset_discussion_lock' => 'Beatmap ":title" a été verrouillée pour la discussion.',
                 'beatmapset_discussion_lock_compact' => 'La discussion a été verrouillée',
                 'beatmapset_discussion_post_new' => ':username a publié un nouveau message dans la discussion de beatmap ":title".',
+                'beatmapset_discussion_post_new_empty' => 'Nouveau message sur ":title" par :username',
                 'beatmapset_discussion_post_new_compact' => 'Nouveau message par :username',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nouveau message par :username',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" a été déverrouillée pour la discussion.',
                 'beatmapset_discussion_unlock_compact' => 'La discussion a été débloquée',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => 'Problème de beatmap qualifiée',
+                'beatmapset_discussion_qualified_problem' => 'Signalé par :username sur ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Signalé par :username sur ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Signalé par :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Signalé par :username',
             ],
 
             'beatmapset_state' => [
@@ -122,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nouvelle médaille',
                 'user_achievement_unlock' => 'Débloqué ":title" !',
+                'user_achievement_unlock_compact' => 'Débloqué «:title» !',
             ],
         ],
     ],

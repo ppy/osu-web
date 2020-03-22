@@ -22,6 +22,7 @@ return [
     'deleted' => '已删除',
     'deleted_count' => ':count_delimited 已删除评论|:count_delimited 已删除评论',
     'edited' => ':user 编辑于 :timeago',
+    'pinned' => '已置顶',
     'empty' => '暂无评论。',
     'load_replies' => '加载回复',
     'replies' => '回复',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => '评论 :info',
-            'info' => '列表',
-        ],
+        'nav_title' => '列表',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => '评论 :info',
-            'info' => '详情',
-        ],
+        'nav_title' => '评论',
     ],
 ];

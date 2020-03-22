@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'usunięta',
-        'title' => 'Dyskusje',
+        'none_found' => '',
+        'title' => 'dyskusje',
 
         'form' => [
             '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
+            'only_unresolved' => 'Pokaż tylko nierozwiązane dyskusje',
             'types' => 'Rodzaj wiadomości',
             'username' => 'Nazwa użytkownika',
+
+            'beatmapset_status' => [
+                '_' => 'Status beatmapy',
+                'all' => 'Wszystkie',
+                'disqualified' => 'Zdyskwalifikowana',
+                'never_qualified' => 'Nigdy nie zakwalifikowana',
+                'qualified' => 'Zakwalifikowana',
+                'ranked' => 'Rankingowa',
+            ],
 
             'user' => [
                 'label' => 'Użytkownik',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Zobacz recenzję',
+        'go_to_child' => 'Zobacz dyskusję',
+        'validation' => [
+            'invalid_block_type' => 'nieprawidłowy typ bloku',
+            'invalid_document' => 'niewłaściwa recenzja',
+            'minimum_issues' => 'recenzja musi zawierać przynajmniej :count zagadnienie|recenzja musi zawierać przynajmniej :count zagadnień',
+            'missing_text' => 'blok nie zawiera tekstu',
+            'too_many_blocks' => 'recenzje mogą zawierać wyłącznie :count akapit/problem|recenzje mogą zawierać do :count akapitów/problemów|recenzje mogą zawierać do :count akapitów/problemów',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Oznaczone jako gotowe przez :user',
             'false' => 'Otworzone ponownie przez :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'główne',
+        'general_all' => 'główne (wszystkie)',
     ],
 
     'user_filter' => [

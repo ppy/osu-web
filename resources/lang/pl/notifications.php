@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Wszystkie powiadomienia przeczytane!',
     'mark_all_read' => 'Wyczyść wszystko',
+    'none' => 'Brak powiadomień',
+    'see_all' => 'zobacz wszystkie powiadomienia',
+
+    'filters' => [
+        '_' => 'wszystkie',
+        'user' => 'profil',
+        'beatmapset' => 'beatmapy',
+        'forum_topic' => 'forum',
+        'news_post' => 'aktualności',
+        'build' => 'kompilacje',
+        'channel' => 'czat',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -30,12 +42,20 @@ return [
                 '_' => 'Dyskusja beatmapy',
                 'beatmapset_discussion_lock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało zablokowane.',
                 'beatmapset_discussion_lock_compact' => 'Dyskusja została zablokowana',
-                'beatmapset_discussion_post_new' => 'Nowy post dla beatmapy „:title” od użytkownika :username',
+                'beatmapset_discussion_post_new' => 'Nowy post w dyskusji „:title” od użytkownika :username: „:content”',
+                'beatmapset_discussion_post_new_empty' => 'Nowy post od użytkownika :username dla beatmapy „:title”',
                 'beatmapset_discussion_post_new_compact' => 'Nowy post od użytkownika :username',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nowy post od użytkownika :username',
                 'beatmapset_discussion_unlock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało odblokowane.',
                 'beatmapset_discussion_unlock_compact' => 'Dyskusja została odblokowana',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => 'Problem z zakwalifikowaną beatmapą',
+                'beatmapset_discussion_qualified_problem' => 'Problem zgłoszony przez użytkownika :username dla beatmapy „:title”: „:content”',
+                'beatmapset_discussion_qualified_problem_empty' => 'Problem zgłoszony przez użytkownika :username dla beatmapy „:title”',
+                'beatmapset_discussion_qualified_problem_compact' => 'Problem zgłoszony przez użytkownika :username: „:content”',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Problem zgłoszony przez użytkownika :username',
             ],
 
             'beatmapset_state' => [
@@ -122,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nowy medal',
                 'user_achievement_unlock' => 'Odblokowano medal „:title”!',
+                'user_achievement_unlock_compact' => 'Odblokowano medal „:title”!',
             ],
         ],
     ],

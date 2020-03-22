@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers\API;
 
@@ -34,17 +19,21 @@ class BeatmapsController extends Controller
 
     public function lookup()
     {
-        $checksum = Request::input('checksum');
-        $filename = urldecode(Request::input('filename'));
+        $params = get_params(request()->all(), null, ['checksum:string', 'filename:string', 'id:int']);
 
         // Try to look up via checksum
-        if (present($checksum)) {
-            $beatmap = Beatmap::where('checksum', $checksum)->first();
+        if (present($params['checksum'] ?? null)) {
+            $beatmap = Beatmap::where('checksum', $params['checksum'])->first();
         }
 
-        // If checksum is missing (or not found), try to look up by filename instead
-        if (!isset($beatmap) && present($filename)) {
-            $beatmap = Beatmap::where('filename', $filename)->firstOrFail();
+        // And then via id if checksum lookup doesn't yield anything
+        if (!isset($beatmap) && isset($params['id'])) {
+            $beatmap = Beatmap::find($params['id']);
+        }
+
+        // Lastly, try to look up by filename
+        if (!isset($beatmap) && present($params['filename'] ?? null)) {
+            $beatmap = Beatmap::where('filename', $params['filename'])->first();
         }
 
         if (!isset($beatmap)) {

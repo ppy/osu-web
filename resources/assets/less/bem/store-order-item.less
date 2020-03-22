@@ -1,66 +1,54 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .store-order-item {
   .default-border-radius();
   .default-box-shadow();
-  list-style: none;
   padding: 10px;
-  margin: 0 0 5px;
+  background-color: @osu-colour-b4;
+  display: grid;
+  gap: 10px;
+  align-items: baseline;
+  grid-template-areas: "name name" "quantity delete" "subtotal subtotal";
+  grid-template-columns: 1fr auto;
+  font-size: @font-size--title-small;
 
-  @media @desktop {
-    flex-wrap: nowrap;
+  @media @narrow-up {
+    grid-template-areas: "name quantity subtotal delete";
+    grid-template-columns: 1fr 150px 100px 35px;
+    grid-template-rows: auto;
   }
 
-  &__error {
-    list-style: none;
+  @media @desktop {
+    font-size: inherit;
   }
 
   &__errors {
     color: @red;
+    list-style: none;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    order: 10;
   }
 
-  &__line {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    @media @narrow {
-      flex-direction: column;
-    }
-  }
-
-  &__options {
-    display: flex;
-    align-self: flex-end;
-    justify-content: flex-end;
+  &__delete {
+    grid-area: delete;
+    text-align: right;
   }
 
   &__quantity {
-    min-width: 100px;
+    grid-area: quantity;
   }
 
   &__name {
-    align-self: flex-start;
+    grid-area: name;
   }
 
   &__subtotal {
-    min-width: 150px;
-    padding: 0 20px;
+    grid-area: subtotal;
+
+    @media @desktop {
+      text-align: right;
+    }
   }
 }

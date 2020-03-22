@@ -24,10 +24,92 @@ return [
     ],
 
     'header' => [
+        'admin' => [
+            '_' => 'admin',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'couvertures du beatmapset',
+            'contest' => 'concours',
+            'contests' => 'concours',
+            'root' => 'console',
+            'store_orders' => 'administration de la boutique',
+        ],
+
+        'artists' => [
+            '_' => 'artistes en vedette',
+            'index' => 'liste',
+        ],
+
+        'beatmapsets' => [
+            '_' => 'beatmap',
+            'discussions' => 'discussion',
+            'index' => 'liste',
+            'show' => 'info',
+            'packs' => 'packs',
+        ],
+
+        'changelog' => [
+            '_' => 'notes de MàJ',
+            'index' => 'liste',
+        ],
+
         'community' => [
             '_' => 'Communauté',
-
+            'comments' => 'commentaires',
+            'contests' => 'concours',
             'forum' => 'Forum',
+            'livestream' => 'flux en direct',
+        ],
+
+        'error' => [
+            '_' => 'erreur',
+        ],
+
+        'help' => [
+            '_' => 'wiki',
+            'index' => 'index',
+        ],
+
+        'home' => [
+            '_' => 'accueil',
+            'password_reset' => 'réinitialiser le mot de passe',
+        ],
+
+        'matches' => [
+            '_' => 'historique des matchs',
+        ],
+
+        'notice' => [
+            '_' => 'information',
+        ],
+
+        'notifications' => [
+            '_' => 'notifications',
+            'index' => 'historique',
+        ],
+
+        'rankings' => [
+            '_' => 'classement',
+        ],
+
+        'store' => [
+            '_' => 'osu!store',
+            'cart' => 'panier',
+            'order' => 'facture',
+            'orders' => 'historique des commandes',
+            'product' => 'produit',
+            'products' => 'produits',
+        ],
+
+        'tournaments' => [
+            '_' => 'tournois',
+            'index' => 'liste',
+        ],
+
+        'users' => [
+            '_' => 'joueur',
+            'forum_posts' => 'messages du forum',
+            'modding' => 'modding',
+            'show' => 'infos',
         ],
     ],
 
@@ -44,9 +126,12 @@ return [
             '_' => 'accueil',
             'account-edit' => 'paramètres',
             'account-verifyLink' => 'Vérification terminée',
-            'friends-index' => 'amis',
-            'changelog-index' => 'notes de MàJ',
+            'beatmapset-watches-index' => 'liste de suivi de modding',
             'changelog-build' => 'build',
+            'changelog-index' => 'notes de MàJ',
+            'client_verifications-create' => 'vérification du client osu!',
+            'forum-topic-watches-index' => 'abonnements aux sujets',
+            'friends-index' => 'amis',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
             'groups-show' => 'groupes',
@@ -59,11 +144,12 @@ return [
             'search' => 'rechercher',
             'supportTheGame' => 'supporter le jeu',
             'team' => 'équipe',
+            'testflight' => 'vol de test',
         ],
         'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+            '_' => 'profil',
+            'friends' => 'amis',
+            'settings' => 'paramètres',
         ],
         'help' => [
             '_' => 'aide',
@@ -78,7 +164,6 @@ return [
             'artists' => 'artistes plébiscités',
             'beatmap_discussion_posts-index' => 'posts de la discussion beatmap',
             'beatmap_discussions-index' => 'discussions sur la beatmap',
-            'beatmapset-watches-index' => 'liste d\'abonnement des modifications',
             'beatmapset_discussion_votes-index' => 'votes de la discussion beatmap',
             'beatmapset_events-index' => 'évènements de la collection',
             'index' => 'index',
@@ -112,7 +197,6 @@ return [
             'tournaments' => 'tournois',
             'tournaments-index' => 'tournois',
             'tournaments-show' => 'infos des tournois',
-            'forum-topic-watches-index' => 'abonnements aux sujets',
             'forum-topics-create' => 'forums',
             'forum-topics-show' => 'forums',
             'forum-forums-index' => 'forums',
@@ -149,6 +233,7 @@ return [
             'modding-history-posts' => 'messages de modifications utilisateur',
             'modding-history-votesGiven' => 'votes de modifications utilisateur donnés',
             'modding-history-votesReceived' => 'votes de modifications utilisateur reçus',
+            'notifications-index' => 'historique des notifications',
             'oauth_login' => 'se connecter pour oauth',
             'oauth_request' => 'autorisation oauth',
             'settings' => 'Paramètres',
@@ -236,14 +321,14 @@ return [
         ],
         '500' => [
             'error' => 'Oh non ! Quelque chose s\'est cassé ! ;_;',
-            'description' => "Nous avons été notifié automatiquement de cette erreur.",
+            'description' => "Nous avons automatiquement été notifié de cette erreur.",
         ],
         'fatal' => [
             'error' => 'Oh non ! Quelque chose s\'est cassé ! (gravement) ;_;',
             'description' => "Nous avons été notifié automatiquement de cette erreur.",
         ],
         '503' => [
-            'error' => 'Maitenance en cours!',
+            'error' => 'Maintenance en cours!',
             'description' => "Les maintenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
             'link' => [
                 'text' => '@osustatus',
@@ -256,10 +341,10 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'adresse e-mail',
             'forgot' => "J'ai oublié mes identifiants",
             'password' => 'mot de passe',
             'title' => 'Se connecter pour continuer',
+            'username' => 'nom d\'utilisateur',
 
             'error' => [
                 'email' => "Le nom d'utilisateur ou l'e-mail ne correspond pas",
@@ -268,8 +353,8 @@ return [
         ],
 
         'register' => [
-            'download' => '',
-            'info' => 'Vous avez besoin d\'un compte, mon cher. Pourquoi n\'en avez vous pas ?',
+            'download' => 'Télécharger',
+            'info' => 'Téléchargez osu! pour créer votre propre compte!',
             'title' => "Vous n'avez pas de compte ?",
         ],
     ],

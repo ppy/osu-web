@@ -19,21 +19,12 @@
  */
 
 return [
-    'buttons' => [
-      'add' => 'lägg till vän',
-      'disabled' => '',
-      'remove' => 'ta bort vän',
-    ],
-
-    'index' => [
-        'title' => [
-            '_' => '',
-            'info' => '',
-        ],
-    ],
-
-    'title' => 'Vänner',
     'title_compact' => 'vänner',
-
     'too_many' => 'Vän gräns uppnådd.',
+
+    'buttons' => [
+        'add' => 'lägg till vän',
+        'disabled' => 'vänner',
+        'remove' => 'ta bort vän',
+    ],
 ];

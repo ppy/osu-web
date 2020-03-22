@@ -20,20 +20,19 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Konto</strong> Indstillinger',
         'title_compact' => 'indstillinger',
         'username' => 'brugernavn',
 
         'avatar' => [
-            'title' => 'Profilbillede',
-            'rules' => '',
-            'rules_link' => '',
+            'title' => 'Avatar',
+            'rules' => 'Vær sikker på at din avatar overholder :link.<br/>Dette betyder at den skal være <strong>passende for alle aldre</strong>. Det betyder ingen nøgenhed, skælsord eller suggestivt indhold.',
+            'rules_link' => 'fællesskabs-reglerne',
         ],
 
         'email' => [
             'current' => 'nuværende email-adresse',
             'new' => 'ny email-adresse',
-            'new_confirmation' => 'bekræftelse af email-adresse',
+            'new_confirmation' => 'email bekræftelse',
             'title' => 'Email',
         ],
 
@@ -52,7 +51,7 @@ return [
                 'user_from' => 'nuværende placering',
                 'user_interests' => 'interesser',
                 'user_msnm' => 'skype',
-                'user_occ' => 'stilling',
+                'user_occ' => 'beskæftigelse',
                 'user_twitter' => 'twitter',
                 'user_website' => 'hjemmeside',
             ],
@@ -67,12 +66,19 @@ return [
     'notifications' => [
         'title' => 'Notifikationer',
         'topic_auto_subscribe' => 'aktiver automatisk notifikationer på nye forum emner du opretter',
+        'beatmapset_discussion_qualified_problem' => 'modtag notifikationer for nye problemer på kvalificerede beatmaps for de følgende spileltilstande',
+
+        'mail' => [
+            '_' => 'modtag email notifikationer for',
+            'beatmapset:modding' => 'beatmap modding',
+            'forum_topic_reply' => 'emne svar',
+        ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
-        'own_clients' => '',
-        'title' => '',
+        'authorized_clients' => 'autoriserede klienter',
+        'own_clients' => 'egne klienter',
+        'title' => 'OAuth',
     ],
 
     'playstyles' => [
@@ -84,14 +90,14 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'Bloker private beskeder fra folk, der ikke er på din venneliste',
+        'friends_only' => 'bloker privatbeskeder fra folk der ikke er på din venneliste',
         'hide_online' => 'skjul din online status',
-        'title' => 'Privacy',
+        'title' => 'Privatliv',
     ],
 
     'security' => [
         'current_session' => 'nuværende',
-        'end_session' => 'Afslut Session',
+        'end_session' => 'Afslut Sessionen',
         'end_session_confirmation' => 'Dette vil straks afslutte sessionen på enheden. Er du sikker?',
         'last_active' => 'Sidst aktiv:',
         'title' => 'Sikkerhed',
@@ -99,21 +105,19 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'Bekræftelse for opdatering af osu! email-adresse',
         'update' => 'opdater',
     ],
 
     'update_password' => [
-        'email_subject' => 'Bekræftelse for opdatering af osu! adgangskode',
         'update' => 'opdater',
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Du kan nu lukke dette vindue',
+        'title' => 'Verifikation færdiggjort',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Ugyldigt eller udløbet verifikations-link',
     ],
 ];

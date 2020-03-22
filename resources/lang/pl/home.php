@@ -25,6 +25,7 @@ return [
         'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
         'title' => 'witaj',
+        'see_more_news' => 'zobacz więcej aktualności',
 
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
@@ -38,9 +39,10 @@ return [
         'empty_result' => 'Nie znaleziono!',
         'keyword_required' => 'Wyszukiwana fraza jest wymagana',
         'placeholder' => 'wpisz, by rozpocząć wyszukiwanie',
-        'title' => 'Wyszukiwarka',
+        'title' => 'wyszukiwarka',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => 'Zobacz więcej wyszukanych beatmap: :count',
             'more_simple' => 'Zobacz więcej wyszukanych beatmap',
             'title' => 'Beatmapy',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Całe forum',
             'link' => 'Przeszukaj forum',
+            'login_required' => '',
             'more_simple' => 'Zobacz więcej wyszukanych wątków na forum',
             'title' => 'Forum',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => 'Zobacz więcej wyszukanych użytkowników: :count',
             'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
             'more_hidden' => 'Wyniki wyszukiwania są ograniczone do :max użytkowników. Spróbuj zmienić wyszukiwaną frazę.',
@@ -119,8 +123,6 @@ return [
             'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',
         ],
         'header' => [
-            'welcome' => 'Witaj, <strong>:username</strong>!',
-            'messages' => 'Masz :count_delimited nową wiadomość|Masz :count_delimited nowe wiadomości|Masz :count_delimited nowych wiadomości',
             'stats' => [
                 'friends' => 'Znajomi online',
                 'games' => 'Mecze',
@@ -130,8 +132,7 @@ return [
         'beatmaps' => [
             'new' => 'Nowe rankingowe beatmapy',
             'popular' => 'Popularne beatmapy',
-            'by' => 'autorstwa',
-            'plays' => ':count zagrań',
+            'by_user' => 'autorstwa :user',
         ],
         'buttons' => [
             'download' => 'Pobierz osu!',

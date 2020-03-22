@@ -1,33 +1,16 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers\Chat;
 
-use App\Exceptions\API;
+use App\Libraries\Chat;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
 use Auth;
-use ChaseConey\LaravelDatadogHelper\Datadog;
-use DB;
 use Request;
 
 /**
@@ -255,56 +238,17 @@ class ChatController extends Controller
      */
     public function newConversation()
     {
-        if (!present(Request::input('target_id')) || !present(Request::input('message')) || get_int(Request::input('target_id')) === Auth::user()->user_id) {
-            abort(422);
-        }
+        $params = request()->all();
 
-        $targetUser = User::lookup(Request::input('target_id'), 'id');
-        if (!$targetUser) {
-            // restricted users should be treated as if they do not exist
-            abort(404);
-        }
-
-        priv_check('ChatStart', $targetUser)->ensureCan();
-
-        $userIds = [Auth::user()->user_id, $targetUser->user_id];
-        sort($userIds);
-        $channelName = '#pm_'.implode('-', $userIds);
-        $channel = Channel::where('name', $channelName)->first();
-
-        if (!$channel) {
-            $channel = DB::transaction(function () use ($targetUser, $channelName) {
-                $channel = new Channel();
-                $channel->name = $channelName;
-                $channel->type = Channel::TYPES['pm'];
-                $channel->description = ''; // description is not nullable
-                $channel->save();
-
-                $channel->addUser(Auth::user());
-                $channel->addUser($targetUser);
-
-                return $channel;
-            });
-        }
-
-        try {
-            $message = $channel->receiveMessage(
-                Auth::user(),
-                Request::input('message'),
-                get_bool(Request::input('is_action', false))
-            );
-        } catch (API\ChatMessageEmptyException $e) {
-            abort(422, $e->getMessage());
-        } catch (API\ChatMessageTooLongException $e) {
-            abort(422, $e->getMessage());
-        } catch (API\ExcessiveChatMessagesException $e) {
-            abort(429, $e->getMessage());
-        }
-
-        Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
+        $message = Chat::sendPrivateMessage(
+            auth()->user(),
+            get_int($params['target_id'] ?? null),
+            presence($params['message'] ?? null),
+            get_bool($params['is_action'] ?? null)
+        );
 
         return [
-            'new_channel_id' => $channel->channel_id,
+            'new_channel_id' => $message->channel_id,
             'message' => json_item(
                 $message,
                 'Chat/Message',

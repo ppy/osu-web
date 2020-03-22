@@ -33,13 +33,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'eliminato',
+        'none_found' => '',
         'title' => 'Discussioni Beatmap',
 
         'form' => [
             '_' => 'Cerca',
             'deleted' => 'Includi discussioni eliminate',
+            'only_unresolved' => 'Mostra solo le discussioni in sospeso',
             'types' => 'Tipi di messaggio',
             'username' => 'Nome Utente',
+
+            'beatmapset_status' => [
+                '_' => 'Stato Beatmap',
+                'all' => 'Tutti',
+                'disqualified' => 'Squalificata',
+                'never_qualified' => 'Mai Qualificata',
+                'qualified' => 'Qualificata',
+                'ranked' => 'Rankata',
+            ],
 
             'user' => [
                 'label' => 'Utente',
@@ -67,11 +78,28 @@ return [
         ],
     ],
 
+    'review' => [
+        'go_to_parent' => 'Visualizza il post della recensione',
+        'go_to_child' => 'Visualizza discussione',
+        'validation' => [
+            'invalid_block_type' => 'tipo di blocco non valido',
+            'invalid_document' => 'recensione non valida',
+            'minimum_issues' => 'la recensione deve contenere almeno :count problema|la recensione deve contenere almeno :count problemi',
+            'missing_text' => 'il blocco non ha testo',
+            'too_many_blocks' => 'le recensioni possono contenere solo :count paragrafo/problema|le recensioni possono contenere fino a :count paragrafi/problemi',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Segnato come risolto da :user',
             'false' => 'Riaperto da :user',
         ],
+    ],
+
+    'timestamp_display' => [
+        'general' => 'generale',
+        'general_all' => 'generale (tutti)',
     ],
 
     'user_filter' => [

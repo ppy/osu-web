@@ -25,6 +25,7 @@ return [
 
     'cart' => [
         'checkout' => 'Kassa',
+        'info' => '',
         'more_goodies' => 'Tarkastelisin vielä muita tuotteita ennen tilauksen tekemistä',
         'shipping_fees' => 'toimituskulut',
         'title' => 'Ostoskori',
@@ -76,12 +77,6 @@ return [
                     'link_text' => 'klikkaa tästä jatkaaksesi maksamista',
                 ],
             ],
-        ],
-    ],
-
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Vastaanotimme osu!kauppa-tilauksesi!',
         ],
     ],
 
@@ -151,5 +146,9 @@ return [
             '_' => 'Sinun on oltava :link vaihtaaksesi nimesi!',
             'link_text' => 'kirjautuneena sisään',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

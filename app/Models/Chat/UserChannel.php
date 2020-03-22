@@ -1,27 +1,14 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models\Chat;
 
 use App\Models\User;
+use App\Models\UserNotification;
 use App\Models\UserRelation;
+use DB;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -54,6 +41,25 @@ class UserChannel extends Model
         return $this->belongsTo(Channel::class, 'channel_id');
     }
 
+    public function markAsRead($messageId = null)
+    {
+        $maxId = get_int($messageId ?? Message::where('channel_id', $this->channel_id)->max('message_id'));
+
+        if ($maxId === null) {
+            return;
+        }
+
+        // this prevents the read marker from going backwards
+        $this->update(['last_read_id' => DB::raw("GREATEST(COALESCE(last_read_id, 0), $maxId)")]);
+
+        $params = [
+            'category' => 'channel',
+            'object_type' => 'channel',
+            'object_id' => $this->channel_id,
+        ];
+        UserNotification::markAsReadByNotificationIdentifier($this->user, $params);
+    }
+
     public static function presenceForUser(User $user)
     {
         $userId = $user->user_id;
@@ -64,12 +70,21 @@ class UserChannel extends Model
             ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
             ->selectRaw('channels.*')
             ->selectRaw('user_channels.last_read_id')
-            ->selectRaw('(select max(messages.message_id) from messages where messages.channel_id = user_channels.channel_id) as last_message_id')
             ->get();
+
+        $channelIds = $userChannels->pluck('channel_id');
+
+        // including MAX(message_id) in above query is slow for large channels.
+        $lastMessageIds = Message::whereIn('channel_id', $channelIds)
+            ->groupBy('channel_id')
+            ->select('channel_id')
+            ->selectRaw('MAX(message_id) as last_message_id')
+            ->get()
+            ->keyBy('channel_id');
 
         // fetch the users in each of the channels (and whether they're restricted and/or blocked)
         $userRelationTableName = (new UserRelation)->tableName(true);
-        $userChannelMembers = self::whereIn('user_channels.channel_id', $userChannels->pluck('channel_id'))
+        $userChannelMembers = self::whereIn('user_channels.channel_id', $channelIds)
             ->selectRaw('user_channels.*')
             ->selectRaw('phpbb_zebra.foe')
             ->leftJoin($userRelationTableName, function ($join) use ($userRelationTableName, $userId) {
@@ -81,34 +96,43 @@ class UserChannel extends Model
             ->with('userScoped')
             ->get();
 
+        $byUserId = $userChannelMembers->keyBy('user_id');
+        // keyBy overrides existing values
+        $byChannelId = [];
+        foreach ($userChannelMembers as $userChannelMember) {
+            $channelId = $userChannelMember->channel_id;
+            if (!isset($byChannelId[$channelId])) {
+                $byChannelId[$channelId] = [];
+            }
+
+            if ($userChannelMember->userScoped) {
+                // TODO: Decided whether we want to return user objects everywhere or just user_ids
+                $byChannelId[$channelId][] = $userChannelMember->user_id;
+            }
+        }
+
         $collection = json_collection(
             $userChannels,
-            function ($userChannel) use ($userChannelMembers, $userId) {
+            function ($userChannel) use ($byChannelId, $byUserId, $lastMessageIds, $userId) {
                 $presence = [
                     'channel_id' => $userChannel->channel_id,
                     'type' => $userChannel->type,
                     'name' => $userChannel->name,
                     'description' => presence($userChannel->description),
                     'last_read_id' => $userChannel->last_read_id,
-                    'last_message_id' => $userChannel->last_message_id,
+                    'last_message_id' => optional($lastMessageIds[$userChannel->channel_id] ?? null)->last_message_id,
                 ];
 
                 if ($userChannel->type !== Channel::TYPES['public']) {
                     // filter out restricted users from the listing
-                    $filteredChannelMembers = $userChannelMembers->where('channel_id', $userChannel->channel_id)
-                        ->map(function ($userChannel, $key) {
-                            return $userChannel->userScoped ? $userChannel->user_id : null;
-                        });
-
-                    // TODO: Decided whether we want to return user objects everywhere or just user_ids
-                    $filteredChannelMembers = array_values($filteredChannelMembers->toArray());
+                    $filteredChannelMembers = $byChannelId[$userChannel->channel_id] ?? [];
                     $presence['users'] = $filteredChannelMembers;
                 }
 
                 if ($userChannel->type === Channel::TYPES['pm']) {
                     // remove ourselves from $membersArray, leaving only the other party
                     $members = array_diff($filteredChannelMembers, [$userId]);
-                    $targetUser = $userChannelMembers->where('user_id', array_shift($members))->first();
+                    $targetUser = $byUserId[array_shift($members)] ?? null;
 
                     // hide if target is restricted ($targetUser missing) or is blocked ($targetUser->foe)
                     if (!$targetUser || $targetUser->foe) {

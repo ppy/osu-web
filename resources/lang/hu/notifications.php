@@ -21,6 +21,18 @@
 return [
     'all_read' => 'Összes értesítés elolvasva!',
     'mark_all_read' => 'Összes törlése',
+    'none' => '',
+    'see_all' => '',
+
+    'filters' => [
+        '_' => '',
+        'user' => '',
+        'beatmapset' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'build' => '',
+        'channel' => '',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -31,11 +43,19 @@ return [
                 'beatmapset_discussion_lock' => '":title" megbeszélése lezárult',
                 'beatmapset_discussion_lock_compact' => 'A megbeszélést lezárták',
                 'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_post_new_compact' => 'Új poszt :username -tól,-től',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_compact' => 'Új poszt :username által: ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Új poszt :username által',
                 'beatmapset_discussion_unlock' => '',
                 'beatmapset_discussion_unlock_compact' => '',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => '',
+                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem_empty' => '',
+                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_qualified_problem_compact_empty' => '',
             ],
 
             'beatmapset_state' => [
@@ -63,20 +83,20 @@ return [
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Csevegés',
 
             'channel' => [
                 '_' => 'Új üzenet',
                 'pm' => [
                     'channel_message' => '',
                     'channel_message_compact' => ':title',
-                    'channel_message_group' => ':username -tól/-től',
+                    'channel_message_group' => 'tőle: :username',
                 ],
             ],
         ],
 
         'build' => [
-            '_' => '',
+            '_' => 'Változtatások',
 
             'comment' => [
                 '_' => 'Új hozzászólás',
@@ -122,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Új medál',
                 'user_achievement_unlock' => 'Feloldottad ":title"!',
+                'user_achievement_unlock_compact' => '',
             ],
         ],
     ],

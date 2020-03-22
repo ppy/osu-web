@@ -25,6 +25,7 @@ return [
         'peak' => 'Piek, :count online gebruikers',
         'players' => '<strong>:count</strong> geregistreerde spelers',
         'title' => 'welkom',
+        'see_more_news' => 'bekijk meer nieuws',
 
         'slogan' => [
             'main' => 'de beste free-to-win rhythm game',
@@ -41,6 +42,7 @@ return [
         'title' => 'Zoek',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count andere beatmap zoekresultaten',
             'more_simple' => 'Zie meer beatmap zoekresultaten',
             'title' => 'Beatmaps',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Alle forums',
             'link' => 'Doorzoek het forum',
+            'login_required' => '',
             'more_simple' => 'Zie meer forum zoekresultaten',
             'title' => 'Forum',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count meer speler zoekresultaten',
             'more_simple' => 'Zie meer speler zoekresultaten',
             'more_hidden' => 'Speler zoekopdracht is beperkt tot :max spelers. Probeer je zoekopdracht te verfijnen.',
@@ -119,8 +123,6 @@ return [
             'error' => 'Fout tijdens laden van nieuws, probeer de pagina te verversen?...',
         ],
         'header' => [
-            'welcome' => 'Hallo, <strong>:username</strong>!',
-            'messages' => 'Je hebt :count nieuw bericht|Je hebt :count nieuwe berichten',
             'stats' => [
                 'friends' => 'Online Vrienden',
                 'games' => 'Games',
@@ -130,8 +132,7 @@ return [
         'beatmaps' => [
             'new' => 'Nieuwe Gerankte Beatmappen',
             'popular' => 'Populaire Beatmaps',
-            'by' => 'door',
-            'plays' => ':count keren gespeeld',
+            'by_user' => 'door :user',
         ],
         'buttons' => [
             'download' => 'Download osu!',

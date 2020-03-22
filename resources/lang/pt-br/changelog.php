@@ -26,7 +26,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited usuários online|:count_delimited usuários online',
+        'users_online' => ':count_delimited usuário online|:count_delimited usuários online',
     ],
 
     'entry' => [
@@ -43,11 +43,6 @@ return [
             '_stream_from_to' => 'alterações em :stream entre :from e :to',
             '_stream_to' => 'alterações em :stream até :to',
             '_to' => 'alterações até :to',
-        ],
-
-        'title' => [
-            '_' => 'Lista de Alterações: :info',
-            'info' => 'Listagem',
         ],
     ],
 

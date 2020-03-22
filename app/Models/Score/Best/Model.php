@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models\Score\Best;
 
@@ -63,7 +48,7 @@ abstract class Model extends BaseModel
         );
     }
 
-    public function replayFile() : ?ReplayFile
+    public function replayFile(): ?ReplayFile
     {
         if ($this->replay) {
             return new ReplayFile($this);
@@ -82,23 +67,8 @@ abstract class Model extends BaseModel
         return function ($query) {
             $limit = config('osu.beatmaps.max-scores');
             $newQuery = (clone $query)->with('user')->limit($limit * 3);
-            $newQuery->getQuery()->orders = null;
 
-            $baseResult = $newQuery->orderBy('score', 'desc')->get();
-
-            // Sort scores by score desc and then date asc if scores are equal
-            $baseResult = $baseResult->sort(function ($a, $b) {
-                if ($a->score === $b->score) {
-                    if ($a->date->timestamp === $b->date->timestamp) {
-                        // On the rare chance that both were submitted in the same second, default to submission order
-                        return ($a->score_id < $b->score_id) ? -1 : 1;
-                    }
-
-                    return ($a->date->timestamp < $b->date->timestamp) ? -1 : 1;
-                }
-
-                return ($a->score > $b->score) ? -1 : 1;
-            });
+            $baseResult = $newQuery->get();
 
             $result = [];
             $users = [];
@@ -122,45 +92,52 @@ abstract class Model extends BaseModel
 
     public function userRank($options)
     {
-        $alwaysAccurate = false;
+        // laravel model has a $hidden property
+        if ($this->getAttribute('hidden')) {
+            return;
+        }
 
-        $query = static::on('mysql-readonly')
-            ->where('beatmap_id', '=', $this->beatmap_id)
-            ->where(function ($query) {
-                $query
-                    ->where('score', '>', $this->score)
-                    ->orWhere(function ($query2) {
-                        $query2
-                            ->where('score', '=', $this->score)
-                            ->where('score_id', '<', $this->getKey());
-                    });
-            });
+        return with_db_fallback('mysql-readonly', function ($connection) use ($options) {
+            $alwaysAccurate = false;
 
-        if (isset($options['type'])) {
-            $query->withType($options['type'], ['user' => $this->user]);
+            $query = static::on($connection)
+                ->where('beatmap_id', '=', $this->beatmap_id)
+                ->where(function ($query) {
+                    $query
+                        ->where('score', '>', $this->score)
+                        ->orWhere(function ($query2) {
+                            $query2
+                                ->where('score', '=', $this->score)
+                                ->where('score_id', '<', $this->getKey());
+                        });
+                });
 
-            if ($options['type'] === 'country') {
-                $alwaysAccurate = true;
+            if (isset($options['type'])) {
+                $query->withType($options['type'], ['user' => $this->user]);
+
+                if ($options['type'] === 'country') {
+                    $alwaysAccurate = true;
+                }
             }
-        }
 
-        if (isset($options['mods'])) {
-            $query->withMods($options['mods']);
-        }
+            if (isset($options['mods'])) {
+                $query->withMods($options['mods']);
+            }
 
-        $countQuery = DB::raw('DISTINCT user_id');
+            $countQuery = DB::raw('DISTINCT user_id');
 
-        if ($alwaysAccurate) {
-            return 1 + $query->default()->count($countQuery);
-        }
+            if ($alwaysAccurate) {
+                return 1 + $query->visibleUsers()->default()->count($countQuery);
+            }
 
-        $rank = 1 + $query->count($countQuery);
+            $rank = 1 + $query->count($countQuery);
 
-        if ($rank < config('osu.beatmaps.max-scores') * 3) {
-            return 1 + $query->default()->count($countQuery);
-        } else {
-            return $rank;
-        }
+            if ($rank < config('osu.beatmaps.max-scores') * 3) {
+                return 1 + $query->visibleUsers()->default()->count($countQuery);
+            } else {
+                return $rank;
+            }
+        });
     }
 
     public function macroUserBest()
@@ -246,18 +223,13 @@ abstract class Model extends BaseModel
     {
         return $query
             ->whereHas('beatmap')
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            });
+            ->orderBy('score', 'DESC')
+            ->orderBy('score_id', 'ASC');
     }
 
-    public function scopeDefaultListing($query)
+    public function scopeVisibleUsers($query)
     {
-        return $query
-            ->default()
-            ->orderBy('score', 'DESC')
-            ->orderBy('date', 'ASC')
-            ->limit(config('osu.beatmaps.max-scores'));
+        return $query->where(['hidden' => false]);
     }
 
     public function scopeWithMods($query, $modsArray)
@@ -288,9 +260,7 @@ abstract class Model extends BaseModel
 
     public function scopeFromCountry($query, $countryAcronym)
     {
-        return $query->whereHas('user', function ($q) use ($countryAcronym) {
-            $q->where('country_acronym', $countryAcronym);
-        });
+        return $query->where('country_acronym', $countryAcronym);
     }
 
     public function scopeFriendsOf($query, $user)
@@ -336,7 +306,7 @@ abstract class Model extends BaseModel
         return $result;
     }
 
-    protected function newReportableExtraParams() : array
+    protected function newReportableExtraParams(): array
     {
         return [
             'mode' => Beatmap::modeInt($this->getMode()),

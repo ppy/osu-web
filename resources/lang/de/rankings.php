@@ -19,7 +19,9 @@
  */
 
 return [
-    'header' => ':type-Rangliste',
+    'country' => [
+        'filter' => 'gefiltered nach Land',
+    ],
 
     'type' => [
         'performance' => 'Performance',

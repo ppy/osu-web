@@ -1,35 +1,23 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('master', [
-    'legacyNav' => false,
-])
+@extends('master')
 
 @section('content')
-    <div class="header-v3 header-v3--supporter">
-        <div class="header-v3__bg"></div>
-        <div class="header-v3__overlay"></div>
-        <div class="osu-page osu-page--header-v3">
+    @component('layout._page_header_v4', ['params' => [
+        'showTitle' => false,
+        'theme' => 'supporter',
+    ]])
+        @slot('contentAppend')
             <div class="supporter-status">
                 <div class="supporter-status__pippi"></div>
                 @if (!empty($supporterStatus))
                     <!-- supporter status  -->
                     <div class="supporter-status__flex-container">
-                        <div class="supporter-heart{{ $supporterStatus['current'] ? ' supporter-heart--active' : '' }}"></div>
+                        <a class="supporter-eyecatch__link" href="{{ route('store.products.show', 'supporter-tag') }}" title="{{ trans('community.support.convinced.support') }}">
+                            <div class="supporter-heart{{ $supporterStatus['current'] ? ' supporter-heart--active' : '' }}"></div>
+                        </a>
                         <div class="supporter-status__flex-container-inner">
                             <div class="supporter-status__progress-bar supporter-status__progress-bar--active">
                                 <div class="supporter-status__progress-bar-fill supporter-status__progress-bar-fill--active" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
@@ -66,9 +54,8 @@
                     <!-- end: supporter status -->
                 @endif
             </div>
-            <ol class="page-mode-v2 page-mode-v2--empty"></ol>
-        </div>
-    </div>
+        @endslot
+    @endcomponent
 
     <div class="osu-page osu-page--supporter">
         <div class="supporter">

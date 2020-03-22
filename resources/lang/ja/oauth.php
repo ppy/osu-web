@@ -22,21 +22,15 @@ return [
     'cancel' => 'キャンセル',
 
     'authorise' => [
-        'authorise' => '承認',
         'request' => 'アカウントへのアクセス許可を要求しています。',
         'scopes_title' => 'このアプリケーションは次のことができます：',
         'title' => '認証をリクエスト',
-
-        'wrong_user' => [
-            '_' => 'あなたは:userとしてログインしています。:logout_link。',
-            'logout_link' => '別のユーザーとしてログインするにはここをクリック',
-        ],
     ],
 
     'authorized_clients' => [
         'confirm_revoke' => 'このクライアントの認証を無効化しますか？',
         'scopes_title' => 'このアプリケーションでできること:',
-        'owned_by' => '管理者 :user',
+        'owned_by' => '所有者 :user',
         'none' => 'クライアントがありません',
 
         'revoked' => [
@@ -50,12 +44,6 @@ return [
         'name' => 'アプリケーション名',
         'redirect' => 'アプリケーションコールバックURL',
         'secret' => 'Client Secret',
-    ],
-
-    'login' => [
-        'download' => 'ゲームをダウンロードしてアカウントを作成するにはここをクリック',
-        'label' => 'まず、アカウントにログインしてみましょう！',
-        'title' => 'アカウントログイン',
     ],
 
     'new_client' => [

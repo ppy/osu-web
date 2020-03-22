@@ -19,6 +19,12 @@
  */
 
 return [
+    'require_login' => 'Por favor, inicia sesión para continuar.',
+    'require_verification' => 'Por favor verifica para proceder.',
+    'restricted' => "No puedes hacer eso mientras estés restringido.",
+    'silenced' => "No puedes hacer eso mientras estés silenciado.",
+    'unauthorized' => 'Acceso denegado.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'No puedes deshacer el hyping.',
@@ -29,14 +35,14 @@ return [
             'full_bn_required' => 'Debes ser un nominador para realizar esta nominación.',
             'full_bn_required_hybrid' => 'Debes ser un nominador para nominar conjuntos de beatmaps con más de un modo de juego.',
             'incorrect_state' => 'Error al realizar esa acción, intenta actualizando la página.',
-            'owner' => "No puedes nominar tu propio beatmap.",
+            'owner' => "No puedes nominar tu propio mapa.",
         ],
         'resolve' => [
-            'not_owner' => 'Solo el creador del tema y dueño del beatmap puede resolver una discusión.',
+            'not_owner' => 'Solo el creador del tema y el dueño del mapa pueden resolver una discusión.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Sólo el dueño del beatmap o un miembro de un grupo de nominaciones/QAT puede publicar notas de mapeador.',
+            'mapper_note_wrong_user' => 'Sólo el dueño del mapa o el nominador/miembro del grupo NAT puede publicar notas de mapeo.',
         ],
 
         'vote' => [
@@ -60,7 +66,7 @@ return [
         ],
 
         'store' => [
-            'beatmapset_locked' => 'Este beatmap está bloqueado para discusión.',
+            'beatmapset_locked' => 'Este mapa está bloqueado para discusión.',
         ],
     ],
 
@@ -74,7 +80,7 @@ return [
 
     'comment' => [
         'update' => [
-            'deleted' => "No puedes editar una publicación borrada.",
+            'deleted' => "No puedes editar una publicación eliminada.",
         ],
     ],
 
@@ -90,7 +96,7 @@ return [
         'post' => [
             'delete' => [
                 'only_last_post' => 'Solo se puede eliminar la última publicación.',
-                'locked' => 'No se puede eliminar una publicación en un hilo cerrado.',
+                'locked' => 'No se puede eliminar la publicación de un tema cerrado.',
                 'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'not_owner' => 'Solo el creador de la publicación puede eliminarla.',
             ],
@@ -118,14 +124,14 @@ return [
 
                 'user' => [
                     'require_login' => 'Por favor, inicia sesión para responder.',
-                    'restricted' => "No puedo responder mientras estás restringido.",
-                    'silenced' => "No puedes responder mientras estás silenciado.",
+                    'restricted' => "No puedes responder mientras estés restringido.",
+                    'silenced' => "No puedes responder mientras estés silenciado.",
                 ],
             ],
 
             'store' => [
                 'no_forum_access' => 'Se requiere acceso al foro solicitado.',
-                'no_permission' => 'No tienes permisos para crear un nuevo hilo.',
+                'no_permission' => 'No tienes permisos para crear un nuevo tema.',
                 'forum_closed' => 'Este foro está cerrado y no puedes publicar en él.',
             ],
 
@@ -161,14 +167,6 @@ return [
             'admin_only' => 'Solo los administradores pueden ver este foro.',
         ],
     ],
-
-    'require_login' => 'Por favor, inicia sesión para continuar.',
-
-    'unauthorized' => 'Acceso denegado.',
-
-    'silenced' => "No puedes hacer eso mientras estés silenciado.",
-
-    'restricted' => "No puedes hacer eso mientras estés restringido.",
 
     'user' => [
         'page' => [

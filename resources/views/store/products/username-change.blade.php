@@ -1,19 +1,6 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
 @if(!Auth::user())
 <div class="grid grid--gutters">
@@ -32,15 +19,20 @@
             <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
             <input type="hidden" id="username-form-price" name="item[cost]" value="0" />
             {!! Form::label('username', 'New Username') !!}
-            {!! Form::text('item[extra_info]', '', ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Requested Username', 'autocomplete' => 'off']) !!}
+            {!! Form::text('item[extra_info]', '', [
+                'id' => 'username',
+                'class' => 'js-username-change-input form-text form-text--username-change',
+                'placeholder' => 'Requested Username',
+                'autocomplete' => 'off',
+            ]) !!}
         </div>
-        <strong>
+        <em class="store-text store-text--emphasis">
             <div id="username-check-status">{{ trans('store.username_change.check') }}</div>
-        </strong>
-        <div>Your current username is "<i>{{ Auth::user()->username }}</i>".</div>
+        </em>
+        <div>Your current username is "{{ Auth::user()->username }}".</div>
     </div>
-    <div class="grid-cell price-box">
-        <p class="price" id="username-check-price"></p>
+    <div class="grid-cell">
+        <p class="store-text store-text--price" id="username-check-price"></p>
     </div>
 </div>
 @endif

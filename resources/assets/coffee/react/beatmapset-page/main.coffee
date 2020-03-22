@@ -1,20 +1,5 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 import { Header } from './header'
 import { Hype } from './hype'
@@ -22,6 +7,8 @@ import { Info } from './info'
 import { Scoreboard } from './scoreboard'
 import { Comments } from 'comments'
 import { CommentsManager } from 'comments-manager'
+import HeaderV4 from 'header-v4'
+import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 el = React.createElement
@@ -191,6 +178,7 @@ export class Main extends React.Component
 
   render: ->
     div className: 'osu-layout osu-layout--full',
+      @renderPageHeader()
       div className: 'osu-layout__row osu-layout__row--page-compact',
         el Header,
           beatmapset: @props.beatmapset
@@ -211,7 +199,7 @@ export class Main extends React.Component
               beatmapset: @props.beatmapset
               currentUser: currentUser
 
-        if @props.beatmapset.is_scoreable
+        if @state.currentBeatmap.is_scoreable
           div className: 'osu-page osu-page--generic',
             el Scoreboard,
               type: @state.currentScoreboardType
@@ -222,7 +210,7 @@ export class Main extends React.Component
               enabledMods: @state.enabledMods
               countries: @props.countries
               loading: @state.loading
-              isScoreable: @props.beatmapset.is_scoreable
+              isScoreable: @state.currentBeatmap.is_scoreable
 
         div className: 'osu-page osu-page--generic-compact',
           el CommentsManager,
@@ -231,6 +219,15 @@ export class Main extends React.Component
             commentableId: @props.beatmapset.id
 
 
+  renderPageHeader: =>
+    el HeaderV4,
+      theme: 'beatmapsets'
+      titleAppend: el PlaymodeTabs,
+        beatmaps: @state.beatmaps
+        currentMode: @state.currentBeatmap.mode
+        hrefFunc: @tabHrefFunc
+        showCounts: true
+
   saveStateToContainer: =>
     @props.container.dataset.state = JSON.stringify(@state)
 
@@ -238,3 +235,7 @@ export class Main extends React.Component
   setHash: =>
     osu.setHash BeatmapsetPageHash.generate
       beatmap: @state.currentBeatmap
+
+
+  tabHrefFunc: (mode) ->
+    BeatmapsetPageHash.generate mode: mode

@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .beatmap-discussions-user-filter {
   .select-options(beatmap-discussions-user-filter);
@@ -28,54 +13,10 @@
   }
 
   &__item {
-    &--ppy {
-      .link-hover({ color: @osu-colour-group-ppy });
-      color: @osu-colour-group-ppy;
-    }
+    color: var(--group-colour, @osu-colour-c1);
 
-    &--bot {
-      .link-hover({ color: @osu-colour-group-bot });
-      color: @osu-colour-group-bot;
-    }
-
-    &--dev {
-      .link-hover({ color: @osu-colour-group-dev });
-      color: @osu-colour-group-dev;
-    }
-
-    &--gmt {
-      .link-hover({ color: @osu-colour-group-gmt });
-      color: @osu-colour-group-gmt;
-    }
-
-    &--nat {
-      .link-hover({ color: @osu-colour-group-nat });
-      color: @osu-colour-group-nat;
-    }
-
-    &--bng {
-      .link-hover({ color: @osu-colour-group-bng });
-      color: @osu-colour-group-bng;
-    }
-
-    &--bng_limited {
-      .link-hover({ color: @osu-colour-group-bng });
-      color: @osu-colour-group-bng;
-    }
-
-    &--alumni {
-      .link-hover({ color: @osu-colour-group-alumni });
-      color: @osu-colour-group-alumni;
-    }
-
-    &--support {
-      .link-hover({ color: @osu-colour-group-support });
-      color: @osu-colour-group-support;
-    }
-
-    &--mapper {
-      .link-hover({ color: @osu-colour-blue-1 });
-      color: @osu-colour-blue-1;
-    }
+    .link-hover({
+      color: var(--group-colour, @osu-colour-c1);
+    });
   }
 }

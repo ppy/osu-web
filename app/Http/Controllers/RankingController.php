@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers;
 
@@ -27,10 +12,11 @@ use App\Models\UserStatistics;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+/**
+ * @group Ranking
+ */
 class RankingController extends Controller
 {
-    protected $section = 'rankings';
-
     private $country;
 
     const PAGE_SIZE = 50;
@@ -46,7 +32,6 @@ class RankingController extends Controller
         $type = request('type');
 
         view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
-        view()->share('currentAction', $type);
         view()->share('mode', $mode);
         view()->share('type', $type);
         view()->share('spotlight', null); // so variable capture in selector function doesn't die.
@@ -86,87 +71,113 @@ class RankingController extends Controller
         });
     }
 
+    /**
+     * Get Ranking
+     *
+     * Gets the current ranking for the specified type and game mode.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [Ranking Response](#ranking-response)
+     *
+     * ### Route Parameters
+     *
+     * Field  | Status   | Type
+     * -------| ---------| -----------------
+     * mode   | required | [GameMode](#gamemode)
+     * type   | required | [RankingType](#rankingtype)
+     *
+     * @authenticated
+     *
+     * @queryParam spotlight The id of the spotlight if `type` is `charts`
+     */
     public function index($mode, $type)
     {
         if ($type === 'charts') {
             return $this->spotlight($mode);
         }
 
-        $modeInt = Beatmap::modeInt($mode);
+        return with_db_fallback('mysql-readonly', function ($connection) use ($mode, $type) {
+            $modeInt = Beatmap::modeInt($mode);
 
-        if ($type === 'country') {
-            $stats = CountryStatistics::where('display', 1)
-                ->with('country')
-                ->where('mode', $modeInt)
-                ->orderBy('performance', 'desc');
-        } else {
-            $class = UserStatistics\Model::getClass($mode);
-            $table = (new $class)->getTable();
-            $stats = $class
-                ::on('mysql-readonly')
-                ->with(['user', 'user.country'])
-                ->whereHas('user', function ($userQuery) {
-                    $userQuery->default();
-                });
+            if ($type === 'country') {
+                $stats = CountryStatistics::where('display', 1)
+                    ->with('country')
+                    ->where('mode', $modeInt)
+                    ->orderBy('performance', 'desc');
+            } else {
+                $class = UserStatistics\Model::getClass($mode);
+                $table = (new $class)->getTable();
+                $stats = $class
+                    ::on($connection)
+                    ->with(['user', 'user.country'])
+                    ->whereHas('user', function ($userQuery) {
+                        $userQuery->default();
+                    });
 
-            if ($type === 'performance') {
-                if ($this->country !== null) {
+                if ($type === 'performance') {
+                    if ($this->country !== null) {
+                        $stats
+                            ->where('country_acronym', $this->country['acronym'])
+                            // preferrable to rank_score when filtering by country
+                            ->from(DB::raw("{$table} FORCE INDEX (country_acronym_2)"));
+                    } else {
+                        // force to order by rank_score instead of sucking down entire users table first.
+                        $stats->from(DB::raw("{$table} FORCE INDEX (rank_score)"));
+                    }
+
+                    $stats->orderBy('rank_score', 'desc');
+                } else { // 'score'
                     $stats
-                        ->where('country_acronym', $this->country['acronym'])
-                        // preferrable to rank_score when filtering by country
-                        ->from(DB::raw("{$table} FORCE INDEX (country_acronym_2)"));
-                } else {
-                    // force to order by rank_score instead of sucking down entire users table first.
-                    $stats->from(DB::raw("{$table} FORCE INDEX (rank_score)"));
+                        // force to order by ranked_score instead of sucking down entire users table first.
+                        ->from(DB::raw("{$table} FORCE INDEX (ranked_score)"))
+                        ->orderBy('ranked_score', 'desc');
                 }
 
-                $stats->orderBy('rank_score', 'desc');
-            } else { // 'score'
-                $stats
-                    // force to order by ranked_score instead of sucking down entire users table first.
-                    ->from(DB::raw("{$table} FORCE INDEX (ranked_score)"))
-                    ->orderBy('ranked_score', 'desc');
+                if (is_api_request()) {
+                    $stats->with(['user.userProfileCustomization']);
+                }
             }
+
+            $maxResults = $this->maxResults($modeInt);
+            $maxPages = ceil($maxResults / static::PAGE_SIZE);
+            $page = clamp(get_int(request('cursor.page') ?? request('page')), 1, $maxPages);
+
+            $stats = $stats->limit(static::PAGE_SIZE)
+                ->offset(static::PAGE_SIZE * ($page - 1))
+                ->get();
 
             if (is_api_request()) {
-                $stats->with(['user.userProfileCustomization']);
+                switch ($type) {
+                    case 'country':
+                        $ranking = json_collection($stats, 'CountryStatistics', ['country']);
+                        break;
+
+                    default:
+                        $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                        break;
+                }
+
+                return [
+                    // TODO: switch to offset?
+                    'cursor' => empty($ranking) || ($page >= $maxPages) ? null : ['page' => $page + 1],
+                    'ranking' => $ranking,
+                    'total' => $maxResults,
+                ];
             }
 
-            if (is_api_request()) {
-                $stats->with(['user.userProfileCustomization']);
-            }
-        }
+            $scores = new LengthAwarePaginator(
+                $stats,
+                $maxPages * static::PAGE_SIZE,
+                static::PAGE_SIZE,
+                $page,
+                ['path' => route('rankings', ['mode' => $mode, 'type' => $type])]
+            );
 
-        $maxResults = $this->maxResults($modeInt);
-        $maxPages = ceil($maxResults / static::PAGE_SIZE);
-        $page = clamp(get_int(request('cursor.page') ?? request('page')), 1, $maxPages);
-
-        $stats = $stats->limit(static::PAGE_SIZE)
-            ->offset(static::PAGE_SIZE * ($page - 1))
-            ->get();
-
-        if (is_api_request()) {
-            switch ($type) {
-                case 'country':
-                    $ranking = json_collection($stats, 'CountryStatistics', ['country']);
-
-                default:
-                    $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
-            }
-
-            return [
-                // TODO: switch to offset?
-                'cursor' => empty($ranking) || ($page >= $maxPages) ? null : ['page' => $page + 1],
-                'ranking' => $ranking,
-                'total' => $maxResults,
-            ];
-        }
-
-        $scores = new LengthAwarePaginator($stats, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
-            'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
-        ]);
-
-        return view("rankings.{$type}", compact('scores'));
+            return ext_view("rankings.{$type}", compact('scores'));
+        });
     }
 
     public function spotlight($mode)
@@ -215,13 +226,13 @@ class RankingController extends Controller
             }),
         ];
 
-        return view(
+        return ext_view(
             'rankings.charts',
             compact('scores', 'scoreCount', 'selectOptions', 'spotlight', 'beatmapsets')
         );
     }
 
-    private function optionFromSpotlight(Spotlight $spotlight) : array
+    private function optionFromSpotlight(Spotlight $spotlight): array
     {
         return ['id' => $spotlight->chart_id, 'text' => $spotlight->name];
     }

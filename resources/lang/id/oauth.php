@@ -22,15 +22,9 @@ return [
     'cancel' => 'Batal',
 
     'authorise' => [
-        'authorise' => 'Berikan Izin',
         'request' => 'meminta izin untuk mengakses ke dalam akun Anda.',
         'scopes_title' => 'Ke depannya, aplikasi ini akan mampu untuk:',
         'title' => 'Permohonan Otorisasi',
-
-        'wrong_user' => [
-            '_' => 'Anda terdaftar masuk sebagai :user. :logout_link.',
-            'logout_link' => 'Klik di sini untuk masuk sebagai pengguna lain',
-        ],
     ],
 
     'authorized_clients' => [
@@ -52,24 +46,18 @@ return [
         'secret' => 'Client Secret',
     ],
 
-    'login' => [
-        'download' => 'Klik di sini untuk mengunduh osu! dan membuat akun',
-        'label' => 'Pertama-tama, mari masuk ke dalam akun Anda!',
-        'title' => 'Sign-in Akun',
-    ],
-
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Daftarkan aplikasi OAuth baru',
+        'register' => 'Daftarkan aplikasi',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'Dengan menggunakan API kami Anda menyetujui :link berikut.',
+            'link' => 'Syarat Penggunaan',
         ],
     ],
 
     'own_clients' => [
         'confirm_delete' => 'Apakah anda yakin untuk menghapus klien ini?',
-        'new' => 'Aplikasi OAuth anyar',
+        'new' => 'Buat aplikasi OAuth baru',
         'none' => 'Tidak ada klien',
 
         'revoked' => [

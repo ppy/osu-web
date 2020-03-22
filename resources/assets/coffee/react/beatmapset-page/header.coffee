@@ -1,26 +1,10 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapPicker } from './beatmap-picker'
 import { Stats } from './stats'
 import { BeatmapsetMapping } from 'beatmapset-mapping'
 import { BigButton } from 'big-button'
-import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
@@ -62,7 +46,6 @@ export class Header extends React.Component
         effect: -> $(this).fadeTo(250, 0)
 
   render: ->
-    dateFormat = 'MMM D, YYYY'
     favouriteButton =
       if @props.hasFavourited
         action: 'unfavourite'
@@ -72,12 +55,6 @@ export class Header extends React.Component
         icon: 'far fa-heart'
 
     div className: 'beatmapset-header',
-      el PlaymodeTabs,
-        beatmaps: @props.beatmaps
-        currentMode: @props.currentBeatmap.mode
-        hrefFunc: @tabHrefFunc
-        showCounts: true,
-
       div
         className: 'beatmapset-header__content'
         style:
@@ -136,7 +113,7 @@ export class Header extends React.Component
                   osu.transChoice 'common.count.plus_others', @props.favcount - @favouritesToShow
 
           a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'
+            className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
             href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
             @props.beatmapset.title
 
@@ -195,7 +172,7 @@ export class Header extends React.Component
             @renderLoginButton()
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
-          div className: 'beatmapset-status beatmapset-status--show', @props.beatmapset.status
+          div className: 'beatmapset-status beatmapset-status--show', osu.trans("beatmapsets.show.status.#{@props.currentBeatmap.status}")
           el Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
@@ -228,7 +205,7 @@ export class Header extends React.Component
           osuDirect: true
           href:
             if currentUser.is_supporter
-              Url.beatmapDownloadDirect @props.beatmapset.id
+              _exported.OsuUrlHelper.beatmapDownloadDirect @props.currentBeatmap.id
             else
               laroute.route 'support-the-game'
       ]
@@ -257,10 +234,6 @@ export class Header extends React.Component
       props:
         href: href
         'data-turbolinks': 'false'
-
-
-  tabHrefFunc: (mode) ->
-    BeatmapsetPageHash.generate mode: mode
 
 
   toggleFavourite: (e) ->

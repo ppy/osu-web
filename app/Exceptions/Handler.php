@@ -1,26 +1,11 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Exceptions;
 
-use App;
+use App\Libraries\UserVerification;
 use Auth;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
@@ -29,6 +14,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Laravel\Passport\Exceptions\MissingScopeException;
+use Laravel\Passport\Exceptions\OAuthServerException as PassportOAuthServerException;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
@@ -50,10 +37,50 @@ class Handler extends ExceptionHandler
         // local
         AuthorizationException::class,
         SilencedException::class,
+        VerificationRequiredException::class,
 
         // oauth
-        \League\OAuth2\Server\Exception\OAuthServerException::class,
+        OAuthServerException::class,
     ];
+
+    public static function exceptionMessage($e)
+    {
+        if ($e instanceof ModelNotFoundException) {
+            return;
+        }
+
+        if (static::statusCode($e) >= 500) {
+            return;
+        }
+
+        return $e->getMessage();
+    }
+
+    public static function statusCode($e)
+    {
+        if (method_exists($e, 'getStatusCode')) {
+            return $e->getStatusCode();
+        } elseif ($e instanceof ModelNotFoundException) {
+            return 404;
+        } elseif ($e instanceof NotFoundHttpException) {
+            return 404;
+        } elseif ($e instanceof TokenMismatchException) {
+            return 403;
+        } elseif ($e instanceof AuthenticationException) {
+            return 401;
+        } elseif ($e instanceof AuthorizationException || $e instanceof MissingScopeException) {
+            return 403;
+        } elseif (static::isOAuthServerException($e)) {
+            return $e->getPrevious()->getHttpStatusCode();
+        } else {
+            return 500;
+        }
+    }
+
+    private static function isOAuthServerException($e)
+    {
+        return ($e instanceof PassportOAuthServerException) && ($e->getPrevious() instanceof OAuthServerException);
+    }
 
     /**
      * Report or log an exception.
@@ -66,9 +93,6 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
-        view()->share('currentAction', $this->statusCode($e));
-        view()->share('currentSection', 'error');
-
         // immediately done if the error should not be reported
         if ($this->shouldntReport($e)) {
             return;
@@ -95,45 +119,53 @@ class Handler extends ExceptionHandler
             return $e->getResponse();
         }
 
+        if ($e instanceof VerificationRequiredException) {
+            return $this->unverified();
+        }
+
         if ($e instanceof AuthenticationException) {
             return $this->unauthenticated($request, $e);
         }
 
+        $statusCode = static::statusCode($e);
+
+        app('route-section')->setError($statusCode);
+
         if (config('app.debug')) {
             $response = parent::render($request, $e);
         } else {
-            $message = $this->exceptionMessage($e);
+            $message = static::exceptionMessage($e);
 
-            if (is_json_request()) {
+            if (is_json_request() || $request->ajax()) {
                 $response = response(['error' => $message]);
             } else {
-                $response = response()->view('layout.error', ['exceptionMessage' => $message]);
+                $response = ext_view('layout.error', [
+                    'exceptionMessage' => $message,
+                    'statusCode' => $statusCode,
+                ]);
             }
         }
 
-        return $response->setStatusCode($this->statusCode($e));
+        return $response->setStatusCode(static::statusCode($e));
+    }
+
+    protected function shouldntReport(Exception $e)
+    {
+        return parent::shouldntReport($e) || $this->isOAuthServerException($e);
     }
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        if (is_json_request()) {
+        if (is_json_request() || $request->ajax()) {
             return response(['authentication' => 'basic'], 401);
         }
 
-        return response()->view('users.login');
+        return ext_view('users.login', null, null, 401);
     }
 
-    private function exceptionMessage($e)
+    protected function unverified()
     {
-        if ($e instanceof ModelNotFoundException) {
-            return;
-        }
-
-        if ($this->statusCode($e) >= 500) {
-            return;
-        }
-
-        return $e->getMessage();
+        return UserVerification::fromCurrentRequest()->initiate();
     }
 
     private function reportWithSentry($e)
@@ -151,30 +183,11 @@ class Handler extends ExceptionHandler
 
         app('sentry')->configureScope(function ($scope) use ($e, $userContext) {
             $scope->setUser($userContext);
-            $scope->setTag('http_code', (string) $this->statusCode($e));
+            $scope->setTag('http_code', (string) static::statusCode($e));
         });
 
         $ref = app('sentry')->captureException($e);
 
         view()->share('ref', $ref);
-    }
-
-    private function statusCode($e)
-    {
-        if (method_exists($e, 'getStatusCode')) {
-            return $e->getStatusCode();
-        } elseif ($e instanceof ModelNotFoundException) {
-            return 404;
-        } elseif ($e instanceof NotFoundHttpException) {
-            return 404;
-        } elseif ($e instanceof TokenMismatchException) {
-            return 403;
-        } elseif ($e instanceof AuthenticationException) {
-            return 401;
-        } elseif ($e instanceof AuthorizationException || $e instanceof MissingScopeException) {
-            return 403;
-        } else {
-            return 500;
-        }
     }
 }

@@ -22,6 +22,7 @@ return [
     'deleted' => 'ถูกลบไปแล้ว',
     'deleted_count' => ':count_delimited คอมเม้นต์ที่ลบไป|:count_delimited คอมเม้นต์ที่ลบไป',
     'edited' => 'แก้ไขเมื่อ :timeago โดย :user',
+    'pinned' => '',
     'empty' => 'ยังไม่มีความคิดเห็นเลย',
     'load_replies' => 'โหลดข้อความตอบกลับ',
     'replies' => 'ตอบกลับ',
@@ -49,10 +50,7 @@ return [
     ],
 
     'index' => [
-        'title' => [
-            '_' => 'ความคิดเห็น :info',
-            'info' => 'รายการ',
-        ],
+        'nav_title' => '',
     ],
 
     'placeholder' => [
@@ -62,9 +60,6 @@ return [
     ],
 
     'show' => [
-        'title' => [
-            '_' => 'ความคิดเห็น :info',
-            'info' => 'ราย​ละเอียด',
-        ],
+        'nav_title' => '',
     ],
 ];

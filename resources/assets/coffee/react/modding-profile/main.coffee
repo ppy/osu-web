@@ -1,20 +1,5 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 import { Events } from './events'
 import { ExtraTab } from '../profile-page/extra-tab'
@@ -22,6 +7,8 @@ import { Discussions} from './discussions'
 import { Header } from './header'
 import { Kudosu } from '../profile-page/kudosu'
 import { Votes } from './votes'
+import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
 import { Posts } from "./posts"
@@ -129,75 +116,97 @@ export class Main extends React.PureComponent
     _.each beatmapset.related_users, (newUser) ->
       if userIds.includes(newUser.id)
         users = _.reject users, id: newUser.id
-        users.push(newUser)
 
-    @cache.users = null
+      users.push(newUser)
+
+    @cache.users = @cache.discussions = @cache.beatmaps = null
     @setState
       discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.starting_post.created_at)))
       posts: _.reverse(_.sortBy(posts, (p) -> Date.parse(p.created_at)))
       users: users
 
 
+  discussions: =>
+    # skipped discussions
+    # - not privileged (deleted discussion)
+    # - deleted beatmap
+    @cache.discussions ?= _ @state.discussions
+                            .filter (d) -> !_.isEmpty(d)
+                            .keyBy 'id'
+                            .value()
+
+
+  beatmaps: =>
+    beatmaps = _.map(@discussions(), (d) => d.beatmap)
+                .filter((b) => b != undefined)
+
+    @cache.beatmaps ?= _.keyBy(beatmaps, 'id')
+
+
   render: =>
     profileOrder = @state.profileOrder
     isBlocked = _.find(currentUser.blocks, target_id: @state.user.id)
 
-    div
-      className: 'osu-layout__no-scroll' if isBlocked && !@state.forceShow
-      if isBlocked
-        div className: 'osu-page',
-          el NotificationBanner,
-            type: 'warning'
-            title: osu.trans('users.blocks.banner_text')
-            message:
-              div className: 'notification-banner__button-group',
-                div className: 'notification-banner__button',
-                  el BlockButton, userId: @props.user.id
-                div className: 'notification-banner__button',
-                  button
-                    type: 'button'
-                    className: 'textual-button'
-                    onClick: =>
-                      @setState forceShow: !@state.forceShow
-                    span {},
-                      i className: 'textual-button__icon fas fa-low-vision'
-                      " "
-                      if @state.forceShow
-                        osu.trans('users.blocks.hide_profile')
-                      else
-                        osu.trans('users.blocks.show_profile')
-
-      div className: "osu-layout osu-layout--full#{if isBlocked && !@state.forceShow then ' osu-layout--masked' else ''}",
-        el Header,
-          user: @state.user
-          stats: @state.user.statistics
-          rankHistory: @props.rankHistory
-          userAchievements: @props.userAchievements
-
+    el DiscussionsContext.Provider,
+      value: @discussions()
+      el BeatmapsContext.Provider,
+        value: @beatmaps()
         div
-          className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
-          div className: 'osu-page',
+          className: 'osu-layout__no-scroll' if isBlocked && !@state.forceShow
+          if isBlocked
+            div className: 'osu-page',
+              el NotificationBanner,
+                type: 'warning'
+                title: osu.trans('users.blocks.banner_text')
+                message:
+                  div className: 'grid-items grid-items--notification-banner-buttons',
+                    div null,
+                      el BlockButton, userId: @props.user.id
+                    div null,
+                      button
+                        type: 'button'
+                        className: 'textual-button'
+                        onClick: =>
+                          @setState forceShow: !@state.forceShow
+                        span {},
+                          i className: 'textual-button__icon fas fa-low-vision'
+                          " "
+                          if @state.forceShow
+                            osu.trans('users.blocks.hide_profile')
+                          else
+                            osu.trans('users.blocks.show_profile')
+
+          div className: "osu-layout osu-layout--full#{if isBlocked && !@state.forceShow then ' osu-layout--masked' else ''}",
+            el Header,
+              user: @state.user
+              stats: @state.user.statistics
+              rankHistory: @props.rankHistory
+              userAchievements: @props.userAchievements
+
             div
-              className: 'page-mode page-mode--profile-page-extra'
-              ref: @tabs
-              for m in profileOrder
-                a
-                  className: 'page-mode__item'
-                  key: m
-                  'data-page-id': m
-                  onClick: @tabClick
-                  href: "##{m}"
-                  el ExtraTab,
-                    page: m
-                    currentPage: @state.currentPage
-                    currentMode: @state.currentMode
+              className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
+              div className: 'osu-page',
+                div
+                  className: 'page-mode page-mode--profile-page-extra'
+                  ref: @tabs
+                  for m in profileOrder
+                    a
+                      className: 'page-mode__item'
+                      key: m
+                      'data-page-id': m
+                      onClick: @tabClick
+                      href: "##{m}"
+                      el ExtraTab,
+                        page: m
+                        currentPage: @state.currentPage
+                        currentMode: @state.currentMode
 
-        div
-          className: 'osu-layout__section osu-layout__section--users-extra'
-          div
-            className: 'osu-layout__row'
-            ref: @pages
-            @extraPage name for name in profileOrder
+            div
+              className: 'osu-layout__section osu-layout__section--users-extra'
+              div
+                className: 'osu-layout__row'
+                ref: @pages
+                @extraPage name for name in profileOrder
 
 
   extraPage: (name) =>

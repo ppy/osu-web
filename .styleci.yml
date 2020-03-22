@@ -1,18 +1,17 @@
 preset: laravel
 
 enabled:
-  - alpha_ordered_imports
   - strict
   - strict_param
   - unalign_double_arrow
 
 disabled:
-  - length_ordered_imports
   - logical_not_operators_with_successor_space
   - phpdoc_summary
 
 finder:
   not-path:
+    - resources/lang/ar
     - resources/lang/be
     - resources/lang/bg
     - resources/lang/cs
@@ -38,6 +37,7 @@ finder:
     - resources/lang/sv
     - resources/lang/th
     - resources/lang/tr
+    - resources/lang/uk
     - resources/lang/vi
     - resources/lang/zh
     - resources/lang/zh-tw

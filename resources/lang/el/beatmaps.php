@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Αλλαγή Υποψηφιότητας',
             'praise' => 'Έπαινος',
             'problem' => 'Πρόβλημα',
+            'review' => '',
             'suggestion' => 'Πρόταση',
         ],
 
         'mode' => [
             'events' => 'Ιστορικό',
             'general' => 'Γενικά :scope',
+            'reviews' => '',
             'timeline' => 'Χρονολόγιο',
             'scopes' => [
                 'general' => 'Αυτή η δυσκολία',
@@ -183,6 +185,7 @@ return [
         'nominate' => 'Nominate',
         'nominate_confirm' => 'Κάντε nominate αυτό το beatmap;',
         'nominated_by' => 'nominated από :users',
+        'not_enough_hype' => "",
         'qualified' => 'Εκτιμάται ότι θα γίνει ranked στις :date, εάν δεν βρεθεί κάποιο πρόβλημα.',
         'qualified_soon' => 'Εκτιμάται ότι θα γίνει ranked σύντομα, εάν δεν βρεθεί κάποιο πρόβλημα.',
         'required_text' => 'Υποψηφιότητες :current/:required',

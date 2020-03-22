@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import {
   ChatChannelSwitchAction,
@@ -25,29 +10,25 @@ import {
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
-import Dispatcher from 'dispatcher';
 import { transaction } from 'mobx';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
 import ChatAPI from './chat-api';
 import { MessageJSON } from './chat-api-responses';
 
+@dispatchListener
 export default class ChatWorker implements DispatchListener {
   private api: ChatAPI;
-  private dispatcher: Dispatcher;
   private pollingEnabled: boolean = true;
   private pollTime: number = 1000;
   private pollTimeIdle: number = 5000;
-  private rootDataStore: RootDataStore;
   private updateTimerId?: number;
   private updateXHR: boolean = false;
   private windowIsActive: boolean = true;
 
-  constructor(dispatcher: Dispatcher, rootDataStore: RootDataStore) {
-    this.dispatcher = dispatcher;
-    this.rootDataStore = rootDataStore;
-    this.dispatcher.register(this);
+  constructor(private rootDataStore: RootDataStore) {
     this.api = new ChatAPI();
   }
 
@@ -82,10 +63,10 @@ export default class ChatWorker implements DispatchListener {
           updateJson.messages.forEach((message: MessageJSON) => {
             const newMessage = Message.fromJSON(message);
             newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
-            this.dispatcher.dispatch(new ChatMessageAddAction(newMessage));
+            dispatch(new ChatMessageAddAction(newMessage));
           });
 
-          this.dispatcher.dispatch(new ChatPresenceUpdateAction(updateJson.presence));
+          dispatch(new ChatPresenceUpdateAction(updateJson.presence));
         });
       })
       .catch((err) => {
@@ -122,12 +103,12 @@ export default class ChatWorker implements DispatchListener {
           transaction(() => {
             this.rootDataStore.channelStore.channels.delete(channelId);
             this.rootDataStore.channelStore.updatePresence(response.presence);
-            this.dispatcher.dispatch(new ChatChannelSwitchAction(newId));
+            dispatch(new ChatChannelSwitchAction(newId));
           });
         })
         .catch(() => {
           message.errored = true;
-          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
+          dispatch(new ChatMessageUpdateAction(message));
         });
     } else {
       this.api.sendMessage(channelId, message.content, message.isAction)
@@ -137,11 +118,11 @@ export default class ChatWorker implements DispatchListener {
           } else {
             message.errored = true;
           }
-          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
+          dispatch(new ChatMessageUpdateAction(message));
         })
         .catch(() => {
           message.errored = true;
-          this.dispatcher.dispatch(new ChatMessageUpdateAction(message));
+          dispatch(new ChatMessageUpdateAction(message));
         });
     }
   }

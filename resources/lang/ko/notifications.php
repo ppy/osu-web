@@ -21,6 +21,18 @@
 return [
     'all_read' => '모든 알림을 읽었어요!',
     'mark_all_read' => '모두 지우기',
+    'none' => '알림 없음',
+    'see_all' => '모든 알림 보기',
+
+    'filters' => [
+        '_' => '전체',
+        'user' => '프로필',
+        'beatmapset' => '비트맵',
+        'forum_topic' => '포럼',
+        'news_post' => '소식',
+        'build' => '빌드 버전',
+        'channel' => '채팅',
+    ],
 
     'item' => [
         'beatmapset' => [
@@ -31,11 +43,19 @@ return [
                 'beatmapset_discussion_lock' => '비트맵 ":title"의 토론이 잠겼습니다.',
                 'beatmapset_discussion_lock_compact' => '토론이 잠겼습니다.',
                 'beatmapset_discussion_post_new' => ':username님이 ":title"의 비트맵 토론에 새로운 메시지를 게시했습니다.',
+                'beatmapset_discussion_post_new_empty' => ':username 님이 ":title" 에 새 게시글을 작성하셨습니다.',
                 'beatmapset_discussion_post_new_compact' => ':username 님의 새로운 게시글',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                'beatmapset_discussion_post_new_compact_empty' => ':username 님의 새로운 게시글',
                 'beatmapset_discussion_unlock' => '비트맵 ":title"의 토론이 잠금 해제되었습니다.',
                 'beatmapset_discussion_unlock_compact' => '토론이 잠금 해제되었습니다.',
+            ],
+
+            'beatmapset_problem' => [
+                '_' => 'Qualified 비트맵 문제',
+                'beatmapset_discussion_qualified_problem' => '":title": ":content"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_empty' => '":title"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_compact' => '":content"에서 :username 이(가) 보고함',
+                'beatmapset_discussion_qualified_problem_compact_empty' => ':username 이(가) 보고함',
             ],
 
             'beatmapset_state' => [
@@ -50,7 +70,7 @@ return [
                 'beatmapset_qualify_compact' => '비트맵이 랭크맵 대기열에 등록되었습니다.',
                 'beatmapset_rank' => '":title" 이(가) ranked 상태가 되었습니다.',
                 'beatmapset_rank_compact' => '비트맵이 ranked 상태가 되었습니다.',
-                'beatmapset_reset_nominations' => ':username님의 이슈 게시로 인해 비트맵 ":title"의 지명이 초기화되었습니다. ',
+                'beatmapset_reset_nominations' => '비트맵 ":title"의 지명이 초기화되었습니다.',
                 'beatmapset_reset_nominations_compact' => '지명이 초기화되었습니다.',
             ],
 
@@ -122,6 +142,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '새 메달',
                 'user_achievement_unlock' => '":title" 해제!',
+                'user_achievement_unlock_compact' => '":title" 달성!',
             ],
         ],
     ],

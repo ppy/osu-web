@@ -33,7 +33,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'kudosuya izin ver',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Beatmap sayfası',
         'delete' => 'sil',
         'deleted' => ':editor tarafından :delete_time tarihinde silindi.',
         'deny_kudosu' => 'kudosuyu reddet',
@@ -91,12 +91,14 @@ return [
             'nomination_reset' => 'Adaylığı Sıfırla',
             'praise' => 'Övgü',
             'problem' => 'Sorun',
+            'review' => 'İnceleme',
             'suggestion' => 'Öneri',
         ],
 
         'mode' => [
             'events' => 'Geçmiş',
             'general' => 'Genel :scope',
+            'reviews' => 'İncelemeler',
             'timeline' => 'Zaman Çizgisi',
             'scopes' => [
                 'general' => 'Bu zorluk',
@@ -142,8 +144,8 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Henüz negatif oy yok',
+                'up' => 'Henüz pozitif oy yok',
             ],
             'latest' => [
                 'down' => '',
@@ -183,6 +185,7 @@ return [
         'nominate' => 'Aday Göster',
         'nominate_confirm' => 'Beatmap aday gösterilsin mi?',
         'nominated_by' => ':users tarafından aday gösterildi',
+        'not_enough_hype' => "Yeterince gaz yok.",
         'qualified' => 'Eğer bir sorun bulunmazsa, :date tarihinde dereceli olacağı tahmin ediliyor.',
         'qualified_soon' => 'Eğer bir sorun bulunmazsa, yakında dereceli olacağı tahmin ediliyor.',
         'required_text' => 'Aday Göstermeler: :current/:required',
@@ -287,7 +290,7 @@ return [
         'HD' => '',
         'HR' => '',
         'HT' => '',
-        'MR' => '',
+        'MR' => 'Ayna',
         'NC' => '',
         'NF' => '',
         'NM' => '',

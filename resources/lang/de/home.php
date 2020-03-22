@@ -25,6 +25,7 @@ return [
         'peak' => 'Maximum, :count Benutzer online',
         'players' => '<strong>:count</strong> registrierte Spieler',
         'title' => 'Willkommen',
+        'see_more_news' => 'mehr Neuigkeiten anzeigen',
 
         'slogan' => [
             'main' => 'das besteste free-to-play rhythmusspiel',
@@ -41,6 +42,7 @@ return [
         'title' => 'Suchergebnisse',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => ':count weitere gefundene Beatmaps',
             'more_simple' => 'Mehr gefundene Beatmaps anzeigen',
             'title' => 'Beatmaps',
@@ -49,6 +51,7 @@ return [
         'forum_post' => [
             'all' => 'Alle Foren',
             'link' => 'Das Forum durchsuchen',
+            'login_required' => '',
             'more_simple' => 'Mehr gefundene Forenbeiträge anzeigen',
             'title' => 'Forum',
 
@@ -69,6 +72,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => ':count weitere gefundene Spieler',
             'more_simple' => 'Mehr gefundene Spieler anzeigen',
             'more_hidden' => 'Die Spielersuche ist auf :max Spieler limitiert. Verfeinere bitte deine Suchanfrage.',
@@ -119,8 +123,6 @@ return [
             'error' => 'News konnten nicht geladen werden. Versuche, die Seite neu zu laden...?',
         ],
         'header' => [
-            'welcome' => 'Hallo, <strong>:username</strong>!',
-            'messages' => 'Du hast 1 neue Nachricht|Du hast :count neue Nachrichten',
             'stats' => [
                 'friends' => 'Freunde online',
                 'games' => 'Mehrspielerräume',
@@ -130,8 +132,7 @@ return [
         'beatmaps' => [
             'new' => 'Neue Ranked Beatmaps',
             'popular' => 'Beliebte Beatmaps',
-            'by' => 'von',
-            'plays' => ':count plays',
+            'by_user' => 'von :user',
         ],
         'buttons' => [
             'download' => 'osu! herunterladen',

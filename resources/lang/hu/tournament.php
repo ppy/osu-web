@@ -21,10 +21,9 @@
 return [
     'index' => [
         'none_running' => 'Jelenleg nincs futó bajnokság, nézz vissza később!',
-        'registration_period' => 'Regisztráció: :start a :end -ig',
+        'registration_period' => 'Regisztráció: :start és :end között',
 
         'header' => [
-            'subtitle' => 'Az aktív, hivatalosan elismert tornák listája',
             'title' => 'Közösségi versenyek',
         ],
 
@@ -52,6 +51,11 @@ return [
             'register' => 'Regisztrálj engem!',
         ],
 
+        'period' => [
+            'end' => 'Befejezés',
+            'start' => 'Kezdés',
+        ],
+
         'state' => [
             'before_registration' => 'A versenyre való regisztrálás még nem nyílt meg.',
             'ended' => 'Ez a verseny véget ért. Nézd meg az információs oldalt az eredményekért.',
@@ -59,5 +63,5 @@ return [
             'running' => 'Ez a verseny jelenleg zajlik. Részletekért nézd meg az információs oldalt.',
         ],
     ],
-    'tournament_period' => ':start a :end',
+    'tournament_period' => ':start és :end között',
 ];
