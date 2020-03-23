@@ -193,6 +193,9 @@ class AccountController extends Controller
             'comments_sort:string',
             'extras_order:string[]',
             'ranking_expanded:bool',
+            'user_list_filter:string',
+            'user_list_sort:string',
+            'user_list_view:string',
         ]);
 
         try {

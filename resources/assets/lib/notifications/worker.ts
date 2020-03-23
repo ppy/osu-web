@@ -208,6 +208,10 @@ export default class Worker {
   }
 
   @action setUserId = (id: number | null) => {
+    if (id === this.userId) {
+      return;
+    }
+
     if (this.active) {
       this.destroy();
     }
