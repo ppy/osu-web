@@ -125,7 +125,8 @@ export class Nominations extends React.PureComponent
                   text: if userAlreadyHyped then osu.trans('beatmaps.hype.button_done') else osu.trans('beatmaps.hype.button')
                   icon: 'fas fa-bullhorn'
                   props:
-                    disabled: userAlreadyHyped
+                    disabled: !@props.beatmapset.current_user_attributes.can_hype
+                    title: @props.beatmapset.current_user_attributes?.can_hype_reason
                     onClick: @focusHypeInput
 
           if mapCanBeNominated || mapIsQualified

@@ -441,6 +441,13 @@ function markdown($input, $preset = 'default')
     return $converter[$preset]->load($input)->html();
 }
 
+function max_offset($page, $limit)
+{
+    $offset = ($page - 1) * $limit;
+
+    return max(0, min($offset, config('osu.pagination.max_count') - $limit));
+}
+
 function mysql_escape_like($string)
 {
     return addcslashes($string, '%_\\');

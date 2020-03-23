@@ -112,8 +112,11 @@ export class SearchPanel extends React.Component
 
   onChange: (event) =>
     query = event.target.value
-    @pinnedInputRef.current.value = query
-    @inputRef.current.value = query
+    if @pinnedInputRef.current.value != query
+      @pinnedInputRef.current.value = query
+
+    if @inputRef.current.value != query
+      @inputRef.current.value = query
 
     controller.updateFilters { query }
 

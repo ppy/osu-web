@@ -32,6 +32,7 @@ return [
         ],
 
         'hype' => [
+            'discussion_locked' => "This beatmap is currently locked for discussion and can't be hyped",
             'guest' => 'Must be signed in to hype.',
             'hyped' => 'You have already hyped this beatmap.',
             'limit_exceeded' => 'You have used all your hype.',
