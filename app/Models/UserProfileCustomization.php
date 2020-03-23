@@ -31,6 +31,12 @@ class UserProfileCustomization extends Model
         'kudosu',
     ];
 
+    const USER_LIST = [
+        'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
+        'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
+        'views' => ['all' => ['card', 'list', 'brick'], 'default' => 'card'],
+    ];
+
     protected $casts = [
         'cover_json' => 'array',
         'options' => 'array',
@@ -83,6 +89,48 @@ class UserProfileCustomization extends Model
         }
 
         $this->setOption('comments_sort', $value);
+    }
+
+    public function getUserListFilterAttribute()
+    {
+        return $this->options['user_list_filter'] ?? static::USER_LIST['filters']['default'];
+    }
+
+    public function setUserListFilterAttribute($value)
+    {
+        if ($value !== null && !in_array($value, static::USER_LIST['filters']['all'], true)) {
+            $value = null;
+        }
+
+        $this->setOption('user_list_filter', $value);
+    }
+
+    public function getUserListSortAttribute()
+    {
+        return $this->options['user_list_sort'] ?? static::USER_LIST['sorts']['default'];
+    }
+
+    public function setUserListSortAttribute($value)
+    {
+        if ($value !== null && !in_array($value, static::USER_LIST['sorts']['all'], true)) {
+            $value = null;
+        }
+
+        $this->setOption('user_list_sort', $value);
+    }
+
+    public function getUserListViewAttribute()
+    {
+        return $this->options['user_list_view'] ?? static::USER_LIST['views']['default'];
+    }
+
+    public function setUserListViewAttribute($value)
+    {
+        if ($value !== null && !in_array($value, static::USER_LIST['views']['all'], true)) {
+            $value = null;
+        }
+
+        $this->setOption('user_list_view', $value);
     }
 
     public function getExtrasOrderAttribute($value)
