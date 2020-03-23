@@ -149,36 +149,32 @@ class BeatmapDiscussionPostsController extends Controller
             $notifyQualifiedProblem = $openProblems === 0 && ($newDiscussion || $reopen);
         }
 
-        try {
-            DB::transaction(function () use ($posts, $discussion, $events, $resetNominations, $disqualify) {
-                $discussion->saveOrExplode();
+        DB::transaction(function () use ($posts, $discussion, $events, $resetNominations, $disqualify) {
+            $discussion->saveOrExplode();
 
-                foreach ($posts as $post) {
-                    // done here since discussion may or may not previously exist
-                    $post->beatmap_discussion_id = $discussion->id;
-                    $post->saveOrExplode();
-                }
+            foreach ($posts as $post) {
+                // done here since discussion may or may not previously exist
+                $post->beatmap_discussion_id = $discussion->id;
+                $post->saveOrExplode();
+            }
 
-                foreach ($events as $event) {
-                    BeatmapsetEvent::log($event, Auth::user(), $posts[0])->saveOrExplode();
-                }
+            foreach ($events as $event) {
+                BeatmapsetEvent::log($event, Auth::user(), $posts[0])->saveOrExplode();
+            }
 
-                if ($disqualify) {
-                    $discussion->beatmapset->disqualify(Auth::user(), $posts[0]);
-                }
+            if ($disqualify) {
+                $discussion->beatmapset->disqualify(Auth::user(), $posts[0]);
+            }
 
-                if ($resetNominations) {
-                    broadcast_notification(Notification::BEATMAPSET_RESET_NOMINATIONS, $discussion->beatmapset, Auth::user());
-                }
+            if ($resetNominations) {
+                broadcast_notification(Notification::BEATMAPSET_RESET_NOMINATIONS, $discussion->beatmapset, Auth::user());
+            }
 
-                // feels like a controller shouldn't be calling refreshCache on a model?
-                if ($resetNominations || $disqualify) {
-                    $discussion->beatmapset->refreshCache();
-                }
-            });
-        } catch (ModelNotSavedException $_e) {
-            return error_popup(trans('beatmaps.discussion-posts.store.error'));
-        }
+            // feels like a controller shouldn't be calling refreshCache on a model?
+            if ($resetNominations || $disqualify) {
+                $discussion->beatmapset->refreshCache();
+            }
+        });
 
         $beatmapset = $discussion->beatmapset;
 
