@@ -10,6 +10,7 @@
   padding: 10px;
   color: #fff;
 
+  // FIXME: this should be migrated to btn-osu-big
   &__button {
     .reset-input();
     .default-text-shadow();
@@ -21,18 +22,22 @@
     margin: 5px 5px;
     min-width: 160px;
     border-radius: 10000px;
-    background-color: @osu-colour-blue-3;
+    background-color: var(--bg);
+    --bg: @osu-colour-blue-3;
+    --bg-hover: @osu-colour-blue-2;
 
     .link-hover({
-      background-color: @osu-colour-blue-2;
+      background-color: var(--bg-hover);
     });
 
     &--cancel {
-      background-color: @osu-colour-red-3;
+      --bg: @osu-colour-red-3;
+      --bg-hover: @osu-colour-red-2;
+    }
 
-      .link-hover({
-        background-color: @osu-colour-red-2;
-      });
+    &[disabled] {
+      opacity: 0.9;
+      --bg-hover: var(--bg);
     }
   }
 

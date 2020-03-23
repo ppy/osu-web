@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $url = wiki_url($page->path, $locale);
+    $url = wiki_url($page->path, $page->requestedLocale);
     $title = $page->title();
 
     $links = [
@@ -17,7 +17,7 @@
     if ($parentTitle !== null) {
         $link = ['title' => $parentTitle];
         if ($page->hasParent()) {
-            $link['url'] = wiki_url($page->parentPath(), $locale);
+            $link['url'] = wiki_url($page->parentPath(), $page->requestedLocale);
         }
         $links[] = $link;
     }
