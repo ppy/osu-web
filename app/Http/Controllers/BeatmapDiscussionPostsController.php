@@ -210,16 +210,9 @@ class BeatmapDiscussionPostsController extends Controller
 
         $params = get_params(request(), 'beatmap_discussion_post', ['message']);
         $params['last_editor_id'] = Auth::user()->user_id;
-        if ($post->update($params)) {
-            return $post->beatmapset->defaultDiscussionJson();
-        } else {
-            $message = trim(implode(' ', [
-                $post->validationErrors()->toSentence(),
-                $post->beatmapDiscussion->validationErrors()->toSentence(),
-            ]));
+        $post->fill($params)->saveOrExplode();
 
-            return error_popup(presence($message, trans('beatmaps.discussion-posts.store.error')));
-        }
+        return $post->beatmapset->defaultDiscussionJson();
     }
 
     private function prepareDiscussion($request)
