@@ -3,10 +3,9 @@
 
 import UserJSON from './user-json';
 
-export interface ClientJSON {
-  id: number;
-  name: string | null;
-  scopes: string[];
-  user: UserJSON;
-  user_id: number;
+export default interface UserJSONExtended extends UserJSON {
+  follower_count?: number;
+  is_admin: boolean;
+  is_moderator: boolean;
+  unread_pm_count?: number;
 }

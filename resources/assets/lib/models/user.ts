@@ -68,7 +68,7 @@ export default class User {
   updateFromJSON(json: UserJSON) {
     this.username = json.username;
     this.avatarUrl = json.avatar_url;
-    this.profileColour = json.profile_colour;
+    this.profileColour = json.profile_colour ?? '';
     this.countryCode = json.country_code;
     this.isSupporter = json.is_supporter;
     this.isActive = json.is_active;
