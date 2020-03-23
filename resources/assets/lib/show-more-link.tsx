@@ -59,7 +59,7 @@ const ShowMoreLink = React.forwardRef((props: Props, ref: React.RefObject<any>) 
     return <span data-disabled='1' {...sharedProps} />;
   }
 
-  let url = props.url;
+  const url = props.url;
   let onClick = props.callback;
 
   if (onClick == null && url == null) {
