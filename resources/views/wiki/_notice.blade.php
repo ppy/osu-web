@@ -2,9 +2,9 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@if ($page->isVisible() && $page->locale !== $locale)
+@if ($page->isVisible() && $page->locale !== $page->requestedLocale)
     <div class="wiki-notice">
-        {{ trans('wiki.show.fallback_translation', ['language' => locale_name($locale)]) }}
+        {{ trans('wiki.show.fallback_translation', ['language' => locale_name($page->requestedLocale)]) }}
     </div>
 @endif
 
