@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { UserJSON } from 'chat/chat-api-responses';
+import UserJSON from 'interfaces/user-json';
 import User from 'models/user';
 import OsuCore from 'osu-core';
 
