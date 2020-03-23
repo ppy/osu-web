@@ -34,7 +34,7 @@ class RouteScopesTest extends TestCase
                     function ($failure) {
                         return [
                             'message' => $failure->getMessage(),
-                            'diff' => $failure->getComparisonFailure()->toString()
+                            'diff' => $failure->getComparisonFailure()->toString(),
                         ];
                     },
                     $failures
