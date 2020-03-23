@@ -37,8 +37,25 @@ class UserTransformer extends TransformerAbstract
         'user_preferences',
     ];
 
+    protected $defaultIncludes = [
+        'is_bng',
+        'is_full_bn',
+        'is_gmt',
+        'is_limited_bn',
+        'is_moderator',
+        'is_nat',
+        'is_restricted',
+    ];
+
     protected $permissions = [
         'friends' => 'IsNotOAuth',
+        'is_bng' => 'IsNotOAuth',
+        'is_full_bn' => 'IsNotOAuth',
+        'is_gmt' => 'IsNotOAuth',
+        'is_limited_bn' => 'IsNotOAuth',
+        'is_moderator' => 'IsNotOAuth',
+        'is_nat' => 'IsNotOAuth',
+        'is_restricted' => 'IsNotOAuth',
     ];
 
     public function transform(User $user)
@@ -60,15 +77,8 @@ class UserTransformer extends TransformerAbstract
             'avatar_url' => $user->user_avatar,
             'is_supporter' => $user->osu_subscriber,
             'has_supported' => $user->hasSupported(),
-            'is_restricted' => $user->isRestricted(),
-            'is_gmt' => $user->isGMT(),
-            'is_nat' => $user->isNAT(),
-            'is_bng' => $user->isBNG(),
-            'is_full_bn' => $user->isFullBN(),
-            'is_limited_bn' => $user->isLimitedBN(),
             'is_bot' => $user->isBot(),
             'is_active' => $user->isActive(),
-            'is_moderator' => $user->isModerator(),
             'interests' => $user->user_interests,
             'occupation' => $user->user_occ,
             'title' => $user->title(),
@@ -183,6 +193,42 @@ class UserTransformer extends TransformerAbstract
             return $flag;
         });
     }
+
+    public function includeIsBng(User $user)
+    {
+        return $this->primitive($user->isBNG());
+    }
+
+    public function includeIsFullBn(User $user)
+    {
+        return $this->primitive($user->isFullBN());
+    }
+
+    public function includeIsGmt(User $user)
+    {
+        return $this->primitive($user->isGMT());
+    }
+
+    public function includeIsLimitedBn(User $user)
+    {
+        return $this->primitive($user->isLimitedBN());
+    }
+
+    public function includeIsModerator(User $user)
+    {
+        return $this->primitive($user->isModerator());
+    }
+
+    public function includeIsNat(User $user)
+    {
+        return $this->primitive($user->isNAT());
+    }
+
+    public function includeIsRestricted(User $user)
+    {
+        return $this->primitive($user->isRestricted());
+    }
+
 
     public function includeLovedBeatmapsetCount(User $user)
     {
