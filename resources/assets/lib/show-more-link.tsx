@@ -49,32 +49,27 @@ const ShowMoreLink = React.forwardRef((props: Props, ref: React.RefObject<any>) 
     </>
   );
 
-  let onClick = props.callback;
-  let url = props.url;
-
-  if (props.loading) {
-    onClick = undefined;
-    url = undefined;
-  } else {
-    if (onClick == null && url == null) {
-     onClick = () => $.publish(props.event, props.data);
-    }
-  }
-
   const sharedProps = {
     children,
     className: osu.classWithModifiers(bn, props.modifiers),
     ref,
   };
 
-  if (onClick == null && url == null) {
+  if (props.loading) {
     return <span data-disabled='1' {...sharedProps} />;
+  }
+
+  let url = props.url;
+  let onClick = props.callback;
+
+  if (onClick == null && url == null) {
+   onClick = () => $.publish(props.event, props.data);
+  }
+
+  if (url == null) {
+    return <button type='button' onClick={onClick} {...sharedProps} />;
   } else {
-    if (url == null) {
-      return <button type='button' onClick={onClick} {...sharedProps} />;
-    } else {
-      return <a href={props.url} onClick={onClick} {...sharedProps} />;
-    }
+    return <a href={props.url} onClick={onClick} {...sharedProps} />;
   }
 });
 
