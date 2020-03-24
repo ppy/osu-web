@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'deleted' => '[usuario eliminado]',
@@ -98,12 +83,12 @@ return [
         'email_login_disabled' => 'El inicio de sesión con correo electrónico está actualmente desactivado. Por favor, utilice el nombre de usuario en su lugar.',
         'failed' => 'Inicio de sesión incorrecto',
         'forgot' => '¿Olvidaste tu contraseña?',
-        'info' => 'Por favor, inicia sesión para continuar',
+        'info' => 'Por favor, inicie sesión para continuar',
         'locked_ip' => 'Tu dirección IP está bloqueada. Espera unos minutos.',
         'password' => 'Contraseña',
         'register' => "¿No tienes una cuenta de osu!? Crea una nueva",
         'remember' => 'Recordar este computador',
-        'title' => 'Inicia sesión para continuar',
+        'title' => 'Inicie sesión para continuar',
         'username' => 'Nombre de usuario',
 
         'beta' => [
@@ -117,7 +102,7 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'haz clic aquí para iniciar sesión',
+        'login_link' => 'haga clic para iniciar sesión',
         'login_text' => 'iniciar sesión',
         'username' => 'Invitado',
         'error' => 'Necesitas haber iniciado sesión para hacer esto.',
@@ -381,10 +366,10 @@ return [
             'title' => '¡Usuario no encontrado! ;_;',
         ],
         'page' => [
-            'button' => 'Editar pagina de perfil',
+            'button' => 'Editar página de perfil',
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
-            'placeholder' => 'Escribe el contenido de la pagina aquí',
+            'placeholder' => 'Escriba el contenido de la página aquí',
 
             'restriction_info' => [
                 '_' => 'Debes ser un :link para desbloquear esta función.',

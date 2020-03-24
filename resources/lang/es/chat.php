@@ -1,25 +1,9 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
-    'limitation_notice' => 'NOTA: Sólo las personas que estén usando <a href=":lazer_link">osu!lazer</a> o el nuevo sitio web recibirán MPs a través de este sistema.<br/>Si no está seguro, envíeles un mensaje a través de la <a href=":oldpm_link">página de MP del antiguo foro</a>.',
     'talking_in' => 'Hablando en :channel',
     'talking_with' => 'Hablando con :name',
     'title_compact' => 'chat',
@@ -43,7 +27,6 @@ return [
     'no-conversations' => [
         'howto' => "Inicia conversaciones desde el perfil de un usuario o con un usercard popup.",
         'lazer' => 'Los canales a los que te unas por medio de <a href=":link">osu!lazer</a> aparecerán aquí.',
-        'pm_limitations' => 'Sólo las personas que usan <a href=":link">osu!lazer</a> o el nuevo sitio web recibirán MPs.',
         'title' => 'Sin conversaciones',
     ],
 ];

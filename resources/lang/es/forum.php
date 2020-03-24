@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'pinned_topics' => 'Temas Fijados',
@@ -77,7 +62,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited publicación|:count_delimited publicaciones',
-            'topic_starter' => 'Topic Starter',
+            'topic_starter' => 'Creador del tema',
         ],
     ],
 
@@ -93,7 +78,7 @@ return [
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última respuesta por :user',
         'new_topic' => 'Nuevo tema',
-        'new_topic_login' => 'Inicia sesión para publicar un nuevo tema',
+        'new_topic_login' => 'Inicie sesión para publicar un nuevo tema',
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escribe aquí para responder',
         'reply_title_prefix' => 'Re',
@@ -109,11 +94,11 @@ return [
             'submit' => 'Publicar',
 
             'necropost' => [
-                'default' => 'Este tema ha estado inactivo por un tiempo. Solo publica aquí si tienes una razón específica para hacerlo.',
+                'default' => 'Este tema ha estado inactivo durante mucho tiempo. Sólo publique aquí si tiene una razón específica para hacerlo.',
 
                 'new_topic' => [
-                    '_' => "Este tema ha estado inactivo por un tiempo. Si no tienes una razón específica para publicar aquí, :create un tema.",
-                    'create' => 'crear un nuevo tema',
+                    '_' => "Este tema ha estado inactivo durante mucho tiempo. Si no tiene una razón específica para publicar aquí, por favor :create en su lugar.",
+                    'create' => 'cree un nuevo tema',
                 ],
             ],
 
@@ -164,7 +149,7 @@ return [
         '_' => 'Temas',
 
         'actions' => [
-            'login_reply' => 'Inicia sesión para responder',
+            'login_reply' => 'Inicie sesión para responder',
             'reply' => 'Responder',
             'reply_with_quote' => 'Citar publicación y responder',
             'search' => 'Buscar',
@@ -251,8 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Este tema está cerrado y no se puede responder',
             'to_0' => 'Abrir tema',
+            'to_0_confirm' => '',
             'to_0_done' => 'El tema ha sido abierto',
             'to_1' => 'Cerrar tema',
+            'to_1_confirm' => '',
             'to_1_done' => 'El tema ha sido cerrado',
         ],
 
@@ -262,10 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Desfijar tema',
+            'to_0_confirm' => '',
             'to_0_done' => 'El tema ya no está fijado',
             'to_1' => 'Fijar tema',
+            'to_1_confirm' => '',
             'to_1_done' => 'El tema ya ha sido fijado',
             'to_2' => 'Fijar tema y marcar como anuncio',
+            'to_2_confirm' => '',
             'to_2_done' => 'El tema ya ha sido fijado y marcado como anuncio',
         ],
 
