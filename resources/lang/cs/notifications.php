@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Všechna oznámení přečtena!',
-    'mark_all_read' => 'Vymazat vše',
     'none' => '',
     'see_all' => '',
 

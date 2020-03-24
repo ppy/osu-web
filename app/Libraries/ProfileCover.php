@@ -53,7 +53,7 @@ class ProfileCover
 
     public function hasCustomCover()
     {
-        return array_get($this->data, 'id') === null && array_get($this->data, 'file') !== null;
+        return !isset($this->data['id']) && isset($this->data['file']);
     }
 
     public function id()
@@ -62,7 +62,7 @@ class ProfileCover
             return;
         }
 
-        if (!in_array($this->data['id'], $this->availableIds, true)) {
+        if (!in_array($this->data['id'] ?? null, $this->availableIds, true)) {
             return $this->availableIds[$this->userId % count($this->availableIds)];
         }
 

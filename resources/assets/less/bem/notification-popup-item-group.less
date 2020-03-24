@@ -8,6 +8,15 @@
   display: flex;
   flex-direction: column;
 
+  &__collapse {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__expand {
+    margin-left: 10px;
+  }
+
   &__item {
     margin: 1px 0;
   }
@@ -16,5 +25,13 @@
     padding: 9px 0;
     display: flex;
     flex-direction: column;
+  }
+
+  &__show-more {
+    font-size: smaller;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

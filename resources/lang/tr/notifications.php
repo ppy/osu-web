@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Tüm bildirimler okundu!',
-    'mark_all_read' => 'Hepsini temizle',
     'none' => '',
     'see_all' => '',
 

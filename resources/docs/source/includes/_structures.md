@@ -793,3 +793,30 @@ replays_watched_by_others | number                      | Number of replays watc
 total_hits                | number                      | Total number of hits.
 total_score               | number                      | Total score.
 user                      | [UserCompact](#usercompact) | The associated user.
+
+
+## WikiPage
+
+```json
+{
+    "layout": "markdown_page",
+    "locale": "en",
+    "markdown": "# osu! (game mode)\n\n![Gameplay of osu!](/wiki/shared/Interface_osu.jpg \"osu! Interface\")\n\nMarkdownMarkdownTruncated",
+    "path": "Game_Modes/osu!",
+    "subtitle": "Game Modes",
+    "tags": ["tap", "circles"],
+    "title": "osu! (game mode)"
+}
+```
+
+Represents a wiki article
+
+Field    | Type     | Description
+-------- | -------- | ----------------------------------------------------------
+layout   | string   | The layout type for the page.
+locale   | string   | All lowercase BCP 47 language tag.
+markdown | string   | Markdown content.
+path     | string   | Path of the article.
+subtitle | string?  | The article's subtitle.
+tags     | string[] | Associated tags for the article.
+title    | string   | The article's title.

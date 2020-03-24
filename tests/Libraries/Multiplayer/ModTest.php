@@ -99,6 +99,12 @@ class ModTest extends TestCase
         $this->assertFalse(Mod::validForRuleset('AP', Ruleset::MANIA));
     }
 
+    public function testValidateSelectionWithInvalidRuleset()
+    {
+        $this->expectException(InvariantException::class);
+        Mod::validateSelection([], -1);
+    }
+
     /**
      * @dataProvider modCombos
      */

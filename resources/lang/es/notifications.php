@@ -20,7 +20,6 @@
 
 return [
     'all_read' => '¡Todas las notificaciones leídas!',
-    'mark_all_read' => 'Borrar todo',
     'none' => 'No hay notificaciones',
     'see_all' => 'ver todas las notificaciones',
 
