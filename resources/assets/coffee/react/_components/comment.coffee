@@ -70,6 +70,7 @@ export class Comment extends React.PureComponent
       @children = uiState.getOrderedCommentsByParentId(@props.comment.id) ? []
       parent = store.comments.get(@props.comment.parentId)
       user = @userFor(@props.comment)
+      meta = commentableMetaStore.get(@props.comment.commentableType, @props.comment.commentableId)
 
       modifiers = @props.modifiers?[..] ? []
       modifiers.push 'top' if @props.depth == 0
@@ -82,7 +83,7 @@ export class Comment extends React.PureComponent
         className: osu.classWithModifiers 'comment', modifiers
 
         @renderRepliesToggle()
-        @renderCommentableMeta()
+        @renderCommentableMeta(meta)
 
         div className: "comment__main #{if @props.comment.isDeleted then 'comment__main--deleted' else ''}",
           if @props.comment.canHaveVote
@@ -94,6 +95,7 @@ export class Comment extends React.PureComponent
           div className: 'comment__container',
             div className: 'comment__row comment__row--header',
               @renderUsername user
+              @renderOwnerBadge(meta)
 
               if @props.comment.pinned
                 span
@@ -219,6 +221,13 @@ export class Comment extends React.PureComponent
                 osu.link(laroute.route('users.show', user: editor.id), editor.username, classNames: ['comment__link'])
               else
                 _.escape editor.username
+
+
+  renderOwnerBadge: (meta) =>
+    return null unless @props.comment.userId == meta.owner_id
+
+    div className: 'comment__row-item',
+      div className: 'comment__owner-badge', meta.owner_title
 
 
   renderPermalink: =>
@@ -362,9 +371,8 @@ export class Comment extends React.PureComponent
       "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
 
 
-  renderCommentableMeta: =>
+  renderCommentableMeta: (meta) =>
     return unless @props.showCommentableMeta
-    meta = commentableMetaStore.get(@props.comment.commentableType, @props.comment.commentableId)
 
     if meta.url
       component = a
