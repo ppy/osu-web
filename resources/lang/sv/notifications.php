@@ -20,7 +20,6 @@
 
 return [
     'all_read' => '',
-    'mark_all_read' => '',
     'none' => '',
     'see_all' => '',
 

@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Tất cả các thông báo đã được đọc!',
-    'mark_all_read' => 'Xoá tất cả',
     'none' => '',
     'see_all' => '',
 

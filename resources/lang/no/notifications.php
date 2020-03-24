@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Alle varsler lest!',
-    'mark_all_read' => 'Tøm alt',
     'none' => '',
     'see_all' => '',
 

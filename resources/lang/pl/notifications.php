@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Wszystkie powiadomienia przeczytane!',
-    'mark_all_read' => 'Wyczyść wszystko',
     'none' => 'Brak powiadomień',
     'see_all' => 'zobacz wszystkie powiadomienia',
 

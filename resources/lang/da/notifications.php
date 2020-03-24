@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Alle notifikationer læst!',
-    'mark_all_read' => 'Ryd alt',
     'none' => 'Ingen notifikationer',
     'see_all' => 'se alle notifikationer',
 

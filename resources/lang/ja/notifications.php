@@ -20,7 +20,6 @@
 
 return [
     'all_read' => '全ての通知を読む！',
-    'mark_all_read' => '全て消去',
     'none' => '通知なし',
     'see_all' => 'すべての通知を見る',
 

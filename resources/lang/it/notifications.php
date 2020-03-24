@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Tutte le notifiche sono state lette!',
-    'mark_all_read' => 'Cancella tutto',
     'none' => 'Nessuna notifica',
     'see_all' => 'vedi tutte le notifiche',
 

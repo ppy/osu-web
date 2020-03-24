@@ -20,7 +20,6 @@
 
 return [
     'all_read' => '',
-    'mark_all_read' => 'Изчисти всички',
     'none' => '',
     'see_all' => '',
 
