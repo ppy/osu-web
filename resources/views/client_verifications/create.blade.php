@@ -66,10 +66,11 @@
                 {!! Form::open([
                     'url' => route('client-verifications.store'),
                     'method' => 'POST',
+                    'data-remote' => 'true',
                 ]) !!}
                     <input type="hidden" name="ch" value="{{ $hash }}" />
 
-                    <button class="dialog-form__button">
+                    <button class="dialog-form__button" data-disable-with="{{ trans('common.buttons.authorising') }}">
                         {{ trans('common.buttons.authorise') }}
                     </button>
                 {!! Form::close() !!}

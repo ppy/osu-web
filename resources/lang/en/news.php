@@ -32,6 +32,10 @@ return [
         ],
     ],
 
+    'sidebar' => [
+        'archive' => 'News Archive',
+    ],
+
     'store' => [
         'button' => 'Update',
         'ok' => 'Listing updated.',
