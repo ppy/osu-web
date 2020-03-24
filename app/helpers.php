@@ -814,7 +814,7 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function wiki_url($page = 'Main_Page', $locale = null)
+function wiki_url($page = 'Main_Page', $locale = null, $api = null)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
@@ -822,6 +822,10 @@ function wiki_url($page = 'Main_Page', $locale = null)
 
     if (present($locale) && $locale !== App::getLocale()) {
         $params['locale'] = $locale;
+    }
+
+    if ($api ?? is_api_request()) {
+        return route('api.wiki.show', $params);
     }
 
     return route('wiki.show', $params);
