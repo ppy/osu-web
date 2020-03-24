@@ -150,7 +150,7 @@ class CommentBundle
             $query->withoutTrashed();
         }
 
-        return $query->count();
+        return min($query->count(), config('osu.pagination.max_count'));
     }
 
     private function getComments($query, $isChildren = true, $pinnedOnly = false)
@@ -183,7 +183,7 @@ class CommentBundle
                 $query->cursorWhere($queryCursor);
                 $sorted = true;
             } else {
-                $query->offset($this->params->limit * ($this->params->page - 1));
+                $query->offset(max_offset($this->params->page, $this->params->limit));
             }
         }
 

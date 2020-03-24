@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Toate notificările citite!',
-    'mark_all_read' => 'Șterge-ți toate',
     'none' => '',
     'see_all' => '',
 

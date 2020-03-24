@@ -20,7 +20,6 @@
 
 return [
     'all_read' => '已閱畢所有通知！',
-    'mark_all_read' => '全部清除',
     'none' => '沒有通知',
     'see_all' => '查看所有通知',
 

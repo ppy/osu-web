@@ -15,7 +15,7 @@
                 'mode' => $routeMode,
                 'type' => $routeType,
                 'spotlight' => $routeType === 'charts' ? $spotlight ?? null : null,
-                'country' => $routeType === 'performance' ? $country['acronym'] : null,
+                'country' => $routeType === 'performance' ? ($country['acronym'] ?? null) : null,
             ]), '?');
         }
     ];
@@ -70,7 +70,7 @@
         @if ($hasPager)
             @include('objects._pagination_v2', [
                 'object' => $scores
-                    ->appends(['country' => $country['acronym']])
+                    ->appends(['country' => $country['acronym'] ?? null])
                     ->fragment('scores')
             ])
         @endif
@@ -85,7 +85,7 @@
         @if ($hasPager)
             @include('objects._pagination_v2', [
                 'object' => $scores
-                    ->appends(['country' => $country['acronym']])
+                    ->appends(['country' => $country['acronym'] ?? null])
                     ->fragment('scores')
             ])
         @endif

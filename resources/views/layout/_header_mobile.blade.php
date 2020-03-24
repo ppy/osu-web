@@ -65,6 +65,17 @@
                         <span class="fas fa-search"></span>
                     </button>
 
+                    <a
+                        class="mobile-menu-tab js-click-menu js-react--chat-icon"
+                        data-chat-icon="{{ json_encode(['type' => 'mobile']) }}"
+                        href="{{ route('chat.index') }}"
+                    >
+                        <span class="notification-icon notification-icon--mobile">
+                            <i class="fas fa-comment-alt"></i>
+                            <span class="notification-icon__count">...</span>
+                        </span>
+                    </a>
+
                     <button class="mobile-menu-tab js-click-menu js-react--notification-icon"
                         data-click-menu-target="mobile-notification"
                         data-notification-icon="{{ json_encode(['type' => 'mobile']) }}"

@@ -118,17 +118,14 @@ class TopicsController extends Controller
     {
         $topic = Topic::withTrashed()->findOrFail($id);
 
-        $moderationPriv = priv_check('ForumModerate', $topic->forum);
-
-        $moderationPriv->ensureCan();
-        $userCanModerate = $moderationPriv->can();
+        priv_check('ForumModerate', $topic->forum)->ensureCan();
 
         $type = 'lock';
         $state = get_bool(Request::input('lock'));
         $this->logModerate($state ? 'LOG_LOCK' : 'LOG_UNLOCK', [$topic->topic_title], $topic);
         $topic->lock($state);
 
-        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state', 'userCanModerate'), 'js');
+        return ext_view('forum.topics.replace_button', compact('topic', 'type', 'state'), 'js');
     }
 
     public function move($id)

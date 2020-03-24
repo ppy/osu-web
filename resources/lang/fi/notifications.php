@@ -20,7 +20,6 @@
 
 return [
     'all_read' => 'Kaikki ilmoitukset luettu!',
-    'mark_all_read' => 'Poista kaikki',
     'none' => '',
     'see_all' => '',
 

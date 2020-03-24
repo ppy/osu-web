@@ -286,6 +286,10 @@ class Mod
 
     public static function validateSelection($mods, $ruleset, $skipExclusivityCheck = false)
     {
+        if (!in_array($ruleset, Ruleset::ALL, true)) {
+            throw new InvariantException('invalid ruleset');
+        }
+
         $checkedMods = [];
         foreach ($mods as $mod) {
             if (!static::validForRuleset($mod, $ruleset)) {
