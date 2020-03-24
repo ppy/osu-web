@@ -10,6 +10,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, span, textarea } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
+import { ShowMoreLink } from 'show-more-link'
 import { Spinner } from 'spinner'
 import { UserAvatar } from 'user-avatar'
 
@@ -141,8 +142,8 @@ export class Comment extends React.PureComponent
               @renderDelete()
               @renderPin()
               @renderReport()
-              @renderRepliesText()
               @renderEditedBy()
+              @renderRepliesText()
 
             @renderReplyBox()
 
@@ -234,20 +235,19 @@ export class Comment extends React.PureComponent
     return if @props.comment.repliesCount == 0
 
     if !@state.expandReplies && @children.length == 0
-      onClick = @loadReplies
+      callback = @loadReplies
       label = osu.trans('comments.load_replies')
     else
-      onClick = @toggleReplies
-      label = "#{osu.trans('comments.replies')} (#{osu.formatNumber(@props.comment.repliesCount)})"
+      callback = @toggleReplies
+      label = osu.transChoice('comments.replies_count', @props.comment.repliesCount)
 
-    label = "[#{if @state.expandReplies then '-' else '+'}] #{label}"
-
-    div className: 'comment__row-item',
-      button
-        type: 'button'
-        className: 'comment__action'
-        onClick: onClick
-        label
+    div className: 'comment__row-item comment__row-item--replies',
+      el ShowMoreLink,
+        direction: if @state.expandReplies then 'up' else 'down'
+        hasMore: true
+        label: label
+        callback: callback
+        modifiers: ['comment-replies']
 
 
   renderRepliesToggle: =>
