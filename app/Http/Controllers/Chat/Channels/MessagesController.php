@@ -78,8 +78,9 @@ class MessagesController extends BaseController
     {
         $request = request()->all();
         $userId = Auth::user()->user_id;
-        $since = presence($request['since'] ?? null);
-        $limit = clamp(get_int($request['limit']) ?? 50, 1, 50);
+        $since = get_int($request['since'] ?? null);
+        $until = get_int($request['until'] ?? null);
+        $limit = clamp(get_int($request['limit'] ?? null) ?? 50, 1, 50);
 
         $userChannel = UserChannel::where([
             'user_id' => $userId,
@@ -96,18 +97,19 @@ class MessagesController extends BaseController
 
         $messages = $userChannel->channel
             ->filteredMessages()
-            ->with('sender');
+            ->with('sender')
+            ->limit($limit);
 
         if (present($since)) {
             $messages = $messages->where('message_id', '>', $since)
                 ->orderBy('message_id', 'asc')
-                ->limit($limit)
                 ->get();
         } else {
-            $messages = $messages->orderBy('message_id', 'desc')
-                ->limit($limit)
-                ->get()
-                ->reverse();
+            if (present($until)) {
+                $messages->where('message_id', '<', $until);
+            }
+
+            $messages = $messages->orderBy('message_id', 'desc')->get()->reverse();
         }
 
         return json_collection(
