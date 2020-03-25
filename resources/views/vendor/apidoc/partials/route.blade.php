@@ -56,6 +56,15 @@
 `{{$method}} {{ $displayUri }}`
 
 @endforeach
+@if(count($route['urlParameters']))
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------ | ----------- | ---
+@foreach($route['urlParameters'] as $attribute => $parameter)
+    {{ $attribute }} | @if($parameter['required']) required @else optional @endif | {!! $parameter['description'] !!}
+@endforeach
+@endif
 @if(count($route['bodyParameters']))
 #### Body Parameters
 
