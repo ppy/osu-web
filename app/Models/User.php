@@ -1863,7 +1863,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
         if ($this->isDirty('user_twitter') && present($this->user_twitter)) {
             // https://help.twitter.com/en/managing-your-account/twitter-username-rules
-            if (!preg_match('/^[a-zA-Z0-9_]{1,15}$/i', $this->user_twitter)) {
+            if (!preg_match('/^[a-zA-Z0-9_]{1,15}$/', $this->user_twitter)) {
                 $this->validationErrors()->add('user_twitter', '.invalid_twitter');
             }
         }

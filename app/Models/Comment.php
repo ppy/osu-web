@@ -95,7 +95,7 @@ class Comment extends Model
 
     public function setMessageAttribute($value)
     {
-        return $this->attributes['message'] = unzalgo($value, 2);
+        return $this->attributes['message'] = unzalgo($value);
     }
 
     public function votes()
