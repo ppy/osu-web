@@ -1386,11 +1386,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             && $this->group_id !== 6; // bots
     }
 
-    public function countryName()
-    {
-        return optional($this->country)->name;
-    }
-
     public function updatePage($text)
     {
         if ($this->userPage === null) {
