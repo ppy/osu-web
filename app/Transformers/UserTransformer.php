@@ -41,6 +41,7 @@ class UserTransformer extends TransformerAbstract
 
     protected $defaultIncludes = [
         'country',
+        'cover',
         'is_bng',
         'is_full_bn',
         'is_gmt',
@@ -63,17 +64,26 @@ class UserTransformer extends TransformerAbstract
 
     public function transform(User $user)
     {
-        $profileCustomization = $user->profileCustomization();
+        $profileCustomization = $user->userProfileCustomization;
 
         return [
+            // same as UserCompactTransformer
             'id' => $user->user_id,
             'username' => $user->username,
-            'join_date' => json_time($user->user_regdate),
+            'profile_colour' => $user->user_colour,
             'avatar_url' => $user->user_avatar,
-            'is_supporter' => $user->osu_subscriber,
-            'has_supported' => $user->hasSupported(),
-            'is_bot' => $user->isBot(),
+            'country_code' => $user->country_acronym,
+            'default_group' => $user->defaultGroup()->identifier,
             'is_active' => $user->isActive(),
+            'is_bot' => $user->isBot(),
+            'is_online' => $user->isOnline(),
+            'is_supporter' => $user->isSupporter(),
+            'last_visit' => json_time($user->displayed_last_visit),
+            'pm_friends_only' => $user->pm_friends_only,
+
+            // extras
+            'join_date' => json_time($user->user_regdate),
+            'has_supported' => $user->hasSupported(),
             'interests' => $user->user_interests,
             'occupation' => $user->user_occ,
             'title' => $user->title(),
@@ -92,11 +102,6 @@ class UserTransformer extends TransformerAbstract
             'profile_colour' => $user->user_colour,
             'profile_order' => $profileCustomization->extras_order,
             'cover_url' => $profileCustomization->cover()->url(),
-            'cover' => [
-                'custom_url' => $profileCustomization->cover()->fileUrl(),
-                'url' => $profileCustomization->cover()->url(),
-                'id' => $profileCustomization->cover()->id(),
-            ],
             'kudosu' => [
                 'total' => $user->osu_kudostotal,
                 'available' => $user->osu_kudosavailable,
@@ -140,6 +145,19 @@ class UserTransformer extends TransformerAbstract
         return $user->country === null
             ? $this->primitive(null)
             : $this->item($user->country, new CountryTransformer);
+    }
+
+    public function includeCover(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $profileCustomization = $user->userProfileCustomization;
+
+            return [
+                'custom_url' => $profileCustomization ? $profileCustomization->cover()->fileUrl() : null,
+                'url' => $profileCustomization ? $profileCustomization->cover()->url() : null,
+                'id' => $profileCustomization ? $profileCustomization->cover()->id() : null,
+            ];
+        });
     }
 
     public function includeDefaultStatistics(User $user)
@@ -308,9 +326,7 @@ class UserTransformer extends TransformerAbstract
 
     public function includeSupportLevel(User $user)
     {
-        return $this->primitive($user->supportLevel(), function ($level) {
-            return $level;
-        });
+        return $this->primitive($user->supportLevel());
     }
 
     public function includeUnrankedBeatmapsetCount(User $user)
