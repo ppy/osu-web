@@ -11,34 +11,6 @@ use League\Fractal;
 
 class UserTransformer extends UserCompactTransformer
 {
-    protected $availableIncludes = [
-        'account_history',
-        'active_tournament_banner',
-        'badges',
-        'blocks',
-        'defaultStatistics',
-        'favourite_beatmapset_count',
-        'follower_count',
-        'friends',
-        'graveyard_beatmapset_count',
-        'group_badge',
-        'is_admin',
-        'loved_beatmapset_count',
-        'monthly_playcounts',
-        'page',
-        'previous_usernames',
-        'ranked_and_approved_beatmapset_count',
-        'rankHistory', // TODO: should be changed to rank_history
-        'replays_watched_counts',
-        'scores_first_count',
-        'statistics',
-        'support_level',
-        'unranked_beatmapset_count',
-        'unread_pm_count',
-        'user_achievements',
-        'user_preferences',
-    ];
-
     protected $defaultIncludes = [
         'country',
         'cover',
@@ -61,6 +33,35 @@ class UserTransformer extends UserCompactTransformer
         'is_nat' => 'IsNotOAuth',
         'is_restricted' => 'IsNotOAuth',
     ];
+
+    public function __construct()
+    {
+        $this->availableIncludes = array_merge($this->availableIncludes, [
+            'account_history',
+            'active_tournament_banner',
+            'badges',
+            'blocks',
+            'defaultStatistics',
+            'favourite_beatmapset_count',
+            'follower_count',
+            'friends',
+            'graveyard_beatmapset_count',
+            'is_admin',
+            'loved_beatmapset_count',
+            'monthly_playcounts',
+            'page',
+            'previous_usernames',
+            'ranked_and_approved_beatmapset_count',
+            'rankHistory', // TODO: should be changed to rank_history
+            'replays_watched_counts',
+            'scores_first_count',
+            'statistics',
+            'unranked_beatmapset_count',
+            'unread_pm_count',
+            'user_achievements',
+            'user_preferences',
+        ]);
+    }
 
     public function transform(User $user)
     {
