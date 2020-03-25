@@ -9,7 +9,6 @@ import { ViewMode } from 'user-card';
 import UserCardTypeContext from 'user-card-type-context';
 
 interface Props {
-  isFriendsPage: boolean;
   mode: ViewMode;
   modifiers: string[];
   user: User;
@@ -23,7 +22,6 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
   static readonly contextType = UserCardTypeContext;
 
   static defaultProps = {
-    isFriendsPage: false,
     mode: 'brick',
     modifiers: [],
   };
