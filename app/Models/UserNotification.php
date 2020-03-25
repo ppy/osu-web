@@ -46,22 +46,27 @@ class UserNotification extends Model
     public static function markAsReadByNotificationIdentifier(User $user, array $params)
     {
         $params = get_params($params, null, [
-            'category:string',
+            'category',
             'object_id:int',
-            'object_type:string',
+            'object_type',
         ]);
 
         $category = presence($params['category'] ?? null);
         $objectId = $params['object_id'] ?? null;
         $objectType = presence($params['object_type'] ?? null);
 
-        if ($objectType === null) {
-            throw new InvariantException('object_type is required.');
+        $tableName = (new static)->getTable();
+
+        $notifications = Notification::query();
+        if ($objectType !== null) {
+            $notifications->where('notifiable_type', $objectType);
         }
 
-        $tableName = (new static)->getTable();
-        $notifications = Notification::where('notifiable_type', $objectType);
         if ($objectId !== null && $category !== null) {
+            if ($objectType === null) {
+                throw new InvariantException('object_type is required.');
+            }
+
             $names = Notification::namesInCategory($category);
             $notifications
                 ->where('notifiable_id', $objectId)

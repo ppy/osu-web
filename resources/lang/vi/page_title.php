@@ -1,68 +1,132 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
+    'admin' => [
+        '_' => '',
+    ],
+    'admin_forum' => [
+        '_' => '',
+    ],
+    'admin_store' => [
+        '_' => '',
+    ],
     'error' => [
         'error' => [
-            '_' => 'lỗi',
-            '404' => 'không tìm thấy',
-            '403' => 'cấm',
-            '401' => 'trái phép',
-            '405' => 'không tìm thấy',
-            '500' => 'có gì đó bị hỏng',
-            '503' => 'bảo trì',
+            '404' => '',
+            '403' => '',
+            '401' => '',
+            '405' => '',
+            '422' => '',
+            '500' => '',
+            '503' => '',
         ],
     ],
     'forum' => [
-        '_' => 'Diễn đàn',
+        '_' => '',
         'topic_watches_controller' => [
-            'index' => 'tổng quan',
+            'index' => '',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'tổng quan',
+            'edit' => '',
+            'verify_link' => '',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'tổng quan',
-        ],
-        'friends_controller' => [
-            'index' => 'tổng quan',
-        ],
-        'home_controller' => [
-            'index' => 'tổng quan',
-            'get_download' => 'tải xuống',
-            'search' => 'tìm kiếm',
-            'support_the_game' => 'ủng hộ osu!',
-        ],
-        'beatmap_discussions_controller' => [
-            '_' => 'góc thảo luận beatmap',
+        'artists_controller' => [
+            '_' => '',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'bài đăng góc thảo luận beatmap',
+            '_' => '',
+        ],
+        'beatmap_discussions_controller' => [
+            '_' => '',
+        ],
+        'beatmap_packs_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_discussion_votes_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_events_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_watches_controller' => [
+            'index' => '',
+        ],
+        'beatmapsets_controller' => [
+            'discussion' => '',
+            'index' => '',
+            'show' => '',
+        ],
+        'changelog_controller' => [
+            '_' => '',
         ],
         'chat_controller' => [
-            '_' => 'chat',
+            '_' => '',
+        ],
+        'comments_controller' => [
+            '_' => '',
+        ],
+        'contests_controller' => [
+            '_' => '',
+        ],
+        'friends_controller' => [
+            'index' => '',
+        ],
+        'groups_controller' => [
+            'show' => '',
+        ],
+        'home_controller' => [
+            'get_download' => '',
+            'index' => '',
+            'search' => '',
+            'support_the_game' => '',
+            'testflight' => '',
         ],
         'legal_controller' => [
-            '_' => 'thông tin',
+            '_' => '',
+        ],
+        'livestreams_controller' => [
+            '_' => '',
+        ],
+        'matches_controller' => [
+            '_' => '',
+        ],
+        'news_controller' => [
+            '_' => '',
+        ],
+        'notifications_controller' => [
+            '_' => '',
+        ],
+        'password_reset_controller' => [
+            '_' => '',
+        ],
+        'ranking_controller' => [
+            '_' => '',
+        ],
+        'store_controller' => [
+            '_' => '',
+        ],
+        'tournaments_controller' => [
+            '_' => '',
+        ],
+        'users_controller' => [
+            '_' => '',
+            'disabled' => '',
+        ],
+        'wiki_controller' => [
+            '_' => '',
+        ],
+    ],
+    'store' => [
+        '_' => '',
+    ],
+    'users' => [
+        'modding_history_controller' => [
+            '_' => '',
         ],
     ],
 ];

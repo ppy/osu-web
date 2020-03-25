@@ -53,6 +53,9 @@ class Mod
     const MANIA_MIRROR = 'MR';
     const MANIA_RANDOM = 'RD';
 
+    // taiko-specific
+    const TAIKO_RANDOM = 'RD';
+
     // non-scorable
     const AUTOPLAY = 'AT';
     const CINEMA = 'CN';
@@ -209,7 +212,7 @@ class Mod
                 Ruleset::TAIKO => array_merge(
                     self::SCORABLE_COMMON,
                     [
-                        // taiko-specific mods go here
+                        self::TAIKO_RANDOM,
                     ]
                 ),
 

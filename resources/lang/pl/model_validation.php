@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'not_negative' => ':attribute nie może być ujemny.',
@@ -37,8 +22,8 @@ return [
         'beatmap_missing' => 'Został ustawiony znacznik czasu, ale nie odnaleziono beatmapy.',
         'beatmapset_no_hype' => "Nie możesz nagłośnić tej beatmapy.",
         'hype_requires_null_beatmap' => 'Priorytet musi zostać nadany w sekcji Główne (wszystkie poziomy trudności).',
-        'invalid_beatmap_id' => 'Ustawiono niewłaściwy poziom trudności.',
-        'invalid_beatmapset_id' => 'Ustawiono niewłaściwą beatmapę.',
+        'invalid_beatmap_id' => 'Ustawiono nieprawidłowy poziom trudności.',
+        'invalid_beatmapset_id' => 'Ustawiono nieprawidłową beatmapę.',
         'locked' => 'Dyskusja została zablokowana.',
 
         'attributes' => [
@@ -47,6 +32,7 @@ return [
         ],
 
         'hype' => [
+            'discussion_locked' => "",
             'guest' => 'Musisz się zalogować, aby nagłośnić tę beatmapę.',
             'hyped' => 'Już nagłośniono tę beatmapę.',
             'limit_exceeded' => 'Zużyto całą liczbę nagłośnień.',
@@ -62,7 +48,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Nie możesz odpowiedzieć na usunięty komentarz.',
-        'top_only' => '',
+        'top_only' => 'Nie możesz przypiąć komentarza.',
 
         'attributes' => [
             'message' => 'Wiadomość',
@@ -84,7 +70,7 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Nie możesz usuwać posta z metadanymi beatmapy.',
+            'beatmapset_post_no_delete' => 'Nie możesz usunąć posta z metadanymi beatmapy.',
             'beatmapset_post_no_edit' => 'Nie możesz edytować posta z metadanymi beatmapy.',
             'only_quote' => 'Twoja odpowiedź zawiera tylko cytat.',
 
@@ -100,7 +86,7 @@ return [
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Nie możesz dodawać takich samych możliwości wyboru.',
+            'duplicate_options' => 'Nie możesz dodać takich samych możliwości wyboru.',
             'grace_period_expired' => 'Nie możesz edytować ankiety po upływie :limit godzin.',
             'hiding_results_forever' => 'Nie możesz ukryć wyników ankiety bez daty zakończenia.',
             'invalid_max_options' => 'Liczba odpowiedzi do zaznaczenia przez użytkownika nie może przekroczyć liczby wyborów.',

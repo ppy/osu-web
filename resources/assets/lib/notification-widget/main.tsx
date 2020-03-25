@@ -8,6 +8,7 @@ import { Name, TYPES } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
 import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
+import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
@@ -48,7 +49,10 @@ export default class Main extends React.Component<Props, State> {
         <div className={blockClass}>
           <div className='notification-popup__scroll-container'>
             {this.renderFilters()}
-            {this.renderHistoryLink()}
+            <div className='notification-popup__filters'>
+              {this.renderHistoryLink()}
+              {this.renderMarkAsReadButton()}
+            </div>
             {this.renderLegacyPm()}
             <div className='notification-stacks'>
               {this.renderStacks()}
@@ -63,6 +67,10 @@ export default class Main extends React.Component<Props, State> {
   private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const type = ((event.currentTarget as HTMLButtonElement).dataset.type ?? null) as Name;
     this.controller.navigateTo(type);
+  }
+
+  private handleMarkAsRead = () => {
+    this.controller.type.markTypeAsRead();
   }
 
   private handleShowMore = () => {
@@ -111,6 +119,19 @@ export default class Main extends React.Component<Props, State> {
     if (this.controller.currentFilter != null) return;
 
     return <LegacyPm />;
+  }
+
+  private renderMarkAsReadButton() {
+    const type = this.controller.type;
+    if (type.isEmpty) return null;
+
+    return (
+      <NotificationReadButton
+        isMarkingAsRead={type.isMarkingAsRead}
+        onMarkAsRead={this.handleMarkAsRead}
+        text={osu.trans('notifications.mark_read', { type: osu.trans(`notifications.filters.${type.name ?? '_'}`) })}
+      />
+    );
   }
 
   private renderShowMore() {

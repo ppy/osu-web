@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'availability' => [
@@ -34,16 +19,10 @@ return [
         'discussion' => 'Дискусия',
 
         'details' => [
-            'approved' => 'одобрен на ',
             'favourite' => 'Харесай този бийтмап сет',
             'logged-out' => 'Трябва да сте влезли в акаунта си преди да е възможно да теглите бийтмапове!',
-            'loved' => 'обичан на ',
             'mapped_by' => 'съпоставено от :mapper',
-            'qualified' => 'квалифициран на ',
-            'ranked' => 'класиран на ',
-            'submitted' => 'публикуван на ',
             'unfavourite' => 'Премахни от харесани бийтмап сетове',
-            'updated' => 'последно актуализиран на ',
             'updated_timeago' => 'последно актуализиран :timeago',
 
             'download' => [
@@ -57,6 +36,15 @@ return [
                 'bottom' => 'за достъп до повече функции',
                 'top' => 'Влизане',
             ],
+        ],
+
+        'details_date' => [
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'ranked' => '',
+            'submitted' => '',
+            'updated' => '',
         ],
 
         'favourites' => [

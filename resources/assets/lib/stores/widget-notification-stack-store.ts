@@ -5,6 +5,7 @@ import { dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { action, computed } from 'mobx';
+import NotificationType from 'models/notification-type';
 import { NotificationEventMoreLoaded, NotificationEventNew, NotificationEventRead } from 'notifications/notification-events';
 import { NotificationIdentity, resolveIdentityType, resolveStackId } from 'notifications/notification-identity';
 import NotificationStackStore from './notification-stack-store';
@@ -122,9 +123,25 @@ export default class WidgetNotificationStackStore extends NotificationStackStore
 
   private handleTypeRead(identity: NotificationIdentity, readCount: number) {
     const type = this.getOrCreateType(identity);
-    this.total -= type.total;
 
-    type.stacks.forEach((stack) => stack.isRead = true);
-    this.types.delete(identity.objectType);
+    if (type.name === null) {
+      for (const [key, value] of this.types) {
+        if (key === null) continue;
+        this.typeRead(value);
+      }
+
+      type.total = 0;
+    } else {
+      this.typeRead(type);
+    }
+  }
+
+  private typeRead(type: NotificationType) {
+    type.stacks.forEach((stack) => {
+      stack.isRead = true;
+      this.allType.removeStack(stack);
+    });
+
+    this.types.delete(type.name);
   }
 }
