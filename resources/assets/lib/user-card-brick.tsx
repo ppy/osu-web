@@ -6,6 +6,7 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { ViewMode } from 'user-card';
+import UserCardTypeContext from 'user-card-type-context';
 
 interface Props {
   isFriendsPage: boolean;
@@ -19,6 +20,8 @@ interface State {
 }
 
 export default class UserCardBrick extends React.PureComponent<Props, State> {
+  static readonly contextType = UserCardTypeContext;
+
   static defaultProps = {
     isFriendsPage: false,
     mode: 'brick',
@@ -33,7 +36,7 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
     const modifiers = this.props.modifiers.slice();
     modifiers.push(this.props.mode);
 
-    const friendButtonShowIf = this.props.isFriendsPage ? 'mutual' : 'friend';
+    const friendButtonShowIf = this.context.isFriendsPage ? 'mutual' : 'friend';
 
     return (
       <div

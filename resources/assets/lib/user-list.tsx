@@ -17,7 +17,6 @@ const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 const viewModes: ViewMode[] = ['card', 'list', 'brick'];
 
 interface Props {
-  isFriendsPage: boolean;
   title?: string;
   users: User[];
 }
@@ -43,10 +42,6 @@ function usernameSortAscending(x: User, y: User) {
 }
 
 export class UserList extends React.PureComponent<Props> {
-  static defaultProps = {
-    isFriendsPage: false,
-  };
-
   readonly state: State = {
     filter: this.filterFromUrl,
     sortMode: this.sortFromUrl,
@@ -149,7 +144,7 @@ export class UserList extends React.PureComponent<Props> {
           </div>
 
           <div className='user-list__items'>
-            <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} isFriendsPage={this.props.isFriendsPage} />
+            <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} />
           </div>
         </div>
       </>

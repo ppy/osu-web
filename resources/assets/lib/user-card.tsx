@@ -17,7 +17,6 @@ export type ViewMode = 'brick' | 'card' | 'list';
 
 interface Props {
   activated: boolean;
-  isFriendsPage: boolean;
   mode: ViewMode;
   modifiers: string[];
   user?: User;
@@ -31,7 +30,6 @@ interface State {
 export class UserCard extends React.PureComponent<Props, State> {
   static defaultProps = {
     activated: false,
-    isFriendsPage: false,
     mode: 'card',
     modifiers: [],
   };

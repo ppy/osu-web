@@ -6,7 +6,6 @@ import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeySta
 import { UserCard, ViewMode } from 'user-card';
 
 interface Props {
-  isFriendsPage: boolean;
   modifiers: string[];
   users: User[];
   viewMode: ViewMode;
@@ -14,7 +13,6 @@ interface Props {
 
 export class UserCards extends React.PureComponent<Props> {
   static defaultProps = {
-    isFriendsPage: false,
     modifiers: [],
   };
 
@@ -39,7 +37,6 @@ export class UserCards extends React.PureComponent<Props> {
                     mode={this.props.viewMode}
                     modifiers={['has-outline', ...this.props.modifiers]}
                     user={user}
-                    isFriendsPage={this.props.isFriendsPage}
                   />
                 </KeyContext.Provider>
               );
