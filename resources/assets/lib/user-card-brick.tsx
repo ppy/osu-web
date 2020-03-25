@@ -5,7 +5,6 @@ import { FriendButton } from 'friend-button';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
-import { Spinner } from 'spinner';
 import { ViewMode } from 'user-card';
 
 interface Props {
@@ -16,7 +15,6 @@ interface Props {
 }
 
 interface State {
-  avatarLoaded: boolean;
   backgroundLoaded: boolean;
 }
 
@@ -28,17 +26,8 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
   };
 
   readonly state: State = {
-    avatarLoaded: false,
     backgroundLoaded: false,
   };
-
-  onAvatarLoad = () => {
-    this.setState({ avatarLoaded: true });
-  }
-
-  onBackgroundLoad = () => {
-    this.setState({ backgroundLoaded: true });
-  }
 
   render() {
     const modifiers = this.props.modifiers.slice();
@@ -70,26 +59,11 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
     );
   }
 
-  renderAvatar() {
-    const modifiers = this.state.avatarLoaded ? ['loaded'] : [];
-
-    return (
-      <div className='user-card-brick__avatar-container'>
-        <div className={osu.classWithModifiers('user-card-brick__avatar-spinner', modifiers)}>
-          <Spinner modifiers={modifiers} />
-        </div>
-
-        <img
-          className={osu.classWithModifiers('user-card-brick__avatar', modifiers)}
-          onError={this.onAvatarLoad} // remove spinner if error
-          onLoad={this.onAvatarLoad}
-          src={this.props.user.avatar_url}
-        />
-      </div>
-    );
+  private onBackgroundLoad = () => {
+    this.setState({ backgroundLoaded: true });
   }
 
-  renderBackground() {
+  private renderBackground() {
     let background: React.ReactNode | null = null;
 
     if (this.props.user.cover && this.props.user.cover.url) {
