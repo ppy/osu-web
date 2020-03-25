@@ -11,6 +11,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
+import { clamp } from 'lodash';
 import { transaction } from 'mobx';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
@@ -81,7 +82,7 @@ export default class ChatOrchestrator implements DispatchListener {
       return;
     }
 
-    const nextIndex = Math.min(index, channelList.length - 1);
+    const nextIndex = clamp(index, 0, channelList.length - 1);
     const channel = this.rootDataStore.channelStore.channelList[nextIndex];
 
     dispatch(new ChatChannelSwitchAction(channel.channelId));
