@@ -38,6 +38,7 @@ class UserTransformer extends TransformerAbstract
     ];
 
     protected $defaultIncludes = [
+        'country',
         'is_bng',
         'is_full_bn',
         'is_gmt',
@@ -62,18 +63,10 @@ class UserTransformer extends TransformerAbstract
     {
         $profileCustomization = $user->profileCustomization();
 
-        $country = $user->country_acronym === null
-            ? null
-            : [
-                'code' => $user->country_acronym,
-                'name' => $user->countryName(),
-            ];
-
         return [
             'id' => $user->user_id,
             'username' => $user->username,
             'join_date' => json_time($user->user_regdate),
-            'country' => $country,
             'avatar_url' => $user->user_avatar,
             'is_supporter' => $user->osu_subscriber,
             'has_supported' => $user->hasSupported(),
@@ -138,6 +131,13 @@ class UserTransformer extends TransformerAbstract
             $user->badges()->orderBy('awarded', 'DESC')->get(),
             new UserBadgeTransformer
         );
+    }
+
+    public function includeCountry(User $user)
+    {
+        return $user->country === null
+            ? $this->primitive(null)
+            : $this->item($user->country, new CountryTransformer);
     }
 
     public function includeDefaultStatistics(User $user)
