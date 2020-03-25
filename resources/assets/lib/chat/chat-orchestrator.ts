@@ -77,7 +77,8 @@ export default class ChatOrchestrator implements DispatchListener {
   focusChannelAtIndex(index: number) {
     const channelList = this.rootDataStore.channelStore.channelList;
     if (channelList.length === 0) {
-      return this.rootDataStore.channelStore.loaded = false;
+      this.rootDataStore.channelStore.loaded = false;
+      return;
     }
 
     const nextIndex = Math.min(index, channelList.length - 1);
