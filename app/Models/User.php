@@ -483,7 +483,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function setUserFromAttribute($value)
     {
-        $this->attributes['user_from'] = e($value);
+        $this->attributes['user_from'] = e(unzalgo($value));
     }
 
     public function getUserInterestsAttribute($value)
@@ -493,7 +493,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function setUserInterestsAttribute($value)
     {
-        $this->attributes['user_interests'] = e($value);
+        $this->attributes['user_interests'] = e(unzalgo($value));
     }
 
     public function getUserLangAttribute($value)
@@ -508,7 +508,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function setUserOccAttribute($value)
     {
-        $this->attributes['user_occ'] = e($value);
+        $this->attributes['user_occ'] = e(unzalgo($value));
     }
 
     public function setUserSigAttribute($value)
@@ -534,7 +534,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function setUserWebsiteAttribute($value)
     {
         // doubles as casting to empty string for not null constraint
-        $value = trim($value);
+        // allowing zalgo in urls sounds like a terrible idea.
+        $value = unzalgo(trim($value), 0);
 
         // FIXME: this can probably be removed after old site is deactivated
         //        as there's same check in getter function.
@@ -609,6 +610,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return presence(ltrim($value, '@'));
     }
 
+    public function setUserTwitterAttribute($value)
+    {
+        $this->attributes['user_twitter'] = ltrim($value, '@');
+    }
+
     public function getUserLastfmAttribute($value)
     {
         return presence($value);
@@ -622,6 +628,12 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function getUserMsnmAttribute($value)
     {
         return presence($value);
+    }
+
+    public function setUserMsnmAttribute($value)
+    {
+        // skype does not allow accents in usernames.
+        $this->attributes['user_msnm'] = unzalgo($value, 0);
     }
 
     public function getOsuPlaystyleAttribute($value)
@@ -1847,6 +1859,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             // - ends with a # and 4-digit discriminator
             if (!preg_match('/^[^@#:]{2,32}#\d{4}$/i', $this->user_discord)) {
                 $this->validationErrors()->add('user_discord', '.invalid_discord');
+            }
+        }
+
+        if ($this->isDirty('user_twitter') && present($this->user_twitter)) {
+            // https://help.twitter.com/en/managing-your-account/twitter-username-rules
+            if (!preg_match('/^[a-zA-Z0-9_]{1,15}$/', $this->user_twitter)) {
+                $this->validationErrors()->add('user_twitter', '.invalid_twitter');
             }
         }
 
