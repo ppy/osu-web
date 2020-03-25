@@ -10,7 +10,6 @@ reactTurbolinks.registerPersistent 'profile-page', Main, true, (target) ->
   userPage: user.page
   userAchievements: user.user_achievements
   currentMode: osu.parseJson('json-currentMode')
-  rankHistory: user.rankHistory
   withEdit: user.id == window.currentUser.id
   achievements: _.keyBy osu.parseJson('json-achievements'), 'id'
   perPage: osu.parseJson('json-perPage')
