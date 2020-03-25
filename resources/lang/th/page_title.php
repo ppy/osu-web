@@ -1,68 +1,132 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
+    'admin' => [
+        '_' => '',
+    ],
+    'admin_forum' => [
+        '_' => '',
+    ],
+    'admin_store' => [
+        '_' => '',
+    ],
     'error' => [
         'error' => [
-            '_' => 'ข้อผิดพลาด',
-            '404' => 'หายไป',
-            '403' => 'ต้องห้าม',
-            '401' => 'ไม่ได้รับอนุญาต',
-            '405' => 'หายไป',
-            '500' => 'อะไรสักอย่างพัง',
-            '503' => 'การบำรุงรักษาระบบ',
+            '404' => '',
+            '403' => '',
+            '401' => '',
+            '405' => '',
+            '422' => '',
+            '500' => '',
+            '503' => '',
         ],
     ],
     'forum' => [
-        '_' => 'ฟอรั่ม',
+        '_' => '',
         'topic_watches_controller' => [
-            'index' => 'หน้าหลัก',
+            'index' => '',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'หน้าหลัก',
+            'edit' => '',
+            'verify_link' => '',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'หน้าหลัก',
-        ],
-        'friends_controller' => [
-            'index' => 'หน้าหลัก',
-        ],
-        'home_controller' => [
-            'index' => 'หน้าหลัก',
-            'get_download' => 'ดาวน์โหลด',
-            'search' => 'ค้นหา',
-            'support_the_game' => 'สนับสนุนเกม',
-        ],
-        'beatmap_discussions_controller' => [
-            '_' => 'การสนทนาเกี่ยวกับ Beatmap',
+        'artists_controller' => [
+            '_' => '',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'โพสต์การสนทนาเกี่ยวกับ Beatmap',
+            '_' => '',
+        ],
+        'beatmap_discussions_controller' => [
+            '_' => '',
+        ],
+        'beatmap_packs_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_discussion_votes_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_events_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_watches_controller' => [
+            'index' => '',
+        ],
+        'beatmapsets_controller' => [
+            'discussion' => '',
+            'index' => '',
+            'show' => '',
+        ],
+        'changelog_controller' => [
+            '_' => '',
         ],
         'chat_controller' => [
-            '_' => 'แชท',
+            '_' => '',
+        ],
+        'comments_controller' => [
+            '_' => '',
+        ],
+        'contests_controller' => [
+            '_' => '',
+        ],
+        'friends_controller' => [
+            'index' => '',
+        ],
+        'groups_controller' => [
+            'show' => '',
+        ],
+        'home_controller' => [
+            'get_download' => '',
+            'index' => '',
+            'search' => '',
+            'support_the_game' => '',
+            'testflight' => '',
         ],
         'legal_controller' => [
-            '_' => 'ข้อมูล',
+            '_' => '',
+        ],
+        'livestreams_controller' => [
+            '_' => '',
+        ],
+        'matches_controller' => [
+            '_' => '',
+        ],
+        'news_controller' => [
+            '_' => '',
+        ],
+        'notifications_controller' => [
+            '_' => '',
+        ],
+        'password_reset_controller' => [
+            '_' => '',
+        ],
+        'ranking_controller' => [
+            '_' => '',
+        ],
+        'store_controller' => [
+            '_' => '',
+        ],
+        'tournaments_controller' => [
+            '_' => '',
+        ],
+        'users_controller' => [
+            '_' => '',
+            'disabled' => '',
+        ],
+        'wiki_controller' => [
+            '_' => '',
+        ],
+    ],
+    'store' => [
+        '_' => '',
+    ],
+    'users' => [
+        'modding_history_controller' => [
+            '_' => '',
         ],
     ],
 ];

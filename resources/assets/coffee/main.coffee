@@ -50,6 +50,7 @@ $(document).on 'turbolinks:load', ->
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
 @menu ?= new Menu
+@mobileToggle ?= new _exported.MobileToggle
 @navButton ?= new NavButton
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr

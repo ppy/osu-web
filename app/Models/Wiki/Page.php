@@ -37,11 +37,13 @@ class Page implements WikiObject
 
     public $locale;
     public $path;
+    public $requestedLocale;
 
     private $defaultSubtitle;
     private $defaultTitle;
     private $source;
     private $page;
+    private $parent = false;
 
     public static function cleanupPath($path)
     {
@@ -75,9 +77,9 @@ class Page implements WikiObject
         return $page;
     }
 
-    public static function lookup($path, $locale)
+    public static function lookup($path, $locale, $requestedLocale = null)
     {
-        $page = new static($path, $locale);
+        $page = new static($path, $locale, $requestedLocale);
         $page->esFetch();
 
         return $page;
@@ -88,7 +90,7 @@ class Page implements WikiObject
         $page = static::lookup($path, $locale)->sync();
 
         if (!$page->isVisible() && $page->isTranslation()) {
-            $page = static::lookup($path, config('app.fallback_locale'))->sync();
+            $page = static::lookup($path, config('app.fallback_locale'), $locale)->sync();
         }
 
         return $page;
@@ -152,10 +154,11 @@ class Page implements WikiObject
         }
     }
 
-    public function __construct($path, $locale)
+    public function __construct($path, $locale, $requestedLocale = null)
     {
         $this->path = OsuWiki::cleanPath($path);
         $this->locale = $locale;
+        $this->requestedLocale = $requestedLocale ?? $locale;
 
         $defaultTitles = explode('/', str_replace('_', ' ', $this->path));
         $this->defaultTitle = array_pop($defaultTitles);
@@ -196,7 +199,7 @@ class Page implements WikiObject
     public function esFetch()
     {
         $response = (new BasicSearch(static::esIndexName(), 'wiki_page_lookup'))
-            ->source(['page', 'indexed_at', 'version'])
+            ->source(['markdown', 'page', 'indexed_at', 'version'])
             ->query([
                 'term' => [
                     '_id' => $this->pagePath(),
@@ -214,15 +217,40 @@ class Page implements WikiObject
         return $this->page;
     }
 
+    public function getMarkdown()
+    {
+        return $this->source['markdown'] ?? null;
+    }
+
     public function hasParent()
     {
-        return $this->parentPath() !== null
-            && static::lookup($this->parentPath(), $this->locale)->isVisible();
+        return $this->parent() !== null;
     }
 
     public function needsCleanup(): bool
     {
         return $this->page['header']['needs_cleanup'] ?? false;
+    }
+
+    public function parent()
+    {
+        if ($this->parent === false) {
+            $parentPath = $this->parentPath();
+
+            if ($parentPath === null) {
+                $parent = null;
+            } else {
+                $parent = static::lookup($this->parentPath(), $this->requestedLocale);
+
+                if (!$parent->isVisible()) {
+                    $parent = null;
+                }
+            }
+
+            $this->parent = $parent;
+        }
+
+        return $this->parent;
     }
 
     public function isLegalTranslation(): bool
@@ -296,6 +324,10 @@ class Page implements WikiObject
             return;
         }
 
+        if ($this->parent() !== null) {
+            return $this->parent()->title();
+        }
+
         return presence($this->page['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
     }
 
@@ -339,6 +371,7 @@ class Page implements WikiObject
             $this->page = $contentRenderer->render();
             $pageIndex = $contentRenderer->renderIndexable();
 
+            $source['markdown'] = $content;
             $source['page'] = json_encode($this->page);
             $source['page_text'] = $pageIndex;
             $source['title'] = strip_tags($this->title());

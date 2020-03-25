@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'defaults' => [
@@ -25,7 +10,6 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => 'адмін',
             'beatmapset' => 'набор карт',
             'beatmapset_covers' => 'обкладинки наборів карт',
             'contest' => 'конкурс',
@@ -35,79 +19,29 @@ return [
         ],
 
         'artists' => [
-            '_' => '',
             'index' => 'список',
-        ],
-
-        'beatmapsets' => [
-            '_' => 'карта',
-            'discussions' => 'обговорення',
-            'index' => 'список',
-            'show' => 'інформація',
-            'packs' => 'набори',
         ],
 
         'changelog' => [
-            '_' => 'список змін',
             'index' => 'список',
         ],
 
-        'community' => [
-            '_' => 'спільнота',
-            'comments' => 'коментарі',
-            'contests' => '',
-            'forum' => 'форум',
-            'livestream' => 'прямі трансляції',
-        ],
-
-        'error' => [
-            '_' => 'помилка',
-        ],
-
         'help' => [
-            '_' => 'вікі',
             'index' => 'зміст',
-        ],
-
-        'home' => [
-            '_' => 'головна',
-            'password_reset' => 'скинути пароль',
-        ],
-
-        'matches' => [
-            '_' => '',
-        ],
-
-        'notice' => [
-            '_' => '',
-        ],
-
-        'notifications' => [
-            '_' => '',
-            'index' => '',
-        ],
-
-        'rankings' => [
-            '_' => '',
+            'sitemap' => '',
         ],
 
         'store' => [
-            '_' => '',
             'cart' => '',
-            'order' => '',
             'orders' => '',
-            'product' => '',
             'products' => '',
         ],
 
         'tournaments' => [
-            '_' => '',
             'index' => '',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
             'modding' => '',
             'show' => '',
         ],
@@ -122,34 +56,20 @@ return [
     ],
 
     'menu' => [
-        'home' => [
-            '_' => 'головна',
-            'account-edit' => 'налаштування',
-            'account-verifyLink' => '',
-            'beatmapset-watches-index' => '',
-            'changelog-build' => 'збірка',
-            'changelog-index' => 'список змін',
-            'client_verifications-create' => '',
-            'forum-topic-watches-index' => '',
-            'friends-index' => 'друзі',
-            'getDownload' => 'завантажити',
-            'getIcons' => 'значки',
-            'groups-show' => 'групи',
-            'index' => 'стільниця',
-            'legal-show' => 'інформація',
-            'messages-index' => 'повідомлення',
-            'news-index' => 'новини',
-            'news-show' => 'новини',
-            'password-reset-index' => 'скидання пароля',
-            'search' => 'пошук',
-            'supportTheGame' => 'підтримати гру',
-            'team' => 'команда',
-            'testflight' => '',
+        'beatmaps' => [
+            '_' => 'біткарти',
+            'artists' => 'вибрані виконавці',
+            'index' => 'бібліотека',
+            'packs' => 'набори',
         ],
-        'profile' => [
-            '_' => '',
-            'friends' => '',
-            'settings' => '',
+        'community' => [
+            '_' => 'спільнота',
+            'chat' => 'чат',
+            'contests' => 'конкурси',
+            'dev' => 'розробка',
+            'forum-forums-index' => 'форуми',
+            'getLive' => 'наживо',
+            'tournaments' => 'турніри',
         ],
         'help' => [
             '_' => 'допомога',
@@ -157,122 +77,28 @@ return [
             'getRules' => 'правила',
             'getSupport' => 'мені, насправді, потрібна допомога!',
             'getWiki' => 'wiki',
-            'wiki-show' => 'wiki',
         ],
-        'beatmaps' => [
-            '_' => 'біткарти',
-            'artists' => 'вибрані виконавці',
-            'beatmap_discussion_posts-index' => 'публікації в обговореннях карти',
-            'beatmap_discussions-index' => 'обговорення біткарти',
-            'beatmapset_discussion_votes-index' => 'голосів в обговоренні карти',
-            'beatmapset_events-index' => 'події карти',
-            'index' => 'бібліотека',
-            'packs' => 'набори',
-            'show' => 'дані',
-        ],
-        'beatmapsets' => [
-            '_' => 'біткарти',
-            'discussion' => 'обговорення',
+        'home' => [
+            '_' => 'головна',
+            'changelog-index' => 'список змін',
+            'getDownload' => 'завантажити',
+            'news-index' => 'новини',
+            'search' => 'пошук',
+            'team' => 'команда',
         ],
         'rankings' => [
             '_' => 'рейтинги',
-            'index' => 'по продуктивності',
-            'performance' => 'продуктивність',
             'charts' => 'по графіках',
-            'score' => 'рахунок',
             'country' => 'країна',
+            'index' => 'по продуктивності',
             'kudosu' => 'кудосу',
-        ],
-        'community' => [
-            '_' => 'спільнота',
-            'chat' => 'чат',
-            'chat-index' => 'чат',
-            'dev' => 'розробка',
-            'getForum' => 'форуми',
-            'getLive' => 'наживо',
-            'comments-index' => 'коментарі',
-            'comments-show' => 'коментар',
-            'contests' => 'конкурси',
-            'profile' => 'профайл',
-            'tournaments' => 'турніри',
-            'tournaments-index' => 'турніри',
-            'tournaments-show' => 'дані по турніру',
-            'forum-topics-create' => 'форуми',
-            'forum-topics-show' => 'форуми',
-            'forum-forums-index' => 'форуми',
-            'forum-forums-show' => 'форуми',
-        ],
-        'multiplayer' => [
-            '_' => 'багатокор. гра',
-            'show' => 'матч',
-        ],
-        'error' => [
-            '_' => 'помилка',
-            '404' => 'відсутні',
-            '403' => 'заборонено',
-            '401' => 'error 401 Unauthorized',
-            '405' => '405 Method Not Allowed',
-            '500' => 'щось зламалося',
-            '503' => 'обслуговування',
-        ],
-        'user' => [
-            '_' => 'користувач',
-            'getLogin' => 'логін',
-            'disabled' => 'вимкнено',
-
-            'register' => 'реєстрація',
-            'reset' => 'відновити',
-            'new' => 'новий',
-
-            'help' => 'Допомога',
-            'logout' => 'Вийти',
-            'messages' => 'Повідомлення',
-            'modding-history-discussions' => 'обговорення',
-            'modding-history-events' => 'історія подій',
-            'modding-history-index' => 'переглянути історію змін',
-            'modding-history-posts' => 'історія публікацій',
-            'modding-history-votesGiven' => 'дані голоси',
-            'modding-history-votesReceived' => 'отримані голоси',
-            'notifications-index' => '',
-            'oauth_login' => 'увійдіть для oauth',
-            'oauth_request' => 'Oauth автентифікація',
-            'settings' => 'Налаштування',
+            'score' => 'рахунок',
         ],
         'store' => [
             '_' => 'крамниця',
-            'checkout-show' => 'перевірка',
-            'getListing' => 'товари',
             'cart-show' => 'кошик',
-
-            'getCheckout' => 'завершення покупки',
-            'getInvoice' => 'рахунок',
+            'getListing' => 'товари',
             'orders-index' => 'історія замовлень',
-            'products-show' => 'товар',
-
-            'new' => 'новий',
-            'home' => 'головна',
-            'index' => 'головна',
-            'thanks' => 'дякуємо',
-        ],
-        'admin-forum' => [
-            '_' => '',
-            'forum-covers-index' => '',
-        ],
-        'admin-store' => [
-            '_' => '',
-            'orders-index' => '',
-            'orders-show' => '',
-        ],
-        'admin' => [
-            '_' => '',
-            'beatmapsets-covers' => '',
-            'logs-index' => '',
-            'root' => '',
-
-            'beatmapsets' => [
-                '_' => '',
-                'show' => '',
-            ],
         ],
     ],
 
@@ -283,7 +109,6 @@ return [
             'changelog-index' => 'Список змін',
             'beatmaps' => 'Бібліотека карт',
             'download' => 'Завантажити osu!',
-            'wiki' => 'Вікі',
         ],
         'help' => [
             '_' => 'Допомога і спільнота',
@@ -291,6 +116,7 @@ return [
             'forum' => 'Форуми спільноти',
             'livestreams' => 'Прямі трансляції',
             'report' => 'Повідомити про проблему',
+            'wiki' => '',
         ],
         'legal' => [
             '_' => 'Права і статус',
@@ -318,6 +144,10 @@ return [
         '405' => [
             'error' => 'Сторінка відсутня',
             'description' => "Вибачте, але запитана сторінка відсутня!",
+        ],
+        '422' => [
+            'error' => '',
+            'description' => '',
         ],
         '500' => [
             'error' => 'Ох, горе! Щось зламалося! ;_;',

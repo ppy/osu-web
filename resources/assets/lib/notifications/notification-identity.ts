@@ -29,8 +29,9 @@ export function resolveIdentityType(identity: NotificationIdentity): Notificatio
       }
       return 'stack';
     }
-    return 'type';
   }
+
+  return 'type';
 }
 
 export function fromJson(json: NotificationIdentityJson): NotificationIdentity {

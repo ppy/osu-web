@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'defaults' => [
@@ -25,7 +10,6 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => '',
             'beatmapset' => '',
             'beatmapset_covers' => '',
             'contest' => '',
@@ -35,79 +19,29 @@ return [
         ],
 
         'artists' => [
-            '_' => '',
             'index' => '',
-        ],
-
-        'beatmapsets' => [
-            '_' => '',
-            'discussions' => '',
-            'index' => '',
-            'show' => '',
-            'packs' => '',
         ],
 
         'changelog' => [
-            '_' => '',
             'index' => '',
-        ],
-
-        'community' => [
-            '_' => '',
-            'comments' => '',
-            'contests' => '',
-            'forum' => '',
-            'livestream' => '',
-        ],
-
-        'error' => [
-            '_' => '',
         ],
 
         'help' => [
-            '_' => '',
             'index' => '',
-        ],
-
-        'home' => [
-            '_' => '',
-            'password_reset' => '',
-        ],
-
-        'matches' => [
-            '_' => '',
-        ],
-
-        'notice' => [
-            '_' => '',
-        ],
-
-        'notifications' => [
-            '_' => '',
-            'index' => '',
-        ],
-
-        'rankings' => [
-            '_' => '',
+            'sitemap' => '',
         ],
 
         'store' => [
-            '_' => '',
             'cart' => '',
-            'order' => '',
             'orders' => '',
-            'product' => '',
             'products' => '',
         ],
 
         'tournaments' => [
-            '_' => '',
             'index' => '',
         ],
 
         'users' => [
-            '_' => '',
-            'forum_posts' => '',
             'modding' => '',
             'show' => '',
         ],
@@ -122,34 +56,20 @@ return [
     ],
 
     'menu' => [
-        'home' => [
-            '_' => 'etusivu',
-            'account-edit' => 'asetukset',
-            'account-verifyLink' => '',
-            'beatmapset-watches-index' => '',
-            'changelog-build' => 'versio',
-            'changelog-index' => 'muutosloki',
-            'client_verifications-create' => '',
-            'forum-topic-watches-index' => '',
-            'friends-index' => 'kaverit',
-            'getDownload' => 'lataa',
-            'getIcons' => 'kuvakkeet',
-            'groups-show' => 'ryhmät',
-            'index' => 'yleiskatsaus',
-            'legal-show' => 'tiedot',
-            'messages-index' => 'viestit',
-            'news-index' => 'uutiset',
-            'news-show' => 'uutiset',
-            'password-reset-index' => 'nollaa salasana',
-            'search' => 'haku',
-            'supportTheGame' => 'tue peliä',
-            'team' => 'tiimi',
-            'testflight' => '',
+        'beatmaps' => [
+            '_' => 'beatmapit',
+            'artists' => 'suositellut artistit',
+            'index' => 'listaus',
+            'packs' => 'kokoelmat',
         ],
-        'profile' => [
-            '_' => 'profiili',
-            'friends' => 'kaverit',
-            'settings' => 'asetukset',
+        'community' => [
+            '_' => 'yhteisö',
+            'chat' => 'viestit',
+            'contests' => 'kilpailut',
+            'dev' => 'kehitystyö',
+            'forum-forums-index' => 'foorumit',
+            'getLive' => 'suorat',
+            'tournaments' => 'turnaukset',
         ],
         'help' => [
             '_' => 'apua',
@@ -157,122 +77,28 @@ return [
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
             'getWiki' => 'wiki',
-            'wiki-show' => 'wiki',
         ],
-        'beatmaps' => [
-            '_' => 'beatmapit',
-            'artists' => 'suositellut artistit',
-            'beatmap_discussion_posts-index' => 'viestit beatmapkeskusteluissa',
-            'beatmap_discussions-index' => 'beatmapkeskustelut',
-            'beatmapset_discussion_votes-index' => 'äänet beatmapkeskusteluissa',
-            'beatmapset_events-index' => 'beatmapin tapahtumat',
-            'index' => 'listaus',
-            'packs' => 'kokoelmat',
-            'show' => 'info',
-        ],
-        'beatmapsets' => [
-            '_' => 'beatmapit',
-            'discussion' => 'modaaminen',
+        'home' => [
+            '_' => 'etusivu',
+            'changelog-index' => 'muutosloki',
+            'getDownload' => 'lataa',
+            'news-index' => 'uutiset',
+            'search' => 'haku',
+            'team' => 'tiimi',
         ],
         'rankings' => [
             '_' => 'tilastot',
-            'index' => 'suorituskyky',
-            'performance' => 'suorituskyky',
             'charts' => 'valokeilassa',
-            'score' => 'pisteet',
             'country' => 'maa',
+            'index' => 'suorituskyky',
             'kudosu' => 'kudosu',
-        ],
-        'community' => [
-            '_' => 'yhteisö',
-            'chat' => 'viestit',
-            'chat-index' => 'viestit',
-            'dev' => 'kehitystyö',
-            'getForum' => 'foorumit',
-            'getLive' => 'suorat',
-            'comments-index' => 'kommentit',
-            'comments-show' => 'kommentti',
-            'contests' => 'kilpailut',
-            'profile' => 'profiili',
-            'tournaments' => 'turnaukset',
-            'tournaments-index' => 'turnaukset',
-            'tournaments-show' => 'turnausinfo',
-            'forum-topics-create' => 'foorumit',
-            'forum-topics-show' => 'foorumit',
-            'forum-forums-index' => 'foorumit',
-            'forum-forums-show' => 'foorumit',
-        ],
-        'multiplayer' => [
-            '_' => 'moninpeli',
-            'show' => 'peli',
-        ],
-        'error' => [
-            '_' => 'virhe',
-            '404' => 'puuttuu',
-            '403' => 'kielletty',
-            '401' => 'ei sallittu',
-            '405' => 'puuttuu',
-            '500' => 'jotain hajosi',
-            '503' => 'huolto',
-        ],
-        'user' => [
-            '_' => 'käyttäjä',
-            'getLogin' => 'kirjaudu sisään',
-            'disabled' => 'poistettu käytöstä',
-
-            'register' => 'rekisteröidy',
-            'reset' => 'palauta',
-            'new' => 'uusi',
-
-            'help' => 'Apua',
-            'logout' => 'Kirjaudu ulos',
-            'messages' => 'Viestit',
-            'modding-history-discussions' => 'käyttäjän modauskeskustelut',
-            'modding-history-events' => 'käyttäjän modaustapahtumat',
-            'modding-history-index' => 'käyttäjän modaushistoria',
-            'modding-history-posts' => 'käyttäjän modausviestit',
-            'modding-history-votesGiven' => 'käyttäjän antamat modausäänet',
-            'modding-history-votesReceived' => 'käyttäjän saamat modausäänet',
-            'notifications-index' => '',
-            'oauth_login' => 'oauth kirjautuminen',
-            'oauth_request' => 'oauth yhdistäminen',
-            'settings' => 'Asetukset',
+            'score' => 'pisteet',
         ],
         'store' => [
             '_' => 'kauppa',
-            'checkout-show' => 'kassa',
-            'getListing' => 'listaus',
             'cart-show' => 'ostoskori',
-
-            'getCheckout' => 'kassa',
-            'getInvoice' => 'lasku',
+            'getListing' => 'listaus',
             'orders-index' => 'tilaushistoria',
-            'products-show' => 'tuote',
-
-            'new' => 'uusi',
-            'home' => 'etusivu',
-            'index' => 'etusivu',
-            'thanks' => 'kiitos',
-        ],
-        'admin-forum' => [
-            '_' => '',
-            'forum-covers-index' => '',
-        ],
-        'admin-store' => [
-            '_' => '',
-            'orders-index' => '',
-            'orders-show' => '',
-        ],
-        'admin' => [
-            '_' => '',
-            'beatmapsets-covers' => '',
-            'logs-index' => '',
-            'root' => '',
-
-            'beatmapsets' => [
-                '_' => '',
-                'show' => '',
-            ],
         ],
     ],
 
@@ -283,7 +109,6 @@ return [
             'changelog-index' => 'Muutosloki',
             'beatmaps' => 'Beatmapit',
             'download' => 'Lataa osu!',
-            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => 'Ohjeet & Yhteisö',
@@ -291,6 +116,7 @@ return [
             'forum' => 'Keskustelupalsta',
             'livestreams' => 'Suorat lähetykset',
             'report' => 'Ilmoita ongelmasta',
+            'wiki' => '',
         ],
         'legal' => [
             '_' => 'Lakiasiat ja tilanne',
@@ -318,6 +144,10 @@ return [
         '405' => [
             'error' => 'Sivu puuttuu',
             'description' => "Pahoittelut, mutta sivu jota hait ei ole täällä!",
+        ],
+        '422' => [
+            'error' => '',
+            'description' => '',
         ],
         '500' => [
             'error' => 'Hupsista! Jotain taisi hajota! ;_;',

@@ -5,7 +5,8 @@
 
 namespace App\Models;
 
-use InvalidArgumentException;
+use App\Exceptions\InvariantException;
+use Exception;
 
 /**
  * @property Build $build
@@ -38,10 +39,6 @@ class UserClient extends Model
     {
         $splitHash = static::splitHash($hash);
 
-        if ($splitHash === null) {
-            return;
-        }
-
         return static::firstOrNew([
             'user_id' => $userId,
             'unique_md5' => $splitHash['unique'],
@@ -52,30 +49,41 @@ class UserClient extends Model
         ]);
     }
 
+    public static function markVerified($userId, $hash)
+    {
+        $client = static::lookupOrNew($userId, $hash);
+
+        try {
+            $client->fill(['verified' => true])->save();
+        } catch (Exception $e) {
+            if (is_sql_unique_exception($e)) {
+                return static::markVerified($userId, $hash);
+            }
+
+            throw $e;
+        }
+    }
+
     public static function splitHash($hash)
     {
         $hashes = explode(':', $hash);
 
         if (count($hashes) < 5) {
-            return;
+            throw new InvariantException('invalid client hash format');
         }
 
-        try {
-            return array_map(function ($value) {
-                if (!ctype_xdigit($value) || strlen($value) !== 32) {
-                    throw new InvalidArgumentException('not a valid md5 hash');
-                }
+        return array_map(function ($value) {
+            if (!ctype_xdigit($value) || strlen($value) !== 32) {
+                throw new InvariantException('invalid md5 hash inside client hash');
+            }
 
-                return hex2bin($value);
-            }, [
-                'osu' => $hashes[0],
-                'mac' => $hashes[2],
-                'unique' => $hashes[3],
-                'disk' => $hashes[4],
-            ]);
-        } catch (InvalidArgumentException $e) {
-            // return nothing on error
-        }
+            return hex2bin($value);
+        }, [
+            'osu' => $hashes[0],
+            'mac' => $hashes[2],
+            'unique' => $hashes[3],
+            'disk' => $hashes[4],
+        ]);
     }
 
     public function build()

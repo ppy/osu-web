@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'availability' => [
@@ -34,16 +19,10 @@ return [
         'discussion' => '讨论',
 
         'details' => [
-            'approved' => 'approved 于 ',
             'favourite' => '收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
-            'loved' => 'loved 于 ',
             'mapped_by' => '作者: :mapper',
-            'qualified' => 'qualified 于 ',
-            'ranked' => 'ranked 于 ',
-            'submitted' => '提交于 ',
             'unfavourite' => '取消收藏',
-            'updated' => '上次更新于 ',
             'updated_timeago' => '上次更新于 :timeago',
 
             'download' => [
@@ -57,6 +36,15 @@ return [
                 'bottom' => '以使用更多的功能',
                 'top' => '登录',
             ],
+        ],
+
+        'details_date' => [
+            'approved' => '',
+            'loved' => '',
+            'qualified' => '',
+            'ranked' => '',
+            'submitted' => '',
+            'updated' => '',
         ],
 
         'favourites' => [
