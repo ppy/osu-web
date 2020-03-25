@@ -1551,6 +1551,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $query->with([
             'country',
             'supporterTagPurchases',
+            'userGroups',
             'userProfileCustomization',
         ]);
     }
