@@ -60,7 +60,7 @@
 #### URL Parameters
 
 Parameter | Status | Description
---------- | ------ | ----------- | ---
+--------- | ------ | -----------
 @foreach($route['urlParameters'] as $attribute => $parameter)
     {{ $attribute }} | @if($parameter['required']) required @else optional @endif | {!! $parameter['description'] !!}
 @endforeach
@@ -69,7 +69,7 @@ Parameter | Status | Description
 #### Body Parameters
 
 Parameter | Type | Status | Description
---------- | ---- | ------ | ----------- | ---
+--------- | ---- | ------ | -----------
 @foreach($route['bodyParameters'] as $attribute => $parameter)
     {{$attribute}} | {{$parameter['type']}} | @if($parameter['required']) required @else optional @endif | {!! $parameter['description'] !!}
 @endforeach
@@ -78,7 +78,7 @@ Parameter | Type | Status | Description
 #### Query Parameters
 
 Parameter | Status | Description
---------- | ------ | ----------- | ---
+--------- | ------ | -----------
 @foreach($route['queryParameters'] as $attribute => $parameter)
     {{$attribute}} | @if($parameter['required']) required @else optional @endif | {!! $parameter['description'] !!}
 @endforeach
