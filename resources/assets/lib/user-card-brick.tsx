@@ -33,9 +33,7 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const modifiers = this.props.modifiers.slice();
-    modifiers.push(this.props.mode);
-
+    const modifiers = this.props.modifiers.concat(this.props.mode);
     const friendButtonShowIf = this.context.isFriendsPage ? 'mutual' : 'friend';
 
     return (
