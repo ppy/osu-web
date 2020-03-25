@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'landing' => [
@@ -42,7 +27,7 @@ return [
         'title' => '検索',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'ログインしてビートマップを検索',
             'more' => '他:count件のビートマップ検索結果',
             'more_simple' => 'もっとビートマップの検索結果を見る',
             'title' => 'ビートマップ',
@@ -51,7 +36,7 @@ return [
         'forum_post' => [
             'all' => '全てのフォーラム',
             'link' => 'フォーラムを検索',
-            'login_required' => '',
+            'login_required' => 'ログインしてフォーラムを検索',
             'more_simple' => 'もっとフォーラム検索結果を見る',
             'title' => 'フォーラム',
 
@@ -72,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'ログインしてユーザーを検索',
             'more' => '他に:count人のプレイヤーが見つかりました',
             'more_simple' => 'もっとプレイヤーの検索結果を見る',
             'more_hidden' => 'プレイヤー検索は最大:max件までです。絞り込む事をおすすめします。',

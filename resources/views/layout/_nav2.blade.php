@@ -137,6 +137,18 @@
 
         @if (Auth::user() !== null)
             <div class="nav2__col">
+                <a
+                    class="nav-button nav-button--stadium js-react--chat-icon"
+                    href="{{ route('chat.index') }}"
+                >
+                    <span class="notification-icon">
+                        <i class="fas fa-comment-alt"></i>
+                        <span class="notification-icon__count">...</span>
+                    </span>
+                </a>
+            </div>
+
+            <div class="nav2__col">
                 <button
                     class="nav-button nav-button--stadium js-click-menu js-react--notification-icon"
                     data-click-menu-target="nav2-notification-widget"

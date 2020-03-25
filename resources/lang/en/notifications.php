@@ -5,7 +5,7 @@
 
 return [
     'all_read' => 'All notifications read!',
-    'mark_all_read' => 'Clear all',
+    'mark_read' => 'Clear :type',
     'none' => 'No notifications',
     'see_all' => 'see all notifications',
 

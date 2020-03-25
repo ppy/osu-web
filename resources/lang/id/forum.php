@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'pinned_topics' => 'Topik yang Disematkan',
@@ -251,8 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Topik ini telah dikunci dan tidak dapat dibalas',
             'to_0' => 'Buka topik',
+            'to_0_confirm' => 'Buka kunci topik?',
             'to_0_done' => 'Topik telah dibuka',
             'to_1' => 'Kunci topik',
+            'to_1_confirm' => 'Kunci topik?',
             'to_1_done' => 'Topik telah dikunci',
         ],
 
@@ -262,10 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Lepas sematan topik',
+            'to_0_confirm' => 'Lepas sematan topik?',
             'to_0_done' => 'Sematan topik telah dilepaskan',
             'to_1' => 'Sematkan topik',
+            'to_1_confirm' => 'Sematkan topik?',
             'to_1_done' => 'Topik telah disematkan',
             'to_2' => 'Sematkan topik dan tandai sebagai pengumuman',
+            'to_2_confirm' => 'Sematkan topik dan tandai sebagai pengumuman?',
             'to_2_done' => 'Topik telah disematkan dan ditandai sebagai pengumuman',
         ],
 

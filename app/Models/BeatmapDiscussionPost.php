@@ -45,7 +45,7 @@ class BeatmapDiscussionPost extends Model
             'page' => max(get_int($rawParams['page'] ?? null) ?? 1, 1),
         ];
 
-        $query = static::limit($params['limit'])->offset(($params['page'] - 1) * $params['limit']);
+        $query = static::limit($params['limit'])->offset(max_offset($params['page'], $params['limit']));
 
         if (isset($rawParams['user'])) {
             $params['user'] = $rawParams['user'];

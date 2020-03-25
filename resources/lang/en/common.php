@@ -21,6 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Admin',
         'authorise' => 'Authorise',
+        'authorising' => 'Authorising...',
         'back_to_previous' => 'Return to previous position',
         'back_to_top' => 'Back to top',
         'cancel' => 'Cancel',

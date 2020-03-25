@@ -12,7 +12,6 @@ use App\Models\User;
 class CommentBundle
 {
     public $depth;
-    public $includeCommentableMeta;
     public $includeDeleted;
     public $includePinned;
     public $params;
@@ -23,10 +22,7 @@ class CommentBundle
 
     public static function forComment(Comment $comment, bool $includeNested = false)
     {
-        $options = [
-            'comment' => $comment,
-            'includeCommentableMeta' => true,
-        ];
+        $options = ['comment' => $comment];
 
         if ($includeNested) {
             $options['params'] = ['parent_id' => $comment->getKey()];
@@ -50,7 +46,6 @@ class CommentBundle
 
         $this->comment = $options['comment'] ?? null;
         $this->depth = $options['depth'] ?? 2;
-        $this->includeCommentableMeta = $options['includeCommentableMeta'] ?? false;
         $this->includeDeleted = isset($commentable);
         $this->includePinned = isset($commentable);
     }
@@ -124,10 +119,8 @@ class CommentBundle
             $result['total'] = $this->commentsQuery()->count();
         }
 
-        if ($this->includeCommentableMeta) {
-            $commentables = $comments->pluck('commentable')->concat([null]);
-            $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
-        }
+        $commentables = $comments->pluck('commentable')->concat([null]);
+        $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
 
         return $result;
     }
@@ -150,7 +143,7 @@ class CommentBundle
             $query->withoutTrashed();
         }
 
-        return $query->count();
+        return min($query->count(), config('osu.pagination.max_count'));
     }
 
     private function getComments($query, $isChildren = true, $pinnedOnly = false)
@@ -183,13 +176,11 @@ class CommentBundle
                 $query->cursorWhere($queryCursor);
                 $sorted = true;
             } else {
-                $query->offset($this->params->limit * ($this->params->page - 1));
+                $query->offset(max_offset($this->params->page, $this->params->limit));
             }
         }
 
-        if ($this->includeCommentableMeta) {
-            $query->with('commentable');
-        }
+        $query->with('commentable');
 
         if (!$this->includeDeleted) {
             $query->whereNull('deleted_at');

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'beatmapset_update_notice' => [
@@ -105,8 +90,8 @@ return [
 
     'user_verification' => [
         'code' => '인증 코드:',
-        'code_hint' => '코드 입력란에 공백을 포함하거나 하지 않아도 됩니다.',
-        'link' => '코드를 입력하는 방법 외에도 아래 링크를 방문하셔서 확인 절차를 끝내실 수 있습니다.',
+        'code_hint' => '코드 입력란에 공백이 들어가도 문제 없습니다.',
+        'link' => '코드를 입력하는 대신에 아래 링크를 방문하셔서 확인 절차를 끝내실 수도 있습니다.',
         'report' => '본인의 활동이 아니시라면, 계정 도용의 가능성이 있으니 이 메일로 즉시 회답하시길 바랍니다.',
         'subject' => 'osu! 계정 인증',
 

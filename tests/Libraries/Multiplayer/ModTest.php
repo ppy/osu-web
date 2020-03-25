@@ -99,6 +99,12 @@ class ModTest extends TestCase
         $this->assertFalse(Mod::validForRuleset('AP', Ruleset::MANIA));
     }
 
+    public function testValidateSelectionWithInvalidRuleset()
+    {
+        $this->expectException(InvariantException::class);
+        Mod::validateSelection([], -1);
+    }
+
     /**
      * @dataProvider modCombos
      */
@@ -128,6 +134,7 @@ class ModTest extends TestCase
             [Ruleset::TAIKO, ['HD', 'DT'], true],
             [Ruleset::TAIKO, ['HD', 'HR'], true],
             [Ruleset::TAIKO, ['HR', 'PF'], true],
+            [Ruleset::TAIKO, ['RD', 'SD'], true],
 
             [Ruleset::CATCH, ['HD', 'HR'], true],
             [Ruleset::CATCH, ['HD', 'PF'], true],
@@ -147,7 +154,6 @@ class ModTest extends TestCase
             [Ruleset::OSU, ['RX', 'PF'], false],
 
             [Ruleset::TAIKO, ['AP'], false],
-            [Ruleset::TAIKO, ['RD', 'SD'], false],
             [Ruleset::TAIKO, ['RX', 'PF'], false],
 
             [Ruleset::CATCH, ['4K'], false],

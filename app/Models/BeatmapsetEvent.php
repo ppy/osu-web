@@ -78,7 +78,7 @@ class BeatmapsetEvent extends Model
             'page' => max(get_int($rawParams['page'] ?? null) ?? 1, 1),
         ];
 
-        $query = static::limit($params['limit'])->offset(($params['page'] - 1) * $params['limit']);
+        $query = static::limit($params['limit'])->offset(max_offset($params['page'], $params['limit']));
         $searchByUser = present($rawParams['user'] ?? null);
 
         if ($searchByUser) {

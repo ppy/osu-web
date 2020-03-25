@@ -441,6 +441,13 @@ function markdown($input, $preset = 'default')
     return $converter[$preset]->load($input)->html();
 }
 
+function max_offset($page, $limit)
+{
+    $offset = ($page - 1) * $limit;
+
+    return max(0, min($offset, config('osu.pagination.max_count') - $limit));
+}
+
 function mysql_escape_like($string)
 {
     return addcslashes($string, '%_\\');
@@ -813,7 +820,7 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function wiki_url($page = 'Main_Page', $locale = null)
+function wiki_url($page = 'Main_Page', $locale = null, $api = null)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
@@ -821,6 +828,10 @@ function wiki_url($page = 'Main_Page', $locale = null)
 
     if (present($locale) && $locale !== App::getLocale()) {
         $params['locale'] = $locale;
+    }
+
+    if ($api ?? is_api_request()) {
+        return route('api.wiki.show', $params);
     }
 
     return route('wiki.show', $params);
