@@ -5,6 +5,7 @@
 
 namespace App\Transformers;
 
+use App\Models\Beatmap;
 use App\Models\User;
 use League\Fractal;
 
@@ -27,6 +28,7 @@ class UserTransformer extends TransformerAbstract
         'page',
         'previous_usernames',
         'ranked_and_approved_beatmapset_count',
+        'rankHistory', // TODO: should be changed to rank_history
         'replays_watched_counts',
         'scores_first_count',
         'statistics',
@@ -267,6 +269,19 @@ class UserTransformer extends TransformerAbstract
     public function includeRankedAndApprovedBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetsRankedAndApproved()->count());
+    }
+
+    public function includeRankHistory(User $user, Fractal\ParamBag $params)
+    {
+        $mode = $params->get('mode')[0];
+
+        $rankHistoryData = $user->rankHistories()
+            ->where('mode', Beatmap::modeInt($mode))
+            ->first();
+
+        return $rankHistoryData === null
+            ? $this->primitive(null)
+            : $this->item($rankHistoryData, new RankHistoryTransformer);
     }
 
     public function includeReplaysWatchedCounts(User $user)
