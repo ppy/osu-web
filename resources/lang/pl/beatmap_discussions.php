@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'authorizations' => [
@@ -33,7 +18,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'usunięta',
-        'none_found' => '',
+        'none_found' => 'Nie znaleziono dyskusji pasujących do podanych kryteriów wyszukiwania.',
         'title' => 'dyskusje',
 
         'form' => [
@@ -83,8 +68,8 @@ return [
         'go_to_child' => 'Zobacz dyskusję',
         'validation' => [
             'invalid_block_type' => 'nieprawidłowy typ bloku',
-            'invalid_document' => 'niewłaściwa recenzja',
-            'minimum_issues' => 'recenzja musi zawierać przynajmniej :count zagadnienie|recenzja musi zawierać przynajmniej :count zagadnień',
+            'invalid_document' => 'nieprawidłowa recenzja',
+            'minimum_issues' => 'recenzja musi zawierać przynajmniej :count problem|recenzja musi zawierać przynajmniej :count problemy|recenzja musi zawierać przynajmniej :count problemów',
             'missing_text' => 'blok nie zawiera tekstu',
             'too_many_blocks' => 'recenzje mogą zawierać wyłącznie :count akapit/problem|recenzje mogą zawierać do :count akapitów/problemów|recenzje mogą zawierać do :count akapitów/problemów',
         ],

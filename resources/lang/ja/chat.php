@@ -1,25 +1,9 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
-    'limitation_notice' => '注意：<a href=":lazer_link">osu!lazer</a>または新しいウェブサイトを利用している人だけが、このシステムを使ってPMを受け取れます。<br/>もし嫌な場合は、<a href=":oldpm_link">旧サイト</a>からメッセージを送信して下さい。',
     'talking_in' => ':channelで会話中',
     'talking_with' => ':nameと会話中',
     'title_compact' => 'チャット',
@@ -43,7 +27,6 @@ return [
     'no-conversations' => [
         'howto' => "ユーザープロフィールまたはユーザーカードのポップアップから会話を開始します。",
         'lazer' => 'あなたが<a href=":link">osu!lazer</a>で参加している公開チャンネルもここに表示されます。',
-        'pm_limitations' => '<a href=":link">osu!lazer</a>または新しいウェブサイトを利用している人だけがPMを受信できます。',
         'title' => 'まだトークはありません',
     ],
 ];
