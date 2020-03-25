@@ -76,9 +76,10 @@ class MessagesController extends BaseController
      */
     public function index($channelId)
     {
+        $request = request()->all();
         $userId = Auth::user()->user_id;
-        $since = Request::input('since');
-        $limit = clamp(Request::input('limit', 50), 1, 50);
+        $since = presence($request['since'] ?? null);
+        $limit = clamp(get_int($request['limit']) ?? 50, 1, 50);
 
         $userChannel = UserChannel::where([
             'user_id' => $userId,
