@@ -97,7 +97,7 @@ class MessagesController extends BaseController
             ->filteredMessages()
             ->with('sender');
 
-        if (presence($since)) {
+        if (present($since)) {
             $messages = $messages->where('message_id', '>', $since)
                 ->orderBy('message_id', 'asc')
                 ->limit($limit)
