@@ -1,36 +1,22 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'all_read' => 'อ่านการแจ้งเตือนทั้งหมดแล้ว!',
-    'none' => '',
-    'see_all' => '',
+    'mark_read' => '',
+    'none' => 'ไม่มีการแจ้งเตือนใดๆ',
+    'see_all' => 'ดูการแจ้งเตือนทั้งหมด',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => 'ทั้งหมด',
+        'user' => 'โปรไฟล์',
+        'beatmapset' => 'บีทแมพ',
+        'forum_topic' => 'บอร์ดข่าวสาร',
+        'news_post' => 'ข่าวสาร',
+        'build' => 'เวอร์ชั่น',
+        'channel' => 'แชท',
     ],
 
     'item' => [
@@ -42,19 +28,19 @@ return [
                 'beatmapset_discussion_lock' => 'Beatmap ":title" ได้ถูกปิดการใช้งานการสนทนา',
                 'beatmapset_discussion_lock_compact' => 'การสนทนาได้ถูกล็อกไว้',
                 'beatmapset_discussion_post_new' => ':username ได้เขียนข้อความใหม่ใน ":title" การสนทนาของ beatmap',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => 'โพสใหม่ บน :title โดย :username',
                 'beatmapset_discussion_post_new_compact' => 'โพสต์ใหม่โดย :username',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'โพสใหม่โดย :username',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" ได้ถูกเปิดการใช้งานในการสนทนาแล้ว',
                 'beatmapset_discussion_unlock_compact' => 'การสนทนาได้ถูกปลดล๊อค',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'ปัญหา Beatmap ที่ผ่านการรับรอง',
+                'beatmapset_discussion_qualified_problem' => 'รายงานโดย :username บน :title :content',
+                'beatmapset_discussion_qualified_problem_empty' => 'รายงานโดย :username บน :title ',
+                'beatmapset_discussion_qualified_problem_compact' => 'รายงานโดย :username บน :content ',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'รายงานโดย :username',
             ],
 
             'beatmapset_state' => [
@@ -64,13 +50,13 @@ return [
                 'beatmapset_love' => 'Beatmap ":title" ได้ถูกเลื่อนขั้นให้เป็นที่ชื่นชอบโดย :username',
                 'beatmapset_love_compact' => 'Beatmap โปรโมทเป็น Loved',
                 'beatmapset_nominate' => 'Beatmap ":title" ได้ถูกเสนอชื่อโดย :username',
-                'beatmapset_nominate_compact' => '',
+                'beatmapset_nominate_compact' => 'Beatmap นี้ได้รับการจัดอันดับแล้ว',
                 'beatmapset_qualify' => 'Beatmap ":title" ได้มีการเสนอชื่อมากเพียงพอที่จะขึ้นการจัดอันดับแล้ว',
                 'beatmapset_qualify_compact' => 'Beatmap ได้ถูกเข้าคิวมาจัดอันดับ',
                 'beatmapset_rank' => '":title" ได้ถูกแรงค์แล้ว',
                 'beatmapset_rank_compact' => 'Beatmap ได้รับการจัดอันดับ',
                 'beatmapset_reset_nominations' => 'ปัญหานี้โพสต์โดย :username รีเซ็ทการเสนอชื่อของ beatmap ":title" ',
-                'beatmapset_reset_nominations_compact' => '',
+                'beatmapset_reset_nominations_compact' => 'การเสนอชื่อถูกรีเซ็ท',
             ],
 
             'comment' => [
@@ -141,7 +127,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'เหรียญตราใหม่',
                 'user_achievement_unlock' => 'ปลดล๊อค ":title"!',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => 'ปลดล๊อค ":title"!',
             ],
         ],
     ],

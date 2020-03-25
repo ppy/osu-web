@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
@@ -25,7 +10,7 @@ return [
 
     'cart' => [
         'checkout' => '結帳',
-        'info' => '',
+        'info' => '購物車裡有 :count_delimited 件商品（$:subtotal）|購物車裡有 :count_delimited 件商品（$:subtotal）',
         'more_goodies' => '我想在完成訂單之前查看更多的東西',
         'shipping_fees' => '運費',
         'title' => '購物車',
@@ -52,6 +37,7 @@ return [
         'delayed_shipping' => '感謝您的訂購，由於近期湧入訂單過多，故該訂單恐將**延後1~2週的時間**',
         'old_cart' => '您的購物車已過期，請重試。',
         'pay' => '使用 Paypal 付款',
+        'title_compact' => '',
 
         'has_pending' => [
             '_' => '客官您還有結帳還沒完成呢，點選 :link 查看他們',
@@ -68,6 +54,8 @@ return [
 
     'invoice' => [
         'echeck_delay' => '由於您是用 eCheck 付款，請等待至多 10 天以使該支付通過 PayPal 完成！',
+        'title_compact' => '',
+
         'status' => [
             'processing' => [
                 'title' => '您的付款尚未被確認!',
