@@ -30,8 +30,10 @@ class MessagesController extends BaseController
      *
      * @authenticated
      *
-     * @queryParam channel_id required The ID of the channel to retrieve messages for
+     * @urlParam channel_id required The ID of the channel to retrieve messages for
      * @queryParam limit number of messages to return (max of 50)
+     * @queryParam since messages after the specified message id will be returned
+     * @queryParam until messages up to but not including the specified message id will be returned
      *
      * @response [
      *   {
