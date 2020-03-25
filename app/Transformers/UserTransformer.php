@@ -9,7 +9,7 @@ use App\Models\Beatmap;
 use App\Models\User;
 use League\Fractal;
 
-class UserTransformer extends TransformerAbstract
+class UserTransformer extends UserCompactTransformer
 {
     protected $availableIncludes = [
         'account_history',
@@ -64,23 +64,11 @@ class UserTransformer extends TransformerAbstract
 
     public function transform(User $user)
     {
-        $profileCustomization = $user->userProfileCustomization;
+        $profileCustomization = $user->profileCustomization();
 
-        return [
-            // same as UserCompactTransformer
-            'id' => $user->user_id,
-            'username' => $user->username,
-            'profile_colour' => $user->user_colour,
-            'avatar_url' => $user->user_avatar,
-            'country_code' => $user->country_acronym,
-            'default_group' => $user->defaultGroup()->identifier,
-            'is_active' => $user->isActive(),
-            'is_bot' => $user->isBot(),
-            'is_online' => $user->isOnline(),
-            'is_supporter' => $user->isSupporter(),
-            'last_visit' => json_time($user->displayed_last_visit),
-            'pm_friends_only' => $user->pm_friends_only,
+        $result = parent::transform($user);
 
+        return array_merge($result, [
             // extras
             'join_date' => json_time($user->user_regdate),
             'has_supported' => $user->hasSupported(),
@@ -108,7 +96,7 @@ class UserTransformer extends TransformerAbstract
             ],
             'max_blocks' => $user->maxBlocks(),
             'max_friends' => $user->maxFriends(),
-        ];
+        ]);
     }
 
     public function includeAccountHistory(User $user)
@@ -138,26 +126,6 @@ class UserTransformer extends TransformerAbstract
             $user->badges()->orderBy('awarded', 'DESC')->get(),
             new UserBadgeTransformer
         );
-    }
-
-    public function includeCountry(User $user)
-    {
-        return $user->country === null
-            ? $this->primitive(null)
-            : $this->item($user->country, new CountryTransformer);
-    }
-
-    public function includeCover(User $user)
-    {
-        return $this->item($user, function ($user) {
-            $profileCustomization = $user->userProfileCustomization;
-
-            return [
-                'custom_url' => $profileCustomization ? $profileCustomization->cover()->fileUrl() : null,
-                'url' => $profileCustomization ? $profileCustomization->cover()->url() : null,
-                'id' => $profileCustomization ? $profileCustomization->cover()->id() : null,
-            ];
-        });
     }
 
     public function includeDefaultStatistics(User $user)
@@ -196,15 +164,6 @@ class UserTransformer extends TransformerAbstract
     public function includeGraveyardBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetsGraveyard()->count());
-    }
-
-    public function includeGroupBadge(User $user)
-    {
-        $badge = $user->groupBadge();
-
-        if (isset($badge)) {
-            return $this->item($badge, new GroupTransformer);
-        }
     }
 
     public function includeIsAdmin(User $user)
@@ -322,11 +281,6 @@ class UserTransformer extends TransformerAbstract
         $stats = $user->statistics($params->get('mode')[0]);
 
         return $this->item($stats, new UserStatisticsTransformer);
-    }
-
-    public function includeSupportLevel(User $user)
-    {
-        return $this->primitive($user->supportLevel());
     }
 
     public function includeUnrankedBeatmapsetCount(User $user)
