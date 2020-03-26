@@ -75,7 +75,7 @@ class RouteScopesTest extends TestCase
 
                 try {
                     if ($method === 'GET' && starts_with(ltrim($url, '/').'/', AuthApi::SKIP_GET)) {
-                        $this->assertTrue(in_array($status, [200, 302], true), $key);
+                        $this->assertTrue(in_array($status, [200, 302, 404], true), $key);
                     } elseif (in_array('require-scopes', $middlewares, true)) {
                         $this->assertSame(401, $status, $key);
                     } else {
