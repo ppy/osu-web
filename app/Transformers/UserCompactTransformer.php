@@ -44,15 +44,13 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeCover(User $user)
     {
-        return $this->item($user, function ($user) {
-            $profileCustomization = $user->userProfileCustomization;
+        $profileCustomization = $user->userProfileCustomization;
 
-            return [
-                'custom_url' => $profileCustomization ? $profileCustomization->cover()->fileUrl() : null,
-                'url' => $profileCustomization ? $profileCustomization->cover()->url() : null,
-                'id' => $profileCustomization ? $profileCustomization->cover()->id() : null,
-            ];
-        });
+        return $this->primitive([
+            'custom_url' => $profileCustomization ? $profileCustomization->cover()->fileUrl() : null,
+            'url' => $profileCustomization ? $profileCustomization->cover()->url() : null,
+            'id' => $profileCustomization ? $profileCustomization->cover()->id() : null,
+        ]);
     }
 
     public function includeCurrentModeRank(User $user)

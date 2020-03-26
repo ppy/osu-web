@@ -246,9 +246,7 @@ class UserTransformer extends UserCompactTransformer
 
     public function includePreviousUsernames(User $user)
     {
-        return $this->item($user, function ($user) {
-            return $user->previousUsernames()->unique()->values()->toArray();
-        });
+        return $this->primitive($user->previousUsernames()->unique()->values()->toArray());
     }
 
     public function includeRankedAndApprovedBeatmapsetCount(User $user)
@@ -298,9 +296,7 @@ class UserTransformer extends UserCompactTransformer
 
     public function includeUnreadPmCount(User $user)
     {
-        return $this->primitive($user, function ($user) {
-            return $user->notificationCount();
-        });
+        return $this->primitive($user->notificationCount());
     }
 
     public function includeUserAchievements(User $user)
