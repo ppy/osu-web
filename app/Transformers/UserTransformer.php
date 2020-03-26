@@ -36,31 +36,37 @@ class UserTransformer extends UserCompactTransformer
 
     public function __construct()
     {
-        $this->availableIncludes = array_merge($this->availableIncludes, [
-            'account_history',
-            'active_tournament_banner',
-            'badges',
-            'blocks',
-            'defaultStatistics',
-            'favourite_beatmapset_count',
-            'follower_count',
-            'friends',
-            'graveyard_beatmapset_count',
-            'is_admin',
-            'loved_beatmapset_count',
-            'monthly_playcounts',
-            'page',
-            'previous_usernames',
-            'ranked_and_approved_beatmapset_count',
-            'rankHistory', // TODO: should be changed to rank_history
-            'replays_watched_counts',
-            'scores_first_count',
-            'statistics',
-            'unranked_beatmapset_count',
-            'unread_pm_count',
-            'user_achievements',
-            'user_preferences',
-        ]);
+        static $includes;
+
+        if (!isset($includes)) {
+            $includes = array_merge($this->availableIncludes, [
+                'account_history',
+                'active_tournament_banner',
+                'badges',
+                'blocks',
+                'defaultStatistics',
+                'favourite_beatmapset_count',
+                'follower_count',
+                'friends',
+                'graveyard_beatmapset_count',
+                'is_admin',
+                'loved_beatmapset_count',
+                'monthly_playcounts',
+                'page',
+                'previous_usernames',
+                'ranked_and_approved_beatmapset_count',
+                'rankHistory', // TODO: should be changed to rank_history
+                'replays_watched_counts',
+                'scores_first_count',
+                'statistics',
+                'unranked_beatmapset_count',
+                'unread_pm_count',
+                'user_achievements',
+                'user_preferences',
+            ]);
+        }
+
+        $this->availableIncludes = $includes;
     }
 
     public function transform(User $user)
