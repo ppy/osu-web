@@ -23,7 +23,13 @@ class GroupsController extends Controller
             ->get();
 
         $groupJson = $group->only('group_name', 'group_desc');
-        $usersJson = json_collection($users, 'UserCompact', ['cover', 'country', 'current_mode_rank', 'support_level']);
+        $usersJson = json_collection($users, 'UserCompact', [
+            'cover',
+            'country',
+            'current_mode_rank',
+            'group_badge',
+            'support_level',
+        ]);
 
         return ext_view('groups.show', compact('groupJson', 'usersJson'));
     }
