@@ -7,6 +7,7 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 use League\Fractal;
 
 class UserTransformer extends UserCompactTransformer
@@ -71,9 +72,9 @@ class UserTransformer extends UserCompactTransformer
 
     public function transform(User $user)
     {
-        $profileCustomization = $user->profileCustomization();
-
         $result = parent::transform($user);
+
+        $profileCustomization = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
 
         return array_merge($result, [
             // extras
@@ -312,15 +313,13 @@ class UserTransformer extends UserCompactTransformer
 
     public function includeUserPreferences(User $user)
     {
-        return $this->item($user, function ($user) {
-            $customization = $user->profileCustomization();
+        $customization = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
 
-            return [
-                'ranking_expanded' => $customization->ranking_expanded,
-                'user_list_filter' => $customization->user_list_filter,
-                'user_list_sort' => $customization->user_list_sort,
-                'user_list_view' => $customization->user_list_view,
-            ];
-        });
+        return $this->primitive([
+            'ranking_expanded' => $customization->ranking_expanded,
+            'user_list_filter' => $customization->user_list_filter,
+            'user_list_sort' => $customization->user_list_sort,
+            'user_list_view' => $customization->user_list_view,
+        ]);
     }
 }
