@@ -7,7 +7,6 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\User;
-use App\Models\UserProfileCustomization;
 use League\Fractal;
 
 class UserTransformer extends UserCompactTransformer
@@ -215,7 +214,6 @@ class UserTransformer extends UserCompactTransformer
     {
         return $this->primitive($user->isRestricted());
     }
-
 
     public function includeLovedBeatmapsetCount(User $user)
     {
