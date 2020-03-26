@@ -166,11 +166,6 @@ interface LangClass {
   locale: string;
 }
 
-// TODO: should look at combining with the other User.ts at some point.
-interface User {
-
-}
-
 interface TooltipDefault {
   remove: (el: HTMLElement) => void;
 }
