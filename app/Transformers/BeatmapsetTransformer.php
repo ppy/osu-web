@@ -15,49 +15,49 @@ use App\Models\User;
 use Auth;
 use League\Fractal;
 
-class BeatmapsetTransformer extends TransformerAbstract
+class BeatmapsetTransformer extends BeatmapsetCompactTransformer
 {
-    protected $availableIncludes = [
-        'beatmaps',
-        'converts',
-        'current_user_attributes',
-        'description',
-        'discussions',
-        'events',
-        'genre',
-        'language',
-        'nominations',
-        'ratings',
-        'recent_favourites',
-        'related_users',
-        'user',
-    ];
-
     protected $requiredPermission = 'BeatmapsetShow';
+
+    public function __construct()
+    {
+        static $includes;
+
+        if (!isset($includes)) {
+            $includes = array_merge($this->availableIncludes, [
+                'converts',
+                'current_user_attributes',
+                'description',
+                'discussions',
+                'events',
+                'genre',
+                'language',
+                'nominations',
+                'ratings',
+                'recent_favourites',
+                'related_users',
+                'user',
+            ]);
+        }
+
+        $this->availableIncludes = $includes;
+    }
 
     public function transform(Beatmapset $beatmapset)
     {
-        return [
-            'id' => $beatmapset->beatmapset_id,
-            'title' => $beatmapset->title,
-            'artist' => $beatmapset->artist,
-            'play_count' => $beatmapset->play_count,
-            'favourite_count' => $beatmapset->favourite_count,
+        $result = parent::transform($beatmapset);
+
+        return array_merge($result, [
             'has_favourited' => Auth::check() && Auth::user()->hasFavourited($beatmapset),
             'submitted_date' => json_time($beatmapset->submit_date),
             'last_updated' => json_time($beatmapset->last_update),
             'ranked_date' => json_time($beatmapset->approved_date),
             'creator' => $beatmapset->creator,
-            'user_id' => $beatmapset->user_id,
             'bpm' => $beatmapset->bpm,
             'source' => $beatmapset->source,
-            'covers' => $beatmapset->allCoverURLs(),
-            'preview_url' => $beatmapset->previewURL(),
             'tags' => $beatmapset->tags,
-            'video' => $beatmapset->video,
             'storyboard' => $beatmapset->storyboard,
             'ranked' => $beatmapset->approved,
-            'status' => $beatmapset->status(),
             'is_scoreable' => $beatmapset->isScoreable(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
             'discussion_locked' => $beatmapset->discussion_locked,
@@ -75,7 +75,7 @@ class BeatmapsetTransformer extends TransformerAbstract
                 'required' => $beatmapset->requiredNominationCount(),
             ],
             'legacy_thread_url' => $beatmapset->thread_id !== 0 ? route('forum.topics.show', $beatmapset->thread_id) : null,
-        ];
+        ]);
     }
 
     public function includeCurrentUserAttributes(Beatmapset $beatmapset)

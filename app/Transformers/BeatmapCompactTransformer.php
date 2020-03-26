@@ -25,6 +25,10 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
     public function includeBeatmapset(Beatmap $beatmap)
     {
-        return $this->item($beatmap->beatmapset, new BeatmapsetCompactTransformer);
+        $beatmapset = $beatmap->beatmapset;
+
+        return $beatmapset === null
+            ? $this->primitive(null)
+            : $this->item($beatmap->beatmapset, new BeatmapsetCompactTransformer);
     }
 }

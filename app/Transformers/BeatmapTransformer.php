@@ -8,27 +8,33 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\BeatmapFailtimes;
 
-class BeatmapTransformer extends TransformerAbstract
+class BeatmapTransformer extends BeatmapCompactTransformer
 {
-    protected $availableIncludes = [
-        'scoresBest',
-        'failtimes',
-        'beatmapset',
-        'max_combo',
-    ];
-
     protected $requiredPermission = 'BeatmapShow';
+
+    public function __construct()
+    {
+        static $includes;
+
+        if (!isset($includes)) {
+            $includes = array_merge($this->availableIncludes, [
+                'scoresBest',
+                'failtimes',
+                'max_combo',
+            ]);
+        }
+
+        $this->availableIncludes = $includes;
+    }
 
     public function transform(Beatmap $beatmap)
     {
-        return [
-            'id' => $beatmap->beatmap_id,
+        $result = parent::transform($beatmap);
+
+        return array_merge($result, [
             'beatmapset_id' => $beatmap->beatmapset_id,
-            'mode' => $beatmap->mode,
             'mode_int' => $beatmap->playmode,
             'convert' => $beatmap->convert,
-            'difficulty_rating' => $beatmap->difficultyrating,
-            'version' => $beatmap->version,
             'total_length' => $beatmap->total_length,
             'hit_length' => $beatmap->hit_length,
             'bpm' => $beatmap->bpm,
@@ -48,7 +54,7 @@ class BeatmapTransformer extends TransformerAbstract
             'status' => $beatmap->status(),
             'url' => route('beatmaps.show', ['beatmap' => $beatmap->beatmap_id]),
             'deleted_at' => $beatmap->deleted_at,
-        ];
+        ]);
     }
 
     public function includeScoresBest(Beatmap $beatmap)
@@ -93,7 +99,7 @@ class BeatmapTransformer extends TransformerAbstract
 
         return $beatmapset === null
             ? $this->primitive(null)
-            : $this->primitive($beatmap->beatmapset, new BeatmapsetTransformer);
+            : $this->primitive($beatmap->beatmapset, new BeatmapsetCompactTransformer);
     }
 
     public function includeMaxCombo(Beatmap $beatmap)

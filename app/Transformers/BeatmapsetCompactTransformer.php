@@ -6,6 +6,7 @@
 namespace App\Transformers;
 
 use App\Models\Beatmapset;
+use League\Fractal;
 
 class BeatmapsetCompactTransformer extends TransformerAbstract
 {
@@ -31,11 +32,10 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeBeatmaps(Beatmapset $beatmapset)
+    public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
-        return $this->collection(
-            $beatmapset->beatmaps,
-            new BeatmapCompactTransformer()
-        );
+        $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
+
+        return $this->collection($beatmapset->$rel, new BeatmapCompactTransformer);
     }
 }
