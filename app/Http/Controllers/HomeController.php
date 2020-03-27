@@ -260,6 +260,14 @@ class HomeController extends Controller
                         ],
                         'more_beatmaps' => [
                             'icons' => ['fas fa-file-upload'],
+                            'translation_options' => [
+                                'base' => config('osu.beatmapset.upload_allowed'),
+                                'bonus' => config('osu.beatmapset.upload_bonus_per_ranked'),
+                                'bonus_max' => config('osu.beatmapset.upload_bonus_per_ranked_max'),
+                                'supporter_base' => config('osu.beatmapset.upload_allowed_supporter'),
+                                'supporter_bonus' => config('osu.beatmapset.upload_bonus_per_ranked_supporter'),
+                                'supporter_bonus_max' => config('osu.beatmapset.upload_bonus_per_ranked_max_supporter'),
+                            ],
                         ],
                         'early_access' => [
                             'icons' => ['fas fa-flask'],
