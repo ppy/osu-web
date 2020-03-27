@@ -11,15 +11,37 @@ use Tests\TestCase;
 
 class BeatmapsetTransformerTest extends TestCase
 {
-    public function testCurrentUserAttributesIsNotVisibleWithOAuth()
+    public function testHasFavouritedWithOAuthNormalScopes()
     {
         $viewer = $this->createUserWithGroup([]);
         $beatmapset = factory(Beatmapset::class)->create();
 
         $this->actAsScopedUser($viewer, Passport::scopes()->pluck('id')->all());
 
-        $json = json_item($beatmapset, 'Beatmapset', ['current_user_attributes']);
-        $this->assertArrayNotHasKey('current_user_attributes', $json);
+        $json = json_item($beatmapset, 'Beatmapset');
+        $this->assertArrayNotHasKey('has_favourited', $json);
+    }
+
+    public function testHasFavouritedWithOAuthAllScope()
+    {
+        $viewer = $this->createUserWithGroup([]);
+        $beatmapset = factory(Beatmapset::class)->create();
+
+        $this->actAsScopedUser($viewer);
+
+        $json = json_item($beatmapset, 'Beatmapset');
+        $this->assertArrayHasKey('has_favourited', $json);
+    }
+
+    public function testHasFavouritedWithoutOAuth()
+    {
+        $viewer = $this->createUserWithGroup([]);
+        $beatmapset = factory(Beatmapset::class)->create();
+
+        $this->actAsUser($viewer);
+
+        $json = json_item($beatmapset, 'Beatmapset');
+        $this->assertArrayHasKey('has_favourited', $json);
     }
 
     /**

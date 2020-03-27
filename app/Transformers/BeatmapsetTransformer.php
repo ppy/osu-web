@@ -17,11 +17,16 @@ use League\Fractal;
 
 class BeatmapsetTransformer extends BeatmapsetCompactTransformer
 {
-    protected $requiredPermission = 'BeatmapsetShow';
+    protected $defaultIncludes = [
+        'has_favourited',
+    ];
 
     protected $permissions = [
         'current_user_attributes' => 'IsNotOAuth',
+        'has_favourited' => 'IsSpecialScope', // TODO: make a scope for this.
     ];
+
+    protected $requiredPermission = 'BeatmapsetShow';
 
     public function __construct()
     {
@@ -61,7 +66,6 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             'creator' => $beatmapset->creator,
             'discussion_enabled' => $beatmapset->discussion_enabled,
             'discussion_locked' => $beatmapset->discussion_locked,
-            'has_favourited' => Auth::check() && Auth::user()->hasFavourited($beatmapset),
             'hype' => [
                 'current' => $beatmapset->hype,
                 'required' => $beatmapset->requiredHype(),
@@ -164,6 +168,11 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             $beatmapset->events->all(),
             new BeatmapsetEventTransformer()
         );
+    }
+
+    public function includeHasFavourited(Beatmapset $beatmapset)
+    {
+        return $this->primitive(auth()->user()->hasFavourited($beatmapset));
     }
 
     public function includeGenre(Beatmapset $beatmapset)
