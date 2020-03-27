@@ -19,6 +19,10 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
 {
     protected $requiredPermission = 'BeatmapsetShow';
 
+    protected $permissions = [
+        'current_user_attributes' => 'IsNotOAuth',
+    ];
+
     public function __construct()
     {
         static $includes;

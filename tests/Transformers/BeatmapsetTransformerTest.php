@@ -6,14 +6,26 @@
 namespace Tests\Transformers;
 
 use App\Models\Beatmapset;
+use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class BeatmapsetTransformerTest extends TestCase
 {
+    public function testCurrentUserAttributesIsNotVisibleWithOAuth()
+    {
+        $viewer = $this->createUserWithGroup([]);
+        $beatmapset = factory(Beatmapset::class)->create();
+
+        $this->actAsScopedUser($viewer, Passport::scopes()->pluck('id')->all());
+
+        $json = json_item($beatmapset, 'Beatmapset', ['current_user_attributes']);
+        $this->assertArrayNotHasKey('current_user_attributes', $json);
+    }
+
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testWithOAuth($groupIdentifier)
+    public function testGroupPermissionsWithOAuth($groupIdentifier)
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
         $beatmapset = factory(Beatmapset::class)->states('deleted')->create();
@@ -27,7 +39,7 @@ class BeatmapsetTransformerTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testWithoutOAuth($groupIdentifier, $visible)
+    public function testGroupPermissionsWithoutOAuth($groupIdentifier, $visible)
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
         $beatmapset = factory(Beatmapset::class)->states('deleted')->create();
