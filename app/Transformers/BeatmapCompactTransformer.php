@@ -16,9 +16,9 @@ class BeatmapCompactTransformer extends TransformerAbstract
     public function transform(Beatmap $beatmap)
     {
         return [
+            'difficulty_rating' => $beatmap->difficultyrating,
             'id' => $beatmap->beatmap_id,
             'mode' => $beatmap->mode,
-            'difficulty_rating' => $beatmap->difficultyrating,
             'version' => $beatmap->version,
         ];
     }

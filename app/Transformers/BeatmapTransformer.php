@@ -32,41 +32,38 @@ class BeatmapTransformer extends BeatmapCompactTransformer
         $result = parent::transform($beatmap);
 
         return array_merge($result, [
-            'beatmapset_id' => $beatmap->beatmapset_id,
-            'mode_int' => $beatmap->playmode,
-            'convert' => $beatmap->convert,
-            'total_length' => $beatmap->total_length,
-            'hit_length' => $beatmap->hit_length,
-            'bpm' => $beatmap->bpm,
-            'cs' => $beatmap->diff_size,
-            'drain' => $beatmap->diff_drain,
             'accuracy' => $beatmap->diff_overall,
             'ar' => $beatmap->diff_approach,
-            'playcount' => $beatmap->playcount,
-            'passcount' => $beatmap->passcount,
+            'beatmapset_id' => $beatmap->beatmapset_id,
+            'bpm' => $beatmap->bpm,
+            'convert' => $beatmap->convert,
             'count_circles' => $beatmap->countNormal,
             'count_sliders' => $beatmap->countSlider,
             'count_spinners' => $beatmap->countSpinner,
             'count_total' => $beatmap->countTotal,
+            'cs' => $beatmap->diff_size,
+            'deleted_at' => $beatmap->deleted_at,
+            'drain' => $beatmap->diff_drain,
+            'hit_length' => $beatmap->hit_length,
             'is_scoreable' => $beatmap->isScoreable(),
             'last_updated' => json_time($beatmap->last_update),
+            'mode_int' => $beatmap->playmode,
+            'passcount' => $beatmap->passcount,
+            'playcount' => $beatmap->playcount,
             'ranked' => $beatmap->approved,
             'status' => $beatmap->status(),
+            'total_length' => $beatmap->total_length,
             'url' => route('beatmaps.show', ['beatmap' => $beatmap->beatmap_id]),
-            'deleted_at' => $beatmap->deleted_at,
         ]);
     }
 
-    public function includeScoresBest(Beatmap $beatmap)
+    public function includeBeatmapset(Beatmap $beatmap)
     {
-        $scores = $beatmap
-            ->scoresBest()
-            ->default()
-            ->visibleUsers()
-            ->limit(config('osu.beatmaps.max-scores'))
-            ->get();
+        $beatmapset = $beatmap->beatmapset;
 
-        return $this->collection($scores, new ScoreTransformer);
+        return $beatmapset === null
+            ? $this->primitive(null)
+            : $this->primitive($beatmap->beatmapset, new BeatmapsetCompactTransformer);
     }
 
     public function includeFailtimes(Beatmap $beatmap)
@@ -93,15 +90,6 @@ class BeatmapTransformer extends BeatmapCompactTransformer
         });
     }
 
-    public function includeBeatmapset(Beatmap $beatmap)
-    {
-        $beatmapset = $beatmap->beatmapset;
-
-        return $beatmapset === null
-            ? $this->primitive(null)
-            : $this->primitive($beatmap->beatmapset, new BeatmapsetCompactTransformer);
-    }
-
     public function includeMaxCombo(Beatmap $beatmap)
     {
         $maxCombo = $beatmap->difficultyAttribs()
@@ -111,5 +99,17 @@ class BeatmapTransformer extends BeatmapCompactTransformer
             ->first();
 
         return $this->primitive(optional($maxCombo)->value);
+    }
+
+    public function includeScoresBest(Beatmap $beatmap)
+    {
+        $scores = $beatmap
+            ->scoresBest()
+            ->default()
+            ->visibleUsers()
+            ->limit(config('osu.beatmaps.max-scores'))
+            ->get();
+
+        return $this->collection($scores, new ScoreTransformer);
     }
 }

@@ -48,34 +48,72 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
         $result = parent::transform($beatmapset);
 
         return array_merge($result, [
-            'has_favourited' => Auth::check() && Auth::user()->hasFavourited($beatmapset),
-            'submitted_date' => json_time($beatmapset->submit_date),
-            'last_updated' => json_time($beatmapset->last_update),
-            'ranked_date' => json_time($beatmapset->approved_date),
-            'creator' => $beatmapset->creator,
-            'bpm' => $beatmapset->bpm,
-            'source' => $beatmapset->source,
-            'tags' => $beatmapset->tags,
-            'storyboard' => $beatmapset->storyboard,
-            'ranked' => $beatmapset->approved,
-            'is_scoreable' => $beatmapset->isScoreable(),
-            'discussion_enabled' => $beatmapset->discussion_enabled,
-            'discussion_locked' => $beatmapset->discussion_locked,
-            'can_be_hyped' => $beatmapset->canBeHyped(),
             'availability' => [
                 'download_disabled' => $beatmapset->download_disabled,
                 'more_information' => $beatmapset->download_disabled_url,
             ],
+            'bpm' => $beatmapset->bpm,
+            'can_be_hyped' => $beatmapset->canBeHyped(),
+            'creator' => $beatmapset->creator,
+            'discussion_enabled' => $beatmapset->discussion_enabled,
+            'discussion_locked' => $beatmapset->discussion_locked,
+            'has_favourited' => Auth::check() && Auth::user()->hasFavourited($beatmapset),
             'hype' => [
                 'current' => $beatmapset->hype,
                 'required' => $beatmapset->requiredHype(),
             ],
+            'is_scoreable' => $beatmapset->isScoreable(),
+            'last_updated' => json_time($beatmapset->last_update),
+            'legacy_thread_url' => $beatmapset->thread_id !== 0 ? route('forum.topics.show', $beatmapset->thread_id) : null,
             'nominations' => [
                 'current' => $beatmapset->nominations,
                 'required' => $beatmapset->requiredNominationCount(),
             ],
-            'legacy_thread_url' => $beatmapset->thread_id !== 0 ? route('forum.topics.show', $beatmapset->thread_id) : null,
+            'ranked' => $beatmapset->approved,
+            'ranked_date' => json_time($beatmapset->approved_date),
+            'source' => $beatmapset->source,
+            'storyboard' => $beatmapset->storyboard,
+            'submitted_date' => json_time($beatmapset->submit_date),
+            'tags' => $beatmapset->tags,
         ]);
+    }
+
+    public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
+    {
+        $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
+
+        return $this->collection($beatmapset->$rel, new BeatmapTransformer);
+    }
+
+    public function includeConverts(Beatmapset $beatmapset)
+    {
+        $converts = [];
+
+        foreach ($beatmapset->beatmaps as $beatmap) {
+            if ($beatmap->mode !== 'osu') {
+                continue;
+            }
+
+            $difficulties = $beatmap->difficulty;
+
+            foreach (Beatmap::MODES as $modeStr => $modeInt) {
+                if ($modeStr === 'osu') {
+                    continue;
+                }
+
+                $difficulty = $difficulties->where('mode', $modeInt)->where('mods', 0)->first();
+
+                $beatmap = clone $beatmap;
+
+                $beatmap->playmode = $modeInt;
+                $beatmap->convert = true;
+                $beatmap->difficultyrating = $difficulty ? $difficulty->diff_unified : 0;
+
+                array_push($converts, $beatmap);
+            }
+        }
+
+        return $this->collection($converts, new BeatmapTransformer);
     }
 
     public function includeCurrentUserAttributes(Beatmapset $beatmapset)
@@ -101,6 +139,19 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
         return $this->item($beatmapset, function () use ($ret) {
             return $ret;
         });
+    }
+
+    public function includeDescription(Beatmapset $beatmapset)
+    {
+        return $this->item($beatmapset, new BeatmapsetDescriptionTransformer);
+    }
+
+    public function includeDiscussions(Beatmapset $beatmapset)
+    {
+        return $this->collection(
+            $beatmapset->beatmapDiscussions,
+            new BeatmapDiscussionTransformer()
+        );
     }
 
     public function includeEvents(Beatmapset $beatmapset)
@@ -157,63 +208,12 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
         });
     }
 
-    public function includeDescription(Beatmapset $beatmapset)
-    {
-        return $this->item($beatmapset, new BeatmapsetDescriptionTransformer);
-    }
-
-    public function includeDiscussions(Beatmapset $beatmapset)
-    {
-        return $this->collection(
-            $beatmapset->beatmapDiscussions,
-            new BeatmapDiscussionTransformer()
-        );
-    }
-
     public function includeUser(Beatmapset $beatmapset)
     {
         return $this->item(
             $beatmapset->user ?? (new DeletedUser),
             new UserCompactTransformer
         );
-    }
-
-    public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
-    {
-        $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
-
-        return $this->collection($beatmapset->$rel, new BeatmapTransformer);
-    }
-
-    public function includeConverts(Beatmapset $beatmapset)
-    {
-        $converts = [];
-
-        foreach ($beatmapset->beatmaps as $beatmap) {
-            if ($beatmap->mode !== 'osu') {
-                continue;
-            }
-
-            $difficulties = $beatmap->difficulty;
-
-            foreach (Beatmap::MODES as $modeStr => $modeInt) {
-                if ($modeStr === 'osu') {
-                    continue;
-                }
-
-                $difficulty = $difficulties->where('mode', $modeInt)->where('mods', 0)->first();
-
-                $beatmap = clone $beatmap;
-
-                $beatmap->playmode = $modeInt;
-                $beatmap->convert = true;
-                $beatmap->difficultyrating = $difficulty ? $difficulty->diff_unified : 0;
-
-                array_push($converts, $beatmap);
-            }
-        }
-
-        return $this->collection($converts, new BeatmapTransformer);
     }
 
     public function includeRatings(Beatmapset $beatmapset)

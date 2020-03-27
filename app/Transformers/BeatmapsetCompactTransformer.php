@@ -17,18 +17,18 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function transform(Beatmapset $beatmapset)
     {
         return [
-            'id' => $beatmapset->beatmapset_id,
-            'title' => $beatmapset->title,
             'artist' => $beatmapset->artist,
-            'creator' => $beatmapset->creator,
-            'user_id' => $beatmapset->user_id,
             'covers' => $beatmapset->allCoverURLs(),
+            'creator' => $beatmapset->creator,
             'favourite_count' => $beatmapset->favourite_count,
+            'id' => $beatmapset->beatmapset_id,
             'play_count' => $beatmapset->play_count,
             'preview_url' => $beatmapset->previewURL(),
-            'video' => $beatmapset->video,
             'source' => $beatmapset->source,
             'status' => $beatmapset->status(),
+            'title' => $beatmapset->title,
+            'user_id' => $beatmapset->user_id,
+            'video' => $beatmapset->video,
         ];
     }
 
