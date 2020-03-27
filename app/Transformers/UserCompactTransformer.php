@@ -20,18 +20,18 @@ class UserCompactTransformer extends TransformerAbstract
     public function transform(User $user)
     {
         return [
-            'id' => $user->user_id,
-            'username' => $user->username,
-            'profile_colour' => $user->user_colour,
             'avatar_url' => $user->user_avatar,
             'country_code' => $user->country_acronym,
             'default_group' => $user->defaultGroup()->identifier,
+            'id' => $user->user_id,
             'is_active' => $user->isActive(),
             'is_bot' => $user->isBot(),
             'is_online' => $user->isOnline(),
             'is_supporter' => $user->isSupporter(),
             'last_visit' => json_time($user->displayed_last_visit),
             'pm_friends_only' => $user->pm_friends_only,
+            'profile_colour' => $user->user_colour,
+            'username' => $user->username,
         ];
     }
 
