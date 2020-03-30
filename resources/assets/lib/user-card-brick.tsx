@@ -18,9 +18,9 @@ interface State {
 }
 
 interface UserRelationJson {
-  target_id: number;
-  relation_type: 'friend' | 'block';
   mutual: boolean;
+  relation_type: 'friend' | 'block';
+  target_id: number;
 }
 
 export default class UserCardBrick extends React.PureComponent<Props, State> {
@@ -37,25 +37,7 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
 
   render() {
     const modifiers = this.props.modifiers.concat(this.props.mode);
-
-    let friendState: undefined | UserRelationJson;
-    let isFriend = false;
-    let isMutual = false;
-
-    if (currentUser.friends != null) {
-      friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
-
-      if (friendState != null) {
-        isFriend = true;
-        isMutual = friendState.mutual;
-      }
-    }
-
-    if (isMutual) {
-      modifiers.push('mutual');
-    } else if (isFriend && !this.context.isFriendsPage) {
-      modifiers.push('friend');
-    }
+    this.addFriendModifier(modifiers);
 
     return (
       <div
@@ -75,6 +57,27 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
         </a>
       </div>
     );
+  }
+
+  private addFriendModifier = (modifiers: string[]) => {
+    let friendState: undefined | UserRelationJson;
+    let isFriend = false;
+    let isMutual = false;
+
+    if (currentUser.friends != null) {
+      friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
+
+      if (friendState != null) {
+        isFriend = true;
+        isMutual = friendState.mutual;
+      }
+    }
+
+    if (isMutual) {
+      modifiers.push('mutual');
+    } else if (isFriend && !this.context.isFriendsPage) {
+      modifiers.push('friend');
+    }
   }
 
   private onBackgroundLoad = () => {
