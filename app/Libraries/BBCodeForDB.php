@@ -153,7 +153,15 @@ class BBCodeForDB
 
     public function parseLinks($text)
     {
-        $spaces = ["(^|\s)", "((?:\.|\))?(?:$|\s|\n|\r))"];
+        $spaces = ["(^|\s(?:&lt;|[.:([])*)", "((?:&gt;|[.:)\]])*(?:$|\s|\n|\r))"];
+        $internalUrl = rtrim(preg_quote(config('app.url'), '#'), '/');
+
+        // internal url
+        $text = preg_replace(
+            "#{$spaces[0]}({$internalUrl}/([^\s]+?)){$spaces[1]}#",
+            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\3</a><!-- m -->\\4",
+            $text
+        );
 
         // plain http/https/ftp
         $text = preg_replace(

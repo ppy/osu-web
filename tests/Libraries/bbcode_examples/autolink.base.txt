@@ -3,3 +3,13 @@ ftp://ftp.example.com
 www.example.com
 
 user@example.com
+
+Boundary test
+Link to http://example.com/path:1/hello: the colon should be excluded.
+Link to (http://example.com/path:1/hello): the parentheses and colon should be excluded.
+Link (to http://example.com/path:1/hello). The parentheses and period should be excluded.
+Link to <http://example.com/path:1/hello> The angle brackets should be excluded.
+Link to http://example.com/path:1/hello>world The angle brackets should be included.
+
+Relative test
+Link to http://localhost/path:1/hello the domain part should be excluded.
