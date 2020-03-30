@@ -28,7 +28,7 @@ return [
 
         'help' => [
             'index' => 'index',
-            'sitemap' => '',
+            'sitemap' => 'Plan du site',
         ],
 
         'store' => [
@@ -116,7 +116,7 @@ return [
             'forum' => 'Forums',
             'livestreams' => 'Streams en direct',
             'report' => 'Signaler une erreur',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Statut & Légal',
@@ -146,7 +146,7 @@ return [
             'description' => "Désolé, mais la page demandée n'est pas ici !",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Paramètre de requête invalide',
             'description' => '',
         ],
         '500' => [

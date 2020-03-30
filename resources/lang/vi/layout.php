@@ -10,45 +10,45 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'bìa beatmapset',
+            'contest' => 'cuộc thi',
+            'contests' => 'các cuộc thi',
             'root' => '',
             'store_orders' => '',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'danh sách',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'danh sách',
         ],
 
         'help' => [
-            'index' => '',
+            'index' => 'mục lục',
             'sitemap' => '',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'giỏ hàng',
+            'orders' => 'lịch sử đơn hàng',
+            'products' => 'mặt hàng',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'danh sách',
         ],
 
         'users' => [
-            'modding' => '',
-            'show' => '',
+            'modding' => 'modding',
+            'show' => 'thông tin',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
+        'close' => 'Đóng (Esc)',
         'fullscreen' => '',
         'zoom' => '',
         'previous' => '',
@@ -116,7 +116,7 @@ return [
             'forum' => 'Diễn Đàn',
             'livestreams' => 'Live Streams',
             'report' => 'Báo Cáo Một Vấn Đề',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Pháp Lý & Trạng Thái',
@@ -174,7 +174,7 @@ return [
             'forgot' => "Quên mật khẩu",
             'password' => 'password',
             'title' => 'Đăng Nhập Để Tiếp Tục',
-            'username' => '',
+            'username' => 'tên người dùng',
 
             'error' => [
                 'email' => "Tài khoản hoặc địa chỉ email không tồn tại",
@@ -183,7 +183,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Tải xuống',
             'info' => 'Bạn cần một tài khoản. Tại sao bạn lại không có chứ?',
             'title' => "Chưa có tài khoản?",
         ],

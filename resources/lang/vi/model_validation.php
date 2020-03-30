@@ -27,7 +27,7 @@ return [
         'locked' => 'Cuộc thảo luận đã bị khóa.',
 
         'attributes' => [
-            'message_type' => '',
+            'message_type' => 'Kiểu tin nhắn',
             'timestamp' => 'Mốc thời gian',
         ],
 
@@ -48,7 +48,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Không cho phép trả lời bình luận đã xóa.',
-        'top_only' => '',
+        'top_only' => 'Không thể trả lời các bình luận được ghim.',
 
         'attributes' => [
             'message' => 'Tin nhắn',
@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Quốc gia không có trong cơ sở dữ liệu.',
         'invalid_discord' => 'Tên người dùng Discord không hợp lệ.',
         'invalid_email' => "Dường như đây không phải là địa chỉ email hợp lệ.",
+        'invalid_twitter' => '',
         'too_short' => 'Mật khẩu mới quá ngắn.',
         'unknown_duplicate' => 'Tên người dùng hoặc email đã được sử dụng.',
         'username_available_in' => 'Tên người dùng này sẽ có sẵn để sử dụng trong :duration.',

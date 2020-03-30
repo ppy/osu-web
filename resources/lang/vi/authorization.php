@@ -5,7 +5,7 @@
 
 return [
     'require_login' => 'Vui lòng đăng nhập để tiếp tục.',
-    'require_verification' => '',
+    'require_verification' => 'Vui lòng xác minh để tiếp tục.',
     'restricted' => "Không thể làm việc đó trong khi bị hạn chế.",
     'silenced' => "Không thể làm việc đó trong khi bị cấm nói.",
     'unauthorized' => 'Truy cập bị từ chối.',
@@ -39,9 +39,9 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
+            'not_owner' => 'Bạn chỉ có thể xóa bài đăng của chính mình.',
             'resolved' => '',
-            'system_generated' => '',
+            'system_generated' => 'Không thể xóa bài đăng được tạo tự động.',
         ],
 
         'edit' => [

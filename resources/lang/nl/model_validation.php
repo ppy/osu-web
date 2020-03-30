@@ -32,7 +32,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Deze beatmap is momenteel vergrendeld voor discussie en kan niet gehyped worden",
             'guest' => 'He moet ingelogd zijn om te hypen.',
             'hyped' => 'Je hebt deze beatmap al gehyped.',
             'limit_exceeded' => 'Je hebt all je hype opgebruikt.',
@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Land niet in de database.',
         'invalid_discord' => 'Discord gebruikersnaam is ongeldig.',
         'invalid_email' => "Dit lijkt niet een geldig e-mailadres te zijn.",
+        'invalid_twitter' => '',
         'too_short' => 'Nieuw wachtwoord is te kort.',
         'unknown_duplicate' => 'Gebruikersnaam of e-mailadres is al in gebruik.',
         'username_available_in' => 'Deze gebruikersnaam zal over :duration beschikbaar zijn.',

@@ -62,7 +62,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => '',
-        'own_clients' => '',
+        'own_clients' => 'client đã có',
         'title' => 'OAuth',
     ],
 

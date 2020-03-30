@@ -18,7 +18,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'cho phép kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Trang Beatmap',
         'delete' => 'xóa',
         'deleted' => 'Đã xóa bởi :editor :delete_time.',
         'deny_kudosu' => 'từ chối kudosu',
@@ -76,14 +76,14 @@ return [
             'nomination_reset' => 'Thiết Lập Lại Đề Cử',
             'praise' => 'Khen Ngợi',
             'problem' => 'Vấn Đề',
-            'review' => '',
+            'review' => 'Đánh giá',
             'suggestion' => 'Đề Nghị',
         ],
 
         'mode' => [
             'events' => 'Lịch sử',
             'general' => 'Chung :scope',
-            'reviews' => '',
+            'reviews' => 'Các đánh giá',
             'timeline' => 'Timeline',
             'scopes' => [
                 'general' => 'Difficulty này',

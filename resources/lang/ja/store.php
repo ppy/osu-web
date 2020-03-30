@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => '現在注文が多く大変混雑しています。注文はまだ受け付けていますが、**１～２週間ほどの遅延**が発生する可能性があります。',
         'old_cart' => 'あなたのカートは期限切れ、または再読み込みされたようです。再度お試しください。',
         'pay' => 'Paypalで支払う',
-        'title_compact' => '',
+        'title_compact' => '決済',
 
         'has_pending' => [
             '_' => '未完了の支払いがあります。:linkをクリックして詳細を確認してください。',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => '決済方法がeCheckのため、PayPalを介した支払いが完了するまで、さらに最大10日を要します。予めご了承ください。',
-        'title_compact' => '',
+        'title_compact' => '請求書',
 
         'status' => [
             'processing' => [

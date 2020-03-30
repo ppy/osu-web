@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Ce sujet est verrouillé, vous ne pouvez pas y répondre',
             'to_0' => 'Déverrouiller le sujet',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Déverrouiller le sujet ?',
             'to_0_done' => 'Le sujet a été déverrouillé',
             'to_1' => 'Verrouiller le sujet',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Verrouiller le sujet ?',
             'to_1_done' => 'Le sujet a été verrouillé',
         ],
 
@@ -249,13 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Désépingler le sujet',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Désépingler le sujet ?',
             'to_0_done' => 'Le sujet a été désépinglé',
             'to_1' => 'Épingler le sujet',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Épingler le sujet ?',
             'to_1_done' => 'Le sujet a été épinglé',
             'to_2' => 'Épingler le sujet et marquer en tant qu\'annonce',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Épingler le sujet et le marquer en tant qu\'annonce ?',
             'to_2_done' => 'Le sujet a été épinglé et marqué en tant qu\'annonce',
         ],
 

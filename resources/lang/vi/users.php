@@ -408,7 +408,7 @@ return [
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Tất cả',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -420,6 +420,7 @@ return [
     ],
 
     'view_mode' => [
+        'brick' => '',
         'card' => '',
         'list' => '',
     ],

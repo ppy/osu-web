@@ -28,7 +28,7 @@ return [
 
         'help' => [
             'index' => 'indeks',
-            'sitemap' => '',
+            'sitemap' => 'Peta Situs',
         ],
 
         'store' => [
@@ -146,7 +146,7 @@ return [
             'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Parameter yang diminta tidak valid',
             'description' => '',
         ],
         '500' => [

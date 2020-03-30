@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Este tema está cerrado y no se puede responder',
             'to_0' => 'Abrir tema',
-            'to_0_confirm' => '',
+            'to_0_confirm' => '¿Abrir tema?',
             'to_0_done' => 'El tema ha sido abierto',
             'to_1' => 'Cerrar tema',
-            'to_1_confirm' => '',
+            'to_1_confirm' => '¿Cerrar tema?',
             'to_1_done' => 'El tema ha sido cerrado',
         ],
 
@@ -248,14 +248,14 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Desfijar tema',
-            'to_0_confirm' => '',
+            'to_0' => 'Dejar de fijar tema',
+            'to_0_confirm' => '¿Dejar de fijar tema?',
             'to_0_done' => 'El tema ya no está fijado',
             'to_1' => 'Fijar tema',
-            'to_1_confirm' => '',
+            'to_1_confirm' => '¿Fijar tema?',
             'to_1_done' => 'El tema ya ha sido fijado',
             'to_2' => 'Fijar tema y marcar como anuncio',
-            'to_2_confirm' => '',
+            'to_2_confirm' => '¿Fijar tema y marcar como anuncio?',
             'to_2_done' => 'El tema ya ha sido fijado y marcado como anuncio',
         ],
 

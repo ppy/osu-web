@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Questo topic è bloccato e non può essere risposto',
             'to_0' => 'Sblocca topic',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Sbloccare il topic?',
             'to_0_done' => 'Il topic è stato sbloccato',
             'to_1' => 'Blocca topic',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Bloccare il topic?',
             'to_1_done' => 'Il topic è stato bloccato',
         ],
 
@@ -249,14 +249,14 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Togli dai topic fissati',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Togliere dai topic fissati?',
             'to_0_done' => 'Il topic è stato tolto dai topic fissati',
             'to_1' => 'Fissa topic',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Fissare il topic?',
             'to_1_done' => 'Il topic è stato fissato',
             'to_2' => 'Fissa discussione e segna come annuncio',
-            'to_2_confirm' => '',
-            'to_2_done' => 'La discussione è stata fissata e segnata come annuncio',
+            'to_2_confirm' => 'Fissare il topic e segnarlo come annuncio?',
+            'to_2_done' => 'Il topic è stato fissato e segnato come annuncio',
         ],
 
         'moderate_toggle_deleted' => [
