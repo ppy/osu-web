@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는건 기쁘지만, 지금 주문을 처리하는데 **1~2 주 지연**될 수 있다는 걸 알려드립니다.',
         'old_cart' => '장바구니가 오래되어 새로 고쳐졌습니다, 다시 시도해 주세요.',
         'pay' => 'Paypal로 결제',
-        'title_compact' => '',
+        'title_compact' => '결제',
 
         'has_pending' => [
             '_' => '완료되지 않은 결제가 있습니다. :link를 눌러 확인하세요.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'eCheck로 결제하셨다면 10일까지 PayPal을 통해 결제할 수 있도록 허용해주세요.',
-        'title_compact' => '',
+        'title_compact' => '청구서',
 
         'status' => [
             'processing' => [

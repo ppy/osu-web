@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => '主题已被锁定，不能回复',
             'to_0' => '解锁主题',
-            'to_0_confirm' => '',
+            'to_0_confirm' => '解锁主题?',
             'to_0_done' => '主题已经解锁',
             'to_1' => '锁定主题',
-            'to_1_confirm' => '',
+            'to_1_confirm' => '锁定主题?',
             'to_1_done' => '主题已被锁定',
         ],
 
@@ -249,13 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => '取消置顶',
-            'to_0_confirm' => '',
+            'to_0_confirm' => '取消置顶主题？',
             'to_0_done' => '该主题已取消置顶',
             'to_1' => '置顶',
-            'to_1_confirm' => '',
+            'to_1_confirm' => '置顶主题？',
             'to_1_done' => '该主题已置顶',
             'to_2' => '置顶并标记为公告',
-            'to_2_confirm' => '',
+            'to_2_confirm' => '置顶此主题并将其标记为公告?',
             'to_2_done' => '该主题已置顶并标记为公告',
         ],
 

@@ -28,7 +28,7 @@ return [
 
         'help' => [
             'index' => '目次',
-            'sitemap' => '',
+            'sitemap' => 'サイトマップ',
         ],
 
         'store' => [
@@ -116,7 +116,7 @@ return [
             'forum' => 'コミュニティフォーラム',
             'livestreams' => 'ライブ配信',
             'report' => '問題を報告する',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Legal & Status',
@@ -146,7 +146,7 @@ return [
             'description' => "申し訳ありませんが、要求されたページはここにはないようです。",
         ],
         '422' => [
-            'error' => '',
+            'error' => '無効な要求パラメーターです。',
             'description' => '',
         ],
         '500' => [

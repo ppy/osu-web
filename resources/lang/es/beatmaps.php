@@ -241,7 +241,7 @@ return [
         'approved' => 'Aprobados',
         'favourites' => 'Favoritos',
         'graveyard' => 'Abandonados',
-        'leaderboard' => 'Tiene Liderazgo',
+        'leaderboard' => 'Tiene tablas de clasificación',
         'loved' => 'Amados',
         'mine' => 'Mis mapas',
         'pending' => 'Pendiente y trabajo en progreso',

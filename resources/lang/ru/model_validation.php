@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Вашей страны нет в базе данных.',
         'invalid_discord' => 'Это не похоже на DiscordTag.',
         'invalid_email' => "Это не похоже на адрес электронной почты.",
+        'invalid_twitter' => '',
         'too_short' => 'Новый пароль слишком короткий.',
         'unknown_duplicate' => 'Имя пользователя или почта уже занята.',
         'username_available_in' => 'Это имя будет доступно только спустя :duration.',

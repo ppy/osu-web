@@ -10,7 +10,7 @@ return [
 
     'cart' => [
         'checkout' => 'Ödeme',
-        'info' => '',
+        'info' => ':count_delimited ürün sepette (:subtotal)|:count_delimited ürün sepette (:subtotal)',
         'more_goodies' => 'Ödememi yapmadan önce başka eşyalara göz atmak istiyorum',
         'shipping_fees' => 'kargo ücretleri',
         'title' => 'Alışveriş Sepeti',
@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'Şu an siparişlere boğulmuş durumdayız! Siparişinizi vermekte özgürsünüz ancak biz mevcut siparişleri yetiştirmekle uğraşırken **ek olarak 1-2 hafta gecikme** bekleyebilirsiniz.',
         'old_cart' => 'Sepetiniz güncel görünmediği için tekrar yüklendi, lütfen tekrar deneyin.',
         'pay' => 'Paypal ile Ödeme Yap',
-        'title_compact' => '',
+        'title_compact' => 'kasaya git',
 
         'has_pending' => [
             '_' => 'Tamamlanmamış ödemeleriniz var, görmek için :link tıklayın.',

@@ -5,7 +5,7 @@
 
 return [
     'all_read' => '已经阅读所有通知！',
-    'mark_read' => '',
+    'mark_read' => '清除 :type 类型的通知',
     'none' => '没有新通知',
     'see_all' => '显示所有通知',
 

@@ -39,12 +39,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'onaylandı :timeago',
+            'loved' => 'sevildi :timeago',
+            'qualified' => ':timeago önce nitelikli oldu',
+            'ranked' => ':timeago önce dereceli oldu',
+            'submitted' => ':timeago önce gönderildi',
+            'updated' => 'en son :timeago önce güncellendi',
         ],
 
         'favourites' => [
@@ -66,7 +66,7 @@ return [
 
             'disqualify' => [
                 '_' => 'Eğer bu beatmap\'de bir sorun bulduysanız, lütfen diskalifiye ediniz :link.',
-                'button_title' => '',
+                'button_title' => 'Nitelikli bir beatmap\'i diskalifiye et.',
             ],
 
             'report' => [
@@ -141,12 +141,12 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
+            'ranked' => 'Dereceli',
+            'approved' => 'Onaylı',
+            'loved' => 'Sevilen',
+            'qualified' => 'Nitelikli',
+            'wip' => 'Yapım Aşamasında',
+            'pending' => 'Beklemede',
             'graveyard' => 'Mezarlık',
         ],
     ],

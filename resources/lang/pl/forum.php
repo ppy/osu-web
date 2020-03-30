@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Ten wątek został zamknięty i nie możesz w nim odpowiadać',
             'to_0' => 'Otwórz wątek',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Odblokować wątek?',
             'to_0_done' => 'Wątek został otworzony',
             'to_1' => 'Zamknij wątek',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Zablokować wątek?',
             'to_1_done' => 'Wątek został zamknięty',
         ],
 
@@ -249,13 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Odepnij ten wątek',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Odpiąć wątek?',
             'to_0_done' => 'Wątek został odpięty',
             'to_1' => 'Przypnij ten wątek',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Przypiąć wątek?',
             'to_1_done' => 'Wątek został przypięty',
             'to_2' => 'Przypnij ten wątek i oznacz jako ogłoszenie',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Przypiąć i oznaczyć wątek jako ogłoszenie?',
             'to_2_done' => 'Wątek został przypięty i oznaczony jako ogłoszenie',
         ],
 

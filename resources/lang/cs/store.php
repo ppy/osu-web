@@ -10,7 +10,7 @@ return [
 
     'cart' => [
         'checkout' => 'Zaplatit',
-        'info' => '',
+        'info' => ':count_delimited položka v košíku ($:subtotal)|:count_delimited položkek v košíku ($:subtotal)',
         'more_goodies' => 'Chci se ještě podívat na nějaké dobroty než dokončím objednávku',
         'shipping_fees' => 'poplatky za dopravu',
         'title' => 'Nákupní košík',
@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'V tuto chvíli jsme zahlceni objednávkami! Svou objednávku můžeš umístit, ale počítej prosím s **dalšími 1-2 týdny zpoždění** zatímco dokončíme už existující objednávky.',
         'old_cart' => 'Obsah tvého košíku se zdá být zastaralý a proto byl znovu načten, zkus to prosím znovu.',
         'pay' => 'Zaplatit přes PayPal',
-        'title_compact' => '',
+        'title_compact' => 'zaplatit',
 
         'has_pending' => [
             '_' => 'Máte nedokončené platby, klikněte na :link pro zobrazení.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Jelikož vaše platba byla prováděna službou eCheck, prosím, dejte nám až 10 dní na to, aby platba úspěšně prošla přes PayPal!',
-        'title_compact' => '',
+        'title_compact' => 'faktura',
 
         'status' => [
             'processing' => [

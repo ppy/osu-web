@@ -105,7 +105,7 @@ return [
         'title' => 'panel',
         'news' => [
             'title' => 'Novedades',
-            'error' => 'Error al cargar las novedades, ¿intenta recargando la página?...',
+            'error' => 'Error al cargar las novedades, ¿intente actualizar la página?...',
         ],
         'header' => [
             'stats' => [

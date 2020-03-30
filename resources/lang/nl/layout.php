@@ -28,7 +28,7 @@ return [
 
         'help' => [
             'index' => 'index',
-            'sitemap' => '',
+            'sitemap' => 'Sitemap',
         ],
 
         'store' => [
@@ -116,7 +116,7 @@ return [
             'forum' => 'Community Forums',
             'livestreams' => 'Livestreams',
             'report' => 'Een Probleem Melden',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Juridisch & Status',
@@ -146,7 +146,7 @@ return [
             'description' => "Sorry, de pagina die je hebt opgevraagd is er niet!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Ongeldige aanvraagparameter',
             'description' => '',
         ],
         '500' => [

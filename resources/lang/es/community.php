@@ -20,7 +20,7 @@ return [
             ],
             'infra' => [
                 'title' => 'Infraestructura del servidor',
-                'description' => 'Las contribuciones van hacia los servidores para ejecutar el sitio web, servicios multijugador, foros de clasificación online, etc.',
+                'description' => 'Las contribuciones se destinan a los servidores para el funcionamiento del sitio web, los servicios multijugador, las tablas de clasificación en línea, etc.',
             ],
             'featured-artists' => [
                 'title' => 'Artistas Destacados',

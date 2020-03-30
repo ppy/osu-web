@@ -33,7 +33,7 @@ return [
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => '뉴스 기록',
     ],
 
     'store' => [

@@ -28,7 +28,7 @@ return [
 
         'help' => [
             'index' => '主页',
-            'sitemap' => '',
+            'sitemap' => '站点地图',
         ],
 
         'store' => [
@@ -116,7 +116,7 @@ return [
             'forum' => '论坛',
             'livestreams' => '直播',
             'report' => '报告问题',
-            'wiki' => '',
+            'wiki' => '维基',
         ],
         'legal' => [
             '_' => '法律 & 状态',
@@ -146,7 +146,7 @@ return [
             'description' => "抱歉，您正在尝试访问的页面不存在！",
         ],
         '422' => [
-            'error' => '',
+            'error' => '请求参数无效',
             'description' => '',
         ],
         '500' => [

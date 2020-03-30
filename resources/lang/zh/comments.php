@@ -10,7 +10,7 @@ return [
     'pinned' => '已置顶',
     'empty' => '暂无评论。',
     'load_replies' => '加载回复',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited 条回复',
     'title' => '评论',
 
     'commentable_name' => [
