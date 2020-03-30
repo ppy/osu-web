@@ -1,89 +1,132 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
-        '_' => 'адмін',
+        '_' => '',
     ],
     'admin_forum' => [
-        '_' => 'адмін',
+        '_' => '',
     ],
     'admin_store' => [
-        '_' => 'адмін',
+        '_' => '',
     ],
     'error' => [
         'error' => [
-            '_' => 'помилка',
-            '404' => 'відсутні',
-            '403' => 'заборонено',
-            '401' => 'error 401 Unauthorized',
-            '405' => '405 Method Not Allowed',
-            '500' => 'щось зламалося',
-            '503' => 'обслуговування',
+            '404' => '',
+            '403' => '',
+            '401' => '',
+            '405' => '',
+            '422' => '',
+            '500' => '',
+            '503' => '',
         ],
     ],
     'forum' => [
-        '_' => 'форум',
+        '_' => '',
         'topic_watches_controller' => [
-            'index' => 'стільниця',
+            'index' => '',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'стільниця',
+            'edit' => '',
+            'verify_link' => '',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'стільниця',
-        ],
-        'friends_controller' => [
-            'index' => 'стільниця',
-        ],
-        'home_controller' => [
-            'index' => 'стільниця',
-            'get_download' => 'завантажити',
-            'search' => 'пошук',
-            'support_the_game' => 'підтримати гру',
-        ],
-        'beatmap_discussions_controller' => [
-            '_' => 'обговорення біткарти',
+        'artists_controller' => [
+            '_' => '',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'публікації в обговореннях карти',
+            '_' => '',
+        ],
+        'beatmap_discussions_controller' => [
+            '_' => '',
+        ],
+        'beatmap_packs_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_discussion_votes_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_events_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_watches_controller' => [
+            'index' => '',
+        ],
+        'beatmapsets_controller' => [
+            'discussion' => '',
+            'index' => '',
+            'show' => '',
         ],
         'changelog_controller' => [
-            '_' => 'список змін',
+            '_' => '',
         ],
         'chat_controller' => [
-            '_' => 'чат',
+            '_' => '',
         ],
         'comments_controller' => [
-            '_' => 'коментарі',
+            '_' => '',
+        ],
+        'contests_controller' => [
+            '_' => '',
+        ],
+        'friends_controller' => [
+            'index' => '',
+        ],
+        'groups_controller' => [
+            'show' => '',
+        ],
+        'home_controller' => [
+            'get_download' => '',
+            'index' => '',
+            'search' => '',
+            'support_the_game' => '',
+            'testflight' => '',
         ],
         'legal_controller' => [
-            '_' => 'інформація',
+            '_' => '',
         ],
         'livestreams_controller' => [
-            '_' => 'прямі трансляції',
+            '_' => '',
+        ],
+        'matches_controller' => [
+            '_' => '',
+        ],
+        'news_controller' => [
+            '_' => '',
+        ],
+        'notifications_controller' => [
+            '_' => '',
+        ],
+        'password_reset_controller' => [
+            '_' => '',
+        ],
+        'ranking_controller' => [
+            '_' => '',
+        ],
+        'store_controller' => [
+            '_' => '',
+        ],
+        'tournaments_controller' => [
+            '_' => '',
+        ],
+        'users_controller' => [
+            '_' => '',
+            'disabled' => '',
         ],
         'wiki_controller' => [
-            'show' => 'база знань',
+            '_' => '',
+        ],
+    ],
+    'store' => [
+        '_' => '',
+    ],
+    'users' => [
+        'modding_history_controller' => [
+            '_' => '',
         ],
     ],
 ];

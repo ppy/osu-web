@@ -83,41 +83,6 @@
     min-width: 0;
   }
 
-  &__read-button {
-    .reset-input();
-    .full-size();
-    .center-content();
-    width: calc(100% - $margin-left);
-    margin-left: @border-radius-large;
-    padding-left: 2px;
-    color: @osu-colour-f1;
-
-    &:hover {
-      color: #fff;
-    }
-
-    &::before {
-      .full-size();
-      content: ' ';
-      width: @border-radius-large;
-      border-radius: 0 @border-radius-large @border-radius-large 0;
-      background-color: transparent;
-      left: -@border-radius-large;
-
-      .@{_top}:hover & {
-        background-color: @osu-colour-b1;
-      }
-
-      .@{_top}--compact:hover & {
-        background-color: @osu-colour-b4;
-      }
-
-      .@{_top}--group:hover & {
-        background-color: @osu-colour-b2;
-      }
-    }
-  }
-
   &__row {
     margin: 2px 0;
 
@@ -150,21 +115,6 @@
            background-color: @osu-colour-b3;
          }
       }
-    }
-  }
-
-  &__side-buttons {
-    width: 40px;
-    flex: none;
-    border-radius: 0 @border-radius-large @border-radius-large 0;
-    background-color: transparent;
-
-    .@{_top}--legacy_pm &, .@{_top}--read & {
-      display: none;
-    }
-
-    &:hover {
-      background-color: fade(black, 15%);
     }
   }
 

@@ -145,6 +145,10 @@ return [
             'error' => 'Page Missing',
             'description' => "Sorry, but the page you requested isn't here!",
         ],
+        '422' => [
+            'error' => 'Invalid request parameter',
+            'description' => '',
+        ],
         '500' => [
             'error' => 'Oh no! Something broke! ;_;',
             'description' => "We're automatically notified of every error.",

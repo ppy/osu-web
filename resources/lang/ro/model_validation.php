@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'not_negative' => ':attribute nu poate fi negativ.',
@@ -47,6 +32,7 @@ return [
         ],
 
         'hype' => [
+            'discussion_locked' => "",
             'guest' => 'Trebuie să fii autentificat pentru a acorda un hype.',
             'hyped' => 'Deja ai acordat un hype acestui beatmap.',
             'limit_exceeded' => 'Ți-ai folosit deja tot hype-ul.',
@@ -137,6 +123,7 @@ return [
         'invalid_country' => 'Țara nu se află în baza de date.',
         'invalid_discord' => 'Nume de utilizator Discord invalid.',
         'invalid_email' => "Nu pare să fie o adresă de e-mail validă.",
+        'invalid_twitter' => '',
         'too_short' => 'Parola nouă este prea scurtă.',
         'unknown_duplicate' => 'Numele de utilizator sau adresa de e-mail sunt deja folosite.',
         'username_available_in' => 'Acest nume de utilizator va fi disponibil pentru utilizare în :duration.',

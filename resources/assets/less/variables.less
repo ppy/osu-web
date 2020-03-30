@@ -35,7 +35,7 @@
 
 // mobile nav
 // TODO: un-bootstrap names
-@navbar-height: @nav2-height--pinned;
+@navbar-height: @nav2-height--pinned; // also in lib/import-shims.coffee
 @navbar-padding-horizontal: 10px;
 @navbar-padding-vertical: 10px;
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
@@ -56,6 +56,8 @@
 // ┐(ﾟ ヮﾟ)┌
 @gutter-v2: 10px;
 @gutter-v2-desktop: 50px;
+
+@gutter-sidebar-desktop: 30px;
 
 @height--nav-popup: 210px; // min-height; actual height will be calculated by js.
 
@@ -305,3 +307,5 @@
 @user-card-width: 290px;
 @user-card-width-min: 280px;
 @user-card-height: 120px;
+
+@user-list-icon-size: 20px;

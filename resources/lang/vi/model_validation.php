@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'not_negative' => ':attribute không thể âm.',
@@ -42,11 +27,12 @@ return [
         'locked' => 'Cuộc thảo luận đã bị khóa.',
 
         'attributes' => [
-            'message_type' => '',
+            'message_type' => 'Kiểu tin nhắn',
             'timestamp' => 'Mốc thời gian',
         ],
 
         'hype' => [
+            'discussion_locked' => "",
             'guest' => 'Cần phải đăng nhập để hype.',
             'hyped' => 'Bạn đã hype beatmap này rồi.',
             'limit_exceeded' => 'Bạn đã sử dụng hết số hype bạn có.',
@@ -62,7 +48,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Không cho phép trả lời bình luận đã xóa.',
-        'top_only' => '',
+        'top_only' => 'Không thể trả lời các bình luận được ghim.',
 
         'attributes' => [
             'message' => 'Tin nhắn',
@@ -137,6 +123,7 @@ return [
         'invalid_country' => 'Quốc gia không có trong cơ sở dữ liệu.',
         'invalid_discord' => 'Tên người dùng Discord không hợp lệ.',
         'invalid_email' => "Dường như đây không phải là địa chỉ email hợp lệ.",
+        'invalid_twitter' => '',
         'too_short' => 'Mật khẩu mới quá ngắn.',
         'unknown_duplicate' => 'Tên người dùng hoặc email đã được sử dụng.',
         'username_available_in' => 'Tên người dùng này sẽ có sẵn để sử dụng trong :duration.',

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'error' => [
@@ -31,7 +16,11 @@ return [
         'identify' => '당신을 식별하고 공개 프로필을 읽습니다.',
 
         'friends' => [
-            'read' => '당신이 팔로우 중인 사람들을 봅니다.',
+            'read' => '당신이 팔로우하는 사람들의 목록을 봅니다.',
+        ],
+
+        'users' => [
+            'read' => '당신을 대신하여 모든 유저의 공개 프로필을 읽습니다.',
         ],
     ],
 ];

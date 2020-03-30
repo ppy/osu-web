@@ -192,7 +192,7 @@
       position: fixed;
       z-index: @z-index--forum-topic-reply-stick;
       bottom: 0; // weird flashing in firefox android on certain scroll if using top
-      height: calc(var(--vh, 1vh) * 100);
+      height: calc(var(--vh, 1vh) * 100 - @navbar-height);
 
       @media @desktop {
         position: relative;
@@ -242,13 +242,6 @@
     display: flex;
   }
 
-  &--news {
-    .default();
-    .default-gutter-v2();
-    padding-bottom: 20px;
-    padding-top: 20px;
-  }
-
   &--notification-banners {
     @media @desktop {
       height: 0;
@@ -288,7 +281,7 @@
 
   &--users {
     .default;
-    background-color: @osu-colour-b4;
+    background-color: @osu-colour-b3;
   }
 
   &--users-show-header {

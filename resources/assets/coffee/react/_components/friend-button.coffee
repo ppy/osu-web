@@ -74,6 +74,9 @@ export class FriendButton extends React.PureComponent
 
 
   render: =>
+    return null if @props.showIf == 'friend' && !@state.friend?
+    return null if @props.showIf == 'mutual' && !@state.friend?.mutual
+
     isVisible = @isVisible()
 
     if !@props.alwaysVisible

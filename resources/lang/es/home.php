@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'landing' => [
@@ -42,7 +27,7 @@ return [
         'title' => 'buscar',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'Inicie sesión para buscar mapas',
             'more' => 'Hay :count mapas más en los resultados',
             'more_simple' => 'Ver más resultados de mapas',
             'title' => 'Mapas',
@@ -51,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Todos los foros',
             'link' => 'Busca en el foro',
-            'login_required' => '',
+            'login_required' => 'Inicie sesión para buscar en el foro',
             'more_simple' => 'Ver más resultados de los foros',
             'title' => 'Foro',
 
@@ -72,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'Inicie sesión para buscar usuarios',
             'more' => ':count jugadores más coinciden con la búsqueda',
             'more_simple' => 'Ver más resultados de jugadores',
             'more_hidden' => 'La búsqueda de jugadores está limitada a :max jugadores. Intenta refinando tus términos de búsqueda.',
@@ -120,7 +105,7 @@ return [
         'title' => 'panel',
         'news' => [
             'title' => 'Novedades',
-            'error' => 'Error al cargar las novedades, ¿intenta recargando la página?...',
+            'error' => 'Error al cargar las novedades, ¿intente actualizar la página?...',
         ],
         'header' => [
             'stats' => [
@@ -146,7 +131,7 @@ return [
         'subtitle' => '¡Pareces estar pasando un buen rato! :D',
         'body' => [
             'part-1' => '¿Sabías que osu! se mantiene sin publicidad y confía en sus jugadores para apoyar su desarrollo y costos de mantenimiento?',
-            'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
+            'part-2' => '¿También sabías que apoyando a osu! obtienes un montón de características útiles, como <strong>la descarga en el juego</strong> que se activa automáticamente en partidas de espectador y multijugador?',
         ],
         'find-out-more' => '¡Haz clic aquí para obtener más información!',
         'download-starting' => "Ah, y no te preocupes - tu descarga ya se ha iniciado para ti ;)",
