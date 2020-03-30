@@ -5,7 +5,6 @@
   @_top: user-card-brick;
   @_fade-duration: 220ms;
 
-  @_height: 40px;
   @_background-color: @osu-colour-b6;
   @_border-radius: @border-radius-large;
 
@@ -14,12 +13,12 @@
 
   width: min-content;
   max-width: 100%;
-  height: @_height;
   background-color: @_background-color;
   border-radius: @_border-radius;
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 2px 5px;
+  font-size: @font-size--normal-2;
 
   overflow: hidden;
 
@@ -81,6 +80,6 @@
     min-width: 0;
     margin: 0 5px 0 0;
     font-weight: bold;
-    padding-bottom: 2px; // adjust alignment
+    padding-bottom: 1px; // adjust alignment
   }
 }
