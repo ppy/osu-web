@@ -5,27 +5,27 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '405' => '',
+            '404' => 'chybějící',
+            '403' => 'zakázano',
+            '401' => 'neoprávněný',
+            '405' => 'chybějící',
             '422' => '',
             '500' => '',
             '503' => '',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'fórum',
         'topic_watches_controller' => [
             'index' => '',
         ],
@@ -108,21 +108,21 @@ return [
             '_' => '',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
             '_' => '',
         ],
         'users_controller' => [
             '_' => '',
-            'disabled' => '',
+            'disabled' => 'oznámení',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'nápověda',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [

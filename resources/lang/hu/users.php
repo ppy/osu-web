@@ -420,6 +420,7 @@ return [
     ],
 
     'view_mode' => [
+        'brick' => '',
         'card' => 'Kártya nézet',
         'list' => 'Lista nézet',
     ],

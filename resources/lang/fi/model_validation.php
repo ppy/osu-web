@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Maata ei ole tietokannassa.',
         'invalid_discord' => 'Virheellinen Discord käyttäjänimi.',
         'invalid_email' => "Ei näytä kelvolliselta sähköpostiosoitteelta.",
+        'invalid_twitter' => '',
         'too_short' => 'Uusi salasana on liian lyhyt.',
         'unknown_duplicate' => 'Käyttäjätunnus tai sähköpostiosoite on jo käytössä.',
         'username_available_in' => 'Tämän käyttäjänimen aukeamiseen on aikaa :duration.',

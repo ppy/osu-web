@@ -13,14 +13,14 @@ return [
     ],
 
     'scopes' => [
-        'identify' => 'Kendinizi tanımlayın ve herkese açık profilinizi okuyun.',
+        'identify' => 'Kim olduğunuzu ve herkese açık profilinizi görüntüleyebilir.',
 
         'friends' => [
-            'read' => 'Kimi takip ettiğinizi görün.',
+            'read' => 'Kimi takip ettiğinizi görebilir.',
         ],
 
         'users' => [
-            'read' => '',
+            'read' => 'Sizin adınıza herhangi bir kullanıcının herkese açık profilini görüntüleyebilir.',
         ],
     ],
 ];

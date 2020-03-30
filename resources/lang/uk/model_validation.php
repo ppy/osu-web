@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Вашої країни немає в базі даних.',
         'invalid_discord' => 'Ім’я користувача Discord недійсне.',
         'invalid_email' => "Це не схоже на адресу електронної пошти.",
+        'invalid_twitter' => '',
         'too_short' => 'Новий пароль надто короткий.',
         'unknown_duplicate' => 'Ім\'я користувача або пошта вже зайнята.',
         'username_available_in' => 'Це ім\'я користувача буде доступним для використання через :duration.',

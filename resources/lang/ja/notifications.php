@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '通知は全て既読です！',
-    'mark_read' => '',
+    'all_read' => '通知は全て既読となりました！',
+    'mark_read' => '消去 :type',
     'none' => '通知なし',
     'see_all' => 'すべての通知を見る',
 

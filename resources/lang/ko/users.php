@@ -420,6 +420,7 @@ return [
     ],
 
     'view_mode' => [
+        'brick' => '',
         'card' => '카드 형식 보기',
         'list' => '목록으로 보기',
     ],

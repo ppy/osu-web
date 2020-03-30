@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Das Land ist nicht in der Datenbank.',
         'invalid_discord' => 'Discordname ungültig.',
         'invalid_email' => "Scheint keine gültige E-Mail-Adresse zu sein.",
+        'invalid_twitter' => '',
         'too_short' => 'Das neue Passwort ist zu kurz.',
         'unknown_duplicate' => 'Nutzername oder E-Mail-Adresse wird bereits verwendet.',
         'username_available_in' => 'Dieser Nutzername wird in :duration verfügbar sein.',

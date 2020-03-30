@@ -39,12 +39,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'berstatus Approved sejak :timeago',
+            'loved' => 'berstatus Loved sejak :timeago',
+            'qualified' => 'berstatus Qualified sejak :timeago',
+            'ranked' => 'berstatus Ranked sejak :timeago',
+            'submitted' => 'diunggah pada :timeago',
+            'updated' => 'terakhir diperbarui :timeago',
         ],
 
         'favourites' => [

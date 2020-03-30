@@ -32,7 +32,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "このビートマップは議論中のためロックされており、Hypeできません。",
             'guest' => 'Hypeするにはログインが必要です。',
             'hyped' => '既にこのビートマップをHypeしています。',
             'limit_exceeded' => 'Hype回数が残っていません。',
@@ -124,6 +124,7 @@ return [
         'invalid_country' => 'データベースに存在しない国です。',
         'invalid_discord' => 'Discordのユーザー名が無効です。',
         'invalid_email' => "無効なメールアドレスです。",
+        'invalid_twitter' => '',
         'too_short' => '新しいパスワードが短すぎます。',
         'unknown_duplicate' => 'ユーザー名かメールアドレスが既に使用されています。',
         'username_available_in' => 'このユーザー名は:durationで使用可能になります。',

@@ -5,47 +5,47 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [
-            '404' => '',
-            '403' => '',
+            '404' => 'hilang',
+            '403' => 'dilarang',
             '401' => '',
-            '405' => '',
+            '405' => 'hilang',
             '422' => '',
             '500' => '',
             '503' => '',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'forum',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'dasbor',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'dasbor',
+            'verify_link' => 'verifikasi akun',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'featured artists',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'postingan diskusi beatmap',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'laman diskusi beatmap',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'paket beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => '',
@@ -54,79 +54,79 @@ return [
             '_' => '',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'dasbor',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'laman diskusi beatmap',
+            'index' => 'daftar beatmap',
+            'show' => 'info beatmap',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'riwayat perubahan',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'chat',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'komentar',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'kontes',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'dasbor',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'grup',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'unduh',
+            'index' => 'dasbor',
+            'search' => 'cari',
+            'support_the_game' => 'dukung permainan ini',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'informasi',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'siaran langsung',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'pertandingan',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'berita',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'riwayat notifikasi',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'reset kata sandi',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'peringkat',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'turnamen',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'info pemain',
+            'disabled' => 'pemberitahuan',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'basis pengetahuan',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'info modder',
         ],
     ],
 ];

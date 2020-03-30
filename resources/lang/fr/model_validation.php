@@ -32,7 +32,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Cette beatmap est actuellement verrouillée pour la discussion et ne peut pas être hypée",
             'guest' => 'Vous devez être connecté pour hyper.',
             'hyped' => 'Vous avez déjà hypé cette beatmap.',
             'limit_exceeded' => 'Vous avez utilisé toute votre hype.',
@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Le pays n\'est pas dans la base de données.',
         'invalid_discord' => 'Nom d\'utilisateur Discord invalide.',
         'invalid_email' => "Ça ne semble pas être une adresse email valide.",
+        'invalid_twitter' => '',
         'too_short' => 'Le nouveau mot de passe est trop court.',
         'unknown_duplicate' => 'Nom d\'utilisateur ou adresse e-mail déjà utilisée.',
         'username_available_in' => 'Ce nom d\'utilisateur sera disponible dans :duration.',

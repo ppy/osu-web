@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Administrator',
         'authorise' => 'Autorisatie',
-        'authorising' => '',
+        'authorising' => 'Autoriseren...',
         'back_to_previous' => 'Terug naar vorige positie',
         'back_to_top' => 'Terug naar boven',
         'cancel' => 'Annuleer',

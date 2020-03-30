@@ -420,6 +420,7 @@ return [
     ],
 
     'view_mode' => [
+        'brick' => '',
         'card' => 'Vue en carte',
         'list' => 'Vue en liste',
     ],

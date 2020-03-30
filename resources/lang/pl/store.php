@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'Obecnie jesteśmy przeciążeni zamówieniami! Wciąż możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia w postaci 1-2 tygodni**, dopóki te już istniejące nie zostaną zakończone.',
         'old_cart' => 'Zawartość twojego koszyka była przestarzała i została odświeżona, spróbuj ponownie.',
         'pay' => 'Zapłać przez PayPal',
-        'title_compact' => '',
+        'title_compact' => 'kasa',
 
         'has_pending' => [
             '_' => 'Masz kilka niedokończonych zamówień, kliknij :link, aby je wyświetlić.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Jako że twoja płatność została przesłana czekiem elektronicznym, odczekaj do 10 dni na przetworzenie transakcji przez PayPal.',
-        'title_compact' => '',
+        'title_compact' => 'faktura',
 
         'status' => [
             'processing' => [

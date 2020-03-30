@@ -39,12 +39,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'approved :timeago',
+            'loved' => 'loved :timeago',
+            'qualified' => 'qualified :timeago',
+            'ranked' => 'ranked :timeago',
+            'submitted' => '投稿 :timeago',
+            'updated' => '最終更新 :timeago',
         ],
 
         'favourites' => [

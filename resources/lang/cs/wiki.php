@@ -6,11 +6,11 @@
 return [
     'show' => [
         'fallback_translation' => 'Vyžadovaná stránka ještě nebyla přeložena do vybraného jazyka (:language). Zobrazuji Anglickou verzi.',
-        'incomplete_or_outdated' => '',
+        'incomplete_or_outdated' => 'Tato stránka je nedodělaná nebo zastaralá. Pokud chcete, můžete pomoci s aktualizací článku!',
         'missing' => 'Požadovaná stránka ":keyword" nebyla nalezena.',
         'missing_title' => 'Nenalezeno',
         'missing_translation' => 'Požadovaná stránka nebyla nalezena pro zvolený jazyk.',
-        'needs_cleanup_or_rewrite' => '',
+        'needs_cleanup_or_rewrite' => 'Tato stránka nesplňuje standardy osu! wiki a potřebuje být vylepšena nebo přepsáno. Pokud chcete, můžete pomoci s aktualizací článku!',
         'search' => 'Prohledat existující stránky pro :link.',
         'toc' => 'Obsah',
 
