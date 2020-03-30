@@ -108,11 +108,7 @@ export default class Channel {
 
   @action
   resortMessages() {
-    let newMessages = this.messages.slice();
-    newMessages = _.sortBy(newMessages, 'timestamp');
-    newMessages = _.uniqBy(newMessages, 'messageId');
-
-    this.messages = newMessages;
+    this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
   }
 
   @action

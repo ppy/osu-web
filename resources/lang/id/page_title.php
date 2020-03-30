@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
@@ -30,17 +15,17 @@ return [
     ],
     'error' => [
         'error' => [
-            '_' => 'kesalahan',
             '404' => 'hilang',
             '403' => 'dilarang',
-            '401' => 'tidak memiliki akses',
+            '401' => '',
             '405' => 'hilang',
-            '500' => 'ada yang rusak',
-            '503' => 'pemeliharaan',
+            '422' => '',
+            '500' => '',
+            '503' => '',
         ],
     ],
     'forum' => [
-        '_' => 'Forum',
+        '_' => 'forum',
         'topic_watches_controller' => [
             'index' => 'dasbor',
         ],
@@ -48,28 +33,33 @@ return [
     'main' => [
         'account_controller' => [
             'edit' => 'dasbor',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => 'dasbor',
-        ],
-        'friends_controller' => [
-            'index' => 'dasbor',
-        ],
-        'home_controller' => [
-            'index' => 'dasbor',
-            'get_download' => 'unduh',
-            'search' => 'cari',
-            'support_the_game' => 'dukung permainan ini',
-            'testflight' => 'testflight',
+            'verify_link' => 'verifikasi akun',
         ],
         'artists_controller' => [
-            '_' => 'featured artist',
+            '_' => 'featured artists',
+        ],
+        'beatmap_discussion_posts_controller' => [
+            '_' => 'postingan diskusi beatmap',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'laman diskusi beatmap',
         ],
-        'beatmap_discussion_posts_controller' => [
-            '_' => 'postingan diskusi beatmap',
+        'beatmap_packs_controller' => [
+            '_' => 'paket beatmap',
+        ],
+        'beatmapset_discussion_votes_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_events_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_watches_controller' => [
+            'index' => 'dasbor',
+        ],
+        'beatmapsets_controller' => [
+            'discussion' => 'laman diskusi beatmap',
+            'index' => 'daftar beatmap',
+            'show' => 'info beatmap',
         ],
         'changelog_controller' => [
             '_' => 'riwayat perubahan',
@@ -83,11 +73,36 @@ return [
         'contests_controller' => [
             '_' => 'kontes',
         ],
+        'friends_controller' => [
+            'index' => 'dasbor',
+        ],
+        'groups_controller' => [
+            'show' => 'grup',
+        ],
+        'home_controller' => [
+            'get_download' => 'unduh',
+            'index' => 'dasbor',
+            'search' => 'cari',
+            'support_the_game' => 'dukung permainan ini',
+            'testflight' => 'testflight',
+        ],
         'legal_controller' => [
             '_' => 'informasi',
         ],
         'livestreams_controller' => [
             '_' => 'siaran langsung',
+        ],
+        'matches_controller' => [
+            '_' => 'pertandingan',
+        ],
+        'news_controller' => [
+            '_' => 'berita',
+        ],
+        'notifications_controller' => [
+            '_' => 'riwayat notifikasi',
+        ],
+        'password_reset_controller' => [
+            '_' => 'reset kata sandi',
         ],
         'ranking_controller' => [
             '_' => 'peringkat',
@@ -99,13 +114,19 @@ return [
             '_' => 'turnamen',
         ],
         'users_controller' => [
+            '_' => 'info pemain',
             'disabled' => 'pemberitahuan',
         ],
         'wiki_controller' => [
-            'show' => 'Knowledge Base',
+            '_' => 'basis pengetahuan',
         ],
     ],
     'store' => [
         '_' => 'osu!store',
+    ],
+    'users' => [
+        'modding_history_controller' => [
+            '_' => 'info modder',
+        ],
     ],
 ];

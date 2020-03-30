@@ -4,8 +4,8 @@
 import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import { NotificationContext } from 'notifications-context';
+import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
-import { Spinner } from 'spinner';
 import { WithMarkReadProps } from './with-mark-read';
 
 interface Props extends WithMarkReadProps {
@@ -38,9 +38,7 @@ export default class Item extends React.Component<Props> {
             {this.renderTime()}
             {this.renderExpandButton()}
           </div>
-          <div className='notification-popup-item__side-buttons'>
-            {this.renderMarkAsReadButton()}
-          </div>
+          {this.renderMarkAsReadButton()}
         </div>
         {this.renderUnreadStripe()}
       </div>
@@ -122,23 +120,13 @@ export default class Item extends React.Component<Props> {
       return null;
     }
 
-    if (this.props.markingAsRead ?? this.props.item.isMarkingAsRead) {
-      return (
-        <div className='notification-popup-item__read-button'>
-          <Spinner />
-        </div>
-      );
-    } else {
-      return (
-        <button
-          type='button'
-          className='notification-popup-item__read-button'
-          onClick={this.props.markRead}
-        >
-          <span className='fas fa-times' />
-        </button>
-      );
-    }
+    return (
+      <NotificationReadButton
+        isMarkingAsRead={this.props.markingAsRead ?? this.props.item.isMarkingAsRead}
+        modifiers={['fancy']}
+        onMarkAsRead={this.props.markRead}
+      />
+    );
   }
 
   private renderMessage() {

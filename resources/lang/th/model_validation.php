@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'not_negative' => ':attribute เป็นค่าลบไม่ได้',
@@ -47,6 +32,7 @@ return [
         ],
 
         'hype' => [
+            'discussion_locked' => "",
             'guest' => 'ต้องเข้าสู่ระบบก่อนถึงจะ hype ได้',
             'hyped' => 'คุณได้ hype Beatmap นี้ไปแล้ว',
             'limit_exceeded' => 'คุณใช้จำนวน hype หมดแล้ว',
@@ -137,6 +123,7 @@ return [
         'invalid_country' => 'ประเทศไม่ได้อยู่ในฐานข้อมูล',
         'invalid_discord' => 'ชื่อผู้ใช้ Discord ไม่ถูกต้อง',
         'invalid_email' => "เหมือนกับว่ามันไม่ใช่ที่อยู่อีเมล",
+        'invalid_twitter' => '',
         'too_short' => 'รหัสผ่านใหม่สั้นเกินไป',
         'unknown_duplicate' => 'ชื่อผู้ใช้หรืออีเมลถูกใช้ไปแล้ว',
         'username_available_in' => 'ชื่อผู้ใช้นี้สามารถใช้งานได้ใน :duration',

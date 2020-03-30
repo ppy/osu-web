@@ -7,9 +7,9 @@ import NotificationStack from 'models/notification-stack';
 import { categoryToIcons } from 'notification-maps/icons';
 import { urlGroup } from 'notification-maps/url';
 import { NotificationContext } from 'notifications-context';
+import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
-import { Spinner } from 'spinner';
 import Item from './item';
 import ItemCompact from './item-compact';
 
@@ -102,40 +102,17 @@ export default class ItemGroup extends React.Component<Props, State> {
     return (
       <div className='notification-popup-item-group__items'>
         {this.props.stack.orderedNotifications.map(this.renderItem)}
-        <div className='notification-popup__show-more'>
-          <div className='notification-popup__expand'>
+        <div className='notification-popup-item-group__show-more'>
+          <div className='notification-popup-item-group__expand'>
             {this.renderShowMore()}
           </div>
-          <div className='notification-popup__collapse'>
+          <div className='notification-popup-item-group__collapse'>
             {this.renderShowLess()}
-            <div className='notification-popup__mark-as-read'>
-              {this.renderMarkAsReadButton()}
-            </div>
+            <NotificationReadButton isMarkingAsRead={this.props.stack.isMarkingAsRead} onMarkAsRead={this.handleMarkAsRead} />
           </div>
         </div>
-
       </div>
     );
-  }
-
-  private renderMarkAsReadButton() {
-    if (this.props.stack.isMarkingAsRead) {
-      return (
-        <div className='notification-popup-item__read-button'>
-          <Spinner />
-        </div>
-      );
-    } else {
-      return (
-        <button
-          type='button'
-          className='notification-popup-item__read-button'
-          onClick={this.handleMarkAsRead}
-        >
-          <span className='fas fa-times' />
-        </button>
-      );
-    }
   }
 
   private renderShowLess() {

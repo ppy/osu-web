@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'pinned_topics' => 'Chủ Đề Đã Ghim',
@@ -101,7 +86,7 @@ return [
         'started_by_verbose' => 'bắt đầu bởi :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Đóng',
             'preview' => 'Xem trước',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -251,8 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Chủ đề này đã bị khóa và không thể trả lời',
             'to_0' => 'Mở khóa chủ đề',
+            'to_0_confirm' => 'Mở khóa chủ đề?',
             'to_0_done' => 'Đã mở khóa chủ đề',
             'to_1' => 'Khóa chủ đề',
+            'to_1_confirm' => 'Khóa chủ đề?',
             'to_1_done' => 'Chủ đề đã bị khóa',
         ],
 
@@ -262,16 +249,19 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Bỏ ghim chủ đề',
+            'to_0_confirm' => 'Bỏ ghim chủ đề?',
             'to_0_done' => 'Chủ đề đã được bỏ ghim',
             'to_1' => 'Ghim chủ đề',
+            'to_1_confirm' => 'Ghim chủ đề?',
             'to_1_done' => 'Chủ để đã ghim',
             'to_2' => 'Ghim chủ đề và đánh dấu là thông báo',
+            'to_2_confirm' => 'Ghim chủ đề và đánh dấu là thông báo?',
             'to_2_done' => 'Chủ đề đã ghim và sẽ đánh dấu là thông báo',
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Hiển thị các bài đăng bị xóa',
+            'hide' => 'Ẩn các bài viết bị xóa',
         ],
 
         'show' => [
@@ -297,14 +287,14 @@ return [
 
             'poll' => [
                 'edit' => '',
-                'edit_warning' => '',
+                'edit_warning' => 'Chỉnh sửa cuộc thăm dò sẽ xóa bỏ các kết quả hiện tại!',
                 'vote' => 'Bỏ phiếu',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Thay đổi bình chọn',
+                    'edit' => 'Sửa cuộc thăm dò',
+                    'view_results' => 'Bỏ qua đến phần kết quả',
+                    'vote' => 'Bỏ phiếu',
                 ],
 
                 'detail' => [

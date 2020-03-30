@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'landing' => [
@@ -42,7 +27,7 @@ return [
         'title' => 'Suchergebnisse',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'Melde Dich an, um Beatmaps zu sehen',
             'more' => ':count weitere gefundene Beatmaps',
             'more_simple' => 'Mehr gefundene Beatmaps anzeigen',
             'title' => 'Beatmaps',
@@ -51,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Alle Foren',
             'link' => 'Das Forum durchsuchen',
-            'login_required' => '',
+            'login_required' => 'Melde Dich an, um das Forum zu durchsuchen',
             'more_simple' => 'Mehr gefundene Forenbeiträge anzeigen',
             'title' => 'Forum',
 
@@ -72,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'Melde Dich an, um Benutzer zu suchen',
             'more' => ':count weitere gefundene Spieler',
             'more_simple' => 'Mehr gefundene Spieler anzeigen',
             'more_hidden' => 'Die Spielersuche ist auf :max Spieler limitiert. Verfeinere bitte deine Suchanfrage.',

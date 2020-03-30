@@ -740,6 +740,12 @@ function ujs_redirect($url, $status = 200)
     }
 }
 
+// strips combining characters after x levels deep
+function unzalgo(?string $text, int $level = 2)
+{
+    return preg_replace("/(\pM{{$level}})\pM+/u", '\1', $text);
+}
+
 function route_redirect($path, $target)
 {
     return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
@@ -814,7 +820,7 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function wiki_url($page = 'Main_Page', $locale = null)
+function wiki_url($page = 'Main_Page', $locale = null, $api = null)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
@@ -822,6 +828,10 @@ function wiki_url($page = 'Main_Page', $locale = null)
 
     if (present($locale) && $locale !== App::getLocale()) {
         $params['locale'] = $locale;
+    }
+
+    if ($api ?? is_api_request()) {
+        return route('api.wiki.show', $params);
     }
 
     return route('wiki.show', $params);
