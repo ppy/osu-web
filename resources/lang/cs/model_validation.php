@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Stát není v databázi.',
         'invalid_discord' => 'Discord uživatelské jmeno je neplatné.',
         'invalid_email' => "Vypadá to na neplatnou e-mailovou adresu.",
+        'invalid_twitter' => '',
         'too_short' => 'Nové heslo je příliš krátké.',
         'unknown_duplicate' => 'Uživatelské jméno nebo e-mailová adresa je již použita.',
         'username_available_in' => 'Toto uživatelské jméno bude k dispozici za :duration.',

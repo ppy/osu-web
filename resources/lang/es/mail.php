@@ -96,7 +96,7 @@ return [
         'subject' => 'Verificación de la cuenta de osu!',
 
         'action_from' => [
-            '_' => 'Actividad en tu cuenta detectada desde :country requiere verificación.',
+            '_' => 'Una acción realizada en su cuenta desde :country requiere verificación.',
             'unknown_country' => 'país desconocido',
         ],
     ],

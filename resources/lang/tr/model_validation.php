@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Ülke, veritabanında bulunmuyor.',
         'invalid_discord' => 'Discord kullanıcı adı hatalı.',
         'invalid_email' => "Geçerli bir e-posta adresi gibi görünmüyor.",
+        'invalid_twitter' => '',
         'too_short' => 'Yeni şifre çok kısa.',
         'unknown_duplicate' => 'Kullanıcı adı ya da e-posta zaten kullanımda.',
         'username_available_in' => 'Bu kullanıcı adı :duration içinde kullanıma açılacak.',

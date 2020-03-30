@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Η χώρα δεν υπάρχει στη βάση δεδομένων.',
         'invalid_discord' => 'Το όνομα χρήστη στο Discord δεν είναι έγκυρο.',
         'invalid_email' => "Δε φαίνεται να είναι ένα έγκυρο email.",
+        'invalid_twitter' => '',
         'too_short' => 'Ο καινούργιος κωδικός είναι πολύ μικρός.',
         'unknown_duplicate' => 'Το όνομα χρήστη ή το email είναι ήδη σε χρήση.',
         'username_available_in' => 'Αυτό το όνομα χρήστη θα είναι διαθέσιμο σε :duration μέρες.',

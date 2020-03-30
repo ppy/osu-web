@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => '管理员',
         'authorise' => '授权',
-        'authorising' => '',
+        'authorising' => '授权中...',
         'back_to_previous' => '返回上一位置',
         'back_to_top' => '回到顶部',
         'cancel' => '取消',

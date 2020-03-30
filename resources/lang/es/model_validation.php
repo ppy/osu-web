@@ -32,11 +32,11 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Este mapa está actualmente bloqueado para discusión y no puede ser hypeado",
             'guest' => 'Debes iniciar sesión para hypear.',
             'hyped' => 'Ya hypeaste este mapa.',
             'limit_exceeded' => 'Ya has utilizado todos tus hype.',
-            'not_hypeable' => 'Este mapa no puede ser hypeado.',
+            'not_hypeable' => 'Este mapa no puede ser hypeado',
             'owner' => 'No puedes hypear tu propio mapa.',
         ],
 
@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'El país no está en la base de datos.',
         'invalid_discord' => 'Nombre de usuario de Discord no válido.',
         'invalid_email' => "No parece que sea un correo electrónico valido.",
+        'invalid_twitter' => '',
         'too_short' => 'La nueva contraseña es muy corta.',
         'unknown_duplicate' => 'El nombre de usuario o correo electrónico ya está siendo utilizado.',
         'username_available_in' => 'Este nombre de usuario estará disponible para su uso en :duration.',

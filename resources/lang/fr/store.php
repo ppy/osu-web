@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'Nous sommes actuellement submergés de commandes ! Vous pouvez tout de même commander, mais attendez-vous à **une à deux semaines de délai supplémentaire** le temps que nous puissions traiter toutes ces commandes.',
         'old_cart' => 'Votre panier semble être obsolète et a donc été actualisé, merci de réessayer.',
         'pay' => 'Payer avec PayPal',
-        'title_compact' => '',
+        'title_compact' => 'commander',
 
         'has_pending' => [
             '_' => 'Vous avez un paiement en attente, cliquez :link pour y accéder.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Si votre paiement est en eCheck, comptez jusqu\'à 10 jours supplémentaires pour le paiement via PayPal!',
-        'title_compact' => '',
+        'title_compact' => 'facture',
 
         'status' => [
             'processing' => [

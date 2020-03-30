@@ -33,7 +33,7 @@ return [
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Tin tức lưu trữ',
     ],
 
     'store' => [

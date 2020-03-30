@@ -420,6 +420,7 @@ return [
     ],
 
     'view_mode' => [
+        'brick' => '',
         'card' => 'Kaartweergave',
         'list' => 'Lijst weergave',
     ],

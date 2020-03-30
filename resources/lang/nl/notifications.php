@@ -5,7 +5,7 @@
 
 return [
     'all_read' => 'Alle meldingen gelezen!',
-    'mark_read' => '',
+    'mark_read' => 'Wissen :type',
     'none' => 'Geen meldingen',
     'see_all' => 'alle meldingen bekijken',
 

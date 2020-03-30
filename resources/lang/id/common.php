@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Admin',
         'authorise' => 'Izinkan',
-        'authorising' => '',
+        'authorising' => 'Mengotorisir...',
         'back_to_previous' => 'Kembali ke posisi sebelumnya',
         'back_to_top' => 'Kembali ke atas',
         'cancel' => 'Batal',

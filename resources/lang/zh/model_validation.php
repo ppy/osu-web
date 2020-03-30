@@ -32,7 +32,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "这张谱面正处于锁定状态以便进行讨论，目前不能被推荐",
             'guest' => '登录后才能推荐',
             'hyped' => '你已经推荐了这张谱面',
             'limit_exceeded' => '你已经用光了推荐次数',
@@ -123,6 +123,7 @@ return [
         'invalid_country' => '国家未被数据库收录。',
         'invalid_discord' => 'Discord 用户名无效。',
         'invalid_email' => "无效的邮箱地址。",
+        'invalid_twitter' => '',
         'too_short' => '新密码太短。',
         'unknown_duplicate' => '用户名或邮箱已被使用。',
         'username_available_in' => '该用户名将在 :duration 后可用。',

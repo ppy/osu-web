@@ -24,8 +24,8 @@ return [
         'empty' => [
             'text' => 'Tu carrito está vacío.',
             'return_link' => [
-                '_' => '¡Regresa a la :link para encontrar algunos manjares!',
-                'link_text' => 'lista de la tienda',
+                '_' => '¡Regresa al :link para encontrar algunos productos!',
+                'link_text' => 'listado de la tienda',
             ],
         ],
     ],
@@ -34,10 +34,10 @@ return [
         'cart_problems' => '¡Oh oh, hay problemas con tu carrito!',
         'cart_problems_edit' => 'Haz clic aquí para editarlo.',
         'declined' => 'El pago ha sido cancelado.',
-        'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido en solicitar tu orden, pero porfavor considera que hay un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
+        'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido a solicitar tu orden, pero considera un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
         'old_cart' => 'Tu carrito parecía estar desactualizado y fue reiniciado, por favor intenta de nuevo.',
         'pay' => 'Pagar con PayPal',
-        'title_compact' => '',
+        'title_compact' => 'caja',
 
         'has_pending' => [
             '_' => 'Tienes pedidos incompletos, haga clic :link para verlos.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Como su pago fue un eCheck, ¡por favor permita hasta 10 días adicionales para que el pago se realice a través de PayPal!',
-        'title_compact' => '',
+        'title_compact' => 'factura',
 
         'status' => [
             'processing' => [
@@ -122,8 +122,8 @@ return [
     'supporter_tag' => [
         'gift' => 'regalar al jugador',
         'require_login' => [
-            '_' => '¡Necesitas ser :link para tener un osu!supporter!',
-            'link_text' => 'sesión iniciada',
+            '_' => '¡Tienes que :link para obtener un tag de osu!supporter!',
+            'link_text' => 'iniciar sesión',
         ],
     ],
 
@@ -132,7 +132,7 @@ return [
         'checking' => 'Revisando la disponibilidad de :username...',
         'require_login' => [
             '_' => '¡Tienes que :link para cambiar tu nombre de usuario!',
-            'link_text' => 'seción iniciada',
+            'link_text' => 'iniciar sesión',
         ],
     ],
 

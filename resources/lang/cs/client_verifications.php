@@ -8,11 +8,11 @@ return [
         'home' => 'Přejít na hlavní panel',
         'logout' => 'Odhlásit se',
         'text' => 'Nyní můžete zavřít toto okno',
-        'title' => '',
+        'title' => 'ověření osu! účtu bylo dokončeno',
     ],
 
     'create' => [
-        'confirm' => '',
-        'title' => '',
+        'confirm' => 'Klikni na tlačítko dole, pro dokončení ověření.',
+        'title' => 'ověření osu! účtu',
     ],
 ];

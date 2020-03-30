@@ -10,7 +10,7 @@ return [
     'pinned' => 'disematkan',
     'empty' => 'Belum ada komentar.',
     'load_replies' => 'muat lebih banyak balasan',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited balasan',
     'title' => 'Komentar',
 
     'commentable_name' => [

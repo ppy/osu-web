@@ -33,7 +33,7 @@ return [
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => '新闻归档',
     ],
 
     'store' => [
