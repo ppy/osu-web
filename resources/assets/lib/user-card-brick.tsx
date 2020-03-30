@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { FriendButton } from 'friend-button';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
@@ -18,6 +17,12 @@ interface State {
   backgroundLoaded: boolean;
 }
 
+interface UserRelationJson {
+  target_id: number;
+  relation_type: 'friend' | 'block';
+  mutual: boolean;
+}
+
 export default class UserCardBrick extends React.PureComponent<Props, State> {
   static readonly contextType = UserCardTypeContext;
 
@@ -32,7 +37,25 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
 
   render() {
     const modifiers = this.props.modifiers.concat(this.props.mode);
-    const friendButtonShowIf = this.context.isFriendsPage ? 'mutual' : 'friend';
+
+    let friendState: undefined | UserRelationJson;
+    let isFriend = false;
+    let isMutual = false;
+
+    if (currentUser.friends != null) {
+      friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
+
+      if (friendState != null) {
+        isFriend = true;
+        isMutual = friendState.mutual;
+      }
+    }
+
+    if (isMutual) {
+      modifiers.push('mutual');
+    } else if (isFriend && !this.context.isFriendsPage) {
+      modifiers.push('friend');
+    }
 
     return (
       <div
@@ -50,10 +73,6 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
         <a className='user-card-brick__username' href={route('users.show', { user: this.props.user.id })}>
           <div className='u-ellipsis-overflow'>{this.props.user.username}</div>
         </a>
-
-        <div className='user-card-brick__icon'>
-          <FriendButton userId={this.props.user.id} modifiers={['dynamic']} showIf={friendButtonShowIf} />
-        </div>
       </div>
     );
   }
