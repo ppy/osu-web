@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Failed saving post',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Failed updating vote',
