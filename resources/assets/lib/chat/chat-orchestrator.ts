@@ -130,6 +130,7 @@ export default class ChatOrchestrator implements DispatchListener {
         });
       })
       .catch((err) => {
+        channel.loading = false;
         console.debug('loadChannel error', err);
       });
   }
@@ -149,7 +150,10 @@ export default class ChatOrchestrator implements DispatchListener {
           channel.loadingEarlierMessages = false;
           this.addMessages(channelId, messages);
         });
-      }).catch((err) => console.debug('loadChannelEarlierMessages error', err));
+      }).catch((err) => {
+        channel.loadingEarlierMessages = false;
+        console.debug('loadChannelEarlierMessages error', err);
+      });
   }
 
   markAsRead(channelId: number) {
