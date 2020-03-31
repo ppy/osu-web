@@ -36,17 +36,17 @@ const blankSnapshot = (): Snapshot => ({ chatHeight: 0, chatTop: 0 });
 @observer
 @dispatchListener
 export default class ConversationView extends React.Component<Props> implements DispatchListener {
-
-  @computed
-  get currentChannel() {
-    return this.dataStore.channelStore.channels.get(this.dataStore.uiState.chat.selected);
-  }
   private assumeHasBacklog: boolean = false;
   private chatViewRef = React.createRef<HTMLDivElement>();
   private readonly dataStore: RootDataStore;
   private didSwitchChannel: boolean = true;
   private firstMessage?: Message;
   private unreadMarkerRef = React.createRef<HTMLDivElement>();
+
+  @computed
+  get currentChannel() {
+    return this.dataStore.channelStore.channels.get(this.dataStore.uiState.chat.selected);
+  }
 
   constructor(props: Props) {
     super(props);
