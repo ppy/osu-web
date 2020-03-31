@@ -4,8 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use App\Models\Country;
+use App\Models\User;
+use App\Models\UserAccountHistory;
 
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Faker\Generator $faker) {
     $existing_users = DB::table('phpbb_users')->get();
 
     $existing_names = [];
@@ -56,7 +58,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'osu_kudosdenied' => rand(1, 500),
         'osu_kudostotal' => rand(1, 500),
         'country_acronym' => $countryAcronym,
-        'osu_playstyle' => [array_rand(App\Models\User::PLAYSTYLES)],
+        'osu_playstyle' => [array_rand(User::PLAYSTYLES)],
         'user_website' => 'http://www.google.com/',
         'user_twitter' => 'ppy',
         'user_permissions' => '',
@@ -74,35 +76,35 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 foreach (['admin', 'bng', 'gmt', 'nat'] as $identifier) {
     $attribs = ['group_id' => app('groups')->byIdentifier($identifier)->getKey()];
 
-    $factory->state(App\Models\User::class, $identifier, function () use ($attribs) {
+    $factory->state(User::class, $identifier, function () use ($attribs) {
         return $attribs;
     });
 
-    $factory->afterCreatingState(App\Models\User::class, $identifier, function ($user) use ($attribs) {
+    $factory->afterCreatingState(User::class, $identifier, function ($user) use ($attribs) {
         $user->userGroups()->create($attribs);
     });
 }
 
-$factory->state(App\Models\User::class, 'restricted', function (Faker\Generator $faker) {
+$factory->state(User::class, 'restricted', function (Faker\Generator $faker) {
     return [
         'user_warnings' => 1,
     ];
 });
 
-$factory->afterCreatingState(App\Models\User::class, 'with_note', function ($user, $faker) {
+$factory->afterCreatingState(User::class, 'with_note', function ($user, $faker) {
     $user->accountHistories()->save(
-        factory(App\Models\UserAccountHistory::class)->states('note')->make()
+        factory(UserAccountHistory::class)->states('note')->make()
     );
 });
 
-$factory->afterCreatingState(App\Models\User::class, 'restricted', function ($user, $faker) {
+$factory->afterCreatingState(User::class, 'restricted', function ($user, $faker) {
     $user->accountHistories()->save(
-        factory(App\Models\UserAccountHistory::class)->states('restriction')->make()
+        factory(UserAccountHistory::class)->states('restriction')->make()
     );
 });
 
-$factory->afterCreatingState(App\Models\User::class, 'silenced', function ($user, $faker) {
+$factory->afterCreatingState(User::class, 'silenced', function ($user, $faker) {
     $user->accountHistories()->save(
-        factory(App\Models\UserAccountHistory::class)->states('silence')->make()
+        factory(UserAccountHistory::class)->states('silence')->make()
     );
 });
