@@ -5,9 +5,7 @@
 
 namespace Tests\Transformers;
 
-use App\Models\User;
 use App\Transformers\UserTransformer;
-use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class UserTransformerTest extends TestCase
