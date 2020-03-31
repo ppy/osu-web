@@ -19,16 +19,16 @@ return [
         ],
 
         'artists' => [
-            'index' => 'lista',
+            'index' => 'listado',
         ],
 
         'changelog' => [
-            'index' => 'lista',
+            'index' => 'listado',
         ],
 
         'help' => [
             'index' => 'índice',
-            'sitemap' => '',
+            'sitemap' => 'Mapa del sitio',
         ],
 
         'store' => [
@@ -116,7 +116,7 @@ return [
             'forum' => 'Foros de la Comunidad',
             'livestreams' => 'Transmisiones en vivo',
             'report' => 'Reportar un Error',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Estatus Legal',
@@ -146,7 +146,7 @@ return [
             'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Parámetro de solicitud no válido',
             'description' => '',
         ],
         '500' => [

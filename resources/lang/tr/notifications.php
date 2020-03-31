@@ -5,7 +5,7 @@
 
 return [
     'all_read' => 'Tüm bildirimler okundu!',
-    'mark_read' => '',
+    'mark_read' => 'Temizle: :type',
     'none' => 'Bildirim yok',
     'see_all' => 'tüm bildirimleri gör',
 
@@ -36,7 +36,7 @@ return [
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
+                '_' => 'Nitelikli Beatmap sorunu',
                 'beatmapset_discussion_qualified_problem' => ':username tarafından bildirildi ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => ':username tarafından bildirildi ":title"',
                 'beatmapset_discussion_qualified_problem_compact' => ':username tarafından rapor edildi: ":content"',

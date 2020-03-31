@@ -39,12 +39,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'approvata :timeago',
+            'loved' => 'amata :timeago',
+            'qualified' => 'qualificata :timeago',
+            'ranked' => 'classificata :timeago',
+            'submitted' => 'caricata :timeago',
+            'updated' => 'ultimo aggiornamento :timeago',
         ],
 
         'favourites' => [
@@ -52,7 +52,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Lascia Hype a questa mappa se ti sei divertito a giocarla per aiutarla ad avanzare allo stato <strong>Ranked</strong>.',
+            'action' => 'Lascia Hype a questa beatmap se ti sei divertito a giocarla per aiutare a renderla <strong>Classificata</strong>.',
 
             'current' => [
                 '_' => 'Questa mappa è attualmente :status.',

@@ -20,8 +20,8 @@ return [
             '401' => '',
             '405' => '',
             '422' => '',
-            '500' => '',
-            '503' => '',
+            '500' => 'bir şeyler yanlış',
+            '503' => 'bakım',
         ],
     ],
     'forum' => [
@@ -77,52 +77,52 @@ return [
             'index' => '',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'gruplar',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'indir',
+            'index' => 'kontrol paneli',
+            'search' => 'ara',
+            'support_the_game' => 'oyunu destekle',
+            'testflight' => 'beta testi',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'bilgi',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'canlı yayınlar',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'maçlar',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'gelişmeler',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'bildirim geçmişi',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'şifre sıfırlama',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'sıralama',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'turnuvalar',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'oyuncu bilgisi',
+            'disabled' => 'bildiri',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'bilgi tabanı',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [

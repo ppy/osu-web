@@ -62,7 +62,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'istek yetkilendirildi',
-        'own_clients' => '',
+        'own_clients' => 'sahip olunan istemciler',
         'title' => 'OAuth',
     ],
 

@@ -32,7 +32,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Dyskusje dla tej beatmapy są zablokowane i nie możesz jej nagłośnić",
             'guest' => 'Musisz się zalogować, aby nagłośnić tę beatmapę.',
             'hyped' => 'Już nagłośniono tę beatmapę.',
             'limit_exceeded' => 'Zużyto całą liczbę nagłośnień.',
@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Kraj nie występuje w bazie danych.',
         'invalid_discord' => 'Nieprawidłowa nazwa użytkownika na Discordzie.',
         'invalid_email' => "To nie wygląda na poprawny adres e-mail.",
+        'invalid_twitter' => '',
         'too_short' => 'Nowe hasło jest za krótkie.',
         'unknown_duplicate' => 'Nazwa użytkownika lub adres e-mail jest już w użyciu.',
         'username_available_in' => 'Ta nazwa użytkownika będzie dostępna za :duration.',

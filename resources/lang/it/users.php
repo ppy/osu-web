@@ -378,8 +378,8 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
             ],
         ],
         'post_count' => [
-            '_' => 'Ha contribuito :link',
-            'count' => ':count forum post |:count forum post',
+            '_' => 'Ha contribuito con :link',
+            'count' => ':count_delimited post nel forum|:count_delimited post nel forum',
         ],
         'rank' => [
             'country' => 'Rank del paese per :mode',
@@ -421,6 +421,7 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
     ],
 
     'view_mode' => [
+        'brick' => '',
         'card' => 'Vista a schede',
         'list' => 'Vista ad elenco',
     ],

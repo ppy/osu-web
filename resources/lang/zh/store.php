@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
         'old_cart' => '你的购物车已经过期，请重试。',
         'pay' => '使用 Paypal 支付',
-        'title_compact' => '',
+        'title_compact' => '结账',
 
         'has_pending' => [
             '_' => '你有未完成的支付，点击 :link 查看。',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => '由于你的支付是通过 eCheck 进行的，请再等待至多 10 天以使你的支付通过 PayPal 完成！',
-        'title_compact' => '',
+        'title_compact' => '账单',
 
         'status' => [
             'processing' => [

@@ -39,12 +39,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
+            'approved' => 'được chấp nhận :timeago',
+            'loved' => 'được yêu thích :timeago',
             'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'ranked' => 'được xếp hạng :timeago',
+            'submitted' => 'được đăng :timeago',
+            'updated' => 'cập nhật lần cuối :timeago',
         ],
 
         'favourites' => [
@@ -71,9 +71,9 @@ return [
 
             'report' => [
                 '_' => '',
-                'button' => '',
+                'button' => 'Báo cáo vấn đề',
                 'button_title' => '',
-                'link' => '',
+                'link' => 'đây',
             ],
         ],
 
@@ -141,13 +141,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
+            'ranked' => 'Đã được xếp hạng',
+            'approved' => 'Được Chấp Nhận',
+            'loved' => 'Được yêu thích',
+            'qualified' => 'Qualified',
             'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'pending' => 'Đang Chờ',
+            'graveyard' => 'Graveyard',
         ],
     ],
 ];

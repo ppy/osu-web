@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'الدولة ليست في قاعدة البيانات.',
         'invalid_discord' => 'اِسم خلاف غير صالح.',
         'invalid_email' => "لا يبدو وكأنه بريد الكتروني صالح.",
+        'invalid_twitter' => '',
         'too_short' => 'كلمة المرور الجديدة قصيرة جداً.',
         'unknown_duplicate' => 'اسم المستخدم أو عنوان البريد الإلكتروني مستخدمة مسبقاََ.',
         'username_available_in' => 'اسم المستخدم سيكون متوفرا للاِستعمال في :duration.',

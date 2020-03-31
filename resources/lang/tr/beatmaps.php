@@ -133,8 +133,8 @@ return [
                 'up' => 'Henüz pozitif oy yok',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'En son eksi oylar',
+                'up' => 'En son artı oylar',
             ],
         ],
     ],

@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Az ország nincs az adatbázisban.',
         'invalid_discord' => 'Érvénytelen Discord felhasználónév.',
         'invalid_email' => "Nem úgy néz ki, hogy ez érvényes e-mail cím lenne.",
+        'invalid_twitter' => '',
         'too_short' => 'Az új jelszó túl rövid.',
         'unknown_duplicate' => 'Ez a felhasználónév vagy e-mail cím már használatban van.',
         'username_available_in' => 'Ez a felhasználónév elérhető lesz :duration időn belül.',

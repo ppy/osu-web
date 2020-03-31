@@ -5,128 +5,128 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '405' => '',
-            '422' => '',
-            '500' => '',
-            '503' => '',
+            '404' => 'manquant',
+            '403' => 'interdite',
+            '401' => 'non autorisé',
+            '405' => 'manquant',
+            '422' => 'requête invalide',
+            '500' => 'quelque chose a cassé',
+            '503' => 'maintenance',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'forum',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'tableau de bord',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'tableau de bord',
+            'verify_link' => 'vérification du compte',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'artistes en vedette',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'messages de discussion beatmap',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'discussions sur la beatmap',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'collections de beatmaps',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'votes de la discussion beatmap',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'historique de la beatmap',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'tableau de bord',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'discussion de la beatmap',
+            'index' => 'liste des beatmaps',
+            'show' => 'informations de la beatmap',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'notes de MàJ',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'chat',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'commentaires',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'concours',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'tableau de bord',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'groupes',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'télécharger',
+            'index' => 'tableau de bord',
+            'search' => 'recherche',
+            'support_the_game' => 'soutenir le jeu',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'information',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'diffusions en direct',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'matches',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'actualités',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'historique des notifications',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'réinitialisation du mot de passe',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'classement',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'tournois',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'informations du joueur',
+            'disabled' => 'remarque',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'base de connaissances',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'informations du moddeur',
         ],
     ],
 ];
