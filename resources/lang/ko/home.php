@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'landing' => [
@@ -42,7 +27,7 @@ return [
         'title' => '검색',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => '비트맵을 검색하기 위해서 로그인',
             'more' => ':count개의 비트맵 검색 결과 더 보기',
             'more_simple' => '비트맵 검색 결과 더 보기',
             'title' => '비트맵',
@@ -51,7 +36,7 @@ return [
         'forum_post' => [
             'all' => '모든 포럼',
             'link' => '포럼 검색하기',
-            'login_required' => '',
+            'login_required' => '포럼을 검색하기 위해서 로그인',
             'more_simple' => '포럼 검색 결과 더 보기',
             'title' => '포럼',
 
@@ -72,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => '사용자를 검색하기 위해서 로그인',
             'more' => ':count명의 플레이어 검색 결과 더 보기',
             'more_simple' => '플레이어 검색 결과 더 보기',
             'more_hidden' => '플레이어 검색은 최대 :max명 까지 가능합니다. 다른 검색어로 시도해보세요.',

@@ -17,6 +17,7 @@
   line-height: normal;
 
   background-color: @osu-colour-b2;
+  cursor: pointer;
 
   .link-hover({
     color: white;
@@ -29,6 +30,17 @@
 
   &--changelog-index {
     margin: 40px 0;
+  }
+
+  &--chat-conversation-earlier-messages {
+    margin: 20px auto 0;
+  }
+
+  &--comment-replies {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: $padding-left;
+    font-weight: normal;
   }
 
   &--comments {
@@ -55,7 +67,7 @@
     margin: 10px auto 0;
   }
 
-  &[disabled], &.js-disabled {
+  &[data-disabled='1'], &.js-disabled {
     background-color: @osu-colour-b2;
   }
 
@@ -65,7 +77,7 @@
     position: absolute;
     display: none;
 
-    .@{_top}[disabled] &, .@{_top}.js-disabled & {
+    .@{_top}[data-disabled='1'] &, .@{_top}.js-disabled & {
       display: flex;
     }
   }
@@ -75,7 +87,7 @@
     margin: 0 -5px;
     display: flex;
 
-    .@{_top}[disabled] &, .@{_top}.js-disabled & {
+    .@{_top}[data-disabled='1'] &, .@{_top}.js-disabled & {
       opacity: 0;
     }
   }
@@ -91,10 +103,25 @@
     .@{_top}--notification-group & {
       color: #fff;
     }
+
+    .@{_top}--no-icon & {
+      display: none;
+    }
+
+    &--left {
+      .@{_top}--comment-replies & {
+        display: none;
+      }
+    }
   }
 
   &__label-text {
     margin: 0 5px;
     text-transform: uppercase;
+
+    .@{_top}--comment-replies & {
+      padding-right: 10px;
+      text-transform: none;
+    }
   }
 }

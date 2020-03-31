@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'landing' => [
@@ -25,7 +10,7 @@ return [
         'peak' => 'Peak, :count online users',
         'players' => 'มีผู้เล่นลงทะเบียนแล้ว <strong>:count</strong> คน',
         'title' => 'ยินดีต้อนรับ',
-        'see_more_news' => '',
+        'see_more_news' => 'ดูข่าวอื่นๆ เพิ่มเติม',
 
         'slogan' => [
             'main' => 'เกมดนตรีเล่นฟรีที่เริศที่สุดในสามโลก',
@@ -42,7 +27,7 @@ return [
         'title' => 'ค้นหา',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'เข้าสู่ระบบเพื่อค้นหาบีตแมป',
             'more' => ':count more beatmap search results',
             'more_simple' => 'ดูผลการค้นหาบีทแมพเพิ่มเติม',
             'title' => 'บีทแมพ',
@@ -51,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'ฟอรั่มทั้งหมด',
             'link' => 'ค้นหาตามฟอรัม',
-            'login_required' => '',
+            'login_required' => 'เข้าสู่ระบบเพื่อค้นหาฟอรั่ม',
             'more_simple' => 'See more forum search results',
             'title' => 'Forum',
 
@@ -72,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'เข้าสู่ระบบเพื่อค้นหาผู้ใช้',
             'more' => ':count more player search results',
             'more_simple' => 'See more player search results',
             'more_hidden' => 'ผลลัพธ์การค้นหาผู้เล่นจำกัดไว้ที่ :max คน ถ้าไม่เจอให้ลองเปลี่ยนคำค้นใหม่',
@@ -102,7 +87,7 @@ return [
                 'description' => 'เข้าเกมแล้วทำตามที่มันบอกเพื่อเข้าสู่ระบบ หรือไปสร้างบัญชีใหม่',
             ],
             'download' => [
-                'title' => 'ดาว์นโหลดเกม',
+                'title' => 'ดาวน์โหลดเกม',
                 'description' => 'กดปุ่มข้างบนเพื่อดาวน์โหลดตัวติดตั้ง โหลดเสร็จก็รันซะ',
             ],
             'beatmaps' => [
@@ -132,7 +117,7 @@ return [
         'beatmaps' => [
             'new' => 'Ranked Beatmaps อันใหม่',
             'popular' => 'บีตแมปยอดฮิต',
-            'by_user' => '',
+            'by_user' => 'โดย :user',
         ],
         'buttons' => [
             'download' => 'ดาวน์โหลด osu!',

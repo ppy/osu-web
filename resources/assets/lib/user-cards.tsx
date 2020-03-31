@@ -32,7 +32,12 @@ export class UserCards extends React.PureComponent<Props> {
 
               return (
                 <KeyContext.Provider key={user.id} value={user.id}>
-                  <UserCard activated={activated} mode={this.props.viewMode} modifiers={['has-outline', ...this.props.modifiers]} user={user} />
+                  <UserCard
+                    activated={activated}
+                    mode={this.props.viewMode}
+                    modifiers={['has-outline', ...this.props.modifiers]}
+                    user={user}
+                  />
                 </KeyContext.Provider>
               );
             })

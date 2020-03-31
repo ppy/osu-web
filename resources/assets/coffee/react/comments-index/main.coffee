@@ -40,7 +40,7 @@ export class Main extends React.Component
             el Comment,
               key: comment.id
               comment: comment
-              showReplies: false
+              expandReplies: false
               showCommentableMeta: true
               linkParent: true
               depth: 0

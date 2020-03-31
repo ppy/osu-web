@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
@@ -30,12 +15,12 @@ return [
     ],
     'error' => [
         'error' => [
-            '_' => 'エラー',
             '404' => '見つかりません',
-            '403' => '禁止されています',
-            '401' => '権限がありません',
+            '403' => 'アクセス禁止',
+            '401' => '未認証',
             '405' => '見つかりません',
-            '500' => '予期せぬエラーです',
+            '422' => '無効なリクエスト',
+            '500' => '予期せぬエラー',
             '503' => 'メンテナンス',
         ],
     ],
@@ -48,28 +33,33 @@ return [
     'main' => [
         'account_controller' => [
             'edit' => 'ダッシュボード',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => 'ダッシュボード',
-        ],
-        'friends_controller' => [
-            'index' => 'ダッシュボード',
-        ],
-        'home_controller' => [
-            'index' => 'ダッシュボード',
-            'get_download' => 'ダウンロード',
-            'search' => '検索',
-            'support_the_game' => 'ゲームを支援する',
-            'testflight' => 'testflight',
+            'verify_link' => 'アカウント認証',
         ],
         'artists_controller' => [
             '_' => '注目アーティスト',
         ],
-        'beatmap_discussions_controller' => [
-            '_' => 'ディスカッション',
-        ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'ディスカッション投稿',
+            '_' => 'ビートマップディスカッション投稿',
+        ],
+        'beatmap_discussions_controller' => [
+            '_' => 'ビートマップディスカッション',
+        ],
+        'beatmap_packs_controller' => [
+            '_' => 'ビートマップパック',
+        ],
+        'beatmapset_discussion_votes_controller' => [
+            '_' => 'ビートマップディスカッション投票',
+        ],
+        'beatmapset_events_controller' => [
+            '_' => 'ビートマップ履歴',
+        ],
+        'beatmapset_watches_controller' => [
+            'index' => 'ダッシュボード',
+        ],
+        'beatmapsets_controller' => [
+            'discussion' => 'ビートマップディスカッション',
+            'index' => 'ビートマップリスト',
+            'show' => 'ビートマップ情報',
         ],
         'changelog_controller' => [
             '_' => '更新履歴',
@@ -83,11 +73,36 @@ return [
         'contests_controller' => [
             '_' => 'コンテスト',
         ],
+        'friends_controller' => [
+            'index' => 'ダッシュボード',
+        ],
+        'groups_controller' => [
+            'show' => 'グループ',
+        ],
+        'home_controller' => [
+            'get_download' => 'ダウンロード',
+            'index' => 'ダッシュボード',
+            'search' => '検索',
+            'support_the_game' => 'ゲームを支援',
+            'testflight' => 'testflight',
+        ],
         'legal_controller' => [
-            '_' => 'インフォメーション',
+            '_' => '情報',
         ],
         'livestreams_controller' => [
-            '_' => 'ライブ配信',
+            '_' => 'ライブストリーム',
+        ],
+        'matches_controller' => [
+            '_' => 'マッチ',
+        ],
+        'news_controller' => [
+            '_' => 'ニュース',
+        ],
+        'notifications_controller' => [
+            '_' => '通知履歴',
+        ],
+        'password_reset_controller' => [
+            '_' => 'パスワードリセット',
         ],
         'ranking_controller' => [
             '_' => 'ランキング',
@@ -99,13 +114,19 @@ return [
             '_' => 'トーナメント',
         ],
         'users_controller' => [
-            'disabled' => 'お知らせ',
+            '_' => 'プレイヤー情報',
+            'disabled' => '通知',
         ],
         'wiki_controller' => [
-            'show' => 'ナレッジベース',
+            '_' => 'ナレッジベース',
         ],
     ],
     'store' => [
         '_' => 'osu!ストア',
+    ],
+    'users' => [
+        'modding_history_controller' => [
+            '_' => 'modder情報',
+        ],
     ],
 ];

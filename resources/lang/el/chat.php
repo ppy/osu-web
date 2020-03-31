@@ -1,25 +1,9 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
-    'limitation_notice' => 'ΣΗΜΕΙΩΣΗ: Μόνο όσοι χρησημοποιούν το <a href=":lazer_link">osu!lazer</a> ή την νέα ιστοσελίδα θα μπορούν να δέχονται προσωπικά μηνύματα μέσω του συστήματος.<br/>Εαν δεν είστε σίγουρος, στέιλτε τους μήνυμα μέσω του <a href=":oldpm_link">παλιού forum</a> αντί αυτού.',
     'talking_in' => 'μιλάτε στο: :channel',
     'talking_with' => 'μιλάτε με: :name',
     'title_compact' => 'συνομιλία',
@@ -43,7 +27,6 @@ return [
     'no-conversations' => [
         'howto' => "Ξεκινήστε συνομιλίες από προφίλ χρήστη ή usercard παράθυρο.",
         'lazer' => 'Δημόσια κανάλια που συνδέεστε μέσω του <a href=":link">osu!lazer</a> θα επίσης εμφανίζονται εδώ.',
-        'pm_limitations' => 'Μόνο τα άτομα που χρησιμοποιούν το <a href=":link">osu!lazer</a> ή τη νέα ιστοσελίδα θα λάμβάνουν PMs.',
         'title' => 'δεν υπάρχουν συνομιλίες',
     ],
 ];

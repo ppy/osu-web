@@ -10,7 +10,7 @@ return [
     'pinned' => 'pinned',
     'empty' => 'No comments yet.',
     'load_replies' => 'load replies',
-    'replies' => 'Replies',
+    'replies_count' => ':count_delimited reply|:count_delimited replies',
     'title' => 'Comments',
 
     'commentable_name' => [

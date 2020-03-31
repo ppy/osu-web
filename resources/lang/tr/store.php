@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
@@ -25,7 +10,7 @@ return [
 
     'cart' => [
         'checkout' => 'Ödeme',
-        'info' => '',
+        'info' => ':count_delimited ürün sepette (:subtotal)|:count_delimited ürün sepette (:subtotal)',
         'more_goodies' => 'Ödememi yapmadan önce başka eşyalara göz atmak istiyorum',
         'shipping_fees' => 'kargo ücretleri',
         'title' => 'Alışveriş Sepeti',
@@ -52,6 +37,7 @@ return [
         'delayed_shipping' => 'Şu an siparişlere boğulmuş durumdayız! Siparişinizi vermekte özgürsünüz ancak biz mevcut siparişleri yetiştirmekle uğraşırken **ek olarak 1-2 hafta gecikme** bekleyebilirsiniz.',
         'old_cart' => 'Sepetiniz güncel görünmediği için tekrar yüklendi, lütfen tekrar deneyin.',
         'pay' => 'Paypal ile Ödeme Yap',
+        'title_compact' => 'kasaya git',
 
         'has_pending' => [
             '_' => 'Tamamlanmamış ödemeleriniz var, görmek için :link tıklayın.',
@@ -68,6 +54,8 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Ödemenizin bir eCheck olması nedeniyle, ödemenizin PayPal\'dan temizlenmesi için 10 ekstra günü göz önüne alın!',
+        'title_compact' => '',
+
         'status' => [
             'processing' => [
                 'title' => 'Ödemeniz henüz onaylanmadı!',

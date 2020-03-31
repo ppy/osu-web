@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'defaults' => [
@@ -25,7 +10,6 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => 'administrator',
             'beatmapset' => 'zestaw beatmap',
             'beatmapset_covers' => 'tła zestawów beatmap',
             'contest' => 'konkurs',
@@ -35,79 +19,29 @@ return [
         ],
 
         'artists' => [
-            '_' => 'wyróżnieni artyści',
             'index' => 'lista',
-        ],
-
-        'beatmapsets' => [
-            '_' => 'beatmapa',
-            'discussions' => 'dyskusja',
-            'index' => 'lista',
-            'show' => 'informacje',
-            'packs' => 'paczki',
         ],
 
         'changelog' => [
-            '_' => 'zmiany',
             'index' => 'lista',
         ],
 
-        'community' => [
-            '_' => 'społeczność',
-            'comments' => 'komentarze',
-            'contests' => 'konkursy',
-            'forum' => 'forum',
-            'livestream' => 'na żywo',
-        ],
-
-        'error' => [
-            '_' => 'błąd',
-        ],
-
         'help' => [
-            '_' => 'wiki',
             'index' => 'strona główna',
-        ],
-
-        'home' => [
-            '_' => 'strona główna',
-            'password_reset' => 'zresetuj hasło',
-        ],
-
-        'matches' => [
-            '_' => 'historia meczu',
-        ],
-
-        'notice' => [
-            '_' => 'powiadomienie',
-        ],
-
-        'notifications' => [
-            '_' => 'powiadomienia',
-            'index' => 'historia',
-        ],
-
-        'rankings' => [
-            '_' => 'ranking',
+            'sitemap' => 'Mapa strony',
         ],
 
         'store' => [
-            '_' => 'sklep osu!',
             'cart' => 'koszyk',
-            'order' => 'faktura',
             'orders' => 'historia zamówień',
-            'product' => 'produkt',
             'products' => 'produkty',
         ],
 
         'tournaments' => [
-            '_' => 'turnieje',
             'index' => 'lista',
         ],
 
         'users' => [
-            '_' => 'użytkownik',
-            'forum_posts' => 'posty na forum',
             'modding' => 'modowanie',
             'show' => 'informacje',
         ],
@@ -122,34 +56,20 @@ return [
     ],
 
     'menu' => [
-        'home' => [
-            '_' => 'strona główna',
-            'account-edit' => 'ustawienia konta',
-            'account-verifyLink' => 'Weryfikacja zakończona',
-            'beatmapset-watches-index' => 'obserwowane dyskusje',
-            'changelog-build' => 'kompilacja',
-            'changelog-index' => 'zmiany',
-            'client_verifications-create' => 'Weryfikacja klienta osu!',
-            'forum-topic-watches-index' => 'subskrybcje wątków',
-            'friends-index' => 'znajomi',
-            'getDownload' => 'pobierz',
-            'getIcons' => 'ikony',
-            'groups-show' => 'grupy',
-            'index' => 'przegląd',
-            'legal-show' => 'informacje',
-            'messages-index' => 'wiadomości',
-            'news-index' => 'aktualności',
-            'news-show' => 'aktualności',
-            'password-reset-index' => 'zresetuj hasło',
-            'search' => 'wyszukiwarka',
-            'supportTheGame' => 'wspomóż grę',
-            'team' => 'zespół',
-            'testflight' => 'testy beta',
+        'beatmaps' => [
+            '_' => 'beatmapy',
+            'artists' => 'wyróżnieni artyści',
+            'index' => 'lista',
+            'packs' => 'paczki',
         ],
-        'profile' => [
-            '_' => 'profil',
-            'friends' => 'znajomi',
-            'settings' => 'ustawienia',
+        'community' => [
+            '_' => 'społeczność',
+            'chat' => 'czat',
+            'contests' => 'konkursy',
+            'dev' => 'rozwój',
+            'forum-forums-index' => 'forum',
+            'getLive' => 'na żywo',
+            'tournaments' => 'turnieje',
         ],
         'help' => [
             '_' => 'pomoc',
@@ -157,122 +77,28 @@ return [
             'getRules' => 'zasady',
             'getSupport' => 'pomoc techniczna',
             'getWiki' => 'wiki',
-            'wiki-show' => 'wiki',
         ],
-        'beatmaps' => [
-            '_' => 'beatmapy',
-            'artists' => 'wyróżnieni artyści',
-            'beatmap_discussion_posts-index' => 'posty w dyskusji',
-            'beatmap_discussions-index' => 'dyskusje',
-            'beatmapset_discussion_votes-index' => 'głosy w dyskusji',
-            'beatmapset_events-index' => 'historia zdarzeń zestawów beatmap',
-            'index' => 'lista',
-            'packs' => 'paczki',
-            'show' => 'informacje',
-        ],
-        'beatmapsets' => [
-            '_' => 'beatmapy',
-            'discussion' => 'modowanie',
+        'home' => [
+            '_' => 'strona główna',
+            'changelog-index' => 'zmiany',
+            'getDownload' => 'pobierz',
+            'news-index' => 'aktualności',
+            'search' => 'wyszukiwarka',
+            'team' => 'zespół',
         ],
         'rankings' => [
             '_' => 'rankingi',
-            'index' => 'globalny',
-            'performance' => 'globalny',
             'charts' => 'wyróżnionych',
-            'score' => 'punktowy',
             'country' => 'krajowy',
+            'index' => 'globalny',
             'kudosu' => 'kudosu',
-        ],
-        'community' => [
-            '_' => 'społeczność',
-            'chat' => 'czat',
-            'chat-index' => 'czat',
-            'dev' => 'rozwój',
-            'getForum' => 'forum',
-            'getLive' => 'na żywo',
-            'comments-index' => 'komentarze',
-            'comments-show' => 'komentarz',
-            'contests' => 'konkursy',
-            'profile' => 'profil',
-            'tournaments' => 'turnieje',
-            'tournaments-index' => 'turnieje',
-            'tournaments-show' => 'informacje o turnieju',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
-        ],
-        'multiplayer' => [
-            '_' => 'tryb wieloosobowy',
-            'show' => 'mecz',
-        ],
-        'error' => [
-            '_' => 'błąd',
-            '404' => 'nie znaleziono strony',
-            '403' => 'brak dostępu',
-            '401' => 'brak dostępu',
-            '405' => 'nie znaleziono strony',
-            '500' => 'coś się popsuło',
-            '503' => 'przerwa techniczna',
-        ],
-        'user' => [
-            '_' => 'użytkownik',
-            'getLogin' => 'zaloguj się',
-            'disabled' => 'wyłączone',
-
-            'register' => 'zarejestruj się',
-            'reset' => 'odzyskaj dostęp',
-            'new' => 'nowy',
-
-            'help' => 'Pomoc',
-            'logout' => 'Wyloguj się',
-            'messages' => 'Wiadomości',
-            'modding-history-discussions' => 'dyskusje',
-            'modding-history-events' => 'historia zdarzeń',
-            'modding-history-index' => 'historia użytkownika',
-            'modding-history-posts' => 'historia postów',
-            'modding-history-votesGiven' => 'głosy oddane',
-            'modding-history-votesReceived' => 'głosy otrzymane',
-            'notifications-index' => 'historia powiadomień',
-            'oauth_login' => 'zaloguj się, aby użyć oauth',
-            'oauth_request' => 'autoryzacja oauth',
-            'settings' => 'Ustawienia',
+            'score' => 'punktowy',
         ],
         'store' => [
             '_' => 'sklep',
-            'checkout-show' => 'kasa',
-            'getListing' => 'przedmioty',
             'cart-show' => 'koszyk',
-
-            'getCheckout' => 'płatność',
-            'getInvoice' => 'faktura',
+            'getListing' => 'przedmioty',
             'orders-index' => 'historia zamówień',
-            'products-show' => 'produkt',
-
-            'new' => 'nowy',
-            'home' => 'strona główna',
-            'index' => 'strona główna',
-            'thanks' => 'dzięki',
-        ],
-        'admin-forum' => [
-            '_' => 'admin::forum',
-            'forum-covers-index' => 'tła forum',
-        ],
-        'admin-store' => [
-            '_' => 'admin::store',
-            'orders-index' => 'zamówienia',
-            'orders-show' => 'zamówienie',
-        ],
-        'admin' => [
-            '_' => 'admin',
-            'beatmapsets-covers' => 'tła zestawu beatmap',
-            'logs-index' => 'logi',
-            'root' => 'strona główna',
-
-            'beatmapsets' => [
-                '_' => 'zestawy beatmap',
-                'show' => 'szczegóły',
-            ],
         ],
     ],
 
@@ -283,7 +109,6 @@ return [
             'changelog-index' => 'Zmiany',
             'beatmaps' => 'Beatmapy',
             'download' => 'Pobierz osu!',
-            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => 'Pomoc i społeczność',
@@ -291,6 +116,7 @@ return [
             'forum' => 'Forum',
             'livestreams' => 'Na żywo',
             'report' => 'Zgłoś problem',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Prawne i status',
@@ -318,6 +144,10 @@ return [
         '405' => [
             'error' => 'Nie znaleziono strony',
             'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",
+        ],
+        '422' => [
+            'error' => 'Parametr żądania jest nieprawidłowy',
+            'description' => '',
         ],
         '500' => [
             'error' => 'O nie! Coś się popsuło! ;_;',

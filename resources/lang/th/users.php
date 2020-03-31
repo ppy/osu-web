@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'deleted' => '[ผู้ใช้ที่ถูกลบ]',
@@ -70,24 +55,24 @@ return [
 
         'if_mistake' => [
             '_' => 'หากคิดว่าเป็น "เรื่องผิดพลาด" ให้ติดต่อเรา (ผ่านอีเมล์หรือกดปุ่ม "?" ที่ด้านล่างขวาของหน้านี้) เราขอบอกว่าทุกอย่างที่เราทำไปค่อนข้างมั่นใจและแน่นอนมาก เพราะทุกอย่างมาจากข้อมูลที่ชัดเจน และขอเตือนว่าเรามีสิทธิ์จะปฏิเสธคำขอของคุณหากเรารู้สึกว่าคุณทำตัวทุจริต',
-            'email' => '',
+            'email' => 'อีเมล',
         ],
 
         'reasons' => [
-            'compromised' => '',
+            'compromised' => 'บัญชีของคุณถือว่าถูกบุกรุก อาจถูกปิดใช้งานชั่วคราวในขณะที่มีการยืนยันตัวตน',
             'opening' => 'การที่บัญชีของคุณถูกระงับนั้นมาจากหลายสาเหตุด้วยกัน:',
 
             'tos' => [
                 '_' => '',
                 'community_rules' => 'กฎชุมชน',
-                'tos' => '',
+                'tos' => 'เงื่อนไขการใช้บริการ',
             ],
         ],
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "บัญชีของคุณไม่ได้ใช้งานมานาน",
         ],
     ],
 
@@ -95,10 +80,11 @@ return [
         '_' => 'ลงชื่อเข้าใช้',
         'button' => 'ลงชื่อเข้าใช้',
         'button_posting' => 'กำลังลงชื่อเข้าใช้…',
-        'email_login_disabled' => '',
+        'email_login_disabled' => '
+ขณะนี้การลงชื่อเข้าใช้ด้วยอีเมลถูกปิดใช้งาน กรุณาใช้ชื่อผู้ใช้แทน',
         'failed' => 'เข้าสู่ระบบไม่ถูกต้อง',
         'forgot' => 'ลืมรหัสผ่าน?',
-        'info' => '',
+        'info' => 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ',
         'locked_ip' => 'ที่อยู่ IP ของคุณถูกล็อก โปรดรอสักครู่',
         'password' => 'รหัสผ่าน',
         'register' => "ไม่มีแอคเคาท์ Osu! หรอ? สร้างเลยสิ",
@@ -435,6 +421,7 @@ return [
     ],
 
     'view_mode' => [
+        'brick' => '',
         'card' => 'มุมมองแบบการ์ด',
         'list' => 'มุมมองแบบรายการ',
     ],

@@ -7,6 +7,7 @@ interface Navigation {
 }
 
 export default interface NewsPostJson {
+  author: string;
   content?: string;
   edit_url: string;
   first_image?: string;

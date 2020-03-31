@@ -5,8 +5,13 @@ import Message from 'models/chat/message';
 import { PresenceJSON } from '../chat/chat-api-responses';
 import DispatcherAction from './dispatcher-action';
 
-export class ChatChannelPartAction implements DispatcherAction {
+export class ChatChannelLoadEarlierMessages implements DispatcherAction {
   constructor(public channelId: number) {
+  }
+}
+
+export class ChatChannelPartAction implements DispatcherAction {
+  constructor(public channelId: number, public shouldSync = true) {
   }
 }
 

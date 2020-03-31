@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'not_negative' => ':attribute não pode ser negativo.',
@@ -47,6 +32,7 @@ return [
         ],
 
         'hype' => [
+            'discussion_locked' => "",
             'guest' => 'Tens que estar com a sessão iniciada para hypear.',
             'hyped' => 'Já hypeaste este beatmap.',
             'limit_exceeded' => 'Usaste todo o teu hype.',
@@ -62,7 +48,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Não é permitido responder a comentários eliminados.',
-        'top_only' => '',
+        'top_only' => 'Não é permitido afixar uma resposta a um comentário.',
 
         'attributes' => [
             'message' => 'A mensagem',
@@ -137,6 +123,7 @@ return [
         'invalid_country' => 'País inexistente na base de dados.',
         'invalid_discord' => 'Nome de utilizador do Discord inválido.',
         'invalid_email' => "Não parece que seja um endereço de email válido.",
+        'invalid_twitter' => '',
         'too_short' => 'A nova palavra-passe é demasiado curta.',
         'unknown_duplicate' => 'Nome de utilizador e endereço de e-mail já usados.',
         'username_available_in' => 'Este nome de utilizador irá estar disponível para uso em :duration.',

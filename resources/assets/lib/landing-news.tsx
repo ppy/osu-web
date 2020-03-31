@@ -22,7 +22,7 @@ export function LandingNews({posts}: {posts: PostJson[]}) {
             <ShowMoreLink
               hasMore={true}
               loading={false}
-              hideIcon={true}
+              modifiers={['no-icon']}
               label={osu.trans('home.landing.see_more_news')}
               url={route('news.index')}
             />

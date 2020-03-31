@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
+  ChatChannelPartAction,
   ChatMessageAddAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
@@ -9,7 +10,7 @@ import {
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import { dispatchListener } from 'app-dispatcher';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import { ChannelJSON } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
@@ -160,7 +161,7 @@ export default class ChannelStore extends Store {
       }
 
       if (!presence.find((json) => json.channel_id === channel.channelId)) {
-          this.channels.delete(channel.channelId);
+        dispatch(new ChatChannelPartAction(channel.channelId, false));
       }
     });
 

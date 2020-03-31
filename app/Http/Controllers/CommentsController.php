@@ -103,7 +103,6 @@ class CommentsController extends Controller
             return $commentBundle->toArray();
         } else {
             $commentBundle->depth = 0;
-            $commentBundle->includeCommentableMeta = true;
             $commentBundle->includePinned = false;
 
             $commentPagination = new LengthAwarePaginator(

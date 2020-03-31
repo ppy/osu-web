@@ -271,8 +271,13 @@ class UserTransformer extends TransformerAbstract
     public function includeUserPreferences(User $user)
     {
         return $this->item($user, function ($user) {
+            $customization = $user->profileCustomization();
+
             return [
-                'ranking_expanded' => $user->profileCustomization()->ranking_expanded,
+                'ranking_expanded' => $customization->ranking_expanded,
+                'user_list_filter' => $customization->user_list_filter,
+                'user_list_sort' => $customization->user_list_sort,
+                'user_list_view' => $customization->user_list_view,
             ];
         });
     }

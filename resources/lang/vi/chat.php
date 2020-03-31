@@ -1,25 +1,9 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
-    'limitation_notice' => 'GHI CHÚ: Chỉ những người đang sử dụng trang web mới hoặc <a href=":lazer_link">osu!lazer</a> mới nhận tin nhắn thông qua hệ thống này.<br/>Nếu bạn không chắc, hãy gửi họ tin nhắn qua <a href=":oldpm_link">trang tin nhắn cũ</a>.',
     'talking_in' => 'đang trò chuyện ở :channel',
     'talking_with' => 'đang trò chuyện với :name',
     'title_compact' => 'chat',
@@ -43,7 +27,6 @@ return [
     'no-conversations' => [
         'howto' => "Bắt đầu cuộc trò chuyện từ trang cá nhân hoặc usercard của họ.",
         'lazer' => 'Những kênh công khai bạn tham gia qua <a href=":link">osu!lazer</a> cũng sẽ hiển thị tại đây.',
-        'pm_limitations' => 'Chỉ những người sử dụng trang web mới hoặc <a href=":link">osu!lazer</a> mới nhận tin nhắn.',
         'title' => 'chưa có cuộc trò chuyện nào',
     ],
 ];

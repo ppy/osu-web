@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'pinned_topics' => 'Kiinnitetyt Aiheet',
@@ -251,8 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Tämä aihe on lukittu, eikä siihen voida vastata',
             'to_0' => 'Avaa aihe',
+            'to_0_confirm' => '',
             'to_0_done' => 'Aihe on avattu',
             'to_1' => 'Lukitse aihe',
+            'to_1_confirm' => '',
             'to_1_done' => 'Aihe lukittu',
         ],
 
@@ -262,10 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Irrota aihe',
+            'to_0_confirm' => '',
             'to_0_done' => 'Aihe irrotettu',
             'to_1' => 'Kiinnitä aihe',
+            'to_1_confirm' => '',
             'to_1_done' => 'Aihe kiinnitetty',
             'to_2' => 'Kiinnitä aihe ja merkkaa ilmoitukseksi',
+            'to_2_confirm' => '',
             'to_2_done' => 'Aihe on kiinnitetty ja merkattu ilmoitukseksi',
         ],
 
