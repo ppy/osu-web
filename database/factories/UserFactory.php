@@ -8,31 +8,14 @@ use App\Models\User;
 use App\Models\UserAccountHistory;
 
 $factory->define(User::class, function (Faker\Generator $faker) {
-    $existing_users = DB::table('phpbb_users')->get();
+    $existingUsernames = User::pluck('username')->all();
 
-    $existing_names = [];
-    $existing_ids = [];
-
-    foreach ($existing_users as $existing_usr) {
-        $existing_ids[] = $existing_usr->user_id;
-        $existing_names[] = $existing_usr->username;
-    }
-
+    // Generate unique username
     $username = null;
-    $userid = null;
-
-    // Check username doesn't already exist
     while ($username === null) {
-        if (!in_array($uname = $faker->userName, $existing_names, true)) {
-            $username = substr(str_replace('.', ' ', $uname), 0, 15); // remove fullstops from username
-        }
-    }
-
-    // Generate a random unique ID
-    $userid = null;
-    while ($userid === null) {
-        if (!in_array($uid = rand(2, 600000), $existing_ids, true)) {
-            $userid = $uid;
+        $newName = $faker->userName;
+        if (!in_array($newName, $existingUsernames, true)) {
+            $username = substr(str_replace('.', ' ', $newName), 0, 15); // remove fullstops from username
         }
     }
 
@@ -47,7 +30,6 @@ $factory->define(User::class, function (Faker\Generator $faker) {
 
     return [
         'username' => $username,
-        'user_id' => $userid,
         'user_password' => $password,
         'user_email' => $faker->safeEmail,
         'user_lastvisit' => time(),
