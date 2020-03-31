@@ -60,12 +60,11 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
   }
 
   private addFriendModifier = (modifiers: string[]) => {
-    let friendState: undefined | UserRelationJson;
     let isFriend = false;
     let isMutual = false;
 
     if (currentUser.friends != null) {
-      friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
+      const friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
 
       if (friendState != null) {
         isFriend = true;
