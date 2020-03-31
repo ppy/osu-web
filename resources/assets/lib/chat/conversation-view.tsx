@@ -45,7 +45,7 @@ export default class ConversationView extends React.Component<Props> implements 
   private chatViewRef = React.createRef<HTMLDivElement>();
   private readonly dataStore: RootDataStore;
   private didSwitchChannel: boolean = true;
-  private firstMessage: Message | undefined;
+  private firstMessage?: Message;
   private unreadMarkerRef = React.createRef<HTMLDivElement>();
 
   constructor(props: Props) {
