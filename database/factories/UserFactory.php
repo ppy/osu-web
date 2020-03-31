@@ -3,9 +3,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Models\Country;
+
 $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     $existing_users = DB::table('phpbb_users')->get();
-    $countries = DB::table('osu_countries')->get()->toArray();
 
     $existing_names = [];
     $existing_ids = [];
@@ -33,15 +34,8 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         }
     }
 
-    // Get a random country
-    if (count($countries) > 0) {
-        $country = array_rand_val($countries);
-        if ($country->acronym) {
-            $country_ac = $country->acronym;
-        }
-    } else {
-        $country_ac = '';
-    }
+    // Get a random country (or blank)
+    $countryAcronym = array_rand_val(Country::pluck('acronym')) ?? '';
 
     // cache password hash to speed up tests (by not repeatedly calculating the same hash over and over)
     static $password = null;
@@ -61,7 +55,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'osu_kudosavailable' => rand(1, 500),
         'osu_kudosdenied' => rand(1, 500),
         'osu_kudostotal' => rand(1, 500),
-        'country_acronym' => $country_ac,
+        'country_acronym' => $countryAcronym,
         'osu_playstyle' => [array_rand(App\Models\User::PLAYSTYLES)],
         'user_website' => 'http://www.google.com/',
         'user_twitter' => 'ppy',
