@@ -75,9 +75,10 @@ class UserChannel extends Model
         $channelIds = $userChannels->pluck('channel_id');
 
         // including MAX(message_id) in above query is slow for large channels.
-        $lastMessageIds = Message::whereIn('channel_id', $channelIds)
+        $channelMessageIds = Message::whereIn('channel_id', $channelIds)
             ->groupBy('channel_id')
             ->select('channel_id')
+            ->selectRaw('MIN(message_id) as first_message_id')
             ->selectRaw('MAX(message_id) as last_message_id')
             ->get()
             ->keyBy('channel_id');
@@ -113,14 +114,17 @@ class UserChannel extends Model
 
         $collection = json_collection(
             $userChannels,
-            function ($userChannel) use ($byChannelId, $byUserId, $lastMessageIds, $userId) {
+            function ($userChannel) use ($byChannelId, $byUserId, $channelMessageIds, $userId) {
+                $messageEnds = $channelMessageIds[$userChannel->channel_id] ?? null;
+
                 $presence = [
                     'channel_id' => $userChannel->channel_id,
                     'type' => $userChannel->type,
                     'name' => $userChannel->name,
                     'description' => presence($userChannel->description),
                     'last_read_id' => $userChannel->last_read_id,
-                    'last_message_id' => optional($lastMessageIds[$userChannel->channel_id] ?? null)->last_message_id,
+                    'first_message_id' => optional($messageEnds)->first_message_id,
+                    'last_message_id' => optional($messageEnds)->last_message_id,
                 ];
 
                 if ($userChannel->type !== Channel::TYPES['public']) {
