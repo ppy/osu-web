@@ -274,6 +274,7 @@ class UserTransformer extends TransformerAbstract
             $customization = $user->profileCustomization();
 
             return [
+                'beatmapset_download' => $customization->beatmapset_download,
                 'ranking_expanded' => $customization->ranking_expanded,
                 'user_list_filter' => $customization->user_list_filter,
                 'user_list_sort' => $customization->user_list_sort,

@@ -6,6 +6,7 @@ import { Img2x } from 'img2x'
 import * as React from 'react'
 import { a, div, i, span, strong } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
+import OsuUrlHelper from 'osu-url-helper'
 el = React.createElement
 
 export class BeatmapsetPanel extends React.PureComponent
@@ -154,19 +155,7 @@ export class BeatmapsetPanel extends React.PureComponent
                   beatmapset.source
 
             div className: 'beatmapset-panel__icons-box',
-              if currentUser?.id
-                if beatmapset.availability.download_disabled
-                  div
-                    title: osu.trans('beatmapsets.availability.disabled')
-                    className: 'beatmapset-panel__icon beatmapset-panel__icon--disabled'
-                    i className: 'fas fa-lg fa-download'
-                else
-                  a
-                    href: laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
-                    title: osu.trans('beatmapsets.show.details.download._')
-                    className: 'beatmapset-panel__icon js-beatmapset-download-link'
-                    'data-turbolinks': 'false'
-                    i className: 'fas fa-lg fa-download'
+              @renderDownloadLink()
 
           div className: 'beatmapset-panel__difficulties', difficulties
       a
@@ -201,3 +190,42 @@ export class BeatmapsetPanel extends React.PureComponent
     @setState
       preview: 'ended'
       previewDuration: 0
+
+
+  renderDownloadLink: =>
+    return null unless currentUser.id?
+
+    beatmapset = @props.beatmap
+
+    if beatmapset.availability.download_disabled
+      return div
+        title: osu.trans('beatmapsets.availability.disabled')
+        className: 'beatmapset-panel__icon beatmapset-panel__icon--disabled'
+        i className: 'fas fa-lg fa-download'
+
+    type = currentUser.user_preferences.beatmapset_download
+    type = 'all' if type == 'direct' && !currentUser.is_supporter
+
+    switch type
+      when 'direct'
+        url = OsuUrlHelper.beatmapsetDownloadDirect beatmapset.id
+        title = osu.trans 'beatmapsets.panel.download.direct'
+      else
+        if beatmapset.video
+          switch type
+            when 'no_video'
+              url = laroute.route 'beatmapsets.download', beatmapset: beatmapset.id, noVideo: 1
+              title = osu.trans 'beatmapsets.panel.download.no_video'
+            else
+              url = laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
+              title = osu.trans 'beatmapsets.panel.download.video'
+        else
+          url = laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
+          title = osu.trans 'beatmapsets.panel.download.all'
+
+    a
+      href: url
+      title: title
+      className: 'beatmapset-panel__icon js-beatmapset-download-link'
+      'data-turbolinks': 'false'
+      i className: 'fas fa-lg fa-download'

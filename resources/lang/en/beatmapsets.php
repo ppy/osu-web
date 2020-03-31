@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => 'download',
+            'video' => 'download with video',
+            'no_video' => 'download without video',
+            'direct' => 'open in osu!direct',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Discussion',
 

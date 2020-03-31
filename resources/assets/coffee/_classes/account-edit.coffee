@@ -44,6 +44,13 @@ class @AccountEdit
       value = ['']
       for checkbox in form.querySelectorAll('input')
         value.push(checkbox.value) if checkbox.checked
+    else if form.dataset.accountEditType == 'radio'
+      prevValue = form.dataset.lastValue
+
+      for checkbox in form.querySelectorAll('input[type="radio"]')
+        if checkbox.checked
+          value = checkbox.value
+          break
     else
       prevValue = form.dataset.lastValue
 
