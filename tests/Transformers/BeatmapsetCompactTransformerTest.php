@@ -9,7 +9,7 @@ use App\Models\Beatmapset;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
-class BeatmapsetTransformerTest extends TestCase
+class BeatmapsetCompactTransformerTest extends TestCase
 {
     public function testHasFavouritedWithOAuthNormalScopes()
     {
