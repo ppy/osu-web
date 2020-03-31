@@ -10,11 +10,13 @@ import Message from './message';
 export default class Channel {
   @observable channelId: number;
   @observable description?: string;
+  firstMessageId: number = -1;
   @observable icon?: string;
   @observable lastMessageId: number = -1;
   @observable lastReadId?: number;
   @observable loaded: boolean = false;
   @observable loading: boolean = false;
+  @observable loadingEarlierMessages: boolean = false;
   @observable messages: Message[] = observable([]);
   @observable metaLoaded: boolean = false;
   @observable moderated: boolean = false;
@@ -22,7 +24,6 @@ export default class Channel {
   @observable newChannel: boolean = false;
   @observable type: ChannelType = 'NEW';
   @observable users: number[] = [];
-  private backlogSize: number = 100;
 
   @computed
   get isUnread(): boolean {
@@ -36,6 +37,18 @@ export default class Channel {
   @computed
   get exists(): boolean {
     return this.channelId > 0;
+  }
+
+  @computed
+  get hasEarlierMessages() {
+    return this.firstMessageId !== this.messages[0]?.messageId;
+  }
+
+  @computed
+  get minMessageId() {
+    const id = this.messages[0]?.messageId ?? -1;
+
+    return typeof id === 'number' ? id : -1;
   }
 
   @computed
@@ -59,6 +72,7 @@ export default class Channel {
       type: json.type,
 
       description: json.description,
+      firstMessageId: json.first_message_id,
       icon: json.icon,
       lastMessageId: json.last_message_id,
       lastReadId: json.last_read_id,
@@ -83,10 +97,6 @@ export default class Channel {
 
       if (!skipSort) {
         this.resortMessages();
-      }
-
-      if (this.messages.length > this.backlogSize) {
-        this.messages = _.drop(this.messages, this.messages.length - this.backlogSize);
       }
 
       const lastMessage = _(([] as Message[]).concat(messages))
@@ -140,7 +150,9 @@ export default class Channel {
     this.lastReadId = presence.last_read_id;
 
     const lastMessageId = _.max([this.lastMessageId, presence.last_message_id]);
-    this.lastMessageId = lastMessageId == null ? -1 : lastMessageId;
+    this.lastMessageId = lastMessageId ?? -1;
+
+    this.firstMessageId = presence.first_message_id ?? -1;
 
     this.users = presence.users;
     this.metaLoaded = true;
