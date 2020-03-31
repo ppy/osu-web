@@ -39,6 +39,7 @@ export class Main extends React.Component
       currentBeatmap ?= BeatmapHelper.default group: beatmaps
 
       @state =
+        beatmapset: props.beatmapset
         beatmaps: beatmaps
         currentBeatmap: currentBeatmap
         favcount: props.beatmapset.favourite_count
@@ -49,6 +50,12 @@ export class Main extends React.Component
         scores: []
         userScore: null
         userScorePosition: -1
+
+
+  setBeatmapset: (_e, {beatmapset}) =>
+    return unless beatmapset?
+
+    @setState beatmapset: beatmapset
 
 
   setCurrentScoreboard: (_e, {
@@ -139,7 +146,7 @@ export class Main extends React.Component
 
   toggleFavourite: =>
     @favouriteXhr = $.ajax
-      url: laroute.route('beatmapsets.favourites.store', beatmapset: @props.beatmapset.id)
+      url: laroute.route('beatmapsets.favourites.store', beatmapset: @state.beatmapset.id)
       method: 'post'
       dataType: 'json'
       data:
@@ -157,6 +164,7 @@ export class Main extends React.Component
       osu.ajaxError xhr
 
   componentDidMount: ->
+    $.subscribe 'beatmapset:set.beatmapsetPage', @setBeatmapset
     $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmap
     $.subscribe 'playmode:set.beatmapsetPage', @setCurrentPlaymode
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
@@ -181,7 +189,7 @@ export class Main extends React.Component
       @renderPageHeader()
       div className: 'osu-layout__row osu-layout__row--page-compact',
         el Header,
-          beatmapset: @props.beatmapset
+          beatmapset: @state.beatmapset
           beatmaps: @state.beatmaps
           currentBeatmap: @state.currentBeatmap
           hoveredBeatmap: @state.hoveredBeatmap
@@ -189,14 +197,14 @@ export class Main extends React.Component
           hasFavourited: @state.hasFavourited
 
         el Info,
-          beatmapset: @props.beatmapset
+          beatmapset: @state.beatmapset
           beatmap: @state.currentBeatmap
 
       div className: 'osu-layout__section osu-layout__section--extra',
-        if @props.beatmapset.can_be_hyped
+        if @state.beatmapset.can_be_hyped
           div className: 'osu-page osu-page--generic-compact',
             el Hype,
-              beatmapset: @props.beatmapset
+              beatmapset: @state.beatmapset
               currentUser: currentUser
 
         if @state.currentBeatmap.is_scoreable
@@ -216,7 +224,7 @@ export class Main extends React.Component
           el CommentsManager,
             component: Comments
             commentableType: 'beatmapset'
-            commentableId: @props.beatmapset.id
+            commentableId: @state.beatmapset.id
 
 
   renderPageHeader: =>
