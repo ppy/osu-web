@@ -5,10 +5,8 @@
 
 namespace App\Exceptions;
 
-use Exception;
-
 // This is used for model's saveOrExplode
-class ModelNotSavedException extends Exception
+class ModelNotSavedException extends SilencedException
 {
     public function getStatusCode()
     {
