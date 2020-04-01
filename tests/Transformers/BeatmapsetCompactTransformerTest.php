@@ -19,7 +19,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
     {
         $this->actAsScopedUser($this->viewer, Passport::scopes()->pluck('id')->all());
 
-        $json = json_item($this->beatmapset, 'BeatmapsetCompact');
+        $json = json_item($this->beatmapset, 'BeatmapsetCompact', ['has_favourited']);
         $this->assertArrayNotHasKey('has_favourited', $json);
     }
 
@@ -27,7 +27,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
     {
         $this->actAsScopedUser($this->viewer);
 
-        $json = json_item($this->beatmapset, 'BeatmapsetCompact');
+        $json = json_item($this->beatmapset, 'BeatmapsetCompact', ['has_favourited']);
         $this->assertArrayHasKey('has_favourited', $json);
     }
 
@@ -35,7 +35,7 @@ class BeatmapsetCompactTransformerTest extends TestCase
     {
         $this->actAsUser($this->viewer);
 
-        $json = json_item($this->beatmapset, 'BeatmapsetCompact');
+        $json = json_item($this->beatmapset, 'BeatmapsetCompact', ['has_favourited']);
         $this->assertArrayHasKey('has_favourited', $json);
     }
 
