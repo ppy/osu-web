@@ -333,7 +333,7 @@ class UserCompactTransformer extends TransformerAbstract
     protected function userProfileCustomization(User $user): UserProfileCustomization
     {
         if (!isset($this->userProfileCustomization)) {
-            $this->userProfileCustomization = $user->userProfileCustomization()->make();
+            $this->userProfileCustomization = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
         }
 
         return $this->userProfileCustomization;
