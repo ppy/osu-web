@@ -31,9 +31,18 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
     modifiers: [],
   };
 
+  readonly eventId = `user-card-brick-${osu.uuid()}`;
   readonly state: State = {
     backgroundLoaded: false,
   };
+
+  componentDidMount() {
+    $.subscribe(`friendButton:refresh.${this.eventId}`, this.refresh);
+  }
+
+  componentWillUnmount() {
+    $.unsubscribe(`.${this.eventId}`);
+  }
 
   render() {
     const modifiers = this.props.modifiers.concat(this.props.mode);
@@ -81,6 +90,10 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
 
   private onBackgroundLoad = () => {
     this.setState({ backgroundLoaded: true });
+  }
+
+  private refresh = () => {
+    this.forceUpdate();
   }
 
   private renderBackground() {
