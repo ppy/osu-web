@@ -7,6 +7,7 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 use League\Fractal;
 
 class UserCompactTransformer extends TransformerAbstract
@@ -60,6 +61,8 @@ class UserCompactTransformer extends TransformerAbstract
         'is_nat' => 'IsNotOAuth',
         'is_restricted' => 'IsNotOAuth',
     ];
+
+    protected $userProfileCustomization;
 
     public function transform(User $user)
     {
@@ -125,12 +128,12 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeCover(User $user)
     {
-        $profileCustomization = $user->userProfileCustomization;
+        $profileCustomization = $this->userProfileCustomization($user);
 
         return $this->primitive([
-            'custom_url' => $profileCustomization ? $profileCustomization->cover()->fileUrl() : null,
-            'url' => $profileCustomization ? $profileCustomization->cover()->url() : null,
-            'id' => $profileCustomization ? $profileCustomization->cover()->id() : null,
+            'custom_url' => $profileCustomization->cover()->fileUrl(),
+            'url' => $profileCustomization->cover()->url(),
+            'id' => $profileCustomization->cover()->id(),
         ]);
     }
 
@@ -317,7 +320,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeUserPreferences(User $user)
     {
-        $customization = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
+        $customization = $this->userProfileCustomization($user);
 
         return $this->primitive([
             'ranking_expanded' => $customization->ranking_expanded,
@@ -325,5 +328,13 @@ class UserCompactTransformer extends TransformerAbstract
             'user_list_sort' => $customization->user_list_sort,
             'user_list_view' => $customization->user_list_view,
         ]);
+    }
+
+    protected function userProfileCustomization(User $user): UserProfileCustomization {
+        if (!isset($this->userProfileCustomization)) {
+            $this->userProfileCustomization = $user->userProfileCustomization()->make();
+        }
+
+        return $this->userProfileCustomization;
     }
 }

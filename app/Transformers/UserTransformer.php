@@ -26,7 +26,7 @@ class UserTransformer extends UserCompactTransformer
     {
         $result = parent::transform($user);
 
-        $profileCustomization = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
+        $profileCustomization = $this->userProfileCustomization($user);
 
         return array_merge($result, [
             'cover_url' => $profileCustomization->cover()->url(),
