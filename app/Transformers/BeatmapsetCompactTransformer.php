@@ -105,7 +105,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
         $hypeValidation = $beatmapset->validateHypeBy($currentUser);
 
-        $ret = [
+        return $this->primitive([
             'can_delete' => !$beatmapset->isScoreable() && priv_check('BeatmapsetDelete', $beatmapset)->can(),
             'can_edit_metadata' => priv_check('BeatmapsetMetadataEdit', $beatmapset)->can(),
             'can_hype' => $hypeValidation['result'],
@@ -114,11 +114,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'is_watching' => BeatmapsetWatch::check($beatmapset, Auth::user()),
             'new_hype_time' => json_time($currentUser->newHypeTime()),
             'remaining_hype' => $currentUser->remainingHype(),
-        ];
-
-        return $this->item($beatmapset, function () use ($ret) {
-            return $ret;
-        });
+        ]);
     }
 
     public function includeDescription(Beatmapset $beatmapset)
@@ -188,9 +184,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             $result['ranking_eta'] = json_time($eta);
         }
 
-        return $this->item($beatmapset, function ($beatmapset) use ($result) {
-            return $result;
-        });
+        return $this->primitive($result);
     }
 
     public function includeUser(Beatmapset $beatmapset)
