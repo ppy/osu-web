@@ -25,6 +25,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'discussions',
         'events',
         'genre',
+        'has_favourited',
         'language',
         'nominations',
         'ratings',
