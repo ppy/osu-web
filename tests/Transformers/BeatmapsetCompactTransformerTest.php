@@ -76,6 +76,8 @@ class BeatmapsetCompactTransformerTest extends TestCase
 
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->viewer = $this->createUserWithGroup([]);
         $this->beatmapset = factory(Beatmapset::class)->create();
     }
