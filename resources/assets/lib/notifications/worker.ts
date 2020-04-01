@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import { dispatch } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
@@ -71,6 +56,7 @@ export default class Worker {
   userId: number | null = null;
   @observable private active: boolean = false;
   private endpoint?: string;
+  private firstLoadedAt?: Date;
   private readonly store = core.dataStore.notificationStore.unreadStacks;
   private timeout: TimeoutCollection = {};
   private ws: WebSocket | null | undefined;
@@ -160,7 +146,11 @@ export default class Worker {
     } else if (isNotificationEventNewJson(eventData)) {
       dispatch(new NotificationEventNew(eventData.data));
     } else if (isNotificationEventReadJson(eventData)) {
-      dispatch(NotificationEventRead.fromJson(eventData));
+      // ignore read events that occured before the bundle is loaded
+      const timestamp = new Date(eventData.data.timestamp);
+      if (this.firstLoadedAt != null && timestamp > this.firstLoadedAt) {
+        dispatch(NotificationEventRead.fromJson(eventData));
+      }
     } else if (isNotificationEventVerifiedJson(eventData)) {
       if (!this.hasData) {
         this.loadMore();
@@ -176,6 +166,9 @@ export default class Worker {
   @action loadBundle = (data: NotificationBootJson) => {
     dispatch(new NotificationEventMoreLoaded(data, { isWidget: true }));
     this.hasData = true;
+    if (this.firstLoadedAt == null) {
+      this.firstLoadedAt = new Date(data.timestamp);
+    }
   }
 
   @action loadMore = () => {
@@ -215,6 +208,10 @@ export default class Worker {
   }
 
   @action setUserId = (id: number | null) => {
+    if (id === this.userId) {
+      return;
+    }
+
     if (this.active) {
       this.destroy();
     }

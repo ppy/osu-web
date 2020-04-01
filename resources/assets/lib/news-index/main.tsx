@@ -1,26 +1,13 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import AdminMenu from 'admin-menu';
 import PostJson from 'interfaces/news-post-json';
+import NewsSidebarMetaJson from 'interfaces/news-sidebar-meta-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import NewsHeader from 'news-header';
+import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
 import PostItem from './post-item';
@@ -28,6 +15,7 @@ import PostItem from './post-item';
 interface Props {
   container: HTMLElement;
   data: PostsJson;
+  sidebarMeta: NewsSidebarMetaJson;
 }
 
 interface PostsJson {
@@ -38,6 +26,7 @@ interface PostsJson {
 interface Search {
   cursor: SearchCursor;
   limit: number;
+  year: number;
 }
 
 interface SearchCursor {
@@ -79,24 +68,27 @@ export default class Main extends React.Component<Props, State> {
           section='index'
           title={osu.trans('news.index.title.info')}
         />
-        <div className='osu-page osu-page--news'>
-          <div className='news-index'>
-            {this.state.posts.map((post, i) => {
-              let containerClass = 'news-index__item';
-              if (i === 0) {
-                containerClass += ' news-index__item--first';
-              }
+        <div className='osu-page osu-page--wiki'>
+          <div className='wiki-page'>
+            <div className='wiki-page__toc'>
+              <NewsSidebar data={this.props.sidebarMeta} />
+            </div>
 
-              return <div key={post.id} className={containerClass}><PostItem post={post} /></div>;
-            })}
+            <div className='wiki-page__content'>
+              <div className='news-index'>
+                {this.state.posts.map((post, i) => (
+                  <PostItem key={post.id} post={post} />
+                ))}
 
-            <div className='news-index__item news-index__item--more'>
-              <ShowMoreLink
-                callback={this.showMore}
-                hasMore={this.state.hasMore}
-                loading={this.state.loading}
-                modifiers={['t-dark-purple-dark']}
-              />
+                <div className='news-index__item news-index__item--more'>
+                  <ShowMoreLink
+                    callback={this.showMore}
+                    hasMore={this.state.hasMore}
+                    loading={this.state.loading}
+                    modifiers={['t-dark-purple-dark']}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -167,6 +159,7 @@ export default class Main extends React.Component<Props, State> {
     const search: Search = {
       cursor: {},
       limit: 21,
+      year: this.props.sidebarMeta.current_year,
     };
 
     const lastPost = _.last(this.state.posts);

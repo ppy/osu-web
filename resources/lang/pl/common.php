@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'confirmation' => 'Na pewno?',
@@ -36,6 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Administrator',
         'authorise' => 'Autoryzuj',
+        'authorising' => 'Autoryzowanie...',
         'back_to_previous' => 'Powrót do poprzedniej pozycji',
         'back_to_top' => 'Powrót na górę',
         'cancel' => 'Anuluj',
@@ -62,7 +48,7 @@ return [
         'see_more' => 'zobacz więcej',
         'show' => 'pokaż',
         'show_deleted' => 'Pokaż usunięte',
-        'show_less' => '',
+        'show_less' => 'pokaż mniej',
         'show_more' => 'pokaż więcej',
         'show_more_options' => 'pokaż więcej opcji',
         'unpin' => 'odepnij',
@@ -84,7 +70,7 @@ return [
         'minute_short_unit' => 'min|min|min',
         'minutes' => ':count_delimited minuta|:count_delimited minuty|:count_delimited minut',
         'months' => ':count_delimited miesiąc|:count_delimited miesiące|:count_delimited miesięcy',
-        'notifications' => '',
+        'notifications' => ':count_delimited powiadomienie|:count_delimited powiadomienia|:count_delimited powiadomień',
         'plus_others' => '+ jeszcze :count_delimited!',
         'post' => ':count_delimited post|:count_delimited posty|:count_delimited postów',
         'second_short_unit' => 's|s|s',

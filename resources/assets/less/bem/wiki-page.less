@@ -1,23 +1,9 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 .wiki-page {
   display: grid;
+  .fancy-scrollbar(); // for sidebar/table of contents. Placed here so it works in chromium
 
   @media @desktop {
     grid-template-columns: 250px 1fr;
@@ -28,32 +14,25 @@
     padding: 20px @gutter-v2;
 
     @media @desktop {
-      padding-left: 30px;
+      padding-left: @gutter-sidebar-desktop;
       padding-right: @gutter-v2-desktop;
     }
   }
 
   &__toc {
     background-color: @osu-colour-b4;
-    padding: 20px @gutter-v2;
-    position: sticky;
-    top: @nav2-height--pinned;
-    max-height: calc(100vh - @nav2-height--pinned);
-    overflow-y: auto;
+    border-radius: @border-radius-large;
+    padding: 10px @gutter-v2;
+    margin: 10px @gutter-v2;
 
     @media @desktop {
-      padding-right: 30px;
-      padding-left: @gutter-v2-desktop;
+      border-radius: 0;
+      top: @nav2-height--pinned;
+      position: sticky;
+      padding: 20px @gutter-sidebar-desktop 20px @gutter-v2-desktop;
+      margin: 0;
+      overflow-y: scroll;
+      max-height: calc(100vh - @nav2-height--pinned);
     }
-  }
-
-  &__toc-title {
-    text-transform: uppercase;
-    margin: 0 0 5px;
-    padding: 0;
-    color: #fff;
-    font-size: @font-size--normal;
-    font-style: normal;
-    font-weight: bold;
   }
 }

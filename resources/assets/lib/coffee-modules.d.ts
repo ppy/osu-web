@@ -1,3 +1,6 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 /* tslint:disable:max-classes-per-file */
 
 // importable coffeescript modules
@@ -46,24 +49,6 @@ declare module 'friend-button' {
 
 declare module 'img2x' {
   class Img2x extends React.PureComponent<any> {}
-}
-
-declare module 'show-more-link' {
-  interface Props {
-    callback?: () => void;
-    data?: any;
-    direction?: string;
-    event?: any;
-    hasMore?: boolean;
-    hideIcon?: boolean;
-    label?: string;
-    loading?: boolean;
-    modifiers?: string[];
-    remaining?: number;
-    url?: string;
-  }
-
-  class ShowMoreLink extends React.PureComponent<Props> {}
 }
 
 declare module 'spinner' {

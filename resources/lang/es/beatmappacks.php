@@ -1,36 +1,21 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'index' => [
-        'description' => 'Colecciones preempaquetadas de beatmaps basadas en un tema común.',
+        'description' => 'Colecciones preempaquetadas de mapas basadas en un tema común.',
         'nav_title' => 'listado',
         'title' => 'Paquetes de Beatmap',
 
         'blurb' => [
             'important' => 'LEE ESTO ANTES DE DESCARGAR',
             'instruction' => [
-                '_' => "Instalación: Una vez que un paquete haya sido descargado, extrae el archivo .rar en tu carpeta de canciones de osu!.
-                    Todas las canciones siguen en formato .zip y/o .osz dentro del paquete, así que osu! necesitará extraer los beatmaps por sí mismo la próxima vez que ingreses en Modos de Juego.
-                    :scary extraigas los zip's/osz's por ti mismo,
-                    o los beatmaps se mostratran incorrectamente en osu!, y no funcionarán correctamente.",
+                '_' => "Instalación: Una vez que un paquete ha sido descargado, extrae el archivo .rar en la carpeta Songs de osu!.
+                    Todas las canciones siguen siendo archivos .zip y/o .osz dentro del paquete, así que osu! tendrá que extraer los mapas por sí mismo la próxima vez que entres al modo de juego.
+                    :scary extraigas los archivos zip/osz por ti mismo,
+                    o los mapas se mostrarán incorrectamente en osu! y no funcionarán correctamente.",
                 'scary' => 'NUNCA',
             ],
             'note' => [
@@ -56,7 +41,7 @@ return [
     ],
 
     'require_login' => [
-        '_' => 'Necesitas :link para descargar',
+        '_' => 'Necesitas tener la :link para descargar',
         'link_text' => 'sesión iniciada',
     ],
 ];

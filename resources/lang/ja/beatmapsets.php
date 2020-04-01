@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'availability' => [
@@ -53,6 +38,15 @@ return [
             ],
         ],
 
+        'details_date' => [
+            'approved' => 'approved :timeago',
+            'loved' => 'loved :timeago',
+            'qualified' => 'qualified :timeago',
+            'ranked' => 'ranked :timeago',
+            'submitted' => '投稿 :timeago',
+            'updated' => '最終更新 :timeago',
+        ],
+
         'favourites' => [
             'limit_reached' => 'お気に入りのビートマップが多すぎます！お気に入りを外してから再試行してください。',
         ],
@@ -87,8 +81,8 @@ return [
             'description' => '概要',
             'genre' => 'ジャンル',
             'language' => '言語',
-            'no_scores' => 'データはまだ現在計算中です・・・',
-            'points-of-failure' => 'Fail地点',
+            'no_scores' => 'データはまだ計算中です・・・',
+            'points-of-failure' => '失敗地点',
             'source' => 'ソース',
             'success-rate' => 'クリア率',
             'tags' => 'タグ',
@@ -133,7 +127,7 @@ return [
             'cs' => 'サークルサイズ',
             'cs-mania' => 'キー数',
             'drain' => 'HPの厳しさ',
-            'accuracy' => '判定の厳しさ',
+            'accuracy' => '精度',
             'ar' => 'アプローチ速度',
             'stars' => '難易度（★）',
             'total_length' => '長さ',

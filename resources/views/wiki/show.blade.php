@@ -1,24 +1,10 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $url = wiki_url($page->path, $locale);
+    $url = wiki_url($page->path, $page->requestedLocale);
     $title = $page->title();
-    $subSection = $title;
 
     $links = [
         [
@@ -30,9 +16,8 @@
     $parentTitle = presence($page->subtitle());
     if ($parentTitle !== null) {
         $link = ['title' => $parentTitle];
-        $subSection = "{$parentTitle} / {$subSection}";
         if ($page->hasParent()) {
-            $link['url'] = wiki_url($page->parentPath(), $locale);
+            $link['url'] = wiki_url($page->parentPath(), $page->requestedLocale);
         }
         $links[] = $link;
     }
@@ -41,8 +26,6 @@
 @endphp
 
 @extends('master', [
-    'legacyFont' => false,
-    'title' => null,
     'titlePrepend' => $page->title(true),
 ])
 
@@ -50,8 +33,6 @@
     @component('layout._page_header_v4', ['params' => [
         'links' => $links,
         'linksBreadcrumb' => true,
-        'section' => trans('layout.header.help._'),
-        'subSection' => $subSection,
         'theme' => 'help',
     ]])
         @slot('navAppend')
@@ -62,14 +43,28 @@
 
     <div class="osu-page osu-page--wiki">
         <div class="wiki-page">
-            <div class="hidden-xs wiki-page__toc u-fancy-scrollbar">
-                <h2 class="wiki-page__toc-title">
-                    {{ trans('wiki.show.toc') }}
-                </h2>
+            <div class="wiki-page__toc">
+                <div class="sidebar">
+                    <button
+                        type="button"
+                        class="sidebar__mobile-toggle js-mobile-toggle"
+                        data-mobile-toggle-target="wiki-toc"
+                    >
+                        <h2 class="sidebar__title">
+                            {{ trans('wiki.show.toc') }}
+                        </h2>
 
-                @if ($page->get() !== null)
-                    @include('wiki._toc')
-                @endif
+                        <div class="visible-xs sidebar__mobile-toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </button>
+
+                    <div class="js-mobile-toggle hidden-xs sidebar__content" data-mobile-toggle-id="wiki-toc">
+                        @if ($page->get() !== null)
+                            @include('wiki._toc')
+                        @endif
+                    </div>
+                </div>
             </div>
 
             <div class="wiki-page__content">

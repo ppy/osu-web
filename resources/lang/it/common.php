@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'confirmation' => 'Sei sicuro?',
@@ -36,6 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Amministratore',
         'authorise' => 'Autorizza',
+        'authorising' => '',
         'back_to_previous' => 'Torna alla posizione precedente',
         'back_to_top' => 'Torna in cima',
         'cancel' => 'Cancella',
@@ -62,7 +48,7 @@ return [
         'see_more' => 'mostra altro',
         'show' => 'mostra',
         'show_deleted' => 'Mostra eliminati',
-        'show_less' => '',
+        'show_less' => 'mostra meno',
         'show_more' => 'mostra altro',
         'show_more_options' => 'mostra più opzioni',
         'unpin' => 'non fissare',
@@ -84,7 +70,7 @@ return [
         'minute_short_unit' => 'minuto|minuti',
         'minutes' => ':count_delimited minuto|:count_delimited minuti',
         'months' => ':count_delimited mese|:count_delimited mesi',
-        'notifications' => '',
+        'notifications' => ':count_delimited notifica|:count_delimited notifiche',
         'plus_others' => '+ :count_delimited altro!|+ :count_delimited altri!',
         'post' => ':count_delimited post|:count_delimited post',
         'second_short_unit' => 'secondo|secondi',

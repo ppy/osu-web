@@ -1,26 +1,11 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'all_read' => 'Összes értesítés elolvasva!',
-    'mark_all_read' => 'Összes törlése',
+    'mark_read' => '',
     'none' => '',
     'see_all' => '',
 
@@ -44,8 +29,8 @@ return [
                 'beatmapset_discussion_lock_compact' => 'A megbeszélést lezárták',
                 'beatmapset_discussion_post_new' => '',
                 'beatmapset_discussion_post_new_empty' => '',
-                'beatmapset_discussion_post_new_compact' => 'Új poszt :username -tól,-től',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact' => 'Új poszt :username által: ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Új poszt :username által',
                 'beatmapset_discussion_unlock' => '',
                 'beatmapset_discussion_unlock_compact' => '',
             ],
@@ -90,7 +75,7 @@ return [
                 'pm' => [
                     'channel_message' => '',
                     'channel_message_compact' => ':title',
-                    'channel_message_group' => ':username -tól/-től',
+                    'channel_message_group' => 'tőle: :username',
                 ],
             ],
         ],

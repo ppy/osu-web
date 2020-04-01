@@ -1,19 +1,6 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
 @if (optional(Auth::user())->isAdmin())
     @php
@@ -23,7 +10,6 @@
     @endphp
 @endif
 @extends('master', [
-    'currentSection' => 'beatmaps',
     'pageDescription' => $beatmapset->toMetaDescription(),
     'titlePrepend' => "{$beatmapset->artist} - {$beatmapset->title}",
     'extraFooterLinks' => $extraFooterLinks ?? [],
@@ -46,6 +32,14 @@
 
     <script id="json-comments-beatmapset-{{ $beatmapset->getKey() }}" type="application/json">
         {!! json_encode($commentBundle->toArray()) !!}
+    </script>
+
+    <script id="json-genres" type="application/json">
+        {!! json_encode($genres) !!}
+    </script>
+
+    <script id="json-languages" type="application/json">
+        {!! json_encode($languages) !!}
     </script>
 
     @include('layout._extra_js', ['src' => 'js/react/beatmapset-page.js'])

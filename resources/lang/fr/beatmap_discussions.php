@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'authorizations' => [
@@ -33,6 +18,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'supprimé',
+        'none_found' => 'Aucune discussion ne correspond à ce critère de recherche.',
         'title' => 'Discussions de Beatmap',
 
         'form' => [
@@ -81,11 +67,11 @@ return [
         'go_to_parent' => 'Voir l\'avis',
         'go_to_child' => 'Voir la discussion',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_block_type' => 'type de bloc invalide',
+            'invalid_document' => 'revue invalide',
+            'minimum_issues' => 'la revue doit contenir un minimum de :count problèmes|la revue doit contenir un minimum de :count problèmes',
+            'missing_text' => 'le bloc manque du texte',
+            'too_many_blocks' => 'les revues ne doivent contenir que :count paragraphes/problème|les revues doivent contenir jusqu\'à :count paragraphes/problèmes',
         ],
     ],
 

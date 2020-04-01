@@ -1,20 +1,5 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 import ClickToCopy from 'click-to-copy'
 import { CommentEditor } from 'comment-editor'
@@ -25,6 +10,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, span, textarea } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
+import { ShowMoreLink } from 'show-more-link'
 import { Spinner } from 'spinner'
 import { UserAvatar } from 'user-avatar'
 
@@ -48,10 +34,6 @@ export class Comment extends React.PureComponent
     else
       makePreviewElement.innerHTML = comment.messageHtml
       _.truncate makePreviewElement.textContent, length: 100
-
-
-  @defaultProps =
-    showReplies: true
 
 
   constructor: (props) ->
@@ -88,6 +70,7 @@ export class Comment extends React.PureComponent
       @children = uiState.getOrderedCommentsByParentId(@props.comment.id) ? []
       parent = store.comments.get(@props.comment.parentId)
       user = @userFor(@props.comment)
+      meta = commentableMetaStore.get(@props.comment.commentableType, @props.comment.commentableId)
 
       modifiers = @props.modifiers?[..] ? []
       modifiers.push 'top' if @props.depth == 0
@@ -100,7 +83,7 @@ export class Comment extends React.PureComponent
         className: osu.classWithModifiers 'comment', modifiers
 
         @renderRepliesToggle()
-        @renderCommentableMeta()
+        @renderCommentableMeta(meta)
 
         div className: "comment__main #{if @props.comment.isDeleted then 'comment__main--deleted' else ''}",
           if @props.comment.canHaveVote
@@ -112,6 +95,7 @@ export class Comment extends React.PureComponent
           div className: 'comment__container',
             div className: 'comment__row comment__row--header',
               @renderUsername user
+              @renderOwnerBadge(meta)
 
               if @props.comment.pinned
                 span
@@ -160,12 +144,12 @@ export class Comment extends React.PureComponent
               @renderDelete()
               @renderPin()
               @renderReport()
-              @renderRepliesText()
               @renderEditedBy()
+              @renderRepliesText()
 
             @renderReplyBox()
 
-        if @props.showReplies && @props.comment.repliesCount > 0
+        if @props.comment.repliesCount > 0
           div
             className: repliesClass
             @children.map @renderComment
@@ -191,6 +175,7 @@ export class Comment extends React.PureComponent
       depth: @props.depth + 1
       parent: @props.comment
       modifiers: @props.modifiers
+      expandReplies: @props.expandReplies
 
 
   renderDelete: =>
@@ -238,6 +223,13 @@ export class Comment extends React.PureComponent
                 _.escape editor.username
 
 
+  renderOwnerBadge: (meta) =>
+    return null unless @props.comment.userId == meta.owner_id
+
+    div className: 'comment__row-item',
+      div className: 'comment__owner-badge', meta.owner_title
+
+
   renderPermalink: =>
     div className: 'comment__row-item',
       span
@@ -251,31 +243,24 @@ export class Comment extends React.PureComponent
   renderRepliesText: =>
     return if @props.comment.repliesCount == 0
 
-    if @props.showReplies
-      if !@state.expandReplies && @children.length == 0
-        onClick = @loadReplies
-        label = osu.trans('comments.load_replies')
-      else
-        onClick = @toggleReplies
-        label = "#{osu.trans('comments.replies')} (#{osu.formatNumber(@props.comment.repliesCount)})"
-
-      label = "[#{if @state.expandReplies then '-' else '+'}] #{label}"
-
-      div className: 'comment__row-item',
-        button
-          type: 'button'
-          className: 'comment__action'
-          onClick: onClick
-          label
+    if !@state.expandReplies && @children.length == 0
+      callback = @loadReplies
+      label = osu.trans('comments.load_replies')
     else
-      div className: 'comment__row-item',
-        osu.trans('comments.replies')
-        ': '
-        osu.formatNumber(@props.comment.repliesCount)
+      callback = @toggleReplies
+      label = osu.transChoice('comments.replies_count', @props.comment.repliesCount)
+
+    div className: 'comment__row-item comment__row-item--replies',
+      el ShowMoreLink,
+        direction: if @state.expandReplies then 'up' else 'down'
+        hasMore: true
+        label: label
+        callback: callback
+        modifiers: ['comment-replies']
 
 
   renderRepliesToggle: =>
-    if @props.showReplies && @props.depth == 0 && @children.length > 0
+    if @props.depth == 0 && @children.length > 0
       div className: 'comment__float-container comment__float-container--right',
         button
           className: 'comment__top-show-replies'
@@ -295,7 +280,7 @@ export class Comment extends React.PureComponent
 
 
   renderReplyButton: =>
-    if @props.showReplies && !@props.comment.isDeleted
+    if !@props.comment.isDeleted
       div className: 'comment__row-item',
         button
           type: 'button'
@@ -386,9 +371,8 @@ export class Comment extends React.PureComponent
       "+#{osu.formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
 
 
-  renderCommentableMeta: =>
+  renderCommentableMeta: (meta) =>
     return unless @props.showCommentableMeta
-    meta = commentableMetaStore.get(@props.comment.commentableType, @props.comment.commentableId)
 
     if meta.url
       component = a

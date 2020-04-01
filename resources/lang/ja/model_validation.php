@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'not_negative' => ':attributeに負の数は使用できません',
@@ -37,16 +22,17 @@ return [
         'beatmap_missing' => 'タイムスタンプは存在しますがビートマップが見つかりませんでした',
         'beatmapset_no_hype' => "このビートマップはHypeできません。",
         'hype_requires_null_beatmap' => 'Hypeは一般（全ての難易度）セクションで行ってください。',
-        'invalid_beatmap_id' => '無効の難易度が指定されました。',
+        'invalid_beatmap_id' => '無効な難易度が指定されました。',
         'invalid_beatmapset_id' => '無効なビートマップが指定されました。',
         'locked' => 'ディスカッションはロックされています。',
 
         'attributes' => [
-            'message_type' => 'メッセージタイプ',
+            'message_type' => 'メッセージの種類',
             'timestamp' => 'タイムスタンプ',
         ],
 
         'hype' => [
+            'discussion_locked' => "このビートマップは議論中のためロックされており、Hypeできません。",
             'guest' => 'Hypeするにはログインが必要です。',
             'hyped' => '既にこのビートマップをHypeしています。',
             'limit_exceeded' => 'Hype回数が残っていません。',
@@ -62,6 +48,8 @@ return [
 
     'comment' => [
         'deleted_parent' => '削除されたコメントに返信することはできません。',
+        'top_only' => 'コメントの返信を固定することはできません。
+',
 
         'attributes' => [
             'message' => 'メッセージ',
@@ -83,8 +71,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'ビートマップのメタデータ投稿を削除するのは許可されていません。',
-            'beatmapset_post_no_edit' => 'ビートマップのメタデータ投稿を編集するのは許可されていません。',
+            'beatmapset_post_no_delete' => 'ビートマップのメタデータ投稿を削除することは許可されていません。',
+            'beatmapset_post_no_edit' => 'ビートマップのメタデータ投稿を編集することは許可されていません。',
             'only_quote' => 'あなたの返信には引用しかありません。',
 
             'attributes' => [
@@ -101,7 +89,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => '選択肢の重複があります。',
             'grace_period_expired' => ':limit時間以上後に投票を編集できません。',
-            'hiding_results_forever' => '終了しない投票の結果を隠すことはできません。',
+            'hiding_results_forever' => '投票期限が設定されていない投票の結果を隠すことはできません。',
             'invalid_max_options' => '選択数の上限に選択肢の数以上の数値は使用不可能です。',
             'minimum_one_selection' => '選択数は１が最低の数値です。',
             'minimum_two_options' => '選択肢は最低2つ必要です。',
@@ -114,7 +102,7 @@ return [
 
         'topic_vote' => [
             'required' => '投票する選択肢を選んでください。',
-            'too_many' => '許可されている選択肢の選択数を超えました。',
+            'too_many' => '許可されている選択肢より多くを選択しました。',
         ],
     ],
 
@@ -136,6 +124,7 @@ return [
         'invalid_country' => 'データベースに存在しない国です。',
         'invalid_discord' => 'Discordのユーザー名が無効です。',
         'invalid_email' => "無効なメールアドレスです。",
+        'invalid_twitter' => '',
         'too_short' => '新しいパスワードが短すぎます。',
         'unknown_duplicate' => 'ユーザー名かメールアドレスが既に使用されています。',
         'username_available_in' => 'このユーザー名は:durationで使用可能になります。',
@@ -144,14 +133,14 @@ return [
         'username_in_use' => '既に使用されているユーザー名です！',
         'username_locked' => '既に使用されているユーザー名です！', // TODO: language for this should be slightly different.
         'username_no_space_userscore_mix' => 'アンダーバーかスペースのどちらかに統一してください。',
-        'username_no_spaces' => "ユーザーネームの端にスペースは使用できません。",
-        'username_not_allowed' => 'このユーザーネームの使用は許可されていません。',
-        'username_too_short' => 'ユーザーネームが短すぎます。',
-        'username_too_long' => 'ユーザーネームが長すぎます。',
+        'username_no_spaces' => "ユーザー名の端にスペースは使用できません。",
+        'username_not_allowed' => 'このユーザー名の使用は許可されていません。',
+        'username_too_short' => 'ユーザー名が短すぎます。',
+        'username_too_long' => 'ユーザー名が長すぎます。',
         'weak' => 'ブラックリストに載っているパスワードです。',
-        'wrong_current_password' => 'パスワードが違います',
+        'wrong_current_password' => 'パスワードが間違っています。',
         'wrong_email_confirmation' => 'メールアドレスが一致しません。',
-        'wrong_password_confirmation' => 'パスワードの確認が一致しません。',
+        'wrong_password_confirmation' => 'パスワードが一致しません。',
         'too_long' => '使用文字数の制限を超えています。上限は:limit文字です。',
 
         'attributes' => [
@@ -166,7 +155,7 @@ return [
                 '_' => ':linkになったことがないと名前を変更できません！',
                 'link_text' => 'サポーター',
             ],
-            'username_is_same' => '既に使用しているユーザーネームです！',
+            'username_is_same' => '既に使用しているユーザー名です！',
         ],
     ],
 
@@ -178,7 +167,7 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '数量',
+                'quantity' => '個数',
                 'cost' => '価格',
             ],
         ],

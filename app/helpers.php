@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 /*
  * Like array_search but returns null if not found instead of false.
@@ -42,7 +27,7 @@ function background_image($url, $proxy = true)
         return '';
     }
 
-    $url = $proxy ? proxy_image($url) : $url;
+    $url = $proxy ? proxy_media($url) : $url;
 
     return sprintf(' style="background-image:url(\'%s\');" ', e($url));
 }
@@ -137,6 +122,28 @@ function cache_remember_with_fallback($key, $seconds, $callback)
     }
 
     return $data['value'] ?? null;
+}
+
+/**
+ * Marks the content in the key as expired but leaves the fallback set amount of time.
+ * Use with cache_remember_mutexed when the previous value needs to be shown while a key is being updated.
+ *
+ * @param string $key The key of the item to expire.
+ * @param int $duration The duration the fallback should still remain available for, in seconds. Default: 1 month.
+ * @return void
+ */
+function cache_expire_with_fallback(string $key, int $duration = 2592000)
+{
+    $fullKey = "{$key}:with_fallback";
+
+    $data = Cache::get($fullKey);
+
+    if ($data === null || $data['expires_at']->isPast()) {
+        return;
+    }
+
+    $data['expires_at'] = now()->addHour(-1);
+    Cache::put($fullKey, $data, $duration);
 }
 
 // Just normal Cache::forget but with the suffix.
@@ -434,6 +441,13 @@ function markdown($input, $preset = 'default')
     return $converter[$preset]->load($input)->html();
 }
 
+function max_offset($page, $limit)
+{
+    $offset = ($page - 1) * $limit;
+
+    return max(0, min($offset, config('osu.pagination.max_count') - $limit));
+}
+
 function mysql_escape_like($string)
 {
     return addcslashes($string, '%_\\');
@@ -694,6 +708,25 @@ function is_sql_unique_exception($ex)
     );
 }
 
+function page_title()
+{
+    $currentRoute = app('route-section')->getCurrent();
+    $checkLocale = config('app.fallback_locale');
+    $keys = [
+        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}",
+        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}._",
+        "page_title.{$currentRoute['namespace']}._",
+    ];
+
+    foreach ($keys as $key) {
+        if (trans_exists($key, $checkLocale)) {
+            return trans($key);
+        }
+    }
+
+    return 'unknown';
+}
+
 function ujs_redirect($url, $status = 200)
 {
     if (Request::ajax() && !Request::isMethod('get')) {
@@ -707,6 +740,12 @@ function ujs_redirect($url, $status = 200)
     }
 }
 
+// strips combining characters after x levels deep
+function unzalgo(?string $text, int $level = 2)
+{
+    return preg_replace("/(\pM{{$level}})\pM+/u", '\1', $text);
+}
+
 function route_redirect($path, $target)
 {
     return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
@@ -718,11 +757,6 @@ function timeago($date)
     $attribute_date = json_time($date);
 
     return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
-}
-
-function current_action()
-{
-    return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
 function link_to_user($id, $username = null, $color = null, $classNames = null)
@@ -786,7 +820,7 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function wiki_url($page = 'Main_Page', $locale = null)
+function wiki_url($page = 'Main_Page', $locale = null, $api = null)
 {
     // FIXME: remove `rawurlencode` workaround when fixed upstream.
     // Reference: https://github.com/laravel/framework/issues/26715
@@ -794,6 +828,10 @@ function wiki_url($page = 'Main_Page', $locale = null)
 
     if (present($locale) && $locale !== App::getLocale()) {
         $params['locale'] = $locale;
+    }
+
+    if ($api ?? is_api_request()) {
+        return route('api.wiki.show', $params);
     }
 
     return route('wiki.show', $params);
@@ -809,7 +847,7 @@ function bbcode_for_editor($text, $uid = null)
     return (new App\Libraries\BBCodeFromDB($text, $uid))->toEditor();
 }
 
-function proxy_image($url)
+function proxy_media($url)
 {
     // turn relative urls into absolute urls
     if (!preg_match('/^https?\:\/\//', $url)) {
@@ -899,13 +937,12 @@ function footer_landing_links()
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => route('download'),
-            'wiki' => wiki_url('Main_Page'),
         ],
         'help' => [
             'faq' => wiki_url('FAQ'),
             'forum' => route('forum.forums.index'),
             'livestreams' => route('livestreams.index'),
-            'report' => route('forum.topics.create', ['forum_id' => 5]),
+            'wiki' => wiki_url('Main_Page'),
         ],
         'legal' => footer_legal_links(),
     ];
@@ -1280,6 +1317,14 @@ function get_params($input, $namespace, $keys)
 
 function array_rand_val($array)
 {
+    if ($array instanceof Illuminate\Support\Collection) {
+        $array = $array->all();
+    }
+
+    if (count($array) === 0) {
+        return;
+    }
+
     return $array[array_rand($array)];
 }
 
@@ -1519,16 +1564,12 @@ function section_to_hue_map($section): int
 
     static $sectionMapping = [
         'admin' => 'red',
-        'admin-forum' => 'red',
-        'admin-store' => 'red',
         'beatmaps' => 'blue',
-        'beatmapsets' => 'blue',
         'community' => 'pink',
         'error' => 'pink',
         'help' => 'orange',
         'home' => 'purple',
         'multiplayer' => 'pink',
-        'notifications' => 'pink',
         'rankings' => 'green',
         'store' => 'darkorange',
         'user' => 'pink',

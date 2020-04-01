@@ -1,3 +1,7 @@
+{{--
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
+--}}
 <?php
     $descriptions = explode("\n---\n", $route['metadata']['description'] ?? '');
 
@@ -52,11 +56,20 @@
 `{{$method}} {{ $displayUri }}`
 
 @endforeach
+@if(count($route['urlParameters']))
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------ | -----------
+@foreach($route['urlParameters'] as $attribute => $parameter)
+    {{ $attribute }} | @if($parameter['required']) required @else optional @endif | {!! $parameter['description'] !!}
+@endforeach
+@endif
 @if(count($route['bodyParameters']))
 #### Body Parameters
 
 Parameter | Type | Status | Description
---------- | ------- | ------- | ------- | -----------
+--------- | ---- | ------ | -----------
 @foreach($route['bodyParameters'] as $attribute => $parameter)
     {{$attribute}} | {{$parameter['type']}} | @if($parameter['required']) required @else optional @endif | {!! $parameter['description'] !!}
 @endforeach
@@ -65,7 +78,7 @@ Parameter | Type | Status | Description
 #### Query Parameters
 
 Parameter | Status | Description
---------- | ------- | ------- | -----------
+--------- | ------ | -----------
 @foreach($route['queryParameters'] as $attribute => $parameter)
     {{$attribute}} | @if($parameter['required']) required @else optional @endif | {!! $parameter['description'] !!}
 @endforeach

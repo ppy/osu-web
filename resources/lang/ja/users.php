@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'deleted' => '[削除されたユーザー]',
@@ -47,10 +32,10 @@ return [
     ],
 
     'blocks' => [
-        'banner_text' => 'このユーザーにブロックされています。',
+        'banner_text' => 'このユーザーをブロックしています',
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
-        'not_blocked' => 'このユーザーにはブロックされていません。',
+        'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
         'too_many' => 'ブロックできる上限に達しました。',
         'button' => [
@@ -98,8 +83,8 @@ return [
         'email_login_disabled' => '現在、メールでのログインは無効になっています。代わりにユーザー名を使用してください。',
         'failed' => 'ログインに失敗しました',
         'forgot' => 'パスワードを忘れましたか？',
-        'info' => 'サインインして続行してください',
-        'locked_ip' => 'あなたのIPアドレスは規制されています。数分後もう一度お試しください。',
+        'info' => 'ログインして続行してください',
+        'locked_ip' => 'あなたのIPアドレスはロックされています。数分後もう一度お試しください。',
         'password' => 'パスワード',
         'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
         'remember' => 'ログイン状態を保持する',
@@ -107,7 +92,7 @@ return [
         'username' => 'ユーザー名',
 
         'beta' => [
-            'main' => 'ベータアクセスは権限があるユーザーのみに付与されます',
+            'main' => 'ベータアクセスは権限があるユーザーのみに付与されます。',
             'small' => '(osu!サポーターはすぐ手に入ります)',
         ],
     ],
@@ -151,7 +136,7 @@ return [
     ],
     'show' => [
         'age' => ':age歳',
-        'change_avatar' => 'アバター画像の変更',
+        'change_avatar' => 'プロフィール画像の変更',
         'first_members' => '創設時からのメンバー',
         'is_developer' => 'osu!開発者',
         'is_supporter' => 'osu!サポーター',
@@ -196,7 +181,7 @@ return [
             'unranked' => '最近のプレイはありません',
 
             'achievements' => [
-                'achieved-on' => '取得日時 :date',
+                'achieved-on' => '達成日 :date',
                 'locked' => 'ロック',
                 'title' => '実績',
             ],
@@ -347,7 +332,7 @@ return [
 
                 'recent_infringements' => [
                     'title' => '最近の違反',
-                    'date' => '日付',
+                    'date' => '発生日',
                     'action' => 'アクション',
                     'length' => '期間',
                     'length_permanent' => '永久',
@@ -393,10 +378,10 @@ return [
         ],
         'post_count' => [
             '_' => 'フォーラム投稿数 :link',
-            'count' => ':count個',
+            'count' => ':count_delimited個',
         ],
         'rank' => [
-            'country' => ':modeの国内ランク',
+            'country' => ':modeの国別ランク',
             'country_simple' => '国別ランキング',
             'global' => ':modeの世界ランク',
             'global_simple' => '世界ランキング',
@@ -428,13 +413,14 @@ return [
         'offline' => 'オフライン',
     ],
     'store' => [
-        'saved' => 'ユーザー作成',
+        'saved' => 'ユーザーが作成されました',
     ],
     'verify' => [
         'title' => 'アカウントの認証',
     ],
 
     'view_mode' => [
+        'brick' => '',
         'card' => 'カードビュー',
         'list' => '一覧表示',
     ],

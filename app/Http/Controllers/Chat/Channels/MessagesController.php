@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Http\Controllers\Chat\Channels;
 
@@ -45,8 +30,10 @@ class MessagesController extends BaseController
      *
      * @authenticated
      *
-     * @queryParam channel_id required The ID of the channel to retrieve messages for
+     * @urlParam channel_id required The ID of the channel to retrieve messages for
      * @queryParam limit number of messages to return (max of 50)
+     * @queryParam since messages after the specified message id will be returned
+     * @queryParam until messages up to but not including the specified message id will be returned
      *
      * @response [
      *   {
@@ -91,9 +78,11 @@ class MessagesController extends BaseController
      */
     public function index($channelId)
     {
+        $request = request()->all();
         $userId = Auth::user()->user_id;
-        $since = Request::input('since');
-        $limit = clamp(Request::input('limit', 50), 1, 50);
+        $since = get_int($request['since'] ?? null);
+        $until = get_int($request['until'] ?? null);
+        $limit = clamp(get_int($request['limit'] ?? null) ?? 50, 1, 50);
 
         $userChannel = UserChannel::where([
             'user_id' => $userId,
@@ -110,18 +99,19 @@ class MessagesController extends BaseController
 
         $messages = $userChannel->channel
             ->filteredMessages()
-            ->with('sender');
+            ->with('sender')
+            ->limit($limit);
 
-        if (presence($since)) {
+        if (present($since)) {
             $messages = $messages->where('message_id', '>', $since)
                 ->orderBy('message_id', 'asc')
-                ->limit($limit)
                 ->get();
         } else {
-            $messages = $messages->orderBy('message_id', 'desc')
-                ->limit($limit)
-                ->get()
-                ->reverse();
+            if (present($until)) {
+                $messages->where('message_id', '<', $until);
+            }
+
+            $messages = $messages->orderBy('message_id', 'desc')->get()->reverse();
         }
 
         return json_collection(

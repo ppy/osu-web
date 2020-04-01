@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'confirmation' => '確定？',
@@ -36,6 +21,7 @@ return [
     'buttons' => [
         'admin' => '管理員',
         'authorise' => '授權',
+        'authorising' => '',
         'back_to_previous' => '返回到上一個位置',
         'back_to_top' => '返回頂部',
         'cancel' => '取消',
@@ -49,7 +35,7 @@ return [
         'expand' => '展開',
         'hide' => '隱藏',
         'permalink' => '永久連結',
-        'pin' => '',
+        'pin' => '置頂',
         'post' => '發表',
         'reply' => '回覆',
         'reply_reopen' => '回覆並重新打開',
@@ -62,10 +48,10 @@ return [
         'see_more' => '查看更多',
         'show' => '顯示',
         'show_deleted' => '顯示刪除的項目',
-        'show_less' => '',
+        'show_less' => '收起',
         'show_more' => '顯示更多',
         'show_more_options' => '顯示更多選項',
-        'unpin' => '',
+        'unpin' => '取消置頂',
         'update' => '更新',
         'upload_image' => '上傳圖片',
 

@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import { ChannelJSON, ChannelType } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
@@ -25,11 +10,13 @@ import Message from './message';
 export default class Channel {
   @observable channelId: number;
   @observable description?: string;
+  firstMessageId: number = -1;
   @observable icon?: string;
   @observable lastMessageId: number = -1;
   @observable lastReadId?: number;
   @observable loaded: boolean = false;
   @observable loading: boolean = false;
+  @observable loadingEarlierMessages: boolean = false;
   @observable messages: Message[] = observable([]);
   @observable metaLoaded: boolean = false;
   @observable moderated: boolean = false;
@@ -37,7 +24,6 @@ export default class Channel {
   @observable newChannel: boolean = false;
   @observable type: ChannelType = 'NEW';
   @observable users: number[] = [];
-  private backlogSize: number = 100;
 
   @computed
   get isUnread(): boolean {
@@ -51,6 +37,18 @@ export default class Channel {
   @computed
   get exists(): boolean {
     return this.channelId > 0;
+  }
+
+  @computed
+  get hasEarlierMessages() {
+    return this.firstMessageId !== this.messages[0]?.messageId;
+  }
+
+  @computed
+  get minMessageId() {
+    const id = this.messages[0]?.messageId ?? -1;
+
+    return typeof id === 'number' ? id : -1;
   }
 
   @computed
@@ -74,6 +72,7 @@ export default class Channel {
       type: json.type,
 
       description: json.description,
+      firstMessageId: json.first_message_id,
       icon: json.icon,
       lastMessageId: json.last_message_id,
       lastReadId: json.last_read_id,
@@ -100,10 +99,6 @@ export default class Channel {
         this.resortMessages();
       }
 
-      if (this.messages.length > this.backlogSize) {
-        this.messages = _.drop(this.messages, this.messages.length - this.backlogSize);
-      }
-
       const lastMessage = _(([] as Message[]).concat(messages))
         .filter((message) => typeof message.messageId === 'number')
         .maxBy('messageId');
@@ -123,11 +118,7 @@ export default class Channel {
 
   @action
   resortMessages() {
-    let newMessages = this.messages.slice();
-    newMessages = _.sortBy(newMessages, 'timestamp');
-    newMessages = _.uniqBy(newMessages, 'messageId');
-
-    this.messages = newMessages;
+    this.messages = _(this.messages).sortBy('timestamp').uniqBy('messageId').value();
   }
 
   @action
@@ -159,7 +150,9 @@ export default class Channel {
     this.lastReadId = presence.last_read_id;
 
     const lastMessageId = _.max([this.lastMessageId, presence.last_message_id]);
-    this.lastMessageId = lastMessageId == null ? -1 : lastMessageId;
+    this.lastMessageId = lastMessageId ?? -1;
+
+    this.firstMessageId = presence.first_message_id ?? -1;
 
     this.users = presence.users;
     this.metaLoaded = true;

@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
 import * as _ from 'lodash';
@@ -23,6 +8,7 @@ import { Name, TYPES } from 'models/notification-type';
 import { NotificationContext } from 'notifications-context';
 import LegacyPm from 'notifications/legacy-pm';
 import NotificationController from 'notifications/notification-controller';
+import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { ShowMoreLink } from 'show-more-link';
@@ -63,7 +49,10 @@ export default class Main extends React.Component<Props, State> {
         <div className={blockClass}>
           <div className='notification-popup__scroll-container'>
             {this.renderFilters()}
-            {this.renderHistoryLink()}
+            <div className='notification-popup__filters'>
+              {this.renderHistoryLink()}
+              {this.renderMarkAsReadButton()}
+            </div>
             {this.renderLegacyPm()}
             <div className='notification-stacks'>
               {this.renderStacks()}
@@ -78,6 +67,10 @@ export default class Main extends React.Component<Props, State> {
   private handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const type = ((event.currentTarget as HTMLButtonElement).dataset.type ?? null) as Name;
     this.controller.navigateTo(type);
+  }
+
+  private handleMarkAsRead = () => {
+    this.controller.type.markTypeAsRead();
   }
 
   private handleShowMore = () => {
@@ -126,6 +119,19 @@ export default class Main extends React.Component<Props, State> {
     if (this.controller.currentFilter != null) return;
 
     return <LegacyPm />;
+  }
+
+  private renderMarkAsReadButton() {
+    const type = this.controller.type;
+    if (type.isEmpty) return null;
+
+    return (
+      <NotificationReadButton
+        isMarkingAsRead={type.isMarkingAsRead}
+        onMarkAsRead={this.handleMarkAsRead}
+        text={osu.trans('notifications.mark_read', { type: osu.trans(`notifications.filters.${type.name ?? '_'}`) })}
+      />
+    );
   }
 
   private renderShowMore() {

@@ -1,20 +1,5 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 @import "app";
 
@@ -141,8 +126,16 @@
 .default-header-overlay() {
   &::before {
     .full-size();
-    content: ' ';
-    background-image: linear-gradient(osu-hsla(@osu-colour-b6, 0.3), osu-hsla(@osu-colour-b6, 0.8));
+    content: '';
+    background-color: osu-hsla(@osu-colour-b1, 80%);
+  }
+}
+
+.light-header-overlay() {
+  &::before {
+    .full-size();
+    content: '';
+    background-color: osu-hsla(@osu-colour-b5, 60%);
   }
 }
 
@@ -259,6 +252,10 @@
   box-shadow: 0 10px 20px fade(#000, 25%);
 }
 
+.solid-text-shadow() {
+  text-shadow: 0 1px 1px fade(#000, 75%);
+}
+
 .default-text-shadow() {
   text-shadow: 0 1px 3px fade(#000, 75%);
 }
@@ -352,7 +349,6 @@
 .content-font() {
   font-family: var(--font-content-override, var(--font-content));
   line-height: 1.35;
-  color: #444;
 }
 
 .default-font() {

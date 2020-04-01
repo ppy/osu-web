@@ -1,44 +1,26 @@
 <?php
 
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
-    $existing_users = DB::table('phpbb_users')->get();
-    $countries = DB::table('osu_countries')->get()->toArray();
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-    $existing_names = [];
-    $existing_ids = [];
+use App\Models\Country;
+use App\Models\User;
+use App\Models\UserAccountHistory;
 
-    foreach ($existing_users as $existing_usr) {
-        $existing_ids[] = $existing_usr->user_id;
-        $existing_names[] = $existing_usr->username;
-    }
+$factory->define(User::class, function (Faker\Generator $faker) {
+    $existingUsernames = User::pluck('username')->all();
 
+    // Generate unique username
     $username = null;
-    $userid = null;
-
-    // Check username doesn't already exist
     while ($username === null) {
-        if (!in_array($uname = $faker->userName, $existing_names, true)) {
-            $username = substr(str_replace('.', ' ', $uname), 0, 15); // remove fullstops from username
+        $newName = $faker->userName;
+        if (!in_array($newName, $existingUsernames, true)) {
+            $username = substr(str_replace('.', ' ', $newName), 0, 15); // remove fullstops from username
         }
     }
 
-    // Generate a random unique ID
-    $userid = null;
-    while ($userid === null) {
-        if (!in_array($uid = rand(2, 600000), $existing_ids, true)) {
-            $userid = $uid;
-        }
-    }
-
-    // Get a random country
-    if (count($countries) > 0) {
-        $country = array_rand_val($countries);
-        if ($country->acronym) {
-            $country_ac = $country->acronym;
-        }
-    } else {
-        $country_ac = '';
-    }
+    // Get a random country (or blank)
+    $countryAcronym = array_rand_val(Country::pluck('acronym')) ?? '';
 
     // cache password hash to speed up tests (by not repeatedly calculating the same hash over and over)
     static $password = null;
@@ -48,7 +30,6 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 
     return [
         'username' => $username,
-        'user_id' => $userid,
         'user_password' => $password,
         'user_email' => $faker->safeEmail,
         'user_lastvisit' => time(),
@@ -58,8 +39,8 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'osu_kudosavailable' => rand(1, 500),
         'osu_kudosdenied' => rand(1, 500),
         'osu_kudostotal' => rand(1, 500),
-        'country_acronym' => $country_ac,
-        'osu_playstyle' => [array_rand(App\Models\User::PLAYSTYLES)],
+        'country_acronym' => $countryAcronym,
+        'osu_playstyle' => [array_rand(User::PLAYSTYLES)],
         'user_website' => 'http://www.google.com/',
         'user_twitter' => 'ppy',
         'user_permissions' => '',
@@ -77,29 +58,35 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 foreach (['admin', 'bng', 'gmt', 'nat'] as $identifier) {
     $attribs = ['group_id' => app('groups')->byIdentifier($identifier)->getKey()];
 
-    $factory->state(App\Models\User::class, $identifier, function () use ($attribs) {
+    $factory->state(User::class, $identifier, function () use ($attribs) {
         return $attribs;
     });
 
-    $factory->afterCreatingState(App\Models\User::class, $identifier, function ($user) use ($attribs) {
+    $factory->afterCreatingState(User::class, $identifier, function ($user) use ($attribs) {
         $user->userGroups()->create($attribs);
     });
 }
 
-$factory->state(App\Models\User::class, 'restricted', function (Faker\Generator $faker) {
+$factory->state(User::class, 'restricted', function (Faker\Generator $faker) {
     return [
         'user_warnings' => 1,
     ];
 });
 
-$factory->afterCreatingState(App\Models\User::class, 'restricted', function ($user, $faker) {
+$factory->afterCreatingState(User::class, 'with_note', function ($user, $faker) {
     $user->accountHistories()->save(
-        factory(App\Models\UserAccountHistory::class)->states('restriction')->make()
+        factory(UserAccountHistory::class)->states('note')->make()
     );
 });
 
-$factory->afterCreatingState(App\Models\User::class, 'silenced', function ($user, $faker) {
+$factory->afterCreatingState(User::class, 'restricted', function ($user, $faker) {
     $user->accountHistories()->save(
-        factory(App\Models\UserAccountHistory::class)->states('silence')->make()
+        factory(UserAccountHistory::class)->states('restriction')->make()
+    );
+});
+
+$factory->afterCreatingState(User::class, 'silenced', function ($user, $faker) {
+    $user->accountHistories()->save(
+        factory(UserAccountHistory::class)->states('silence')->make()
     );
 });

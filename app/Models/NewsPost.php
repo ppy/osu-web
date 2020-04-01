@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
 
@@ -89,6 +74,8 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
             $query->orderBy('published_at', 'DESC')->orderBy('id', 'DESC');
         }
 
+        $query->year(get_int($params['year'] ?? null));
+
         $query->limit($limit);
 
         return [
@@ -155,6 +142,32 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
             ->where('published_at', '<=', Carbon::now());
     }
 
+    public function scopeYear($query, $year)
+    {
+        if ($year !== null) {
+            return $query
+                ->where('published_at', '>=', Carbon::create($year))
+                ->where('published_at', '<', Carbon::create($year + 1));
+        }
+    }
+
+    public function author()
+    {
+        if (!isset($this->page['header']['author']) && !isset($this->page['author'])) {
+            $authorLine = array_last(explode("\n", trim(strip_tags($this->bodyHtml()))));
+
+            if (preg_match('/^[—–][^—–]/', $authorLine) === false) {
+                $author = 'osu!news Team';
+            } else {
+                $author = mb_substr($authorLine, 1);
+            }
+
+            $this->update(['page' => array_merge($this->page, compact('author'))]);
+        }
+
+        return $this->page['author'];
+    }
+
     public function commentableTitle()
     {
         return $this->title();
@@ -215,11 +228,18 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     {
         if (!array_key_exists('newer', $this->adjacent)) {
             $this->adjacent['newer'] = static
-                ::where('published_at', '>=', $this->published_at)
-                ->where('id', '<>', $this->getKey())
-                ->orderBy('published_at', 'ASC')
-                ->orderBy('id', 'ASC')
-                ->first() ?? null;
+                ::cursorWhere([
+                    [
+                        'column' => 'published_at',
+                        'order' => 'ASC',
+                        'value' => $this->published_at,
+                    ],
+                    [
+                        'column' => 'id',
+                        'order' => 'ASC',
+                        'value' => $this->getKey(),
+                    ],
+                ])->first() ?? null;
         }
 
         return $this->adjacent['newer'];
@@ -229,11 +249,18 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     {
         if (!array_key_exists('older', $this->adjacent)) {
             $this->adjacent['older'] = static
-                ::where('published_at', '<=', $this->published_at)
-                ->where('id', '<>', $this->getKey())
-                ->orderBy('published_at', 'DESC')
-                ->orderBy('id', 'DESC')
-                ->first() ?? null;
+                ::cursorWhere([
+                    [
+                        'column' => 'published_at',
+                        'order' => 'DESC',
+                        'value' => $this->published_at,
+                    ],
+                    [
+                        'column' => 'id',
+                        'order' => 'DESC',
+                        'value' => $this->getKey(),
+                    ],
+                ])->first() ?? null;
         }
 
         return $this->adjacent['older'];

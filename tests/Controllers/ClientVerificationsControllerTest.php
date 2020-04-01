@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 namespace Tests\Controllers;
 
 use App\Models\User;
@@ -75,9 +78,14 @@ class ClientVerificationsControllerTest extends TestCase
         $this->assertSame($initialCount, UserClient::count());
         $this->assertFalse(UserClient::lookupOrNew($user->getKey(), $hash)->exists);
 
+        $returnUrl = route('client-verifications.create', ['ch' => $hash]);
+
         $this->actingAsVerified($user)
             ->post($url)
-            ->assertSuccessful()
+            ->assertRedirect($returnUrl);
+
+        $this->actingAsVerified($user)
+            ->get($returnUrl)
             ->assertViewIs('client_verifications.completed');
 
         $this->assertSame($initialCount + 1, UserClient::count());
@@ -85,7 +93,10 @@ class ClientVerificationsControllerTest extends TestCase
 
         $this->actingAsVerified($user)
             ->post($url)
-            ->assertSuccessful()
+            ->assertRedirect($returnUrl);
+
+        $this->actingAsVerified($user)
+            ->get($returnUrl)
             ->assertViewIs('client_verifications.completed');
 
         $this->assertSame($initialCount + 1, UserClient::count());

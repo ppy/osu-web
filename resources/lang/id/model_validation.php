@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'not_negative' => ':attribute tidak bisa negatif.',
@@ -47,10 +32,11 @@ return [
         ],
 
         'hype' => [
+            'discussion_locked' => "Anda tidak dapat memberikan hype karena fitur diskusi untuk beatmap ini sedang dibekukan oleh moderator",
             'guest' => 'Silakan masuk untuk dapat memberikan hype.',
             'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
             'limit_exceeded' => 'Anda telah menggunakan semua hype Anda.',
-            'not_hypeable' => 'Beatmap ini tidak dapat dihype.',
+            'not_hypeable' => 'Beatmap ini tidak dapat di-hype.',
             'owner' => 'Tidak dapat memberikan hype pada beatmap anda sendiri.',
         ],
 
@@ -62,6 +48,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Membalas komentar yang sudah dihapus tidak diperbolehkan.',
+        'top_only' => 'Tidak diperbolehkan menyemat balasan komentar.',
 
         'attributes' => [
             'message' => 'Isi pesan',
@@ -136,6 +123,7 @@ return [
         'invalid_country' => 'Negara tidak ada dalam basis data.',
         'invalid_discord' => 'Nama pengguna Discord tidak valid.',
         'invalid_email' => "Tampaknya bukan alamat email yang valid.",
+        'invalid_twitter' => '',
         'too_short' => 'Kata sandi baru terlalu pendek.',
         'unknown_duplicate' => 'Nama pengguna atau alamat email sudah digunakan.',
         'username_available_in' => 'Nama pengguna ini akan tersedia untuk digunakan dalam :duration.',

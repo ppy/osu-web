@@ -1,37 +1,22 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'support' => [
         'convinced' => [
             'title' => 'いいですね！',
             'support' => 'osu!をサポートする！',
-            'gift' => 'もしくはギフトを送る',
+            'gift' => 'もしくはギフトを贈る',
             'instructions' => 'ハートボタンをクリックでosu!storeに飛びます(英語)',
         ],
         'why-support' => [
-            'title' => 'なぜosu!を支援する必要があるんですか？お金はどこにいきますか？',
+            'title' => 'なぜosu!を支援する必要があるの？お金はどう使われるの？',
 
             'team' => [
                 'title' => 'チームを支援する',
-                'description' => 'osu!は小規模なチームによって開発されていす。あなたのサポートがチームを助けます。',
+                'description' => 'osu!は小規模なチームによって開発されています。あなたのサポートがチームを助けます。',
             ],
             'infra' => [
                 'title' => 'サーバーインフラ',
@@ -71,7 +56,7 @@ return [
 
             'country_ranking' => [
                 'title' => '国別ランキング',
-                'description' => '世界を征服する前に、国を征服してください。',
+                'description' => '世界征服の前にまずは君の国で一番を目指そう。',
             ],
 
             'mod_filtering' => [
@@ -85,13 +70,13 @@ return [
             ],
 
             'upload_more' => [
-                'title' => 'アップロード上限解放',
+                'title' => 'アップロード上限数の増加',
                 'description' => '保留中のビートマップをアップロードできる数が増えます。（ランクビートマップ一つあたり）上限は10個です。',
             ],
 
             'early_access' => [
                 'title' => '早期アクセス',
-                'description' => 'テスト段階の機能が使えるベータ版のクライアントが利用できる様になります。',
+                'description' => 'テスト段階の機能が使えるベータ版のクライアントが利用できるようになります。',
             ],
 
             'customisation' => [
@@ -106,7 +91,7 @@ return [
 
             'yellow_fellow' => [
                 'title' => 'イエローフェロー',
-                'description' => 'ゲーム内チャットで名前の色が明るい黄色で表示される様になります。',
+                'description' => 'ゲーム内チャットで名前の色が明るい黄色で表示されるようになります。',
             ],
 
             'speedy_downloads' => [
@@ -144,11 +129,11 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => '他のビートマップをアップロード',
-                'description' => '一度に保持できるRankedされていないビートマップ数は、基準値とRankedされたビートマップの追加ボーナス値から計算されます。<br/><br/>通常これは4つで、Rankedされたビートマップごとに1つ追加されます。（最大２）サポーターになると、8つになりRankedされるごとに2つ追加されます。',
+                'description' => '一度に保持できるRankedされていないビートマップ数は、基準値とRankedされたビートマップの追加ボーナス値から計算されます。<br/><br/>通常これは4つで、Rankedされたビートマップごとに1つ追加されます。（最大2）サポーターになると、8つになりRankedされるごとに1つ追加されます。（最大12）',
             ],
             'friend_filtering' => [
                 'title' => 'フレンドリーダーボード',
-                'description' => 'フレンドと競い合って、自分がどのようにランクアップしていくか見てください！*<br/><br/><small>*新しいサイトはまだ利用できません。近日公開予定',
+                'description' => 'フレンドと競い合って、自分がどのようにランクアップしていくか見てください！*<br/><br/><small>*新しいサイトではまだ利用できません。近日公開予定(tm)</small>',
             ],
 
         ],

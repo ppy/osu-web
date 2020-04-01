@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace Tests\Libraries\Multiplayer;
 
@@ -114,6 +99,12 @@ class ModTest extends TestCase
         $this->assertFalse(Mod::validForRuleset('AP', Ruleset::MANIA));
     }
 
+    public function testValidateSelectionWithInvalidRuleset()
+    {
+        $this->expectException(InvariantException::class);
+        Mod::validateSelection([], -1);
+    }
+
     /**
      * @dataProvider modCombos
      */
@@ -143,6 +134,7 @@ class ModTest extends TestCase
             [Ruleset::TAIKO, ['HD', 'DT'], true],
             [Ruleset::TAIKO, ['HD', 'HR'], true],
             [Ruleset::TAIKO, ['HR', 'PF'], true],
+            [Ruleset::TAIKO, ['RD', 'SD'], true],
 
             [Ruleset::CATCH, ['HD', 'HR'], true],
             [Ruleset::CATCH, ['HD', 'PF'], true],
@@ -162,7 +154,6 @@ class ModTest extends TestCase
             [Ruleset::OSU, ['RX', 'PF'], false],
 
             [Ruleset::TAIKO, ['AP'], false],
-            [Ruleset::TAIKO, ['RD', 'SD'], false],
             [Ruleset::TAIKO, ['RX', 'PF'], false],
 
             [Ruleset::CATCH, ['4K'], false],

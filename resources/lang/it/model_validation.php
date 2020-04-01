@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'not_negative' => ':attribute non può essere negativo.',
@@ -47,6 +32,7 @@ return [
         ],
 
         'hype' => [
+            'discussion_locked' => "Al momento questa beatmap è bloccata per le discussioni e non può avere Hype",
             'guest' => 'Devi avere effettuato il login per promuovere.',
             'hyped' => 'Hai già promosso questa beatmap.',
             'limit_exceeded' => 'Hai usato tutte le tue promozioni.',
@@ -62,6 +48,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Non è permesso rispondere ad un commento eliminato.',
+        'top_only' => 'Fissare la risposta non è consentito.',
 
         'attributes' => [
             'message' => 'Il messaggio',
@@ -136,6 +123,7 @@ return [
         'invalid_country' => 'Paese non presente nel database.',
         'invalid_discord' => 'Nome utente di Discord non valido.',
         'invalid_email' => "Non sembra essere un indirizzo email valido.",
+        'invalid_twitter' => '',
         'too_short' => 'La nuova password è troppo corta.',
         'unknown_duplicate' => 'Nome utente o indirizzo email già in uso.',
         'username_available_in' => 'Questo nome utente sarà disponibile per l\'uso tra :duration.',

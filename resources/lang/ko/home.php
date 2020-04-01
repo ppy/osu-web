@@ -1,31 +1,16 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'landing' => [
         'download' => '지금 바로 다운로드하기',
-        'online' => '<strong>:players</strong>명의 플레이어가 현재 접속 중이며, <strong>:games</strong> 개의 게임이 개설되어 있습니다.',
+        'online' => '<strong>:players</strong>명이 현재 접속 중이며, <strong>:games</strong>개의 게임이 개설되어 있습니다.',
         'peak' => '최다 동시 접속자 수: :count명',
         'players' => '가입된 플레이어: <strong>:count</strong>명',
         'title' => '환영합니다',
-        'see_more_news' => '뉴스 더 보기',
+        'see_more_news' => '소식 더 보기',
 
         'slogan' => [
             'main' => '최고의 무료 리듬 게임',
@@ -42,6 +27,7 @@ return [
         'title' => '검색',
 
         'beatmapset' => [
+            'login_required' => '비트맵을 검색하기 위해서 로그인',
             'more' => ':count개의 비트맵 검색 결과 더 보기',
             'more_simple' => '비트맵 검색 결과 더 보기',
             'title' => '비트맵',
@@ -50,6 +36,7 @@ return [
         'forum_post' => [
             'all' => '모든 포럼',
             'link' => '포럼 검색하기',
+            'login_required' => '포럼을 검색하기 위해서 로그인',
             'more_simple' => '포럼 검색 결과 더 보기',
             'title' => '포럼',
 
@@ -70,6 +57,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '사용자를 검색하기 위해서 로그인',
             'more' => ':count명의 플레이어 검색 결과 더 보기',
             'more_simple' => '플레이어 검색 결과 더 보기',
             'more_hidden' => '플레이어 검색은 최대 :max명 까지 가능합니다. 다른 검색어로 시도해보세요.',
@@ -129,7 +117,7 @@ return [
         'beatmaps' => [
             'new' => '새로 Ranked된 비트맵',
             'popular' => '인기 비트맵',
-            'by_user' => ':user 님이 만듬',
+            'by_user' => ':user 님이 만듦',
         ],
         'buttons' => [
             'download' => 'osu! 다운로드',

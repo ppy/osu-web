@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 namespace Tests\Controllers;
 
 use App\Events\NewNotificationEvent;
@@ -556,6 +559,45 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertFalse($reply2->fresh()->trashed());
     }
 
+    public function testPostWithoutResolveFlag()
+    {
+        $this->beatmapDiscussion->update([
+            'resolved' => false,
+        ]);
+
+        $otherUser = factory(User::class)->create();
+        $otherUser->statisticsOsu()->create(['playcount' => $this->minPlays]);
+
+        foreach ([$this->user, $otherUser] as $user) {
+            $lastDiscussionPosts = BeatmapDiscussionPost::count();
+
+            $this
+                ->postDiscussionWithoutResolveFlag($user)
+                ->assertStatus(200);
+
+            // No resolve change, therefore no system posts
+            $this->assertSame($lastDiscussionPosts + 1, BeatmapDiscussionPost::count());
+            // Should stay unresolved.
+            $this->assertSame(false, $this->beatmapDiscussion->fresh()->resolved);
+        }
+
+        $this
+            ->postResolveDiscussion(true, $this->user)
+            ->assertStatus(200);
+
+        foreach ([$this->user, $otherUser] as $user) {
+            $lastDiscussionPosts = BeatmapDiscussionPost::count();
+
+            $this
+                ->postDiscussionWithoutResolveFlag($user)
+                ->assertStatus(200);
+
+            $this->assertSame($lastDiscussionPosts + 1, BeatmapDiscussionPost::count());
+            // Should stay resolved now.
+            $this->assertSame(true, $this->beatmapDiscussion->fresh()->resolved);
+        }
+    }
+
     public function testProblemOnQualifiedBeatmapsetWithoutMatchingMode()
     {
         $this->beatmapset->update([
@@ -796,6 +838,19 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                 'beatmap_discussion' => [
                     'resolved' => $resolved,
                 ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ]);
+    }
+
+    private function postDiscussionWithoutResolveFlag(User $user)
+    {
+        return $this
+            ->actingAsVerified($user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+                'beatmap_discussion' => [],
                 'beatmap_discussion_post' => [
                     'message' => 'Hello',
                 ],

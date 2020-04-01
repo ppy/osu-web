@@ -1,19 +1,6 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
 <link rel="apple-touch-icon" sizes="180x180" href="{{ config('osu.static') }}/apple-touch-icon.png">
 <link rel="icon" sizes="32x32" href="{{ config('osu.static') }}/favicon-32x32.png">
@@ -29,15 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 @if (isset($opengraph))
-    @php
-        $siteName = 'osu!';
-
-        if (isset($opengraph['section'])) {
-            $siteName .= ' » '.$opengraph['section'];
-        }
-    @endphp
-
-    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:site_name" content="osu! » {{ page_title() }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ $canonicalUrl }}">
     <meta property="og:title" content="{{ $opengraph['title'] }}">
@@ -57,11 +36,8 @@
     <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif
 
-<link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,200italic,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
-
 @if (App::getLocale() === 'vi')
-    <link href='//fonts.googleapis.com/css?family=Exo:300,300italic,200,200italic,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
     <style>
         :root {
             --font-default-override: var(--font-default-vi);
@@ -80,6 +56,7 @@
         }
     </style>
 @endif
+
 <link rel="stylesheet" media="all" href="/vendor/_photoswipe-default-skin/default-skin.css">
 <link rel="stylesheet" media="all" href="{{ mix("css/app.css") }}" data-turbolinks-track="reload">
 

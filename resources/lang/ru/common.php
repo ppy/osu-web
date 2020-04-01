@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'confirmation' => 'Вы уверены?',
@@ -36,6 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Администратор',
         'authorise' => 'Авторизовать',
+        'authorising' => 'Авторизация...',
         'back_to_previous' => 'Возвратить предыдущее состояние',
         'back_to_top' => 'В начало',
         'cancel' => 'Отмена',
@@ -62,7 +48,7 @@ return [
         'see_more' => 'показать ещё',
         'show' => 'показать',
         'show_deleted' => 'Показать удалённые',
-        'show_less' => '',
+        'show_less' => 'показать меньше',
         'show_more' => 'показать больше',
         'show_more_options' => 'показать больше опций',
         'unpin' => 'открепить',
@@ -84,7 +70,7 @@ return [
         'minute_short_unit' => 'мин',
         'minutes' => ':count минута|:count минуты|:count минут',
         'months' => ':count месяц|:count месяца|:count месяцев',
-        'notifications' => '',
+        'notifications' => ':count_delimited уведомление|:count_delimited уведомления|:count_delimited уведомлений',
         'plus_others' => '+ :count_delimited другой!|+ :count_delimited других!',
         'post' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
         'second_short_unit' => 'сек',

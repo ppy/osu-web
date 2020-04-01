@@ -1,28 +1,13 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'beatmapset_update_notice' => [
         'new' => 'Pemberitahuan bahwa ada pembaruan dalam beatmap ":title" sejak kunjungan terakhir kamu.',
         'subject' => 'Pembaruan baru untuk beatmap ":title"',
-        'unwatch' => 'Jika kamu tidak lagi ingin mengikuti informasi beatmap ini, kamu dapat mengklik tautan "Unwatch" yang dapat ditemukan di atas laman ini, atau dari laman modding daftar pantauan:',
+        'unwatch' => 'Jika kamu tidak lagi ingin mengikuti informasi beatmap ini, kamu dapat mengklik tautan "Unwatch" yang dapat ditemukan di atas laman ini, atau dari laman daftar pengamatan modding:',
         'visit' => 'Kunjungi laman diskusi di sini:',
     ],
 
@@ -38,7 +23,7 @@ return [
         'keep_free' => 'Terima kasih kepada orang-orang seperti kamu, osu! mampu menjaga game dan komunitasnya tetap berjalan lancar tanpa iklan atau memasang sistem pembayaran.',
         'keep_running' => 'Dukunganmu membuat osu! berjalan sekitar :minutes! Ini mungkin seperti tidak banyak, tetapi nilai berapapun tetap berharga :).',
         'subject' => 'Terima kasih, osu! mencintaimu',
-        'translation' => 'Terjemahan yang disediakan pengguna untuk tujuan informasi dapat diakses seperti berikut:',
+        'translation' => 'Sebagai bahan rujukan, tersedia terjemahan dari komunitas di bawah ini:',
 
         'benefit' => [
             'gift' => 'Pengguna yang dihadiahkan kini dapat secara bebas menggunakan osu!direct dan fitur-fitur lainnya yang dikhususkan untuk para pemilik supporter tag.',
@@ -55,7 +40,7 @@ return [
     'forum_new_reply' => [
         'new' => 'Kami ingin memberitahukan bahwa saat ini terdapat balasan baru pada ":title" sejak kunjungan terakhir Anda.',
         'subject' => '[osu!] Balasan terbaru dari topik ":title"',
-        'unwatch' => 'Jika kamu tidak lagi ingin mengikuti informasi seputar thread forum ini, Anda dapat meng-klik link "Unsubscripe Topic" yang dapat ditemukan di atas halaman ini, atau melalui laman Langganan Forum berikut:',
+        'unwatch' => 'Jika kamu tidak lagi ingin mengikuti informasi seputar thread forum ini, Anda dapat meng-klik link "Unsubscribe Topic" yang dapat ditemukan di atas halaman ini, atau melalui laman Langganan Forum berikut:',
         'visit' => 'Anda dapat segera melihat balasan terbaru melalui link berikut:',
     ],
 

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
 
@@ -498,7 +483,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function setUserFromAttribute($value)
     {
-        $this->attributes['user_from'] = e($value);
+        $this->attributes['user_from'] = e(unzalgo($value));
     }
 
     public function getUserInterestsAttribute($value)
@@ -508,7 +493,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function setUserInterestsAttribute($value)
     {
-        $this->attributes['user_interests'] = e($value);
+        $this->attributes['user_interests'] = e(unzalgo($value));
     }
 
     public function getUserLangAttribute($value)
@@ -523,7 +508,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
 
     public function setUserOccAttribute($value)
     {
-        $this->attributes['user_occ'] = e($value);
+        $this->attributes['user_occ'] = e(unzalgo($value));
     }
 
     public function setUserSigAttribute($value)
@@ -549,7 +534,8 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function setUserWebsiteAttribute($value)
     {
         // doubles as casting to empty string for not null constraint
-        $value = trim($value);
+        // allowing zalgo in urls sounds like a terrible idea.
+        $value = unzalgo(trim($value), 0);
 
         // FIXME: this can probably be removed after old site is deactivated
         //        as there's same check in getter function.
@@ -624,6 +610,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return presence(ltrim($value, '@'));
     }
 
+    public function setUserTwitterAttribute($value)
+    {
+        $this->attributes['user_twitter'] = ltrim($value, '@');
+    }
+
     public function getUserLastfmAttribute($value)
     {
         return presence($value);
@@ -637,6 +628,12 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     public function getUserMsnmAttribute($value)
     {
         return presence($value);
+    }
+
+    public function setUserMsnmAttribute($value)
+    {
+        // skype does not allow accents in usernames.
+        $this->attributes['user_msnm'] = unzalgo($value, 0);
     }
 
     public function getOsuPlaystyleAttribute($value)
@@ -1453,7 +1450,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'is_admin', 'unread_pm_count', 'user_preferences']);
+        return json_item($this, 'User', ['blocks', 'friends', 'group_badge', 'is_admin', 'unread_pm_count', 'user_preferences']);
     }
 
     public function supportLength()
@@ -1554,6 +1551,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $query->with([
             'country',
             'supporterTagPurchases',
+            'userGroups',
             'userProfileCustomization',
         ]);
     }
@@ -1861,6 +1859,13 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             // - ends with a # and 4-digit discriminator
             if (!preg_match('/^[^@#:]{2,32}#\d{4}$/i', $this->user_discord)) {
                 $this->validationErrors()->add('user_discord', '.invalid_discord');
+            }
+        }
+
+        if ($this->isDirty('user_twitter') && present($this->user_twitter)) {
+            // https://help.twitter.com/en/managing-your-account/twitter-username-rules
+            if (!preg_match('/^[a-zA-Z0-9_]{1,15}$/', $this->user_twitter)) {
+                $this->validationErrors()->add('user_twitter', '.invalid_twitter');
             }
         }
 

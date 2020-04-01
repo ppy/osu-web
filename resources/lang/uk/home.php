@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'landing' => [
@@ -42,6 +27,7 @@ return [
         'title' => 'Пошук',
 
         'beatmapset' => [
+            'login_required' => '',
             'more' => 'більше :count результатів пошуку серед карт',
             'more_simple' => 'Подивитися інші результати пошуку в картах',
             'title' => 'Карти',
@@ -50,6 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Всі форуми',
             'link' => 'Пошук на форумі',
+            'login_required' => '',
             'more_simple' => 'Подивитися інші результати пошуку на форумі',
             'title' => 'Форум',
 
@@ -70,6 +57,7 @@ return [
         ],
 
         'user' => [
+            'login_required' => '',
             'more' => 'більше :count результатів пошуку серед гравців',
             'more_simple' => 'Подивитися інші результати пошуку серед гравців',
             'more_hidden' => 'Результати пошуку гравців скорочені до :max гравців. Спробуйте уточнити запит.',

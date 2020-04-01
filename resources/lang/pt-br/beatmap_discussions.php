@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'authorizations' => [
@@ -33,6 +18,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'excluído',
+        'none_found' => 'Não foram encontradas discussões que correspondam aos critérios de pesquisa.',
         'title' => 'Discussão do Beatmap',
 
         'form' => [
@@ -81,11 +67,11 @@ return [
         'go_to_parent' => 'Ver Publicação de Revisão',
         'go_to_child' => 'Ver Discussão',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_block_type' => 'tipo de bloco inválido',
+            'invalid_document' => 'revisão inválida',
+            'minimum_issues' => 'revisão deve conter um mínimo de :count problema|revisão deve conter um mínimo de :count problemas',
+            'missing_text' => 'bloco está sem texto',
+            'too_many_blocks' => 'revisões podem conter apenas :count parágrafo/problema|revisões só podem conter até :count parágrafos/problemas',
         ],
     ],
 

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'pinned_topics' => 'Nålade Ämnen',
@@ -28,14 +13,14 @@ return [
         'edit' => '',
 
         'create' => [
-            '_' => 'Sätt omslags bild',
+            '_' => 'Välj omslagsbild',
             'button' => 'Ladda upp bild',
-            'info' => 'Omslags storlek bör vara :dimensions. Du kan också släppa din bild här för att ladda upp.',
+            'info' => 'Omslagsstorlek bör vara :dimensions. Du kan också släppa din bild här för att ladda upp.',
         ],
 
         'destroy' => [
-            '_' => 'Ta bort omslags bild',
-            'confirm' => 'Är du säker på att du vill ta bort omslags bilden?',
+            '_' => 'Ta bort omslagsbild',
+            'confirm' => 'Är du säker på att du vill ta bort omslagsbilden?',
         ],
     ],
 
@@ -58,9 +43,9 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Verkligen radera inlägg?',
-        'confirm_restore' => 'Verkligen återställa inlägg?',
-        'edited' => 'Senast redigerad av :user den :when, redigerad :count gånger totalt.',
+        'confirm_destroy' => 'Vill du verkligen radera inlägget?',
+        'confirm_restore' => 'Vill du verkligen återställa inlägget?',
+        'edited' => 'Senast redigerad av :user :when, redigerad :count gånger totalt.',
         'posted_at' => 'upplagd :when',
 
         'actions' => [
@@ -83,7 +68,7 @@ return [
 
     'search' => [
         'go_to_post' => 'Gå till inlägg',
-        'post_number_input' => 'skriv inläggs nummer',
+        'post_number_input' => 'skriv inläggsnummer',
         'total_posts' => ':posts_count inlägg totalt',
     ],
 
@@ -251,8 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Detta ämne är låst och kan ej svaras på',
             'to_0' => 'Lås upp ämne',
+            'to_0_confirm' => '',
             'to_0_done' => 'Ämne har blivit upplåst',
             'to_1' => 'Lås ämne',
+            'to_1_confirm' => '',
             'to_1_done' => 'Ämne har blivit låst',
         ],
 
@@ -262,10 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Ta bort nålat ämne',
+            'to_0_confirm' => '',
             'to_0_done' => 'Nål på ämne har tagits bort',
             'to_1' => 'Nåla ämne',
+            'to_1_confirm' => '',
             'to_1_done' => 'Ämne har blivit nålat',
             'to_2' => 'Nåla ämne och markera som meddelande',
+            'to_2_confirm' => '',
             'to_2_done' => 'Ämne har blivit nålat och markerat som meddelande',
         ],
 

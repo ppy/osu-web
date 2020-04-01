@@ -1,22 +1,8 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import {
+  ChatChannelPartAction,
   ChatMessageAddAction,
   ChatMessageSendAction,
   ChatMessageUpdateAction,
@@ -24,7 +10,7 @@ import {
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import { dispatchListener } from 'app-dispatcher';
+import { dispatch, dispatchListener } from 'app-dispatcher';
 import { ChannelJSON } from 'chat/chat-api-responses';
 import * as _ from 'lodash';
 import { action, computed, observable } from 'mobx';
@@ -175,7 +161,7 @@ export default class ChannelStore extends Store {
       }
 
       if (!presence.find((json) => json.channel_id === channel.channelId)) {
-          this.channels.delete(channel.channelId);
+        dispatch(new ChatChannelPartAction(channel.channelId, false));
       }
     });
 

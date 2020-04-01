@@ -1,0 +1,132 @@
+<?php
+
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+return [
+    'admin' => [
+        '_' => 'amministratore',
+    ],
+    'admin_forum' => [
+        '_' => 'amministratore',
+    ],
+    'admin_store' => [
+        '_' => 'amministratore',
+    ],
+    'error' => [
+        'error' => [
+            '404' => 'mancante',
+            '403' => 'proibito',
+            '401' => 'non autorizzato',
+            '405' => 'mancante',
+            '422' => 'richiesta non valida',
+            '500' => 'qualcosa è andato storto',
+            '503' => 'manutenzione',
+        ],
+    ],
+    'forum' => [
+        '_' => 'forum',
+        'topic_watches_controller' => [
+            'index' => 'dashboard',
+        ],
+    ],
+    'main' => [
+        'account_controller' => [
+            'edit' => 'dashboard',
+            'verify_link' => 'verifica account',
+        ],
+        'artists_controller' => [
+            '_' => 'artisti in primo piano',
+        ],
+        'beatmap_discussion_posts_controller' => [
+            '_' => '',
+        ],
+        'beatmap_discussions_controller' => [
+            '_' => 'discussioni beatmap',
+        ],
+        'beatmap_packs_controller' => [
+            '_' => 'pacchetti beatmap',
+        ],
+        'beatmapset_discussion_votes_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_events_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_watches_controller' => [
+            'index' => '',
+        ],
+        'beatmapsets_controller' => [
+            'discussion' => '',
+            'index' => 'lista beatmap',
+            'show' => 'info beatmap',
+        ],
+        'changelog_controller' => [
+            '_' => 'note di rilascio',
+        ],
+        'chat_controller' => [
+            '_' => 'chat',
+        ],
+        'comments_controller' => [
+            '_' => 'commenti',
+        ],
+        'contests_controller' => [
+            '_' => 'concorsi',
+        ],
+        'friends_controller' => [
+            'index' => 'dashboard',
+        ],
+        'groups_controller' => [
+            'show' => 'gruppi',
+        ],
+        'home_controller' => [
+            'get_download' => 'scarica',
+            'index' => 'dashboard',
+            'search' => 'cerca',
+            'support_the_game' => 'supporta il gioco',
+            'testflight' => 'testflight',
+        ],
+        'legal_controller' => [
+            '_' => 'informazioni',
+        ],
+        'livestreams_controller' => [
+            '_' => 'trasmissioni in diretta',
+        ],
+        'matches_controller' => [
+            '_' => 'partite',
+        ],
+        'news_controller' => [
+            '_' => 'notizie',
+        ],
+        'notifications_controller' => [
+            '_' => 'cronologia notifiche',
+        ],
+        'password_reset_controller' => [
+            '_' => 'reimpostazione password',
+        ],
+        'ranking_controller' => [
+            '_' => 'classifica',
+        ],
+        'store_controller' => [
+            '_' => 'osu!store',
+        ],
+        'tournaments_controller' => [
+            '_' => 'tornei',
+        ],
+        'users_controller' => [
+            '_' => 'info giocatore',
+            'disabled' => '',
+        ],
+        'wiki_controller' => [
+            '_' => 'base delle conoscenze',
+        ],
+    ],
+    'store' => [
+        '_' => 'osu!store',
+    ],
+    'users' => [
+        'modding_history_controller' => [
+            '_' => 'info modder',
+        ],
+    ],
+];

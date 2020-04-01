@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
@@ -39,7 +24,7 @@ return [
         'empty' => [
             'text' => 'カートには何もありません。',
             'return_link' => [
-                '_' => ':linkに戻って商品を見つける',
+                '_' => ':linkに戻って他のグッズを見つける',
                 'link_text' => '商品一覧',
             ],
         ],
@@ -52,6 +37,7 @@ return [
         'delayed_shipping' => '現在注文が多く大変混雑しています。注文はまだ受け付けていますが、**１～２週間ほどの遅延**が発生する可能性があります。',
         'old_cart' => 'あなたのカートは期限切れ、または再読み込みされたようです。再度お試しください。',
         'pay' => 'Paypalで支払う',
+        'title_compact' => '決済',
 
         'has_pending' => [
             '_' => '未完了の支払いがあります。:linkをクリックして詳細を確認してください。',
@@ -68,6 +54,8 @@ return [
 
     'invoice' => [
         'echeck_delay' => '決済方法がeCheckのため、PayPalを介した支払いが完了するまで、さらに最大10日を要します。予めご了承ください。',
+        'title_compact' => '請求書',
+
         'status' => [
             'processing' => [
                 'title' => 'お支払いはまだ確認されていません。',
@@ -110,7 +98,7 @@ return [
             'delivered' => '発送済み',
             'paid' => '支払い済み',
             'processing' => '承認待ち',
-            'shipped' => '輸送中',
+            'shipped' => '発送済み',
         ],
     ],
 
@@ -132,7 +120,7 @@ return [
     ],
 
     'supporter_tag' => [
-        'gift' => 'プレイヤーにギフト',
+        'gift' => 'プレイヤーにギフトを贈る',
         'require_login' => [
             '_' => 'サポータータグを入手するには:linkが必要です！',
             'link_text' => 'ログイン',

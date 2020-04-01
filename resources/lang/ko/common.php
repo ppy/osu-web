@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'confirmation' => '확실합니까?',
@@ -36,6 +21,7 @@ return [
     'buttons' => [
         'admin' => '관리',
         'authorise' => '권한 부여',
+        'authorising' => '인증하기...',
         'back_to_previous' => '이전 위치로 돌아가기',
         'back_to_top' => '맨 위로',
         'cancel' => '취소',
@@ -62,7 +48,7 @@ return [
         'see_more' => '더 보기',
         'show' => '표시',
         'show_deleted' => '삭제된 내용 표시',
-        'show_less' => '',
+        'show_less' => '간단히 표시',
         'show_more' => '더 보기',
         'show_more_options' => '더 많은 옵션 보기',
         'unpin' => '고정 해제',
@@ -84,7 +70,7 @@ return [
         'minute_short_unit' => '분',
         'minutes' => ':count분',
         'months' => ':count달',
-        'notifications' => '',
+        'notifications' => '알림 :count_delimited개',
         'plus_others' => '+ :count_delimited 기타!',
         'post' => ':count_delimited 게시글',
         'second_short_unit' => '초',

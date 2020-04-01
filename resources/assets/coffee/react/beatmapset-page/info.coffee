@@ -1,24 +1,11 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 import { BBCodeEditor } from 'bbcode-editor'
+import { Modal } from 'modal'
 import * as React from 'react'
 import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
+import MetadataEditor from 'beatmapsets-show/metadata-editor'
 el = React.createElement
 
 export class Info extends React.Component
@@ -29,7 +16,8 @@ export class Info extends React.Component
 
     @state =
       isBusy: false
-      isEditing: false
+      isEditingDescription: false
+      isEditingMetadata: false
 
 
   componentDidMount: ->
@@ -46,13 +34,13 @@ export class Info extends React.Component
 
   # see Modal#hideModal
   dismissEditor: (e) =>
-    @setState isEditing: false if e.button == 0 &&
+    @setState isEditingDescription: false if e.button == 0 &&
                                   e.target == @overlay.current &&
                                   @clickEndTarget == @clickStartTarget
 
 
   editStart: =>
-    @setState isEditing: true
+    @setState isEditingDescription: true
 
 
   handleClickEnd: (e) =>
@@ -69,10 +57,10 @@ export class Info extends React.Component
         if action.hasChanged
           @saveDescription(action.value)
         else
-          @setState isEditing: false
+          @setState isEditingDescription: false
 
       when 'cancel'
-        @setState isEditing: false
+        @setState isEditingDescription: false
 
 
   onSelectionUpdate: (selection) =>
@@ -88,7 +76,7 @@ export class Info extends React.Component
 
     .done (data) =>
       @setState
-        isEditing: false
+        isEditingDescription: false
         description: data.description
 
     .fail osu.ajaxError
@@ -97,8 +85,16 @@ export class Info extends React.Component
       @setState isBusy: false
 
 
+  toggleEditingMetadata: =>
+    @setState isEditingMetadata: !@state.isEditingMetadata
+
+
   withEdit: =>
      @props.beatmapset.description.bbcode?
+
+
+  withEditMetadata: =>
+     @props.beatmapset.current_user_attributes?.can_edit_metadata ? false
 
 
   renderChart: ->
@@ -117,8 +113,18 @@ export class Info extends React.Component
     @_failurePointsChart.loadData @props.beatmap.failtimes
 
 
+  renderEditMetadataButton: =>
+    div className: 'beatmapset-info__edit-button',
+      button
+        type: 'button'
+        className: 'btn-circle'
+        onClick: @toggleEditingMetadata
+        span className: 'btn-circle__content',
+          i className: 'fas fa-pencil-alt'
+
+
   renderEditButton: =>
-    div className: 'beatmapset-info__edit-description',
+    div className: 'beatmapset-info__edit-button',
       button
         type: 'button'
         className: 'btn-circle'
@@ -139,7 +145,7 @@ export class Info extends React.Component
       tagsOverload = true
 
     div className: 'beatmapset-info',
-      if @state.isEditing
+      if @state.isEditingDescription
         div className: 'beatmapset-description-editor',
           div
             className: 'beatmapset-description-editor__overlay'
@@ -157,6 +163,10 @@ export class Info extends React.Component
                 rawValue: @state.description?.bbcode ? @props.beatmapset.description.bbcode
                 selection: @state.selection
 
+      if @state.isEditingMetadata
+        el Modal, visible: true, onClose: @toggleEditingMetadata,
+          el MetadataEditor, onClose: @toggleEditingMetadata, beatmapset: @props.beatmapset
+
       div className: 'beatmapset-info__box beatmapset-info__box--description',
         @renderEditButton() if @withEdit()
 
@@ -171,6 +181,8 @@ export class Info extends React.Component
               __html: @state.description?.description ? @props.beatmapset.description.description
 
       div className: 'beatmapset-info__box beatmapset-info__box--meta',
+        @renderEditMetadataButton() if @withEditMetadata()
+
         if @props.beatmapset.source
           div null,
             h3

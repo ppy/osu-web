@@ -1,37 +1,31 @@
 {{--
-    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-
-    This file is part of osu!web. osu!web is distributed with the hope of
-    attracting more community contributions to the core ecosystem of osu!.
-
-    osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License version 3
-    as published by the Free Software Foundation.
-
-    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+    Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+    See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $legacyFont = $legacyFont ?? true;
+    $currentRoute = app('route-section')->getCurrent();
 
-    if (!isset($title)) {
-        $titleTree = [];
+    $currentSection = $currentRoute['section'];
+    $currentAction = $currentRoute['action'];
 
+    $titleTree = [];
+
+    if (isset($titleOverride)) {
+        $titleTree[] = $titleOverride;
+    } else {
         if (isset($titlePrepend)) {
             $titleTree[] = $titlePrepend;
         }
 
-        $titleTree[] = trans("layout.menu.{$currentSection}.{$currentAction}");
-        $titleTree[] = trans("layout.menu.{$currentSection}._");
-
-        $title = implode(' · ', $titleTree);
+        $titleTree[] = page_title();
     }
 
-    $title .= ' | osu!';
+    $title = implode(' · ', $titleTree);
+    // Titles ending with phrase containing "osu!" like "osu!store" don't need the suffix.
+    if (strpos(array_last($titleTree), 'osu!') === false) {
+        $title .= ' | osu!';
+    }
+
     $currentHue = $currentHue ?? section_to_hue_map($currentSection);
 @endphp
 <!DOCTYPE html>
@@ -52,10 +46,6 @@
     >
         <style>
             :root {
-                @if (!$legacyFont)
-                    --font-default-override: var(--font-default-torus);
-                    --font-content-override: var(--font-content-inter);
-                @endif
                 --base-hue: {{ $currentHue }};
                 --base-hue-deg: {{ $currentHue }}deg;
             }
@@ -117,6 +107,10 @@
         @include("layout._global_variables")
         @include('layout._loading_overlay')
         @include('layout.popup-container')
+
+        <script id="json-route-section" type="application/json">
+            {!! json_encode($currentRoute) !!}
+        </script>
 
         @yield("script")
     </body>

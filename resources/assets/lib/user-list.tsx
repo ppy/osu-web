@@ -1,21 +1,8 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
+import { UserJSON } from 'chat/chat-api-responses';
+import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
 import { Sort } from 'sort';
@@ -27,7 +14,7 @@ type SortMode = 'last_visit' | 'rank' | 'username';
 
 const filters: Filter[] = ['all', 'online', 'offline'];
 const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
-const viewModes: ViewMode[] = ['card', 'list'];
+const viewModes: ViewMode[] = ['card', 'list', 'brick'];
 
 interface Props {
   title?: string;
@@ -64,7 +51,11 @@ export class UserList extends React.PureComponent<Props> {
   private get filterFromUrl() {
     const url = new URL(location.href);
 
-    return this.getAllowedQueryStringValue(filters, url.searchParams.get('filter'));
+    return this.getAllowedQueryStringValue(
+      filters,
+      url.searchParams.get('filter'),
+      currentUser?.user_preferences?.user_list_filter,
+    );
   }
 
   private get sortedUsers() {
@@ -95,13 +86,21 @@ export class UserList extends React.PureComponent<Props> {
   private get sortFromUrl() {
     const url = new URL(location.href);
 
-    return this.getAllowedQueryStringValue(sortModes, url.searchParams.get('sort'));
+    return this.getAllowedQueryStringValue(
+      sortModes,
+      url.searchParams.get('sort'),
+      currentUser?.user_preferences?.user_list_sort,
+    );
   }
 
   private get viewFromUrl() {
     const url = new URL(location.href);
 
-    return this.getAllowedQueryStringValue(viewModes, url.searchParams.get('view'));
+    return this.getAllowedQueryStringValue(
+      viewModes,
+      url.searchParams.get('view'),
+      currentUser?.user_preferences?.user_list_view,
+    );
   }
 
   onSortSelected = (event: React.SyntheticEvent) => {
@@ -109,7 +108,7 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { sort: value });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ sortMode: value });
+    this.setState({ sortMode: value }, this.saveOptions);
   }
 
   onViewSelected = (event: React.SyntheticEvent) => {
@@ -117,7 +116,7 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { view: value });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ viewMode: value });
+    this.setState({ viewMode: value }, this.saveOptions);
   }
 
   optionSelected = (event: React.SyntheticEvent) => {
@@ -126,20 +125,27 @@ export class UserList extends React.PureComponent<Props> {
     const url = osu.updateQueryString(null, { filter: key });
 
     Turbolinks.controller.advanceHistory(url);
-    this.setState({ filter: key });
+    this.setState({ filter: key }, this.saveOptions);
   }
 
   render(): React.ReactNode {
     return (
       <>
         {this.renderSelections()}
+
         <div className='user-list'>
+          {this.props.title != null && (
+            <h1 className='user-list__title'>{this.props.title}</h1>
+          )}
+
           <div className='user-list__toolbar'>
             <div className='user-list__toolbar-item'>{this.renderSorter()}</div>
             <div className='user-list__toolbar-item'>{this.renderViewMode()}</div>
           </div>
 
-          <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} />
+          <div className='user-list__items'>
+            <UserCards users={this.sortedUsers} viewMode={this.state.viewMode} />
+          </div>
         </div>
       </>
     );
@@ -210,14 +216,27 @@ export class UserList extends React.PureComponent<Props> {
         >
           <span className='fas fa-bars' />
         </button>
+        <button
+          className={osu.classWithModifiers('user-list__view-mode', this.state.viewMode === 'brick' ? ['active'] : [])}
+          data-value='brick'
+          title={osu.trans('users.view_mode.brick')}
+          onClick={this.onViewSelected}
+        >
+          <span className='fas fa-th' />
+        </button>
       </div>
     );
   }
 
-  private getAllowedQueryStringValue<T>(allowed: T[], value: unknown) {
+  private getAllowedQueryStringValue<T>(allowed: T[], value: unknown, fallback: unknown) {
     const casted = value as T;
     if (allowed.indexOf(casted) > -1) {
       return casted;
+    }
+
+    const fallbackCasted = fallback as T;
+    if (allowed.indexOf(fallbackCasted) > -1) {
+      return fallbackCasted;
     }
 
     return allowed[0];
@@ -233,5 +252,22 @@ export class UserList extends React.PureComponent<Props> {
       default:
         return this.props.users;
     }
+  }
+
+  private saveOptions() {
+    if (currentUser.id == null) {
+      return;
+    }
+
+    $.ajax(route('account.options'), {
+      dataType: 'JSON',
+      method: 'PUT',
+
+      data: { user_profile_customization: {
+        user_list_filter: this.state.filter,
+        user_list_sort: this.state.sortMode,
+        user_list_view: this.state.viewMode,
+      } },
+    }).done((user: UserJSON) => $.publish('user:update', user));
   }
 }

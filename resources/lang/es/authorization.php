@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'require_login' => 'Por favor, inicia sesión para continuar.',
@@ -32,8 +17,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, por favor inténtalo de nuevo mañana.',
-            'full_bn_required' => 'Debes ser un nominador para realizar esta nominación.',
-            'full_bn_required_hybrid' => 'Debes ser un nominador para nominar conjuntos de beatmaps con más de un modo de juego.',
+            'full_bn_required' => 'Debe ser un nominador completo para realizar esta nominación calificada.',
+            'full_bn_required_hybrid' => 'Debe ser un nominador completo para nominar sets de mapas con más de un modo de juego.',
             'incorrect_state' => 'Error al realizar esa acción, intenta actualizando la página.',
             'owner' => "No puedes nominar tu propio mapa.",
         ],
@@ -42,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Sólo el propietario del mapa o el nominador/miembro del grupo NAT puede publicar notas de mapeo.',
+            'mapper_note_wrong_user' => 'Sólo el dueño del mapa o el nominador/miembro del grupo NAT puede publicar notas de mapeo.',
         ],
 
         'vote' => [
@@ -66,7 +51,7 @@ return [
         ],
 
         'store' => [
-            'beatmapset_locked' => 'Este beatmap está bloqueado para discusión.',
+            'beatmapset_locked' => 'Este mapa está bloqueado para discusión.',
         ],
     ],
 
@@ -173,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Se requiere el osu!supporter tag.',
+                'require_supporter_tag' => 'Se requiere el tag de osu!supporter.',
             ],
         ],
     ],

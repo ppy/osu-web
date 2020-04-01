@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'not_negative' => ':attribute 不能为负数。',
@@ -47,6 +32,7 @@ return [
         ],
 
         'hype' => [
+            'discussion_locked' => "这张谱面正处于锁定状态以便进行讨论，目前不能被推荐",
             'guest' => '登录后才能推荐',
             'hyped' => '你已经推荐了这张谱面',
             'limit_exceeded' => '你已经用光了推荐次数',
@@ -62,6 +48,7 @@ return [
 
     'comment' => [
         'deleted_parent' => '不能回复已删除的评论。',
+        'top_only' => '暂不允许将回复置顶',
 
         'attributes' => [
             'message' => '消息',
@@ -136,6 +123,7 @@ return [
         'invalid_country' => '国家未被数据库收录。',
         'invalid_discord' => 'Discord 用户名无效。',
         'invalid_email' => "无效的邮箱地址。",
+        'invalid_twitter' => '',
         'too_short' => '新密码太短。',
         'unknown_duplicate' => '用户名或邮箱已被使用。',
         'username_available_in' => '该用户名将在 :duration 后可用。',

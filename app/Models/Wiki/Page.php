@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models\Wiki;
 
@@ -38,7 +23,7 @@ class Page implements WikiObject
     use WikiPageTrait;
 
     const CACHE_DURATION = 5 * 60 * 60;
-    const VERSION = 1;
+    const VERSION = 2;
 
     const TEMPLATES = [
         'markdown_page' => 'wiki.show',
@@ -52,11 +37,13 @@ class Page implements WikiObject
 
     public $locale;
     public $path;
+    public $requestedLocale;
 
     private $defaultSubtitle;
     private $defaultTitle;
     private $source;
     private $page;
+    private $parent = false;
 
     public static function cleanupPath($path)
     {
@@ -90,9 +77,9 @@ class Page implements WikiObject
         return $page;
     }
 
-    public static function lookup($path, $locale)
+    public static function lookup($path, $locale, $requestedLocale = null)
     {
-        $page = new static($path, $locale);
+        $page = new static($path, $locale, $requestedLocale);
         $page->esFetch();
 
         return $page;
@@ -103,7 +90,7 @@ class Page implements WikiObject
         $page = static::lookup($path, $locale)->sync();
 
         if (!$page->isVisible() && $page->isTranslation()) {
-            $page = static::lookup($path, config('app.fallback_locale'))->sync();
+            $page = static::lookup($path, config('app.fallback_locale'), $locale)->sync();
         }
 
         return $page;
@@ -167,10 +154,11 @@ class Page implements WikiObject
         }
     }
 
-    public function __construct($path, $locale)
+    public function __construct($path, $locale, $requestedLocale = null)
     {
         $this->path = OsuWiki::cleanPath($path);
         $this->locale = $locale;
+        $this->requestedLocale = $requestedLocale ?? $locale;
 
         $defaultTitles = explode('/', str_replace('_', ' ', $this->path));
         $this->defaultTitle = array_pop($defaultTitles);
@@ -211,7 +199,7 @@ class Page implements WikiObject
     public function esFetch()
     {
         $response = (new BasicSearch(static::esIndexName(), 'wiki_page_lookup'))
-            ->source(['page', 'indexed_at', 'version'])
+            ->source(['markdown', 'page', 'indexed_at', 'version'])
             ->query([
                 'term' => [
                     '_id' => $this->pagePath(),
@@ -229,15 +217,40 @@ class Page implements WikiObject
         return $this->page;
     }
 
+    public function getMarkdown()
+    {
+        return $this->source['markdown'] ?? null;
+    }
+
     public function hasParent()
     {
-        return $this->parentPath() !== null
-            && static::lookup($this->parentPath(), $this->locale)->isVisible();
+        return $this->parent() !== null;
     }
 
     public function needsCleanup(): bool
     {
         return $this->page['header']['needs_cleanup'] ?? false;
+    }
+
+    public function parent()
+    {
+        if ($this->parent === false) {
+            $parentPath = $this->parentPath();
+
+            if ($parentPath === null) {
+                $parent = null;
+            } else {
+                $parent = static::lookup($this->parentPath(), $this->requestedLocale);
+
+                if (!$parent->isVisible()) {
+                    $parent = null;
+                }
+            }
+
+            $this->parent = $parent;
+        }
+
+        return $this->parent;
     }
 
     public function isLegalTranslation(): bool
@@ -311,6 +324,10 @@ class Page implements WikiObject
             return;
         }
 
+        if ($this->parent() !== null) {
+            return $this->parent()->title();
+        }
+
         return presence($this->page['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
     }
 
@@ -354,6 +371,7 @@ class Page implements WikiObject
             $this->page = $contentRenderer->render();
             $pageIndex = $contentRenderer->renderIndexable();
 
+            $source['markdown'] = $content;
             $source['page'] = json_encode($this->page);
             $source['page_text'] = $pageIndex;
             $source['title'] = strip_tags($this->title());

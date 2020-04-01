@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'not_negative' => ':attribute ei voi olla negatiivinen.',
@@ -47,6 +32,7 @@ return [
         ],
 
         'hype' => [
+            'discussion_locked' => "",
             'guest' => 'Sinun on kirjauduttava sisään hurrataksesi.',
             'hyped' => 'Hurrasit jo tätä beatmappia.',
             'limit_exceeded' => 'Olet käyttänyt kaikki hurrauksesi.',
@@ -62,6 +48,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Poistettuun kommenttiin ei voida vastata.',
+        'top_only' => '',
 
         'attributes' => [
             'message' => '',
@@ -136,6 +123,7 @@ return [
         'invalid_country' => 'Maata ei ole tietokannassa.',
         'invalid_discord' => 'Virheellinen Discord käyttäjänimi.',
         'invalid_email' => "Ei näytä kelvolliselta sähköpostiosoitteelta.",
+        'invalid_twitter' => '',
         'too_short' => 'Uusi salasana on liian lyhyt.',
         'unknown_duplicate' => 'Käyttäjätunnus tai sähköpostiosoite on jo käytössä.',
         'username_available_in' => 'Tämän käyttäjänimen aukeamiseen on aikaa :duration.',

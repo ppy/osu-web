@@ -1,37 +1,22 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'all_read' => '모든 알림을 읽었어요!',
-    'mark_all_read' => '모두 지우기',
-    'none' => '',
-    'see_all' => '',
+    'mark_read' => ':type 비우기',
+    'none' => '알림 없음',
+    'see_all' => '모든 알림 보기',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => '전체',
+        'user' => '프로필',
+        'beatmapset' => '비트맵',
+        'forum_topic' => '포럼',
+        'news_post' => '소식',
+        'build' => '빌드 버전',
+        'channel' => '채팅',
     ],
 
     'item' => [
@@ -142,7 +127,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => '새 메달',
                 'user_achievement_unlock' => '":title" 해제!',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => '":title" 달성!',
             ],
         ],
     ],

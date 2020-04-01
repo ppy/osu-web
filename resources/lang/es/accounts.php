@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'edit' => [
@@ -66,12 +51,12 @@ return [
     'notifications' => [
         'title' => 'Notificaciones',
         'topic_auto_subscribe' => 'activa automáticamente las notificaciones en nuevos temas del foro que crees',
-        'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en beatmaps calificados de los siguientes modos',
+        'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
 
         'mail' => [
-            '_' => 'recibir notifiaciones por correo',
-            'beatmapset:modding' => 'beatmap modding',
-            'forum_topic_reply' => 'respuesta al tema',
+            '_' => 'recibir notificaciones de correo para',
+            'beatmapset:modding' => 'modding de mapas',
+            'forum_topic_reply' => 'respuestas a temas',
         ],
     ],
 
@@ -118,6 +103,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => 'Enlace de verificación inválido o caducado',
+        'title' => 'Enlace de verificación no válido o caducado',
     ],
 ];

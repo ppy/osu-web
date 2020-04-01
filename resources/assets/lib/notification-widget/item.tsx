@@ -1,26 +1,11 @@
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 import { observer } from 'mobx-react';
 import Notification from 'models/notification';
 import { NotificationContext } from 'notifications-context';
+import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
-import { Spinner } from 'spinner';
 import { WithMarkReadProps } from './with-mark-read';
 
 interface Props extends WithMarkReadProps {
@@ -53,9 +38,7 @@ export default class Item extends React.Component<Props> {
             {this.renderTime()}
             {this.renderExpandButton()}
           </div>
-          <div className='notification-popup-item__side-buttons'>
-            {this.renderMarkAsReadButton()}
-          </div>
+          {this.renderMarkAsReadButton()}
         </div>
         {this.renderUnreadStripe()}
       </div>
@@ -137,23 +120,13 @@ export default class Item extends React.Component<Props> {
       return null;
     }
 
-    if (this.props.markingAsRead ?? this.props.item.isMarkingAsRead) {
-      return (
-        <div className='notification-popup-item__read-button'>
-          <Spinner />
-        </div>
-      );
-    } else {
-      return (
-        <button
-          type='button'
-          className='notification-popup-item__read-button'
-          onClick={this.props.markRead}
-        >
-          <span className='fas fa-times' />
-        </button>
-      );
-    }
+    return (
+      <NotificationReadButton
+        isMarkingAsRead={this.props.markingAsRead ?? this.props.item.isMarkingAsRead}
+        modifiers={['fancy']}
+        onMarkAsRead={this.props.markRead}
+      />
+    );
   }
 
   private renderMessage() {

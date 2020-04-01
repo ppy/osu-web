@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'confirmation' => 'هل أنت متأكد؟',
@@ -36,6 +21,7 @@ return [
     'buttons' => [
         'admin' => 'المشرف',
         'authorise' => 'استأِذان',
+        'authorising' => '',
         'back_to_previous' => 'العودة إلى الحالة السابقة',
         'back_to_top' => 'العودة إلى الأعلى',
         'cancel' => 'إلغاء',
@@ -62,7 +48,7 @@ return [
         'see_more' => 'مشاهدة المزيد',
         'show' => 'إظهار',
         'show_deleted' => 'عرض المحذوف',
-        'show_less' => '',
+        'show_less' => 'إظهار أقل',
         'show_more' => 'إعرض المزيد',
         'show_more_options' => 'إظهار خيارات أكثر',
         'unpin' => 'ألغ التثبيت',
@@ -84,7 +70,7 @@ return [
         'minute_short_unit' => 'دقائقِ|دقيقة',
         'minutes' => ':count_delimited دقيقة|:count_delimited دقائق',
         'months' => ':count_delimited شهر|:count_delimited أشهر',
-        'notifications' => '',
+        'notifications' => ':count_delimited أِشعار|:count_delimited أِشعارات',
         'plus_others' => '+ :count_delimited اخر!|+ :count_delimited اخرون!',
         'post' => ':count_delimited منشور|:count_delimited منشورات',
         'second_short_unit' => 'ثانية|ثواني',

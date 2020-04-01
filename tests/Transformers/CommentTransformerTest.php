@@ -1,27 +1,11 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace Tests\Transformers;
 
 use App\Models\Comment;
-use App\Models\User;
 use Tests\TestCase;
 
 class CommentTransformerTest extends TestCase
@@ -31,7 +15,7 @@ class CommentTransformerTest extends TestCase
      */
     public function testWithOAuth($groupIdentifier)
     {
-        $viewer = factory(User::class)->states($groupIdentifier)->create();
+        $viewer = $this->createUserWithGroup($groupIdentifier);
         $comment = factory(Comment::class)->states('deleted')->create();
         $this->actAsScopedUser($viewer);
 
@@ -46,9 +30,9 @@ class CommentTransformerTest extends TestCase
      */
     public function testWithoutOAuth($groupIdentifier, $visible)
     {
-        $viewer = factory(User::class)->states($groupIdentifier)->create();
+        $viewer = $this->createUserWithGroup($groupIdentifier);
         $comment = factory(Comment::class)->states('deleted')->create();
-        auth()->setUser($viewer);
+        $this->actAsUser($viewer);
 
         $json = json_item($comment, 'Comment');
 
@@ -68,6 +52,8 @@ class CommentTransformerTest extends TestCase
             ['bng', false],
             ['gmt', true],
             ['nat', true],
+            [[], false],
+            [null, false],
         ];
     }
 }

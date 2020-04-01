@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'authorizations' => [
@@ -33,22 +18,23 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'ถูกลบไปแล้ว',
+        'none_found' => '',
         'title' => 'การสนทนาเกี่ยวกับ Beatmap',
 
         'form' => [
             '_' => 'ค้นหา',
             'deleted' => 'รวมการสนทนาที่ถูกลบ',
-            'only_unresolved' => '',
+            'only_unresolved' => 'มองเห็นเฉพาะการสนทนา/ปัญหาที่ยังไม่ได้แก้',
             'types' => 'ชนิดของข้อความ',
             'username' => 'ชื่อผู้ใช้',
 
             'beatmapset_status' => [
                 '_' => 'สถานะบีตแมป',
                 'all' => 'ทั้งหมด',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                'disqualified' => 'คัดออกแล้ว',
+                'never_qualified' => 'ไม่เคยถูกคัดออก',
+                'qualified' => 'ผ่านเกณฑ์',
+                'ranked' => 'ถูกจัดอันดับแล้ว',
             ],
 
             'user' => [
@@ -78,8 +64,8 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'ดูโพสต์รีวิว',
+        'go_to_child' => 'ดูการสนทนา',
         'validation' => [
             'invalid_block_type' => '',
             'invalid_document' => '',

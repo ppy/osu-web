@@ -1,26 +1,12 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
 
-use InvalidArgumentException;
+use App\Exceptions\InvariantException;
+use Exception;
 
 /**
  * @property Build $build
@@ -53,10 +39,6 @@ class UserClient extends Model
     {
         $splitHash = static::splitHash($hash);
 
-        if ($splitHash === null) {
-            return;
-        }
-
         return static::firstOrNew([
             'user_id' => $userId,
             'unique_md5' => $splitHash['unique'],
@@ -67,30 +49,41 @@ class UserClient extends Model
         ]);
     }
 
+    public static function markVerified($userId, $hash)
+    {
+        $client = static::lookupOrNew($userId, $hash);
+
+        try {
+            $client->fill(['verified' => true])->save();
+        } catch (Exception $e) {
+            if (is_sql_unique_exception($e)) {
+                return static::markVerified($userId, $hash);
+            }
+
+            throw $e;
+        }
+    }
+
     public static function splitHash($hash)
     {
         $hashes = explode(':', $hash);
 
         if (count($hashes) < 5) {
-            return;
+            throw new InvariantException('invalid client hash format');
         }
 
-        try {
-            return array_map(function ($value) {
-                if (!ctype_xdigit($value) || strlen($value) !== 32) {
-                    throw new InvalidArgumentException('not a valid md5 hash');
-                }
+        return array_map(function ($value) {
+            if (!ctype_xdigit($value) || strlen($value) !== 32) {
+                throw new InvariantException('invalid md5 hash inside client hash');
+            }
 
-                return hex2bin($value);
-            }, [
-                'osu' => $hashes[0],
-                'mac' => $hashes[2],
-                'unique' => $hashes[3],
-                'disk' => $hashes[4],
-            ]);
-        } catch (InvalidArgumentException $e) {
-            // return nothing on error
-        }
+            return hex2bin($value);
+        }, [
+            'osu' => $hashes[0],
+            'mac' => $hashes[2],
+            'unique' => $hashes[3],
+            'disk' => $hashes[4],
+        ]);
     }
 
     public function build()

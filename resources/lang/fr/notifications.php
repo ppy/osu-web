@@ -1,37 +1,22 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'all_read' => 'Toutes les notifications lues !',
-    'mark_all_read' => 'Tout effacer',
-    'none' => '',
-    'see_all' => '',
+    'mark_read' => 'Effacer :type',
+    'none' => 'Pas de notifications',
+    'see_all' => 'voir toutes les notifications',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => 'tout',
+        'user' => 'profil',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'forum',
+        'news_post' => 'nouvelles',
+        'build' => 'versions',
+        'channel' => 'chat',
     ],
 
     'item' => [
@@ -142,7 +127,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Nouvelle médaille',
                 'user_achievement_unlock' => 'Débloqué ":title" !',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => 'Débloqué «:title» !',
             ],
         ],
     ],

@@ -1,5 +1,8 @@
 <?php
 
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
 namespace App\Providers;
 
 use App\Http\Controllers\Passport\AuthorizationController;
@@ -51,6 +54,7 @@ class AuthServiceProvider extends ServiceProvider
         Passport::tokensCan([
             'friends.read' => trans('api.scopes.friends.read'),
             'identify' => trans('api.scopes.identify'),
+            'users.read' => trans('api.scopes.users.read'),
         ]);
     }
 }

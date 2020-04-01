@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'defaults' => [
@@ -25,7 +10,6 @@ return [
 
     'header' => [
         'admin' => [
-            '_' => 'admin',
             'beatmapset' => 'beatmapset',
             'beatmapset_covers' => 'capas de beatmapset',
             'contest' => 'concurso',
@@ -35,79 +19,29 @@ return [
         ],
 
         'artists' => [
-            '_' => 'artistas em destaque',
             'index' => 'listagem',
-        ],
-
-        'beatmapsets' => [
-            '_' => 'beatmap',
-            'discussions' => 'discussão',
-            'index' => 'listagem',
-            'show' => 'info',
-            'packs' => 'pacotes',
         ],
 
         'changelog' => [
-            '_' => 'registro de alterações',
             'index' => 'listagem',
         ],
 
-        'community' => [
-            '_' => 'Comunidade',
-            'comments' => 'comentários',
-            'contests' => 'concursos',
-            'forum' => 'Fórum',
-            'livestream' => 'transmissões ao vivo',
-        ],
-
-        'error' => [
-            '_' => 'erro',
-        ],
-
         'help' => [
-            '_' => 'wiki',
             'index' => 'índice',
-        ],
-
-        'home' => [
-            '_' => 'início',
-            'password_reset' => 'redefinir senha',
-        ],
-
-        'matches' => [
-            '_' => 'histórico de partidas',
-        ],
-
-        'notice' => [
-            '_' => 'aviso',
-        ],
-
-        'notifications' => [
-            '_' => '',
-            'index' => '',
-        ],
-
-        'rankings' => [
-            '_' => 'classificação',
+            'sitemap' => '',
         ],
 
         'store' => [
-            '_' => 'osu!store',
             'cart' => 'carrinho',
-            'order' => 'fatura',
             'orders' => 'histórico de pedidos',
-            'product' => 'produto',
             'products' => 'produtos',
         ],
 
         'tournaments' => [
-            '_' => 'torneios',
             'index' => 'listagem',
         ],
 
         'users' => [
-            '_' => 'jogador',
-            'forum_posts' => 'publicações do fórum',
             'modding' => 'modding',
             'show' => 'info',
         ],
@@ -122,34 +56,20 @@ return [
     ],
 
     'menu' => [
-        'home' => [
-            '_' => 'início',
-            'account-edit' => 'configurações de conta',
-            'account-verifyLink' => 'Verificação Concluída',
-            'beatmapset-watches-index' => 'notificações de modding',
-            'changelog-build' => 'versão',
-            'changelog-index' => 'registro de alterações',
-            'client_verifications-create' => 'Verificação do cliente osu!',
-            'forum-topic-watches-index' => 'inscrições do fórum',
-            'friends-index' => 'amigos',
-            'getDownload' => 'baixar',
-            'getIcons' => 'ícones',
-            'groups-show' => 'grupos',
-            'index' => 'dashboard',
-            'legal-show' => 'informação',
-            'messages-index' => 'mensagens',
-            'news-index' => 'notícias',
-            'news-show' => 'notícias',
-            'password-reset-index' => 'redefinir senha',
-            'search' => 'busca',
-            'supportTheGame' => 'apoie o jogo',
-            'team' => 'equipe',
-            'testflight' => 'vôo de teste',
+        'beatmaps' => [
+            '_' => 'beatmaps',
+            'artists' => 'artistas em destaque',
+            'index' => 'listagem',
+            'packs' => 'pacotes',
         ],
-        'profile' => [
-            '_' => 'perfil',
-            'friends' => 'amigos',
-            'settings' => 'configurações',
+        'community' => [
+            '_' => 'comunidade',
+            'chat' => 'chat',
+            'contests' => 'concursos',
+            'dev' => 'desenvolvimento',
+            'forum-forums-index' => 'fóruns',
+            'getLive' => 'transmissões',
+            'tournaments' => 'torneios',
         ],
         'help' => [
             '_' => 'ajuda',
@@ -157,122 +77,28 @@ return [
             'getRules' => 'regras',
             'getSupport' => 'não, sério, preciso de ajuda!',
             'getWiki' => 'wiki',
-            'wiki-show' => 'wiki',
         ],
-        'beatmaps' => [
-            '_' => 'beatmaps',
-            'artists' => 'artistas em destaque',
-            'beatmap_discussion_posts-index' => 'postagens de discussão sobre beatmaps',
-            'beatmap_discussions-index' => 'discussões de beatmaps',
-            'beatmapset_discussion_votes-index' => 'votos na discussão de beatmaps',
-            'beatmapset_events-index' => 'eventos do beatmap',
-            'index' => 'listagem',
-            'packs' => 'pacotes',
-            'show' => 'informação',
-        ],
-        'beatmapsets' => [
-            '_' => 'beatmaps',
-            'discussion' => 'modding',
+        'home' => [
+            '_' => 'início',
+            'changelog-index' => 'registro de alterações',
+            'getDownload' => 'baixar',
+            'news-index' => 'notícias',
+            'search' => 'busca',
+            'team' => 'equipe',
         ],
         'rankings' => [
             '_' => 'colocações',
-            'index' => 'desempenho',
-            'performance' => 'desempenho',
             'charts' => 'destaques',
-            'score' => 'pontuação',
             'country' => 'país',
+            'index' => 'desempenho',
             'kudosu' => 'kudosu',
-        ],
-        'community' => [
-            '_' => 'comunidade',
-            'chat' => 'chat',
-            'chat-index' => 'chat',
-            'dev' => 'desenvolvimento',
-            'getForum' => 'fóruns',
-            'getLive' => 'transmissões',
-            'comments-index' => 'comentários',
-            'comments-show' => 'comentário',
-            'contests' => 'concursos',
-            'profile' => 'perfil',
-            'tournaments' => 'torneios',
-            'tournaments-index' => 'torneios',
-            'tournaments-show' => 'informações de torneios',
-            'forum-topics-create' => 'fóruns',
-            'forum-topics-show' => 'fóruns',
-            'forum-forums-index' => 'fóruns',
-            'forum-forums-show' => 'fóruns',
-        ],
-        'multiplayer' => [
-            '_' => 'multiplayer',
-            'show' => 'partida',
-        ],
-        'error' => [
-            '_' => 'erro',
-            '404' => 'não encontrado',
-            '403' => 'acesso negado',
-            '401' => 'não autorizado',
-            '405' => 'não encontrado',
-            '500' => 'algo quebrou',
-            '503' => 'manutenção',
-        ],
-        'user' => [
-            '_' => 'usuário',
-            'getLogin' => 'iniciar sessão',
-            'disabled' => 'desativado',
-
-            'register' => 'registrar',
-            'reset' => 'recuperar',
-            'new' => 'novo',
-
-            'help' => 'Ajuda',
-            'logout' => 'Desconectar',
-            'messages' => 'Mensagens',
-            'modding-history-discussions' => 'discussões de modding',
-            'modding-history-events' => 'eventos de modding',
-            'modding-history-index' => 'histórico de modding do usuário',
-            'modding-history-posts' => 'postagens de modding do usuário',
-            'modding-history-votesGiven' => 'votos de modding dados',
-            'modding-history-votesReceived' => 'votos de modding recebidos',
-            'notifications-index' => '',
-            'oauth_login' => 'conecte-se para autenticar',
-            'oauth_request' => 'autorização oauth',
-            'settings' => 'Configurações',
+            'score' => 'pontuação',
         ],
         'store' => [
             '_' => 'loja',
-            'checkout-show' => 'comprar',
-            'getListing' => 'catálogo',
             'cart-show' => 'carrinho',
-
-            'getCheckout' => 'comprar',
-            'getInvoice' => 'fatura',
+            'getListing' => 'catálogo',
             'orders-index' => 'histórico de pedidos',
-            'products-show' => 'produto',
-
-            'new' => 'novo',
-            'home' => 'início',
-            'index' => 'início',
-            'thanks' => 'obrigado',
-        ],
-        'admin-forum' => [
-            '_' => 'admin::forum',
-            'forum-covers-index' => 'capas de fórum',
-        ],
-        'admin-store' => [
-            '_' => 'admin::store',
-            'orders-index' => 'pedidos',
-            'orders-show' => 'pedido',
-        ],
-        'admin' => [
-            '_' => 'admin',
-            'beatmapsets-covers' => 'capas de beatmap',
-            'logs-index' => 'registro',
-            'root' => 'índice',
-
-            'beatmapsets' => [
-                '_' => 'beatmaps',
-                'show' => 'detalhes',
-            ],
         ],
     ],
 
@@ -283,7 +109,6 @@ return [
             'changelog-index' => 'Registro de Alterações',
             'beatmaps' => 'Lista de Beatmaps',
             'download' => 'Baixar osu!',
-            'wiki' => 'Wiki',
         ],
         'help' => [
             '_' => 'Ajuda & Comunidade',
@@ -291,6 +116,7 @@ return [
             'forum' => 'Fóruns da comunidade',
             'livestreams' => 'Transmissões Ao Vivo',
             'report' => 'Relatar um problema',
+            'wiki' => '',
         ],
         'legal' => [
             '_' => 'Informações Legais & Estado',
@@ -318,6 +144,10 @@ return [
         '405' => [
             'error' => 'Página não encontrada',
             'description' => "Lamentamos, mas a página que você procura não está aqui!",
+        ],
+        '422' => [
+            'error' => '',
+            'description' => '',
         ],
         '500' => [
             'error' => 'Ah não! Algo quebrou! ;_;',

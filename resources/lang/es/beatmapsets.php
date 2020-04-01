@@ -1,32 +1,17 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'availability' => [
-        'disabled' => 'Este Beatmap no está actualmente disponible para descargar.',
-        'parts-removed' => 'Algunas partes de este beatmap se han eliminado a petición del creador o de un titular de derechos de autor.',
+        'disabled' => 'Este mapa no está actualmente disponible para su descarga.',
+        'parts-removed' => 'Partes de este mapa han sido eliminadas a petición de su creador o un titular de derechos de autor.',
         'more-info' => 'Compruebe aquí para más información.',
     ],
 
     'index' => [
-        'title' => 'Listado de Beatmaps',
+        'title' => 'Listado de Mapas',
         'guest_title' => 'Mapas',
     ],
 
@@ -35,10 +20,10 @@ return [
 
         'details' => [
             'favourite' => 'Marcar como favorito',
-            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier beatmap!',
+            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier mapa!',
             'mapped_by' => 'mapeado por :mapper',
             'unfavourite' => 'Desmarcar como favorito',
-            'updated_timeago' => 'actualizado por última vez el :timeago',
+            'updated_timeago' => 'actualizado por última vez :timeago',
 
             'download' => [
                 '_' => 'Descargar',
@@ -53,20 +38,29 @@ return [
             ],
         ],
 
+        'details_date' => [
+            'approved' => 'aprobado :timeago',
+            'loved' => 'amado :timeago',
+            'qualified' => 'calificado :timeago',
+            'ranked' => 'clasificado :timeago',
+            'submitted' => 'enviado :timeago',
+            'updated' => 'actualizado por última vez :timeago',
+        ],
+
         'favourites' => [
             'limit_reached' => '¡Tienes demasiados mapas favoritos! Por favor, desmarca algunos antes de volver a intentarlo.',
         ],
 
         'hype' => [
-            'action' => 'Apoya este mapa si te gusto para ayudarlo a legar a <strong>Ranked</strong>.',
+            'action' => 'Hypea este mapa si te gustó jugarlo para ayudar a que progrese al estado de <strong>Clasificado</strong>.',
 
             'current' => [
-                '_' => 'El mapa esta :status.',
+                '_' => 'Este mapa está actualmente :status.',
 
                 'status' => [
                     'pending' => 'pendiente',
                     'qualified' => 'calificado',
-                    'wip' => 'trabajo en progreso',
+                    'wip' => 'en proceso de elaboración',
                 ],
             ],
 
@@ -124,7 +118,7 @@ return [
                 'unranked' => 'Mapa no clasificado.',
             ],
             'score' => [
-                'first' => 'A la cabeza',
+                'first' => 'Liderando',
                 'own' => 'Tu mejor puntuación',
             ],
         ],
@@ -136,7 +130,7 @@ return [
             'accuracy' => 'Precisión',
             'ar' => 'Velocidad de aproximación',
             'stars' => 'Estrellas de Dificultad',
-            'total_length' => 'Duración',
+            'total_length' => 'Duración (Duración del drenaje: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Número de Círculos',
             'count_sliders' => 'Número de Deslizadores',

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'discussion-posts' => [
@@ -44,9 +29,9 @@ return [
         'message_placeholder_locked' => 'このビートマップに関するディスカッションは無効になっています。',
         'message_type_select' => 'コメントタイプを選択',
         'reply_notice' => 'Enterキーを押して送信',
-        'reply_placeholder' => 'ここにメッセージを入力してください',
+        'reply_placeholder' => 'ここに入力してください',
         'require-login' => '返信するにはログインが必要です。',
-        'resolved' => '解決済',
+        'resolved' => '解決済み',
         'restore' => '復元',
         'show_deleted' => '削除済みを表示',
         'title' => 'ディスカッション',
@@ -80,7 +65,7 @@ return [
 
         'message_placeholder' => [
             'general' => '一般（:version）への投稿をここに入力',
-            'generalAll' => '一般 （全難易度）への投稿をここに入力',
+            'generalAll' => '一般 （全ての難易度）への投稿をここに入力',
             'timeline' => 'タイムライン（:version）へ投稿するにはここに入力',
         ],
 
@@ -102,7 +87,7 @@ return [
             'timeline' => 'タイムライン',
             'scopes' => [
                 'general' => 'この難易度',
-                'generalAll' => '全難易度',
+                'generalAll' => '全ての難易度',
             ],
         ],
 
@@ -128,7 +113,7 @@ return [
             'deleted' => '削除済み',
             'mapper_notes' => '注意',
             'mine' => '自分',
-            'pending' => '未解決',
+            'pending' => '保留中',
             'praises' => '称賛',
             'resolved' => '解決済み',
             'total' => '全て',
@@ -136,7 +121,7 @@ return [
 
         'status-messages' => [
             'approved' => 'このビートマップは:dateにApprovedになりました！',
-            'graveyard' => "このビートマップは:dateから更新止まっているため放棄された可能性があります・・・",
+            'graveyard' => "このビートマップは:dateから更新が止まっているため放棄された可能性があります・・・",
             'loved' => 'このビートマップは:dateにLovedに追加しました！',
             'ranked' => 'このビートマップは:dateにRankedになりました！',
             'wip' => '注意：このビートマップは作者によって作成途中とされています。',
@@ -155,15 +140,15 @@ return [
     ],
 
     'hype' => [
-        'button' => 'ビートマップにHype！',
+        'button' => 'ビートマップにHypeする！',
         'button_done' => 'Hype済みです！',
         'confirm' => "あなたの残りHype数は:n回です。Hypeは取り消しできません。Hypeしますか？",
         'explanation' => 'このビートマップにHypeすることで注目が集まり、ノミネーションやRankedがされやすくなります！',
-        'explanation_guest' => 'このビートマップにログインしてHypeすることで注目が集まり、ノミネーションやRankedがされやすくなります！',
+        'explanation_guest' => 'ログインしてHypeすることでこのビートマップに注目が集まり、ノミネーションやRankedがされやすくなります！',
         'new_time' => ":new_timeでhype数が回復します。",
         'remaining' => 'あなたの残りHype数は:remaining回です',
         'required_text' => 'Hype: :current/:required',
-        'section_title' => 'Hype進行',
+        'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],
 
@@ -184,9 +169,9 @@ return [
         'love_confirm' => 'Lovedに追加しますか？',
         'nominate' => 'ノミネート',
         'nominate_confirm' => 'このビートマップをノミネートしますか？',
-        'nominated_by' => ':usersにノミネートされました。',
-        'not_enough_hype' => "hypeは十分ではありません。",
-        'qualified' => '特に問題がなかった場合、:dateにranked予定です。',
+        'nominated_by' => ':usersがノミネート',
+        'not_enough_hype' => "Hypeが足りません",
+        'qualified' => '特に問題がなかった場合、:dateにランク予定です。',
         'qualified_soon' => '特に問題がなかった場合、間もなくランクされる予定です。',
         'required_text' => 'ノミネート数: :current/:required',
         'reset_message_deleted' => '削除済み',
@@ -213,7 +198,7 @@ return [
             'not-found' => '該当結果なし',
             'not-found-quote' => '・・・なにも見つからなかったようだ。',
             'filters' => [
-                'general' => '一般',
+                'general' => '全般',
                 'mode' => 'モード',
                 'status' => 'カテゴリー',
                 'genre' => 'ジャンル',
@@ -265,7 +250,7 @@ return [
     ],
     'genre' => [
         'any' => '全て',
-        'unspecified' => '未指定',
+        'unspecified' => '未分類',
         'video-game' => 'ゲーム',
         'anime' => 'アニメ',
         'rock' => 'ロック',

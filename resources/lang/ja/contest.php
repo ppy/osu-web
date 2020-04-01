@@ -1,26 +1,11 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'header' => [
-        'small' => 'サークルをクリックするだけでなく様々な方法競うことができます。',
+        'small' => 'サークルをクリックするだけでなく様々な方法で競うことができます。',
         'large' => 'コミュニティコンテスト',
     ],
 
@@ -45,7 +30,7 @@ return [
     'entry' => [
         '_' => 'エントリー',
         'login_required' => 'このコンテストにエントリーするにはログインが必要です。',
-        'silenced_or_restricted' => '制限中やサイレンス中はコンテストにエントリーすることはできません。',
+        'silenced_or_restricted' => '制限されている間やサイレンス中はコンテストにエントリーすることはできません。',
         'preparation' => 'このコンテストは準備中です。しばらくお待ちください！',
         'over' => 'エントリーありがとうございます！このコンテストの応募は締め切られています。まもなく投票が始まります。',
         'limit_reached' => 'あなたはこのコンテストのエントリー上限を超えています。',
@@ -63,8 +48,8 @@ return [
     ],
     'vote' => [
         'list' => '投票',
-        'count' => ':count 票',
-        'points' => ':count ポイント',
+        'count' => ':count_delimited 票',
+        'points' => ':count_delimited ポイント',
     ],
     'dates' => [
         'ended' => '終了日 :date',

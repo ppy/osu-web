@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'deleted' => '[usuario eliminado]',
@@ -98,12 +83,12 @@ return [
         'email_login_disabled' => 'El inicio de sesión con correo electrónico está actualmente desactivado. Por favor, utilice el nombre de usuario en su lugar.',
         'failed' => 'Inicio de sesión incorrecto',
         'forgot' => '¿Olvidaste tu contraseña?',
-        'info' => 'Por favor, inicia sesión para continuar',
+        'info' => 'Por favor, inicie sesión para continuar',
         'locked_ip' => 'Tu dirección IP está bloqueada. Espera unos minutos.',
         'password' => 'Contraseña',
         'register' => "¿No tienes una cuenta de osu!? Crea una nueva",
         'remember' => 'Recordar este computador',
-        'title' => 'Inicia sesión para continuar',
+        'title' => 'Inicie sesión para continuar',
         'username' => 'Nombre de usuario',
 
         'beta' => [
@@ -117,7 +102,7 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'haz clic aquí para iniciar sesión',
+        'login_link' => 'haga clic para iniciar sesión',
         'login_text' => 'iniciar sesión',
         'username' => 'Invitado',
         'error' => 'Necesitas haber iniciado sesión para hacer esto.',
@@ -157,7 +142,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Se unió en :date',
         'lastvisit' => 'Visto por última vez :date',
-        'lastvisit_online' => 'En línea',
+        'lastvisit_online' => 'Actualmente en línea',
         'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
         'origin_country' => 'De :country',
         'page_description' => 'osu! - ¡Todo lo que siempre quisiste saber acerca de :username!',
@@ -203,7 +188,7 @@ return [
             'beatmaps' => [
                 'by_artist' => 'por :artist',
                 'none' => 'Ninguno... aún.',
-                'title' => 'Beatmaps',
+                'title' => 'Mapas',
 
                 'favourite' => [
                     'title' => 'Mapas Favoritos',
@@ -254,7 +239,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',
-                'available_info' => "Los kudosu pueden ser intercambiados por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.",
+                'available_info' => "Los kudosu pueden ser intercambiados por estrellas kudosu, que ayudarán a tu mapa a obtener más atención. Este es el número de kudosu que no has intercambiado aún.",
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu obtenido',
@@ -299,7 +284,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Basado en qué tanto ha colaborado el usuario a la moderación de beatmaps. Vea :link para más información.',
+                    '_' => 'Basado en qué tanto ha colaborado el usuario a la moderación de mapas. Vea :link para más información.',
                     'link' => 'esta página',
                 ],
             ],
@@ -312,8 +297,8 @@ return [
                 'title' => 'Medallas',
             ],
             'posts' => [
-                'title' => 'Entradas',
-                'title_longer' => 'Entradas recientes',
+                'title' => 'Publicaciones',
+                'title_longer' => 'Publicaciones recientes',
                 'show_more' => 'ver más publicaciones',
             ],
             'recent_activity' => [
@@ -381,10 +366,10 @@ return [
             'title' => '¡Usuario no encontrado! ;_;',
         ],
         'page' => [
-            'button' => 'Editar pagina de perfil',
+            'button' => 'Editar página de perfil',
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
-            'placeholder' => 'Escribe el contenido de la pagina aquí',
+            'placeholder' => 'Escriba el contenido de la página aquí',
 
             'restriction_info' => [
                 '_' => 'Debes ser un :link para desbloquear esta función.',
@@ -423,9 +408,9 @@ return [
     ],
 
     'status' => [
-        'all' => 'Todo',
-        'online' => 'Conectados',
-        'offline' => 'Desconectados',
+        'all' => 'Todos',
+        'online' => 'En línea',
+        'offline' => 'Sin conexión',
     ],
     'store' => [
         'saved' => 'Usuario creado',
@@ -435,6 +420,7 @@ return [
     ],
 
     'view_mode' => [
+        'brick' => '',
         'card' => 'Vista de tarjetas',
         'list' => 'Visualizar en lista',
     ],

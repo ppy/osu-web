@@ -1,20 +1,5 @@
-###
-#    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
-#
-#    This file is part of osu!web. osu!web is distributed with the hope of
-#    attracting more community contributions to the core ecosystem of osu!.
-#
-#    osu!web is free software: you can redistribute it and/or modify
-#    it under the terms of the Affero GNU General Public License version 3
-#    as published by the Free Software Foundation.
-#
-#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#    See the GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-###
+# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+# See the LICENCE file in the repository root for full licence text.
 
 # Import shim so that globally declared scripts can work without changes.
 
@@ -23,6 +8,7 @@ import Fade from 'fade'
 import Enchant from 'enchant'
 import ForumPoll from 'forum-poll'
 import * as laroute from 'laroute'
+import MobileToggle from 'mobile-toggle'
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 import TextareaAutosize from 'react-autosize-textarea'
@@ -41,6 +27,7 @@ window._exported = {
   Enchant
   ForumPoll
   GalleryContest
+  MobileToggle
   OsuUrlHelper
   TurbolinksReload
   WindowVHPatcher
@@ -54,7 +41,7 @@ window._styles =
   header:
     height: 90 # @nav2-height
     heightSticky: 50 # @nav2-height--pinned
-    heightMobile: 60 # @navbar-height
+    heightMobile: 50 # @navbar-height
 
 window.StoreCheckout = StoreCheckout
 window.TextareaAutosize = TextareaAutosize

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 namespace App\Models;
 
@@ -44,6 +29,12 @@ class UserProfileCustomization extends Model
         'historical',
         'beatmaps',
         'kudosu',
+    ];
+
+    const USER_LIST = [
+        'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
+        'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
+        'views' => ['all' => ['card', 'list', 'brick'], 'default' => 'card'],
     ];
 
     protected $casts = [
@@ -98,6 +89,48 @@ class UserProfileCustomization extends Model
         }
 
         $this->setOption('comments_sort', $value);
+    }
+
+    public function getUserListFilterAttribute()
+    {
+        return $this->options['user_list_filter'] ?? static::USER_LIST['filters']['default'];
+    }
+
+    public function setUserListFilterAttribute($value)
+    {
+        if ($value !== null && !in_array($value, static::USER_LIST['filters']['all'], true)) {
+            $value = null;
+        }
+
+        $this->setOption('user_list_filter', $value);
+    }
+
+    public function getUserListSortAttribute()
+    {
+        return $this->options['user_list_sort'] ?? static::USER_LIST['sorts']['default'];
+    }
+
+    public function setUserListSortAttribute($value)
+    {
+        if ($value !== null && !in_array($value, static::USER_LIST['sorts']['all'], true)) {
+            $value = null;
+        }
+
+        $this->setOption('user_list_sort', $value);
+    }
+
+    public function getUserListViewAttribute()
+    {
+        return $this->options['user_list_view'] ?? static::USER_LIST['views']['default'];
+    }
+
+    public function setUserListViewAttribute($value)
+    {
+        if ($value !== null && !in_array($value, static::USER_LIST['views']['all'], true)) {
+            $value = null;
+        }
+
+        $this->setOption('user_list_view', $value);
     }
 
     public function getExtrasOrderAttribute($value)

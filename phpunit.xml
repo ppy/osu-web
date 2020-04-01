@@ -22,5 +22,14 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="CHAT_PRIVATE_LIMIT" value="2"/>
         <env name="SESSION_DRIVER" value="array"/>
+
+        <env name="ADMIN_FORUM_ID" value="0"/>
+        <env name="DOUBLE_POST_ALLOWED_FORUM_IDS" value="0"/>
+        <env name="FEATURE_FORUM_ID" value="0"/>
+        <env name="HELP_FORUM_ID" value="0"/>
+        <env name="INITIAL_HELP_FORUM_IDS" value="0"/>
+        <env name="ISSUE_FORUM_IDS" value="0"/>
+        <env name="SLACK_WATCH_FORUM_IDS" value="0"/>
+        <env name="SLACK_WATCH_TOPIC_IDS" value="0"/>
     </php>
 </phpunit>

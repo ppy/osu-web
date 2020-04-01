@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'beatmapset_update_notice' => [
@@ -38,7 +23,7 @@ return [
         'keep_free' => 'Det er takket være folk som dig at osu! kan blive ved med at holde spillet og fællesskabet kørende uden problemer eller nogen former for betaling.',
         'keep_running' => 'Din støtte holder osu! kørende for omtrent :minutes! Det ser måske ikke ud af meget, men hver en krone hjælper :).',
         'subject' => 'Tak, osu! elsker dig! <3',
-        'translation' => '',
+        'translation' => 'En oversættelse lavet af frivillige følger:',
 
         'benefit' => [
             'gift' => 'Personen/personerne som du har givet supporter til har nu adgang til osu!direct samt mange andre supporter fordele.',

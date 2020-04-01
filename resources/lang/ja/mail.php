@@ -1,35 +1,20 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'beatmapset_update_notice' => [
         'new' => '前回の訪問以降、ビートマップ「:title」に新しい更新がありました。',
-        'subject' => 'ビートマップ":title"に新しい投稿があります',
+        'subject' => 'ビートマップ「:title」に新しい投稿があります',
         'unwatch' => 'このビートマップのウォッチを解除したい場合は、ページ上にある[ウォッチ解除]をクリックするか、moddingウォッチリストページからクリックしてください:',
         'visit' => 'こちらのディスカッションページにアクセスしてください:',
     ],
 
     'common' => [
-        'closing' => 'お手数おかけして申し訳ございませんが、どうぞよろしくお願い致します。',
+        'closing' => 'これからもどうぞよろしくお願いいたします。',
         'hello' => 'こんにちは :user、',
-        'report' => 'この変更をしていない場合は、すぐにこのメールに返信してください。',
+        'report' => 'この変更リクエストにお心当たりがない場合は、すぐにこのメールに返信してください。',
     ],
 
     'donation_thanks' => [
@@ -50,19 +35,19 @@ return [
         'support' => [
             '_' => 'osu!に対する :support に感謝します。',
             'first' => 'サポート',
-            'repeat' => 'サポートを続行',
+            'repeat' => '絶え間ないサポート',
         ],
     ],
 
     'forum_new_reply' => [
         'new' => '前回の訪問以降、ビートマップ「:title」に新しい返信がありました。',
-        'subject' => '[osu!] トピック":title"に新しい返信があります',
+        'subject' => '[osu!] トピック「:title」に新しい返信があります',
         'unwatch' => 'このトピックをもう見たくない場合は、トピックの下部にある[トピックのサブスクライブを解除]リンクをクリックするか、トピックサブスクリプション管理ページからクリックしてください:',
         'visit' => '次のリンクを使用して、最新の返信に直接ジャンプします:',
     ],
 
     'password_reset' => [
-        'code' => '確認コードは次のとおりです:',
+        'code' => '認証コードは次のとおりです:',
         'requested' => 'あなたまたはあなたを装った誰かがあなたのosu!アカウントのパスワードリセットを要求しました。',
         'subject' => 'osu!アカウントの復元',
     ],
@@ -106,10 +91,10 @@ return [
     ],
 
     'user_verification' => [
-        'code' => '確認コードは次のとおりです:',
+        'code' => '認証コードは次のとおりです:',
         'code_hint' => 'スペースを入れても入れなくてもコードを入力できます。',
-        'link' => 'または、以下のリンクにアクセスして確認を完了することもできます:',
-        'report' => 'これをしていない場合はアカウントが危険にさらされている可能性があるため、すぐに返信してください。',
+        'link' => 'または、以下のリンクにアクセスして認証を完了することもできます:',
+        'report' => 'このリクエストに心当たりがない場合はアカウントが危険にさらされている可能性があるため、すぐに返信してください。',
         'subject' => 'osu!アカウントの認証',
 
         'action_from' => [

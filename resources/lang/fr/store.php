@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
@@ -52,6 +37,7 @@ return [
         'delayed_shipping' => 'Nous sommes actuellement submergés de commandes ! Vous pouvez tout de même commander, mais attendez-vous à **une à deux semaines de délai supplémentaire** le temps que nous puissions traiter toutes ces commandes.',
         'old_cart' => 'Votre panier semble être obsolète et a donc été actualisé, merci de réessayer.',
         'pay' => 'Payer avec PayPal',
+        'title_compact' => 'commander',
 
         'has_pending' => [
             '_' => 'Vous avez un paiement en attente, cliquez :link pour y accéder.',
@@ -68,6 +54,8 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Si votre paiement est en eCheck, comptez jusqu\'à 10 jours supplémentaires pour le paiement via PayPal!',
+        'title_compact' => 'facture',
+
         'status' => [
             'processing' => [
                 'title' => 'Votre paiement n\'a pas encore été confirmé !',
