@@ -17,8 +17,8 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, por favor inténtalo de nuevo mañana.',
-            'full_bn_required' => 'Debes ser un nominador para realizar esta nominación.',
-            'full_bn_required_hybrid' => 'Debes ser un nominador para nominar conjuntos de beatmaps con más de un modo de juego.',
+            'full_bn_required' => 'Debe ser un nominador completo para realizar esta nominación calificada.',
+            'full_bn_required_hybrid' => 'Debe ser un nominador completo para nominar sets de mapas con más de un modo de juego.',
             'incorrect_state' => 'Error al realizar esa acción, intenta actualizando la página.',
             'owner' => "No puedes nominar tu propio mapa.",
         ],
@@ -158,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Se requiere el osu!supporter tag.',
+                'require_supporter_tag' => 'Se requiere el tag de osu!supporter.',
             ],
         ],
     ],

@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'We zijn momenteel overweldigd met bestellingen! Je kunt nog steeds bestellingen plaatsen maar verwacht dan **een vertraging van 1-2 weken** terwijl wij de bestaande bestellingen verwerken.',
         'old_cart' => 'Je winkelwagen lijkt verouderd te zijn en wordt herladen, probeer het opnieuw.',
         'pay' => 'Afrekenen met Paypal',
-        'title_compact' => '',
+        'title_compact' => 'afrekenen',
 
         'has_pending' => [
             '_' => 'U heeft onvolledig afgerekend, klik op :link om ze te bekijken.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Aangezien uw betaling een eCheck was, Wacht maximaal 10 dagen extra om de betaling veilig via PayPal te laten gaan!',
-        'title_compact' => '',
+        'title_compact' => 'factuur',
 
         'status' => [
             'processing' => [

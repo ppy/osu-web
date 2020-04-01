@@ -291,8 +291,8 @@ return [
                 'vote' => 'Oyla',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
+                    'change_vote' => 'Oyu değiştir',
+                    'edit' => 'Anketi düzenle',
                     'view_results' => 'Sonuçlara geç',
                     'vote' => 'Oy ver',
                 ],

@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Țara nu se află în baza de date.',
         'invalid_discord' => 'Nume de utilizator Discord invalid.',
         'invalid_email' => "Nu pare să fie o adresă de e-mail validă.",
+        'invalid_twitter' => '',
         'too_short' => 'Parola nouă este prea scurtă.',
         'unknown_duplicate' => 'Numele de utilizator sau adresa de e-mail sunt deja folosite.',
         'username_available_in' => 'Acest nume de utilizator va fi disponibil pentru utilizare în :duration.',

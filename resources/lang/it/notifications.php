@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => 'Tutte le notifiche sono state lette!',
-    'mark_read' => '',
+    'all_read' => 'Lette tutte le notifiche!',
+    'mark_read' => 'Svuota :type',
     'none' => 'Nessuna notifica',
     'see_all' => 'vedi tutte le notifiche',
 

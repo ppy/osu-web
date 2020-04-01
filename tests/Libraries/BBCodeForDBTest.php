@@ -17,6 +17,7 @@ class BBCodeForDBTest extends TestCase
      */
     public function testGenerate($name, $path)
     {
+        config()->set('app.url', 'http://localhost');
         $baseFilePath = "{$path}/{$name}.base.txt";
         $dbFilePath = "{$path}/{$name}.db.txt";
 

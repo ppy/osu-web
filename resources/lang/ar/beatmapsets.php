@@ -40,8 +40,8 @@ return [
 
         'details_date' => [
             'approved' => '',
-            'loved' => '',
-            'qualified' => '',
+            'loved' => 'محبوب timeago:',
+            'qualified' => 'مؤهل timeago:',
             'ranked' => '',
             'submitted' => '',
             'updated' => '',

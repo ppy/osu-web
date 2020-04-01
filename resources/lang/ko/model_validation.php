@@ -32,12 +32,12 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "이 비트맵은 현재 토론이 잠겨 Hype 할 수 없습니다.",
             'guest' => '로그인하셔야 Hype하실 수 있습니다.',
             'hyped' => '이미 이 비트맵을 Hype했습니다.',
             'limit_exceeded' => '모든 Hype를 사용하셨습니다.',
-            'not_hypeable' => '이 비트맵을 Hype할 수 없습니다.',
-            'owner' => '자신의 비트맵을 Hype할 수 없습니다.',
+            'not_hypeable' => '이 비트맵을 Hype 할 수 없습니다.',
+            'owner' => '자신의 비트맵을 Hype 할 수 없습니다.',
         ],
 
         'timestamp' => [
@@ -123,6 +123,7 @@ return [
         'invalid_country' => '해당하는 국가가 데이터베이스에 존재하지 않습니다.',
         'invalid_discord' => 'Discord 유저 이름이 올바르지 않습니다.',
         'invalid_email' => "이메일 주소가 잘못되었습니다.",
+        'invalid_twitter' => '',
         'too_short' => '새 비밀번호가 너무 짧습니다.',
         'unknown_duplicate' => '유저 이름 또는 이메일 주소가 이미 사용중입니다.',
         'username_available_in' => '이 사용자 이름은 :duration 안에 사용 가능합니다.',

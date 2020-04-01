@@ -10,7 +10,7 @@ return [
     'pinned' => '고정됨',
     'empty' => '아직 댓글이 없습니다.',
     'load_replies' => '답글 불러오기',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited 답글',
     'title' => '댓글',
 
     'commentable_name' => [

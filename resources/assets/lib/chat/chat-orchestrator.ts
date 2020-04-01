@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
+  ChatChannelLoadEarlierMessages,
   ChatChannelPartAction,
   ChatChannelSwitchAction,
   ChatMessageAddAction,
@@ -91,6 +92,8 @@ export default class ChatOrchestrator implements DispatchListener {
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof ChatChannelSwitchAction) {
       this.changeChannel(action.channelId);
+    } else if (action instanceof ChatChannelLoadEarlierMessages) {
+      this.loadChannelEarlierMessages(action.channelId);
     } else if (action instanceof ChatChannelPartAction) {
       this.handleChatChannelPartAction(action);
     } else if (action instanceof ChatMessageAddAction) {
@@ -127,7 +130,29 @@ export default class ChatOrchestrator implements DispatchListener {
         });
       })
       .catch((err) => {
+        channel.loading = false;
         console.debug('loadChannel error', err);
+      });
+  }
+
+  loadChannelEarlierMessages(channelId: number) {
+    const channel = this.rootDataStore.channelStore.get(channelId);
+
+    if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
+      return;
+    }
+
+    channel.loadingEarlierMessages = true;
+
+    this.api.getMessages(channel.channelId, { until: channel.minMessageId })
+      .then((messages) => {
+        transaction(() => {
+          channel.loadingEarlierMessages = false;
+          this.addMessages(channelId, messages);
+        });
+      }).catch((err) => {
+        channel.loadingEarlierMessages = false;
+        console.debug('loadChannelEarlierMessages error', err);
       });
   }
 

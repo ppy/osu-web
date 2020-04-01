@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'Kami saat ini sedang kebajiran pesanan! Anda dipersilakan untuk melakukan pemesanan, namun apabila Anda memesan sekarang Anda diharapkan untuk memberikan waktu **selama 1-2 minggu** tambahan bagi kami untuk dapat mulai memproses pesanan Anda selagi kami mengurus pesanan-pesanan yang sudah ada sebelumnya.',
         'old_cart' => 'Keranjang Anda nampaknya sudah kedaluwarsa dan telah dimuat ulang, silakan coba lagi.',
         'pay' => 'Bayar lewat Paypal',
-        'title_compact' => '',
+        'title_compact' => 'selesaikan transaksi',
 
         'has_pending' => [
             '_' => 'Anda memiliki transaksi yang belum tuntas, klik :link untuk melihatnya.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Karena Anda melakukan pembayaran via eCheck, mohon izinkan setidaknya 10 hari tambahan untuk masuk melalui PayPal!',
-        'title_compact' => '',
+        'title_compact' => 'faktur',
 
         'status' => [
             'processing' => [

@@ -28,7 +28,7 @@ return [
 
         'help' => [
             'index' => 'strona główna',
-            'sitemap' => '',
+            'sitemap' => 'Mapa strony',
         ],
 
         'store' => [
@@ -116,7 +116,7 @@ return [
             'forum' => 'Forum',
             'livestreams' => 'Na żywo',
             'report' => 'Zgłoś problem',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Prawne i status',
@@ -146,7 +146,7 @@ return [
             'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Parametr żądania jest nieprawidłowy',
             'description' => '',
         ],
         '500' => [

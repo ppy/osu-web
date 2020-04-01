@@ -7,10 +7,10 @@ return [
     'deleted' => 'silindi',
     'deleted_count' => ':count_delimited silinmiş yorum|:count_delimited silinmiş yorum',
     'edited' => ':timeago tarihinde :user tarafından düzenlendi',
-    'pinned' => '',
+    'pinned' => 'sabitlenmiş',
     'empty' => 'Henüz yorum yok.',
     'load_replies' => 'yanıtları yükle',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited cevap|:count_delimited cevap',
     'title' => 'Yorumlar',
 
     'commentable_name' => [
@@ -45,6 +45,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'yorumlar',
     ],
 ];

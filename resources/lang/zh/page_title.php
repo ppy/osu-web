@@ -5,128 +5,128 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => '管理员',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => '管理',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => '管理员',
     ],
     'error' => [
         'error' => [
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '405' => '',
-            '422' => '',
-            '500' => '',
-            '503' => '',
+            '404' => '页面不存在',
+            '403' => '拒绝访问',
+            '401' => '权限不足',
+            '405' => '访问方法错误',
+            '422' => '请求无效',
+            '500' => '服务器出现了一些问题...',
+            '503' => '服务器维护中',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => '论坛',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => '主页',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => '主页',
+            'verify_link' => '账户验证',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => '精选艺术家',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => '谱面讨论帖',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => '谱面讨论',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => '曲包',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => '谱面讨论投票',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => '谱面历史',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => '主页',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => '谱面讨论',
+            'index' => '谱面列表',
+            'show' => '谱面信息',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => '更新日志',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => '聊天',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => '评论',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => '评选',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => '主页',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => '用户组',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => '下载',
+            'index' => '主页',
+            'search' => '搜索',
+            'support_the_game' => '支持 osu!',
+            'testflight' => 'testflight 测试',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => '信息',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => '直播',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => '比赛',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => '新闻',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => '通知历史记录',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => '重置密码',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => '排名',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu! 商店',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => '比赛',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => '玩家信息',
+            'disabled' => '通知',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => '知识库',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu! 商店',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => '摸图者信息',
         ],
     ],
 ];

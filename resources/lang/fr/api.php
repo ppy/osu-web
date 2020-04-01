@@ -20,7 +20,7 @@ return [
         ],
 
         'users' => [
-            'read' => '',
+            'read' => 'Lire le profil public de tout utilisateur en votre nom.',
         ],
     ],
 ];

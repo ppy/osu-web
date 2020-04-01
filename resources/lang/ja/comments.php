@@ -10,7 +10,7 @@ return [
     'pinned' => 'ピン留め',
     'empty' => 'まだコメントがありません。',
     'load_replies' => '返信を読み込む',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited 返信',
     'title' => 'コメント',
 
     'commentable_name' => [

@@ -6,8 +6,8 @@
 return [
     'top-headers' => [
         'headline' => 'Transmisiones en vivo',
-        'description' => 'Los datos son recogidos de twitch.tv cada cinco minutos basándose en el listado del directorio. ¡Siéntete libre de empezar a transmitir y ser incluido! Para más información sobre cómo empezar a transmitir, revisa la página de la wiki de transmisiones en vivo.',
+        'description' => 'Los datos son obtenidos de twitch.tv cada cinco minutos basados en el listado del directorio. ¡Siéntase libre de empezar a transmitir y de aparecer en la lista! Para obtener más información sobre cómo empezar a transmitir, revise :link.',
 
-        'link' => 'la página wiki en streaming',
+        'link' => 'la página de la wiki de transmisiones en vivo',
     ],
 ];

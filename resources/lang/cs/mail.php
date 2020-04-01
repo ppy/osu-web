@@ -18,7 +18,7 @@ return [
     ],
 
     'donation_thanks' => [
-        'benefit_more' => '',
+        'benefit_more' => 'Více výhod pro podporovatele se budou přidávat!',
         'feedback' => "",
         'keep_free' => '',
         'keep_running' => '',
@@ -65,14 +65,14 @@ return [
         'anonymous_gift_maybe_not' => 'Ale už asi víte, kdo to je ;).',
         'duration' => '',
         'features' => '',
-        'gifted' => '',
+        'gifted' => 'Někdo vám právě daroval osu!supporter tag!',
         'subject' => 'Dostal si status osu!podporovatele jako dárek!',
     ],
 
     'user_email_updated' => [
         'changed_to' => '',
         'check' => '',
-        'sent' => '',
+        'sent' => 'Z důvodu bezpečnosti byl tento email odeslán na obě emailové adresy, jak na starou, tak i na novou.',
         'subject' => 'potvrzení změny osu! e-mailu',
     ],
 
@@ -80,11 +80,11 @@ return [
         'main' => '',
         'perform_reset' => 'Můžete provést resetování z :url',
         'reason' => 'Důvod:',
-        'subject' => '',
+        'subject' => 'osu! Vyžadována reaktivace účtu',
     ],
 
     'user_password_updated' => [
-        'confirmation' => '',
+        'confirmation' => 'Toto je pouze potvrzení toho, že od Vašeho osu! účtu bylo změněno heslo.',
         'subject' => 'potvrzení změny osu! hesla',
     ],
 

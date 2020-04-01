@@ -5,6 +5,7 @@
 
 namespace Tests\Controllers;
 
+use App\Models\Country;
 use App\Models\LoginAttempt;
 use App\Models\User;
 use Tests\TestCase;
@@ -27,12 +28,15 @@ class SessionsControllerTest extends TestCase
     public function testLoginInactiveUser()
     {
         $password = 'password1';
-        $user = factory(User::class)->create(compact('password'));
+        $countryAcronym = (Country::first() ?? factory(Country::class)->create())->getKey();
+        $user = factory(User::class)->create(['password' => $password, 'country_acronym' => $countryAcronym]);
         $user->update(['user_lastvisit' => now()->subDays(config('osu.user.inactive_days_verification') + 1)]);
 
         $this->post(route('login'), [
             'username' => $user->username,
             'password' => $password,
+        ], [
+            'CF_IPCOUNTRY' => $countryAcronym,
         ])->assertSuccessful();
 
         $this->assertAuthenticated();
