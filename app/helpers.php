@@ -1317,6 +1317,14 @@ function get_params($input, $namespace, $keys)
 
 function array_rand_val($array)
 {
+    if ($array instanceof Illuminate\Support\Collection) {
+        $array = $array->all();
+    }
+
+    if (count($array) === 0) {
+        return;
+    }
+
     return $array[array_rand($array)];
 }
 
