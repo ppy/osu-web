@@ -330,7 +330,8 @@ class UserCompactTransformer extends TransformerAbstract
         ]);
     }
 
-    protected function userProfileCustomization(User $user): UserProfileCustomization {
+    protected function userProfileCustomization(User $user): UserProfileCustomization
+    {
         if (!isset($this->userProfileCustomization)) {
             $this->userProfileCustomization = $user->userProfileCustomization()->make();
         }

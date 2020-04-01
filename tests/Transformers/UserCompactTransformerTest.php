@@ -81,7 +81,7 @@ class UserCompactTransformerTest extends TestCase
         }
     }
 
-        /**
+    /**
      * @dataProvider propertyPermissionsDataProvider
      */
     public function testPropertyIsNotVisibleWithOAuth(string $property)
