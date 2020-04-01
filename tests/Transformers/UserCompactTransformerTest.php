@@ -6,6 +6,7 @@
 namespace Tests\Transformers;
 
 use App\Models\User;
+use App\Transformers\UserTransformer;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
@@ -80,6 +81,32 @@ class UserCompactTransformerTest extends TestCase
         }
     }
 
+        /**
+     * @dataProvider propertyPermissionsDataProvider
+     */
+    public function testPropertyIsNotVisibleWithOAuth(string $property)
+    {
+        $viewer = $this->createUserWithGroup([]);
+
+        $this->actAsScopedUser($viewer);
+
+        $json = json_item($viewer, 'User', [$property]);
+        $this->assertArrayNotHasKey($property, $json);
+    }
+
+    /**
+     * @dataProvider propertyPermissionsDataProvider
+     */
+    public function testPropertyIsVisibleWithoutOAuth(string $property)
+    {
+        $viewer = $this->createUserWithGroup([]);
+
+        $this->actAsUser($viewer);
+
+        $json = json_item($viewer, 'User', [$property]);
+        $this->assertArrayHasKey($property, $json);
+    }
+
     public function groupsDataProvider()
     {
         return [
@@ -90,5 +117,18 @@ class UserCompactTransformerTest extends TestCase
             [[], false],
             [null, false],
         ];
+    }
+
+    public function propertyPermissionsDataProvider()
+    {
+        $data = [];
+        $transformer = new UserTransformer;
+        foreach ($transformer->getPermissions() as $property => $permission) {
+            if ($permission === 'IsNotOAuth') {
+                $data[] = [$property];
+            }
+        }
+
+        return $data;
     }
 }

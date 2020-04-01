@@ -25,6 +25,14 @@ class UserCompactTransformer extends TransformerAbstract
         'friends',
         'graveyard_beatmapset_count',
         'group_badge',
+        'is_admin',
+        'is_bng',
+        'is_full_bn',
+        'is_gmt',
+        'is_limited_bn',
+        'is_moderator',
+        'is_nat',
+        'is_restricted',
         'loved_beatmapset_count',
         'monthly_playcounts',
         'page',
@@ -43,6 +51,14 @@ class UserCompactTransformer extends TransformerAbstract
 
     protected $permissions = [
         'friends' => 'IsNotOAuth',
+        'is_admin' => 'IsNotOAuth',
+        'is_bng' => 'IsNotOAuth',
+        'is_full_bn' => 'IsNotOAuth',
+        'is_gmt' => 'IsNotOAuth',
+        'is_limited_bn' => 'IsNotOAuth',
+        'is_moderator' => 'IsNotOAuth',
+        'is_nat' => 'IsNotOAuth',
+        'is_restricted' => 'IsNotOAuth',
     ];
 
     public function transform(User $user)
@@ -162,6 +178,46 @@ class UserCompactTransformer extends TransformerAbstract
         if (isset($badge)) {
             return $this->item($badge, new GroupTransformer);
         }
+    }
+
+    public function includeIsAdmin(User $user)
+    {
+        return $this->primitive($user->isAdmin());
+    }
+
+    public function includeIsBng(User $user)
+    {
+        return $this->primitive($user->isBNG());
+    }
+
+    public function includeIsFullBn(User $user)
+    {
+        return $this->primitive($user->isFullBN());
+    }
+
+    public function includeIsGmt(User $user)
+    {
+        return $this->primitive($user->isGMT());
+    }
+
+    public function includeIsLimitedBn(User $user)
+    {
+        return $this->primitive($user->isLimitedBN());
+    }
+
+    public function includeIsModerator(User $user)
+    {
+        return $this->primitive($user->isModerator());
+    }
+
+    public function includeIsNat(User $user)
+    {
+        return $this->primitive($user->isNAT());
+    }
+
+    public function includeIsRestricted(User $user)
+    {
+        return $this->primitive($user->isRestricted());
     }
 
     public function includeLovedBeatmapsetCount(User $user)
