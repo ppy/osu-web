@@ -20,7 +20,6 @@ class UserCompactTransformer extends TransformerAbstract
         'country',
         'cover',
         'current_mode_rank',
-        'defaultStatistics',
         'favourite_beatmapset_count',
         'follower_count',
         'friends',
@@ -142,13 +141,6 @@ class UserCompactTransformer extends TransformerAbstract
         $currentModeStatistics = $user->statistics(auth()->user()->playmode ?? 'osu');
 
         return $this->primitive($currentModeStatistics ? $currentModeStatistics->globalRank() : null);
-    }
-
-    public function includeDefaultStatistics(User $user)
-    {
-        $stats = $user->statistics($user->playmode);
-
-        return $this->item($stats, new UserStatisticsTransformer);
     }
 
     public function includeFavouriteBeatmapsetCount(User $user)
