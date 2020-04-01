@@ -6,85 +6,77 @@
 namespace Tests\Transformers;
 
 use App\Models\Beatmapset;
+use App\Transformers\BeatmapsetCompactTransformer;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class BeatmapsetCompactTransformerTest extends TestCase
 {
+    protected $beatmapset;
+    protected $viewer;
+
     public function testHasFavouritedWithOAuthNormalScopes()
     {
-        $viewer = $this->createUserWithGroup([]);
-        $beatmapset = factory(Beatmapset::class)->create();
+        $this->actAsScopedUser($this->viewer, Passport::scopes()->pluck('id')->all());
 
-        $this->actAsScopedUser($viewer, Passport::scopes()->pluck('id')->all());
-
-        $json = json_item($beatmapset, 'Beatmapset');
+        $json = json_item($this->beatmapset, 'BeatmapsetCompact');
         $this->assertArrayNotHasKey('has_favourited', $json);
     }
 
     public function testHasFavouritedWithOAuthAllScope()
     {
-        $viewer = $this->createUserWithGroup([]);
-        $beatmapset = factory(Beatmapset::class)->create();
+        $this->actAsScopedUser($this->viewer);
 
-        $this->actAsScopedUser($viewer);
-
-        $json = json_item($beatmapset, 'Beatmapset');
+        $json = json_item($this->beatmapset, 'BeatmapsetCompact');
         $this->assertArrayHasKey('has_favourited', $json);
     }
 
     public function testHasFavouritedWithoutOAuth()
     {
-        $viewer = $this->createUserWithGroup([]);
-        $beatmapset = factory(Beatmapset::class)->create();
+        $this->actAsUser($this->viewer);
 
-        $this->actAsUser($viewer);
-
-        $json = json_item($beatmapset, 'Beatmapset');
+        $json = json_item($this->beatmapset, 'BeatmapsetCompact');
         $this->assertArrayHasKey('has_favourited', $json);
     }
 
     /**
-     * @dataProvider groupsDataProvider
+     * @dataProvider propertyPermissionsDataProvider
      */
-    public function testGroupPermissionsWithOAuth($groupIdentifier)
+    public function testPropertyIsNotVisibleWithOAuth(string $property)
     {
-        $viewer = $this->createUserWithGroup($groupIdentifier);
-        $beatmapset = factory(Beatmapset::class)->states('deleted')->create();
-        $this->actAsScopedUser($viewer);
+        $this->actAsScopedUser($this->viewer);
 
-        $json = json_item($beatmapset, 'Beatmapset');
-
-        $this->assertEmpty($json);
+        $json = json_item($this->beatmapset, 'BeatmapsetCompact', [$property]);
+        $this->assertArrayNotHasKey($property, $json);
     }
 
     /**
-     * @dataProvider groupsDataProvider
+     * @dataProvider propertyPermissionsDataProvider
      */
-    public function testGroupPermissionsWithoutOAuth($groupIdentifier, $visible)
+    public function testPropertyIsVisibleWithoutOAuth(string $property)
     {
-        $viewer = $this->createUserWithGroup($groupIdentifier);
-        $beatmapset = factory(Beatmapset::class)->states('deleted')->create();
-        $this->actAsUser($viewer);
+        $this->actAsUser($this->viewer);
 
-        $json = json_item($beatmapset, 'Beatmapset');
-
-        if ($visible) {
-            $this->assertNotEmpty($json);
-        } else {
-            $this->assertEmpty($json);
-        }
+        $json = json_item($this->beatmapset, 'BeatmapsetCompact', [$property]);
+        $this->assertArrayHasKey($property, $json);
     }
 
-    public function groupsDataProvider()
+    public function propertyPermissionsDataProvider()
     {
-        return [
-            ['admin', true],
-            ['bng', true],
-            ['gmt', true],
-            ['nat', true],
-            [[], false],
-            [null, false],
-        ];
+        $data = [];
+        $transformer = new BeatmapsetCompactTransformer;
+        foreach ($transformer->getPermissions() as $property => $permission) {
+            if ($permission === 'IsNotOAuth') {
+                $data[] = [$property];
+            }
+        }
+
+        return $data;
+    }
+
+    protected function setUp(): void
+    {
+        $this->viewer = $this->createUserWithGroup([]);
+        $this->beatmapset = factory(Beatmapset::class)->create();
     }
 }
