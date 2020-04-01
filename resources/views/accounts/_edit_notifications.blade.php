@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <div class="account-edit__input-group">
+        {{-- <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
                 <div class="account-edit-entry__checkboxes-label">
                     {{ trans('accounts.notifications.push._') }}
@@ -98,36 +98,53 @@
                     @endforeach
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
                 <div class="account-edit-entry__checkboxes-label">
                     {{ trans('accounts.notifications.mail._') }}
                 </div>
-                <div class="account-edit-entry__checkboxes account-edit-entry__checkboxes--vertical">
+                <div class="account-edit-entry__grid">
+                    <span>mail</span>
+                    <span>push</span>
                     @foreach (App\Models\UserNotificationOption::HAS_MAIL_NOTIFICATION as $name)
-                        <label
-                            class="account-edit-entry__checkbox account-edit-entry__checkbox--inline js-account-edit"
+                        <form
+                            class="account-edit-entry__checkboxes js-account-edit"
                             data-account-edit-auto-submit="1"
                             data-skip-ajax-error-popup="1"
                             data-url="{{ route('account.notification-options', compact('name')) }}"
                         >
-                            @include('objects._switch', [
-                                'additionalClass'=> 'js-account-edit__input',
-                                'checked' => $notificationOptions[$name]->details['mail'] ?? true,
-                                'defaultValue' => '0',
-                                'name' => 'user_notification_option[details][mail]',
-                            ])
+                            <label
+                                class="account-edit-entry__checkbox account-edit-entry__checkbox--inline"
+                            >
+                                @include('objects._switch', [
+                                    'additionalClass'=> 'js-account-edit__input',
+                                    'checked' => $notificationOptions[$name]->details['mail'] ?? true,
+                                    'defaultValue' => '0',
+                                    'name' => 'user_notification_option[details][mail]',
+                                ])
+                            </label>
+
+                            <label
+                                class="account-edit-entry__checkbox account-edit-entry__checkbox--inline"
+                            >
+                                @include('objects._switch', [
+                                    'additionalClass'=> 'js-account-edit__input',
+                                    'checked' => $notificationOptions[$name]->details['push'] ?? true,
+                                    'defaultValue' => '0',
+                                    'name' => 'user_notification_option[details][push]',
+                                ])
+                            </label>
 
                             <span class="account-edit-entry__checkbox-label">
                                 {{ trans("accounts.notifications.mail.{$name}") }}
                             </span>
 
-                            <div class="account-edit-entry__checkbox-status">
+                            <div class="account-edit-entry__checkboxes-status">
                                 @include('accounts._edit_entry_status')
                             </div>
-                        </label>
+                        </form>
                     @endforeach
                 </div>
             </div>
