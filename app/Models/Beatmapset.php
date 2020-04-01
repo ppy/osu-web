@@ -1172,12 +1172,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable
     {
         $this->validationErrors()->reset();
 
-        if ($this->isDirty('language_id') && $this->language === null) {
-            $this->validationErrors()->add('language_id', '.invalid');
+        if ($this->isDirty('language_id') && ($this->language === null || $this->language_id === 0)) {
+            $this->validationErrors()->add('language_id', 'invalid');
         }
 
-        if ($this->isDirty('genre_id') && $this->genre === null) {
-            $this->validationErrors()->add('genre_id', '.invalid');
+        if ($this->isDirty('genre_id') && ($this->genre === null || $this->genre_id === 0)) {
+            $this->validationErrors()->add('genre_id', 'invalid');
         }
 
         return $this->validationErrors()->isEmpty();

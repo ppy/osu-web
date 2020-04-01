@@ -48,12 +48,10 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
               onChange={this.setLanguageId}
             >
               {this.languages.map((language) => (
-                <option
-                  key={language.id ?? 0}
-                  value={language.id ?? 0}
-                >
-                  {language.name}
-                </option>
+                language.id === null ? null :
+                  <option key={language.id} value={language.id}>
+                    {language.name}
+                  </option>
               ))}
             </select>
           </div>
@@ -72,12 +70,10 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
               onChange={this.setGenreId}
             >
               {this.genres.map((genre) => (
-                <option
-                  key={genre.id ?? 0}
-                  value={genre.id ?? 0}
-                >
-                  {genre.name}
-                </option>
+                genre.id === null ? null :
+                  <option key={genre.id} value={genre.id}>
+                    {genre.name}
+                  </option>
               ))}
             </select>
           </div>
