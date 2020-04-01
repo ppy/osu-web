@@ -30,8 +30,10 @@ class MessagesController extends BaseController
      *
      * @authenticated
      *
-     * @queryParam channel_id required The ID of the channel to retrieve messages for
+     * @urlParam channel_id required The ID of the channel to retrieve messages for
      * @queryParam limit number of messages to return (max of 50)
+     * @queryParam since messages after the specified message id will be returned
+     * @queryParam until messages up to but not including the specified message id will be returned
      *
      * @response [
      *   {
@@ -76,9 +78,11 @@ class MessagesController extends BaseController
      */
     public function index($channelId)
     {
+        $request = request()->all();
         $userId = Auth::user()->user_id;
-        $since = Request::input('since');
-        $limit = clamp(Request::input('limit', 50), 1, 50);
+        $since = get_int($request['since'] ?? null);
+        $until = get_int($request['until'] ?? null);
+        $limit = clamp(get_int($request['limit'] ?? null) ?? 50, 1, 50);
 
         $userChannel = UserChannel::where([
             'user_id' => $userId,
@@ -95,18 +99,19 @@ class MessagesController extends BaseController
 
         $messages = $userChannel->channel
             ->filteredMessages()
-            ->with('sender');
+            ->with('sender')
+            ->limit($limit);
 
-        if (presence($since)) {
+        if (present($since)) {
             $messages = $messages->where('message_id', '>', $since)
                 ->orderBy('message_id', 'asc')
-                ->limit($limit)
                 ->get();
         } else {
-            $messages = $messages->orderBy('message_id', 'desc')
-                ->limit($limit)
-                ->get()
-                ->reverse();
+            if (present($until)) {
+                $messages->where('message_id', '<', $until);
+            }
+
+            $messages = $messages->orderBy('message_id', 'desc')->get()->reverse();
         }
 
         return json_collection(

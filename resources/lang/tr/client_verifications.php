@@ -8,11 +8,11 @@ return [
         'home' => '',
         'logout' => 'Çıkış yap',
         'text' => 'Bu sekme/pencereyi şimdi kapatabilirsiniz',
-        'title' => '',
+        'title' => 'osu! istemci doğrulaması tamamlandı',
     ],
 
     'create' => [
         'confirm' => '',
-        'title' => '',
+        'title' => 'osu! istemci doğrulaması',
     ],
 ];

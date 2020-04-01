@@ -5,41 +5,41 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'админ',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'админ',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'админ',
     ],
     'error' => [
         'error' => [
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '405' => '',
-            '422' => '',
+            '404' => 'не найдено',
+            '403' => 'отказано в доступе',
+            '401' => 'вы не авторизованы',
+            '405' => 'не найдено',
+            '422' => 'неверный запрос',
             '500' => 'что-то сломалось',
-            '503' => '',
+            '503' => 'технические работы',
         ],
     ],
     'forum' => [
         '_' => 'форум',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'инфопанель',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
+            'edit' => 'инфопанель',
             'verify_link' => 'верификация аккаунта',
         ],
         'artists_controller' => [
             '_' => 'featured artists',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'публикации в обсуждений карты',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'обсуждения карты',
@@ -48,16 +48,16 @@ return [
             '_' => 'сборки карт',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'голоса в обсуждений карты',
         ],
         'beatmapset_events_controller' => [
             '_' => 'история карты',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'инфопанель',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
+            'discussion' => 'обсуждение карты',
             'index' => 'библиотека карт',
             'show' => 'информация о карте',
         ],
@@ -74,48 +74,48 @@ return [
             '_' => 'конкурсы',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'инфопанель',
         ],
         'groups_controller' => [
             'show' => 'группы',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'скачать игру',
+            'index' => 'инфопанель',
+            'search' => 'поиск',
+            'support_the_game' => 'поддержите игру',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'информация',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'прямые трансляции',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'матчи',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'новости',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'история уведомлений',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'восстановление пароля',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'рейтинг',
         ],
         'store_controller' => [
             '_' => 'osu!store',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'турниры',
         ],
         'users_controller' => [
             '_' => 'информация об игроке',
-            'disabled' => '',
+            'disabled' => 'обратите внимание',
         ],
         'wiki_controller' => [
             '_' => 'база знаний',

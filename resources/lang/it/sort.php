@@ -7,7 +7,7 @@ return [
     '_' => 'Ordina per',
 
     'last_visit' => 'Attivo di recente',
-    'new' => 'Recenti',
+    'new' => 'Recente',
     'old' => 'Vecchio',
     'rank' => 'Rank',
     'top' => 'In alto',

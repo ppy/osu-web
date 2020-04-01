@@ -5,9 +5,9 @@ import { route } from 'laroute';
 import * as ApiResponses from './chat-api-responses';
 
 export default class ChatAPI {
-  getMessages(channelId: number): Promise<ApiResponses.GetMessagesJSON> {
+  getMessages(channelId: number, params?: { since?: number; until?: number }): Promise<ApiResponses.GetMessagesJSON> {
     return new Promise((resolve, reject) => {
-      $.get(route('chat.channels.messages.index', {channel: channelId}))
+      $.get(route('chat.channels.messages.index', { channel: channelId, ...params }))
         .done((response) => {
           resolve(response as ApiResponses.GetMessagesJSON);
         }).fail((error) => {

@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Dit onderwerp is gesloten en kan niet meer op beantwoord worden',
             'to_0' => 'Ontgrendel topic',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Topic ontgrendelen?',
             'to_0_done' => 'Topic is ontgrendeld',
             'to_1' => 'Vergrendel topic',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Topic vergrendelen?',
             'to_1_done' => 'Topic is vergrendeld',
         ],
 
@@ -249,13 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Onpin topic',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Topic losmaken?',
             'to_0_done' => 'Topic niet meer gepint',
             'to_1' => 'Pin topic',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Topic vastmaken?',
             'to_1_done' => 'Topic is gepint',
             'to_2' => 'Pin topic en markeer als melding',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Topic vastmaken en markeer als aankondiging?',
             'to_2_done' => 'Topic is gepint en gemarkeerd als melding',
         ],
 

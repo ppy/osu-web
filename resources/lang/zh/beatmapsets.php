@@ -39,12 +39,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'approved 于 :timeago',
+            'loved' => 'loved 于 :timeago',
+            'qualified' => 'qualified 于 :timeago',
+            'ranked' => 'ranked 于 :timeago',
+            'submitted' => '提交于 :timeago',
+            'updated' => '上次更新于 :timeago',
         ],
 
         'favourites' => [

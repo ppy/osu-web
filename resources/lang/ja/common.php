@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => '管理者',
         'authorise' => '承認',
-        'authorising' => '',
+        'authorising' => '承認...',
         'back_to_previous' => '直前の状態に戻す',
         'back_to_top' => 'トップに戻る',
         'cancel' => 'キャンセル',

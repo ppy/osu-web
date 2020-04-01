@@ -3,3 +3,13 @@
 <!-- w --><a href='http://www.example.com' rel='nofollow'>www.example.com</a><!-- w -->
 
 <!-- e --><a href='mailto:user@example.com' rel='nofollow'>user@example.com</a><!-- e -->
+
+Boundary test
+Link to <!-- m --><a href='http://example.com/path:1/hello' rel='nofollow'>http://example.com/path:1/hello</a><!-- m -->: the colon should be excluded.
+Link to (<!-- m --><a href='http://example.com/path:1/hello' rel='nofollow'>http://example.com/path:1/hello</a><!-- m -->): the parentheses and colon should be excluded.
+Link (to <!-- m --><a href='http://example.com/path:1/hello' rel='nofollow'>http://example.com/path:1/hello</a><!-- m -->). The parentheses and period should be excluded.
+Link to &lt;<!-- m --><a href='http://example.com/path:1/hello' rel='nofollow'>http://example.com/path:1/hello</a><!-- m -->&gt; The angle brackets should be excluded.
+Link to <!-- m --><a href='http://example.com/path:1/hello&gt;world' rel='nofollow'>http://example.com/path:1/hello&gt;world</a><!-- m --> The angle brackets should be included.
+
+Relative test
+Link to <!-- m --><a href='http://localhost/path:1/hello' rel='nofollow'>path:1/hello</a><!-- m --> the domain part should be excluded.

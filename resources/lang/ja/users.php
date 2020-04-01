@@ -413,13 +413,14 @@ return [
         'offline' => 'オフライン',
     ],
     'store' => [
-        'saved' => 'ユーザー作成',
+        'saved' => 'ユーザーが作成されました',
     ],
     'verify' => [
         'title' => 'アカウントの認証',
     ],
 
     'view_mode' => [
+        'brick' => '',
         'card' => 'カードビュー',
         'list' => '一覧表示',
     ],

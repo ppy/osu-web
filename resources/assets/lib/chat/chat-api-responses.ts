@@ -8,6 +8,7 @@ export type ChannelType = 'PUBLIC'|'PRIVATE'|'MULTIPLAYER'|'SPECTATOR'|'TEMPORAR
 export interface ChannelJSON {
   channel_id: number;
   description?: string;
+  first_message_id: number;
   icon?: string;
   last_message_id: number;
   last_read_id: number;

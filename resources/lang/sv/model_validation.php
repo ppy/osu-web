@@ -123,6 +123,7 @@ return [
         'invalid_country' => 'Land finns inte i databasen.',
         'invalid_discord' => 'Discordanvändarnamn ogiltigt.',
         'invalid_email' => "Verkar inte som att det är en giltig e-postadress.",
+        'invalid_twitter' => '',
         'too_short' => 'Det nya lösenordet är för kort.',
         'unknown_duplicate' => 'Användarnamn eller e-postadress används redan.',
         'username_available_in' => 'Detta användarnamn kommer att vara tillgängligt att använda om :duration.',

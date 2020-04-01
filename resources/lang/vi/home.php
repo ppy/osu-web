@@ -10,7 +10,7 @@ return [
         'peak' => 'Đỉnh điểm, :count người chơi online',
         'players' => '<strong>:count</strong> người chơi đã đăng kí',
         'title' => 'chào mừng',
-        'see_more_news' => '',
+        'see_more_news' => 'xem các bản tin khác',
 
         'slogan' => [
             'main' => 'game nhịp điệu free-to-win hay nhất',
@@ -22,12 +22,12 @@ return [
         'advanced_link' => 'Tìm kiếm nâng cao',
         'button' => 'Tìm kiếm ',
         'empty_result' => 'Không có kết quả!',
-        'keyword_required' => '',
+        'keyword_required' => 'Cần ít nhất một từ khóa tìm kiếm',
         'placeholder' => 'nhập để tìm kiếm',
         'title' => 'Tìm Kiếm',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'Đăng nhập để tìm beatmap',
             'more' => 'còn :count kết quả tìm kiếm beatmap khác',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm beatmap',
             'title' => 'Beatmaps',
@@ -57,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'Đăng nhập để tìm người dùng',
             'more' => 'còn :count kết quả tìm kiếm người chơi khác',
             'more_simple' => 'Hiển thị thêm kết quả tìm kiếm người chơi',
             'more_hidden' => 'Kết quả tìm kiếm người chơi chỉ hiện thị :max người chơi. Hãy thử tinh chỉnh truy vấn tìm kiếm.',
@@ -117,7 +117,7 @@ return [
         'beatmaps' => [
             'new' => 'Beatmap Được Xếp Hạng Mới',
             'popular' => 'Beatmaps Phổ Biến',
-            'by_user' => '',
+            'by_user' => 'bởi :user',
         ],
         'buttons' => [
             'download' => 'Tải Xuống osu!',

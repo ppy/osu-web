@@ -47,7 +47,7 @@ return [
     'item' => [
         'created_at' => '投稿日',
         'deleted_at' => '削除日',
-        'message_type' => 'タイプ',
+        'message_type' => 'メッセージの種類',
         'permalink' => 'パーマリンク',
     ],
 

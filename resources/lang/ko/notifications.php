@@ -5,7 +5,7 @@
 
 return [
     'all_read' => '모든 알림을 읽었어요!',
-    'mark_read' => '',
+    'mark_read' => ':type 비우기',
     'none' => '알림 없음',
     'see_all' => '모든 알림 보기',
 
