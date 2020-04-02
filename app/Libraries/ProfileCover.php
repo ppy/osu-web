@@ -63,7 +63,7 @@ class ProfileCover
         }
 
         if (!in_array($this->data['id'] ?? null, $this->availableIds, true)) {
-            return $this->availableIds[$this->userId % count($this->availableIds)];
+            return $this->availableIds[abs($this->userId % count($this->availableIds))];
         }
 
         return $this->data['id'];
