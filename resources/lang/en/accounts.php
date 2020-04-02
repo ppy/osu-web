@@ -53,15 +53,13 @@ return [
         'topic_auto_subscribe' => 'automatically enable notifications on new forum topics that you create',
         'beatmapset_discussion_qualified_problem' => 'receive notifications for new problem on qualified beatmaps of following modes',
 
-        'mail' => [
-            '_' => 'receive mail notifications for',
+        'options' => [
+            '_' => 'delivery options',
             'beatmapset:modding' => 'beatmap modding',
             'forum_topic_reply' => 'topic reply',
-        ],
-
-        'push' => [
-            '_' => 'receive push notifications for',
-        ],
+            'mail' => 'mail',
+            'push' => 'push',
+        ]
     ],
 
     'oauth' => [

@@ -14,6 +14,7 @@ use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
+use App\Models\UserNotificationOption;
 use Auth;
 use Mail;
 use Request;
@@ -170,22 +171,29 @@ class AccountController extends Controller
 
     public function updateNotificationOptions()
     {
-        $request = request();
+        $requestParams = request()->only('user_notification_option');
+        // TODO: not array, error
+        $requestParams = $requestParams['user_notification_option'] ?? null;
 
-        $name = $request['name'] ?? null;
-        $params = get_params($request, 'user_notification_option', ['details:any']);
+        // TODO: less queries
+        foreach ($requestParams as $name => $value) {
+            if (!in_array($name, UserNotificationOption::HAS_NOTIFICATION, true)) {
+                continue;
+            }
 
-        $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $name]);
+            $params = get_params($value, null, ['details:any']);
+            $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $name]);
 
-        if ($option->update($params)) {
-            event(new NotificationOptionChangeEvent(auth()->user(), $option));
-
-            return response(null, 204);
-        } else {
-            return response(['form_error' => [
-                'user_notification_option' => $option->validationErrors()->all(),
-            ]]);
+            if ($option->update($params)) {
+               event(new NotificationOptionChangeEvent(auth()->user(), $option));
+            } else {
+                return response(['form_error' => [
+                    'user_notification_option' => $option->validationErrors()->all(),
+                ]]);
+            }
         }
+
+        return response(null, 204);
     }
 
     public function updateOptions()

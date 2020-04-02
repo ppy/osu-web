@@ -60,12 +60,19 @@
     &--inline {
       margin: 5px 10px;
     }
+
+    &--grid {
+      display: flex;
+      justify-content: center;
+    }
   }
 
   &__checkbox-label {
     margin-bottom: 5px;
     width: 100%;
     order: -1;
+    // label is 600, but checkbox-label isn't in a label when in a grid.
+    font-weight: 600;
 
     @media @desktop {
       margin-bottom: 0;
@@ -159,6 +166,12 @@
     .@{top}[data-form-error-state=error] & {
       display: block;
     }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    grid-gap: 5px;
   }
 
   &__input {
