@@ -38,7 +38,6 @@ class UserCompactTransformer extends TransformerAbstract
         'page',
         'previous_usernames',
         'ranked_and_approved_beatmapset_count',
-        'rankHistory', // TODO: should be changed to rank_history
         'replays_watched_counts',
         'scores_first_count',
         'statistics',
@@ -47,6 +46,9 @@ class UserCompactTransformer extends TransformerAbstract
         'unread_pm_count',
         'user_achievements',
         'user_preferences',
+        // TODO: should be changed to rank_history
+        // TODO: should be alphabetically ordered but lazer relies on being after statistics. can revert to alphabetical after 2020-05-01
+        'rankHistory',
     ];
 
     protected $permissions = [
