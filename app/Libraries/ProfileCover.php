@@ -62,8 +62,12 @@ class ProfileCover
             return;
         }
 
+        if ($this->userId === null || $this->userId < 1) {
+            return;
+        }
+
         if (!in_array($this->data['id'] ?? null, $this->availableIds, true)) {
-            return $this->availableIds[abs($this->userId % count($this->availableIds))];
+            return $this->availableIds[$this->userId % count($this->availableIds)];
         }
 
         return $this->data['id'];
@@ -90,6 +94,10 @@ class ProfileCover
             return $this->fileUrl();
         }
 
-        return config('app.url').'/images/headers/profile-covers/c'.$this->id().'.jpg';
+        $id = $this->id();
+
+        if ($id !== null) {
+            return config('app.url').'/images/headers/profile-covers/c'.$id.'.jpg';
+        }
     }
 }
