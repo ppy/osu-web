@@ -48,7 +48,12 @@ interface Props {
   initialValue: string;
 }
 
+interface CacheInterface {
+  beatmaps?: Beatmap[];
+}
+
 export default class Editor extends React.Component<Props, any> {
+  cache: CacheInterface = {};
   editor = React.createRef<HTMLDivElement>();
   menu = React.createRef<HTMLDivElement>();
   menuBody = React.createRef<HTMLDivElement>();
@@ -300,7 +305,7 @@ export default class Editor extends React.Component<Props, any> {
             currentBeatmap={this.props.currentBeatmap}
             currentDiscussions={this.props.currentDiscussions}
             editMode={this.props.editMode}
-            beatmaps={_.flatten(_.values(this.props.beatmaps))}
+            beatmaps={this.sortedBeatmaps()}
             {...props}
           />
         );
@@ -404,6 +409,15 @@ export default class Editor extends React.Component<Props, any> {
     });
 
     return JSON.stringify(review);
+  }
+
+  sortedBeatmaps = () => {
+    if (this.cache.beatmaps) {
+      return this.cache.beatmaps;
+    }
+    this.cache.beatmaps = BeatmapHelper.sort(_.flatten(_.values(this.props.beatmaps)));
+
+    return this.cache.beatmaps;
   }
 
   showMenu = () => {
