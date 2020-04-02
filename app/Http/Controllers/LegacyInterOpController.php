@@ -43,7 +43,7 @@ class LegacyInterOpController extends Controller
 
         dispatch(new EsIndexDocument($beatmapset));
 
-        return ['success' => true];
+        return response(null, 204);
     }
 
     public function generateNotification()
