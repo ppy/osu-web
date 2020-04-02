@@ -207,12 +207,14 @@ export default class Editor extends React.Component<Props, any> {
               value={this.state.value}
               onChange={this.onChange}
             >
-              <Editable
-                decorate={this.decorate}
-                onKeyDown={this.onKeyDown}
-                renderElement={this.renderElement}
-                renderLeaf={this.renderLeaf}
-              />
+              <div className={`${editorClass}__input-area`}>
+                <Editable
+                  decorate={this.decorate}
+                  onKeyDown={this.onKeyDown}
+                  renderElement={this.renderElement}
+                  renderLeaf={this.renderLeaf}
+                />
+              </div>
               <div className={`${editorClass}__button-bar`}>
                 <div className='post-box-toolbar'>
                     <button

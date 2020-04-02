@@ -21,7 +21,6 @@
   @_avatar-size: 45px;
   @_side-padding: 20px;
 
-  .default-box-shadow();
   display: flex;
   background-color: @osu-colour-b4;
   flex-direction: column;
@@ -46,7 +45,7 @@
 
   &__content {
     display: flex;
-    margin: 15px;
+    margin: 0 15px 15px 15px;
     padding: 15px;
     flex-direction: column;
     color: white;
@@ -128,6 +127,10 @@
       flex: 1 0 auto;
       flex-wrap: wrap;
     }
+  }
+
+  &__input-area {
+    .content-font();
   }
 
   &__menu {
