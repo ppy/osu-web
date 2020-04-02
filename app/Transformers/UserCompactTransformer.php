@@ -63,7 +63,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_restricted' => 'IsNotOAuth',
     ];
 
-    protected $userProfileCustomization;
+    protected $userProfileCustomization = [];
 
     public function transform(User $user)
     {
@@ -326,10 +326,10 @@ class UserCompactTransformer extends TransformerAbstract
 
     protected function userProfileCustomization(User $user): UserProfileCustomization
     {
-        if (!isset($this->userProfileCustomization)) {
-            $this->userProfileCustomization = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
+        if (!isset($this->userProfileCustomization[$user->getKey()])) {
+            $this->userProfileCustomization[$user->getKey()] = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
         }
 
-        return $this->userProfileCustomization;
+        return $this->userProfileCustomization[$user->getKey()];
     }
 }
