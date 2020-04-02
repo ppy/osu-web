@@ -32,12 +32,16 @@ class LegacyInterOpController extends Controller
 {
     use DispatchesJobs;
 
-    public function regenerateBeatmapsetCovers($id)
+    public function indexBeatmapset($id)
     {
-        $beatmapset = Beatmapset::findOrFail($id);
+        $beatmapset = Beatmapset::withTrashed()->findOrFail($id);
 
-        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_default');
-        $this->dispatch($job);
+        if (!$beatmapset->trashed()) {
+            $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_default');
+            $this->dispatch($job);
+        }
+
+        dispatch(new EsIndexDocument($beatmapset));
 
         return ['success' => true];
     }
