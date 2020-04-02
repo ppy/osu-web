@@ -93,6 +93,10 @@ return [
             'unpin' => 'Unpin',
         ],
 
+        'review' => [
+            'new' => 'New Review',
+        ],
+
         'show' => [
             'title' => ':title mapped by :mapper',
         ],

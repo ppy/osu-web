@@ -138,6 +138,7 @@ export class Main extends React.PureComponent
                     beatmaps: @beatmaps()
                     currentBeatmap: @currentBeatmap()
                     currentDiscussions: @currentDiscussions()
+                    currentUser: @state.currentUser
                 else
                   el NewDiscussion,
                     beatmapset: @state.beatmapset
