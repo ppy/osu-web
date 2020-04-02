@@ -77,10 +77,6 @@
 
     z-index: @z-index--blackout-visible;
 
-    .@{_top}--edit-mode & {
-      cursor: default;
-    }
-
     &::after {
       .fas();
       .full-size();
@@ -93,11 +89,17 @@
     }
 
     &:hover {
-      &:after {
+      &::after {
         opacity: 1;
-        .@{_top}--edit-mode & {
-          opacity: 0;
-        }
+      }
+    }
+
+    &--readonly {
+      background-color: transparent;
+      cursor: default;
+
+      &::after {
+        display: none;
       }
     }
   }

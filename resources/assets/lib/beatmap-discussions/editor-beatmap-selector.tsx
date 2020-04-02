@@ -69,13 +69,15 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
 
   renderButton = (children: JSX.Element[], ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
     const selected: MenuItem = _.find(this.menuOptions, (option) => option.id === this.props.element.beatmapId) || this.menuOptions[0];
+    let classes = 'beatmap-discussion-editor__dropdown';
     if (this.props.readOnly) {
       toggle = () => { /* do nothing */ };
+      classes += ' beatmap-discussion-editor__dropdown--readonly';
     }
 
     return (
       <div
-        className='beatmap-discussion-editor__dropdown'
+        className={classes}
         contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
         onClick={toggle}
         ref={ref}

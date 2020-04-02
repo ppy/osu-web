@@ -51,13 +51,16 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
       problem: 'fas fa-exclamation-circle',
       suggestion: 'far fa-circle',
     };
+
+    let classes = 'beatmap-discussion-editor__dropdown';
     if (this.props.readOnly) {
       toggle = () => { /* do nothing */ };
+      classes += ' beatmap-discussion-editor__dropdown--readonly';
     }
 
     return (
       <div
-        className='beatmap-discussion-editor__dropdown'
+        className={classes}
         contentEditable={false}
         onClick={toggle}
         ref={ref}
