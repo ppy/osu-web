@@ -370,21 +370,6 @@ class BeatmapDiscussionPost extends Model
             ->whereHas('visibleBeatmapDiscussion');
     }
 
-    public function update(array $attributes = [], array $options = [])
-    {
-        if ($this->beatmapDiscussion->message_type === 'review' && $this->isFirstPost()) {
-            // handle reviews (but not replies to the reviews)
-            try {
-                $document = json_decode($attributes['message'], true);
-            } catch (\Exception $e) {
-                return false;
-            }
-            return BeatmapsetDiscussionReview::update($this->beatmapDiscussion, $document, auth()->user());
-        } else {
-            return parent::update($attributes, $options);
-        }
-    }
-
     public function url()
     {
         return $this->beatmapDiscussion->url();

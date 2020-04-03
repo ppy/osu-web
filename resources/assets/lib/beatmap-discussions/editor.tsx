@@ -380,7 +380,7 @@ export default class Editor extends React.Component<Props, any> {
             beatmap_id: node.beatmapId,
             discussion_type: node.discussionType,
             text: node.children[0].text,
-            timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp) : null,
+            timestamp: node.timestamp ? BeatmapDiscussionHelper.timestampToNumber(node.timestamp) : null,
             type: 'embed',
           };
 
