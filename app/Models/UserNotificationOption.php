@@ -20,6 +20,13 @@ class UserNotificationOption extends Model
     use Validatable;
 
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
+    const BEATMAPSET_MODDING_NOTIFICATIONS = [
+        Notification::BEATMAPSET_DISCUSSION_LOCK,
+        Notification::BEATMAPSET_DISCUSSION_POST_NEW,
+        Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+        Notification::BEATMAPSET_DISCUSSION_UNLOCK,
+    ];
+
     const BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM = Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM;
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
 
@@ -51,7 +58,7 @@ class UserNotificationOption extends Model
             }
         }
 
-        if ($this->supportsNotifications()) {
+        if ($this->supportsNotifications($this->name)) {
             if (isset($value['mail'])) {
                 $details['mail'] = get_bool($value['mail'] ?? null);
             }
@@ -102,8 +109,9 @@ class UserNotificationOption extends Model
         return 'user_notification_option';
     }
 
-    private function supportsNotifications(?string $name = null)
+    private function supportsNotifications(string $name)
     {
-        return in_array($name ?? $this->name, static::HAS_NOTIFICATION, true);
+        return in_array($name, static::HAS_NOTIFICATION, true)
+            || in_array($name, static::BEATMAPSET_MODDING_NOTIFICATIONS, true);
     }
 }

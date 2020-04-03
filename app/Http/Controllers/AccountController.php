@@ -16,6 +16,7 @@ use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotificationOption;
 use Auth;
+use DB;
 use Mail;
 use Request;
 
@@ -175,23 +176,37 @@ class AccountController extends Controller
         // TODO: not array, error
         $requestParams = $requestParams['user_notification_option'] ?? null;
 
-        // TODO: less queries
-        foreach ($requestParams as $name => $value) {
-            if (!in_array($name, UserNotificationOption::HAS_NOTIFICATION, true)) {
-                continue;
-            }
 
-            $params = get_params($value, null, ['details:any']);
-            $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $name]);
+        return DB::transaction(function () use ($requestParams) {
+            // TODO: less queries
+            foreach ($requestParams as $key => $value) {
+                if (!in_array($key, UserNotificationOption::HAS_NOTIFICATION, true)) {
+                    continue;
+                }
 
-            if ($option->update($params)) {
-               event(new NotificationOptionChangeEvent(auth()->user(), $option));
-            } else {
-                return response(['form_error' => [
-                    'user_notification_option' => $option->validationErrors()->all(),
-                ]]);
+                $params = get_params($value, null, ['details:any']);
+
+                // unroll so notification server doesn't need to figure out how to remap options.
+                $names = [$key];
+                if ($key === UserNotificationOption::BEATMAPSET_MODDING) {
+                    $names = array_merge($names, UserNotificationOption::BEATMAPSET_MODDING_NOTIFICATIONS);
+                }
+
+                foreach ($names as $name) {
+                    $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $name]);
+
+                    if ($option->update($params)) {
+                    event(new NotificationOptionChangeEvent(auth()->user(), $option));
+                    } else {
+                        DB::rollback();
+
+                        return response(['form_error' => [
+                            'user_notification_option' => $option->validationErrors()->all(),
+                        ]]);
+                    }
+                }
             }
-        }
+        });
 
         return response(null, 204);
     }
