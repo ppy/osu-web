@@ -397,6 +397,13 @@ export default class Editor extends React.Component<Props, any> {
     return JSON.stringify(review);
   }
 
+  showMenu = () => {
+    if (!this.menuBody.current) {
+      return;
+    }
+    this.setState({menuShown: true});
+  }
+
   sortedBeatmaps = () => {
     if (this.cache.beatmaps) {
       return this.cache.beatmaps;
@@ -404,13 +411,6 @@ export default class Editor extends React.Component<Props, any> {
     this.cache.beatmaps = BeatmapHelper.sort(_.flatten(_.values(this.props.beatmaps)));
 
     return this.cache.beatmaps;
-  }
-
-  showMenu = () => {
-    if (!this.menuBody.current) {
-      return;
-    }
-    this.setState({menuShown: true});
   }
 
   test = () => console.dir(JSON.parse(this.serialize()));
