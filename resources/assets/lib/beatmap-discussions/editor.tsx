@@ -124,8 +124,9 @@ export default class Editor extends React.Component<Props, any> {
     const type = event.currentTarget.dataset.dtype;
     const beatmapId = this.props.currentBeatmap ? this.props.currentBeatmap.id : this.props.beatmaps[this.props.beatmapset.beatmaps[0].id];
 
-    Transforms.setNodes(this.slateEditor, {
+    Transforms.insertNodes(this.slateEditor, {
       beatmapId,
+      children: [{text: ''}],
       discussionType: type,
       type: 'embed',
     });
