@@ -34,7 +34,6 @@ export class Header extends React.Component
             el Detail,
               stats: @props.stats
               userAchievements: @props.userAchievements
-              rankHistory: @props.rankHistory
               user: @props.user
 
           if @props.user.badges.length > 0
