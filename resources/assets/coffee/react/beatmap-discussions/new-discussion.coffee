@@ -27,6 +27,7 @@ export class NewDiscussion extends React.PureComponent
 
 
   componentDidMount: =>
+    @setTop()
     $(window).on 'throttled-resize.new-discussion', @setTop
     @inputBox.current?.focus() if @props.autoFocus
 

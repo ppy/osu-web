@@ -11,6 +11,20 @@ interface Props {
   currentBeatmap: Beatmap;
   currentDiscussions: BeatmapDiscussion[];
   currentUser: User;
+  pinned?: boolean;
+  setPinned?: (sticky: boolean) => void;
+  stickTo?: React.RefObject<HTMLDivElement>;
+}
+
+// TODO: move to globals.d.ts
+interface StickyHeader {
+  headerHeight: () => number;
+}
+
+declare global {
+  interface Window {
+    stickyHeader: StickyHeader;
+  }
 }
 
 export default class NewReview extends React.Component<Props> {
@@ -22,18 +36,57 @@ export default class NewReview extends React.Component<Props> {
 
     const savedValue = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
     this.initialValue = savedValue || this.placeholder;
+    this.state = {
+      cssTop: null,
+    };
+  }
+
+  componentDidMount(): void {
+    this.setTop();
+    $(window).on('throttled-resize.new-review', this.setTop);
+  }
+
+  componentWillUnmount(): void {
+    $(window).off('.new-review');
+  }
+
+  cssTop = (sticky: boolean) => {
+    if (!sticky || !this.props.stickTo?.current) {
+      return;
+    }
+
+    return window.stickyHeader.headerHeight() + this.props.stickTo?.current?.getBoundingClientRect().height;
   }
 
   render(): React.ReactNode {
     const floatClass = 'beatmap-discussion-new-float';
+    const floatMods = [];
+    if (this.props.pinned) {
+      floatMods.push('pinned');
+    }
+    let buttonCssClasses = 'btn-circle';
+    if (this.props.pinned) {
+      buttonCssClasses += ' btn-circle--activated';
+    }
 
     return (
-      <div className={floatClass}>
+      <div className={osu.classWithModifiers(floatClass, floatMods)} style={{top: this.state.cssTop}}>
         <div className={`${floatClass}__floatable ${floatClass}__floatable--pinned`}>
           <div className={`${floatClass}__content`}>
             <div className='osu-page osu-page--small'>
               <div className='beatmap-discussion-new'>
-                <div className='page-title'>{osu.trans('beatmaps.discussions.new.title')}</div>
+                <div className='page-title'>
+                  {osu.trans('beatmaps.discussions.new.title')}
+                  <span className='page-title__button'>
+                    <span
+                      className={buttonCssClasses}
+                      onClick={this.toggleSticky}
+                      title={osu.trans(`beatmaps.discussions.new.${this.props.pinned ? 'unpin' : 'pin'}`)}
+                    >
+                      <span className='btn-circle__content'><i className='fas fa-thumbtack' /></span>
+                    </span>
+                  </span>
+                </div>
                 {
                   this.props.currentUser.id ?
                     <DiscussionsContext.Consumer>
@@ -59,5 +112,25 @@ export default class NewReview extends React.Component<Props> {
         </div>
       </div>
     );
+  }
+
+  setSticky = (sticky = true) => {
+    this.setState({
+      cssTop: this.cssTop(sticky),
+    });
+
+    if (this.props.setPinned) {
+      this.props.setPinned(sticky);
+    }
+  }
+
+  toggleSticky = () => {
+    this.setSticky(!this.props.pinned);
+  }
+
+  setTop = () => {
+    this.setState({
+      cssTop: this.cssTop(this.props.pinned ?? false),
+    });
   }
 }
