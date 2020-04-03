@@ -11,11 +11,11 @@ class CountryTransformer extends TransformerAbstract
 {
     protected $availableIncludes = ['ranking'];
 
-    public function transform(Country $country = null)
+    public function transform(Country $country)
     {
         return [
-            'code' => $country->acronym ?? null,
-            'name' => $country->name ?? null,
+            'code' => $country->acronym,
+            'name' => $country->name,
         ];
     }
 

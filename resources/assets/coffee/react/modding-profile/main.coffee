@@ -180,7 +180,6 @@ export class Main extends React.PureComponent
             el Header,
               user: @state.user
               stats: @state.user.statistics
-              rankHistory: @props.rankHistory
               userAchievements: @props.userAchievements
 
             div
