@@ -41,7 +41,7 @@ export class Main extends React.Component
         theme: 'mp-history'
 
       el Content,
-        id: @props.match.id
+        match: @props.match
         events: @state.events
         currentGameId: @state.currentGameId
         allEventsCount: @state.allEventsCount

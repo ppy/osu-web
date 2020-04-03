@@ -3,7 +3,7 @@
 
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLogoutAction } from 'actions/user-login-actions';
-import { UserJSON } from 'chat/chat-api-responses';
+import UserJSON from 'interfaces/user-json';
 import { action, observable } from 'mobx';
 import User from 'models/user';
 import Store from 'stores/store';

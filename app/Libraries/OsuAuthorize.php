@@ -29,6 +29,7 @@ class OsuAuthorize
 {
     const ALWAYS_CHECK = [
         'IsOwnClient',
+        'IsNotOAuth',
     ];
 
     /** @var AuthorizationResult[] */
@@ -1468,6 +1469,15 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkIsNotOAuth(?User $user): string
+    {
+        if (optional($user)->token() === null) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
     }
 
     /**
