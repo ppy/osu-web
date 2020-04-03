@@ -109,14 +109,6 @@ interface Cover {
   url?: string;
 }
 
-interface Score {
-  id: string;
-  mode: string;
-  replay: boolean;
-  user: User;
-  user_id: number;
-}
-
 interface BeatmapFailTimesArray {
   exit: number[];
   fail: number[];
@@ -172,29 +164,6 @@ interface LangClass {
   _getPluralForm: (count: number) => number;
   _origGetPluralForm: (count: number) => number;
   locale: string;
-}
-
-// TODO: should look at combining with the other User.ts at some point.
-interface User {
-  avatar_url?: string;
-  country?: Country;
-  country_code?: string;
-  cover: Cover;
-  current_mode_rank?: number;
-  default_group: string;
-  follower_count?: number;
-  group_badge?: GroupJSON;
-  id: number;
-  is_active: boolean;
-  is_bot: boolean;
-  is_online: boolean;
-  is_supporter: boolean;
-  last_visit?: string;
-  pm_friends_only: boolean;
-  profile_colour?: string;
-  support_level?: number;
-  unread_pm_count?: number;
-  username: string;
 }
 
 interface TooltipDefault {

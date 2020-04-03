@@ -2,9 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .simple-form {
-  @_base-column-width: 200px;
+  @_base-column-width: 150px;
   display: flex;
   flex-wrap: wrap;
+
+  &--modal {
+    .default-border-radius();
+    background-color: @osu-colour-b5;
+    padding: 20px 20px 10px;
+    max-width: 400px;
+  }
 
   &--search-box {
     .default-border-radius();
@@ -12,6 +19,16 @@
     padding: 10px 10px 0;
     margin: 10px 0;
     font-size: @font-size--normal;
+  }
+
+  &__buttons {
+    margin: -5px;
+    display: flex;
+  }
+
+  &__button {
+    margin: 5px;
+    flex: none;
   }
 
   &__checkbox {
@@ -142,9 +159,10 @@
     flex: none;
     font-weight: normal;
 
-    margin: 10px 0;
+    margin: 0 0 10px;
     @media @desktop {
       margin: 0;
+      padding-right: 10px;
     }
 
     &--full {
@@ -156,12 +174,12 @@
     flex: 1 0 100%;
     display: flex;
     margin-bottom: 10px;
-    align-items: baseline;
     text-transform: none;
     flex-direction: column;
 
     @media @desktop {
       flex-direction: row;
+      align-items: baseline;
     }
 
     &--no-label {

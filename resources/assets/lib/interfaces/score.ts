@@ -3,10 +3,10 @@
 
 import UserJSON from './user-json';
 
-export interface ClientJSON {
-  id: number;
-  name: string | null;
-  scopes: string[];
+export default interface Score {
+  id: string;
+  mode: string;
+  replay: boolean;
   user: UserJSON;
   user_id: number;
 }

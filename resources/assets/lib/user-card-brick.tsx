@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { FriendButton } from 'friend-button';
+import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
@@ -11,11 +11,17 @@ import UserCardTypeContext from 'user-card-type-context';
 interface Props {
   mode: ViewMode;
   modifiers: string[];
-  user: User;
+  user: UserJSON;
 }
 
 interface State {
   backgroundLoaded: boolean;
+}
+
+interface UserRelationJson {
+  mutual: boolean;
+  relation_type: 'friend' | 'block';
+  target_id: number;
 }
 
 export default class UserCardBrick extends React.PureComponent<Props, State> {
@@ -26,13 +32,22 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
     modifiers: [],
   };
 
+  readonly eventId = `user-card-brick-${osu.uuid()}`;
   readonly state: State = {
     backgroundLoaded: false,
   };
 
+  componentDidMount() {
+    $.subscribe(`friendButton:refresh.${this.eventId}`, this.refresh);
+  }
+
+  componentWillUnmount() {
+    $.unsubscribe(`.${this.eventId}`);
+  }
+
   render() {
     const modifiers = this.props.modifiers.concat(this.props.mode);
-    const friendButtonShowIf = this.context.isFriendsPage ? 'mutual' : 'friend';
+    this.addFriendModifier(modifiers);
 
     return (
       <div
@@ -50,16 +65,36 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
         <a className='user-card-brick__username' href={route('users.show', { user: this.props.user.id })}>
           <div className='u-ellipsis-overflow'>{this.props.user.username}</div>
         </a>
-
-        <div className='user-card-brick__icon'>
-          <FriendButton userId={this.props.user.id} modifiers={['dynamic']} showIf={friendButtonShowIf} />
-        </div>
       </div>
     );
   }
 
+  private addFriendModifier = (modifiers: string[]) => {
+    let isFriend = false;
+    let isMutual = false;
+
+    if (currentUser.friends != null) {
+      const friendState = currentUser.friends.find((friend: UserRelationJson) => friend.target_id === this.props.user.id);
+
+      if (friendState != null) {
+        isFriend = true;
+        isMutual = friendState.mutual;
+      }
+    }
+
+    if (isMutual) {
+      modifiers.push('mutual');
+    } else if (isFriend && !this.context.isFriendsPage) {
+      modifiers.push('friend');
+    }
+  }
+
   private onBackgroundLoad = () => {
     this.setState({ backgroundLoaded: true });
+  }
+
+  private refresh = () => {
+    this.forceUpdate();
   }
 
   private renderBackground() {
