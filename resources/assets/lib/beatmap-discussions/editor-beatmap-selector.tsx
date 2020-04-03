@@ -17,24 +17,25 @@
  */
 
 import { BeatmapIcon } from 'beatmap-icon';
-import * as _ from 'lodash';
 import * as React from 'react';
-import { Transforms } from 'slate';
+import { Node, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
-import { PopupMenuPersistent } from '../popup-menu-persistent';
+import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
 
-interface MenuItem {
-  icon: JSX.Element;
-  id: string | number;
-  label: string;
+interface Props {
+  beatmaps: Beatmap[];
+  disabled: boolean;
+  element: Node;
 }
 
-export default class EditorBeatmapSelector extends React.Component<any, any> {
+export default class EditorBeatmapSelector extends React.Component<Props> {
   static contextType = SlateContext;
-  menuOptions: MenuItem[] = [];
+  menuOptions: MenuItem[];
 
-  render(): React.ReactNode {
+  constructor(props: Props) {
+    super(props);
+
     this.menuOptions = [];
     this.menuOptions.push({
       icon: <i className='fas fa-fw fa-star-of-life beatmap-discussion-editor__menu-icon' />,
@@ -49,79 +50,29 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
 
       this.menuOptions.push({
         icon: <BeatmapIcon beatmap={beatmap} showTitle={false} />,
-        id: beatmap.id,
+        id: `${beatmap.id}`, // explicit conversion to string
         label: beatmap.version,
       });
     });
+  }
 
+  render(): React.ReactNode {
     return (
-      <PopupMenuPersistent customRender={this.renderButton}>
-        {() => {
-          return (
-            <div className='simple-menu simple-menu--popup-menu-compact'>
-              {this.menuOptions.map((item) => this.renderItem(item))}
-            </div>
-            );
-        }}
-      </PopupMenuPersistent>
+      <IconDropdownMenu
+        disabled={this.props.disabled}
+        menuOptions={this.menuOptions}
+        onSelect={this.select}
+        selected={`${this.props.element.beatmapId}`}
+      />
     );
   }
 
-  renderButton = (children: JSX.Element[], ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
-    const selected: MenuItem = _.find(this.menuOptions, (option) => option.id === this.props.element.beatmapId) || this.menuOptions[0];
-    let classes = 'beatmap-discussion-editor__dropdown';
-    if (this.props.readOnly) {
-      toggle = () => { /* do nothing */ };
-      classes += ' beatmap-discussion-editor__dropdown--readonly';
-    }
+  select = (id: string) => {
+    const beatmapId = id !== 'all' ? parseInt(id || '', 10) : 'all';
 
-    return (
-      <div
-        className={classes}
-        contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-        onClick={toggle}
-        ref={ref}
-      >
-        {selected.icon}
-        {children}
-      </div>
-    );
-  }
-
-  renderItem = (menuItem: MenuItem) => {
-    let menuItemClasses = 'simple-menu__item';
-    if (this.props.element.beatmapId === menuItem.id) {
-      menuItemClasses += ' simple-menu__item--active';
-    }
-
-    return (
-      <button
-        className={menuItemClasses}
-        key={menuItem.id}
-        data-id={menuItem.id}
-        onClick={this.select}
-      >
-        {menuItem.icon}
-        <div className='simple-menu__label'>
-          {menuItem.label}
-        </div>
-      </button>
-    );
-  }
-
-  select = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-
-    const target = event.currentTarget as HTMLElement;
-
-    if (!target) {
-      return;
-    }
-
-    const id = target.dataset.id !== 'all' ? parseInt(target.dataset.id || '', 10) : 'all';
-    if (id) {
+    if (beatmapId) {
       const path = ReactEditor.findPath(this.context, this.props.element);
-      Transforms.setNodes(this.context, {beatmapId: id}, {at: path});
+      Transforms.setNodes(this.context, {beatmapId}, {at: path});
     }
   }
 }
