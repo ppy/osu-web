@@ -78,11 +78,12 @@ class Client extends PassportClient
 
     public function resetSecret()
     {
-        $this->getConnection()->transaction(function () {
+        return $this->getConnection()->transaction(function () {
             $now = now('UTC');
 
             $this->revokeTokens($now);
-            $this->update(['secret' => str_random(40), 'updated_at' => $now], ['skipValidations' => true]);
+
+            return $this->update(['secret' => str_random(40), 'updated_at' => $now], ['skipValidations' => true]);
         });
     }
 

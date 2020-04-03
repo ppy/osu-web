@@ -55,6 +55,14 @@ export class ClientDetails extends React.Component<Props, State> {
   }
 
   @action
+  handleReset = () => {
+    if (!confirm('Are you sure?')) { return; }
+    if (this.props.client.isResetting) { return; }
+
+    this.props.client.resetSecret().catch(osu.ajaxError);
+  }
+
+  @action
   handleUpdate = () => {
     if (this.props.client.isUpdating) { return; }
     this.props.client.updateWith(this.state).then(() => {
@@ -76,6 +84,14 @@ export class ClientDetails extends React.Component<Props, State> {
         <div>
           <div className='oauth-client-details__label'>{osu.trans('oauth.client.secret')}</div>
           <div>{this.props.client.secret}</div>
+          <button
+            className='btn-osu-big btn-osu-big--danger'
+            disabled={this.props.client.isResetting || this.props.client.revoked}
+            onClick={this.handleReset}
+            type='button'
+          >
+              {this.props.client.isResetting ? <Spinner /> : osu.trans('oauth.client.reset')}
+          </button>
         </div>
 
         <div className='oauth-client-details__group'>
