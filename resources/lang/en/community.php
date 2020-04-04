@@ -133,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => 'Friend Leaderboards',
-                'description' => 'Compete with your friends and see how you rank up against them!*<br/><br/><small>* not yet available on new site, comingsoon(tm)</small>',
+                'description' => 'Compete with your friends and see how you rank up against them!',
             ],
 
         ],
