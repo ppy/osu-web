@@ -124,7 +124,7 @@ fetch("{!! route('oauth.passport.token') !!}", {
 
 `POST {!! route('oauth.passport.token') !!}`
 
-Parameters
+Form-data parameters passed in the request body:
 
 Name          | Type   | Description
 --------------|--------|-------------------------------
