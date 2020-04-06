@@ -31,6 +31,11 @@ return [
         'reset' => 'Reset client secret',
         'reset_failed' => 'Failed to reset client secret',
         'secret' => 'Client Secret',
+
+        'secret_visible' => [
+            'false' => 'Show client secret',
+            'true' => 'Hide client secret',
+        ],
     ],
 
     'new_client' => [
