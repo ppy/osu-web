@@ -78,7 +78,7 @@ The flow to authorize users for your application is:
 
 To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should to redirected to:
 
-`GET {{ route('oauth.authorizations.authorize') }}`
+`GET {{ secure_url(route('oauth.authorizations.authorize', [], false)) }}`
 
 Parameters
 
@@ -103,7 +103,7 @@ If you are using `state` as protection against CSRF attacks, your OAuth client i
 Exchange this `code` for an access token:
 
 ```javascript
-fetch("{!! route('oauth.passport.token') !!}", {
+fetch("{!! secure_url(route('oauth.passport.token', [], false)) !!}", {
     method: 'post',
     headers: {
       'Accept': 'application/json',
@@ -122,7 +122,7 @@ fetch("{!! route('oauth.passport.token') !!}", {
 });
 ```
 
-`POST {!! route('oauth.passport.token') !!}`
+`POST {!! secure_url(route('oauth.passport.token', [], false)) !!}`
 
 Parameters
 
