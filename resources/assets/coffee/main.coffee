@@ -6,6 +6,7 @@
 Turbolinks.setProgressBarDelay(0)
 
 Lang.setLocale(@currentLocale)
+moment.relativeTimeThreshold('ss', 44)
 moment.relativeTimeThreshold('s', 120)
 moment.relativeTimeThreshold('m', 120)
 moment.relativeTimeThreshold('h', 48)
