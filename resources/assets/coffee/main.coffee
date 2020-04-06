@@ -6,7 +6,8 @@
 Turbolinks.setProgressBarDelay(0)
 
 Lang.setLocale(@currentLocale)
-jQuery.timeago.settings.allowFuture = true
+jQuery.timeago.inWords = (distanceMillis) ->
+  moment.duration(-1 * distanceMillis).humanize(true)
 
 # loading animation overlay
 # fired from turbolinks
