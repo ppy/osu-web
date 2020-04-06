@@ -6,6 +6,11 @@
 Turbolinks.setProgressBarDelay(0)
 
 Lang.setLocale(@currentLocale)
+moment.relativeTimeThreshold('s', 120)
+moment.relativeTimeThreshold('m', 120)
+moment.relativeTimeThreshold('h', 48)
+moment.relativeTimeThreshold('d', 62)
+moment.relativeTimeThreshold('M', 24)
 jQuery.timeago.inWords = (distanceMillis) ->
   moment.duration(-1 * distanceMillis).humanize(true)
 
