@@ -36,7 +36,7 @@ class ClientsController extends Controller
         $client = auth()->user()->oauthClients()->findOrFail($clientId);
 
         if (!$client->resetSecret()) {
-            return error_popup('failed to reset');
+            return error_popup(trans('oauth.client.reset_failed'));
         }
 
         return json_item($client, 'OAuth\Client', ['redirect', 'secret']);

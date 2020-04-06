@@ -56,7 +56,7 @@ export class ClientDetails extends React.Component<Props, State> {
 
   @action
   handleReset = () => {
-    if (!confirm('Are you sure?')) { return; }
+    if (!confirm(osu.trans('oauth.own_clients.confirm_reset'))) { return; }
     if (this.props.client.isResetting) { return; }
 
     this.props.client.resetSecret().catch(osu.ajaxError);
