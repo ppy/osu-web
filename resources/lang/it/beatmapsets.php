@@ -42,8 +42,8 @@ return [
             'approved' => 'approvata :timeago',
             'loved' => 'amata :timeago',
             'qualified' => 'qualificata :timeago',
-            'ranked' => 'classificata :timeago',
-            'submitted' => 'caricata :timeago',
+            'ranked' => 'rankata :timeago',
+            'submitted' => 'inviata :timeago',
             'updated' => 'ultimo aggiornamento :timeago',
         ],
 

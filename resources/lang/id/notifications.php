@@ -5,7 +5,7 @@
 
 return [
     'all_read' => 'Semua notifikasi telah dibaca!',
-    'mark_read' => '',
+    'mark_read' => 'Hilangkan semua notifikasi terkait :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'lihat semua notifikasi',
 

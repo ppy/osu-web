@@ -420,7 +420,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => '方块视图',
         'card' => '卡片检视',
         'list' => '列表检视',
     ],

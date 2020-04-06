@@ -46,8 +46,8 @@ return [
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Xóa',
+            'true' => 'Đã xóa',
         ],
     ],
 ];

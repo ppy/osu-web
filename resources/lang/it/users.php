@@ -421,7 +421,7 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Vista a blocchi',
         'card' => 'Vista a schede',
         'list' => 'Vista ad elenco',
     ],

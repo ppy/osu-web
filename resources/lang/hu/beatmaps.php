@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Hiba a poszt mentése közben',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Hiba a szavazat frissítése közben',

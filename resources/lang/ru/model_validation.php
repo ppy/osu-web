@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute не может быть отрицательным.',
     'required' => ':attribute является необходимым.',
     'too_long' => ':attribute превышает максимальное количество символов - можно использовать только до :limit characters символов.',
@@ -121,9 +122,9 @@ return [
         'contains_username' => 'Пароль не должен содержать никнейм.',
         'email_already_used' => 'Почта уже использована.',
         'invalid_country' => 'Вашей страны нет в базе данных.',
-        'invalid_discord' => 'Это не похоже на DiscordTag.',
+        'invalid_discord' => 'Неверное имя пользователя Discord.',
         'invalid_email' => "Это не похоже на адрес электронной почты.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Неверное имя пользователя Twitter.',
         'too_short' => 'Новый пароль слишком короткий.',
         'unknown_duplicate' => 'Имя пользователя или почта уже занята.',
         'username_available_in' => 'Это имя будет доступно только спустя :duration.',
