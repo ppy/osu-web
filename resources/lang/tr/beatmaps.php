@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Gönderi kaydetme başarısız',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Oy güncelleme başarısız',

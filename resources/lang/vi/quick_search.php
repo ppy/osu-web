@@ -5,16 +5,16 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
-        'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'beatmapset' => 'Beatmap',
+        'forum_post' => 'Diễn đàn',
+        'other' => 'Khác',
+        'user' => 'Người chơi',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
+        'empty' => 'Không có kết quả',
+        'empty_for' => 'Không có kết quả cho chế độ :modes',
         'more' => '',
         'title' => '',
     ],

@@ -39,12 +39,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
+            'approved' => 'مقبولة :timeago',
             'loved' => 'محبوب timeago:',
             'qualified' => 'مؤهل timeago:',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'ranked' => 'مصفوفة :timeago',
+            'submitted' => 'مُقدَمَة :timeago',
+            'updated' => 'آخر تحديث :timeago',
         ],
 
         'favourites' => [

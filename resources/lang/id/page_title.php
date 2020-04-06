@@ -17,11 +17,11 @@ return [
         'error' => [
             '404' => 'hilang',
             '403' => 'dilarang',
-            '401' => '',
+            '401' => 'tidak terotorisir',
             '405' => 'hilang',
-            '422' => '',
+            '422' => 'permintaan tidak valid',
             '500' => '',
-            '503' => '',
+            '503' => 'pemeliharaan',
         ],
     ],
     'forum' => [
@@ -51,7 +51,7 @@ return [
             '_' => '',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'riwayat beatmap',
         ],
         'beatmapset_watches_controller' => [
             'index' => 'dasbor',

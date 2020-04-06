@@ -6,7 +6,7 @@
 return [
     'create' => [
         'download' => '',
-        'label' => '',
-        'title' => '',
+        'label' => 'Đầu tiên, hãy đăng nhập vào tài khoản của bạn!',
+        'title' => 'Đăng Nhập Tài Khoản',
     ],
 ];

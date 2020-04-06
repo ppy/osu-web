@@ -420,7 +420,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Vista de bloques',
         'card' => 'Vista de tarjetas',
         'list' => 'Visualizar en lista',
     ],
