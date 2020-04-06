@@ -91,7 +91,7 @@ export class ClientDetails extends React.Component<Props, State> {
           <div className='oauth-client-details__label'>{osu.trans('oauth.client.id')}</div>
           <div>{this.props.client.id}</div>
         </div>
-        <div>
+        <div className='oauth-client-details__group'>
           <div className='oauth-client-details__label'>{osu.trans('oauth.client.secret')}</div>
           <div>
             {
