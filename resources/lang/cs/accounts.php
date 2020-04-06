@@ -62,7 +62,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'autorizovaní klienti',
-        'own_clients' => '',
+        'own_clients' => 'vlastní klienti',
         'title' => 'OAuth',
     ],
 

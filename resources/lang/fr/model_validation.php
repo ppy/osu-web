@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute ne peut être négatif.',
     'required' => ':attribute est requis.',
     'too_long' => ':attribute dépasse la longeur maximale - elle est de :limit caractères.',
@@ -123,7 +124,7 @@ return [
         'invalid_country' => 'Le pays n\'est pas dans la base de données.',
         'invalid_discord' => 'Nom d\'utilisateur Discord invalide.',
         'invalid_email' => "Ça ne semble pas être une adresse email valide.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Nom d\'utilisateur Twitter invalide.',
         'too_short' => 'Le nouveau mot de passe est trop court.',
         'unknown_duplicate' => 'Nom d\'utilisateur ou adresse e-mail déjà utilisée.',
         'username_available_in' => 'Ce nom d\'utilisateur sera disponible dans :duration.',

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute nem lehet negatív.',
     'required' => ':attribute kötelező.',
     'too_long' => ':attribute elérte a maximális hosszt - csak :limit karakter hosszú lehet.',

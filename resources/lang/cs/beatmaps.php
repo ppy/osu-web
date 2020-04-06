@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Nastala chyba během ukládání příspěvku',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Nastala chyba během hlasování',

@@ -80,7 +80,7 @@ return [
         ],
         'home' => [
             '_' => 'общее',
-            'changelog-index' => 'список изменений',
+            'changelog-index' => 'история изменений',
             'getDownload' => 'скачать игру',
             'news-index' => 'новости',
             'search' => 'поиск',

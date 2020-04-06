@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute tidak bisa negatif.',
     'required' => ':attribute diwajibkan.',
     'too_long' => ':attribute melebihi batas maksimum - hanya bisa hingga :limit karakter.',

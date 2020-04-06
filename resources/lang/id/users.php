@@ -420,7 +420,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Tampilan batu bata',
         'card' => 'Tampilan kartu',
         'list' => 'Tampilan daftar',
     ],

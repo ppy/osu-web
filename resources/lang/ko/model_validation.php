@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute 속성은 음수가 될 수 없습니다.',
     'required' => ':attribute 속성이 필요합니다.',
     'too_long' => ':attribute의 최대 길이를 초과 했습니다 - :limit자 까지만 쓸 수 있습니다.',
@@ -123,7 +124,7 @@ return [
         'invalid_country' => '해당하는 국가가 데이터베이스에 존재하지 않습니다.',
         'invalid_discord' => 'Discord 유저 이름이 올바르지 않습니다.',
         'invalid_email' => "이메일 주소가 잘못되었습니다.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter 유저 이름이 올바르지 않습니다.',
         'too_short' => '새 비밀번호가 너무 짧습니다.',
         'unknown_duplicate' => '유저 이름 또는 이메일 주소가 이미 사용중입니다.',
         'username_available_in' => '이 사용자 이름은 :duration 안에 사용 가능합니다.',
