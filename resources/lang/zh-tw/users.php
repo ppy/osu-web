@@ -238,8 +238,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => '可使用的 kudosu',
-                'available_info' => "kudosu 點數可以兌換成 kudosu 星星點數，該點數可以讓您的圖譜更引人注目。這是您尚未兌換的 kudosu 點數。",
                 'recent_entries' => '近期 Kudosu 記錄',
                 'title' => 'Kudosu!',
                 'total' => '總共獲得 kudosu',
