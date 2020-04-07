@@ -43,7 +43,7 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 # Authentication
 
-osu!api uses OAuth2 to grant access to the API. Your [account settings]({{ secure_url(route('account.edit', [], false)).'#oauth' }}) page will show your registered OAuth applications, and all the OAuth applications you have granted permissions to.
+osu!api uses OAuth2 to grant access to the API. Your [account settings]({{ route('account.edit').'#oauth' }}) page will show your registered OAuth applications, and all the OAuth applications you have granted permissions to.
 
 Only the [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/) type is currently supported for public use.
 
@@ -54,7 +54,7 @@ Before you can use the osu!api, you will need to:
 
 ## Registering an OAuth application
 
-Before you can get an OAuth token, you will need to register an OAuth application on your [account settings page]({{ secure_url(route('account.edit', [], false)).'#new-oauth-application' }})
+Before you can get an OAuth token, you will need to register an OAuth application on your [account settings page]({{ route('account.edit').'#new-oauth-application' }})
 
 To register an OAuth application you will need to provide the:
 
@@ -78,13 +78,13 @@ The flow to authorize users for your application is:
 
 To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should to redirected to:
 
-`GET {{ secure_url(route('oauth.authorizations.authorize', [], false)) }}`
+`GET {{ route('oauth.authorizations.authorize') }}`
 
 Parameters
 
 Name          | Type   | Description
 --------------|--------|-------------------------------------------------------
-client_id     | number | The Client ID you received when you [registered]({{ secure_url(route('account.edit', [], false)).'#new-oauth-application' }})
+client_id     | number | The Client ID you received when you [registered]({{ route('account.edit').'#new-oauth-application' }})
 redirect_uri  | string | The URL in your application where users will be sent after authorization. This must match the registered Application Callback URL exactly.
 response_type | string | This should always be `code` when requesting authorization.
 scope         | string | A space-delimited string of [scopes](#scopes).
@@ -103,7 +103,7 @@ If you are using `state` as protection against CSRF attacks, your OAuth client i
 Exchange this `code` for an access token:
 
 ```javascript
-fetch("{!! secure_url(route('oauth.passport.token', [], false)) !!}", {
+fetch("{!! route('oauth.passport.token') !!}", {
     method: 'post',
     headers: {
       'Accept': 'application/json',
@@ -122,7 +122,7 @@ fetch("{!! secure_url(route('oauth.passport.token', [], false)) !!}", {
 });
 ```
 
-`POST {!! secure_url(route('oauth.passport.token', [], false)) !!}`
+`POST {!! route('oauth.passport.token') !!}`
 
 Parameters
 
@@ -199,7 +199,7 @@ users.read    | Allows reading of public user profiles on behalf of the authoriz
 # Changelog
 
 For a full list of changes, see the
-[Changelog on the site]({{ secure_url(route('changelog.show', ['changelog' => 'web'], false)) }}).
+[Changelog on the site]({{ route('changelog.show', ['changelog' => 'web']) }}).
 
 ## Breaking Changes
 
