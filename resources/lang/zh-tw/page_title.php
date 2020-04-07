@@ -96,7 +96,7 @@ return [
             '_' => '',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => '新聞',
         ],
         'notifications_controller' => [
             '_' => '',

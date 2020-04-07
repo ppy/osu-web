@@ -3,12 +3,13 @@
 
 import { FlagCountry } from 'flag-country';
 import { FriendButton } from 'friend-button';
+import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { SupporterIcon } from 'supporter-icon';
 import UserGroupBadge from 'user-group-badge';
 
-export default function User({ user, modifiers = [] }: { modifiers?: string[], user: User }) {
+export default function User({ user, modifiers = [] }: { modifiers?: string[], user: UserJSON }) {
   const url = route('users.show', { user: user.id });
 
   return (

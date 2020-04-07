@@ -238,8 +238,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu Tilgængelig',
-                'available_info' => "Kudosu kan blive omdannet til kudosu-stjerner, som giver dine beatmaps mere opmærksomhed. Dette er antallet af kudosu, som du ikke har brugt endnu.",
                 'recent_entries' => 'Seneste Kudosu Historie',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Optjent',

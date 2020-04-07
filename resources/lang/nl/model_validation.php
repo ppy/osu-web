@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute kan niet negatief zijn.',
     'required' => ':attribute is nodig.',
     'too_long' => ':attribute heeft de maximum lengte overschreden - kan enkel tot :limit karakters gebruiken.',
@@ -123,7 +124,7 @@ return [
         'invalid_country' => 'Land niet in de database.',
         'invalid_discord' => 'Discord gebruikersnaam is ongeldig.',
         'invalid_email' => "Dit lijkt niet een geldig e-mailadres te zijn.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter gebruikersnaam ongeldig.',
         'too_short' => 'Nieuw wachtwoord is te kort.',
         'unknown_duplicate' => 'Gebruikersnaam of e-mailadres is al in gebruik.',
         'username_available_in' => 'Deze gebruikersnaam zal over :duration beschikbaar zijn.',

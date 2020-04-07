@@ -32,8 +32,8 @@ return [
 
         'support' => [
             '_' => '',
-            'first' => '',
-            'repeat' => '',
+            'first' => 'hỗ trợ',
+            'repeat' => 'đã tiếp tục hỗ trợ',
         ],
     ],
 
@@ -45,7 +45,7 @@ return [
     ],
 
     'password_reset' => [
-        'code' => '',
+        'code' => 'Mã xác minh của bạn là:',
         'requested' => '',
         'subject' => 'khôi phục tài khoản osu!',
     ],
@@ -89,7 +89,7 @@ return [
     ],
 
     'user_verification' => [
-        'code' => '',
+        'code' => 'Mã xác minh của bạn là:',
         'code_hint' => '',
         'link' => '',
         'report' => '',

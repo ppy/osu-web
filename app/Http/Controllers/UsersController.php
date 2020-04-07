@@ -261,6 +261,7 @@ class UsersController extends Controller
             'page',
             'previous_usernames',
             'ranked_and_approved_beatmapset_count',
+            "rankHistory:mode({$currentMode})",
             'replays_watched_counts',
             'statistics.rank',
             'support_level',
@@ -279,15 +280,7 @@ class UsersController extends Controller
             $userIncludes
         );
 
-        $rankHistoryData = $user->rankHistories()
-            ->where('mode', Beatmap::modeInt($currentMode))
-            ->first();
-
-        $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : null;
-
         if (is_api_request()) {
-            $userArray['rankHistory'] = $rankHistory;
-
             return $userArray;
         } else {
             $achievements = json_collection(
@@ -328,7 +321,6 @@ class UsersController extends Controller
                 'currentMode' => $currentMode,
                 'extras' => $extras,
                 'perPage' => $perPage,
-                'rankHistory' => $rankHistory,
                 'user' => $userArray,
             ];
 
