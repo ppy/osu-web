@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'deleted' => '[silinmiş kullanıcı]',
@@ -66,15 +51,15 @@ return [
 
     'disabled' => [
         'title' => 'Olamaz! Görünüşe bakılırsa hesabın kilitlenmiş.',
-        'warning' => "",
+        'warning' => "Bir kuralı ihlal etmeniz durumunda, genellikle herhangi bir af(veya itiraz) talebini dikkate almayacağımız bir aylık bekleme süresinin olduğunu unutmayın.  Bu süreden sonra, gerekli olması halinde bizimle iletişime geçmekte özgürsünüz. Bir hesabı devre dışı bıraktıktan sonra yeni hesap oluşturmanın <strong>bu bir aylık bekleme süresinin uzatılmasına</strong> neden olacağını lütfen unutmayın. Ayrıca <strong> oluşturduğunuz her hesap için kuralları daha fazla ihlal ettiğinizi </strong> unutmayın. Bu yolda gitmemenizi önemle tavsiye ederiz!",
 
         'if_mistake' => [
-            '_' => '',
+            '_' => 'Eğer bunun bir hata olduğunu düşünüyorsanız, bizimle iletişime geçebilirsiniz(:email ile veya sayfanın sağ alt koşesinde bulunan ? tuşu ile.). Çok sağlam verilere dayandığından, eylemlerimize her zaman tam olarak güvendiğimizi lütfen unutmayın.  Kasıtlı olarak sahtekâr olduğunuzu düşünürsek, isteğinizi göz ardı etme hakkını saklı tutarız.',
             'email' => 'e-posta',
         ],
 
         'reasons' => [
-            'compromised' => '',
+            'compromised' => 'Hesabınızın güvenliği ihlal edilmiş sayıldı.  Kimliği doğrulanırken geçici olarak devre dışı bırakılabilir.',
             'opening' => 'Hesabını dondurmaya sebebiyet verebilecek birtakım sebepler var:',
 
             'tos' => [
@@ -433,6 +418,7 @@ return [
     ],
 
     'view_mode' => [
+        'brick' => 'Tuğla görünümü',
         'card' => 'Kart Görünümü',
         'list' => 'Liste Görünümü',
     ],

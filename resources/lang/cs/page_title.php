@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
@@ -30,60 +15,118 @@ return [
     ],
     'error' => [
         'error' => [
-            '_' => 'chyba',
             '404' => 'chybějící',
             '403' => 'zakázano',
             '401' => 'neoprávněný',
             '405' => 'chybějící',
-            '500' => 'něco se rozbilo',
-            '503' => 'údržba',
+            '422' => '',
+            '500' => '',
+            '503' => '',
         ],
     ],
     'forum' => [
-        '_' => 'Fórum',
+        '_' => 'fórum',
         'topic_watches_controller' => [
-            'index' => 'nástěnka',
+            'index' => '',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'nástěnka',
+            'edit' => '',
+            'verify_link' => '',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'nástěnka',
-        ],
-        'friends_controller' => [
-            'index' => 'nástěnka',
-        ],
-        'home_controller' => [
-            'index' => 'nástěnka',
-            'get_download' => 'stáhnout',
-            'search' => 'hledat',
-            'support_the_game' => 'podpoř hru',
-        ],
-        'beatmap_discussions_controller' => [
-            '_' => 'diskuze o beatmapě',
+        'artists_controller' => [
+            '_' => '',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'příspěvky diskuze o beatmapě',
+            '_' => '',
+        ],
+        'beatmap_discussions_controller' => [
+            '_' => '',
+        ],
+        'beatmap_packs_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_discussion_votes_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_events_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_watches_controller' => [
+            'index' => '',
+        ],
+        'beatmapsets_controller' => [
+            'discussion' => '',
+            'index' => '',
+            'show' => '',
         ],
         'changelog_controller' => [
-            '_' => 'seznam změn',
+            '_' => '',
         ],
         'chat_controller' => [
-            '_' => 'chat',
+            '_' => '',
+        ],
+        'comments_controller' => [
+            '_' => '',
         ],
         'contests_controller' => [
-            '_' => 'soutěže',
+            '_' => '',
+        ],
+        'friends_controller' => [
+            'index' => '',
+        ],
+        'groups_controller' => [
+            'show' => '',
+        ],
+        'home_controller' => [
+            'get_download' => '',
+            'index' => '',
+            'search' => '',
+            'support_the_game' => '',
+            'testflight' => '',
         ],
         'legal_controller' => [
-            '_' => 'informace',
+            '_' => '',
+        ],
+        'livestreams_controller' => [
+            '_' => '',
+        ],
+        'matches_controller' => [
+            '_' => '',
+        ],
+        'news_controller' => [
+            '_' => '',
+        ],
+        'notifications_controller' => [
+            '_' => '',
+        ],
+        'password_reset_controller' => [
+            '_' => '',
+        ],
+        'ranking_controller' => [
+            '_' => '',
+        ],
+        'store_controller' => [
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
-            '_' => 'turnaje',
+            '_' => '',
         ],
         'users_controller' => [
+            '_' => '',
             'disabled' => 'oznámení',
+        ],
+        'wiki_controller' => [
+            '_' => 'nápověda',
+        ],
+    ],
+    'store' => [
+        '_' => 'osu!store',
+    ],
+    'users' => [
+        'modding_history_controller' => [
+            '_' => '',
         ],
     ],
 ];

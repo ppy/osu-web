@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'cancel' => 'ยกเลิก',
@@ -28,10 +13,10 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
+        'confirm_revoke' => 'คุณแน่ใจหรือไม่ว่าต้องการลบสิทธิ์การใช้งานนี้?',
         'scopes_title' => 'แอปพลิเคชันนี้สามารถ:',
         'owned_by' => ':user เป็นเจ้าของ',
-        'none' => '',
+        'none' => 'ไม่มี Clients',
 
         'revoked' => [
             'false' => 'ยกเลิกการเข้าถึง',
@@ -43,12 +28,12 @@ return [
         'id' => 'ID ของไคลเอนต์',
         'name' => 'ชื่อแอปพลิเคชัน',
         'redirect' => '',
-        'secret' => '',
+        'secret' => 'รหัสลับไคลเอ็นต์',
     ],
 
     'new_client' => [
         'header' => '',
-        'register' => '',
+        'register' => 'ลงทะเบียนแอปพลิเคชั่น',
         'terms_of_use' => [
             '_' => '',
             'link' => 'ข้อกำหนดการใช้งาน',
@@ -56,7 +41,7 @@ return [
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
+        'confirm_delete' => 'คุณแน่ใจหรือว่าต้องการลบ Client นี้?',
         'new' => '',
         'none' => '',
 

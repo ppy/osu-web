@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'authorizations' => [
@@ -33,23 +18,23 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'slettet',
-        'none_found' => '',
+        'none_found' => 'Det er ingen tråd som sammensvarer dine søke kriterier.',
         'title' => 'Beatmapdiskusjoner',
 
         'form' => [
             '_' => 'Søk',
             'deleted' => 'Inkluder slettede diskusjoner',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Vis bare uløste tråder',
             'types' => 'Meldingstyper',
             'username' => 'Brukernavn',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Beatmap Status',
+                'all' => 'Alt',
+                'disqualified' => 'Diskvalifisert',
+                'never_qualified' => 'Aldri Kvalifisert',
+                'qualified' => 'Kvalifisert',
+                'ranked' => 'Rangert',
             ],
 
             'user' => [
@@ -79,14 +64,14 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'Vis Tilbakemeldingsinnlegg',
+        'go_to_child' => 'Vis diskusjon',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_block_type' => 'ugyldig blokktype',
+            'invalid_document' => 'ugyldig anmeldelse',
+            'minimum_issues' => 'anmeldelsen må minst inneholde et minimum av :count saker|anmeldelsen må minst inneholde et minimum av :count saker',
+            'missing_text' => 'blokken mangler tekst',
+            'too_many_blocks' => 'anmeldelser kan bare inneholde :count paragrafer/saker|anmeldelser kan bare inneholde opptill :count paragrafer/saker',
         ],
     ],
 
@@ -98,8 +83,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'generelt',
+        'general_all' => 'generelt (alt)',
     ],
 
     'user_filter' => [

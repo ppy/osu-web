@@ -51,24 +51,6 @@ declare module 'img2x' {
   class Img2x extends React.PureComponent<any> {}
 }
 
-declare module 'show-more-link' {
-  interface Props {
-    callback?: () => void;
-    data?: any;
-    direction?: string;
-    event?: any;
-    hasMore?: boolean;
-    hideIcon?: boolean;
-    label?: string;
-    loading?: boolean;
-    modifiers?: string[];
-    remaining?: number;
-    url?: string;
-  }
-
-  class ShowMoreLink extends React.PureComponent<Props> {}
-}
-
 declare module 'spinner' {
   interface Props {
     modifiers?: string[];

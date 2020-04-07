@@ -29,6 +29,7 @@ class OsuAuthorize
 {
     const ALWAYS_CHECK = [
         'IsOwnClient',
+        'IsNotOAuth',
     ];
 
     /** @var AuthorizationResult[] */
@@ -685,6 +686,33 @@ class OsuAuthorize
             if ($this->checkBeatmapDiscussionAllowOrDenyKudosu($user, null) === 'ok') {
                 return 'ok';
             }
+        }
+
+        return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
+     * @param Beatmapset $beatmapset
+     * @return string
+     * @throws AuthorizationException
+     */
+    public function checkBeatmapsetMetadataEdit(?User $user, Beatmapset $beatmapset): string
+    {
+        $this->ensureLoggedIn($user);
+
+        static $ownerEditable = [
+            Beatmapset::STATES['graveyard'],
+            Beatmapset::STATES['wip'],
+            Beatmapset::STATES['pending'],
+        ];
+
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        if ($user->getKey() === $beatmapset->user_id && in_array($beatmapset->approved, $ownerEditable, true)) {
+            return 'ok';
         }
 
         return 'unauthorized';
@@ -1441,6 +1469,15 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkIsNotOAuth(?User $user): string
+    {
+        if (optional($user)->token() === null) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
     }
 
     /**

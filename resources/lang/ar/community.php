@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'support' => [
@@ -24,21 +9,22 @@ return [
             'title' => 'أنا مقتنع! D:',
             'support' => 'اِدعم osu!',
             'gift' => 'او قدم الشارة للاعب اخر',
-            'instructions' => 'انقر فوق زر القلب للمضي قدما في متجر!osu',
+            'instructions' => 'انقر زر القلب لتذهب إلى متجر !osu',
         ],
         'why-support' => [
-            'title' => 'لماذا يجب أن أؤيد osu!؟ أين يذهب المال؟',
+            'title' => 'لماذا يجب ان أقوم بدعم !osu؟ إلى أين يذهب المال ؟
+',
 
             'team' => [
                 'title' => 'إدعم الفريق',
                 'description' => 'يقوم فريق صغير ببرمجة و تشغيل osu!. دعمك يساعدهم على, تَعرِف... العيش.',
             ],
             'infra' => [
-                'title' => 'مزود البنية التحتية',
-                'description' => 'المساهمات تذهب تجاه الخوادم لأبقاء الموقع يعمل, خدمة تعدد اللاعبين, والجداول الفورية, الخ.',
+                'title' => 'البنية التحتية للمزود ',
+                'description' => 'المساهمات تقوم بالمساعدة على استمرار عمل الموقع, خدمات طور اللعب الجماعي, لوحات المتصدرين, إلخ.',
             ],
             'featured-artists' => [
-                'title' => 'الفنانين الموصى بهم',
+                'title' => 'الفنانين المميزين',
                 'description' => 'مع شارة الدعم خاصتك, يمكننا الوصول الى فنانين رائعين وترخيص موسيقى ممتعة اكثر لأستعمالها في osu!',
                 'link_text' => 'عرض الجدول الحالي &raquo;',
             ],

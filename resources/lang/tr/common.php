@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'confirmation' => 'Emin misin?',
@@ -36,6 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Yönetici',
         'authorise' => 'Yetki ver',
+        'authorising' => 'İzin Veriliyor...',
         'back_to_previous' => 'Bir önceki pozisyona dön',
         'back_to_top' => 'Yukarıya geri dön',
         'cancel' => 'İptal',
@@ -62,7 +48,7 @@ return [
         'see_more' => 'daha fazla',
         'show' => 'göster',
         'show_deleted' => 'Silineni göster',
-        'show_less' => '',
+        'show_less' => 'daha az göster',
         'show_more' => 'daha fazla göster',
         'show_more_options' => 'daha fazla seçenek göster',
         'unpin' => 'sabitlemeyi kaldır',
@@ -84,8 +70,8 @@ return [
         'minute_short_unit' => 'dk|dk',
         'minutes' => ':count dakika |:count dakika',
         'months' => ':count ay|:count ay',
-        'notifications' => '',
-        'plus_others' => '',
+        'notifications' => ':count_delimited bildirim|:count_delimited bildirim',
+        'plus_others' => '+ :count_delimited tane daha!|+ :count_delimited tane daha!',
         'post' => ':count_delimited gönderi|:count_delimited gönderi',
         'second_short_unit' => 'sn|sn',
         'star_priority' => '',

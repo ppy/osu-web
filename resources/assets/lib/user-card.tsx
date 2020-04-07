@@ -4,6 +4,7 @@
 import { BlockButton } from 'block-button';
 import { FlagCountry } from 'flag-country';
 import { FriendButton } from 'friend-button';
+import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
@@ -11,14 +12,15 @@ import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
 import { Spinner } from 'spinner';
 import { SupporterIcon } from 'supporter-icon';
+import UserCardBrick from 'user-card-brick';
 
-export type ViewMode = 'card' | 'list';
+export type ViewMode = 'brick' | 'card' | 'list';
 
 interface Props {
   activated: boolean;
   mode: ViewMode;
   modifiers: string[];
-  user?: User;
+  user?: UserJSON;
 }
 
 interface State {
@@ -33,7 +35,9 @@ export class UserCard extends React.PureComponent<Props, State> {
     modifiers: [],
   };
 
-  static userLoading: User = {
+  static userLoading: UserJSON = {
+    avatar_url: '',
+    country_code: '',
     cover: {},
     default_group: '',
     id: 0,
@@ -41,7 +45,9 @@ export class UserCard extends React.PureComponent<Props, State> {
     is_bot: false,
     is_online: false,
     is_supporter: false,
+    last_visit: '',
     pm_friends_only: true,
+    profile_colour: '',
     username: osu.trans('users.card.loading'),
   };
 
@@ -84,6 +90,14 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   render() {
+    if (this.props.mode === 'brick') {
+      if (this.props.user == null) {
+        return null;
+      }
+
+      return <UserCardBrick {...this.props} user={this.props.user} />;
+    }
+
     const modifiers = this.props.modifiers.slice();
     // Setting the active modifiers from the parent causes unwanted renders unless deep comparison is used.
     modifiers.push(this.props.activated ? 'active' : 'highlightable');
@@ -205,13 +219,19 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   renderListModeIcons() {
-    if (this.props.mode !== 'list' || !this.isUserLoaded || !this.user.is_supporter) { return null; }
+    if (this.props.mode !== 'list' || !this.isUserLoaded) { return null; }
 
     return (
       <div className='user-card__icons'>
-        <a className='user-card__icon' href={route('support-the-game')}>
-          <SupporterIcon level={this.user.support_level} />
-        </a>
+        {this.user.is_supporter && (
+          <a className='user-card__icon' href={route('support-the-game')}>
+            <SupporterIcon level={this.user.support_level} modifiers={['user-list']} />
+          </a>
+        )}
+
+        <div className='user-card__icon'>
+          <FriendButton userId={this.user.id} modifiers={['user-list']} />
+        </div>
       </div>
     );
   }

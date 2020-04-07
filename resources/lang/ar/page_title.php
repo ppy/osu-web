@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
@@ -30,52 +15,57 @@ return [
     ],
     'error' => [
         'error' => [
-            '_' => 'خطأ',
             '404' => 'مفقود',
             '403' => 'محظور',
             '401' => 'غير مصرح به',
             '405' => 'مفقود',
-            '500' => 'شيء خاطئ',
+            '422' => 'طلب غير صالح',
+            '500' => 'وقعَ خطأ',
             '503' => 'صيانة',
         ],
     ],
     'forum' => [
         '_' => 'المنتدى',
         'topic_watches_controller' => [
-            'index' => 'لوحة المعلومات',
+            'index' => 'لوحة التحكم',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'لوحة المعلومات',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => 'لوحة المعلومات',
-        ],
-        'friends_controller' => [
-            'index' => 'لوحة المعلومات',
-        ],
-        'home_controller' => [
-            'index' => 'لوحة المعلومات',
-            'get_download' => 'تحميل',
-            'search' => 'البحث',
-            'support_the_game' => 'دعم اللعبة',
-            'testflight' => 'testflight',
+            'edit' => 'لوحة التحكم',
+            'verify_link' => 'التحقق من الحساب',
         ],
         'artists_controller' => [
             '_' => 'الفنانين المميزين',
         ],
+        'beatmap_discussion_posts_controller' => [
+            '_' => 'منشورات مناقشة الخريطة',
+        ],
         'beatmap_discussions_controller' => [
             '_' => 'مناقشات الخريطة',
         ],
-        'beatmap_discussion_posts_controller' => [
-            '_' => 'منشورات مناقشة الخريطة',
+        'beatmap_packs_controller' => [
+            '_' => 'حزم الخرائط',
+        ],
+        'beatmapset_discussion_votes_controller' => [
+            '_' => 'أَصوات مناقشة الخريطة',
+        ],
+        'beatmapset_events_controller' => [
+            '_' => 'تاريخ الخريطة',
+        ],
+        'beatmapset_watches_controller' => [
+            'index' => 'لوحة التحكم',
+        ],
+        'beatmapsets_controller' => [
+            'discussion' => 'مناقشة الخريطة',
+            'index' => 'قائمة الخرائط',
+            'show' => 'معلومات الخريطة',
         ],
         'changelog_controller' => [
             '_' => 'سِجل التغييرات',
         ],
         'chat_controller' => [
-            '_' => 'محادثة',
+            '_' => 'الدردشة',
         ],
         'comments_controller' => [
             '_' => 'التعليقات',
@@ -83,11 +73,36 @@ return [
         'contests_controller' => [
             '_' => 'المسابقات',
         ],
+        'friends_controller' => [
+            'index' => 'لوحة التحكم',
+        ],
+        'groups_controller' => [
+            'show' => 'المجموعات',
+        ],
+        'home_controller' => [
+            'get_download' => 'تنزيل',
+            'index' => 'لوحة التحكم',
+            'search' => 'البحث',
+            'support_the_game' => 'أِدعَم اللعبة',
+            'testflight' => 'مشروع الأختبار',
+        ],
         'legal_controller' => [
-            '_' => 'معلومات',
+            '_' => 'المعلومات',
         ],
         'livestreams_controller' => [
             '_' => 'البث المباشر',
+        ],
+        'matches_controller' => [
+            '_' => 'المباريات',
+        ],
+        'news_controller' => [
+            '_' => 'الأخبار',
+        ],
+        'notifications_controller' => [
+            '_' => 'سجل الإشعارات',
+        ],
+        'password_reset_controller' => [
+            '_' => 'إعادة تعيين كلمة المرور',
         ],
         'ranking_controller' => [
             '_' => 'التصنيف',
@@ -99,13 +114,19 @@ return [
             '_' => 'البطولات',
         ],
         'users_controller' => [
+            '_' => 'معلومات اللاعب',
             'disabled' => 'ملحوظة',
         ],
         'wiki_controller' => [
-            'show' => 'قاعدة المعرفة',
+            '_' => 'قاعدة المعارف',
         ],
     ],
     'store' => [
         '_' => 'متجر!osu',
+    ],
+    'users' => [
+        'modding_history_controller' => [
+            '_' => 'معلومات المُعَدِل',
+        ],
     ],
 ];

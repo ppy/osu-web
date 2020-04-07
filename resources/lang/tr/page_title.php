@@ -1,77 +1,90 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
-        '_' => 'yönetici',
+        '_' => '',
     ],
     'admin_forum' => [
-        '_' => 'yönetici',
+        '_' => '',
     ],
     'admin_store' => [
-        '_' => 'yönetici',
+        '_' => '',
     ],
     'error' => [
         'error' => [
-            '_' => 'hata',
-            '404' => 'eksik',
-            '403' => 'yasaklı',
-            '401' => 'izinsiz',
-            '405' => 'eksik',
+            '404' => '',
+            '403' => '',
+            '401' => '',
+            '405' => '',
+            '422' => '',
             '500' => 'bir şeyler yanlış',
             '503' => 'bakım',
         ],
     ],
     'forum' => [
-        '_' => 'Forum',
+        '_' => '',
         'topic_watches_controller' => [
-            'index' => 'kontrol paneli',
+            'index' => '',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'kontrol paneli',
+            'edit' => '',
+            'verify_link' => '',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'kontrol paneli',
-        ],
-        'friends_controller' => [
-            'index' => 'kontrol paneli',
-        ],
-        'home_controller' => [
-            'index' => 'kontrol paneli',
-            'get_download' => 'indir',
-            'search' => 'ara',
-            'support_the_game' => 'oyunu destekle',
-        ],
-        'beatmap_discussions_controller' => [
-            '_' => 'beatmap tartışmaları',
+        'artists_controller' => [
+            '_' => '',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'beatmap tartışma başlıkları',
+            '_' => '',
+        ],
+        'beatmap_discussions_controller' => [
+            '_' => '',
+        ],
+        'beatmap_packs_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_discussion_votes_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_events_controller' => [
+            '_' => '',
+        ],
+        'beatmapset_watches_controller' => [
+            'index' => '',
+        ],
+        'beatmapsets_controller' => [
+            'discussion' => '',
+            'index' => '',
+            'show' => '',
+        ],
+        'changelog_controller' => [
+            '_' => '',
         ],
         'chat_controller' => [
-            '_' => 'sohbet',
+            '_' => '',
         ],
         'comments_controller' => [
-            '_' => 'yorumlar',
+            '_' => '',
+        ],
+        'contests_controller' => [
+            '_' => '',
+        ],
+        'friends_controller' => [
+            'index' => '',
+        ],
+        'groups_controller' => [
+            'show' => 'gruplar',
+        ],
+        'home_controller' => [
+            'get_download' => 'indir',
+            'index' => 'kontrol paneli',
+            'search' => 'ara',
+            'support_the_game' => 'oyunu destekle',
+            'testflight' => 'beta testi',
         ],
         'legal_controller' => [
             '_' => 'bilgi',
@@ -79,20 +92,41 @@ return [
         'livestreams_controller' => [
             '_' => 'canlı yayınlar',
         ],
+        'matches_controller' => [
+            '_' => 'maçlar',
+        ],
+        'news_controller' => [
+            '_' => 'gelişmeler',
+        ],
+        'notifications_controller' => [
+            '_' => 'bildirim geçmişi',
+        ],
+        'password_reset_controller' => [
+            '_' => 'şifre sıfırlama',
+        ],
         'ranking_controller' => [
             '_' => 'sıralama',
         ],
         'store_controller' => [
-            '_' => 'osu!mağza',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
             '_' => 'turnuvalar',
         ],
+        'users_controller' => [
+            '_' => 'oyuncu bilgisi',
+            'disabled' => 'bildiri',
+        ],
         'wiki_controller' => [
-            'show' => 'bilgi tabanı',
+            '_' => 'bilgi tabanı',
         ],
     ],
     'store' => [
-        '_' => 'osu!mağza',
+        '_' => 'osu!store',
+    ],
+    'users' => [
+        'modding_history_controller' => [
+            '_' => '',
+        ],
     ],
 ];

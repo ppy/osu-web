@@ -1,37 +1,22 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'all_read' => 'Tất cả các thông báo đã được đọc!',
-    'mark_all_read' => 'Xoá tất cả',
-    'none' => '',
-    'see_all' => '',
+    'mark_read' => '',
+    'none' => 'Không có thông báo nào',
+    'see_all' => 'xem tất cả thông báo',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
+        '_' => 'tất cả',
+        'user' => 'trang cá nhân',
+        'beatmapset' => 'beatmap',
+        'forum_topic' => 'diễn đàn',
+        'news_post' => 'tin tức',
         'build' => '',
-        'channel' => '',
+        'channel' => 'chat',
     ],
 
     'item' => [
@@ -43,9 +28,9 @@ return [
                 'beatmapset_discussion_lock' => 'Beatmap ":title" đã bị khóa để thảo luận.',
                 'beatmapset_discussion_lock_compact' => 'Cuộc thảo luận đã được khóa',
                 'beatmapset_discussion_post_new' => ':username đã đăng tin nhắn mới trong cuộc thảo luận beatmap ":title".',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => 'Bài đăng mới trên ":title" bởi :username',
                 'beatmapset_discussion_post_new_compact' => 'Bài đăng mới bởi :username',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Bài đăng mới bởi :username',
                 'beatmapset_discussion_unlock' => 'Cuộc thảo luận trên ":title" đã được mở khóa',
                 'beatmapset_discussion_unlock_compact' => 'Cuộc thảo luận đã được mở khóa',
             ],

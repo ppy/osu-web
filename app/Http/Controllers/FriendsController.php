@@ -43,7 +43,13 @@ class FriendsController extends Controller
             ->orderBy('username', 'asc')
             ->get();
 
-        $usersJson = json_collection($friends, 'UserCompact', ['cover', 'country', 'current_mode_rank', 'support_level']);
+        $usersJson = json_collection($friends, 'UserCompact', [
+            'cover',
+            'country',
+            'current_mode_rank',
+            'group_badge',
+            'support_level',
+        ]);
 
         if (is_api_request()) {
             return $usersJson;

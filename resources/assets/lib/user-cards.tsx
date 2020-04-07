@@ -1,13 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import UserJSON from 'interfaces/user-json';
 import * as React from 'react';
 import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { UserCard, ViewMode } from 'user-card';
 
 interface Props {
   modifiers: string[];
-  users: User[];
+  users: UserJSON[];
   viewMode: ViewMode;
 }
 
@@ -32,7 +33,12 @@ export class UserCards extends React.PureComponent<Props> {
 
               return (
                 <KeyContext.Provider key={user.id} value={user.id}>
-                  <UserCard activated={activated} mode={this.props.viewMode} modifiers={['has-outline', ...this.props.modifiers]} user={user} />
+                  <UserCard
+                    activated={activated}
+                    mode={this.props.viewMode}
+                    modifiers={['has-outline', ...this.props.modifiers]}
+                    user={user}
+                  />
                 </KeyContext.Provider>
               );
             })

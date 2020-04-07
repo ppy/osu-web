@@ -1,24 +1,10 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute ne peut être négatif.',
     'required' => ':attribute est requis.',
     'too_long' => ':attribute dépasse la longeur maximale - elle est de :limit caractères.',
@@ -47,6 +33,7 @@ return [
         ],
 
         'hype' => [
+            'discussion_locked' => "Cette beatmap est actuellement verrouillée pour la discussion et ne peut pas être hypée",
             'guest' => 'Vous devez être connecté pour hyper.',
             'hyped' => 'Vous avez déjà hypé cette beatmap.',
             'limit_exceeded' => 'Vous avez utilisé toute votre hype.',
@@ -62,7 +49,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Répondre à un commentaire supprimé n\'est pas autorisé.',
-        'top_only' => '',
+        'top_only' => 'Il n\'est pas autorisé d\'épingler un commentaire.',
 
         'attributes' => [
             'message' => 'Le message',
@@ -137,6 +124,7 @@ return [
         'invalid_country' => 'Le pays n\'est pas dans la base de données.',
         'invalid_discord' => 'Nom d\'utilisateur Discord invalide.',
         'invalid_email' => "Ça ne semble pas être une adresse email valide.",
+        'invalid_twitter' => 'Nom d\'utilisateur Twitter invalide.',
         'too_short' => 'Le nouveau mot de passe est trop court.',
         'unknown_duplicate' => 'Nom d\'utilisateur ou adresse e-mail déjà utilisée.',
         'username_available_in' => 'Ce nom d\'utilisateur sera disponible dans :duration.',

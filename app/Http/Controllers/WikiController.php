@@ -13,8 +13,24 @@ use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
 use Request;
 
+/**
+ * @group Wiki
+ */
 class WikiController extends Controller
 {
+    /**
+     * Get Wiki Page
+     *
+     * The wiki article or image data.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [WikiPage](#wikipage) if the content is a wiki page; a binary blob, otherwise.
+     *
+     * @urlParam page The path name of the wiki page.
+     */
     public function show($path = null)
     {
         if ($path === null) {
@@ -39,6 +55,14 @@ class WikiController extends Controller
             }
 
             $status = 404;
+        }
+
+        if (is_json_request()) {
+            if (!$page->isVisible()) {
+                return response(null, 404);
+            }
+
+            return json_item($page, 'WikiPage');
         }
 
         return ext_view($page->template(), compact('page'), null, $status ?? null);

@@ -18,6 +18,20 @@
     .thick-box-shadow();
   }
 
+  &__clear-button {
+    .reset-input();
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    color: @osu-colour-l2;
+
+    &:hover {
+      color: @osu-colour-c1;
+    };
+  }
+
   &__scroll-container {
     display: grid;
     grid-gap: 10px;
@@ -28,23 +42,6 @@
       max-height: calc(var(--vh, 1vh) * 100 - (@nav2-height + 30px)); // 30px is the parent's padding
       padding: 0 5px;
     }
-  }
-
-  &__show-more {
-    font-size: smaller;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  &__expand {
-    margin-left: 10px;
-  }
-
-  &__collapse {
-    display: flex;
-    flex-direction: row;
   }
 
   &__filters {
@@ -74,11 +71,6 @@
     color: @osu-colour-c2;
     background-color: @osu-colour-b2;
     border-radius: 10000px;
-  }
-
-  &__mark-as-read {
-    width: 40px;
-    // background-color: @osu-colour-b2;
   }
 
   &__empty-with-more {

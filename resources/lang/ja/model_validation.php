@@ -1,24 +1,10 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attributeに負の数は使用できません',
     'required' => ':attributeが必須です',
     'too_long' => ':attributeの使用文字数の制限を超えています。上限は:limit文字です。',
@@ -42,11 +28,12 @@ return [
         'locked' => 'ディスカッションはロックされています。',
 
         'attributes' => [
-            'message_type' => 'メッセージタイプ',
+            'message_type' => 'メッセージの種類',
             'timestamp' => 'タイムスタンプ',
         ],
 
         'hype' => [
+            'discussion_locked' => "このビートマップは議論中のためロックされており、Hypeできません。",
             'guest' => 'Hypeするにはログインが必要です。',
             'hyped' => '既にこのビートマップをHypeしています。',
             'limit_exceeded' => 'Hype回数が残っていません。',
@@ -62,7 +49,8 @@ return [
 
     'comment' => [
         'deleted_parent' => '削除されたコメントに返信することはできません。',
-        'top_only' => '',
+        'top_only' => 'コメントの返信を固定することはできません。
+',
 
         'attributes' => [
             'message' => 'メッセージ',
@@ -115,7 +103,7 @@ return [
 
         'topic_vote' => [
             'required' => '投票する選択肢を選んでください。',
-            'too_many' => '許可されている選択肢の選択数を超えました。',
+            'too_many' => '許可されている選択肢より多くを選択しました。',
         ],
     ],
 
@@ -137,6 +125,7 @@ return [
         'invalid_country' => 'データベースに存在しない国です。',
         'invalid_discord' => 'Discordのユーザー名が無効です。',
         'invalid_email' => "無効なメールアドレスです。",
+        'invalid_twitter' => 'Twitterのユーザー名が無効です。',
         'too_short' => '新しいパスワードが短すぎます。',
         'unknown_duplicate' => 'ユーザー名かメールアドレスが既に使用されています。',
         'username_available_in' => 'このユーザー名は:durationで使用可能になります。',
@@ -179,7 +168,7 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '数量',
+                'quantity' => '個数',
                 'cost' => '価格',
             ],
         ],

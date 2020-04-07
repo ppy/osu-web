@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'support' => [
@@ -96,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Personalizzazione',
-                'description' => "Personalizza il tuo profilo aggiungendo una pagina utente completamente personalizzabile.",
+                'description' => "Puoi spiccare caricando un'immagine personalizzata o creando una sezione 'io!' totalmente personalizzabile nel tuo profilo.",
             ],
 
             'beatmap_filters' => [
@@ -144,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Carica più Beatmap',
-                'description' => 'Il numero di beatmap non classificate che puoi avere allo stesso tempo è calcolato da un valore base sommato ad un bonus aggiuntivo per ogni beatmap classificata che possiedi (fino ad un limite).<br/><br/>Normalmente sarebbe 4 più 1 per ogni beatmap classificata (fino a 2). Con il supporter, questo aumenta a 8 più 1 per beatmap classificata (fino a 12).',
+                'description' => 'Il numero di beatmap non classificate che puoi avere allo stesso tempo è calcolato da un valore base sommato ad un bonus aggiuntivo per ogni beatmap classificata che possiedi (fino ad un limite).<br/><br/>Normalmente sarebbe :base più :bonus per ogni beatmap classificata (fino a :bonus_max). Con il supporter, questo aumenta a :supporter_base più :supporter_bonus per beatmap classificata (fino a :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Classifiche con Amici',

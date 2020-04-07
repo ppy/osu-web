@@ -406,14 +406,16 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         Route::get('users/{user}/recent_activity', 'UsersController@recentActivity');
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', 'UsersController@show');
+
+        Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     });
 });
 
 // Callbacks for legacy systems to interact with
 Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
+    Route::post('index-beatmapset/{beatmapset}', 'LegacyInterOpController@indexBeatmapset');
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
-    Route::post('/regenerate-beatmapset-covers/{beatmapset}', 'LegacyInterOpController@regenerateBeatmapsetCovers');
     Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::post('user-send-message', 'LegacyInterOpController@userSendMessage');

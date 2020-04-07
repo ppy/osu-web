@@ -2,13 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'header-v4';
+import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
+import UserCardTypeContext from 'user-card-type-context';
 import { UserList } from 'user-list';
 
 interface Props {
-  friends: User[];
-  user: User;
+  friends: UserJSON[];
+  user: UserJSON;
 }
 
 export class Main extends React.PureComponent<Props> {
@@ -34,7 +36,9 @@ export class Main extends React.PureComponent<Props> {
         />
 
         <div className='osu-page osu-page--users'>
-          <UserList users={this.props.friends} />
+          <UserCardTypeContext.Provider value={{isFriendsPage: true}}>
+            <UserList users={this.props.friends} />
+          </UserCardTypeContext.Provider>
         </div>
       </div>
     );

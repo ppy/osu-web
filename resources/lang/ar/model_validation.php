@@ -1,24 +1,10 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute لا يمكن ان يكون سلبياََ.',
     'required' => ':attribute مطلوب.',
     'too_long' => ':attribute تجاوز الحد المطلوب - يمكن ان يصل حد :limit حروف فقط.',
@@ -47,6 +33,7 @@ return [
         ],
 
         'hype' => [
+            'discussion_locked' => "هذه الخريطة مقفلة حاليا للنقاش ولا يمكن أِضافة نقاط تشجيع لها",
             'guest' => 'يجب أن تسجل دخولك للاِشادة.',
             'hyped' => 'لقد اشدت هذه الخريطة بالفعل.',
             'limit_exceeded' => 'لقد استنفذت كافة اِشاداتك.',
@@ -62,7 +49,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'الرد على تعليق محذوف غير مسموح.',
-        'top_only' => '',
+        'top_only' => 'تثبيت تعليق الرد غير مسموح به.',
 
         'attributes' => [
             'message' => 'الرسالة',
@@ -137,6 +124,7 @@ return [
         'invalid_country' => 'الدولة ليست في قاعدة البيانات.',
         'invalid_discord' => 'اِسم خلاف غير صالح.',
         'invalid_email' => "لا يبدو وكأنه بريد الكتروني صالح.",
+        'invalid_twitter' => 'اسم تويتر غير صالح.',
         'too_short' => 'كلمة المرور الجديدة قصيرة جداً.',
         'unknown_duplicate' => 'اسم المستخدم أو عنوان البريد الإلكتروني مستخدمة مسبقاََ.',
         'username_available_in' => 'اسم المستخدم سيكون متوفرا للاِستعمال في :duration.',

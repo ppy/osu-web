@@ -1,44 +1,29 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'beatmapset_update_notice' => [
-        'new' => '',
+        'new' => 'Sadece sana son girdiğinden beri ":title" beatmap\'inde yeni bir güncelleme olduğunu bildiriyoruz.',
         'subject' => '":title" beatmapi için yeni bir güncelleme',
-        'unwatch' => '',
+        'unwatch' => 'Artık bu beatmap\'i izlemek istemiyorsan, yukarıdaki sayfada veya modlama izleme listesi sayfasında bulunan "İzlemeyi Bırak" bağlantısına tıklayabilirsin:',
         'visit' => '',
     ],
 
     'common' => [
         'closing' => '',
-        'hello' => '',
+        'hello' => 'Selam :user,',
         'report' => 'Eğer bu değişim istemediğseniz, lütfen ACİLEN bu e-maile cevap yazın.',
     ],
 
     'donation_thanks' => [
-        'benefit_more' => '',
+        'benefit_more' => 'Zaman içinde daha fazla yeni supporter ayrıcalığı da eklenecek bu arada!',
         'feedback' => "Eğer herhangi bir sorunuz veya geribildiriminiz varsa, bu postaya cevap yazmaktan çekinmeyin; Size en kısa zamanda geri döneceğim!",
         'keep_free' => 'Sizin gibi insanlar sayesinde osu!, oyunu ve topluluğu akıcı bir şekilde hiçbir reklam veya zorla ödeme olmadan oyunu devam ettirebiliyor.',
         'keep_running' => 'Senin katkın osu!\'yu :minutes kadardır ayakta tutuyor. Fazla görünmüyor olabilir ama damlaya damlaya göl olur :).',
         'subject' => 'Teşekkürler, osu! sizi seviyor <3',
-        'translation' => '',
+        'translation' => 'Metnin topluluk tarafından sağlanan bilgi amaçlı çevirisi aşağıdaki gibidir:',
 
         'benefit' => [
             'gift' => '',
@@ -53,15 +38,15 @@ return [
     ],
 
     'forum_new_reply' => [
-        'new' => '',
+        'new' => 'Sadece sana son girdiğinden beri ":title" sayfasında yeni bir cevap geldiğini bildiriyoruz.',
         'subject' => '[osu!] ":title" başlığına yeni cevap',
         'unwatch' => '',
         'visit' => '',
     ],
 
     'password_reset' => [
-        'code' => '',
-        'requested' => '',
+        'code' => 'Doğrulama kodun:',
+        'requested' => 'Sen veya seni taklit eden biri osu! hesabın için bir şifre sıfırlama isteğinde bulundu.',
         'subject' => 'osu! hesap kurtarma',
     ],
 
@@ -69,50 +54,50 @@ return [
         'prepare_shipping' => '',
         'processing' => '',
         'questions' => "",
-        'shipping' => '',
+        'shipping' => 'Teslimat',
         'subject' => 'osu!store siparişinizi aldık!',
-        'thank_you' => '',
-        'total' => '',
+        'thank_you' => 'osu!store siparişin için teşekkürler!',
+        'total' => 'Toplam',
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => '',
-        'anonymous_gift_maybe_not' => '',
-        'duration' => '',
+        'anonymous_gift' => 'Sana bu etiketi hediye eden kişi, anonim kalmayı seçebilir. Bu yüzden bu bildirimde ondan bahsetmiyoruz.',
+        'anonymous_gift_maybe_not' => 'Ama muhtemelen kim olduğunu biliyorsun ;).',
+        'duration' => 'Onun sayesinde, sonraki :duration boyunca osu!direct\'e ve diğer osu!supporter ayrıcalıklarına sahip olacaksın.',
         'features' => '',
         'gifted' => '',
         'subject' => 'Size bir osu! Destekçisi etiketi verildi!',
     ],
 
     'user_email_updated' => [
-        'changed_to' => '',
+        'changed_to' => 'Bu, osu! e-posta adresinin ":email" olarak değiştiğini bildiren bir doğrulama e-postasıdır.',
         'check' => '',
-        'sent' => '',
+        'sent' => 'Güvenlik sebeplerinden ötürü, bu e-posta hem yeni hem de eski e-posta adresinde gönderildi.',
         'subject' => 'osu! e-posta değişikliği onayı',
     ],
 
     'user_force_reactivation' => [
         'main' => '',
-        'perform_reset' => '',
-        'reason' => '',
-        'subject' => '',
+        'perform_reset' => 'Sıfırlama işlemini şuradan gerçekleştirebilirsin: :url',
+        'reason' => 'Sebep:',
+        'subject' => 'osu! Hesabının Yeniden Doğrulanması Gerekli',
     ],
 
     'user_password_updated' => [
-        'confirmation' => '',
+        'confirmation' => 'Bu sadece osu! şifrenin değiştiğine dair bir doğrulamadır.',
         'subject' => 'osu! şifre değişikliği onayı',
     ],
 
     'user_verification' => [
-        'code' => '',
+        'code' => 'Doğrulama kodun:',
         'code_hint' => '',
-        'link' => '',
+        'link' => 'Alternatif olarak, doğrulamayı bitirmek için bu bağlantıya da gidebilirsin:',
         'report' => '',
         'subject' => 'osu! hesap doğrulama',
 
         'action_from' => [
-            '_' => '',
-            'unknown_country' => '',
+            '_' => 'Hesabında :country bölgesinden gerçekleştirilen bir eylem için doğrulama gerekiyor.',
+            'unknown_country' => 'bilinmeyen ülke',
         ],
     ],
 ];

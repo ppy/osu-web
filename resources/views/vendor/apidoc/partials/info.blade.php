@@ -82,12 +82,13 @@ To obtain an access token, you must first get an authorization code that is crea
 
 Parameters
 
-Name         | Type   | Description
--------------|--------|-------------------------------------------------------
-client_id    | number | The Client ID you received when you [registered]({{ route('account.edit').'#new-oauth-application' }})
-redirect_uri | string | The URL in your application where users will be sent after authorization. This must match the registered Application Callback URL exactly.
-scope        | string | A space-delimited string of [scopes](#scopes).
-state        | string | Data that will be returned when a temporary code is issued. It can be used to provide a token for protecting against cross-site request forgery attacks.
+Name          | Type   | Description
+--------------|--------|-------------------------------------------------------
+client_id     | number | The Client ID you received when you [registered]({{ route('account.edit').'#new-oauth-application' }})
+redirect_uri  | string | The URL in your application where users will be sent after authorization. This must match the registered Application Callback URL exactly.
+response_type | string | This should always be `code` when requesting authorization.
+scope         | string | A space-delimited string of [scopes](#scopes).
+state         | string | Data that will be returned when a temporary code is issued. It can be used to provide a token for protecting against cross-site request forgery attacks.
 
 
 ### User is redirected back to your site

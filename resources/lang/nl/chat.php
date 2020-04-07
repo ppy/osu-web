@@ -1,25 +1,9 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
-    'limitation_notice' => 'LET OP: Alleen mensen die <a href=":lazer_link">osu!lazer</a> of de nieuwe site gebruiken zullen PMs via dit systeem krijgen.<br/> Als je niet zeker bent of dit het geval is, stuur dan een bericht via <a href=":oldpm_link">old forum PM page</a>.',
     'talking_in' => 'praten in :channel',
     'talking_with' => 'aan het praten met :name',
     'title_compact' => 'chat',
@@ -43,7 +27,6 @@ return [
     'no-conversations' => [
         'howto' => "Start gesprekken vanuit het profiel van een gebruiker of een pop-up usercard.",
         'lazer' => 'Publieke kanalen die je kan joinen via <a href=":link">osu!lazer</a> zullen hier ook zichtbaar zijn.',
-        'pm_limitations' => 'Alleen mensen die <a href=":link">osu!lazer</a>of de nieuwe website gebruiken kunnen PM\'s ontvangen.',
         'title' => 'nog geen gesprekken',
     ],
 ];

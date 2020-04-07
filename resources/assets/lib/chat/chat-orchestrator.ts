@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import {
+  ChatChannelLoadEarlierMessages,
   ChatChannelPartAction,
   ChatChannelSwitchAction,
   ChatMessageAddAction,
@@ -11,6 +12,7 @@ import DispatcherAction from 'actions/dispatcher-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
+import { clamp } from 'lodash';
 import { transaction } from 'mobx';
 import Message from 'models/chat/message';
 import RootDataStore from 'stores/root-data-store';
@@ -74,33 +76,32 @@ export default class ChatOrchestrator implements DispatchListener {
     });
   }
 
-  focusNextChannel() {
-    const channelStore = this.rootDataStore.channelStore;
-    const channel = channelStore.get(this.rootDataStore.uiState.chat.selected);
-    if (channel && (channel.exists || channel.newChannel)) {
+  focusChannelAtIndex(index: number) {
+    const channelList = this.rootDataStore.channelStore.channelList;
+    if (channelList.length === 0) {
+      this.rootDataStore.channelStore.loaded = false;
       return;
     }
 
-    const channelList = channelStore.channelList;
-    if (channelList.length > 0) {
-      // TODO: switch to next 'closest' conversation instead of first in list
-      dispatch(new ChatChannelSwitchAction(channelList[0].channelId));
-    } else {
-      channelStore.loaded  = false;
-    }
+    const nextIndex = clamp(index, 0, channelList.length - 1);
+    const channel = this.rootDataStore.channelStore.channelList[nextIndex];
+
+    dispatch(new ChatChannelSwitchAction(channel.channelId));
   }
 
   handleDispatchAction(action: DispatcherAction) {
     if (action instanceof ChatChannelSwitchAction) {
       this.changeChannel(action.channelId);
+    } else if (action instanceof ChatChannelLoadEarlierMessages) {
+      this.loadChannelEarlierMessages(action.channelId);
     } else if (action instanceof ChatChannelPartAction) {
-      this.partChannel(action.channelId);
+      this.handleChatChannelPartAction(action);
     } else if (action instanceof ChatMessageAddAction) {
       if (this.windowIsActive && this.rootDataStore.channelStore.loaded) {
         this.markAsRead(this.rootDataStore.uiState.chat.selected);
       }
     } else if (action instanceof ChatPresenceUpdateAction) {
-      this.focusNextChannel();
+      this.handleChatPresenceUpdateAction();
     } else if (action instanceof WindowFocusAction) {
       this.windowIsActive = true;
       if (this.rootDataStore.channelStore.loaded) {
@@ -129,7 +130,29 @@ export default class ChatOrchestrator implements DispatchListener {
         });
       })
       .catch((err) => {
+        channel.loading = false;
         console.debug('loadChannel error', err);
+      });
+  }
+
+  loadChannelEarlierMessages(channelId: number) {
+    const channel = this.rootDataStore.channelStore.get(channelId);
+
+    if (channel == null || !channel.hasEarlierMessages || channel.loadingEarlierMessages) {
+      return;
+    }
+
+    channel.loadingEarlierMessages = true;
+
+    this.api.getMessages(channel.channelId, { until: channel.minMessageId })
+      .then((messages) => {
+        transaction(() => {
+          channel.loadingEarlierMessages = false;
+          this.addMessages(channelId, messages);
+        });
+      }).catch((err) => {
+        channel.loadingEarlierMessages = false;
+        console.debug('loadChannelEarlierMessages error', err);
       });
   }
 
@@ -158,17 +181,30 @@ export default class ChatOrchestrator implements DispatchListener {
       });
   }
 
-  partChannel(channelId: number) {
+  private handleChatChannelPartAction(action: ChatChannelPartAction) {
     const channelStore = this.rootDataStore.channelStore;
-    channelStore.partChannel(channelId);
+    const channel = channelStore.get(action.channelId);
+    const index = channel != null ? channelStore.channelList.indexOf(channel) : null;
+    channelStore.partChannel(action.channelId);
 
-    this.focusNextChannel();
+    if (this.rootDataStore.uiState.chat.selected === channel?.channelId) {
+      this.focusChannelAtIndex(index ?? 0);
+    }
 
-    if (channelId !== -1) {
-      return this.api.partChannel(channelId, window.currentUser.id)
+    if (action.shouldSync && action.channelId !== -1) {
+      return this.api.partChannel(action.channelId, window.currentUser.id)
         .catch((err) => {
           console.debug('leaveChannel error', err);
         });
+    }
+  }
+
+  // ensure a channel is selected if available
+  private handleChatPresenceUpdateAction() {
+    const channelStore = this.rootDataStore.channelStore;
+    const channel = channelStore.get(this.rootDataStore.uiState.chat.selected);
+    if (channel == null) {
+      this.focusChannelAtIndex(0);
     }
   }
 }

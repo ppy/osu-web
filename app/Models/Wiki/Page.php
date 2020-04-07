@@ -199,7 +199,7 @@ class Page implements WikiObject
     public function esFetch()
     {
         $response = (new BasicSearch(static::esIndexName(), 'wiki_page_lookup'))
-            ->source(['page', 'indexed_at', 'version'])
+            ->source(['markdown', 'page', 'indexed_at', 'version'])
             ->query([
                 'term' => [
                     '_id' => $this->pagePath(),
@@ -215,6 +215,11 @@ class Page implements WikiObject
     public function get()
     {
         return $this->page;
+    }
+
+    public function getMarkdown()
+    {
+        return $this->source['markdown'] ?? null;
     }
 
     public function hasParent()
@@ -366,6 +371,7 @@ class Page implements WikiObject
             $this->page = $contentRenderer->render();
             $pageIndex = $contentRenderer->renderIndexable();
 
+            $source['markdown'] = $content;
             $source['page'] = json_encode($this->page);
             $source['page_text'] = $pageIndex;
             $source['title'] = strip_tags($this->title());

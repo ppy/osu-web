@@ -1,30 +1,9 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Nie udało się zapisać posta',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Aktualizacja oceny nie powiodła się',
@@ -186,8 +165,8 @@ return [
         'nominate_confirm' => 'Nominować tę beatmapę?',
         'nominated_by' => 'nominowana przez :users',
         'not_enough_hype' => "Beatmapa nie jest wystarczająco nagłośniona.",
-        'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną wykryte żadne błędy.',
-        'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną wykryte żadne błędy.',
+        'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną wykryte żadne problemy.',
+        'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną wykryte żadne problemy.',
         'required_text' => 'Nominacje: :current/:required',
         'reset_message_deleted' => 'usunięta',
         'title' => 'Status nominacji',
