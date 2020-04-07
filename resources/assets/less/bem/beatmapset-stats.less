@@ -14,9 +14,7 @@
     bottom: 0;
     left: 0;
 
-    width: 0;
-
-    .default-bar-transition(@function: linear);
+    width: calc(var(--progress) * 100%);
 
     background-color: @yellow;
     height: 3px;
@@ -29,12 +27,6 @@
     background-size: contain;
 
     margin-right: 5px;
-  }
-
-  &__preview-icon {
-    color: #fff;
-    font-size: 18px;
-    cursor: pointer;
   }
 
   &__rating-chart {
@@ -53,11 +45,13 @@
   }
 
   &__row {
+    .reset-input();
     background-color: osu-hsla(@osu-colour-b4, 0.8);
     margin-top: 1px;
     padding: 7.5px 15px;
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     &--basic {
       padding-top: 10px;
@@ -65,15 +59,28 @@
     }
 
     &--preview {
+      .fas();
+      .link-plain();
+      .link-white();
       display: flex;
       align-items: center;
       justify-content: center;
-
+      --progress: 0;
+      --icon: @fa-var-play;
+      font-size: 18px; // icon size
       padding: 10px;
       cursor: pointer;
 
+      &::before {
+        content: var(--icon);
+      }
+
       &:hover {
         background-color: osu-hsla(@osu-colour-b6, 0.75);
+      }
+
+      &[data-audio-state="playing"] {
+        --icon: @fa-var-pause;
       }
     }
 

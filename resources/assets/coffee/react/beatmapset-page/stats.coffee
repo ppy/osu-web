@@ -3,24 +3,16 @@
 
 import { BeatmapBasicStats } from 'beatmap-basic-stats'
 import * as React from 'react'
-import { a, div, span, table, tbody, td, th, tr, i } from 'react-dom-factories'
+import { button, div, span, table, tbody, td, th, tr, i } from 'react-dom-factories'
 el = React.createElement
 
 export class Stats extends React.Component
   constructor: (props) ->
     super props
 
-    @state =
-      preview: 'ended'
-      previewDuration: 0
-
 
   componentDidMount: =>
     @_renderChart()
-
-    $.subscribe 'osuAudio:initializing.beatmapsetPageStats', @previewInitializing
-    $.subscribe 'osuAudio:playing.beatmapsetPageStats', @previewStart
-    $.subscribe 'osuAudio:ended.beatmapsetPageStats', @previewStop
 
 
   componentWillUnmount: =>
@@ -47,18 +39,11 @@ export class Stats extends React.Component
               else ['cs', 'drain', 'accuracy', 'ar', 'stars']
 
     div className: 'beatmapset-stats',
-      a
-        href: '#'
-        className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview js-audio--play"
+      button
+        type: 'button'
+        className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview js-audio--play js-audio--player"
         'data-audio-url': @props.beatmapset.preview_url
-        span className: 'beatmapset-stats__preview-icon',
-          i className: "fas fa-#{if @state.preview == 'ended' then 'play' else 'stop'}"
-
-        div
-          className: 'beatmapset-stats__elapsed-bar'
-          style:
-            transitionDuration: "#{@state.previewDuration}s"
-            width: "#{if @state.preview == 'playing' then '100%' else 0}"
+        div className: 'beatmapset-stats__elapsed-bar'
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
         el BeatmapBasicStats, beatmap: @props.beatmap
@@ -111,32 +96,6 @@ export class Stats extends React.Component
           div
             className: 'beatmapset-stats__rating-chart'
             ref: 'chartArea'
-
-
-  previewInitializing: (_e, {url, player}) =>
-    if url != @props.beatmapset.preview_url
-      return @previewStop()
-
-    @setState
-      preview: 'initializing'
-      previewDuration: 0
-
-
-  previewStart: (_e, {url, player}) =>
-    if url != @props.beatmapset.preview_url
-      return @previewStop()
-
-    @setState
-      preview: 'playing'
-      previewDuration: player.duration
-
-
-  previewStop: =>
-    return if @state.preview == 'ended'
-
-    @setState
-      preview: 'ended'
-      previewDuration: 0
 
 
   _renderChart: ->

@@ -6,6 +6,7 @@
   @padding: 10px;
   @hover-transition-duration: 150ms;
   .own-layer();
+  --progress: 0;
 
   &__content {
     height: 75px;
@@ -121,7 +122,8 @@
   }
 
   &__play {
-    .link-white();
+    .reset-input();
+    .fas();
     .link-plain();
     .fade-element(@hover-transition-duration);
     position: absolute;
@@ -131,18 +133,26 @@
     opacity: 0;
     line-height: 1;
     padding: (@padding / 2) @padding @padding;
+    color: @osu-colour-c1;
+    --icon: @fa-var-play;
 
     &:hover {
       color: @yellow;
+    }
+
+    &::before {
+      content: var(--icon);
     }
 
     .@{top}:hover & {
       opacity: 1;
     }
 
-    .@{top}--previewing & {
+    .@{top}[data-audio-state="loading"] &,
+    .@{top}[data-audio-state="playing"] & {
       color: @yellow;
       opacity: 1;
+      --icon: @fa-var-pause;
     }
   }
 
@@ -151,9 +161,8 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    width: calc(var(--progress) * 100%);
     height: 3px;
-    transition-timing-function: linear;
   }
 
   &__row {
@@ -167,11 +176,9 @@
 
     .fade-element(@hover-transition-duration);
 
-    .@{top}:hover & {
-      opacity: 0;
-    }
-
-    .@{top}--previewing & {
+    .@{top}:hover &,
+    .@{top}[data-audio-state="loading"] &,
+    .@{top}[data-audio-state="playing"] & {
       opacity: 0;
     }
   }
