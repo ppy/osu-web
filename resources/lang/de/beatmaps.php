@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Speichern des Beitrages fehlgeschlagen',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Aktualisieren der Stimme fehlgeschlagen',

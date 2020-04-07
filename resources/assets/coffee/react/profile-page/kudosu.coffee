@@ -28,12 +28,6 @@ export class Kudosu extends React.Component
                   osu.trans 'users.show.extra.kudosu.total_info.link'
               pattern: osu.trans('users.show.extra.kudosu.total_info._')
 
-        el ValueDisplay,
-          modifiers: ['kudosu']
-          label: osu.trans('users.show.extra.kudosu.available')
-          value: osu.formatNumber(@props.user.kudosu.available)
-          description: osu.trans('users.show.extra.kudosu.available_info')
-
       if @props.recentlyReceivedKudosu?.length
         ul className: 'profile-extra-entries profile-extra-entries--kudosu',
           for kudosu in @props.recentlyReceivedKudosu

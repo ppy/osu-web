@@ -15,6 +15,7 @@ return [
     ],
     'error' => [
         'error' => [
+            '400' => 'invalid request',
             '404' => 'missing',
             '403' => 'forbidden',
             '401' => 'unauthorized',
