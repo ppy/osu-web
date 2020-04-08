@@ -53,6 +53,7 @@ class Kernel extends HttpKernel
         'guest' => Middleware\RedirectIfAuthenticated::class,
         'require-scopes' => Middleware\RequireScopes::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'throttle-route' => \App\Libraries\ThrottleRouteRequests::class,
         'verify-user' => Middleware\VerifyUser::class,
     ];
 }
