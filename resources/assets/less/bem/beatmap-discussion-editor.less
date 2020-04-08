@@ -10,6 +10,8 @@
   background-color: @osu-colour-b4;
   flex-direction: column;
 
+  .fancy-scrollbar();
+
   &--edit-mode {
     margin-bottom: 10px;
   }
@@ -118,6 +120,14 @@
 
   &__input-area {
     .content-font();
+    margin-bottom:10px;
+
+    max-height: 70vh;
+    overflow-y: auto;
+
+    .@{_top}--edit-mode & {
+      max-height: unset;
+    }
   }
 
   &__menu {
