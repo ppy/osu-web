@@ -49,7 +49,7 @@ class @OsuAudio
   stop: =>
     @player().pause()
     @player().currentTime = 0
-    @urlSet ''
+    @urlRemove()
     @publish 'ended'
 
 
@@ -59,3 +59,7 @@ class @OsuAudio
 
   urlSet: (url) =>
     @player().setAttribute 'src', url
+
+
+  urlRemove: =>
+    @player().removeAttribute 'src'

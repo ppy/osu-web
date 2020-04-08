@@ -238,8 +238,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosua Käytettävissä',
-                'available_info' => "Kudosuja voit vaihtaa kudosutähtiin, jotka auttavat tuomaan lisää huomiota beatmapillesi. Näin monta kudosua et ole vielä vaihtanut.",
                 'recent_entries' => 'Viimeisimmät Kudosut',
                 'title' => 'Kudosu!',
                 'total' => 'Ansaittu Kudosu',

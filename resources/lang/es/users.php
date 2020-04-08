@@ -238,8 +238,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu disponible',
-                'available_info' => "Los kudosu pueden ser intercambiados por estrellas kudosu, que ayudarán a tu mapa a obtener más atención. Este es el número de kudosu que no has intercambiado aún.",
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu obtenido',
