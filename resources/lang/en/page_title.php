@@ -19,6 +19,7 @@ return [
             '404' => 'missing',
             '403' => 'forbidden',
             '401' => 'unauthorized',
+            '401-verification' => 'account verification',
             '405' => 'missing',
             '422' => 'invalid request',
             '500' => 'something broke',
