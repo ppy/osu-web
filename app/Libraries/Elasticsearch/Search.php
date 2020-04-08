@@ -86,6 +86,7 @@ abstract class Search extends HasSearch implements Queryable
 
     public function fail($error = null)
     {
+        $this->error = $error; // for the message.
         $this->response = SearchResponse::failed($error);
     }
 

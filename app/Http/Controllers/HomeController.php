@@ -96,22 +96,11 @@ class HomeController extends Controller
         $result = [];
 
         if ($quickSearch->hasQuery()) {
-            $error = null;
             foreach ($searches as $mode => $search) {
                 if ($search === null) {
                     continue;
                 }
-
-                if ($error === null && $search->getError() !== null) {
-                    $error = $search->getError();
-                }
-
-                if ($error !== null) {
-                    $search->fail($error);
-                    $result[$mode]['total'] = 0;
-                } else {
-                    $result[$mode]['total'] = $search->count();
-                }
+                $result[$mode]['total'] = $search->count();
             }
 
             $result['user']['users'] = json_collection($searches['user']->data(), 'UserCompact', [

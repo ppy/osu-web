@@ -59,6 +59,8 @@ class MultiSearch
     {
         if (!isset($this->searches)) {
             $this->searches = [];
+            $error = null;
+
             foreach (static::MODES as $mode => $settings) {
                 if ($settings === null) {
                     $this->searches[$mode] = null;
@@ -74,15 +76,21 @@ class MultiSearch
                     $search->source(false);
                 }
 
-                if ($this->getMode() === 'all') {
-                    $search->from(0)->size($settings['size']);
-                    if ($this->hasQuery()) {
-                        $search->response(); // FIXME: run query before counts for tab; need better way to do this.
+                if ($error !== null) {
+                    $search->fail($error);
+                } else {
+                    if ($this->getMode() === 'all') {
+                        $search->from(0)->size($settings['size']);
+                        if ($this->hasQuery()) {
+                            $search->response(); // FIXME: run query before counts for tab; need better way to do this.
+                        }
+                    } elseif ($this->getMode() === $mode) {
+                        if ($this->hasQuery()) {
+                            $search->response(); // FIXME: run query before counts for tab; need better way to do this.
+                        }
                     }
-                } elseif ($this->getMode() === $mode) {
-                    if ($this->hasQuery()) {
-                        $search->response(); // FIXME: run query before counts for tab; need better way to do this.
-                    }
+
+                    $error = $search->getError();
                 }
 
                 $this->searches[$mode] = $search;
