@@ -27,7 +27,7 @@ class ThrottleRouteRequests extends ThrottleRequests
         $userId = optional($request->user())->getAuthIdentifier() ?? $request->ip();
 
         if ($route = $request->route()) {
-            return sha1($userId.'|'.$route->getDomain().'|'.$request->path());
+            return sha1($userId.'|'.$route->getDomain().'|'.$request->method().'|'.$request->path());
         }
 
         throw new RuntimeException('Unable to generate the request signature. Route unavailable.');
