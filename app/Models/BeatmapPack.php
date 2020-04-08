@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use Exception;
+
 /**
  * @property string $author
  * @property \Carbon\Carbon $date
