@@ -209,6 +209,7 @@ Route::get('legal/{page}', 'LegalController@show')->name('legal');
 Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], function () {
     Route::resource('authorized-clients', 'AuthorizedClientsController', ['only' => ['destroy']]);
     Route::resource('clients', 'ClientsController', ['except' => ['create', 'edit', 'show']]);
+    Route::post('clients/{client}/reset-secret', 'ClientsController@resetSecret')->name('clients.reset-secret');
 });
 
 Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
@@ -382,7 +383,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         Route::resource('friends', 'FriendsController', ['only' => ['index']]);
 
         //  GET /api/v2/me
-        Route::get('me/{mode?}', 'UsersController@me');
+        Route::get('me/{mode?}', 'UsersController@me')->name('me');
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
 

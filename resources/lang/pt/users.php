@@ -238,8 +238,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu disponível',
-                'available_info' => "Os kudosus podem ser trocados por estrelas kudosu que irão ajudar o teu beatmap a ganhar mais atenção. Este é o número de kudosus que ainda não trocaste.",
                 'recent_entries' => 'Historial recente de kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Total de kudosu ganhos',
