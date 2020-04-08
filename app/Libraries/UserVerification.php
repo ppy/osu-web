@@ -52,10 +52,13 @@ class UserVerification
 
     public function initiate()
     {
+        $statusCode = 401;
+        app('route-section')->setError("{$statusCode}-verification");
+
         // Workaround race condition causing $this->issue() to be called in parallel.
         // Mainly observed when logging in as privileged user.
         if ($this->request->ajax() && $this->request->is('home/notifications')) {
-            return response(['error' => 'verification'], 401);
+            return response(['error' => 'verification'], $statusCode);
         }
 
         $email = $this->user->user_email;
@@ -73,9 +76,9 @@ class UserVerification
                     'users._verify_box',
                     compact('email')
                 )->render(),
-            ], 401);
+            ], $statusCode);
         } else {
-            return ext_view('users.verify', compact('email'), null, 401);
+            return ext_view('users.verify', compact('email'), null, $statusCode);
         }
     }
 
