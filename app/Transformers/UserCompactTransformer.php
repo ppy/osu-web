@@ -316,12 +316,13 @@ class UserCompactTransformer extends TransformerAbstract
     {
         $customization = $this->userProfileCustomization($user);
 
-        return $this->primitive([
-            'ranking_expanded' => $customization->ranking_expanded,
-            'user_list_filter' => $customization->user_list_filter,
-            'user_list_sort' => $customization->user_list_sort,
-            'user_list_view' => $customization->user_list_view,
-        ]);
+        return $this->primitive($customization->only([
+            'beatmapset_download',
+            'ranking_expanded',
+            'user_list_filter',
+            'user_list_sort',
+            'user_list_view',
+        ]));
     }
 
     protected function userProfileCustomization(User $user): UserProfileCustomization

@@ -131,6 +131,10 @@
     </div>
 
     <div class="osu-page u-has-anchor">
+        @include('accounts._edit_options')
+    </div>
+
+    <div class="osu-page u-has-anchor">
         @include('accounts._edit_password')
     </div>
 

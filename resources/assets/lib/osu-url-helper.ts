@@ -27,6 +27,10 @@ export default class OsuUrlHelper {
     return `osu://b/${id}`;
   }
 
+  static beatmapsetDownloadDirect(id: string | number): string {
+    return `osu://s/${id}`;
+  }
+
   static changelogBuild(build: ChangelogBuild): string {
     return laroute.route('changelog.build', {stream: build.update_stream.name, build: build.version});
   }
