@@ -238,8 +238,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu disponible',
-                'available_info' => "Les Kudosu peuvent être échangés pour des étoiles kudosu, qui aideront votre beatmap à avoir plus de visibilité. Voici le nombre de kudosu non échangés.",
                 'recent_entries' => 'Historique de Kudosu récent',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu reçus au total',
@@ -420,7 +418,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Vue brique',
         'card' => 'Vue en carte',
         'list' => 'Vue en liste',
     ],

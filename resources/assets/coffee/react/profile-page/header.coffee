@@ -79,7 +79,7 @@ export class Header extends React.Component
                 el DetailMobile,
                   stats: @props.stats
                   userAchievements: @props.userAchievements
-                  rankHistory: @props.rankHistory
+                  rankHistory: @props.user.rankHistory
 
                 el Stats, stats: @props.stats
 
@@ -89,7 +89,6 @@ export class Header extends React.Component
             el Detail,
               stats: @props.stats
               userAchievements: @props.userAchievements
-              rankHistory: @props.rankHistory
               user: @props.user
 
           if @props.user.badges.length > 0

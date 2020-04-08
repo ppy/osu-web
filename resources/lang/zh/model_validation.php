@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute 不能为负数。',
     'required' => '需要 :attribute 。',
     'too_long' => ':attribute 超出最大长度——最多允许 :limit 个字符。',
@@ -123,7 +124,7 @@ return [
         'invalid_country' => '国家未被数据库收录。',
         'invalid_discord' => 'Discord 用户名无效。',
         'invalid_email' => "无效的邮箱地址。",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter 用户名无效',
         'too_short' => '新密码太短。',
         'unknown_duplicate' => '用户名或邮箱已被使用。',
         'username_available_in' => '该用户名将在 :duration 后可用。',

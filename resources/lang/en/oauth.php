@@ -28,7 +28,14 @@ return [
         'id' => 'Client ID',
         'name' => 'Application Name',
         'redirect' => 'Application Callback URL',
+        'reset' => 'Reset client secret',
+        'reset_failed' => 'Failed to reset client secret',
         'secret' => 'Client Secret',
+
+        'secret_visible' => [
+            'false' => 'Show client secret',
+            'true' => 'Hide client secret',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Are you sure you want to delete this client?',
+        'confirm_reset' => 'Are you sure you want to reset the client secret? This will revoke all existing tokens.',
         'new' => 'New OAuth Application',
         'none' => 'No Clients',
 

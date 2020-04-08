@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'บันทึกโพสต์ล้มเหลว',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'อัพเดทโหวตล้มเหลว',

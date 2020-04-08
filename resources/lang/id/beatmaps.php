@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Gagal menyimpan kiriman',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Gagal memperbarui pilihan',
