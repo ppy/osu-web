@@ -53,13 +53,9 @@ class BeatmapPacksController extends Controller
     private function packData($pack)
     {
         $mode = Beatmap::modeStr($pack->playmode ?? 0);
+        $sets = $pack->beatmapsets()->select()->get();
+        $userCompletionData = $pack->userCompletionData(Auth::user());
 
-        $sets = $pack
-            ->beatmapsets()
-            ->select()
-            ->withHasCompleted($pack->playmode ?? 0, Auth::user())
-            ->get();
-
-        return compact('pack', 'sets', 'mode');
+        return compact('mode', 'pack', 'sets', 'userCompletionData');
     }
 }
