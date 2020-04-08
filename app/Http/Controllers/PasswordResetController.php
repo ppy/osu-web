@@ -21,6 +21,7 @@ class PasswordResetController extends Controller
 
         $this->middleware('guest');
         $this->middleware('throttle:60,10');
+        $this->middleware('throttle-route:20,1440', ['only' => 'create']);
     }
 
     public function destroy()
