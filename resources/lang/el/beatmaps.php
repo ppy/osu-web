@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Αποτυχία αποθήκευσης δημοσίευσης',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Αποτυχία ενημέρωσης ψήφων',

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute не може да бъде отрицателно.',
     'required' => ':attribute е задължително.',
     'too_long' => ':attribute превишена максимална дължина - може да бъде само до :limit символа.',

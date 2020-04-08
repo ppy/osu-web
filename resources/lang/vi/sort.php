@@ -9,7 +9,7 @@ return [
     'last_visit' => 'Hoạt động gần nhất',
     'new' => 'Gần đây',
     'old' => 'Cũ',
-    'rank' => '',
+    'rank' => 'Xếp hạng',
     'top' => 'Hàng đầu',
     'username' => 'Tên người chơi',
 

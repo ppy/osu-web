@@ -6,17 +6,17 @@
 return [
     'all_read' => 'Tất cả các thông báo đã được đọc!',
     'mark_read' => '',
-    'none' => '',
-    'see_all' => '',
+    'none' => 'Không có thông báo nào',
+    'see_all' => 'xem tất cả thông báo',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
+        '_' => 'tất cả',
+        'user' => 'trang cá nhân',
+        'beatmapset' => 'beatmap',
+        'forum_topic' => 'diễn đàn',
+        'news_post' => 'tin tức',
         'build' => '',
-        'channel' => '',
+        'channel' => 'chat',
     ],
 
     'item' => [
@@ -28,9 +28,9 @@ return [
                 'beatmapset_discussion_lock' => 'Beatmap ":title" đã bị khóa để thảo luận.',
                 'beatmapset_discussion_lock_compact' => 'Cuộc thảo luận đã được khóa',
                 'beatmapset_discussion_post_new' => ':username đã đăng tin nhắn mới trong cuộc thảo luận beatmap ":title".',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => 'Bài đăng mới trên ":title" bởi :username',
                 'beatmapset_discussion_post_new_compact' => 'Bài đăng mới bởi :username',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Bài đăng mới bởi :username',
                 'beatmapset_discussion_unlock' => 'Cuộc thảo luận trên ":title" đã được mở khóa',
                 'beatmapset_discussion_unlock_compact' => 'Cuộc thảo luận đã được mở khóa',
             ],
