@@ -39,7 +39,7 @@ export class BeatmapsetSearchController {
 
   @computed
   get currentBeatmapsetIds() {
-    return this.currentResultSet.beatmapsetIds;
+    return [...this.currentResultSet.beatmapsetIds];
   }
 
   @computed
@@ -98,7 +98,7 @@ export class BeatmapsetSearchController {
       return;
     }
 
-    this.search(this.currentBeatmapsetIds.length);
+    this.search(this.currentResultSet.beatmapsetIds.size);
   }
 
   @action
