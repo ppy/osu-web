@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => 'Invalid request parameter',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Page Missing',
             'description' => "Sorry, but the page you requested isn't here!",

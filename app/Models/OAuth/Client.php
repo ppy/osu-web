@@ -76,6 +76,17 @@ class Client extends PassportClient
         return $this->validationErrors()->isEmpty();
     }
 
+    public function resetSecret()
+    {
+        return $this->getConnection()->transaction(function () {
+            $now = now('UTC');
+
+            $this->revokeTokens($now);
+
+            return $this->update(['secret' => str_random(40), 'updated_at' => $now], ['skipValidations' => true]);
+        });
+    }
+
     public function revokeForUser(User $user)
     {
         if ($this->firstParty()) {
@@ -105,9 +116,7 @@ class Client extends PassportClient
         $this->getConnection()->transaction(function () {
             $now = now('UTC');
 
-            $this->tokens()->update(['revoked' => true, 'updated_at' => $now]);
-            $this->refreshTokens()->update([(new RefreshToken)->qualifyColumn('revoked') => true]);
-            $this->authCodes()->update(['revoked' => true]);
+            $this->revokeTokens($now);
             $this->update(['revoked' => true, 'updated_at' => $now], ['skipValidations' => true]);
         });
     }
@@ -134,5 +143,12 @@ class Client extends PassportClient
     public function validationErrorsTranslationPrefix()
     {
         return 'oauth.client';
+    }
+
+    private function revokeTokens($timestamp)
+    {
+        $this->tokens()->update(['revoked' => true, 'updated_at' => $timestamp]);
+        $this->refreshTokens()->update([(new RefreshToken)->qualifyColumn('revoked') => true]);
+        $this->authCodes()->update(['revoked' => true]);
     }
 }

@@ -10,7 +10,7 @@ return [
     'pinned' => 'مُثَبَت',
     'empty' => 'لا تعليقات بعد.',
     'load_replies' => 'تحميل الردود',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited رد|:count_delimited ردود',
     'title' => 'التعليقات',
 
     'commentable_name' => [

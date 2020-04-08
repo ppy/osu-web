@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Errore durante il salvataggio del post',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Errore durante l\'aggiornamento del voto',
