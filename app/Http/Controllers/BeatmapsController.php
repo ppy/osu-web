@@ -17,9 +17,7 @@ class BeatmapsController extends Controller
     {
         parent::__construct();
 
-        if (is_api_request()) {
-            $this->middleware('require-scopes:public');
-        }
+        $this->middleware('require-scopes:public');
     }
 
     public function show($id)

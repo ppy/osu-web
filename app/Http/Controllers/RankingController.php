@@ -28,9 +28,7 @@ class RankingController extends Controller
     {
         parent::__construct();
 
-        if (is_api_request()) {
-            $this->middleware('require-scopes:public');
-        }
+        $this->middleware('require-scopes:public');
 
         $mode = request('mode');
         $type = request('type');
