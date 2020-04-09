@@ -806,9 +806,12 @@
         "controller": "App\\Http\\Controllers\\RankingController@index",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rankings/{mode}/{type}",
@@ -816,9 +819,12 @@
         "controller": "App\\Http\\Controllers\\RankingController@index",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/spotlights",
@@ -826,9 +832,12 @@
         "controller": "App\\Http\\Controllers\\SpotlightsController@index",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/spotlights",
@@ -836,9 +845,12 @@
         "controller": "App\\Http\\Controllers\\SpotlightsController@index",
         "middlewares": [
             "auth-custom-api",
-            "require-scopes"
+            "require-scopes",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/users/{user}/kudosu",

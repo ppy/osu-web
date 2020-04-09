@@ -12,6 +12,14 @@ use App\Models\Spotlight;
  */
 class SpotlightsController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        if (is_api_request()) {
+            $this->middleware('require-scopes:public');
+        }
+    }
     /**
      * Get Spotlights
      *
