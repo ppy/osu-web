@@ -387,6 +387,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
 
+        Route::apiResource('news', 'NewsController', ['only' => ['index', 'show']]);
+
         // Notifications
         //  GET /api/v2/notifications
         Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);

@@ -768,6 +768,58 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/news",
+        "method": "GET",
+        "controller": "App\\Http\\Controllers\\NewsController@index",
+        "middlewares": [
+            "auth-custom-api",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/news",
+        "method": "HEAD",
+        "controller": "App\\Http\\Controllers\\NewsController@index",
+        "middlewares": [
+            "auth-custom-api",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/news/{news}",
+        "method": "GET",
+        "controller": "App\\Http\\Controllers\\NewsController@show",
+        "middlewares": [
+            "auth-custom-api",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/news/{news}",
+        "method": "HEAD",
+        "controller": "App\\Http\\Controllers\\NewsController@show",
+        "middlewares": [
+            "auth-custom-api",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/notifications",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\NotificationsController@index",
