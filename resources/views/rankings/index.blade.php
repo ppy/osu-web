@@ -48,29 +48,39 @@
 
     @if (auth()->check() && $type !== 'country')
         <div class="osu-page osu-page--description">
-            <div class="game-mode">
-                <ul class="game-mode__items">
-                    <li class="game-mode__item">
-                        <a class="game-mode-link" href="{{ route('rankings', compact('mode', 'type')) }}">
+            <div class="ranking-filter">
+                <ul class="ranking-filter__items">
+                    <li class="ranking-filter__item">
+                        <a
+                            class="ranking-filter__link {{ !isset($country) && !$friendsOnly ? 'ranking-filter__link--active' : '' }}"
+                            href="{{ route('rankings', compact('mode', 'type')) }}"
+                        >
                             <span class="fake-bold">all</span>
                         </a>
                     </li>
                     @if (isset($country_acronym))
-                        <li class="game-mode__item">
-                            <a class="game-mode-link" href="?country={{ $country_acronym }}">
+                        <li class="ranking-filter__item">
+                            <a
+                                class="ranking-filter__link {{ isset($country) ? 'ranking-filter__link--active' : '' }}"
+                                href="?country={{ $country_acronym }}"
+                            >
                                 <span class="fake-bold">
                                     country
-                                    <span class="ranking-country-filter__flag">
+                                    <span class="ranking-filter__flag">
                                         @include('objects._country_flag', [
                                             'country_code' => $country_acronym,
+                                            'modifiers' => ['small-box'],
                                         ])
                                     </span>
                                 </span>
                             </a>
                         </li>
                     @endif
-                    <li class="game-mode__item">
-                        <a class="game-mode-link" href="?friends_only=true">
+                    <li class="ranking-filter__item">
+                        <a
+                            class="ranking-filter__link {{ $friendsOnly ? 'ranking-filter__link--active' : '' }}"
+                            href="?friends_only=true"
+                        >
                             <span class="fake-bold">friends</span>
                         </a>
                     </li>
