@@ -1,0 +1,40 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-discussion-editor-toolbar {
+  &__button {
+    color: @osu-colour-f1;
+    height: 32px;
+    width: 32px;
+    .reset-input();
+
+    &:hover {
+      color: @osu-colour-c1;
+    }
+
+    &--active {
+      color: @osu-colour-c2;
+    }
+  }
+
+  &__popup {
+    background-color: @osu-colour-b6;
+    display: none;
+    left: -10000px;
+    position: absolute;
+    top: -10000px;
+    z-index: 1;
+    .default-border-radius();
+  }
+
+  &__popup-tail {
+    border-color: @osu-colour-b6 transparent transparent transparent;
+    border-style: solid;
+    border-width: 5px;
+    height: 0;
+    justify-self: center;
+    left: calc(50% - 6px);
+    position: absolute;
+    width: 0;
+  }
+}

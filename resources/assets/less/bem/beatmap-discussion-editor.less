@@ -23,21 +23,22 @@
   }
 
   &__button-bar {
-    margin: auto -5px -5px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding: 15px;
+    background: @osu-colour-b6;
   }
 
   &__content {
     display: flex;
     margin: 0 15px 15px 15px;
-    padding: 15px;
     flex-direction: column;
     color: white;
     background: @osu-colour-b5;
     .default-border-radius();
+    overflow: hidden;
 
     .@{_top}--edit-mode & {
       margin: 0 -15px;
@@ -124,6 +125,8 @@
 
     max-height: 70vh;
     overflow-y: auto;
+
+    padding: 15px;
 
     .@{_top}--edit-mode & {
       max-height: unset;

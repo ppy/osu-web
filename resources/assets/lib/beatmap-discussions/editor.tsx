@@ -10,6 +10,7 @@ import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { BeatmapDiscussionReview, DocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import EditorDiscussionComponent from './editor-discussion-component';
+import { EditorToolbar } from './editor-toolbar';
 import { parseFromMarkdown } from './review-document';
 import { SlateContext } from './slate-context';
 
@@ -199,6 +200,7 @@ export default class Editor extends React.Component<Props, any> {
               onChange={this.onChange}
             >
               <div className={`${editorClass}__input-area`}>
+                <EditorToolbar />
                 <Editable
                   decorate={this.decorate}
                   onKeyDown={this.onKeyDown}
@@ -207,28 +209,7 @@ export default class Editor extends React.Component<Props, any> {
                 />
               </div>
               <div className={`${editorClass}__button-bar`}>
-                <div className='post-box-toolbar'>
-                    <button
-                        className='btn-circle btn-circle--bbcode'
-                        title='Bold'
-                        type='button'
-                        onClick={this.toggleBold}
-                    >
-                        <span className='btn-circle__content'>
-                            <i className='fas fa-bold'/>
-                        </span>
-                    </button>
-                    <button
-                        className='btn-circle btn-circle--bbcode'
-                        title='Italic'
-                        type='button'
-                        onClick={this.toggleItalic}
-                    >
-                        <span className='btn-circle__content'>
-                            <i className='fas fa-italic'/>
-                        </span>
-                    </button>
-                </div>
+                <div className='post-box-toolbar' />
                 <div className={`${editorClass}__button-bar-button`}>
                   <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
                     <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
