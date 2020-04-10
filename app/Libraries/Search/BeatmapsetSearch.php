@@ -78,10 +78,10 @@ class BeatmapsetSearch extends RecordSearch
                 ->applyFunction([
                     'field_value_factor' => [
                         'field' => 'favourite_count',
+                        'missing' => 0,
                         'modifier' => 'ln1p',
                     ],
-                ])
-                ->boostMode('avg');
+                ]);
         }
 
         return $query;
