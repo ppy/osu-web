@@ -28,6 +28,8 @@
             'url' => $selectorParams['route']($mode, $tab),
         ];
     }
+
+    $country_acronym = ($country['acronym'] ?? null) ?? optional(auth()->user())->country_acronym;
 @endphp
 
 @extends('master', ['titlePrepend' => trans("rankings.type.{$type}")])
@@ -44,39 +46,40 @@
 
     @yield('ranking-header')
 
-    @if (isset($country))
+    @if (auth()->check() && $type !== 'country')
         <div class="osu-page osu-page--description">
-            <div class="ranking-country-filter">
-                {{ trans('rankings.country.filter') }}:
-                <div class="ranking-country-filter__item">
-                    <div class="ranking-country-filter__flag">
-                        @include('objects._country_flag', [
-                            'country_code' => $country['acronym'],
-                        ])
-                    </div>
-                    {{ $country['name'] }}
-                    <a
-                        class="ranking-country-filter__remove"
-                        href="{{ route('rankings', compact('mode', 'type')) }}"
-                    >
-                        <i class="fas fa-times"></i>
-                    </a>
-                </div>
+            <div class="game-mode">
+                <ul class="game-mode__items">
+                    <li class="game-mode__item">
+                        <a class="game-mode-link" href="{{ route('rankings', compact('mode', 'type')) }}">
+                            <span class="fake-bold">all</span>
+                        </a>
+                    </li>
+                    @if (isset($country_acronym))
+                        <li class="game-mode__item">
+                            <a class="game-mode-link" href="?country={{ $country_acronym }}">
+                                <span class="fake-bold">
+                                    country
+                                    <span class="ranking-country-filter__flag">
+                                        @include('objects._country_flag', [
+                                            'country_code' => $country_acronym,
+                                        ])
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                    @endif
+                    <li class="game-mode__item">
+                        <a class="game-mode-link" href="?friends_only=true">
+                            <span class="fake-bold">friends</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     @endif
 
     <div class="osu-page osu-page--generic">
-        <div class="js-url-selector">
-            @include('objects._switch', [
-                'checked' => $friendsOnly,
-                'type' => 'checkbox',
-                'name' => 'friends_only',
-            ])
-
-            {{ trans('rankings.friends_only') }}
-        </div>
-
         @if ($hasPager)
             @include('objects._pagination_v2', [
                 'object' => $scores
