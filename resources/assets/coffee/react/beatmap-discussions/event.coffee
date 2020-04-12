@@ -40,11 +40,10 @@ export class Event extends React.PureComponent
         text = osu.trans('beatmapset_events.item.discussion_deleted')
 
       discussionLink = osu.link(url, "##{discussionId}", classNames: ['js-beatmap-discussion--jump'])
-    else
-      text = BeatmapDiscussionHelper.format @props.event.comment, newlines: false
-
-    if @props.event.type == 'discussion_lock'
+    else if @props.event.type == 'discussion_lock'
       text = BeatmapDiscussionHelper.format @props.event.comment.reason, newlines: false
+    else if @props.event.type not in ['genre_edit', 'language_edit']
+      text = BeatmapDiscussionHelper.format @props.event.comment, newlines: false
 
     if @props.event.user_id?
       user = osu.link(laroute.route('users.show', user: @props.event.user_id), @props.users[@props.event.user_id].username)
@@ -59,9 +58,13 @@ export class Event extends React.PureComponent
         @props.event.type
 
     message = osu.trans "beatmapset_events.event.#{key}",
-      discussion: discussionLink
-      text: text
-      user: user
+      if @props.event.type in ['genre_edit', 'language_edit']
+        old: @props.event.comment.old
+        new: @props.event.comment.new
+      else
+        discussion: discussionLink
+        text: text
+        user: user
 
     # append owner of the event if not already included in main message
     if user? && @props.event.type not in ['disqualify', 'kudosu_gain', 'kudosu_lost', 'nominate']
