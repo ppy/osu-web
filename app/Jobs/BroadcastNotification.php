@@ -190,7 +190,7 @@ class BroadcastNotification implements ShouldQueue
             ->get();
 
         foreach ($notificationOptions as $notificationOption) {
-            if (count(array_intersect($notificationOption->details['modes'], $modes)) > 0) {
+            if (count(array_intersect($notificationOption->details['modes'] ?? [], $modes)) > 0) {
                 $this->receiverIds[] = $notificationOption->user_id;
             }
         }
