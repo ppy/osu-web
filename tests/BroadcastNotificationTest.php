@@ -7,7 +7,9 @@ namespace Tests;
 
 use App\Events\NewNotificationEvent;
 use App\Jobs\BroadcastNotification;
+use App\Models\Beatmapset;
 use App\Models\Chat\Channel;
+use App\Models\Notification;
 use App\Models\User;
 use Event;
 use Queue;
@@ -16,20 +18,56 @@ class BroadcastNotificationTest extends TestCase
 {
     protected $sender;
 
-    public function testExcludesSenderFromNotifications()
+    /**
+     * @dataProvider sendNotificationDataProvider
+     */
+    public function testSendNotificationIfPushNotification($enabled)
     {
+        $user = factory(User::class)->create();
+        $user->notificationOptions()->create([
+            'name' => Notification::BEATMAPSET_DISCUSSION_POST_NEW,
+            'details' => ['push' => $enabled],
+        ]);
 
-    }
+        $beatmapset = factory(Beatmapset::class)->states('with_discussion')->create([
+            'user_id' => $user->getKey(),
+        ]);
+        $beatmapset->watches()->create(['user_id' => $user->getKey()]);
 
-    public function testSendNotificationIfPushNotificationEnabled()
-    {
+        $this->beatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
 
-    }
+        $params = [
+            'beatmapset_id' => $beatmapset->getKey(),
+            'beatmap_discussion' => [
+                'message_type' => 'praise',
+            ],
+            'beatmap_discussion_post' => [
+                'message' => 'Hello',
+            ],
+        ];
 
+        $this
+            ->actingAsVerified($this->sender)
+            ->post(route('beatmap-discussion-posts.store'), $params)
+            ->assertStatus(200);
 
-    public function testDoesNotSendNotificationIfPushNotificationDisabled()
-    {
+        if ($enabled) {
+            Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
+                $notification = $job->handle();
 
+                return $notification !== null;
+            });
+
+            Event::assertDispatched(NewNotificationEvent::class);
+        } else {
+            Queue::assertNotPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
+                $notification = $job->handle();
+
+                return $notification !== null;
+            });
+
+            Event::assertNotDispatched(NewNotificationEvent::class);
+        }
     }
 
     public function testSendsNotificationIfOptionNotSet()
@@ -52,6 +90,14 @@ class BroadcastNotificationTest extends TestCase
 
         // if private notification, should assert receiverIds.
         Event::assertDispatched(NewNotificationEvent::class);
+    }
+
+    public function sendNotificationDataProvider()
+    {
+        return [
+            [true],
+            [false],
+        ];
     }
 
     protected function setUp(): void
