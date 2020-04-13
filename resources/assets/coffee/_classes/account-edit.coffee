@@ -91,8 +91,6 @@ class @AccountEdit
 
 
   update: (form) =>
-    prevValue = null
-
     if form.dataset.accountEditType == 'multi'
       data = @getMultiValue(form)
     else
