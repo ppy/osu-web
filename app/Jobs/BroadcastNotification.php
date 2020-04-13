@@ -119,12 +119,10 @@ class BroadcastNotification implements ShouldQueue
 
     private function filterReceiverIds()
     {
-        // beatmapset options currently just grouped into single setting.
-        $name = starts_with($this->name, 'beatmapset_') ? UserNotificationOption::BEATMAPSET_MODDING : $this->name;
         // FIXME: filtering all the ids could get quite large?
         $notificationOptions = UserNotificationOption
             ::whereIn('user_id', $this->receiverIds)
-            ->where(['name' => $name])
+            ->where(['name' => $this->name])
             ->whereNotNull('details')
             ->get()
             ->keyBy('user_id');
