@@ -59,7 +59,7 @@ return [
             'forum_topic_reply' => 'topic reply',
             'mail' => 'mail',
             'push' => 'push',
-        ]
+        ],
     ],
 
     'oauth' => [
