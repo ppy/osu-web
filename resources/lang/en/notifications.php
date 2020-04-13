@@ -19,23 +19,6 @@ return [
         'channel' => 'chat',
     ],
 
-    'names' => [
-        'beatmapset_discussion_lock' => 'beatmap discussion gets locked',
-        'beatmapset_discussion_post_new' => 'new post in beatmap discussion',
-        'beatmapset_discussion_qualified_problem' => 'new problem on qualified beatmap',
-        'beatmapset_discussion_unlock' => 'beatmap discussion gets unlocked',
-        'beatmapset_disqualify' => 'beatmap gets disqualified',
-        'beatmapset_love' => 'beatmap gets moved to loved',
-        'beatmapset_nominate' => 'beatmap gets nominated',
-        'beatmapset_qualify' => 'beatmap gets qualified',
-        'beatmapset_rank' => 'beatmap gets ranked',
-        'beatmapset_reset_nominations' => 'beatmap nomination is reset',
-        'channel_message' => 'chat messages',
-        'comment_new' => 'new comments',
-        'forum_topic_reply' => 'forum replies',
-        'user_achievement_unlock' => 'achievement unlocked',
-    ],
-
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
