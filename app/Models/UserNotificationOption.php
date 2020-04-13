@@ -36,6 +36,12 @@ class UserNotificationOption extends Model
         'details' => 'array',
     ];
 
+    public static function supportsNotifications(string $name)
+    {
+        return in_array($name, static::HAS_NOTIFICATION, true)
+            || in_array($name, static::BEATMAPSET_MODDING_NOTIFICATIONS, true);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -58,7 +64,7 @@ class UserNotificationOption extends Model
             }
         }
 
-        if ($this->supportsNotifications($this->name)) {
+        if (static::supportsNotifications($this->name)) {
             if (isset($value['mail'])) {
                 $details['mail'] = get_bool($value['mail'] ?? null);
             }
@@ -77,7 +83,7 @@ class UserNotificationOption extends Model
 
     public function setNameAttribute($value)
     {
-        if (!($this->supportsNotifications($value))) {
+        if (!(static::supportsNotifications($value))) {
             $value = null;
         }
 
@@ -107,11 +113,5 @@ class UserNotificationOption extends Model
     public function validationErrorsTranslationPrefix()
     {
         return 'user_notification_option';
-    }
-
-    private function supportsNotifications(string $name)
-    {
-        return in_array($name, static::HAS_NOTIFICATION, true)
-            || in_array($name, static::BEATMAPSET_MODDING_NOTIFICATIONS, true);
     }
 }

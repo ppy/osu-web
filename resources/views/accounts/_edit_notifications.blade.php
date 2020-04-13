@@ -39,10 +39,8 @@
                     class="account-edit-entry__checkboxes js-account-edit"
                     data-account-edit-auto-submit="1"
                     data-account-edit-type="array"
-                    data-url="{{ route('account.notification-options', [
-                        'name' => App\Models\Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
-                    ]) }}"
-                    data-field="user_notification_option[details][modes]"
+                    data-url="{{ route('account.notification-options') }}"
+                    data-field="user_notification_option[{{ App\Models\Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM }}][details][modes]"
                 >
                     @php
                         $modes = $notificationOptions[App\Models\Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM]->details['modes'] ?? [];

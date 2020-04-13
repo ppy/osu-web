@@ -172,15 +172,15 @@ class AccountController extends Controller
 
     public function updateNotificationOptions()
     {
-        $requestParams = request()->only('user_notification_option');
-        // TODO: not array, error
-        $requestParams = $requestParams['user_notification_option'] ?? null;
-
+        $requestParams = request()->all()['user_notification_option'] ?? [];
+        if (!is_array($requestParams)) {
+            abort(422);
+        }
 
         return DB::transaction(function () use ($requestParams) {
-            // TODO: less queries
+            // FIXME: less queries
             foreach ($requestParams as $key => $value) {
-                if (!in_array($key, UserNotificationOption::HAS_NOTIFICATION, true)) {
+                if (!UserNotificationOption::supportsNotifications($key)) {
                     continue;
                 }
 
@@ -196,7 +196,7 @@ class AccountController extends Controller
                     $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $name]);
 
                     if ($option->update($params)) {
-                    event(new NotificationOptionChangeEvent(auth()->user(), $option));
+                        event(new NotificationOptionChangeEvent(auth()->user(), $option));
                     } else {
                         DB::rollback();
 
