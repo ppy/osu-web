@@ -141,6 +141,10 @@ class BeatmapsetsController extends Controller
 
     public function download($id)
     {
+        if (!is_api_request() && !from_app_url()) {
+            return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $id]));
+        }
+
         $beatmapset = Beatmapset::findOrFail($id);
 
         if ($beatmapset->download_disabled) {
