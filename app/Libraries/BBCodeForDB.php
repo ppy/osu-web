@@ -153,7 +153,7 @@ class BBCodeForDB
 
     public function parseLinks($text)
     {
-        $spaces = ["(^|\s(?:&lt;|[.:([])*)", "((?:&gt;|[.:)\]])*(?:$|\s|\n|\r))"];
+        $spaces = ["(^|\[.+?\]|\s(?:&lt;|[.:([])*)", "((?:\[.+?\]|&gt;|[.:)\]])*(?:$|\s|\n|\r))"];
         $internalUrl = rtrim(preg_quote(config('app.url'), '#'), '/');
 
         // internal url
