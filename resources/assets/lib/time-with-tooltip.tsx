@@ -12,17 +12,10 @@ interface Props {
 
 export default function TimeWithTooltip(props: Props) {
   const { dateTime, format = 'll', relative = false } = props;
-
-  if (relative) {
-    return (
-      <time className='js-timeago timeago' dateTime={dateTime}>
-        {dateTime}
-      </time>
-    );
-  }
+  const className = relative ? 'js-timeago' : 'js-tooltip-time';
 
   return (
-    <time className='js-tooltip-time timeago' dateTime={dateTime} title={dateTime}>
+    <time className={`${className} timeago`} dateTime={dateTime} title={dateTime}>
       {moment(dateTime).format(format)}
     </time>
   );
