@@ -15,14 +15,14 @@ export default function TimeWithTooltip(props: Props) {
 
   if (relative) {
     return (
-      <time className='timeago' dateTime={dateTime}>
+      <time className='js-timeago timeago' dateTime={dateTime}>
         {dateTime}
       </time>
     );
   }
 
   return (
-    <time className='js-tooltip-time' dateTime={dateTime} title={dateTime}>
+    <time className='js-tooltip-time timeago' dateTime={dateTime} title={dateTime}>
       {moment(dateTime).format(format)}
     </time>
   );

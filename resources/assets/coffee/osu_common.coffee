@@ -174,7 +174,7 @@
 
   timeago: (time) ->
     el = document.createElement('time')
-    el.classList.add 'timeago'
+    el.classList.add 'js-timeago', 'timeago'
     el.setAttribute 'datetime', time
     el.textContent = time
     el.outerHTML
