@@ -7,16 +7,17 @@ import * as React from 'react';
 interface Props {
   dateTime: string;
   format: string;
+  key?: string;
   relative: boolean;
 }
 
 export default function TimeWithTooltip(props: Props) {
-  const { dateTime, format = 'll', relative = false } = props;
+  const { format = 'll', relative = false, ...otherProps } = props;
   const className = relative ? 'js-timeago' : 'js-tooltip-time';
 
   return (
-    <time className={`${className} timeago`} dateTime={dateTime} title={dateTime}>
-      {moment(dateTime).format(format)}
+    <time className={`${className} timeago`} title={props.dateTime} {...otherProps}>
+      {moment(props.dateTime).format(format)}
     </time>
   );
 }

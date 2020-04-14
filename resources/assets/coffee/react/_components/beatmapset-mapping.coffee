@@ -3,6 +3,8 @@
 
 import * as React from 'react'
 import { div, span, a, time } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
+import TimeWithTooltip from 'time-with-tooltip'
 el = React.createElement
 
 bn = 'beatmapset-mapping'
@@ -43,9 +45,14 @@ export class BeatmapsetMapping extends React.PureComponent
   renderDate: (key, attribute) =>
     div
       className: "#{bn}__date"
-      dangerouslySetInnerHTML: __html:
-        osu.trans "beatmapsets.show.details_date.#{key}",
-          timeago: osu.timeago(@props.beatmapset[attribute])
+      el StringWithComponent,
+        pattern: osu.trans "beatmapsets.show.details_date.#{key}"
+        mappings:
+          ':timeago':
+            TimeWithTooltip
+              dateTime: @props.beatmapset[attribute]
+              key: 'timeago'
+              relative: true
 
 
   userLink: (user) ->
