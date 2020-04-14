@@ -23,8 +23,8 @@ class BBCodeFromDBTest extends TestCase
         $text = new BBCodeFromDB('', $this->uid);
         $text->text = trim(file_get_contents($dbFilePath));
 
-        $output = str_replace('<br />', "<br />\n", $this->normalizeHTML($text->toHTML()));
-        $referenceOutput = str_replace('<br />', "<br />\n", $this->normalizeHTML("<div class='bbcode'>".file_get_contents($htmlFilePath).'</div>'));
+        $output = $this->normalizeHTML($text->toHTML());
+        $referenceOutput = $this->normalizeHTML("<div class='bbcode'>".file_get_contents($htmlFilePath).'</div>');
 
         $this->assertSame($referenceOutput, $output);
     }
