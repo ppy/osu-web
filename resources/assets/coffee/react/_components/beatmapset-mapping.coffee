@@ -52,7 +52,7 @@ export class BeatmapsetMapping extends React.PureComponent
             TimeWithTooltip
               dateTime: @props.beatmapset[attribute]
               key: 'timeago'
-              relative: true
+              relative: Math.abs(moment().diff(moment(@props.beatmapset[attribute]), 'weeks')) < 4
 
 
   userLink: (user) ->
