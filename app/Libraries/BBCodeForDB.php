@@ -172,14 +172,14 @@ class BBCodeForDB
 
         // www
         $text = preg_replace(
-            "/{$spaces[0]}(www\.[^\s]+){$spaces[1]}/",
+            "#{$spaces[0]}(www\.[^\s]+){$spaces[1]}#",
             "\\1<!-- w --><a href='http://\\2' rel='nofollow'>\\2</a><!-- w -->\\3",
             $text
         );
 
         // emails
         $text = preg_replace(
-            "/{$spaces[0]}([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+){$spaces[1]}/",
+            "#{$spaces[0]}([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+){$spaces[1]}#",
             "\\1<!-- e --><a href='mailto:\\2' rel='nofollow'>\\2</a><!-- e -->\\3",
             $text
         );
