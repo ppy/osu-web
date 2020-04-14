@@ -12,4 +12,22 @@ Link to &lt;<!-- m --><a href="http://example.com/path:1/hello" rel="nofollow">h
 Link to <!-- m --><a href="http://example.com/path:1/hello" rel="nofollow">http://example.com/path:1/hello&gt;world</a><!-- m --> The angle brackets should be included.<br />
 <br />
 Relative test<br />
-Link to <!-- m --><a href="http://localhost/path:1/hello" rel="nofollow">path:1/hello</a><!-- m --> the domain part should be excluded.
+Link to <!-- m --><a href="http://localhost/path:1/hello" rel="nofollow">path:1/hello</a><!-- m --> the domain part should be excluded.<br />
+<br />
+At start of a block tag<br />
+<blockquote><!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --> test</blockquote>
+
+At end of a block tag<br />
+<blockquote>Test: <!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --></blockquote>
+
+Alone in a block tag<br />
+<blockquote><!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --></blockquote>
+
+At start of an inline tag<br />
+<strong><!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --> test</strong><br />
+<br />
+At end of an inline tag<br />
+<strong>Test: <!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --></strong><br />
+<br />
+Alone in an inline tag<br />
+<strong><!-- m --><a href="https://example.com" rel="nofollow">https://example.com</a><!-- m --></strong>
