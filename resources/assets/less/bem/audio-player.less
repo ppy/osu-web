@@ -19,6 +19,7 @@
   align-items: center;
   padding: 5px 10px;
   font-family: @font-default;
+  pointer-events: auto;
 
   &[data-audio-state="loading"],
   &[data-audio-state="playing"] {
@@ -26,11 +27,9 @@
   }
 
   &--main {
-    position: fixed;
-    right: 0;
+    margin-left: auto;
     bottom: -@_height;
     transition: bottom 120ms;
-    z-index: @z-index--audio-player;
 
     &[data-audio-visible="1"] {
       bottom: 0;

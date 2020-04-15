@@ -232,15 +232,15 @@ export default class Main {
 
   private onDocumentReady = () => {
     if (this.mainPlayer == null) {
-      const mainPlayerContainer = document.getElementById('main-player');
+      const mainPlayerPlaceholder = document.querySelector('.js-audio--main');
 
-      if (mainPlayerContainer == null) {
-        console.debug('missing container for main player');
+      if (mainPlayerPlaceholder == null) {
+        console.debug('page is missing main player placeholder');
         return;
       }
 
       this.mainPlayer = createMainPlayer();
-      mainPlayerContainer.appendChild(this.mainPlayer);
+      mainPlayerPlaceholder.replaceWith(this.mainPlayer);
       this.syncState();
     }
 
