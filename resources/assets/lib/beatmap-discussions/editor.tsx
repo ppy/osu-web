@@ -208,24 +208,17 @@ export default class Editor extends React.Component<Props, any> {
                   renderLeaf={this.renderLeaf}
                 />
               </div>
-              <div className={`${editorClass}__button-bar`}>
-                <div className='post-box-toolbar' />
-                <div className={`${editorClass}__button-bar-button`}>
-                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
-                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
-                  </button>
-                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
-                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
-                  </button>
-                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
-                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
-                  </button>
-                  <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.resetInput}>reset</button>
-                  <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.test}>test</button>
-                  <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.log}>log</button>
-                  <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post</button>
+              { !this.props.editMode &&
+                <div className={`${editorClass}__button-bar`}>
+                  <div className='post-box-toolbar'/>
+                  <div className={`${editorClass}__button-bar-button`}>
+                    <button className='btn-osu-big btn-osu-big--forum-cover' type='submit' onClick={this.resetInput}>clear</button>
+                    &nbsp;
+                    <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>post
+                    </button>
+                  </div>
                 </div>
-              </div>
+              }
               <div
                 className={`${editorClass}__menu`}
                 ref={this.menu}
