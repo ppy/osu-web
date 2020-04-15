@@ -5183,11 +5183,6 @@ is-hexadecimal@^1.0.0:
   resolved "https://registry.yarnpkg.com/is-hexadecimal/-/is-hexadecimal-1.0.3.tgz#e8a426a69b6d31470d3a33a47bb825cda02506ee"
   integrity sha512-zxQ9//Q3D/34poZf8fiy3m3XVpbQc7ren15iKqrTtLPwkPD/t3Scy9Imp63FujULGxuK0ZlCwoo5xNpktFgbOA==
 
-is-hotkey@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/is-hotkey/-/is-hotkey-0.0.3.tgz#3713fea135f86528c87cf39810b3934e45151390"
-  integrity sha512-qpMe/7DxFXs65E3f8u5Zu+3qOXmqlKlAF/cpYlRiPzg1UKC9clzQcwcuf/2RC4WMFhh56DQC+FfK63Qp3lM35w==
-
 is-hotkey@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/is-hotkey/-/is-hotkey-0.1.6.tgz#c214b1ccdcbda46fba4ba93d2de64915db737471"
@@ -8231,14 +8226,6 @@ slash@^1.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
   integrity sha1-xB8vbDn8FtHNF61LXYlhFK5HDVU=
 
-slate-auto-replace@^0.12.1:
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/slate-auto-replace/-/slate-auto-replace-0.12.1.tgz#c877a66e40f8f27f59b614cbc4b25ce2cd262ed4"
-  integrity sha512-4TBjWk/NKk2ef8FvPM0kYiOY+fClPieqyxAzAa2lpFbUnVX01I9Up4X34d/cmAlyX2jojn5AvBA/GG5xDschBg==
-  dependencies:
-    is-hotkey "^0.0.3"
-    type-of "^2.0.1"
-
 slate-history@^0.57.1:
   version "0.57.1"
   resolved "https://registry.yarnpkg.com/slate-history/-/slate-history-0.57.1.tgz#2938537f3f95768a69460ec5035be0333216c278"
@@ -8259,11 +8246,6 @@ slate-react@^0.57.1:
     is-hotkey "^0.1.6"
     is-plain-object "^3.0.0"
     scroll-into-view-if-needed "^2.2.20"
-
-slate-soft-break@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/slate-soft-break/-/slate-soft-break-0.9.0.tgz#7fb2a22eb8600717ee299f7866469cb9c705a53d"
-  integrity sha512-iTy2bl/G+tphN10YQBOPDRxDqgM46ZH1UUz0ublmL6PLtwJ3jJK1n08w37YxnY/ge4aW31UN386KV6qvFx6Hsw==
 
 slate@^0.57.1:
   version "0.57.1"
@@ -9075,11 +9057,6 @@ type-is@~1.6.17, type-is@~1.6.18:
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.24"
-
-type-of@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/type-of/-/type-of-2.0.1.tgz#e72a1741896568e9f628378d816d6912f7f23972"
-  integrity sha1-5yoXQYllaOn2KDeNgW1pEvfyOXI=
 
 type@^1.0.1:
   version "1.0.1"
