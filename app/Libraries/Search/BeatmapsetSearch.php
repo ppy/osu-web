@@ -6,6 +6,7 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\FunctionScore;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Beatmap;
@@ -71,6 +72,17 @@ class BeatmapsetSearch extends RecordSearch
                 'query' => $nested->toArray(),
             ],
         ]);
+
+        if (present($this->params->queryString)) {
+            $query = (new FunctionScore($query))
+                ->applyFunction([
+                    'field_value_factor' => [
+                        'field' => 'favourite_count',
+                        'missing' => 0,
+                        'modifier' => 'ln1p',
+                    ],
+                ]);
+        }
 
         return $query;
     }

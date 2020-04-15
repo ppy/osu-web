@@ -128,6 +128,6 @@ class TestCase extends BaseTestCase
 
     protected function normalizeHTML($html)
     {
-        return str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html)));
+        return str_replace('<br />', "<br />\n", str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html))));
     }
 }
