@@ -330,7 +330,7 @@ export class Nominations extends React.PureComponent
   nominatorsList: =>
     showHype = @props.beatmapset.can_be_hyped
 
-    return null unless showHype
+    return null unless @props.beatmapset.status in ['wip', 'pending', 'ranked', 'qualified']
 
     nominators = []
     for event in @props.events by -1
