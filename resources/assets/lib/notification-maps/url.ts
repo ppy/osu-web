@@ -52,10 +52,10 @@ export function urlSingular(item: Notification) {
     case 'forum_topic_reply':
       return route('forum.posts.show', { post: item.details.postId });
     case 'user_achievement_unlock':
-      const params: any = { user: item.details.userId };
-      if (item.details.achievementMode != null) {
-        params.mode = item.details.achievementMode;
-      }
+      const params = {
+        mode: item.details.achievementMode ?? undefined,
+        user: item.details.userId,
+      };
 
       return `${route('users.show', params)}#medals`;
   }
