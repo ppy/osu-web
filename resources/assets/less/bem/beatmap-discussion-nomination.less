@@ -9,7 +9,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
   &__header {
     display: flex;
@@ -24,12 +23,15 @@
       display: none;
     }
 
-    .@{_top}__items--buttons {
+    .@{_top}__items--buttons & {
       flex: none;
     }
 
     &--nominators {
-      text-align: right;
+      display: flex;
+      flex: 1 0 auto;
+      align-items: flex-end;
+      justify-content: flex-end;
     }
   }
 
@@ -42,11 +44,12 @@
     &--buttons {
       --item-margin: 2px;
       flex-wrap: wrap;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     &--messages {
       flex-direction: column;
+      flex: 1 0 auto;
     }
   }
 
