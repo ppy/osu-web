@@ -137,7 +137,7 @@ class BeatmapDiscussionPostsController extends Controller
 
         $notifyQualifiedProblem = false;
 
-        if ($discussion->beatmapset->isQualified() && $discussion->message_type === 'problem') {
+        if (!$disqualify && $discussion->beatmapset->isQualified() && $discussion->message_type === 'problem') {
             $openProblems = $discussion
                 ->beatmapset
                 ->beatmapDiscussions()

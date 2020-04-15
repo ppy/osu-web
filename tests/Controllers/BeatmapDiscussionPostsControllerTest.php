@@ -780,8 +780,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         return [
             [
                 'bng',
-                [Notification::BEATMAPSET_DISQUALIFY, Notification::BEATMAPSET_DISCUSSION_POST_NEW, Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM],
-                [],
+                [Notification::BEATMAPSET_DISQUALIFY, Notification::BEATMAPSET_DISCUSSION_POST_NEW],
+                [Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM],
             ],
             [
                 null,
