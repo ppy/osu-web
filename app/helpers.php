@@ -690,6 +690,14 @@ function ext_view($view, $data = null, $type = null, $status = null)
     );
 }
 
+function from_app_url()
+{
+    // Add trailing slash so people can't just use https://osu.web.domain.com
+    // to bypass https://osu.web referrer check.
+    // This assumes app.url doesn't contain trailing slash.
+    return starts_with(request()->headers->get('referer'), config('app.url').'/');
+}
+
 function is_api_request()
 {
     return request()->is('api/*');

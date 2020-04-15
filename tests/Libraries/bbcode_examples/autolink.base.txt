@@ -13,3 +13,21 @@ Link to http://example.com/path:1/hello>world The angle brackets should be inclu
 
 Relative test
 Link to http://localhost/path:1/hello the domain part should be excluded.
+
+At start of a block tag
+[quote]https://example.com test[/quote]
+
+At end of a block tag
+[quote]Test: https://example.com[/quote]
+
+Alone in a block tag
+[quote]https://example.com[/quote]
+
+At start of an inline tag
+[b]https://example.com test[/b]
+
+At end of an inline tag
+[b]Test: https://example.com[/b]
+
+Alone in an inline tag
+[b]https://example.com[/b]
