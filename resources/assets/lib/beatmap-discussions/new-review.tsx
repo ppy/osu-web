@@ -16,6 +16,10 @@ interface Props {
   stickTo?: React.RefObject<HTMLDivElement>;
 }
 
+interface State {
+  cssTop: string | number | undefined;
+}
+
 // TODO: move to globals.d.ts
 interface StickyHeader {
   headerHeight: () => number;
@@ -27,7 +31,7 @@ declare global {
   }
 }
 
-export default class NewReview extends React.Component<Props> {
+export default class NewReview extends React.Component<Props, State> {
   initialValue: string;
   placeholder: string = '[{"children": [{"text": "placeholder"}], "type": "paragraph"}]';
 
@@ -37,7 +41,7 @@ export default class NewReview extends React.Component<Props> {
     const savedValue = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
     this.initialValue = savedValue || this.placeholder;
     this.state = {
-      cssTop: null,
+      cssTop: undefined,
     };
   }
 
