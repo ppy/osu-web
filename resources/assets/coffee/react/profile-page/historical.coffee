@@ -63,6 +63,7 @@ export class Historical extends React.PureComponent
             el BeatmapPlaycount,
               key: playcount.beatmap.id
               playcount: playcount
+              currentMode: @props.currentMode
           el ShowMoreLink,
             key: 'show-more-row'
             modifiers: ['profile-page', 't-greyseafoam-dark']

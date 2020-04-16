@@ -11,12 +11,12 @@ export class BeatmapPlaycount extends React.PureComponent
   render: =>
     beatmap = @props.playcount.beatmap
     beatmapset = @props.playcount.beatmapset
-    beatmapsetUrl = laroute.route 'beatmaps.show', beatmap: beatmap.id
+    beatmapUrl = laroute.route 'beatmaps.show', beatmap: beatmap.id, mode: @props.currentMode
 
     div
       className: bn
       a
-        href: beatmapsetUrl
+        href: beatmapUrl
         className: "#{bn}__cover"
         style:
           backgroundImage: osu.urlPresence(beatmapset.covers.list)
@@ -30,7 +30,7 @@ export class BeatmapPlaycount extends React.PureComponent
             className: "#{bn}__info-row u-ellipsis-overflow"
             a
               className: "#{bn}__title"
-              href: beatmapsetUrl
+              href: beatmapUrl
               "#{beatmapset.title} [#{beatmap.version}] "
               span
                 className: "#{bn}__title-artist"
