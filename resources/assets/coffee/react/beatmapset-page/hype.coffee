@@ -75,7 +75,9 @@ export class Hype extends React.PureComponent
                 else
                   false
 
-        @renderReportButton()
+        div
+          className: "#{bn}__button"
+          @renderReportButton()
 
 
   renderReportButton: =>
@@ -90,14 +92,12 @@ export class Hype extends React.PureComponent
         text: osu.trans('beatmapsets.show.hype.report.button')
         icon: 'fas fa-exclamation-triangle'
 
-    div
-      className: "#{bn}__button"
-      el BigButton,
-        text: buttonParams.text
-        icon: buttonParams.icon
-        modifiers: ['full']
-        props:
-          href: @reportUrl()
+    el BigButton,
+      text: buttonParams.text
+      icon: buttonParams.icon
+      modifiers: ['full']
+      props:
+        href: @reportUrl()
 
 
   reportUrl: =>

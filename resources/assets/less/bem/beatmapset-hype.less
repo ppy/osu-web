@@ -23,6 +23,8 @@
     }
 
     &--float {
+      display: grid;
+      grid-gap: 5px;
       padding-left: 15px;
       padding-right: 15px;
       background-color: @osu-colour-b4;
@@ -35,9 +37,7 @@
   }
 
   &__button {
-    @media @desktop {
-      align-self: flex-end;
-    }
+    display: flex;
   }
 
   &__description-row {
@@ -58,7 +58,7 @@
 
   &__lights {
     display: flex;
-    margin: 5px -2.5px;
+    margin: 0 -2.5px;
   }
 
   &__lights-header {
