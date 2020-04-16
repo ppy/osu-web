@@ -75,25 +75,32 @@ export class Hype extends React.PureComponent
                 else
                   false
 
-        if @props.beatmapset.status == 'qualified'
-          div
-            className: "#{bn}__button"
-            if @userCanDisqualify()
-              title: osu.trans('beatmapsets.show.hype.disqualify.button_title')
-              el BigButton,
-                modifiers: ['full']
-                text: osu.trans 'beatmaps.nominations.disqualify'
-                icon: 'fas fa-thumbs-down'
-                props:
-                  href: @reportUrl()
-            else
-              title: osu.trans('beatmapsets.show.hype.report.button_title')
-              el BigButton,
-                modifiers: ['full']
-                text: osu.trans('beatmapsets.show.hype.report.button')
-                icon: 'fas fa-exclamation-triangle'
-                props:
-                  href: @reportUrl()
+        @renderReportButton()
+
+
+  renderReportButton: =>
+    return unless @props.beatmapset.status == 'qualified'
+
+    if @userCanDisqualify()
+      title = osu.trans('beatmapsets.show.hype.disqualify.button_title')
+      buttonParams =
+        text: osu.trans 'beatmaps.nominations.disqualify'
+        icon: 'fas fa-thumbs-down'
+    else
+      title = osu.trans('beatmapsets.show.hype.report.button_title')
+      buttonParams =
+        text: osu.trans('beatmapsets.show.hype.report.button')
+        icon: 'fas fa-exclamation-triangle'
+
+    div
+      className: "#{bn}__button"
+      title: title
+      el BigButton,
+        text: buttonParams.text
+        icon: buttonParams.icon
+        modifiers: ['full']
+        props:
+          href: @reportUrl()
 
   reportUrl: =>
     "#{route('beatmapsets.discussion', beatmapset: @props.beatmapset.id, beatmap: '-', mode: 'generalAll')}#new"
