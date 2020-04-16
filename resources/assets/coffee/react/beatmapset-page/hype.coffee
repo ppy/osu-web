@@ -82,19 +82,16 @@ export class Hype extends React.PureComponent
     return unless @props.beatmapset.status == 'qualified'
 
     if @userCanDisqualify()
-      title = osu.trans('beatmapsets.show.hype.disqualify.button_title')
       buttonParams =
         text: osu.trans 'beatmaps.nominations.disqualify'
         icon: 'fas fa-thumbs-down'
     else
-      title = osu.trans('beatmapsets.show.hype.report.button_title')
       buttonParams =
         text: osu.trans('beatmapsets.show.hype.report.button')
         icon: 'fas fa-exclamation-triangle'
 
     div
       className: "#{bn}__button"
-      title: title
       el BigButton,
         text: buttonParams.text
         icon: buttonParams.icon
