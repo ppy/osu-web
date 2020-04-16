@@ -12,6 +12,7 @@
 
   @media @desktop {
     padding: 10px @gutter-profile-page-desktop;
+    height: 60px;
   }
 
   &__column {
@@ -25,10 +26,7 @@
       margin: -5px;
       padding: 0;
       flex-wrap: nowrap;
-    }
-
-    &--left {
-      align-self: stretch;
+      height: calc(100% + ($margin * -2));
     }
 
     &--right {
