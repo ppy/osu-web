@@ -152,7 +152,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         $currentDate = now();
 
         // show extra months in first three months of current year
-        if ($currentDate >= $baseStart && $currentDate->month < 4) {
+        if ($currentDate->year === $baseStart->year && $currentDate->month < 4) {
             $start = $currentDate->startOfYear()->subMonths(2);
         }
 
