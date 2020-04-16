@@ -66,6 +66,17 @@ return [
         'title' => '0ثقة',
     ],
 
+    'options' => [
+        'title' => '',
+
+        'beatmapset_download' => [
+            '_' => '',
+            'all' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => 'لوحة المفاتيح',
         'mouse' => 'ماوس',

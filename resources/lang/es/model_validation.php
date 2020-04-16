@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => ':attribute especificado no válido.',
     'not_negative' => ':attribute no puede ser negativo.',
     'required' => ':attribute es requerido.',
-    'too_long' => ':attribute ha excedido el límite máximo - puede ser hasta :limit caractéres.',
+    'too_long' => ':attribute ha excedido el límite máximo - sólo puede ser de hasta :limit caracteres.',
     'wrong_confirmation' => 'La confirmación no coincide.',
 
     'beatmap_discussion_post' => [
@@ -57,7 +57,7 @@ return [
     ],
 
     'follow' => [
-        'invalid' => ':attribute especificado inválido.',
+        'invalid' => ':attribute especificado no válido.',
     ],
 
     'forum' => [
@@ -67,7 +67,7 @@ return [
         ],
 
         'poll_vote' => [
-            'invalid' => 'Opción especificada inválida.',
+            'invalid' => 'Opción especificada no válida.',
         ],
 
         'post' => [
@@ -123,7 +123,7 @@ return [
         'email_already_used' => 'El correo electrónico ya está siendo utilizado.',
         'invalid_country' => 'El país no está en la base de datos.',
         'invalid_discord' => 'Nombre de usuario de Discord no válido.',
-        'invalid_email' => "No parece que sea un correo electrónico valido.",
+        'invalid_email' => "No parece ser una dirección de correo electrónico válida.",
         'invalid_twitter' => 'Nombre de usuario de Twitter no válido.',
         'too_short' => 'La nueva contraseña es muy corta.',
         'unknown_duplicate' => 'El nombre de usuario o correo electrónico ya está siendo utilizado.',

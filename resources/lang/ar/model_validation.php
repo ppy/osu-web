@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'تم تحديد :attribute خاطئ.',
     'not_negative' => ':attribute لا يمكن ان يكون سلبياََ.',
     'required' => ':attribute مطلوب.',
     'too_long' => ':attribute تجاوز الحد المطلوب - يمكن ان يصل حد :limit حروف فقط.',

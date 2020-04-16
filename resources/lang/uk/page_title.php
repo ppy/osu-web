@@ -5,128 +5,130 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'адмін',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'адмін',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'адмін',
     ],
     'error' => [
         'error' => [
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '405' => '',
-            '422' => '',
-            '500' => '',
-            '503' => '',
+            '400' => '',
+            '404' => 'не знайдено',
+            '403' => 'доступ заборонено',
+            '401' => 'ви не авторизовані',
+            '401-verification' => '',
+            '405' => 'не знайдено',
+            '422' => 'невірний запит',
+            '500' => 'щось зламалося',
+            '503' => 'технічне обслуговування',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'форум',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'головна',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'головна',
+            'verify_link' => 'підтвердження аккаунта',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'вибрані виконавці',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'публікації в обговореннях біткарти',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'обговорення біткарти',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'збірки карт',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'голоса в обговоренні бтікарти',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'історія біткарти',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'головна',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'обговорення біткарти',
+            'index' => 'бібліотека біткарт',
+            'show' => 'інформація о біткарті',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'історія змін',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'чат',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'коментарі',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'конкурси',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'панель керування',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'групи',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'завантажити',
+            'index' => 'головна',
+            'search' => 'пошук',
+            'support_the_game' => 'підтримайте гру',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'інформація',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'прямі трансляції',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'матчі',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'новини',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'історія сповіщень',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'відновлення паролю',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'рейтинг',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'турніри',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'інформація про гравця',
+            'disabled' => 'увага',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'база знань',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'інформація про модера',
         ],
     ],
 ];

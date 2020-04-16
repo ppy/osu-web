@@ -28,7 +28,14 @@ return [
         'id' => 'Klient-ID',
         'name' => 'Applikasjonsnavn',
         'redirect' => 'Applikasjonens omdirigeringslenke',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => '',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '',
+        'confirm_reset' => '',
         'new' => '',
         'none' => '',
 

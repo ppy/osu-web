@@ -15,12 +15,14 @@ return [
     ],
     'error' => [
         'error' => [
+            '400' => '',
             '404' => 'hilang',
             '403' => 'dilarang',
             '401' => 'tidak terotorisir',
+            '401-verification' => '',
             '405' => 'hilang',
             '422' => 'permintaan tidak valid',
-            '500' => '',
+            '500' => 'ada yang rusak',
             '503' => 'pemeliharaan',
         ],
     ],
@@ -48,7 +50,7 @@ return [
             '_' => 'paket beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'laman diskusi voting beatmap',
         ],
         'beatmapset_events_controller' => [
             '_' => 'riwayat beatmap',

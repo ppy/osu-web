@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => '无法找到网页',
             'description' => "抱歉，您正在尝试访问的页面不存在！",

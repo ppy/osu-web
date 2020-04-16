@@ -15,6 +15,15 @@ return [
         'guest_title' => '谱面',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => '讨论',
 

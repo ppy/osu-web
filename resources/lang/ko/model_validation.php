@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => ':attribute가 올바르지 않습니다.',
     'not_negative' => ':attribute 속성은 음수가 될 수 없습니다.',
     'required' => ':attribute 속성이 필요합니다.',
     'too_long' => ':attribute의 최대 길이를 초과 했습니다 - :limit자 까지만 쓸 수 있습니다.',
