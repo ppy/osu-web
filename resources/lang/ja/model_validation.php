@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => '無効な :attribute が指定されています。',
     'not_negative' => ':attributeに負の数は使用できません',
     'required' => ':attributeが必須です',
     'too_long' => ':attributeの使用文字数の制限を超えています。上限は:limit文字です。',

@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Sivu puuttuu',
             'description' => "Pahoittelut, mutta sivu jota hait ei ole täällä!",

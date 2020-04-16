@@ -133,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => 'Amigos en la tabla de clasificación',
-                'description' => '¡Compita con sus amigos y vea cómo se clasifica contra ellos!*<br/><br/><small>* aún no disponible en el nuevo sitio, pronto(tm)</small>',
+                'description' => '¡Compita con sus amigos y vea cómo se clasifica contra ellos!',
             ],
 
         ],

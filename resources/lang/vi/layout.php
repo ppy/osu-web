@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Không Tìm Thấy Trang',
             'description' => "Xin lỗi, nhưng trang bạn yêu cầu không có ở đây!",

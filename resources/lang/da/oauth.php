@@ -28,7 +28,14 @@ return [
         'id' => 'Klient-ID',
         'name' => 'Applikationsnavn',
         'redirect' => 'Application Callback URL',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'Client Secret',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Er du sikker på du vil slette denne klient?',
+        'confirm_reset' => '',
         'new' => 'Ny OAuth Applikation',
         'none' => 'Ingen Klienter',
 
