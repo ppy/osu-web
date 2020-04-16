@@ -58,22 +58,21 @@ export default function Main(props: Props) {
       <div className='sidebar__content hidden-xs js-mobile-toggle' data-mobile-toggle-id='news-archive'>
         <Years years={props.data.years} currentYear={props.data.current_year} />
 
-        {orderedPostDates.map((date) => {
-          if (groupedPosts[date] == null || dateMap[date] == null) {
+        {orderedPostDates.map((key) => {
+          if (groupedPosts[key] == null || dateMap[key] == null) {
             return;
           }
 
-          const dateObject = dateMap[date];
+          const date = dateMap[key];
           const initialExpand = first;
           first = false;
 
           return <MonthListing
-            year={dateObject.year()}
-            initialExpand={initialExpand}
-            key={date}
-            month={dateObject.month()}
-            posts={groupedPosts[date]}
             currentPost={props.currentPost}
+            date={date}
+            initialExpand={initialExpand}
+            key={key}
+            posts={groupedPosts[key]}
           />;
         })}
       </div>
