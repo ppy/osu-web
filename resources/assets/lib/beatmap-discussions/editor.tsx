@@ -39,6 +39,7 @@ interface CacheInterface {
 }
 
 export default class Editor extends React.Component<Props, any> {
+  bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
   editor = React.createRef<HTMLDivElement>();
   menu = React.createRef<HTMLDivElement>();
@@ -79,6 +80,22 @@ export default class Editor extends React.Component<Props, any> {
     };
   }
 
+  blockWrap = (children: JSX.Element) => {
+    return (
+      <div className={`${this.bn}__block`}>
+        <div className={`${this.bn}__block-button`} contentEditable={false}>
+          <i className='fas fa-plus-circle' contentEditable={false} />
+          <div className={`${this.bn}__menu-content`}>
+            {this.embedButton('suggestion')}
+            {this.embedButton('problem')}
+            {this.embedButton('praise')}
+          </div>
+        </div>
+        {children}
+      </div>
+    );
+  }
+
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
     const editing = this.props.editing ?? false;
     if (editing !== (prevProps.editing ?? false)) {
@@ -113,6 +130,14 @@ export default class Editor extends React.Component<Props, any> {
     return ranges;
   }
 
+  embedButton = (type: string) => {
+    return (
+      <button type='button' className={`${this.bn}__menu-button ${this.bn}__menu-button--${type}`} data-dtype={type} onClick={this.insertEmbed}>
+        <i className={BeatmapDiscussionHelper.messageType.icon[type]}/>
+      </button>
+    );
+  }
+
   hideMenu = () => {
     if (!this.menuBody.current) {
       return;
@@ -125,11 +150,23 @@ export default class Editor extends React.Component<Props, any> {
     const type = event.currentTarget.dataset.dtype;
     const beatmapId = this.props.currentBeatmap ? this.props.currentBeatmap.id : this.props.beatmaps[this.props.beatmapset.beatmaps[0].id];
 
+    // find where to insert the new embed (relative to the dropdown menu)
+    const children = $(event.currentTarget).parents(`.${this.bn}__block`)[0].children;
+    const lastChild = children[children.length - 1];
+
+    // convert from dom node to document path
+    const node = ReactEditor.toSlateNode(this.slateEditor, lastChild);
+    const path = ReactEditor.findPath(this.slateEditor, node);
+    const at = SlateEditor.end(this.slateEditor, path);
+
     Transforms.insertNodes(this.slateEditor, {
       beatmapId,
       children: [{text: ''}],
       discussionType: type,
       type: 'embed',
+    },
+    {
+      at,
     });
   }
 
@@ -141,25 +178,7 @@ export default class Editor extends React.Component<Props, any> {
       localStorage.setItem(`newDiscussion-${this.props.beatmapset.id}`, content);
     }
 
-    this.setState({value}, () => {
-      if (!ReactEditor.isFocused(this.slateEditor) && !this.state.menuShown) {
-        this.setState({menuOffset: -1000});
-
-        return;
-      }
-
-      const selection = window.getSelection();
-      let menuOffset: number = -1000;
-      if (selection && selection.anchorNode !== null) {
-        const selectionTop = window.getSelection()?.getRangeAt(0).getBoundingClientRect().top ?? -1000;
-        const editorTop = this.editor.current?.getBoundingClientRect().top ?? 0;
-        menuOffset = selectionTop - editorTop - 5;
-      } else {
-        console.log('[explosion caught]', 'selection', selection, 'rangeCount', selection?.rangeCount);
-      }
-
-      this.setState({menuOffset});
-    });
+    this.setState({value});
   }
 
   onKeyDown = (event: KeyboardEvent) => {
@@ -219,36 +238,6 @@ export default class Editor extends React.Component<Props, any> {
                   </div>
                 </div>
               }
-              <div
-                className={`${editorClass}__menu`}
-                ref={this.menu}
-                style={{
-                  left: '-13px',
-                  position: 'absolute',
-                  top: `${this.state.menuOffset}px`,
-                }}
-                onMouseEnter={this.showMenu}
-                onMouseLeave={this.hideMenu}
-              >
-                <div className='forum-post-edit__button'><i className='fa fas fa-plus-circle' /></div>
-                <div
-                  className={`${editorClass}__menu-content`}
-                  ref={this.menuBody}
-                  style={{
-                    display: this.state.menuShown ? 'block' : 'none',
-                  }}
-                >
-                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='suggestion' onClick={this.insertEmbed}>
-                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--suggestion'><i className='far fa-circle'/></span>
-                  </button>
-                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='problem' onClick={this.insertEmbed}>
-                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--problem'><i className='fas fa-exclamation-circle'/></span>
-                  </button>
-                  <button type='button' className='btn-circle btn-circle--bbcode' data-dtype='praise' onClick={this.insertEmbed}>
-                    <span className='beatmap-discussion-message-type beatmap-discussion-message-type--praise'><i className='fas fa-heart'/></span>
-                  </button>
-                </div>
-              </div>
             </Slate>
           </SlateContext.Provider>
         </div>
@@ -257,9 +246,11 @@ export default class Editor extends React.Component<Props, any> {
   }
 
   renderElement = (props: RenderElementProps) => {
+    let el;
+
     switch (props.element.type) {
       case 'embed':
-        return (
+        el = (
           <EditorDiscussionComponent
             beatmapset={this.props.beatmapset}
             currentBeatmap={this.props.currentBeatmap}
@@ -269,26 +260,32 @@ export default class Editor extends React.Component<Props, any> {
             {...props}
           />
         );
+        break;
+
       case 'link':
-        return <a href={props.element.url} rel='nofollow'>{props.children}</a>;
+        el =  <a href={props.element.url} rel='nofollow'>{props.children}</a>;
+        break;
+
       default:
-        return <div {...props.attributes}>{props.children}</div>;
+        el = props.children;
     }
+
+    return this.blockWrap(el);
   }
 
   renderLeaf = (props: RenderLeafProps) => {
     let children = props.children;
     if (props.leaf.bold) {
-      children = <strong>{children}</strong>;
+      children = <strong {...props.attributes}>{children}</strong>;
     }
 
     if (props.leaf.italic) {
-      children = <em>{children}</em>;
+      children = <em {...props.attributes}>{children}</em>;
     }
 
     if (props.leaf.timestamp) {
       // TODO: fix this nested stuff
-      return <span className={'beatmapset-discussion-message'} {...props.attributes}><span className={'beatmapset-discussion-message__timestamp'}>{children}</span></span>;
+      return <span className='beatmapset-discussion-message' {...props.attributes}><span className={'beatmapset-discussion-message__timestamp'}>{children}</span></span>;
     }
 
     return (

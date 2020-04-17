@@ -22,6 +22,31 @@
     height: @_avatar-size;
   }
 
+  &__block {
+    display: flex;
+
+    &:hover .@{_top}__block-button {
+      display: block;
+    }
+  }
+
+  // TODO: call it something else
+  &__block-button {
+    position: absolute;
+    align-self: flex-end;
+    margin-top: 20px;
+    margin-left: -20px;
+    padding: 10px;
+    display: none;
+    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+    .default-text-shadow();
+    z-index: @z-index--blackout-visible;
+
+    &:hover .@{_top}__menu-content {
+      display: flex;
+    }
+  }
+
   &__button-bar {
     display: flex;
     flex-direction: row;
@@ -121,7 +146,6 @@
 
   &__input-area {
     .content-font();
-    margin-bottom:10px;
 
     max-height: 70vh;
     overflow-y: auto;
@@ -130,6 +154,42 @@
 
     .@{_top}--edit-mode & {
       max-height: unset;
+    }
+  }
+
+  &__menu-content {
+    position: absolute;
+    display: none;
+    background: @osu-colour-b6;
+    z-index: @z-index--blackout-visible;
+    margin-left: 10px;
+    .default-border-radius();
+    .default-box-shadow();
+
+    & > button {
+      filter: grayscale(1);
+      &:hover {
+        filter: none;
+        background: none;
+      }
+    }
+  }
+
+  &__menu-button {
+    .reset-input();
+    padding: 5px 10px;
+    color: @osu-colour-f1;
+
+    &--praise:hover {
+      color: @beatmap-discussion--color-praise;
+    }
+
+    &--problem:hover {
+      color: @beatmap-discussion--color-problem;
+    }
+
+    &--suggestion:hover {
+      color: @beatmap-discussion--color-suggestion;
     }
   }
 
@@ -240,9 +300,4 @@
     justify-content: center;
     margin-bottom: 5px;
   }
-}
-
-.DraftEditor-root {
-  width: 100%;
-  color: @osu-colour-c1;
 }
