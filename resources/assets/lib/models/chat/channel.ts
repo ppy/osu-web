@@ -46,7 +46,7 @@ export default class Channel {
 
   @computed
   get minMessageId() {
-    const id = this.messages[0]?.messageId ?? -1;
+    const id = this.messages[0]?.messageId;
 
     return typeof id === 'number' ? id : -1;
   }
