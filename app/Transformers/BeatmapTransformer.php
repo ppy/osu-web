@@ -9,6 +9,7 @@ use App\Models\Beatmap;
 
 class BeatmapTransformer extends BeatmapCompactTransformer
 {
+    protected $beatmapsetTransformer = BeatmapsetTransformer::class;
     protected $requiredPermission = 'BeatmapShow';
 
     public function transform(Beatmap $beatmap)
@@ -39,14 +40,5 @@ class BeatmapTransformer extends BeatmapCompactTransformer
             'total_length' => $beatmap->total_length,
             'url' => route('beatmaps.show', ['beatmap' => $beatmap->beatmap_id]),
         ]);
-    }
-
-    public function includeBeatmapset(Beatmap $beatmap)
-    {
-        $beatmapset = $beatmap->beatmapset;
-
-        return $beatmapset === null
-            ? $this->primitive(null)
-            : $this->primitive($beatmap->beatmapset, new BeatmapsetTransformer);
     }
 }

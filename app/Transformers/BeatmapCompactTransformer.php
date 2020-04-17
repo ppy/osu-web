@@ -17,6 +17,8 @@ class BeatmapCompactTransformer extends TransformerAbstract
         'max_combo',
     ];
 
+    protected $beatmapsetTransformer = BeatmapsetCompactTransformer::class;
+
     public function transform(Beatmap $beatmap)
     {
         return [
@@ -33,7 +35,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
         return $beatmapset === null
             ? $this->primitive(null)
-            : $this->item($beatmap->beatmapset, new BeatmapsetCompactTransformer);
+            : $this->item($beatmap->beatmapset, new $this->beatmapsetTransformer);
     }
 
     public function includeFailtimes(Beatmap $beatmap)

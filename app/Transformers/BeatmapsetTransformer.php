@@ -10,6 +10,8 @@ use League\Fractal;
 
 class BeatmapsetTransformer extends BeatmapsetCompactTransformer
 {
+    protected $beatmapTransformer = BeatmapTransformer::class;
+
     protected $defaultIncludes = [
         'has_favourited',
     ];
@@ -48,12 +50,5 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             'submitted_date' => json_time($beatmapset->submit_date),
             'tags' => $beatmapset->tags,
         ]);
-    }
-
-    public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
-    {
-        $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
-
-        return $this->collection($beatmapset->$rel, new BeatmapTransformer);
     }
 }

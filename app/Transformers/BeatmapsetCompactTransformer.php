@@ -34,6 +34,8 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'user',
     ];
 
+    protected $beatmapTransformer = BeatmapCompactTransformer::class;
+
     protected $permissions = [
         'current_user_attributes' => 'IsNotOAuth',
         'has_favourited' => 'IsSpecialScope', // TODO: make a scope for this.
@@ -61,7 +63,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     {
         $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
 
-        return $this->collection($beatmapset->$rel, new BeatmapCompactTransformer);
+        return $this->collection($beatmapset->$rel, new $this->beatmapTransformer);
     }
 
     public function includeConverts(Beatmapset $beatmapset)
