@@ -1,14 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
 import { route } from 'laroute';
 import * as React from 'react';
 
 interface Props {
-  beatmapset: BeatmapsetJSON;
+  beatmapset: BeatmapsetJson;
   onClose: () => void;
 }
 
@@ -117,7 +117,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
         language_id: this.state.languageId,
       } },
       method: 'PATCH',
-    }).done((beatmapset: BeatmapsetJSON) => $.publish('beatmapset:set', { beatmapset }))
+    }).done((beatmapset: BeatmapsetJson) => $.publish('beatmapset:set', { beatmapset }))
     .fail(osu.ajaxError)
     .always(() => this.setState({ isBusy: false }))
     .done(this.props.onClose);

@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapJSONExtended from 'interfaces/beatmap-json-extended';
+import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { FunctionComponent } from 'react';
 
 interface Props {
-  beatmap: BeatmapJSONExtended;
+  beatmap: BeatmapJsonExtended;
   modifier?: string;
   overrideVersion?: boolean;
   showTitle?: boolean;

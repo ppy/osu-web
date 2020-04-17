@@ -1,10 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapJSON from './beatmap-json';
+import BeatmapJson from './beatmap-json';
 
 // TODO: incomplete
-export default interface BeatmapJSONExtended extends BeatmapJSON {
+export default interface BeatmapJsonExtended extends BeatmapJson {
   accuracy: number;
   ar: number;
   beatmapset_id: number;
