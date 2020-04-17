@@ -6,7 +6,6 @@
 namespace App\Transformers;
 
 use App\Models\Beatmapset;
-use League\Fractal;
 
 class BeatmapsetTransformer extends BeatmapsetCompactTransformer
 {
