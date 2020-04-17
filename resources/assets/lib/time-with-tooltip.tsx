@@ -16,7 +16,7 @@ export default function TimeWithTooltip(props: Props) {
   const className = relative ? 'js-timeago' : 'js-tooltip-time';
 
   return (
-    <time className={`${className} timeago`} title={props.dateTime} {...otherProps}>
+    <time className={className} title={props.dateTime} {...otherProps}>
       {moment(props.dateTime).format(format)}
     </time>
   );

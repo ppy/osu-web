@@ -16,7 +16,7 @@ class @TooltipDefault
 
     return if _.size(title) == 0
 
-    isTime = el.classList.contains('timeago') || el.classList.contains('js-tooltip-time')
+    isTime = el.classList.contains('js-timeago') || el.classList.contains('js-tooltip-time')
 
     $content =
       if isTime
