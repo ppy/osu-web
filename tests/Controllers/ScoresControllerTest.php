@@ -23,7 +23,7 @@ class ScoresControllerTest extends TestCase
             ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
             ->json(
                 'GET',
-                route('scores.download', ['mode' => 'osu', 'score' => $this->score->getKey()])
+                route('scores.download', $this->params())
             )
             ->assertSuccessful();
     }
@@ -34,18 +34,18 @@ class ScoresControllerTest extends TestCase
             ->actingAs($this->user)
             ->json(
                 'GET',
-                route('scores.download', ['mode' => 'osu', 'score' => $this->score->getKey()])
+                route('scores.download', $this->params())
             )
-            ->assertRedirect(route('beatmaps.show', ['beatmap' => $this->score->beatmap_id]));
+            ->assertRedirect(route('scores.show', $this->params()));
 
         $this
             ->actingAs($this->user)
             ->withHeaders(['HTTP_REFERER' => rtrim(config('app.url'), '/').'.example.com'])
             ->json(
                 'GET',
-                route('scores.download', ['mode' => 'osu', 'score' => $this->score->getKey()])
+                route('scores.download', $this->params())
             )
-            ->assertRedirect(route('beatmaps.show', ['beatmap' => $this->score->beatmap_id]));
+            ->assertRedirect(route('scores.show', $this->params()));
     }
 
     public function testDownloadInvalidMode()
@@ -84,5 +84,13 @@ class ScoresControllerTest extends TestCase
 
         $this->user = factory(User::class)->create();
         $this->score = factory(Osu::class)->states('with_replay')->create();
+    }
+
+    private function params()
+    {
+        return [
+            'mode' => $this->score->getMode(),
+            'score' => $this->score->getKey(),
+        ];
     }
 }

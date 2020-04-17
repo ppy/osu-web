@@ -4,4 +4,4 @@
 # TODO: move to application state repository thingy later
 export class ScoreHelper
   @hasMenu: (score) ->
-    score.replay || (currentUser.id? && score.user_id != currentUser.id)
+    score?.id?

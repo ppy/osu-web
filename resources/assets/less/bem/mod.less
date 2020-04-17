@@ -9,6 +9,12 @@
   background-position: center;
   background-repeat: no-repeat;
 
+  &--dynamic {
+    position: relative;
+    height: 1em;
+    width: (@mod-width / @mod-height * $height);
+  }
+
   .all(@name, @filename) {
     &--@{name} {
       .at2x-simple("/images/badges/mods/mod_@{filename}.png");

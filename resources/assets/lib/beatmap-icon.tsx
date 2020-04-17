@@ -4,19 +4,30 @@
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as _ from 'lodash';
 import * as React from 'react';
-import { FunctionComponent } from 'react';
 
 interface Props {
   beatmap: BeatmapJsonExtended;
   modifier?: string;
+  showConvertMode?: boolean;
   showTitle?: boolean;
 }
 
-export const BeatmapIcon: FunctionComponent<Props> = ({beatmap, showTitle = true, modifier}) => {
+export const BeatmapIcon = (props: Props) => {
+  const {
+    beatmap,
+    modifier,
+    showConvertMode = false,
+    showTitle = true,
+  } = props;
+
   const difficultyRating = BeatmapHelper.getDiffRating(beatmap.difficulty_rating);
-  const mode = beatmap.convert ? 'osu' : beatmap.mode;
+  const mode = beatmap.convert && !showConvertMode ? 'osu' : beatmap.mode;
 
   let className = `beatmap-icon beatmap-icon--${modifier}`;
+  // FIXME: update to use array of string instead
+  if (modifier != null) {
+    className += ` beatmap-icon--${modifier}`;
+  }
   if (showTitle) {
     className += ' beatmap-icon--with-hover js-beatmap-tooltip';
   }
