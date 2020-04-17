@@ -197,9 +197,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeRatings(Beatmapset $beatmapset)
     {
-        return $this->item($beatmapset, function ($beatmapset) {
-            return $beatmapset->ratingsCount();
-        });
+        return $this->primitive($beatmapset->ratingsCount());
     }
 
     public function includeRecentFavourites(Beatmapset $beatmapset)

@@ -55,9 +55,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
             $result[$failtime->type] = $failtime->data;
         }
 
-        return $this->item($result, function ($result) {
-            return $result;
-        });
+        return $this->primitive($result);
     }
 
     public function includeMaxCombo(Beatmap $beatmap)
