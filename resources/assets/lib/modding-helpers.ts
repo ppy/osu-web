@@ -4,7 +4,7 @@
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import { route } from 'laroute';
 
-interface BeatmapsetEvent {
+export interface BeatmapsetEvent {
   beatmapset?: BeatmapsetJSON;
   comment: any;
   created_at: string;
