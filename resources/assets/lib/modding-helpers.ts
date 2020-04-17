@@ -3,6 +3,7 @@
 
 import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
 import { route } from 'laroute';
+import { Dictionary } from 'lodash';
 
 export interface BeatmapsetEvent {
   beatmapset?: BeatmapsetJSON;
@@ -15,7 +16,7 @@ export interface BeatmapsetEvent {
   user_id?: number;
 }
 
-export function contentText(event: BeatmapsetEvent, users: any, discussionId?: number, discussions?: BeatmapDiscussion[]) {
+export function contentText(event: BeatmapsetEvent, users: any, discussionId?: number, discussions?: Dictionary<BeatmapDiscussion>) {
   let discussionLink = '';
   let text = '';
   let user = '';
@@ -47,7 +48,7 @@ export function contentText(event: BeatmapsetEvent, users: any, discussionId?: n
   }
 
   if (event.user_id != null) {
-    user = osu.link(route('users.show', { user: event.user_id }), users[event.user_id].username);
+    user = osu.link(route('users.show', { user: event.user_id }), users[event.user_id]?.username);
   }
 
   const key = event.type === 'disqualify' && discussionId == null ? 'disqualify_legacy' : event.type;

@@ -224,18 +224,93 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
 
+        // Events
         $search = BeatmapsetEvent::search($this->searchParams);
         unset($search['params']['user']);
+        $events = $search['query']->with([
+            'beatmapset.user',
+            'beatmapDiscussion.beatmapset',
+            'beatmapDiscussion.startingPost',
+            'user',
+        ]);
+
         if ($this->isModerator) {
-            $items = $search['query']->with('user')->with(['beatmapset' => function ($query) {
+            $events->with(['beatmapset' => function ($query) {
                 $query->withTrashed();
-            }])->with('beatmapset.user')->get();
-        } else {
-            $items = $search['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get();
+            }]);
         }
 
-        $events = new LengthAwarePaginator(
-            $items,
+        $events = $events->whereHas('beatmapset')->get();
+
+        // Discussions
+        $discussionsSearch = BeatmapDiscussion::search($this->searchParams);
+        $discussionsSearch['query']->with([
+            'beatmap',
+            'beatmapDiscussionVotes',
+            'beatmapset',
+            'startingPost',
+        ]);
+
+        if ($this->isModerator) {
+            $discussionsSearch['query']->visibleWithTrashed();
+        } else {
+            $discussionsSearch['query']->visible();
+        }
+
+        $discussions = $discussionsSearch['query']->get();
+
+        // TODO: remove this when reviews are released
+        if (config('osu.beatmapset.discussion_review_enabled')) {
+            $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
+                ->with([
+                    'beatmap',
+                    'beatmapDiscussionVotes',
+                    'beatmapset',
+                    'startingPost',
+                ]);
+
+            if ($this->isModerator) {
+                $children->visibleWithTrashed();
+            } else {
+                $children->visible();
+            }
+
+            $discussions = $discussions->merge($children->get());
+        }
+
+        // Posts
+        $posts = BeatmapDiscussionPost::search($this->searchParams);
+        $posts['query']->with([
+            'beatmapDiscussion.beatmap',
+            'beatmapDiscussion.beatmapset',
+        ]);
+
+        if (!$this->isModerator) {
+            $posts['query']->visible();
+        }
+
+        $posts['items'] = $posts['query']->get();
+
+        // Users
+        $userIds = [];
+        foreach ($discussions as $discussion) {
+            $userIds[] = $discussion->user_id;
+            $userIds[] = $discussion->startingPost->last_editor_id;
+        }
+
+        $userIds = array_merge(
+            $userIds,
+            $posts['items']->pluck('user_id')->toArray(),
+            $events->pluck('user_id')->toArray(),
+        );
+
+        $users = User::whereIn('user_id', $userIds)
+            ->with('userGroups')
+            ->default()
+            ->get();
+
+        $paginator = new LengthAwarePaginator(
+            $events,
             $search['query']->realCount(),
             $search['params']['limit'],
             $search['params']['page'],
@@ -247,7 +322,30 @@ class ModdingHistoryController extends Controller
 
         $showUserSearch = false;
 
-        return ext_view('beatmapset_events.index', compact('events', 'user', 'search', 'showUserSearch'));
+        $jsonChunks = [
+            'discussions' => json_collection(
+                $discussions,
+                'BeatmapDiscussion',
+                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
+            ),
+            'events' => json_collection(
+                $events,
+                'BeatmapsetEvent',
+                ['discussion.starting_post', 'beatmapset.user']
+            ),
+            'posts' => json_collection(
+                $posts['items'],
+                'BeatmapDiscussionPost',
+                ['beatmap_discussion.beatmapset']
+            ),
+            'users' => json_collection(
+                $users,
+                'UserCompact',
+                ['group_badge']
+            ),
+        ];
+
+        return ext_view('beatmapset_events.index', compact('events', 'paginator', 'jsonChunks', 'user', 'search', 'showUserSearch'));
     }
 
     public function posts()

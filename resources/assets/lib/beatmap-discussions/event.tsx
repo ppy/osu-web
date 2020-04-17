@@ -1,16 +1,17 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { kebabCase } from 'lodash';
+import UserJSON from 'interfaces/user-json';
+import { Dictionary, kebabCase } from 'lodash';
 import { BeatmapsetEvent, contentText } from 'modding-helpers';
 import * as moment from 'moment';
 import * as React from 'react';
 
 interface Props {
-  discussions: any;
+  discussions: Dictionary<BeatmapDiscussion>;
   event: BeatmapsetEvent;
-  time: moment.Moment;
-  users: any;
+  time?: moment.Moment;
+  users: Dictionary<UserJSON>;
 }
 
 export default class Event extends React.PureComponent<Props> {

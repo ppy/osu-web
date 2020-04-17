@@ -110,11 +110,19 @@
 
             <div class='beatmapset-events' id="events">
                 <div class='beatmapset-events__title'></div>
-                @foreach ($events as $event)
-                    @include('beatmapset_events._item', compact('event'))
-                @endforeach
+                <div class='js-react--beatmap-discussion-events'></div>
             </div>
-            @include('objects._pagination_v2', ['object' => $events->fragment('events')])
+            @include('objects._pagination_v2', ['object' => $paginator->fragment('events')])
         </div>
     </div>
+@endsection
+
+@section ("script")
+    @parent
+
+    @foreach ($jsonChunks as $name => $data)
+        <script id="json-{{$name}}" type="application/json">
+            {!! json_encode($data) !!}
+        </script>
+    @endforeach
 @endsection
