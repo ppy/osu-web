@@ -11,7 +11,7 @@ interface BeatmapsetCovers {
   slimcover: string;
 }
 
-export interface BeatmapsetJson extends JSON {
+export interface BeatmapsetJson {
   artist: string;
   covers: BeatmapsetCovers;
   creator: string;
