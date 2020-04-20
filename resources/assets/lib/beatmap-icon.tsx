@@ -9,26 +9,27 @@ import { FunctionComponent } from 'react';
 interface Props {
   beatmap: BeatmapJsonExtended;
   modifier?: string;
-  overrideVersion?: boolean;
   showTitle?: boolean;
 }
 
-export const BeatmapIcon: FunctionComponent<Props> = ({beatmap, overrideVersion, showTitle = true, modifier}) => {
-  const difficultyRating = overrideVersion || BeatmapHelper.getDiffRating(beatmap.difficulty_rating);
-  const showTooltip = showTitle && overrideVersion == null;
+export const BeatmapIcon: FunctionComponent<Props> = ({beatmap, showTitle = true, modifier}) => {
+  const difficultyRating = BeatmapHelper.getDiffRating(beatmap.difficulty_rating);
   const mode = beatmap.convert ? 'osu' : beatmap.mode;
 
-  let className = `beatmap-icon beatmap-icon--${difficultyRating} beatmap-icon--${modifier}`;
-  if (showTooltip) {
+  let className = `beatmap-icon beatmap-icon--${modifier}`;
+  if (showTitle) {
     className += ' beatmap-icon--with-hover js-beatmap-tooltip';
   }
+
+  const style = osu.diffColour(difficultyRating)
 
   return (
     <div
       className={className}
-      data-beatmap-title={showTooltip ? beatmap.version : null}
+      data-beatmap-title={showTitle ? beatmap.version : null}
       data-stars={_.round(beatmap.difficulty_rating, 2)}
       data-difficulty={difficultyRating}
+      style={style}
     >
       <i className={`fal fa-extra-mode-${mode}`} />
     </div>
