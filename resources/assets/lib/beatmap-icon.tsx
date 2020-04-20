@@ -21,7 +21,7 @@ export const BeatmapIcon: FunctionComponent<Props> = ({beatmap, showTitle = true
     className += ' beatmap-icon--with-hover js-beatmap-tooltip';
   }
 
-  const style = osu.diffColour(difficultyRating)
+  const style = osu.diffColour(difficultyRating);
 
   return (
     <div
