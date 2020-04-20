@@ -66,6 +66,17 @@ return [
         'title' => 'Приложения и доступ',
     ],
 
+    'options' => [
+        'title' => '',
+
+        'beatmapset_download' => [
+            '_' => '',
+            'all' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => 'клавиатура',
         'mouse' => 'мышь',

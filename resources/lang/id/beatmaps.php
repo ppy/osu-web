@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Gagal menyimpan kiriman',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Gagal memperbarui pilihan',
@@ -161,7 +155,7 @@ return [
         'delete_own_confirm' => 'Apa Anda yakin? Beatmap yang dipilih akan dihapus dan Anda akan dialihkan kembali ke profil Anda.',
         'delete_other_confirm' => 'Apa Anda yakin? Beatmap yang dipilih akan dihapus dan Anda akan dialihkan kembali ke profil pengguna.',
         'disqualification_prompt' => 'Alasan diskualifikasi?',
-        'disqualified_at' => 'Didiskualifikasi :time_ago (:reason).',
+        'disqualified_at' => 'Didiskualifikasi pada :time_ago (:reason).',
         'disqualified_no_reason' => 'tidak ada alasan yang diberikan',
         'disqualify' => 'Diskualifikasi',
         'incorrect_state' => 'Ditemukan kesalahan saat melakukan tindakan ini, silakan muat ulang laman.',

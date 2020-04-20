@@ -28,7 +28,7 @@ return [
 
         'help' => [
             'index' => 'índice',
-            'sitemap' => '',
+            'sitemap' => 'Mapa do site',
         ],
 
         'store' => [
@@ -116,7 +116,7 @@ return [
             'forum' => 'Fóruns da comunidade',
             'livestreams' => 'Transmissões ao vivo',
             'report' => 'Comunicar um problema',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Legalidade e Situação Jurídica',
@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Página em falta',
             'description' => "Lamento, mas a página que pediste não está aqui!",
@@ -146,7 +150,7 @@ return [
             'description' => "Lamento, mas a página que pediste não está aqui!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Parâmetro de pedido inválido',
             'description' => '',
         ],
         '500' => [

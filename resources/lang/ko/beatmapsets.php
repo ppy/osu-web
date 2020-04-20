@@ -15,6 +15,15 @@ return [
         'guest_title' => '비트맵',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => '토론',
 

@@ -238,8 +238,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu Có Sẵn',
-                'available_info' => "Kudosu có thể được chuyển thành kudosu stars, chúng có thể giúp beatmap của bạn nhận được nhiều sự chú ý hơn. Đây là số kudosu bạn chưa chuyển đổi.",
                 'recent_entries' => 'Lịch Sử Kudosu Gần Đây',
                 'title' => 'Kudosu!',
                 'total' => 'Tông Số Kudosu Nhận Được',

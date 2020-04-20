@@ -9,7 +9,7 @@ return [
 
         'nav' => [
             'newer' => 'Publicaciones más recientes',
-            'older' => 'Publicaciones más antiguas',
+            'older' => 'Publicaciones anteriores',
         ],
 
         'title' => [
@@ -22,8 +22,8 @@ return [
         'by' => 'por :user',
 
         'nav' => [
-            'newer' => 'Publicación más reciente',
-            'older' => 'Publicación más antigua',
+            'newer' => 'Publicación siguiente',
+            'older' => 'Publicación anterior',
         ],
 
         'title' => [

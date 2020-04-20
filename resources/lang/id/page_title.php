@@ -15,13 +15,15 @@ return [
     ],
     'error' => [
         'error' => [
+            '400' => '',
             '404' => 'hilang',
             '403' => 'dilarang',
-            '401' => '',
+            '401' => 'tidak terotorisir',
+            '401-verification' => '',
             '405' => 'hilang',
-            '422' => '',
-            '500' => '',
-            '503' => '',
+            '422' => 'permintaan tidak valid',
+            '500' => 'ada yang rusak',
+            '503' => 'pemeliharaan',
         ],
     ],
     'forum' => [
@@ -48,10 +50,10 @@ return [
             '_' => 'paket beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'laman diskusi voting beatmap',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'riwayat beatmap',
         ],
         'beatmapset_watches_controller' => [
             'index' => 'dasbor',

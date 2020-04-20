@@ -11,122 +11,124 @@ return [
         '_' => 'المشرف',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'المشرف',
     ],
     'error' => [
         'error' => [
+            '400' => '',
             '404' => 'مفقود',
             '403' => 'محظور',
             '401' => 'غير مصرح به',
+            '401-verification' => '',
             '405' => 'مفقود',
-            '422' => '',
-            '500' => '',
+            '422' => 'طلب غير صالح',
+            '500' => 'وقعَ خطأ',
             '503' => 'صيانة',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'المنتدى',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'لوحة التحكم',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
+            'edit' => 'لوحة التحكم',
             'verify_link' => 'التحقق من الحساب',
         ],
         'artists_controller' => [
             '_' => 'الفنانين المميزين',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'منشورات مناقشة الخريطة',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'مناقشات الخريطة',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'حزم الخرائط',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'أَصوات مناقشة الخريطة',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'تاريخ الخريطة',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'لوحة التحكم',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'مناقشة الخريطة',
+            'index' => 'قائمة الخرائط',
+            'show' => 'معلومات الخريطة',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'سِجل التغييرات',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'الدردشة',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'التعليقات',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'المسابقات',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'لوحة التحكم',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'المجموعات',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'تنزيل',
+            'index' => 'لوحة التحكم',
+            'search' => 'البحث',
+            'support_the_game' => 'أِدعَم اللعبة',
+            'testflight' => 'مشروع الأختبار',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'المعلومات',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'البث المباشر',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'المباريات',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'الأخبار',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'سجل الإشعارات',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'إعادة تعيين كلمة المرور',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'التصنيف',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'متجر!osu',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'البطولات',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'معلومات اللاعب',
+            'disabled' => 'ملحوظة',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'قاعدة المعارف',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'متجر!osu',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'معلومات المُعَدِل',
         ],
     ],
 ];

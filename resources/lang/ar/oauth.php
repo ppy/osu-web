@@ -28,7 +28,14 @@ return [
         'id' => 'معرف العميل',
         'name' => 'اسم التّطبيق',
         'redirect' => 'رابط نقطة معاودة التطبيق',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'سؤال سر العميل',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'هل أنت متأكد أنك تريد حذف هذا العميل؟',
+        'confirm_reset' => '',
         'new' => 'تطبيق 0Auth جديد',
         'none' => 'لا عملاء',
 

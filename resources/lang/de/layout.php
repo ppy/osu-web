@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Seite fehlt',
             'description' => "Sorry, aber die angeforderte Seite existiert nicht!",

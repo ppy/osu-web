@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Error al guardar la publicación',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Error al actualizar los votos.',
@@ -246,7 +240,7 @@ return [
         'mine' => 'Mis mapas',
         'pending' => 'Pendiente y trabajo en progreso',
         'qualified' => 'Calificados',
-        'ranked' => 'Clasificado',
+        'ranked' => 'Clasificados',
     ],
     'genre' => [
         'any' => 'Cualquiera',
@@ -320,7 +314,7 @@ return [
         'D' => 'D',
     ],
     'panel' => [
-        'playcount' => 'Número de jugadores: :count',
+        'playcount' => 'Veces jugado: :count',
         'favourites' => 'Favoritos: :count',
     ],
 ];

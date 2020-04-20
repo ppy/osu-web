@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'การสนทนา',
 

@@ -238,8 +238,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => '사용 가능한 Kudosu',
-                'available_info' => "Kudosu는 제작자가 만든 비트맵의 노출 순위를 올리는 kudosu 별(★) 로 교환될 수 있습니다. 위에 적힌 수는 아직 교환되지 않은 kudosu 수를 나타냅니다.",
                 'recent_entries' => '최근 Kudosu 기록',
                 'title' => 'Kudosu!',
                 'total' => '총 획득한 Kudosu 수',
@@ -420,7 +418,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => '벽돌 형식 보기',
         'card' => '카드 형식 보기',
         'list' => '목록으로 보기',
     ],

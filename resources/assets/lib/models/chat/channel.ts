@@ -41,12 +41,12 @@ export default class Channel {
 
   @computed
   get hasEarlierMessages() {
-    return this.firstMessageId !== this.messages[0]?.messageId;
+    return this.firstMessageId !== this.minMessageId;
   }
 
   @computed
   get minMessageId() {
-    const id = this.messages[0]?.messageId ?? -1;
+    const id = this.messages[0]?.messageId;
 
     return typeof id === 'number' ? id : -1;
   }

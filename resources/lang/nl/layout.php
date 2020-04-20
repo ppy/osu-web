@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Pagina Mist',
             'description' => "Sorry, de pagina die je hebt opgevraagd is er niet!",

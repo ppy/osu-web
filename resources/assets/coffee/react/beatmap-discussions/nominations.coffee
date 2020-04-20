@@ -7,6 +7,7 @@ import { a, button, div, p, span } from 'react-dom-factories'
 el = React.createElement
 
 bn = 'beatmap-discussion-nomination'
+dateFormat = 'LL'
 
 export class Nominations extends React.PureComponent
   constructor: (props) ->
@@ -28,238 +29,24 @@ export class Nominations extends React.PureComponent
     osu.pageChange()
 
 
-  nominationButton: (disabled = false) =>
-    el BigButton,
-      modifiers: ['full']
-      text: osu.trans 'beatmaps.nominations.nominate'
-      icon: 'fas fa-thumbs-up'
-      props:
-        disabled: disabled
-        onClick: @nominate
-
-
   render: =>
-    showHype = @props.beatmapset.can_be_hyped
-
-    if showHype
-      requiredHype = @props.beatmapset.nominations.required_hype
-      hypeRaw = @props.currentDiscussions.totalHype
-      hype = _.min([requiredHype, hypeRaw])
-      userAlreadyHyped = _.find(@props.currentDiscussions.byFilter.hype.generalAll, user_id: @props.currentUser.id)?
-
-    mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
-    mapIsQualified = (@props.beatmapset.status == 'qualified')
-
-    dateFormat = 'LL'
-
-    if mapIsQualified
-      rankingETA = @props.beatmapset.nominations.ranking_eta
-
-    if mapIsQualified || mapCanBeNominated
-      nominations = @props.beatmapset.nominations
-      if !mapIsQualified
-        disqualification = nominations.disqualification
-        nominationReset = nominations.nomination_reset
-
-    nominators = []
-    for event in @props.events by -1
-      if event.type == 'disqualify' || event.type == 'nomination_reset'
-        break
-      else if event.type == 'nominate'
-        nominators.unshift @props.users[event.user_id]
-
     div className: bn,
-      # hide hype meter and nominations when beatmapset is: ranked, approved, loved or graveyarded
-      if !showHype
-        div className: "#{bn}__row #{bn}__row--status-message",
-          div className: "#{bn}__row-left",
-              div className: "#{bn}__header",
-                span
-                  className: "#{bn}__status-message"
-                  switch @props.beatmapset.status
-                    when 'approved', 'loved', 'ranked'
-                      osu.trans "beatmaps.discussions.status-messages.#{@props.beatmapset.status}",
-                        date: moment(@props.beatmapset.ranked_date).format(dateFormat)
-                    when 'graveyard'
-                      osu.trans 'beatmaps.discussions.status-messages.graveyard',
-                        date: moment(@props.beatmapset.last_updated).format(dateFormat)
-
-          if currentUser.id? && !@props.beatmapset.discussion_locked
-            div className: "#{bn}__row-right",
-              el BigButton,
-                modifiers: ['full', 'wrap-text']
-                text: osu.trans 'beatmaps.feedback.button'
-                icon: 'fas fa-bullhorn'
-                props:
-                  onClick: @focusNewDiscussionWithModeSwitch
-
-      # show hype meter and nominations when beatmapset is: wip, pending or qualified
-      else
-        [
-          if @props.beatmapset.status == 'wip'
-            div
-              className: "#{bn}__row"
-              key: 'wip',
-              div className: "#{bn}__row-left",
-                div className: "#{bn}__header",
-                  span
-                    className: "#{bn}__status-message"
-                    osu.trans 'beatmaps.discussions.status-messages.wip'
-
-          div
-            className: "#{bn}__row"
-            key: 'hype',
-            div className: "#{bn}__row-left",
-              div className: "#{bn}__header",
-                span
-                  className: "#{bn}__title"
-                  osu.trans 'beatmaps.hype.section_title'
-                span {},
-                  "#{hypeRaw} / #{requiredHype}"
-              @renderLights(hype, requiredHype)
-
-            if @props.currentUser.id? && !@userIsOwner()
-              div className: "#{bn}__row-right",
-                el BigButton,
-                  modifiers: ['full', 'wrap-text']
-                  text: if userAlreadyHyped then osu.trans('beatmaps.hype.button_done') else osu.trans('beatmaps.hype.button')
-                  icon: 'fas fa-bullhorn'
-                  props:
-                    disabled: !@props.beatmapset.current_user_attributes.can_hype
-                    title: @props.beatmapset.current_user_attributes?.can_hype_reason
-                    onClick: @focusHypeInput
-
-          if mapCanBeNominated || mapIsQualified
-            div
-              className: "#{bn}__row"
-              key: 'nominations',
-              div className: "#{bn}__row-left",
-                div className: "#{bn}__header",
-                  span
-                    className: "#{bn}__title"
-                    osu.trans 'beatmaps.nominations.title'
-                  span null,
-                    " #{nominations.current}/#{nominations.required}"
-                @renderLights(nominations.current, nominations.required)
-
-              if @props.currentUser.id?
-                div className: "#{bn}__row-right",
-                  if mapIsQualified && @userCanDisqualify()
-                    el BigButton,
-                      modifiers: ['full']
-                      text: osu.trans 'beatmaps.nominations.disqualify'
-                      icon: 'fas fa-thumbs-down'
-                      props:
-                        onClick: @focusNewDiscussionWithModeSwitch
-                  else if mapCanBeNominated && @userCanNominate()
-                    div null,
-                      if @props.currentDiscussions.unresolvedIssues > 0
-                        # wrapper 'cuz putting a title/tooltip on a disabled button is no worky...
-                        div title: osu.trans('beatmaps.nominations.unresolved_issues'),
-                          @nominationButton true
-                      else
-                        @nominationButton @props.beatmapset.nominations.nominated
-        ]
-
-      if @props.beatmapset.current_user_attributes?.can_love
-        div
-          className: "#{bn}__row"
-          key: 'love'
-          div className: "#{bn}__row-left"
-          div className: "#{bn}__row-right",
-            el BigButton,
-              modifiers: ['full']
-              text: osu.trans 'beatmaps.nominations.love'
-              icon: 'fas fa-heart'
-              props:
-                onClick: @love
-
-      if @props.beatmapset.current_user_attributes?.can_delete
-        div
-          className: "#{bn}__row"
-          key: 'delete'
-          div className: "#{bn}__row-left"
-          div className: "#{bn}__row-right",
-            el BigButton,
-              modifiers: ['full']
-              text: osu.trans 'beatmaps.nominations.delete'
-              icon: 'fas fa-trash'
-              props:
-                onClick: @delete
-
-      @renderLockArea()
-
-      if showHype
-        div
-          className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
-          key: 'footer'
-          div className: "#{bn}__note #{bn}__note--disqualification",
-            if mapIsQualified
-              if rankingETA
-                span null,
-                  osu.trans 'beatmaps.nominations.qualified',
-                    date: moment(rankingETA).format(dateFormat)
-              else
-                span null, osu.trans 'beatmaps.nominations.qualified_soon'
-
-            # implies mapCanBeNominated
-            else
-              div null,
-                if disqualification?
-                  div
-                    className: "#{bn}__note-row"
-                    dangerouslySetInnerHTML:
-                      __html: @resetReason(disqualification)
-                if nominationReset?
-                  div
-                    className: "#{bn}__note-row"
-                    dangerouslySetInnerHTML:
-                      __html: @resetReason(nominationReset)
-          if nominators.length > 0
-            div
-              className: "#{bn}__note #{bn}__note--nominators"
-              dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmaps.nominations.nominated_by',
-                  users: osu.transArray nominators.map (user) ->
-                      osu.link laroute.route('users.show', user: user.id), user.username,
-                        classNames: ['js-usercard']
-                        props:
-                          'data-user-id': user.id
-
-
-  renderLockArea: =>
-    canModeratePost = BeatmapDiscussionHelper.canModeratePosts(currentUser)
-
-    return null if !@props.beatmapset.discussion_locked && !canModeratePost
-
-    if @props.beatmapset.discussion_locked
-      lockEvent = _.findLast @props.events, type: 'discussion_lock'
-
-    div className: "#{bn}__row #{bn}__row--status-message",
-      div className: "#{bn}__row-left",
-        if lockEvent?
-          div className: "#{bn}__header",
-            span
-              className: "#{bn}__status-message"
-              dangerouslySetInnerHTML: __html: osu.trans 'beatmapset_events.event.discussion_lock',
-                text: BeatmapDiscussionHelper.format(lockEvent.comment.reason, newlines: false)
-
-      if canModeratePost
-        if @props.beatmapset.discussion_locked
-          action = 'unlock'
-          icon = 'fas fa-unlock'
-          onClick = @discussionUnlock
-        else
-          action = 'lock'
-          icon = 'fas fa-lock'
-          onClick = @discussionLock
-
-        div className: "#{bn}__row-right",
-          el BigButton,
-            modifiers: ['full', 'wrap-text']
-            text: osu.trans "beatmaps.discussions.lock.button.#{action}"
-            icon: icon
-            props: { onClick }
+      div className: "#{bn}__items #{bn}__items--messages",
+        div className: "#{bn}__item", @statusMessage()
+        div className: "#{bn}__item", @hypeBar()
+        div className: "#{bn}__item", @nominationBar()
+        div className: "#{bn}__item", @disqualificationMessage()
+        div className: "#{bn}__item", @nominationResetMessage()
+        div className: "#{bn}__item", @discussionLockMessage()
+        div className: "#{bn}__item #{bn}__item--nominators", @nominatorsList()
+      div className: "#{bn}__items #{bn}__items--buttons",
+        div className: "#{bn}__item", @feedbackButton()
+        div className: "#{bn}__item", @hypeButton()
+        div className: "#{bn}__item", @disqualifyButton()
+        div className: "#{bn}__item", @nominationButton()
+        div className: "#{bn}__item", @loveButton()
+        div className: "#{bn}__item", @deleteButton()
+        div className: "#{bn}__item", @discussionLockButton()
 
 
   renderLights: (lightsOn, lightsTotal) ->
@@ -456,3 +243,223 @@ export class Nominations extends React.PureComponent
 
   userIsOwner: =>
     @props.currentUser? && @props.currentUser.id == @props.beatmapset.user_id
+
+
+  statusMessage: =>
+    switch @props.beatmapset.status
+      when 'approved', 'loved', 'ranked'
+        osu.trans "beatmaps.discussions.status-messages.#{@props.beatmapset.status}",
+          date: moment(@props.beatmapset.ranked_date).format(dateFormat)
+      when 'graveyard'
+        osu.trans 'beatmaps.discussions.status-messages.graveyard',
+          date: moment(@props.beatmapset.last_updated).format(dateFormat)
+      when 'wip'
+        osu.trans 'beatmaps.discussions.status-messages.wip'
+      when 'qualified'
+        rankingETA = @props.beatmapset.nominations.ranking_eta
+
+        if rankingETA?
+          osu.trans 'beatmaps.nominations.qualified',
+            date: moment(rankingETA).format(dateFormat)
+        else
+          osu.trans 'beatmaps.nominations.qualified_soon'
+      else
+        null
+
+
+  hypeBar: =>
+    return null unless @props.beatmapset.can_be_hyped
+
+    requiredHype = @props.beatmapset.nominations.required_hype
+    hypeRaw = @props.currentDiscussions.totalHype
+    hype = _.min([requiredHype, hypeRaw])
+
+    div null,
+      div className: "#{bn}__header",
+        span
+          className: "#{bn}__title"
+          osu.trans 'beatmaps.hype.section_title'
+        span {},
+          "#{hypeRaw} / #{requiredHype}"
+      @renderLights(hype, requiredHype)
+
+
+  nominationBar: =>
+    requiredHype = @props.beatmapset.nominations.required_hype
+    hypeRaw = @props.currentDiscussions.totalHype
+    mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
+    mapIsQualified = @props.beatmapset.status == 'qualified'
+
+    return null unless mapCanBeNominated || mapIsQualified
+
+    nominations = @props.beatmapset.nominations
+
+    div null,
+      div className: "#{bn}__header",
+        span
+          className: "#{bn}__title"
+          osu.trans 'beatmaps.nominations.title'
+        span null,
+          " #{nominations.current}/#{nominations.required}"
+      @renderLights(nominations.current, nominations.required)
+
+
+  disqualificationMessage: =>
+    showHype = @props.beatmapset.can_be_hyped
+    disqualification = @props.beatmapset.nominations.disqualification
+    mapIsQualified = @props.beatmapset.status == 'qualified'
+
+    return null unless showHype && !mapIsQualified && disqualification?
+
+    div dangerouslySetInnerHTML:
+      __html: @resetReason(disqualification)
+
+
+  nominationResetMessage: =>
+    showHype = @props.beatmapset.can_be_hyped
+    nominations = @props.beatmapset.nominations
+    nominationReset = nominations.nomination_reset
+    mapIsQualified = @props.beatmapset.status == 'qualified'
+
+    return null unless showHype && !mapIsQualified && nominationReset?
+
+    div dangerouslySetInnerHTML:
+      __html: @resetReason(nominationReset)
+
+
+  nominatorsList: =>
+    return null unless @props.beatmapset.status in ['wip', 'pending', 'ranked', 'qualified']
+
+    nominators = []
+    for event in @props.events by -1
+      if event.type == 'disqualify' || event.type == 'nomination_reset'
+        break
+      else if event.type == 'nominate'
+        nominators.unshift @props.users[event.user_id]
+
+    return null if nominators.length == 0
+
+    div dangerouslySetInnerHTML:
+      __html: osu.trans 'beatmaps.nominations.nominated_by',
+        users: osu.transArray nominators.map (user) ->
+            osu.link laroute.route('users.show', user: user.id), user.username,
+              classNames: ['js-usercard']
+              props:
+                'data-user-id': user.id
+
+
+  discussionLockMessage: =>
+    return null unless @props.beatmapset.discussion_locked
+
+    lockEvent = _.findLast @props.events, type: 'discussion_lock'
+
+    return null unless lockEvent?
+
+    div dangerouslySetInnerHTML:
+      __html: osu.trans 'beatmapset_events.event.discussion_lock',
+        text: BeatmapDiscussionHelper.format(lockEvent.comment.reason, newlines: false)
+
+
+  feedbackButton: =>
+    return null unless @props.currentUser.id? && !@userIsOwner() && !@props.beatmapset.can_be_hyped && !@props.beatmapset.discussion_locked
+
+    el BigButton,
+      text: osu.trans 'beatmaps.feedback.button'
+      icon: 'fas fa-bullhorn'
+      props:
+        onClick: @focusNewDiscussionWithModeSwitch
+
+
+  hypeButton: =>
+    return null unless @props.beatmapset.can_be_hyped && @props.currentUser.id? && !@userIsOwner()
+
+    userAlreadyHyped = _.find(@props.currentDiscussions.byFilter.hype.generalAll, user_id: @props.currentUser.id)?
+
+    el BigButton,
+      text: if userAlreadyHyped then osu.trans('beatmaps.hype.button_done') else osu.trans('beatmaps.hype.button')
+      icon: 'fas fa-bullhorn'
+      props:
+        disabled: !@props.beatmapset.current_user_attributes.can_hype
+        title: @props.beatmapset.current_user_attributes?.can_hype_reason
+        onClick: @focusHypeInput
+
+
+  disqualifyButton: =>
+    showHype = @props.beatmapset.can_be_hyped
+    requiredHype = @props.beatmapset.nominations.required_hype
+    hypeRaw = @props.currentDiscussions.totalHype
+    mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
+    mapIsQualified = @props.beatmapset.status == 'qualified'
+
+    return null unless showHype && (mapCanBeNominated || mapIsQualified) && @props.currentUser.id? && mapIsQualified && @userCanDisqualify()
+
+    el BigButton,
+      text: osu.trans 'beatmaps.nominations.disqualify'
+      icon: 'fas fa-thumbs-down'
+      props:
+        onClick: @focusNewDiscussionWithModeSwitch
+
+
+  nominationButton: =>
+    showHype = @props.beatmapset.can_be_hyped
+    requiredHype = @props.beatmapset.nominations.required_hype
+    hypeRaw = @props.currentDiscussions.totalHype
+    mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
+    mapIsQualified = @props.beatmapset.status == 'qualified'
+
+    return null unless showHype && (mapCanBeNominated || mapIsQualified) && @props.currentUser.id? && mapCanBeNominated && @userCanNominate()
+
+    nominationButton = (disabled = false) =>
+      el BigButton,
+        text: osu.trans 'beatmaps.nominations.nominate'
+        icon: 'fas fa-thumbs-up'
+        props:
+          disabled: disabled
+          onClick: @nominate
+
+    if @props.currentDiscussions.unresolvedIssues > 0
+      # wrapper 'cuz putting a title/tooltip on a disabled button is no worky...
+      div title: osu.trans('beatmaps.nominations.unresolved_issues'),
+        nominationButton true
+    else
+      nominationButton @props.beatmapset.nominations.nominated
+
+
+  discussionLockButton: =>
+    canModeratePost = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
+
+    return null unless canModeratePost
+
+    if @props.beatmapset.discussion_locked
+      action = 'unlock'
+      icon = 'fas fa-unlock'
+      onClick = @discussionUnlock
+    else
+      action = 'lock'
+      icon = 'fas fa-lock'
+      onClick = @discussionLock
+
+    el BigButton,
+      text: osu.trans "beatmaps.discussions.lock.button.#{action}"
+      icon: icon
+      props: { onClick }
+
+
+  loveButton: =>
+    return null unless @props.beatmapset.current_user_attributes?.can_love
+
+    el BigButton,
+      text: osu.trans 'beatmaps.nominations.love'
+      icon: 'fas fa-heart'
+      props:
+        onClick: @love
+
+
+  deleteButton: =>
+    return null unless @props.beatmapset.current_user_attributes?.can_delete
+
+    el BigButton,
+      text: osu.trans 'beatmaps.nominations.delete'
+      icon: 'fas fa-trash'
+      props:
+        onClick: @delete

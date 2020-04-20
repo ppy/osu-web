@@ -50,6 +50,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->make('translator')->setSelector(new OsuMessageSelector);
+
+        app('url')->forceScheme(substr(config('app.url'), 0, 5) === 'https' ? 'https' : 'http');
     }
 
     /**

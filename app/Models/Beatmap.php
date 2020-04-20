@@ -185,6 +185,26 @@ class Beatmap extends Model
         return $this->getScores(Score\Best::class, $mode);
     }
 
+    public function scoresBestOsu()
+    {
+        return $this->hasMany(Score\Best\Osu::class);
+    }
+
+    public function scoresBestTaiko()
+    {
+        return $this->hasMany(Score\Best\Taiko::class);
+    }
+
+    public function scoresBestFruits()
+    {
+        return $this->hasMany(Score\Best\Fruits::class);
+    }
+
+    public function scoresBestMania()
+    {
+        return $this->hasMany(Score\Best\Mania::class);
+    }
+
     public function isScoreable()
     {
         return $this->approved > 0;

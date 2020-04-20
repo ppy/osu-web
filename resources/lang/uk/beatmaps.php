@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Не вдається зберегти публікацію',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Не вдається оновити відповідь',

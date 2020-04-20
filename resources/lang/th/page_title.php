@@ -15,9 +15,11 @@ return [
     ],
     'error' => [
         'error' => [
+            '400' => '',
             '404' => '',
             '403' => '',
             '401' => '',
+            '401-verification' => '',
             '405' => '',
             '422' => '',
             '500' => '',
@@ -83,7 +85,7 @@ return [
             'get_download' => '',
             'index' => '',
             'search' => '',
-            'support_the_game' => '',
+            'support_the_game' => 'สนับสนุนเกมนี้',
             'testflight' => '',
         ],
         'legal_controller' => [
@@ -118,7 +120,7 @@ return [
             'disabled' => '',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'ฐานความรู้',
         ],
     ],
     'store' => [

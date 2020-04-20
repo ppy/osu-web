@@ -13,3 +13,21 @@ Link to <!-- m --><a href='http://example.com/path:1/hello&gt;world' rel='nofoll
 
 Relative test
 Link to <!-- m --><a href='http://localhost/path:1/hello' rel='nofollow'>path:1/hello</a><!-- m --> the domain part should be excluded.
+
+At start of a block tag
+[quote:1]<!-- m --><a href='https://example.com' rel='nofollow'>https://example.com</a><!-- m --> test[/quote:1]
+
+At end of a block tag
+[quote:1]Test: <!-- m --><a href='https://example.com' rel='nofollow'>https://example.com</a><!-- m -->[/quote:1]
+
+Alone in a block tag
+[quote:1]<!-- m --><a href='https://example.com' rel='nofollow'>https://example.com</a><!-- m -->[/quote:1]
+
+At start of an inline tag
+[b:1]<!-- m --><a href='https://example.com' rel='nofollow'>https://example.com</a><!-- m --> test[/b:1]
+
+At end of an inline tag
+[b:1]Test: <!-- m --><a href='https://example.com' rel='nofollow'>https://example.com</a><!-- m -->[/b:1]
+
+Alone in an inline tag
+[b:1]<!-- m --><a href='https://example.com' rel='nofollow'>https://example.com</a><!-- m -->[/b:1]

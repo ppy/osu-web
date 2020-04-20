@@ -52,6 +52,11 @@ export function urlSingular(item: Notification) {
     case 'forum_topic_reply':
       return route('forum.posts.show', { post: item.details.postId });
     case 'user_achievement_unlock':
-      return `${route('users.show', { user: item.details.userId })}#medals`;
+      const params = {
+        mode: item.details.achievementMode ?? undefined,
+        user: item.details.userId,
+      };
+
+      return `${route('users.show', params)}#medals`;
   }
 }

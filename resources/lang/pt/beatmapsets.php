@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Discussão',
 
@@ -23,7 +32,7 @@ return [
             'logged-out' => 'Precisas de iniciar sessão antes de transferir quaisquer beatmaps!',
             'mapped_by' => 'mapeado por :mapper',
             'unfavourite' => 'Desmarcar este beatmapset como favorito',
-            'updated_timeago' => 'última atualização :timeago',
+            'updated_timeago' => 'atualizado há :timeago',
 
             'download' => [
                 '_' => 'Descarregar',
@@ -39,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'aprovado há :timeago',
+            'loved' => 'adorado há :timeago',
+            'qualified' => 'qualificado há :timeago',
+            'ranked' => 'classificado há :timeago',
+            'submitted' => 'submetido há :timeago',
+            'updated' => 'atualizado há :timeago',
         ],
 
         'favourites' => [

@@ -20,7 +20,7 @@ return [
         ],
 
         'users' => [
-            'read' => '',
+            'read' => 'Lihat profil dari pengguna lain atas nama Anda.',
         ],
     ],
 ];

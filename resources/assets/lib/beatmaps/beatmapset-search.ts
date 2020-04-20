@@ -44,7 +44,7 @@ export class BeatmapsetSearch implements DispatchListener {
 
     const key = filters.toKeyString();
     const resultSet = this.getOrCreate(key);
-    const sufficient = (from > 0 && from < resultSet.beatmapsetIds.length) || (from === 0 && !resultSet.isExpired);
+    const sufficient = (from > 0 && from < resultSet.beatmapsetIds.size) || (from === 0 && !resultSet.isExpired);
     if (sufficient) {
       return Promise.resolve(resultSet);
     }

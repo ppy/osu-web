@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Laman Hilang',
             'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",

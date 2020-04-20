@@ -190,6 +190,7 @@ class AccountController extends Controller
         $user = Auth::user();
 
         $params = get_params(request(), 'user_profile_customization', [
+            'beatmapset_download:string',
             'comments_sort:string',
             'extras_order:string[]',
             'ranking_expanded:bool',

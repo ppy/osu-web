@@ -15,9 +15,11 @@ return [
     ],
     'error' => [
         'error' => [
+            '400' => '',
             '404' => 'chybějící',
             '403' => 'zakázano',
             '401' => 'neoprávněný',
+            '401-verification' => '',
             '405' => 'chybějící',
             '422' => '',
             '500' => '',

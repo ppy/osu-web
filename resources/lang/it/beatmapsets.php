@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Beatmap',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Discussione',
 
@@ -42,8 +51,8 @@ return [
             'approved' => 'approvata :timeago',
             'loved' => 'amata :timeago',
             'qualified' => 'qualificata :timeago',
-            'ranked' => 'classificata :timeago',
-            'submitted' => 'caricata :timeago',
+            'ranked' => 'rankata :timeago',
+            'submitted' => 'inviata :timeago',
             'updated' => 'ultimo aggiornamento :timeago',
         ],
 

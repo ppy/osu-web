@@ -28,7 +28,14 @@ return [
         'id' => 'クライアントID',
         'name' => 'アプリケーション名',
         'redirect' => 'アプリケーションコールバックURL',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'Client Secret',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '本当にこのクライアントを削除しますか？',
+        'confirm_reset' => '',
         'new' => '新しいOAuthアプリケーション',
         'none' => 'クライアントがありません',
 

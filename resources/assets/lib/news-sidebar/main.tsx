@@ -3,11 +3,18 @@
 
 import NewsPostJson from 'interfaces/news-post-json';
 import NewsSidebarMetaJson from 'interfaces/news-sidebar-meta-json';
-import { groupBy, rangeRight } from 'lodash';
 import * as moment from 'moment';
 import * as React from 'react';
 import MonthListing from './month-listing';
 import Years from './years';
+
+interface GroupedPosts {
+  [date: string]: NewsPostJson[];
+}
+
+interface DateMap {
+  [date: string]: moment.Moment;
+}
 
 interface Props {
   currentPost?: NewsPostJson;
@@ -15,8 +22,21 @@ interface Props {
 }
 
 export default function Main(props: Props) {
-  const byMonth = groupBy(props.data.news_posts, (post) => moment.utc(post.published_at).month());
+  const groupedPosts: GroupedPosts = {};
+  const dateMap: DateMap = {};
+  const postDates = new Set<string>();
 
+  for (const post of props.data.news_posts) {
+    const publishedAt = moment.utc(post.published_at);
+    const key = publishedAt.format('YYYY-MM');
+
+    (groupedPosts[key] = groupedPosts[key] ?? []).push(post);
+    dateMap[key] = publishedAt;
+    postDates.add(key);
+  }
+
+  const orderedPostDates = [...postDates];
+  orderedPostDates.sort().reverse();
   let first = true;
 
   return (
@@ -38,21 +58,21 @@ export default function Main(props: Props) {
       <div className='sidebar__content hidden-xs js-mobile-toggle' data-mobile-toggle-id='news-archive'>
         <Years years={props.data.years} currentYear={props.data.current_year} />
 
-        {rangeRight(0, 12).map((month) => {
-          if (byMonth[month] == null) {
+        {orderedPostDates.map((key) => {
+          if (groupedPosts[key] == null || dateMap[key] == null) {
             return;
           }
 
+          const date = dateMap[key];
           const initialExpand = first;
           first = false;
 
           return <MonthListing
-            year={props.data.current_year}
-            initialExpand={initialExpand}
-            key={month}
-            month={month}
-            posts={byMonth[month]}
             currentPost={props.currentPost}
+            date={date}
+            initialExpand={initialExpand}
+            key={key}
+            posts={groupedPosts[key]}
           />;
         })}
       </div>
