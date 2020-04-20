@@ -136,14 +136,14 @@ export default class Event extends React.PureComponent<Props> {
       ...this.props.event.comment,
     };
 
-    const key = this.props.event.type === 'disqualify' && this.discussionId == null ? 'disqualify_legacy' : this.props.event.type;
+    const eventType = this.props.event.type === 'disqualify' && this.discussion == null ? 'disqualify_legacy' : this.props.event.type;
+    const key = `beatmapset_events.event.${eventType}`;
 
-    let message = osu.trans(`beatmapset_events.event.${key}`, params);
+    let message = osu.trans(key, params);
 
     // append owner of the event if not already included in main message
-    if (user != null
-      && !(this.props.event.type in ['disqualify', 'kudosu_gain', 'kudosu_lost', 'nominate'])
-    ) {
+    // naive check; we don't use anything other than :user
+    if (user != null && !osu.trans(key).includes(':user')) {
       message += ` (${user})`;
     }
 
