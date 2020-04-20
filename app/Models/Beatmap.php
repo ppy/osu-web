@@ -45,6 +45,8 @@ class Beatmap extends Model
 {
     use SoftDeletes;
 
+    public $convert = false;
+
     protected $table = 'osu_beatmaps';
     protected $primaryKey = 'beatmap_id';
 
