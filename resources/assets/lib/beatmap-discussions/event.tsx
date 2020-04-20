@@ -1,16 +1,17 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import { Dictionary, kebabCase } from 'lodash';
-import { BeatmapsetEvent, contentText } from 'modding-helpers';
+import { contentText } from 'modding-helpers';
 import * as moment from 'moment';
 import * as React from 'react';
 
 interface Props {
   discussions?: Dictionary<BeatmapDiscussion>;
-  event: BeatmapsetEvent;
+  event: BeatmapsetEventJson;
   mode: 'discussions' | 'profile';
   time?: moment.Moment;
   users: Dictionary<UserJSON>;

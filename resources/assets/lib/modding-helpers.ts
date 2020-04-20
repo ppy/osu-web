@@ -1,22 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
+import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import { route } from 'laroute';
 import { Dictionary } from 'lodash';
 
-export interface BeatmapsetEvent {
-  beatmapset?: BeatmapsetJSON;
-  comment: any;
-  created_at: string;
-  discussion?: BeatmapDiscussion;
-  id: number;
-  starting_post?: string; //  used when looking at user modding profile.
-  type: string;
-  user_id?: number;
-}
-
-export function contentText(event: BeatmapsetEvent, users: any, discussionId?: number, discussions?: Dictionary<BeatmapDiscussion>) {
+export function contentText(event: BeatmapsetEventJson, users: any, discussionId?: number, discussions?: Dictionary<BeatmapDiscussion>) {
   let discussionLink = '';
   let text = '';
   let user = '';
