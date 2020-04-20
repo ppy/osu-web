@@ -5,7 +5,6 @@ import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import { Dictionary, kebabCase } from 'lodash';
-import { contentText } from 'modding-helpers';
 import * as moment from 'moment';
 import * as React from 'react';
 
@@ -18,9 +17,28 @@ interface Props {
 }
 
 export default class Event extends React.PureComponent<Props> {
-  static defaultProps = {
+  static readonly defaultProps = {
     mode: 'discussions',
   };
+
+  private get beatmapsetId(): number | undefined {
+    return this.props.event.beatmapset?.id;
+  }
+
+  private get discussionId(): number | undefined {
+    return this.props.event.comment?.beatmap_discussion_id;
+  }
+
+  private get discussion() {
+    const discussion = this.props.event.discussion ?? this.props.discussions?.[this.discussionId ?? ''];
+
+    // TODO: transformer should return null instead of [] when no permission
+    return Array.isArray(discussion) ? undefined : discussion;
+  }
+
+  private get firstPost() {
+    return this.discussion?.starting_post ?? this.discussion?.posts?.[0];
+  }
 
   render() {
     return this.props.mode === 'discussions'
@@ -44,7 +62,7 @@ export default class Event extends React.PureComponent<Props> {
         <div
           className={'beatmapset-event__content'}
           dangerouslySetInnerHTML={{
-            __html: contentText(this.props.event, this.props.users, this.props.event.comment?.beatmap_discussion_id, this.props.discussions),
+            __html: this.contentText(),
           }}
         />
       </div>
@@ -53,10 +71,9 @@ export default class Event extends React.PureComponent<Props> {
 
   renderProfileVersion() {
     const cover = this.props.event.beatmapset?.covers?.list;
-    const discussionId = this.props.event.comment?.beatmap_discussion_id;
-    let discussionLink = route('beatmapsets.discussion', { beatmapset: this.props.event.beatmapset?.id });
-    if (discussionId != null) {
-      discussionLink = `${discussionLink}#/${discussionId}`;
+    let discussionLink = route('beatmapsets.discussion', { beatmapset: this.beatmapsetId });
+    if (this.discussionId != null) {
+      discussionLink = `${discussionLink}#/${this.discussionId}`;
     }
 
     return (
@@ -71,7 +88,7 @@ export default class Event extends React.PureComponent<Props> {
           <div
             className='beatmapset-event__content'
             dangerouslySetInnerHTML={{
-              __html: contentText(this.props.event, this.props.users, discussionId),
+              __html: this.contentText(),
             }}
           />
           <div
@@ -81,5 +98,55 @@ export default class Event extends React.PureComponent<Props> {
         </div>
       </div>
     );
+  }
+
+  private contentText() {
+    let discussionLink = '';
+    let text = '';
+    let url = '';
+    let user = '';
+
+    if (this.discussionId != null) {
+      if (this.discussion != null) {
+        const message = this.firstPost?.message;
+        url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
+        text = message != null ? BeatmapDiscussionHelper.previewMessage(message) : '[no preview]';
+      } else {
+        url = route('beatmap-discussions.show', { beatmap_discussion: this.discussionId });
+        text = osu.trans('beatmapset_events.item.discussion_deleted');
+      }
+
+      discussionLink = osu.link(url, `#${this.discussionId}`, { classNames: ['js-beatmap-discussion--jump'] });
+    } else {
+      text = BeatmapDiscussionHelper.format(this.props.event.comment, { newlines: false });
+    }
+
+    if (this.props.event.type === 'discussion_lock') {
+      text = BeatmapDiscussionHelper.format(this.props.event.comment.reason, { newlines: false });
+    }
+
+    if (this.props.event.user_id != null) {
+      user = osu.link(route('users.show', { user: this.props.event.user_id }), this.props.users[this.props.event.user_id]?.username);
+    }
+
+    const params = {
+      discussion: discussionLink,
+      text,
+      user,
+      ...this.props.event.comment,
+    };
+
+    const key = this.props.event.type === 'disqualify' && this.discussionId == null ? 'disqualify_legacy' : this.props.event.type;
+
+    let message = osu.trans(`beatmapset_events.event.${key}`, params);
+
+    // append owner of the event if not already included in main message
+    if (user != null
+      && !(this.props.event.type in ['disqualify', 'kudosu_gain', 'kudosu_lost', 'nominate'])
+    ) {
+      message += ` (${user})`;
+    }
+
+    return message;
   }
 }

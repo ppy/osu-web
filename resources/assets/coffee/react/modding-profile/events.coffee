@@ -2,7 +2,6 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import Event from 'beatmap-discussions/event'
-import { contentText } from 'modding-helpers'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
 el = React.createElement
