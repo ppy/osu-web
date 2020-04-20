@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import EventDetailed from 'beatmap-discussions/event-detailed'
+import Event from 'beatmap-discussions/event'
 import { contentText } from 'modding-helpers'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
@@ -22,8 +22,9 @@ export class Events extends React.Component
                   continue
 
                 div className: 'beatmapset-events__event', key: event.id,
-                  el EventDetailed,
+                  el Event,
                     event: event
+                    mode: 'profile'
                     users: @props.users
 
               a

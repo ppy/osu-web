@@ -5,7 +5,7 @@ import UserJSON from 'interfaces/user-json';
 import { Dictionary } from 'lodash';
 import { BeatmapsetEvent } from 'modding-helpers';
 import * as React from 'react';
-import EventDetailed from './event';
+import Event from './event';
 
 interface Props {
   discussions: Dictionary<BeatmapDiscussion>;
@@ -15,6 +15,6 @@ interface Props {
 
 export default class Events extends React.PureComponent<Props> {
   render() {
-    return this.props.events.map((event) => <EventDetailed discussions={this.props.discussions} event={event} key={event.id} users={this.props.users} />);
+    return this.props.events.map((event) => <Event discussions={this.props.discussions} event={event} key={event.id} mode='profile' users={this.props.users} />);
   }
 }
