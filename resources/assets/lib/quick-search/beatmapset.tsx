@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import { Img2x } from 'img2x';
 import { route } from 'laroute';
 import * as React from 'react';
 
-export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset: BeatmapsetJSON, modifiers?: string[] }) {
+export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset: BeatmapsetJson, modifiers?: string[] }) {
   const url = route('beatmapsets.show', { beatmapset: beatmapset.id });
 
   return (

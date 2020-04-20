@@ -6,104 +6,39 @@
 namespace App\Transformers;
 
 use App\Models\Beatmap;
-use App\Models\BeatmapFailtimes;
 
-class BeatmapTransformer extends TransformerAbstract
+class BeatmapTransformer extends BeatmapCompactTransformer
 {
-    protected $availableIncludes = [
-        'scoresBest',
-        'failtimes',
-        'beatmapset',
-        'max_combo',
-    ];
-
+    protected $beatmapsetTransformer = BeatmapsetTransformer::class;
     protected $requiredPermission = 'BeatmapShow';
 
     public function transform(Beatmap $beatmap)
     {
-        return [
-            'id' => $beatmap->beatmap_id,
-            'beatmapset_id' => $beatmap->beatmapset_id,
-            'mode' => $beatmap->mode,
-            'mode_int' => $beatmap->playmode,
-            'convert' => $beatmap->convert,
-            'difficulty_rating' => $beatmap->difficultyrating,
-            'version' => $beatmap->version,
-            'total_length' => $beatmap->total_length,
-            'hit_length' => $beatmap->hit_length,
-            'bpm' => $beatmap->bpm,
-            'cs' => $beatmap->diff_size,
-            'drain' => $beatmap->diff_drain,
+        $result = parent::transform($beatmap);
+
+        return array_merge($result, [
             'accuracy' => $beatmap->diff_overall,
             'ar' => $beatmap->diff_approach,
-            'playcount' => $beatmap->playcount,
-            'passcount' => $beatmap->passcount,
+            'beatmapset_id' => $beatmap->beatmapset_id,
+            'bpm' => $beatmap->bpm,
+            'convert' => $beatmap->convert,
             'count_circles' => $beatmap->countNormal,
             'count_sliders' => $beatmap->countSlider,
             'count_spinners' => $beatmap->countSpinner,
             'count_total' => $beatmap->countTotal,
+            'cs' => $beatmap->diff_size,
+            'deleted_at' => $beatmap->deleted_at,
+            'drain' => $beatmap->diff_drain,
+            'hit_length' => $beatmap->hit_length,
             'is_scoreable' => $beatmap->isScoreable(),
             'last_updated' => json_time($beatmap->last_update),
+            'mode_int' => $beatmap->playmode,
+            'passcount' => $beatmap->passcount,
+            'playcount' => $beatmap->playcount,
             'ranked' => $beatmap->approved,
             'status' => $beatmap->status(),
+            'total_length' => $beatmap->total_length,
             'url' => route('beatmaps.show', ['beatmap' => $beatmap->beatmap_id]),
-            'deleted_at' => $beatmap->deleted_at,
-        ];
-    }
-
-    public function includeScoresBest(Beatmap $beatmap)
-    {
-        $scores = $beatmap
-            ->scoresBest()
-            ->default()
-            ->visibleUsers()
-            ->limit(config('osu.beatmaps.max-scores'))
-            ->get();
-
-        return $this->collection($scores, new ScoreTransformer);
-    }
-
-    public function includeFailtimes(Beatmap $beatmap)
-    {
-        $failtimes = $beatmap->failtimes;
-
-        // adding a set of empty failtimes, so that the chart transitions
-        // to 0 when a map has no failtimes (for now non-standard modes)
-        if ($failtimes->isEmpty() || $beatmap->convert) {
-            $failtimes = [
-                new BeatmapFailtimes(['type' => 'fail']),
-                new BeatmapFailtimes(['type' => 'exit']),
-            ];
-        }
-
-        $result = [];
-
-        foreach ($failtimes as $failtime) {
-            $result[$failtime->type] = $failtime->data;
-        }
-
-        return $this->item($result, function ($result) {
-            return $result;
-        });
-    }
-
-    public function includeBeatmapset(Beatmap $beatmap)
-    {
-        $beatmapset = $beatmap->beatmapset;
-
-        return $beatmapset === null
-            ? $this->primitive(null)
-            : $this->primitive($beatmap->beatmapset, new BeatmapsetTransformer);
-    }
-
-    public function includeMaxCombo(Beatmap $beatmap)
-    {
-        $maxCombo = $beatmap->difficultyAttribs()
-            ->mode($beatmap->playmode)
-            ->noMods()
-            ->maxCombo()
-            ->first();
-
-        return $this->primitive(optional($maxCombo)->value);
+        ]);
     }
 }

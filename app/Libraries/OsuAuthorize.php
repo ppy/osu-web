@@ -30,6 +30,7 @@ class OsuAuthorize
     const ALWAYS_CHECK = [
         'IsOwnClient',
         'IsNotOAuth',
+        'IsSpecialScope',
     ];
 
     /** @var AuthorizationResult[] */
@@ -1474,6 +1475,21 @@ class OsuAuthorize
     public function checkIsNotOAuth(?User $user): string
     {
         if (optional($user)->token() === null) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
+    // Allow non-OAuth requests or OAuth requests with * scope.
+    public function checkIsSpecialScope(?User $user): string
+    {
+        if ($user === null) {
+            return 'unauthorzied';
+        }
+
+        $token = $user->token();
+        if ($token === null || $token->can('*')) {
             return 'ok';
         }
 
