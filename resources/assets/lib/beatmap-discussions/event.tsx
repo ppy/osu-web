@@ -30,10 +30,7 @@ export default class Event extends React.PureComponent<Props> {
   }
 
   private get discussion() {
-    const discussion = this.props.event.discussion ?? this.props.discussions?.[this.discussionId ?? ''];
-
-    // TODO: transformer should return null instead of [] when no permission
-    return Array.isArray(discussion) ? undefined : discussion;
+    return this.props.event.discussion ?? this.props.discussions?.[this.discussionId ?? ''];
   }
 
   private get firstPost() {
