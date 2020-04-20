@@ -60,8 +60,8 @@ interface JQueryStatic {
 interface OsuCommon {
   ajaxError: (xhr: JQueryXHR) => void;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
-  groupColour: (group?: GroupJSON) => React.CSSProperties;
   diffColour: (difficultyRating?: string | null) => React.CSSProperties;
+  groupColour: (group?: GroupJSON) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
   link: (url: string, text: string, options?: { classNames?: string[]; isRemote?: boolean }) => string;
