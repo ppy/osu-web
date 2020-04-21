@@ -75,8 +75,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentNotifications + 1, Notification::count());
         $this->assertSame($currentUserNotifications + 1, UserNotification::count());
 
-        Event::assertDispatched(NewNotificationEvent::class);
-        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+        Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
 
     public function testPostStoreNewDiscussionInactiveBeatmapset()
