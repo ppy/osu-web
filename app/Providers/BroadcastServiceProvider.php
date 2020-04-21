@@ -20,13 +20,5 @@ class BroadcastServiceProvider extends ServiceProvider
                 $this->app['config']->get('database.redis.options.prefix', '')
             );
         });
-
-        Broadcast::routes();
-        /*
-         * Authenticate the user's personal channel...
-         */
-        Broadcast::channel('App.User.*', function ($user, $userId) {
-            return (int) $user->id === (int) $userId;
-        });
     }
 }
