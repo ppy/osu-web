@@ -115,35 +115,6 @@ interface BeatmapFailTimesArray {
 }
 
 // TODO: incomplete
-interface Beatmap {
-  accuracy: number;
-  ar: number;
-  beatmapset_id: number;
-  convert: boolean | null;
-  count_circles: number;
-  count_sliders: number;
-  count_spinners: number;
-  count_total: number;
-  cs: number;
-  deleted_at: string | null;
-  difficulty_rating: number;
-  drain: number;
-  failtimes?: BeatmapFailTimesArray;
-  hit_length: number;
-  id: number;
-  last_updated: string;
-  mode: string;
-  mode_int: number;
-  passcount: number;
-  playcount: number;
-  ranked: number;
-  status: string;
-  total_length: number;
-  url: string;
-  version: string;
-}
-
-// TODO: incomplete
 interface BeatmapDiscussion {
   beatmap_id: number | null;
   beatmapset_id: number;
