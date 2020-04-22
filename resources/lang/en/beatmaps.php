@@ -60,6 +60,7 @@ return [
         'message_placeholder' => [
             'general' => 'Type here to post to General (:version)',
             'generalAll' => 'Type here to post to General (All difficulties)',
+            'review' => 'Type here to post a review',
             'timeline' => 'Type here to post to Timeline (:version)',
         ],
 

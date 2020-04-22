@@ -14,7 +14,7 @@ import { EditorToolbar } from './editor-toolbar';
 import { parseFromMarkdown } from './review-document';
 import { SlateContext } from './slate-context';
 
-const placeholder: string = '[{"children": [{"text": "placeholder"}], "type": "paragraph"}]';
+const placeholder: string = '[{"children": [{"text": ""}], "type": "paragraph"}]';
 let initialValue: string = placeholder;
 
 interface TimestampRange extends Range {
@@ -56,15 +56,10 @@ export default class Editor extends React.Component<Props, any> {
       return;
     }
 
-    const savedValue = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
-    if (savedValue) {
-      initialValue = savedValue;
-    }
-
     try {
-      initialValue = JSON.parse(initialValue);
+      initialValue = JSON.parse(localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`) || placeholder);
     } catch (error) {
-      console.log('invalid json in localstorage, resetting');
+      console.log('invalid json in localStorage, ignoring');
       initialValue = JSON.parse(placeholder);
     }
 
@@ -208,6 +203,7 @@ export default class Editor extends React.Component<Props, any> {
                   onKeyDown={this.onKeyDown}
                   renderElement={this.renderElement}
                   renderLeaf={this.renderLeaf}
+                  placeholder={osu.trans('beatmaps.discussions.message_placeholder.review')}
                 />
               </div>
               { !this.props.editMode &&
