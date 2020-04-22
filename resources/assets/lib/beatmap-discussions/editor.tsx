@@ -41,9 +41,6 @@ interface CacheInterface {
 export default class Editor extends React.Component<Props, any> {
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
-  editor = React.createRef<HTMLDivElement>();
-  menu = React.createRef<HTMLDivElement>();
-  menuBody = React.createRef<HTMLDivElement>();
   slateEditor: ReactEditor;
 
   constructor(props: Props) {
@@ -53,8 +50,6 @@ export default class Editor extends React.Component<Props, any> {
 
     if (props.editMode) {
       this.state = {
-        menuOffset: -1000,
-        menuShown: false,
         value: [],
       };
 
@@ -74,8 +69,6 @@ export default class Editor extends React.Component<Props, any> {
     }
 
     this.state = {
-      menuOffset: -1000,
-      menuShown: false,
       value: initialValue,
     };
   }
@@ -138,14 +131,6 @@ export default class Editor extends React.Component<Props, any> {
     );
   }
 
-  hideMenu = () => {
-    if (!this.menuBody.current) {
-      return;
-    }
-
-    this.setState({menuShown: false});
-  }
-
   insertEmbed = (event: React.MouseEvent<HTMLElement>) => {
     const type = event.currentTarget.dataset.dtype;
     const beatmapId = this.props.currentBeatmap ? this.props.currentBeatmap.id : this.props.beatmaps[this.props.beatmapset.beatmaps[0].id];
@@ -169,8 +154,6 @@ export default class Editor extends React.Component<Props, any> {
       at,
     });
   }
-
-  log = () => console.dir(this.state.value);
 
   onChange = (value: SlateNode[]) => {
     if (!this.props.editMode) {
@@ -208,7 +191,7 @@ export default class Editor extends React.Component<Props, any> {
     const modifiers = this.props.editMode ? ['edit-mode'] : undefined;
 
     return (
-      <div ref={this.editor} className={osu.classWithModifiers(editorClass, modifiers)}>
+      <div className={osu.classWithModifiers(editorClass, modifiers)}>
         <div className={`${editorClass}__content`}>
           <SlateContext.Provider
             value={this.slateEditor}
@@ -368,13 +351,6 @@ export default class Editor extends React.Component<Props, any> {
     return JSON.stringify(review);
   }
 
-  showMenu = () => {
-    if (!this.menuBody.current) {
-      return;
-    }
-    this.setState({menuShown: true});
-  }
-
   sortedBeatmaps = () => {
     if (this.cache.beatmaps) {
       return this.cache.beatmaps;
@@ -383,8 +359,6 @@ export default class Editor extends React.Component<Props, any> {
 
     return this.cache.beatmaps;
   }
-
-  test = () => console.dir(JSON.parse(this.serialize()));
 
   toggleBold = () => {
     this.toggleMark('bold');
