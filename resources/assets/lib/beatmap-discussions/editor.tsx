@@ -274,11 +274,13 @@ export default class Editor extends React.Component<Props, any> {
   resetInput = (event?: React.MouseEvent) => {
     if (event) {
       event.preventDefault();
+
+      if (!confirm(osu.trans('common.confirmation'))) {
+        return;
+      }
     }
 
-    this.setState({
-      value: JSON.parse(placeholder),
-    });
+    this.onChange(JSON.parse(placeholder));
   }
 
   serialize = (): string => {
