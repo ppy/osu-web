@@ -7,7 +7,6 @@ namespace App\Providers;
 
 use App\Libraries\RedisBroadcaster;
 use Illuminate\Broadcasting\BroadcastManager;
-use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\ServiceProvider;
 
 class BroadcastServiceProvider extends ServiceProvider

@@ -5,7 +5,6 @@
 
 namespace Tests\Controllers;
 
-use App\Events\NewNotificationEvent;
 use App\Events\NewPrivateNotificationEvent;
 use App\Jobs\BroadcastNotification;
 use App\Models\Beatmap;
@@ -59,7 +58,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentNotifications, Notification::count());
         $this->assertSame($currentUserNotifications, UserNotification::count());
 
-        Event::assertNotDispatched(NewNotificationEvent::class);
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
 
         $this->user->statisticsOsu->update(['playcount' => $this->minPlays]);
