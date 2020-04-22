@@ -37,8 +37,8 @@ export class Nominations extends React.PureComponent
         div className: "#{bn}__item", @nominationBar()
         div className: "#{bn}__item", @disqualificationMessage()
         div className: "#{bn}__item", @nominationResetMessage()
-        div className: "#{bn}__item #{bn}__item--nominators", @nominatorsList()
         div className: "#{bn}__item", @discussionLockMessage()
+        div className: "#{bn}__item #{bn}__item--nominators", @nominatorsList()
       div className: "#{bn}__items #{bn}__items--buttons",
         div className: "#{bn}__item", @feedbackButton()
         div className: "#{bn}__item", @hypeButton()
@@ -328,9 +328,7 @@ export class Nominations extends React.PureComponent
 
 
   nominatorsList: =>
-    showHype = @props.beatmapset.can_be_hyped
-
-    return null unless showHype
+    return null unless @props.beatmapset.status in ['wip', 'pending', 'ranked', 'qualified']
 
     nominators = []
     for event in @props.events by -1

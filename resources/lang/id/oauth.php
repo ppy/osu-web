@@ -28,7 +28,14 @@ return [
         'id' => 'ID Klien',
         'name' => 'Nama Aplikasi',
         'redirect' => 'Application Callback URL',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'Client Secret',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Apakah anda yakin untuk menghapus klien ini?',
+        'confirm_reset' => '',
         'new' => 'Buat aplikasi OAuth baru',
         'none' => 'Tidak ada klien',
 

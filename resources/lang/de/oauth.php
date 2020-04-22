@@ -28,7 +28,14 @@ return [
         'id' => 'Client-ID',
         'name' => 'Anwendungsname',
         'redirect' => 'Anwendungs-Callback-URL',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'Client Secret',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Bist du sicher, dass du dieses Gerät löschen willst?',
+        'confirm_reset' => '',
         'new' => 'Neue OAuth-Anwendung',
         'none' => 'Keine Geräte',
 

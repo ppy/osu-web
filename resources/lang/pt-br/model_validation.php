@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => ':attribute especificado é invalido.',
     'not_negative' => ':attribute não pode ser negativo.',
     'required' => ':attribute é necessário.',
     'too_long' => ':attribute ultrapassou tamanho máximo - deve ser até :limit caracteres.',
@@ -33,7 +33,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Esse beatmap está bloqueado para discussão e não pode ser hypado",
             'guest' => 'Precisa estar conectado para hypar.',
             'hyped' => 'Você já hypou este beatmap.',
             'limit_exceeded' => 'Você usou todo seu hype.',
@@ -124,7 +124,7 @@ return [
         'invalid_country' => 'País não presente no banco de dados.',
         'invalid_discord' => 'Nome de usuário do Discord inválido.',
         'invalid_email' => "Não parece ser um email válido.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Nome de usuário do Twitter inválido.',
         'too_short' => 'Nova senha curta demais.',
         'unknown_duplicate' => 'Nome de usuário ou email já utilizado.',
         'username_available_in' => 'Este nome de usuário estará disponível em :duration.',

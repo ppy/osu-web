@@ -28,7 +28,14 @@ return [
         'id' => 'Client-ID',
         'name' => 'Applicatienaam',
         'redirect' => 'Applicatie Terugbel URL',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'Client Secret',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Weet je zeker dat je deze reactie wilt verwijderen?',
+        'confirm_reset' => '',
         'new' => 'Nieuwe OAuth applicatie',
         'none' => 'Geen clients',
 

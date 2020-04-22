@@ -65,7 +65,7 @@ return [
 
         'message_type' => [
             'disqualify' => 'Desqualificar',
-            'hype' => 'Hype!',
+            'hype' => 'Prioridade',
             'mapper_note' => 'Nota',
             'nomination_reset' => 'Reiniciar nomeação',
             'praise' => 'Glorificar',
@@ -139,9 +139,9 @@ return [
         'confirm' => "Tens a certeza? Isto usará um dos teus :n hypes restantes e não pode ser desfeito.",
         'explanation' => 'Dá hype neste beatmap para torná-lo mais visível para a nomeação e classificação!',
         'explanation_guest' => 'Regista-te e dá hype neste beatmap para torná-lo mais visível para a nomeação e classificação!',
-        'new_time' => "Vais ter outro hype :new_time.",
-        'remaining' => 'Tens :remaining hypes restantes.',
-        'required_text' => 'Hype: :current/:required',
+        'new_time' => "O próximo beatmap estará disponível em :new_time.",
+        'remaining' => 'Tens :remaining publicações restantes.',
+        'required_text' => 'Prioridade: :current/:required',
         'section_title' => 'Comboio do hype',
         'title' => 'Hype',
     ],

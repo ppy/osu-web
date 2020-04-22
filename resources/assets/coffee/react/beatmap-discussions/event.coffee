@@ -64,7 +64,7 @@ export class Event extends React.PureComponent
       user: user
 
     # append owner of the event if not already included in main message
-    if user? && @props.event.type not in ['disqualify', 'kudosu_gain', 'kudosu_lost', 'nominate']
+    if user? && @props.event.type not in ['disqualify', 'kudosu_gain', 'kudosu_lost', 'love', 'nominate']
       message += " (#{user})"
 
     message

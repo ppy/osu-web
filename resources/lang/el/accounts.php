@@ -66,6 +66,17 @@ return [
         'title' => 'OAuth',
     ],
 
+    'options' => [
+        'title' => '',
+
+        'beatmapset_download' => [
+            '_' => '',
+            'all' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => 'πληκτρολόγιο',
         'mouse' => 'ποντίκι',

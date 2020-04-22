@@ -304,6 +304,7 @@ class BroadcastNotification implements ShouldQueue
         $this->source = new User;
         $this->params['details'] = [
             'achievement_id' => $achievement->getKey(),
+            'achievement_mode' => $achievement->mode,
             'cover_url' => $achievement->iconUrl(),
             'slug' => $achievement->slug,
             'title' => $achievement->name,

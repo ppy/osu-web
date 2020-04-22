@@ -5,128 +5,130 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '405' => '',
-            '422' => '',
-            '500' => '',
-            '503' => '',
+            '400' => '',
+            '404' => 'não encontrado',
+            '403' => 'proibido',
+            '401' => 'não autorizado',
+            '401-verification' => '',
+            '405' => 'não encontrado',
+            '422' => 'solicitação inválida',
+            '500' => 'algo quebrou',
+            '503' => 'manutenção',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'fórum',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'painel de controle',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'painel de controle',
+            'verify_link' => 'verificação de conta',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'artistas em destaque',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'votos de discussão do beatmap',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'discussões de beatmaps',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'pacotes de beatmaps',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'votos de discussão do beatmap',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'histórico do beatmap',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'painel de controle',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'discussão do beatmap',
+            'index' => 'lista de beatmaps',
+            'show' => 'informação do beatmap',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'registro de alterações',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'chat',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'comentários',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'concursos',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'painel de controle',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'grupos',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'baixar',
+            'index' => 'painel de controle',
+            'search' => 'pesquisar',
+            'support_the_game' => 'apoie o jogo',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'informação',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'transmissões ao vivo',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'partidas',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'notícias',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'histórico de notificações',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'redefinição de senha',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'ranking',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'torneios',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'informações do jogador',
+            'disabled' => 'aviso',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'base de conhecimento',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'informação do modder',
         ],
     ],
 ];

@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Pagina lipsește',
             'description' => "Ne pare rău, dar pagina solicitată nu este aici!",

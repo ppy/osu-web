@@ -28,7 +28,14 @@ return [
         'id' => 'ID klienta',
         'name' => '',
         'redirect' => '',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'Tajný klíč klienta',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '',
+        'confirm_reset' => '',
         'new' => '',
         'none' => '',
 

@@ -3,7 +3,7 @@
 
 import { Events } from './events'
 import { ExtraTab } from '../profile-page/extra-tab'
-import { Discussions} from './discussions'
+import { Discussions } from './discussions'
 import { Header } from './header'
 import { Kudosu } from '../profile-page/kudosu'
 import { Votes } from './votes'
@@ -13,7 +13,7 @@ import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
 import { Posts } from "./posts"
 import * as React from 'react'
-import { a, button, div, i, span} from 'react-dom-factories'
+import { a, button, div, i, span } from 'react-dom-factories'
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")

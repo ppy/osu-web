@@ -28,7 +28,14 @@ return [
         'id' => '클라이언트 ID',
         'name' => '애플리케이션 이름',
         'redirect' => '애플리케이션 Callback URL',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => '클라이언트 비밀 키',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '정말로 이 클라이언트를 삭제하시겠어요?',
+        'confirm_reset' => '',
         'new' => '새 OAuth 애플리케이션',
         'none' => '클라이언트 없음',
 

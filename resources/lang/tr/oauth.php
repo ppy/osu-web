@@ -28,7 +28,14 @@ return [
         'id' => 'İstemci ID',
         'name' => 'Uygulama Adı',
         'redirect' => 'Uygulama Geri Çağırma URL\'si',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'İstemci Anahtarı',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Bu istemciyi silmek istediğinize emin misiniz?',
+        'confirm_reset' => '',
         'new' => 'Yeni OAuth uygulaması',
         'none' => 'İstemci yok',
 
