@@ -48,10 +48,10 @@ export class BeatmapsetMapping extends React.PureComponent
         pattern: osu.trans "beatmapsets.show.details_date.#{key}"
         mappings:
           ':timeago':
-            strong null,
+            strong
+              key: 'timeago'
               el TimeWithTooltip,
                 dateTime: @props.beatmapset[attribute]
-                key: 'timeago'
                 relative: Math.abs(moment().diff(moment(@props.beatmapset[attribute]), 'weeks')) < 4
 
 
