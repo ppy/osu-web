@@ -36,7 +36,7 @@ class FollowsController extends Controller
             }
         }
 
-        event(new UserSubscriptionChangeEvent('add', auth()->user(), $follow));
+        // event(new UserSubscriptionChangeEvent('add', auth()->user(), $follow));
 
         return response([], 204);
     }
@@ -48,7 +48,7 @@ class FollowsController extends Controller
 
         if ($follow !== null) {
             $follow->delete();
-            event(new UserSubscriptionChangeEvent('remove', auth()->user(), $follow));
+            // event(new UserSubscriptionChangeEvent('remove', auth()->user(), $follow));
         }
 
         return response([], 204);

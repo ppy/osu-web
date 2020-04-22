@@ -38,4 +38,9 @@ class NewPrivateNotificationEvent extends NewNotificationEvent
             return new Channel("private:user:{$userId}");
         }, $this->receiverIds);
     }
+
+    public function getReceiverIds()
+    {
+        return $this->receiverIds;
+    }
 }
