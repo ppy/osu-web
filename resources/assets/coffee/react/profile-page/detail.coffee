@@ -46,7 +46,7 @@ export class Detail extends React.PureComponent
           div className: "#{bn}__col #{bn}__col--bottom-left",
             if @props.stats.is_ranked
               el RankChart,
-                rankHistory: @props.rankHistory
+                rankHistory: @props.user.rankHistory
                 stats: @props.stats
             else
               div className: "#{bn}__empty-chart",

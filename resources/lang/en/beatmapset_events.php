@@ -21,7 +21,7 @@ return [
         'kudosu_gain' => 'Discussion :discussion by :user obtained enough votes for kudosu.',
         'kudosu_lost' => 'Discussion :discussion by :user lost votes and granted kudosu has been removed.',
         'kudosu_recalculate' => 'Discussion :discussion has had its kudosu grants recalculated.',
-        'love' => 'Loved by :user',
+        'love' => 'Loved by :user.',
         'nominate' => 'Nominated by :user.',
         'nomination_reset' => 'New problem :discussion (:text) triggered a nomination reset.',
         'qualify' => 'This beatmap has reached the required number of nominations and has been qualified.',

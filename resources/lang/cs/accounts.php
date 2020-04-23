@@ -62,8 +62,19 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'autorizovaní klienti',
-        'own_clients' => '',
+        'own_clients' => 'vlastní klienti',
         'title' => 'OAuth',
+    ],
+
+    'options' => [
+        'title' => '',
+
+        'beatmapset_download' => [
+            '_' => '',
+            'all' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
     ],
 
     'playstyles' => [

@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => '답글 저장 실패',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => '투표 변경 실패',

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute negatif olamaz.',
     'required' => ':attribute gereklidir.',
     'too_long' => ':attribute azami uzunluğu aştı - sadece :limit karakter olabilir.',
@@ -123,7 +124,7 @@ return [
         'invalid_country' => 'Ülke, veritabanında bulunmuyor.',
         'invalid_discord' => 'Discord kullanıcı adı hatalı.',
         'invalid_email' => "Geçerli bir e-posta adresi gibi görünmüyor.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter kullanıcı adı hatalı.',
         'too_short' => 'Yeni şifre çok kısa.',
         'unknown_duplicate' => 'Kullanıcı adı ya da e-posta zaten kullanımda.',
         'username_available_in' => 'Bu kullanıcı adı :duration içinde kullanıma açılacak.',

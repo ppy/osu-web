@@ -15,9 +15,11 @@ return [
     ],
     'error' => [
         'error' => [
+            '400' => '',
             '404' => 'mancante',
             '403' => 'proibito',
             '401' => 'non autorizzato',
+            '401-verification' => '',
             '405' => 'mancante',
             '422' => 'richiesta non valida',
             '500' => 'qualcosa è andato storto',
@@ -39,7 +41,7 @@ return [
             '_' => 'artisti in primo piano',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'post di discussione beatmap',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'discussioni beatmap',
@@ -48,16 +50,16 @@ return [
             '_' => 'pacchetti beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'voti di discussione beatmap',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'cronologia beatmap',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'dashboard',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
+            'discussion' => 'discussione beatmap',
             'index' => 'lista beatmap',
             'show' => 'info beatmap',
         ],
@@ -115,7 +117,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'info giocatore',
-            'disabled' => '',
+            'disabled' => 'avviso',
         ],
         'wiki_controller' => [
             '_' => 'base delle conoscenze',

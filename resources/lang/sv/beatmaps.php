@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Kunde ej spara inlägg',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Kunde ej uppdatera röst',

@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Impossible de sauvegarder le post',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Impossible de modifier le vote',

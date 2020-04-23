@@ -4,6 +4,7 @@
 import { BlockButton } from 'block-button';
 import { FlagCountry } from 'flag-country';
 import { FriendButton } from 'friend-button';
+import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
@@ -19,7 +20,7 @@ interface Props {
   activated: boolean;
   mode: ViewMode;
   modifiers: string[];
-  user?: User;
+  user?: UserJSON;
 }
 
 interface State {
@@ -34,7 +35,9 @@ export class UserCard extends React.PureComponent<Props, State> {
     modifiers: [],
   };
 
-  static userLoading: User = {
+  static userLoading: UserJSON = {
+    avatar_url: '',
+    country_code: '',
     cover: {},
     default_group: '',
     id: 0,
@@ -42,7 +45,9 @@ export class UserCard extends React.PureComponent<Props, State> {
     is_bot: false,
     is_online: false,
     is_supporter: false,
+    last_visit: '',
     pm_friends_only: true,
+    profile_colour: '',
     username: osu.trans('users.card.loading'),
   };
 

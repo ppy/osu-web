@@ -28,7 +28,14 @@ return [
         'id' => '客户端 ID',
         'name' => '应用名称',
         'redirect' => '应用回调链接',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => '客户端密钥',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '你确定想要删除这个客户端？',
+        'confirm_reset' => '',
         'new' => '新的 OAuth 应用',
         'none' => '没有客户端',
 

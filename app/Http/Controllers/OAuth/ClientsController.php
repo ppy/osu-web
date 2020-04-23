@@ -31,6 +31,17 @@ class ClientsController extends Controller
         return json_collection(auth()->user()->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
     }
 
+    public function resetSecret($clientId)
+    {
+        $client = auth()->user()->oauthClients()->findOrFail($clientId);
+
+        if (!$client->resetSecret()) {
+            return error_popup(trans('oauth.client.reset_failed'));
+        }
+
+        return json_item($client, 'OAuth\Client', ['redirect', 'secret']);
+    }
+
     public function store()
     {
         // from ClientRepository::create but with custom Client.

@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Este tópico está fechado e não pode ser respondido',
             'to_0' => 'Desbloquear tópico',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Desbloquear tópico?',
             'to_0_done' => 'O tópico foi desbloqueado',
             'to_1' => 'Fechar tópico',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Bloquear tópico?',
             'to_1_done' => 'O tópico foi fechado',
         ],
 
@@ -248,14 +248,14 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Despegar tópico',
-            'to_0_confirm' => '',
+            'to_0' => 'Desprender tópico',
+            'to_0_confirm' => 'Desprender tópico?',
             'to_0_done' => 'O tópico foi despegado',
             'to_1' => 'Afixar tópico',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Afixar tópico?',
             'to_1_done' => 'O tópico foi afixado',
             'to_2' => 'Afixar tópico e marcar como uma declaração pública',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Afixar tópico e marcá-lo como um comunicado?',
             'to_2_done' => 'O tópico foi afixado e marcado como uma declaração pública',
         ],
 

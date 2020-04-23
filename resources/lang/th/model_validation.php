@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute เป็นค่าลบไม่ได้',
     'required' => 'ต้องมี :attribute',
     'too_long' => ':attribute เกินความยาวสูงสุด - สามารถใส่ได้ถึงแค่ :limit ตัวอักษร',
@@ -123,7 +124,7 @@ return [
         'invalid_country' => 'ประเทศไม่ได้อยู่ในฐานข้อมูล',
         'invalid_discord' => 'ชื่อผู้ใช้ Discord ไม่ถูกต้อง',
         'invalid_email' => "เหมือนกับว่ามันไม่ใช่ที่อยู่อีเมล",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'ชื่อผู้ใช้ Twitter ไม่ถูกต้อง',
         'too_short' => 'รหัสผ่านใหม่สั้นเกินไป',
         'unknown_duplicate' => 'ชื่อผู้ใช้หรืออีเมลถูกใช้ไปแล้ว',
         'username_available_in' => 'ชื่อผู้ใช้นี้สามารถใช้งานได้ใน :duration',

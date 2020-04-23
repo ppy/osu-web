@@ -17,13 +17,16 @@ interface Props {
 }
 
 interface State {
+  isSecretVisible: boolean;
   redirect: string;
-  [key: string]: string;
+
+  [key: string]: unknown;
 }
 
 @observer
 export class ClientDetails extends React.Component<Props, State> {
   readonly state: State = {
+    isSecretVisible: false,
     redirect: this.props.client.redirect,
   };
 
@@ -55,6 +58,21 @@ export class ClientDetails extends React.Component<Props, State> {
   }
 
   @action
+  handleReset = () => {
+    if (!confirm(osu.trans('oauth.own_clients.confirm_reset'))) { return; }
+    if (this.props.client.isResetting) { return; }
+
+    this.props.client.resetSecret()
+    .then(() => this.setState({ isSecretVisible: true }))
+    .catch(osu.ajaxError);
+  }
+
+  @action
+  handleToggleSecret = () => {
+    this.setState({ isSecretVisible: !this.state.isSecretVisible });
+  }
+
+  @action
   handleUpdate = () => {
     if (this.props.client.isUpdating) { return; }
     this.props.client.updateWith(this.state).then(() => {
@@ -73,9 +91,32 @@ export class ClientDetails extends React.Component<Props, State> {
           <div className='oauth-client-details__label'>{osu.trans('oauth.client.id')}</div>
           <div>{this.props.client.id}</div>
         </div>
-        <div>
+        <div className='oauth-client-details__group'>
           <div className='oauth-client-details__label'>{osu.trans('oauth.client.secret')}</div>
-          <div>{this.props.client.secret}</div>
+          <div>
+            {
+              this.state.isSecretVisible
+                ? this.props.client.secret
+                : 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+            }
+          </div>
+          <div className='oauth-client-details__buttons'>
+            <button
+              className='btn-osu-big'
+              onClick={this.handleToggleSecret}
+              type='button'
+            >
+                {osu.trans(`oauth.client.secret_visible.${this.state.isSecretVisible}`)}
+            </button>
+            <button
+              className='btn-osu-big btn-osu-big--danger'
+              disabled={this.props.client.isResetting || this.props.client.revoked}
+              onClick={this.handleReset}
+              type='button'
+            >
+                {this.props.client.isResetting ? <Spinner /> : osu.trans('oauth.client.reset')}
+            </button>
+          </div>
         </div>
 
         <div className='oauth-client-details__group'>

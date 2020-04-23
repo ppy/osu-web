@@ -7,6 +7,7 @@ import { action, observable } from 'mobx';
 import { Client } from 'models/oauth/client';
 
 export class OwnClient extends Client {
+  @observable isResetting = false;
   @observable isUpdating = false;
   redirect: string;
   secret: string;
@@ -29,6 +30,20 @@ export class OwnClient extends Client {
       this.revoked = true;
     }).always(() => {
       this.isRevoking = false;
+    });
+  }
+
+  @action
+  async resetSecret() {
+    this.isResetting = true;
+
+    return $.ajax({
+      method: 'POST',
+      url: route('oauth.clients.reset-secret', { client: this.id }),
+    }).then((data: OwnClientJSON) => {
+      this.updateFromJson(data);
+    }).always(() => {
+      this.isResetting = false;
     });
   }
 

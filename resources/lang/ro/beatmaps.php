@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Salvarea postării a eșuat',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Actualizarea votului a eșuat',

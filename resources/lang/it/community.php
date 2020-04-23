@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'Personalizzazione',
-                'description' => "Personalizza il tuo profilo aggiungendo una pagina utente completamente personalizzabile.",
+                'description' => "Puoi spiccare caricando un'immagine personalizzata o creando una sezione 'io!' totalmente personalizzabile nel tuo profilo.",
             ],
 
             'beatmap_filters' => [
@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Carica più Beatmap',
-                'description' => 'Il numero di beatmap non classificate che puoi avere allo stesso tempo è calcolato da un valore base sommato ad un bonus aggiuntivo per ogni beatmap classificata che possiedi (fino ad un limite).<br/><br/>Normalmente sarebbe 4 più 1 per ogni beatmap classificata (fino a 2). Con il supporter, questo aumenta a 8 più 1 per beatmap classificata (fino a 12).',
+                'description' => 'Il numero di beatmap non classificate che puoi avere allo stesso tempo è calcolato da un valore base sommato ad un bonus aggiuntivo per ogni beatmap classificata che possiedi (fino ad un limite).<br/><br/>Normalmente sarebbe :base più :bonus per ogni beatmap classificata (fino a :bonus_max). Con il supporter, questo aumenta a :supporter_base più :supporter_bonus per beatmap classificata (fino a :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Classifiche con Amici',

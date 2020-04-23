@@ -3,7 +3,7 @@
 
 class @TooltipBeatmap
   tmpl: _.template '<div class="tooltip-beatmap__text tooltip-beatmap__text--title"><%- beatmapTitle %></div>' +
-      '<div class="tooltip-beatmap__text tooltip-beatmap__text--<%- difficulty %>"><%- stars %> <i class="fas fa-star" aria-hidden="true"></i></div>'
+      '<div class="tooltip-beatmap__text" style="--diff: var(--diff-<%- difficulty %>)"><%- stars %> <i class="fas fa-star" aria-hidden="true"></i></div>'
 
   constructor: ->
     $(document).on 'mouseover touchstart', '.js-beatmap-tooltip', @onMouseOver

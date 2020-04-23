@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => '',
     'not_negative' => ':attribute ei voi olla negatiivinen.',
     'required' => ':attribute on pakollinen.',
     'too_long' => ':attribute ylittää maksimipituuden - voi olla enintään :limit merkkiä.',

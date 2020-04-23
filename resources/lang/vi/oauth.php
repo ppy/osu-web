@@ -28,7 +28,14 @@ return [
         'id' => '',
         'name' => '',
         'redirect' => '',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => '',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,12 +49,13 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '',
+        'confirm_reset' => '',
         'new' => '',
         'none' => '',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Xóa',
+            'true' => 'Đã xóa',
         ],
     ],
 ];

@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { ClientJSON } from 'interfaces/client-json';
+import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import { action, observable } from 'mobx';
 
@@ -11,7 +12,7 @@ export class Client {
   name: string | null;
   @observable revoked = false;
   @observable scopes: Set<string>;
-  user: User; // TODO: figure out whether this should go into store.
+  user: UserJSON; // TODO: figure out whether this should be converted to User and go into store.
   userId: number;
 
   constructor(client: ClientJSON) {

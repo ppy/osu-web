@@ -102,8 +102,11 @@
                 @yield('permanent-fixed-footer')
             </div>
         </div>
-        <audio class="js-audio" preload="auto"></audio>
 
+        <div id="main-player" class="audio-player-floating" data-turbolinks-permanent>
+            <div class="js-audio--main"></div>
+            <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
+        </div>
         @include("layout._global_variables")
         @include('layout._loading_overlay')
         @include('layout.popup-container')

@@ -28,7 +28,7 @@ class RequireScopes
     {
         if (!AuthApi::skipAuth($request)) {
             $token = optional($request->user())->token();
-            if ($token === null) {
+            if ($token === null || $token->revoked) {
                 throw new AuthorizationException();
             }
 

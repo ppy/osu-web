@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Este tópico está trancado e não pode mais ser respondido',
             'to_0' => 'Destrancar tópico',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Destrancar tópico?',
             'to_0_done' => 'Tópico destrancado',
             'to_1' => 'Trancar tópico',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Trancar tópico?',
             'to_1_done' => 'Tópico trancado',
         ],
 
@@ -249,13 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Desafixar tópico',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Desafixar tópico?',
             'to_0_done' => 'Tópico desafixado',
             'to_1' => 'Fixar tópico',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Fixar tópico?',
             'to_1_done' => 'Tópico fixado',
             'to_2' => 'Fixar tópico e marcar como anúncio',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Fixar tópico e marcar como anúncio?',
             'to_2_done' => 'Tópico fixado e marcado como anúncio',
         ],
 

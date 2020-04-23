@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default interface SearchResults {
-  beatmapsetIds: number[];
+  beatmapsetIds: Set<number>;
   hasMore: boolean;
   total: number;
 }

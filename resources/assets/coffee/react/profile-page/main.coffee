@@ -163,7 +163,6 @@ export class Main extends React.PureComponent
           stats: @state.user.statistics
           currentMode: @state.currentMode
           withEdit: @props.withEdit
-          rankHistory: @props.rankHistory
           userAchievements: @props.userAchievements
 
         div

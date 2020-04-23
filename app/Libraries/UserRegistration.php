@@ -7,6 +7,7 @@ namespace App\Libraries;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
+use App\Jobs\EsIndexDocument;
 use App\Models\User;
 use Carbon\Carbon;
 use Datadog;
@@ -63,6 +64,8 @@ class UserRegistration
 
                 Datadog::increment('osu.new_account_registrations', 1, ['source' => 'osu-web']);
             });
+
+            dispatch(new EsIndexDocument($this->user));
         } catch (Exception $e) {
             if (is_sql_unique_exception($e)) {
                 $this->user->validationErrors()->add('username', '.unknown_duplicate');

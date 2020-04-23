@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Kunne ikke lagre innlegg',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Kunne ikke oppdatere stemme',

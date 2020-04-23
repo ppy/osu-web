@@ -28,7 +28,14 @@ return [
         'id' => 'ID ของไคลเอนต์',
         'name' => 'ชื่อแอปพลิเคชัน',
         'redirect' => '',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'รหัสลับไคลเอ็นต์',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'คุณแน่ใจหรือว่าต้องการลบ Client นี้?',
+        'confirm_reset' => '',
         'new' => '',
         'none' => '',
 

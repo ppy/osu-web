@@ -15,6 +15,15 @@ return [
         'guest_title' => 'ビートマップ',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'ディスカッション',
 

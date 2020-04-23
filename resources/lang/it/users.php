@@ -239,8 +239,6 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu Disponibili',
-                'available_info' => "I kudosu possono essere scambiati per delle stelle kudosu, che aiuteranno la tua beatmap ad ottenere più attenzione. Questo è il numero di kudosu che non hai ancora scambiato.",
                 'recent_entries' => 'Cronologia Kudosu Recenti',
                 'title' => 'Kudosu!',
                 'total' => 'Totale Kudosu Guadagnati',
@@ -421,7 +419,7 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Vista a blocchi',
         'card' => 'Vista a schede',
         'list' => 'Vista ad elenco',
     ],

@@ -20,11 +20,32 @@ class ScoresControllerTest extends TestCase
     {
         $this
             ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
             ->json(
                 'GET',
                 route('scores.download', ['mode' => 'osu', 'score' => $this->score->getKey()])
             )
             ->assertSuccessful();
+    }
+
+    public function testDownloadInvalidReferer()
+    {
+        $this
+            ->actingAs($this->user)
+            ->json(
+                'GET',
+                route('scores.download', ['mode' => 'osu', 'score' => $this->score->getKey()])
+            )
+            ->assertRedirect(route('beatmaps.show', ['beatmap' => $this->score->beatmap_id]));
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => rtrim(config('app.url'), '/').'.example.com'])
+            ->json(
+                'GET',
+                route('scores.download', ['mode' => 'osu', 'score' => $this->score->getKey()])
+            )
+            ->assertRedirect(route('beatmaps.show', ['beatmap' => $this->score->beatmap_id]));
     }
 
     public function testDownloadInvalidMode()

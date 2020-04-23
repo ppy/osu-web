@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Карти',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Обговорення',
 
@@ -39,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'затверджено :timeago',
+            'loved' => 'улюблена :timeago',
+            'qualified' => 'кваліфікована :timeago',
+            'ranked' => 'рейтингова :timeago',
+            'submitted' => 'завантажена :timeago',
+            'updated' => 'оновлена :timeago',
         ],
 
         'favourites' => [

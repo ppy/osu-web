@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Lưu bài viết thất bại',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Cập nhật vote thất bại',

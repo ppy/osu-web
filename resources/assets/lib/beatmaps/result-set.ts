@@ -8,7 +8,7 @@ import { action, computed, observable } from 'mobx';
 export default class ResultSet implements SearchResults {
   static CACHE_DURATION_MS = 60000;
 
-  @observable beatmapsetIds: number[] = [];
+  @observable beatmapsetIds = new Set<number>();
   cursor?: JSON; // null -> end; undefined -> not set yet.
   fetchedAt?: Date;
   @observable hasMore = false;
@@ -16,7 +16,7 @@ export default class ResultSet implements SearchResults {
 
   @computed
   get hasMoreForPager() {
-    return this.hasMore && this.beatmapsetIds.length < this.total;
+    return this.hasMore && this.beatmapsetIds.size < this.total;
   }
 
   @computed
@@ -29,7 +29,7 @@ export default class ResultSet implements SearchResults {
   @action
   append(data: SearchResponse) {
     for (const beatmapset of data.beatmapsets) {
-      this.beatmapsetIds.push(beatmapset.id);
+      this.beatmapsetIds.add(beatmapset.id);
     }
 
     this.cursor = data.cursor;
@@ -40,7 +40,7 @@ export default class ResultSet implements SearchResults {
 
   @action
   reset() {
-    this.beatmapsetIds = [];
+    this.beatmapsetIds.clear();
     this.fetchedAt = undefined;
     this.cursor = undefined;
     this.hasMore = false;

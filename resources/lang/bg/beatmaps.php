@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Неуспешно запазване на публикацията',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Неуспешно актуализиране на гласуването',

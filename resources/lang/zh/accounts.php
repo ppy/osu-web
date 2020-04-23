@@ -66,6 +66,17 @@ return [
         'title' => '开放授权',
     ],
 
+    'options' => [
+        'title' => '',
+
+        'beatmapset_download' => [
+            '_' => '',
+            'all' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => '键盘',
         'mouse' => '鼠标',

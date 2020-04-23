@@ -1,16 +1,17 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import UserJSON from 'interfaces/user-json';
 import * as React from 'react';
 import { UserCard } from 'user-card';
 
 interface Props {
   container: HTMLElement;
-  user: User;
+  user: UserJSON;
 }
 
 interface State {
-  user?: User;
+  user?: UserJSON;
 }
 
 /**
@@ -31,7 +32,7 @@ export class UserCardStore extends React.PureComponent<Props, State> {
     return <UserCard user={this.state.user} />;
   }
 
-  setUser = (event: JQuery.Event, user?: User) => {
+  setUser = (event: JQuery.Event, user?: UserJSON) => {
     this.setState({ user });
   }
 }

@@ -35,7 +35,7 @@ return [
         'expand' => 'mở rộng',
         'hide' => 'ẩn',
         'permalink' => 'permalink',
-        'pin' => '',
+        'pin' => 'ghim',
         'post' => 'Đăng',
         'reply' => 'Trả lời',
         'reply_reopen' => 'Trả lời và mở lại',

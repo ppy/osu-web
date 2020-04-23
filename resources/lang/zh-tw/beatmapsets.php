@@ -15,6 +15,15 @@ return [
         'guest_title' => '圖譜',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => '討論',
 

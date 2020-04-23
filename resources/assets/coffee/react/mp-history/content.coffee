@@ -4,7 +4,7 @@
 import { Event } from './event'
 import { Game } from './game'
 import * as React from 'react'
-import { button, div } from 'react-dom-factories'
+import { button, div, h3 } from 'react-dom-factories'
 import { Spinner } from 'spinner'
 el = React.createElement
 
@@ -49,7 +49,8 @@ export class Content extends React.PureComponent
 
 
   render: =>
-    div className: 'osu-layout__row osu-layout__row--page-mp-history',
+    div className: 'osu-page osu-page--mp-history',
+      h3 null, @props.match.name
       if @props.hasPrevious
         div className: 'mp-history-content',
           if @props.loadingPrevious

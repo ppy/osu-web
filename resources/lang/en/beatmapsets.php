@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => 'download',
+            'video' => 'download with video',
+            'no_video' => 'download without video',
+            'direct' => 'open in osu!direct',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Discussion',
 
@@ -66,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => 'If you find an issue with this beatmap, please disqualify it :link.',
-                'button_title' => 'Disqualify a qualified beatmap.',
             ],
 
             'report' => [
                 '_' => 'If you find an issue with this beatmap, please report it :link to alert the team.',
                 'button' => 'Report Problem',
-                'button_title' => 'Report a problem on a qualified beatmap.',
                 'link' => 'here',
             ],
         ],

@@ -1365,21 +1365,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->memoized[__FUNCTION__];
     }
 
-    public function flags()
-    {
-        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
-            $flags = [];
-
-            if ($this->country_acronym !== null) {
-                $flags['country'] = [$this->country_acronym, $this->country->name];
-            }
-
-            $this->memoized[__FUNCTION__] = $flags;
-        }
-
-        return $this->memoized[__FUNCTION__];
-    }
-
     public function title()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
@@ -1399,15 +1384,6 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             $this->user_id !== null
             && !$this->isRestricted()
             && $this->group_id !== 6; // bots
-    }
-
-    public function countryName()
-    {
-        if (!isset($this->flags()['country'])) {
-            return;
-        }
-
-        return $this->flags()['country'][1];
     }
 
     public function updatePage($text)

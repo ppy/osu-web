@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { UserJSON } from 'chat/chat-api-responses';
+import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
@@ -18,7 +18,7 @@ const viewModes: ViewMode[] = ['card', 'list', 'brick'];
 
 interface Props {
   title?: string;
-  users: User[];
+  users: UserJSON[];
 }
 
 interface State {
@@ -27,7 +27,7 @@ interface State {
   viewMode: ViewMode;
 }
 
-function rankSortDescending(x: User, y: User) {
+function rankSortDescending(x: UserJSON, y: UserJSON) {
   if (x.current_mode_rank != null && y.current_mode_rank != null) {
     return x.current_mode_rank > y.current_mode_rank ? 1 : -1;
   } else if (x.current_mode_rank === null) {
@@ -37,7 +37,7 @@ function rankSortDescending(x: User, y: User) {
   }
 }
 
-function usernameSortAscending(x: User, y: User) {
+function usernameSortAscending(x: UserJSON, y: UserJSON) {
   return x.username.localeCompare(y.username);
 }
 

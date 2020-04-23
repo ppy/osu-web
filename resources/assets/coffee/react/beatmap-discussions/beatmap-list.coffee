@@ -17,11 +17,8 @@ export class BeatmapList extends React.PureComponent
 
 
   componentDidMount: =>
-    $(document).on 'click.beatmapList', @hideSelector
-    @syncBlackout()
-
-
-  componentDidUpdate: =>
+    $(document).on 'click.beatmapList', @onDocumentClick
+    $(document).on 'turbolinks:before-cache.beatmapList', @hideSelector
     @syncBlackout()
 
 
@@ -63,18 +60,23 @@ export class BeatmapList extends React.PureComponent
         count: count
 
 
-  hideSelector: (e) =>
-    return if e.button != 0
+  hideSelector: =>
     return unless @state.showingSelector
-    return if $(e.target).closest('.js-beatmap-list-selector').length
 
     @setSelector false
+
+
+  onDocumentClick: (e) =>
+    return if e.button != 0
+    return if $(e.target).closest('.js-beatmap-list-selector').length
+
+    @hideSelector()
 
 
   setSelector: (state) =>
     return if @state.showingSelector == state
 
-    @setState showingSelector: state
+    @setState showingSelector: state, @syncBlackout
 
 
   selectBeatmap: (e) =>

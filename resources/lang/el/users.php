@@ -238,8 +238,6 @@ return [
                 ],
             ],
             'kudosu' => [
-                'available' => 'Διαθέσιμα Kudosu',
-                'available_info' => "Τα Kudosu μπορούν να ανταλλάσσονται με αστέρια kudosu, τα οποία θα βοηθήσουν το beatmap σας να πάρει περισσότερη προσοχή. Αυτός είναι ο αριθμός των kudosu που δεν έχετε ανταλλάξει ακόμα.",
                 'recent_entries' => 'Πρόσφατο Ιστορικό Kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Σύνολο Εξασφαλισμένων Kudosu',

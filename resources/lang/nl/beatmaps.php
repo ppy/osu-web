@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Opslaan van post mislukt',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Stem bijwerken mislukt',

@@ -129,11 +129,11 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Subir más mapas',
-                'description' => 'Se calcula cuántos mapas sin calificar puedes tener a la vez, a partir de un valor base más un bono adicional por cada mapa clasificado que tenga actualmente (hasta un límite).<br/><br/>Normalmente esto es 4 más 1 por mapa clasificado (hasta 2). Con soporte, esto aumenta a 8 más 1 por mapa clasificado (hasta 12).',
+                'description' => 'El número de mapas no clasificados que puedes tener a la vez se calcula a partir de un valor base más una bonificación adicional por cada mapa clasificado que tengas actualmente (hasta un límite).<br/><br/>Normalmente esto es :base más :bonus por mapa clasificado (hasta :bonus_max). Con supporter, esto aumenta a :supporter_base más :supporter_bonus por cada mapa clasificado (hasta :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Amigos en la tabla de clasificación',
-                'description' => '¡Compita con sus amigos y vea cómo se clasifica contra ellos!*<br/><br/><small>* aún no disponible en el nuevo sitio, pronto(tm)</small>',
+                'description' => '¡Compita con sus amigos y vea cómo se clasifica contra ellos!',
             ],
 
         ],

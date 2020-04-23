@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => '儲存失敗',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => '投票更新失敗',

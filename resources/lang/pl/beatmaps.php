@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Nie udało się zapisać posta',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Aktualizacja oceny nie powiodła się',

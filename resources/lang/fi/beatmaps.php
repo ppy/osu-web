@@ -4,12 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'discussion-posts' => [
-        'store' => [
-            'error' => 'Viestin tallentaminen epäonnistui',
-        ],
-    ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Äänen päivitys ei onnistunut',

@@ -28,7 +28,14 @@ return [
         'id' => '客戶端 ID',
         'name' => '應用程式名稱',
         'redirect' => '應用程式回傳 URL',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => '用戶端密鑰',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '您確定要刪除此客戶端嗎？',
+        'confirm_reset' => '',
         'new' => '新增 OAuth 應用程式',
         'none' => '沒有客戶端',
 

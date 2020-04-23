@@ -28,7 +28,7 @@ return [
 
     'songs' => [
         '_' => 'Brani',
-        'count' => ':count_delimited canzone|:count_delimited canzoni',
+        'count' => ':count_delimited brano|:count_delimited brani',
         'exclusive' => 'Esclusiva di osu!',
     ],
 

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid' => 'تم تحديد :attribute خاطئ.',
     'not_negative' => ':attribute لا يمكن ان يكون سلبياََ.',
     'required' => ':attribute مطلوب.',
     'too_long' => ':attribute تجاوز الحد المطلوب - يمكن ان يصل حد :limit حروف فقط.',
@@ -32,7 +33,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "هذه الخريطة مقفلة حاليا للنقاش ولا يمكن أِضافة نقاط تشجيع لها",
             'guest' => 'يجب أن تسجل دخولك للاِشادة.',
             'hyped' => 'لقد اشدت هذه الخريطة بالفعل.',
             'limit_exceeded' => 'لقد استنفذت كافة اِشاداتك.',
@@ -123,7 +124,7 @@ return [
         'invalid_country' => 'الدولة ليست في قاعدة البيانات.',
         'invalid_discord' => 'اِسم خلاف غير صالح.',
         'invalid_email' => "لا يبدو وكأنه بريد الكتروني صالح.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'اسم تويتر غير صالح.',
         'too_short' => 'كلمة المرور الجديدة قصيرة جداً.',
         'unknown_duplicate' => 'اسم المستخدم أو عنوان البريد الإلكتروني مستخدمة مسبقاََ.',
         'username_available_in' => 'اسم المستخدم سيكون متوفرا للاِستعمال في :duration.',
