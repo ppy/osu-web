@@ -80,7 +80,7 @@ export default class NewReview extends React.Component<Props, State> {
             <div className='osu-page osu-page--small'>
               <div className='beatmap-discussion-new'>
                 <div className='page-title'>
-                  {osu.trans('beatmaps.discussions.new.title')}
+                  {osu.trans('beatmaps.discussions.review.new')}
                   <span className='page-title__button'>
                     <span
                       className={buttonCssClasses}
@@ -128,13 +128,13 @@ export default class NewReview extends React.Component<Props, State> {
     }
   }
 
-  toggleSticky = () => {
-    this.setSticky(!this.props.pinned);
-  }
-
   setTop = () => {
     this.setState({
       cssTop: this.cssTop(this.props.pinned ?? false),
     });
+  }
+
+  toggleSticky = () => {
+    this.setSticky(!this.props.pinned);
   }
 }

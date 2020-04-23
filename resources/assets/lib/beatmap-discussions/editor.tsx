@@ -68,7 +68,7 @@ export default class Editor extends React.Component<Props, any> {
     };
   }
 
-  blockWrap = (children: JSX.Element) => {
+  blockWrapper = (children: JSX.Element) => {
     return (
       <div className={`${this.bn}__block`}>
         <div className={`${this.bn}__block-button`} contentEditable={false}>
@@ -92,16 +92,15 @@ export default class Editor extends React.Component<Props, any> {
   }
 
   decorate = (entry: NodeEntry) => {
-    const node = entry[0];
-    const path = entry[1];
+    const [node, path] = entry;
     const ranges: TimestampRange[] = [];
 
     if (!Text.isText(node)) {
       return ranges;
     }
 
-    const TS_REGEX = /\b((\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d[,|])*\d\))?)/;
-    const regex = RegExp(TS_REGEX, 'g');
+    const TIMESTAMP_REGEX = /\b((\d{2,}):([0-5]\d)[:.](\d{3})(\s\((?:\d[,|])*\d\))?)/;
+    const regex = RegExp(TIMESTAMP_REGEX, 'g');
     let match;
 
     // tslint:disable-next-line:no-conditional-assignment
@@ -188,9 +187,7 @@ export default class Editor extends React.Component<Props, any> {
     return (
       <div className={osu.classWithModifiers(editorClass, modifiers)}>
         <div className={`${editorClass}__content`}>
-          <SlateContext.Provider
-            value={this.slateEditor}
-          >
+          <SlateContext.Provider value={this.slateEditor}>
             <Slate
               editor={this.slateEditor}
               value={this.state.value}
@@ -244,7 +241,7 @@ export default class Editor extends React.Component<Props, any> {
         el = props.children;
     }
 
-    return this.blockWrap(el);
+    return this.blockWrapper(el);
   }
 
   renderLeaf = (props: RenderLeafProps) => {
@@ -373,7 +370,7 @@ export default class Editor extends React.Component<Props, any> {
     this.toggleMark('italic');
   }
 
-  toggleMark = (format: any) => {
+  toggleMark = (format: 'bold' | 'italic') => {
     const marks = SlateEditor.marks(this.slateEditor);
     const isActive = marks ? marks[format] === true : false;
 

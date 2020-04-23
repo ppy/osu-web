@@ -96,6 +96,11 @@ return [
 
         'review' => [
             'new' => 'New Review',
+            'embed' => [
+                'delete' => 'Delete',
+                'unlink' => 'Unlink',
+                'unsaved' => 'Unsaved',
+            ],
         ],
 
         'show' => [

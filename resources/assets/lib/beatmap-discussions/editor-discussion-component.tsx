@@ -40,8 +40,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
     if (this.props.element.beatmapId !== 'all') {
       const content = this.props.element.children[0].text;
-      const TS_REGEX = /((\d{2,}):([0-5]\d)[:.](\d{3}))( \((?:\d[,|])*\d\))?/;
-      const matches = content.match(TS_REGEX);
+      const TIMESTAMP_REGEX = /((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d[,|])*\d\))?/;
+      const matches = content.match(TIMESTAMP_REGEX);
       let timestamp = null;
 
       if (matches !== null) {
@@ -54,12 +54,11 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
   }
 
-  path = (): Path => ReactEditor.findPath(this.context, this.props.element);
-
-  remove = () => {
+  delete = () => {
     Transforms.delete(this.context, { at: this.path() });
-    // if editmode, do callback to server to nuke?
   }
+
+  path = (): Path => ReactEditor.findPath(this.context, this.props.element);
 
   readOnly = () => {
     return this.props.editMode && this.props.element.discussionId;
@@ -67,11 +66,23 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const bn = 'beatmap-discussion-review-post-embed-preview';
-    const timestamp = this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general');
     const attribs = this.props.attributes;
-    const extraClasses = [];
+    const canEdit = !this.readOnly();
 
-    if (this.readOnly()) {
+    const deleteButton =
+      (
+        <button
+          className={`${bn}__delete`}
+          onClick={this.delete}
+          contentEditable={false}
+          title={osu.trans(`beatmaps.review.embed.${canEdit ? 'delete' : 'unlink'}`)}
+        >
+          <i className={`fas fa-${canEdit ? 'trash-alt' : 'link'}`} />
+        </button>
+      );
+
+    const extraClasses = [];
+    if (!canEdit) {
       attribs.contentEditable = false;
       extraClasses.push('read-only');
     }
@@ -80,36 +91,32 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
       <div className='beatmap-discussion beatmap-discussion--preview' {...attribs}>
         <div className='beatmap-discussion__discussion'>
           <div className={osu.classWithModifiers(bn, extraClasses)}>
-            <div
-              className={`${bn}__content`}
-            >
+            <div className={`${bn}__content`}>
               <div
                 className={`${bn}__selectors`}
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
               >
-                <EditorBeatmapSelector {...this.props} disabled={this.readOnly()}/>
-                <EditorIssueTypeSelector {...this.props} disabled={this.readOnly()}/>
+                <EditorBeatmapSelector {...this.props} disabled={!canEdit}/>
+                <EditorIssueTypeSelector {...this.props} disabled={!canEdit}/>
                 <div
                   className={`${bn}__timestamp`}
                   contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
                 >
-                  {timestamp}
+                  {this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general')}
                 </div>
                 <div
                   contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
                   className={`${bn}__stripe`}
                 />
               </div>
-              <div
-                className={`${bn}__message-container`}
-              >
+              <div className={`${bn}__message-container`}>
                 <div className='beatmapset-discussion-message'>{this.props.children}</div>
               </div>
-              {this.props.editMode && !this.readOnly() &&
+              {this.props.editMode && canEdit &&
                 <div
                   className={`${bn}__unsaved-indicator`}
                   contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-                  title='unsaved'
+                  title={osu.trans('beatmaps.review.embed.unsaved')}
                 >
                   <i className='fas fa-pencil-alt'/>
                 </div>
@@ -117,31 +124,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
             </div>
           </div>
         </div>
-        {!this.props.editMode || !this.readOnly() &&
-          <button
-            className={`${bn}__trashcan`}
-            onClick={this.remove}
-            contentEditable={false}
-            title='delete'
-          >
-            <i className='fas fa-trash-alt'/>
-          </button>
-        }
-        {this.props.editMode && this.readOnly() &&
-          <button
-            className={`${bn}__trashcan`}
-            onClick={this.remove}
-            contentEditable={false}
-            title='unlink'
-          >
-            <i className='fas fa-link' />
-          </button>
-        }
+        {deleteButton}
       </div>
     );
-  }
-
-  unlink = () => {
-    Transforms.delete(this.context, { at: this.path() });
   }
 }
