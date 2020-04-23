@@ -27,7 +27,7 @@
                         <input
                             class="simple-form__input"
                             name="user"
-                            value="{{ $events['params']['user'] ?? '' }}"
+                            value="{{ $params['user'] ?? '' }}"
                         >
                     </label>
                 @endif
@@ -38,7 +38,7 @@
                     </div>
                     <div class="simple-form__checkboxes-overflow">
                         @php
-                            if (present($events['params']['user'] ?? null)) {
+                            if (present($params['user'] ?? null)) {
                                 $types = App\Models\BeatmapsetEvent::types('public');
                                 if (priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can()) {
                                     $types = array_merge($types, App\Models\BeatmapsetEvent::types('kudosuModeration'));
@@ -54,7 +54,7 @@
                             <div class="simple-form__checkbox-overflow-container">
                                 <label class="simple-form__checkbox simple-form__checkbox--overflow">
                                     @include('objects._switch', [
-                                        'checked' => in_array($type, $events['params']['types'], true),
+                                        'checked' => in_array($type, $params['types'], true),
                                         'name' => 'types[]',
                                         'type' => 'checkbox',
                                         'value' => $type,
@@ -77,7 +77,7 @@
                         type="date"
                         {{-- set correct baseline for safari --}}
                         placeholder=" "
-                        value="{{ $events['params']['min_date'] ?? '' }}"
+                        value="{{ $params['min_date'] ?? '' }}"
                     >
 
                     <span class="simple-form__input-arrow-next">
@@ -90,7 +90,7 @@
                         type="date"
                         {{-- set correct baseline for safari --}}
                         placeholder=" "
-                        value="{{ $events['params']['max_date'] ?? '' }}"
+                        value="{{ $params['max_date'] ?? '' }}"
                     >
                 </div>
 

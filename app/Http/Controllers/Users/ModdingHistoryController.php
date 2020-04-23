@@ -65,12 +65,14 @@ class ModdingHistoryController extends Controller
 
         $posts = $this->getPosts();
 
-        $events = $this->getEvents();
+        [$events, , ] = $this->getEvents();
 
-        $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
-        $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
+        $votes = [
+            'given' => BeatmapDiscussionVote::recentlyGivenByUser($user->getKey()),
+            'received' => BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey()),
+        ];
 
-        $users = $this->getUsers($discussions, $posts, $events, $votes, $receivedVotes);
+        $users = $this->getUsers($discussions, $posts, $events, $votes);
 
         $perPage = [
             'recentlyReceivedKudosu' => 5,
@@ -85,51 +87,49 @@ class ModdingHistoryController extends Controller
         }
 
         $jsonChunks = [
-            'extras' => $extras,
-            'perPage' => $perPage,
-            'user' => json_item(
-                $user,
-                'User',
-                [
-                    "statistics:mode({$user->playmode})",
-                    'active_tournament_banner',
-                    'badges',
-                    'follower_count',
-                    'graveyard_beatmapset_count',
-                    'group_badge',
-                    'loved_beatmapset_count',
-                    'previous_usernames',
-                    'ranked_and_approved_beatmapset_count',
-                    'statistics.rank',
-                    'support_level',
-                    'unranked_beatmapset_count',
-                ]
-            ),
             'discussions' => json_collection(
-                $discussions['items'],
+                $discussions,
                 'BeatmapDiscussion',
                 ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
             ),
             'events' => json_collection(
-                $events['items'],
+                $events,
                 'BeatmapsetEvent',
                 ['discussion.starting_post', 'beatmapset.user']
             ),
             'posts' => json_collection(
-                $posts['items'],
+                $posts,
                 'BeatmapDiscussionPost',
                 ['beatmap_discussion.beatmapset']
             ),
-            'votes' => [
-                'given' => $votes['items'],
-                'received' => $receivedVotes['items'],
-            ],
             'users' => json_collection(
                 $users,
                 'UserCompact',
                 ['group_badge']
             ),
+            'votes' => $votes,
         ];
+
+        $jsonChunks['extras'] = $extras;
+        $jsonChunks['perPage'] = $perPage;
+        $jsonChunks['user'] = json_item(
+            $user,
+            'User',
+            [
+                "statistics:mode({$user->playmode})",
+                'active_tournament_banner',
+                'badges',
+                'follower_count',
+                'graveyard_beatmapset_count',
+                'group_badge',
+                'loved_beatmapset_count',
+                'previous_usernames',
+                'ranked_and_approved_beatmapset_count',
+                'statistics.rank',
+                'support_level',
+                'unranked_beatmapset_count',
+            ]
+        );
 
         return ext_view('users.beatmapset_activities', compact(
             'jsonChunks',
@@ -141,23 +141,20 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
 
-        $search = $events = $this->getEvents();
+        [$events, $query, $params] = $this->getEvents();
         $discussions = $this->getDiscussions();
         $discussions = $this->getDiscussionsWithReviews($discussions);
-        // Posts
         $posts = $this->getPosts();
-
-        // Users
         $users = $this->getUsers($discussions, $posts, $events);
 
         $paginator = new LengthAwarePaginator(
             $events,
-            $events['query']->realCount(),
-            $events['params']['limit'],
-            $events['params']['page'],
+            $query->realCount(),
+            $params['limit'],
+            $params['page'],
             [
                 'path' => LengthAwarePaginator::resolveCurrentPath(),
-                'query' => $events['params'],
+                'query' => $params,
             ]
         );
 
@@ -165,17 +162,17 @@ class ModdingHistoryController extends Controller
 
         $jsonChunks = [
             'discussions' => json_collection(
-                $discussions['items'],
+                $discussions,
                 'BeatmapDiscussion',
                 ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
             ),
             'events' => json_collection(
-                $events['items'],
+                $events,
                 'BeatmapsetEvent',
                 ['discussion.starting_post', 'beatmapset.user']
             ),
             'posts' => json_collection(
-                $posts['items'],
+                $posts,
                 'BeatmapDiscussionPost',
                 ['beatmap_discussion.beatmapset']
             ),
@@ -186,7 +183,7 @@ class ModdingHistoryController extends Controller
             ),
         ];
 
-        return ext_view('beatmapset_events.index', compact('events', 'paginator', 'jsonChunks', 'user', 'search', 'showUserSearch'));
+        return ext_view('beatmapset_events.index', compact('paginator', 'params', 'jsonChunks', 'user', 'showUserSearch'));
     }
 
     public function posts()
@@ -287,9 +284,7 @@ class ModdingHistoryController extends Controller
             $discussions['query']->visible();
         }
 
-        $discussions['items'] = $discussions['query']->get();
-
-        return $discussions;
+        return $discussions['query']->get();
     }
 
     private function getDiscussionsWithReviews($discussions)
@@ -299,7 +294,7 @@ class ModdingHistoryController extends Controller
             return $discussions;
         }
 
-        $children = BeatmapDiscussion::whereIn('parent_id', $discussions['items']->pluck('id'))
+        $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
             ->with([
                 'beatmap',
                 'beatmapDiscussionVotes',
@@ -313,11 +308,8 @@ class ModdingHistoryController extends Controller
             $children->visible();
         }
 
-        $discussions['items'] = $discussions['items']->merge($children->get());
-
-        return $discussions;
+        return $discussions->merge($children->get());
     }
-
 
     private function getEvents()
     {
@@ -327,7 +319,7 @@ class ModdingHistoryController extends Controller
             'beatmapset',
             'beatmapDiscussion.beatmapset',
             'beatmapDiscussion.startingPost',
-        ]);
+        ])->whereHas('beatmapset');
 
         if ($this->isModerator) {
             $events['query']->with(['beatmapset' => function ($query) {
@@ -335,9 +327,11 @@ class ModdingHistoryController extends Controller
             }]);
         }
 
-        $events['items'] = $events['query']->whereHas('beatmapset')->get();
-
-        return $events;
+        return [
+            $events['query']->get(),
+            $events['query'],
+            $events['params'],
+        ];
     }
 
     private function getPosts()
@@ -352,36 +346,35 @@ class ModdingHistoryController extends Controller
             $posts['query']->visible();
         }
 
-        $posts['items'] = $posts['query']->get();
-
-        return $posts;
+        return $posts['query']->get();
     }
 
-    private function getUsers($discussions, $posts, $events, $votesGiven = null, $votesReceived = null)
+    private function getUsers($discussions, $posts, $events, $votes = [])
     {
         $userIds = [];
-        foreach ($discussions['items'] as $discussion) {
+        foreach ($discussions as $discussion) {
             $userIds[] = $discussion->user_id;
             $userIds[] = $discussion->startingPost->last_editor_id;
         }
 
+        $votesGiven = ($votes['given'] ?? collect())->pluck('user_id')->toArray();
+        $votesReceived = ($votes['received'] ?? collect())->pluck('user_id')->toArray();
+
         $userIds = array_merge(
             $userIds,
-            $posts['items']->pluck('user_id')->toArray(),
-            $posts['items']->pluck('last_editor_id')->toArray(),
-            $events['items']->pluck('user_id')->toArray(),
-            ($votesGiven['items'] ?? collect())->pluck('user_id')->toArray(),
-            ($votesReceived['items'] ?? collect())->pluck('user_id')->toArray()
+            $posts->pluck('user_id')->toArray(),
+            $posts->pluck('last_editor_id')->toArray(),
+            $events->pluck('user_id')->toArray(),
+            $votesGiven,
+            $votesReceived
         );
 
         $userIds = array_values(array_filter(array_unique($userIds)));
 
-        $users = User::whereIn('user_id', $userIds)
+        return User::whereIn('user_id', $userIds)
             ->with('userGroups')
             ->default()
             ->get();
-
-        return $users;
     }
 
     private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
