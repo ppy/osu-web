@@ -17,33 +17,11 @@
   }
 
   &__text {
+    --diff-expert-plus: @diff-expert-plus-light;
     text-align: center;
     font-size: 11px;
     margin: 4px 0;
-
-    &--easy {
-      color: @diff-easy;
-    }
-
-    &--normal {
-      color: @diff-normal;
-    }
-
-    &--hard {
-      color: @diff-hard;
-    }
-
-    &--insane {
-      color: @diff-insane;
-    }
-
-    &--expert {
-      color: @diff-expert;
-    }
-
-    &--expert-plus {
-      color: #999;
-    }
+    color: var(--diff, @diff-default);
 
     &--title {
       font-weight: 700;
