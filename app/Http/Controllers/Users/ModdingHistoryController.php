@@ -60,100 +60,17 @@ class ModdingHistoryController extends Controller
         $this->searchParams['limit'] = 10;
         $this->searchParams['sort'] = 'id_desc';
 
-        $discussions = BeatmapDiscussion::search($this->searchParams);
-        $discussions['query']->with([
-            'beatmap',
-            'beatmapDiscussionVotes',
-            'beatmapset',
-            'startingPost',
-        ]);
+        $discussions = $this->getDiscussions();
+        $discussions = $this->getDiscussionsWithReviews($discussions);
 
-        if ($this->isModerator) {
-            $discussions['query']->visibleWithTrashed();
-        } else {
-            $discussions['query']->visible();
-        }
+        $posts = $this->getPosts();
 
-        $discussions['items'] = $discussions['query']->get();
-
-        // TODO: remove this when reviews are released
-        if (config('osu.beatmapset.discussion_review_enabled')) {
-            $children = BeatmapDiscussion::whereIn('parent_id', $discussions['items']->pluck('id'))
-                ->with([
-                    'beatmap',
-                    'beatmapDiscussionVotes',
-                    'beatmapset',
-                    'startingPost',
-                ]);
-
-            if ($this->isModerator) {
-                $children->visibleWithTrashed();
-            } else {
-                $children->visible();
-            }
-
-            $discussions['items'] = $discussions['items']->merge($children->get());
-        }
-
-        $posts = BeatmapDiscussionPost::search($this->searchParams);
-        $posts['query']->with([
-            'beatmapDiscussion.beatmap',
-            'beatmapDiscussion.beatmapset',
-        ]);
-
-        if (!$this->isModerator) {
-            $posts['query']->visible();
-        }
-
-        $posts['items'] = $posts['query']->get();
-
-        $events = BeatmapsetEvent::search($this->searchParams);
-        $events['items'] = $events['query']->with([
-            'beatmapset',
-            'beatmapDiscussion.beatmapset',
-            'beatmapDiscussion.startingPost',
-        ])->whereHas('beatmapset')->get();
+        $events = $this->getEvents();
 
         $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
         $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
 
-        $discussionUserIds = [];
-        foreach ($discussions['items'] as $discussion) {
-            $discussionUserIds[] = $discussion->user_id;
-            $discussionUserIds[] = $discussion->startingPost->last_editor_id;
-        }
-
-        $userIdSources = [
-            $discussionUserIds,
-            $posts['items']
-                ->pluck('user_id')
-                ->toArray(),
-            $posts['items']
-                ->pluck('last_editor_id')
-                ->toArray(),
-            $events['items']
-                ->pluck('user_id')
-                ->toArray(),
-            $votes['items']
-                ->pluck('user_id')
-                ->toArray(),
-            $receivedVotes['items']
-                ->pluck('user_id')
-                ->toArray(),
-        ];
-
-        $userIds = [];
-
-        foreach ($userIdSources as $source) {
-            $userIds = array_merge($userIds, $source);
-        }
-
-        $userIds = array_values(array_filter(array_unique($userIds)));
-
-        $users = User::whereIn('user_id', $userIds)
-            ->with('userGroups')
-            ->default()
-            ->get();
+        $users = $this->getUsers($discussions, $posts, $events, $votes, $receivedVotes);
 
         $perPage = [
             'recentlyReceivedKudosu' => 5,
@@ -224,99 +141,23 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
 
-        // Events
-        $search = BeatmapsetEvent::search($this->searchParams);
-        unset($search['params']['user']);
-        $events = $search['query']->with([
-            'beatmapset.user',
-            'beatmapDiscussion.beatmapset',
-            'beatmapDiscussion.startingPost',
-            'user',
-        ]);
-
-        if ($this->isModerator) {
-            $events->with(['beatmapset' => function ($query) {
-                $query->withTrashed();
-            }]);
-        }
-
-        $events = $events->whereHas('beatmapset')->get();
-
-        // Discussions
-        $discussionsSearch = BeatmapDiscussion::search($this->searchParams);
-        $discussionsSearch['query']->with([
-            'beatmap',
-            'beatmapDiscussionVotes',
-            'beatmapset',
-            'startingPost',
-        ]);
-
-        if ($this->isModerator) {
-            $discussionsSearch['query']->visibleWithTrashed();
-        } else {
-            $discussionsSearch['query']->visible();
-        }
-
-        $discussions = $discussionsSearch['query']->get();
-
-        // TODO: remove this when reviews are released
-        if (config('osu.beatmapset.discussion_review_enabled')) {
-            $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
-                ->with([
-                    'beatmap',
-                    'beatmapDiscussionVotes',
-                    'beatmapset',
-                    'startingPost',
-                ]);
-
-            if ($this->isModerator) {
-                $children->visibleWithTrashed();
-            } else {
-                $children->visible();
-            }
-
-            $discussions = $discussions->merge($children->get());
-        }
-
+        $search = $events = $this->getEvents();
+        $discussions = $this->getDiscussions();
+        $discussions = $this->getDiscussionsWithReviews($discussions);
         // Posts
-        $posts = BeatmapDiscussionPost::search($this->searchParams);
-        $posts['query']->with([
-            'beatmapDiscussion.beatmap',
-            'beatmapDiscussion.beatmapset',
-        ]);
-
-        if (!$this->isModerator) {
-            $posts['query']->visible();
-        }
-
-        $posts['items'] = $posts['query']->get();
+        $posts = $this->getPosts();
 
         // Users
-        $userIds = [];
-        foreach ($discussions as $discussion) {
-            $userIds[] = $discussion->user_id;
-            $userIds[] = $discussion->startingPost->last_editor_id;
-        }
-
-        $userIds = array_merge(
-            $userIds,
-            $posts['items']->pluck('user_id')->toArray(),
-            $events->pluck('user_id')->toArray(),
-        );
-
-        $users = User::whereIn('user_id', $userIds)
-            ->with('userGroups')
-            ->default()
-            ->get();
+        $users = $this->getUsers($discussions, $posts, $events);
 
         $paginator = new LengthAwarePaginator(
             $events,
-            $search['query']->realCount(),
-            $search['params']['limit'],
-            $search['params']['page'],
+            $events['query']->realCount(),
+            $events['params']['limit'],
+            $events['params']['page'],
             [
                 'path' => LengthAwarePaginator::resolveCurrentPath(),
-                'query' => $search['params'],
+                'query' => $events['params'],
             ]
         );
 
@@ -324,12 +165,12 @@ class ModdingHistoryController extends Controller
 
         $jsonChunks = [
             'discussions' => json_collection(
-                $discussions,
+                $discussions['items'],
                 'BeatmapDiscussion',
                 ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
             ),
             'events' => json_collection(
-                $events,
+                $events['items'],
                 'BeatmapsetEvent',
                 ['discussion.starting_post', 'beatmapset.user']
             ),
@@ -428,6 +269,119 @@ class ModdingHistoryController extends Controller
         );
 
         return ext_view('beatmapset_discussion_votes.index', compact('votes', 'user'));
+    }
+
+    private function getDiscussions()
+    {
+        $discussions = BeatmapDiscussion::search($this->searchParams);
+        $discussions['query']->with([
+            'beatmap',
+            'beatmapDiscussionVotes',
+            'beatmapset',
+            'startingPost',
+        ]);
+
+        if ($this->isModerator) {
+            $discussions['query']->visibleWithTrashed();
+        } else {
+            $discussions['query']->visible();
+        }
+
+        $discussions['items'] = $discussions['query']->get();
+
+        return $discussions;
+    }
+
+    private function getDiscussionsWithReviews($discussions)
+    {
+        // TODO: remove this when reviews are released
+        if (!config('osu.beatmapset.discussion_review_enabled')) {
+            return $discussions;
+        }
+
+        $children = BeatmapDiscussion::whereIn('parent_id', $discussions['items']->pluck('id'))
+            ->with([
+                'beatmap',
+                'beatmapDiscussionVotes',
+                'beatmapset',
+                'startingPost',
+            ]);
+
+        if ($this->isModerator) {
+            $children->visibleWithTrashed();
+        } else {
+            $children->visible();
+        }
+
+        $discussions['items'] = $discussions['items']->merge($children->get());
+
+        return $discussions;
+    }
+
+
+    private function getEvents()
+    {
+        $events = BeatmapsetEvent::search($this->searchParams);
+        unset($events['params']['user']);
+        $events['query'] = $events['query']->with([
+            'beatmapset',
+            'beatmapDiscussion.beatmapset',
+            'beatmapDiscussion.startingPost',
+        ]);
+
+        if ($this->isModerator) {
+            $events['query']->with(['beatmapset' => function ($query) {
+                $query->withTrashed();
+            }]);
+        }
+
+        $events['items'] = $events['query']->whereHas('beatmapset')->get();
+
+        return $events;
+    }
+
+    private function getPosts()
+    {
+        $posts = BeatmapDiscussionPost::search($this->searchParams);
+        $posts['query']->with([
+            'beatmapDiscussion.beatmap',
+            'beatmapDiscussion.beatmapset',
+        ]);
+
+        if (!$this->isModerator) {
+            $posts['query']->visible();
+        }
+
+        $posts['items'] = $posts['query']->get();
+
+        return $posts;
+    }
+
+    private function getUsers($discussions, $posts, $events, $votesGiven = null, $votesReceived = null)
+    {
+        $userIds = [];
+        foreach ($discussions['items'] as $discussion) {
+            $userIds[] = $discussion->user_id;
+            $userIds[] = $discussion->startingPost->last_editor_id;
+        }
+
+        $userIds = array_merge(
+            $userIds,
+            $posts['items']->pluck('user_id')->toArray(),
+            $posts['items']->pluck('last_editor_id')->toArray(),
+            $events['items']->pluck('user_id')->toArray(),
+            ($votesGiven['items'] ?? collect())->pluck('user_id')->toArray(),
+            ($votesReceived['items'] ?? collect())->pluck('user_id')->toArray()
+        );
+
+        $userIds = array_values(array_filter(array_unique($userIds)));
+
+        $users = User::whereIn('user_id', $userIds)
+            ->with('userGroups')
+            ->default()
+            ->get();
+
+        return $users;
     }
 
     private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
