@@ -60,13 +60,9 @@ class ModdingHistoryController extends Controller
         $this->searchParams['limit'] = 10;
         $this->searchParams['sort'] = 'id_desc';
 
-        $discussions = $this->getDiscussions();
-        $discussions = $this->getDiscussionsWithReviews($discussions);
-
-        $posts = $this->getPosts();
-
         [$events, , ] = $this->getEvents();
-
+        $discussions = $this->getDiscussions();
+        $posts = $this->getPosts();
         $votes = [
             'given' => BeatmapDiscussionVote::recentlyGivenByUser($user->getKey()),
             'received' => BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey()),
@@ -143,7 +139,6 @@ class ModdingHistoryController extends Controller
 
         [$events, $query, $params] = $this->getEvents();
         $discussions = $this->getDiscussions();
-        $discussions = $this->getDiscussionsWithReviews($discussions);
         $posts = $this->getPosts();
         $users = $this->getUsers($discussions, $posts, $events);
 
@@ -270,37 +265,30 @@ class ModdingHistoryController extends Controller
 
     private function getDiscussions()
     {
-        $discussions = BeatmapDiscussion::search($this->searchParams);
-        $discussions['query']->with([
+        $includes = [
             'beatmap',
             'beatmapDiscussionVotes',
             'beatmapset',
             'startingPost',
-        ]);
+        ];
+
+        $parents = BeatmapDiscussion::search($this->searchParams);
+        $parents['query']->with($includes);
 
         if ($this->isModerator) {
-            $discussions['query']->visibleWithTrashed();
+            $parents['query']->visibleWithTrashed();
         } else {
-            $discussions['query']->visible();
+            $parents['query']->visible();
         }
 
-        return $discussions['query']->get();
-    }
+        $discussions = $parents['query']->get();
 
-    private function getDiscussionsWithReviews($discussions)
-    {
         // TODO: remove this when reviews are released
         if (!config('osu.beatmapset.discussion_review_enabled')) {
             return $discussions;
         }
 
-        $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))
-            ->with([
-                'beatmap',
-                'beatmapDiscussionVotes',
-                'beatmapset',
-                'startingPost',
-            ]);
+        $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))->with($includes);
 
         if ($this->isModerator) {
             $children->visibleWithTrashed();
