@@ -75,7 +75,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
           className={`${bn}__delete`}
           onClick={this.delete}
           contentEditable={false}
-          title={osu.trans(`beatmaps.review.embed.${canEdit ? 'delete' : 'unlink'}`)}
+          title={osu.trans(`beatmaps.discussions.review.embed.${canEdit ? 'delete' : 'unlink'}`)}
         >
           <i className={`fas fa-${canEdit ? 'trash-alt' : 'link'}`} />
         </button>
