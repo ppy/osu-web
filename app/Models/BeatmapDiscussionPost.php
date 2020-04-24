@@ -6,7 +6,6 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\BeatmapsetDiscussionReview;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;

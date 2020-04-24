@@ -132,7 +132,8 @@ class BeatmapsetDiscussionReview
     }
 
     // TODO: combine with create()?
-    public static function update(BeatmapDiscussion $discussion, array $document, User $user) {
+    public static function update(BeatmapDiscussion $discussion, array $document, User $user)
+    {
         if (!$document || !is_array($document) || empty($document)) {
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
         }

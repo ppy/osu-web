@@ -196,6 +196,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($discussionCount + 3, BeatmapDiscussion::count());
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
     }
+
     //endregion
 
     //endregion
@@ -335,6 +336,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->expectException(InvariantException::class);
         BeatmapsetDiscussionReview::update($review, $document, $this->user);
     }
+
     //endregion
 
     //region Success Scenarios
@@ -375,7 +377,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
         // ensure new issue was created
         $this->assertSame($discussionCount + 1, BeatmapDiscussion::count());
-        $this->assertSame($discussionPostCount +  1, BeatmapDiscussionPost::count());
+        $this->assertSame($discussionPostCount + 1, BeatmapDiscussionPost::count());
     }
 
     // removing/unlinking an embed from an existing issue
@@ -398,7 +400,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $unlinked = BeatmapDiscussion::find($issue['discussion_id']);
 
         // ensure embed is no longer in message
-        $this->assertStringNotContainsString((string)$unlinked->id, $review->startingPost->message);
+        $this->assertStringNotContainsString((string) $unlinked->id, $review->startingPost->message);
 
         // ensure parent_id is removed from child issue
         $this->assertNull($unlinked->parent_id);
@@ -423,7 +425,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
     }
 
-    protected function setUpReview() : BeatmapDiscussion
+    protected function setUpReview(): BeatmapDiscussion
     {
         $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
         $issueText = self::$faker->sentence();
@@ -445,7 +447,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             ], $this->user);
     }
 
-    protected function updateReview($document) {
+    protected function updateReview($document)
+    {
         $review = $this->setUpReview();
         BeatmapsetDiscussionReview::update($review, $document, $this->user);
     }
