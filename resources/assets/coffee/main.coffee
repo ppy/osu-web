@@ -56,6 +56,7 @@ $(document).on 'turbolinks:load', ->
 @gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
+@localtime ?= new _exported.Localtime
 @menu ?= new Menu
 @mobileToggle ?= new _exported.MobileToggle
 @navButton ?= new NavButton
