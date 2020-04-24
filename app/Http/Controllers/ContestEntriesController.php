@@ -44,16 +44,16 @@ class ContestEntriesController extends Controller
                 $allowedExtensions[] = 'jpg';
                 $allowedExtensions[] = 'jpeg';
                 $allowedExtensions[] = 'png';
-                $maxFilesize = 4000000;
+                $maxFilesize = 8 * 1024 * 1024;
                 break;
             case 'beatmap':
                 $allowedExtensions[] = 'osu';
                 $allowedExtensions[] = 'osz';
-                $maxFilesize = 20000000;
+                $maxFilesize = 32 * 1024 * 1024;
                 break;
             case 'music':
                 $allowedExtensions[] = 'mp3';
-                $maxFilesize = 15000000;
+                $maxFilesize = 16 * 1024 * 1024;
                 break;
         }
 
