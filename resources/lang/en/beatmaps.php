@@ -98,6 +98,7 @@ return [
             'new' => 'New Review',
             'embed' => [
                 'delete' => 'Delete',
+                'missing' => '[DISCUSSION DELETED]',
                 'unlink' => 'Unlink',
                 'unsaved' => 'Unsaved',
             ],

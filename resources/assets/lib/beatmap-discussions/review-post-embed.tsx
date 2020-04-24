@@ -20,10 +20,10 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
   const discussion = discussions[data.discussion_id];
 
   if (!discussion) {
-    // this should never happen, but just in case...
+    // if a discussion has been deleted or is otherwise missing
     return (
-      <div className={bn}>
-        <div className={`${bn}__error`}>[DISCUSSION NOT LOADED]</div>
+      <div className={osu.classWithModifiers(bn, ['missing'])}>
+        <div className={`${bn}__error`}>{osu.trans('beatmaps.discussions.review.embed.missing')}</div>
       </div>
     );
   }
