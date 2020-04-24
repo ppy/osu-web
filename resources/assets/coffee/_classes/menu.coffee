@@ -64,14 +64,11 @@ class @Menu
     e.preventDefault()
     timeout = parseInt(link.dataset.menuShowDelay ? @menuTimeout, 10)
 
-    Timeout.clear @refreshTimeout
-    @refreshTimeout = Timeout.set timeout, =>
-      @currentMenu =
-        if @currentMenu == target
-          @closestMenuId $target
-        else
-          target
-      @refresh()
+    @setMenu timeout, =>
+      if @currentMenu == target
+        @closestMenuId $target
+      else
+        target
 
 
 
@@ -79,28 +76,18 @@ class @Menu
     link = e.currentTarget
     timeout = parseInt(link.dataset.menuShowDelay ? @menuTimeout, 10)
 
-    Timeout.clear @refreshTimeout
-    @refreshTimeout = Timeout.set timeout, =>
-      @currentMenu = link.dataset.menuTarget
-      @currentMenu ?= @closestMenuId $(link)
-      @refresh()
-
+    @setMenu timeout, =>
+      link.dataset.menuTarget ? @closestMenuId($(link))
 
 
   onMouseLeave: (e) =>
     $target = $(e.currentTarget)
 
-    Timeout.clear @refreshTimeout
-    @refreshTimeout = Timeout.set @menuTimeout, =>
-      @currentMenu = @parentsMenuId $target
-      @refresh()
+    @setMenu null, => @parentsMenuId($target)
 
 
   hideMenu: =>
-    Timeout.clear @refreshTimeout
-    @refreshTimeout = Timeout.set @menuTimeout, =>
-      @currentMenu = null
-      @refresh()
+    @setMenu()
 
 
   refresh: =>
@@ -120,3 +107,12 @@ class @Menu
         Fade.in menu
         @$menuLink(menuId).addClass('js-menu--active')
         $(menu).trigger 'menu:showing'
+
+
+  setMenu: (delay, menuFunc) =>
+    delay ?= @menuTimeout
+    Timeout.clear @refreshTimeout
+
+    @refreshTimeout = Timeout.set delay, =>
+      @currentMenu = menuFunc?()
+      @refresh()
