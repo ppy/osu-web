@@ -23,21 +23,17 @@
   }
 
   &__block {
-    display: flex;
-
-    &:hover .@{_top}__block-button {
+    &:hover .@{_top}__hover-menu {
       display: block;
     }
   }
 
-  // TODO: call it something else
-  &__block-button {
-    position: absolute;
-    align-self: flex-end;
-    margin-top: 20px;
+  &__hover-menu {
+    bottom: -20px;
+    display: none;
     margin-left: -20px;
     padding: 10px;
-    display: none;
+    position: absolute;
     user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
     .default-text-shadow();
     z-index: @z-index--blackout-visible;

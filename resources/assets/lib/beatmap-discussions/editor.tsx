@@ -71,7 +71,7 @@ export default class Editor extends React.Component<Props, any> {
   blockWrapper = (children: JSX.Element) => {
     return (
       <div className={`${this.bn}__block`}>
-        <div className={`${this.bn}__block-button`} contentEditable={false}>
+        <div className={`${this.bn}__hover-menu`} contentEditable={false}>
           <i className='fas fa-plus-circle' contentEditable={false} />
           <div className={`${this.bn}__menu-content`}>
             {this.embedButton('suggestion')}
