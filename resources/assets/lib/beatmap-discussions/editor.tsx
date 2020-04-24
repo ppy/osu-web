@@ -175,7 +175,8 @@ export default class Editor extends React.Component<Props, any> {
           document: this.serialize(),
         },
         method: 'POST',
-      }).then(() => {
+      }).then((data) => {
+        $.publish('beatmapsetDiscussions:update', {beatmapset: data});
         this.resetInput();
     });
   }
