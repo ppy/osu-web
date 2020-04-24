@@ -14,7 +14,7 @@ import { EditorToolbar } from './editor-toolbar';
 import { parseFromMarkdown } from './review-document';
 import { SlateContext } from './slate-context';
 
-const placeholder: string = '[{"children": [{"text": ""}], "type": "paragraph"}]';
+const placeholder: string = '[{"children":[{"text":""}],"type":"paragraph"}]';
 let initialValue: string = placeholder;
 
 interface TimestampRange extends Range {
@@ -152,7 +152,13 @@ export default class Editor extends React.Component<Props, any> {
   onChange = (value: SlateNode[]) => {
     if (!this.props.editMode) {
       const content = JSON.stringify(value);
-      localStorage.setItem(`newDiscussion-${this.props.beatmapset.id}`, content);
+      const key = `newDiscussion-${this.props.beatmapset.id}`;
+
+      if (content !== placeholder) {
+        localStorage.setItem(key, content);
+      } else {
+        localStorage.removeItem(key);
+      }
     }
 
     this.setState({value});
@@ -274,6 +280,7 @@ export default class Editor extends React.Component<Props, any> {
       }
     }
 
+    Transforms.deselect(this.slateEditor);
     this.onChange(JSON.parse(placeholder));
   }
 
