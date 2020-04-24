@@ -51,10 +51,7 @@ class @Menu
   onGlobalTouchstart: (e) =>
     return unless @currentMenu
 
-    closest = e.target
-    while closest
-      return if closest.classList.contains('js-menu')
-      closest = closest.parentElement
+    return if e.target.closest('.js-menu')?
 
     @hideMenu()
 
