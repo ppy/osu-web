@@ -45,6 +45,8 @@ class @Menu
 
   onDocumentReady: =>
     @refresh()
+    # It seems like jQuery's mouseleave sometimes doesn't trigger on page navigation.
+    # This will re-check whatever the mouse is currently pointing at.
     @setMenu null, => @closestMenuId($(':hover').last())
 
 
