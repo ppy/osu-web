@@ -7,6 +7,7 @@ namespace App\Models\Chat;
 
 use App\Exceptions\API;
 use App\Models\Multiplayer\Match;
+use App\Models\Notification;
 use App\Models\User;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
@@ -198,6 +199,7 @@ class Channel extends Model
 
         if ($this->isPM()) {
             $this->unhide();
+            broadcast_notification(Notification::CHANNEL_MESSAGE, $message, $sender);
         }
 
         Datadog::increment('chat.channel.send', 1, ['target' => $this->type]);
