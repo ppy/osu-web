@@ -9,7 +9,7 @@ class @Menu
     $(document).on 'mouseenter', '.js-menu', @onMouseEnter
     $(document).on 'mouseleave', '.js-menu', @onMouseLeave
     $(document).on 'touchstart', @onGlobalTouchstart
-    $(document).on 'turbolinks:load', @refresh
+    $(document).on 'turbolinks:load', @onDocumentReady
 
 
   $menuLink: (id) -> $(".js-menu[data-menu-target#{if id then "='#{id}'" else ''}]")
@@ -41,6 +41,11 @@ class @Menu
         break
 
     currentTree
+
+
+  onDocumentReady: =>
+    @refresh()
+    @setMenu null, => @closestMenuId($(':hover').last())
 
 
   onGlobalTouchstart: (e) =>
