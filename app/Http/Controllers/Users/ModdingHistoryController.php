@@ -6,10 +6,9 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
-use App\Models\BeatmapDiscussion;
+use App\Libraries\ModdingHistoryEventsBundle;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
-use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -57,75 +56,7 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
 
-        $this->searchParams['limit'] = 10;
-        $this->searchParams['sort'] = 'id_desc';
-
-        [$events, , ] = $this->getEvents();
-        $discussions = $this->getDiscussions();
-        $posts = $this->getPosts();
-        $votes = [
-            'given' => BeatmapDiscussionVote::recentlyGivenByUser($user->getKey()),
-            'received' => BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey()),
-        ];
-
-        $users = $this->getUsers($discussions, $posts, $events, $votes);
-
-        $perPage = [
-            'recentlyReceivedKudosu' => 5,
-        ];
-
-        $extras = [];
-
-        foreach ($perPage as $page => $n) {
-            // Fetch perPage + 1 so the frontend can tell if there are more items
-            // by comparing items count and perPage number.
-            $extras[$page] = $this->getExtra($user, $page, $n + 1);
-        }
-
-        $jsonChunks = [
-            'discussions' => json_collection(
-                $discussions,
-                'BeatmapDiscussion',
-                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
-            ),
-            'events' => json_collection(
-                $events,
-                'BeatmapsetEvent',
-                ['discussion.starting_post', 'beatmapset.user']
-            ),
-            'posts' => json_collection(
-                $posts,
-                'BeatmapDiscussionPost',
-                ['beatmap_discussion.beatmapset']
-            ),
-            'users' => json_collection(
-                $users,
-                'UserCompact',
-                ['group_badge']
-            ),
-            'votes' => $votes,
-        ];
-
-        $jsonChunks['extras'] = $extras;
-        $jsonChunks['perPage'] = $perPage;
-        $jsonChunks['user'] = json_item(
-            $user,
-            'User',
-            [
-                "statistics:mode({$user->playmode})",
-                'active_tournament_banner',
-                'badges',
-                'follower_count',
-                'graveyard_beatmapset_count',
-                'group_badge',
-                'loved_beatmapset_count',
-                'previous_usernames',
-                'ranked_and_approved_beatmapset_count',
-                'statistics.rank',
-                'support_level',
-                'unranked_beatmapset_count',
-            ]
-        );
+        $jsonChunks = ModdingHistoryEventsBundle::forProfile($user, $this->searchParams, $this->isModerator, $this->isKudosuModerator)->toArray();
 
         return ext_view('users.beatmapset_activities', compact(
             'jsonChunks',
@@ -137,46 +68,12 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
 
-        [$events, $query, $params] = $this->getEvents();
-        $discussions = $this->getDiscussions();
-        $posts = $this->getPosts();
-        $users = $this->getUsers($discussions, $posts, $events);
-
-        $paginator = new LengthAwarePaginator(
-            $events,
-            $query->realCount(),
-            $params['limit'],
-            $params['page'],
-            [
-                'path' => LengthAwarePaginator::resolveCurrentPath(),
-                'query' => $params,
-            ]
-        );
+        $bundle = ModdingHistoryEventsBundle::forListing($user, $this->searchParams, $this->isModerator, $this->isKudosuModerator);
+        $jsonChunks = $bundle->toArray();
+        $paginator = $bundle->getPaginator();
+        $params = $bundle->getParams();
 
         $showUserSearch = false;
-
-        $jsonChunks = [
-            'discussions' => json_collection(
-                $discussions,
-                'BeatmapDiscussion',
-                ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
-            ),
-            'events' => json_collection(
-                $events,
-                'BeatmapsetEvent',
-                ['discussion.starting_post', 'beatmapset.user']
-            ),
-            'posts' => json_collection(
-                $posts,
-                'BeatmapDiscussionPost',
-                ['beatmap_discussion.beatmapset']
-            ),
-            'users' => json_collection(
-                $users,
-                'UserCompact',
-                ['group_badge']
-            ),
-        ];
 
         return ext_view('beatmapset_events.index', compact('paginator', 'params', 'jsonChunks', 'user', 'showUserSearch'));
     }
@@ -261,127 +158,5 @@ class ModdingHistoryController extends Controller
         );
 
         return ext_view('beatmapset_discussion_votes.index', compact('votes', 'user'));
-    }
-
-    private function getDiscussions()
-    {
-        $includes = [
-            'beatmap',
-            'beatmapDiscussionVotes',
-            'beatmapset',
-            'startingPost',
-        ];
-
-        $parents = BeatmapDiscussion::search($this->searchParams);
-        $parents['query']->with($includes);
-
-        if ($this->isModerator) {
-            $parents['query']->visibleWithTrashed();
-        } else {
-            $parents['query']->visible();
-        }
-
-        $discussions = $parents['query']->get();
-
-        // TODO: remove this when reviews are released
-        if (!config('osu.beatmapset.discussion_review_enabled')) {
-            return $discussions;
-        }
-
-        $children = BeatmapDiscussion::whereIn('parent_id', $discussions->pluck('id'))->with($includes);
-
-        if ($this->isModerator) {
-            $children->visibleWithTrashed();
-        } else {
-            $children->visible();
-        }
-
-        return $discussions->merge($children->get());
-    }
-
-    private function getEvents()
-    {
-        $events = BeatmapsetEvent::search($this->searchParams);
-        unset($events['params']['user']);
-        $events['query'] = $events['query']->with([
-            'beatmapset',
-            'beatmapDiscussion.beatmapset',
-            'beatmapDiscussion.startingPost',
-        ])->whereHas('beatmapset');
-
-        if ($this->isModerator) {
-            $events['query']->with(['beatmapset' => function ($query) {
-                $query->withTrashed();
-            }]);
-        }
-
-        return [
-            $events['query']->get(),
-            $events['query'],
-            $events['params'],
-        ];
-    }
-
-    private function getPosts()
-    {
-        $posts = BeatmapDiscussionPost::search($this->searchParams);
-        $posts['query']->with([
-            'beatmapDiscussion.beatmap',
-            'beatmapDiscussion.beatmapset',
-        ]);
-
-        if (!$this->isModerator) {
-            $posts['query']->visible();
-        }
-
-        return $posts['query']->get();
-    }
-
-    private function getUsers($discussions, $posts, $events, $votes = [])
-    {
-        $userIds = [];
-        foreach ($discussions as $discussion) {
-            $userIds[] = $discussion->user_id;
-            $userIds[] = $discussion->startingPost->last_editor_id;
-        }
-
-        $votesGiven = ($votes['given'] ?? collect())->pluck('user_id')->toArray();
-        $votesReceived = ($votes['received'] ?? collect())->pluck('user_id')->toArray();
-
-        $userIds = array_merge(
-            $userIds,
-            $posts->pluck('user_id')->toArray(),
-            $posts->pluck('last_editor_id')->toArray(),
-            $events->pluck('user_id')->toArray(),
-            $votesGiven,
-            $votesReceived
-        );
-
-        $userIds = array_values(array_filter(array_unique($userIds)));
-
-        return User::whereIn('user_id', $userIds)
-            ->with('userGroups')
-            ->default()
-            ->get();
-    }
-
-    private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
-    {
-        // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
-        switch ($page) {
-            // KudosuHistory
-            case 'recentlyReceivedKudosu':
-                $transformer = 'KudosuHistory';
-                $query = $user->receivedKudosu()
-                    ->with('post', 'post.topic', 'giver', 'kudosuable')
-                    ->orderBy('exchange_id', 'desc');
-                break;
-        }
-
-        if (!isset($collection)) {
-            $collection = $query->limit($perPage)->offset($offset)->get();
-        }
-
-        return json_collection($collection, $transformer, $includes ?? []);
     }
 }
