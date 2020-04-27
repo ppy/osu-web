@@ -5,7 +5,6 @@
 
 namespace App\Jobs;
 
-use App\Events\NewNotificationEvent;
 use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Beatmap;
@@ -65,7 +64,7 @@ class BroadcastNotification implements ShouldQueue
         }
 
         try {
-            $eventClass = $this->$function() ?? NewNotificationEvent::class;
+            $this->$function();
         } catch (InvalidNotificationException $_e) {
             return;
         }
@@ -93,7 +92,7 @@ class BroadcastNotification implements ShouldQueue
 
         $notification->save();
 
-        event(new $eventClass($notification, $this->receiverIds));
+        event(new NewPrivateNotificationEvent($notification, $this->receiverIds));
 
         DB::transaction(function () use ($notification) {
             foreach ($this->receiverIds as $id) {
@@ -171,8 +170,6 @@ class BroadcastNotification implements ShouldQueue
         }
 
         $this->assignBeatmapsetDiscussionNotificationDetails();
-
-        return NewPrivateNotificationEvent::class;
     }
 
     private function onBeatmapsetDisqualify()
