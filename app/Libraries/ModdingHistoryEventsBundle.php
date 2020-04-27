@@ -23,6 +23,7 @@ class ModdingHistoryEventsBundle
     private $params;
     private $posts;
     private $query;
+    private $total;
     private $user;
     private $votes;
     private $withExtras = false;
@@ -51,9 +52,13 @@ class ModdingHistoryEventsBundle
 
     public function getPaginator()
     {
+        if (!isset($this->events)) {
+            $this->toArray();
+        }
+
         return new LengthAwarePaginator(
             $this->events,
-            $this->query->realCount(),
+            $this->total,
             $this->params['limit'],
             $this->params['page'],
             [
@@ -70,7 +75,7 @@ class ModdingHistoryEventsBundle
 
     public function toArray(): array
     {
-        [$this->events, $this->query, $this->params] = $this->getEvents();
+        $this->events = $this->getEvents();
         $this->discussions = $this->getDiscussions();
         $this->posts = $this->getPosts();
 
@@ -194,11 +199,11 @@ class ModdingHistoryEventsBundle
             }]);
         }
 
-        return [
-            $events['query']->get(),
-            $events['query'],
-            $events['params'],
-        ];
+        // just for the paginator
+        $this->total = $events['query']->realCount();
+        $this->params = $events['params'];
+
+        return $events['query']->get();
     }
 
     private function getPosts()
