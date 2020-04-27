@@ -81,6 +81,8 @@ class BroadcastNotification implements ShouldQueue
 
         $this->receiverIds = $this->filterReceiverIds();
 
+        $this->receiverIds = array_values(array_unique($this->receiverIds));
+
         if (empty($this->receiverIds)) {
             return;
         }
@@ -197,7 +199,23 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetDisqualify()
     {
+        $modes = $this->object->playmodes()->all();
+        $modes = array_map(function ($modeInt) {
+            return Beatmap::modeStr($modeInt);
+        }, $modes);
+
+        $notificationOptions = UserNotificationOption
+            ::where(['name' => Notification::BEATMAPSET_DISQUALIFY])
+            ->whereNotNull('details')
+            ->get();
+
         $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
+
+        foreach ($notificationOptions as $notificationOption) {
+            if (count(array_intersect($notificationOption->details['modes'] ?? [], $modes)) > 0) {
+                $this->receiverIds[] = $notificationOption->user_id;
+            }
+        }
 
         $this->params['details'] = [
             'title' => $this->object->title,
