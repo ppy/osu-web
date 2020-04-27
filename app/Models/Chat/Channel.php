@@ -5,7 +5,6 @@
 
 namespace App\Models\Chat;
 
-use App\Events\UserSubscriptionChangeEvent;
 use App\Exceptions\API;
 use App\Models\Multiplayer\Match;
 use App\Models\Notification;
@@ -224,10 +223,6 @@ class Channel extends Model
             $userChannel->save();
         }
 
-        if ($this->isPM()) {
-            event(new UserSubscriptionChangeEvent('add', $user, $this));
-        }
-
         Datadog::increment('chat.channel.join', 1, ['type' => $this->type]);
     }
 
@@ -244,7 +239,6 @@ class Channel extends Model
         }
 
         if ($this->isPM()) {
-            event(new UserSubscriptionChangeEvent('remove', $user, $this));
             $userChannel->update(['hidden' => true]);
         } else {
             $userChannel->delete();
@@ -268,16 +262,10 @@ class Channel extends Model
             return;
         }
 
-        $hiddenUserChannels = UserChannel::where([
+        UserChannel::where([
             'channel_id' => $this->channel_id,
             'hidden' => true,
-        ]);
-
-        foreach ($hiddenUserChannels->get() as $userChannel) {
-            event(new UserSubscriptionChangeEvent('add', $userChannel->user, $this));
-        }
-
-        $hiddenUserChannels->update([
+        ])->update([
             'hidden' => false,
         ]);
     }

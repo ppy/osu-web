@@ -15,9 +15,11 @@ return [
     ],
     'error' => [
         'error' => [
+            '400' => '',
             '404' => 'ontbrekend',
             '403' => 'verboden',
             '401' => 'ongeautoriseerd',
+            '401-verification' => '',
             '405' => 'ontbrekend',
             '422' => 'ongeldige aanvraag',
             '500' => 'iets gaat er mis',

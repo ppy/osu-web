@@ -18,7 +18,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'видалено',
-        'none_found' => '',
+        'none_found' => 'Не знайдено жодної дискусії, що відповідають критеріям пошуку.',
         'title' => 'Обговорення карти',
 
         'form' => [
@@ -67,11 +67,12 @@ return [
         'go_to_parent' => 'Побачити відгук',
         'go_to_child' => 'Побачити обговорення',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_block_type' => 'недопустимий тип блоку',
+            'invalid_document' => 'недопустимий відгук',
+            'minimum_issues' => 'відгук повинен містити як мінімум :count проблему | відгук повинен містити як мінімум :count проблеми | відгук повинен містити як мінімум :count проблем
+',
+            'missing_text' => 'в блоці відсутній текст',
+            'too_many_blocks' => 'відгуки можуть містити лише :count параграф/проблему|відгуки можуть містити лише до :count параграфів/проблем',
         ],
     ],
 

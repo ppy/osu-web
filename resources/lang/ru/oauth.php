@@ -28,7 +28,14 @@ return [
         'id' => 'ID клиента',
         'name' => 'Имя приложения',
         'redirect' => 'Callback URL Приложения',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'Секрет клиента',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Вы уверены, что хотите удалить этого клиента?',
+        'confirm_reset' => '',
         'new' => 'Новое приложение OAuth',
         'none' => 'Нет клиентов',
 

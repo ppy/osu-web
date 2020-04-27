@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Sayfa Kayıp',
             'description' => "Üzgünüm, istediğiniz sayfa burada değil!",

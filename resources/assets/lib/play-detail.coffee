@@ -37,7 +37,7 @@ export class PlayDetail extends PureComponent
 
         div className: "#{bn}__detail",
           a
-            href: score.beatmap.url
+            href: laroute.route('beatmaps.show', beatmap: score.beatmap.id, mode: score.mode)
             className: "#{bn}__title u-ellipsis-overflow"
             score.beatmapset.title
             ' '

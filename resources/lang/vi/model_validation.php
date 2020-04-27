@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => ':attribute đã chọn không hợp lệ.',
     'not_negative' => ':attribute không thể âm.',
     'required' => 'Yêu cầu :attribute.',
     'too_long' => ':attribute vượt quá độ dài cho phép - chỉ có thể lên đến :limit kí tự.',

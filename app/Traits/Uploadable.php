@@ -6,6 +6,7 @@
 namespace App\Traits;
 
 use App\Libraries\StorageWithUrl;
+use Illuminate\Http\File;
 
 trait Uploadable
 {
@@ -117,6 +118,6 @@ trait Uploadable
             'ext' => $fileExtension,
         ]);
 
-        $this->storage()->put($this->filePath(), file_get_contents($filePath));
+        $this->storage()->putFileAs($this->fileDir(), new File($filePath), $this->fileName());
     }
 }

@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Sida saknas',
             'description' => "Förlåt, men sidan du frågade efter finns inte här!",

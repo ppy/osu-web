@@ -690,6 +690,14 @@ function ext_view($view, $data = null, $type = null, $status = null)
     );
 }
 
+function from_app_url()
+{
+    // Add trailing slash so people can't just use https://osu.web.domain.com
+    // to bypass https://osu.web referrer check.
+    // This assumes app.url doesn't contain trailing slash.
+    return starts_with(request()->headers->get('referer'), config('app.url').'/');
+}
+
 function is_api_request()
 {
     return request()->is('api/*');
@@ -756,7 +764,7 @@ function timeago($date)
     $display_date = i18n_time($date);
     $attribute_date = json_time($date);
 
-    return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
+    return "<time class='js-timeago' datetime='{$attribute_date}'>{$display_date}</time>";
 }
 
 function link_to_user($id, $username = null, $color = null, $classNames = null)

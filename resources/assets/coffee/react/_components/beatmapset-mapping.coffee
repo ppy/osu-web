@@ -2,7 +2,9 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react'
-import { div, span, a, time } from 'react-dom-factories'
+import { a, div, span, strong, time } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
+import TimeWithTooltip from 'time-with-tooltip'
 el = React.createElement
 
 bn = 'beatmapset-mapping'
@@ -41,11 +43,16 @@ export class BeatmapsetMapping extends React.PureComponent
 
 
   renderDate: (key, attribute) =>
-    div
-      className: "#{bn}__date"
-      dangerouslySetInnerHTML: __html:
-        osu.trans "beatmapsets.show.details_date.#{key}",
-          timeago: osu.timeago(@props.beatmapset[attribute])
+    div null,
+      el StringWithComponent,
+        pattern: osu.trans "beatmapsets.show.details_date.#{key}"
+        mappings:
+          ':timeago':
+            strong
+              key: 'timeago'
+              el TimeWithTooltip,
+                dateTime: @props.beatmapset[attribute]
+                relative: Math.abs(moment().diff(moment(@props.beatmapset[attribute]), 'weeks')) < 4
 
 
   userLink: (user) ->

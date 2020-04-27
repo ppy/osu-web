@@ -33,7 +33,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Este mapa está atualmente bloqueado para ser discutido e não pode ser publicado",
             'guest' => 'Tens que estar com a sessão iniciada para hypear.',
             'hyped' => 'Já hypeaste este beatmap.',
             'limit_exceeded' => 'Usaste todo o teu hype.',
@@ -124,7 +124,7 @@ return [
         'invalid_country' => 'País inexistente na base de dados.',
         'invalid_discord' => 'Nome de utilizador do Discord inválido.',
         'invalid_email' => "Não parece que seja um endereço de email válido.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Nome de utilizador do Twitter inválido.',
         'too_short' => 'A nova palavra-passe é demasiado curta.',
         'unknown_duplicate' => 'Nome de utilizador e endereço de e-mail já usados.',
         'username_available_in' => 'Este nome de utilizador irá estar disponível para uso em :duration.',

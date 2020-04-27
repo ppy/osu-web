@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Discussão',
 
@@ -39,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'aprovado há :timeago',
+            'loved' => 'adorado há :timeago',
+            'qualified' => 'qualificado há :timeago',
+            'ranked' => 'classificado há :timeago',
+            'submitted' => 'submetido há :timeago',
+            'updated' => 'atualizado há :timeago',
         ],
 
         'favourites' => [

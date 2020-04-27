@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => '指定的 :attribute 无效。',
     'not_negative' => ':attribute 不能为负数。',
     'required' => '需要 :attribute 。',
     'too_long' => ':attribute 超出最大长度——最多允许 :limit 个字符。',

@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Nie znaleziono strony',
             'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",

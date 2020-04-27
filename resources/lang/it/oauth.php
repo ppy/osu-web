@@ -28,7 +28,14 @@ return [
         'id' => 'Client ID',
         'name' => 'Nome Applicazione',
         'redirect' => 'URL di richiamo dell\'applicazione',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'Client Secret',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Sei sicuro di voler eliminare questo client?',
+        'confirm_reset' => '',
         'new' => 'Nuova Applicazione OAuth',
         'none' => 'Nessun Client',
 
