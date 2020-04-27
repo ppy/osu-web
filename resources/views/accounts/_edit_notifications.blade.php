@@ -41,7 +41,7 @@
                         data-account-edit-auto-submit="1"
                         data-account-edit-type="array"
                         data-url="{{ route('account.notification-options') }}"
-                        data-field="user_notification_option[{{ $notificationType }}][details][modes]"
+                        data-field="{{ "user_notification_option[{$notificationType}][details][modes]" }}"
                     >
                         @php
                             $modes = $notificationOptions[$notificationType]->details['modes'] ?? [];
