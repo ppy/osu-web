@@ -5,7 +5,7 @@
 
 namespace Tests;
 
-use App\Events\NewNotificationEvent;
+use App\Events\NewPrivateNotificationEvent;
 use App\Jobs\BroadcastNotification;
 use App\Models\Beatmapset;
 use App\Models\Chat\Channel;
@@ -58,7 +58,7 @@ class BroadcastNotificationTest extends TestCase
                 return $notification !== null;
             });
 
-            Event::assertDispatched(NewNotificationEvent::class);
+            Event::assertDispatched(NewPrivateNotificationEvent::class);
         } else {
             Queue::assertNotPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
                 $notification = $job->handle();
@@ -66,7 +66,7 @@ class BroadcastNotificationTest extends TestCase
                 return $notification !== null;
             });
 
-            Event::assertNotDispatched(NewNotificationEvent::class);
+            Event::assertNotDispatched(NewPrivateNotificationEvent::class);
         }
     }
 
@@ -89,7 +89,7 @@ class BroadcastNotificationTest extends TestCase
         });
 
         // if private notification, should assert receiverIds.
-        Event::assertDispatched(NewNotificationEvent::class);
+        Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
 
     public function sendNotificationDataProvider()
