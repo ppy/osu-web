@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Ugyldig :attribute angitt.',
     'not_negative' => ':attribute kan ikke være negativ.',
     'required' => ':attribute kreves.',
     'too_long' => ':attribute overskrider maksimumslengden - kan bare være opp til :limit tegn.',
@@ -15,7 +15,7 @@ return [
         'first_post' => 'Kan ikke slette det første innlegget.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Meldingen',
         ],
     ],
 
@@ -28,12 +28,12 @@ return [
         'locked' => 'Diskusjonen er låst.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Meldingstype',
+            'timestamp' => 'Tidsstempel',
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Dette beatmappet er foreløpig låst for diskusjon og kan ikke hypes",
             'guest' => 'Må være logget inn for å hype.',
             'hyped' => 'Du har allerede hypet dette beatmappet.',
             'limit_exceeded' => 'Du har brukt opp all hypen din.',
@@ -49,10 +49,10 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Å svare til slettede kommentarer er ikke tillatt.',
-        'top_only' => '',
+        'top_only' => 'Innsetting av kommentar svar er ikke tillatt.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Meldingen',
         ],
     ],
 
@@ -76,13 +76,14 @@ return [
             'only_quote' => 'Svaret ditt inneholder kun et sitat.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Publiser brødtekst
+',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Emnetittel',
             ],
         ],
 
@@ -124,7 +125,7 @@ return [
         'invalid_country' => 'Land er ikke i databasen.',
         'invalid_discord' => 'Discord brukernavnet er ugyldig.',
         'invalid_email' => "Dette ser ikke ut til å være en gyldig e-postadresse.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter brukernavnet er ugyldig.',
         'too_short' => 'Nytt passord er for kort.',
         'unknown_duplicate' => 'Brukernavn eller e-postadresse er allerede i bruk.',
         'username_available_in' => 'Dette brukernavnet vil bli tilgjengelig for bruk om :duration.',
@@ -160,7 +161,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason er ikke gyldig for denne rapporttypen.',
         'self' => "Du kan ikke rapportere deg selv!",
     ],
 

@@ -28,13 +28,13 @@ return [
         'id' => '클라이언트 ID',
         'name' => '애플리케이션 이름',
         'redirect' => '애플리케이션 Callback URL',
-        'reset' => '',
-        'reset_failed' => '',
+        'reset' => '클라이언트 Secret 재설정',
+        'reset_failed' => '클라이언트 Secret을 초기화하는데 실패했습니다.',
         'secret' => '클라이언트 비밀 키',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => '클라이언트 Secret 보기',
+            'true' => '클라이언트 Secret 숨기기',
         ],
     ],
 
@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '정말로 이 클라이언트를 삭제하시겠어요?',
-        'confirm_reset' => '',
+        'confirm_reset' => '정말 클라이언트 Secret을 초기화하실 건가요? 이 작업은 존재하는 모든 토큰을 무효화시킵니다.',
         'new' => '새 OAuth 애플리케이션',
         'none' => '클라이언트 없음',
 

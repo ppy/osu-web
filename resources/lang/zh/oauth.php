@@ -28,13 +28,13 @@ return [
         'id' => '客户端 ID',
         'name' => '应用名称',
         'redirect' => '应用回调链接',
-        'reset' => '',
-        'reset_failed' => '',
+        'reset' => '重置客户端密钥',
+        'reset_failed' => '重置客户端密钥失败',
         'secret' => '客户端密钥',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => '显示客户端密钥',
+            'true' => '隐藏客户端密钥',
         ],
     ],
 
@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '你确定想要删除这个客户端？',
-        'confirm_reset' => '',
+        'confirm_reset' => '您确定要重置客户端密钥吗？这将撤销现有的所有 Token。',
         'new' => '新的 OAuth 应用',
         'none' => '没有客户端',
 

@@ -130,7 +130,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Ongeldige aanvraag invoer',
             'description' => '',
         ],
         '404' => [

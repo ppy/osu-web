@@ -28,7 +28,7 @@ return [
 
         'help' => [
             'index' => 'index',
-            'sitemap' => '',
+            'sitemap' => 'Siteübersicht',
         ],
 
         'store' => [
@@ -116,7 +116,7 @@ return [
             'forum' => 'Community-Foren',
             'livestreams' => 'Livestreams',
             'report' => 'Einen Fehler melden',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Rechtliches & Status',
@@ -130,7 +130,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Ungültige Anforderungsparameter',
             'description' => '',
         ],
         '404' => [
@@ -150,7 +150,7 @@ return [
             'description' => "Sorry, aber die angeforderte Seite existiert nicht!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Ungültige Anforderungsparameter',
             'description' => '',
         ],
         '500' => [

@@ -23,13 +23,13 @@ return [
                 'description' => 'Alle pengebidrag går mot å finansiere servere for å kjøre nettsiden, flerspillerfunksjoner, rangeringslister osv.',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Utvalgte artister',
+                'description' => 'Med din støtte kan vi oppsøke sende enda flere fantastiske artister og lisensiere mer utrolig musikk for bruk i osu!',
+                'link_text' => 'Vis gjeldene artister &raquo;',
             ],
             'ads' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Hold osu! selvstendig',
+                'description' => 'Bidragene dine hjelper med å holde spillet uavhengig og helt uten annonser og sponsorer.',
             ],
             'tournaments' => [
                 'title' => 'Offisielle Turneringer',
@@ -37,8 +37,8 @@ return [
                 'link_text' => 'Se turneringer &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Program for åpen kildekode',
+                'description' => 'Støtt samfunnets bidragsytere som har gitt tid og krefter til å gjøre osu! bedre.',
                 'link_text' => 'Les mer &raquo;',
             ],
         ],
@@ -51,17 +51,17 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Vennerangering',
-                'description' => "Sjekk hvordan du ligger an i forhold til vennene dine på beatmappets rangerinsliste gjennom både spiller og på nettsiden vår.",
+                'description' => "Sjekk hvordan du ligger an i forhold til vennene dine på beatmappets rangeringsliste gjennom både spiller og på nettsiden vår.",
             ],
 
             'country_ranking' => [
                 'title' => 'Landsrangering',
-                'description' => '',
+                'description' => 'Erobre landet ditt før du erobrer verden.',
             ],
 
             'mod_filtering' => [
                 'title' => 'Filterer etter modifiikasjoner',
-                'description' => '',
+                'description' => 'Tilknytter du deg bare med personer som spiller HDHR? Ikke et problem!',
             ],
 
             'auto_downloads' => [
@@ -125,15 +125,15 @@ return [
             ],
             'more_friends' => [
                 'title' => 'Flere venner',
-                'description' => '',
+                'description' => 'Det maksimale antall av venner du kan ha er økt fra :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
                 'title' => 'Last opp flere beatmaps',
                 'description' => 'Antallet ikke-rangerte beatmaps som du kan ha på en gang er beregnet ut ifra en grunnverdi, pluss en tilleggsbonus for hvert rangerte map du har (opp til en satt maksgrense).<br/><br/>Vanligvis vil dette si at du har en grunnverdi på 4 poeng, pluss 1 poeng per rangerte beatmap (maks 2 maps). Med supporter, økes disse verdiene slik at du har en grunnverdi på 8. Deretter vil du få 1 poeng per rangerte beatmap (maks 12 maps).',
             ],
             'friend_filtering' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Venners rangeringsliste',
+                'description' => 'Konkurrer med vennene dine og se hvordan du rangerer opp mot dem!',
             ],
 
         ],

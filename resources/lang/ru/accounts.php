@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Параметры',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'тип загрузки карт по умолчанию',
+            'all' => 'с видео, если доступно',
+            'no_video' => 'без видео',
+            'direct' => 'открыть в osu!direct',
         ],
     ],
 
