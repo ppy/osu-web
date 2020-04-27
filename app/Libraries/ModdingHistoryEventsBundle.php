@@ -27,24 +27,24 @@ class ModdingHistoryEventsBundle
     private $votes;
     private $withExtras = false;
 
-    public static function forProfile(User $user, $searchParams, $isModerator, $isKudosuModerator)
+    public static function forProfile(User $user, array $searchParams)
     {
         $searchParams['limit'] = 10;
         $searchParams['sort'] = 'id_desc';
 
-        $obj = static::forListing($user, $searchParams, $isModerator, $isKudosuModerator);
+        $obj = static::forListing($user, $searchParams);
         $obj->withExtras = true;
 
         return $obj;
     }
 
-    public static function forListing(User $user, $searchParams, $isModerator, $isKudosuModerator)
+    public static function forListing(User $user, array $searchParams)
     {
         $obj = new static;
         $obj->user = $user;
         $obj->searchParams = $searchParams;
-        $obj->isModerator = $isModerator;
-        $obj->isKudosuModerator = $isKudosuModerator;
+        $obj->isModerator = priv_check('BeatmapDiscussionModerate')->can();
+        $obj->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
 
         return $obj;
     }

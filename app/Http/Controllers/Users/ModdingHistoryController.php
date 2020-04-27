@@ -56,7 +56,7 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
 
-        $jsonChunks = ModdingHistoryEventsBundle::forProfile($user, $this->searchParams, $this->isModerator, $this->isKudosuModerator)->toArray();
+        $jsonChunks = ModdingHistoryEventsBundle::forProfile($user, $this->searchParams)->toArray();
 
         return ext_view('users.beatmapset_activities', compact(
             'jsonChunks',
@@ -68,7 +68,7 @@ class ModdingHistoryController extends Controller
     {
         $user = $this->user;
 
-        $bundle = ModdingHistoryEventsBundle::forListing($user, $this->searchParams, $this->isModerator, $this->isKudosuModerator);
+        $bundle = ModdingHistoryEventsBundle::forListing($user, $this->searchParams);
         $jsonChunks = $bundle->toArray();
         $paginator = $bundle->getPaginator();
         $params = $bundle->getParams();
