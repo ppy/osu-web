@@ -19,15 +19,15 @@ export class Uploader extends React.Component
     switch @props.contest.type
       when 'art'
         allowedExtensions = ['.jpg', '.jpeg', '.png']
-        maxSize = 4000000
+        maxSize = 8*1024*1024
 
       when 'beatmap'
         allowedExtensions = ['.osu', '.osz']
-        maxSize = 20000000
+        maxSize = 32*1024*1024
 
       when 'music'
         allowedExtensions = ['.mp3']
-        maxSize = 15000000
+        maxSize = 16*1024*1024
 
 
     $dropzone = $('.js-contest-entry-upload--dropzone')

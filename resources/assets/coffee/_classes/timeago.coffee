@@ -9,9 +9,9 @@ class @Timeago
 
       mutations.forEach (mutation) ->
         $nodes = $(mutation.addedNodes)
-        $nodes.find('.timeago').add($nodes.filter('.timeago')).timeago()
+        $nodes.find('.js-timeago').add($nodes.filter('.js-timeago')).timeago()
 
 
     $(document).on 'turbolinks:load', =>
-      $('.timeago').timeago()
+      $('.js-timeago').timeago()
       @observer.observe document.body, childList: true, subtree: true
