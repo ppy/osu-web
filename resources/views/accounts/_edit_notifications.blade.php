@@ -31,38 +31,40 @@
         </div>
 
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--no-label">
-                <div class="account-edit-entry__checkboxes-label">
-                    {{ trans('accounts.notifications.beatmapset_discussion_qualified_problem') }}
-                </div>
-                <form
-                    class="account-edit-entry__checkboxes js-account-edit"
-                    data-account-edit-auto-submit="1"
-                    data-account-edit-type="array"
-                    data-url="{{ route('account.notification-options') }}"
-                    data-field="user_notification_option[{{ App\Models\Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM }}][details][modes]"
-                >
-                    @php
-                        $modes = $notificationOptions[App\Models\Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM]->details['modes'] ?? [];
-                    @endphp
-                    @foreach (App\Models\Beatmap::MODES as $key => $_value)
-                        <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
-                            @include('objects._switch', [
-                                'checked' => in_array($key, $modes, true),
-                                'value' => $key,
-                            ])
-
-                            <span class="account-edit-entry__checkbox-label">
-                                {{ trans("beatmaps.mode.{$key}") }}
-                            </span>
-                        </label>
-                    @endforeach
-
-                    <div class="account-edit-entry__checkboxes-status">
-                        @include('accounts._edit_entry_status')
+            @foreach (App\Models\UserNotificationOption::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS as $notificationType)
+                <div class="account-edit-entry account-edit-entry--no-label">
+                    <div class="account-edit-entry__checkboxes-label">
+                        {{ trans("accounts.notifications.$notificationType") }}
                     </div>
-                </form>
-            </div>
+                    <form
+                        class="account-edit-entry__checkboxes js-account-edit"
+                        data-account-edit-auto-submit="1"
+                        data-account-edit-type="array"
+                        data-url="{{ route('account.notification-options') }}"
+                        data-field="user_notification_option[{{ $notificationType }}][details][modes]"
+                    >
+                        @php
+                            $modes = $notificationOptions[$notificationType]->details['modes'] ?? [];
+                        @endphp
+                        @foreach (App\Models\Beatmap::MODES as $key => $_value)
+                            <label class="account-edit-entry__checkbox account-edit-entry__checkbox--inline">
+                                @include('objects._switch', [
+                                    'checked' => in_array($key, $modes, true),
+                                    'value' => $key,
+                                ])
+
+                                <span class="account-edit-entry__checkbox-label">
+                                    {{ trans("beatmaps.mode.{$key}") }}
+                                </span>
+                            </label>
+                        @endforeach
+
+                        <div class="account-edit-entry__checkboxes-status">
+                            @include('accounts._edit_entry_status')
+                        </div>
+                    </form>
+                </div>
+            @endforeach
         </div>
 
         <div class="account-edit__input-group">
