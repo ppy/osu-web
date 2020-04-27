@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Dieser Thread ist gesperrt und erlaubt keine weiteren Antworten',
             'to_0' => 'Thread entsperren',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Thema öffnen?',
             'to_0_done' => 'Thread wurde entsperrt',
             'to_1' => 'Thread sperren',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Thema schließen?',
             'to_1_done' => 'Thread wurde gesperrt',
         ],
 
@@ -249,13 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Thread von den angepinnten Threads entfernen',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Thema lösen?',
             'to_0_done' => 'Thread wurde von den angepinnten Threads entfernt',
             'to_1' => 'Thread anpinnen',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Thema anpinnen?',
             'to_1_done' => 'Thread wurde angepinnt',
             'to_2' => 'Thread anpinnen und als Ankündigung markieren',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Thema anpinnen und als Ankündigung markieren?',
             'to_2_done' => 'Thread wurde angepinnt und als Ankündigung markiert',
         ],
 

@@ -21,7 +21,7 @@ return [
         'kudosu_gain' => 'La discusión :discussion por :user ha obtenido suficientes votos para kudosu.',
         'kudosu_lost' => 'La discusión :discussion por :user ha perdido votos y su kudosu ganado ha sido removido.',
         'kudosu_recalculate' => 'A la discusión :discussion se le han recalculado los kudosu otorgados.',
-        'love' => 'Loved por :user',
+        'love' => 'Amado por :user.',
         'nominate' => 'Nominado por :user.',
         'nomination_reset' => 'Un nuevo problema :discussion (:text) ha reiniciado las nominaciones.',
         'qualify' => 'Este mapa ha alcanzado el número requerido de nominaciones y ha sido calificado.',

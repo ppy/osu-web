@@ -78,27 +78,27 @@ return [
     ],
 
     'user_force_reactivation' => [
-        'main' => '',
-        'perform_reset' => '',
-        'reason' => '',
-        'subject' => '',
+        'main' => 'Din bruker er mistenkt å ha blitt kompromittert, har nylig mistenkelig aktivitet eller et VELDIG svakt passord. Som et resultat av dette, må vi kreve at du angir ett nytt passord. Vennligst sørg for å velge et SIKKERT passord.',
+        'perform_reset' => 'Du kan utføre tilbakestillingen fra :url',
+        'reason' => 'Grunn:',
+        'subject' => 'osu! Konto Reaktivering kreves',
     ],
 
     'user_password_updated' => [
-        'confirmation' => '',
+        'confirmation' => 'Dette er bare en bekreftelse på at osu!-passordet ditt er endret.',
         'subject' => 'bekreft endring av osu! passord',
     ],
 
     'user_verification' => [
-        'code' => '',
-        'code_hint' => '',
-        'link' => '',
-        'report' => '',
+        'code' => 'Bekreftelseskoden din er:',
+        'code_hint' => 'Du kan skrive inn koden med eller uten mellomrom.',
+        'link' => 'Alternativt kan du også besøke denne linken nedenfor for å fullføre godkjenningen:',
+        'report' => 'Hvis du ikke ba om dette, vennligst SVAR UMDDELBART siden kontoen din kan være i fare.',
         'subject' => 'bekreftelse av osu! konto',
 
         'action_from' => [
-            '_' => '',
-            'unknown_country' => '',
+            '_' => 'En handling utført på din konto fra :country krever verifikasjon.',
+            'unknown_country' => 'ukjent land',
         ],
     ],
 ];

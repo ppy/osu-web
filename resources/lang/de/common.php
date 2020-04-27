@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Admin',
         'authorise' => 'Autorisieren',
-        'authorising' => '',
+        'authorising' => 'Autorisieren...',
         'back_to_previous' => 'Zur vorherigen Position zurückkehren',
         'back_to_top' => 'Zum Seitenanfang',
         'cancel' => 'Abbrechen',

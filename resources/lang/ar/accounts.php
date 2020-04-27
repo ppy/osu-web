@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'الخيارات',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'نوع تحميل الخريطة الافتراضي',
+            'all' => 'مع الفيديو إذا كان متاحا',
+            'no_video' => 'بدون الفيديو',
+            'direct' => 'فتح في osu!direct',
         ],
     ],
 

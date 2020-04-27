@@ -75,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => '如果你認為此圖譜有問題，可將之取消提名：:link',
-                'button_title' => '取消提名已被Qualified的圖譜',
             ],
 
             'report' => [
                 '_' => '如果您發現此圖譜有問題，請在 :link 通知團隊。',
                 'button' => '回報問題',
-                'button_title' => '在 qualified 的圖譜上回報問題。',
                 'link' => '這裡',
             ],
         ],

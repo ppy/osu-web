@@ -13,10 +13,10 @@ return [
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
+        'confirm_revoke' => 'Er su dikker på at du vil oppheve tillatelsen til denne klienten?',
         'scopes_title' => 'Denne applikasjonen kan:',
         'owned_by' => 'Eies av :user',
-        'none' => '',
+        'none' => 'Ingen autoriserte applikasjoner',
 
         'revoked' => [
             'false' => 'Opphev tilgang',
@@ -28,30 +28,30 @@ return [
         'id' => 'Klient-ID',
         'name' => 'Applikasjonsnavn',
         'redirect' => 'Applikasjonens omdirigeringslenke',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => '',
+        'reset' => 'Nullstille klienthemmelighet',
+        'reset_failed' => 'Kunne ikke nullstille klienthemmelighet',
+        'secret' => 'Kundehemmelighet',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Vis klienthemmelighet',
+            'true' => 'Skjul klienthemmelighet',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Registrer en ny OAuth-applikasjon',
+        'register' => 'Registrer applikasjon',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'Med å bruke API-en godtar du :link.',
+            'link' => 'Brukervilkår',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Er du sikker på at du vil slette denne klienten?',
+        'confirm_reset' => 'Er du sikker på at du vil nullstille klienthemmeligheten? Dette vil tilbakekalle alle eksisterende tokens.',
+        'new' => 'Ny OAuth applikasjon',
+        'none' => 'Ingen Klienter',
 
         'revoked' => [
             'false' => 'Slett',

@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Pengaturan',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'unduh beatmap',
+            'all' => 'dengan video (apabila tersedia)',
+            'no_video' => 'tanpa video',
+            'direct' => 'buka melalui osu!direct',
         ],
     ],
 
