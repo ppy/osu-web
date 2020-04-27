@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\NotificationOptionChangeEvent;
 use App\Exceptions\ImageProcessorException;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\UserVerification;
@@ -186,24 +185,13 @@ class AccountController extends Controller
 
                 $params = get_params($value, null, ['details:any']);
 
-                // unroll so notification server doesn't need to figure out how to remap options.
-                $names = [$key];
-                if ($key === UserNotificationOption::BEATMAPSET_MODDING) {
-                    $names = array_merge($names, UserNotificationOption::BEATMAPSET_MODDING_NOTIFICATIONS);
-                }
+                $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $key]);
+                if (!$option->update($params)) {
+                    DB::rollback();
 
-                foreach ($names as $name) {
-                    $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $name]);
-
-                    if ($option->update($params)) {
-                        event(new NotificationOptionChangeEvent(auth()->user(), $option));
-                    } else {
-                        DB::rollback();
-
-                        return response(['form_error' => [
-                            'user_notification_option' => $option->validationErrors()->all(),
-                        ]]);
-                    }
+                    return response(['form_error' => [
+                        'user_notification_option' => $option->validationErrors()->all(),
+                    ]]);
                 }
             }
         });

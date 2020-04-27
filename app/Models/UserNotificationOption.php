@@ -25,13 +25,6 @@ class UserNotificationOption extends Model
     ];
 
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
-    const BEATMAPSET_MODDING_NOTIFICATIONS = [
-        Notification::BEATMAPSET_DISCUSSION_LOCK,
-        Notification::BEATMAPSET_DISCUSSION_POST_NEW,
-        Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
-        Notification::BEATMAPSET_DISCUSSION_UNLOCK,
-    ];
-
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
 
     const HAS_NOTIFICATION = [self::BEATMAPSET_MODDING, self::FORUM_TOPIC_REPLY];
@@ -43,7 +36,6 @@ class UserNotificationOption extends Model
     public static function supportsNotifications(string $name)
     {
         return in_array($name, static::HAS_NOTIFICATION, true)
-            || in_array($name, static::BEATMAPSET_MODDING_NOTIFICATIONS, true)
             || in_array($name, static::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS, true);
     }
 

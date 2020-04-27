@@ -9,8 +9,8 @@ use App\Events\NewPrivateNotificationEvent;
 use App\Jobs\BroadcastNotification;
 use App\Models\Beatmapset;
 use App\Models\Chat\Channel;
-use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserNotificationOption;
 use Event;
 use Queue;
 
@@ -25,7 +25,7 @@ class BroadcastNotificationTest extends TestCase
     {
         $user = factory(User::class)->create();
         $user->notificationOptions()->create([
-            'name' => Notification::BEATMAPSET_DISCUSSION_POST_NEW,
+            'name' => UserNotificationOption::BEATMAPSET_MODDING,
             'details' => ['push' => $enabled],
         ]);
 
