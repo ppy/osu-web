@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { route } from 'laroute';
 import { isFinite } from 'lodash';
 import Slider from './slider';
 import { format, TimeFormat } from './time-format';
@@ -95,7 +96,11 @@ export default class Main {
   private url?: string;
 
   constructor() {
-    this.createAudio();
+    this.audio.volume = 0;
+    this.audio.addEventListener('playing', this.onPlaying);
+    this.audio.addEventListener('ended', this.onEnded);
+    this.audio.addEventListener('timeupdate', this.onTimeupdate);
+    this.audio.addEventListener('volumechange', this.syncVolumeDisplay);
 
     $(document).on('click', '.js-audio--play', this.onClickPlay);
     $(document).on('click', '.js-audio--main-play', this.togglePlay);
@@ -104,20 +109,6 @@ export default class Main {
     $(document).on('click', '.js-audio--toggle-mute', this.toggleMute);
     $(document).on('click', '.js-audio--nav', this.nav);
     $(document).on('turbolinks:load', this.onDocumentReady);
-  }
-
-  private createAudio = () => {
-    this.audio.addEventListener('playing', this.onPlaying);
-    this.audio.addEventListener('ended', this.onEnded);
-    this.audio.addEventListener('timeupdate', this.onTimeupdate);
-    this.audio.addEventListener('volumechange', this.syncVolumeDisplay);
-    this.audio.volume = 0.45;
-    // Volume control doesn't work on iOS. It sets the value but reset it
-    // a moment later; hence using setTimeout.
-    setTimeout(() => {
-      this.hasWorkingVolumeControl = this.audio.volume === 0.45;
-      this.syncVolumeDisplay();
-    }, 0);
   }
 
   private ensurePagePlayerIsAttached = () => {
@@ -132,6 +123,48 @@ export default class Main {
     if (player instanceof HTMLElement) {
       return player;
     }
+  }
+
+  private initialMuted = () => {
+    try {
+      const local = JSON.parse(localStorage.audioMuted ?? '');
+
+      if (typeof local === 'boolean') {
+        return local;
+      }
+    } catch {
+      console.debug('invalid local audioMuted data');
+      delete localStorage.audioMuted;
+    }
+
+    const userPreference = currentUser.user_preferences?.audio_muted;
+
+    if (typeof userPreference === 'boolean') {
+      return userPreference;
+    }
+
+    return false;
+  }
+
+  private initialVolume = () => {
+    try {
+      const local = JSON.parse(localStorage.audioVolume ?? '');
+
+      if (typeof local === 'number') {
+        return local;
+      }
+    } catch {
+      console.debug('invalid local audioVolume data');
+      delete localStorage.audioVolume;
+    }
+
+    const userPreference = currentUser.user_preferences?.audio_volume;
+
+    if (typeof userPreference === 'number') {
+      return userPreference;
+    }
+
+    return 0.45;
   }
 
   private load = (player: HTMLElement) => {
@@ -241,6 +274,10 @@ export default class Main {
 
       this.mainPlayer = createMainPlayer();
       mainPlayerPlaceholder.replaceWith(this.mainPlayer);
+
+      // this requires currentUser and should only be run once so it's done in here.
+      this.setInitialVolume();
+
       this.syncState();
     }
 
@@ -298,6 +335,11 @@ export default class Main {
     }
   }
 
+  private onVolumeChangeEnd = () => {
+    this.currentSlider = undefined;
+    this.recordVolumeSettings();
+  }
+
   private onVolumeChangeMove = (slider: Slider) => {
     this.audio.volume = slider.getPercentage();
   }
@@ -309,7 +351,7 @@ export default class Main {
 
     this.currentSlider = Slider.start({
       bar,
-      endCallback: () => this.currentSlider = undefined,
+      endCallback: this.onVolumeChangeEnd,
       initialEvent: e,
       moveCallback: this.onVolumeChangeMove,
     });
@@ -340,6 +382,21 @@ export default class Main {
     this.setNavigation();
   }
 
+  private recordVolumeSettings = () => {
+    localStorage.audioVolume = JSON.stringify(this.audio.volume);
+    localStorage.audioMute = JSON.stringify(this.audio.muted);
+
+    if (currentUser.id != null) {
+      $.ajax(route('account.options'), {
+        data: { user_profile_customization: {
+          audio_muted: this.audio.muted,
+          audio_volume: this.audio.volume,
+        } },
+        method: 'PUT',
+      }).fail(osu.ajaxError);
+    }
+  }
+
   private replaceAudioElem = (elem: HTMLAudioElement) => {
     const src = osu.presence(elem.src) ?? osu.presence(elem.querySelector('source')?.src);
 
@@ -362,6 +419,19 @@ export default class Main {
     }
 
     return elems.map(this.replaceAudioElem);
+  }
+
+  private setInitialVolume = () => {
+    // Volume control doesn't work on iOS. It sets the value but reset it
+    // a moment later; hence use setTimeout to test changing volume.
+    // For actual volume settings, see onDocumentReady.
+    this.audio.volume = 0.1;
+    setTimeout(() => {
+      this.hasWorkingVolumeControl = this.audio.volume === 0.1;
+      this.audio.volume = this.initialVolume();
+      this.audio.muted = this.initialMuted();
+      this.syncVolumeDisplay();
+    }, 0);
   }
 
   private setNavigation = () => {
@@ -477,6 +547,7 @@ export default class Main {
 
   private toggleMute = () => {
     this.audio.muted = !this.audio.muted;
+    this.recordVolumeSettings();
   }
 
   private togglePlay = () => {

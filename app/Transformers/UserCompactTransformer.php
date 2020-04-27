@@ -317,6 +317,8 @@ class UserCompactTransformer extends TransformerAbstract
         $customization = $this->userProfileCustomization($user);
 
         return $this->primitive($customization->only([
+            'audio_muted',
+            'audio_volume',
             'beatmapset_download',
             'ranking_expanded',
             'user_list_filter',
