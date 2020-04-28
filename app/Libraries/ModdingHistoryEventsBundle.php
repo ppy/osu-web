@@ -39,7 +39,7 @@ class ModdingHistoryEventsBundle
         return $obj;
     }
 
-    public static function forListing(User $user, array $searchParams)
+    public static function forListing(?User $user, array $searchParams)
     {
         $obj = new static;
         $obj->user = $user;
