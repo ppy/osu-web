@@ -4,7 +4,8 @@
 import Score from 'interfaces/score';
 
 export const canBeReported = (score: Score) => {
-  return currentUser.id != null
+  return score.best_id != null
+    && currentUser.id != null
     && score.user_id !== currentUser.id;
 };
 

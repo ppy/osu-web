@@ -4,6 +4,7 @@
 import UserJSON from './user-json';
 
 export default interface Score {
+  best_id?: number;
   id: string;
   mode: string;
   replay: boolean;
