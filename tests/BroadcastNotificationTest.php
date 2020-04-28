@@ -8,7 +8,6 @@ namespace Tests;
 use App\Events\NewPrivateNotificationEvent;
 use App\Jobs\BroadcastNotification;
 use App\Models\Beatmapset;
-use App\Models\Chat\Channel;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 use Event;
@@ -68,28 +67,6 @@ class BroadcastNotificationTest extends TestCase
 
             Event::assertNotDispatched(NewPrivateNotificationEvent::class);
         }
-    }
-
-    public function testSendsNotificationIfOptionNotSet()
-    {
-        $user = factory(User::class)->create();
-
-        $channel = factory(Channel::class)->states('pm')->create();
-        $channel->addUser($this->sender);
-        $channel->addUser($user);
-        $channel->receiveMessage($this->sender, 'test', false);
-
-        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) use ($user) {
-            $notification = $job->handle();
-            $receiverIds = $notification->userNotifications()->pluck('user_id')->all();
-
-            $this->assertSame([$user->getKey()], $receiverIds);
-
-            return $notification !== null;
-        });
-
-        // if private notification, should assert receiverIds.
-        Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
 
     public function sendNotificationDataProvider()
