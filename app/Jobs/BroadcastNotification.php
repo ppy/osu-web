@@ -36,10 +36,9 @@ class BroadcastNotification implements ShouldQueue
 
     private static function beatmapsetWatcherUserIds($beatmapset)
     {
-        return $beatmapset
-            ->watches()
-            ->pluck('user_id')
-            ->all();
+        return static::filterBeatmapsetModdingUserIds(
+            $beatmapset->watches()->pluck('user_id')->all()
+        );
     }
 
     private static function filterBeatmapsetModdingUserIds(array $userIds)
@@ -138,7 +137,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetDiscussionLock()
     {
-        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -148,7 +147,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetDiscussionUnlock()
     {
-        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -159,7 +158,7 @@ class BroadcastNotification implements ShouldQueue
     private function onBeatmapsetDiscussionPostNew()
     {
         $this->notifiable = $this->object->beatmapset;
-        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->notifiable));
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->notifiable);
 
         $this->assignBeatmapsetDiscussionNotificationDetails();
     }
@@ -209,7 +208,7 @@ class BroadcastNotification implements ShouldQueue
             ->whereNotNull('details')
             ->get();
 
-        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         foreach ($notificationOptions as $notificationOption) {
             if (count(array_intersect($notificationOption->details['modes'] ?? [], $modes)) > 0) {
@@ -225,7 +224,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetLove()
     {
-        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -235,7 +234,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetNominate()
     {
-        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -245,7 +244,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetQualify()
     {
-        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -255,7 +254,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetRank()
     {
-        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -265,7 +264,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetResetNominations()
     {
-        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
