@@ -5,14 +5,14 @@ import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import { Dictionary, kebabCase } from 'lodash';
-import * as moment from 'moment';
 import * as React from 'react';
+import TimeWithTooltip from 'time-with-tooltip';
 
 interface Props {
   discussions?: Dictionary<BeatmapDiscussion>;
   event: BeatmapsetEventJson;
   mode: 'discussions' | 'profile';
-  time?: moment.Moment;
+  time?: string;
   users: Dictionary<UserJSON>;
 }
 
@@ -44,18 +44,14 @@ export default class Event extends React.PureComponent<Props> {
   }
 
   renderDiscussionsVersion() {
-    const eventTime = this.props.time ?? moment(this.props.event.created_at);
+    const eventTime = this.props.time ?? this.props.event.created_at;
 
     return (
       <div className='beatmapset-event'>
         <div className={osu.classWithModifiers('beatmapset-event__icon', [kebabCase(this.props.event.type)])} />
-        <time
-          className='beatmapset-event__time js-tooltip-time'
-          dateTime={this.props.event.created_at}
-          title={this.props.event.created_at}
-        >
-          {eventTime.format('LT')}
-        </time>
+        <div className='beatmapset-event__time'>
+          <TimeWithTooltip dateTime={eventTime} format='LT' />
+        </div>
         <div
           className={'beatmapset-event__content'}
           dangerouslySetInnerHTML={{
@@ -88,10 +84,9 @@ export default class Event extends React.PureComponent<Props> {
               __html: this.contentText(),
             }}
           />
-          <div
-            className='beatmap-discussion-post__info'
-            dangerouslySetInnerHTML={{ __html: osu.timeago(this.props.event.created_at) }}
-          />
+          <div className='beatmap-discussion-post__info'>
+            <TimeWithTooltip dateTime={this.props.event.created_at} relative={true} />
+          </div>
         </div>
       </div>
     );
@@ -101,13 +96,13 @@ export default class Event extends React.PureComponent<Props> {
     let discussionLink = '';
     let text = '';
     let url = '';
-    let user = '';
+    let user: string | undefined;
 
     if (this.discussionId != null) {
       if (this.discussion != null) {
-        const message = this.firstPost?.message;
+        const firstPostMessage = this.firstPost?.message;
         url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
-        text = message != null ? BeatmapDiscussionHelper.previewMessage(message) : '[no preview]';
+        text = firstPostMessage != null ? BeatmapDiscussionHelper.previewMessage(firstPostMessage) : '[no preview]';
       } else {
         url = route('beatmap-discussions.show', { beatmap_discussion: this.discussionId });
         text = osu.trans('beatmapset_events.item.discussion_deleted');
