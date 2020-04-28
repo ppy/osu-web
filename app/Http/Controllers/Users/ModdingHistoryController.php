@@ -40,6 +40,7 @@ class ModdingHistoryController extends Controller
                 ));
             }
 
+            // This bit isn't needed when ModdingHistoryEventsBundle is used.
             $this->searchParams['is_moderator'] = $this->isModerator;
             $this->searchParams['is_kudosu_moderator'] = $this->isKudosuModerator;
             if (!$this->isModerator) {
