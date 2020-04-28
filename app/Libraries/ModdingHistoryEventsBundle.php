@@ -14,6 +14,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryEventsBundle
 {
+    const KUDOSU_PER_PAGE = 5;
+
     protected $isModerator;
     protected $isKudosuModerator;
     protected $searchParams;
@@ -87,7 +89,12 @@ class ModdingHistoryEventsBundle
 
         if ($this->withExtras) {
             $this->votes = $this->getVotes();
-            $kudosu = $this->user->receivedKudosu()->with('post', 'post.topic', 'giver', 'kudosuable')->orderBy('exchange_id', 'desc')->limit(6)->get();
+            $kudosu = $this->user
+                ->receivedKudosu()
+                ->with('post', 'post.topic', 'giver', 'kudosuable')
+                ->orderBy('exchange_id', 'desc')
+                ->limit(static::KUDOSU_PER_PAGE + 1)
+                ->get();
         }
 
         $users = $this->getUsers();
@@ -121,11 +128,12 @@ class ModdingHistoryEventsBundle
 
         if (isset($kudosu)) {
             $array['extras'] = [
-                'recentlyReceivedKudosu' => json_collection($kudosu, 'KudosuHistory')
+                'recentlyReceivedKudosu' => json_collection($kudosu, 'KudosuHistory'),
             ];
-            //only recentlyReceivedKudosu is set, do we even need it?
+            // only recentlyReceivedKudosu is set, do we even need it?
+            // every other item has a show more link that goes to a listing.
             $array['perPage'] = [
-                'recentlyReceivedKudosu' => 5,
+                'recentlyReceivedKudosu' => static::KUDOSU_PER_PAGE,
             ];
         }
 
