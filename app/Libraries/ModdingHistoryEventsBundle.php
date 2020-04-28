@@ -246,10 +246,12 @@ class ModdingHistoryEventsBundle
 
         $userIds = array_values(array_filter(array_unique($userIds)));
 
-        return User::whereIn('user_id', $userIds)
-            ->with('userGroups')
-            ->default()
-            ->get();
+        $users = User::whereIn('user_id', $userIds)->with('userGroups');
+        if (!$this->isModerator) {
+            $users->default();
+        }
+
+        return $users->get();
     }
 
     private function getVotes()
