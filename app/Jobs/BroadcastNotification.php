@@ -42,6 +42,26 @@ class BroadcastNotification implements ShouldQueue
             ->all();
     }
 
+    private static function filterBeatmapsetModdingUserIds(array $userIds)
+    {
+        // FIXME: filtering all the ids could get quite large?
+        $notificationOptions = UserNotificationOption
+            ::whereIn('user_id', $userIds)
+            ->where(['name' => UserNotificationOption::BEATMAPSET_MODDING])
+            ->whereNotNull('details')
+            ->get()
+            ->keyBy('user_id');
+
+        $filteredUserIds = [];
+        foreach ($userIds as $userId) {
+            if ($notificationOptions[$userId]->details['push'] ?? true) {
+                $filteredUserIds[] = $userId;
+            }
+        }
+
+        return $filteredUserIds;
+    }
+
     public function __construct(string $name, $object, ?User $source = null)
     {
         $this->name = $name;
@@ -116,29 +136,9 @@ class BroadcastNotification implements ShouldQueue
         ];
     }
 
-    private function filterBeatmapsetModdingUserIds(array $userIds)
-    {
-        // FIXME: filtering all the ids could get quite large?
-        $notificationOptions = UserNotificationOption
-            ::whereIn('user_id', $userIds)
-            ->where(['name' => UserNotificationOption::BEATMAPSET_MODDING])
-            ->whereNotNull('details')
-            ->get()
-            ->keyBy('user_id');
-
-        $filteredUserIds = [];
-        foreach ($userIds as $userId) {
-            if ($notificationOptions[$userId]->details['push'] ?? true) {
-                $filteredUserIds[] = $userId;
-            }
-        }
-
-        return $filteredUserIds;
-    }
-
     private function onBeatmapsetDiscussionLock()
     {
-        $this->receiverIds = $this->filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
+        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -148,7 +148,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetDiscussionUnlock()
     {
-        $this->receiverIds = $this->filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
+        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->object));
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -159,7 +159,7 @@ class BroadcastNotification implements ShouldQueue
     private function onBeatmapsetDiscussionPostNew()
     {
         $this->notifiable = $this->object->beatmapset;
-        $this->receiverIds = $this->filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->notifiable));
+        $this->receiverIds = static::filterBeatmapsetModdingUserIds(static::beatmapsetWatcherUserIds($this->notifiable));
 
         $this->assignBeatmapsetDiscussionNotificationDetails();
     }
