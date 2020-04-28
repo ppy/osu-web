@@ -152,7 +152,6 @@ class BeatmapsetDisqualifyTest extends TestCase
         $this->beatmapset = factory(Beatmapset::class)->states('qualified', 'with_discussion')->create();
         $this->sender = $this->createUserWithGroup('bng');
         $this->user = factory(User::class)->create();
-
     }
 
     private function createNotificationOption()

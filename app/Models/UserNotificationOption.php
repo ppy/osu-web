@@ -21,7 +21,7 @@ class UserNotificationOption extends Model
 
     const BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS = [
         Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
-        Notification::BEATMAPSET_DISQUALIFY
+        Notification::BEATMAPSET_DISQUALIFY,
     ];
 
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
