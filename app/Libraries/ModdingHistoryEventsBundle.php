@@ -22,7 +22,6 @@ class ModdingHistoryEventsBundle
     private $events;
     private $params;
     private $posts;
-    private $query;
     private $total;
     private $user;
     private $votes;
