@@ -188,7 +188,7 @@ class ModdingHistoryEventsBundle
         $events = BeatmapsetEvent::search($this->searchParams);
         unset($events['params']['user']);
         $events['query'] = $events['query']->with([
-            'beatmapset',
+            'beatmapset.user',
             'beatmapDiscussion.beatmapset',
             'beatmapDiscussion.startingPost',
         ])->whereHas('beatmapset');
