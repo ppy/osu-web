@@ -59,14 +59,17 @@ class ModdingHistoryEventsBundle
             $this->toArray();
         }
 
+        $params = $this->params;
+        unset($params['user']);
+
         return new LengthAwarePaginator(
             $this->events,
             $this->total,
-            $this->params['limit'],
-            $this->params['page'],
+            $params['limit'],
+            $params['page'],
             [
                 'path' => LengthAwarePaginator::resolveCurrentPath(),
-                'query' => $this->params,
+                'query' => $params,
             ]
         );
     }
@@ -189,7 +192,6 @@ class ModdingHistoryEventsBundle
     private function getEvents()
     {
         $events = BeatmapsetEvent::search($this->searchParams);
-        unset($events['params']['user']);
         $events['query'] = $events['query']->with([
             'beatmapset.user',
             'beatmapDiscussion.beatmapset',
