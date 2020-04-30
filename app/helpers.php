@@ -716,6 +716,13 @@ function is_sql_unique_exception($ex)
     );
 }
 
+function js_localtime($date)
+{
+    $formatted = json_time($date);
+
+    return "<time class='js-localtime' datetime='{$formatted}'>{$formatted}</time>";
+}
+
 function page_title()
 {
     $currentRoute = app('route-section')->getCurrent();
@@ -761,10 +768,9 @@ function route_redirect($path, $target)
 
 function timeago($date)
 {
-    $display_date = i18n_time($date);
-    $attribute_date = json_time($date);
+    $formatted = json_time($date);
 
-    return "<time class='js-timeago' datetime='{$attribute_date}'>{$display_date}</time>";
+    return "<time class='js-timeago' datetime='{$formatted}'>{$formatted}</time>";
 }
 
 function link_to_user($id, $username = null, $color = null, $classNames = null)
@@ -1049,12 +1055,6 @@ function i18n_number_format($number, $style = null, $pattern = null, $precision 
     }
 
     return $formatter->format($number);
-}
-
-function i18n_time($datetime, $format = IntlDateFormatter::LONG)
-{
-    return IntlDateFormatter::create(App::getLocale(), $format, $format)
-        ->format($datetime);
 }
 
 function open_image($path, $dimensions = null)
