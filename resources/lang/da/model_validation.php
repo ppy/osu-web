@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Ugyldigt :attribute angivet.',
     'not_negative' => ':attribute kan ikke være negativ.',
     'required' => ':attribute er påkrævet.',
     'too_long' => ':attribute overskrider maksimal længde - kan højest være op til :limit karakterer.',
@@ -33,7 +33,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Denne beatmap er i øjeblikket låst og kan ikke blive hyped",
             'guest' => 'Du skal være logget ind for at kunne hype.',
             'hyped' => 'Du har allerede hypet dette beatmap.',
             'limit_exceeded' => 'Du har brugt alt dit hype.',
@@ -124,7 +124,7 @@ return [
         'invalid_country' => 'Landet er ikke i databasen.',
         'invalid_discord' => 'Ugyldigt Discord brugernavn.',
         'invalid_email' => "Dette ligner ikke en email-adresse...",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Ugyldigt Twitter brugernavn.',
         'too_short' => 'Den nye adgangskode er for kort.',
         'unknown_duplicate' => 'Brugernavnet eller email-adressen er allerede i brug.',
         'username_available_in' => 'Dette brugernavn vil være til rådighed om :duration.',

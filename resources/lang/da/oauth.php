@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'cancel' => 'Annuller',
+    'cancel' => 'Annullér',
 
     'authorise' => [
-        'request' => 'anmoder om tilladelse til at få adgang til din konto.',
+        'request' => 'anmoder om adgang til din konto.',
         'scopes_title' => 'Denne applikation vil være i stand til at:',
         'title' => 'Autorisation Anmodning',
     ],
@@ -28,13 +28,13 @@ return [
         'id' => 'Klient-ID',
         'name' => 'Applikationsnavn',
         'redirect' => 'Application Callback URL',
-        'reset' => '',
-        'reset_failed' => '',
+        'reset' => 'Nulstil klient hemmeligheden',
+        'reset_failed' => 'Kunne ikke nulstille klient hemmeligheden',
         'secret' => 'Client Secret',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Vis klient hemmeligheden',
+            'true' => 'Skjul klient hemmeligheden',
         ],
     ],
 
@@ -49,7 +49,8 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Er du sikker på du vil slette denne klient?',
-        'confirm_reset' => '',
+        'confirm_reset' => '
+Er du sikker på, at du vil nulstille klienthemmeligheden? Dette vil fjerne alle eksisterende tokens.',
         'new' => 'Ny OAuth Applikation',
         'none' => 'Ingen Klienter',
 

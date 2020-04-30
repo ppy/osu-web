@@ -418,7 +418,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Vista em blocos',
         'card' => 'Vista do cartão',
         'list' => 'Vista da lista',
     ],

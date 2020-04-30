@@ -17,7 +17,7 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
+            'all' => 'спампаваць',
             'video' => '',
             'no_video' => '',
             'direct' => '',
@@ -75,14 +75,12 @@ return [
 
             'disqualify' => [
                 '_' => '',
-                'button_title' => '',
             ],
 
             'report' => [
                 '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                'button' => 'Паведаміць аб праблеме',
+                'link' => 'тут',
             ],
         ],
 
@@ -150,13 +148,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
+            'ranked' => 'Ранкавана',
             'approved' => '',
-            'loved' => '',
-            'qualified' => '',
+            'loved' => 'Любімая',
+            'qualified' => 'Кваліфікавана',
             'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'pending' => 'У чаканні',
+            'graveyard' => 'Закінутая',
         ],
     ],
 ];

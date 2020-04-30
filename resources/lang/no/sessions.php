@@ -5,8 +5,8 @@
 
 return [
     'create' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Klikk her for å laste ned spillet og opprette en bruker',
+        'label' => 'Først, la oss logge inn på kontoen din!',
+        'title' => 'Logg inn til bruker',
     ],
 ];

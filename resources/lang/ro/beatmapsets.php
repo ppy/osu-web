@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'descarcă',
+            'video' => 'descarcă cu video',
+            'no_video' => 'descarcă fără video',
+            'direct' => 'deschide în osu!direct',
         ],
     ],
 
@@ -48,10 +48,10 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
+            'approved' => 'aprobat :timeago',
+            'loved' => 'iubit :timeago',
+            'qualified' => 'calificat :timeago',
+            'ranked' => 'clasat :timeago',
             'submitted' => '',
             'updated' => '',
         ],
@@ -75,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => 'Dacă găsești o problemă cu acest beatmap, vă rugăm descalificați-o :link.',
-                'button_title' => 'Descalifică un beatmap calificat.',
             ],
 
             'report' => [
                 '_' => 'Dacă găsești o problemă cu acest beatmap, vă rugăm raportați-o :link ca să alertați echipa.',
                 'button' => 'Raportează problemă',
-                'button_title' => 'Raportează o problemă pe un beatmap calificat.',
                 'link' => 'aici',
             ],
         ],

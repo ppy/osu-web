@@ -28,13 +28,13 @@ return [
         'id' => 'Client ID',
         'name' => 'Nome Applicazione',
         'redirect' => 'URL di richiamo dell\'applicazione',
-        'reset' => '',
-        'reset_failed' => '',
+        'reset' => 'Resetta il client secret',
+        'reset_failed' => 'Impossibile resettare il client secret',
         'secret' => 'Client Secret',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Mostra il client secret',
+            'true' => 'Nascondi il client secret',
         ],
     ],
 
@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Sei sicuro di voler eliminare questo client?',
-        'confirm_reset' => '',
+        'confirm_reset' => 'Sei sicuro di voler resettare il client secret? Questo revocherà tutti i token esistenti.',
         'new' => 'Nuova Applicazione OAuth',
         'none' => 'Nessun Client',
 

@@ -6,7 +6,7 @@
 return [
     'beatmapset_discussion_post' => [
         'button' => 'Rapportér',
-        'title' => '',
+        'title' => 'Rapporter :username sitt innlegg?',
     ],
 
     'comment' => [
@@ -21,6 +21,6 @@ return [
 
     'user' => [
         'button' => 'Rapportér',
-        'title' => '',
+        'title' => 'Rapporter :username?',
     ],
 ];

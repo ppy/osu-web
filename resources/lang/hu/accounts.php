@@ -67,7 +67,7 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Beállítások',
 
         'beatmapset_download' => [
             '_' => '',

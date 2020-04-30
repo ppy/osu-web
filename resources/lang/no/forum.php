@@ -10,7 +10,7 @@ return [
     'title' => 'osu! forumet',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Endre omslag',
 
         'create' => [
             '_' => 'Velg bannerbilde',
@@ -28,7 +28,7 @@ return [
         'latest_post' => 'Siste Innlegg',
 
         'index' => [
-            'title' => '',
+            'title' => 'Forumindeks',
         ],
 
         'topics' => [
@@ -56,7 +56,7 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Ny kommentar',
             ],
         ],
 
@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Dette emne er låst og kan ikke besvares',
             'to_0' => 'Lås opp emne',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Lås opp emne?',
             'to_0_done' => 'Emnet har blitt låst opp',
             'to_1' => 'Lås emne',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Lås emne?',
             'to_1_done' => 'Emne har blitt låst',
         ],
 
@@ -249,13 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Løsne emnet',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Løsne emne?',
             'to_0_done' => 'Emne har blitt løsnet',
             'to_1' => 'Fest emne',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Fest emne?',
             'to_1_done' => 'Emne har blitt festet',
             'to_2' => 'Fest emne og marker som kunngjøring',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Fest emne og marker som opplysning?',
             'to_2_done' => 'Emne har blitt festet og markert som en kunngjøring',
         ],
 
@@ -286,14 +286,14 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
+                'edit' => 'Avstemning Rediger',
                 'edit_warning' => 'Redigering av en avstemming vil fjerne de gjeldene resultatene!',
                 'vote' => 'Stem',
 
                 'button' => [
                     'change_vote' => 'Endre stemme',
-                    'edit' => '',
-                    'view_results' => '',
+                    'edit' => 'Rediger avstemming',
+                    'view_results' => 'Hopp til resultater',
                     'vote' => 'Stem',
                 ],
 

@@ -130,7 +130,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => '無効な要求パラメーター',
             'description' => '',
         ],
         '404' => [

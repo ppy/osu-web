@@ -79,7 +79,7 @@ class BeatmapsetSearch extends RecordSearch
                     'field_value_factor' => [
                         'field' => 'favourite_count',
                         'missing' => 0,
-                        'modifier' => 'ln1p',
+                        'modifier' => 'ln2p',
                     ],
                 ]);
         }
