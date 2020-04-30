@@ -127,14 +127,14 @@ export default class Main {
 
   private initialMuted = () => {
     try {
-      const local = JSON.parse(localStorage.audioMuted ?? '');
+      const local = JSON.parse(localStorage.audio_muted ?? '');
 
       if (typeof local === 'boolean') {
         return local;
       }
     } catch {
-      console.debug('invalid local audioMuted data');
-      delete localStorage.audioMuted;
+      console.debug('invalid local audio_muted data');
+      delete localStorage.audio_muted;
     }
 
     const userPreference = currentUser.user_preferences?.audio_muted;
@@ -148,14 +148,14 @@ export default class Main {
 
   private initialVolume = () => {
     try {
-      const local = JSON.parse(localStorage.audioVolume ?? '');
+      const local = JSON.parse(localStorage.audio_volume ?? '');
 
       if (typeof local === 'number') {
         return local;
       }
     } catch {
-      console.debug('invalid local audioVolume data');
-      delete localStorage.audioVolume;
+      console.debug('invalid local audio_volume data');
+      delete localStorage.audio_volume;
     }
 
     const userPreference = currentUser.user_preferences?.audio_volume;
@@ -383,8 +383,8 @@ export default class Main {
   }
 
   private recordVolumeSettings = () => {
-    localStorage.audioVolume = JSON.stringify(this.audio.volume);
-    localStorage.audioMuted = JSON.stringify(this.audio.muted);
+    localStorage.audio_volume = JSON.stringify(this.audio.volume);
+    localStorage.audio_muted = JSON.stringify(this.audio.muted);
 
     if (currentUser.id != null) {
       $.ajax(route('account.options'), {
