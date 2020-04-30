@@ -48,43 +48,7 @@
 
     @if (auth()->check() && $type !== 'country')
         <div class="osu-page osu-page--description">
-            <div class="ranking-filter">
-                <ul class="ranking-filter__items">
-                    <li class="ranking-filter__item">
-                        <a
-                            class="ranking-filter__link {{ !isset($country) && !$friendsOnly ? 'ranking-filter__link--active' : '' }}"
-                            href="{{ route('rankings', compact('mode', 'type')) }}"
-                        >
-                            <span class="fake-bold">all</span>
-                        </a>
-                    </li>
-                    @if (isset($country_acronym))
-                        <li class="ranking-filter__item">
-                            <a
-                                class="ranking-filter__link {{ isset($country) ? 'ranking-filter__link--active' : '' }}"
-                                href="?country={{ $country_acronym }}"
-                            >
-                                <span class="fake-bold">
-                                    country
-                                    <span class="ranking-filter__flag">
-                                        @include('objects._country_flag', [
-                                            'country_code' => $country_acronym,
-                                            'modifiers' => ['small-box'],
-                                        ])
-                                    </span>
-                                </span>
-                            </a>
-                        </li>
-                    @endif
-                    <li class="ranking-filter__item">
-                        <a
-                            class="ranking-filter__link {{ $friendsOnly ? 'ranking-filter__link--active' : '' }}"
-                            href="?friends_only=true"
-                        >
-                            <span class="fake-bold">friends</span>
-                        </a>
-                    </li>
-                </ul>
+            <div class="js-react--ranking-filter" data-sort-mode="{{ request('filter') }}">
             </div>
         </div>
     @endif

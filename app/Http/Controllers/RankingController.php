@@ -31,7 +31,7 @@ class RankingController extends Controller
 
         $mode = request('mode');
         $type = request('type');
-        $this->friendsOnly = get_bool(request('friends_only')) ?? false;
+        $this->friendsOnly = request('filter') === 'friends';
 
         view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
         view()->share('mode', $mode);
