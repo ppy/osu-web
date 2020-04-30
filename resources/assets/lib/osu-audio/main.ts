@@ -384,7 +384,7 @@ export default class Main {
 
   private recordVolumeSettings = () => {
     localStorage.audioVolume = JSON.stringify(this.audio.volume);
-    localStorage.audioMute = JSON.stringify(this.audio.muted);
+    localStorage.audioMuted = JSON.stringify(this.audio.muted);
 
     if (currentUser.id != null) {
       $.ajax(route('account.options'), {
