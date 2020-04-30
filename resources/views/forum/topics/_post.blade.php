@@ -74,7 +74,7 @@
         </div>
 
         <div class="forum-post__content forum-post__content--main">
-            <div class="forum-post-content {{ $options['contentExtraClasses'] ?? '' }}">
+            <div class="forum-post-content {{ $options['contentExtraClasses'] ?? '' }} js-audio--group">
                 {!! $post->bodyHTML() !!}
             </div>
         </div>
@@ -91,7 +91,7 @@
         @endif
 
         @if($options["signature"] !== false && present($post->userNormalized()->user_sig))
-            <div class="forum-post__content forum-post__content--signature hidden-xs">
+            <div class="forum-post__content forum-post__content--signature js-audio--group hidden-xs">
                 {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
             </div>
         @endif
