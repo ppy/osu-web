@@ -44,7 +44,7 @@ export default class Localtime {
     } else {
       // Casting is needed because the compiler doesn't detect result of
       // 'time.class-name' query as array of time elements.
-      return [...parent.querySelectorAll('time.js-localtime')] as HTMLTimeElement[];
+      return [...parent.querySelectorAll<HTMLTimeElement>('time.js-localtime')];
     }
   }
 
