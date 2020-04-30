@@ -131,40 +131,40 @@ export class Main extends React.PureComponent
             value: @discussions()
             el BeatmapsContext.Provider,
               value: @beatmaps()
-              el React.Fragment, null,
-                if @state.currentMode == 'reviews'
-                  el NewReview,
-                    beatmapset: @state.beatmapset
-                    beatmaps: @beatmaps()
-                    currentBeatmap: @currentBeatmap()
-                    currentDiscussions: @currentDiscussions()
-                    currentUser: @state.currentUser
-                    pinned: @state.pinnedNewDiscussion
-                    setPinned: @setPinnedNewDiscussion
-                    stickTo: @modeSwitcherRef
-                else
-                  el NewDiscussion,
-                    beatmapset: @state.beatmapset
-                    currentUser: @state.currentUser
-                    currentBeatmap: @currentBeatmap()
-                    currentDiscussions: @currentDiscussions()
-                    innerRef: @newDiscussionRef
-                    mode: @state.currentMode
-                    pinned: @state.pinnedNewDiscussion
-                    setPinned: @setPinnedNewDiscussion
-                    stickTo: @modeSwitcherRef
-                    autoFocus: @focusNewDiscussion
 
-                el Discussions,
+              if @state.currentMode == 'reviews'
+                el NewReview,
                   beatmapset: @state.beatmapset
+                  beatmaps: @beatmaps()
                   currentBeatmap: @currentBeatmap()
                   currentDiscussions: @currentDiscussions()
-                  currentFilter: @state.currentFilter
                   currentUser: @state.currentUser
+                  pinned: @state.pinnedNewDiscussion
+                  setPinned: @setPinnedNewDiscussion
+                  stickTo: @modeSwitcherRef
+              else
+                el NewDiscussion,
+                  beatmapset: @state.beatmapset
+                  currentUser: @state.currentUser
+                  currentBeatmap: @currentBeatmap()
+                  currentDiscussions: @currentDiscussions()
+                  innerRef: @newDiscussionRef
                   mode: @state.currentMode
-                  readPostIds: @state.readPostIds
-                  showDeleted: @state.showDeleted
-                  users: @users()
+                  pinned: @state.pinnedNewDiscussion
+                  setPinned: @setPinnedNewDiscussion
+                  stickTo: @modeSwitcherRef
+                  autoFocus: @focusNewDiscussion
+
+              el Discussions,
+                beatmapset: @state.beatmapset
+                currentBeatmap: @currentBeatmap()
+                currentDiscussions: @currentDiscussions()
+                currentFilter: @state.currentFilter
+                currentUser: @state.currentUser
+                mode: @state.currentMode
+                readPostIds: @state.readPostIds
+                showDeleted: @state.showDeleted
+                users: @users()
 
       el BackToTop
 
