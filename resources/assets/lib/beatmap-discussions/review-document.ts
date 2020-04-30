@@ -6,6 +6,7 @@ import * as markdown from 'remark-parse';
 import { Node as SlateNode } from 'slate';
 import * as unified from 'unified';
 import { Node as UnistNode } from 'unist';
+import { BeatmapDiscussionReview } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
 interface ParsedDocumentNode extends UnistNode {
@@ -13,7 +14,7 @@ interface ParsedDocumentNode extends UnistNode {
 }
 
 export function parseFromMarkdown(json: string, discussions: BeatmapDiscussion[]) {
-  let srcDoc: any[];
+  let srcDoc: BeatmapDiscussionReview;
 
   try {
     srcDoc = JSON.parse(json);
@@ -60,7 +61,7 @@ export function parseFromMarkdown(json: string, discussions: BeatmapDiscussion[]
         break;
       case 'embed':
         // embed
-        const discussion = discussions[block.discussion_id];
+        const discussion = block.discussion_id && discussions[block.discussion_id];
         if (!discussion) {
           return;
         }
