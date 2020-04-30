@@ -382,9 +382,14 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     {
         $playCount = $this->playCount();
 
-        if ($this->group_id !== 2) {
-            //reserved usernames
-            return Carbon::now()->addYears(10);  //This will always be in the future, which is wanted
+        $allGroupIds = array_merge([$this->group_id], $this->groupIds());
+        $allowedGroupIds = array_map(function ($groupIdentifier) {
+            return app('groups')->byIdentifier($groupIdentifier)->getKey();
+        }, config('osu.user.allowed_rename_groups'));
+
+        // only users which groups are all in the whitelist can be renamed
+        if (count(array_diff($allGroupIds, $allowedGroupIds)) > 0) {
+            return Carbon::now()->addYears(10);
         }
 
         if ($this->user_type === 1) {
