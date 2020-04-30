@@ -62,7 +62,7 @@ export class ReviewPost extends React.Component<Props> {
         switch (block.type) {
           case 'paragraph':
             // '&nbsp;  ' parses into a newline
-            const content = osu.presence(block.text.trim()) ? block.text : '&nbsp;  ';
+            const content = block.text.trim() === '' ? '&nbsp;  ' : block.text;
             docBlocks.push(this.paragraph(content));
             break;
           case 'embed':

@@ -16,7 +16,7 @@ interface Props {
   disabled?: boolean;
   menuOptions: MenuItem[];
   onSelect: (id: string) => void;
-  selected: string | number;
+  selected: string;
 }
 
 export default class IconDropdownMenu extends React.Component<Props> {
@@ -25,13 +25,11 @@ export default class IconDropdownMenu extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <PopupMenuPersistent customRender={this.renderButton}>
-        {() => {
-          return (
-            <div className='simple-menu simple-menu--popup-menu-compact'>
-              {this.props.menuOptions.map((item) => this.renderMenuItem(item))}
-            </div>
-            );
-        }}
+        {() => (
+          <div className='simple-menu simple-menu--popup-menu-compact'>
+            {this.props.menuOptions.map((item) => this.renderMenuItem(item))}
+          </div>
+        )}
       </PopupMenuPersistent>
     );
   }
@@ -83,12 +81,12 @@ export default class IconDropdownMenu extends React.Component<Props> {
   select = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
 
-    const target = event.currentTarget as HTMLElement;
+    const target = event.currentTarget;
 
     if (!target) {
       return;
     }
 
-    this.props.onSelect(`${target.dataset.id}`);
+    this.props.onSelect(target.dataset.id ?? '');
   }
 }

@@ -35,7 +35,7 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
 
       this.menuOptions.push({
         icon: <BeatmapIcon beatmap={beatmap} showTitle={false} />,
-        id: `${beatmap.id}`, // explicit conversion to string
+        id: beatmap.id.toString(),
         label: beatmap.version,
       });
     });
@@ -47,13 +47,13 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
         disabled={this.props.disabled}
         menuOptions={this.menuOptions}
         onSelect={this.select}
-        selected={`${this.props.element.beatmapId}`}
+        selected={this.props.element.beatmapId?.toString()}
       />
     );
   }
 
   select = (id: string) => {
-    const beatmapId = id !== 'all' ? parseInt(id || '', 10) : 'all';
+    const beatmapId = id !== 'all' ? parseInt(id, 10) : 'all';
 
     if (beatmapId) {
       const path = ReactEditor.findPath(this.context, this.props.element);
