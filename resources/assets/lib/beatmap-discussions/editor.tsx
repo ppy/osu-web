@@ -205,7 +205,7 @@ export default class Editor extends React.Component<Props, any> {
               </div>
               { !this.props.editMode &&
                 <div className={`${editorClass}__button-bar`}>
-                  <button className='btn-osu-big btn-osu-big--forum-secondary' type='submit' onClick={this.resetInput}>{osu.trans('common.buttons.clear')}</button>
+                  <button className='btn-osu-big btn-osu-big--forum-secondary' type='button' onClick={this.resetInput}>{osu.trans('common.buttons.clear')}</button>
                   <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>{osu.trans('common.buttons.post')}</button>
                 </div>
               }
