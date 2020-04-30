@@ -84,6 +84,10 @@ export default class Editor extends React.Component<Props, any> {
     }
   }
 
+  componentWillUpdate(): void {
+    this.cache = {};
+  }
+
   decorate = (entry: NodeEntry) => {
     const [node, path] = entry;
     const ranges: TimestampRange[] = [];
