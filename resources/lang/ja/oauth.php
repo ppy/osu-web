@@ -28,13 +28,13 @@ return [
         'id' => 'クライアントID',
         'name' => 'アプリケーション名',
         'redirect' => 'アプリケーションコールバックURL',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => 'Client Secret',
+        'reset' => 'クライアントシークレットをリセット',
+        'reset_failed' => 'クライアントシークレットのリセットに失敗',
+        'secret' => 'クライアントシークレット',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'クライアントシークレットを表示',
+            'true' => 'クライアントシークレットを非表示',
         ],
     ],
 
@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '本当にこのクライアントを削除しますか？',
-        'confirm_reset' => '',
+        'confirm_reset' => '本当にクライアントシークレットをリセットしてもいいですか？これにより全てのトークンが取り消されます。',
         'new' => '新しいOAuthアプリケーション',
         'none' => 'クライアントがありません',
 

@@ -4,21 +4,21 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => 'Featured artists på osu!',
-    'title' => 'Featured Artists',
+    'page_description' => 'Utvalgte artister på osu!',
+    'title' => 'Utvalgte Artister',
 
     'admin' => [
         'hidden' => 'ARTISTEN ER FOR ØYEBLIKKET SKJULT',
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
+        '_' => 'Beatmapper',
         'download' => 'Last ned Beatmapmal',
-        'download-na' => 'Beatmap malen er ikke tilgjengelig ennå',
+        'download-na' => 'Beatmapmalen er ikke tilgjengelig ennå',
     ],
 
     'index' => [
-        'description' => 'Utvalgte artister er artister som vi samarbeider med for å tilby ny og original musikk i osu! Disse artistene og de utvalgte sangene har blitt hånd-plukket av osu! teamet for å være superkule og tilpasset for mapping. Noen av disse utvalgte artister har også laget eksklusive nye sanger for osu! Alle sangene i denne seksjonen tilbys som pre-timed .osz filer og har blitt offisielt lisensiert for bruk i osu! og osu! relatert innhold.',
+        'description' => 'Featured artists er artister som vi samarbeider med for å bringe ny og original musikk til osu!. Disse artistene og et utvalg av deres sanger har blitt håndplukket av osu! teamet, ettersom de er imponerende og tilpasset til mapping. Noen av disse artistene fra "featured artists" har også laget nye og eksklusive sanger til bruk i osu!.<br><br>Alle sangene i denne seksjonen tilbys som forhåndstrimmet .osz filer og har offisielt blitt lisensiert for bruk i osu! og osu! relatert innhold.',
     ],
 
     'links' => [

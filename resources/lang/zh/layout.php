@@ -130,7 +130,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => '请求参数无效',
             'description' => '',
         ],
         '404' => [

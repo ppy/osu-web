@@ -75,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => 'Eğer bu beatmap\'de bir sorun bulduysanız, lütfen diskalifiye ediniz :link.',
-                'button_title' => 'Nitelikli bir beatmap\'i diskalifiye et.',
             ],
 
             'report' => [
                 '_' => '',
                 'button' => 'Sorun bildir',
-                'button_title' => '',
                 'link' => '',
             ],
         ],

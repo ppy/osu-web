@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Opções',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'tipo de download padrão de beatmap',
+            'all' => 'com vídeo, se disponível',
+            'no_video' => 'sem vídeo',
+            'direct' => 'abrir em osu!direct',
         ],
     ],
 

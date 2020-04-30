@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\UserSubscriptionChangeEvent;
 use App\Models\Beatmapset;
 use Auth;
 use Exception;
@@ -38,8 +37,6 @@ class BeatmapsetWatchesController extends Controller
             }
         }
 
-        event(new UserSubscriptionChangeEvent('add', Auth::user(), $beatmapset));
-
         return response([], 204);
     }
 
@@ -48,8 +45,6 @@ class BeatmapsetWatchesController extends Controller
         $beatmapset = Beatmapset::findOrFail($beatmapsetId);
 
         $beatmapset->watches()->where('user_id', '=', Auth::user()->getKey())->delete();
-
-        event(new UserSubscriptionChangeEvent('remove', Auth::user(), $beatmapset));
 
         return response([], 204);
     }

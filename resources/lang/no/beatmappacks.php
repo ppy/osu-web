@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Forhåndspakkede samlinger av beatmaps basert rundt et felles tema.',
-        'nav_title' => '',
+        'nav_title' => 'liste',
         'title' => 'Beatmappakker',
 
         'blurb' => [

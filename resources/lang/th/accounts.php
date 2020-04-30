@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'รูปโปรไฟล์',
-            'rules' => '',
+            'rules' => 'โปรดตรวจสอบให้แน่ใจว่า avatar ของคุณเป็นไปตาม :link.<br/> ซึ่งหมายความว่ามันจะต้องเป็น <strong> เหมาะสำหรับทุกวัย </strong> เช่น ไม่มีภาพลามกหยาบคายหรือเนื้อหาที่มีการชักจูง',
             'rules_link' => 'กฎของชุมชน',
         ],
 
@@ -54,7 +54,7 @@ return [
         'beatmapset_discussion_qualified_problem' => '',
 
         'mail' => [
-            '_' => '',
+            '_' => 'รับการแจ้งเตือนทางอีเมล',
             'beatmapset:modding' => '',
             'forum_topic_reply' => '',
         ],
@@ -67,7 +67,7 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'ตัวเลือก',
 
         'beatmapset_download' => [
             '_' => '',

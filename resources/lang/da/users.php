@@ -418,7 +418,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Klods visning',
         'card' => 'Kortvisning',
         'list' => 'Listevisning',
     ],

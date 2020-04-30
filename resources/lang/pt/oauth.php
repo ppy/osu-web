@@ -28,13 +28,13 @@ return [
         'id' => 'ID do cliente',
         'name' => 'Nome da aplicação',
         'redirect' => 'URL da recolha da aplicação',
-        'reset' => '',
-        'reset_failed' => '',
+        'reset' => 'Redefinir o segredo do cliente',
+        'reset_failed' => 'Falha ao redefinir o segredo do cliente',
         'secret' => 'Segredo do cliente',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Mostrar o segredo do cliente',
+            'true' => 'Ocultar o segredo do cliente',
         ],
     ],
 
@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Tens a certeza que queres eliminar este cliente?',
-        'confirm_reset' => '',
+        'confirm_reset' => 'Tens a certeza que desejas redefinir o segredo do cliente? Isto irá revogar todos os tokens existentes.',
         'new' => 'Nova aplicação OAuth',
         'none' => 'Sem clientes',
 
