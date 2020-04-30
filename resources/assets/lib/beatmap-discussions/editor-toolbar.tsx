@@ -64,6 +64,7 @@ const ToolbarButton = ({ format }: { format: string }) => {
   return (
     <button
       className={osu.classWithModifiers(bn, [isFormatActive(editor, format) ? 'active' : ''])}
+      // we use onMouseDown instead of onClick here so the popup remains visible after clicking
       onMouseDown={(event) => {
         event.preventDefault();
         toggleFormat(editor, format);
