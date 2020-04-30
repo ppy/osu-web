@@ -57,8 +57,8 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmaps',
-            'artists' => 'featured artists',
+            '_' => 'beatmap',
+            'artists' => 'featured artist',
             'index' => 'daftar',
             'packs' => 'paket',
         ],
@@ -130,7 +130,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Parameter yang diminta tidak valid',
             'description' => '',
         ],
         '404' => [

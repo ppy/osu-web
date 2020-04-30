@@ -75,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => '',
-                'button_title' => '',
             ],
 
             'report' => [
                 '_' => '',
                 'button' => '',
-                'button_title' => '',
                 'link' => '',
             ],
         ],

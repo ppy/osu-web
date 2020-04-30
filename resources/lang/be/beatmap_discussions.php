@@ -18,23 +18,23 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'выдалена',
-        'none_found' => '',
+        'none_found' => 'Не знойдзена абмеркаванняў, супадаючых з гэтымі крытэрыямі пошука.',
         'title' => 'Абмеркаванне бітмап',
 
         'form' => [
             '_' => 'Пошук',
             'deleted' => 'Уключаючы выдаленыя абмеркаванні',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Паказаць толькі нявырашаныя абмеркаванні',
             'types' => 'Тыпы памедамленняў',
             'username' => 'Імя карыстальніка',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Статус бітмапы',
+                'all' => 'Усе',
+                'disqualified' => 'Дыскваліфікаваны',
+                'never_qualified' => 'Ніколі ні кваліфікавана',
+                'qualified' => 'Кваліфікавана',
+                'ranked' => 'Ранкавана',
             ],
 
             'user' => [
@@ -64,14 +64,14 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'Пабачыць адказ',
+        'go_to_child' => 'Пабачыць абмеркаванне',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_block_type' => 'недапушчальны тып блоку',
+            'invalid_document' => 'недапушчальны адказ',
+            'minimum_issues' => 'адказ павінен утрымліваць як мінімум :count праблему|адказ павінен утрымліваць як мінімум :count праблемы|адказ павінен утрымліваць як мінімум :count праблем',
+            'missing_text' => 'у блоке адсутнічае тэкст',
+            'too_many_blocks' => 'адказы могуць утрымліваць толькі :count параграф/праблему|параграфы могуць утрымліваць толькі да :count параграфаў/праблем',
         ],
     ],
 
@@ -83,8 +83,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'агульнае',
+        'general_all' => 'агульнае (усе)',
     ],
 
     'user_filter' => [

@@ -75,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => '',
-                'button_title' => '',
             ],
 
             'report' => [
                 '_' => '',
                 'button' => 'Probléma jelentése',
-                'button_title' => '',
                 'link' => 'itt',
             ],
         ],
@@ -150,13 +148,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
+            'ranked' => 'Rangsorolt',
+            'approved' => 'Jóváhagyott',
             'loved' => '',
             'qualified' => '',
             'wip' => '',
             'pending' => '',
-            'graveyard' => '',
+            'graveyard' => 'Temető',
         ],
     ],
 ];

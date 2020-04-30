@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'Nós estamos atualmente sobrecarregados com encomendas! Podes realizar o teu pedido, mas por favor espera aguardar **1-2 semanas** enquanto nos pomos a par dos pedidos existentes.',
         'old_cart' => 'O teu carrinho parece que está fora de prazo e foi recarregado, por favor tenta outra vez.',
         'pay' => 'Pagar com Paypal',
-        'title_compact' => '',
+        'title_compact' => 'pagamento',
 
         'has_pending' => [
             '_' => 'Tens pagamentos incompletos, clica :link para os veres.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Como o teu pagamento era um eCheck, por favor permite até 10 dias extras para o pagamento ser autorizado através do PayPal!',
-        'title_compact' => '',
+        'title_compact' => 'fatura',
 
         'status' => [
             'processing' => [

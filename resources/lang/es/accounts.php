@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Opciones',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'tipo de descarga de mapa predeterminado',
+            'all' => 'con vídeo si está disponible',
+            'no_video' => 'sin vídeo',
+            'direct' => 'abrir en osu!direct',
         ],
     ],
 

@@ -5,21 +5,21 @@
 
 return [
     'admin' => [
-        '_' => 'admin',
+        '_' => 'administrator',
     ],
     'admin_forum' => [
-        '_' => 'admin',
+        '_' => 'administrator',
     ],
     'admin_store' => [
-        '_' => 'admin',
+        '_' => 'administrator',
     ],
     'error' => [
         'error' => [
-            '400' => '',
+            '400' => 'nieprawidłowe żądanie',
             '404' => 'nie znaleziono',
             '403' => 'brak dostępu',
             '401' => 'brak dostępu',
-            '401-verification' => '',
+            '401-verification' => 'weryfikacja konta',
             '405' => 'nie znaleziono',
             '422' => 'nieprawidłowe żądanie',
             '500' => 'coś się popsuło',
@@ -67,7 +67,7 @@ return [
             '_' => 'zmiany',
         ],
         'chat_controller' => [
-            '_' => 'czat',
+            '_' => 'pogawędka',
         ],
         'comments_controller' => [
             '_' => 'komentarze',

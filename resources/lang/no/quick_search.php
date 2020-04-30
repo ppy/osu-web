@@ -5,17 +5,17 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
-        'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'beatmapset' => 'Beatmap',
+        'forum_post' => 'Forum',
+        'other' => 'Annet',
+        'user' => 'Spiller',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'empty' => 'Ingen resultater',
+        'empty_for' => 'Ingen resultater for :modes',
+        'more' => 'Flere :mode søkeresultater',
+        'title' => ':mode Søkeresultat',
     ],
 ];

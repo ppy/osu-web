@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Dette emne er arkiveret og kan ikke svares',
             'to_0' => 'Oplås emne',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Lås emne op?',
             'to_0_done' => 'Emnet er blevet låst op',
             'to_1' => 'Lås emne',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Lås emne?',
             'to_1_done' => 'Emnet er blevet låst',
         ],
 
@@ -249,13 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Fjern fra pins',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Fjern fra pins?',
             'to_0_done' => 'Emnet er blevet fjernet fra pins',
             'to_1' => 'Fastgør emne',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Pin emne?',
             'to_1_done' => 'Emnet er blevet fastgjort',
             'to_2' => 'Fastgør emne og marker som en service-meddelelse',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Pin emne og marker som en service-meddelelse?',
             'to_2_done' => 'Emnet er blevet fastgjort og markeret som en service-meddelelse',
         ],
 

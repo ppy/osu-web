@@ -10,7 +10,7 @@ return [
 
     'cart' => [
         'checkout' => 'Gå til kassen',
-        'info' => '',
+        'info' => ':count_delimited ting i kurven ($:subtotal)|:count_delimited items i vogn ($:subtotal)',
         'more_goodies' => 'Jeg vil se på flere produkter før jeg fullfører bestillingen',
         'shipping_fees' => 'fraktkostnader',
         'title' => 'Handlevogn',
@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'Vi er for tiden overveldet av bestillinger! Du er velkommen til å bestille, men vennligst ta hensyn til at bestillingen kan ta **ytterlige 1-2 uke lenger** mens vi fullfører de eksisterende bestillingene.',
         'old_cart' => 'Det ser ut til at handlevognen din er utdatert og har blitt oppdatert, prøv igjen.',
         'pay' => 'Betal med Paypal',
-        'title_compact' => '',
+        'title_compact' => 'gå til kassen',
 
         'has_pending' => [
             '_' => 'Du har ufullstendige utsjekkinger, klikk :link for å vise dem.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Ettersom betalingen din var en eCheck, vennligst tillatt opp til 10 ekstra dager for at betalingen skal kunne komme gjennom PayPal!',
-        'title_compact' => '',
+        'title_compact' => 'faktura',
 
         'status' => [
             'processing' => [

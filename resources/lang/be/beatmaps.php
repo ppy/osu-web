@@ -70,7 +70,7 @@ return [
             'nomination_reset' => 'Скід намінацыі',
             'praise' => 'Пахвала',
             'problem' => 'Праблема',
-            'review' => '',
+            'review' => 'Адказ',
             'suggestion' => 'Прапанова',
         ],
 

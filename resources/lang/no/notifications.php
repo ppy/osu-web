@@ -5,18 +5,19 @@
 
 return [
     'all_read' => 'Alle varsler lest!',
-    'mark_read' => '',
-    'none' => '',
-    'see_all' => '',
+    'mark_read' => 'Tøm :type',
+    'none' => 'Ingen varsler',
+    'see_all' => 'se alle varsler',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => 'alle',
+        'user' => 'profil',
+        'beatmapset' => 'beatmapper
+',
+        'forum_topic' => 'forum',
+        'news_post' => 'nyheter',
+        'build' => 'versjon',
+        'channel' => 'chat',
     ],
 
     'item' => [
@@ -28,19 +29,19 @@ return [
                 'beatmapset_discussion_lock' => 'Beatmappen ":title" har blitt låst for diskusjon.',
                 'beatmapset_discussion_lock_compact' => 'Diskusjonen var låst',
                 'beatmapset_discussion_post_new' => ':username la til en ny melding i beatmapdiskusjonen til ":title".',
-                'beatmapset_discussion_post_new_empty' => '',
+                'beatmapset_discussion_post_new_empty' => 'Nytt innlegg ved ":title" av :username',
                 'beatmapset_discussion_post_new_compact' => 'Nytt innlegg av :username',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nytt innlegg av :username',
                 'beatmapset_discussion_unlock' => 'Beatmappen ":title" har blitt låst opp for diskusjon.',
                 'beatmapset_discussion_unlock_compact' => 'Diskusjon var ulåst',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Kvalifisert beatmap-problem',
+                'beatmapset_discussion_qualified_problem' => 'Rapportert av :username på ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Rapportert av :username ved ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Rapportert av :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Rapportert av :username',
             ],
 
             'beatmapset_state' => [
@@ -127,7 +128,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Ny medalje',
                 'user_achievement_unlock' => '":title" låst opp!',
-                'user_achievement_unlock_compact' => '',
+                'user_achievement_unlock_compact' => '":title" låst opp!',
             ],
         ],
     ],

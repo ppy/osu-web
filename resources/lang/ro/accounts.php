@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Opțiuni',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'tip implicit de descărcare de beatmap',
+            'all' => 'cu video dacă e disponibil',
+            'no_video' => 'fără video',
+            'direct' => 'deschis în osu!direct',
         ],
     ],
 

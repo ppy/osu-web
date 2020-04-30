@@ -15,11 +15,11 @@ return [
     ],
     'error' => [
         'error' => [
-            '400' => '',
+            '400' => 'solicitação inválida',
             '404' => 'não encontrado',
             '403' => 'proibido',
             '401' => 'não autorizado',
-            '401-verification' => '',
+            '401-verification' => 'verificação de conta',
             '405' => 'não encontrado',
             '422' => 'solicitação inválida',
             '500' => 'algo quebrou',
