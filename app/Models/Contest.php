@@ -163,7 +163,11 @@ class Contest extends Model
             case 'voting':
                 return i18n_date($this->voting_starts_at).' - '.i18n_date($this->voting_ends_at);
             default:
-                return trans('contest.dates.ended', ['date' => i18n_date($this->voting_ends_at)]);
+                if ($this->voting_ends_at === null) {
+                    return trans('contest.dates.ended_no_date');
+                } else {
+                    return trans('contest.dates.ended', ['date' => i18n_date($this->voting_ends_at)]);
+                }
         }
     }
 
