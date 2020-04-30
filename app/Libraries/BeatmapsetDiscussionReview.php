@@ -88,17 +88,17 @@ class BeatmapsetDiscussionReview
             foreach ($document as $block) {
                 switch ($block['type']) {
                     case 'paragraph':
-                        array_push($output, [
+                        $output[] = [
                             'type' => 'paragraph',
                             'text' => $block['text'],
-                        ]);
+                        ];
                         break;
 
                     case 'embed':
-                        array_push($output, [
+                        $output[] = [
                             'type' => 'embed',
                             'discussion_id' => $childIds[$i++],
-                        ]);
+                        ];
                         break;
                 }
             }
@@ -167,7 +167,7 @@ class BeatmapsetDiscussionReview
                         // if there's a discussion_id, this is an existing embed
                         if (isset($block['discussion_id'])) {
                             $childIds[] = $block['discussion_id'];
-                            continue;
+                            break;
                         }
 
                         // otherwise, create new discussion
@@ -224,17 +224,17 @@ class BeatmapsetDiscussionReview
             foreach ($document as $block) {
                 switch ($block['type']) {
                     case 'paragraph':
-                        array_push($output, [
+                        $output[] = [
                             'type' => 'paragraph',
                             'text' => $block['text'],
-                        ]);
+                        ];
                         break;
 
                     case 'embed':
-                        array_push($output, [
+                        $output[] = [
                             'type' => 'embed',
                             'discussion_id' => $childIds[$i++],
-                        ]);
+                        ];
                         break;
                 }
             }
