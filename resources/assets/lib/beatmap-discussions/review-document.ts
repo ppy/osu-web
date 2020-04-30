@@ -13,74 +13,74 @@ interface ParsedDocumentNode extends UnistNode {
 }
 
 export function parseFromMarkdown(json: string, discussions: BeatmapDiscussion[]) {
-    let srcDoc: any[];
+  let srcDoc: any[];
 
-    try {
-      srcDoc = JSON.parse(json);
-    } catch {
-      console.error('error parsing srcDoc');
+  try {
+    srcDoc = JSON.parse(json);
+  } catch {
+    console.error('error parsing srcDoc');
 
-      return [];
-    }
+    return [];
+  }
 
-    const doc: ParsedDocumentNode[] = [];
-    _.each(srcDoc, (block) => {
-      switch (block.type) {
-        // paragraph
-        case 'paragraph':
-          if (!osu.presence(block.text.trim())) {
-            // empty block (aka newline)
-            doc.push({
-              children: [{
-                text: '',
-              }],
-              type: 'paragraph',
-            });
-          } else {
-            const processor = unified()
-              .use(markdown)
-              .use(disableTokenizersPlugin,
-                {
-                  allowedBlocks: ['paragraph'],
-                  allowedInlines: ['emphasis', 'strong'],
-                });
-            const parsed = processor.parse(block.text) as ParsedDocumentNode;
-
-            if (!parsed.children || parsed.children.length < 1) {
-              console.error('children missing... ?');
-
-              break;
-            }
-
-            doc.push({
-              children: _.filter<SlateNode>(squash(parsed.children), (i) => i), // filter out null/undefined
-              type: 'paragraph',
-            });
-          }
-          break;
-        case 'embed':
-          // embed
-          const discussion = discussions[block.discussion_id];
-          if (!discussion) {
-            return;
-          }
+  const doc: ParsedDocumentNode[] = [];
+  _.each(srcDoc, (block) => {
+    switch (block.type) {
+      // paragraph
+      case 'paragraph':
+        if (!osu.presence(block.text.trim())) {
+          // empty block (aka newline)
           doc.push({
-            beatmapId: discussion.beatmap_id,
             children: [{
-              text: (discussion.starting_post || discussion.posts[0]).message,
+              text: '',
             }],
-            discussionId: discussion.id,
-            discussionType: discussion.message_type,
-            timestamp: discussion.timestamp,
-            type: 'embed',
+            type: 'paragraph',
           });
-          break;
-        default:
-          console.error('unknown block encountered', block);
-      }
-    });
+        } else {
+          const processor = unified()
+            .use(markdown)
+            .use(disableTokenizersPlugin,
+              {
+                allowedBlocks: ['paragraph'],
+                allowedInlines: ['emphasis', 'strong'],
+              });
+          const parsed = processor.parse(block.text) as ParsedDocumentNode;
 
-    return doc;
+          if (!parsed.children || parsed.children.length < 1) {
+            console.error('children missing... ?');
+
+            break;
+          }
+
+          doc.push({
+            children: _.filter<SlateNode>(squash(parsed.children), (i) => i), // filter out null/undefined
+            type: 'paragraph',
+          });
+        }
+        break;
+      case 'embed':
+        // embed
+        const discussion = discussions[block.discussion_id];
+        if (!discussion) {
+          return;
+        }
+        doc.push({
+          beatmapId: discussion.beatmap_id,
+          children: [{
+            text: (discussion.starting_post || discussion.posts[0]).message,
+          }],
+          discussionId: discussion.id,
+          discussionType: discussion.message_type,
+          timestamp: discussion.timestamp,
+          type: 'embed',
+        });
+        break;
+      default:
+        console.error('unknown block encountered', block);
+    }
+  });
+
+  return doc;
 }
 
 //
