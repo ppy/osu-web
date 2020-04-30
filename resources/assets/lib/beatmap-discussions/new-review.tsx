@@ -33,14 +33,10 @@ declare global {
 }
 
 export default class NewReview extends React.Component<Props, State> {
-  initialValue: string;
-  placeholder: string = '[{"children": [{"text": "placeholder"}], "type": "paragraph"}]';
 
   constructor(props: Props) {
     super(props);
 
-    const savedValue = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
-    this.initialValue = savedValue || this.placeholder;
     this.state = {
       cssTop: undefined,
     };
@@ -103,7 +99,6 @@ export default class NewReview extends React.Component<Props, State> {
                             currentBeatmap={this.props.currentBeatmap}
                             currentDiscussions={this.props.currentDiscussions}
                             discussions={discussions}
-                            initialValue={this.initialValue}
                           />;
                         }
                       }

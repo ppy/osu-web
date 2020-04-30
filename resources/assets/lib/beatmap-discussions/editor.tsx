@@ -14,9 +14,6 @@ import { EditorToolbar } from './editor-toolbar';
 import { parseFromMarkdown } from './review-document';
 import { SlateContext } from './slate-context';
 
-const placeholder: string = '[{"children":[{"text":""}],"type":"paragraph"}]';
-let initialValue: string = placeholder;
-
 interface TimestampRange extends Range {
   timestamp: string;
 }
@@ -31,7 +28,6 @@ interface Props {
   document?: string;
   editing?: boolean;
   editMode?: boolean;
-  initialValue: string;
 }
 
 interface CacheInterface {
@@ -41,6 +37,7 @@ interface CacheInterface {
 export default class Editor extends React.Component<Props, any> {
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
+  emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
   slateEditor: ReactEditor;
 
   constructor(props: Props) {
@@ -48,19 +45,15 @@ export default class Editor extends React.Component<Props, any> {
 
     this.slateEditor = this.withNormalization(withHistory(withReact(createEditor())));
 
-    if (props.editMode) {
-      this.state = {
-        value: [],
-      };
-
-      return;
-    }
-
-    try {
-      initialValue = JSON.parse(localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`) || placeholder);
-    } catch (error) {
-      console.log('invalid json in localStorage, ignoring');
-      initialValue = JSON.parse(placeholder);
+    let initialValue = this.emptyDocTemplate;
+    const saved = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
+    if (!props.editMode && saved) {
+      try {
+        initialValue = JSON.parse(saved);
+      } catch (error) {
+        // tslint:disable-next-line:no-console
+        console.error('invalid json in localStorage, ignoring');
+      }
     }
 
     this.state = {
@@ -154,7 +147,7 @@ export default class Editor extends React.Component<Props, any> {
       const content = JSON.stringify(value);
       const key = `newDiscussion-${this.props.beatmapset.id}`;
 
-      if (content !== placeholder) {
+      if (content !== JSON.stringify(this.emptyDocTemplate)) {
         localStorage.setItem(key, content);
       } else {
         localStorage.removeItem(key);
@@ -281,7 +274,7 @@ export default class Editor extends React.Component<Props, any> {
     }
 
     Transforms.deselect(this.slateEditor);
-    this.onChange(JSON.parse(placeholder));
+    this.onChange(this.emptyDocTemplate);
   }
 
   serialize = (): string => {
