@@ -18,6 +18,7 @@ class SpotlightsController extends Controller
 
         $this->middleware('require-scopes:public');
     }
+
     /**
      * Get Spotlights
      *

@@ -29,6 +29,7 @@ class RouteConvert extends Command
     protected $options = [];
 
     protected $routeScopesHelper;
+
     /**
      * Execute the console command.
      *
