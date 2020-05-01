@@ -40,30 +40,26 @@ class BeatmapsetDiscussionReview
 
                 switch ($block['type']) {
                     case 'embed':
-                        $beatmapId = $block['beatmap_id'] ?? null;
-
-                        $discussion = new BeatmapDiscussion([
-                            'beatmapset_id' => $beatmapset->getKey(),
-                            'user_id' => $user->getKey(),
-                            'resolved' => false,
-                            'message_type' => $block['discussion_type'],
-                            'timestamp' => $block['timestamp'] ?? null,
-                            'beatmap_id' => $beatmapId,
-                        ]);
-                        $discussion->saveOrExplode();
-
-                        $postParams = [
-                            'user_id' => $user->getKey(),
-                            'message' => $message,
+                        $childId = self::createPost(
+                            $beatmapset->getKey(),
+                            $block['discussion_type'],
+                            $message,
+                            $user->getKey(),
+                            $block['beatmap_id'] ?? null,
+                            $block['timestamp'] ?? null
+                        )->getKey();
+                        $output[] = [
+                            'type' => 'embed',
+                            'discussion_id' => $childId,
                         ];
-                        $post = new BeatmapDiscussionPost($postParams);
-                        $post->beatmapDiscussion()->associate($discussion);
-                        $post->saveOrExplode();
-
-                        $childIds[] = $discussion->getKey();
+                        $childIds[] = $childId;
                         break;
 
                     case 'paragraph':
+                        $output[] = [
+                            'type' => 'paragraph',
+                            'text' => $block['text'],
+                        ];
                         break;
 
                     default:
@@ -83,40 +79,12 @@ class BeatmapsetDiscussionReview
                 throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
             }
 
-            // generate the post body now that the issues have been created
-            $i = 0;
-            foreach ($document as $block) {
-                switch ($block['type']) {
-                    case 'paragraph':
-                        $output[] = [
-                            'type' => 'paragraph',
-                            'text' => $block['text'],
-                        ];
-                        break;
-
-                    case 'embed':
-                        $output[] = [
-                            'type' => 'embed',
-                            'discussion_id' => $childIds[$i++],
-                        ];
-                        break;
-                }
-            }
-
-            // create the review post
-            $review = new BeatmapDiscussion([
-                'beatmapset_id' => $beatmapset->getKey(),
-                'user_id' => $user->getKey(),
-                'resolved' => false,
-                'message_type' => 'review',
-            ]);
-            $review->saveOrExplode();
-            $post = new BeatmapDiscussionPost([
-                'user_id' => $user->getKey(),
-                'message' => json_encode($output),
-            ]);
-            $post->beatmapDiscussion()->associate($review);
-            $post->saveOrExplode();
+            $review = self::createPost(
+                $beatmapset->getKey(),
+                'review',
+                json_encode($output),
+                $user->getKey()
+            );
 
             // associate children with parent
             BeatmapDiscussion::whereIn('id', $childIds)
@@ -171,29 +139,26 @@ class BeatmapsetDiscussionReview
                         }
 
                         // otherwise, create new discussion
-                        $beatmapId = $block['beatmap_id'] ?? null;
-                        $newDiscussion = new BeatmapDiscussion([
-                            'beatmapset_id' => $beatmapset->getKey(),
-                            'user_id' => $user->getKey(),
-                            'resolved' => false,
-                            'message_type' => $block['discussion_type'],
-                            'timestamp' => $block['timestamp'] ?? null,
-                            'beatmap_id' => $beatmapId,
-                        ]);
-                        $newDiscussion->saveOrExplode();
-
-                        $postParams = [
-                            'user_id' => $user->getKey(),
-                            'message' => $message,
+                        $childId = self::createPost(
+                            $beatmapset->getKey(),
+                            $block['discussion_type'],
+                            $message,
+                            $user->getKey(),
+                            $block['beatmap_id'] ?? null,
+                            $block['timestamp'] ?? null
+                        )->getKey();
+                        $output[] = [
+                            'type' => 'embed',
+                            'discussion_id' => $childId,
                         ];
-                        $newPost = new BeatmapDiscussionPost($postParams);
-                        $newPost->beatmapDiscussion()->associate($newDiscussion);
-                        $newPost->saveOrExplode();
-
-                        $childIds[] = $newDiscussion->getKey();
+                        $childIds[] = $childId;
                         break;
 
                     case 'paragraph':
+                        $output[] = [
+                            'type' => 'paragraph',
+                            'text' => $block['text'],
+                        ];
                         break;
 
                     default:
@@ -219,26 +184,6 @@ class BeatmapsetDiscussionReview
                 throw new InvariantException(trans('beatmap_discussions.review.validation.external_references'));
             }
 
-            // generate the post body now that the issues have been created
-            $i = 0;
-            foreach ($document as $block) {
-                switch ($block['type']) {
-                    case 'paragraph':
-                        $output[] = [
-                            'type' => 'paragraph',
-                            'text' => $block['text'],
-                        ];
-                        break;
-
-                    case 'embed':
-                        $output[] = [
-                            'type' => 'embed',
-                            'discussion_id' => $childIds[$i++],
-                        ];
-                        break;
-                }
-            }
-
             // update the review post
             $post['message'] = json_encode($output);
             $post['last_editor_id'] = $user->getKey();
@@ -260,5 +205,28 @@ class BeatmapsetDiscussionReview
             DB::rollBack();
             throw $e;
         }
+    }
+
+    private static function createPost($beatmapsetId, $discussionType, $message, $userId, $beatmapId = null, $timestamp = null)
+    {
+        $newDiscussion = new BeatmapDiscussion([
+            'beatmapset_id' => $beatmapsetId,
+            'user_id' => $userId,
+            'resolved' => false,
+            'message_type' => $discussionType,
+            'timestamp' => $timestamp,
+            'beatmap_id' => $beatmapId,
+        ]);
+        $newDiscussion->saveOrExplode();
+
+        $postParams = [
+            'user_id' => $userId,
+            'message' => $message,
+        ];
+        $newPost = new BeatmapDiscussionPost($postParams);
+        $newPost->beatmapDiscussion()->associate($newDiscussion);
+        $newPost->saveOrExplode();
+
+        return $newDiscussion;
     }
 }
