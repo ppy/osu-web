@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'herunterladen',
+            'video' => 'mit Video herunterladen',
+            'no_video' => 'ohne Video herunterladen',
+            'direct' => 'in osu!direct öffnen',
         ],
     ],
 
@@ -48,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'genehmigt :timeago',
+            'loved' => 'geliebt :timeago',
+            'qualified' => 'qualifiziert :timeago',
+            'ranked' => 'rangiert :timeago',
+            'submitted' => 'abgegeben :timeago',
+            'updated' => 'zuletzt aktualisiert :timeago',
         ],
 
         'favourites' => [
@@ -75,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => 'Wenn Du ein Problem mit dieser Beatmap findest, bitte disqualifiziere diese :link.',
-                'button_title' => 'Eine qualifizierte Beatmap disqualifizieren.',
             ],
 
             'report' => [
                 '_' => 'Wenn du ein Problem mit dieser Beatmap findest, bitte melde es :link, um das Team zu informieren.',
                 'button' => 'Problem melden',
-                'button_title' => 'Melde ein Problem auf qualifizierten Beatmaps.',
                 'link' => 'hier',
             ],
         ],

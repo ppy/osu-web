@@ -70,5 +70,7 @@ export class UserPage extends React.Component
 
 
   pageShow: =>
-    div dangerouslySetInnerHTML:
-      __html: @props.userPage.html
+    div
+      className: 'js-audio--group'
+      dangerouslySetInnerHTML:
+        __html: @props.userPage.html

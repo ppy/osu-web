@@ -28,13 +28,13 @@ return [
         'id' => 'Client-ID',
         'name' => 'Applicatienaam',
         'redirect' => 'Applicatie Terugbel URL',
-        'reset' => '',
-        'reset_failed' => '',
+        'reset' => 'Reset client geheim',
+        'reset_failed' => 'Resetten van client geheim mislukt',
         'secret' => 'Client Secret',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Laat client geheim zien',
+            'true' => 'Verberg client geheim',
         ],
     ],
 
@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Weet je zeker dat je deze reactie wilt verwijderen?',
-        'confirm_reset' => '',
+        'confirm_reset' => 'Weet je zeker dat je jouw client geheim wilt resetten? Dit verwijdert alle huidige kentekens.',
         'new' => 'Nieuwe OAuth applicatie',
         'none' => 'Geen clients',
 

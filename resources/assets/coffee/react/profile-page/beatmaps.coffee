@@ -41,7 +41,7 @@ export class Beatmaps extends React.PureComponent
             osu.formatNumber(count)
 
       if beatmapsets.length > 0
-        div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',
+        div className: 'osu-layout__col-container osu-layout__col-container--with-gutter js-audio--group',
           for beatmapset in beatmapsets
             div
               key: beatmapset.id

@@ -10,7 +10,7 @@ return [
     'pinned' => 'fastgjort',
     'empty' => 'Ingen kommentare endnu.',
     'load_replies' => 'indlæs svar',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited svar|:count_delimited svar',
     'title' => 'Kommentarer',
 
     'commentable_name' => [

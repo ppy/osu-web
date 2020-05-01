@@ -5,25 +5,19 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Broadcast;
+use App\Libraries\RedisBroadcaster;
+use Illuminate\Broadcasting\BroadcastManager;
 use Illuminate\Support\ServiceProvider;
 
 class BroadcastServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
+    public function boot(BroadcastManager $broadcastManager)
     {
-        Broadcast::routes();
-
-        /*
-         * Authenticate the user's personal channel...
-         */
-        Broadcast::channel('App.User.*', function ($user, $userId) {
-            return (int) $user->id === (int) $userId;
+        $broadcastManager->extend('redis', function ($app, array $config) {
+            return new RedisBroadcaster(
+                $this->app->make('redis'), $config['connection'] ?? null,
+                $this->app['config']->get('database.redis.options.prefix', '')
+            );
         });
     }
 }

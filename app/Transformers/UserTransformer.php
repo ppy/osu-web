@@ -20,6 +20,7 @@ class UserTransformer extends UserCompactTransformer
         'is_moderator',
         'is_nat',
         'is_restricted',
+        'is_silenced',
     ];
 
     public function transform(User $user)

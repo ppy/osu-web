@@ -188,6 +188,7 @@ export class NewDiscussion extends React.PureComponent
 
 
   canPost: =>
+    !@props.currentUser.is_silenced &&
     (!@props.beatmapset.discussion_locked || BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)) &&
     (!@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll')
 
@@ -212,7 +213,9 @@ export class NewDiscussion extends React.PureComponent
     if @canPost()
       osu.trans "beatmaps.discussions.message_placeholder.#{@props.mode}", version: @props.currentBeatmap.version
     else
-      if @props.beatmapset.discussion_locked
+      if @props.currentUser.is_silenced
+        osu.trans 'beatmaps.discussions.message_placeholder_silenced'
+      else if @props.beatmapset.discussion_locked
         osu.trans 'beatmaps.discussions.message_placeholder_locked'
       else
         osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
