@@ -26,6 +26,10 @@ class UserChannel extends Model
 
     protected $primaryKeys = ['user_id', 'channel_id'];
 
+    protected $casts = [
+        'moderated' => 'boolean',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -125,7 +129,7 @@ class UserChannel extends Model
                     'last_read_id' => $userChannel->last_read_id,
                     'first_message_id' => optional($messageEnds)->first_message_id,
                     'last_message_id' => optional($messageEnds)->last_message_id,
-                    'moderated' => false,
+                    'moderated' => $userChannel->moderated,
                 ];
 
                 if ($userChannel->type !== Channel::TYPES['public']) {
