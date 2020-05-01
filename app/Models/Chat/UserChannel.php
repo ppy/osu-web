@@ -128,7 +128,7 @@ class UserChannel extends Model
                     'first_message_id' => optional($messageEnds)->first_message_id,
                     'last_message_id' => optional($messageEnds)->last_message_id,
                     // `moderated` is not attribute of UserChannel so there's no casting.
-                    // Also see comment above on `$userChannels` assignment about this should be `$userChannel->channel`.
+                    // Also see comment above on `$userChannels` assignment about this should be `$userChannel->channel->moderated`.
                     'moderated' => (bool) $userChannel->moderated,
                 ];
 
