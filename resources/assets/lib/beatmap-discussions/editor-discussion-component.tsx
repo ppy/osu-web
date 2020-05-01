@@ -25,6 +25,7 @@ interface Props extends RenderElementProps {
   currentDiscussions: BeatmapDiscussion[];
   discussionId?: number;
   editMode?: boolean;
+  readOnly?: boolean;
 }
 
 export default class EditorDiscussionComponent extends React.Component<Props> {
@@ -35,7 +36,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     Transforms.setNodes(this.context, {timestamp: null}, {at: this.path()});
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any): void {
+  componentDidUpdate = () => {
     const path = this.path();
 
     if (this.props.element.beatmapId !== 'all') {
@@ -57,21 +58,22 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     Transforms.delete(this.context, { at: this.path() });
   }
 
-  path = (): Path => ReactEditor.findPath(this.context, this.props.element);
-
-  readOnly = () => {
-    return this.props.editMode && this.props.element.discussionId;
+  editable = () => {
+    return !(this.props.editMode && this.props.element.discussionId);
   }
+
+  path = (): Path => ReactEditor.findPath(this.context, this.props.element);
 
   render(): React.ReactNode {
     const bn = 'beatmap-discussion-review-post-embed-preview';
     const attribs = this.props.attributes;
-    const canEdit = !this.readOnly();
+    const canEdit = this.editable();
 
     const deleteButton =
       (
         <button
           className={`${bn}__delete`}
+          disabled={this.props.readOnly}
           onClick={this.delete}
           contentEditable={false}
           title={osu.trans(`beatmaps.discussions.review.embed.${canEdit ? 'delete' : 'unlink'}`)}
@@ -95,8 +97,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 className={`${bn}__selectors`}
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
               >
-                <EditorBeatmapSelector {...this.props} disabled={!canEdit}/>
-                <EditorIssueTypeSelector {...this.props} disabled={!canEdit}/>
+                <EditorBeatmapSelector {...this.props} disabled={this.props.readOnly || !canEdit}/>
+                <EditorIssueTypeSelector {...this.props} disabled={this.props.readOnly || !canEdit}/>
                 <div
                   className={`${bn}__timestamp`}
                   contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense

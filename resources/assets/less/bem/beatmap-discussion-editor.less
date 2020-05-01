@@ -17,6 +17,12 @@
   }
 
   &__block {
+    .@{_top}--readonly & {
+        &:hover .@{_top}__hover-menu {
+          display: none;
+        }
+    }
+
     &:hover .@{_top}__hover-menu {
       display: block;
     }
@@ -117,6 +123,10 @@
 
     .@{_top}--edit-mode & {
       max-height: unset;
+    }
+
+    .@{_top}--readonly & {
+      opacity: 0.5;
     }
   }
 

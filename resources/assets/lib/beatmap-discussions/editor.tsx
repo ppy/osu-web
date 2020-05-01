@@ -8,14 +8,15 @@ import * as React from 'react';
 import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
+import { Spinner } from 'spinner';
 import { BeatmapDiscussionReview, DocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import EditorDiscussionComponent from './editor-discussion-component';
 import { EditorToolbar } from './editor-toolbar';
 import { parseFromMarkdown } from './review-document';
 import { SlateContext } from './slate-context';
 
-interface TimestampRange extends Range {
-  timestamp: string;
+interface CacheInterface {
+  beatmaps?: Beatmap[];
 }
 
 interface Props {
@@ -30,11 +31,16 @@ interface Props {
   editMode?: boolean;
 }
 
-interface CacheInterface {
-  beatmaps?: Beatmap[];
+interface State {
+  posting: boolean;
+  value: SlateNode[];
 }
 
-export default class Editor extends React.Component<Props, any> {
+interface TimestampRange extends Range {
+  timestamp: string;
+}
+
+export default class Editor extends React.Component<Props, State> {
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
   emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
@@ -57,6 +63,7 @@ export default class Editor extends React.Component<Props, any> {
     }
 
     this.state = {
+      posting: false,
       value: initialValue,
     };
   }
@@ -171,21 +178,28 @@ export default class Editor extends React.Component<Props, any> {
   }
 
   post = () => {
-    $.ajax(laroute.route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}),
-      {
-        data: {
-          document: this.serialize(),
-        },
+    this.setState({posting: true}, () => {
+      $.ajax(laroute.route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
+        data: { document: this.serialize() },
         method: 'POST',
-      }).then((data) => {
+      })
+      .then((data) => {
         $.publish('beatmapsetDiscussions:update', {beatmapset: data});
-        this.resetInput();
+        // this.resetInput();
+      })
+      .catch(osu.ajaxError)
+      .always(() => {
+        this.setState({posting: false});
+      });
     });
   }
 
   render(): React.ReactNode {
     const editorClass = 'beatmap-discussion-editor';
-    const modifiers = this.props.editMode ? ['edit-mode'] : undefined;
+    const modifiers = this.props.editMode ? ['edit-mode'] : [];
+    if (this.state.posting) {
+      modifiers.push('readonly');
+    }
 
     return (
       <div className={osu.classWithModifiers(editorClass, modifiers)}>
@@ -201,6 +215,7 @@ export default class Editor extends React.Component<Props, any> {
                 <Editable
                   decorate={this.decorate}
                   onKeyDown={this.onKeyDown}
+                  readOnly={this.state.posting}
                   renderElement={this.renderElement}
                   renderLeaf={this.renderLeaf}
                   placeholder={osu.trans('beatmaps.discussions.message_placeholder.review')}
@@ -208,8 +223,22 @@ export default class Editor extends React.Component<Props, any> {
               </div>
               { !this.props.editMode &&
                 <div className={`${editorClass}__button-bar`}>
-                  <button className='btn-osu-big btn-osu-big--forum-secondary' type='button' onClick={this.resetInput}>{osu.trans('common.buttons.clear')}</button>
-                  <button className='btn-osu-big btn-osu-big--forum-primary' type='submit' onClick={this.post}>{osu.trans('common.buttons.post')}</button>
+                  <button
+                    className='btn-osu-big btn-osu-big--forum-secondary'
+                    disabled={this.state.posting}
+                    type='button'
+                    onClick={this.resetInput}
+                  >
+                    {osu.trans('common.buttons.clear')}
+                  </button>
+                  <button
+                    className='btn-osu-big btn-osu-big--forum-primary'
+                    disabled={this.state.posting}
+                    type='submit'
+                    onClick={this.post}
+                  >
+                    {this.state.posting ? <Spinner /> : osu.trans('common.buttons.post')}
+                  </button>
                 </div>
               }
             </Slate>
@@ -231,6 +260,7 @@ export default class Editor extends React.Component<Props, any> {
             currentDiscussions={this.props.currentDiscussions}
             editMode={this.props.editMode}
             beatmaps={this.sortedBeatmaps()}
+            readOnly={this.state.posting}
             {...props}
           />
         );
