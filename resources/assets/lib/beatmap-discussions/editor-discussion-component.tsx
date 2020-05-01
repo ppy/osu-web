@@ -40,12 +40,11 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
     if (this.props.element.beatmapId !== 'all') {
       const content = this.props.element.children[0].text;
-      const TIMESTAMP_REGEX = /((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d[,|])*\d\))?/;
-      const matches = content.match(TIMESTAMP_REGEX);
+      const matches = content.match(BeatmapDiscussionHelper.TIMESTAMP_REGEX);
       let timestamp = null;
 
       if (matches !== null) {
-        timestamp = matches[1];
+        timestamp = matches[2];
       }
 
       Transforms.setNodes(this.context, {timestamp}, {at: path});
