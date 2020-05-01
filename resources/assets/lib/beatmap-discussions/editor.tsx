@@ -96,8 +96,7 @@ export default class Editor extends React.Component<Props, any> {
       return ranges;
     }
 
-    const TIMESTAMP_REGEX = /\b((\d{2,}):([0-5]\d)[:.](\d{3})(\s\((?:\d[,|])*\d\))?)/;
-    const regex = RegExp(TIMESTAMP_REGEX, 'g');
+    const regex = RegExp(BeatmapDiscussionHelper.TIMESTAMP_REGEX, 'g');
     let match;
 
     // tslint:disable-next-line:no-conditional-assignment
