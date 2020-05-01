@@ -12,6 +12,7 @@ export interface ChannelJSON {
   icon?: string;
   last_message_id: number;
   last_read_id: number;
+  moderated: boolean;
   name: string;
   type: ChannelType;
   users: number[];

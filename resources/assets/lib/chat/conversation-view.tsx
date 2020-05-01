@@ -252,6 +252,7 @@ export default class ConversationView extends React.Component<Props> implements 
         {channel.moderated &&
           this.noCanSendMessage()
         }
+        <div className='chat-conversation__bottom-padding' />
       </div>
     );
   }

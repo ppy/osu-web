@@ -155,6 +155,7 @@ export default class Channel {
     this.firstMessageId = presence.first_message_id ?? -1;
 
     this.users = presence.users;
+    this.moderated = presence.moderated;
     this.metaLoaded = true;
   }
 }

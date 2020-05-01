@@ -94,7 +94,7 @@ class UserChannel extends Model
             })
             ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
             ->where('channels.type', '=', 'PM')
-            ->with('userScoped')
+            ->with(['userScoped.friends', 'userScoped.blocks'])
             ->get();
 
         $byUserId = $userChannelMembers->keyBy('user_id');
@@ -114,7 +114,7 @@ class UserChannel extends Model
 
         $collection = json_collection(
             $userChannels,
-            function ($userChannel) use ($byChannelId, $byUserId, $channelMessageIds, $userId) {
+            function ($userChannel) use ($byChannelId, $byUserId, $channelMessageIds, $userId, $user) {
                 $messageEnds = $channelMessageIds[$userChannel->channel_id] ?? null;
 
                 $presence = [
@@ -125,6 +125,7 @@ class UserChannel extends Model
                     'last_read_id' => $userChannel->last_read_id,
                     'first_message_id' => optional($messageEnds)->first_message_id,
                     'last_message_id' => optional($messageEnds)->last_message_id,
+                    'moderated' => false,
                 ];
 
                 if ($userChannel->type !== Channel::TYPES['public']) {
@@ -147,6 +148,7 @@ class UserChannel extends Model
                     $userActual = $targetUser->userScoped;
                     $presence['icon'] = $userActual->user_avatar;
                     $presence['name'] = $userActual->username;
+                    $presence['moderated'] = !priv_check_user($user, 'ChatStart', $userActual)->can();
                 }
 
                 return $presence;
