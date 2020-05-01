@@ -32,6 +32,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'username' => $username,
         'user_password' => $password,
         'user_email' => $faker->safeEmail,
+        'group_id' => app('groups')->byIdentifier('default')->getKey(),
         'user_lastvisit' => time(),
         'user_posts' => rand(1, 500),
         'user_warnings' => 0,
