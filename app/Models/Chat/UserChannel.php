@@ -68,6 +68,7 @@ class UserChannel extends Model
     {
         $userId = $user->user_id;
 
+        // FIXME: this should do `->with('channel')` instead of using join.
         // retrieve all the channels the user is in and the metadata for each
         $userChannels = self::where('user_channels.user_id', $userId)
             ->where('hidden', false)
@@ -118,6 +119,7 @@ class UserChannel extends Model
 
         $collection = json_collection(
             $userChannels,
+            // FIXME: this should be its own transformer class
             function ($userChannel) use ($byChannelId, $byUserId, $channelMessageIds, $userId, $user) {
                 $messageEnds = $channelMessageIds[$userChannel->channel_id] ?? null;
 
