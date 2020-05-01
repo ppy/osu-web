@@ -219,6 +219,7 @@ description      | string?              | |
 icon*            | string               | display icon for the channel
 moderated*       | boolean              | user can't send message when the value is `true` (only returned in presence responses)
 type             | string               | see channel types below
+first_message_id*| number?              | `message_id` of first message (only returned in presence responses)
 last_read_id*    | number?              | `message_id` of last message read (only returned in presence responses)
 last_message_id* | number?              | `message_id` of last known message (only returned in presence responses)
 users*           | number[]?            | array of `user_id` that are in the channel (not included for `PUBLIC` channels)
