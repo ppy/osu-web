@@ -260,16 +260,6 @@ export class NewDiscussion extends React.PureComponent
     @setSticky true
 
 
-  parseTimestamp: (message) =>
-    timestampRe = message.match /\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/
-
-    if timestampRe?
-      timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
-
-      # this isn't all that smart
-      (timestamp[0] * 60 + timestamp[1]) * 1000 + timestamp[2]
-
-
   post: (e) =>
     return unless @validPost()
 
@@ -371,7 +361,7 @@ export class NewDiscussion extends React.PureComponent
     if !@timestampCache?
       @timestampCache =
         message: @state.message
-        timestamp: @parseTimestamp(@state.message)
+        timestamp: BeatmapDiscussionHelper.parseTimestamp(@state.message)
 
     @timestampCache.timestamp
 
