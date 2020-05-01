@@ -26,10 +26,6 @@ class UserChannel extends Model
 
     protected $primaryKeys = ['user_id', 'channel_id'];
 
-    protected $casts = [
-        'moderated' => 'boolean',
-    ];
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -68,7 +64,7 @@ class UserChannel extends Model
     {
         $userId = $user->user_id;
 
-        // FIXME: this should do `->with('channel')` instead of using join.
+        // FIXME: this should do `->with('channel')` instead of using join and jamming everything to UserChannel.
         // retrieve all the channels the user is in and the metadata for each
         $userChannels = self::where('user_channels.user_id', $userId)
             ->where('hidden', false)
@@ -131,7 +127,9 @@ class UserChannel extends Model
                     'last_read_id' => $userChannel->last_read_id,
                     'first_message_id' => optional($messageEnds)->first_message_id,
                     'last_message_id' => optional($messageEnds)->last_message_id,
-                    'moderated' => $userChannel->moderated,
+                    // `moderated` is not attribute of UserChannel so there's no casting.
+                    // Also see comment above on `$userChannels` assignment about this should be `$userChannel->channel`.
+                    'moderated' => (bool) $userChannel->moderated,
                 ];
 
                 if ($userChannel->type !== Channel::TYPES['public']) {
