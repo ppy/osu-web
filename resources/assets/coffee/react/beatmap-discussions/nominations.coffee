@@ -300,7 +300,7 @@ export class Nominations extends React.PureComponent
           className: "#{bn}__title"
           osu.trans 'beatmaps.nominations.title'
         span null,
-          " #{nominations.current}/#{nominations.required}"
+          " #{nominations.current} / #{nominations.required}"
       @renderLights(nominations.current, nominations.required)
 
 
