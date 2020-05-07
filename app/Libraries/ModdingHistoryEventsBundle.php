@@ -275,10 +275,14 @@ class ModdingHistoryEventsBundle
     private function getVotes()
     {
         return $this->memoize(__FUNCTION__, function () {
-            return [
-                'given' => BeatmapDiscussionVote::recentlyGivenByUser($this->user->getKey()),
-                'received' => BeatmapDiscussionVote::recentlyReceivedByUser($this->user->getKey()),
-            ];
+            if ($this->user !== null) {
+                return [
+                    'given' => BeatmapDiscussionVote::recentlyGivenByUser($this->user->getKey()),
+                    'received' => BeatmapDiscussionVote::recentlyReceivedByUser($this->user->getKey()),
+                ];
+            } else {
+                return [];
+            }
         });
     }
 }
