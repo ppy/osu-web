@@ -1564,7 +1564,7 @@ function section_to_hue_map($section): int
         'blue' => 200,
         'darkorange' => 20,
         'green' => 115,
-        'orange' => 46,
+        'orange' => 45,
         'pink' => 333,
         'purple' => 255,
         'red' => 0,
