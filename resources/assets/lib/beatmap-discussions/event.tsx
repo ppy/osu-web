@@ -72,7 +72,7 @@ export default class Event extends React.PureComponent<Props> {
     return (
       <div className='beatmapset-event'>
         <a href={discussionLink}>
-          <img className='beatmapset-activities__beatmapset-cover' src={cover} />
+          <img className='beatmapset-cover' src={cover} />
         </a>
 
         <div className={osu.classWithModifiers('beatmapset-event__icon', [kebabCase(this.props.event.type), 'beatmapset-activities'])} />
