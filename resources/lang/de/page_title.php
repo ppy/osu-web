@@ -110,13 +110,13 @@ return [
             '_' => 'rangliste',
         ],
         'store_controller' => [
-            '_' => 'osu!laden',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
             '_' => 'turniere',
         ],
         'users_controller' => [
-            '_' => 'Spieler info',
+            '_' => 'spieler-info',
             'disabled' => 'notiz',
         ],
         'wiki_controller' => [
@@ -124,7 +124,7 @@ return [
         ],
     ],
     'store' => [
-        '_' => 'osu!Laden',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [

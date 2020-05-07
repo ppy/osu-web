@@ -50,7 +50,7 @@ return [
 
     'notifications' => [
         'title' => 'Notificaciones',
-        'topic_auto_subscribe' => 'activa automáticamente las notificaciones en nuevos temas del foro que crees',
+        'topic_auto_subscribe' => 'activar automáticamente las notificaciones sobre los nuevos temas de los foros que cree',
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
 
         'mail' => [
@@ -86,7 +86,7 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'bloquear los mensajes privados de usuarios que no están en tu lista de amigos',
+        'friends_only' => 'bloquear los mensajes privados de personas que no están en la lista de amigos',
         'hide_online' => 'mostrarse como desconectado',
         'title' => 'Privacidad',
     ],
