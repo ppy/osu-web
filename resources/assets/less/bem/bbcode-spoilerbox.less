@@ -11,7 +11,7 @@
     padding-left: @_padding-left;
     color: @osu-colour-c2;
 
-    .@{_top}.js-spoilerbox--open & {
+    .@{_top}.js-spoilerbox--open > & {
       display: block;
     }
   }
@@ -41,7 +41,7 @@
       text-align: left;
     }
 
-    .@{_top}.js-spoilerbox--open &::before {
+    .@{_top}.js-spoilerbox--open > .@{_top}__link > &::before {
       content: '\f107'; // angle-down
     }
   }
