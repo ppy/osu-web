@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Evätty saamasta kudosua.',
         'message_placeholder_deleted_beatmap' => 'Tämä vaikeustaso on poistettu, joten siitä ei voi enää keskustella.',
         'message_placeholder_locked' => 'Keskustelu tällä beatmapille on poistettu käytöstä.',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Valitse kommentin tyyppi',
         'reply_notice' => 'Vastaa painamalla enter-näppäintä.',
         'reply_placeholder' => 'Kirjoita vastauksesi tähän',

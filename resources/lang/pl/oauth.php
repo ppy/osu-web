@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Czy na pewno chcesz usunąć tego klienta?',
-        'confirm_reset' => 'Czy na pewno chcesz zresetować klucz klienta? To unieważni wszystkie istniejące żetony.',
+        'confirm_reset' => 'Czy na pewno chcesz zresetować klucz klienta? Odbierze to dostęp wszystkim istniejącym tokenom.',
         'new' => 'Nowa aplikacja OAuth',
         'none' => 'Brak klientów',
 

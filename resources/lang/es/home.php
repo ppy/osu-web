@@ -98,7 +98,7 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video guía',
+        'video-guide' => 'guía en vídeo',
     ],
 
     'user' => [

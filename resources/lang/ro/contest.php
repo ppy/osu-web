@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'S-a terminat pe :date',
+        'ended_no_date' => '',
 
         'starts' => [
             '_' => 'Începe pe :date',

@@ -31,4 +31,22 @@ class UserTest extends TestCase
 
         $this->assertTrue($user->is(User::findForLogin('test@example.org')));
     }
+
+    public function testUsernameAvailableAtForDefaultGroup()
+    {
+        config()->set('osu.user.allowed_rename_groups', ['default']);
+        $allowedAtUpTo = now()->addYears(5);
+        $user = factory(User::class)->create(['group_id' => app('groups')->byIdentifier('default')->getKey()]);
+
+        $this->assertLessThanOrEqual($allowedAtUpTo, $user->getUsernameAvailableAt());
+    }
+
+    public function testUsernameAvailableAtForNonDefaultGroup()
+    {
+        config()->set('osu.user.allowed_rename_groups', ['default']);
+        $allowedAt = now()->addYears(10);
+        $user = $this->createUserWithGroup('gmt', ['group_id' => app('groups')->byIdentifier('default')->getKey()]);
+
+        $this->assertGreaterThanOrEqual($allowedAt, $user->getUsernameAvailableAt());
+    }
 }

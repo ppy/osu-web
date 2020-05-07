@@ -20,7 +20,7 @@ return [
     'donation_thanks' => [
         'benefit_more' => '¡Además, con el tiempo aparecerán nuevos beneficios para supporter!',
         'feedback' => "Si tienes alguna pregunta o comentarios, no dudes en responder a este correo; ¡Te responderé lo antes posible!",
-        'keep_free' => 'Es gracias a gente como tú que osu! es capaz de mantener el juego y la comunidad funcionando sin problemas, sin anuncios o pagos forzados.',
+        'keep_free' => 'Es gracias a personas como usted que osu! es capaz de mantener el juego y la comunidad funcionando sin ningún tipo de anuncios ni pagos forzados.',
         'keep_running' => '¡Tu apoyo mantiene a osu! funcionando durante :minutes! Puede que no parezca mucho, pero todo suma :).',
         'subject' => 'Gracias, osu! te <3',
         'translation' => 'Se muestra a continuación una traducción proporcionada por la comunidad con fines informativos:',

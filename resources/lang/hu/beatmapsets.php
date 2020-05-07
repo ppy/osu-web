@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'letöltés',
+            'video' => 'letöltés videóval',
+            'no_video' => 'letöltés videó nélkül',
+            'direct' => 'megnyitás osu!direct-ben',
         ],
     ],
 
@@ -48,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'jóváhagyva: :timeago',
+            'loved' => 'kedvelve: :timeago',
+            'qualified' => 'kvalifikálva: :timeago',
+            'ranked' => 'rangsorolva: :timeago',
+            'submitted' => 'beküldve: :timeago',
+            'updated' => 'utolsó frissítés: :timeago',
         ],
 
         'favourites' => [
@@ -74,11 +74,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Ha találsz javaslatokat, problémákat a térképpel kapcsolatban, kérlek diszkvalifikáld ezen a linken keresztül: :link',
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Ha találsz javaslatokat, problémákat a térképpel kapcsolatban, kérlek jelentsd az alábbi linken keresztül: :link',
                 'button' => 'Probléma jelentése',
                 'link' => 'itt',
             ],
@@ -150,10 +150,10 @@ return [
         'status' => [
             'ranked' => 'Rangsorolt',
             'approved' => 'Jóváhagyott',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
+            'loved' => 'Kedvelve',
+            'qualified' => 'Kvalifikálva',
+            'wip' => 'Készítés alatt',
+            'pending' => 'Függőben',
             'graveyard' => 'Temető',
         ],
     ],

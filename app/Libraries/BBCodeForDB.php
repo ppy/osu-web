@@ -34,11 +34,16 @@ class BBCodeForDB
 
     public function parseAudio($text)
     {
-        return preg_replace(
-            ",\[(audio)\](.+?\.mp3)\[(/audio)\],",
-            "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
-            $text
-        );
+        preg_match_all("#\[audio\](?<url>.*?)\[/audio\]#", $text, $audio, PREG_SET_ORDER);
+
+        foreach ($audio as $a) {
+            $escapedUrl = $this->extraEscapes($a['url']);
+
+            $audioTag = "[audio:{$this->uid}]{$escapedUrl}[/audio:{$this->uid}]";
+            $text = str_replace($a[0], $audioTag, $text);
+        }
+
+        return $text;
     }
 
     /**

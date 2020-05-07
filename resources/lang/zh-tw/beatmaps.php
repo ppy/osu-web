@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '該難度已被刪除，無法繼續討論',
         'message_placeholder_locked' => '此圖譜的討論已被禁用。',
+        'message_placeholder_silenced' => "",
         'message_type_select' => '選擇回覆類型',
         'reply_notice' => '按下 Enter 以回覆',
         'reply_placeholder' => '在此處輸入您的回覆',

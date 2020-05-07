@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Odepřen od získávání kudosu.',
         'message_placeholder_deleted_beatmap' => 'Tato obtížnost byla smazána, takže už nemůže být probírána.',
         'message_placeholder_locked' => 'Diskuze o této mapě byly vypnuty.',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Vybrat typ komentáře',
         'reply_notice' => 'Stiskni enter pro odpověď.',
         'reply_placeholder' => 'Napiš svou odpověď sem',
