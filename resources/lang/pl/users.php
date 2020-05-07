@@ -418,7 +418,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => 'Widok cegieł',
+        'brick' => 'Widok cegiełek',
         'card' => 'Widok kart',
         'list' => 'Widok listy',
     ],
