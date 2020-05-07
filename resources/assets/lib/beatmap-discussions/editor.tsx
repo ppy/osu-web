@@ -185,7 +185,7 @@ export default class Editor extends React.Component<Props, State> {
       })
       .then((data) => {
         $.publish('beatmapsetDiscussions:update', {beatmapset: data});
-        // this.resetInput();
+        this.resetInput();
       })
       .catch(osu.ajaxError)
       .always(() => {
