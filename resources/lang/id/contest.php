@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Selesai :date',
+        'ended_no_date' => '',
 
         'starts' => [
             '_' => 'Mulai :date',

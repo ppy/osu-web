@@ -69,16 +69,16 @@ return [
                 'status' => [
                     'pending' => 'pending',
                     'qualified' => 'qualified',
-                    'wip' => 'dalam pengerjaan',
+                    'wip' => 'dalam pengerjaan (work-in-progress)',
                 ],
             ],
 
             'disqualify' => [
-                '_' => 'Jika kamu menemukan masalah dengan beatmap ini, mohon diskualifikasi melewati :link.',
+                '_' => 'Jika Anda menemukan masalah pada beatmap ini, mohon diskualifikasi beatmap yang bersangkutan melalui :link.',
             ],
 
             'report' => [
-                '_' => 'Jika kamu menemukan masalah di beatmap ini, mohon laporkan kepada tim melewati :link.',
+                '_' => 'Jika Anda menemukan masalah pada beatmap ini, mohon laporkan kepada tim kami melalui :link.',
                 'button' => 'Laporkan Masalah',
                 'link' => 'tautan ini',
             ],

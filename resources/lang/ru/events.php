@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> получил достижение "<strong>:achievement</strong>"!',
+    'achievement' => '<strong><em>:user</em></strong> получил медаль «<strong>:achievement</strong>»!',
     'beatmap_playcount' => ':beatmap играл :count раз!',
     'beatmapset_approve' => ':beatmapset от <strong>:user</strong> была :approval!',
     'beatmapset_delete' => ':beatmapset был удалён.',

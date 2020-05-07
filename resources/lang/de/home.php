@@ -102,7 +102,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'Dashboard',
+        'title' => 'dashboard',
         'news' => [
             'title' => 'News',
             'error' => 'News konnten nicht geladen werden. Versuche, die Seite neu zu laden...?',
