@@ -3,14 +3,13 @@
 
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import UserJSON from 'interfaces/user-json';
-import { Dictionary } from 'lodash';
 import * as React from 'react';
 import Event from './event';
 
 interface Props {
-  discussions: Dictionary<BeatmapDiscussion>;
+  discussions: Record<string, BeatmapDiscussion>;
   events: BeatmapsetEventJson[];
-  users: Dictionary<UserJSON>;
+  users: Record<string, UserJSON>;
 }
 
 export default class Events extends React.PureComponent<Props> {

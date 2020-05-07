@@ -4,16 +4,16 @@
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
-import { Dictionary, kebabCase } from 'lodash';
+import { kebabCase } from 'lodash';
 import * as React from 'react';
 import TimeWithTooltip from 'time-with-tooltip';
 
 interface Props {
-  discussions?: Dictionary<BeatmapDiscussion>;
+  discussions?: Record<string, BeatmapDiscussion>;
   event: BeatmapsetEventJson;
   mode: 'discussions' | 'profile';
   time?: string;
-  users: Dictionary<UserJSON>;
+  users: Record<string, UserJSON>;
 }
 
 export default class Event extends React.PureComponent<Props> {
