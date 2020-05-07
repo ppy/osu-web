@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Vége: :date',
+        'ended_no_date' => '',
 
         'starts' => [
             '_' => 'Kezdete: :date',

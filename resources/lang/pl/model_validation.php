@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
-    'not_negative' => ':attribute nie może być ujemny.',
-    'required' => ':attribute jest wymagany.',
-    'too_long' => ':attribute przekroczył maksymalną liczbę znaków - możliwe jest użycie tylko :limit znaków.',
+    'invalid' => 'Określono nieprawidłowy atrybut „:attribute”.',
+    'not_negative' => 'Atrybut „:attribute” nie może być ujemny.',
+    'required' => 'Atrybut „:attribute” jest wymagany.',
+    'too_long' => 'Atrybut „:attribute” przekroczył maksymalną liczbę znaków - możliwe jest użycie tylko :limit znaków.',
     'wrong_confirmation' => 'Potwierdzenie się nie zgadza.',
 
     'beatmap_discussion_post' => [
@@ -33,7 +33,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Dyskusje dla tej beatmapy są zablokowane i nie możesz jej nagłośnić",
+            'discussion_locked' => "Tworzenie dyskusji dla tej beatmapy zostało zablokowane i nie można jej nagłośnić.",
             'guest' => 'Musisz się zalogować, aby nagłośnić tę beatmapę.',
             'hyped' => 'Już nagłośniono tę beatmapę.',
             'limit_exceeded' => 'Zużyto całą liczbę nagłośnień.',
@@ -57,7 +57,7 @@ return [
     ],
 
     'follow' => [
-        'invalid' => 'Nieprawidłowa wartość: :attribute.',
+        'invalid' => 'Nieprawidłowa wartość atrybutu „:attribute”.',
     ],
 
     'forum' => [

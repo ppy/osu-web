@@ -5,11 +5,11 @@
 
 return [
     'index' => [
-        'description' => 'Poniżej znajdują się dyskuje, które obserwujesz. Otrzymasz powiadomienie, gdy pojawią się nowe posty bądź aktualizacje.',
+        'description' => 'Poniżej znajdują się dyskusje beatmap, które obserwujesz. Otrzymasz powiadomienie, gdy pojawią się nowe posty bądź aktualizacje.',
         'title_compact' => 'obserwowane dyskusje',
 
         'table' => [
-            'empty' => 'Brak obserwowanych dyskusji.',
+            'empty' => 'Brak obserwowanych dyskusji beatmap.',
             'open_issues' => 'Nierozwiązane problemy',
             'state' => 'Status',
             'title' => 'Tytuł',
