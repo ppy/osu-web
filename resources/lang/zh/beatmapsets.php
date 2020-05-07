@@ -18,8 +18,8 @@ return [
     'panel' => [
         'download' => [
             'all' => '下载',
-            'video' => '',
-            'no_video' => '',
+            'video' => '下载并包含视频',
+            'no_video' => '下载并不包含视频',
             'direct' => '在 osu!direct中查看',
         ],
     ],

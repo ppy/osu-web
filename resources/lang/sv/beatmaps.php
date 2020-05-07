@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Kudosu nekad.',
         'message_placeholder_deleted_beatmap' => 'Denna svårighetsgrad har blivit borttagen så den kan inte längre diskuteras.',
         'message_placeholder_locked' => '',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Välj Kommentar Typ',
         'reply_notice' => 'Tryck enter för att svara.',
         'reply_placeholder' => 'Skriv ditt svar här',
