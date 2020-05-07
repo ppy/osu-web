@@ -10,6 +10,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ModdingHistoryEventsBundle
@@ -105,7 +106,10 @@ class ModdingHistoryEventsBundle
                 $array['votes'] = $this->getVotes();
                 $kudosu = $this->user
                     ->receivedKudosu()
-                    ->with('post', 'post.topic', 'giver', 'kudosuable')
+                    ->with('post', 'post.topic', 'giver')
+                    ->with(['kudosuable' => function (MorphTo $morphTo) {
+                        $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
+                    }])
                     ->orderBy('exchange_id', 'desc')
                     ->limit(static::KUDOSU_PER_PAGE + 1)
                     ->get();
