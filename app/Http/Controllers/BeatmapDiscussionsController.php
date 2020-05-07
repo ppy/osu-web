@@ -165,11 +165,11 @@ class BeatmapDiscussionsController extends Controller
             abort(404);
         }
 
-        priv_check('BeatmapsetDiscussionReviewStore')->ensureCan();
-
         $beatmapset = Beatmapset
             ::where('discussion_enabled', true)
             ->findOrFail($beatmapsetId);
+
+        priv_check('BeatmapsetDiscussionReviewStore', $beatmapset)->ensureCan();
 
         try {
             $document = json_decode(request()->all()['document'] ?? '[]', true);
