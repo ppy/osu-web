@@ -26,6 +26,11 @@
     &:hover .@{_top}__hover-menu {
       display: block;
     }
+
+    // Doing this instead of padding-bottom on input-area, because firefox: https://github.com/w3c/csswg-drafts/issues/129
+    &:last-of-type {
+      margin-bottom: 30px;
+    }
   }
 
   &__hover-menu {
@@ -119,7 +124,6 @@
     overflow-y: auto;
 
     padding: 15px;
-    padding-bottom: 50px;
 
     .@{_top}--edit-mode & {
       max-height: unset;
