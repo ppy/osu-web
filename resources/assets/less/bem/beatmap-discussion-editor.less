@@ -139,20 +139,17 @@
     margin-top: -10px;
     .default-border-radius();
     .default-box-shadow();
-
-    & > button {
-      filter: grayscale(1);
-      &:hover {
-        filter: none;
-        background: none;
-      }
-    }
   }
 
   &__menu-button {
     .reset-input();
     padding: 5px 10px;
     color: @osu-colour-f1;
+    filter: grayscale(1);
+
+    &:hover {
+      filter: none;
+    }
 
     &--praise:hover {
       color: @beatmap-discussion--color-praise;
