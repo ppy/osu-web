@@ -10,23 +10,36 @@ interface Props {
   sortMode: string;
 }
 
-export default class RankingFilter extends React.PureComponent<Props> {
+interface State {
+  country: string | null;
+}
+
+const allCountries = { id: null, text: 'All' };
+
+export default class RankingFilter extends React.PureComponent<Props, State> {
   static defaultProps = {
     sortMode: 'all',
   };
 
+  readonly state: State = {
+    country: new URL(window.location.href).searchParams.get('country'),
+  };
+
   get options() {
     return [
-      { id: 'all', text: 'All' },
+      allCountries,
       ...this.props.countries.map((country) => {
         return { id: country.code ?? null, text: country.name ?? '' };
       }),
     ];
   }
 
+  get selectedCountry() {
+    return this.options.find((x) => x.id === this.state.country) ?? allCountries;
+  }
+
   handleItemSelected = (item: Item) => {
-    console.log(item);
-    // stuff
+    osu.navigate(osu.updateQueryString(null, { country: item.id as string | null }));
   }
 
   handleSortSelected = (event: React.MouseEvent) => {
@@ -43,7 +56,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
             renderItem={this.renderItem}
             onItemSelected={this.handleItemSelected}
             options={this.options}
-            selected={{ id: 'all', text: 'All' }}
+            selected={this.selectedCountry}
           />
         </div>
 
@@ -64,7 +77,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
         children={item.children}
         className={item.cssClasses}
         href={osu.updateQueryString(null, { country: item.item.id as string })}
-        key={item.item.id ?? undefined}
+        key={item.item.id ?? ''}
         onClick={item.onClick}
       />
     );
