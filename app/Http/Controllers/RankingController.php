@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
+use App\Models\Country;
 use App\Models\CountryStatistics;
 use App\Models\Spotlight;
 use App\Models\UserStatistics;
@@ -183,7 +184,9 @@ class RankingController extends Controller
                 ['path' => route('rankings', ['mode' => $mode, 'type' => $type])]
             );
 
-            return ext_view("rankings.{$type}", compact('scores'));
+            $countries = json_collection(Country::all(), 'Country');
+
+            return ext_view("rankings.{$type}", compact('countries', 'scores'));
         });
     }
 

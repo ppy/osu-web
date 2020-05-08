@@ -77,4 +77,13 @@
             ])
         @endif
     </div>
+
+@endsection
+
+@section("script")
+    @parent
+
+    <script id="json-countries" type="application/json">
+        {!! json_encode($countries) !!}
+    </script>
 @endsection

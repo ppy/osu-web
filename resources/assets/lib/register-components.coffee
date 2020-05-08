@@ -80,7 +80,7 @@ reactTurbolinks.registerPersistent 'quick-search-button', QuickSearchButton, tru
   worker: quickSearchWorker
 
 reactTurbolinks.registerPersistent 'ranking-filter', RankingFilter, true, (el) ->
-  console.log el.dataset.sortMode
+  countries: osu.parseJson 'json-countries'
   sortMode: el.dataset.sortMode
 
 reactTurbolinks.register 'user-card', UserCard, (el) ->
