@@ -11,12 +11,14 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
-  @media @mobile {
-    padding: 10px 0px;
+  &::after {
+    content: '';
+    display: block;
+    padding-bottom: 80px;
   }
 
-  &__bottom-padding {
-    padding-bottom: 80px;
+  @media @mobile {
+    padding: 10px 0px;
   }
 
   &__chat-label {
