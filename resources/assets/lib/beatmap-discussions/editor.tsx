@@ -12,7 +12,7 @@ import { Spinner } from 'spinner';
 import { BeatmapDiscussionReview, DocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import EditorDiscussionComponent from './editor-discussion-component';
 import { EditorToolbar } from './editor-toolbar';
-import { parseFromMarkdown } from './review-document';
+import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
 
 interface CacheInterface {
@@ -395,7 +395,7 @@ export default class Editor extends React.Component<Props, State> {
 
     if (enabled) {
       this.setState({
-        value: parseFromMarkdown(this.props.document, this.props.discussions),
+        value: parseFromJson(this.props.document, this.props.discussions),
       });
     }
   }
