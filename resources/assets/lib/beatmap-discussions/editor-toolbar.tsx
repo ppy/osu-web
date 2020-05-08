@@ -1,16 +1,48 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ReactNode, useEffect, useRef } from 'react';
+import { Portal } from 'portal';
+import { useEffect, useRef } from 'react';
 import * as React from 'react';
-import { createPortal } from 'react-dom';
 import { Editor, Range, Text, Transforms } from 'slate';
 import { ReactEditor, useSlate } from 'slate-react';
 
+const bn = 'beatmap-discussion-editor-toolbar';
+
 export const EditorToolbar = () => {
-  const bn = 'beatmap-discussion-editor-toolbar';
   const ref = useRef({} as HTMLDivElement);
   const editor = useSlate();
+
+  const ToolbarButton = ({ format }: { format: string }) => (
+    <button
+      className={osu.classWithModifiers(`${bn}__button`, [isFormatActive(format) ? 'active' : ''])}
+      // we use onMouseDown instead of onClick here so the popup remains visible after clicking
+      // tslint:disable-next-line:jsx-no-lambda
+      onMouseDown={(event) => {
+        event.preventDefault();
+        toggleFormat(format);
+      }}
+    >
+      <i className={`fas fa-${format}`} />
+    </button>
+  );
+
+  const toggleFormat = (format: string) => {
+    const isActive = isFormatActive(format);
+    Transforms.setNodes(
+      editor,
+      { [format]: isActive ? null : true },
+      { match: Text.isText, split: true },
+    );
+  };
+
+  const isFormatActive = (format: string) => {
+    const [match] = Editor.nodes(editor, {
+      match: (n) => n[format] === true,
+      mode: 'all',
+    });
+    return !!match;
+  };
 
   useEffect(() => {
     const el = ref.current;
@@ -44,7 +76,7 @@ export const EditorToolbar = () => {
   return (
     <Portal>
       <div
-        className={`${bn}__popup`}
+        className={bn}
         ref={ref}
       >
         <ToolbarButton format='bold' />
@@ -53,44 +85,4 @@ export const EditorToolbar = () => {
       </div>
     </Portal>
   );
-};
-
-const Portal = ({children}: { children: ReactNode }) => createPortal(children, document.body);
-
-const ToolbarButton = ({ format }: { format: string }) => {
-  const bn = 'beatmap-discussion-editor-toolbar__button';
-  const editor = useSlate();
-
-  return (
-    <button
-      className={osu.classWithModifiers(bn, [isFormatActive(editor, format) ? 'active' : ''])}
-      // we use onMouseDown instead of onClick here so the popup remains visible after clicking
-      // tslint:disable-next-line:jsx-no-lambda
-      onMouseDown={(event) => {
-        event.preventDefault();
-        toggleFormat(editor, format);
-      }}
-    >
-      <span className='btn-circle__content'>
-          <i className={`fas fa-${format}`}/>
-      </span>
-    </button>
-  );
-};
-
-const toggleFormat = (editor: Editor, format: string) => {
-  const isActive = isFormatActive(editor, format);
-  Transforms.setNodes(
-    editor,
-    { [format]: isActive ? null : true },
-    { match: Text.isText, split: true },
-  );
-};
-
-const isFormatActive = (editor: Editor, format: string) => {
-  const [match] = Editor.nodes(editor, {
-    match: (n) => n[format] === true,
-    mode: 'all',
-  });
-  return !!match;
 };
