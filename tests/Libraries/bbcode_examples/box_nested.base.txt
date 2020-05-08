@@ -1,0 +1,6 @@
+[box=hello]
+[box=another box]
+Content
+[/box]
+Another content
+[/box]

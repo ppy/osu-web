@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => ':date 에 끝났습니다',
+        'ended_no_date' => '',
 
         'starts' => [
             '_' => ':date 에 시작합니다',

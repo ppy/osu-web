@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Налаштування',
 
         'beatmapset_download' => [
             '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'з відео, якщо доступно',
+            'no_video' => 'без відео',
+            'direct' => 'відкрити в osu!direct',
         ],
     ],
 

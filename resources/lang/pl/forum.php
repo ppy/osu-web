@@ -255,7 +255,7 @@ return [
             'to_1_confirm' => 'Przypiąć wątek?',
             'to_1_done' => 'Wątek został przypięty',
             'to_2' => 'Przypnij ten wątek i oznacz jako ogłoszenie',
-            'to_2_confirm' => 'Przypiąć i oznaczyć wątek jako ogłoszenie?',
+            'to_2_confirm' => 'Przypiąć wątek i oznaczyć go jako ogłoszenie?',
             'to_2_done' => 'Wątek został przypięty i oznaczony jako ogłoszenie',
         ],
 
