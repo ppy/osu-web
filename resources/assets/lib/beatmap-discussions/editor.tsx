@@ -44,6 +44,7 @@ export default class Editor extends React.Component<Props, State> {
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
   emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
+  localStorageKey: string;
   slateEditor: ReactEditor;
 
   constructor(props: Props) {
@@ -52,13 +53,15 @@ export default class Editor extends React.Component<Props, State> {
     this.slateEditor = this.withNormalization(withHistory(withReact(createEditor())));
 
     let initialValue = this.emptyDocTemplate;
-    const saved = localStorage.getItem(`newDiscussion-${this.props.beatmapset.id}`);
+    this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
+    const saved = localStorage.getItem(this.localStorageKey);
     if (!props.editMode && saved) {
       try {
         initialValue = JSON.parse(saved);
       } catch (error) {
         // tslint:disable-next-line:no-console
         console.error('invalid json in localStorage, ignoring');
+        localStorage.removeItem(this.localStorageKey);
       }
     }
 
@@ -72,7 +75,7 @@ export default class Editor extends React.Component<Props, State> {
     return (
       <div className={`${this.bn}__block`}>
         <div className={`${this.bn}__hover-menu`} contentEditable={false}>
-          <i className='fas fa-plus-circle' contentEditable={false} />
+          <i className='fas fa-plus-circle' />
           <div className={`${this.bn}__menu-content`}>
             {this.embedButton('suggestion')}
             {this.embedButton('problem')}
@@ -108,13 +111,11 @@ export default class Editor extends React.Component<Props, State> {
 
     // tslint:disable-next-line:no-conditional-assignment
     while ((match = regex.exec(node.text)) !== null) {
-      if (match && match.index !== undefined) {
-        ranges.push({
-          anchor: {path, offset: match.index},
-          focus: {path, offset: match.index + match[0].length},
-          timestamp: match[0],
-        });
-      }
+      ranges.push({
+        anchor: {path, offset: match.index},
+        focus: {path, offset: match.index + match[0].length},
+        timestamp: match[0],
+      });
     }
 
     return ranges;
@@ -155,12 +156,11 @@ export default class Editor extends React.Component<Props, State> {
   onChange = (value: SlateNode[]) => {
     if (!this.props.editMode) {
       const content = JSON.stringify(value);
-      const key = `newDiscussion-${this.props.beatmapset.id}`;
 
       if (content !== JSON.stringify(this.emptyDocTemplate)) {
-        localStorage.setItem(key, content);
+        localStorage.setItem(this.localStorageKey, content);
       } else {
-        localStorage.removeItem(key);
+        localStorage.removeItem(this.localStorageKey);
       }
     }
 
