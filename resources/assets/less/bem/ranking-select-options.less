@@ -2,7 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .ranking-select-options {
-  .select-options(ranking-select-options);
+  @_top: ranking-select-options;
+  .select-options(@_top);
+
+  &__item {
+    .@{_top}__select & {
+      padding: 5px 10px;
+    }
+  }
 
   &__selector {
     max-height: 400px; // arbritary.

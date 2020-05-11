@@ -2,17 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .ranking-filter {
-  display: flex;
+  display: grid;
+  grid-gap: 10px;
+  align-items: center;
 
-  @media @mobile {
-    flex-direction: column;
-  }
-
-  &__countries {
-    flex: 1;
-  }
-
-  &__sort {
-    flex: none;
+  @media @desktop {
+    grid-template-columns: 1fr auto;
   }
 }
