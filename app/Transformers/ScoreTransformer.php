@@ -23,6 +23,7 @@ class ScoreTransformer extends TransformerAbstract
     {
         $ret = [
             'id' => $score->score_id,
+            'best_id' => $score->best_id,
             'user_id' => $score->user_id,
             'accuracy' => $score->accuracy(),
             'mods' => $score->enabled_mods,

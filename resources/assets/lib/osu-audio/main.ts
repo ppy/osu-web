@@ -387,25 +387,29 @@ export default class Main {
     }
 
     this.setNavigationTimeout = requestAnimationFrame(() => {
-      const players = document.querySelectorAll('.js-audio--player');
       this.playerNext = undefined;
       this.playerPrev = undefined;
 
-      for (let i = 0; i < players.length; i++) {
-        if (players[i] === this.pagePlayer) {
-          if (i > 0) {
-            const playerPrev = players[i - 1];
-            if (playerPrev instanceof HTMLElement) {
-              this.playerPrev = playerPrev;
+      const container = this.pagePlayer?.closest('.js-audio--group');
+
+      if (container instanceof HTMLElement) {
+        const players = container.querySelectorAll('.js-audio--player');
+        for (let i = 0; i < players.length; i++) {
+          if (players[i] === this.pagePlayer) {
+            if (i > 0) {
+              const playerPrev = players[i - 1];
+              if (playerPrev instanceof HTMLElement) {
+                this.playerPrev = playerPrev;
+              }
             }
-          }
 
-          const playerNext = players[i + 1];
-          if (playerNext instanceof HTMLElement) {
-            this.playerNext = playerNext;
-          }
+            const playerNext = players[i + 1];
+            if (playerNext instanceof HTMLElement) {
+              this.playerNext = playerNext;
+            }
 
-          break;
+            break;
+          }
         }
       }
 

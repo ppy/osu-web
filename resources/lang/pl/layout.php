@@ -150,7 +150,7 @@ return [
             'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",
         ],
         '422' => [
-            'error' => 'Parametr żądania jest nieprawidłowy',
+            'error' => 'Nieprawidłowy parametr żądania',
             'description' => '',
         ],
         '500' => [

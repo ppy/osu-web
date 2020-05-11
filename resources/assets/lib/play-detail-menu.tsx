@@ -1,24 +1,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import Score from 'interfaces/score';
+import ScoreJson from 'interfaces/score-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
+import { canBeReported } from 'score-helper';
 
 interface Props {
-  score: Score;
+  score: ScoreJson;
 }
 
 export class PlayDetailMenu extends React.PureComponent<Props> {
-  private get canReport() {
-    return !_.isEmpty(currentUser)
-      && currentUser.id != null
-      && currentUser.id !== this.props.score.user_id;
-  }
-
   render() {
     const { score } = this.props;
 
@@ -37,17 +32,15 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
            ) : null
         }
 
-        {
-          this.canReport ? (
-            <ReportReportable
-              className='simple-menu__item'
-              baseKey='scores'
-              reportableId={score.id}
-              reportableType={`score_best_${score.mode}`}
-              user={score.user}
-            />
-          ) : null
-        }
+        {canBeReported(score) && (
+          <ReportReportable
+            className='simple-menu__item'
+            baseKey='scores'
+            reportableId={score.best_id?.toString() ?? ''}
+            reportableType={`score_best_${score.mode}`}
+            user={score.user}
+          />
+        )}
       </>
     );
 
