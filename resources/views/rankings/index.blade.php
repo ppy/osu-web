@@ -63,9 +63,9 @@
                     <div class="ranking-filter__sort">
                         <div class="sort">
                             <div class="sort__items">
-                                <span class="sort__item sort__item--title">Sort by</span>
-                                <button class="sort__item sort__item--button" data-value="all">All</button>
-                                <button class="sort__item sort__item--button" data-value="friends">Friends</button>
+                                <span class="sort__item sort__item--title">{{ trans('rankings.filter.title') }}</span>
+                                <button class="sort__item sort__item--button">{{ trans('sort.all') }}</button>
+                                <button class="sort__item sort__item--button">{{ trans('sort.friends')}}</button>
                             </div>
                         </div>
                     </div>

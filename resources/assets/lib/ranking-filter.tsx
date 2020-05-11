@@ -61,6 +61,7 @@ export default class RankingFilter extends React.PureComponent<Props, State> {
           <Sort
             onSortSelected={this.handleSortSelected}
             sortMode={this.props.sortMode}
+            title={osu.trans('rankings.filter.title')}
             values={['all', 'friends']}
           />
         </div>

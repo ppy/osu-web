@@ -6,6 +6,7 @@ import * as React from 'react';
 interface Props {
   modifiers?: string[];
   sortMode: string;
+  title?: string;
   values: string[];
   onSortSelected(event: React.MouseEvent): void;
 }
@@ -39,7 +40,7 @@ export class Sort extends React.PureComponent<Props> {
     return (
       <div className={osu.classWithModifiers('sort', this.props.modifiers)}>
         <div className='sort__items'>
-          <span className='sort__item sort__item--title'>{osu.trans('sort._')}</span>
+          <span className='sort__item sort__item--title'>{this.props.title ?? osu.trans('sort._')}</span>
           {items}
         </div>
       </div>

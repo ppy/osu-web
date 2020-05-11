@@ -4,10 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'friends_only' => 'Show friends only',
-
-    'country' => [
-        'filter' => 'filtered by country',
+    'filter' => [
+        'title' => 'Show',
     ],
 
     'type' => [
