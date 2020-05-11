@@ -17,7 +17,7 @@ interface State {
   country: string | null;
 }
 
-const allCountries = { id: null, text: 'All' };
+const allCountries = { id: null, text: osu.trans('rankings.countries.all') };
 
 export default class RankingFilter extends React.PureComponent<Props, State> {
   static defaultProps = {
