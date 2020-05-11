@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Забранено получаване на kudosu.',
         'message_placeholder_deleted_beatmap' => 'Тази трудност е била изтрита, така че тя вече не може да се обсъжда.',
         'message_placeholder_locked' => '',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Изберете тип на коментар',
         'reply_notice' => 'Натиснете enter за да отговорите.',
         'reply_placeholder' => 'Въведете вашия отговор тук',

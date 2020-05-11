@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Estás recusado de obter kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi eliminada por isso poderá não ser mais discutida.',
         'message_placeholder_locked' => 'A discussão para este beatmap foi desativada.',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Selecionar tipo de comentário',
         'reply_notice' => 'Prime ENTER para responder.',
         'reply_placeholder' => 'Escreve a tua resposta aqui',

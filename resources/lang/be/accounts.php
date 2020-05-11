@@ -51,29 +51,29 @@ return [
     'notifications' => [
         'title' => 'Апавяшчэнні',
         'topic_auto_subscribe' => 'аўтаматычна ўключаць апавяшчэнні для вашых тэм з форума',
-        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_discussion_qualified_problem' => 'атрымліваць апавяшчэнні аб новых праблемах кваліфікаваных мап наступных рэжымаў',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => 'атрымліваць паштовыя апавяшчэнні для',
+            'beatmapset:modding' => 'модынг бітмап',
+            'forum_topic_reply' => 'адказ тэмы',
         ],
     ],
 
     'oauth' => [
         'authorized_clients' => 'аўтарызаваныя кліенты',
-        'own_clients' => '',
+        'own_clients' => 'свае кліенты',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Налады',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'тып загрузкі бітмап па змаўчанні',
+            'all' => 'з відэа, калі даступна',
+            'no_video' => 'без відэа',
+            'direct' => 'адкрыць у osu!direct',
         ],
     ],
 

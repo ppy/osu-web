@@ -16,7 +16,7 @@ return [
 
         'email' => [
             'current' => 'nuværende email-adresse',
-            'new' => 'ny email-adresse',
+            'new' => 'ny email',
             'new_confirmation' => 'email bekræftelse',
             'title' => 'Email',
         ],
@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Indstillinger',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'standard beatmap download type',
+            'all' => 'inkluder video hvis tilgængelig',
+            'no_video' => 'uden video',
+            'direct' => 'open med osu!direct',
         ],
     ],
 

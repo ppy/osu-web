@@ -21,7 +21,7 @@ return [
         'kudosu_gain' => 'La discussione :discussion di :user ha ottenuto abbastanza voti per kudosu.',
         'kudosu_lost' => 'La discussione :discussion di :user ha perso voti e il kudosu permesso è stato rimosso.',
         'kudosu_recalculate' => 'La discussione :discussion ha ricevuto un ricalcolo del kudosu permesso.',
-        'love' => 'Amata da :user',
+        'love' => 'Amata da :user.',
         'nominate' => 'Nominata da :user.',
         'nomination_reset' => 'Il nuovo problema :discussion (:text) ha comportato un reset di nomina.',
         'qualify' => 'Questa beatmap ha raggiunto il numero richiesto di nomine ed è stata qualificata.',

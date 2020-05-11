@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'オプション',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'デフォルトのビートマップダウンロートタイプ',
+            'all' => '可能であれば動画付き',
+            'no_video' => '動画なし',
+            'direct' => 'osu!directで開く',
         ],
     ],
 

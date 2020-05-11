@@ -79,7 +79,7 @@ class BeatmapsetSearch extends RecordSearch
                     'field_value_factor' => [
                         'field' => 'favourite_count',
                         'missing' => 0,
-                        'modifier' => 'ln1p',
+                        'modifier' => 'ln2p',
                     ],
                 ]);
         }
@@ -246,14 +246,13 @@ class BeatmapsetSearch extends RecordSearch
     private function getPlayedBeatmapIds(?array $rank = null)
     {
         $unionQuery = null;
+
+        $select = $rank === null ? 'beatmap_id' : ['beatmap_id', 'score', 'rank'];
+
         foreach ($this->getSelectedModes() as $mode) {
             $newQuery = Score\Best\Model::getClass($mode)
                 ::forUser($this->params->user)
-                ->select('beatmap_id');
-
-            if ($rank !== null) {
-                $newQuery->whereIn('rank', $rank);
-            }
+                ->select($select);
 
             if ($unionQuery === null) {
                 $unionQuery = $newQuery;
@@ -262,7 +261,22 @@ class BeatmapsetSearch extends RecordSearch
             }
         }
 
-        return model_pluck($unionQuery, 'beatmap_id');
+        if ($rank === null) {
+            return model_pluck($unionQuery, 'beatmap_id');
+        } else {
+            $allScores = $unionQuery->get();
+            $beatmapRank = collect();
+
+            foreach ($allScores as $score) {
+                $prevScore = $beatmapRank[$score->beatmap_id] ?? null;
+
+                if ($prevScore === null || $prevScore->score < $score->score) {
+                    $beatmapRank[$score->beatmap_id] = $score;
+                }
+            }
+
+            return $beatmapRank->whereInStrict('rank', $rank)->pluck('beatmap_id')->all();
+        }
     }
 
     private function getSelectedModes()

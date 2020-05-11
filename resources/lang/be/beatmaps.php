@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Адмоўлена ў атрыманні кудосу.',
         'message_placeholder_deleted_beatmap' => 'Гэтая цяжкасць была выдалена і абмяркоўваць у ёй больш нельга.',
         'message_placeholder_locked' => 'Абмеркаванні для гэтай бітмапы былі адключаныя.',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Выбраць тып каментарыя',
         'reply_notice' => 'Каб адказаць, націсніце «Enter».',
         'reply_placeholder' => 'Напішыце свой адказ тут',
@@ -70,7 +71,7 @@ return [
             'nomination_reset' => 'Скід намінацыі',
             'praise' => 'Пахвала',
             'problem' => 'Праблема',
-            'review' => '',
+            'review' => 'Адказ',
             'suggestion' => 'Прапанова',
         ],
 

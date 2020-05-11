@@ -4,6 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'mixture' => 'W :attribute brakuje litery bądź cyfry.',
-    'required' => ':attribute jest wymagany.',
+    'mixture' => 'W atrybucie „:attribute” brakuje litery bądź cyfry.',
+    'required' => 'Atrybut „:attribute” jest wymagany.',
 ];

@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'unduh',
+            'video' => 'unduh dengan video',
+            'no_video' => 'unduh tanpa video',
+            'direct' => 'buka melalui osu!direct',
         ],
     ],
 
@@ -61,7 +61,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda untuk mendorong beatmap ini selangkah lebih dekat menuju status <strong>Ranked</strong>.',
+            'action' => 'Apabila Anda menyukai beatmap ini, berikanlah hype Anda untuk mendorong beatmap ini agar dapat selangkah lebih dekat menuju status <strong>Ranked</strong>.',
 
             'current' => [
                 '_' => 'Map ini sedang berstatus :status.',
@@ -69,19 +69,17 @@ return [
                 'status' => [
                     'pending' => 'pending',
                     'qualified' => 'qualified',
-                    'wip' => 'dalam pengerjaan',
+                    'wip' => 'dalam pengerjaan (work-in-progress)',
                 ],
             ],
 
             'disqualify' => [
-                '_' => 'Jika kamu menemukan masalah dengan beatmap ini, mohon diskualifikasi melewati :link.',
-                'button_title' => 'Diskualifikasi beatmap yang sudah qualified.',
+                '_' => 'Jika Anda menemukan masalah pada beatmap ini, mohon diskualifikasi beatmap yang bersangkutan melalui :link.',
             ],
 
             'report' => [
-                '_' => 'Jika kamu menemukan masalah di beatmap ini, mohon laporkan kepada tim melewati :link.',
+                '_' => 'Jika Anda menemukan masalah pada beatmap ini, mohon laporkan kepada tim kami melalui :link.',
                 'button' => 'Laporkan Masalah',
-                'button_title' => 'Laporkan permasalahan yang ada di beatmap yang sudah qualified.',
                 'link' => 'tautan ini',
             ],
         ],
@@ -128,7 +126,7 @@ return [
             ],
             'score' => [
                 'first' => 'Di Posisi Pertama',
-                'own' => 'Rekor Anda',
+                'own' => 'Skor Terbaik Anda',
             ],
         ],
 

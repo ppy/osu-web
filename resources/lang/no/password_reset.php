@@ -36,8 +36,8 @@ return [
         'username' => 'Skriv inn e-postadresse eller brukernavn',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Trenger du mer hjelp? Kontakt oss via vårt :button.',
+            'button' => 'støttesystem',
         ],
     ],
 ];

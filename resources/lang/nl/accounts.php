@@ -22,8 +22,8 @@ return [
         ],
 
         'password' => [
-            'current' => 'huidige wachtwoord',
-            'new' => 'nieuwe wachtwoord',
+            'current' => 'huidig wachtwoord',
+            'new' => 'nieuw wachtwoord',
             'new_confirmation' => 'wachtwoord bevestiging',
             'title' => 'Wachtwoord',
         ],
@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Opties',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'standaard beatmap download type',
+            'all' => 'met video als beschikbaar',
+            'no_video' => 'zonder video',
+            'direct' => 'open in osu!direct',
         ],
     ],
 

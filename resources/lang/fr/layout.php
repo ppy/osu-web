@@ -130,7 +130,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Paramètre de requête invalide',
             'description' => '',
         ],
         '404' => [

@@ -75,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => '',
-                'button_title' => '',
             ],
 
             'report' => [
                 '_' => '',
                 'button' => 'Báo cáo vấn đề',
-                'button_title' => '',
                 'link' => 'đây',
             ],
         ],

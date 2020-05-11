@@ -6,7 +6,7 @@ import { Mods } from 'mods'
 import { PlayDetailMenu } from 'play-detail-menu'
 import * as React from 'react'
 import { a, div, tr, td } from 'react-dom-factories'
-import { ScoreHelper } from 'score-helper'
+import { hasMenu } from 'score-helper'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
@@ -70,6 +70,6 @@ export class ScoreboardTableRow extends React.PureComponent
         el Mods, modifiers: ['scoreboard'], mods: score.mods
 
       td className: "#{bn}__popup-menu",
-        if ScoreHelper.hasMenu(score)
+        if hasMenu(score)
           el PlayDetailMenu,
             { score }

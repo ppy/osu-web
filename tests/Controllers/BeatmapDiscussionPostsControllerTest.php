@@ -5,7 +5,6 @@
 
 namespace Tests\Controllers;
 
-use App\Events\NewNotificationEvent;
 use App\Events\NewPrivateNotificationEvent;
 use App\Jobs\BroadcastNotification;
 use App\Models\Beatmap;
@@ -59,7 +58,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentNotifications, Notification::count());
         $this->assertSame($currentUserNotifications, UserNotification::count());
 
-        Event::assertNotDispatched(NewNotificationEvent::class);
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
 
         $this->user->statisticsOsu->update(['playcount' => $this->minPlays]);
@@ -75,8 +73,11 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->assertSame($currentNotifications + 1, Notification::count());
         $this->assertSame($currentUserNotifications + 1, UserNotification::count());
 
-        Event::assertDispatched(NewNotificationEvent::class);
-        Event::assertNotDispatched(NewPrivateNotificationEvent::class);
+        Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($otherUser) {
+            // assert watchers in receivers and sender is not.
+            return in_array($otherUser->getKey(), $event->getReceiverIds(), true)
+                && !in_array($this->user->getKey(), $event->getReceiverIds(), true);
+        });
     }
 
     public function testPostStoreNewDiscussionInactiveBeatmapset()
@@ -635,7 +636,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             'queued_at' => now(),
         ]);
         $this->beatmapset->beatmaps()->update(['playmode' => Beatmap::MODES['osu']]);
-        $notificationOption = factory(User::class)->create()->notificationOptions()->firstOrCreate([
+        $user = factory(User::class)->create();
+        $notificationOption = $user->notificationOptions()->firstOrCreate([
             'name' => Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
         ]);
         $notificationOption->update(['details' => ['modes' => ['osu']]]);
@@ -655,7 +657,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                 ],
             ]);
 
-        Event::assertDispatched(NewPrivateNotificationEvent::class);
+        Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use ($user) {
+            return in_array($user->getKey(), $event->getReceiverIds(), true);
+        });
     }
 
     /**

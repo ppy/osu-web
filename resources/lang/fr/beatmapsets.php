@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'télécharger',
+            'video' => 'télécharger avec la vidéo',
+            'no_video' => 'télécharger sans la vidéo',
+            'direct' => 'ouvrir dans osu!direct',
         ],
     ],
 
@@ -75,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => 'Si vous avez un problème avec cette beatmap, veuillez la disqualifier :link.',
-                'button_title' => 'Disqualifier une beatmap qualifiée.',
             ],
 
             'report' => [
                 '_' => 'Si vous trouvez un problème avec cette beatmap, merci de le signaler :link pour alerter l\'équipe.',
                 'button' => 'Signaler un problème',
-                'button_title' => 'Signaler un problème sur une beatmap qualifiée.',
                 'link' => 'ici',
             ],
         ],

@@ -11,6 +11,7 @@ export default interface ScoreJson {
   accuracy: number;
   beatmap?: BeatmapJsonExtended;
   beatmapset?: BeatmapsetJson;
+  best_id?: number;
   created_at: string;
   id: string;
   max_combo: number;

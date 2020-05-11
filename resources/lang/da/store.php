@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'Vi bliver overvældet med ordrer lige nu! Du skal stadig være velkommen til at afgive din ordre, men forvent **yderligere 1-2 ugers forsinkelse** mens vi forsøger at indhente alle andre ordre.',
         'old_cart' => 'Din indkøbskurv ser ud til at være forældet og er blevet genindlæst, prøv venligst igen.',
         'pay' => 'Betal med PayPal',
-        'title_compact' => '',
+        'title_compact' => 'til kassen',
 
         'has_pending' => [
             '_' => 'Du har ufærdige transaktioner, klik :link for at se dem.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Siden du betalte med en eCheck, vent venligst op til 10 ekstra dage for at betalingen kommer igennem med PayPal!',
-        'title_compact' => '',
+        'title_compact' => 'faktura',
 
         'status' => [
             'processing' => [

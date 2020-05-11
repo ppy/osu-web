@@ -130,7 +130,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Parametro di richiesta non valido',
             'description' => '',
         ],
         '404' => [

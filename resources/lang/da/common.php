@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Admin',
         'authorise' => 'Autoriser',
-        'authorising' => '',
+        'authorising' => 'Autoriserer...',
         'back_to_previous' => 'Vend tilbage til tidligere position',
         'back_to_top' => 'Tilbage til toppen',
         'cancel' => 'Annullér',

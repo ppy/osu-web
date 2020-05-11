@@ -130,7 +130,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Parâmetro de pedido inválido',
             'description' => '',
         ],
         '404' => [
