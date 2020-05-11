@@ -184,7 +184,7 @@ class RankingController extends Controller
                 ['path' => route('rankings', ['mode' => $mode, 'type' => $type])]
             );
 
-            $countries = json_collection(Country::all(), 'Country');
+            $countries = json_collection($this->getCountries($mode), 'Country');
 
             return ext_view("rankings.{$type}", compact('countries', 'scores'));
         });
@@ -244,6 +244,15 @@ class RankingController extends Controller
             'rankings.charts',
             compact('scores', 'scoreCount', 'selectOptions', 'spotlight', 'beatmapsets')
         );
+    }
+
+    private function getCountries(string $mode)
+    {
+        $relation = 'statistics'.title_case($mode);
+
+        return Country::where('display', true)->whereHas($relation, function ($query) {
+            $query->where('display', true);
+        })->get();
     }
 
     private function optionFromSpotlight(Spotlight $spotlight): array
