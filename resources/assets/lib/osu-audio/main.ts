@@ -45,6 +45,10 @@ const createMainPlayer = () => {
         <div class="audio-player__bar-current"></div>
       </div>
     </div>
+
+    <div class="audio-player__autoplay-control">
+      <button type="button" class="audio-player__autoplay-button js-audio--toggle-autoplay" title="${osu.trans('layout.audio.autoplay')}"></button>
+    </div>
   `;
 
   return player;
@@ -108,6 +112,7 @@ export default class Main {
     $(document).on(Slider.startEvents, '.js-audio--seek', this.onSeekStart);
     $(document).on(Slider.startEvents, '.js-audio--volume', this.onVolumeChangeStart);
     $(document).on('click', '.js-audio--toggle-mute', this.toggleMute);
+    $(document).on('click', '.js-audio--toggle-autoplay', this.toggleAutoplay);
     $(document).on('click', '.js-audio--nav', this.nav);
     $(document).on('turbolinks:load', this.onDocumentReady);
   }
@@ -267,7 +272,7 @@ export default class Main {
   private onEnded = () => {
     this.stop();
 
-    if (this.playerNext != null) {
+    if (this.playerNext != null && this.settings.getAutoplay()) {
       this.load(this.playerNext);
     }
   }
@@ -479,6 +484,7 @@ export default class Main {
 
   private syncState = () => {
     this.updatePlayers((player) => {
+      player.dataset.audioAutoplay = this.settings.getAutoplay() ? '1' : '0';
       player.dataset.audioState = this.state;
       player.dataset.audioTimeFormat = this.timeFormat;
       player.style.setProperty('--duration', this.durationFormatted);
@@ -494,6 +500,12 @@ export default class Main {
     this.mainPlayer.dataset.audioVolumeBarVisible = this.hasWorkingVolumeControl ? '1' : '0';
     this.mainPlayer.dataset.audioVolume = this.volumeIcon();
     this.mainPlayer.style.setProperty('--volume', this.settings.getVolume().toString());
+  }
+
+  private toggleAutoplay = () => {
+    this.settings.toggleAutoplay();
+    this.settings.save();
+    this.syncState();
   }
 
   private toggleMute = () => {

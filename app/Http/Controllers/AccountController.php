@@ -190,6 +190,7 @@ class AccountController extends Controller
         $user = Auth::user();
 
         $params = get_params(request(), 'user_profile_customization', [
+            'audio_autoplay:bool',
             'audio_muted:bool',
             'audio_volume:float',
             'beatmapset_download:string',

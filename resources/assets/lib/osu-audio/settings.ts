@@ -6,6 +6,7 @@ import Main from './main';
 
 export default class Settings {
   private applied = false;
+  private autoplay = false;
 
   constructor(private main: Main) {
   }
@@ -15,20 +16,25 @@ export default class Settings {
       this.applied = true;
       this.toggleMuted(this.storedMuted());
       this.setVolume(this.storedVolume());
+      this.toggleAutoplay(this.storedAutoplay());
     }
   }
+
+  getAutoplay = () => this.autoplay;
 
   getMuted = () => this.main.audio.muted;
 
   getVolume = () => this.main.audio.volume;
 
   save = () => {
-    localStorage.audioVolume = JSON.stringify(this.getVolume());
+    localStorage.audioAutoplay = JSON.stringify(this.getAutoplay());
     localStorage.audioMuted = JSON.stringify(this.getMuted());
+    localStorage.audioVolume = JSON.stringify(this.getVolume());
 
     if (currentUser.id != null) {
       $.ajax(route('account.options'), {
         data: { user_profile_customization: {
+          audio_autoplay: this.getAutoplay(),
           audio_muted: this.getMuted(),
           audio_volume: this.getVolume(),
         } },
@@ -41,8 +47,33 @@ export default class Settings {
     this.main.audio.volume = volume;
   }
 
+  toggleAutoplay = (autoplay?: boolean) => {
+    this.autoplay = autoplay == null ? !this.getAutoplay() : autoplay;
+  }
+
   toggleMuted = (muted?: boolean) => {
     this.main.audio.muted = muted == null ? !this.getMuted() : muted;
+  }
+
+  private storedAutoplay = () => {
+    try {
+      const local = JSON.parse(localStorage.audioAutoplay ?? '');
+
+      if (typeof local === 'boolean') {
+        return local;
+      }
+    } catch {
+      console.debug('invalid local audioAutoplay data');
+      delete localStorage.audioAutoplay;
+    }
+
+    const userPreference = currentUser.user_preferences?.audio_autoplay;
+
+    if (typeof userPreference === 'boolean') {
+      return userPreference;
+    }
+
+    return true;
   }
 
   private storedMuted = () => {
