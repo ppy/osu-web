@@ -19,6 +19,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class RankingController extends Controller
 {
     private $country;
+    private $params;
     private $friendsOnly;
 
     const PAGE_SIZE = 50;
@@ -30,17 +31,25 @@ class RankingController extends Controller
     {
         parent::__construct();
 
-        $mode = request('mode');
-        $type = request('type');
-        $this->friendsOnly = request('filter') === 'friends';
+        $this->params = get_params(array_merge(request()->all(), request()->route()->parameters()), null, [
+            'country', // overridden later for view
+            'filter',
+            'mode',
+            'spotlight:int', // will be overriden by spotlight object for view
+            'type',
+        ]);
 
-        view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
-        view()->share('mode', $mode);
-        view()->share('type', $type);
-        view()->share('spotlight', null); // so variable capture in selector function doesn't die.
-        view()->share('friendsOnly', $this->friendsOnly);
+        $this->params['filter'] = $this->params['filter'] ?? 'all';
+        $this->friendsOnly = $this->params['filter'] === 'friends';
 
-        $this->middleware(function ($request, $next) use ($mode, $type) {
+        view()->share('hasPager', !in_array($this->params['type'], static::SPOTLIGHT_TYPES, true));
+        view()->share('spotlight', null); // so variable capture in selector function doesn't die when spotlight is null.
+        view()->share($this->params); // won't set null values
+
+        $this->middleware(function ($request, $next) {
+            $mode = $this->params['mode'];
+            $type = $this->params['type'];
+
             if ($mode === null) {
                 return ujs_redirect(route('rankings', ['mode' => 'osu', 'type' => 'performance']));
             }
@@ -57,9 +66,9 @@ class RankingController extends Controller
                 abort(404);
             }
 
-            if (request()->has('country') && $type === 'performance') {
+            if (isset($this->params['country']) && $type === 'performance') {
                 $countryStats = CountryStatistics::where('display', 1)
-                    ->where('country_code', request('country'))
+                    ->where('country_code', $this->params['country'])
                     ->first();
 
                 if ($countryStats === null) {
@@ -151,6 +160,7 @@ class RankingController extends Controller
 
             $maxResults = $this->maxResults($modeInt);
             $maxPages = ceil($maxResults / static::PAGE_SIZE);
+            // TODO: less repeatedly getting params out of request.
             $page = clamp(get_int(request('cursor.page') ?? request('page')), 1, $maxPages);
 
             $stats = $stats->limit(static::PAGE_SIZE)
@@ -192,7 +202,7 @@ class RankingController extends Controller
 
     public function spotlight($mode)
     {
-        $chartId = get_int(request('spotlight'));
+        $chartId = $this->params['spotlight'] ?? null;
 
         $spotlights = Spotlight::orderBy('chart_id', 'desc')->get();
         if ($chartId === null) {
@@ -262,7 +272,7 @@ class RankingController extends Controller
 
     private function maxResults($modeInt)
     {
-        if (request('type') === 'country') {
+        if ($this->params['type'] === 'country') {
             return CountryStatistics::where('display', 1)
                 ->where('mode', $modeInt)
                 ->count();

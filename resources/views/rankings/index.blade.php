@@ -48,7 +48,7 @@
 
     @if (auth()->check() && $type !== 'country')
         <div class="osu-page osu-page--description">
-            <div class="js-react--ranking-filter" data-sort-mode="{{ request('filter') }}" data-type="{{ request('type') }}">
+            <div class="js-react--ranking-filter" data-sort-mode="{{ $filter }}" data-type="{{ $type }}">
                 {{-- placeholder so the page doesn't shift after react initializes --}}
                 <div class="ranking-filter">
                     <div class="ranking-filter__countries">
