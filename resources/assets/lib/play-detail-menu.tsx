@@ -20,7 +20,7 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
     const children = (dismiss: () => void) => (
       <>
         <a
-          href={route('scores.show', { mode: score.mode, score: score.id })}
+          href={route('scores.show', { mode: score.mode, score: score.best_id })}
           className='simple-menu__item'
         >
           {osu.trans('users.show.extra.top_ranks.view_details')}
