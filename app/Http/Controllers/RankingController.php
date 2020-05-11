@@ -63,7 +63,7 @@ class RankingController extends Controller
                     ->first();
 
                 if ($countryStats === null) {
-                    return redirect(route('rankings', ['mode' => $mode, 'type' => $type]));
+                    return ujs_redirect(route('rankings', ['mode' => $mode, 'type' => $type]));
                 }
 
                 $this->country = $countryStats->country;
