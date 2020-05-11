@@ -48,7 +48,7 @@
 
     @if (auth()->check() && $type !== 'country')
         <div class="osu-page osu-page--description">
-            <div class="js-react--ranking-filter" data-sort-mode="{{ request('filter') }}">
+            <div class="js-react--ranking-filter" data-sort-mode="{{ request('filter') }}" data-type="{{ request('type') }}">
             </div>
         </div>
     @endif
@@ -83,7 +83,9 @@
 @section("script")
     @parent
 
-    <script id="json-countries" type="application/json">
-        {!! json_encode($countries) !!}
-    </script>
+    @if(isset($countries))
+        <script id="json-countries" type="application/json">
+            {!! json_encode($countries) !!}
+        </script>
+    @endif
 @endsection

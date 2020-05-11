@@ -5,9 +5,12 @@ import * as React from 'react';
 import { Item, RenderProps, SelectOptions } from 'select-options';
 import { Sort } from 'sort';
 
+type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
+
 interface Props {
   countries: Country[];
   sortMode: string;
+  type: RankingTypes;
 }
 
 interface State {
@@ -51,13 +54,7 @@ export default class RankingFilter extends React.PureComponent<Props, State> {
     return (
       <div className='ranking-filter'>
         <div className='ranking-filter__countries'>
-          <SelectOptions
-            bn='ranking-select-options'
-            renderItem={this.renderItem}
-            onItemSelected={this.handleItemSelected}
-            options={this.options}
-            selected={this.selectedCountry}
-          />
+          {this.renderCountries()}
         </div>
 
         <div className='ranking-filter__sort'>
@@ -68,6 +65,20 @@ export default class RankingFilter extends React.PureComponent<Props, State> {
           />
         </div>
       </div>
+    );
+  }
+
+  renderCountries() {
+    if (this.props.type !== 'performance') return null;
+
+    return (
+      <SelectOptions
+        bn='ranking-select-options'
+        renderItem={this.renderItem}
+        onItemSelected={this.handleItemSelected}
+        options={this.options}
+        selected={this.selectedCountry}
+      />
     );
   }
 
