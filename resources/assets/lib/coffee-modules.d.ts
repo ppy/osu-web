@@ -123,25 +123,25 @@ declare module 'report-form' {
 }
 
 declare module 'select-options' {
-  interface Item {
-    id: string | number | null;
+  interface Item<T = string> {
+    id: T | null;
     text: string;
   }
 
-  interface RenderProps {
+  interface RenderProps<T = string> {
     children: React.ReactNode[];
     cssClasses: string;
-    item: Item;
+    item: Item<T>;
     onClick: (event: React.SyntheticEvent) => void;
   }
 
-  interface Props {
+  interface Props<T> {
     bn?: string;
-    renderItem: (item: RenderProps) => React.ReactNode;
-    onItemSelected: (item: Item) => void;
-    options: Item[];
-    selected: Item;
+    renderItem: (item: RenderProps<T>) => React.ReactNode;
+    onItemSelected: (item: Item<T>) => void;
+    options: Item<T>[];
+    selected: Item<T>;
   }
 
-  class SelectOptions extends React.PureComponent<Props> {}
+  class SelectOptions<T = string> extends React.PureComponent<Props<T>> {}
 }

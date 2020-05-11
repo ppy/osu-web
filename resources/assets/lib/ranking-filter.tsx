@@ -42,7 +42,7 @@ export default class RankingFilter extends React.PureComponent<Props, State> {
   }
 
   handleItemSelected = (item: Item) => {
-    osu.navigate(osu.updateQueryString(null, { country: item.id as string | null }));
+    osu.navigate(osu.updateQueryString(null, { country: item.id }));
   }
 
   handleSortSelected = (event: React.MouseEvent) => {
@@ -88,7 +88,7 @@ export default class RankingFilter extends React.PureComponent<Props, State> {
       <a
         children={item.children}
         className={item.cssClasses}
-        href={osu.updateQueryString(null, { country: item.item.id as string })}
+        href={osu.updateQueryString(null, { country: item.item.id })}
         key={item.item.id ?? ''}
         onClick={item.onClick}
       />
