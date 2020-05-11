@@ -24,7 +24,7 @@ export default class Settings {
 
   save = () => {
     localStorage.audioVolume = JSON.stringify(this.getVolume());
-    localStorage.audioMute = JSON.stringify(this.getMuted());
+    localStorage.audioMuted = JSON.stringify(this.getMuted());
 
     if (currentUser.id != null) {
       $.ajax(route('account.options'), {
