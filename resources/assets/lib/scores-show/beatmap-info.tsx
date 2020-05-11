@@ -16,14 +16,12 @@ interface Props {
 
 const BeatmapInfo = (props: Props) => {
   const { beatmap, beatmapset } = props;
+  const beatmapUrl = route('beatmaps.show', { beatmap: beatmap.id, mode: beatmap.mode });
 
   return (
     <div className='score-beatmap'>
       <h1 className='score-beatmap__title'>
-        <a
-          className='score-beatmap__link-plain'
-          href={route('beatmapsets.show', { beatmapset: beatmapset.id })}
-        >
+        <a className='score-beatmap__link-plain' href={beatmapUrl}>
           {beatmapset.title}
           {' '}
           <span className='score-beatmap__artist'>
@@ -48,10 +46,7 @@ const BeatmapInfo = (props: Props) => {
         </span>
 
         <span className='score-beatmap__detail-item'>
-          <a
-            href={route('beatmaps.show', { beatmap: beatmap.id, mode: beatmap.mode })}
-            className='score-beatmap__link-plain'
-          >
+          <a href={beatmapUrl} className='score-beatmap__link-plain'>
             {beatmap.version}
           </a>
           {' '}
