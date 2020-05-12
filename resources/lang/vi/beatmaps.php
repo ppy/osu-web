@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
         'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_placeholder_locked' => 'Chức năng bàn luận của beatmap này đã bị vô hiệu hóa.',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Chọn Loại Nhận Xét',
         'reply_notice' => 'Nhấn enter để trả lời.',
         'reply_placeholder' => 'Nhập câu trả lời của bạn tại đây',

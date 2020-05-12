@@ -37,8 +37,8 @@ return [
             'download' => [
                 '_' => 'Descargar',
                 'direct' => 'osu!direct',
-                'no-video' => 'sin Video',
-                'video' => 'con Video',
+                'no-video' => 'sin vídeo',
+                'video' => 'con vídeo',
             ],
 
             'login_required' => [

@@ -20,7 +20,7 @@ return [
         ],
 
         'users' => [
-            'read' => '',
+            'read' => 'Olvashatja az ön nevében a publikus profilok tartalmát.',
         ],
     ],
 ];

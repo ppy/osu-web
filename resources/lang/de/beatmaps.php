@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Dir wurde kudosu verweigert.',
         'message_placeholder_deleted_beatmap' => 'Diese Schwierigkeitsstufe wurde gelöscht und kann nicht mehr diskutiert werden.',
         'message_placeholder_locked' => 'Die Diskussion für diese Beatmap wurde deaktiviert.',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Kommentartyp auswählen',
         'reply_notice' => 'Zum Antworten Enter drücken.',
         'reply_placeholder' => 'Antwort hier eingeben',

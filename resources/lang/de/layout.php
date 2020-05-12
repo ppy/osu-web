@@ -28,7 +28,7 @@ return [
 
         'help' => [
             'index' => 'index',
-            'sitemap' => 'Siteübersicht',
+            'sitemap' => 'Sitemap',
         ],
 
         'store' => [

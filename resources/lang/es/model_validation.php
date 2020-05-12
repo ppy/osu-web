@@ -108,7 +108,7 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => 'Has excedido al numero máximo de aplicaciones OAuth.',
+            'too_many' => 'Excedió el número máximo de aplicaciones de OAuth permitidas.',
             'url' => 'Por favor, ingrese una URL válida.',
 
             'attributes' => [

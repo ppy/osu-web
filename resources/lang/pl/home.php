@@ -102,7 +102,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'przegląd',
+        'title' => 'strona główna',
         'news' => [
             'title' => 'Aktualności',
             'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',

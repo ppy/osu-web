@@ -5,7 +5,7 @@
 
 return [
     'all_read' => 'Wszystkie powiadomienia przeczytane!',
-    'mark_read' => '',
+    'mark_read' => 'Wyczyść :type',
     'none' => 'Brak powiadomień',
     'see_all' => 'zobacz wszystkie powiadomienia',
 

@@ -57,7 +57,7 @@ return [
 
     'chat' => [
         'blocked' => 'No puedes enviar mensajes a un usuario que bloqueaste o que te haya bloqueado.',
-        'friends_only' => 'Este usuario está bloqueando mensajes de usuarios que no estén en su lista de amigos.',
+        'friends_only' => 'Este usuario está bloqueando los mensajes de personas que no están en su lista de amigos.',
         'moderated' => 'Ese canal está actualmente siendo moderado.',
         'no_access' => 'No tienes acceso a ese canal.',
         'restricted' => 'No puedes enviar mensajes mientras estés silenciado, restringido o baneado.',
