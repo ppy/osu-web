@@ -42,13 +42,15 @@ class RankingController extends Controller
         $this->params['filter'] = $this->params['filter'] ?? 'all';
         $this->friendsOnly = $this->params['filter'] === 'friends';
 
-        view()->share('hasPager', !in_array($this->params['type'], static::SPOTLIGHT_TYPES, true));
+        // these parts of the route are optional.
+        $mode = $this->params['mode'] ?? null;
+        $type = $this->params['type'] ?? null;
+
+        view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
         view()->share('spotlight', null); // so variable capture in selector function doesn't die when spotlight is null.
         view()->share($this->params); // won't set null values
 
-        $this->middleware(function ($request, $next) {
-            $mode = $this->params['mode'];
-            $type = $this->params['type'];
+        $this->middleware(function ($request, $next) use ($mode, $type) {
 
             if ($mode === null) {
                 return ujs_redirect(route('rankings', ['mode' => 'osu', 'type' => 'performance']));
