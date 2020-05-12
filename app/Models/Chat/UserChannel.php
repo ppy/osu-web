@@ -152,6 +152,7 @@ class UserChannel extends Model
                     $userActual = $targetUser->userScoped;
                     $presence['icon'] = $userActual->user_avatar;
                     $presence['name'] = $userActual->username;
+                    // ideally this should be ChatChannelSend but it involves too many queries
                     $presence['moderated'] = !priv_check_user($user, 'ChatStart', $userActual)->can();
                 }
 
