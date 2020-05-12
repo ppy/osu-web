@@ -33,7 +33,7 @@ export ScoreTop = (props) ->
           a
             className: "#{bn}__username js-usercard"
             'data-user-id': props.score.user.id
-            href: laroute.route 'users.show', user: props.score.user.id
+            href: laroute.route 'users.show', user: props.score.user.id, mode: props.playmode
             props.score.user.username
 
           div
