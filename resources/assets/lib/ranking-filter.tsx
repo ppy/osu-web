@@ -28,10 +28,18 @@ export default class RankingFilter extends React.PureComponent<Props, State> {
     country: new URL(window.location.href).searchParams.get('country'),
   };
 
-  get options() {
-    return [
+  private options: Array<Item<string>>;
+
+  constructor(props: Props) {
+    super(props);
+
+    const countries = props.countries.sort((a, b) => {
+      return a.name?.localeCompare(b.name ?? '') ?? -1;
+    });
+
+    this.options = [
       allCountries,
-      ...this.props.countries.map((country) => {
+      ...countries.map((country) => {
         return { id: country.code ?? null, text: country.name ?? '' };
       }),
     ];
