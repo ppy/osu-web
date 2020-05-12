@@ -31,26 +31,25 @@ class RankingController extends Controller
     {
         parent::__construct();
 
-        $this->params = get_params(array_merge(request()->all(), request()->route()->parameters()), null, [
-            'country', // overridden later for view
-            'filter',
-            'mode',
-            'spotlight:int', // will be overriden by spotlight object for view
-            'type',
-        ]);
+        $this->middleware(function ($request, $next) {
+            $this->params = get_params(array_merge($request->all(), $request->route()->parameters()), null, [
+                'country', // overridden later for view
+                'filter',
+                'mode',
+                'spotlight:int', // will be overriden by spotlight object for view
+                'type',
+            ]);
 
-        $this->params['filter'] = $this->params['filter'] ?? 'all';
-        $this->friendsOnly = $this->params['filter'] === 'friends';
+            // these parts of the route are optional.
+            $mode = $this->params['mode'] ?? null;
+            $type = $this->params['type'] ?? null;
 
-        // these parts of the route are optional.
-        $mode = $this->params['mode'] ?? null;
-        $type = $this->params['type'] ?? null;
+            $this->params['filter'] = $this->params['filter'] ?? 'all';
+            $this->friendsOnly = $this->params['filter'] === 'friends';
 
-        view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
-        view()->share('spotlight', null); // so variable capture in selector function doesn't die when spotlight is null.
-        view()->share($this->params); // won't set null values
-
-        $this->middleware(function ($request, $next) use ($mode, $type) {
+            view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
+            view()->share('spotlight', null); // so variable capture in selector function doesn't die when spotlight is null.
+            view()->share($this->params); // won't set null values
 
             if ($mode === null) {
                 return ujs_redirect(route('rankings', ['mode' => 'osu', 'type' => 'performance']));
