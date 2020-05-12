@@ -34,13 +34,13 @@ export default class RankingFilter extends React.PureComponent<Props, State> {
     super(props);
 
     const countries = props.countries.sort((a, b) => {
-      return a.name?.localeCompare(b.name ?? '') ?? -1;
+      return a.name.localeCompare(b.name);
     });
 
     this.options = [
       allCountries,
       ...countries.map((country) => {
-        return { id: country.code ?? null, text: country.name ?? '' };
+        return { id: country.code, text: country.name };
       }),
     ];
   }
