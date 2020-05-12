@@ -137,9 +137,9 @@ declare module 'select-options' {
 
   interface Props<T> {
     bn?: string;
-    renderItem: (item: RenderProps<T>) => React.ReactNode;
     onItemSelected: (item: Item<T>) => void;
     options: Item<T>[];
+    renderItem: (item: RenderProps<T>) => React.ReactNode;
     selected: Item<T>;
   }
 
