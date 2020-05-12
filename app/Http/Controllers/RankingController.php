@@ -69,6 +69,7 @@ class RankingController extends Controller
             if (isset($this->params['country']) && $type === 'performance') {
                 $countryStats = CountryStatistics::where('display', 1)
                     ->where('country_code', $this->params['country'])
+                    ->where('mode', Beatmap::modeInt($mode))
                     ->first();
 
                 if ($countryStats === null) {
