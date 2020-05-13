@@ -36,16 +36,17 @@ export default class IconDropdownMenu extends React.Component<Props> {
 
   renderButton = (children: JSX.Element[], ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
     const selected: MenuItem = _.find(this.props.menuOptions, (option) => option.id === this.props.selected) || this.props.menuOptions[0];
-    let classes = 'beatmap-discussion-editor__dropdown';
+    const bn = 'icon-dropdown-menu';
+    const mods = [];
 
     if (this.props.disabled) {
       toggle = () => { /* do nothing */ };
-      classes += ' beatmap-discussion-editor__dropdown--disabled';
+      mods.push('disabled');
     }
 
     return (
       <div
-        className={classes}
+        className={osu.classWithModifiers(bn, mods)}
         contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
         onClick={toggle}
         ref={ref}
@@ -57,20 +58,24 @@ export default class IconDropdownMenu extends React.Component<Props> {
   }
 
   renderMenuItem = (menuItem: MenuItem) => {
-    let menuItemClasses = 'simple-menu__item';
+    const baseClass = 'simple-menu__item';
+    const mods = [];
+    const iconClass = 'simple-menu__item-icon';
 
     if (menuItem.id === this.props.selected) {
-      menuItemClasses += ' simple-menu__item--active';
+      mods.push('active');
     }
 
     return (
       <button
-        className={menuItemClasses}
+        className={osu.classWithModifiers(baseClass, mods)}
         key={menuItem.id}
         data-id={menuItem.id}
         onClick={this.select}
       >
-        {menuItem.icon}
+        <div className={osu.classWithModifiers(iconClass, ['icon-dropdown-menu'])}>
+          {menuItem.icon}
+        </div>
         <div className='simple-menu__label'>
           {menuItem.label}
         </div>

@@ -20,7 +20,7 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
   render(): React.ReactNode {
     const menuOptions: MenuItem[] = [];
     menuOptions.push({
-      icon: <i className='fas fa-fw fa-star-of-life beatmap-discussion-editor__menu-icon' />,
+      icon: <i className='fas fa-fw fa-star-of-life' />,
       id: 'all',
       label: osu.trans('beatmaps.discussions.mode.scopes.generalAll'),
     });

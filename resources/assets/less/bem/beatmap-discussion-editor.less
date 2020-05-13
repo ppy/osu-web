@@ -67,52 +67,6 @@
     }
   }
 
-  &__dropdown {
-    align-items: center;
-    display: flex;
-    margin-right: 10px;
-    padding: 5px;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    cursor: pointer; // TODO: less hacky
-    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-
-    .default-border-radius();
-    .link-default();
-    .link-plain();
-    background-color: @osu-colour-b5;
-    overflow: hidden;
-
-    z-index: @z-index--blackout-visible;
-
-    &::after {
-      .fas();
-      .full-size();
-      background-color: osu-hsla(@osu-colour-b6, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      content: @fa-var-chevron-down;
-    }
-
-    &:hover {
-      &::after {
-        opacity: 1;
-      }
-    }
-
-    &--disabled {
-      background-color: transparent;
-      cursor: default;
-
-      &::after {
-        display: none;
-      }
-    }
-  }
-
   &__input-area {
     .content-font();
 
@@ -171,11 +125,5 @@
   &__menu {
     color: white;
     font-size: 16px;
-  }
-
-  &__menu-icon {
-    width: 22px;
-    align-self: center;
-    line-height: inherit;
   }
 }
