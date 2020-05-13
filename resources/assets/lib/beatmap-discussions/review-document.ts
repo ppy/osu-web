@@ -24,12 +24,20 @@ export function parseFromJson(json: string, discussions: BeatmapDiscussion[]) {
     return [];
   }
 
+  const processor = unified()
+    .use(markdown)
+    .use(disableTokenizersPlugin,
+      {
+        allowedBlocks: ['paragraph'],
+        allowedInlines: ['emphasis', 'strong'],
+      });
+
   const doc: ParsedDocumentNode[] = [];
-  _.each(srcDoc, (block) => {
+  srcDoc.forEach((block) => {
     switch (block.type) {
       // paragraph
       case 'paragraph':
-        if (!osu.presence(block.text.trim())) {
+        if (!osu.present(block.text.trim())) {
           // empty block (aka newline)
           doc.push({
             children: [{
@@ -38,23 +46,15 @@ export function parseFromJson(json: string, discussions: BeatmapDiscussion[]) {
             type: 'paragraph',
           });
         } else {
-          const processor = unified()
-            .use(markdown)
-            .use(disableTokenizersPlugin,
-              {
-                allowedBlocks: ['paragraph'],
-                allowedInlines: ['emphasis', 'strong'],
-              });
           const parsed = processor.parse(block.text) as ParsedDocumentNode;
 
           if (!parsed.children || parsed.children.length < 1) {
             console.error('children missing... ?');
-
             break;
           }
 
           doc.push({
-            children: _.filter<SlateNode>(squash(parsed.children), (i) => i), // filter out null/undefined
+            children: squash(parsed.children),
             type: 'paragraph',
           });
         }
