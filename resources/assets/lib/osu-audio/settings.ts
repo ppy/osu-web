@@ -8,51 +8,55 @@ export default class Settings {
   private applied = false;
   private autoplay = false;
 
+  get muted() {
+    return this.main.audio.muted;
+  }
+
+  get volume() {
+    return this.main.audio.volume;
+  }
+
+  set volume(volume: number) {
+    this.main.audio.volume = volume;
+  }
+
   constructor(private main: Main) {
   }
 
-  apply = () => {
+  apply() {
     if (!this.applied) {
       this.applied = true;
       this.toggleMuted(this.storedMuted());
-      this.setVolume(this.storedVolume());
       this.toggleAutoplay(this.storedAutoplay());
+      this.volume = this.storedVolume();
     }
   }
 
   getAutoplay = () => this.autoplay;
 
-  getMuted = () => this.main.audio.muted;
-
-  getVolume = () => this.main.audio.volume;
-
-  save = () => {
+  save() {
     localStorage.audioAutoplay = JSON.stringify(this.getAutoplay());
-    localStorage.audioMuted = JSON.stringify(this.getMuted());
-    localStorage.audioVolume = JSON.stringify(this.getVolume());
+    localStorage.audioVolume = JSON.stringify(this.volume);
+    localStorage.audioMuted = JSON.stringify(this.muted);
 
     if (currentUser.id != null) {
       $.ajax(route('account.options'), {
         data: { user_profile_customization: {
           audio_autoplay: this.getAutoplay(),
-          audio_muted: this.getMuted(),
-          audio_volume: this.getVolume(),
+          audio_muted: this.muted,
+          audio_volume: this.volume,
         } },
         method: 'PUT',
       }).fail(osu.ajaxError);
     }
   }
 
-  setVolume = (volume: number) => {
-    this.main.audio.volume = volume;
+  toggleMuted(muted?: boolean) {
+    this.main.audio.muted = muted == null ? !this.muted : muted;
   }
 
   toggleAutoplay = (autoplay?: boolean) => {
     this.autoplay = autoplay == null ? !this.getAutoplay() : autoplay;
-  }
-
-  toggleMuted = (muted?: boolean) => {
-    this.main.audio.muted = muted == null ? !this.getMuted() : muted;
   }
 
   private storedAutoplay = () => {
@@ -76,7 +80,7 @@ export default class Settings {
     return true;
   }
 
-  private storedMuted = () => {
+  private storedMuted() {
     try {
       const local = JSON.parse(localStorage.audioMuted ?? '');
 
@@ -97,7 +101,7 @@ export default class Settings {
     return false;
   }
 
-  private storedVolume = () => {
+  private storedVolume() {
     try {
       const local = JSON.parse(localStorage.audioVolume ?? '');
 

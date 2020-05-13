@@ -101,7 +101,7 @@ export default class Main {
   private url?: string;
 
   constructor() {
-    this.settings.setVolume(0);
+    this.settings.volume = 0;
     this.audio.addEventListener('playing', this.onPlaying);
     this.audio.addEventListener('ended', this.onEnded);
     this.audio.addEventListener('timeupdate', this.onTimeupdate);
@@ -118,15 +118,15 @@ export default class Main {
   }
 
   private checkVolumeSettings = () => {
-    const prevVolume = this.settings.getVolume();
+    const prevVolume = this.settings.volume;
     const testVolume = prevVolume === 0.1 ? 0.2 : 0.1;
-    this.settings.setVolume(testVolume);
+    this.settings.volume = testVolume;
     // Volume control doesn't work on iOS. It sets the value but reset it
     // a moment later; hence use setTimeout to test changing volume.
     // For actual volume settings, see onDocumentReady.
     setTimeout(() => {
-      this.hasWorkingVolumeControl = this.settings.getVolume() === testVolume;
-      this.settings.setVolume(prevVolume);
+      this.hasWorkingVolumeControl = this.settings.volume === testVolume;
+      this.settings.volume = prevVolume;
       this.syncVolumeDisplay();
     }, 0);
   }
@@ -321,7 +321,7 @@ export default class Main {
   }
 
   private onVolumeChangeMove = (slider: Slider) => {
-    this.settings.setVolume(slider.getPercentage());
+    this.settings.volume = slider.getPercentage();
   }
 
   private onVolumeChangeStart = (e: JQuery.TouchStartEvent) => {
@@ -499,7 +499,7 @@ export default class Main {
 
     this.mainPlayer.dataset.audioVolumeBarVisible = this.hasWorkingVolumeControl ? '1' : '0';
     this.mainPlayer.dataset.audioVolume = this.volumeIcon();
-    this.mainPlayer.style.setProperty('--volume', this.settings.getVolume().toString());
+    this.mainPlayer.style.setProperty('--volume', this.settings.volume.toString());
   }
 
   private toggleAutoplay = () => {
@@ -534,12 +534,12 @@ export default class Main {
   }
 
   private volumeIcon = () => {
-    if (this.settings.getMuted()) {
+    if (this.settings.muted) {
       return 'muted';
     } else {
-      if (this.settings.getVolume() === 0) {
+      if (this.settings.volume === 0) {
         return 'silent';
-      } else if (this.settings.getVolume() < 0.4) {
+      } else if (this.settings.volume < 0.4) {
         return 'quiet';
       } else {
         return 'normal';
