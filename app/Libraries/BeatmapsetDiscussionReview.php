@@ -134,19 +134,19 @@ class BeatmapsetDiscussionReview
                     case 'embed':
                         // if there's a discussion_id, this is an existing embed
                         if (isset($block['discussion_id'])) {
-                            $childIds[] = $block['discussion_id'];
-                            break;
+                            $childId = $block['discussion_id'];
+                        } else {
+                            // otherwise, create new discussion
+                            $childId = self::createPost(
+                                $beatmapset->getKey(),
+                                $block['discussion_type'],
+                                $message,
+                                $user->getKey(),
+                                $block['beatmap_id'] ?? null,
+                                $block['timestamp'] ?? null
+                            )->getKey();
                         }
 
-                        // otherwise, create new discussion
-                        $childId = self::createPost(
-                            $beatmapset->getKey(),
-                            $block['discussion_type'],
-                            $message,
-                            $user->getKey(),
-                            $block['beatmap_id'] ?? null,
-                            $block['timestamp'] ?? null
-                        )->getKey();
                         $output[] = [
                             'type' => 'embed',
                             'discussion_id' => $childId,

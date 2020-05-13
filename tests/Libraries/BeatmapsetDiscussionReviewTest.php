@@ -345,6 +345,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testUpdateDocumentValidWithIssues()
     {
         $review = $this->setUpReview();
+        $linkedIssue = BeatmapDiscussion::where('parent_id', $review->id)->first();
 
         $discussionCount = BeatmapDiscussion::count();
         $discussionPostCount = BeatmapDiscussionPost::count();
@@ -356,6 +357,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         // ensure number of discussions/issues hasn't changed
         $this->assertSame($discussionCount, BeatmapDiscussion::count());
         $this->assertSame($discussionPostCount, BeatmapDiscussionPost::count());
+
+        // ensure issue is still linked correctly
+        $this->assertSame($review->id, $linkedIssue->refresh()->parent_id);
     }
 
     // adding a new embed to an existing issue
@@ -365,6 +369,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
         $discussionCount = BeatmapDiscussion::count();
         $discussionPostCount = BeatmapDiscussionPost::count();
+        $linkedIssueCount = BeatmapDiscussion::where('parent_id', $review->id)->count();
 
         $document = json_decode($review->startingPost->message, true);
         $document[] = [
@@ -378,6 +383,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         // ensure new issue was created
         $this->assertSame($discussionCount + 1, BeatmapDiscussion::count());
         $this->assertSame($discussionPostCount + 1, BeatmapDiscussionPost::count());
+
+        // ensure new issue is linked correctly
+        $this->assertSame($linkedIssueCount + 1, BeatmapDiscussion::where('parent_id', $review->id)->count());
     }
 
     // removing/unlinking an embed from an existing issue
