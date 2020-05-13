@@ -7,45 +7,49 @@ import Main from './main';
 export default class Settings {
   private applied = false;
 
+  get muted() {
+    return this.main.audio.muted;
+  }
+
+  get volume() {
+    return this.main.audio.volume;
+  }
+
+  set volume(volume: number) {
+    this.main.audio.volume = volume;
+  }
+
   constructor(private main: Main) {
   }
 
-  apply = () => {
+  apply() {
     if (!this.applied) {
       this.applied = true;
       this.toggleMuted(this.storedMuted());
-      this.setVolume(this.storedVolume());
+      this.volume = this.storedVolume();
     }
   }
 
-  getMuted = () => this.main.audio.muted;
-
-  getVolume = () => this.main.audio.volume;
-
-  save = () => {
-    localStorage.audioVolume = JSON.stringify(this.getVolume());
-    localStorage.audioMuted = JSON.stringify(this.getMuted());
+  save() {
+    localStorage.audioVolume = JSON.stringify(this.volume);
+    localStorage.audioMuted = JSON.stringify(this.muted);
 
     if (currentUser.id != null) {
       $.ajax(route('account.options'), {
         data: { user_profile_customization: {
-          audio_muted: this.getMuted(),
-          audio_volume: this.getVolume(),
+          audio_muted: this.muted,
+          audio_volume: this.volume,
         } },
         method: 'PUT',
       }).fail(osu.ajaxError);
     }
   }
 
-  setVolume = (volume: number) => {
-    this.main.audio.volume = volume;
+  toggleMuted(muted?: boolean) {
+    this.main.audio.muted = muted == null ? !this.muted : muted;
   }
 
-  toggleMuted = (muted?: boolean) => {
-    this.main.audio.muted = muted == null ? !this.getMuted() : muted;
-  }
-
-  private storedMuted = () => {
+  private storedMuted() {
     try {
       const local = JSON.parse(localStorage.audioMuted ?? '');
 
@@ -66,7 +70,7 @@ export default class Settings {
     return false;
   }
 
-  private storedVolume = () => {
+  private storedVolume() {
     try {
       const local = JSON.parse(localStorage.audioVolume ?? '');
 
