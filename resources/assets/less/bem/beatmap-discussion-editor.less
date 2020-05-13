@@ -41,10 +41,6 @@
     user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
     .default-text-shadow();
     z-index: @z-index--blackout-visible;
-
-    &:hover .@{_top}__menu-content {
-      display: flex;
-    }
   }
 
   &__button-bar {
@@ -143,6 +139,10 @@
     margin-top: -10px;
     .default-border-radius();
     .default-box-shadow();
+
+    .@{_top}__hover-menu:hover & {
+      display: flex;
+    }
   }
 
   &__menu-button {

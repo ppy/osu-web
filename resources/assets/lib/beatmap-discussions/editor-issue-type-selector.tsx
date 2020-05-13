@@ -30,13 +30,12 @@ export default class EditorIssueTypeSelector extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    this.menuOptions = [];
-    selectableTypes.forEach((type) => {
-      this.menuOptions.push({
+    this.menuOptions = selectableTypes.map((type) => {
+      return {
         icon: <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={`${discussionTypeIcons[type]} beatmap-discussion-editor__menu-icon`} /></span>,
         id: type,
         label: osu.trans(`beatmaps.discussions.message_type.${type}`),
-      });
+      };
     });
   }
 
