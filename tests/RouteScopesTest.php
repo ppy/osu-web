@@ -18,21 +18,26 @@ class RouteScopesTest extends TestCase
 {
     private $expectations;
 
-    public function testApiRouteScopes()
+    public function routesDataProvider()
+    {
+        $this->refreshApplication();
+
+        return array_map(function ($route) {
+            return [$route];
+        }, (new RouteScopesHelper)->toArray());
+    }
+
+    /**
+     * @dataProvider routesDataProvider
+     */
+    public function testApiRouteScopes($route)
     {
         $failures = [];
         $this->importExpectations();
 
-        $routes = (new RouteScopesHelper)->toArray();
-        foreach ($routes as $route) {
-            try {
-                $this->runSingleTest($route);
-            } catch (ExpectationFailedException $e) {
-                $failures[] = $e;
-            }
-        }
+        $key = "{$route['method']}@{$route['controller']}";
 
-        $this->printFailures($failures);
+        $this->assertSame($this->expectations[$key], $route, $key);
     }
 
     public function testUnscopedRequestsRequireAuthentication()
@@ -108,13 +113,6 @@ class RouteScopesTest extends TestCase
                 true
             )
         );
-    }
-
-    private function runSingleTest(array $route)
-    {
-        $key = "{$route['method']}@{$route['controller']}";
-
-        $this->assertSame($this->expectations[$key], $route, $key);
     }
 
     private function importExpectations()
