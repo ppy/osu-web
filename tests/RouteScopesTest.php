@@ -11,12 +11,38 @@ use App\Models\Build;
 use App\Models\Changelog;
 use App\Models\Comment;
 use App\Models\UpdateStream;
+use Illuminate\Contracts\Console\Kernel;
 use PHPUnit\Framework\ExpectationFailedException;
 use Route;
 
+
 class RouteScopesTest extends TestCase
 {
-    private $expectations;
+    private static $expectations;
+
+    public static function setUpBeforeClass(): void
+    {
+        // TODO: fix with others
+        $app = require __DIR__.'/../bootstrap/app.php';
+        $app->make(Kernel::class)->bootstrap();
+
+        static::$expectations = static::importExpectations();
+    }
+
+    private static function importExpectations()
+    {
+        $expectations = [];
+
+        $helper = new RouteScopesHelper;
+        $helper->fromJson('tests/api_routes.json');
+        $routes = $helper->routes;
+        foreach ($routes as $route) {
+            $key = "{$route['method']}@{$route['controller']}";
+            $expectations[$key] = $route;
+        }
+
+        return $expectations;
+    }
 
     public function routesDataProvider()
     {
@@ -32,12 +58,9 @@ class RouteScopesTest extends TestCase
      */
     public function testApiRouteScopes($route)
     {
-        $failures = [];
-        $this->importExpectations();
-
         $key = "{$route['method']}@{$route['controller']}";
 
-        $this->assertSame($this->expectations[$key], $route, $key);
+        $this->assertSame(static::$expectations[$key], $route, $key);
     }
 
     public function testUnscopedRequestsRequireAuthentication()
@@ -113,18 +136,5 @@ class RouteScopesTest extends TestCase
                 true
             )
         );
-    }
-
-    private function importExpectations()
-    {
-        $this->expectations = [];
-
-        $helper = new RouteScopesHelper;
-        $helper->fromJson('tests/api_routes.json');
-        $routes = $helper->routes;
-        foreach ($routes as $route) {
-            $key = "{$route['method']}@{$route['controller']}";
-            $this->expectations[$key] = $route;
-        }
     }
 }
