@@ -13,7 +13,6 @@ use App\Models\Comment;
 use App\Models\UpdateStream;
 use Route;
 
-
 class RouteScopesTest extends TestCase
 {
     private static $expectations;
