@@ -107,6 +107,15 @@
             <div class="js-audio--main"></div>
             <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
         </div>
+        {{--
+            Components:
+            - lib/utils/count-min-lines.ts (main)
+            - less/bem/count-min-lines.less (styling)
+            - views/master.blade.php (placeholder)
+        --}}
+        <div class="count-min-lines">
+            <div class="count-min-lines__content js-count-min-lines"></div>
+        </div>
         @include("layout._global_variables")
         @include('layout._loading_overlay')
         @include('layout.popup-container')
