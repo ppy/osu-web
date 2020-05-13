@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
-import { Node, Transforms } from 'slate';
+import { Element, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
@@ -20,32 +20,27 @@ const discussionTypeIcons = {
 interface Props {
   beatmaps: Beatmap[];
   disabled: boolean;
-  element: Node;
+  element: Element;
 }
 
 export default class EditorIssueTypeSelector extends React.Component<Props> {
   static contextType = SlateContext;
-  menuOptions: MenuItem[];
 
-  constructor(props: Props) {
-    super(props);
-
-    this.menuOptions = selectableTypes.map((type) => {
+  render(): React.ReactNode {
+    const menuOptions: MenuItem[] = selectableTypes.map((type) => {
       return {
         icon: <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={`${discussionTypeIcons[type]} beatmap-discussion-editor__menu-icon`} /></span>,
         id: type,
         label: osu.trans(`beatmaps.discussions.message_type.${type}`),
       };
     });
-  }
 
-  render(): React.ReactNode {
     return (
       <IconDropdownMenu
         disabled={this.props.disabled}
-        menuOptions={this.menuOptions}
+        menuOptions={menuOptions}
         onSelect={this.select}
-        selected={`${this.props.element.discussionType}`}
+        selected={this.props.element.discussionType}
       />
     );
   }

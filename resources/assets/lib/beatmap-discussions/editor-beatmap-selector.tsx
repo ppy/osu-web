@@ -16,13 +16,10 @@ interface Props {
 
 export default class EditorBeatmapSelector extends React.Component<Props> {
   static contextType = SlateContext;
-  menuOptions: MenuItem[];
 
-  constructor(props: Props) {
-    super(props);
-
-    this.menuOptions = [];
-    this.menuOptions.push({
+  render(): React.ReactNode {
+    const menuOptions: MenuItem[] = [];
+    menuOptions.push({
       icon: <i className='fas fa-fw fa-star-of-life beatmap-discussion-editor__menu-icon' />,
       id: 'all',
       label: osu.trans('beatmaps.discussions.mode.scopes.generalAll'),
@@ -33,19 +30,17 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
         return;
       }
 
-      this.menuOptions.push({
+      menuOptions.push({
         icon: <BeatmapIcon beatmap={beatmap} showTitle={false} />,
         id: beatmap.id.toString(),
         label: beatmap.version,
       });
     });
-  }
 
-  render(): React.ReactNode {
     return (
       <IconDropdownMenu
         disabled={this.props.disabled}
-        menuOptions={this.menuOptions}
+        menuOptions={menuOptions}
         onSelect={this.select}
         selected={this.props.element.beatmapId?.toString()}
       />
