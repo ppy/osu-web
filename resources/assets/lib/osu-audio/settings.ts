@@ -5,8 +5,9 @@ import { route } from 'laroute';
 import Main from './main';
 
 export default class Settings {
+  autoplay = false;
+
   private applied = false;
-  private autoplay = false;
 
   get muted() {
     return this.main.audio.muted;
@@ -32,17 +33,15 @@ export default class Settings {
     }
   }
 
-  getAutoplay = () => this.autoplay;
-
   save() {
-    localStorage.audioAutoplay = JSON.stringify(this.getAutoplay());
+    localStorage.audioAutoplay = JSON.stringify(this.autoplay);
     localStorage.audioVolume = JSON.stringify(this.volume);
     localStorage.audioMuted = JSON.stringify(this.muted);
 
     if (currentUser.id != null) {
       $.ajax(route('account.options'), {
         data: { user_profile_customization: {
-          audio_autoplay: this.getAutoplay(),
+          audio_autoplay: this.autoplay,
           audio_muted: this.muted,
           audio_volume: this.volume,
         } },
@@ -51,15 +50,15 @@ export default class Settings {
     }
   }
 
+  toggleAutoplay(autoplay?: boolean) {
+    this.autoplay = autoplay == null ? !this.autoplay : autoplay;
+  }
+
   toggleMuted(muted?: boolean) {
     this.main.audio.muted = muted == null ? !this.muted : muted;
   }
 
-  toggleAutoplay = (autoplay?: boolean) => {
-    this.autoplay = autoplay == null ? !this.getAutoplay() : autoplay;
-  }
-
-  private storedAutoplay = () => {
+  private storedAutoplay() {
     try {
       const local = JSON.parse(localStorage.audioAutoplay ?? '');
 

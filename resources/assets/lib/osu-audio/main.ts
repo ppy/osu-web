@@ -272,7 +272,7 @@ export default class Main {
   private onEnded = () => {
     this.stop();
 
-    if (this.playerNext != null && this.settings.getAutoplay()) {
+    if (this.playerNext != null && this.settings.autoplay) {
       this.load(this.playerNext);
     }
   }
@@ -484,7 +484,7 @@ export default class Main {
 
   private syncState = () => {
     this.updatePlayers((player) => {
-      player.dataset.audioAutoplay = this.settings.getAutoplay() ? '1' : '0';
+      player.dataset.audioAutoplay = this.settings.autoplay ? '1' : '0';
       player.dataset.audioState = this.state;
       player.dataset.audioTimeFormat = this.timeFormat;
       player.style.setProperty('--duration', this.durationFormatted);
