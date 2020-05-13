@@ -11,8 +11,6 @@ use App\Models\Build;
 use App\Models\Changelog;
 use App\Models\Comment;
 use App\Models\UpdateStream;
-use Illuminate\Contracts\Console\Kernel;
-use PHPUnit\Framework\ExpectationFailedException;
 use Route;
 
 
@@ -20,55 +18,37 @@ class RouteScopesTest extends TestCase
 {
     private static $expectations;
 
-    public static function setUpBeforeClass(): void
-    {
-        // TODO: fix with others
-        $app = require __DIR__.'/../bootstrap/app.php';
-        $app->make(Kernel::class)->bootstrap();
-
-        static::$expectations = static::importExpectations();
-    }
-
-    private static function importExpectations()
-    {
-        $expectations = [];
-
-        $helper = new RouteScopesHelper;
-        $helper->fromJson('tests/api_routes.json');
-        $routes = $helper->routes;
-        foreach ($routes as $route) {
-            $key = "{$route['method']}@{$route['controller']}";
-            $expectations[$key] = $route;
-        }
-
-        return $expectations;
-    }
-
-    public function routesDataProvider()
-    {
-        $this->refreshApplication();
-
-        return array_map(function ($route) {
-            return [$route];
-        }, (new RouteScopesHelper)->toArray());
-    }
-
     /**
-     * @dataProvider routesDataProvider
+     * @dataProvider routeScopesDataProvider
      */
     public function testApiRouteScopes($route)
     {
+        $this->importExpectations();
+
         $key = "{$route['method']}@{$route['controller']}";
 
         $this->assertSame(static::$expectations[$key], $route, $key);
     }
 
-    public function testUnscopedRequestsRequireAuthentication()
+    /**
+     * @dataProvider routesDataProvider
+     */
+    public function testUnscopedRequestsRequireAuthentication(string $url, string $method, array $middlewares)
     {
         // factory some objects so unauthed endpoints don't 404.
-        $stream = factory(UpdateStream::class)->create(['name' => '1']);
+        // FIXME: only create objects as necessary instead of every run;
+        // This can't be simply setup in setUpBeforeClass() because then we'd need to initialize the app container there,
+        // but the container is overriden on each test and also destroyed before the teardown
+        // making rolling back or cleaning up problematic.
+        $stream = factory(UpdateStream::class)->create([
+            'name' => '1',
+            'stream_id' => 1, // Changelog stream_id is tinyint, autoincrement makes test fail too soon.
+        ]);
 
-        factory(Changelog::class)->create(['stream_id' => $stream->getKey()]);
+        factory(Changelog::class)->create([
+            'stream_id' => $stream->getKey(),
+            'user_id' => 1, // user doesn't need to exist and not having to create a user makes the test much faster
+        ]);
 
         $build = factory(Build::class)->create([
             'version' => '1',
@@ -81,9 +61,25 @@ class RouteScopesTest extends TestCase
             'id' => 1,
         ]);
 
-        $failures = [];
+        $status = $this->call($method, $url)->getStatusCode();
+
+        if ($method === 'GET' && starts_with(ltrim($url, '/').'/', AuthApi::SKIP_GET)) {
+            $this->assertTrue(in_array($status, [200, 302, 404], true));
+        } elseif (in_array('require-scopes', $middlewares, true)) {
+            $this->assertSame(401, $status);
+        } else {
+            $this->assertNotSame(401, $status);
+        }
+    }
+
+    public function routesDataProvider()
+    {
+        // note that $this->app does not carry over to the tests.
+        $this->refreshApplication();
+
+        $data = [];
+
         foreach (Route::getRoutes() as $route) {
-            /** @var \Illuminate\Routing\Route $route */
             if (!starts_with($route->uri, 'api/')) {
                 continue;
             }
@@ -96,45 +92,41 @@ class RouteScopesTest extends TestCase
                 }
 
                 $url = app('url')->toRoute($route, $parameters, false);
-                $key = "{$method}@{$route->getAction('controller')}";
-
-                $status = $this->call($method, $url)->getStatusCode();
+                $action = $route->getAction('controller');
                 $middlewares = $route->gatherMiddleware();
 
-                try {
-                    if ($method === 'GET' && starts_with(ltrim($url, '/').'/', AuthApi::SKIP_GET)) {
-                        $this->assertTrue(in_array($status, [200, 302, 404], true), $key);
-                    } elseif (in_array('require-scopes', $middlewares, true)) {
-                        $this->assertSame(401, $status, $key);
-                    } else {
-                        $this->assertNotSame(401, $status, $key);
-                    }
-                } catch (ExpectationFailedException $e) {
-                    $failures[] = $e;
-                }
+                $key = "{$method}@{$action}"; // give data set a name.
+                $data[$key] = [$url, $method, $middlewares];
             }
         }
 
-        $this->printFailures($failures);
+        return $data;
     }
 
-    private function printFailures(array $failures)
+    public function routeScopesDataProvider()
     {
-        $this->assertEmpty(
-            $failures,
-            // print errors after tests finish
-            print_r(
-                array_map(
-                    function ($failure) {
-                        return [
-                            'message' => $failure->getMessage(),
-                            'diff' => optional($failure->getComparisonFailure())->toString(),
-                        ];
-                    },
-                    $failures
-                ),
-                true
-            )
-        );
+        // note that $this->app does not carry over to the tests.
+        $this->refreshApplication();
+
+        return array_map(function ($route) {
+            return [$route];
+        }, (new RouteScopesHelper)->toArray());
+    }
+
+    private function importExpectations()
+    {
+        if (static::$expectations !== null) {
+            return;
+        }
+
+        static::$expectations = [];
+
+        $helper = new RouteScopesHelper;
+        $helper->fromJson('tests/api_routes.json');
+        $routes = $helper->routes;
+        foreach ($routes as $route) {
+            $key = "{$route['method']}@{$route['controller']}";
+            static::$expectations[$key] = $route;
+        }
     }
 }
