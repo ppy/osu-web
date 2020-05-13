@@ -61,8 +61,7 @@ export class ReviewPost extends React.Component<Props> {
       doc.forEach((block) => {
         switch (block.type) {
           case 'paragraph':
-            // '&nbsp;  ' parses into a newline
-            const content = block.text.trim() === '' ? '&nbsp;  ' : block.text;
+            const content = block.text.trim() === '' ? '&nbsp;' : block.text;
             docBlocks.push(this.paragraph(content));
             break;
           case 'embed':
