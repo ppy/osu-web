@@ -65,8 +65,10 @@ class BBCodeForDB
 
     public function parseBox($text)
     {
-        $text = preg_replace("#(\[box=.*?)\](.*?)(\[/box)\]#s", "\\1:{$this->uid}]\\2\\3:{$this->uid}]", $text);
-        $text = preg_replace("#(\[spoilerbox)\](.*?)(\[/spoilerbox)\]#s", "\\1:{$this->uid}]\\2\\3:{$this->uid}]", $text);
+        $text = preg_replace("#\[box=([^]]*?)\]#s", "[box=\\1:{$this->uid}]", $text);
+        $text = str_replace('[/box]', "[/box:{$this->uid}]", $text);
+        $text = str_replace('[spoilerbox]', "[spoilerbox:{$this->uid}]", $text);
+        $text = str_replace('[/spoilerbox]', "[/spoilerbox:{$this->uid}]", $text);
 
         return $text;
     }
@@ -318,6 +320,7 @@ class BBCodeForDB
     {
         $text = htmlentities($this->text, ENT_QUOTES, 'UTF-8', true);
 
+        $text = $this->unifyNewline($text);
         $text = $this->parseCode($text);
         $text = $this->parseNotice($text);
         $text = $this->parseBox($text);
@@ -340,5 +343,10 @@ class BBCodeForDB
         $text = $this->parseLinks($text);
 
         return $text;
+    }
+
+    public function unifyNewline($text)
+    {
+        return str_replace(["\r\n", "\r"], ["\n", "\n"], $text);
     }
 }
