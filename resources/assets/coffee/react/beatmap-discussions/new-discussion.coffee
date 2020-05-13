@@ -327,6 +327,7 @@ export class NewDiscussion extends React.PureComponent
     @setState message: e.currentTarget.value
 
 
+  # TODO: to whoever refactors this - this 'sticky' behaviour was ported to new-review.tsx, so remember to refactor that too
   setSticky: (sticky = true) =>
     @setState
       cssTop: @cssTop(sticky)
