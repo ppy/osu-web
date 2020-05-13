@@ -63,7 +63,8 @@ export function parseFromJson(json: string, discussions: BeatmapDiscussion[]) {
         // embed
         const discussion = block.discussion_id && discussions[block.discussion_id];
         if (!discussion) {
-          return;
+          console.error('unknown/external discussion referenced', block.discussion_id);
+          break;
         }
         doc.push({
           beatmapId: discussion.beatmap_id,
