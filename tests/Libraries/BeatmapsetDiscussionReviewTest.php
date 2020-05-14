@@ -156,6 +156,10 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'type' => 'paragraph',
                     'text' => self::$faker->sentence(),
                 ],
+                [
+                    'type' => 'paragraph',
+                    'text' => self::$faker->sentence(),
+                ],
             ], $this->user);
     }
 
@@ -185,6 +189,10 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'discussion_type' => 'problem',
                     'text' => $issueText,
                 ],
+                [
+                    'type' => 'paragraph',
+                    'text' => 'this is some paragraph text'
+                ]
             ], $this->user);
 
         $discussionJson = json_encode($this->beatmapset->defaultDiscussionJson());
@@ -322,6 +330,10 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                 'type' => 'paragraph',
                 'text' => self::$faker->sentence(),
             ],
+            [
+                'type' => 'paragraph',
+                'text' => self::$faker->sentence(),
+            ],
         ]);
     }
 
@@ -423,7 +435,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         parent::setUp();
 
         config()->set('osu.beatmapset.discussion_review_enabled', true);
-        config()->set('osu.beatmapset.discussion_review_max_blocks', 3);
+        config()->set('osu.beatmapset.discussion_review_max_blocks', 4);
 
         $this->user = factory(User::class)->create();
         $this->beatmapset = factory(Beatmapset::class)->create([
@@ -452,6 +464,10 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'discussion_type' => 'problem',
                     'text' => $issueText,
                 ],
+                [
+                    'type' => 'paragraph',
+                    'text' => 'this is some paragraph text'
+                ]
             ], $this->user);
     }
 

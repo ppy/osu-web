@@ -14,6 +14,8 @@ use DB;
 
 class BeatmapsetDiscussionReview
 {
+    const BLOCK_TEXT_LENGTH_LIMIT = 750;
+
     public static function create(Beatmapset $beatmapset, array $document, User $user)
     {
         if (!$document || !is_array($document) || empty($document)) {
@@ -56,6 +58,9 @@ class BeatmapsetDiscussionReview
                         break;
 
                     case 'paragraph':
+                        if (mb_strlen($block['text']) > static::BLOCK_TEXT_LENGTH_LIMIT) {
+                            throw new InvariantException(trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
+                        }
                         $output[] = [
                             'type' => 'paragraph',
                             'text' => $block['text'],
@@ -155,6 +160,9 @@ class BeatmapsetDiscussionReview
                         break;
 
                     case 'paragraph':
+                        if (mb_strlen($block['text']) > static::BLOCK_TEXT_LENGTH_LIMIT) {
+                            throw new InvariantException(trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
+                        }
                         $output[] = [
                             'type' => 'paragraph',
                             'text' => $block['text'],
