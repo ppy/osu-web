@@ -59,6 +59,8 @@ export default class NewReview extends React.Component<Props, State> {
     return window.stickyHeader.headerHeight() + this.props.stickTo?.current?.getBoundingClientRect().height;
   }
 
+  onFocus = () => this.setSticky(true);
+
   render(): React.ReactNode {
     const floatClass = 'beatmap-discussion-new-float';
     const floatMods = [];
@@ -99,6 +101,7 @@ export default class NewReview extends React.Component<Props, State> {
                             currentBeatmap={this.props.currentBeatmap}
                             currentDiscussions={this.props.currentDiscussions}
                             discussions={discussions}
+                            onFocus={this.onFocus}
                           />;
                         }
                       }

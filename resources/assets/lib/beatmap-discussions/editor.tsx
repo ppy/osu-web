@@ -29,6 +29,7 @@ interface Props {
   document?: string;
   editing: boolean;
   editMode?: boolean;
+  onFocus?: () => void;
 }
 
 interface State {
@@ -179,6 +180,10 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     this.setState({value});
+
+    if (ReactEditor.isFocused(this.slateEditor) && this.props.onFocus) {
+      this.props.onFocus();
+    }
   }
 
   onKeyDown = (event: KeyboardEvent) => {
