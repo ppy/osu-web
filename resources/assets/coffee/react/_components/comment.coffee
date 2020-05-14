@@ -97,7 +97,7 @@ export class Comment extends React.PureComponent
       div
         className: osu.classWithModifiers 'comment', modifiers
         style:
-          '--line-height': if @state.lines then "#{@state.lines.lineHeight}px" else undefined
+          '--line-height': if @state.lines? then "#{@state.lines.lineHeight}px" else undefined
           '--clip-lines': CLIP_LINES
 
         @renderRepliesToggle()

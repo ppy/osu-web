@@ -21,8 +21,8 @@ function getCounterElem() {
  * is the maximum allowed site-wide based on `@container-sm`.
  *
  * Line height attribute is based on the line height of the first element.
- * Image is hidden as we're not going to wait until it finishes load and
- * it may be shorter on narrower size.
+ * Images are hidden as we're not going to wait until they finish loading and
+ * it may be shorter on narrower size due to keeping aspect ratio.
  * Extra padding and margins, mixed line height, and various other factors
  * will contribute in causing incorrect result.
  *
