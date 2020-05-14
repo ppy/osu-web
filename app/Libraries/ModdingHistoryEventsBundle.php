@@ -46,6 +46,8 @@ class ModdingHistoryEventsBundle
         $obj->isModerator = priv_check('BeatmapDiscussionModerate')->can();
         $obj->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
 
+        $obj->searchParams['is_moderator'] = $obj->isModerator;
+
         if (!$obj->isModerator) {
             $obj->searchParams['with_deleted'] = false;
         }
