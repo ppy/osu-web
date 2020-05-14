@@ -92,11 +92,6 @@ class ModdingHistoryEventsBundle
                     'BeatmapsetEvent',
                     ['discussion.starting_post', 'beatmapset.user']
                 ),
-                'posts' => json_collection(
-                    $this->getPosts(),
-                    'BeatmapDiscussionPost',
-                    ['beatmap_discussion.beatmapset']
-                ),
                 'users' => json_collection(
                     $this->getUsers(),
                     'UserCompact',
@@ -105,7 +100,14 @@ class ModdingHistoryEventsBundle
             ];
 
             if ($this->withExtras) {
+                $array['posts'] = json_collection(
+                    $this->getPosts(),
+                    'BeatmapDiscussionPost',
+                    ['beatmap_discussion.beatmapset']
+                );
+
                 $array['votes'] = $this->getVotes();
+
                 $kudosu = $this->user
                     ->receivedKudosu()
                     ->with('post', 'post.topic', 'giver')
