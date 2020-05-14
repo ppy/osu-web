@@ -11,6 +11,7 @@ import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, with
 import { Spinner } from 'spinner';
 import { BeatmapDiscussionReview, DocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import EditorDiscussionComponent from './editor-discussion-component';
+import { toggleFormat } from './editor-formatting';
 import { EditorToolbar } from './editor-toolbar';
 import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
@@ -184,10 +185,10 @@ export default class Editor extends React.Component<Props, State> {
   onKeyDown = (event: KeyboardEvent) => {
     if (isHotkey('mod+b', event)) {
       event.preventDefault();
-      this.toggleMark('bold');
+      toggleFormat(this.slateEditor, 'bold');
     } else if (isHotkey('mod+i', event)) {
       event.preventDefault();
-      this.toggleMark('italic');
+      toggleFormat(this.slateEditor, 'italic');
     }
   }
 
@@ -394,10 +395,6 @@ export default class Editor extends React.Component<Props, State> {
     return this.cache.beatmaps;
   }
 
-  toggleBold = () => {
-    this.toggleMark('bold');
-  }
-
   toggleEditing = () => {
     if (!this.props.document || !this.props.discussions || _.isEmpty(this.props.discussions)) {
       return;
@@ -406,21 +403,6 @@ export default class Editor extends React.Component<Props, State> {
     this.setState({
       value: this.props.editing ? parseFromJson(this.props.document, this.props.discussions) : [],
     });
-  }
-
-  toggleItalic = () => {
-    this.toggleMark('italic');
-  }
-
-  toggleMark = (format: 'bold' | 'italic') => {
-    const marks = SlateEditor.marks(this.slateEditor);
-    const isActive = marks ? marks[format] === true : false;
-
-    if (isActive) {
-      SlateEditor.removeMark(this.slateEditor, format);
-    } else {
-      SlateEditor.addMark(this.slateEditor, format, true);
-    }
   }
 
   withNormalization = (editor: ReactEditor) => {
