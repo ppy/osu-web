@@ -12,6 +12,7 @@ use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
+use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
@@ -21,6 +22,7 @@ use App\Models\UserNotFound;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Illuminate\Cache\RateLimiter;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Request;
 
 class UsersController extends Controller
@@ -439,7 +441,10 @@ class UsersController extends Controller
                 case 'recentlyReceivedKudosu':
                     $transformer = 'KudosuHistory';
                     $query = $user->receivedKudosu()
-                        ->with('post', 'post.topic', 'giver', 'kudosuable')
+                        ->with('post', 'post.topic', 'giver')
+                        ->with(['kudosuable' => function (MorphTo $morphTo) {
+                            $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
+                        }])
                         ->orderBy('exchange_id', 'desc');
                     break;
 

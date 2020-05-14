@@ -4,7 +4,7 @@
 .beatmapset-event {
   font-size: @font-size--normal;
   display: flex;
-  margin: 2px 0;
+  padding: 2px 0;
   align-items: baseline;
 
   &__content {
@@ -47,6 +47,10 @@
     .type(nomination-reset, @red);
     .type(qualify, @blue);
     .type(rank, @green);
+
+    &--beatmapset-activities {
+      margin: 0 10px;
+    }
   }
 
   &__time {

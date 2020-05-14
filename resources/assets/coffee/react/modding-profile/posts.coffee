@@ -34,7 +34,7 @@ export class Posts extends React.Component
                   className: 'modding-profile-list__thumbnail'
                   href: BeatmapDiscussionHelper.url(discussion: post.beatmap_discussion),
 
-                  img className: 'beatmapset-activities__beatmapset-cover', src: post.beatmap_discussion.beatmapset.covers.list
+                  img className: 'beatmapset-cover', src: post.beatmap_discussion.beatmapset.covers.list
 
                 div className: "modding-profile-list__timestamp hidden-xs",
                   div className: "beatmap-discussion-timestamp",
