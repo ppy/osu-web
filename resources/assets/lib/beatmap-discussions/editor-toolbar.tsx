@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
 import * as React from 'react';
 import { Editor, Range } from 'slate';
 import { ReactEditor, useSlate } from 'slate-react';
-import { isFormatActive, toggleFormat } from './editor-formatting';
+import { isFormatActive, toggleFormat } from './editor-helpers';
 
 const bn = 'beatmap-discussion-editor-toolbar';
 

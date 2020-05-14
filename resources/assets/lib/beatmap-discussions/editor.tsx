@@ -9,9 +9,8 @@ import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as S
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { Spinner } from 'spinner';
-import { BeatmapDiscussionReview, DocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import EditorDiscussionComponent from './editor-discussion-component';
-import { toggleFormat } from './editor-formatting';
+import { serializeSlateDocument, toggleFormat } from './editor-helpers';
 import { EditorToolbar } from './editor-toolbar';
 import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
@@ -195,7 +194,7 @@ export default class Editor extends React.Component<Props, State> {
   post = () => {
     this.setState({posting: true}, () => {
       this.xhr = $.ajax(laroute.route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
-        data: { document: this.serialize() },
+        data: { document: serializeSlateDocument(this.state.value) },
         method: 'POST',
       });
 
@@ -320,71 +319,6 @@ export default class Editor extends React.Component<Props, State> {
 
     Transforms.deselect(this.slateEditor);
     this.onChange(this.emptyDocTemplate);
-  }
-
-  serialize = (): string => {
-    const review: BeatmapDiscussionReview = [];
-
-    this.state.value.forEach((node: SlateNode) => {
-      switch (node.type) {
-        case 'paragraph':
-          const childOutput: string[] = [];
-          const currentMarks = {
-            bold: false,
-            italic: false,
-          };
-
-          node.children.forEach((child: SlateNode) => {
-            if (child.text !== '') {
-              if (currentMarks.bold !== (child.bold ?? false)) {
-                currentMarks.bold = child.bold;
-                childOutput.push('**');
-              }
-
-              if (currentMarks.italic !== (child.italic ?? false)) {
-                currentMarks.italic = child.italic;
-                childOutput.push('*');
-              }
-            }
-
-            childOutput.push(child.text.replace('*', '\\*'));
-          });
-
-          // ensure closing of open tags
-          if (currentMarks.bold) {
-            childOutput.push('**');
-          }
-          if (currentMarks.italic) {
-            childOutput.push('*');
-          }
-
-          review.push({
-            text: childOutput.join(''),
-            type: 'paragraph',
-          });
-
-          currentMarks.bold = currentMarks.italic = false;
-          break;
-
-        case 'embed':
-          const doc: DocumentIssueEmbed = {
-            beatmap_id: node.beatmapId,
-            discussion_type: node.discussionType,
-            text: node.children[0].text,
-            timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp) : null,
-            type: 'embed',
-          };
-
-          if (node.discussionId) {
-            doc.discussion_id = node.discussionId;
-          }
-
-          review.push(doc);
-          break;
-      }
-    });
-
-    return JSON.stringify(review);
   }
 
   sortedBeatmaps = () => {
