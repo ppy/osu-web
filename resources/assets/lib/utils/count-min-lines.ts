@@ -4,7 +4,7 @@
 let counterElem: HTMLElement | null = null;
 
 function getCounterElem() {
-  if (counterElem == null || counterElem.parentNode == null) {
+  if (counterElem == null) {
     counterElem = document.querySelector('.js-count-min-lines');
 
     if (counterElem == null) {

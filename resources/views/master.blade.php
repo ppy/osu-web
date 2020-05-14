@@ -113,7 +113,7 @@
             - less/bem/count-min-lines.less (styling)
             - views/master.blade.php (placeholder)
         --}}
-        <div class="count-min-lines">
+        <div id="count-min-lines" class="count-min-lines" data-turbolinks-permanent>
             <div class="count-min-lines__content js-count-min-lines"></div>
         </div>
         @include("layout._global_variables")
