@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => ':attribute spécifié non valide.',
     'not_negative' => ':attribute ne peut être négatif.',
     'required' => ':attribute est requis.',
     'too_long' => ':attribute dépasse la longeur maximale - elle est de :limit caractères.',

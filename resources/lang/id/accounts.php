@@ -66,6 +66,17 @@ return [
         'title' => 'OAuth',
     ],
 
+    'options' => [
+        'title' => 'Pengaturan',
+
+        'beatmapset_download' => [
+            '_' => 'unduh beatmap',
+            'all' => 'dengan video (apabila tersedia)',
+            'no_video' => 'tanpa video',
+            'direct' => 'buka melalui osu!direct',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => 'keyboard',
         'mouse' => 'mouse',

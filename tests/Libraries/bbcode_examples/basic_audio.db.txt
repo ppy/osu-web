@@ -1,0 +1,1 @@
+[audio:1]https&#58;//example&#46;com/audio&#46;mp3[/audio:1]

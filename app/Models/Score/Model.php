@@ -31,28 +31,6 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
 
-    public function scopeForUser($query, User $user)
-    {
-        return $query->where('user_id', $user->user_id);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function beatmap()
-    {
-        return $this->belongsTo(Beatmap::class, 'beatmap_id');
-    }
-
-    public function best()
-    {
-        $basename = get_class_basename(static::class);
-
-        return $this->belongsTo("App\\Models\\Score\\Best\\{$basename}", 'high_score_id', 'score_id');
-    }
-
     public static function getClass($modeInt)
     {
         $modeStr = Beatmap::modeStr($modeInt);
@@ -84,10 +62,37 @@ abstract class Model extends BaseModel
             ->orderBy('score_id', 'desc');
     }
 
+    public function scopeForUser($query, User $user)
+    {
+        return $query->where('user_id', $user->user_id);
+    }
+
     public function scopeVisibleUsers($query)
     {
         return $query->whereHas('user', function ($userQuery) {
             $userQuery->default();
         });
+    }
+
+    public function beatmap()
+    {
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+    }
+
+    public function best()
+    {
+        $basename = get_class_basename(static::class);
+
+        return $this->belongsTo("App\\Models\\Score\\Best\\{$basename}", 'high_score_id', 'score_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getBestIdAttribute()
+    {
+        return $this->high_score_id;
     }
 }

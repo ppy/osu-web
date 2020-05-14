@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => '',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Hiányzó Oldal',
             'description' => "Bocsi, de a kért oldal nem itt van!",

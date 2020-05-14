@@ -3,7 +3,7 @@
 
 import { Events } from './events'
 import { ExtraTab } from '../profile-page/extra-tab'
-import { Discussions} from './discussions'
+import { Discussions } from './discussions'
 import { Header } from './header'
 import { Kudosu } from '../profile-page/kudosu'
 import { Votes } from './votes'
@@ -13,7 +13,7 @@ import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
 import { Posts } from "./posts"
 import * as React from 'react'
-import { a, button, div, i, span} from 'react-dom-factories'
+import { a, button, div, i, span } from 'react-dom-factories'
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
@@ -261,6 +261,7 @@ export class Main extends React.PureComponent
           users: @users()
         component: Votes
 
+
   showMore: (e, {name, url, perPage = 50}) =>
     offset = @state[name].length
 
@@ -357,11 +358,13 @@ export class Main extends React.PureComponent
 
     @pageJump null, e.currentTarget.dataset.pageId
 
+
   userUpdate: (_e, user) =>
     return @forceUpdate() if user?.id != @state.user.id
 
     # this component needs full user object but sometimes this event only sends part of it
     @setState user: _.assign({}, @state.user, user)
+
 
   users: =>
     if !@cache.users?

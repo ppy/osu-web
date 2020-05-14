@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import UserJSON from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
@@ -34,7 +34,7 @@ interface SearchResultSummary {
 }
 
 interface SearchResultBeatmapset extends SearchResultSummary {
-  beatmapsets: BeatmapsetJSON[];
+  beatmapsets: BeatmapsetJson[];
 }
 
 interface SearchResultUser extends SearchResultSummary {

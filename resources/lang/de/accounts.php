@@ -66,6 +66,17 @@ return [
         'title' => 'OAuth',
     ],
 
+    'options' => [
+        'title' => 'Optionen',
+
+        'beatmapset_download' => [
+            '_' => 'Standard-Beatmap-Download-Typ',
+            'all' => 'mit Video, falls verfügbar',
+            'no_video' => 'ohne Video',
+            'direct' => 'in osu!direct öffnen',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => 'Tastatur',
         'mouse' => 'Maus',

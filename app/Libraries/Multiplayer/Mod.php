@@ -48,6 +48,7 @@ class Mod
     const MANIA_KEY7 = '7K';
     const MANIA_KEY8 = '8K';
     const MANIA_KEY9 = '9K';
+    const MANIA_KEY10 = '10K';
     const MANIA_DUALSTAGES = 'DS';
     const MANIA_FADEIN = 'FI';
     const MANIA_MIRROR = 'MR';
@@ -115,6 +116,7 @@ class Mod
             self::MANIA_KEY7,
             self::MANIA_KEY8,
             self::MANIA_KEY9,
+            self::MANIA_KEY10,
         ],
         [
             self::OSU_TRANSFORM,
@@ -235,6 +237,7 @@ class Mod
                         self::MANIA_KEY7,
                         self::MANIA_KEY8,
                         self::MANIA_KEY9,
+                        self::MANIA_KEY10,
                         self::MANIA_DUALSTAGES,
                         self::MANIA_FADEIN,
                         self::MANIA_MIRROR,

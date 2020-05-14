@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Beatmapy',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => 'pobierz',
+            'video' => 'pobierz z wideo',
+            'no_video' => 'pobierz bez wideo',
+            'direct' => 'otwórz w osu!direct',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Dyskusja',
 
@@ -66,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => 'Jeżeli znajdziesz problem z tą beatmapą, zdyskwalifikuj ją :link.',
-                'button_title' => 'Zdyskwalifikuj beatmapę.',
             ],
 
             'report' => [
                 '_' => 'Jeżeli znajdziesz problem z tą beatmapą, zgłoś go :link, aby powiadomić zespół.',
                 'button' => 'Zgłoś problem',
-                'button_title' => 'Zgłoś problem z zakwalifikowaną beatmapą.',
                 'link' => 'tutaj',
             ],
         ],

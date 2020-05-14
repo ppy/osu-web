@@ -48,6 +48,7 @@ interface BeatmapDiscussionHelperClass {
   messageType: DiscussionMessageType;
   format(text: string, options?: any): string;
   formatTimestamp(value: number): string;
+  previewMessage(value: string): string;
   url(options: any, useCurrent?: boolean): string;
 }
 
@@ -60,6 +61,7 @@ interface JQueryStatic {
 interface OsuCommon {
   ajaxError: (xhr: JQueryXHR) => void;
   classWithModifiers: (baseName: string, modifiers?: string[]) => string;
+  diffColour: (difficultyRating?: string | null) => React.CSSProperties;
   groupColour: (group?: GroupJSON) => React.CSSProperties;
   isClickable: (el: HTMLElement) => boolean;
   jsonClone: (obj: any) => any;
@@ -112,35 +114,6 @@ interface Cover {
 interface BeatmapFailTimesArray {
   exit: number[];
   fail: number[];
-}
-
-// TODO: incomplete
-interface Beatmap {
-  accuracy: number;
-  ar: number;
-  beatmapset_id: number;
-  convert: boolean | null;
-  count_circles: number;
-  count_sliders: number;
-  count_spinners: number;
-  count_total: number;
-  cs: number;
-  deleted_at: string | null;
-  difficulty_rating: number;
-  drain: number;
-  failtimes?: BeatmapFailTimesArray;
-  hit_length: number;
-  id: number;
-  last_updated: string;
-  mode: string;
-  mode_int: number;
-  passcount: number;
-  playcount: number;
-  ranked: number;
-  status: string;
-  total_length: number;
-  url: string;
-  version: string;
 }
 
 // TODO: incomplete

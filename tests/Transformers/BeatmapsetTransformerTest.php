@@ -13,7 +13,7 @@ class BeatmapsetTransformerTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testWithOAuth($groupIdentifier)
+    public function testDeletedBeatmapsetGroupPermissionsWithOAuth($groupIdentifier)
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
         $beatmapset = factory(Beatmapset::class)->states('deleted')->create();
@@ -27,7 +27,7 @@ class BeatmapsetTransformerTest extends TestCase
     /**
      * @dataProvider groupsDataProvider
      */
-    public function testWithoutOAuth($groupIdentifier, $visible)
+    public function testDeletedBeatmapsetGroupPermissionsWithoutOAuth($groupIdentifier, $visible)
     {
         $viewer = $this->createUserWithGroup($groupIdentifier);
         $beatmapset = factory(Beatmapset::class)->states('deleted')->create();

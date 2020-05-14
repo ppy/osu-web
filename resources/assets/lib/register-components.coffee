@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { ReactTurbolinks } from 'react-turbolinks'
+import Events from 'beatmap-discussions/events'
 import { BeatmapsetPanel } from 'beatmapset-panel'
 import { BlockButton } from 'block-button'
 import ChatIcon from 'chat-icon'
@@ -10,6 +11,7 @@ import { CommentsManager } from 'comments-manager'
 import { CountdownTimer } from 'countdown-timer'
 import { FriendButton } from 'friend-button'
 import { LandingNews } from 'landing-news'
+import { keyBy } from 'lodash'
 import NotificationIcon from 'notification-icon'
 import NotificationWidget from 'notification-widget/main'
 import NotificationWorker from 'notifications/worker'
@@ -38,6 +40,24 @@ reactTurbolinks.register 'friendButton', FriendButton, (target) ->
 reactTurbolinks.register 'blockButton', BlockButton, (target) ->
   container: target
   userId: parseInt(target.dataset.target)
+
+
+reactTurbolinks.register 'beatmap-discussion-events', Events, (container) ->
+  props = {
+    container
+    discussions: osu.parseJson('json-discussions')
+    events: osu.parseJson('json-events')
+    posts: osu.parseJson('json-posts')
+  }
+
+  # TODO: move to store?
+  users = osu.parseJson('json-users')
+  props.users = _.keyBy(users, 'id')
+  props.users[null] = props.users[undefined] =
+    username: osu.trans 'users.deleted'
+
+  props
+
 
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)

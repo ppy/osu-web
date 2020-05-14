@@ -66,6 +66,17 @@ return [
         'title' => '开放授权',
     ],
 
+    'options' => [
+        'title' => '选项',
+
+        'beatmapset_download' => [
+            '_' => '默认谱面下载类型',
+            'all' => '包含视频',
+            'no_video' => '不包含视频',
+            'direct' => '在 osu!direct中查看',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => '键盘',
         'mouse' => '鼠标',

@@ -10,7 +10,7 @@ return [
     'pinned' => 'angeheftet',
     'empty' => 'Noch keine Kommentare vorhanden.',
     'load_replies' => 'Antworten laden',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited Antwort|:count_delimited Antworten',
     'title' => 'Kommentare',
 
     'commentable_name' => [

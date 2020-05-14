@@ -28,7 +28,14 @@ return [
         'id' => 'معرف العميل',
         'name' => 'اسم التّطبيق',
         'redirect' => 'رابط نقطة معاودة التطبيق',
+        'reset' => 'تغيير Client Secret',
+        'reset_failed' => 'فشل في إعادة تعيين Client Secret',
         'secret' => 'سؤال سر العميل',
+
+        'secret_visible' => [
+            'false' => 'اظهار Client Secret',
+            'true' => 'إخفاء Client Secret',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'هل أنت متأكد أنك تريد حذف هذا العميل؟',
+        'confirm_reset' => 'هل أنت متأكد من أنك تريد إعادة تعيين Client Secret؟ سيؤدي هذا إلى إلغاء جميع الرموز الموجودة.',
         'new' => 'تطبيق 0Auth جديد',
         'none' => 'لا عملاء',
 

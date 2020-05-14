@@ -66,6 +66,17 @@ return [
         'title' => '0ثقة',
     ],
 
+    'options' => [
+        'title' => 'الخيارات',
+
+        'beatmapset_download' => [
+            '_' => 'نوع تحميل الخريطة الافتراضي',
+            'all' => 'مع الفيديو إذا كان متاحا',
+            'no_video' => 'بدون الفيديو',
+            'direct' => 'فتح في osu!direct',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => 'لوحة المفاتيح',
         'mouse' => 'ماوس',

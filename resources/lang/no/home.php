@@ -10,7 +10,7 @@ return [
         'peak' => 'Maks, :count påloggede brukere',
         'players' => '<strong>:count</strong> registrerte spillere',
         'title' => 'velkommen',
-        'see_more_news' => '',
+        'see_more_news' => 'se flere nyheter',
 
         'slogan' => [
             'main' => 'det besteste gratis-å-vinne rytmespillet',
@@ -27,7 +27,7 @@ return [
         'title' => 'Søk',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'Logg inn for å søke etter beatmaps',
             'more' => ':count flere beatmap-søkeresultater',
             'more_simple' => 'Se flere beatmap-søkeresultater',
             'title' => 'Beatmaps',
@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Alle forum',
             'link' => 'Søk i forumet',
-            'login_required' => '',
+            'login_required' => 'Logg inn for å søke i forumet',
             'more_simple' => 'Se flere forum-søkeresultater',
             'title' => 'Forum',
 
@@ -57,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'Logg inn for å søke etter brukere',
             'more' => ':count flere spiller-søkeresultater',
             'more_simple' => 'Se flere spiller-søkeresultater',
             'more_hidden' => 'Spillersøk er begrenset til :max spillere. Forsøk å raffinere søket.',
@@ -117,7 +117,7 @@ return [
         'beatmaps' => [
             'new' => 'Nye Rangerte Beatmaps',
             'popular' => 'Populære Beatmaps',
-            'by_user' => '',
+            'by_user' => 'av :user',
         ],
         'buttons' => [
             'download' => 'Last ned osu!',

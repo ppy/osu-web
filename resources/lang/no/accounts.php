@@ -66,6 +66,17 @@ return [
         'title' => 'OAuth',
     ],
 
+    'options' => [
+        'title' => 'Innstillinger',
+
+        'beatmapset_download' => [
+            '_' => 'standard nedlastingstype for beatmap',
+            'all' => 'med video hvis tilgjengelig',
+            'no_video' => 'uten video',
+            'direct' => 'åpne i osu!direct',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => 'tastatur',
         'mouse' => 'mus',

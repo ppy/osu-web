@@ -28,7 +28,14 @@ return [
         'id' => 'Numer ID klienta',
         'name' => 'Nazwa aplikacji',
         'redirect' => 'Adres URL wywołań zwrotnych aplikacji',
+        'reset' => 'Zresetuj klucz klienta',
+        'reset_failed' => 'Nie udało się zresetować klucza klienta',
         'secret' => 'Klucz klienta',
+
+        'secret_visible' => [
+            'false' => 'Pokaż klucz klienta',
+            'true' => 'Ukryj klucz klienta',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Czy na pewno chcesz usunąć tego klienta?',
+        'confirm_reset' => 'Czy na pewno chcesz zresetować klucz klienta? Odbierze to dostęp wszystkim istniejącym tokenom.',
         'new' => 'Nowa aplikacja OAuth',
         'none' => 'Brak klientów',
 

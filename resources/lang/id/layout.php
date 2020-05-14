@@ -57,8 +57,8 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmaps',
-            'artists' => 'featured artists',
+            '_' => 'beatmap',
+            'artists' => 'featured artist',
             'index' => 'daftar',
             'packs' => 'paket',
         ],
@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => 'Parameter yang diminta tidak valid',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Laman Hilang',
             'description' => "Maaf, tapi laman yang Anda minta tidak ada di sini!",

@@ -28,7 +28,14 @@ return [
         'id' => 'ID du client',
         'name' => 'Nom de l\'application',
         'redirect' => 'URL de retour de l\'application',
+        'reset' => 'Réinitialiser le secret du client',
+        'reset_failed' => 'Impossible de réinitialiser le secret du client',
         'secret' => 'Client Secret',
+
+        'secret_visible' => [
+            'false' => 'Afficher le secret du client',
+            'true' => 'Masquer le secret du client',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Êtes-vous sûr de vouloir supprimer ce client ?',
+        'confirm_reset' => 'Êtes-vous sûr de vouloir réinitialiser le secret du client ? Cela révoquera tous les jetons existants.',
         'new' => 'Nouvelle application OAuth',
         'none' => 'Aucun client',
 

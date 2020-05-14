@@ -12,7 +12,7 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'tillat kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Beatmapside',
         'delete' => 'slett',
         'deleted' => 'Slettet av :editor :delete_time.',
         'deny_kudosu' => 'avvis kudosu',
@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Avvist fra å få kudosu.',
         'message_placeholder_deleted_beatmap' => 'Denne vanskelighetsgraden har blitt slettet så den kan ikke bli diskutert lenger.',
         'message_placeholder_locked' => 'Diskusjon for dette beatmappet har blitt deaktivert.',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Velg kommentartype',
         'reply_notice' => 'Trykk enter for å svare.',
         'reply_placeholder' => 'Skriv din respons her',
@@ -70,14 +71,14 @@ return [
             'nomination_reset' => 'Tilbakestill Nominasjon',
             'praise' => 'Ros',
             'problem' => 'Problem',
-            'review' => '',
+            'review' => 'Anmeldelse',
             'suggestion' => 'Forslag',
         ],
 
         'mode' => [
             'events' => 'Historie',
             'general' => 'Generell :scope',
-            'reviews' => '',
+            'reviews' => 'Anmeldelser',
             'timeline' => 'Tidslinje',
             'scopes' => [
                 'general' => 'Denne vanskelighetsgraden',
@@ -123,12 +124,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Ingen negative stemmer enda',
+                'up' => 'Ingen positive stemmer enda',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Seneste negative stemmer',
+                'up' => 'Seneste positive stemmer',
             ],
         ],
     ],
@@ -164,7 +165,7 @@ return [
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer dette beatmappet?',
         'nominated_by' => 'nominert av :users',
-        'not_enough_hype' => "",
+        'not_enough_hype' => "Det er ikke nok hype.",
         'qualified' => 'Beregnes for å bli rangert :date, hvis ingen problemer blir funnet.',
         'qualified_soon' => 'Beregnet for å bli rangert snart, hvis ingen problemer blir funnet.',
         'required_text' => 'Nominasjoner :current/:required',

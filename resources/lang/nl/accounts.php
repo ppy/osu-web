@@ -22,8 +22,8 @@ return [
         ],
 
         'password' => [
-            'current' => 'huidige wachtwoord',
-            'new' => 'nieuwe wachtwoord',
+            'current' => 'huidig wachtwoord',
+            'new' => 'nieuw wachtwoord',
             'new_confirmation' => 'wachtwoord bevestiging',
             'title' => 'Wachtwoord',
         ],
@@ -64,6 +64,17 @@ return [
         'authorized_clients' => 'autoriseer clients',
         'own_clients' => 'eigen clients',
         'title' => 'OAuth',
+    ],
+
+    'options' => [
+        'title' => 'Opties',
+
+        'beatmapset_download' => [
+            '_' => 'standaard beatmap download type',
+            'all' => 'met video als beschikbaar',
+            'no_video' => 'zonder video',
+            'direct' => 'open in osu!direct',
+        ],
     ],
 
     'playstyles' => [

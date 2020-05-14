@@ -37,8 +37,8 @@ export class Nominations extends React.PureComponent
         div className: "#{bn}__item", @nominationBar()
         div className: "#{bn}__item", @disqualificationMessage()
         div className: "#{bn}__item", @nominationResetMessage()
-        div className: "#{bn}__item #{bn}__item--nominators", @nominatorsList()
         div className: "#{bn}__item", @discussionLockMessage()
+        div className: "#{bn}__item #{bn}__item--nominators", @nominatorsList()
       div className: "#{bn}__items #{bn}__items--buttons",
         div className: "#{bn}__item", @feedbackButton()
         div className: "#{bn}__item", @hypeButton()
@@ -300,7 +300,7 @@ export class Nominations extends React.PureComponent
           className: "#{bn}__title"
           osu.trans 'beatmaps.nominations.title'
         span null,
-          " #{nominations.current}/#{nominations.required}"
+          " #{nominations.current} / #{nominations.required}"
       @renderLights(nominations.current, nominations.required)
 
 
@@ -317,8 +317,7 @@ export class Nominations extends React.PureComponent
 
   nominationResetMessage: =>
     showHype = @props.beatmapset.can_be_hyped
-    nominations = @props.beatmapset.nominations
-    nominationReset = nominations.nomination_reset
+    nominationReset = @props.beatmapset.nominations.nomination_reset
     mapIsQualified = @props.beatmapset.status == 'qualified'
 
     return null unless showHype && !mapIsQualified && nominationReset?
@@ -328,9 +327,7 @@ export class Nominations extends React.PureComponent
 
 
   nominatorsList: =>
-    showHype = @props.beatmapset.can_be_hyped
-
-    return null unless showHype
+    return null unless @props.beatmapset.status in ['wip', 'pending', 'ranked', 'qualified']
 
     nominators = []
     for event in @props.events by -1
@@ -387,13 +384,9 @@ export class Nominations extends React.PureComponent
 
 
   disqualifyButton: =>
-    showHype = @props.beatmapset.can_be_hyped
-    requiredHype = @props.beatmapset.nominations.required_hype
-    hypeRaw = @props.currentDiscussions.totalHype
-    mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
     mapIsQualified = @props.beatmapset.status == 'qualified'
 
-    return null unless showHype && (mapCanBeNominated || mapIsQualified) && @props.currentUser.id? && mapIsQualified && @userCanDisqualify()
+    return null unless mapIsQualified && @userCanDisqualify()
 
     el BigButton,
       text: osu.trans 'beatmaps.nominations.disqualify'
@@ -403,13 +396,11 @@ export class Nominations extends React.PureComponent
 
 
   nominationButton: =>
-    showHype = @props.beatmapset.can_be_hyped
     requiredHype = @props.beatmapset.nominations.required_hype
     hypeRaw = @props.currentDiscussions.totalHype
     mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
-    mapIsQualified = @props.beatmapset.status == 'qualified'
 
-    return null unless showHype && (mapCanBeNominated || mapIsQualified) && @props.currentUser.id? && mapCanBeNominated && @userCanNominate()
+    return null unless mapCanBeNominated && @userCanNominate()
 
     nominationButton = (disabled = false) =>
       el BigButton,

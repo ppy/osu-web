@@ -15,6 +15,15 @@ return [
         'guest_title' => 'ビートマップ',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => 'ダウンロード',
+            'video' => '動画付きでダウンロード',
+            'no_video' => '動画無しでダウンロード',
+            'direct' => 'osu!directで開く',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'ディスカッション',
 
@@ -66,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => 'このビートマップで問題が見つかった場合は、Disqualifyにしてください。:link',
-                'button_title' => 'Qualifiedビートマップを無効',
             ],
 
             'report' => [
                 '_' => 'ビートマップに問題を見つけた場合、:link からチームに報告してください。',
                 'button' => '問題を報告する',
-                'button_title' => 'Qualifiedビートマップの問題を報告。',
                 'link' => 'ここ',
             ],
         ],

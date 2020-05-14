@@ -66,6 +66,17 @@ return [
         'title' => 'OAuth',
     ],
 
+    'options' => [
+        'title' => 'Opțiuni',
+
+        'beatmapset_download' => [
+            '_' => 'tip implicit de descărcare de beatmap',
+            'all' => 'cu video dacă e disponibil',
+            'no_video' => 'fără video',
+            'direct' => 'deschis în osu!direct',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => 'tastatură',
         'mouse' => 'mouse',

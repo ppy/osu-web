@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => 'Hablando en :channel',
-    'talking_with' => 'Hablando con :name',
+    'talking_in' => 'hablando en :channel',
+    'talking_with' => 'hablando con :name',
     'title_compact' => 'chat',
 
     'cannot_send' => [
@@ -20,13 +20,13 @@ return [
         ],
     ],
     'input' => [
-        'disabled' => 'No se pudo enviar el mensaje...',
-        'placeholder' => 'Escribe el mensaje...',
+        'disabled' => 'no se puede enviar el mensaje...',
+        'placeholder' => 'escriba el mensaje...',
         'send' => 'Enviar',
     ],
     'no-conversations' => [
         'howto' => "Inicia conversaciones desde el perfil de un usuario o con un usercard popup.",
         'lazer' => 'Los canales a los que te unas por medio de <a href=":link">osu!lazer</a> aparecerán aquí.',
-        'title' => 'Sin conversaciones',
+        'title' => 'sin conversaciones',
     ],
 ];

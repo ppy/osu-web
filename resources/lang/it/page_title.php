@@ -15,9 +15,11 @@ return [
     ],
     'error' => [
         'error' => [
+            '400' => 'richiesta non valida',
             '404' => 'mancante',
             '403' => 'proibito',
             '401' => 'non autorizzato',
+            '401-verification' => 'verifica account',
             '405' => 'mancante',
             '422' => 'richiesta non valida',
             '500' => 'qualcosa è andato storto',

@@ -6,6 +6,7 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\FunctionScore;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Beatmap;
@@ -71,6 +72,17 @@ class BeatmapsetSearch extends RecordSearch
                 'query' => $nested->toArray(),
             ],
         ]);
+
+        if (present($this->params->queryString)) {
+            $query = (new FunctionScore($query))
+                ->applyFunction([
+                    'field_value_factor' => [
+                        'field' => 'favourite_count',
+                        'missing' => 0,
+                        'modifier' => 'ln2p',
+                    ],
+                ]);
+        }
 
         return $query;
     }
@@ -234,14 +246,13 @@ class BeatmapsetSearch extends RecordSearch
     private function getPlayedBeatmapIds(?array $rank = null)
     {
         $unionQuery = null;
+
+        $select = $rank === null ? 'beatmap_id' : ['beatmap_id', 'score', 'rank'];
+
         foreach ($this->getSelectedModes() as $mode) {
             $newQuery = Score\Best\Model::getClass($mode)
                 ::forUser($this->params->user)
-                ->select('beatmap_id');
-
-            if ($rank !== null) {
-                $newQuery->whereIn('rank', $rank);
-            }
+                ->select($select);
 
             if ($unionQuery === null) {
                 $unionQuery = $newQuery;
@@ -250,7 +261,22 @@ class BeatmapsetSearch extends RecordSearch
             }
         }
 
-        return model_pluck($unionQuery, 'beatmap_id');
+        if ($rank === null) {
+            return model_pluck($unionQuery, 'beatmap_id');
+        } else {
+            $allScores = $unionQuery->get();
+            $beatmapRank = collect();
+
+            foreach ($allScores as $score) {
+                $prevScore = $beatmapRank[$score->beatmap_id] ?? null;
+
+                if ($prevScore === null || $prevScore->score < $score->score) {
+                    $beatmapRank[$score->beatmap_id] = $score;
+                }
+            }
+
+            return $beatmapRank->whereInStrict('rank', $rank)->pluck('beatmap_id')->all();
+        }
     }
 
     private function getSelectedModes()

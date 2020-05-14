@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Бийтмапове',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Дискусия',
 
@@ -66,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => '',
-                'button_title' => '',
             ],
 
             'report' => [
                 '_' => '',
                 'button' => '',
-                'button_title' => '',
                 'link' => '',
             ],
         ],

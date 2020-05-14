@@ -20,7 +20,7 @@ return [
         ],
 
         'users' => [
-            'read' => '',
+            'read' => 'Les den offentlige profilen av alle brukere på egen vegne.',
         ],
     ],
 ];

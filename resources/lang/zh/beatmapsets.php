@@ -15,6 +15,15 @@ return [
         'guest_title' => '谱面',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '下载',
+            'video' => '下载并包含视频',
+            'no_video' => '下载并不包含视频',
+            'direct' => '在 osu!direct中查看',
+        ],
+    ],
+
     'show' => [
         'discussion' => '讨论',
 
@@ -66,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => '如果你认为此谱面有问题，可以取消提名：:link',
-                'button_title' => '取消提名已被Qualified的图',
             ],
 
             'report' => [
                 '_' => '如果您发现此谱面有问题，请在 :link 通知审核团。',
                 'button' => '报告问题',
-                'button_title' => '在合格的节拍图上报告问题。',
                 'link' => '这里',
             ],
         ],

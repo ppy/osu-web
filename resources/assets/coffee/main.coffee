@@ -56,10 +56,11 @@ $(document).on 'turbolinks:load', ->
 @gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
+@localtime ?= new _exported.Localtime
 @menu ?= new Menu
 @mobileToggle ?= new _exported.MobileToggle
 @navButton ?= new NavButton
-@osuAudio ?= new OsuAudio
+@osuAudio ?= new _exported.OsuAudio
 @osuLayzr ?= new OsuLayzr
 @postPreview ?= new PostPreview
 @scale ?= new Scale

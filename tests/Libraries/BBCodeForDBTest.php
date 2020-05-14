@@ -30,6 +30,18 @@ class BBCodeForDBTest extends TestCase
         $this->assertStringEqualsFile($dbFilePath, $output);
     }
 
+    public function testNewline()
+    {
+        config()->set('osu.bbcode.uid', '1');
+
+        $source = "[code]line one\r\nline two\rline three\nline four\r\nline five[/code]";
+        $expectedOutput = '[code:1]line one&#10;line two&#10;line three&#10;line four&#10;line five[/code:1]';
+
+        $output = (new BBCodeForDB($source))->generate();
+
+        $this->assertSame($expectedOutput, $output);
+    }
+
     public function examples()
     {
         return $this->fileList(__DIR__.'/bbcode_examples', '.base.txt');

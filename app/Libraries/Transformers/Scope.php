@@ -7,6 +7,7 @@ namespace App\Libraries\Transformers;
 
 use App\Transformers\TransformerAbstract;
 use League\Fractal;
+use League\Fractal\Serializer\SerializerAbstract;
 
 class Scope extends Fractal\Scope
 {
@@ -18,10 +19,19 @@ class Scope extends Fractal\Scope
         if ($transformer instanceof TransformerAbstract) {
             $permission = $transformer->getRequiredPermission();
             if ($permission !== null && !priv_check($permission, $data)->can()) {
-                return [[], []];
+                return [null, []];
             }
         }
 
         return parent::fireTransformer($transformer, $data);
+    }
+
+    protected function serializeResource(SerializerAbstract $serializer, $data)
+    {
+        if ($data === null) {
+            return;
+        }
+
+        return parent::serializeResource($serializer, $data);
     }
 }

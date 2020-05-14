@@ -16,11 +16,11 @@ return [
         'identify' => 'Identificarte y leer tu perfil público.',
 
         'friends' => [
-            'read' => 'Mirar quien sigues.',
+            'read' => 'Ver a quién sigues.',
         ],
 
         'users' => [
-            'read' => 'Lea el perfil público de cualquier usuario en su nombre.',
+            'read' => 'Leer el perfil público de cualquier usuario en tu nombre.',
         ],
     ],
 ];

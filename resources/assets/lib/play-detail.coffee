@@ -6,7 +6,7 @@ import { PlayDetailMenu } from 'play-detail-menu'
 import { createElement as el, PureComponent } from 'react'
 import * as React from 'react'
 import { a, button, div, i, img, small, span } from 'react-dom-factories'
-import { ScoreHelper } from 'score-helper'
+import { hasMenu } from 'score-helper'
 
 osu = window.osu
 bn = 'play-detail'
@@ -37,7 +37,7 @@ export class PlayDetail extends PureComponent
 
         div className: "#{bn}__detail",
           a
-            href: score.beatmap.url
+            href: laroute.route('beatmaps.show', beatmap: score.beatmap.id, mode: score.mode)
             className: "#{bn}__title u-ellipsis-overflow"
             score.beatmapset.title
             ' '
@@ -99,7 +99,7 @@ export class PlayDetail extends PureComponent
 
         div
           className: "#{bn}__more"
-          if ScoreHelper.hasMenu(score)
+          if hasMenu(score)
             el PlayDetailMenu,
               { score }
 

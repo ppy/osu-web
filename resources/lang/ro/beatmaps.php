@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'A refuzat să primească kudosu.',
         'message_placeholder_deleted_beatmap' => 'Această dificultate a fost ștearsă, deci e posibil să nu mai fie discutată.',
         'message_placeholder_locked' => 'Discuție pentru acest beatmap a fost dezactivată.',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Selectează tipul comentariului',
         'reply_notice' => 'Apasă enter pentru a răspunde.',
         'reply_placeholder' => 'Scrie-ți răspunsul aici',

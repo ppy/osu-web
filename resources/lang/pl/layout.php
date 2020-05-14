@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => 'Nieprawidłowy parametr żądania',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Nie znaleziono strony',
             'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",
@@ -146,7 +150,7 @@ return [
             'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",
         ],
         '422' => [
-            'error' => 'Parametr żądania jest nieprawidłowy',
+            'error' => 'Nieprawidłowy parametr żądania',
             'description' => '',
         ],
         '500' => [

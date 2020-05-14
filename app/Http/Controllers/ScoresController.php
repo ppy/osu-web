@@ -24,6 +24,10 @@ class ScoresController extends Controller
             ->where('replay', true)
             ->firstOrFail();
 
+        if (!is_api_request() && !from_app_url()) {
+            return ujs_redirect(route('beatmaps.show', ['beatmap' => $score->beatmap_id]));
+        }
+
         $replayFile = $score->replayFile();
         if ($replayFile === null) {
             abort(404);

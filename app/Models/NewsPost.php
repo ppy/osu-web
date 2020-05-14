@@ -144,11 +144,23 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public function scopeYear($query, $year)
     {
-        if ($year !== null) {
-            return $query
-                ->where('published_at', '>=', Carbon::create($year))
-                ->where('published_at', '<', Carbon::create($year + 1));
+        if ($year === null) {
+            return;
         }
+
+        $baseStart = Carbon::create($year);
+        $currentDate = now();
+
+        // show extra months in first three months of current year
+        if ($currentDate->year === $baseStart->year && $currentDate->month < 4) {
+            $start = $currentDate->startOfYear()->subMonths(2);
+        }
+
+        $end = Carbon::create($year + 1);
+
+        return $query
+            ->where('published_at', '>=', $start ?? $baseStart)
+            ->where('published_at', '<', $end);
     }
 
     public function author()
