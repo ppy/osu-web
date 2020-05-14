@@ -191,8 +191,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                 ],
                 [
                     'type' => 'paragraph',
-                    'text' => 'this is some paragraph text'
-                ]
+                    'text' => 'this is some paragraph text',
+                ],
             ], $this->user);
 
         $discussionJson = json_encode($this->beatmapset->defaultDiscussionJson());
@@ -466,8 +466,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                 ],
                 [
                     'type' => 'paragraph',
-                    'text' => 'this is some paragraph text'
-                ]
+                    'text' => 'this is some paragraph text',
+                ],
             ], $this->user);
     }
 
