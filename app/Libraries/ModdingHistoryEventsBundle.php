@@ -225,6 +225,10 @@ class ModdingHistoryEventsBundle
     private function getPosts()
     {
         return $this->memoize(__FUNCTION__, function () {
+            if (!$this->withExtras) {
+                return collect();
+            }
+
             $posts = BeatmapDiscussionPost::search($this->searchParams);
             $posts['query']->with([
                 'beatmapDiscussion.beatmap',
@@ -244,14 +248,8 @@ class ModdingHistoryEventsBundle
         return $this->memoize(__FUNCTION__, function () {
             $discussions = $this->getDiscussions();
             $events = $this->getEvents();
-
-            if ($this->withExtras) {
-                $posts = $this->getPosts();
-                $votes = $this->getVotes();
-            } else {
-                $posts = collect();
-                $votes = [];
-            }
+            $posts = $this->getPosts();
+            $votes = $this->getVotes();
 
             $userIds = [];
             foreach ($discussions as $discussion) {
@@ -259,16 +257,13 @@ class ModdingHistoryEventsBundle
                 $userIds[] = $discussion->startingPost->last_editor_id;
             }
 
-            $votesGiven = ($votes['given'] ?? collect())->pluck('user_id')->toArray();
-            $votesReceived = ($votes['received'] ?? collect())->pluck('user_id')->toArray();
-
             $userIds = array_merge(
                 $userIds,
                 $posts->pluck('user_id')->toArray(),
                 $posts->pluck('last_editor_id')->toArray(),
                 $events->pluck('user_id')->toArray(),
-                $votesGiven,
-                $votesReceived
+                $votes['given']->pluck('user_id')->toArray(),
+                $votes['received']->pluck('user_id')->toArray()
             );
 
             $userIds = array_values(array_filter(array_unique($userIds)));
@@ -285,13 +280,16 @@ class ModdingHistoryEventsBundle
     private function getVotes()
     {
         return $this->memoize(__FUNCTION__, function () {
-            if ($this->user !== null) {
+            if ($this->withExtras && $this->user !== null) {
                 return [
                     'given' => BeatmapDiscussionVote::recentlyGivenByUser($this->user->getKey()),
                     'received' => BeatmapDiscussionVote::recentlyReceivedByUser($this->user->getKey()),
                 ];
             } else {
-                return [];
+                return [
+                    'given' => collect(),
+                    'received' => collect(),
+                ];
             }
         });
     }
