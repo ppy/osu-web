@@ -244,8 +244,14 @@ class ModdingHistoryEventsBundle
         return $this->memoize(__FUNCTION__, function () {
             $discussions = $this->getDiscussions();
             $events = $this->getEvents();
-            $posts = $this->getPosts();
-            $votes = $this->getVotes();
+
+            if ($this->withExtras) {
+                $posts = $this->getPosts();
+                $votes = $this->getVotes();
+            } else {
+                $posts = collect();
+                $votes = [];
+            }
 
             $userIds = [];
             foreach ($discussions as $discussion) {
