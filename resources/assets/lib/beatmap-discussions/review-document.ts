@@ -13,7 +13,7 @@ interface ParsedDocumentNode extends UnistNode {
   children: SlateNode[];
 }
 
-export function parseFromJson(json: string, discussions: BeatmapDiscussion[]) {
+export function parseFromJson(json: string, discussions: Record<number, BeatmapDiscussion>) {
   let srcDoc: BeatmapDiscussionReview;
 
   try {

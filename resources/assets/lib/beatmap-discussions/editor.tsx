@@ -20,14 +20,14 @@ interface CacheInterface {
 }
 
 interface Props {
-  beatmaps: Beatmap[];
+  beatmaps: Record<number, Beatmap>;
   beatmapset: Beatmapset;
   currentBeatmap: Beatmap;
   currentDiscussions: BeatmapDiscussion[];
   discussion?: BeatmapDiscussion;
-  discussions: BeatmapDiscussion[];
+  discussions: Record<number, BeatmapDiscussion>;
   document?: string;
-  editing?: boolean;
+  editing: boolean;
   editMode?: boolean;
 }
 
@@ -41,6 +41,10 @@ interface TimestampRange extends Range {
 }
 
 export default class Editor extends React.Component<Props, State> {
+  static defaultProps = {
+    editing: false,
+  };
+
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
   emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
@@ -88,9 +92,8 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
-    const editing = this.props.editing ?? false;
-    if (editing !== (prevProps.editing ?? false)) {
-      this.toggleEditMode(editing);
+    if (this.props.editing !== prevProps.editing) {
+      this.toggleEditing();
     }
   }
 
@@ -98,7 +101,7 @@ export default class Editor extends React.Component<Props, State> {
     this.cache = {};
   }
 
-  decorate = (entry: NodeEntry) => {
+  decorateTimestamps = (entry: NodeEntry) => {
     const [node, path] = entry;
     const ranges: TimestampRange[] = [];
 
@@ -134,8 +137,11 @@ export default class Editor extends React.Component<Props, State> {
     const beatmapId = this.props.currentBeatmap ? this.props.currentBeatmap.id : this.props.beatmaps[this.props.beatmapset.beatmaps[0].id];
 
     // find where to insert the new embed (relative to the dropdown menu)
-    const children = $(event.currentTarget).parents(`.${this.bn}__block`)[0].children;
-    const lastChild = children[children.length - 1];
+    const lastChild = $(event.currentTarget).closest(`.${this.bn}__block`)[0].lastChild;
+
+    if (!lastChild) {
+      return;
+    }
 
     // convert from dom node to document path
     const node = ReactEditor.toSlateNode(this.slateEditor, lastChild);
@@ -213,7 +219,7 @@ export default class Editor extends React.Component<Props, State> {
               <div className={`${editorClass}__input-area`}>
                 <EditorToolbar />
                 <Editable
-                  decorate={this.decorate}
+                  decorate={this.decorateTimestamps}
                   onKeyDown={this.onKeyDown}
                   readOnly={this.state.posting}
                   renderElement={this.renderElement}
@@ -264,10 +270,6 @@ export default class Editor extends React.Component<Props, State> {
             {...props}
           />
         );
-        break;
-
-      case 'link':
-        el =  <a href={props.element.url} rel='nofollow'>{props.children}</a>;
         break;
 
       default:
@@ -376,10 +378,9 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   sortedBeatmaps = () => {
-    if (this.cache.beatmaps) {
-      return this.cache.beatmaps;
+    if (this.cache.beatmaps == null) {
+      this.cache.beatmaps = BeatmapHelper.sort(_.values(this.props.beatmaps));
     }
-    this.cache.beatmaps = BeatmapHelper.sort(_.flatten(_.values(this.props.beatmaps)));
 
     return this.cache.beatmaps;
   }
@@ -388,16 +389,14 @@ export default class Editor extends React.Component<Props, State> {
     this.toggleMark('bold');
   }
 
-  toggleEditMode = (enabled: boolean) => {
+  toggleEditing = () => {
     if (!this.props.document || !this.props.discussions || _.isEmpty(this.props.discussions)) {
       return;
     }
 
-    if (enabled) {
-      this.setState({
-        value: parseFromJson(this.props.document, this.props.discussions),
-      });
-    }
+    this.setState({
+      value: this.props.editing ? parseFromJson(this.props.document, this.props.discussions) : [],
+    });
   }
 
   toggleItalic = () => {
