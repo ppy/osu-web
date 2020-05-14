@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Ukončeno :date',
+        'ended_no_date' => '',
 
         'starts' => [
             '_' => 'Začíná :date',

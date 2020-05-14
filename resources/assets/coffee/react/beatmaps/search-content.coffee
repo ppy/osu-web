@@ -85,7 +85,7 @@ export class SearchContent extends React.Component
                   sorting: sorting()
 
             div
-              className: 'beatmapsets__content'
+              className: 'beatmapsets__content js-audio--group'
               if controller.isSupporterMissing
                 div className: 'beatmapsets__empty',
                   el Img2x,

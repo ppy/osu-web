@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Nægtet fra at kunne modtage kudosu.',
         'message_placeholder_deleted_beatmap' => 'Denne sværhedsgrad er blevet slettet så den kan ikke blive diskuteret længere.',
         'message_placeholder_locked' => 'Diskussion for dette beatmap er blevet deaktiveret.',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
         'reply_placeholder' => 'Skriv dit svar her',

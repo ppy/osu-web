@@ -306,6 +306,11 @@ abstract class Model extends BaseModel
         return $result;
     }
 
+    public function getBestIdAttribute()
+    {
+        return $this->getKey();
+    }
+
     protected function newReportableExtraParams(): array
     {
         return [

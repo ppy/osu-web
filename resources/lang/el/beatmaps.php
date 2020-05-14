@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Αδύνατη η απόκτηση kudosu.',
         'message_placeholder_deleted_beatmap' => 'Η δυσκολία αυτή έχει διαγραφεί για αυτό δεν συζητιέται πλέον.',
         'message_placeholder_locked' => 'Η συζήτηση για αυτό το beatmap έχει απενεργοποιηθεί.',
+        'message_placeholder_silenced' => "",
         'message_type_select' => 'Επιλέξτε Τύπο Σχολίου',
         'reply_notice' => 'Πατήστε enter για να απαντήσετε.',
         'reply_placeholder' => 'Πληκτρολογήστε την απάντησή σας εδώ',

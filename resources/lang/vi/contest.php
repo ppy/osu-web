@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Đã kết thúc :date',
+        'ended_no_date' => '',
 
         'starts' => [
             '_' => 'Bắt đầu :date',

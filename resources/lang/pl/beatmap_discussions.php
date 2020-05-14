@@ -19,7 +19,7 @@ return [
     'index' => [
         'deleted_beatmap' => 'usunięta',
         'none_found' => 'Nie znaleziono dyskusji pasujących do podanych kryteriów wyszukiwania.',
-        'title' => 'dyskusje',
+        'title' => 'dyskusje beatmapy',
 
         'form' => [
             '_' => 'Szukaj',

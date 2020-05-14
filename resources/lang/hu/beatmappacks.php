@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Előre csomagolt, általános témákat körbeölelő beatmap gyűjtemények.',
-        'nav_title' => '',
+        'nav_title' => 'listázás',
         'title' => 'Beatmap Csomagok',
 
         'blurb' => [

@@ -3,7 +3,8 @@
 
 import UserJSON from './user-json';
 
-export default interface Score {
+export default interface ScoreJson {
+  best_id?: number;
   id: string;
   mode: string;
   replay: boolean;

@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => ':date tarihinde sona erdi',
+        'ended_no_date' => '',
 
         'starts' => [
             '_' => 'Başlangıç :date',

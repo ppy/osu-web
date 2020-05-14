@@ -43,14 +43,14 @@ export default class MessageGroup extends React.Component<Props, any> {
             }
 
             let classes = 'chat-message-group__message';
-            let innerClasses;
+            let contentClasses = 'chat-message-group__message-content';
 
             if (!message.persisted) {
               classes += ' chat-message-group__message--sending';
             }
 
             if (message.isAction) {
-              innerClasses = ' chat-message-group__message-content--action';
+              contentClasses += ' chat-message-group__message-content--action';
             }
 
             const showTimestamp: boolean =
@@ -61,8 +61,8 @@ export default class MessageGroup extends React.Component<Props, any> {
 
             return (
               <div className={classes} key={message.uuid}>
-                <div className={`chat-message-group__message-content${innerClasses ? innerClasses : ''}`}>
-                  <span dangerouslySetInnerHTML={{__html: message.parsedContent}} />
+                <div className='chat-message-group__message-entry'>
+                  <span className={contentClasses} dangerouslySetInnerHTML={{__html: message.parsedContent}} />
                   {!message.persisted && !message.errored &&
                     <div className='chat-message-group__message-status'>
                       <Spinner />
