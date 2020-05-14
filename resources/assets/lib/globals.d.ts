@@ -93,6 +93,7 @@ interface OsuCommon {
 interface BeatmapHelperInterface {
   getDiffRating(rating: number): string;
   sort(beatmaps: Beatmap[]): Beatmap[];
+  sortWithMode(beatmaps: Beatmap[]): Beatmap[];
 }
 
 interface ChangelogBuild {

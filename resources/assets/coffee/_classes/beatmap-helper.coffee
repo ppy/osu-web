@@ -51,6 +51,12 @@ class @BeatmapHelper
 
   @sort: (beatmaps) ->
     if beatmaps[0].mode == 'mania'
-      _.orderBy beatmaps, ['mode_int', 'convert', 'cs', 'difficulty_rating'], ['asc', 'desc', 'asc', 'asc']
+      _.orderBy beatmaps, ['convert', 'cs', 'difficulty_rating'], ['desc', 'asc', 'asc']
     else
-      _.orderBy beatmaps, ['mode_int', 'convert', 'difficulty_rating'], ['asc', 'desc', 'asc']
+      _.orderBy beatmaps, ['convert', 'difficulty_rating'], ['desc', 'asc']
+
+
+  @sortWithMode: (beatmaps) ->
+    grouped = @group(beatmaps);
+
+    _.flatten @modes.map((mode) => grouped[mode] || [])

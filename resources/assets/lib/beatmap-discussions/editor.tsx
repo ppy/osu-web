@@ -16,7 +16,7 @@ import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
 
 interface CacheInterface {
-  beatmaps?: Beatmap[];
+  sortedBeatmaps?: Beatmap[];
 }
 
 interface Props {
@@ -322,11 +322,11 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   sortedBeatmaps = () => {
-    if (this.cache.beatmaps == null) {
-      this.cache.beatmaps = BeatmapHelper.sort(_.values(this.props.beatmaps));
+    if (this.cache.sortedBeatmaps == null) {
+      this.cache.sortedBeatmaps = BeatmapHelper.sortWithMode(_.values(this.props.beatmaps));
     }
 
-    return this.cache.beatmaps;
+    return this.cache.sortedBeatmaps;
   }
 
   toggleEditing = () => {
