@@ -51,6 +51,8 @@ export default class Editor extends React.Component<Props, State> {
   localStorageKey: string;
   slateEditor: ReactEditor;
 
+  private xhr?: JQueryXHR;
+
   constructor(props: Props) {
     super(props);
 
@@ -94,6 +96,12 @@ export default class Editor extends React.Component<Props, State> {
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
     if (this.props.editing !== prevProps.editing) {
       this.toggleEditing();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.xhr) {
+      this.xhr.abort();
     }
   }
 
@@ -185,18 +193,19 @@ export default class Editor extends React.Component<Props, State> {
 
   post = () => {
     this.setState({posting: true}, () => {
-      $.ajax(laroute.route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
+      this.xhr = $.ajax(laroute.route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
         data: { document: this.serialize() },
         method: 'POST',
-      })
-      .then((data) => {
+      });
+
+      this.xhr.then((data) => {
         $.publish('beatmapsetDiscussions:update', {beatmapset: data});
         this.resetInput();
       })
-      .catch(osu.ajaxError)
       .always(() => {
         this.setState({posting: false});
-      });
+      })
+      .catch(osu.ajaxError);
     });
   }
 
