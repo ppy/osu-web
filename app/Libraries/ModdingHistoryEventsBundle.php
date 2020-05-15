@@ -25,7 +25,7 @@ class ModdingHistoryEventsBundle
     private $params;
     private $total;
     private $user;
-    private $withExtras = false;
+    private $withExtras = false; // TODO: change to includes list instead.
 
     public static function forProfile(User $user, array $searchParams)
     {
@@ -82,11 +82,6 @@ class ModdingHistoryEventsBundle
     {
         return $this->memoize(__FUNCTION__, function () {
             $array = [
-                'discussions' => json_collection(
-                    $this->getDiscussions(),
-                    'BeatmapDiscussion',
-                    ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
-                ),
                 'events' => json_collection(
                     $this->getEvents(),
                     'BeatmapsetEvent',
@@ -100,6 +95,12 @@ class ModdingHistoryEventsBundle
             ];
 
             if ($this->withExtras) {
+                $array['discussions'] = json_collection(
+                    $this->getDiscussions(),
+                    'BeatmapDiscussion',
+                    ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
+                );
+
                 $array['posts'] = json_collection(
                     $this->getPosts(),
                     'BeatmapDiscussionPost',
@@ -169,6 +170,10 @@ class ModdingHistoryEventsBundle
                 'beatmapset',
                 'startingPost',
             ];
+
+            if (!$this->withExtras) {
+                return collect();
+            }
 
             $parents = BeatmapDiscussion::search($this->searchParams);
             $parents['query']->with($includes);

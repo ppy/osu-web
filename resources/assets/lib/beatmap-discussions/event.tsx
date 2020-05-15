@@ -29,6 +29,7 @@ export default class Event extends React.PureComponent<Props> {
     return this.props.event.comment?.beatmap_discussion_id;
   }
 
+  // discussion page doesn't include the discussion as part of the event.
   private get discussion() {
     return this.props.event.discussion ?? this.props.discussions?.[this.discussionId ?? ''];
   }
