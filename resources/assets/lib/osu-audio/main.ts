@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { isFinite } from 'lodash';
+import Settings from './settings';
 import Slider from './slider';
 import { format, TimeFormat } from './time-format';
 
@@ -79,7 +80,7 @@ export default class Main {
     'NotSupportedError',
   ];
 
-  private audio = new Audio();
+  audio = new Audio();
   private currentSlider?: Slider;
   private durationFormatted: string = `'0:00'`;
   private hasWorkingVolumeControl = true;
@@ -90,12 +91,17 @@ export default class Main {
   private playerNext?: HTMLElement;
   private playerPrev?: HTMLElement;
   private setNavigationTimeout?: number;
+  private settings = new Settings(this);
   private state: PlayState = 'paused';
   private timeFormat: TimeFormat = 'minute_minimal';
   private url?: string;
 
   constructor() {
-    this.createAudio();
+    this.settings.volume = 0;
+    this.audio.addEventListener('playing', this.onPlaying);
+    this.audio.addEventListener('ended', this.onEnded);
+    this.audio.addEventListener('timeupdate', this.onTimeupdate);
+    this.audio.addEventListener('volumechange', this.syncVolumeDisplay);
 
     $(document).on('click', '.js-audio--play', this.onClickPlay);
     $(document).on('click', '.js-audio--main-play', this.togglePlay);
@@ -106,16 +112,16 @@ export default class Main {
     $(document).on('turbolinks:load', this.onDocumentReady);
   }
 
-  private createAudio = () => {
-    this.audio.addEventListener('playing', this.onPlaying);
-    this.audio.addEventListener('ended', this.onEnded);
-    this.audio.addEventListener('timeupdate', this.onTimeupdate);
-    this.audio.addEventListener('volumechange', this.syncVolumeDisplay);
-    this.audio.volume = 0.45;
+  private checkVolumeSettings = () => {
+    const prevVolume = this.settings.volume;
+    const testVolume = prevVolume === 0.1 ? 0.2 : 0.1;
+    this.settings.volume = testVolume;
     // Volume control doesn't work on iOS. It sets the value but reset it
-    // a moment later; hence using setTimeout.
+    // a moment later; hence use setTimeout to test changing volume.
+    // For actual volume settings, see onDocumentReady.
     setTimeout(() => {
-      this.hasWorkingVolumeControl = this.audio.volume === 0.45;
+      this.hasWorkingVolumeControl = this.settings.volume === testVolume;
+      this.settings.volume = prevVolume;
       this.syncVolumeDisplay();
     }, 0);
   }
@@ -241,6 +247,12 @@ export default class Main {
 
       this.mainPlayer = createMainPlayer();
       mainPlayerPlaceholder.replaceWith(this.mainPlayer);
+
+      // This requires currentUser and should only be run once so it's done in here.
+      this.settings.apply();
+      // Only check after initial volume is set otherwise it'll be replaced with the volume at current point.
+      this.checkVolumeSettings();
+
       this.syncState();
     }
 
@@ -298,8 +310,13 @@ export default class Main {
     }
   }
 
+  private onVolumeChangeEnd = () => {
+    this.currentSlider = undefined;
+    this.settings.save();
+  }
+
   private onVolumeChangeMove = (slider: Slider) => {
-    this.audio.volume = slider.getPercentage();
+    this.settings.volume = slider.getPercentage();
   }
 
   private onVolumeChangeStart = (e: JQuery.TouchStartEvent) => {
@@ -309,7 +326,7 @@ export default class Main {
 
     this.currentSlider = Slider.start({
       bar,
-      endCallback: () => this.currentSlider = undefined,
+      endCallback: this.onVolumeChangeEnd,
       initialEvent: e,
       moveCallback: this.onVolumeChangeMove,
     });
@@ -476,11 +493,12 @@ export default class Main {
 
     this.mainPlayer.dataset.audioVolumeBarVisible = this.hasWorkingVolumeControl ? '1' : '0';
     this.mainPlayer.dataset.audioVolume = this.volumeIcon();
-    this.mainPlayer.style.setProperty('--volume', this.audio.volume.toString());
+    this.mainPlayer.style.setProperty('--volume', this.settings.volume.toString());
   }
 
   private toggleMute = () => {
-    this.audio.muted = !this.audio.muted;
+    this.settings.toggleMuted();
+    this.settings.save();
   }
 
   private togglePlay = () => {
@@ -504,12 +522,12 @@ export default class Main {
   }
 
   private volumeIcon = () => {
-    if (this.audio.muted) {
+    if (this.settings.muted) {
       return 'muted';
     } else {
-      if (this.audio.volume === 0) {
+      if (this.settings.volume === 0) {
         return 'silent';
-      } else if (this.audio.volume < 0.4) {
+      } else if (this.settings.volume < 0.4) {
         return 'quiet';
       } else {
         return 'normal';
