@@ -91,6 +91,7 @@
                                 'additionalClass'=> 'js-account-edit__input',
                                 'checked' => $notificationOptions[$name]->details['mail'] ?? true,
                                 'defaultValue' => '0',
+                                'modifiers' => ['grid'],
                                 'name' => "user_notification_option[{$name}][details][mail]",
                             ])
                         </label>
