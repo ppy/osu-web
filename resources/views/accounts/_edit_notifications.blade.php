@@ -81,7 +81,7 @@
                 >
                     <div>{{ trans('accounts.notifications.options.mail') }}</div>
                     <div>{{ trans('accounts.notifications.options.push') }}</div>
-                    <div></div>
+                    <div>@include('accounts._edit_entry_status')</div>
 
                     @foreach (App\Models\UserNotificationOption::HAS_NOTIFICATION as $name)
                         <label
@@ -106,13 +106,10 @@
                             ])
                         </label>
 
-                        <span class="account-edit-entry__checkbox-label">
+                        <span class="account-edit-entry__checkbox-label account-edit-entry__checkbox-label--grid">
                             {{ trans("accounts.notifications.options.{$name}") }}
                         </span>
                     @endforeach
-                    <div class="account-edit-entry__checkboxes-status">
-                        @include('accounts._edit_entry_status')
-                    </div>
                 </form>
             </div>
         </div>
