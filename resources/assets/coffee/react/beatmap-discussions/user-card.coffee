@@ -41,7 +41,7 @@ export class UserCard extends React.PureComponent
 
         div
           className: "#{bn}__user-badge"
-          el UserGroupBadge, badge: @props.badge
+          el UserGroupBadge, group: @props.group
 
       if (!hideStripe)
         div

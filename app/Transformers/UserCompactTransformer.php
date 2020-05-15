@@ -24,7 +24,7 @@ class UserCompactTransformer extends TransformerAbstract
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
-        'group_badge',
+        'groups',
         'is_admin',
         'is_bng',
         'is_full_bn',
@@ -170,13 +170,9 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->profileBeatmapsetsGraveyard()->count());
     }
 
-    public function includeGroupBadge(User $user)
+    public function includeGroups(User $user)
     {
-        $badge = $user->groupBadge();
-
-        if (isset($badge)) {
-            return $this->item($badge, new GroupTransformer);
-        }
+        return $this->collection($user->visibleGroups(), new GroupTransformer);
     }
 
     public function includeIsAdmin(User $user)

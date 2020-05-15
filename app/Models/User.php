@@ -1304,19 +1304,30 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return $this->blocks->pluck('user_id');
     }
 
-    public function groupBadge()
+    public function visibleGroups()
     {
         if ($this->isBot()) {
-            return app('groups')->byIdentifier('bot');
+            return [app('groups')->byIdentifier('bot')];
         }
 
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $ids = $this->groupIds();
             array_unshift($ids, $this->defaultGroup()->getKey());
 
-            $idOrder = app('groups')->all()->where('display_order', '!==', null)->pluck('group_id')->all();
-            $badge = array_first(array_intersect($idOrder, $ids));
-            $this->memoized[__FUNCTION__] = app('groups')->byId($badge);
+            $groups = [];
+            foreach (array_unique($ids) as $id) {
+                $group = app('groups')->byId($id);
+
+                if (optional($group)->display_order !== null) {
+                    $groups[] = $group;
+                }
+            }
+
+            usort($groups, function ($a, $b) {
+                return $a->display_order < $b->display_order ? -1 : 1;
+            });
+
+            $this->memoized[__FUNCTION__] = $groups;
         }
 
         return $this->memoized[__FUNCTION__];
@@ -1431,7 +1442,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
     // TODO: we should rename this to currentUserJson or something.
     public function defaultJson()
     {
-        return json_item($this, 'User', ['blocks', 'friends', 'group_badge', 'is_admin', 'unread_pm_count', 'user_preferences']);
+        return json_item($this, 'User', ['blocks', 'friends', 'groups', 'is_admin', 'unread_pm_count', 'user_preferences']);
     }
 
     public function supportLength()

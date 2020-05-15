@@ -257,7 +257,7 @@ class UsersController extends Controller
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
-            'group_badge',
+            'groups',
             'loved_beatmapset_count',
             'monthly_playcounts',
             'page',

@@ -98,7 +98,7 @@ class ModdingHistoryEventsBundle
                 'users' => json_collection(
                     $this->getUsers(),
                     'UserCompact',
-                    ['group_badge']
+                    ['groups']
                 ),
             ];
 
@@ -132,7 +132,7 @@ class ModdingHistoryEventsBundle
                         'badges',
                         'follower_count',
                         'graveyard_beatmapset_count',
-                        'group_badge',
+                        'groups',
                         'loved_beatmapset_count',
                         'previous_usernames',
                         'ranked_and_approved_beatmapset_count',
