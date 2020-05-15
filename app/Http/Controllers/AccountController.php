@@ -194,9 +194,9 @@ class AccountController extends Controller
                     ]]);
                 }
             }
-        });
 
-        return response(null, 204);
+            return response(null, 204);
+        });
     }
 
     public function updateOptions()
