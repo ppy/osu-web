@@ -77,7 +77,6 @@
                     class="account-edit-entry__grid js-account-edit"
                     data-account-edit-auto-submit="1"
                     data-account-edit-type="multi"
-                    data-skip-ajax-error-popup="1"
                     data-url="{{ route('account.notification-options') }}"
                 >
                     <div class="account-edit-entry__checkbox">{{ trans('accounts.notifications.options.mail') }}</div>
