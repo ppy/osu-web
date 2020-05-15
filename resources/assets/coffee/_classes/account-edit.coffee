@@ -67,7 +67,6 @@ class @AccountEdit
     data = {}
 
     for checkbox in form.querySelectorAll('.js-account-edit__input')
-      field = checkbox.name
       data[checkbox.name] = checkbox.checked
 
     data
