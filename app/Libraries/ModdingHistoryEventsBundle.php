@@ -207,11 +207,13 @@ class ModdingHistoryEventsBundle
     {
         return $this->memoize(__FUNCTION__, function () {
             $events = BeatmapsetEvent::search($this->searchParams);
+            // beatmapset has global scopes with deleted_at and active but these are not indexed,
+            // which makes whereHas('beatmapset') unusable.
             $events['query'] = $events['query']->with([
                 'beatmapset.user',
                 'beatmapDiscussion.beatmapset',
                 'beatmapDiscussion.startingPost',
-            ])->whereHas('beatmapset');
+            ]);
 
             if ($this->isModerator) {
                 $events['query']->with(['beatmapset' => function ($query) {
