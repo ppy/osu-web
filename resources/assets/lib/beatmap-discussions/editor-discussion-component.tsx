@@ -69,6 +69,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     const bn = 'beatmap-discussion-review-post-embed-preview';
     const attribs = this.props.attributes;
     const canEdit = this.editable();
+    const classMods = canEdit ? [] : ['read-only'];
 
     const deleteButton =
       (
@@ -83,16 +84,15 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         </button>
       );
 
-    const extraClasses = [];
-    if (!canEdit) {
-      attribs.contentEditable = false;
-      extraClasses.push('read-only');
-    }
-
     return (
-      <div className='beatmap-discussion beatmap-discussion--preview' {...attribs}>
+      <div
+        className='beatmap-discussion beatmap-discussion--preview'
+        contentEditable={canEdit}
+        suppressContentEditableWarning={true}
+        {...attribs}
+      >
         <div className='beatmap-discussion__discussion'>
-          <div className={osu.classWithModifiers(bn, extraClasses)}>
+          <div className={osu.classWithModifiers(bn, classMods)}>
             <div className={`${bn}__content`}>
               <div
                 className={`${bn}__selectors`}
