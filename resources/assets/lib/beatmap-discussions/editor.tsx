@@ -199,7 +199,7 @@ export default class Editor extends React.Component<Props, State> {
   post = () => {
     this.setState({posting: true}, () => {
       this.xhr = $.ajax(laroute.route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
-        data: { document: serializeSlateDocument(this.state.value) },
+        data: { document: this.serialize() },
         method: 'POST',
       });
 
@@ -325,6 +325,8 @@ export default class Editor extends React.Component<Props, State> {
     Transforms.deselect(this.slateEditor);
     this.onChange(this.emptyDocTemplate);
   }
+
+  serialize = () => serializeSlateDocument(this.state.value);
 
   sortedBeatmaps = () => {
     if (this.cache.sortedBeatmaps == null) {
