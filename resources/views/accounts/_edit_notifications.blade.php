@@ -79,9 +79,9 @@
                     data-account-edit-type="multi"
                     data-url="{{ route('account.notification-options') }}"
                 >
-                    <div class="account-edit-entry__checkbox">{{ trans('accounts.notifications.options.mail') }}</div>
-                    <div class="account-edit-entry__checkbox">{{ trans('accounts.notifications.options.push') }}</div>
-                    <div class="account-edit-entry__checkbox"></div>
+                    <div>{{ trans('accounts.notifications.options.mail') }}</div>
+                    <div>{{ trans('accounts.notifications.options.push') }}</div>
+                    <div></div>
 
                     @foreach (App\Models\UserNotificationOption::HAS_NOTIFICATION as $name)
                         <label
