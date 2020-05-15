@@ -42,7 +42,12 @@
                             'country_name' => $score->user->country->name,
                             'country_code' => $score->user->country->acronym,
                         ])
-                        <a href="{{route('users.show', $score->user_id)}}" class="ranking-page-table__user-link-text js-usercard" data-user-id="{{$score->user_id}}" data-tooltip-position="right center">
+                        <a
+                            href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"
+                            class="ranking-page-table__user-link-text js-usercard"
+                            data-user-id="{{ $score->user_id }}"
+                            data-tooltip-position="right center"
+                        >
                             {{ $score->user->username }}
                         </a>
                     </div>

@@ -49,7 +49,7 @@ export class ScoreboardTableRow extends React.PureComponent
         a
           className: "#{bn}__user-link js-usercard"
           'data-user-id': score.user.id
-          href: laroute.route 'users.show', user: score.user.id
+          href: laroute.route 'users.show', user: score.user.id, mode: @props.beatmap.mode
           score.user.username
 
       td className: osu.classWithModifiers(cell, ['perfect'] if score.max_combo == @props.beatmap.max_combo),
