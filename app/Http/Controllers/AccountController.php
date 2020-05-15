@@ -176,7 +176,7 @@ class AccountController extends Controller
             abort(422);
         }
 
-        return DB::transaction(function () use ($requestParams) {
+        DB::transaction(function () use ($requestParams) {
             // FIXME: less queries
             foreach ($requestParams as $key => $value) {
                 if (!UserNotificationOption::supportsNotifications($key)) {
@@ -186,17 +186,12 @@ class AccountController extends Controller
                 $params = get_params($value, null, ['details:any']);
 
                 $option = auth()->user()->notificationOptions()->firstOrNew(['name' => $key]);
-                if (!$option->fill($params)->save()) {
-                    DB::rollback();
-
-                    return response(['form_error' => [
-                        'user_notification_option' => $option->validationErrors()->all(),
-                    ]], 422);
-                }
+                // TODO: show correct field error.
+                $option->fill($params)->saveOrExplode();
             }
-
-            return response(null, 204);
         });
+
+        return response(null, 204);
     }
 
     public function updateOptions()
