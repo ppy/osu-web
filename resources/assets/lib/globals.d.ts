@@ -48,6 +48,7 @@ interface BeatmapDiscussionHelperClass {
   messageType: DiscussionMessageType;
   format(text: string, options?: any): string;
   formatTimestamp(value: number): string;
+  previewMessage(value: string): string;
   url(options: any, useCurrent?: boolean): string;
 }
 

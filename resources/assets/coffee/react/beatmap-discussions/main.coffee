@@ -38,8 +38,8 @@ export class Main extends React.PureComponent
       readPostIds = []
 
       for discussion in beatmapset.discussions
-        for post in discussion.posts ? []
-          readPostIds.push post.id
+        for post in discussion?.posts ? []
+          readPostIds.push post.id if post?
 
       @state = {beatmapset, currentUser, readPostIds, reviewsEnabled, showDeleted}
 
@@ -162,7 +162,8 @@ export class Main extends React.PureComponent
     return @cache.beatmaps if @cache.beatmaps?
 
     hasDiscussion = {}
-    hasDiscussion[d.beatmap_id] = true for d in @state.beatmapset.discussions
+    for discussion in @state.beatmapset.discussions
+      hasDiscussion[discussion.beatmap_id] = true if discussion?
 
     @cache.beatmaps ?=
       _(@state.beatmapset.beatmaps)

@@ -6,9 +6,9 @@ import * as React from 'react';
 
 interface Props {
   dateTime: string;
-  format: string;
+  format?: string;
   key?: string;
-  relative: boolean;
+  relative?: boolean;
 }
 
 export default function TimeWithTooltip(props: Props) {

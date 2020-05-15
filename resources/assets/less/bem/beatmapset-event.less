@@ -4,7 +4,7 @@
 .beatmapset-event {
   font-size: @font-size--normal;
   display: flex;
-  margin: 2px 0;
+  padding: 2px 0;
   align-items: baseline;
 
   &__content {
@@ -35,6 +35,7 @@
     .type(discussion-restore, @blue);
     .type(discussion-unlock, @green);
     .type(disqualify, @red);
+    .type(genre-edit, @blue);
     .type(issue-reopen, @yellow);
     .type(issue-resolve, @green);
     .type(kudosu-allow, @blue);
@@ -42,11 +43,16 @@
     .type(kudosu-gain, @blue);
     .type(kudosu-lost, @red);
     .type(kudosu-recalculate, #ccc);
+    .type(language-edit, @blue);
     .type(love, @pink);
     .type(nominate, @blue);
     .type(nomination-reset, @red);
     .type(qualify, @blue);
     .type(rank, @green);
+
+    &--beatmapset-activities {
+      margin: 0 10px;
+    }
   }
 
   &__time {
