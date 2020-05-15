@@ -84,9 +84,10 @@ export default class Editor extends React.Component<Props, State> {
         <div className={`${this.bn}__hover-menu`} contentEditable={false}>
           <i className='fas fa-plus-circle' />
           <div className={`${this.bn}__menu-content`}>
-            {this.embedButton('suggestion')}
-            {this.embedButton('problem')}
-            {this.embedButton('praise')}
+            {this.insertButton('suggestion')}
+            {this.insertButton('problem')}
+            {this.insertButton('praise')}
+            {this.insertButton('paragraph')}
           </div>
         </div>
         {children}
@@ -133,15 +134,7 @@ export default class Editor extends React.Component<Props, State> {
     return ranges;
   }
 
-  embedButton = (type: string) => {
-    return (
-      <button type='button' className={`${this.bn}__menu-button ${this.bn}__menu-button--${type}`} data-dtype={type} onClick={this.insertEmbed}>
-        <i className={BeatmapDiscussionHelper.messageType.icon[type]}/>
-      </button>
-    );
-  }
-
-  insertEmbed = (event: React.MouseEvent<HTMLElement>) => {
+  insertBlock = (event: React.MouseEvent<HTMLElement>) => {
     const type = event.currentTarget.dataset.dtype;
     const beatmapId = this.props.currentBeatmap ? this.props.currentBeatmap.id : this.props.beatmaps[this.props.beatmapset.beatmaps[0].id];
 
@@ -156,16 +149,57 @@ export default class Editor extends React.Component<Props, State> {
     const node = ReactEditor.toSlateNode(this.slateEditor, lastChild);
     const path = ReactEditor.findPath(this.slateEditor, node);
     const at = SlateEditor.end(this.slateEditor, path);
+    let insertNode;
 
-    Transforms.insertNodes(this.slateEditor, {
-      beatmapId,
-      children: [{text: ''}],
-      discussionType: type,
-      type: 'embed',
-    },
-    {
-      at,
-    });
+    switch (type) {
+      case 'suggestion': case 'problem': case 'praise':
+        insertNode = {
+          beatmapId,
+          children: [{text: ''}],
+          discussionType: type,
+          type: 'embed',
+        };
+        break;
+      case 'paragraph':
+        insertNode = {
+          children: [{text: ''}],
+          type: 'paragraph',
+        };
+        break;
+    }
+
+    if (!insertNode) {
+      return;
+    }
+
+    Transforms.insertNodes(this.slateEditor, insertNode, { at });
+  }
+
+  insertButton = (type: string) => {
+    let icon = 'fas fa-question';
+
+    switch (type) {
+      case 'praise':
+      case 'problem':
+      case 'suggestion':
+        icon = BeatmapDiscussionHelper.messageType.icon[type];
+        break;
+      case 'paragraph':
+        icon = 'fas fa-indent';
+        break;
+    }
+
+    return (
+      <button
+        type='button'
+        className={`${this.bn}__menu-button ${this.bn}__menu-button--${type}`}
+        data-dtype={type}
+        onClick={this.insertBlock}
+        title={osu.trans(`beatmaps.discussions.review.insert-block.${type}`)}
+      >
+        <i className={icon}/>
+      </button>
+    );
   }
 
   onChange = (value: SlateNode[]) => {

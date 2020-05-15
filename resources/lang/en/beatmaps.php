@@ -103,6 +103,12 @@ return [
                 'unlink' => 'Unlink',
                 'unsaved' => 'Unsaved',
             ],
+            'insert-block' => [
+                'paragraph' => 'insert paragraph',
+                'praise' => 'insert praise',
+                'problem' => 'insert problem',
+                'suggestion' => 'insert suggestion',
+            ],
         ],
 
         'show' => [
