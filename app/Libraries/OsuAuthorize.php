@@ -552,8 +552,8 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        // FIXME: This should also be checking for an unset language, but the default language setting
-        //        is "Other", which is correctly used on some maps.
+        // FIXME: This should also be checking for an unset language, but the default language setting is
+        //        "Other", which is correctly used on some maps. See https://github.com/ppy/osu-web/issues/6019
         if ($beatmapset->genre_id === Genre::UNSPECIFIED) {
             return $prefix.'set_metadata';
         }
