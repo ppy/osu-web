@@ -17,6 +17,8 @@ class Genre extends Model
     protected $primaryKey = 'genre_id';
     public $timestamps = false;
 
+    const UNSPECIFIED = 1;
+
     public static function listing()
     {
         return json_collection(static::all(), new GenreTransformer());

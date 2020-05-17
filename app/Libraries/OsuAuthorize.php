@@ -19,6 +19,7 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
+use App\Models\Genre;
 use App\Models\Multiplayer\Match;
 use App\Models\OAuth\Client;
 use App\Models\User;
@@ -547,12 +548,18 @@ class OsuAuthorize
             return $prefix.'incorrect_state';
         }
 
-        if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
-            return $prefix.'exhausted';
-        }
-
         if ($user->getKey() === $beatmapset->user_id) {
             return $prefix.'owner';
+        }
+
+        // FIXME: This should also be checking for an unset language, but the default language setting
+        //        is "Other", which is correctly used on some maps.
+        if ($beatmapset->genre_id === Genre::UNSPECIFIED) {
+            return $prefix.'set_metadata';
+        }
+
+        if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
+            return $prefix.'exhausted';
         }
 
         if ($user->isLimitedBN()) {
