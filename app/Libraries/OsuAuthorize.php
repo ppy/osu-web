@@ -702,6 +702,11 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
+        static $bnEditable = [
+            Beatmapset::STATES['wip'],
+            Beatmapset::STATES['pending'],
+            Beatmapset::STATES['qualified'],
+        ];
         static $ownerEditable = [
             Beatmapset::STATES['graveyard'],
             Beatmapset::STATES['wip'],
@@ -712,7 +717,15 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->getKey() === $beatmapset->user_id && in_array($beatmapset->approved, $ownerEditable, true)) {
+        if ($user->isProjectLoved() && $beatmapset->isLoved()) {
+            return 'ok';
+        }
+
+        if ($user->getKey() === $beatmapset->user_id) {
+            if (in_array($beatmapset->approved, $ownerEditable, true) && !$beatmapset->hasNominations()) {
+                return 'ok';
+            }
+        } else if ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
             return 'ok';
         }
 
