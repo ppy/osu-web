@@ -732,7 +732,7 @@ class OsuAuthorize
             if (in_array($beatmapset->approved, $ownerEditable, true) && !$beatmapset->hasNominations()) {
                 return 'ok';
             }
-        } else if ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
+        } elseif ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
             return 'ok';
         }
 
