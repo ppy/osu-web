@@ -95,7 +95,11 @@ class UserChannel extends Model
             })
             ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
             ->where('channels.type', '=', 'PM')
-            ->with(['userScoped.friends', 'userScoped.blocks'])
+            ->with([
+                // only fetch data related to $user
+                'userScoped.friends' => function ($query) use ($userId) { $query->where('zebra_id', $userId); },
+                'userScoped.blocks' => function ($query) use ($userId) { $query->where('zebra_id', $userId); },
+            ])
             ->get();
 
         $byUserId = $userChannelMembers->keyBy('user_id');
