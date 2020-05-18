@@ -10,6 +10,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\Genre;
+use App\Models\Language;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
@@ -195,8 +196,8 @@ class BeatmapsetTest extends TestCase
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
             'download_disabled' => true,
-            'genre_id' => Genre::UNSPECIFIED + 1,
-            // FIXME: 'language_id' => Language::UNSPECIFIED + 1,
+            'genre_id' => $this->fakeGenre->genre_id,
+            'language_id' => $this->fakeLanguage->language_id,
         ];
 
         if (!isset($params['user_id'])) {
@@ -230,5 +231,15 @@ class BeatmapsetTest extends TestCase
         for ($i = 0; $i < $count; $i++) {
             $beatmapset->nominate(factory(User::class)->create());
         }
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Genre::firstOrCreate(['genre_id' => Genre::UNSPECIFIED], ['name' => 'Unspecified']);
+
+        $this->fakeGenre = factory(Genre::class)->create();
+        $this->fakeLanguage = factory(Language::class)->create();
     }
 }
