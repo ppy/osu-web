@@ -728,11 +728,14 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->getKey() === $beatmapset->user_id) {
-            if (in_array($beatmapset->approved, $ownerEditable, true) && !$beatmapset->hasNominations()) {
-                return 'ok';
-            }
-        } elseif ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
+        if ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
+            return 'ok';
+        }
+
+        if ($user->getKey() === $beatmapset->user_id &&
+            in_array($beatmapset->approved, $ownerEditable, true) &&
+            !$beatmapset->hasNominations()
+        ) {
             return 'ok';
         }
 
