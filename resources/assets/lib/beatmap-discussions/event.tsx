@@ -29,6 +29,7 @@ export default class Event extends React.PureComponent<Props> {
     return this.props.event.comment?.beatmap_discussion_id;
   }
 
+  // discussion page doesn't include the discussion as part of the event.
   private get discussion() {
     return this.props.event.discussion ?? this.props.discussions?.[this.discussionId ?? ''];
   }
@@ -64,17 +65,26 @@ export default class Event extends React.PureComponent<Props> {
 
   renderProfileVersion() {
     const cover = this.props.event.beatmapset?.covers?.list;
-    let discussionLink = route('beatmapsets.discussion', { beatmapset: this.beatmapsetId });
-    if (this.discussionId != null) {
-      discussionLink = `${discussionLink}#/${this.discussionId}`;
+
+    let discussionLink: string | undefined;
+    if (this.beatmapsetId != null) {
+      discussionLink = route('beatmapsets.discussion', { beatmapset: this.beatmapsetId });
+      if (this.discussionId != null) {
+        discussionLink = `${discussionLink}#/${this.discussionId}`;
+      }
     }
 
     return (
       <div className='beatmapset-event'>
-        <a href={discussionLink}>
-          <img className='beatmapset-cover' src={cover} />
-        </a>
-
+        {discussionLink != null ? (
+          <a href={discussionLink}>
+            <img className='beatmapset-cover' src={cover} />
+          </a>
+        ) : (
+          // TODO: this text barely fits and should be replaced with an icon
+          // instead of a translation that overflows.
+          <span className='beatmapset-cover'>beatmap deleted</span>
+        )}
         <div className={osu.classWithModifiers('beatmapset-event__icon', [kebabCase(this.props.event.type), 'beatmapset-activities'])} />
 
         <div>
