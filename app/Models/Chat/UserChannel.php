@@ -96,7 +96,7 @@ class UserChannel extends Model
             ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
             ->where('channels.type', '=', 'PM')
             ->with([
-                // only fetch data related to $user
+                // only fetch data related to $user, to be used by ChatStart privilege check
                 'userScoped.friends' => function ($query) use ($userId) {
                     $query->where('zebra_id', $userId);
                 },
