@@ -16,7 +16,7 @@ class ChangeUsernameTest extends TestCase
 {
     public function testUserCannotBeRenamed()
     {
-        $user = $this->createUser(['user_id' => 1]);
+        $user = User::find(1) ?? $this->createUser(['user_id' => 1]);
 
         $errors = $user->validateChangeUsername('newusername')->all();
         $this->assertArrayHasKey('user_id', $errors);
