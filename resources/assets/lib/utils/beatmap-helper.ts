@@ -99,8 +99,8 @@ function userModes() {
     return modes;
   }
 
-  const userModes = _.without(modes, currentMode);
-  userModes.unshift(currentMode);
+  const ret = _.without(modes, currentMode);
+  ret.unshift(ret);
 
-  return userModes;
+  return ret;
 }
