@@ -12,7 +12,6 @@ use App\Models\Chat\Channel;
 use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
-use App\Models\UserNotification;
 use App\Models\UserNotificationOption;
 use App\Traits\NotificationQueue;
 use DB;
