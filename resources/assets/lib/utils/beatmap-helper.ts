@@ -100,7 +100,7 @@ function userModes() {
   }
 
   const ret = _.without(modes, currentMode);
-  ret.unshift(ret);
+  ret.unshift(currentMode);
 
   return ret;
 }
