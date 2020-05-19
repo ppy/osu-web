@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
 import { ReportReportable } from 'report-reportable';
-import { canBeReported } from 'score-helper';
+import { canBeReported, hasReplay, hasShow } from 'score-helper';
 
 interface Props {
   score: ScoreJson;
@@ -19,25 +19,25 @@ export class PlayDetailMenu extends React.PureComponent<Props> {
 
     const children = (dismiss: () => void) => (
       <>
-        <a
-          href={route('scores.show', { mode: score.mode, score: score.best_id })}
-          className='simple-menu__item'
-        >
-          {osu.trans('users.show.extra.top_ranks.view_details')}
-        </a>
+        {hasShow(score) && (
+          <a
+            href={route('scores.show', { mode: score.mode, score: score.best_id })}
+            className='simple-menu__item'
+          >
+            {osu.trans('users.show.extra.top_ranks.view_details')}
+          </a>
+        )}
 
-        {
-          score.replay ? (
-            <a
-              className='simple-menu__item js-login-required--click'
-              data-turbolinks={false}
-              href={route('scores.download', { mode: score.mode, score: score.id })}
-              onClick={dismiss}
-            >
-              {osu.trans('users.show.extra.top_ranks.download_replay')}
-            </a>
-           ) : null
-        }
+        {hasReplay(score) && (
+          <a
+            className='simple-menu__item js-login-required--click'
+            data-turbolinks={false}
+            href={route('scores.download', { mode: score.mode, score: score.id })}
+            onClick={dismiss}
+          >
+            {osu.trans('users.show.extra.top_ranks.download_replay')}
+          </a>
+        )}
 
         {canBeReported(score) && (
           <ReportReportable
