@@ -23,7 +23,7 @@ export const BeatmapIcon = (props: Props) => {
   const difficultyRating = BeatmapHelper.getDiffRating(beatmap.difficulty_rating);
   const mode = beatmap.convert && !showConvertMode ? 'osu' : beatmap.mode;
 
-  let className = `beatmap-icon beatmap-icon--${modifier}`;
+  let className = 'beatmap-icon';
   // FIXME: update to use array of string instead
   if (modifier != null) {
     className += ` beatmap-icon--${modifier}`;
