@@ -8,7 +8,7 @@ interface Props {
   sortMode: string;
   title?: string;
   values: string[];
-  onSortSelected(event: React.MouseEvent): void;
+  onSortSelected(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export class Sort extends React.PureComponent<Props> {
