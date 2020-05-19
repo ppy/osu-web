@@ -83,7 +83,7 @@ _exported.WindowVHPatcher.init(window)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
-    osu.navigate e.target.value, (e.target.dataset.keepScroll == '1')
+  osu.navigate e.target.value, (e.target.dataset.keepScroll == '1')
 
 
 $(document).on 'keydown', (e) ->
