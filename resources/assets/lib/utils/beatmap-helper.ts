@@ -95,7 +95,7 @@ export function sort<T extends BeatmapJsonType>(beatmaps: T[]): T[] {
 
 function userModes() {
   const currentMode: GameMode | undefined = currentUser.playmode;
-  if (currentMode == null || !(currentMode in modes)) {
+  if (currentMode == null || !modes.includes(currentMode)) {
     return modes;
   }
 
