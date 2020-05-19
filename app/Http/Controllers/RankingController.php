@@ -44,7 +44,7 @@ class RankingController extends Controller
             $mode = $this->params['mode'] ?? null;
             $type = $this->params['type'] ?? null;
 
-            $this->params['filter'] = $this->params['filter'] ?? 'all';
+            $this->params['filter'] = $this->params['filter'] ?? null;
             $this->friendsOnly = $this->params['filter'] === 'friends';
 
             view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
@@ -193,7 +193,7 @@ class RankingController extends Controller
                 $maxPages * static::PAGE_SIZE,
                 static::PAGE_SIZE,
                 $page,
-                ['path' => route('rankings', ['mode' => $mode, 'type' => $type])]
+                ['path' => route('rankings', ['filter' => $this->params['filter'], 'mode' => $mode, 'type' => $type])]
             );
 
             $countries = json_collection($this->getCountries($mode), 'Country');
