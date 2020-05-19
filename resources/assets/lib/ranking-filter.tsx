@@ -58,8 +58,7 @@ export default class RankingFilter extends React.PureComponent<Props, State> {
   }
 
   handleSortSelected = (event: React.MouseEvent) => {
-    const target = event.target as HTMLElement;
-    osu.navigate(osu.updateQueryString(null, { filter: target.dataset.value }));
+    osu.navigate(osu.updateQueryString(null, { filter: event.currentTarget.dataset.value }));
   }
 
   render() {
