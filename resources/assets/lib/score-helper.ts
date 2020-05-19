@@ -18,6 +18,6 @@ export function hasReplay(score: ScoreJson) {
   return score.replay;
 }
 
-export function hasShow(score: ScoreJson) {
+export function hasShow(score: ScoreJson): score is ScoreJson & { best_id: number } {
   return score.best_id != null;
 }
