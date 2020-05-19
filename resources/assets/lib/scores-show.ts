@@ -3,7 +3,6 @@
 
 import Main from 'scores-show/main';
 
-reactTurbolinks.registerPersistent('scores-show', Main, true, (container: HTMLElement) => ({
-  container,
+reactTurbolinks.registerPersistent('scores-show', Main, true, () => ({
   score: osu.parseJson('json-show'),
 }));
