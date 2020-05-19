@@ -6,7 +6,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
-use Auth;
 
 class GroupsController extends Controller
 {
