@@ -13,7 +13,7 @@ class GroupsController extends Controller
     public function show($id)
     {
         $group = Group::visible()->findOrFail($id);
-        $currentMode = studly_case(Auth::user()->playmode ?? 'osu');
+        $currentMode = studly_case(default_mode());
 
         $users = $group->users()
             ->with('statistics'.$currentMode)

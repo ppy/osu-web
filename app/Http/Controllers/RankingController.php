@@ -38,7 +38,7 @@ class RankingController extends Controller
 
         $this->middleware(function ($request, $next) use ($mode, $type) {
             if ($mode === null) {
-                return ujs_redirect(route('rankings', ['mode' => 'osu', 'type' => 'performance']));
+                return ujs_redirect(route('rankings', ['mode' => default_mode(), 'type' => 'performance']));
             }
 
             if (!Beatmap::isModeValid($mode)) {
