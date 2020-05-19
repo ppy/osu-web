@@ -1,56 +1,94 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-class @BeatmapHelper
-  @default: ({group, items, mode}) =>
-    if items?
-      return _.findLast(items, (i) -> !i.deleted_at? && !i.convert) ? _.last(items)
+import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapJsonExtended, { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
+import GameMode from 'interfaces/game-mode';
+import * as _ from 'lodash';
 
-    return unless group?
+export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];
 
-    modes = if mode? then [mode] else @modes
-    for mode in modes
-      beatmap = @default items: group[mode]
+type BeatmapJsonType = BeatmapJson | BeatmapJsonExtended;
 
-      return beatmap if beatmap?
+function isVisibleBeatmap(beatmap: BeatmapJsonType) {
+  if (isBeatmapJsonExtended(beatmap)) {
+    return beatmap.deleted_at != null && !beatmap.convert;
+  }
 
+  return true;
+}
 
-  @find: ({group, id, mode}) =>
-    modes = if mode? then [mode] else @modes
-    for mode in modes
-      item = _.find group[mode], id: id
+interface FindDefaultParams<T> {
+  group?: Partial<Record<GameMode, T[]>>;
+  items?: T[];
+  mode?: GameMode;
+}
 
-      return item if item?
+export function findDefault<T extends BeatmapJsonType>(params: FindDefaultParams<T>): T | null {
+  if (params.items != null) {
+    return _.findLast<T>(params.items, isVisibleBeatmap)
+      ?? _.last(params.items)
+      ?? null;
+  }
 
+  if (params.group == null) return null;
 
-  @getDiffRating: (rating) ->
-    if rating < 2
-      'easy'
-    else if rating < 2.7
-      'normal'
-    else if rating < 4
-      'hard'
-    else if rating < 5.3
-      'insane'
-    else if rating < 6.5
-      'expert'
-    else
-      'expert-plus'
+  const findModes = params.mode == null ? modes : [params.mode];
 
+  for (const m of findModes) {
+    const beatmap = findDefault({ items: params.group[m] });
 
-  @group: (beatmaps) =>
-    grouped = _.groupBy beatmaps, 'mode'
-    for own mode, items of grouped
-      grouped[mode] = @sort items
+    if (beatmap != null) return beatmap;
+  }
 
-    grouped
+  return null;
+}
 
+interface FindParams<T> {
+  group: Partial<Record<GameMode, T[]>>;
+  id: number;
+  mode?: GameMode;
+}
 
-  @modes: ['osu', 'taiko', 'fruits', 'mania']
+export function find<T extends BeatmapJsonType>(params: FindParams<T>): T | null {
+  const findModes = params.mode == null ? modes : [params.mode];
 
+  for (const m of findModes) {
+    const item = (params.group[m] ?? []).find((i) => i.id === params.id);
 
-  @sort: (beatmaps) ->
-    if beatmaps[0].mode == 'mania'
-      _.orderBy beatmaps, ['convert', 'cs', 'difficulty_rating'], ['desc', 'asc', 'asc']
-    else
-      _.orderBy beatmaps, ['convert', 'difficulty_rating'], ['desc', 'asc']
+    if (item != null) return item;
+  }
+
+  return null;
+}
+
+export function getDiffRating(rating: number) {
+  if (rating < 2) return 'easy';
+  if (rating < 2.7) return 'normal';
+  if (rating < 4) return 'hard';
+  if (rating < 5.3) return 'insane';
+  if (rating < 6.5) return 'expert';
+  return 'expert-plus';
+}
+
+export function group<T extends BeatmapJsonType>(beatmaps: T[]): Partial<Record<GameMode, T[]>> {
+  const grouped = _.groupBy(beatmaps, 'mode');
+
+  _.forOwn(grouped, (items, mode) => {
+    grouped[mode] = sort(items);
+  });
+
+  return grouped;
+}
+
+export function sort<T extends BeatmapJsonType>(beatmaps: T[]): T[] {
+  if (beatmaps.length === 0) {
+    return [];
+  }
+
+  if (beatmaps[0].mode === 'mania') {
+    return _.orderBy(beatmaps, ['convert', 'cs', 'difficulty_rating'], ['desc', 'asc', 'asc']);
+  }
+
+  return _.orderBy(beatmaps, ['convert', 'difficulty_rating'], ['desc', 'asc']);
+}

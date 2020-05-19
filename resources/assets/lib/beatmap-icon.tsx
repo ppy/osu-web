@@ -5,6 +5,7 @@ import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { FunctionComponent } from 'react';
+import { getDiffRating } from 'utils/beatmap-helper';
 
 interface Props {
   beatmap: BeatmapJsonExtended;
@@ -13,7 +14,7 @@ interface Props {
 }
 
 export const BeatmapIcon: FunctionComponent<Props> = ({beatmap, showTitle = true, modifier}) => {
-  const difficultyRating = BeatmapHelper.getDiffRating(beatmap.difficulty_rating);
+  const difficultyRating = getDiffRating(beatmap.difficulty_rating);
   const mode = beatmap.convert ? 'osu' : beatmap.mode;
 
   let className = `beatmap-icon beatmap-icon--${modifier}`;
