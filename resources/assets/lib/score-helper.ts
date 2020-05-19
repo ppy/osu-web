@@ -11,9 +11,13 @@ export const canBeReported = (score: ScoreJson) => {
 
 // TODO: move to application state repository thingy later
 export const hasMenu = (score: ScoreJson) => {
-  return score.best_id != null;
+  return canBeReported(score) || hasReplay(score) || hasShow(score);
 };
 
 export const hasReplay = (score: ScoreJson) => {
   return score.replay;
 };
+
+export function hasShow (score: ScoreJson) {
+  return score.best_id != null;
+}
