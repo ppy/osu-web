@@ -65,7 +65,6 @@ class ScoresController extends Controller
                 'beatmapset',
                 'rank_country',
                 'rank_global',
-                'user',
                 'user.cover',
                 'user.country',
             ]),
