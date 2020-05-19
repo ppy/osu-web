@@ -8,7 +8,7 @@ import { Sort } from 'sort';
 type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
 
 interface Props {
-  countries: Country[];
+  countries: Required<Country>[];
   sortMode: string;
   type: RankingTypes;
 }
@@ -34,6 +34,10 @@ export default class RankingFilter extends React.PureComponent<Props, State> {
     super(props);
 
     const countries = props.countries.sort((a, b) => {
+      const priority = b.display - a.display;
+
+      if (priority !== 0) return priority;
+
       return a.name.localeCompare(b.name);
     });
 

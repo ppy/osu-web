@@ -98,8 +98,10 @@ interface ChangelogBuild {
   version: string;
 }
 
+// FIXME: make importable
 interface Country {
   code: string;
+  display?: number;
   name: string;
 }
 

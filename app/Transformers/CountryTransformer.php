@@ -9,7 +9,10 @@ use App\Models\Country;
 
 class CountryTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = ['ranking'];
+    protected $availableIncludes = [
+        'display',
+        'ranking',
+    ];
 
     public function transform(Country $country)
     {
@@ -17,6 +20,11 @@ class CountryTransformer extends TransformerAbstract
             'code' => $country->acronym,
             'name' => $country->name,
         ];
+    }
+
+    public function includeDisplay(Country $country)
+    {
+        return $this->primitive($country->display);
     }
 
     public function includeRanking(Country $country)
