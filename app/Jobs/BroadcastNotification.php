@@ -12,6 +12,7 @@ use App\Models\Chat\Channel;
 use App\Models\Follow;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserNotification;
 use App\Models\UserNotificationOption;
 use App\Traits\NotificationQueue;
 use DB;
@@ -36,17 +37,18 @@ class BroadcastNotification implements ShouldQueue
 
     private static function beatmapsetWatcherUserIds($beatmapset)
     {
-        return static::filterBeatmapsetModdingUserIds(
-            $beatmapset->watches()->pluck('user_id')->all()
+        return static::filterUserIdsForNotificationOption(
+            $beatmapset->watches()->pluck('user_id')->all(),
+            UserNotificationOption::BEATMAPSET_MODDING
         );
     }
 
-    private static function filterBeatmapsetModdingUserIds(array $userIds)
+    private static function filterUserIdsForNotificationOption(array $userIds, $optionName)
     {
         // FIXME: filtering all the ids could get quite large?
         $notificationOptions = UserNotificationOption
             ::whereIn('user_id', $userIds)
-            ->where(['name' => UserNotificationOption::BEATMAPSET_MODDING])
+            ->where(['name' => $optionName])
             ->whereNotNull('details')
             ->get()
             ->keyBy('user_id');
@@ -191,7 +193,10 @@ class BroadcastNotification implements ShouldQueue
             }
         }
 
-        $this->receiverIds = static::filterBeatmapsetModdingUserIds($this->receiverIds);
+        $this->receiverIds = static::filterUserIdsForNotificationOption(
+            $this->receiverIds,
+            UserNotificationOption::BEATMAPSET_MODDING
+        );
 
         $this->assignBeatmapsetDiscussionNotificationDetails();
     }
@@ -321,6 +326,11 @@ class BroadcastNotification implements ShouldQueue
             ->where('user_id', '<>', $this->source->getKey())
             ->pluck('user_id')
             ->all();
+
+        $this->receiverIds = static::filterUserIdsForNotificationOption(
+            $this->receiverIds,
+            UserNotificationOption::FORUM_TOPIC_REPLY
+        );
 
         $this->params['details'] = [
             'title' => $this->notifiable->topic_title,
