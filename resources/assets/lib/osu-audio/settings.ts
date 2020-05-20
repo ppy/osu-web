@@ -59,15 +59,10 @@ export default class Settings {
   }
 
   private storedAutoplay() {
-    try {
-      const local = JSON.parse(localStorage.audioAutoplay ?? '');
+    const local = this.fromLocalStorage('audioAutoplay');
 
-      if (typeof local === 'boolean') {
-        return local;
-      }
-    } catch {
-      console.debug('invalid local audioAutoplay data');
-      delete localStorage.audioAutoplay;
+    if (typeof local === 'boolean') {
+      return local;
     }
 
     const userPreference = currentUser.user_preferences?.audio_autoplay;
@@ -80,15 +75,10 @@ export default class Settings {
   }
 
   private storedMuted() {
-    try {
-      const local = JSON.parse(localStorage.audioMuted ?? '');
+    const local = this.fromLocalStorage('audioMuted');
 
-      if (typeof local === 'boolean') {
-        return local;
-      }
-    } catch {
-      console.debug('invalid local audioMuted data');
-      delete localStorage.audioMuted;
+    if (typeof local === 'boolean') {
+      return local;
     }
 
     const userPreference = currentUser.user_preferences?.audio_muted;
@@ -101,15 +91,10 @@ export default class Settings {
   }
 
   private storedVolume() {
-    try {
-      const local = JSON.parse(localStorage.audioVolume ?? '');
+    const local = this.fromLocalStorage('audioVolume');
 
-      if (typeof local === 'number') {
-        return local;
-      }
-    } catch {
-      console.debug('invalid local audioVolume data');
-      delete localStorage.audioVolume;
+    if (typeof local === 'number') {
+      return local;
     }
 
     const userPreference = currentUser.user_preferences?.audio_volume;
@@ -119,5 +104,20 @@ export default class Settings {
     }
 
     return 0.45;
+  }
+
+  private fromLocalStorage(key: string) {
+    if (localStorage[key] == null) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(localStorage[key]);
+    } catch {
+      console.debug(`invalid local ${key} data`);
+      delete localStorage[key];
+
+      return null;
+    }
   }
 }
