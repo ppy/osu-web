@@ -13,22 +13,14 @@ interface Props {
   type: RankingTypes;
 }
 
-interface State {
-  country: string | null;
-}
-
 const allCountries = { id: null, text: osu.trans('rankings.countries.all') };
 
-export default class RankingFilter extends React.PureComponent<Props, State> {
+export default class RankingFilter extends React.PureComponent<Props> {
   static defaultProps = {
     sortMode: 'all',
   };
 
-  readonly state: State = {
-    country: new URL(window.location.href).searchParams.get('country'),
-  };
-
-  private options: Item<string>[];
+  private options = new Map<string | null, Item<string>>();
 
   constructor(props: Props) {
     super(props);
@@ -41,16 +33,18 @@ export default class RankingFilter extends React.PureComponent<Props, State> {
       return a.name.localeCompare(b.name);
     });
 
-    this.options = [
-      allCountries,
-      ...countries.map((country) => {
-        return { id: country.code, text: country.name };
-      }),
-    ];
+    this.options.set(allCountries.id, allCountries);
+    countries.forEach((country) => {
+      this.options.set(country.code, { id: country.code, text: country.name });
+    });
   }
 
-  get selectedCountry() {
-    return this.options.find((x) => x.id === this.state.country) ?? allCountries;
+  get country() {
+    return new URL(window.location.href).searchParams.get('country');
+  }
+
+  get selectedOption() {
+    return this.options.get(this.country) ?? allCountries;
   }
 
   handleItemSelected = (item: Item) => {
@@ -86,22 +80,22 @@ export default class RankingFilter extends React.PureComponent<Props, State> {
     return (
       <SelectOptions
         bn='ranking-select-options'
-        renderItem={this.renderItem}
+        renderItem={this.renderOption}
         onItemSelected={this.handleItemSelected}
-        options={this.options}
-        selected={this.selectedCountry}
+        options={[...this.options.values()]} // TODO: change to iterable
+        selected={this.selectedOption}
       />
     );
   }
 
-  renderItem(item: RenderProps) {
+  renderOption(option: RenderProps) {
     return (
       <a
-        children={item.children}
-        className={item.cssClasses}
-        href={osu.updateQueryString(null, { country: item.item.id })}
-        key={item.item.id ?? ''}
-        onClick={item.onClick}
+        children={option.children}
+        className={option.cssClasses}
+        href={osu.updateQueryString(null, { country: option.item.id })}
+        key={option.item.id ?? ''}
+        onClick={option.onClick}
       />
     );
   }
