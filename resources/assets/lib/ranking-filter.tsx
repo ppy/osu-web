@@ -8,7 +8,7 @@ import { Sort } from 'sort';
 type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
 
 interface Props {
-  countries: Required<Country>[];
+  countries?: Required<Country>[];
   type: RankingTypes;
 }
 
@@ -20,18 +20,20 @@ export default class RankingFilter extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);
 
-    const countries = props.countries.sort((a, b) => {
-      const priority = b.display - a.display;
+    if (props.countries != null) {
+      const countries = props.countries.sort((a, b) => {
+        const priority = b.display - a.display;
 
-      if (priority !== 0) return priority;
+        if (priority !== 0) return priority;
 
-      return a.name.localeCompare(b.name);
-    });
+        return a.name.localeCompare(b.name);
+      });
 
-    this.options.set(allCountries.id, allCountries);
-    countries.forEach((country) => {
-      this.options.set(country.code, { id: country.code, text: country.name });
-    });
+      this.options.set(allCountries.id, allCountries);
+      countries.forEach((country) => {
+        this.options.set(country.code, { id: country.code, text: country.name });
+      });
+    }
   }
 
   get countryCode() {
