@@ -129,11 +129,11 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Zwiększony limit przesyłanych beatmap',
-                'description' => 'Maksymalna liczba posiadanych beatmap nierankingowych jest obliczana na podstawie wartości bazowej, do której dolicza się premię za każdą rankingową beatmapę, jaką masz na koncie (do pewnej granicy).<br/><br/>Zazwyczaj jest to 4 plus 1 (maks. 2). Mając status donatora, ta wartość jest zwiększona do 8 plus 1 (maks 12).',
+                'description' => 'Maksymalna liczba posiadanych beatmap nierankingowych jest obliczana na podstawie wartości bazowej, do której dolicza się premię za każdą rankingową beatmapę, jaką masz na koncie (do pewnej granicy).<br/><br/>Zazwyczaj jest to :base plus :bonus (maks. :bonus_max). Mając status donatora, ta wartość jest zwiększona do :supporter_base plus :supporter_bonus (maks. :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Rankingi znajomych',
-                'description' => 'Rywalizuj ze swoimi znajomymi i zobacz, jak ci idzie!*<br/><br/><small>* funkcja jeszcze niedostępna na nowej stronie</small>',
+                'description' => 'Rywalizuj ze swoimi znajomymi i zobacz, jak ci idzie!',
             ],
 
         ],

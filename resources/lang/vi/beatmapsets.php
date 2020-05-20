@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Góc Thảo Luận',
 
@@ -66,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => '',
-                'button_title' => '',
             ],
 
             'report' => [
                 '_' => '',
                 'button' => 'Báo cáo vấn đề',
-                'button_title' => '',
                 'link' => 'đây',
             ],
         ],

@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Бітмапы',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => 'спампаваць',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Абмеркаванне',
 
@@ -66,14 +75,12 @@ return [
 
             'disqualify' => [
                 '_' => '',
-                'button_title' => '',
             ],
 
             'report' => [
                 '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                'button' => 'Паведаміць аб праблеме',
+                'link' => 'тут',
             ],
         ],
 
@@ -141,13 +148,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
+            'ranked' => 'Ранкавана',
             'approved' => '',
-            'loved' => '',
-            'qualified' => '',
+            'loved' => 'Любімая',
+            'qualified' => 'Кваліфікавана',
             'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'pending' => 'У чаканні',
+            'graveyard' => 'Закінутая',
         ],
     ],
 ];

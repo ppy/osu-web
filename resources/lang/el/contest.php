@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Τελείωσε στις :date',
+        'ended_no_date' => '',
 
         'starts' => [
             '_' => 'Ξεκινάει στις :date',

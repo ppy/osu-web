@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => 'Parámetro de solicitud no válido',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Página no encontrada',
             'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",

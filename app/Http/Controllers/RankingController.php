@@ -31,6 +31,8 @@ class RankingController extends Controller
     {
         parent::__construct();
 
+        $this->middleware('require-scopes:public');
+
         $this->middleware(function ($request, $next) {
             $this->params = get_params(array_merge($request->all(), $request->route()->parameters()), null, [
                 'country', // overridden later for view

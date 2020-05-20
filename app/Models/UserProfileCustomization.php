@@ -31,6 +31,8 @@ class UserProfileCustomization extends Model
         'kudosu',
     ];
 
+    const BEATMAPSET_DOWNLOAD = ['all', 'no_video', 'direct'];
+
     const USER_LIST = [
         'filters' => ['all' => ['all', 'online', 'offline'], 'default' => 'all'],
         'sorts' => ['all' => ['last_visit', 'rank', 'username'], 'default' => 'last_visit'],
@@ -75,6 +77,62 @@ class UserProfileCustomization extends Model
         $this->cover_json = $this->cover()->set($id, $file);
 
         $this->save();
+    }
+
+    public function getAudioAutoplayAttribute()
+    {
+        return $this->options['audio_autoplay'] ?? false;
+    }
+
+    public function setAudioAutoplayAttribute($value)
+    {
+        if (!is_bool($value)) {
+            $value = null;
+        }
+
+        $this->setOption('audio_autoplay', $value);
+    }
+
+    public function getAudioMutedAttribute()
+    {
+        return $this->options['audio_muted'] ?? false;
+    }
+
+    public function setAudioMutedAttribute($value)
+    {
+        if (!is_bool($value)) {
+            $value = null;
+        }
+
+        $this->setOption('audio_muted', $value);
+    }
+
+    public function getAudioVolumeAttribute()
+    {
+        return $this->options['audio_volume'] ?? null;
+    }
+
+    public function setAudioVolumeAttribute($value)
+    {
+        if (!is_float($value) && !is_int($value)) {
+            $value = null;
+        }
+
+        $this->setOption('audio_volume', $value);
+    }
+
+    public function getBeatmapsetDownloadAttribute()
+    {
+        return $this->options['beatmapset_download'] ?? static::BEATMAPSET_DOWNLOAD[0];
+    }
+
+    public function setBeatmapsetDownloadAttribute($value)
+    {
+        if ($value !== null && !in_array($value, static::BEATMAPSET_DOWNLOAD, true)) {
+            $value = null;
+        }
+
+        $this->setOption('beatmapset_download', $value);
     }
 
     public function getCommentsSortAttribute()

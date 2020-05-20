@@ -28,7 +28,14 @@ return [
         'id' => 'Client-ID',
         'name' => 'Anwendungsname',
         'redirect' => 'Anwendungs-Callback-URL',
+        'reset' => 'Client-Secret zurücksetzen',
+        'reset_failed' => 'Client-Secret konnte nicht zurückgesetzt werden',
         'secret' => 'Client Secret',
+
+        'secret_visible' => [
+            'false' => 'Client-Secret zeigen',
+            'true' => 'Client-Secret verbergen',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Bist du sicher, dass du dieses Gerät löschen willst?',
+        'confirm_reset' => 'Möchten Sie das Client-Secret wirklich zurücksetzen? Dadurch werden alle vorhandenen Tokens widerrufen.',
         'new' => 'Neue OAuth-Anwendung',
         'none' => 'Keine Geräte',
 

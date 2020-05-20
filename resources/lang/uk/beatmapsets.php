@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Карти',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Обговорення',
 
@@ -39,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'затверджено :timeago',
+            'loved' => 'улюблена :timeago',
+            'qualified' => 'кваліфікована :timeago',
+            'ranked' => 'рейтингова :timeago',
+            'submitted' => 'завантажена :timeago',
+            'updated' => 'оновлена :timeago',
         ],
 
         'favourites' => [
@@ -66,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => 'Якщо ви знайшли проблему в цій карті, будь ласка, позбавите її кваліфікації :link.',
-                'button_title' => 'Дискваліфікувати кваліфіковану карту.',
             ],
 
             'report' => [
                 '_' => 'Якщо ви знайшли проблему в цій карті, повідомте про це :link щоб наша команда дізналася.',
                 'button' => 'Повідомити про проблему',
-                'button_title' => 'Повідомити про проблему з кваліфікованою картою.',
                 'link' => 'тут',
             ],
         ],

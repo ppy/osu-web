@@ -244,43 +244,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         }
     }
 
-    /**
-     * Includes if player has completed the set in a given playmode
-     * Returns the count of beatmaps in the set that were completed
-     * in a specified column, or 'count' by default.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $mode playmode to include.
-     * @param mixed $fieldName field name to return the count in.
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeWithHasCompleted($query, $mode, $user, $fieldName = 'count')
-    {
-        if (Beatmap::modeStr($mode) === null) {
-            throw new \Exception('invalid game mode');
-        }
-
-        $scoreClass = Score\Best\Model::getClass($mode);
-        $beatmapsetTable = $this->getTable();
-        $beatmapTable = (new Beatmap)->getTable();
-        $scoreBestTable = (new $scoreClass)->getTable();
-
-        if ($user) {
-            $userId = $user->user_id;
-            $counts = DB::raw("(SELECT count(*)
-                                    FROM {$scoreBestTable}
-                                    WHERE {$scoreBestTable}.user_id = {$userId}
-                                    AND {$scoreBestTable}.beatmap_id IN (SELECT beatmap_id
-                                        FROM {$beatmapTable} WHERE {$beatmapTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
-                                    )
-                                ) as {$fieldName}");
-        } else {
-            $counts = DB::raw("(SELECT 0) as {$fieldName}");
-        }
-
-        return $query->addSelect($counts);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | Scope Checker Functions

@@ -11,6 +11,12 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
+  &::after {
+    content: '';
+    display: block;
+    padding-bottom: 80px;
+  }
+
   @media @mobile {
     padding: 10px 0px;
   }

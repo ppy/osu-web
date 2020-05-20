@@ -690,6 +690,14 @@ function ext_view($view, $data = null, $type = null, $status = null)
     );
 }
 
+function from_app_url()
+{
+    // Add trailing slash so people can't just use https://osu.web.domain.com
+    // to bypass https://osu.web referrer check.
+    // This assumes app.url doesn't contain trailing slash.
+    return starts_with(request()->headers->get('referer'), config('app.url').'/');
+}
+
 function is_api_request()
 {
     return request()->is('api/*');
@@ -706,6 +714,13 @@ function is_sql_unique_exception($ex)
         $ex->getMessage(),
         'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry'
     );
+}
+
+function js_localtime($date)
+{
+    $formatted = json_time($date);
+
+    return "<time class='js-localtime' datetime='{$formatted}'>{$formatted}</time>";
 }
 
 function page_title()
@@ -753,10 +768,9 @@ function route_redirect($path, $target)
 
 function timeago($date)
 {
-    $display_date = i18n_time($date);
-    $attribute_date = json_time($date);
+    $formatted = json_time($date);
 
-    return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
+    return "<time class='js-timeago' datetime='{$formatted}'>{$formatted}</time>";
 }
 
 function link_to_user($id, $username = null, $color = null, $classNames = null)
@@ -1041,12 +1055,6 @@ function i18n_number_format($number, $style = null, $pattern = null, $precision 
     }
 
     return $formatter->format($number);
-}
-
-function i18n_time($datetime, $format = IntlDateFormatter::LONG)
-{
-    return IntlDateFormatter::create(App::getLocale(), $format, $format)
-        ->format($datetime);
 }
 
 function open_image($path, $dimensions = null)
@@ -1556,7 +1564,7 @@ function section_to_hue_map($section): int
         'blue' => 200,
         'darkorange' => 20,
         'green' => 115,
-        'orange' => 46,
+        'orange' => 45,
         'pink' => 333,
         'purple' => 255,
         'red' => 0,

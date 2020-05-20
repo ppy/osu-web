@@ -77,7 +77,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'Ditandai selesai oleh :user',
+            'true' => 'Ditandai sebagai telah terjawab oleh :user',
             'false' => 'Dibuka ulang oleh :user',
         ],
     ],

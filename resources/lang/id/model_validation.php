@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => ':attribute yang ditentukan tidak valid.',
     'not_negative' => ':attribute tidak bisa negatif.',
     'required' => ':attribute diwajibkan.',
     'too_long' => ':attribute melebihi batas maksimum - hanya bisa hingga :limit karakter.',
@@ -124,7 +124,7 @@ return [
         'invalid_country' => 'Negara tidak ada dalam basis data.',
         'invalid_discord' => 'Nama pengguna Discord tidak valid.',
         'invalid_email' => "Tampaknya bukan alamat email yang valid.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Nama pengguna Twitter tidak valid.',
         'too_short' => 'Kata sandi baru terlalu pendek.',
         'unknown_duplicate' => 'Nama pengguna atau alamat email sudah digunakan.',
         'username_available_in' => 'Nama pengguna ini akan tersedia untuk digunakan dalam :duration.',

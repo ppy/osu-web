@@ -41,12 +41,12 @@ export default class Channel {
 
   @computed
   get hasEarlierMessages() {
-    return this.firstMessageId !== this.messages[0]?.messageId;
+    return this.firstMessageId !== this.minMessageId;
   }
 
   @computed
   get minMessageId() {
-    const id = this.messages[0]?.messageId ?? -1;
+    const id = this.messages[0]?.messageId;
 
     return typeof id === 'number' ? id : -1;
   }
@@ -155,6 +155,7 @@ export default class Channel {
     this.firstMessageId = presence.first_message_id ?? -1;
 
     this.users = presence.users;
+    this.moderated = presence.moderated;
     this.metaLoaded = true;
   }
 }

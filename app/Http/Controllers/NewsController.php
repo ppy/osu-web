@@ -10,13 +10,21 @@ use App\Models\NewsPost;
 
 class NewsController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('require-scopes:public');
+    }
+
     public function index()
     {
-        $format = request('format');
+        $params = request()->all();
+        $format = $params['format'] ?? null;
         $isFeed = $format === 'atom' || $format === 'rss';
         $limit = $isFeed ? 20 : 12;
 
-        $search = NewsPost::search(array_merge(['limit' => $limit], request()->all()));
+        $search = NewsPost::search(array_merge(['limit' => $limit, 'year' => date('Y')], $params));
 
         $posts = $search['query']->get();
 

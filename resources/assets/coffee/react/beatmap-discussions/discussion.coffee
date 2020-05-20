@@ -313,7 +313,7 @@ export class Discussion extends React.PureComponent
 
   resolvedSystemPostId: =>
     if !@_resolvedSystemPostId?
-      systemPost = _.findLast(@props.discussion.posts, (post) -> post.system && post.message.type == 'resolved')
+      systemPost = _.findLast(@props.discussion.posts, (post) -> post? && post.system && post.message.type == 'resolved')
       @_resolvedSystemPostId = systemPost?.id ? -1
 
     return @_resolvedSystemPostId

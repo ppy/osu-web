@@ -15,6 +15,15 @@ return [
         'guest_title' => '비트맵',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '다운로드',
+            'video' => '영상 포함된 것으로 받기',
+            'no_video' => '영상 없는 것으로 받기',
+            'direct' => 'osu!direct에서 열기',
+        ],
+    ],
+
     'show' => [
         'discussion' => '토론',
 
@@ -66,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => '이 비트맵에 문제가 있다면, :link해 주세요.',
-                'button_title' => 'Qualified 비트맵을 Disqualify 처리',
             ],
 
             'report' => [
                 '_' => '이 비트맵에서 문제를 찾으셨다면 :link에서 저희에게 신고해 주세요.',
                 'button' => '문제 보고',
-                'button_title' => 'Qualified 비트맵의 문제를 신고합니다.',
                 'link' => '여기',
             ],
         ],

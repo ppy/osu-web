@@ -34,11 +34,16 @@ class BBCodeForDB
 
     public function parseAudio($text)
     {
-        return preg_replace(
-            ",\[(audio)\](.+?\.mp3)\[(/audio)\],",
-            "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
-            $text
-        );
+        preg_match_all("#\[audio\](?<url>.*?)\[/audio\]#", $text, $audio, PREG_SET_ORDER);
+
+        foreach ($audio as $a) {
+            $escapedUrl = $this->extraEscapes($a['url']);
+
+            $audioTag = "[audio:{$this->uid}]{$escapedUrl}[/audio:{$this->uid}]";
+            $text = str_replace($a[0], $audioTag, $text);
+        }
+
+        return $text;
     }
 
     /**
@@ -60,8 +65,10 @@ class BBCodeForDB
 
     public function parseBox($text)
     {
-        $text = preg_replace("#(\[box=.*?)\](.*?)(\[/box)\]#s", "\\1:{$this->uid}]\\2\\3:{$this->uid}]", $text);
-        $text = preg_replace("#(\[spoilerbox)\](.*?)(\[/spoilerbox)\]#s", "\\1:{$this->uid}]\\2\\3:{$this->uid}]", $text);
+        $text = preg_replace("#\[box=([^]]*?)\]#s", "[box=\\1:{$this->uid}]", $text);
+        $text = str_replace('[/box]', "[/box:{$this->uid}]", $text);
+        $text = str_replace('[spoilerbox]', "[spoilerbox:{$this->uid}]", $text);
+        $text = str_replace('[/spoilerbox]', "[/spoilerbox:{$this->uid}]", $text);
 
         return $text;
     }
@@ -153,7 +160,7 @@ class BBCodeForDB
 
     public function parseLinks($text)
     {
-        $spaces = ["(^|\s(?:&lt;|[.:([])*)", "((?:&gt;|[.:)\]])*(?:$|\s|\n|\r))"];
+        $spaces = ["(^|\[.+?\]|\s(?:&lt;|[.:([])*)", "((?:\[.+?\]|&gt;|[.:)\]])*(?:$|\s|\n|\r))"];
         $internalUrl = rtrim(preg_quote(config('app.url'), '#'), '/');
 
         // internal url
@@ -172,14 +179,14 @@ class BBCodeForDB
 
         // www
         $text = preg_replace(
-            "/{$spaces[0]}(www\.[^\s]+){$spaces[1]}/",
+            "#{$spaces[0]}(www\.[^\s]+){$spaces[1]}#",
             "\\1<!-- w --><a href='http://\\2' rel='nofollow'>\\2</a><!-- w -->\\3",
             $text
         );
 
         // emails
         $text = preg_replace(
-            "/{$spaces[0]}([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+){$spaces[1]}/",
+            "#{$spaces[0]}([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+){$spaces[1]}#",
             "\\1<!-- e --><a href='mailto:\\2' rel='nofollow'>\\2</a><!-- e -->\\3",
             $text
         );
@@ -313,6 +320,7 @@ class BBCodeForDB
     {
         $text = htmlentities($this->text, ENT_QUOTES, 'UTF-8', true);
 
+        $text = $this->unifyNewline($text);
         $text = $this->parseCode($text);
         $text = $this->parseNotice($text);
         $text = $this->parseBox($text);
@@ -335,5 +343,10 @@ class BBCodeForDB
         $text = $this->parseLinks($text);
 
         return $text;
+    }
+
+    public function unifyNewline($text)
+    {
+        return str_replace(["\r\n", "\r"], ["\n", "\n"], $text);
     }
 }

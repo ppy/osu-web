@@ -11,7 +11,7 @@
     padding-left: @_padding-left;
     color: @osu-colour-c2;
 
-    .@{_top}.js-spoilerbox--open & {
+    .@{_top}.js-spoilerbox--open > & {
       display: block;
     }
   }
@@ -35,14 +35,14 @@
 
     &::before {
       .fas();
-      content: '\f105'; // angle-right
+      content: @fa-var-angle-right;
       color: @osu-colour-c1;
       display: inline-block;
       text-align: left;
     }
 
-    .@{_top}.js-spoilerbox--open &::before {
-      content: '\f107'; // angle-down
+    .@{_top}.js-spoilerbox--open > .@{_top}__link > &::before {
+      content: @fa-var-angle-down;
     }
   }
 }

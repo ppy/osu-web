@@ -28,7 +28,14 @@ return [
         'id' => '',
         'name' => 'Alkalmazás neve',
         'redirect' => '',
+        'reset' => '',
+        'reset_failed' => '',
         'secret' => 'Ügyfél titkos kódja',
+
+        'secret_visible' => [
+            'false' => '',
+            'true' => '',
+        ],
     ],
 
     'new_client' => [
@@ -42,6 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '',
+        'confirm_reset' => '',
         'new' => 'Új OAuth alkalmazás',
         'none' => 'Nincs Kliens',
 

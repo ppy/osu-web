@@ -29,7 +29,7 @@ return [
             'username' => 'Felhasználónév',
 
             'beatmapset_status' => [
-                '_' => '',
+                '_' => 'Beatmap státusz',
                 'all' => 'Mind',
                 'disqualified' => 'Diszkvalifikálva',
                 'never_qualified' => 'Minősítetlen',

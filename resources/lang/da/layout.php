@@ -28,7 +28,7 @@ return [
 
         'help' => [
             'index' => 'indeks',
-            'sitemap' => '',
+            'sitemap' => 'Sitemap',
         ],
 
         'store' => [
@@ -116,7 +116,7 @@ return [
             'forum' => 'Fællesskabsforummer',
             'livestreams' => 'Live Streams',
             'report' => 'Rapportér en Fejl',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Legal & Status',
@@ -129,6 +129,10 @@ return [
     ],
 
     'errors' => [
+        '400' => [
+            'error' => 'Ugyldigt forespørgselsparametre',
+            'description' => '',
+        ],
         '404' => [
             'error' => 'Siden findes ikke',
             'description' => "Beklager, men siden du forsøger at finde, eksisterer ikke!",
@@ -146,7 +150,7 @@ return [
             'description' => "Beklager, men siden, du forsøger at finde, eksisterer ikke!!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Ugyldige forespørgselsparametre',
             'description' => '',
         ],
         '500' => [

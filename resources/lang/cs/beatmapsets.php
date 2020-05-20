@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Beatmapy',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Diskuze',
 
@@ -66,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => '',
-                'button_title' => '',
             ],
 
             'report' => [
                 '_' => '',
                 'button' => 'Nahlásit problém',
-                'button_title' => '',
                 'link' => 'zde',
             ],
         ],

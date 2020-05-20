@@ -5,7 +5,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\UserSubscriptionChangeEvent;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\Follow;
 use Exception;
@@ -36,8 +35,6 @@ class FollowsController extends Controller
             }
         }
 
-        event(new UserSubscriptionChangeEvent('add', auth()->user(), $follow));
-
         return response([], 204);
     }
 
@@ -48,7 +45,6 @@ class FollowsController extends Controller
 
         if ($follow !== null) {
             $follow->delete();
-            event(new UserSubscriptionChangeEvent('remove', auth()->user(), $follow));
         }
 
         return response([], 204);

@@ -6,7 +6,7 @@ import { Mods } from 'mods'
 import { PlayDetailMenu } from 'play-detail-menu'
 import * as React from 'react'
 import { a, div, tr, td } from 'react-dom-factories'
-import { ScoreHelper } from 'score-helper'
+import { hasMenu } from 'score-helper'
 el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
@@ -49,7 +49,7 @@ export class ScoreboardTableRow extends React.PureComponent
         a
           className: "#{bn}__user-link js-usercard"
           'data-user-id': score.user.id
-          href: laroute.route 'users.show', user: score.user.id
+          href: laroute.route 'users.show', user: score.user.id, mode: @props.beatmap.mode
           score.user.username
 
       td className: osu.classWithModifiers(cell, ['perfect'] if score.max_combo == @props.beatmap.max_combo),
@@ -70,6 +70,6 @@ export class ScoreboardTableRow extends React.PureComponent
         el Mods, modifiers: ['scoreboard'], mods: score.mods
 
       td className: "#{bn}__popup-menu",
-        if ScoreHelper.hasMenu(score)
+        if hasMenu(score)
           el PlayDetailMenu,
             { score }

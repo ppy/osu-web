@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Beatmapler',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => '',
+            'video' => '',
+            'no_video' => '',
+            'direct' => '',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Tartışma',
 
@@ -66,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => 'Eğer bu beatmap\'de bir sorun bulduysanız, lütfen diskalifiye ediniz :link.',
-                'button_title' => 'Nitelikli bir beatmap\'i diskalifiye et.',
             ],
 
             'report' => [
                 '_' => '',
                 'button' => 'Sorun bildir',
-                'button_title' => '',
                 'link' => '',
             ],
         ],

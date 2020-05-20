@@ -27,7 +27,7 @@
                         <input
                             class="simple-form__input"
                             name="user"
-                            value="{{ $search['params']['user'] ?? '' }}"
+                            value="{{ $params['user'] ?? '' }}"
                         >
                     </label>
                 @endif
@@ -38,7 +38,7 @@
                     </div>
                     <div class="simple-form__checkboxes-overflow">
                         @php
-                            if (present($search['params']['user'] ?? null)) {
+                            if (present($params['user'] ?? null)) {
                                 $types = App\Models\BeatmapsetEvent::types('public');
                                 if (priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can()) {
                                     $types = array_merge($types, App\Models\BeatmapsetEvent::types('kudosuModeration'));
@@ -54,7 +54,7 @@
                             <div class="simple-form__checkbox-overflow-container">
                                 <label class="simple-form__checkbox simple-form__checkbox--overflow">
                                     @include('objects._switch', [
-                                        'checked' => in_array($type, $search['params']['types'], true),
+                                        'checked' => in_array($type, $params['types'], true),
                                         'name' => 'types[]',
                                         'type' => 'checkbox',
                                         'value' => $type,
@@ -77,7 +77,7 @@
                         type="date"
                         {{-- set correct baseline for safari --}}
                         placeholder=" "
-                        value="{{ $search['params']['min_date'] ?? '' }}"
+                        value="{{ $params['min_date'] ?? '' }}"
                     >
 
                     <span class="simple-form__input-arrow-next">
@@ -90,7 +90,7 @@
                         type="date"
                         {{-- set correct baseline for safari --}}
                         placeholder=" "
-                        value="{{ $search['params']['max_date'] ?? '' }}"
+                        value="{{ $params['max_date'] ?? '' }}"
                     >
                 </div>
 
@@ -110,11 +110,19 @@
 
             <div class='beatmapset-events' id="events">
                 <div class='beatmapset-events__title'></div>
-                @foreach ($events as $event)
-                    @include('beatmapset_events._item', compact('event'))
-                @endforeach
+                <div class='js-react--beatmap-discussion-events'></div>
             </div>
-            @include('objects._pagination_v2', ['object' => $events->fragment('events')])
+            @include('objects._pagination_v2', ['object' => $paginator->fragment('events')])
         </div>
     </div>
+@endsection
+
+@section ("script")
+    @parent
+
+    @foreach ($jsonChunks as $name => $data)
+        <script id="json-{{$name}}" type="application/json">
+            {!! json_encode($data) !!}
+        </script>
+    @endforeach
 @endsection

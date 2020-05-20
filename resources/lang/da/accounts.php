@@ -16,7 +16,7 @@ return [
 
         'email' => [
             'current' => 'nuværende email-adresse',
-            'new' => 'ny email-adresse',
+            'new' => 'ny email',
             'new_confirmation' => 'email bekræftelse',
             'title' => 'Email',
         ],
@@ -64,6 +64,17 @@ return [
         'authorized_clients' => 'autoriserede klienter',
         'own_clients' => 'egne klienter',
         'title' => 'OAuth',
+    ],
+
+    'options' => [
+        'title' => 'Indstillinger',
+
+        'beatmapset_download' => [
+            '_' => 'standard beatmap download type',
+            'all' => 'inkluder video hvis tilgængelig',
+            'no_video' => 'uden video',
+            'direct' => 'open med osu!direct',
+        ],
     ],
 
     'playstyles' => [

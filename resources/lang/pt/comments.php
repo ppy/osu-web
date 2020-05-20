@@ -10,7 +10,7 @@ return [
     'pinned' => 'afixado',
     'empty' => 'Ainda sem comentários.',
     'load_replies' => 'carregar respostas',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited resposta|:count_delimited respostas',
     'title' => 'Comentários',
 
     'commentable_name' => [

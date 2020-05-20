@@ -15,9 +15,11 @@ return [
     ],
     'error' => [
         'error' => [
+            '400' => 'pedido inválido',
             '404' => 'em falta',
             '403' => 'proibido',
             '401' => 'não autorizado',
+            '401-verification' => 'verificação da conta',
             '405' => 'em falta',
             '422' => 'pedido inválido',
             '500' => 'algo quebrou',
@@ -39,7 +41,7 @@ return [
             '_' => 'artistas destacados',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'publicações de discussão de beatmap',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'discussões do beatmap',
@@ -126,7 +128,7 @@ return [
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'informação do modder',
         ],
     ],
 ];

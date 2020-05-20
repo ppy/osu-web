@@ -66,6 +66,17 @@ return [
         'title' => 'OAuth',
     ],
 
+    'options' => [
+        'title' => 'Ustawienia strony',
+
+        'beatmapset_download' => [
+            '_' => 'domyślny sposób pobierania beatmap',
+            'all' => 'z wideo, jeżeli jest ono dostępne',
+            'no_video' => 'bez wideo',
+            'direct' => 'otwórz w osu!direct',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => 'klawiatura',
         'mouse' => 'myszka',

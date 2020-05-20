@@ -15,12 +15,14 @@ return [
     ],
     'error' => [
         'error' => [
+            '400' => 'permintaan tidak valid',
             '404' => 'hilang',
-            '403' => 'dilarang',
+            '403' => 'terlarang',
             '401' => 'tidak terotorisir',
+            '401-verification' => 'verifikasi akun',
             '405' => 'hilang',
             '422' => 'permintaan tidak valid',
-            '500' => '',
+            '500' => 'ada yang rusak',
             '503' => 'pemeliharaan',
         ],
     ],
@@ -36,7 +38,7 @@ return [
             'verify_link' => 'verifikasi akun',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'featured artist',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'postingan diskusi beatmap',
@@ -48,7 +50,7 @@ return [
             '_' => 'paket beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'laman diskusi voting beatmap',
         ],
         'beatmapset_events_controller' => [
             '_' => 'riwayat beatmap',

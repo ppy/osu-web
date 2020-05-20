@@ -4,14 +4,20 @@
 import * as moment from 'moment';
 import * as React from 'react';
 
-export default function TimeWithTooltip({ dateTime, format }: { dateTime: string, format?: string }) {
-  if (format == null) {
-    format = 'll';
-  }
+interface Props {
+  dateTime: string;
+  format?: string;
+  key?: string;
+  relative?: boolean;
+}
+
+export default function TimeWithTooltip(props: Props) {
+  const { format = 'll', relative = false, ...otherProps } = props;
+  const className = relative ? 'js-timeago' : 'js-tooltip-time';
 
   return (
-    <time className='js-tooltip-time' dateTime={dateTime} title={dateTime}>
-      {moment(dateTime).format(format)}
+    <time className={className} title={props.dateTime} {...otherProps}>
+      {moment(props.dateTime).format(format)}
     </time>
   );
 }

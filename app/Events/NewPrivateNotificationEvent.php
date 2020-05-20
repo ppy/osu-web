@@ -9,10 +9,11 @@ use App\Models\Notification;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 
-class NewPrivateNotificationEvent extends NewNotificationEvent
+class NewPrivateNotificationEvent extends NotificationEventBase
 {
     use SerializesModels;
 
+    public $notification;
     private $receiverIds;
 
     /**
@@ -24,7 +25,13 @@ class NewPrivateNotificationEvent extends NewNotificationEvent
     {
         parent::__construct($notification);
 
+        $this->notification = $notification;
         $this->receiverIds = $receiverIds;
+    }
+
+    public function broadcastAs()
+    {
+        return 'new';
     }
 
     /**
@@ -37,5 +44,15 @@ class NewPrivateNotificationEvent extends NewNotificationEvent
         return array_map(function ($userId) {
             return new Channel("private:user:{$userId}");
         }, $this->receiverIds);
+    }
+
+    public function broadcastWith()
+    {
+        return json_item($this->notification, 'Notification');
+    }
+
+    public function getReceiverIds()
+    {
+        return $this->receiverIds;
     }
 }

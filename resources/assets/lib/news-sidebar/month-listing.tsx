@@ -8,10 +8,9 @@ import * as React from 'react';
 
 interface Props {
   currentPost?: NewsPostJson;
+  date: moment.Moment;
   initialExpand: boolean;
-  month: number;
   posts: NewsPostJson[];
-  year: number;
 }
 
 interface State {
@@ -19,9 +18,8 @@ interface State {
 }
 
 export default class MonthListing extends React.Component<Props, State> {
-
   get stateRecordKey(): string {
-    return `month-${this.props.month}`;
+    return this.props.date.format('YYYYMM');
   }
 
   get stateRecordValue(): boolean | null {
@@ -46,7 +44,7 @@ export default class MonthListing extends React.Component<Props, State> {
         this.state.expanded = props.initialExpand;
       } else {
         const currentPostDate = moment.utc(props.currentPost.published_at);
-        this.state.expanded = currentPostDate.year() === props.year && currentPostDate.month() === props.month;
+        this.state.expanded = currentPostDate.year() === props.date.year() && currentPostDate.month() === props.date.month();
       }
     }
 
@@ -68,7 +66,7 @@ export default class MonthListing extends React.Component<Props, State> {
     return (
       <div className='news-sidebar-month'>
         <button className='news-sidebar-month__toggle' type='button' onClick={this.toggleExpand}>
-          {moment.utc([this.props.year, this.props.month]).format(osu.trans('common.datetime.year_month_short.moment'))}
+          {this.props.date.format(osu.trans('common.datetime.year_month_short.moment'))}
 
           <span className='news-sidebar-month__toggle-icon'>
             <i

@@ -51,12 +51,12 @@ return [
     'notifications' => [
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
-        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_discussion_qualified_problem' => 'Értesítések kérése minősített beatmapok problémáival kapcsolatban a következő módokból',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => 'e-mail értesítések kérése',
+            'beatmapset:modding' => 'beatmap modolás',
+            'forum_topic_reply' => 'Válasz a témára',
         ],
     ],
 
@@ -64,6 +64,17 @@ return [
         'authorized_clients' => 'felhatalmazott kliensek',
         'own_clients' => 'külső alkalmazások',
         'title' => 'OAuth',
+    ],
+
+    'options' => [
+        'title' => 'Beállítások',
+
+        'beatmapset_download' => [
+            '_' => 'Alapértelmezett beatmap letöltés típusa',
+            'all' => 'Videóval, ha elérhető',
+            'no_video' => 'Videó nélkül',
+            'direct' => 'Megnyitás osu!direct-ben',
+        ],
     ],
 
     'playstyles' => [

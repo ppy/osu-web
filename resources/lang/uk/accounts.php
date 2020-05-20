@@ -66,6 +66,17 @@ return [
         'title' => 'OAuth',
     ],
 
+    'options' => [
+        'title' => 'Налаштування',
+
+        'beatmapset_download' => [
+            '_' => '',
+            'all' => 'з відео, якщо доступно',
+            'no_video' => 'без відео',
+            'direct' => 'відкрити в osu!direct',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => 'клавіатура',
         'mouse' => 'мишка',

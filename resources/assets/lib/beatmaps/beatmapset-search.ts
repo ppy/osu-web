@@ -7,14 +7,14 @@ import { dispatchListener } from 'app-dispatcher';
 import ResultSet from 'beatmaps/result-set';
 import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
-import { BeatmapsetJSON } from 'beatmapsets/beatmapset-json';
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import DispatchListener from 'dispatch-listener';
 import { route } from 'laroute';
 import { action, observable, runInAction } from 'mobx';
 import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export interface SearchResponse {
-  beatmapsets: BeatmapsetJSON[];
+  beatmapsets: BeatmapsetJson[];
   cursor: JSON;
   error?: string;
   recommended_difficulty: number;

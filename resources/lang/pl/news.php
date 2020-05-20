@@ -33,7 +33,7 @@ return [
     ],
 
     'sidebar' => [
-        'archive' => 'Archiwum',
+        'archive' => 'Archiwum aktualności',
     ],
 
     'store' => [

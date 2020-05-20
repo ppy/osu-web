@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Скончыцца :date',
+        'ended_no_date' => '',
 
         'starts' => [
             '_' => 'Пачнецца :date',

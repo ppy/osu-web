@@ -66,6 +66,17 @@ return [
         'title' => 'OAuth',
     ],
 
+    'options' => [
+        'title' => 'オプション',
+
+        'beatmapset_download' => [
+            '_' => 'デフォルトのビートマップダウンロートタイプ',
+            'all' => '可能であれば動画付き',
+            'no_video' => '動画なし',
+            'direct' => 'osu!directで開く',
+        ],
+    ],
+
     'playstyles' => [
         'keyboard' => 'キーボード',
         'mouse' => 'マウス',

@@ -15,6 +15,15 @@ return [
         'guest_title' => 'Beatmaps',
     ],
 
+    'panel' => [
+        'download' => [
+            'all' => 'download',
+            'video' => 'download med video',
+            'no_video' => 'download uden video',
+            'direct' => 'open med osu!direct',
+        ],
+    ],
+
     'show' => [
         'discussion' => 'Diskussion',
 
@@ -39,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'godkendt :timeago',
+            'loved' => 'elsket :timeago',
+            'qualified' => 'kvalificeret :timeago',
+            'ranked' => 'ranked :timeago',
+            'submitted' => 'indsendt :timeago',
+            'updated' => 'sidst opdateret :timeago',
         ],
 
         'favourites' => [
@@ -66,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => 'Hvis du finder en fejl i denne beatmap, diskvalificer den venligst :link.',
-                'button_title' => 'Diskvalificer en kvalificeret beatmap.',
             ],
 
             'report' => [
                 '_' => 'Hvis du finder en fejl i denne beatmap, meld det venligst :link til teamet.',
                 'button' => 'Rapporter Problem',
-                'button_title' => 'Rapporter et problem på en kvalificeret beatmap.',
                 'link' => 'her',
             ],
         ],

@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Du må donere mere for å kunne gi vekk osu!supporter gave (:actual > :expected)',
+        'insufficient_paid' => 'Donasjon er mindre enn nødvendig for osu!supporter gave(:actual > :expected)',
     ],
 ];

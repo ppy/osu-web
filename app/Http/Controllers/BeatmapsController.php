@@ -13,6 +13,13 @@ use Request;
 
 class BeatmapsController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('require-scopes:public');
+    }
+
     public function show($id)
     {
         $beatmap = Beatmap::findOrFail($id);
@@ -22,7 +29,15 @@ class BeatmapsController extends Controller
             abort(404);
         }
 
-        return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $set->beatmapset_id]).'#'.$beatmap->mode.'/'.$id);
+        $requestedMode = presence(request('mode'));
+
+        if (Beatmap::isModeValid($requestedMode) && $beatmap->mode === 'osu') {
+            $mode = $requestedMode;
+        } else {
+            $mode = $beatmap->mode;
+        }
+
+        return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $set->beatmapset_id]).'#'.$mode.'/'.$id);
     }
 
     public function scores($id)

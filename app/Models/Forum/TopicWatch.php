@@ -5,7 +5,6 @@
 
 namespace App\Models\Forum;
 
-use App\Events\UserSubscriptionChangeEvent;
 use App\Models\User;
 
 /**
@@ -90,10 +89,6 @@ class TopicWatch extends Model
 
                     $watch->fill(['mail' => $notify])->saveOrExplode();
                 }
-
-                $event = $notify ? 'add' : 'remove';
-
-                event(new UserSubscriptionChangeEvent($event, $user, $topic));
 
                 return $watch;
             } catch (Exception $e) {
