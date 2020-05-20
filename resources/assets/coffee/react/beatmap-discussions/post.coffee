@@ -115,7 +115,7 @@ export class Post extends React.PureComponent
                 el Editor,
                   beatmapset: @props.beatmapset
                   beatmaps: beatmaps
-                  document: @state.message
+                  document: @props.post.message
                   discussion: @props.discussion
                   discussions: discussions
                   editMode: true
