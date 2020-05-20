@@ -45,7 +45,7 @@ class RankingController extends Controller
             $type = $this->params['type'] ?? null;
 
             $this->params['filter'] = $this->params['filter'] ?? null;
-            $this->friendsOnly = $this->params['filter'] === 'friends';
+            $this->friendsOnly = auth()->check() && $this->params['filter'] === 'friends';
 
             view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
             view()->share('spotlight', null); // so variable capture in selector function doesn't die when spotlight is null.
