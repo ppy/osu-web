@@ -81,7 +81,6 @@ reactTurbolinks.registerPersistent 'quick-search-button', QuickSearchButton, tru
 
 reactTurbolinks.registerPersistent 'ranking-filter', RankingFilter, true, (el) ->
   countries: osu.parseJson 'json-countries'
-  sortMode: osu.presence(el.dataset.sortMode) ? undefined
   type: el.dataset.type
 
 reactTurbolinks.register 'user-card', UserCard, (el) ->

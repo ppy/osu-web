@@ -9,17 +9,12 @@ type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
 
 interface Props {
   countries: Required<Country>[];
-  sortMode: string;
   type: RankingTypes;
 }
 
 const allCountries = { id: null, text: osu.trans('rankings.countries.all') };
 
 export default class RankingFilter extends React.PureComponent<Props> {
-  static defaultProps = {
-    sortMode: 'all',
-  };
-
   private options = new Map<string | null, Item<string>>();
 
   constructor(props: Props) {
@@ -39,12 +34,16 @@ export default class RankingFilter extends React.PureComponent<Props> {
     });
   }
 
-  get country() {
+  get countryCode() {
     return new URL(window.location.href).searchParams.get('country');
   }
 
+  get filterMode() {
+    return new URL(window.location.href).searchParams.get('filter');
+  }
+
   get selectedOption() {
-    return this.options.get(this.country) ?? allCountries;
+    return this.options.get(this.countryCode) ?? allCountries;
   }
 
   handleItemSelected = (item: Item) => {
@@ -65,7 +64,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
         <div className='ranking-filter__sort'>
           <Sort
             onSortSelected={this.handleSortSelected}
-            sortMode={this.props.sortMode}
+            sortMode={this.filterMode ?? 'all'}
             title={osu.trans('rankings.filter.title')}
             values={['all', 'friends']}
           />
