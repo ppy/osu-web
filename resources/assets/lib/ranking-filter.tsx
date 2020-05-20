@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
-import { Item, RenderProps, SelectOptions } from 'select-options';
+import { Option, OptionRenderProps, SelectOptions } from 'select-options';
 import { Sort } from 'sort';
 
 type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
@@ -15,7 +15,7 @@ interface Props {
 const allCountries = { id: null, text: osu.trans('rankings.countries.all') };
 
 export default class RankingFilter extends React.PureComponent<Props> {
-  private options = new Map<string | null, Item<string>>();
+  private options = new Map<string | null, Option<string>>();
 
   constructor(props: Props) {
     super(props);
@@ -46,8 +46,8 @@ export default class RankingFilter extends React.PureComponent<Props> {
     return this.options.get(this.countryCode) ?? allCountries;
   }
 
-  handleItemSelected = (item: Item) => {
-    osu.navigate(osu.updateQueryString(null, { country: item.id }));
+  handleOptionSelected = (option: Option) => {
+    osu.navigate(osu.updateQueryString(null, { country: option.id }));
   }
 
   handleSortSelected = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -80,14 +80,14 @@ export default class RankingFilter extends React.PureComponent<Props> {
       <SelectOptions
         bn='ranking-select-options'
         renderItem={this.renderOption}
-        onItemSelected={this.handleItemSelected}
+        onItemSelected={this.handleOptionSelected}
         options={[...this.options.values()]} // TODO: change to iterable
         selected={this.selectedOption}
       />
     );
   }
 
-  renderOption(option: RenderProps) {
+  renderOption(option: OptionRenderProps) {
     return (
       <a
         children={option.children}
