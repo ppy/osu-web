@@ -36,6 +36,26 @@
     }
   }
 
+  &__autoplay-button {
+    .fas();
+    .fa-fw();
+    .reset-input();
+    flex: none;
+    opacity: 0.5;
+
+    &:hover {
+      color: @osu-colour-l1;
+    }
+
+    &::before {
+      content: @fa-var-redo;
+    }
+
+    .@{_top}[data-audio-autoplay="1"] & {
+      opacity: 1;
+    }
+  }
+
   &__button {
     .reset-input();
     .fas();

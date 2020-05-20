@@ -79,6 +79,20 @@ class UserProfileCustomization extends Model
         $this->save();
     }
 
+    public function getAudioAutoplayAttribute()
+    {
+        return $this->options['audio_autoplay'] ?? false;
+    }
+
+    public function setAudioAutoplayAttribute($value)
+    {
+        if (!is_bool($value)) {
+            $value = null;
+        }
+
+        $this->setOption('audio_autoplay', $value);
+    }
+
     public function getAudioMutedAttribute()
     {
         return $this->options['audio_muted'] ?? false;

@@ -41,16 +41,14 @@ class UsersController extends Controller
 
         $this->middleware('throttle:60,10', ['only' => ['store']]);
 
-        if (is_api_request()) {
-            $this->middleware('require-scopes:identify', ['only' => ['me']]);
-            $this->middleware('require-scopes:users.read', ['only' => [
-                'beatmapsets',
-                'kudosu',
-                'recentActivity',
-                'scores',
-                'show',
-            ]]);
-        }
+        $this->middleware('require-scopes:identify', ['only' => ['me']]);
+        $this->middleware('require-scopes:public', ['only' => [
+            'beatmapsets',
+            'kudosu',
+            'recentActivity',
+            'scores',
+            'show',
+        ]]);
 
         $this->middleware(function ($request, $next) {
             $this->parsePaginationParams();

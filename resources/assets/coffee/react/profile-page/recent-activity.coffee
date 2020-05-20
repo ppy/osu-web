@@ -6,6 +6,7 @@ import { ExtraHeader } from './extra-header'
 import * as React from 'react'
 import { div, li, p, ul } from 'react-dom-factories'
 import { ShowMoreLink } from 'show-more-link'
+import TimeWithTooltip from 'time-with-tooltip'
 el = React.createElement
 
 export class RecentActivity extends React.PureComponent
@@ -47,7 +48,7 @@ export class RecentActivity extends React.PureComponent
             modifiers: ['recent-activity']
             achievement: event.achievement
             userAchievement:
-              achieved_at: event.createdAt
+              achieved_at: event.created_at
               achievement_id: event.achievement.id
 
         text = div
@@ -179,5 +180,6 @@ export class RecentActivity extends React.PureComponent
         text
       div
         className: 'profile-extra-entries__time'
-        dangerouslySetInnerHTML:
-          __html: osu.timeago(event.createdAt)
+        el TimeWithTooltip,
+          dateTime: event.created_at
+          relative: true
