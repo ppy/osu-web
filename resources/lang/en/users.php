@@ -307,6 +307,7 @@ return [
                 'empty' => 'No awesome performance records yet. :(',
                 'not_ranked' => 'Only ranked beatmaps give out pp.',
                 'pp_weight' => 'weighted :percentage',
+                'view_details' => 'View Details',
                 'title' => 'Ranks',
 
                 'best' => [
