@@ -58,6 +58,21 @@ export default class Settings {
     this.main.audio.muted = muted == null ? !this.muted : muted;
   }
 
+  private fromLocalStorage(key: string) {
+    if (localStorage[key] == null) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(localStorage[key]);
+    } catch {
+      console.debug(`invalid local ${key} data`);
+      delete localStorage[key];
+
+      return null;
+    }
+  }
+
   private storedAutoplay() {
     const local = this.fromLocalStorage('audioAutoplay');
 
@@ -104,20 +119,5 @@ export default class Settings {
     }
 
     return 0.45;
-  }
-
-  private fromLocalStorage(key: string) {
-    if (localStorage[key] == null) {
-      return null;
-    }
-
-    try {
-      return JSON.parse(localStorage[key]);
-    } catch {
-      console.debug(`invalid local ${key} data`);
-      delete localStorage[key];
-
-      return null;
-    }
   }
 }
