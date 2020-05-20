@@ -85,14 +85,16 @@ export default class RankingFilter extends React.PureComponent<Props> {
           {this.renderCountries()}
         </div>
 
-        <div className='ranking-filter__sort'>
-          <Sort
-            onSortSelected={this.handleSortSelected}
-            sortMode={this.filterMode ?? 'all'}
-            title={osu.trans('rankings.filter.title')}
-            values={['all', 'friends']}
-          />
-        </div>
+        {currentUser.id != null ? (
+          <div className='ranking-filter__sort'>
+            <Sort
+              onSortSelected={this.handleSortSelected}
+              sortMode={this.filterMode ?? 'all'}
+              title={osu.trans('rankings.filter.title')}
+              values={['all', 'friends']}
+            />
+          </div>
+        ) : null}
       </div>
     );
   }

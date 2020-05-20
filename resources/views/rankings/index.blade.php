@@ -44,7 +44,7 @@
 
     @yield('ranking-header')
 
-    @if (auth()->check() && $type !== 'country')
+    @if ($type !== 'country')
         <div class="osu-page osu-page--description">
             <div class="js-react--ranking-filter" data-type="{{ $type }}">
                 {{-- placeholder so the page doesn't shift after react initializes --}}
@@ -58,15 +58,17 @@
                             </div>
                         @endif
                     </div>
-                    <div class="ranking-filter__sort">
-                        <div class="sort">
-                            <div class="sort__items">
-                                <span class="sort__item sort__item--title">{{ trans('rankings.filter.title') }}</span>
-                                <button class="sort__item sort__item--button">{{ trans('sort.all') }}</button>
-                                <button class="sort__item sort__item--button">{{ trans('sort.friends')}}</button>
+                    @if (auth()->check())
+                        <div class="ranking-filter__sort">
+                            <div class="sort">
+                                <div class="sort__items">
+                                    <span class="sort__item sort__item--title">{{ trans('rankings.filter.title') }}</span>
+                                    <button class="sort__item sort__item--button">{{ trans('sort.all') }}</button>
+                                    <button class="sort__item sort__item--button">{{ trans('sort.friends')}}</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
