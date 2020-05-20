@@ -132,27 +132,32 @@ class RankingController extends Controller
                         $userQuery->default();
                     });
 
-                if ($this->friendsOnly) {
-                    $stats->friendsOf(auth()->user());
-                }
-
                 if ($type === 'performance') {
                     if ($this->country !== null) {
-                        $stats
-                            ->where('country_acronym', $this->country['acronym'])
-                            // preferrable to rank_score when filtering by country
-                            ->from(DB::raw("{$table} FORCE INDEX (country_acronym_2)"));
+                        $stats->where('country_acronym', $this->country['acronym']);
+                        // preferrable to rank_score when filtering by country.
+                        // On a few countries the default index is slightly better but much worse on the rest.
+                        $forceIndex = 'country_acronym_2';
                     } else {
                         // force to order by rank_score instead of sucking down entire users table first.
-                        $stats->from(DB::raw("{$table} FORCE INDEX (rank_score)"));
+                        $forceIndex = 'rank_score';
                     }
 
                     $stats->orderBy('rank_score', 'desc');
                 } else { // 'score'
-                    $stats
-                        // force to order by ranked_score instead of sucking down entire users table first.
-                        ->from(DB::raw("{$table} FORCE INDEX (ranked_score)"))
-                        ->orderBy('ranked_score', 'desc');
+                    $stats->orderBy('ranked_score', 'desc');
+                    // force to order by ranked_score instead of sucking down entire users table first.
+                    $forceIndex = 'ranked_score';
+                }
+
+                if ($this->friendsOnly) {
+                    $stats->friendsOf(auth()->user());
+                    // still uses temporary table and filesort but over a more limited number of rows.
+                    $forceIndex = null;
+                }
+
+                if (isset($forceIndex)) {
+                    $stats->from(DB::raw("{$table} FORCE INDEX ($forceIndex)"));
                 }
 
                 if (is_api_request()) {
