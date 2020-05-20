@@ -28,8 +28,6 @@
             'url' => $selectorParams['route']($mode, $tab),
         ];
     }
-
-    $country_acronym = ($country['acronym'] ?? null) ?? optional(auth()->user())->country_acronym;
 @endphp
 
 @extends('master', ['titlePrepend' => trans("rankings.type.{$type}")])
