@@ -15,25 +15,27 @@ interface Props {
 const allCountries = { id: null, text: osu.trans('rankings.countries.all') };
 
 export default class RankingFilter extends React.PureComponent<Props> {
-  private options = new Map<string | null, Option<string>>();
+  private countriesSorted?: Required<Country>[];
+  private optionsCached?: Map<string | null, Option<string>>;
 
-  constructor(props: Props) {
-    super(props);
+  get countries() {
+    if (this.props.countries == null) return [];
 
-    if (props.countries != null) {
-      const countries = props.countries.sort((a, b) => {
+    if (this.countriesSorted == null) {
+      this.countriesSorted = this.props.countries.sort((a, b) => {
+        // prioritizes current user's country
+        if (currentUser?.country_code === a.code) return -1;
+        if (currentUser?.country_code === b.code) return 1;
+
         const priority = b.display - a.display;
 
         if (priority !== 0) return priority;
 
         return a.name.localeCompare(b.name);
       });
-
-      this.options.set(allCountries.id, allCountries);
-      countries.forEach((country) => {
-        this.options.set(country.code, { id: country.code, text: country.name });
-      });
     }
+
+    return this.countriesSorted;
   }
 
   get countryCode() {
@@ -44,8 +46,28 @@ export default class RankingFilter extends React.PureComponent<Props> {
     return new URL(window.location.href).searchParams.get('filter');
   }
 
+  get options() {
+    if (this.optionsCached == null) {
+      this.optionsCached = new Map<string | null, Option<string>>();
+
+      this.optionsCached.set(allCountries.id, allCountries);
+      this.countries.forEach((country) => {
+        this.optionsCached!.set(country.code, { id: country.code, text: country.name });
+      });
+    }
+
+    return this.optionsCached;
+  }
+
   get selectedOption() {
     return this.options.get(this.countryCode) ?? allCountries;
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>) {
+    if (prevProps.countries !== this.props.countries) {
+      this.countriesSorted = undefined;
+      this.optionsCached = undefined;
+    }
   }
 
   handleOptionSelected = (option: Option) => {
