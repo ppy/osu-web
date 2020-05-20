@@ -19,8 +19,6 @@ return [
             'read' => 'See who you are following.',
         ],
 
-        'users' => [
-            'read' => 'Read the public profile of any user on your behalf.',
-        ],
+        'public' => 'Read public data on your behalf.',
     ],
 ];

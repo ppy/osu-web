@@ -11,7 +11,9 @@ $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
         'message' => function () use ($faker) {
             return $faker->paragraph();
         },
-        'commentable_type' => 'build', // TODO: add support for more types
+        'commentable_type' => function () {
+            return 'build'; // TODO: add support for more types
+        },
         'commentable_id' => function () {
             return factory(App\Models\Build::class)->create()->build_id;
         },
