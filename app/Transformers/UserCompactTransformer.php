@@ -33,6 +33,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_moderator',
         'is_nat',
         'is_restricted',
+        'is_silenced',
         'loved_beatmapset_count',
         'monthly_playcounts',
         'page',
@@ -61,6 +62,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_moderator' => 'IsNotOAuth',
         'is_nat' => 'IsNotOAuth',
         'is_restricted' => 'IsNotOAuth',
+        'is_silenced' => 'IsNotOAuth',
     ];
 
     protected $userProfileCustomization = [];
@@ -217,6 +219,11 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->isRestricted());
     }
 
+    public function includeIsSilenced(User $user)
+    {
+        return $this->primitive($user->isSilenced());
+    }
+
     public function includeLovedBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetsLoved()->count());
@@ -317,6 +324,9 @@ class UserCompactTransformer extends TransformerAbstract
         $customization = $this->userProfileCustomization($user);
 
         return $this->primitive($customization->only([
+            'audio_autoplay',
+            'audio_muted',
+            'audio_volume',
             'beatmapset_download',
             'ranking_expanded',
             'user_list_filter',

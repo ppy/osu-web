@@ -23,9 +23,9 @@
         @if ($topic->pollEnd() !== null)
             <div class="forum-poll__detail forum-poll__detail--sub">
                 @if ($topic->pollEnd()->isFuture())
-                    {{ trans('forum.topics.show.poll.detail.end_time', ['time' => i18n_time($topic->pollEnd())]) }}
+                    {!! trans('forum.topics.show.poll.detail.end_time', ['time' => js_localtime($topic->pollEnd())]) !!}
                 @else
-                    {{ trans('forum.topics.show.poll.detail.ended', ['time' => i18n_time($topic->pollEnd())]) }}
+                    {!! trans('forum.topics.show.poll.detail.ended', ['time' => js_localtime($topic->pollEnd())]) !!}
                 @endif
             </div>
 

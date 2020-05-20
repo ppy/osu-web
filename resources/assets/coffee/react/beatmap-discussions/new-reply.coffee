@@ -89,11 +89,11 @@ export class NewReply extends React.PureComponent
 
 
   renderPlaceholder: =>
-    [text, icon] =
+    [text, icon, disabled] =
       if @props.currentUser.id?
-        [osu.trans('beatmap_discussions.reply.open.user'), 'fas fa-reply']
+        [osu.trans('beatmap_discussions.reply.open.user'), 'fas fa-reply', @props.currentUser.is_silenced]
       else
-        [osu.trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt']
+        [osu.trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt', false]
 
     div
       className: "#{bn} #{bn}--reply #{bn}--new-reply #{bn}--new-reply-placeholder"
@@ -102,6 +102,7 @@ export class NewReply extends React.PureComponent
         icon: icon
         modifiers: ['beatmap-discussion-reply-open']
         props:
+          disabled: disabled
           onClick: @editStart
 
 

@@ -5,31 +5,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BeatmapsetEvent;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Libraries\ModdingHistoryEventsBundle;
 
 class BeatmapsetEventsController extends Controller
 {
     public function index()
     {
-        $params = request()->all();
-        $params['is_moderator'] = priv_check('BeatmapDiscussionModerate')->can();
-        $params['is_kudosu_moderator'] = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
+        $bundle = ModdingHistoryEventsBundle::forListing(null, request()->all());
+        $jsonChunks = $bundle->toArray();
+        $paginator = $bundle->getPaginator();
+        $params = $bundle->getParams();
 
-        $search = BeatmapsetEvent::search($params);
-
-        return ext_view('beatmapset_events.index', [
-            'search' => $search,
-            'events' => new LengthAwarePaginator(
-                $search['query']->with(['user', 'beatmapset', 'beatmapset.user'])->get(),
-                $search['query']->realCount(),
-                $search['params']['limit'],
-                $search['params']['page'],
-                [
-                    'path' => LengthAwarePaginator::resolveCurrentPath(),
-                    'query' => $search['params'],
-                ]
-            ),
-        ]);
+        return ext_view('beatmapset_events.index', compact('paginator', 'params', 'jsonChunks'));
     }
 }
