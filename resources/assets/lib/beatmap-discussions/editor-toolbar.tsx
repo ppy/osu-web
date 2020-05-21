@@ -88,12 +88,12 @@ export class EditorToolbar extends React.Component {
     }
 
     if (this.scrollTimer) {
-      clearTimeout(this.scrollTimer);
+      Timeout.clear(this.scrollTimer);
     }
 
     // we use setTimeout here as a workaround for incorrect bounds sometimes being returned for the selection range,
     // seemingly when called too soon after a scroll event
-    this.scrollTimer = setTimeout(() => {
+    this.scrollTimer = Timeout.set(100, () => {
       if (!this.visible()) {
         tooltip.style.display = 'none';
         return;
@@ -115,7 +115,7 @@ export class EditorToolbar extends React.Component {
         tooltip.style.top = `${selectionBounds.top - tooltip.clientHeight - 10}px`;
       }
 
-    }, 100);
+    });
   }
 
   visible(): boolean {
