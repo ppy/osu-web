@@ -21,6 +21,7 @@ class ScoresController extends Controller
 
     public function download($mode, $id)
     {
+        // don't limit downloading replays of restricted users for review purpose
         $score = ScoreBest::getClassByString($mode)
             ::where('score_id', $id)
             ->where('replay', true)
@@ -56,6 +57,7 @@ class ScoresController extends Controller
     {
         $score = ScoreBest::getClassByString($mode)
             ::whereHas('beatmap.beatmapset')
+            ->visibleUsers()
             ->findOrFail($id);
 
         return ext_view('scores.show', [
