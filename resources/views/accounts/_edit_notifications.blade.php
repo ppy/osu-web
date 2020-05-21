@@ -74,7 +74,7 @@
                 </div>
 
                 <form
-                    class="account-edit-entry__grid js-account-edit"
+                    class="account-edit-entry__delivery-options js-account-edit"
                     data-account-edit-auto-submit="1"
                     data-account-edit-type="multi"
                     data-url="{{ route('account.notification-options') }}"
