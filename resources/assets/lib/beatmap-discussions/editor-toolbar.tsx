@@ -14,7 +14,8 @@ const bn = 'beatmap-discussion-editor-toolbar';
 export class EditorToolbar extends React.Component {
   static contextType = SlateContext;
   ref: React.RefObject<HTMLDivElement>;
-  private updateTimer: number | undefined;
+  scrollContainer: HTMLElement | undefined;
+  private scrollTimer: number | undefined;
 
   constructor(props: {}) {
     super(props);
@@ -26,6 +27,7 @@ export class EditorToolbar extends React.Component {
     $(window).on('scroll.editor-toolbar', _.throttle(() => {
       this.updatePosition();
     }, 100));
+    this.updatePosition();
   }
 
   componentDidUpdate() {
@@ -34,6 +36,9 @@ export class EditorToolbar extends React.Component {
 
   componentWillUnmount() {
     $(window).off('.editor-toolbar');
+    if (this.scrollContainer) {
+      $(this.scrollContainer).off('scroll');
+    }
   }
 
   render(): React.ReactNode {
@@ -69,26 +74,46 @@ export class EditorToolbar extends React.Component {
     );
   }
 
+  setScrollContainer(container: HTMLElement) {
+    this.scrollContainer = container;
+    $(this.scrollContainer).on('scroll', _.throttle(() => {
+      this.updatePosition();
+    }, 100));
+  }
+
   updatePosition() {
-    const el = this.ref.current;
-    if (!el || !this.context || !this.visible()) {
+    const tooltip = this.ref.current;
+    if (!tooltip || !this.context) {
       return;
     }
 
-    if (this.updateTimer) {
-      clearTimeout(this.updateTimer);
+    if (this.scrollTimer) {
+      clearTimeout(this.scrollTimer);
     }
 
-    // incorrect bounds are sometimes returned for the selection range, seemingly when called too soon after a
-    // scroll event... so we use setTimeout here as a workaround
-    this.updateTimer = setTimeout(() => {
-      const domSelection = window.getSelection();
-      const domRange = domSelection!.getRangeAt(0);
-      const rect = domRange!.getBoundingClientRect();
+    // we use setTimeout here as a workaround for incorrect bounds sometimes being returned for the selection range,
+    // seemingly when called too soon after a scroll event
+    this.scrollTimer = setTimeout(() => {
+      if (!this.visible()) {
+        tooltip.style.display = 'none';
+        return;
+      }
 
-      el.style.display = 'block';
-      el.style.left = `${rect.left + ((window.pageXOffset - el.offsetWidth) / 2) + (rect.width / 2)}px`;
-      el.style.top = `${rect.top - el.clientHeight - 10}px`;
+      const containerBounds = this.scrollContainer?.getBoundingClientRect();
+      const containerTop = containerBounds?.top ?? 0;
+      const containerBottom = containerBounds?.bottom;
+      const selectionBounds = window.getSelection()!.getRangeAt(0).getBoundingClientRect();
+
+      if (
+        selectionBounds.top < containerTop ||
+        (containerBottom && selectionBounds.top > containerBottom)
+      ) {
+        tooltip.style.display = 'none';
+      } else {
+        tooltip.style.display = 'block';
+        tooltip.style.left = `${selectionBounds.left + ((window.pageXOffset - tooltip.offsetWidth) / 2) + (selectionBounds.width / 2)}px`;
+        tooltip.style.top = `${selectionBounds.top - tooltip.clientHeight - 10}px`;
+      }
 
     }, 100);
   }

@@ -100,15 +100,8 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    if (this.scrollContainerRef.current) {
-      $(this.scrollContainerRef.current).on(
-        'scroll',
-        _.throttle(() => {
-          if (this.toolbarRef.current) {
-            this.toolbarRef.current.updatePosition();
-          }
-        }, 100),
-      );
+    if (this.scrollContainerRef.current && this.toolbarRef.current) {
+      this.toolbarRef.current.setScrollContainer(this.scrollContainerRef.current);
     }
   }
 
