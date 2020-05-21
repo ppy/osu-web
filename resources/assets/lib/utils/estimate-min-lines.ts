@@ -5,10 +5,10 @@ let counterElem: HTMLElement | null = null;
 
 function getCounterElem() {
   if (counterElem == null) {
-    counterElem = document.querySelector('.js-count-min-lines');
+    counterElem = document.querySelector('.js-estimate-min-lines');
 
     if (counterElem == null) {
-      throw new Error('js-count-min-lines placeholder element is missing!');
+      throw new Error('js-estimate-min-lines placeholder element is missing!');
     }
   }
 
@@ -16,7 +16,7 @@ function getCounterElem() {
 }
 
 /**
- * Count minimum number of lines of a dom.
+ * Estimate minimum number of lines of a dom.
  * The counting is done by wrapping it inside a container which width
  * is the maximum allowed site-wide based on `@container-sm`.
  *
@@ -31,11 +31,11 @@ function getCounterElem() {
  * Mainly noticeable on browser history navigation.
  *
  * Components:
- * - lib/utils/count-min-lines.ts (main)
- * - less/bem/count-min-lines.less (styling)
+ * - lib/utils/estimate-min-lines.ts (main)
+ * - less/bem/estimate-min-lines.less (styling)
  * - views/master.blade.php (placeholder)
  */
-export function countMinLines(domString: string) {
+export function estimateMinLines(domString: string) {
   const counter = getCounterElem();
   counter.innerHTML = domString;
 

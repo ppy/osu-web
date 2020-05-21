@@ -109,12 +109,12 @@
         </div>
         {{--
             Components:
-            - lib/utils/count-min-lines.ts (main)
-            - less/bem/count-min-lines.less (styling)
+            - lib/utils/estimate-min-lines.ts (main)
+            - less/bem/estimate-min-lines.less (styling)
             - views/master.blade.php (placeholder)
         --}}
-        <div id="count-min-lines" class="count-min-lines" data-turbolinks-permanent>
-            <div class="count-min-lines__content js-count-min-lines"></div>
+        <div id="estimate-min-lines" class="estimate-min-lines" data-turbolinks-permanent>
+            <div class="estimate-min-lines__content js-estimate-min-lines"></div>
         </div>
         @include("layout._global_variables")
         @include('layout._loading_overlay')

@@ -13,7 +13,7 @@ import { ReportReportable } from 'report-reportable'
 import { ShowMoreLink } from 'show-more-link'
 import { Spinner } from 'spinner'
 import { UserAvatar } from 'user-avatar'
-import { countMinLines } from 'utils/count-min-lines'
+import { estimateMinLines } from 'utils/estimate-min-lines'
 
 el = React.createElement
 
@@ -70,12 +70,12 @@ export class Comment extends React.PureComponent
 
 
   componentDidMount: =>
-    @setState lines: countMinLines(@props.comment.messageHtml)
+    @setState lines: estimateMinLines(@props.comment.messageHtml)
 
 
   componentDidUpdate: (prevProps) =>
     if prevProps.comment.messageHtml != @props.comment.messageHtml
-      @setState lines: countMinLines(@props.comment.messageHtml)
+      @setState lines: estimateMinLines(@props.comment.messageHtml)
 
 
   render: =>
