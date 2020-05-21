@@ -50,7 +50,9 @@ export default class Editor extends React.Component<Props, State> {
   cache: CacheInterface = {};
   emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
   localStorageKey: string;
+  scrollContainerRef: React.RefObject<HTMLDivElement>;
   slateEditor: ReactEditor;
+  toolbarRef: React.RefObject<EditorToolbar>;
 
   private xhr?: JQueryXHR;
 
@@ -58,6 +60,8 @@ export default class Editor extends React.Component<Props, State> {
     super(props);
 
     this.slateEditor = this.withNormalization(withHistory(withReact(createEditor())));
+    this.scrollContainerRef = React.createRef();
+    this.toolbarRef = React.createRef();
 
     let initialValue = this.emptyDocTemplate;
     this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
@@ -95,6 +99,19 @@ export default class Editor extends React.Component<Props, State> {
     );
   }
 
+  componentDidMount() {
+    if (this.scrollContainerRef.current) {
+      $(this.scrollContainerRef.current).on(
+        'scroll',
+        _.throttle(() => {
+          if (this.toolbarRef.current) {
+            this.toolbarRef.current.updatePosition();
+          }
+        }, 100),
+      );
+    }
+  }
+
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<any>, snapshot?: any): void {
     if (this.props.editing !== prevProps.editing) {
       this.toggleEditing();
@@ -104,6 +121,9 @@ export default class Editor extends React.Component<Props, State> {
   componentWillUnmount() {
     if (this.xhr) {
       this.xhr.abort();
+    }
+    if (this.scrollContainerRef.current) {
+      $(this.scrollContainerRef.current).off('scroll');
     }
   }
 
@@ -264,8 +284,8 @@ export default class Editor extends React.Component<Props, State> {
               value={this.state.value}
               onChange={this.onChange}
             >
-              <div className={`${editorClass}__input-area`}>
-                <EditorToolbar />
+              <div ref={this.scrollContainerRef} className={`${editorClass}__input-area`}>
+                <EditorToolbar ref={this.toolbarRef} />
                 <Editable
                   decorate={this.decorateTimestamps}
                   onKeyDown={this.onKeyDown}

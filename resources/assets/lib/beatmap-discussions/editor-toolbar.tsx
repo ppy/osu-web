@@ -1,72 +1,113 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import * as _ from 'lodash';
 import { Portal } from 'portal';
-import { useEffect, useRef } from 'react';
 import * as React from 'react';
 import { Editor, Range } from 'slate';
-import { ReactEditor, useSlate } from 'slate-react';
+import { ReactEditor } from 'slate-react';
 import { isFormatActive, toggleFormat } from './editor-helpers';
+import { SlateContext } from './slate-context';
 
 const bn = 'beatmap-discussion-editor-toolbar';
 
-export const EditorToolbar = () => {
-  const ref = useRef({} as HTMLDivElement);
-  const editor = useSlate();
+export class EditorToolbar extends React.Component {
+  static contextType = SlateContext;
+  ref: React.RefObject<HTMLDivElement>;
+  private updateTimer: number | undefined;
 
-  const ToolbarButton = ({ format }: { format: string }) => (
-    <button
-      className={osu.classWithModifiers(`${bn}__button`, [isFormatActive(editor, format) ? 'active' : ''])}
-      // we use onMouseDown instead of onClick here so the popup remains visible after clicking
-      // tslint:disable-next-line:jsx-no-lambda
-      onMouseDown={(event) => {
-        event.preventDefault();
-        toggleFormat(editor, format);
-      }}
-    >
-      <i className={`fas fa-${format}`} />
-    </button>
-  );
+  constructor(props: {}) {
+    super(props);
 
-  useEffect(() => {
-    const el = ref.current;
-    const { selection } = editor;
+    this.ref = React.createRef();
+  }
 
-    if (!el) {
+  componentDidMount() {
+    $(window).on('scroll.editor-toolbar', _.throttle(() => {
+      this.updatePosition();
+    }, 100));
+  }
+
+  componentDidUpdate() {
+    this.updatePosition();
+  }
+
+  componentWillUnmount() {
+    $(window).off('.editor-toolbar');
+  }
+
+  render(): React.ReactNode {
+    if (!this.context || !this.visible()) {
+      return null;
+    }
+
+    const ToolbarButton = ({format}: { format: string }) => (
+      <button
+        className={osu.classWithModifiers(`${bn}__button`, [isFormatActive(this.context, format) ? 'active' : ''])}
+        // we use onMouseDown instead of onClick here so the popup remains visible after clicking
+        // tslint:disable-next-line:jsx-no-lambda
+        onMouseDown={(event) => {
+          event.preventDefault();
+          toggleFormat(this.context, format);
+        }}
+      >
+        <i className={`fas fa-${format}`}/>
+      </button>
+    );
+
+    return (
+      <Portal>
+        <div
+          className={bn}
+          ref={this.ref}
+        >
+          <ToolbarButton format='bold'/>
+          <ToolbarButton format='italic'/>
+          <div className={`${bn}__popup-tail`}/>
+        </div>
+      </Portal>
+    );
+  }
+
+  updatePosition() {
+    const el = this.ref.current;
+    if (!el || !this.context || !this.visible()) {
       return;
     }
 
+    if (this.updateTimer) {
+      clearTimeout(this.updateTimer);
+    }
+
+    // incorrect bounds are sometimes returned for the selection range, seemingly when called too soon after a
+    // scroll event... so we use setTimeout here as a workaround
+    this.updateTimer = setTimeout(() => {
+      const domSelection = window.getSelection();
+      const domRange = domSelection!.getRangeAt(0);
+      const rect = domRange!.getBoundingClientRect();
+
+      el.style.display = 'block';
+      el.style.left = `${rect.left + ((window.pageXOffset - el.offsetWidth) / 2) + (rect.width / 2)}px`;
+      el.style.top = `${rect.top - el.clientHeight - 10}px`;
+
+    }, 100);
+  }
+
+  visible(): boolean {
+    const {selection} = this.context;
+
     if (
       !selection ||
-      !ReactEditor.isFocused(editor) ||
+      !ReactEditor.isFocused(this.context) ||
       Range.isCollapsed(selection) ||
-      Editor.string(editor, selection) === ''
+      Editor.string(this.context, selection) === ''
     ) {
-      el.style.display = 'none';
-      return;
+      return false;
     }
 
     const domSelection = window.getSelection();
     const domRange = domSelection?.getRangeAt(0);
 
-    if (domRange) {
-      const rect = domRange.getBoundingClientRect();
-      el.style.display = 'block';
-      el.style.top = `${rect.top + window.pageYOffset - el.offsetHeight - 10}px`;
-      el.style.left = `${rect.left + ((window.pageXOffset - el.offsetWidth) / 2) + (rect.width / 2)}px`;
-    }
-  });
-
-  return (
-    <Portal>
-      <div
-        className={bn}
-        ref={ref}
-      >
-        <ToolbarButton format='bold' />
-        <ToolbarButton format='italic' />
-        <div className={`${bn}__popup-tail`} />
-      </div>
-    </Portal>
-  );
-};
+    return domRange !== null;
+  }
+}
