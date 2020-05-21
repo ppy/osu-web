@@ -37,17 +37,17 @@ class BeatmapsetDisqualifyTest extends TestCase
             return optional($job->handle())->name === Notification::BEATMAPSET_DISQUALIFY;
         });
 
-        $dispatchedCount = 0;
-        Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) use (&$dispatchedCount) {
+        $events = Event::dispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) {
             if ($event->notification->name === Notification::BEATMAPSET_DISQUALIFY) {
                 $this->assertSame(array_unique($event->getReceiverIds()), $event->getReceiverIds());
-                $dispatchedCount++;
+
+                return true;
             }
 
-            return true;
+            return false;
         });
 
-        $this->assertSame(1, $dispatchedCount);
+        $this->assertSame(1, $events->count());
     }
 
     public function testNotificationSentIfWatching()
