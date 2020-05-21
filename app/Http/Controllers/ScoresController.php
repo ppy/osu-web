@@ -21,6 +21,7 @@ class ScoresController extends Controller
 
     public function download($mode, $id)
     {
+        // allow downloading replays for review purpose
         $score = ScoreBest::getClassByString($mode)
             ::where('score_id', $id)
             ->where('replay', true)
