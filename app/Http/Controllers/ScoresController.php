@@ -56,6 +56,7 @@ class ScoresController extends Controller
     {
         $score = ScoreBest::getClassByString($mode)
             ::whereHas('beatmap.beatmapset')
+            ->visibleUsers()
             ->findOrFail($id);
 
         return ext_view('scores.show', [
