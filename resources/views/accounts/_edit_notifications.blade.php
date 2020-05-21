@@ -83,7 +83,7 @@
                     <div>{{ trans('accounts.notifications.options.push') }}</div>
                     <div>@include('accounts._edit_entry_status')</div>
 
-                    @foreach (App\Models\UserNotificationOption::HAS_NOTIFICATION as $name)
+                    @foreach (App\Models\UserNotificationOption::HAS_DELIVERY_MODES as $name)
                         <label
                             class="account-edit-entry__checkbox account-edit-entry__checkbox--grid"
                         >

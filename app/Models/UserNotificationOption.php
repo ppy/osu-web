@@ -27,7 +27,7 @@ class UserNotificationOption extends Model
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
 
-    const HAS_NOTIFICATION = [self::BEATMAPSET_MODDING, self::FORUM_TOPIC_REPLY];
+    const HAS_DELIVERY_MODES = [self::BEATMAPSET_MODDING, self::FORUM_TOPIC_REPLY];
 
     protected $casts = [
         'details' => 'array',
@@ -35,7 +35,7 @@ class UserNotificationOption extends Model
 
     public static function supportsNotifications(string $name)
     {
-        return in_array($name, static::HAS_NOTIFICATION, true)
+        return in_array($name, static::HAS_DELIVERY_MODES, true)
             || in_array($name, static::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS, true);
     }
 
@@ -61,7 +61,7 @@ class UserNotificationOption extends Model
             }
         }
 
-        if (static::supportsNotifications($this->name)) {
+        if (in_array($this->name, static::HAS_DELIVERY_MODES, true)) {
             if (isset($value['mail'])) {
                 $details['mail'] = get_bool($value['mail'] ?? null);
             }
