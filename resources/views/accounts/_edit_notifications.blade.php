@@ -79,33 +79,26 @@
                     data-account-edit-type="multi"
                     data-url="{{ route('account.notification-options') }}"
                 >
-                    <div>{{ trans('accounts.notifications.options.mail') }}</div>
-                    <div>{{ trans('accounts.notifications.options.push') }}</div>
+                    @foreach (App\Models\UserNotificationOption::DELIVERY_MODES as $mode)
+                        <div>{{ trans("accounts.notifications.options.{$mode}") }}</div>
+                    @endforeach
+
                     <div>@include('accounts._edit_entry_status')</div>
 
                     @foreach (App\Models\UserNotificationOption::HAS_DELIVERY_MODES as $name)
-                        <label
-                            class="account-edit-entry__checkbox account-edit-entry__checkbox--grid"
-                        >
-                            @include('objects._switch', [
-                                'additionalClass'=> 'js-account-edit__input',
-                                'checked' => $notificationOptions[$name]->details['mail'] ?? true,
-                                'defaultValue' => '0',
-                                'modifiers' => ['grid'],
-                                'name' => "user_notification_option[{$name}][details][mail]",
-                            ])
-                        </label>
-
-                        <label
-                            class="account-edit-entry__checkbox account-edit-entry__checkbox--grid"
-                        >
-                            @include('objects._switch', [
-                                'additionalClass'=> 'js-account-edit__input',
-                                'checked' => $notificationOptions[$name]->details['push'] ?? true,
-                                'defaultValue' => '0',
-                                'name' => "user_notification_option[{$name}][details][push]",
-                            ])
-                        </label>
+                        @foreach (App\Models\UserNotificationOption::DELIVERY_MODES as $mode)
+                            <label
+                                class="account-edit-entry__checkbox account-edit-entry__checkbox--grid"
+                            >
+                                @include('objects._switch', [
+                                    'additionalClass'=> 'js-account-edit__input',
+                                    'checked' => $notificationOptions[$name]->details[$mode] ?? true,
+                                    'defaultValue' => '0',
+                                    'modifiers' => ['grid'],
+                                    'name' => "user_notification_option[{$name}][details][{$mode}]",
+                                ])
+                            </label>
+                        @endforeach
 
                         <span class="account-edit-entry__checkbox-label account-edit-entry__checkbox-label--grid">
                             {{ trans("accounts.notifications.options.{$name}") }}
