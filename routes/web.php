@@ -317,7 +317,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
             });
-            Route::post('{beatmapset}/discussion/review', 'BeatmapDiscussionsController@review')->name('beatmap-discussions.review');
         });
 
         Route::apiResource('comments', 'CommentsController');
