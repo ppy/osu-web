@@ -14,6 +14,8 @@ class ScoreTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'beatmap',
         'beatmapset',
+        'rank_country',
+        'rank_global',
         'weight',
         'user',
         'multiplayer',
@@ -67,11 +69,28 @@ class ScoreTransformer extends TransformerAbstract
         });
     }
 
+    public function includeRankCountry($score)
+    {
+        return $this->primitive($score->userRank(['type' => 'country']));
+    }
+
+    public function includeRankGlobal($score)
+    {
+        return $this->primitive($score->userRank([]));
+    }
+
     public function includeBeatmap($score)
     {
-        return $score->beatmap === null
-            ? $this->primitive(null)
-            : $this->item($score->beatmap, new BeatmapTransformer);
+        if ($score->beatmap === null) {
+            return $this->primitive(null);
+        }
+
+        if ($score->getMode() !== $score->beatmap->mode) {
+            $score->beatmap->convert = true;
+            $score->beatmap->playmode = Beatmap::MODES[$score->getMode()];
+        }
+
+        return $this->item($score->beatmap, new BeatmapTransformer);
     }
 
     public function includeBeatmapset($score)

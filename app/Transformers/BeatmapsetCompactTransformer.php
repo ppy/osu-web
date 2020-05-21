@@ -75,20 +75,15 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                 continue;
             }
 
-            $difficulties = $beatmap->difficulty;
-
             foreach (Beatmap::MODES as $modeStr => $modeInt) {
                 if ($modeStr === 'osu') {
                     continue;
                 }
 
-                $difficulty = $difficulties->where('mode', $modeInt)->where('mods', 0)->first();
-
                 $beatmap = clone $beatmap;
 
                 $beatmap->playmode = $modeInt;
                 $beatmap->convert = true;
-                $beatmap->difficultyrating = $difficulty ? $difficulty->diff_unified : 0;
 
                 array_push($converts, $beatmap);
             }

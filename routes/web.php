@@ -76,8 +76,9 @@ Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name(
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
-Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
-    Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
+Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
+    Route::get('{score}/download', 'ScoresController@download')->name('download');
+    Route::get('{score}', 'ScoresController@show')->name('show');
 });
 
 Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);

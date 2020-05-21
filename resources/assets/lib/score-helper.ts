@@ -3,17 +3,21 @@
 
 import ScoreJson from 'interfaces/score-json';
 
-export const canBeReported = (score: ScoreJson) => {
+export function canBeReported(score: ScoreJson) {
   return score.best_id != null
     && currentUser.id != null
     && score.user_id !== currentUser.id;
-};
+}
 
 // TODO: move to application state repository thingy later
-export const hasMenu = (score: ScoreJson) => {
-  return hasReplay(score) || canBeReported(score);
-};
+export function hasMenu(score: ScoreJson) {
+  return canBeReported(score) || hasReplay(score) || hasShow(score);
+}
 
-export const hasReplay = (score: ScoreJson) => {
+export function hasReplay(score: ScoreJson) {
   return score.replay;
-};
+}
+
+export function hasShow(score: ScoreJson): score is ScoreJson & { best_id: number } {
+  return score.best_id != null;
+}
