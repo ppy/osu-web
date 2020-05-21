@@ -13,6 +13,7 @@ use App\Libraries\Search\BeatmapsetSearchRequestParams;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\Country;
 use App\Models\Genre;
@@ -21,10 +22,18 @@ use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryTransformer;
 use Auth;
 use Carbon\Carbon;
+use DB;
 use Request;
 
 class BeatmapsetsController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('require-scopes:public', ['only' => ['search', 'show']]);
+    }
+
     public function destroy($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
@@ -239,7 +248,27 @@ class BeatmapsetsController extends Controller
 
         if (count($metadataParams) > 0) {
             priv_check('BeatmapsetMetadataEdit', $beatmapset)->ensureCan();
-            $beatmapset->fill($metadataParams)->saveOrExplode();
+
+            $oldGenreId = $beatmapset->genre_id;
+            $oldLanguageId = $beatmapset->language_id;
+
+            DB::transaction(function () use ($beatmapset, $metadataParams, $oldGenreId, $oldLanguageId) {
+                $beatmapset->fill($metadataParams)->saveOrExplode();
+
+                if ($oldGenreId !== $beatmapset->genre_id) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::GENRE_EDIT, Auth::user(), $beatmapset, [
+                        'old' => Genre::find($oldGenreId)->name,
+                        'new' => $beatmapset->genre->name,
+                    ])->saveOrExplode();
+                }
+
+                if ($oldLanguageId !== $beatmapset->language_id) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::LANGUAGE_EDIT, Auth::user(), $beatmapset, [
+                        'old' => Language::find($oldLanguageId)->name,
+                        'new' => $beatmapset->language->name,
+                    ])->saveOrExplode();
+                }
+            });
         }
 
         return $this->showJson($beatmapset);

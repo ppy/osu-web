@@ -76,8 +76,9 @@ Route::put('beatmapsets/{beatmapset}/love', 'BeatmapsetsController@love')->name(
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
 Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
-Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
-    Route::get('{mode}/{score}/download', 'ScoresController@download')->name('download');
+Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
+    Route::get('{score}/download', 'ScoresController@download')->name('download');
+    Route::get('{score}', 'ScoresController@show')->name('show');
 });
 
 Route::resource('client-verifications', 'ClientVerificationsController', ['only' => ['create', 'store']]);
@@ -386,6 +387,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
         Route::get('me/{mode?}', 'UsersController@me')->name('me');
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
+
+        Route::apiResource('news', 'NewsController', ['only' => ['index', 'show']]);
 
         // Notifications
         //  GET /api/v2/notifications

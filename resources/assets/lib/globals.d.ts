@@ -50,6 +50,7 @@ interface BeatmapDiscussionHelperClass {
   format(text: string, options?: any): string;
   formatTimestamp(value: number): string;
   parseTimestamp(value: string): number | null;
+  previewMessage(value: string): string;
   url(options: any, useCurrent?: boolean): string;
 }
 

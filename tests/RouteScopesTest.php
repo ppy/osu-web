@@ -5,53 +5,127 @@
 
 namespace Tests;
 
-use Request;
+use App\Http\Middleware\AuthApi;
+use App\Libraries\RouteScopesHelper;
+use App\Models\Build;
+use App\Models\Changelog;
+use App\Models\Comment;
+use App\Models\UpdateStream;
 use Route;
 
 class RouteScopesTest extends TestCase
 {
-    public function testApiRoutesRequireScope()
-    {
-        $expected = [
-            'api/v2/friends' => ['friends.read'],
-            'api/v2/me/{mode?}' => ['identify'],
-            'api/v2/users/{user}/kudosu' => ['users.read'],
-            'api/v2/users/{user}/scores/{type}' => ['users.read'],
-            'api/v2/users/{user}/beatmapsets/{type}' => ['users.read'],
-            'api/v2/users/{user}/recent_activity' => ['users.read'],
-            'api/v2/users/{user}/{mode?}' => ['users.read'],
-        ];
+    private static $expectations;
 
-        $loaded = [];
+    /**
+     * @dataProvider routeScopesDataProvider
+     */
+    public function testApiRouteScopes($route)
+    {
+        $this->importExpectations();
+
+        $key = "{$route['method']}@{$route['controller']}";
+
+        $this->assertSame(static::$expectations[$key], $route, $key);
+    }
+
+    /**
+     * @dataProvider routesDataProvider
+     */
+    public function testUnscopedRequestsRequireAuthentication(string $url, string $method, array $middlewares)
+    {
+        // factory some objects so unauthed endpoints don't 404.
+        // FIXME: only create objects as necessary instead of every run;
+        // This can't be simply setup in setUpBeforeClass() because then we'd need to initialize the app container there,
+        // but the container is overriden on each test and also destroyed before the teardown
+        // making rolling back or cleaning up problematic.
+        $stream = factory(UpdateStream::class)->create([
+            'name' => '1',
+            'stream_id' => 1, // Changelog stream_id is tinyint, autoincrement makes test fail too soon.
+        ]);
+
+        factory(Changelog::class)->create([
+            'stream_id' => $stream->getKey(),
+            'user_id' => 1, // user doesn't need to exist and not having to create a user makes the test much faster
+        ]);
+
+        $build = factory(Build::class)->create([
+            'version' => '1',
+            'stream_id' => $stream->getKey(),
+        ]);
+
+        factory(Comment::class)->create([
+            'commentable_id' => $build->getKey(),
+            'commentable_type' => 'build',
+            'id' => 1,
+        ]);
+
+        $status = $this->call($method, $url)->getStatusCode();
+
+        if ($method === 'GET' && starts_with(ltrim($url, '/').'/', AuthApi::SKIP_GET)) {
+            $this->assertTrue(in_array($status, [200, 302, 404], true));
+        } elseif (in_array('require-scopes', $middlewares, true)) {
+            $this->assertSame(401, $status);
+        } else {
+            $this->assertNotSame(401, $status);
+        }
+    }
+
+    public function routesDataProvider()
+    {
+        // note that $this->app does not carry over to the tests.
+        $this->refreshApplication();
+
+        $data = [];
 
         foreach (Route::getRoutes() as $route) {
             if (!starts_with($route->uri, 'api/')) {
                 continue;
             }
 
-            // uri will still have the placeholders and wrong verbs, but we don't need them.
-            $request = Request::create($route->uri, 'GET');
-            $this->app->instance('request', $request); // set current request so is_api_request can work.
-
-            $middlewares = $route->gatherMiddleware();
-
-            foreach ($middlewares as $middleware) {
-                if (!is_string($middleware)) {
-                    continue;
+            foreach ($route->methods() as $method) {
+                // Only need the url to be valid so they can be routed.
+                $parameters = [];
+                foreach ($route->parameterNames() as $parameterName) {
+                    $parameters[$parameterName] = '1';
                 }
 
-                // FIXME: need something that isn't string checking.
-                if (starts_with($middleware, 'require-scopes:')) {
-                    $scopes = explode(',', substr($middleware, strlen('require-scopes:')));
-                    sort($scopes);
-                    $loaded[$route->uri] = $scopes;
-                }
+                $url = app('url')->toRoute($route, $parameters, false);
+                $action = $route->getAction('controller');
+                $middlewares = $route->gatherMiddleware();
+
+                $key = "{$method}@{$action}"; // give data set a name.
+                $data[$key] = [$url, $method, $middlewares];
             }
-
-            // FIXME: separate this assertion.
-            $this->assertTrue(in_array('require-scopes', $middlewares, true));
         }
 
-        $this->assertSame($expected, $loaded);
+        return $data;
+    }
+
+    public function routeScopesDataProvider()
+    {
+        // note that $this->app does not carry over to the tests.
+        $this->refreshApplication();
+
+        return array_map(function ($route) {
+            return [$route];
+        }, (new RouteScopesHelper)->toArray());
+    }
+
+    private function importExpectations()
+    {
+        if (static::$expectations !== null) {
+            return;
+        }
+
+        static::$expectations = [];
+
+        $helper = new RouteScopesHelper;
+        $helper->fromJson('tests/api_routes.json');
+        $routes = $helper->routes;
+        foreach ($routes as $route) {
+            $key = "{$route['method']}@{$route['controller']}";
+            static::$expectations[$key] = $route;
+        }
     }
 }
