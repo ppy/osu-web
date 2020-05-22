@@ -34,8 +34,10 @@ class BeatmapsetDisqualifyTest extends TestCase
         $this->disqualify()->assertStatus(200);
 
         Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return optional($job->handle())->name === Notification::BEATMAPSET_DISQUALIFY;
+            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
         });
+
+        $this->runFakeQueue();
 
         $events = Event::dispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) {
             if ($event->notification->name === Notification::BEATMAPSET_DISQUALIFY) {
@@ -57,8 +59,10 @@ class BeatmapsetDisqualifyTest extends TestCase
         $this->disqualify()->assertStatus(200);
 
         Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return optional($job->handle())->name === Notification::BEATMAPSET_DISQUALIFY;
+            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
         });
+
+        $this->runFakeQueue();
 
         Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) {
             return $event->notification->name === Notification::BEATMAPSET_DISQUALIFY
@@ -80,8 +84,10 @@ class BeatmapsetDisqualifyTest extends TestCase
 
         if ($pushEnabled) {
             Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-                return optional($job->handle())->name === Notification::BEATMAPSET_DISQUALIFY;
+                return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
             });
+
+            $this->runFakeQueue();
 
             Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) {
                 return $event->notification->name === Notification::BEATMAPSET_DISQUALIFY
@@ -89,17 +95,11 @@ class BeatmapsetDisqualifyTest extends TestCase
             });
         } else {
             // We want to assert the job was queued but because there should be no receivers, there won't be a notification generated.
-            $jobDidRun = false;
-            Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) use (&$jobDidRun) {
-                $job->handle();
-                if ($job->getName() === Notification::BEATMAPSET_DISQUALIFY) {
-                    $jobDidRun = true;
-                }
-
-                return true;
+            Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
+                return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
             });
 
-            $this->assertTrue($jobDidRun);
+            $this->runFakeQueue();
 
             Event::assertNotDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) {
                 return $event->notification->name === Notification::BEATMAPSET_DISQUALIFY;
@@ -114,8 +114,10 @@ class BeatmapsetDisqualifyTest extends TestCase
         $this->disqualify()->assertStatus(200);
 
         Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return optional($job->handle())->name === Notification::BEATMAPSET_DISQUALIFY;
+            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
         });
+
+        $this->runFakeQueue();
 
         Event::assertDispatched(NewPrivateNotificationEvent::class, function (NewPrivateNotificationEvent $event) {
             return $event->notification->name === Notification::BEATMAPSET_DISQUALIFY
@@ -127,9 +129,11 @@ class BeatmapsetDisqualifyTest extends TestCase
     {
         $this->disqualify()->assertStatus(200);
 
-        Queue::assertNotPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return optional($job->handle())->name === Notification::BEATMAPSET_DISQUALIFY;
+        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
+            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
         });
+
+        $this->runFakeQueue();
 
         Event::assertNotDispatched(NewPrivateNotificationEvent::class);
     }

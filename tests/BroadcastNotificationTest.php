@@ -50,21 +50,12 @@ class BroadcastNotificationTest extends TestCase
             ->post(route('beatmap-discussion-posts.store'), $params)
             ->assertStatus(200);
 
+        Queue::assertPushed(BroadcastNotification::class);
+        $this->runFakeQueue();
+
         if ($enabled) {
-            Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-                $notification = $job->handle();
-
-                return $notification !== null;
-            });
-
             Event::assertDispatched(NewPrivateNotificationEvent::class);
         } else {
-            Queue::assertNotPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-                $notification = $job->handle();
-
-                return $notification !== null;
-            });
-
             Event::assertNotDispatched(NewPrivateNotificationEvent::class);
         }
     }
