@@ -124,6 +124,13 @@ interface BeatmapFailTimesArray {
 interface Beatmapset {
   beatmaps: Beatmap[];
   id: number;
+  nominations: {
+    current: number,
+    nominated: boolean,
+    required: number,
+    required_hype: number,
+  };
+  status: string;
   // ... and other stuff
 }
 

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import isHotkey from 'is-hotkey';
-import * as laroute from 'laroute';
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
@@ -10,7 +10,11 @@ import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { Spinner } from 'spinner';
 import EditorDiscussionComponent from './editor-discussion-component';
-import { serializeSlateDocument, toggleFormat } from './editor-helpers';
+import {
+  serializeSlateDocument,
+  slateDocumentContainsProblem,
+  toggleFormat,
+} from './editor-helpers';
 import { EditorToolbar } from './editor-toolbar';
 import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
@@ -244,21 +248,23 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   post = () => {
-    this.setState({posting: true}, () => {
-      this.xhr = $.ajax(laroute.route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
-        data: { document: this.serialize() },
-        method: 'POST',
-      });
+    if (this.showConfirmationIfRequired()) {
+      this.setState({posting: true}, () => {
+        this.xhr = $.ajax(route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
+          data: {document: this.serialize()},
+          method: 'POST',
+        });
 
-      this.xhr.then((data) => {
-        $.publish('beatmapsetDiscussions:update', {beatmapset: data});
-        this.resetInput();
-      })
-      .always(() => {
-        this.setState({posting: false});
-      })
-      .catch(osu.ajaxError);
-    });
+        this.xhr.then((data) => {
+          $.publish('beatmapsetDiscussions:update', {beatmapset: data});
+          this.resetInput();
+        })
+          .always(() => {
+            this.setState({posting: false});
+          })
+          .catch(osu.ajaxError);
+      });
+    }
   }
 
   render(): React.ReactNode {
@@ -374,6 +380,25 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   serialize = () => serializeSlateDocument(this.state.value);
+
+  showConfirmationIfRequired = () => {
+    const docContainsProblem = slateDocumentContainsProblem(this.state.value);
+    const canDisqualify = currentUser.is_admin || currentUser.is_moderator || currentUser.is_full_bn;
+    const willDisqualify = this.props.beatmapset.status === 'qualified' && docContainsProblem;
+    const canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng;
+    const willReset = this.props.beatmapset.status === 'pending' && this.props.beatmapset.nominations.current > 0 && docContainsProblem;
+
+    let confirmed = true;
+
+    if (canDisqualify && willDisqualify) {
+      confirmed = confirm(osu.trans('beatmaps.nominations.reset_confirm.disqualify'));
+    }
+    if (canReset && willReset) {
+      confirmed = confirm(osu.trans('beatmaps.nominations.reset_confirm.nomination_reset'));
+    }
+
+    return confirmed;
+  }
 
   sortedBeatmaps = () => {
     if (this.cache.sortedBeatmaps == null) {

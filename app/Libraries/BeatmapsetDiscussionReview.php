@@ -9,6 +9,7 @@ use App\Exceptions\InvariantException;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use DB;
 
@@ -22,6 +23,7 @@ class BeatmapsetDiscussionReview
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
+        $problemPost = null;
         $output = [];
         try {
             DB::beginTransaction();
@@ -29,7 +31,6 @@ class BeatmapsetDiscussionReview
             // create the issues for the embeds first
             $childIds = [];
             $blockCount = 0;
-
             foreach ($document as $block) {
                 if (!isset($block['type'])) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
@@ -42,19 +43,22 @@ class BeatmapsetDiscussionReview
 
                 switch ($block['type']) {
                     case 'embed':
-                        $childId = self::createPost(
+                        $embedPost = self::createPost(
                             $beatmapset->getKey(),
                             $block['discussion_type'],
                             $message,
                             $user->getKey(),
                             $block['beatmap_id'] ?? null,
                             $block['timestamp'] ?? null
-                        )->getKey();
+                        );
                         $output[] = [
                             'type' => 'embed',
-                            'discussion_id' => $childId,
+                            'discussion_id' => $embedPost->getKey(),
                         ];
-                        $childIds[] = $childId;
+                        $childIds[] = $embedPost->getKey();
+                        if ($block['discussion_type'] == 'problem' && !$problemPost) {
+                            $problemPost = $embedPost;
+                        }
                         break;
 
                     case 'paragraph':
@@ -94,6 +98,22 @@ class BeatmapsetDiscussionReview
             // associate children with parent
             BeatmapDiscussion::whereIn('id', $childIds)
                 ->update(['parent_id' => $review->getKey()]);
+
+            // handle disqualifications and the resetting of nominations
+            if ($problemPost) {
+                $resetNominations = $beatmapset->isPending() &&
+                    $beatmapset->hasNominations() &&
+                    priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can();
+
+                if ($resetNominations) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $problemPost)->saveOrExplode();
+                    $beatmapset->refreshCache();
+                } else {
+                    if (priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
+                        $beatmapset->disqualify($user, $problemPost);
+                    }
+                }
+            }
 
             DB::commit();
 

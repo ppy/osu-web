@@ -205,6 +205,64 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($discussionPostCount + 3, BeatmapDiscussionPost::count());
     }
 
+    // valid document containing issue embeds should trigger disqualification (for GMT)
+    public function testCreateDocumentDocumentValidWithIssuesShouldDisqualify()
+    {
+        $gmtUser = factory(User::class)->states('gmt')->create();
+        $beatmapset = factory(Beatmapset::class)->create([
+            'discussion_enabled' => true,
+            'approved' => Beatmapset::STATES['qualified'],
+        ]);
+        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+
+        BeatmapsetDiscussionReview::create($beatmapset,
+            [
+                [
+                    'type' => 'embed',
+                    'discussion_type' => 'problem',
+                    'text' => self::$faker->sentence(),
+                ],
+                [
+                    'type' => 'paragraph',
+                    'text' => 'this is some paragraph text',
+                ],
+            ], $gmtUser);
+
+        // ensure qualified beatmap has been reset to pending
+        $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
+    }
+
+    // valid document containing issue embeds should reset nominations (for GMT)
+    public function testCreateDocumentDocumentValidWithIssuesShouldResetNominations()
+    {
+        $gmtUser = factory(User::class)->states('gmt')->create();
+        $beatmapset = factory(Beatmapset::class)->create([
+            'discussion_enabled' => true,
+            'approved' => Beatmapset::STATES['pending'],
+        ]);
+        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $beatmapset->nominate($gmtUser);
+        $this->assertSame($beatmapset->nominations, 1);
+
+        BeatmapsetDiscussionReview::create($beatmapset,
+            [
+                [
+                    'type' => 'embed',
+                    'discussion_type' => 'problem',
+                    'text' => self::$faker->sentence(),
+                ],
+                [
+                    'type' => 'paragraph',
+                    'text' => 'this is some paragraph text',
+                ],
+            ], $gmtUser);
+
+        // ensure beatmap is still pending
+        $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
+        // ensure nomination count has been reset
+        $this->assertSame($beatmapset->nominations, 0);
+    }
+
     //endregion
 
     //endregion

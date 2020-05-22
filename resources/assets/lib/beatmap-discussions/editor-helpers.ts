@@ -22,6 +22,17 @@ export const toggleFormat = (editor: ReactEditor, format: string) => {
   );
 };
 
+export const slateDocumentContainsProblem = (input: SlateNode[]) => {
+  let containsProblem = false;
+  input.forEach((node) => {
+    if (node.type === 'embed' && node.discussionType === 'problem') {
+      containsProblem = true;
+      return;
+    }
+  });
+  return containsProblem;
+};
+
 export const serializeSlateDocument = (input: SlateNode[]) => {
   const review: BeatmapDiscussionReview = [];
 
