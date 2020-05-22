@@ -7,6 +7,7 @@ namespace App\Jobs\Notifications;
 
 use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
+use App\Jobs\SendUserNotificationMail;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
@@ -112,6 +113,10 @@ abstract class BroadcastNotificationBase implements ShouldQueue
                 $notification->userNotifications()->create(['user_id' => $id]);
             }
         });
+
+        foreach ($this->receiverIds as $id) {
+            dispatch(new SendUserNotificationMail(User::find($id)));
+        }
     }
 
     public function makeNotification(): Notification
