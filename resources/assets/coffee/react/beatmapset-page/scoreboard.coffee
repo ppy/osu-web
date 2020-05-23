@@ -15,6 +15,7 @@ export class Scoreboard extends React.PureComponent
   MANIA_KEY_MODS = ['4K', '5K', '6K', '7K', '8K', '9K']
   MANIA_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', 'MR']
 
+  # FIXME: update to use utils/score's modeAttributesMap
   hitTypeMapping: =>
     # mapping of [displayed text, internal name] for each mode
     switch @props.beatmap.mode

@@ -79,6 +79,48 @@ class UserProfileCustomization extends Model
         $this->save();
     }
 
+    public function getAudioAutoplayAttribute()
+    {
+        return $this->options['audio_autoplay'] ?? false;
+    }
+
+    public function setAudioAutoplayAttribute($value)
+    {
+        if (!is_bool($value)) {
+            $value = null;
+        }
+
+        $this->setOption('audio_autoplay', $value);
+    }
+
+    public function getAudioMutedAttribute()
+    {
+        return $this->options['audio_muted'] ?? false;
+    }
+
+    public function setAudioMutedAttribute($value)
+    {
+        if (!is_bool($value)) {
+            $value = null;
+        }
+
+        $this->setOption('audio_muted', $value);
+    }
+
+    public function getAudioVolumeAttribute()
+    {
+        return $this->options['audio_volume'] ?? null;
+    }
+
+    public function setAudioVolumeAttribute($value)
+    {
+        if (!is_float($value) && !is_int($value)) {
+            $value = null;
+        }
+
+        $this->setOption('audio_volume', $value);
+    }
+
     public function getBeatmapsetDownloadAttribute()
     {
         return $this->options['beatmapset_download'] ?? static::BEATMAPSET_DOWNLOAD[0];
