@@ -210,13 +210,20 @@ class BroadcastNotification implements ShouldQueue
             ->whereNotNull('details')
             ->get();
 
-        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
+        $this->receiverIds = [];
 
         foreach ($notificationOptions as $notificationOption) {
             if (count(array_intersect($notificationOption->details['modes'] ?? [], $modes)) > 0) {
                 $this->receiverIds[] = $notificationOption->user_id;
             }
         }
+
+        $this->receiverIds = static::filterUserIdsForNotificationOption(
+            $this->receiverIds,
+            UserNotificationOption::BEATMAPSET_MODDING
+        );
+
+        $this->receiverIds = array_merge($this->receiverIds, static::beatmapsetWatcherUserIds($this->object));
 
         $this->params['details'] = [
             'title' => $this->object->title,
