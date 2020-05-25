@@ -1324,7 +1324,7 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
             }
 
             usort($groups, function ($a, $b) {
-                return $a->display_order < $b->display_order ? -1 : 1;
+                return $a->display_order - $b->display_order;
             });
 
             $this->memoized[__FUNCTION__] = $groups;
