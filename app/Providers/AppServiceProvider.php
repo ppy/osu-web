@@ -84,10 +84,6 @@ class AppServiceProvider extends ServiceProvider
             return new OsuAuthorize();
         });
 
-        $this->app->singleton(RequireScopes::class, function () {
-            return new RequireScopes;
-        });
-
         $this->app->singleton('route-section', function () {
             return new RouteSection;
         });

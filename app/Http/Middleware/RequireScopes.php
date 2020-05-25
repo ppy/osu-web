@@ -9,48 +9,53 @@ use App\Exceptions\AuthorizationException;
 use Closure;
 use Illuminate\Http\Request;
 use Laravel\Passport\Exceptions\MissingScopeException;
+use Laravel\Passport\Http\Middleware\CheckCredentials;
 
-class RequireScopes
+class RequireScopes extends CheckCredentials
 {
-    /** @var bool|null */
-    private $requestHasScopedMiddleware;
+    /**
+     * {@inheritdoc}
+     */
+    public function handle($request, Closure $next, ...$scopes)
+    {
+        if (!is_api_request() || AuthApi::skipAuth($request)) {
+            return $next($request);
+        }
+
+        return parent::handle($request, $next, ...$scopes);
+    }
 
     /**
-     * Handle an incoming request.
-     *
-     * @param Request $request
-     * @param Closure $next
-     * @param string[] ...$scopes
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
-    public function handle(Request $request, Closure $next, ...$scopes)
+    protected function validateCredentials($token)
     {
-        if (is_api_request() && !AuthApi::skipAuth($request)) {
-            $token = optional($request->user())->token();
-            if ($token === null || $token->revoked) {
-                throw new AuthorizationException();
-            }
+        if ($token === null || $token->revoked) {
+            throw new AuthorizationException();
+        }
+    }
 
-            if (empty($token->scopes)) {
-                throw new MissingScopeException([], 'Tokens without scopes are not valid.');
-            }
+    /**
+     * {@inheritdoc}
+     */
+    protected function validateScopes($token, $scopes)
+    {
+        if (empty($token->scopes)) {
+            throw new MissingScopeException([], 'Tokens without scopes are not valid.');
+        }
 
-            if (!$this->requestHasScopedMiddleware($request)) {
-                // use a non-existent scope; only '*' should pass.
-                if (!$token->can('invalid')) {
-                    throw new MissingScopeException();
-                }
-            } else {
-                foreach ($scopes as $scope) {
-                    if (!$token->can($scope)) {
-                        throw new MissingScopeException([$scope], 'A required scope is missing.');
-                    }
+        if (!$this->requestHasScopedMiddleware(request())) {
+            // use a non-existent scope; only '*' should pass.
+            if (!$token->can('invalid')) {
+                throw new MissingScopeException();
+            }
+        } else {
+            foreach ($scopes as $scope) {
+                if (!$token->can($scope)) {
+                    throw new MissingScopeException([$scope], 'A required scope is missing.');
                 }
             }
         }
-
-        return $next($request);
     }
 
     /**
@@ -62,11 +67,13 @@ class RequireScopes
      */
     private function requestHasScopedMiddleware(Request $request): bool
     {
-        if ($this->requestHasScopedMiddleware === null) {
-            $this->requestHasScopedMiddleware = $this->containsScoped($request);
+        $value = $request->attributes->get('requestHasScopedMiddleware');
+        if ($value === null) {
+            $value = $this->containsScoped($request);
+            $request->attributes->set('requestHasScopedMiddleware', $value);
         }
 
-        return $this->requestHasScopedMiddleware;
+        return $value;
     }
 
     private function containsScoped(Request $request)
