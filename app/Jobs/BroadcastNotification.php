@@ -9,6 +9,8 @@ use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
 use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\Beatmap;
+use App\Models\BeatmapDiscussionPost;
+use App\Models\Beatmapset;
 use App\Models\Chat\Channel;
 use App\Models\Follow;
 use App\Models\Notification;
@@ -125,34 +127,37 @@ class BroadcastNotification implements ShouldQueue
 
     private function assignBeatmapsetDiscussionNotificationDetails()
     {
-        $this->params['details'] = [
-            'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
-            'title' => $this->notifiable->title,
-            'post_id' => $this->object->getKey(),
-            'discussion_id' => $this->object->beatmapDiscussion->getKey(),
-            'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
-            'cover_url' => $this->notifiable->coverURL('card'),
-        ];
+        if ($this->object instanceof BeatmapDiscussionPost) {
+            $this->params['details'] = [
+                'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
+                'title' => $this->notifiable->title,
+                'post_id' => $this->object->getKey(),
+                'discussion_id' => $this->object->beatmapDiscussion->getKey(),
+                'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
+                'cover_url' => $this->notifiable->coverURL('card'),
+            ];
+        } else if ($this->object instanceof Beatmapset) {
+            $this->params['details'] = [
+                'title' => $this->object->title,
+                'cover_url' => $this->object->coverURL('card'),
+            ];
+        }
+
+        // TODO: explode?
     }
 
     private function onBeatmapsetDiscussionLock()
     {
         $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
-        $this->params['details'] = [
-            'title' => $this->object->title,
-            'cover_url' => $this->object->coverURL('card'),
-        ];
+        $this->assignBeatmapsetDiscussionNotificationDetails();
     }
 
     private function onBeatmapsetDiscussionUnlock()
     {
         $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
-        $this->params['details'] = [
-            'title' => $this->object->title,
-            'cover_url' => $this->object->coverURL('card'),
-        ];
+        $this->assignBeatmapsetDiscussionNotificationDetails();
     }
 
     private function onBeatmapsetDiscussionPostNew()
@@ -246,60 +251,42 @@ class BroadcastNotification implements ShouldQueue
 
         $this->receiverIds = array_merge($this->receiverIds, static::beatmapsetWatcherUserIds($this->object));
 
-        $this->params['details'] = [
-            'title' => $this->object->title,
-            'cover_url' => $this->object->coverURL('card'),
-        ];
+        $this->assignBeatmapsetDiscussionNotificationDetails();
     }
 
     private function onBeatmapsetLove()
     {
         $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
-        $this->params['details'] = [
-            'title' => $this->object->title,
-            'cover_url' => $this->object->coverURL('card'),
-        ];
+        $this->assignBeatmapsetDiscussionNotificationDetails();
     }
 
     private function onBeatmapsetNominate()
     {
         $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
-        $this->params['details'] = [
-            'title' => $this->object->title,
-            'cover_url' => $this->object->coverURL('card'),
-        ];
+        $this->assignBeatmapsetDiscussionNotificationDetails();
     }
 
     private function onBeatmapsetQualify()
     {
         $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
-        $this->params['details'] = [
-            'title' => $this->object->title,
-            'cover_url' => $this->object->coverURL('card'),
-        ];
+        $this->assignBeatmapsetDiscussionNotificationDetails();
     }
 
     private function onBeatmapsetRank()
     {
         $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
-        $this->params['details'] = [
-            'title' => $this->object->title,
-            'cover_url' => $this->object->coverURL('card'),
-        ];
+        $this->assignBeatmapsetDiscussionNotificationDetails();
     }
 
     private function onBeatmapsetResetNominations()
     {
         $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
-        $this->params['details'] = [
-            'title' => $this->object->title,
-            'cover_url' => $this->object->coverURL('card'),
-        ];
+        $this->assignBeatmapsetDiscussionNotificationDetails();
     }
 
     private function onCommentNew()
