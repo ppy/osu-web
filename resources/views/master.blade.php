@@ -107,6 +107,15 @@
             <div class="js-audio--main"></div>
             <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
         </div>
+        {{--
+            Components:
+            - lib/utils/estimate-min-lines.ts (main)
+            - less/bem/estimate-min-lines.less (styling)
+            - views/master.blade.php (placeholder)
+        --}}
+        <div id="estimate-min-lines" class="estimate-min-lines" data-turbolinks-permanent>
+            <div class="estimate-min-lines__content js-estimate-min-lines"></div>
+        </div>
         @include("layout._global_variables")
         @include('layout._loading_overlay')
         @include('layout.popup-container')
