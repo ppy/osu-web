@@ -14,16 +14,16 @@ export default function Player(props: Props) {
   return (
     <div className='score-player'>
       <div className='score-player__row score-player__row--score'>
+        <div className='score-player__score'>
+          {osu.formatNumber(props.score.score)}
+        </div>
+
         <div className='score-player__mods'>
           {props.score.mods.map((mod) => (
             <div key={mod} className='score-player__mod'>
               <Mod mod={mod} modifiers={['dynamic']} />
             </div>
           ))}
-        </div>
-
-        <div className='score-player__score'>
-          {osu.formatNumber(props.score.score)}
         </div>
       </div>
 
