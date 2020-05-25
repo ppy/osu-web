@@ -307,6 +307,7 @@ return [
                 'empty' => 'Chưa ghi nhận thành tích tuyệt vời nào. :(',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
                 'pp_weight' => 'trọng số :percentage',
+                'view_details' => '',
                 'title' => 'Xếp Hạng',
 
                 'best' => [

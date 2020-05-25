@@ -109,6 +109,9 @@ return [
         'ranking_controller' => [
             '_' => '순위',
         ],
+        'scores_controller' => [
+            '_' => '',
+        ],
         'store_controller' => [
             '_' => 'osu!store',
         ],

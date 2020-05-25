@@ -15,7 +15,7 @@ return [
         'beatmapset' => 'beatmaplar',
         'forum_topic' => 'forum',
         'news_post' => 'haberler',
-        'build' => '',
+        'build' => 'sürümler',
         'channel' => 'sohbet',
     ],
 

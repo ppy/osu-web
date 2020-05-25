@@ -21,7 +21,7 @@ return [
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_placeholder_locked' => 'Laman diskusi pada beatmap ini telah ditutup.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "Anda tidak dapat berpartisipasi pada laman diskusi beatmap ketika Anda sedang ter-silence.",
         'message_type_select' => 'Pilih Jenis Komentar',
         'reply_notice' => 'Tekan enter untuk membalas.',
         'reply_placeholder' => 'Ketik balasan Anda di sini',
@@ -110,7 +110,7 @@ return [
             'mine' => 'Milik Saya',
             'pending' => 'Belum Terjawab',
             'praises' => 'Pujian',
-            'resolved' => 'Terselesaikan',
+            'resolved' => 'Terjawab',
             'total' => 'Semua',
         ],
 

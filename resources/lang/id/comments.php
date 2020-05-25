@@ -22,9 +22,9 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Tekan enter untuk mengirimkan :action. Gunakan shift+enter untuk memulai garis baru.',
+            '_' => 'Tekan enter untuk mengirimkan :action Anda. Gunakan shift+enter untuk memulai baris baru.',
             'edit' => 'simpan',
-            'new' => 'post',
+            'new' => 'komentar',
             'reply' => 'balas',
         ],
     ],

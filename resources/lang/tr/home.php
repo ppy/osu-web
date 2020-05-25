@@ -27,7 +27,7 @@ return [
         'title' => 'Ara',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'Beatmapleri aramak için giriş yapın',
             'more' => ':count tane daha beatmap arama sonucu',
             'more_simple' => 'Daha fazla beatmap arama sonucu gör',
             'title' => 'Beatmapler',
@@ -36,7 +36,7 @@ return [
         'forum_post' => [
             'all' => 'Tüm forumlar',
             'link' => 'Forumda ara',
-            'login_required' => '',
+            'login_required' => 'Forumda aramak için giriş yapın',
             'more_simple' => 'Daha fazla forum arama sonucu görmek için tıklayınız',
             'title' => 'Forum',
 
@@ -57,7 +57,7 @@ return [
         ],
 
         'user' => [
-            'login_required' => '',
+            'login_required' => 'Kullanıcıları aramak için giriş yapın',
             'more' => ':count tane daha oyuncu arama sonucu',
             'more_simple' => 'Daha fazla oyuncu arama sonucu gör',
             'more_hidden' => 'Oyuncu araması :max oyuncuyla sınırlıdır. Arama sorgusunu hassaslaştırmayı deneyin.',

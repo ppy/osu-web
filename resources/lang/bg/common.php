@@ -37,6 +37,7 @@ return [
         'permalink' => 'постоянен линк',
         'pin' => '',
         'post' => 'Публикувай',
+        'read_more' => '',
         'reply' => 'Отговори',
         'reply_reopen' => 'Отговори и възстанови',
         'reply_resolve' => 'Отговори и разреши',

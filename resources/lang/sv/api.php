@@ -6,21 +6,19 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => '',
-            'limit_exceeded' => 'Du skickar meddelanden för snabbt, vänta en stund innan du skickar igen.',
+            'empty' => 'Kan ej skicka tomma meddelanden.',
+            'limit_exceeded' => 'Du skickar meddelanden för snabbt, vänligen vänta lite innan du försöker igen.',
             'too_long' => 'Meddelandet du försöker skicka är för långt.',
         ],
     ],
 
     'scopes' => [
-        'identify' => 'Identifiera dig och läsa offentlig data.',
+        'identify' => 'Identifiera dig och läs din offentliga profil.',
 
         'friends' => [
             'read' => 'Se vem du följer.',
         ],
 
-        'users' => [
-            'read' => '',
-        ],
+        'public' => '',
     ],
 ];

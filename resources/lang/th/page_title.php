@@ -27,96 +27,100 @@ return [
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'ฟอรัม',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'หน้าหลัก',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'หน้าหลัก',
+            'verify_link' => 'การยืนยันบัญชี',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'ศิลปินที่โดดเด่น',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'โพสต์การสนทนาเกี่ยวกับ Beatmap',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'การสนทนาเกี่ยวกับ Beatmap',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'บีทแมพแพ็ค',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'โหวตการสนทนา Beatmap',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'ประวัติ Beatmap',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'หน้าหลัก',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'การสนทนาเกี่ยวกับ Beatmap',
+            'index' => 'รายการ Beatmap',
+            'show' => 'ข้อมูลบีตแมป',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'การเปลี่ยนแปลง',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'แชท',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'ความคิดเห็น',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'การแข่งขัน',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'หน้าหลัก',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'กลุ่ม',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
+            'get_download' => 'ดาวน์โหลด',
+            'index' => 'หน้าหลัก',
+            'search' => 'ค้นหา',
             'support_the_game' => 'สนับสนุนเกมนี้',
-            'testflight' => '',
+            'testflight' => 'TestFlight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'ข้อมูล',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'การถ่ายทอดสด',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'แมตซ์',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'ข่าวสาร',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'ประวัติการแจ้งเตือน',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'ตั้งรหัสผ่านใหม่',
         ],
         'ranking_controller' => [
+            '_' => 'การจัดอันดับ',
+        ],
+        'scores_controller' => [
             '_' => '',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!store',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => '
+ทัวร์นาเมนต์',
         ],
         'users_controller' => [
-            '_' => '',
+            '_' => 'ข้อมูลผู้เล่น',
             'disabled' => '',
         ],
         'wiki_controller' => [
@@ -124,7 +128,7 @@ return [
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!store',
     ],
     'users' => [
         'modding_history_controller' => [
