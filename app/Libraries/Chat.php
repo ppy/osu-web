@@ -56,6 +56,8 @@ class Chat
             });
 
             Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
+        } else {
+            $channel->unhide();
         }
 
         return static::sendMessage($sender, $channel, $message, $isAction);

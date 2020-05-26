@@ -198,7 +198,6 @@ class Channel extends Model
         }
 
         if ($this->isPM()) {
-            $this->unhide();
             broadcast_notification(Notification::CHANNEL_MESSAGE, $message, $sender);
         }
 
@@ -256,7 +255,7 @@ class Channel extends Model
         ])->exists();
     }
 
-    private function unhide()
+    public function unhide()
     {
         if (!$this->isPM()) {
             return;
