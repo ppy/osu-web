@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Models\UserNotification;
 use App\Models\UserRelation;
 use DB;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property Channel $channel
@@ -170,14 +169,5 @@ class UserChannel extends Model
 
         // strip out the empty [] elements (from restricted/blocked users)
         return array_values(array_filter($collection));
-    }
-
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->where([
-            'user_id' => $this->user_id,
-            'channel_id' => $this->channel_id,
-        ]);
     }
 }
