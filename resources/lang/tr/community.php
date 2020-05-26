@@ -15,8 +15,8 @@ return [
             'title' => 'Neden osu!\'yu desteklemeliyim? Para nereye gidiyor?',
 
             'team' => [
-                'title' => 'Takımı Destekle',
-                'description' => 'osu!\'yu küçük bir takım geliştirip yönetiyor. Senin desteğin onları, bilirsin... hayatta tutar.',
+                'title' => 'Ekibi Destekle',
+                'description' => 'osu!\'yu küçük bir ekip geliştirip yönetiyor. Senin desteğin onları, bilirsin... hayatta tutar.',
             ],
             'infra' => [
                 'title' => 'Sunucu Altyapısı',
@@ -25,10 +25,10 @@ return [
             'featured-artists' => [
                 'title' => 'Seçkin Sanatçılar',
                 'description' => 'Sizin desteğinizle, daha çok müzisyen ile iletişim kurabilir ve onların güzel şarkılarını osu! için lisanslayabiliriz!',
-                'link_text' => '',
+                'link_text' => 'Güncel listeyi görüntüleyin &raquo;',
             ],
             'ads' => [
-                'title' => '',
+                'title' => 'osu!\'nun kendi kendine devam etmesini sağlayın',
                 'description' => 'Sizin yardımlarınız oyunu bağımsız; tamamen reklamlardan, sponsorlardan barındırabilir.',
             ],
             'tournaments' => [
@@ -37,7 +37,7 @@ return [
                 'link_text' => 'Turnuvaları Keşfet &raquo;',
             ],
             'bounty-program' => [
-                'title' => '',
+                'title' => 'Açık Kaynak Ödül Programı',
                 'description' => 'Topluluğa katkı sağlamış ve kendi efor ve zamanlarını harcamış insanlara osu!\'yu daha iyi yapmak için destek verin.',
                 'link_text' => 'Daha fazlasını öğren &raquo;',
             ],
@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Arkadaş Sıralaması',
-                'description' => "",
+                'description' => "Hem oyun içinde hem de websitede, bir beatmapin sıralamasında arkadaşlarınız ile karşılaştırıldığında nasıl olduğunuzu görün.",
             ],
 
             'country_ranking' => [

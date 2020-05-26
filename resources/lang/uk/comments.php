@@ -7,10 +7,10 @@ return [
     'deleted' => 'видалено',
     'deleted_count' => ':count_delimited коментар видалено|:count_delimited коментарів видалено',
     'edited' => ':user відредагував :timeago',
-    'pinned' => '',
+    'pinned' => 'закріплено',
     'empty' => 'Ще немає коментарів.',
     'load_replies' => 'завантажити відповіді',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited відповідь|:count_delimited вiдповиiдей',
     'title' => 'Коментарі',
 
     'commentable_name' => [

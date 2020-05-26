@@ -37,6 +37,7 @@ return [
         'permalink' => '고유 주소',
         'pin' => '고정',
         'post' => '게시하기',
+        'read_more' => '',
         'reply' => '답변하기',
         'reply_reopen' => '답변하고 토론 재개하기',
         'reply_resolve' => '답변하고 토론 마무리하기',

@@ -19,8 +19,6 @@ return [
             'read' => 'Lihat siapa saja yang Anda ikuti.',
         ],
 
-        'users' => [
-            'read' => 'Lihat profil dari pengguna lain atas nama Anda.',
-        ],
+        'public' => '',
     ],
 ];

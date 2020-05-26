@@ -8,6 +8,6 @@ return [
         'headline' => 'Direktsändningar',
         'description' => 'Data hämtas från twitch.tv var femte minut baserad på kataloglistan. Känn dig fri att börja strömma och bli inlagd i listan! För mer information om hur du sätter igång, var vänlig att kolla in wikisidan om liveströmning.',
 
-        'link' => '',
+        'link' => 'wiki-sidan på livesändning',
     ],
 ];

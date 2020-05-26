@@ -144,7 +144,7 @@ return [
                 'not_owner' => 'Csak a szerző változtathatja a borítót.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Ez a fórum nem fogad téma fejléceket.',
             ],
         ],
 

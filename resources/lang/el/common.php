@@ -37,6 +37,7 @@ return [
         'permalink' => 'permalink',
         'pin' => '',
         'post' => 'Δημοσίευση',
+        'read_more' => '',
         'reply' => 'Απάντηση',
         'reply_reopen' => 'Απάντηση και εκ νέου άνοιγμα',
         'reply_resolve' => 'Απάντηση και Αρχειοθέτηση',

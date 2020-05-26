@@ -7,10 +7,10 @@ return [
     'deleted' => 'törölve',
     'deleted_count' => ':count_delimited törölt komment|:count_delimited törölt kommentek',
     'edited' => ':user által szerkesztve :timeago',
-    'pinned' => '',
+    'pinned' => 'rögzített',
     'empty' => 'Még nincsenek hozzászólások.',
     'load_replies' => 'válaszok betöltése',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited válasz|:count_delimited válaszok',
     'title' => 'Hozzászólások',
 
     'commentable_name' => [
@@ -35,7 +35,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'lista',
     ],
 
     'placeholder' => [
@@ -45,6 +45,6 @@ return [
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'hozzászólások',
     ],
 ];
