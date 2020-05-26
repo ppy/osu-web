@@ -50,7 +50,7 @@ return [
 
     'notifications' => [
         'title' => 'Notificaciones',
-        'topic_auto_subscribe' => 'activar automáticamente las notificaciones sobre los nuevos temas de los foros que cree',
+        'topic_auto_subscribe' => 'activar automáticamente las notificaciones en nuevos temas del foro que crees',
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
 
         'mail' => [

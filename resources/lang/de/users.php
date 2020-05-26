@@ -300,13 +300,14 @@ return [
                 'show_more' => 'weitere Beiträge anschauen',
             ],
             'recent_activity' => [
-                'title' => 'Zuletzt',
+                'title' => 'Neulich',
             ],
             'top_ranks' => [
-                'download_replay' => 'Replay downloaden',
+                'download_replay' => 'Replay herunterladen',
                 'empty' => 'Noch keine Einträge großartiger Performances. :(',
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
                 'pp_weight' => ':percentage gewichtet',
+                'view_details' => '',
                 'title' => 'Ränge',
 
                 'best' => [
@@ -380,7 +381,7 @@ return [
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',
-            'country_simple' => 'Länderrangliste',
+            'country_simple' => 'Landesrangliste',
             'global' => 'Globaler Rang im Modus :mode',
             'global_simple' => 'Globale Rangliste',
         ],
@@ -414,7 +415,7 @@ return [
         'saved' => 'User erstellt',
     ],
     'verify' => [
-        'title' => 'Accountbestätigung',
+        'title' => 'Accountverifizierung',
     ],
 
     'view_mode' => [

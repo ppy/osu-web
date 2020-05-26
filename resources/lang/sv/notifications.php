@@ -4,130 +4,130 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '',
-    'mark_read' => '',
-    'none' => '',
-    'see_all' => '',
+    'all_read' => 'Alla aviseringar är lästa!',
+    'mark_read' => 'Rensa :type',
+    'none' => 'Inga aviseringar',
+    'see_all' => 'visa alla aviseringar',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'build' => '',
-        'channel' => '',
+        '_' => 'alla',
+        'user' => 'profil',
+        'beatmapset' => 'beatmaps',
+        'forum_topic' => 'forum',
+        'news_post' => 'nyheter',
+        'build' => 'build',
+        'channel' => 'chatt',
     ],
 
     'item' => [
         'beatmapset' => [
-            '_' => '',
+            '_' => 'Beatmap',
 
             'beatmapset_discussion' => [
-                '_' => '',
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_lock_compact' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_post_new_empty' => '',
-                'beatmapset_discussion_post_new_compact' => '',
-                'beatmapset_discussion_post_new_compact_empty' => '',
-                'beatmapset_discussion_unlock' => '',
-                'beatmapset_discussion_unlock_compact' => '',
+                '_' => 'Beatmapdiskussion',
+                'beatmapset_discussion_lock' => 'Diskussion om ":title" har låsts',
+                'beatmapset_discussion_lock_compact' => 'Diskussionen var låst',
+                'beatmapset_discussion_post_new' => 'Nytt inlägg på ":title" av :username: ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Nytt inlägg på ":title" av :username',
+                'beatmapset_discussion_post_new_compact' => 'Nytt inlägg på ":username" av :content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nytt inlägg av :username',
+                'beatmapset_discussion_unlock' => 'Diskussion om ":title" har låsts upp',
+                'beatmapset_discussion_unlock_compact' => 'Diskussionen var upplåst',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Kvalificerade Beatmap problem',
+                'beatmapset_discussion_qualified_problem' => 'Rapporterat av :username på ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Rapporterat av :username på ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Rapporterat av :username på ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Rapporterad av :username',
             ],
 
             'beatmapset_state' => [
-                '_' => '',
-                'beatmapset_disqualify' => '',
-                'beatmapset_disqualify_compact' => '',
-                'beatmapset_love' => '',
-                'beatmapset_love_compact' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_nominate_compact' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_qualify_compact' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_rank_compact' => '',
-                'beatmapset_reset_nominations' => '',
-                'beatmapset_reset_nominations_compact' => '',
+                '_' => 'Beatmap status ändrad',
+                'beatmapset_disqualify' => '":title" har diskvalificerats',
+                'beatmapset_disqualify_compact' => 'Beatmap diskvalificerades',
+                'beatmapset_love' => '":title" befordrades till älskad',
+                'beatmapset_love_compact' => 'Beatmap befordrades till älskad',
+                'beatmapset_nominate' => '":title" har nominerats',
+                'beatmapset_nominate_compact' => 'Beatmap nominerades',
+                'beatmapset_qualify' => '":title" har fått tillräckligt många nomineringar och angett rankingkön',
+                'beatmapset_qualify_compact' => 'Beatmap har angett rankingkö',
+                'beatmapset_rank' => '":title" har rankats',
+                'beatmapset_rank_compact' => 'Beatmap rankades',
+                'beatmapset_reset_nominations' => 'Nominering av ":title" har återställts',
+                'beatmapset_reset_nominations_compact' => 'Nominering återställdes',
             ],
 
             'comment' => [
-                '_' => '',
+                '_' => 'Ny kommentar',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username kommenterade ":content" på ":title"',
+                'comment_new_compact' => ':username kommenterade ":content"',
             ],
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Chatt',
 
             'channel' => [
-                '_' => '',
+                '_' => 'Nytt meddelande',
                 'pm' => [
-                    'channel_message' => '',
-                    'channel_message_compact' => '',
-                    'channel_message_group' => '',
+                    'channel_message' => ':username säger ":title"',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => 'från :username',
                 ],
             ],
         ],
 
         'build' => [
-            '_' => '',
+            '_' => 'Ändringslogg',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Ny kommentar',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username kommenterade ":content" på ":title"',
+                'comment_new_compact' => ':username kommenterade ":content"',
             ],
         ],
 
         'news_post' => [
-            '_' => '',
+            '_' => 'Nyheter',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Ny kommentar',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
+                'comment_new' => ':username kommenterade ":content" på ":title"',
+                'comment_new_compact' => ':username kommenterade ":content"',
             ],
         ],
 
         'forum_topic' => [
-            '_' => '',
+            '_' => 'Forumämnen',
 
             'forum_topic_reply' => [
-                '_' => '',
-                'forum_topic_reply' => '',
-                'forum_topic_reply_compact' => '',
+                '_' => 'Nytt forumsvar',
+                'forum_topic_reply' => ':username svarade på ":title"',
+                'forum_topic_reply_compact' => ':username svarade',
             ],
         ],
 
         'legacy_pm' => [
-            '_' => '',
+            '_' => 'Forumets äldre PM',
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => '',
+                'legacy_pm' => ':count_delimited oläst meddelande|:count_delimited olästa meddelanden',
             ],
         ],
 
         'user_achievement' => [
-            '_' => '',
+            '_' => 'Medaljer',
 
             'user_achievement_unlock' => [
-                '_' => '',
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_compact' => '',
+                '_' => 'Ny medalj',
+                'user_achievement_unlock' => 'Upplåst ":title"!',
+                'user_achievement_unlock_compact' => 'Upplåst ":title"!',
             ],
         ],
     ],

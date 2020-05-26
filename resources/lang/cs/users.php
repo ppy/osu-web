@@ -307,6 +307,7 @@ return [
                 'empty' => 'Zatím žádné záznamy o úžasném výkonu. :(',
                 'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
                 'pp_weight' => 'váženo na :percentage',
+                'view_details' => '',
                 'title' => 'Umístění',
 
                 'best' => [

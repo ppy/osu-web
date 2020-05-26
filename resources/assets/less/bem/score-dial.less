@@ -1,0 +1,69 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.score-dial {
+  .center-content();
+  width: 200px;
+  height: 200px;
+
+  &__layer {
+    .full-size();
+
+    &--grade {
+      .center-content();
+      font-family: @font-grade;
+      font-size: @font-size--large-4;
+      text-shadow: 0 0 10px @osu-colour-c1;
+      padding-top: 0.15em; // compensating font baseline being too high
+    }
+  }
+
+  &__inner {
+    stroke: none;
+
+    &--0 {
+      fill: @colour-rank-d;
+    }
+
+    &--1 {
+      fill: @colour-rank-c;
+    }
+
+    &--2 {
+      fill: @colour-rank-b;
+    }
+
+    &--3 {
+      fill: @colour-rank-a;
+    }
+
+    &--4 {
+      fill: @colour-rank-s;
+    }
+
+    &--5 {
+      fill: @colour-rank-ss;
+    }
+  }
+
+  &__outer {
+    stroke: none;
+
+    &--0 {
+      fill: url(#dial-outer);
+    }
+
+    &--1 {
+      fill: @osu-colour-b6;
+    }
+  }
+
+  &__outer-gradient {
+    &--end {
+      stop-color: @osu-colour-lime-1;
+    }
+    &--start {
+      stop-color: @osu-colour-blue-1;
+    }
+  }
+}

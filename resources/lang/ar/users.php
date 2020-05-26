@@ -307,6 +307,7 @@ return [
                 'empty' => 'لا توجد سجلات أداء ممتاز بعد. :(',
                 'not_ranked' => 'فقط الخرائط المصفوفة تعطي نقاط خبرة.',
                 'pp_weight' => 'موزون :percentage',
+                'view_details' => '',
                 'title' => 'النتائج',
 
                 'best' => [

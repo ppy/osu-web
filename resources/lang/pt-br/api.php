@@ -19,8 +19,6 @@ return [
             'read' => 'Veja quem você está seguindo.',
         ],
 
-        'users' => [
-            'read' => 'Leia o perfil público de qualquer usuário em seu nome.',
-        ],
+        'public' => '',
     ],
 ];

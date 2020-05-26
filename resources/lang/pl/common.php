@@ -37,6 +37,7 @@ return [
         'permalink' => 'odnośnik bezpośredni',
         'pin' => 'przypnij',
         'post' => 'Opublikuj',
+        'read_more' => '',
         'reply' => 'Odpowiedz',
         'reply_reopen' => 'Odpowiedz i otwórz ponownie',
         'reply_resolve' => 'Odpowiedz i rozwiąż',

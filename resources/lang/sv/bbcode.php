@@ -10,7 +10,7 @@ return [
     'italic' => 'Kursiv',
     'link' => 'Länk',
     'list' => 'Lista',
-    'list_numbered' => 'Numrerad Lista',
+    'list_numbered' => 'Numrerad lista',
     'size' => [
         '_' => 'Teckenstorlek',
         'tiny' => 'Mycket liten',

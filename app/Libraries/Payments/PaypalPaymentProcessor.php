@@ -58,6 +58,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getNotificationType()
     {
+        static $ignored_statuses = ['new_case'];
         static $payment_statuses = ['Completed'];
         static $refund_statuses = ['Refunded', 'Reversed', 'Canceled_Reversal'];
         static $pending_statuses = ['Pending'];
@@ -72,6 +73,8 @@ class PaypalPaymentProcessor extends PaymentProcessor
             return NotificationType::PENDING;
         } elseif (in_array($status, $rejected_statuses, true)) {
             return NotificationType::REJECTED;
+        } elseif (in_array($status, $ignored_statuses, true)) {
+            return NotificationType::IGNORED;
         } else {
             return "unknown__{$status}";
         }
@@ -79,7 +82,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getNotificationTypeRaw()
     {
-        return $this['payment_status'];
+        return $this['payment_status'] ?? $this['txn_type'];
     }
 
     public function validateTransaction()

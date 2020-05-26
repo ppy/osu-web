@@ -5,19 +5,19 @@
 
 return [
     'deleted' => 'raderad',
-    'deleted_count' => '',
+    'deleted_count' => ':count_delimited raderad kommentar|:count_delimited raderade kommentarer',
     'edited' => 'redigerad :timeago av :user',
-    'pinned' => '',
+    'pinned' => 'fäst',
     'empty' => 'Inga kommentarer ännu.',
     'load_replies' => 'ladda svar ',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited svara|:count_delimited svar',
     'title' => 'Kommentarer',
 
     'commentable_name' => [
         'beatmapset' => 'Beatmap',
         'build' => 'Ändringslogg',
         'news_post' => 'Nyheter',
-        '_deleted' => '',
+        '_deleted' => 'Raderat objekt',
     ],
 
     'editor' => [
@@ -30,12 +30,12 @@ return [
     ],
 
     'guest_button' => [
-        'new' => '',
+        'new' => 'Logga in för att kommentera',
         'reply' => 'Logga in för att svara',
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'listning',
     ],
 
     'placeholder' => [

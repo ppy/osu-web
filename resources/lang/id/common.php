@@ -37,6 +37,7 @@ return [
         'permalink' => 'tautan',
         'pin' => 'sematkan',
         'post' => 'Posting',
+        'read_more' => '',
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Kembali',
         'reply_resolve' => 'Balas dan Tandai Selesai',

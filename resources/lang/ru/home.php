@@ -5,16 +5,16 @@
 
 return [
     'landing' => [
-        'download' => 'Скачать сейчас',
-        'online' => 'из них <strong>:players</strong> сейчас в <strong>:games</strong> играх',
-        'peak' => 'Пик, :count активных игроков',
-        'players' => 'зарегистрировано <strong>:count</strong> игроков',
+        'download' => 'Начать играть',
+        'online' => '<strong>:players:</strong> сейчас в игре, <strong>:games:</strong>  матчей в процессе',
+        'peak' => 'Пик, :count игроков в игре',
+        'players' => '<strong>:count</strong> игроков',
         'title' => 'добро пожаловать',
-        'see_more_news' => 'посмотреть больше новостей',
+        'see_more_news' => 'перейти ко всем новостям',
 
         'slogan' => [
-            'main' => 'наилучшайшая бесплатная ритм-игра',
-            'sub' => 'ритм всего лишь в клике от вас',
+            'main' => 'наилучшая бесплатная ритм-игра',
+            'sub' => 'ритм всего лишь в клике от тебя',
         ],
     ],
 
@@ -23,7 +23,7 @@ return [
         'button' => 'Найти',
         'empty_result' => 'Ничего не найдено!',
         'keyword_required' => 'Требуется ключевое слово для поиска',
-        'placeholder' => 'введите текст для поиска',
+        'placeholder' => 'введите для поиска',
         'title' => 'Поиск',
 
         'beatmapset' => [

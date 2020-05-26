@@ -18,7 +18,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'silindi',
-        'none_found' => '',
+        'none_found' => 'Kriterlere uyan bir tartışma sonucu bulunamadı.',
         'title' => 'Beatmap Tartışmaları',
 
         'form' => [
@@ -67,11 +67,11 @@ return [
         'go_to_parent' => 'İnceleme paylaşımını görüntüle',
         'go_to_child' => 'Tartışmayı görüntüle',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_block_type' => 'geçersiz blok türü',
+            'invalid_document' => 'geçersiz gözden geçirme',
+            'minimum_issues' => 'gözden geçirme asgari :count sayıda sorun içermelidir|gözden geçirme asgari :count sayıda sorun içermelidir',
+            'missing_text' => 'blokta yazı eksik',
+            'too_many_blocks' => 'gözden geçirmeler sadece :count paragraf/sorun içerebilir|gözden geçirmeler sadece azami :count paragraf/sorun içerebilir',
         ],
     ],
 

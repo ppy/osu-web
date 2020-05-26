@@ -14,8 +14,9 @@ class EventTransformer extends TransformerAbstract
         $event->parse();
 
         return array_merge([
+            'created_at' => json_time($event->date),
+            'createdAt' => json_time($event->date), // TODO: remove when confirmed not used.
             'id' => $event->getKey(),
-            'createdAt' => json_time($event->date),
             'type' => $event->type,
         ], $event->details);
     }
