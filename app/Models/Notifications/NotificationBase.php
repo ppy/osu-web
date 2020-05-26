@@ -38,7 +38,7 @@ abstract class NotificationBase
 
     public static function notificationClassFor(string $name)
     {
-        return studly_case($name);
+        return get_class_namespace(static::class).'\\'.studly_case($name);
     }
 
     public function __construct($object, ?User $source)
