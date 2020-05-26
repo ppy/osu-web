@@ -2,15 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapJsonExtended, { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
+import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
 import GameMode from 'interfaces/game-mode';
 import * as _ from 'lodash';
 
 export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];
 
-type BeatmapJsonType = BeatmapJson | BeatmapJsonExtended;
-
-function isVisibleBeatmap(beatmap: BeatmapJsonType) {
+function isVisibleBeatmap(beatmap: BeatmapJson) {
   if (isBeatmapJsonExtended(beatmap)) {
     return beatmap.deleted_at != null && !beatmap.convert;
   }
@@ -24,7 +22,7 @@ interface FindDefaultParams<T> {
   mode?: GameMode;
 }
 
-export function findDefault<T extends BeatmapJsonType>(params: FindDefaultParams<T>): T | null {
+export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>): T | null {
   if (params.items != null) {
     return _.findLast<T>(params.items, isVisibleBeatmap)
       ?? _.last(params.items)
@@ -50,7 +48,7 @@ interface FindParams<T> {
   mode?: GameMode;
 }
 
-export function find<T extends BeatmapJsonType>(params: FindParams<T>): T | null {
+export function find<T extends BeatmapJson>(params: FindParams<T>): T | null {
   const findModes = params.mode == null ? modes : [params.mode];
 
   for (const m of findModes) {
@@ -71,7 +69,7 @@ export function getDiffRating(rating: number) {
   return 'expert-plus';
 }
 
-export function group<T extends BeatmapJsonType>(beatmaps: T[]): Partial<Record<GameMode, T[]>> {
+export function group<T extends BeatmapJson>(beatmaps: T[]): Partial<Record<GameMode, T[]>> {
   const grouped = _.groupBy(beatmaps, 'mode');
 
   _.forOwn(grouped, (items, mode) => {
@@ -81,7 +79,7 @@ export function group<T extends BeatmapJsonType>(beatmaps: T[]): Partial<Record<
   return grouped;
 }
 
-export function sort<T extends BeatmapJsonType>(beatmaps: T[]): T[] {
+export function sort<T extends BeatmapJson>(beatmaps: T[]): T[] {
   if (beatmaps.length === 0) {
     return [];
   }
