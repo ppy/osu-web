@@ -171,13 +171,4 @@ class UserChannel extends Model
         // strip out the empty [] elements (from restricted/blocked users)
         return array_values(array_filter($collection));
     }
-
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->where([
-            'user_id' => $this->user_id,
-            'channel_id' => $this->channel_id,
-        ]);
-    }
 }
