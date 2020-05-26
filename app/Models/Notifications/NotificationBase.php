@@ -36,6 +36,10 @@ abstract class NotificationBase
         return $filteredUserIds;
     }
 
+    public static function notificationClassFor(string $name)
+    {
+        return camel_case($name);
+    }
 
     public function __construct($object, ?User $source)
     {
@@ -47,8 +51,13 @@ abstract class NotificationBase
 
     abstract function getReceiverIds(): array;
 
-    public function notifiableClass(string $name)
+    public function getNotifiable()
     {
-        return camel_case($name);
+        return $this->notifiable ?? $this->object;
+    }
+
+    public function getSource(): ?User
+    {
+        return $this->source;
     }
 }

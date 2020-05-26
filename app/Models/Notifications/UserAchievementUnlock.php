@@ -5,14 +5,14 @@
 
 namespace App\Models\Notifications;
 
+use App\Models\Achievement;
 use App\Models\User;
-use App\Models\UserAchievement;
 
 class UserAchievementUnlock extends NotificationBase
 {
     private $user;
 
-    public function __construct(UserAchievement $object, ?User $source)
+    public function __construct(Achievement $object, ?User $source)
     {
         parent::__construct($object, $source);
 
