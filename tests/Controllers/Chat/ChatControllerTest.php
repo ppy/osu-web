@@ -62,6 +62,41 @@ class ChatControllerTest extends TestCase
             )->assertStatus(200);
     }
 
+    public function testCreatePMWhenLeftChannel() // success
+    {
+        $this->actAsScopedUser($this->user, ['*']);
+        $request = $this->json(
+            'POST',
+            route('api.chat.new'),
+            [
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
+        );
+
+        $channelId = $request->json('new_channel_id');
+        $request->assertSuccessful();
+
+        app('OsuAuthorize')->cacheReset();
+        $this->json(
+                'DELETE',
+                route('api.chat.channels.part', [
+                    'channel' => $channelId,
+                    'user' => $this->user->user_id,
+                ])
+            )->assertSuccessful();
+
+        app('OsuAuthorize')->cacheReset();
+        $this->json(
+                'POST',
+                route('api.chat.new'),
+                [
+                    'target_id' => $this->anotherUser->user_id,
+                    'message' => self::$faker->sentence(),
+                ]
+            )->assertSuccessful();
+    }
+
     public function testCreatePMWhenGuest() // fail
     {
         $this->json(
