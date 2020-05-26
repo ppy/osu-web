@@ -38,7 +38,7 @@ abstract class NotificationBase
 
     public static function notificationClassFor(string $name)
     {
-        return camel_case($name);
+        return studly_case($name);
     }
 
     public function __construct($object, ?User $source)
