@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Models\UserNotification;
 use App\Models\UserRelation;
 use DB;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property Channel $channel
