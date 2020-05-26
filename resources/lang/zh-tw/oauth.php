@@ -28,13 +28,13 @@ return [
         'id' => '客戶端 ID',
         'name' => '應用程式名稱',
         'redirect' => '應用程式回傳 URL',
-        'reset' => '',
-        'reset_failed' => '',
+        'reset' => '重置客戶端密鑰',
+        'reset_failed' => '重置客戶端密鑰失敗',
         'secret' => '用戶端密鑰',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => '顯示客戶端密鑰',
+            'true' => '隱藏客戶端密鑰',
         ],
     ],
 
@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '您確定要刪除此客戶端嗎？',
-        'confirm_reset' => '',
+        'confirm_reset' => '您確定鑰重置客戶端密鑰嗎? 這將撤銷現有的所有token。',
         'new' => '新增 OAuth 應用程式',
         'none' => '沒有客戶端',
 

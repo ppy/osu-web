@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - Rytmus je jen o klkání! Spolu s Ouendan/EBA, Taikem, originálními herními módy a plně funkčním level editorem.',
     ],

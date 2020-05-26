@@ -109,6 +109,9 @@ return [
         'ranking_controller' => [
             '_' => 'ranking',
         ],
+        'scores_controller' => [
+            '_' => '',
+        ],
         'store_controller' => [
             '_' => 'sklep osu!',
         ],

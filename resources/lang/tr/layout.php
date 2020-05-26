@@ -4,18 +4,22 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - Ritim sadece bir *tık* uzakta! Ouendan/EBA, Taiko ve orijinal oyun modlarıyla, hem de tamamiyle işlevsel seviye editörüyle beraber.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
+            'beatmapset' => 'beatmap seti',
+            'beatmapset_covers' => 'beatmapset kapakları',
+            'contest' => 'yarışma',
+            'contests' => 'yarışmalar',
             'root' => 'konsol',
-            'store_orders' => '',
+            'store_orders' => 'mağaza yöneticisi',
         ],
 
         'artists' => [
@@ -23,12 +27,12 @@ return [
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'katalog',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'index',
+            'sitemap' => 'Site Haritası',
         ],
 
         'store' => [
@@ -38,7 +42,7 @@ return [
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'katalog',
         ],
 
         'users' => [
@@ -116,7 +120,7 @@ return [
             'forum' => 'Topluluk Forumları',
             'livestreams' => 'Canlı Yayınlar',
             'report' => 'Bir Sorun Bildir',
-            'wiki' => '',
+            'wiki' => 'Viki',
         ],
         'legal' => [
             '_' => 'Yasal & Durum',
@@ -130,7 +134,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Geçersiz istek parametreleri',
             'description' => '',
         ],
         '404' => [
@@ -150,7 +154,7 @@ return [
             'description' => "Üzgünüz, ama ulaşmaya çalıştığınız sayfa burada değil!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Geçersiz istek parametreleri',
             'description' => '',
         ],
         '500' => [

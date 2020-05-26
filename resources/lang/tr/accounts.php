@@ -62,18 +62,18 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'istek yetkilendirildi',
-        'own_clients' => 'sahip olunan istemciler',
+        'own_clients' => 'size ait istemciler',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Ayarlar',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'varsayılan beatmap indirme tipi',
+            'all' => 'eğer varsa video ile beraber',
+            'no_video' => 'video olmadan',
+            'direct' => 'osu!direkt\'de aç',
         ],
     ],
 

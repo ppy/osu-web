@@ -38,7 +38,7 @@ return [
             'verify_link' => 'accountverifizierung',
         ],
         'artists_controller' => [
-            '_' => 'vorgestellte Künstler',
+            '_' => 'featured artists',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'beatmap-diskussion-beiträge',
@@ -53,7 +53,7 @@ return [
             '_' => 'beatmap-diskussion-stimmen',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'beatmap-historie',
+            '_' => 'beatmap-verlauf',
         ],
         'beatmapset_watches_controller' => [
             'index' => 'dashboard',
@@ -86,7 +86,7 @@ return [
             'index' => 'dashboard',
             'search' => 'suchen',
             'support_the_game' => 'Das Spiel unterstützen',
-            'testflight' => 'testflug',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'informationen',
@@ -108,6 +108,9 @@ return [
         ],
         'ranking_controller' => [
             '_' => 'rangliste',
+        ],
+        'scores_controller' => [
+            '_' => '',
         ],
         'store_controller' => [
             '_' => 'osu!store',

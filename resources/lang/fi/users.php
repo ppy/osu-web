@@ -307,6 +307,7 @@ return [
                 'empty' => 'Loistavia suorituksia ei ole vielä. :(',
                 'not_ranked' => 'Vain hyväksytyt beatmapit antavat pp:tä.',
                 'pp_weight' => 'painotettu :percentage',
+                'view_details' => '',
                 'title' => 'Suoritukset',
 
                 'best' => [

@@ -307,6 +307,7 @@ return [
                 'empty' => '尚未有好成績。 :(',
                 'not_ranked' => '僅被列入排名的圖譜才能獲得 pp。',
                 'pp_weight' => '權重 :percentage',
+                'view_details' => '',
                 'title' => '排名',
 
                 'best' => [
@@ -380,7 +381,7 @@ return [
         ],
         'rank' => [
             'country' => ':mode 模式的國內排名',
-            'country_simple' => '地區排名',
+            'country_simple' => '國內/區內排行榜',
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
         ],

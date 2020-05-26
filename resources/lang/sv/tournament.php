@@ -28,7 +28,7 @@ return [
         'info_page' => 'Informationssida',
         'login_to_register' => 'Var vänlig :login för att visa registreringsdetaljer!',
         'not_yet_entered' => 'Du är inte registrerad för denna turnering.',
-        'rank_too_low' => 'Tyvärr, men du möter inte kraven på rank för denna turnering!',
+        'rank_too_low' => 'Tyvärr, du uppfyller inte rangkriterierna för denna turneringen!',
         'registration_ends' => 'Registrering stänger :date',
 
         'button' => [
@@ -37,7 +37,7 @@ return [
         ],
 
         'period' => [
-            'end' => '',
+            'end' => 'Slut',
             'start' => 'Start',
         ],
 

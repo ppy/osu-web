@@ -21,7 +21,7 @@ return [
         'kudosu_denied' => 'Negado de obtener kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificultad ha sido eliminada, por lo que ya no puede ser discutida.',
         'message_placeholder_locked' => 'La discusión para este mapa ha sido desactivada.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "No puedes publicar una discusión mientras estés silenciado.",
         'message_type_select' => 'Seleccionar tipo de comentario',
         'reply_notice' => 'Presione enter para responder.',
         'reply_placeholder' => 'Escribe tu respuesta aquí',

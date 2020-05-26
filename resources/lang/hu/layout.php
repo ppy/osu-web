@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - Ritmus csak egy *kattintásra*! Quendan/EBA, Taiko és más eredeti játékmódok, emellett egy teljes pálya szerkesztő.',
     ],
@@ -178,7 +182,7 @@ return [
             'forgot' => "Elfelejtettem az adataimat",
             'password' => 'jelszó',
             'title' => 'Jelentkezz Be A Folytatáshoz',
-            'username' => '',
+            'username' => 'felhasználónév',
 
             'error' => [
                 'email' => "A felhasználónév vagy e-mail cím nem létezik",
