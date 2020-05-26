@@ -81,6 +81,11 @@ class PlaylistItem extends Model
         return $this->belongsTo(Beatmap::class, 'beatmap_id')->withTrashed();
     }
 
+    public function highScores()
+    {
+        return $this->hasMany(PlaylistItemUserHighScore::class);
+    }
+
     public function scores()
     {
         return $this->hasMany(RoomScore::class);
@@ -88,39 +93,22 @@ class PlaylistItem extends Model
 
     public function topScores()
     {
-        $scores = $this->scores()->completed()->get();
+        $scores = $this->highScores()->get();
 
         // sort by total_score desc and then date asc if scores are equal
-        $baseResult = $scores->sort(function ($a, $b) {
+        // no index on scores or timestamps
+        return $scores->sort(function ($a, $b) {
             if ($a->total_score === $b->total_score) {
-                if ($a->ended_at->timestamp === $b->ended_at->timestamp) {
+                if ($a->updated_at->timestamp === $b->updated_at->timestamp) {
                     // On the rare chance that both were submitted in the same second, default to submission order
-                    return ($a->id < $b->id) ? -1 : 1;
+                    return $a->id < $b->id;
                 }
 
-                return ($a->ended_at->timestamp < $b->ended_at->timestamp) ? -1 : 1;
+                return $a->updated_at->timestamp < $b->updated_at->timestamp;
             }
 
-            return ($a->total_score > $b->total_score) ? -1 : 1;
-        });
-
-        $result = [];
-        $users = [];
-
-        foreach ($baseResult as $entry) {
-            if (isset($users[$entry->user_id])) {
-                continue;
-            }
-
-            // if (count($result) >= $limit) {
-            //     break;
-            // }
-
-            $users[$entry->user_id] = true;
-            $result[] = $entry;
-        }
-
-        return $result;
+            return $b->total_score - $a->total_score;
+        })->values();
     }
 
     private function validateRuleset()
