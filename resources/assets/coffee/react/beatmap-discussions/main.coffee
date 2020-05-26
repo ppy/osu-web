@@ -11,6 +11,7 @@ import * as React from 'react'
 import { div } from 'react-dom-factories'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import * as BeatmapHelper from 'utils/beatmap-helper'
 
 el = React.createElement
 
@@ -198,7 +199,7 @@ export class Main extends React.PureComponent
 
 
   currentBeatmap: =>
-    @beatmaps()[@state.currentBeatmapId] ? BeatmapHelper.default(group: @groupedBeatmaps())
+    @beatmaps()[@state.currentBeatmapId] ? BeatmapHelper.findDefault(group: @groupedBeatmaps())
 
 
   currentDiscussions: =>
@@ -429,7 +430,7 @@ export class Main extends React.PureComponent
       newState.beatmapset.current_user_attributes.is_watching = watching
 
     if playmode?
-      beatmap = BeatmapHelper.default items: @groupedBeatmaps()[playmode]
+      beatmap = BeatmapHelper.findDefault items: @groupedBeatmaps()[playmode]
       beatmapId = beatmap?.id
 
     if beatmapId? && beatmapId != @currentBeatmap().id
