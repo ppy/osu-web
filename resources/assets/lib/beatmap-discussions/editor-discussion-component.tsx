@@ -69,6 +69,10 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     const attribs = this.props.attributes;
     const canEdit = this.editable();
     const classMods = canEdit ? [] : ['read-only'];
+    const timestampTooltipType = this.props.element.beatmapId ? 'diff' : 'all-diff';
+    const timestampTooltip = osu.trans(`beatmaps.discussions.review.embed.timestamp.${timestampTooltipType}`, {
+        type: osu.trans(`beatmaps.discussions.message_type.${this.props.element.discussionType}`),
+      });
 
     const deleteButton =
       (
@@ -102,6 +106,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 <div
                   className={`${bn}__timestamp`}
                   contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+                  title={canEdit ? timestampTooltip : ''}
                 >
                   {this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general')}
                 </div>
