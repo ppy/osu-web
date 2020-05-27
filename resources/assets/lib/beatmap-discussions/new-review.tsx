@@ -3,13 +3,15 @@
 
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import * as React from 'react';
+import { BeatmapsetJson } from '../beatmapsets/beatmapset-json';
+import BeatmapJsonExtended from '../interfaces/beatmap-json-extended';
 import UserJSON from '../interfaces/user-json';
 import Editor from './editor';
 
 interface Props {
-  beatmaps: Beatmap[];
-  beatmapset: Beatmapset;
-  currentBeatmap: Beatmap;
+  beatmaps: BeatmapJsonExtended[];
+  beatmapset: BeatmapsetJson;
+  currentBeatmap: BeatmapJsonExtended;
   currentDiscussions: BeatmapDiscussion[];
   currentUser: UserJSON;
   pinned?: boolean;

@@ -9,6 +9,9 @@ import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as S
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { Spinner } from 'spinner';
+import { BeatmapsetJson } from '../beatmapsets/beatmapset-json';
+import BeatmapJsonExtended from '../interfaces/beatmap-json-extended';
+import { sortWithMode } from '../utils/beatmap-helper';
 import EditorDiscussionComponent from './editor-discussion-component';
 import { serializeSlateDocument, toggleFormat } from './editor-helpers';
 import { EditorToolbar } from './editor-toolbar';
@@ -16,13 +19,13 @@ import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
 
 interface CacheInterface {
-  sortedBeatmaps?: Beatmap[];
+  sortedBeatmaps?: BeatmapJsonExtended[];
 }
 
 interface Props {
-  beatmaps: Record<number, Beatmap>;
-  beatmapset: Beatmapset;
-  currentBeatmap: Beatmap;
+  beatmaps: Record<number, BeatmapJsonExtended>;
+  beatmapset: BeatmapsetJson;
+  currentBeatmap: BeatmapJsonExtended;
   currentDiscussions: BeatmapDiscussion[];
   discussion?: BeatmapDiscussion;
   discussions: Record<number, BeatmapDiscussion>;
@@ -149,7 +152,7 @@ export default class Editor extends React.Component<Props, State> {
 
   insertBlock = (event: React.MouseEvent<HTMLElement>) => {
     const type = event.currentTarget.dataset.dtype;
-    const beatmapId = this.props.currentBeatmap ? this.props.currentBeatmap.id : this.props.beatmaps[this.props.beatmapset.beatmaps[0].id];
+    const beatmapId = this.props.currentBeatmap?.id;
 
     // find where to insert the new embed (relative to the dropdown menu)
     const lastChild = event.currentTarget.closest(`.${this.bn}__block`)?.lastChild;

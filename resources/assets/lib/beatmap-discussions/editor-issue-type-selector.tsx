@@ -4,6 +4,7 @@
 import * as React from 'react';
 import { Element, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
+import BeatmapJsonExtended from '../interfaces/beatmap-json-extended';
 import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
 
@@ -18,7 +19,7 @@ const discussionTypeIcons = {
 };
 
 interface Props {
-  beatmaps: Beatmap[];
+  beatmaps: BeatmapJsonExtended[];
   disabled: boolean;
   element: Element;
 }

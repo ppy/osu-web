@@ -5,11 +5,12 @@ import { BeatmapIcon } from 'beatmap-icon';
 import * as React from 'react';
 import { Node, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
+import BeatmapJsonExtended from '../interfaces/beatmap-json-extended';
 import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
 
 interface Props {
-  beatmaps: Beatmap[];
+  beatmaps: BeatmapJsonExtended[];
   disabled: boolean;
   element: Node;
 }
@@ -25,7 +26,7 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
       label: osu.trans('beatmaps.discussions.mode.scopes.generalAll'),
     });
 
-    this.props.beatmaps.forEach((beatmap: Beatmap) => {
+    this.props.beatmaps.forEach((beatmap: BeatmapJsonExtended) => {
       if (beatmap.deleted_at) {
         return;
       }
