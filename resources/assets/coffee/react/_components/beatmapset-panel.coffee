@@ -7,6 +7,7 @@ import * as React from 'react'
 import { a, button, div, i, span, strong } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
 import OsuUrlHelper from 'osu-url-helper'
+import * as BeatmapHelper from 'utils/beatmap-helper'
 el = React.createElement
 
 export class BeatmapsetPanel extends React.PureComponent

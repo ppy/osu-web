@@ -15,6 +15,7 @@ import { BlockButton } from 'block-button'
 import { NotificationBanner } from 'notification-banner'
 import * as React from 'react'
 import { a, button, div, i, li, span, ul } from 'react-dom-factories'
+import * as BeatmapHelper from 'utils/beatmap-helper'
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
