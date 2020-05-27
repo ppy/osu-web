@@ -12,7 +12,6 @@ import { SlateContext } from './slate-context';
 interface Props extends RenderElementProps {
   // attributes taken from RenderElementProps, but extended with contentEditable
   attributes: {
-    contentEditable?: boolean;
     'data-slate-inline'?: true;
     'data-slate-node': 'element';
     'data-slate-void'?: true;
