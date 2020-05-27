@@ -293,7 +293,7 @@ return [
                 'button' => [
                     'change_vote' => '',
                     'edit' => 'Kérdőív szerkesztése',
-                    'view_results' => '',
+                    'view_results' => 'Ugrás az eredményekhez',
                     'vote' => 'Szavaz',
                 ],
 

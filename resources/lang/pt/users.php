@@ -307,6 +307,7 @@ return [
                 'empty' => 'Nenhum registo de desempenhos espectaculares ainda :(',
                 'not_ranked' => 'Somente beatmaps classificados é que dão pp.',
                 'pp_weight' => ':percentage ponderada',
+                'view_details' => '',
                 'title' => 'Classificações',
 
                 'best' => [

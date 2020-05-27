@@ -20,8 +20,8 @@ return [
 
     'buttons' => [
         'admin' => 'Адміністратор',
-        'authorise' => '',
-        'authorising' => '',
+        'authorise' => 'Авторизація',
+        'authorising' => 'Авторизація...',
         'back_to_previous' => 'Повернутись до попереднього вигляду',
         'back_to_top' => 'На початок',
         'cancel' => 'Скасувати',
@@ -35,8 +35,9 @@ return [
         'expand' => 'розгорнути',
         'hide' => 'приховати',
         'permalink' => 'постійне посилання',
-        'pin' => '',
+        'pin' => 'закрiпити',
         'post' => 'Опублікувати',
+        'read_more' => '',
         'reply' => 'Відповісти',
         'reply_reopen' => 'Відповісти та відновити',
         'reply_resolve' => 'Відповісти та дозволити',
@@ -48,10 +49,10 @@ return [
         'see_more' => 'показати більше',
         'show' => 'показати',
         'show_deleted' => 'Показати видалені',
-        'show_less' => '',
+        'show_less' => 'показати менше',
         'show_more' => 'показати більше',
         'show_more_options' => 'показати додаткові параметри',
-        'unpin' => '',
+        'unpin' => 'вiдкрiпити',
         'update' => 'Оновити',
         'upload_image' => 'завантажити зображення',
 
@@ -70,13 +71,13 @@ return [
         'minute_short_unit' => 'хв',
         'minutes' => ':count_delimited хвилина|:count_delimited хвилин|:count_delimited хвилини',
         'months' => ':count_delimited місяць|:count_delimited місяці|:count_delimited місяців',
-        'notifications' => '',
-        'plus_others' => '',
-        'post' => '',
+        'notifications' => ':count_delimited сповіщення|:count_delimited сповіщень',
+        'plus_others' => '+ :count_delimited інший!|+ :count_delimited інших!',
+        'post' => ':count_delimited пост|:count_delimited постів',
         'second_short_unit' => 'сек',
-        'star_priority' => '',
+        'star_priority' => ':count_delimited пріоритет|:count_delimited пріоритета|:count_delimited пріоритетів',
         'update' => ':count_delimited оновлення|:count_delimited оновлень',
-        'view' => '',
+        'view' => ':count_delimited перегляд|:count_delimited переглядів',
         'years' => ':count_delimited рік|:count_delimited роки|:count_delimited років',
     ],
 
@@ -138,7 +139,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Ви зайшли як :user. :logout_link.',
+        'logout_link' => 'Натисніть тут, щоб увійти як інший користувач',
     ],
 ];

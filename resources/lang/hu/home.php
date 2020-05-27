@@ -10,7 +10,7 @@ return [
         'peak' => 'Csúcsfokon, :count játékos volt elérhető',
         'players' => '<strong>:count</strong> regisztrált játékos',
         'title' => 'üdv',
-        'see_more_news' => '',
+        'see_more_news' => 'további hírek',
 
         'slogan' => [
             'main' => 'a legeslegjobb ingyen játszható ritmusjáték',
@@ -27,7 +27,7 @@ return [
         'title' => 'Keresés',
 
         'beatmapset' => [
-            'login_required' => '',
+            'login_required' => 'Beatmap-ek kereséséhez jelentkezz be',
             'more' => ':count talált beatmap',
             'more_simple' => 'Több beatmap keresése',
             'title' => 'Beatmap-ek',

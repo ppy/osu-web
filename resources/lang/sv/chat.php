@@ -9,24 +9,24 @@ return [
     'title_compact' => 'chatt',
 
     'cannot_send' => [
-        'channel' => '',
-        'user' => '',
+        'channel' => 'Du kan inte meddela denna kanal just nu. Detta kan bero på någon av följande skäl:',
+        'user' => 'Du kan inte meddela användaren just nu. Detta kan bero på någon av följande skäl:',
         'reasons' => [
-            'blocked' => '',
-            'channel_moderated' => '',
-            'friends_only' => '',
-            'restricted' => '',
-            'target_restricted' => '',
+            'blocked' => 'Du blockerades av mottagaren',
+            'channel_moderated' => 'Kanalen har modererats',
+            'friends_only' => 'Mottagaren accepterar endast meddelanden från personer på sin vänlista',
+            'restricted' => 'Du är för närvarande begränsad',
+            'target_restricted' => 'Mottagaren är för närvarande begränsad',
         ],
     ],
     'input' => [
-        'disabled' => '',
+        'disabled' => 'kan inte skicka meddelande...',
         'placeholder' => 'skriv ett meddelande...',
         'send' => 'Skicka',
     ],
     'no-conversations' => [
-        'howto' => "",
-        'lazer' => '',
-        'title' => '',
+        'howto' => "Starta konversationer från en användares profil eller en usercard popup.",
+        'lazer' => 'Offentliga kanaler du går med via <a href=":link">osu!lazer</a> kommer också att synas här.',
+        'title' => 'inga konversationer ännu',
     ],
 ];

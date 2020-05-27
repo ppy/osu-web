@@ -5,78 +5,78 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'yönetici',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'yönetici',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'yönetici',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
+            '400' => 'geçersiz istek',
+            '404' => 'mevcut değil',
+            '403' => 'yasaklanmış',
+            '401' => 'izin yok',
+            '401-verification' => 'hesap doğrulama',
+            '405' => 'mevcut değil',
+            '422' => 'geçersiz istek',
             '500' => 'bir şeyler yanlış',
             '503' => 'bakım',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'forum',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'kontrol paneli',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'kontrol paneli',
+            'verify_link' => 'hesap doğrulama',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'featured artists',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'beatmap tartışma gönderileri',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'beatmap tartışmaları',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'beatmap paketleri',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'beatmap tartışma oylamaları',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'beatmap geçmişi',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'kontrol paneli',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'beatmap tartışma',
+            'index' => 'beatmap listesi',
+            'show' => 'beatmap bilgisi',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'değişiklik kayıtları',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'sohbet',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'yorumlar',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'yarışmalar',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'kontrol paneli',
         ],
         'groups_controller' => [
             'show' => 'gruplar',
@@ -86,7 +86,7 @@ return [
             'index' => 'kontrol paneli',
             'search' => 'ara',
             'support_the_game' => 'oyunu destekle',
-            'testflight' => 'beta testi',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'bilgi',
@@ -98,7 +98,7 @@ return [
             '_' => 'maçlar',
         ],
         'news_controller' => [
-            '_' => 'gelişmeler',
+            '_' => 'haberler',
         ],
         'notifications_controller' => [
             '_' => 'bildirim geçmişi',
@@ -109,6 +109,9 @@ return [
         'ranking_controller' => [
             '_' => 'sıralama',
         ],
+        'scores_controller' => [
+            '_' => '',
+        ],
         'store_controller' => [
             '_' => 'osu!store',
         ],
@@ -117,10 +120,10 @@ return [
         ],
         'users_controller' => [
             '_' => 'oyuncu bilgisi',
-            'disabled' => 'bildiri',
+            'disabled' => 'bildirim',
         ],
         'wiki_controller' => [
-            '_' => 'bilgi tabanı',
+            '_' => 'bilgi bankası',
         ],
     ],
     'store' => [
@@ -128,7 +131,7 @@ return [
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'modder bilgisi',
         ],
     ],
 ];

@@ -307,6 +307,7 @@ return [
                 'empty' => 'Henüz kayda değer bir performans kaydı yok. :(',
                 'not_ranked' => 'Sadece dereceli beatmapler pp verir.',
                 'pp_weight' => 'ağırlıklı: yüzde',
+                'view_details' => '',
                 'title' => 'Dereceler',
 
                 'best' => [

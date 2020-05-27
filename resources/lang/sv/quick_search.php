@@ -5,17 +5,17 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
+        'beatmapset' => 'Beatmap',
         'forum_post' => 'Forum',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'other' => 'Annat',
+        'user' => 'Spelare',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
+        'empty' => 'Inga resultat',
+        'empty_for' => 'Inga resultat för :modes',
+        'more' => 'Mer :mode sökresultat',
         'title' => ':mode Sökresultat',
     ],
 ];

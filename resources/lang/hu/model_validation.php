@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Érvénytelen :attribute megadva.',
     'not_negative' => ':attribute nem lehet negatív.',
     'required' => ':attribute kötelező.',
     'too_long' => ':attribute elérte a maximális hosszt - csak :limit karakter hosszú lehet.',
@@ -108,12 +108,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
+            'too_many' => 'Elérted a maximum OAuth applikációk számát.',
             'url' => 'Kérjük adjon meg egy helyes URL-t.',
 
             'attributes' => [
                 'name' => 'Alkalmazás neve',
-                'redirect' => '',
+                'redirect' => 'Alkalmazás Visszahívási URL',
             ],
         ],
     ],
@@ -124,7 +124,7 @@ return [
         'invalid_country' => 'Az ország nincs az adatbázisban.',
         'invalid_discord' => 'Érvénytelen Discord felhasználónév.',
         'invalid_email' => "Nem úgy néz ki, hogy ez érvényes e-mail cím lenne.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Érvénytelen Twitter felhasználónév.',
         'too_short' => 'Az új jelszó túl rövid.',
         'unknown_duplicate' => 'Ez a felhasználónév vagy e-mail cím már használatban van.',
         'username_available_in' => 'Ez a felhasználónév elérhető lesz :duration időn belül.',

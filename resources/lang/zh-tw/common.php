@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => '管理員',
         'authorise' => '授權',
-        'authorising' => '',
+        'authorising' => '授權中',
         'back_to_previous' => '返回到上一個位置',
         'back_to_top' => '返回頂部',
         'cancel' => '取消',
@@ -37,6 +37,7 @@ return [
         'permalink' => '永久連結',
         'pin' => '置頂',
         'post' => '發表',
+        'read_more' => '',
         'reply' => '回覆',
         'reply_reopen' => '回覆並重新打開',
         'reply_resolve' => '回覆並標記為已解決',

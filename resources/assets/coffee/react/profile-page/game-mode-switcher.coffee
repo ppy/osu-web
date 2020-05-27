@@ -3,6 +3,7 @@
 
 import * as React from 'react'
 import { a, button, div, li, span, ul } from 'react-dom-factories'
+import { modes } from 'utils/beatmap-helper'
 el = React.createElement
 bn = 'game-mode'
 
@@ -24,7 +25,7 @@ export class GameModeSwitcher extends React.PureComponent
     div className: bn,
       @renderSetDefault()
       ul className: "#{bn}__items",
-        for mode in BeatmapHelper.modes
+        for mode in modes
           linkClass = 'game-mode-link'
           linkClass += ' game-mode-link--active' if mode == @props.currentMode
 

@@ -121,10 +121,10 @@ return [
     'user' => [
         'contains_username' => '密碼不能包含用戶名。',
         'email_already_used' => '郵箱已被使用。',
-        'invalid_country' => '國家未被數據庫收錄。',
+        'invalid_country' => '國家或地區未被數據庫收錄。',
         'invalid_discord' => 'Discord 用户名無效。',
         'invalid_email' => "無效的郵箱地址。",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter帳戶名無效',
         'too_short' => '新密碼太短。',
         'unknown_duplicate' => '用戶名或郵箱已被使用。',
         'username_available_in' => '該用戶名將在 :duration 後可用。',
