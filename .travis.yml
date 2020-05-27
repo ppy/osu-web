@@ -14,8 +14,15 @@ php:
   - 7.4
 
 services:
-  - mysql
   - redis
+
+addons: &addons
+  apt:
+    sources:
+      - sourceline: 'deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-8.0'
+        key_url: 'https://raw.githubusercontent.com/travis-ci/apt-source-safelist/0c2267bff66def573d31a8240ff7d31795e1f6fa/keys/mysql-5.7-trusty.asc'
+    packages:
+      - mysql-community-server
 
 env:
   global:
@@ -66,11 +73,13 @@ jobs:
     - name: browser tests
       addons:
         chrome: stable
+        <<: *addons
       script: ./bin/run_dusk.sh
 
     - name: lint
       env:
         - OSU_SKIP_ASSET_BUILD=1
+      addons:
       install:
       services:
       script:
