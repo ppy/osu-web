@@ -38,7 +38,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   componentDidUpdate = () => {
     const path = this.path();
 
-    if (this.props.element.beatmapId !== 'all') {
+    if (this.props.element.beatmapId) {
       const content = this.props.element.children[0].text;
       const matches = content.match(BeatmapDiscussionHelper.TIMESTAMP_REGEX);
       let timestamp = null;
