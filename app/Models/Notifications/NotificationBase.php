@@ -70,11 +70,16 @@ abstract class NotificationBase
 
     abstract function getDetails(): array;
 
-    abstract function getReceiverIds(): array;
+    abstract function getListentingUserIds(): array;
 
     public function getNotifiable()
     {
         return $this->notifiable ?? $this->object;
+    }
+
+    public function getReceiverIds(): array
+    {
+        return array_values(array_unique(array_diff($this->getListentingUserIds(), [optional($this->source)->getKey()])));
     }
 
     public function getSource(): ?User

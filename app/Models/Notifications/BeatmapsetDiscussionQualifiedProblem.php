@@ -11,7 +11,7 @@ use App\Models\UserNotificationOption;
 
 class BeatmapsetDiscussionQualifiedProblem extends BeatmapsetNotification
 {
-    public function getReceiverIds(): array
+    public function getListentingUserIds(): array
     {
         $beatmap = $this->object->beatmap;
 

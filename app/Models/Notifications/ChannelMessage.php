@@ -28,7 +28,7 @@ class ChannelMessage extends NotificationBase
         ];
     }
 
-    public function getReceiverIds(): array
+    public function getListentingUserIds(): array
     {
         return $this->object->channel->users()->pluck('user_id')->all();
     }

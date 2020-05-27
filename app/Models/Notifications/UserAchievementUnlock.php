@@ -35,7 +35,7 @@ class UserAchievementUnlock extends NotificationBase
         ];
     }
 
-    public function getReceiverIds(): array
+    public function getListentingUserIds(): array
     {
         return [$this->user->getKey()];
     }

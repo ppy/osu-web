@@ -29,7 +29,7 @@ class ForumTopicReply extends NotificationBase
         ];
     }
 
-    public function getReceiverIds(): array
+    public function getListentingUserIds(): array
     {
         $userIds = $this->object
             ->topic

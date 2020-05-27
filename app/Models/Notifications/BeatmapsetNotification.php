@@ -50,7 +50,7 @@ abstract class BeatmapsetNotification extends NotificationBase
         }
     }
 
-    public function getReceiverIds(): array
+    public function getListentingUserIds(): array
     {
         return static::beatmapsetWatcherUserIds($this->notifiable);
     }
