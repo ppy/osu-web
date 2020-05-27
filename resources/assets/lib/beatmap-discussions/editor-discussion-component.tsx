@@ -117,7 +117,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 <div
                   className={`${bn}__unsaved-indicator`}
                   contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-                  title={osu.trans('beatmaps.review.embed.unsaved')}
+                  title={osu.trans('beatmaps.discussions.review.embed.unsaved')}
                 >
                   <i className='fas fa-pencil-alt'/>
                 </div>
