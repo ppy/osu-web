@@ -37,6 +37,7 @@ return [
         'permalink' => 'trvalý odkaz',
         'pin' => 'připnout',
         'post' => 'Přidat příspěvek',
+        'read_more' => '',
         'reply' => 'Odpovědět',
         'reply_reopen' => 'Odpovědět a znovu otevřít',
         'reply_resolve' => 'Odpovědět a archivovat',

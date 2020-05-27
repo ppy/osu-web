@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Введено недійсний :attribute.',
     'not_negative' => ':attribute не може бути від\'ємним.',
     'required' => ':attribute є обов\'язковим.',
     'too_long' => ':attribute перевищує максимальну кількість символів - можна використовувати тільки до :limit символів.',
@@ -15,7 +15,7 @@ return [
         'first_post' => 'Неможливо видалити першу публікацію.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Повідомлення',
         ],
     ],
 
@@ -28,12 +28,12 @@ return [
         'locked' => 'Обговорення закрито.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Тип повідомлення',
+            'timestamp' => 'Тимчасова мітка',
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Дана карта в поточний момент закрита для обговорення і не може бути хайпанута",
             'guest' => 'Потрібно ввійти для хайпу.',
             'hyped' => 'Ви вже хайпили цю карту.',
             'limit_exceeded' => 'Ви вже використали весь свій хайп.',
@@ -49,15 +49,15 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Не можна відповісти на видалений коментар.',
-        'top_only' => '',
+        'top_only' => 'Закріплювати відповіді на коментарі заборонено.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Повідомлення',
         ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Введено недійсний :attribute.',
     ],
 
     'forum' => [
@@ -76,13 +76,13 @@ return [
             'only_quote' => 'Ваш відповідь містить тільки цитату.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Тіло повідомлення',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Заголовок теми',
             ],
         ],
 
@@ -96,7 +96,7 @@ return [
             'too_many_options' => 'Перевищено максимальну кількість варіантів.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Тема опитування',
             ],
         ],
 
@@ -108,12 +108,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Перевищено максимальну кількість OAuth додатків.',
+            'url' => 'Будь ласка, введіть дійсний URL.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Назва програми',
+                'redirect' => 'Callback URL програми',
             ],
         ],
     ],
@@ -124,7 +124,7 @@ return [
         'invalid_country' => 'Вашої країни немає в базі даних.',
         'invalid_discord' => 'Ім’я користувача Discord недійсне.',
         'invalid_email' => "Це не схоже на адресу електронної пошти.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Неправильне ім\'я користувача Twitter.',
         'too_short' => 'Новий пароль надто короткий.',
         'unknown_duplicate' => 'Ім\'я користувача або пошта вже зайнята.',
         'username_available_in' => 'Це ім\'я користувача буде доступним для використання через :duration.',
@@ -144,9 +144,9 @@ return [
         'too_long' => 'Перевищує максимальну кількість символів - можна використовувати тільки до :limit символів.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Iм\'я користувача',
+            'user_email' => 'Email пошта',
+            'password' => 'Пароль',
         ],
 
         'change_username' => [
@@ -160,15 +160,15 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason неправильна для даного типу звіту.',
         'self' => "Ви не можете поскаржитися на себе!",
     ],
 
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Кількість',
+                'cost' => 'Ціна',
             ],
         ],
     ],

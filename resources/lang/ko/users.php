@@ -307,6 +307,7 @@ return [
                 'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
                 'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
                 'pp_weight' => '가중치 :percentage',
+                'view_details' => '',
                 'title' => '랭크',
 
                 'best' => [
@@ -326,7 +327,7 @@ return [
             'account_standing' => [
                 'title' => '계정 상태',
                 'bad_standing' => "<strong>:username</strong>님의 계정이 룰을 위반하였습니다 :(",
-                'remaining_silence' => '<strong>:username</strong>님은 :duration 후에 말할 수 있습니다.',
+                'remaining_silence' => '<strong>:username</strong> 님은 :duration 후에 말할 수 있습니다.',
 
                 'recent_infringements' => [
                     'title' => '최근 사건',
@@ -339,7 +340,7 @@ return [
 
                     'actions' => [
                         'restriction' => 'Ban',
-                        'silence' => 'Silence',
+                        'silence' => '침묵',
                         'note' => '알림',
                     ],
                 ],

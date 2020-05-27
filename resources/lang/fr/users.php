@@ -307,6 +307,7 @@ return [
                 'empty' => 'Pas de première place. :(',
                 'not_ranked' => 'Seules les beatmaps classées accordent des pp.',
                 'pp_weight' => 'pondéré :percentage',
+                'view_details' => '',
                 'title' => 'Classements',
 
                 'best' => [

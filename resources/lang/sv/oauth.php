@@ -4,58 +4,58 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'cancel' => '',
+    'cancel' => 'Avbryt',
 
     'authorise' => [
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'request' => 'begär behörighet att komma åt ditt konto.',
+        'scopes_title' => 'Denna applikation kommer att kunna:',
+        'title' => 'Auktoriseringsbegäran.',
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Är du säker på att du vill återkalla denna klients behörigheter?',
+        'scopes_title' => 'Den här applikationen kan:',
+        'owned_by' => 'Ägs av :user',
+        'none' => 'Inga klienter',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Återkalla åtkomst',
+            'true' => 'Åtkomst återkallats',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => '',
+        'id' => 'Klient-ID',
+        'name' => 'Applikationsnamn',
+        'redirect' => 'URL för appens uppringning',
+        'reset' => 'Återställ klienthemligheten',
+        'reset_failed' => 'Kunde inte återställa klienthemligheten',
+        'secret' => 'Klienthemlighet',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Visa klienthemligheten',
+            'true' => 'Göm klienthemligheten',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Registrera en ny OAuth applikation',
+        'register' => 'Registrera applikationen',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'Genom att använda API godkänner du :link.',
+            'link' => 'Användarvillkor',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Är du säker på att du vill radera denna klient?',
+        'confirm_reset' => 'Är du säger på att du vill återställa klient hemligheten? Detta kommer att återkalla alla befintliga polletter.',
+        'new' => 'Ny OAuth Applikation ',
+        'none' => 'Inga klienter',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Radera',
+            'true' => 'Raderad',
         ],
     ],
 ];

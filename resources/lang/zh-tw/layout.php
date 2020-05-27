@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.',
     ],
@@ -28,7 +32,7 @@ return [
 
         'help' => [
             'index' => '主頁',
-            'sitemap' => '',
+            'sitemap' => '網站地圖',
         ],
 
         'store' => [
@@ -116,7 +120,7 @@ return [
             'forum' => '論壇',
             'livestreams' => '直播',
             'report' => '問題回報',
-            'wiki' => '',
+            'wiki' => '維基',
         ],
         'legal' => [
             '_' => '法律 & 狀態',

@@ -37,6 +37,7 @@ return [
         'permalink' => 'permalenke',
         'pin' => 'fest',
         'post' => 'Del',
+        'read_more' => '',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og åpne igjen',
         'reply_resolve' => 'Svar og marker som løst',

@@ -33,7 +33,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Diese Beatmap ist momentan gesperrt und kann nicht hyped werden",
+            'discussion_locked' => "Diese Beatmap ist momentan zur Diskussion gesperrt und kann nicht gehypt werden",
             'guest' => 'Zum Hypen muss man eingeloggt sein.',
             'hyped' => 'Du hast diese Beatmap bereits gehypt.',
             'limit_exceeded' => 'Du hast all dein Hype verbraucht.',

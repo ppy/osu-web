@@ -63,6 +63,21 @@ class SessionsControllerTest extends TestCase
         $this->assertSame('', $user->fresh()->user_password);
     }
 
+    public function testLoginMissingParameters()
+    {
+        $password = 'password1';
+        $user = factory(User::class)->create(compact('password'));
+
+        $this->post(route('login'))->assertStatus(422);
+        $this->assertGuest();
+
+        $this->post(route('login'), ['username' => $user->username])->assertStatus(422);
+        $this->assertGuest();
+
+        $this->post(route('login'), compact('password'))->assertStatus(422);
+        $this->assertGuest();
+    }
+
     public function testLoginWrongPassword()
     {
         $password = 'password1';
@@ -71,7 +86,7 @@ class SessionsControllerTest extends TestCase
         $this->post(route('login'), [
             'username' => $user->username,
             'password' => "{$password}1",
-        ])->assertStatus(422);
+        ])->assertStatus(403);
 
         $this->assertGuest();
 
@@ -90,12 +105,12 @@ class SessionsControllerTest extends TestCase
         $this->post(route('login'), [
             'username' => $user->username,
             'password' => 'password2',
-        ])->assertStatus(422);
+        ])->assertStatus(403);
 
         $this->post(route('login'), [
             'username' => $user->username,
             'password' => 'password3',
-        ])->assertStatus(422);
+        ])->assertStatus(403);
 
         $this->assertGuest();
 
@@ -115,12 +130,12 @@ class SessionsControllerTest extends TestCase
         $this->post(route('login'), [
             'username' => $user->username,
             'password' => $wrongPassword,
-        ])->assertStatus(422);
+        ])->assertStatus(403);
 
         $this->post(route('login'), [
             'username' => $user->username,
             'password' => $wrongPassword,
-        ])->assertStatus(422);
+        ])->assertStatus(403);
 
         $this->assertGuest();
 
@@ -149,7 +164,7 @@ class SessionsControllerTest extends TestCase
         $this->post(route('login'), [
             'username' => $secondUser->username,
             'password' => "{$password}1",
-        ])->assertStatus(422);
+        ])->assertStatus(403);
 
         $this->assertGuest();
 

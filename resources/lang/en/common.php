@@ -38,6 +38,7 @@ return [
         'permalink' => 'permalink',
         'pin' => 'pin',
         'post' => 'Post',
+        'read_more' => 'read more',
         'reply' => 'Reply',
         'reply_reopen' => 'Reply and Reopen',
         'reply_resolve' => 'Reply and Resolve',

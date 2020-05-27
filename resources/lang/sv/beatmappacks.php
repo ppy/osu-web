@@ -5,9 +5,9 @@
 
 return [
     'index' => [
-        'description' => 'För-samlade kollektioner av beatmaps baserad på ett gemensamt tema.',
-        'nav_title' => '',
-        'title' => 'Beatmap Samlingar',
+        'description' => 'Färdigförpackade samlingar med beatmaps som är baserade på ett gemensamt tema.',
+        'nav_title' => 'listning',
+        'title' => 'Beatmap-samlingar',
 
         'blurb' => [
             'important' => 'LÄS DETTA INNAN NEDLADDNING',
@@ -19,7 +19,7 @@ return [
                 'scary' => 'INTE',
             ],
             'note' => [
-                '_' => 'Notera att det är högst rekommenderat att :scary, eftersom de äldsta mapsen är av mycket lägre kvalité jämfört med de nyaste mapsen.',
+                '_' => 'Notera att det är som högst rekommenderat att :scary, eftersom de äldsta mapparna är av mycket lägre kvalité jämfört med de nyaste mapparna.',
                 'scary' => 'ladda ner samlingarna från nyaste till äldsta',
             ],
         ],

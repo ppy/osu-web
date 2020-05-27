@@ -3,12 +3,13 @@
 
 import * as React from 'react'
 import { a, div, li, span, ul } from 'react-dom-factories'
+import { modes } from 'utils/beatmap-helper'
 
 export class PlaymodeTabs extends React.Component
   render: =>
     div className: 'game-mode game-mode--beatmapsets',
       ul className: 'game-mode__items',
-        for mode in BeatmapHelper.modes
+        for mode in modes
           disabled = !(@props.enableAll || @props.beatmaps[mode]?)
           active = mode == @props.currentMode
 
