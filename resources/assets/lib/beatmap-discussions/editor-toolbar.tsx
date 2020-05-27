@@ -46,7 +46,22 @@ export class EditorToolbar extends React.Component {
       return null;
     }
 
-    const ToolbarButton = ({format}: { format: string }) => (
+    return (
+      <Portal>
+        <div
+          className={bn}
+          ref={this.ref}
+        >
+          {this.renderButton('bold')}
+          {this.renderButton('italic')}
+          <div className={`${bn}__popup-tail`}/>
+        </div>
+      </Portal>
+    );
+  }
+
+  renderButton(format: string) {
+    return (
       <button
         className={osu.classWithModifiers(`${bn}__button`, [isFormatActive(this.context, format) ? 'active' : ''])}
         // we use onMouseDown instead of onClick here so the popup remains visible after clicking
@@ -58,19 +73,6 @@ export class EditorToolbar extends React.Component {
       >
         <i className={`fas fa-${format}`}/>
       </button>
-    );
-
-    return (
-      <Portal>
-        <div
-          className={bn}
-          ref={this.ref}
-        >
-          <ToolbarButton format='bold'/>
-          <ToolbarButton format='italic'/>
-          <div className={`${bn}__popup-tail`}/>
-        </div>
-      </Portal>
     );
   }
 
