@@ -5,6 +5,7 @@
 
 namespace App\Models\Notifications;
 
+use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 
@@ -13,6 +14,7 @@ abstract class NotificationBase
     const CONTENT_TRUNCATE = 36;
 
     protected $notifiable;
+    protected $notificationName;
     protected $object;
     protected $source;
 
@@ -45,6 +47,25 @@ abstract class NotificationBase
     {
         $this->object = $object;
         $this->source = $source;
+
+        $this->notificationName = snake_case(get_class_basename(get_class($this)));
+    }
+
+    public function makeNotification(): Notification
+    {
+        $params['details'] = $this->getDetails();
+        $params['name'] = $this->notificationName;
+        if ($this->source !== null) {
+            $params['details']['username'] = $this->source;
+        }
+
+        $notification = new Notification($params);
+        $notification->notifiable()->associate($this->getNotifiable());
+        if ($this->source !== null) {
+            $notification->source()->associate($this->source);
+        }
+
+        return $notification;
     }
 
     abstract function getDetails(): array;

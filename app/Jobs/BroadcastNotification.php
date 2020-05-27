@@ -54,29 +54,14 @@ class BroadcastNotification implements ShouldQueue
             return;
         }
 
-        $this->notifiable = $builder->getNotifiable();
-        $this->params['details'] = $builder->getDetails();
-        $this->receiverIds = $builder->getReceiverIds();
-
-        $this->params['name'] = $this->name;
-        // TODO: move setting username
-        if ($builder->getSource() !== null) {
-            $this->params['details']['username'] = $builder->getSource()->username;
-        }
-
-        $this->receiverIds = array_values(array_unique(array_diff($this->receiverIds, [optional($builder->getSource())->getKey()])));
+        $this->receiverIds = array_values(array_unique(array_diff($builder->getReceiverIds(), [optional($builder->getSource())->getKey()])));
 
         if (empty($this->receiverIds)) {
             return;
         }
 
-        $notification = new Notification($this->params);
-        $notification->notifiable()->associate($this->notifiable);
-        if ($builder->getSource() !== null) {
-            $notification->source()->associate($builder->getSource());
-        }
-
-        $notification->save();
+        $notification = $builder->makeNotification();
+        $notification->saveOrExplode();
 
         event(new NewPrivateNotificationEvent($notification, $this->receiverIds));
 
