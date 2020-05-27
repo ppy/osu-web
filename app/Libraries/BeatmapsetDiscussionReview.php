@@ -56,7 +56,7 @@ class BeatmapsetDiscussionReview
                             'discussion_id' => $embedPost->getKey(),
                         ];
                         $childIds[] = $embedPost->getKey();
-                        if ($block['discussion_type'] == 'problem' && !$problemPost) {
+                        if ($block['discussion_type'] === 'problem' && !$problemPost) {
                             $problemPost = $embedPost;
                         }
                         break;
