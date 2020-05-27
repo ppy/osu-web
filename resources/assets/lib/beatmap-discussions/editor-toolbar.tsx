@@ -16,17 +16,17 @@ export class EditorToolbar extends React.Component {
   ref: React.RefObject<HTMLDivElement>;
   scrollContainer: HTMLElement | undefined;
   private scrollTimer: number | undefined;
+  private readonly throttledUpdate: (() => null) & _.Cancelable; // TODO: is there a better way of typing this?
 
   constructor(props: {}) {
     super(props);
 
+    this.throttledUpdate = _.throttle(this.updatePosition.bind(this), 100);
     this.ref = React.createRef();
   }
 
   componentDidMount() {
-    $(window).on('scroll.editor-toolbar', _.throttle(() => {
-      this.updatePosition();
-    }, 100));
+    $(window).on('scroll.editor-toolbar', this.throttledUpdate);
     this.updatePosition();
   }
 
@@ -37,8 +37,9 @@ export class EditorToolbar extends React.Component {
   componentWillUnmount() {
     $(window).off('.editor-toolbar');
     if (this.scrollContainer) {
-      $(this.scrollContainer).off('scroll');
+      $(this.scrollContainer).off('.editor-toolbar');
     }
+    this.throttledUpdate.cancel();
   }
 
   render(): React.ReactNode {
@@ -78,9 +79,7 @@ export class EditorToolbar extends React.Component {
 
   setScrollContainer(container: HTMLElement) {
     this.scrollContainer = container;
-    $(this.scrollContainer).on('scroll', _.throttle(() => {
-      this.updatePosition();
-    }, 100));
+    $(this.scrollContainer).on('scroll.editor-toolbar', this.throttledUpdate);
   }
 
   updatePosition() {
