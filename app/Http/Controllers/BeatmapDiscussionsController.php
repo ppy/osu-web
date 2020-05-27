@@ -141,7 +141,7 @@ class BeatmapDiscussionsController extends Controller
             'users' => json_collection(
                 $users,
                 'UserCompact',
-                ['group_badge']
+                ['groups']
             ),
         ];
 

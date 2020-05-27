@@ -31,14 +31,14 @@ export class UserFilter extends React.PureComponent
 
 
   mapUserProperties: (user) ->
-    group_badge: user.group_badge
+    groups: user.groups
     id: user.id
     text: user.username
 
 
   renderItem: ({ cssClasses, children, item, onClick }) =>
-    userBadge = if @isOwner(item) then mapperGroup else item.group_badge
-    style = osu.groupColour(userBadge)
+    group = if @isOwner(item) then mapperGroup else item.groups?[0]
+    style = osu.groupColour(group)
 
     a
       className: cssClasses

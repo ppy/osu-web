@@ -34,11 +34,11 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[], u
             </div>
           ) : null}
 
-        {user.group_badge != null && (
-          <div className='user-search-card__col user-search-card__col--icon'>
-            <UserGroupBadge badge={user.group_badge} />
+        {(user.groups ?? []).map((group) => (
+          <div key={group.id} className='user-search-card__col user-search-card__col--icon'>
+            <UserGroupBadge group={group} />
           </div>
-        )}
+        ))}
 
         <div className='user-search-card__col user-search-card__col--icon'>
           <FriendButton userId={user.id} modifiers={['quick-search']} />
