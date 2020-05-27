@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'Jelenleg túlnyomóan sok rendelésünk van. Szívesen fogadjuk rendelésed, viszont arra számíts, hogy **további 1-2 hét késés** is lehet míg elérünk a jelenlegi rendelésekig.',
         'old_cart' => 'A kosarad réginek tűnik és újra lett töltve, kérlek próbáld újra.',
         'pay' => 'Fizetés Paypal használatával',
-        'title_compact' => '',
+        'title_compact' => 'fizetés',
 
         'has_pending' => [
             '_' => 'Még vannak befejezetlen vételeid, kattints :link a megtekintéshez.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Mivel a fizetésed egy eCheck volt, engedj meg neki legalább 10 napot a PayPal-es feldolgozásra!',
-        'title_compact' => '',
+        'title_compact' => 'számla',
 
         'status' => [
             'processing' => [

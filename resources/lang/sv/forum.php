@@ -10,7 +10,7 @@ return [
     'title' => 'osu! forumen',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Redigera omslag',
 
         'create' => [
             '_' => 'Välj omslagsbild',
@@ -25,10 +25,10 @@ return [
     ],
 
     'forums' => [
-        'latest_post' => '',
+        'latest_post' => 'Senaste inlägg',
 
         'index' => [
-            'title' => '',
+            'title' => 'Forumets index',
         ],
 
         'topics' => [
@@ -37,9 +37,9 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => '',
-        'forums' => '',
-        'busy' => '',
+        'forum' => 'Markera forumet som läst',
+        'forums' => 'Markera forumen som läst',
+        'busy' => 'Markera som läst....',
     ],
 
     'post' => [
@@ -56,13 +56,13 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Nytt svar',
             ],
         ],
 
         'info' => [
-            'post_count' => '',
-            'topic_starter' => '',
+            'post_count' => ':count_delimited inlägg|:count_delimited inlägg',
+            'topic_starter' => 'Ämnestartare ',
         ],
     ],
 
@@ -79,14 +79,14 @@ return [
         'latest_reply_by' => 'senaste svar av :user',
         'new_topic' => 'Lägg upp nytt ämne',
         'new_topic_login' => 'Logga in för att lägga upp ett nytt ämne',
-        'post_reply' => 'Lägg upp',
-        'reply_box_placeholder' => 'Tryck här för att svara',
+        'post_reply' => 'Skicka',
+        'reply_box_placeholder' => 'Skriv här för att svara',
         'reply_title_prefix' => 'Åter',
         'started_by' => 'av :user',
         'started_by_verbose' => 'startad av :user',
 
         'create' => [
-            'close' => '',
+            'close' => 'Stäng',
             'preview' => 'Förhandsvisning',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -149,7 +149,7 @@ return [
         '_' => 'Ämnen',
 
         'actions' => [
-            'login_reply' => 'Logga in för att Svara',
+            'login_reply' => 'Logga in för att svara',
             'reply' => 'Svara',
             'reply_with_quote' => 'Citera inlägg för svar',
             'search' => 'Sök',
@@ -158,7 +158,7 @@ return [
         'create' => [
             'create_poll' => 'Skapande av enkät',
 
-            'preview' => '',
+            'preview' => 'Skicka förhandsvisningen',
 
             'create_poll_button' => [
                 'add' => 'Skapa en enkät',
@@ -166,8 +166,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Dölj resultaten av enkäten.',
+                'hide_results_info' => 'De kommer att visas först efter enkätens avslutande.',
                 'length' => 'Kör enkät i',
                 'length_days_suffix' => 'dagar',
                 'length_info' => 'Lämna tom för inget avslut av enkät',
@@ -186,7 +186,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'stjärnprioritet',
             'replies' => 'svar',
             'views' => 'visningar',
         ],
@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Detta ämne är låst och kan ej svaras på',
             'to_0' => 'Lås upp ämne',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Lås upp ämnet?',
             'to_0_done' => 'Ämne har blivit upplåst',
             'to_1' => 'Lås ämne',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Lås ämnet?',
             'to_1_done' => 'Ämne har blivit låst',
         ],
 
@@ -249,19 +249,19 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Ta bort nålat ämne',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Ofäst ämnet?',
             'to_0_done' => 'Nål på ämne har tagits bort',
             'to_1' => 'Nåla ämne',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Fäst ämnet?',
             'to_1_done' => 'Ämne har blivit nålat',
             'to_2' => 'Nåla ämne och markera som meddelande',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Fäst ämnet och markera den som meddelande?',
             'to_2_done' => 'Ämne har blivit nålat och markerat som meddelande',
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Visa raderade inlägg',
+            'hide' => 'Dölj raderade inlägg',
         ],
 
         'show' => [
@@ -273,9 +273,9 @@ return [
                 'do' => 'Uppmuntra denna begäran',
 
                 'info' => [
-                    '_' => '',
-                    'feature_request' => '',
-                    'supporters' => '',
+                    '_' => 'Detta är en :feature_request. Funktionsförfrågningar kan röstas upp av :supporters.',
+                    'feature_request' => 'funktionönskemål',
+                    'supporters' => 'supportrar',
                 ],
 
                 'user' => [
@@ -286,21 +286,21 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
-                'edit_warning' => '',
+                'edit' => 'Redigera enkät',
+                'edit_warning' => 'Redigering av en enkät kommer att ta bort det aktuella resultatet!',
                 'vote' => 'Rösta',
 
                 'button' => [
-                    'change_vote' => '',
-                    'edit' => '',
-                    'view_results' => '',
-                    'vote' => '',
+                    'change_vote' => 'Ändra röst',
+                    'edit' => 'Redigera enkät',
+                    'view_results' => 'Hoppa till resultaten',
+                    'vote' => 'Rösta',
                 ],
 
                 'detail' => [
                     'end_time' => 'Enkät kommer avslutas :time',
                     'ended' => 'Enkät avslutades :time',
-                    'results_hidden' => '',
+                    'results_hidden' => 'Resultaten kommer att visas efter enkätröstningens slut.',
                     'total' => 'Totala röster: :count',
                 ],
             ],
@@ -310,8 +310,8 @@ return [
             'to_not_watching' => 'Inte bokmärkt',
             'to_watching' => 'Bokmärk',
             'to_watching_mail' => 'Bokmärke med notifikation',
-            'tooltip_mail_disable' => '',
-            'tooltip_mail_enable' => '',
+            'tooltip_mail_disable' => 'Avisering är aktiverad. Klicka för att inaktivera',
+            'tooltip_mail_enable' => 'Avisering är inaktiverad. Klicka för att aktivera',
         ],
     ],
 ];

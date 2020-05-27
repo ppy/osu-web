@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
+    "@types/d3": "^5.7.2",
     "babel-preset-react": "^6.3.13",
     "blueimp-file-upload": "^9.11.2",
     "bootstrap": "^3.3.6",
@@ -59,7 +60,7 @@
   "devDependencies": {
     "@types/jasmine": "^3.3.13",
     "@types/jquery": "^3.3.0",
-    "@types/lodash": "^4.14.136",
+    "@types/lodash": "^4.14.151",
     "@types/react": "^16.8.4",
     "@types/react-dom": "^16.0.11",
     "babel-preset-env": "^1.7.0",

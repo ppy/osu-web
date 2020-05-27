@@ -192,7 +192,7 @@ Name          | Description
 --------------|-------------------------------
 identify      | Allows reading of the public profile of the authorizing user (`/me`).
 friends.read  | Allows reading of the authorizing user's friend list.
-users.read    | Allows reading of public user profiles on behalf of the authorizing user.
+public        | Allows reading of publicly available data on behalf of the authorizing user.
 
 `identify` is the default scope and always implicitly provided.
 
@@ -202,6 +202,9 @@ For a full list of changes, see the
 [Changelog on the site]({{ route('changelog.show', ['changelog' => 'web']) }}).
 
 ## Breaking Changes
+
+### 2020-05-01
+- `users.read` scope removed, replace with more general `public` scope.
 
 ### 2020-02-18
 - Beatmap `max_combo` and build update stream `user_count` now return the values as primitives instead of numbers wrapped in an array.

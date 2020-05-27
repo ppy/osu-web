@@ -307,6 +307,7 @@ return [
                 'empty' => 'No hay records de rendimiento impresionantes aún. :(',
                 'not_ranked' => 'Sólo los mapas clasificados dan pp.',
                 'pp_weight' => 'valorado :percentage',
+                'view_details' => '',
                 'title' => 'Rangos',
 
                 'best' => [

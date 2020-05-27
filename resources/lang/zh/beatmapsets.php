@@ -98,7 +98,7 @@ return [
 
         'scoreboard' => [
             'achieved' => '在 :when 达成',
-            'country' => '国内排名',
+            'country' => '国内/区内排名',
             'friend' => '好友排名',
             'global' => '全球排名',
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你得到的精彩功能！',

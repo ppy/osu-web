@@ -199,8 +199,10 @@ For example, use last loaded comment for the fields value to load more comments.
   "description": "wheeeee",
   "icon": "/images/layout/avatar-guest@2x.png",
   "type": "GROUP",
+  "first_message_id": 10,
   "last_read_id": 9150005005,
   "last_message_id": 9150005005,
+  "moderated": false,
   "users": [
     2,
     3,
@@ -218,8 +220,10 @@ name             | string               | |
 description      | string?              | |
 icon*            | string               | display icon for the channel
 type             | string               | see channel types below
+first_message_id*| number?              | `message_id` of first message (only returned in presence responses)
 last_read_id*    | number?              | `message_id` of last message read (only returned in presence responses)
 last_message_id* | number?              | `message_id` of last known message (only returned in presence responses)
+moderated*       | boolean              | user can't send message when the value is `true` (only returned in presence responses)
 users*           | number[]?            | array of `user_id` that are in the channel (not included for `PUBLIC` channels)
 
 ### Channel Types

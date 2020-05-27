@@ -37,6 +37,7 @@ return [
         'permalink' => 'pysyvä linkki',
         'pin' => 'kiinnitä',
         'post' => 'Lähetä',
+        'read_more' => '',
         'reply' => 'Vastaa',
         'reply_reopen' => 'Vastaa ja uudelleenavaa',
         'reply_resolve' => 'Vastaa ja merkitse ratkaistuksi',

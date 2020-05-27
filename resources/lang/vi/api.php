@@ -19,8 +19,6 @@ return [
             'read' => 'Xem những ai bạn đang theo dõi.',
         ],
 
-        'users' => [
-            'read' => '',
-        ],
+        'public' => '',
     ],
 ];

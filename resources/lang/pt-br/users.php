@@ -307,6 +307,7 @@ return [
                 'empty' => 'Nenhuma performance incrível ainda. :(',
                 'not_ranked' => 'Apenas beatmaps ranqueados dão pp.',
                 'pp_weight' => 'ajustado :percentage',
+                'view_details' => '',
                 'title' => 'Classificações',
 
                 'best' => [

@@ -307,6 +307,7 @@ return [
                 'empty' => 'Nog geen geweldige prestatiegegevens. :(',
                 'not_ranked' => 'Enkel gerankte beatmaps geven pp.',
                 'pp_weight' => 'gewogen :percentage',
+                'view_details' => '',
                 'title' => 'Ranks',
 
                 'best' => [

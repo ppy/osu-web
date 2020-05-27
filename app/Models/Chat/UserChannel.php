@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Models\UserNotification;
 use App\Models\UserRelation;
 use DB;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property Channel $channel
@@ -41,6 +40,12 @@ class UserChannel extends Model
         return $this->belongsTo(Channel::class, 'channel_id');
     }
 
+    // Laravel has own hidden property
+    public function isHidden()
+    {
+        return (bool) $this->getAttribute('hidden');
+    }
+
     public function markAsRead($messageId = null)
     {
         $maxId = get_int($messageId ?? Message::where('channel_id', $this->channel_id)->max('message_id'));
@@ -64,6 +69,7 @@ class UserChannel extends Model
     {
         $userId = $user->user_id;
 
+        // FIXME: this should do `->with('channel')` instead of using join and jamming everything to UserChannel.
         // retrieve all the channels the user is in and the metadata for each
         $userChannels = self::where('user_channels.user_id', $userId)
             ->where('hidden', false)
@@ -94,7 +100,15 @@ class UserChannel extends Model
             })
             ->join('channels', 'channels.channel_id', '=', 'user_channels.channel_id')
             ->where('channels.type', '=', 'PM')
-            ->with('userScoped')
+            ->with([
+                // only fetch data related to $user, to be used by ChatStart privilege check
+                'userScoped.friends' => function ($query) use ($userId) {
+                    $query->where('zebra_id', $userId);
+                },
+                'userScoped.blocks' => function ($query) use ($userId) {
+                    $query->where('zebra_id', $userId);
+                },
+            ])
             ->get();
 
         $byUserId = $userChannelMembers->keyBy('user_id');
@@ -114,7 +128,8 @@ class UserChannel extends Model
 
         $collection = json_collection(
             $userChannels,
-            function ($userChannel) use ($byChannelId, $byUserId, $channelMessageIds, $userId) {
+            // FIXME: this should be its own transformer class
+            function ($userChannel) use ($byChannelId, $byUserId, $channelMessageIds, $userId, $user) {
                 $messageEnds = $channelMessageIds[$userChannel->channel_id] ?? null;
 
                 $presence = [
@@ -125,6 +140,9 @@ class UserChannel extends Model
                     'last_read_id' => $userChannel->last_read_id,
                     'first_message_id' => optional($messageEnds)->first_message_id,
                     'last_message_id' => optional($messageEnds)->last_message_id,
+                    // `moderated` is not attribute of UserChannel so there's no casting.
+                    // Also see comment above on `$userChannels` assignment about this should be `$userChannel->channel->moderated`.
+                    'moderated' => (bool) $userChannel->moderated,
                 ];
 
                 if ($userChannel->type !== Channel::TYPES['public']) {
@@ -147,6 +165,8 @@ class UserChannel extends Model
                     $userActual = $targetUser->userScoped;
                     $presence['icon'] = $userActual->user_avatar;
                     $presence['name'] = $userActual->username;
+                    // ideally this should be ChatChannelSend but it involves too many queries
+                    $presence['moderated'] = $presence['moderated'] || !priv_check_user($user, 'ChatStart', $userActual)->can();
                 }
 
                 return $presence;
@@ -155,14 +175,5 @@ class UserChannel extends Model
 
         // strip out the empty [] elements (from restricted/blocked users)
         return array_values(array_filter($collection));
-    }
-
-    // Allows save/update/delete to work with composite primary keys.
-    protected function setKeysForSaveQuery(Builder $query)
-    {
-        return $query->where([
-            'user_id' => $this->user_id,
-            'channel_id' => $this->channel_id,
-        ]);
     }
 }

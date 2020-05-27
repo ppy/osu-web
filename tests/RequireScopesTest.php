@@ -24,8 +24,8 @@ class RequireScopesTest extends TestCase
 
     public function testNullUser()
     {
-        $this->setUser(null);
         $this->setRequest();
+        $this->setUser(null);
 
         $this->expectException(AuthorizationException::class);
         app(RequireScopes::class)->handle($this->request, $this->next);
@@ -35,8 +35,8 @@ class RequireScopesTest extends TestCase
     {
         $userScopes = [];
 
-        $this->setUser($userScopes);
         $this->setRequest();
+        $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next);
@@ -46,8 +46,8 @@ class RequireScopesTest extends TestCase
     {
         $userScopes = ['*'];
 
-        $this->setUser($userScopes);
         $this->setRequest();
+        $this->setUser($userScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next);
         $this->assertTrue(true);
@@ -58,8 +58,8 @@ class RequireScopesTest extends TestCase
         $userScopes = ['identify'];
         $requireScopes = ['identify'];
 
-        $this->setUser($userScopes);
         $this->setRequest($requireScopes);
+        $this->setUser($userScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
@@ -70,8 +70,8 @@ class RequireScopesTest extends TestCase
         $userScopes = ['somethingelse'];
         $requireScopes = ['identify'];
 
-        $this->setUser($userScopes);
         $this->setRequest($requireScopes);
+        $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -82,8 +82,8 @@ class RequireScopesTest extends TestCase
         $userScopes = ['*'];
         $requireScopes = ['identify'];
 
-        $this->setUser($userScopes);
         $this->setRequest($requireScopes);
+        $this->setUser($userScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
@@ -94,8 +94,8 @@ class RequireScopesTest extends TestCase
         $userScopes = [];
         $requireScopes = ['identify'];
 
-        $this->setUser($userScopes);
         $this->setRequest($requireScopes);
+        $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -106,8 +106,8 @@ class RequireScopesTest extends TestCase
         $userScopes = ['somethingelse', 'alsonotright', 'nope'];
         $requireScopes = ['identify'];
 
-        $this->setUser($userScopes);
         $this->setRequest($requireScopes);
+        $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -118,8 +118,8 @@ class RequireScopesTest extends TestCase
         $userScopes = ['somethingelse', 'identify', 'nope'];
         $requireScopes = ['identify'];
 
-        $this->setUser($userScopes);
         $this->setRequest($requireScopes);
+        $this->setUser($userScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
@@ -129,8 +129,8 @@ class RequireScopesTest extends TestCase
     {
         $userScopes = ['identify'];
 
-        $this->setUser($userScopes);
         $this->setRequest();
+        $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next);
@@ -141,8 +141,8 @@ class RequireScopesTest extends TestCase
         $userScopes = ['identify'];
         $requireScopes = ['identify'];
 
-        $this->setUser($userScopes);
         $this->setRequest($requireScopes);
+        $this->setUser($userScopes);
 
         app(RequireScopes::class)->handle($this->request, function () use ($requireScopes) {
             app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -156,8 +156,8 @@ class RequireScopesTest extends TestCase
         $userScopes = ['somethingelse'];
         $requireScopes = ['identify'];
 
-        $this->setUser($userScopes);
         $this->setRequest($requireScopes);
+        $this->setUser($userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, function () use ($requireScopes) {
@@ -170,19 +170,26 @@ class RequireScopesTest extends TestCase
         $userScopes = ['somethingelse'];
         $requireScopes = ['identify'];
 
-        $this->request = Request::create('/api/v2/changelog', 'GET');
+        $this->setRequest($requireScopes, Request::create('/api/v2/changelog', 'GET'));
         $this->setUser($userScopes);
-        $this->setRequest($requireScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
     }
 
-    protected function setRequest(?array $scopes = null)
+    protected function setRequest(?array $scopes = null, $request = null)
     {
+        $this->request = $request ?? Request::create('/api/_fake', 'GET');
+        $this->next = static function () {
+            // just an empty closure.
+        };
+
+        // so request() works
+        $this->app->instance('request', $this->request);
+
         // set a fake route resolver
         $this->request->setRouteResolver(function () use ($scopes) {
-            $route = new Route(['GET'], '/', null);
+            $route = new Route(['GET'], '/api/_fake', null);
             $route->middleware('require-scopes');
 
             if ($scopes !== null) {
@@ -191,16 +198,6 @@ class RequireScopesTest extends TestCase
 
             return $route;
         });
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->request = Request::create('/', 'GET');
-        $this->next = static function () {
-            // just an empty closure.
-        };
     }
 
     protected function setUser(?array $scopes = null)
