@@ -84,5 +84,11 @@ export const serializeSlateDocument = (input: SlateNode[]) => {
     }
   });
 
+  // strip last block if it's empty (i.e. the placeholder that allows easier insertion at the end of a document)
+  const lastBlock = review[review.length - 1];
+  if (lastBlock.type === 'paragraph' && !osu.present(lastBlock.text)) {
+    review.pop();
+  }
+
   return JSON.stringify(review);
 };
