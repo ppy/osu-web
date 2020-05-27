@@ -152,7 +152,7 @@ export default class Editor extends React.Component<Props, State> {
     const beatmapId = this.props.currentBeatmap ? this.props.currentBeatmap.id : this.props.beatmaps[this.props.beatmapset.beatmaps[0].id];
 
     // find where to insert the new embed (relative to the dropdown menu)
-    const lastChild = $(event.currentTarget).closest(`.${this.bn}__block`)[0].lastChild;
+    const lastChild = event.currentTarget.closest(`.${this.bn}__block`)?.lastChild;
 
     if (!lastChild) {
       return;
