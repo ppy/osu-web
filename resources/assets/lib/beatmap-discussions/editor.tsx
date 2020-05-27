@@ -380,7 +380,7 @@ export default class Editor extends React.Component<Props, State> {
 
   sortedBeatmaps = () => {
     if (this.cache.sortedBeatmaps == null) {
-      this.cache.sortedBeatmaps = BeatmapHelper.sortWithMode(_.values(this.props.beatmaps));
+      this.cache.sortedBeatmaps = sortWithMode(_.values(this.props.beatmaps));
     }
 
     return this.cache.sortedBeatmaps;
