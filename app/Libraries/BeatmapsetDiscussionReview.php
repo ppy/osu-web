@@ -18,7 +18,7 @@ class BeatmapsetDiscussionReview
 
     public static function create(Beatmapset $beatmapset, array $document, User $user)
     {
-        if (!$document || !is_array($document) || empty($document)) {
+        if (empty($document)) {
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
@@ -107,7 +107,7 @@ class BeatmapsetDiscussionReview
     // TODO: combine with create()?
     public static function update(BeatmapDiscussion $discussion, array $document, User $user)
     {
-        if (!$document || !is_array($document) || empty($document)) {
+        if (empty($document)) {
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
