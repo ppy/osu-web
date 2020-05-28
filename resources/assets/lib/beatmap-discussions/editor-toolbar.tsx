@@ -13,17 +13,10 @@ const bn = 'beatmap-discussion-editor-toolbar';
 
 export class EditorToolbar extends React.Component {
   static contextType = SlateContext;
-  ref: React.RefObject<HTMLDivElement>;
+  ref = React.createRef<HTMLDivElement>();
   scrollContainer: HTMLElement | undefined;
   private scrollTimer: number | undefined;
-  private readonly throttledUpdate: (() => null) & _.Cancelable; // TODO: is there a better way of typing this?
-
-  constructor(props: {}) {
-    super(props);
-
-    this.throttledUpdate = _.throttle(this.updatePosition.bind(this), 100);
-    this.ref = React.createRef();
-  }
+  private readonly throttledUpdate = _.throttle(this.updatePosition.bind(this), 100);
 
   componentDidMount() {
     $(window).on('scroll.editor-toolbar', this.throttledUpdate);
