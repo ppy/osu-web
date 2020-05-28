@@ -12,7 +12,6 @@ import EditorIssueTypeSelector from './editor-issue-type-selector';
 import { SlateContext } from './slate-context';
 
 interface Props extends RenderElementProps {
-  // attributes taken from RenderElementProps, but extended with contentEditable
   attributes: {
     'data-slate-inline'?: true;
     'data-slate-node': 'element';
