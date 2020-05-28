@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddMultiplayerScoresHighTopScoresIndex extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('multiplayer_scores_high', function (Blueprint $table) {
+            $table->index(['playlist_item_id', DB::raw('total_score DESC'), 'score_id'], 'top_scores');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('multiplayer_scores_high', function (Blueprint $table) {
+            $table->dropIndex('top_scores');
+        });
+    }
+}
