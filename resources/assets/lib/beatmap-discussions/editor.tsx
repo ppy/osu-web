@@ -13,7 +13,7 @@ import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, with
 import { Spinner } from 'spinner';
 import { sortWithMode } from 'utils/beatmap-helper';
 import EditorDiscussionComponent from './editor-discussion-component';
-import { serializeSlateDocument, toggleFormat } from './editor-helpers';
+import { serializeSlateDocument, slateDocumentIsEmpty, toggleFormat } from './editor-helpers';
 import { EditorToolbar } from './editor-toolbar';
 import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
@@ -222,10 +222,10 @@ export default class Editor extends React.Component<Props, State> {
     if (!this.props.editMode) {
       const content = JSON.stringify(value);
 
-      if (content !== JSON.stringify(this.emptyDocTemplate)) {
-        localStorage.setItem(this.localStorageKey, content);
-      } else {
+      if (slateDocumentIsEmpty(value)) {
         localStorage.removeItem(this.localStorageKey);
+      } else {
+        localStorage.setItem(this.localStorageKey, content);
       }
     }
 
