@@ -3,12 +3,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Models\Notifications;
+namespace App\Jobs\Notifications;
 
 use App\Models\Chat\Message;
 use App\Models\User;
 
-class ChannelMessage extends NotificationBase
+class ChannelMessage extends BroadcastNotification
 {
     public function __construct(Message $object, ?User $source)
     {

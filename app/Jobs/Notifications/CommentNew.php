@@ -3,13 +3,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Models\Notifications;
+namespace App\Jobs\Notifications;
 
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Follow;
 use App\Models\User;
 
-class CommentNew extends NotificationBase
+class CommentNew extends BroadcastNotification
 {
     public function __construct($object, ?User $source)
     {

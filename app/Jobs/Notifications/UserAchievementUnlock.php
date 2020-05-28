@@ -3,12 +3,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Models\Notifications;
+namespace App\Jobs\Notifications;
 
 use App\Models\Achievement;
 use App\Models\User;
 
-class UserAchievementUnlock extends NotificationBase
+class UserAchievementUnlock extends BroadcastNotification
 {
     private $user;
 
@@ -18,9 +18,6 @@ class UserAchievementUnlock extends NotificationBase
 
         $this->notifiable = $source;
         $this->user = $source;
-        // $source gets removed from receivers during broadcast.
-        // TODO: does this need to be User?
-        $this->source = new User;
     }
 
     public function getDetails(): array
@@ -38,5 +35,10 @@ class UserAchievementUnlock extends NotificationBase
     public function getListentingUserIds(): array
     {
         return [$this->user->getKey()];
+    }
+
+    public function getReceiverIds(): array
+    {
+        return $this->getListentingUserIds();
     }
 }

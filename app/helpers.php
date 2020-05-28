@@ -50,9 +50,11 @@ function blade_safe($html)
     return new Illuminate\Support\HtmlString($html);
 }
 
-function broadcast_notification(...$arguments)
+function broadcast_notification($name, ...$arguments)
 {
-    return (new App\Jobs\BroadcastNotification(...$arguments))->dispatch();
+    $class = App\Jobs\Notifications\BroadcastNotification::getNotificationClass($name);
+
+    return (new $class(...$arguments))->dispatch();
 }
 
 /**

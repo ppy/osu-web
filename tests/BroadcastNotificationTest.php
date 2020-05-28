@@ -6,7 +6,7 @@
 namespace Tests;
 
 use App\Events\NewPrivateNotificationEvent;
-use App\Jobs\BroadcastNotification;
+use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Models\UserNotificationOption;
@@ -50,7 +50,7 @@ class BroadcastNotificationTest extends TestCase
             ->post(route('beatmap-discussion-posts.store'), $params)
             ->assertStatus(200);
 
-        Queue::assertPushed(BroadcastNotification::class);
+        Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
         $this->runFakeQueue();
 
         if ($enabled) {
