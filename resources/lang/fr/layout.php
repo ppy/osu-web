@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - Le rythme est à un seul *clic* !  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
     ],
@@ -130,7 +134,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Paramètre de requête invalide',
             'description' => '',
         ],
         '404' => [

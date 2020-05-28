@@ -80,7 +80,7 @@ return [
             'linux' => 'für Linux',
         ],
         'mirror' => 'mirror',
-        'macos-fallback' => 'macOS benutzer',
+        'macos-fallback' => 'macOS-benutzer',
         'steps' => [
             'register' => [
                 'title' => 'erstell einen account',
@@ -91,7 +91,7 @@ return [
                 'description' => 'klick den knopf da oben zum herunterladen und führ die installationsdatei aus!',
             ],
             'beatmaps' => [
-                'title' => 'hol\' dir Beatmaps',
+                'title' => 'hol\' dir beatmaps',
                 'description' => [
                     '_' => ':browse durch die enorme Bibliothek an von Nutzern erstellten Beatmaps und fang an zu spielen!',
                     'browse' => 'stöbern',
@@ -102,7 +102,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'Dashboard',
+        'title' => 'dashboard',
         'news' => [
             'title' => 'News',
             'error' => 'News konnten nicht geladen werden. Versuche, die Seite neu zu laden...?',

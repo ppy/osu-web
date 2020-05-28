@@ -15,11 +15,11 @@ return [
     ],
     'error' => [
         'error' => [
-            '400' => '',
+            '400' => 'nieprawidłowe żądanie',
             '404' => 'nie znaleziono',
             '403' => 'brak dostępu',
-            '401' => 'brak dostępu',
-            '401-verification' => '',
+            '401' => 'odmowa dostępu',
+            '401-verification' => 'weryfikacja konta',
             '405' => 'nie znaleziono',
             '422' => 'nieprawidłowe żądanie',
             '500' => 'coś się popsuło',
@@ -29,37 +29,37 @@ return [
     'forum' => [
         '_' => 'forum',
         'topic_watches_controller' => [
-            'index' => 'przegląd',
+            'index' => 'strona główna',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'przegląd',
+            'edit' => 'strona główna',
             'verify_link' => 'weryfikacja konta',
         ],
         'artists_controller' => [
             '_' => 'wyróżnieni artyści',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'posty w dyskusji',
+            '_' => 'posty w dyskusji beatmapy',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'dyskusje',
+            '_' => 'dyskusje beatmapy',
         ],
         'beatmap_packs_controller' => [
             '_' => 'paczki beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'głosy w dyskusji',
+            '_' => 'głosy w dyskusji beatmapy',
         ],
         'beatmapset_events_controller' => [
             '_' => 'historia beatmap',
         ],
         'beatmapset_watches_controller' => [
-            'index' => 'przegląd',
+            'index' => 'strona główna',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'dyskusja',
+            'discussion' => 'dyskusja beatmapy',
             'index' => 'lista beatmap',
             'show' => 'informacje o beatmapie',
         ],
@@ -76,17 +76,17 @@ return [
             '_' => 'konkursy',
         ],
         'friends_controller' => [
-            'index' => 'przegląd',
+            'index' => 'strona główna',
         ],
         'groups_controller' => [
             'show' => 'grupy',
         ],
         'home_controller' => [
             'get_download' => 'pobierz',
-            'index' => 'przegląd',
+            'index' => 'strona główna',
             'search' => 'wyszukiwarka',
             'support_the_game' => 'wspomóż grę',
-            'testflight' => 'testy beta',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'informacje',
@@ -108,6 +108,9 @@ return [
         ],
         'ranking_controller' => [
             '_' => 'ranking',
+        ],
+        'scores_controller' => [
+            '_' => '',
         ],
         'store_controller' => [
             '_' => 'sklep osu!',

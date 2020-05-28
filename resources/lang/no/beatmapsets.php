@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'last ned',
+            'video' => 'last ned med video',
+            'no_video' => 'last ned med video',
+            'direct' => 'åpne i osu!direct',
         ],
     ],
 
@@ -48,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'godkjent :timeago',
+            'loved' => 'elsket :timeago',
+            'qualified' => 'kvalifisert :timeago',
+            'ranked' => 'rangert :timeago',
+            'submitted' => 'sent inn :timeago',
+            'updated' => 'sist oppdatert :timeago',
         ],
 
         'favourites' => [
@@ -74,15 +74,13 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
-                'button_title' => '',
+                '_' => 'Hvis du finner et problem med dette beatmappet, vennligst diskvalifiser det :link.',
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                '_' => 'Hvis du finner et problem med dette beatmappet, vennligst rapporter det :link for å varsle teamet.',
+                'button' => 'Rapporter Problem',
+                'link' => 'her',
             ],
         ],
 
@@ -135,7 +133,7 @@ return [
         'stats' => [
             'cs' => 'Sirkel Størrelse',
             'cs-mania' => 'Antall Tangenter',
-            'drain' => 'HP avløp',
+            'drain' => 'HP Drenering',
             'accuracy' => 'Presisjon',
             'ar' => 'Tilnærmingsrate',
             'stars' => 'Vanskelighetsgrad (*)',
@@ -150,13 +148,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Rangert',
+            'approved' => 'Godkjent',
+            'loved' => 'Elsket',
+            'qualified' => 'Kvalifisert',
+            'wip' => 'Arbeid pågår',
+            'pending' => 'Avventes',
+            'graveyard' => 'Gravplassert',
         ],
     ],
 ];

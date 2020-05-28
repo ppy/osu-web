@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Impossibilitado de receber kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e uma dicussão não poderá ser aberta.',
         'message_placeholder_locked' => 'A discussão para este beatmap foi desabilitada.',
+        'message_placeholder_silenced' => "Não é possível postar na discussão enquanto silenciado.",
         'message_type_select' => 'Selecione o Tipo de Comentário',
         'reply_notice' => 'Pressione enter para responder.',
         'reply_placeholder' => 'Digite sua resposta aqui',

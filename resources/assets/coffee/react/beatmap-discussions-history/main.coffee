@@ -109,7 +109,7 @@ export class Main extends React.PureComponent
                   className: 'modding-profile-list__thumbnail'
                   href: BeatmapDiscussionHelper.url(discussion: discussion),
 
-                  img className: 'beatmapset-activities__beatmapset-cover', src: discussion.beatmapset.covers.list
+                  img className: 'beatmapset-cover', src: discussion.beatmapset.covers.list
 
                 el Discussion,
                   discussion: discussion

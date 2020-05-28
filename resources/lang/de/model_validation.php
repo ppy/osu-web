@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Ungültiges :attribute angegeben.',
     'not_negative' => ':attribute kann nicht negativ sein.',
     'required' => ':attribute ist erforderlich.',
     'too_long' => ':attribute hat die maximale Länge überschritten - höchstens :limit Zeichen.',
@@ -33,7 +33,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Diese Beatmap ist momentan zur Diskussion gesperrt und kann nicht gehypt werden",
             'guest' => 'Zum Hypen muss man eingeloggt sein.',
             'hyped' => 'Du hast diese Beatmap bereits gehypt.',
             'limit_exceeded' => 'Du hast all dein Hype verbraucht.',

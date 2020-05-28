@@ -21,11 +21,12 @@ return [
         'kudosu_denied' => 'Perolehan kudosu ditolak.',
         'message_placeholder_deleted_beatmap' => 'Tingkat kesulitan ini telah dihapus sehingga diskusi lebih lanjut tidak lagi diperkenankan.',
         'message_placeholder_locked' => 'Laman diskusi pada beatmap ini telah ditutup.',
+        'message_placeholder_silenced' => "Anda tidak dapat berpartisipasi pada laman diskusi beatmap ketika Anda sedang ter-silence.",
         'message_type_select' => 'Pilih Jenis Komentar',
         'reply_notice' => 'Tekan enter untuk membalas.',
         'reply_placeholder' => 'Ketik balasan Anda di sini',
         'require-login' => 'Silakan masuk untuk posting atau membalas',
-        'resolved' => 'Terselesaikan',
+        'resolved' => 'Terjawab',
         'restore' => 'kembalikan',
         'show_deleted' => 'Tampilan dihapus',
         'title' => 'Diskusi',
@@ -107,9 +108,9 @@ return [
             'deleted' => 'Dihapus',
             'mapper_notes' => 'Catatan',
             'mine' => 'Milik Saya',
-            'pending' => 'Tertunda',
+            'pending' => 'Belum Terjawab',
             'praises' => 'Pujian',
-            'resolved' => 'Terselesaikan',
+            'resolved' => 'Terjawab',
             'total' => 'Semua',
         ],
 
@@ -118,7 +119,7 @@ return [
             'graveyard' => "Beatmap ini belum diperbarui sejak :date dan kemungkinan besar telah diabaikan oleh pembuatnya...",
             'loved' => 'Beatmap ini telah ditambahkan pada kategori \'Loved\' pada :date!',
             'ranked' => 'Beatmap ini telah di-Rank pada :date!',
-            'wip' => 'Catatan: Beatmap ini ditandai sebagai \'dalam pengerjaan\' oleh pembuat beatmap.',
+            'wip' => 'Catatan: Beatmap ini ditandai dengan status dalam pengerjaan (work-in-progress) oleh pembuat beatmap.',
         ],
 
         'votes' => [
@@ -139,7 +140,7 @@ return [
         'confirm' => "Apakah Anda yakin? Dengan ini Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Aksi ini tidak dapat diurungkan.",
         'explanation' => 'Berikan hype kepada beatmap ini agar beatmap ini dapat lebih layak dinominasikan dan dapat segera di-rank!',
         'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat lebih layak dinominasikan dan dapat segera di-rank!',
-        'new_time' => "Anda akan mendapatkan hype tambahan dalam :new_time.",
+        'new_time' => "Anda akan mendapatkan hype tambahan :new_time.",
         'remaining' => 'Anda memiliki :remaining hype tersisa.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
@@ -147,7 +148,7 @@ return [
     ],
 
     'feedback' => [
-        'button' => 'Tinggalkan Umpan Balik',
+        'button' => 'Tinggalkan Masukan',
     ],
 
     'nominations' => [
@@ -194,10 +195,10 @@ return [
             'filters' => [
                 'general' => 'Umum',
                 'mode' => 'Mode',
-                'status' => 'Kategori',
+                'status' => 'Status',
                 'genre' => 'Aliran',
                 'language' => 'Bahasa',
-                'extra' => 'tambahan',
+                'extra' => 'Tambahan',
                 'rank' => 'Peringkat yang Diraih',
                 'played' => 'Telah Dimainkan',
             ],
@@ -208,7 +209,7 @@ return [
                 'favourites' => 'Favorit',
                 'updated' => 'Terbaru',
                 'ranked' => 'Ranked',
-                'rating' => 'Penilaian',
+                'rating' => 'Rating',
                 'plays' => 'Jumlah Dimainkan',
                 'relevance' => 'Relevansi',
                 'nominations' => 'Nominasi',
@@ -235,7 +236,7 @@ return [
         'approved' => 'Approved',
         'favourites' => 'Favorit',
         'graveyard' => 'Graveyard',
-        'leaderboard' => 'Berpapan Peringkat',
+        'leaderboard' => 'Memiliki Leaderboard',
         'loved' => 'Loved',
         'mine' => 'Map Saya',
         'pending' => 'Pending & WIP',

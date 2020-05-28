@@ -36,6 +36,6 @@ return [
         'title' => 'judul',
         'length' => 'durasi',
         'bpm' => 'bpm',
-        'genre' => 'genre',
+        'genre' => 'aliran',
     ],
 ];

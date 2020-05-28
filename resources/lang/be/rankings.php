@@ -5,7 +5,7 @@
 
 return [
     'country' => [
-        'filter' => '',
+        'filter' => 'адфільтравана па краінам',
     ],
 
     'type' => [

@@ -5,7 +5,7 @@
 
 return [
     'completed' => [
-        'home' => 'Przejdź do przeglądu',
+        'home' => 'Przejdź do strony głównej',
         'logout' => 'Wyloguj się',
         'text' => 'Możesz już zamknąć to okno',
         'title' => 'Weryfikacja klienta osu! została zakończona',

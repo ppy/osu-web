@@ -5,6 +5,7 @@ cache:
     - vendor
   yarn: true
 
+os: linux
 dist: bionic
 
 language: php
@@ -13,11 +14,15 @@ php:
   - 7.4
 
 services:
-  - mysql
   - redis
 
-addons:
-  chrome: stable
+addons: &addons
+  apt:
+    sources:
+      - sourceline: 'deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-8.0'
+        key_url: 'https://raw.githubusercontent.com/travis-ci/apt-source-safelist/0c2267bff66def573d31a8240ff7d31795e1f6fa/keys/mysql-5.7-trusty.asc'
+    packages:
+      - mysql-community-server
 
 env:
   global:
@@ -37,6 +42,7 @@ env:
     - SHOPIFY_STOREFRONT_TOKEN=notreal
     - SLACK_ENDPOINT=https://myconan.net/null/
 
+# lint job doesn't need most of the setup except node update so they're separated out here from install
 before_install:
   - travis_retry nvm install 12
   - nvm use 12
@@ -62,18 +68,20 @@ jobs:
   fast_finish: true
   include:
     - name: phpunit
-      addons: skip
       script: ./bin/phpunit
 
     - name: browser tests
+      addons:
+        chrome: stable
+        <<: *addons
       script: ./bin/run_dusk.sh
 
     - name: lint
       env:
         - OSU_SKIP_ASSET_BUILD=1
-      addons: skip
-      install: skip
-      services: skip
+      addons:
+      install:
+      services:
       script:
         - yarn
         - yarn lint
@@ -82,16 +90,11 @@ jobs:
     - name: karma
       env:
         - OSU_SKIP_ASSET_BUILD=1
-      before_install:
-        - travis_retry nvm install 10
-        - nvm use 10
-        - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
       script:
         - yarn
         - yarn karma start --single-run --browsers ChromeHeadless
 
     - name: apidoc
-      addons: skip
       env:
         - OSU_SKIP_ASSET_BUILD=1
       script:

@@ -154,6 +154,7 @@ return [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
+    'twitch_client_secret' => env('TWITCH_CLIENT_SECRET'),
     'tournament_banner' => [
         'current' => [
             'id' => get_int(env('TOURNAMENT_BANNER_CURRENT_ID')),
@@ -206,6 +207,7 @@ return [
     'user' => [
         'allow_email_login' => get_bool(env('USER_ALLOW_EMAIL_LOGIN')) ?? true,
         'allow_registration' => get_bool(env('ALLOW_REGISTRATION', false)),
+        'allowed_rename_groups' => explode(' ', env('USER_ALLOWED_RENAME_GROUPS', 'default')),
         'inactive_days_verification' => get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180,
         'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
         'post_action_verification' => get_bool(env('USER_POST_ACTION_VERIFICATION')) ?? true,

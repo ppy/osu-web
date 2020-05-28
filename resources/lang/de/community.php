@@ -23,9 +23,9 @@ return [
                 'description' => 'Die Beiträge gehen an die Server, auf denen die Website, Multiplayer-Dienste, Online-Bestenlisten usw. ausgeführt werden.',
             ],
             'featured-artists' => [
-                'title' => 'Vorgestellte Künstler',
+                'title' => 'Featured Artists',
                 'description' => 'Mit Deiner Unterstützung können wir noch mehr großartige Künstler ansprechen und noch mehr großartige Musik für den Einsatz in osu! lizenzieren!',
-                'link_text' => 'Schaue den aktuellen Plan an &raquo;',
+                'link_text' => 'Sieh Dir die aktuelle Liste an &raquo;',
             ],
             'ads' => [
                 'title' => 'Halte osu! aufrecht',
@@ -50,12 +50,12 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => 'Freundes-Rangliste',
-                'description' => "Finde auf einer Beatmaps-Bestenliste im Spiel und auf der Website heraus, wie Du Dich gegen Deine Freunde behauptest.",
+                'title' => 'Freundesrangliste',
+                'description' => "Finde heraus, wie Du Dich auf der Bestenliste einer Beatmap gegen Deine Freunde behauptest, sowohl im Spiel als auch auf der Webseite.",
             ],
 
             'country_ranking' => [
-                'title' => 'Länder-Rangliste',
+                'title' => 'Landesrangliste',
                 'description' => 'Erobere dein Land, bevor du die Welt eroberst.',
             ],
 
@@ -106,7 +106,7 @@ return [
 
             'skinnables' => [
                 'title' => 'Skinbare Elemente',
-                'description' => 'Mehr skinbare Elemente im Spiel, z.B. der Menühintergrund',
+                'description' => 'Mehr skinbare Elemente im Spiel, z. B. der Menühintergrund.',
             ],
 
             'feature_votes' => [
@@ -129,10 +129,10 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Weitere Beatmaps hochladen',
-                'description' => 'Die Anzahl der nicht-ranked Beatmaps, die Du gleichzeitig haben kannst, wird aus einem Basiswert plus einem zusätzlichen Bonus für jede eingestufte Beatmap berechnet (bis zu einem Limit).<br/><br/>Normalerweise ist dies 4 plus 1 pro ranked Beatmap (bis zu 2). Mit Supporter erhöht sich dies auf 8 plus 1 pro ranked Beatmap (bis zu 12).',
+                'description' => 'Die Anzahl der non-ranked Beatmaps, die Du gleichzeitig haben kannst, wird aus einem Basiswert plus einem zusätzlichen Bonus für jede ranked Beatmap berechnet (bis zu einem Limit).<br/><br/>Normalerweise sind dies :base plus :bonus pro ranked Beatmap (bis zu :bonus_max). Mit Supporter erhöht sich dies auf :supporter_base plus :supporter_bonus pro ranked Beatmap (bis zu :supporter_bonus_max).',
             ],
             'friend_filtering' => [
-                'title' => 'Freundes-Rangliste',
+                'title' => 'Freundesranglisten',
                 'description' => 'Miss Dich mit Deinen Freunden und finde heraus, wie Du Dich gegen sie behauptest!*<br/><br/><small>* noch nicht auf der neuen Seite verfügbar, Demnächst(tm)</small>',
             ],
 

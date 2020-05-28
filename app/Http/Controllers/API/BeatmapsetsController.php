@@ -10,6 +10,11 @@ use Request;
 
 class BeatmapsetsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('require-scopes:public');
+    }
+
     public function lookup()
     {
         $beatmapId = Request::input('beatmap_id');

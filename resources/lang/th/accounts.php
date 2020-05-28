@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'รูปโปรไฟล์',
-            'rules' => '',
+            'rules' => 'โปรดตรวจสอบให้แน่ใจว่า avatar ของคุณเป็นไปตาม :link.<br/> ซึ่งหมายความว่ามันจะต้องเป็น <strong> เหมาะสำหรับทุกวัย </strong> เช่น ไม่มีภาพลามกหยาบคายหรือเนื้อหาที่มีการชักจูง',
             'rules_link' => 'กฎของชุมชน',
         ],
 
@@ -51,12 +51,12 @@ return [
     'notifications' => [
         'title' => 'การแจ้งเตือน',
         'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
-        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของ Qualified beatmaps กับโหมดต่อไปนี้',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => 'รับการแจ้งเตือนทางอีเมล',
+            'beatmapset:modding' => 'beatmap modding',
+            'forum_topic_reply' => 'ตอบหัวข้อ',
         ],
     ],
 
@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'ตัวเลือก',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'ประเภทการดาวน์โหลด Beatmap เริ่มต้น',
+            'all' => 'พร้อมวิดีโอ ถ้าใช้ได้',
+            'no_video' => 'โดยที่ไม่มีวิดีโอ',
+            'direct' => 'เปิดใน osu!direct',
         ],
     ],
 

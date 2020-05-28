@@ -5,12 +5,12 @@
 
 return [
     'deleted' => 'gelöscht',
-    'deleted_count' => ':count_delimited gelöschten Kommentar|:count_delimited gelöschte Kommentare',
+    'deleted_count' => ':count_delimited gelöschter Kommentar|:count_delimited gelöschte Kommentare',
     'edited' => 'bearbeitet :timeago von :user',
     'pinned' => 'angeheftet',
     'empty' => 'Noch keine Kommentare vorhanden.',
     'load_replies' => 'Antworten laden',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited Antwort|:count_delimited Antworten',
     'title' => 'Kommentare',
 
     'commentable_name' => [

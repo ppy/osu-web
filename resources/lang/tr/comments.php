@@ -35,7 +35,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'katalog',
     ],
 
     'placeholder' => [

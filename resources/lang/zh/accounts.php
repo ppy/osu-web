@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => '选项',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => '默认谱面下载类型',
+            'all' => '包含视频',
+            'no_video' => '不包含视频',
+            'direct' => '在 osu!direct中查看',
         ],
     ],
 

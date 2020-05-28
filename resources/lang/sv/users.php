@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user's Modding Historik",
-        'title_compact' => '',
+        'title_compact' => 'Modding',
 
         'discussions' => [
             'title_recent' => 'Nyligen startade diskussioner',
@@ -50,29 +50,29 @@ return [
     ],
 
     'disabled' => [
-        'title' => '',
-        'warning' => "",
+        'title' => 'Uh-oh! Det verkar som att ditt konto har inaktiverats.',
+        'warning' => "Om du har brutit mot en regel, vänligen notera att det generellt finns en cool-down-period á en månad under vilken vi inte kommer att överväga några amnestiförfrågningar. Efter denna period, är du välkommen att kontakta oss om du anser det nödvändigt. Vänligen notera att skapandet av nya konton efter att du haft ett inaktiverat kommer att resultera i en <strong>förlängning av denna en månads cool-down</strong>. Vänligen notera även att för <strong>varje konto du skapar, bryter du mot reglerna ytterligare</strong>. Vi rekommenderar starkt att du inte tar denna vägen!",
 
         'if_mistake' => [
-            '_' => '',
-            'email' => '',
+            '_' => 'Om du upplever att detta är ett misstag, är du välkommen att kontakta oss (via :email eller genom att klicka "?" i det nedre högra hörnet av denna sidan). Vänligen notera att vi alltid är helt säkra i våra ageranden, då de är baserade på mycket pålitlig data. Vi förbehåller oss rätten att bortse från din förfrågan om vi upplever att du avsiktligen är oärlig. ',
+            'email' => 'email',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'Ditt konto har bedömts vara komprometterat. Det kan inaktiveras tillfälligt medan dess identitet bekräftas. ',
+            'opening' => 'Det finns ett antal skäl som kan leda till att ditt konto inaktiveras:',
 
             'tos' => [
-                '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                '_' => 'Du har brutit mot en eller flera av våra :community_rules eller :tos. ',
+                'community_rules' => 'gemenskapsregler',
+                'tos' => 'användarvillkor',
             ],
         ],
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Ditt konto har inte använts på länge.",
         ],
     ],
 
@@ -80,10 +80,10 @@ return [
         '_' => 'Logga in',
         'button' => 'Logga in',
         'button_posting' => 'Loggar in...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'Inloggning med email är för närvarande inaktiverat. Vänligen använd användarnamn istället. ',
         'failed' => 'Felaktig inloggning',
         'forgot' => 'Glömt ditt lösenord?',
-        'info' => '',
+        'info' => 'Vänligen logga in för att fortsätta',
         'locked_ip' => 'din IP adress är låst. Var vänlig vänta några minuter.',
         'password' => 'Lösenord',
         'register' => "Har du inget osu! konto? Skapa ett nytt",
@@ -142,7 +142,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Gick med :date',
         'lastvisit' => 'Senast sedd :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Online just nu',
         'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannad)',
         'origin_country' => 'Från :country',
         'page_description' => 'osu! - Allting du någonsin hade velat veta om :username!',
@@ -164,8 +164,8 @@ return [
                     'unsupported_format' => 'Formatet stöds ej.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Uppladdning tillgänglig för :link enbart',
+                        'link' => 'osu!supportrar',
                     ],
                 ],
             ],
@@ -177,16 +177,16 @@ return [
         ],
 
         'extra' => [
-            'none' => '',
+            'none' => 'ingen',
             'unranked' => 'Inga senaste spel',
 
             'achievements' => [
                 'achieved-on' => 'Uppnått :date',
-                'locked' => '',
+                'locked' => 'Låst',
                 'title' => 'Prestationer',
             ],
             'beatmaps' => [
-                'by_artist' => '',
+                'by_artist' => 'av :artist',
                 'none' => 'Inga... än.',
                 'title' => 'Beatmaps',
 
@@ -207,14 +207,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Diskussioner',
+                'title_longer' => 'Senaste Diskussionerna',
+                'show_more' => 'se fler diskussioner',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Händelser',
+                'title_longer' => 'Senaste Händelser',
+                'show_more' => 'se fler händelser',
             ],
             'historical' => [
                 'empty' => 'Inga prestanda uppgifter. :(',
@@ -222,7 +222,7 @@ return [
 
                 'monthly_playcounts' => [
                     'title' => 'Spelhistorik',
-                    'count_label' => '',
+                    'count_label' => 'Spelningar',
                 ],
                 'most_played' => [
                     'count' => 'gånger spelade',
@@ -234,7 +234,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Repriser kollade',
-                    'count_label' => '',
+                    'count_label' => 'Repriser Sedda',
                 ],
             ],
             'kudosu' => [
@@ -282,8 +282,8 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Baserat på hur mycket användaren har bidragit till beatmapmodding. Se :link för mer information. ',
+                    'link' => 'denna sida',
                 ],
             ],
             'me' => [
@@ -291,22 +291,23 @@ return [
             ],
             'medals' => [
                 'empty' => "Denna användare har inte fått några än. ;_;",
-                'recent' => '',
+                'recent' => 'Senaste',
                 'title' => 'Medaljer',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Inlägg',
+                'title_longer' => 'Senaste Inläggen',
+                'show_more' => 'se fler inlägg',
             ],
             'recent_activity' => [
                 'title' => 'Senaste',
             ],
             'top_ranks' => [
-                'download_replay' => '',
+                'download_replay' => 'Ladda ner Repris',
                 'empty' => 'Inga fantastiska prestationsrekord än. :(',
                 'not_ranked' => 'Endast rankade beatmaps ger pp.',
-                'pp_weight' => '',
+                'pp_weight' => 'vägd :percentage',
+                'view_details' => '',
                 'title' => 'Ranker',
 
                 'best' => [
@@ -317,11 +318,11 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Röster Givna (senaste 3 månaderna)',
+                'received' => 'Röster Erhållna (senaste 3 månaderna)',
+                'title' => 'Röster',
+                'title_longer' => 'Senaste Röster',
+                'vote_count' => ':count_delimited rösta|:count_delimited röster ',
             ],
             'account_standing' => [
                 'title' => 'Kontoställning',
@@ -364,14 +365,14 @@ return [
             'title' => 'Användare hittades inte! ;_;',
         ],
         'page' => [
-            'button' => '',
+            'button' => 'Redigera profilsida',
             'description' => '<strong>jag!</strong> är en personlig anpassningsbar del på din profil sida.',
             'edit_big' => 'Redigera mig!',
             'placeholder' => 'Skriv sidoinnehåll här',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Du måste vara en :link för att låsa upp den här funktionen.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -380,16 +381,16 @@ return [
         ],
         'rank' => [
             'country' => 'Landsrank för :mode',
-            'country_simple' => '',
+            'country_simple' => 'Nationell Rankning',
             'global' => 'Global rank för :mode',
-            'global_simple' => '',
+            'global_simple' => 'Global Rankning',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',
             'level' => 'Nivå :level',
-            'level_progress' => '',
+            'level_progress' => 'Framsteg till nästa nivå',
             'maximum_combo' => 'Maximal Kombo',
-            'medals' => '',
+            'medals' => 'Medaljer',
             'play_count' => 'Antal Gånger Spelat',
             'play_time' => 'Total speltid',
             'ranked_score' => 'Rankad Poäng',
@@ -398,15 +399,15 @@ return [
             'total_hits' => 'Totala Träffar',
             'total_score' => 'Total Poäng',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'ranked_and_approved_beatmapset_count' => 'Rankade & Godkända Beatmaps',
+            'loved_beatmapset_count' => 'Älskade Beatmaps',
+            'unranked_beatmapset_count' => 'Väntande Beatmaps',
+            'graveyard_beatmapset_count' => 'Begravda Beatmaps',
         ],
     ],
 
     'status' => [
-        'all' => '',
+        'all' => 'Alla',
         'online' => 'Online',
         'offline' => 'Offline',
     ],
@@ -418,8 +419,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
-        'card' => '',
-        'list' => '',
+        'brick' => 'Tegelvy',
+        'card' => 'Kortvy',
+        'list' => 'Listvy',
     ],
 ];

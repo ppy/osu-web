@@ -15,11 +15,11 @@ return [
     ],
     'error' => [
         'error' => [
-            '400' => '',
+            '400' => 'ongeldige aanvraag',
             '404' => 'ontbrekend',
             '403' => 'verboden',
             '401' => 'ongeautoriseerd',
-            '401-verification' => '',
+            '401-verification' => 'account verificatie',
             '405' => 'ontbrekend',
             '422' => 'ongeldige aanvraag',
             '500' => 'iets gaat er mis',
@@ -108,6 +108,9 @@ return [
         ],
         'ranking_controller' => [
             '_' => 'ranglijst',
+        ],
+        'scores_controller' => [
+            '_' => '',
         ],
         'store_controller' => [
             '_' => 'osu!store',

@@ -261,6 +261,7 @@ export class Main extends React.PureComponent
           users: @users()
         component: Votes
 
+
   showMore: (e, {name, url, perPage = 50}) =>
     offset = @state[name].length
 
@@ -357,11 +358,13 @@ export class Main extends React.PureComponent
 
     @pageJump null, e.currentTarget.dataset.pageId
 
+
   userUpdate: (_e, user) =>
     return @forceUpdate() if user?.id != @state.user.id
 
     # this component needs full user object but sometimes this event only sends part of it
     @setState user: _.assign({}, @state.user, user)
+
 
   users: =>
     if !@cache.users?

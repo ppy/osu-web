@@ -5,33 +5,33 @@
 
 return [
     'require_login' => 'Var vänlig logga in för att fortsätta.',
-    'require_verification' => '',
-    'restricted' => "Kan ej göra det när man är avstängd.",
+    'require_verification' => 'Vänligen verifiera för att fortsätta.',
+    'restricted' => "Kan ej göra det när man är begränsad.",
     'silenced' => "Kan ej göra det när man är tystad.",
     'unauthorized' => 'Åtkomst nekad.',
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Kan inte ångra hype.',
+            'is_hype' => 'Kan inte ångra hyping.',
             'has_reply' => 'Kan inte radera en diskussion med svar',
         ],
         'nominate' => [
             'exhausted' => 'Du har uppnått din nomineringsgräns för idag, var god försök igen imorgon.',
-            'full_bn_required' => '',
-            'full_bn_required_hybrid' => '',
+            'full_bn_required' => 'Du måste vara en fullständig väljare för att utföra denna kvalificerande nominering.',
+            'full_bn_required_hybrid' => 'Du måste vara en fullständig väljare för att nominera beatmap-set med mer än ett spelläge.',
             'incorrect_state' => 'Ett fel uppstod, försök att uppdatera sidan.',
-            'owner' => "Kan ej nominera egen beatmap.",
+            'owner' => "Kan ej nominera sin egna beatmap.",
         ],
         'resolve' => [
-            'not_owner' => 'Endast tråd skaparen eller beatmap ägare kan lösa en diskussion.',
+            'not_owner' => 'Endast trådskaparen eller beatmap-ägare kan lösa en diskussion.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Endast beatmap ägaren eller nominator/QAT gruppmedlem kan publicera kart anteckningar.',
+            'mapper_note_wrong_user' => 'Endast beatmap-ägaren eller en väljar/NAT-gruppmedlem kan publicera mapparens anteckningar.',
         ],
 
         'vote' => [
-            'limit_exceeded' => 'Var god vänta innan du lägger mer röster',
+            'limit_exceeded' => 'Var god vänta innan du lägger fler röster',
             'owner' => "Kan inte rösta på din egen diskussion!",
             'wrong_beatmapset_state' => 'Kan endast rösta på diskussioner för väntande beatmaps.',
         ],
@@ -39,28 +39,28 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Du kan bara ta bort dina egna inlägg.',
+            'resolved' => 'Du kan inte radera ett inlägg i en löst diskussion.',
+            'system_generated' => 'Automatiskt genererade inlägg kan inte tas bort.',
         ],
 
         'edit' => [
-            'not_owner' => 'Endast den som la upp inlägget kan redigera inlägget.',
-            'resolved' => '',
+            'not_owner' => 'Endast den som lade upp inlägget kan redigera inlägget.',
+            'resolved' => 'Du kan inte redigera ett inlägg i en löst diskussion.',
             'system_generated' => 'Automatiskt genererade inlägg kan inte redigeras.',
         ],
 
         'store' => [
-            'beatmapset_locked' => '',
+            'beatmapset_locked' => 'Denna beatmap är låst för diskussion.',
         ],
     ],
 
     'chat' => [
         'blocked' => 'Kan inte skicka meddelanden till en användare som blockerar dig eller som du har blockerat.',
-        'friends_only' => 'Användaren blockerar meddelanden från personer inte på sin vänlista.',
-        'moderated' => '',
-        'no_access' => 'Du har inte behörighet till denna kanal.',
-        'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, avstängd eller bannad.',
+        'friends_only' => 'Användaren blockerar meddelanden från personer som inte finns på sin vänlista.',
+        'moderated' => 'Den kanalen är för närvarande modererad.',
+        'no_access' => 'Du har ingen behörighet till denna kanalen.',
+        'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
     ],
 
     'comment' => [
@@ -81,75 +81,75 @@ return [
         'post' => [
             'delete' => [
                 'only_last_post' => 'Endast sista inlägget kan raderas.',
-                'locked' => 'Kan ej radera ett inlägg på en låst tråd.',
-                'no_forum_access' => 'Åtkomst till begärt forum behövs.',
-                'not_owner' => 'Endast trådskaparen kan radera inlägget.',
+                'locked' => 'Kan ej radera ett inlägg på ett låst ämne.',
+                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'not_owner' => 'Endast avsändaren kan radera inlägget.',
             ],
 
             'edit' => [
-                'deleted' => 'Kan ej redigera raderat inlägg.',
-                'locked' => 'Inlägget är låst för redigering.',
-                'no_forum_access' => 'Åtkomst till begärt forum behövs.',
-                'not_owner' => 'Endast trådskaparen kan redigera inlägget.',
-                'topic_locked' => 'Kan ej redigera låst inlägg.',
+                'deleted' => 'Kan ej redigera borttagna inlägg.',
+                'locked' => 'Inlägget är låst från redigering.',
+                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'not_owner' => 'Endast avsändaren kan redigera inlägget.',
+                'topic_locked' => 'Kan ej redigera inlägg med ett låst ämne.',
             ],
 
             'store' => [
-                'play_more' => 'Vänligen prova att spela spelet innan du postar på forumet! Om du har problem med att spela, skriv i Hjälp och Support-forumen.',
-                'too_many_help_posts' => "Du behöver spela spelet mer innan du kan göra ytterligare inlägg. Om du fortfarande har problem med att spela spelet, maila support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Vänligen prova att spela spelet innan du skickar ett inlägg på forumet! Om du har problem med att spela, skriv i Hjälp och Support-forumen.',
+                'too_many_help_posts' => "Du behöver spela spelet mer innan du kan skicka fler inlägg. Om du fortfarande har problem med att spela spelet, mejla support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Vänligen redigera ditt senaste inlägg istället för att publicera ett inlägg igen.',
+                'double_post' => 'Vänligen redigera ditt senaste inlägg istället för att skicka ett inlägg till.',
                 'locked' => 'Kan ej svara på ett låst inlägg.',
-                'no_forum_access' => 'Åtkomst till begärt forum behövs.',
+                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
                 'no_permission' => 'Saknar behörighet för att svara.',
 
                 'user' => [
                     'require_login' => 'Var vänlig logga in för att svara.',
-                    'restricted' => "Kan ej svara när man är avstängd.",
+                    'restricted' => "Kan ej svara när man är begränsad.",
                     'silenced' => "Kan ej svara när man är tystad.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Åtkomst till begärt forum behövs.',
-                'no_permission' => 'Saknar behörighet för att skapa ny tråd.',
-                'forum_closed' => 'Forum är stängd och kan inte lägga upp inlägg.',
+                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'no_permission' => 'Saknar behörighet för att kunna skapa ny tråd.',
+                'forum_closed' => 'Forumet är stängd och kan inte skickas till.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Åtkomst till begärt forum behövs.',
+                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
                 'over' => 'Röstningen är avslutad och kan inte röstas på längre.',
-                'play_more' => '',
+                'play_more' => 'Du måste spela mer innan du röstar på forumet.',
                 'voted' => 'Ändra röst är ej tillåtet.',
 
                 'user' => [
-                    'require_login' => 'Var vänlig logga in för att rösta.',
-                    'restricted' => "Kan ej rösta när man är avstängd.",
+                    'require_login' => 'Var vänlig logga in för att kunna rösta.',
+                    'restricted' => "Kan ej rösta när man är begränsad.",
                     'silenced' => "Kan ej rösta när man är tystad.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'Åtkomst till begärt forum behövs.',
+                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Ogiltigt omslag specificerad.',
-                'not_owner' => 'Endast trådskaparen kan redigera omslaget.',
+                'uneditable' => 'Ogiltigt omslag specificerades.',
+                'not_owner' => 'Endast ägaren kan redigera omslaget.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Detta forum accepterar inte ämnesomslag.',
             ],
         ],
 
         'view' => [
-            'admin_only' => 'Endast administratörer kan se detta forum.',
+            'admin_only' => 'Endast admin kan se detta forum',
         ],
     ],
 
@@ -157,8 +157,8 @@ return [
         'page' => [
             'edit' => [
                 'locked' => 'Användar-sidan är låst.',
-                'not_owner' => 'Kan endast redigera egen användar-sida.',
-                'require_supporter_tag' => 'osu!supporter tag krävs.',
+                'not_owner' => 'Kan endast redigera sin egna användar-sida.',
+                'require_supporter_tag' => 'osu!supporter tagg krävs.',
             ],
         ],
     ],

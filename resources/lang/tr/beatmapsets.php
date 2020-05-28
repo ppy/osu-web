@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'indir',
+            'video' => 'video ile indir',
+            'no_video' => 'videosuz indir',
+            'direct' => 'osu!direct\'de aç',
         ],
     ],
 
@@ -75,14 +75,12 @@ return [
 
             'disqualify' => [
                 '_' => 'Eğer bu beatmap\'de bir sorun bulduysanız, lütfen diskalifiye ediniz :link.',
-                'button_title' => 'Nitelikli bir beatmap\'i diskalifiye et.',
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Eğer bu beatmap ile ilgili bir sorun bulursanız, takımı uyarmak için lütfen :link üzerinden raporlayın.',
                 'button' => 'Sorun bildir',
-                'button_title' => '',
-                'link' => '',
+                'link' => 'burası',
             ],
         ],
 

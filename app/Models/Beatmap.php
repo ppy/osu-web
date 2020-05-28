@@ -45,6 +45,8 @@ class Beatmap extends Model
 {
     use SoftDeletes;
 
+    public $convert = false;
+
     protected $table = 'osu_beatmaps';
     protected $primaryKey = 'beatmap_id';
 
@@ -106,6 +108,12 @@ class Beatmap extends Model
 
     public function getDifficultyratingAttribute($value)
     {
+        if ($this->convert) {
+            $difficulty = $this->difficulty->where('mode', $this->playmode)->where('mods', 0)->first();
+
+            $value = optional($difficulty)->diff_unified ?? 0;
+        }
+
         return round($value, 2);
     }
 

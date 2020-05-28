@@ -307,6 +307,7 @@ return [
                 'empty' => 'Ingen fede præstationsrekorder endnu. :(',
                 'not_ranked' => 'Kun rangerede beatmaps giver pp.',
                 'pp_weight' => 'vejede: :percentage',
+                'view_details' => '',
                 'title' => 'Ranks',
 
                 'best' => [
@@ -418,7 +419,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Klods visning',
         'card' => 'Kortvisning',
         'list' => 'Listevisning',
     ],

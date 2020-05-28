@@ -15,11 +15,11 @@ return [
     ],
     'error' => [
         'error' => [
-            '400' => '',
+            '400' => 'permintaan tidak valid',
             '404' => 'hilang',
-            '403' => 'dilarang',
+            '403' => 'terlarang',
             '401' => 'tidak terotorisir',
-            '401-verification' => '',
+            '401-verification' => 'verifikasi akun',
             '405' => 'hilang',
             '422' => 'permintaan tidak valid',
             '500' => 'ada yang rusak',
@@ -38,7 +38,7 @@ return [
             'verify_link' => 'verifikasi akun',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'featured artist',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'postingan diskusi beatmap',
@@ -108,6 +108,9 @@ return [
         ],
         'ranking_controller' => [
             '_' => 'peringkat',
+        ],
+        'scores_controller' => [
+            '_' => '',
         ],
         'store_controller' => [
             '_' => 'osu!store',

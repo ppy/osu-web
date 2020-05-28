@@ -24,7 +24,7 @@ class UserCompactTransformer extends TransformerAbstract
         'follower_count',
         'friends',
         'graveyard_beatmapset_count',
-        'group_badge',
+        'groups',
         'is_admin',
         'is_bng',
         'is_full_bn',
@@ -33,6 +33,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_moderator',
         'is_nat',
         'is_restricted',
+        'is_silenced',
         'loved_beatmapset_count',
         'monthly_playcounts',
         'page',
@@ -61,6 +62,7 @@ class UserCompactTransformer extends TransformerAbstract
         'is_moderator' => 'IsNotOAuth',
         'is_nat' => 'IsNotOAuth',
         'is_restricted' => 'IsNotOAuth',
+        'is_silenced' => 'IsNotOAuth',
     ];
 
     protected $userProfileCustomization = [];
@@ -168,13 +170,9 @@ class UserCompactTransformer extends TransformerAbstract
         return $this->primitive($user->profileBeatmapsetsGraveyard()->count());
     }
 
-    public function includeGroupBadge(User $user)
+    public function includeGroups(User $user)
     {
-        $badge = $user->groupBadge();
-
-        if (isset($badge)) {
-            return $this->item($badge, new GroupTransformer);
-        }
+        return $this->collection($user->visibleGroups(), new GroupTransformer);
     }
 
     public function includeIsAdmin(User $user)
@@ -215,6 +213,11 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeIsRestricted(User $user)
     {
         return $this->primitive($user->isRestricted());
+    }
+
+    public function includeIsSilenced(User $user)
+    {
+        return $this->primitive($user->isSilenced());
     }
 
     public function includeLovedBeatmapsetCount(User $user)
@@ -317,6 +320,9 @@ class UserCompactTransformer extends TransformerAbstract
         $customization = $this->userProfileCustomization($user);
 
         return $this->primitive($customization->only([
+            'audio_autoplay',
+            'audio_muted',
+            'audio_volume',
             'beatmapset_download',
             'ranking_expanded',
             'user_list_filter',

@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => 'Wir sind momentan etwas mit Bestellungen überfordert! Wir nehmen weiterhin Bestellungen an, allerdings muss mit **zusätzlichen 1-2 Wochen Verzögerung** gerechnet werden, während die aktuellen Bestellungen aufgearbeitet werden.',
         'old_cart' => 'Dein Warenkorb war nicht aktuell und wurde erneut geladen, bitte versuche es erneut.',
         'pay' => 'Mit Paypal bezahlen',
-        'title_compact' => '',
+        'title_compact' => 'zur Kasse',
 
         'has_pending' => [
             '_' => 'Du hast unvollständige Zahlungen, klicke :link , um sie anzuzeigen.',
@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Da es sich bei deiner Zahlung um einen eCheck handelt, kannst du bis zu 10 zusätzliche Tage einplanen, um die Zahlung über PayPal abzuwickeln!',
-        'title_compact' => '',
+        'title_compact' => 'rechnung',
 
         'status' => [
             'processing' => [

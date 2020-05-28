@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Negado de obtener kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificultad ha sido eliminada, por lo que ya no puede ser discutida.',
         'message_placeholder_locked' => 'La discusión para este mapa ha sido desactivada.',
+        'message_placeholder_silenced' => "No puedes publicar una discusión mientras estés silenciado.",
         'message_type_select' => 'Seleccionar tipo de comentario',
         'reply_notice' => 'Presione enter para responder.',
         'reply_placeholder' => 'Escribe tu respuesta aquí',
@@ -67,7 +68,7 @@ return [
             'disqualify' => 'Descalificación',
             'hype' => '¡Hype!',
             'mapper_note' => 'Nota',
-            'nomination_reset' => 'Reiniciar Nominación',
+            'nomination_reset' => 'Reinicio de nominación',
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'review' => 'Revisión',
@@ -173,7 +174,7 @@ return [
         'unresolved_issues' => 'Todavía hay problemas sin resolver que deben abordarse primero.',
 
         'reset_at' => [
-            'nomination_reset' => 'Reinicio del proceso de nominación: time_ago por: usuario a causa de un nuevo problema :discusión (:mensaje).',
+            'nomination_reset' => 'El proceso de nominación se ha reiniciado :time_ago por :user a causa del nuevo problema :discussion (:message).',
             'disqualify' => 'Descalificado :time_ago por :user a causa del nuevo problema :discussion (:message).',
         ],
 
@@ -299,7 +300,7 @@ return [
         'unplayed' => 'No jugado',
     ],
     'extra' => [
-        'video' => 'Contiene video',
+        'video' => 'Contiene vídeo',
         'storyboard' => 'Contiene storyboard',
     ],
     'rank' => [

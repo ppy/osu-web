@@ -5,130 +5,133 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '500' => '',
-            '503' => '',
+            '400' => 'ugyldig forespørsel',
+            '404' => 'mangler',
+            '403' => 'forbudt',
+            '401' => 'uautorisert',
+            '401-verification' => 'kontobekreftelse',
+            '405' => 'mangler',
+            '422' => 'ugyldig forespørsel',
+            '500' => 'noe gikk i stykker',
+            '503' => 'vedlikehold',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'forum',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'dashbord',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'dashbord',
+            'verify_link' => 'kontobekreftelse',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'utvalgte artister',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'beatmapdiskusjonsinnlegg',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'beatmapdiskusjoner',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'beatmappakker',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'beatmapdiskusjonsstemmer',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'beatmaphistorie',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'dashbord',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'beatmapdiskusjon',
+            'index' => 'beatmapliste',
+            'show' => 'beatmap info',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'endringslogg',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'chat',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'kommentarer',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'konkurranser',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'dashbord',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'grupper',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'last ned',
+            'index' => 'dashbord',
+            'search' => 'søk',
+            'support_the_game' => 'støtt spillet',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'informasjon',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'direktesendinger',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'treff',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'nyheter',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'varslingshistorikk',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'tilbakestill passord',
         ],
         'ranking_controller' => [
+            '_' => 'rangering',
+        ],
+        'scores_controller' => [
             '_' => '',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!butikken',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'turneringer',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'spillerinfo',
+            'disabled' => 'varsel',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'kunnskapsbase',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!butikken',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'modder info',
         ],
     ],
 ];

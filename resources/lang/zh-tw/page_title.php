@@ -16,29 +16,29 @@ return [
     'error' => [
         'error' => [
             '400' => '',
-            '404' => '',
-            '403' => '',
+            '404' => '頁面不存在',
+            '403' => '拒絕存取',
             '401' => '',
             '401-verification' => '',
             '405' => '',
             '422' => '',
-            '500' => '',
-            '503' => '',
+            '500' => '伺服器發生了一些問題...',
+            '503' => '伺服器維護中',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => '論壇',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => '主頁',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => '主頁',
+            'verify_link' => '帳戶驗證',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => '精選藝術家',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => '',
@@ -47,55 +47,55 @@ return [
             '_' => '',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => '圖譜壓縮檔',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => '',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => '圖譜歷史',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => '主頁',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => '圖譜討論',
+            'index' => '圖譜列表',
+            'show' => '圖譜資訊',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => '更新日誌',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => '聊天',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => '評論',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => '評選',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => '主頁',
         ],
         'groups_controller' => [
             'show' => '',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
+            'get_download' => '下載',
+            'index' => '主頁',
+            'search' => '搜尋',
             'support_the_game' => '',
-            'testflight' => '',
+            'testflight' => 'testflight 測試',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => '資訊',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => '直播',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => '對戰',
         ],
         'news_controller' => [
             '_' => '新聞',
@@ -104,31 +104,34 @@ return [
             '_' => '',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => '重置密碼',
         ],
         'ranking_controller' => [
+            '_' => '排名',
+        ],
+        'scores_controller' => [
             '_' => '',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!商店',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => '官方比賽',
         ],
         'users_controller' => [
-            '_' => '',
+            '_' => '玩家資訊',
             'disabled' => '',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => '知識庫',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!商店',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => '摸圖者資訊',
         ],
     ],
 ];

@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Dir wurde kudosu verweigert.',
         'message_placeholder_deleted_beatmap' => 'Diese Schwierigkeitsstufe wurde gelöscht und kann nicht mehr diskutiert werden.',
         'message_placeholder_locked' => 'Die Diskussion für diese Beatmap wurde deaktiviert.',
+        'message_placeholder_silenced' => "Posten der Diskussion nicht möglich, während du stummgeschaltet bist.",
         'message_type_select' => 'Kommentartyp auswählen',
         'reply_notice' => 'Zum Antworten Enter drücken.',
         'reply_placeholder' => 'Antwort hier eingeben',
@@ -75,7 +76,7 @@ return [
         ],
 
         'mode' => [
-            'events' => 'Geschichte',
+            'events' => 'Verlauf',
             'general' => 'Allgemein',
             'reviews' => 'Rezensionen',
             'timeline' => 'Timeline',
@@ -188,7 +189,7 @@ return [
             'prompt' => 'stichwörter eingeben...',
             'login_required' => 'Melde dich an, um zu suchen.',
             'options' => 'Mehr Suchoptionen',
-            'supporter_filter' => 'Filtern nach :filters benötigt ein aktives osu!supporter Tag',
+            'supporter_filter' => 'Filtern nach :filters benötigt ein aktives osu!supporter-Tag',
             'not-found' => 'keine ergebnisse',
             'not-found-quote' => '... nope, nichts gefunden.',
             'filters' => [
@@ -215,7 +216,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Du benötigst einen aktiven :link, um nach :filters zu filtern',
-                'link_text' => 'osu!supporter Tag',
+                'link_text' => 'osu!supporter-Tag',
             ],
         ],
     ],

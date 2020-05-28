@@ -4,52 +4,56 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - Rytmen är bara ett *klick* bort!  Med Ouendan/EBA, Taiko och originala spel lägen, och en full funktionell nivå redigerare.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'beatmapset omslag',
+            'contest' => 'tävling',
+            'contests' => 'tävlingar',
+            'root' => 'konsol',
+            'store_orders' => 'butik admin',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'listning',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'listning',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'index',
+            'sitemap' => 'Sitemap',
         ],
 
         'store' => [
-            'cart' => 'kundvagn',
+            'cart' => 'varukorg',
             'orders' => 'orderhistorik',
             'products' => 'produkter',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'listning',
         ],
 
         'users' => [
-            'modding' => '',
+            'modding' => 'modding',
             'show' => 'info',
         ],
     ],
 
     'gallery' => [
         'close' => 'Stäng (Esc)',
-        'fullscreen' => '',
+        'fullscreen' => 'Växla fullskärm',
         'zoom' => 'Zooma in/ut',
         'previous' => 'Föregående (vänsterpil)',
         'next' => 'Nästa (högerpil)',
@@ -64,7 +68,7 @@ return [
         ],
         'community' => [
             '_' => 'gemenskap',
-            'chat' => '',
+            'chat' => 'chatt',
             'contests' => 'tävlingar',
             'dev' => 'utveckling',
             'forum-forums-index' => 'forum',
@@ -96,9 +100,10 @@ return [
         ],
         'store' => [
             '_' => 'butik',
-            'cart-show' => 'kundvagn',
+            'cart-show' => 'varukorg
+',
             'getListing' => 'listning',
-            'orders-index' => '',
+            'orders-index' => 'orderhistorik',
         ],
     ],
 
@@ -116,7 +121,7 @@ return [
             'forum' => 'GemenskapsForum',
             'livestreams' => 'Live Strömmar',
             'report' => 'Rapportera ett Problem',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Juridik & Status',
@@ -130,7 +135,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Ogiltiga förfrågningsparametrar',
             'description' => '',
         ],
         '404' => [
@@ -150,7 +155,7 @@ return [
             'description' => "Förlåt, men sidan du frågade efter finns inte här!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Ogiltiga förfrågningsparametrar',
             'description' => '',
         ],
         '500' => [
@@ -178,7 +183,7 @@ return [
             'forgot' => "Jag har glömt mina detaljer",
             'password' => 'lösenord',
             'title' => 'Logga In För Att Fortsätta',
-            'username' => '',
+            'username' => 'användarnamn',
 
             'error' => [
                 'email' => "Användarnamn eller email adress finns inte",
@@ -187,7 +192,7 @@ return [
         ],
 
         'register' => [
-            'download' => '',
+            'download' => 'Ladda ner',
             'info' => 'Herrn, du behöver ett konto. Varför har du inte ett redan?',
             'title' => "Har du inte ett konto?",
         ],

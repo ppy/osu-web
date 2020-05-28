@@ -4,55 +4,59 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - Rytmen er bare et *klikk* unna! Med Ouendan/EBA, Taiko og originale spillmoduser, samt en fullt funskjonell nivåredigerer.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            'beatmapset' => 'beatmapsett',
+            'beatmapset_covers' => 'beatmapsettomslag',
+            'contest' => 'konkurranse',
+            'contests' => 'konkurranser',
+            'root' => 'konsoll',
+            'store_orders' => 'butikk admin',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'liste',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'liste',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'indeks',
+            'sitemap' => 'Nettstedkart',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'handlekurv',
+            'orders' => 'bestillingshistorikk',
+            'products' => 'produkter',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'liste',
         ],
 
         'users' => [
-            'modding' => '',
-            'show' => '',
+            'modding' => 'modding',
+            'show' => 'info',
         ],
     ],
 
     'gallery' => [
         'close' => 'Lukk (Esc)',
-        'fullscreen' => '',
+        'fullscreen' => 'Fullskjermsvisning av/på',
         'zoom' => 'Zoom inn/ut',
-        'previous' => '',
-        'next' => '',
+        'previous' => 'Forrige (pil venstre)',
+        'next' => 'Neste (pil høyre)',
     ],
 
     'menu' => [
@@ -116,7 +120,7 @@ return [
             'forum' => 'Brukerforum',
             'livestreams' => 'Direktesendinger',
             'report' => 'Rapportér en feil',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Juridisk & Status',
@@ -130,7 +134,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Ugyldig parameter i forespørsel',
             'description' => '',
         ],
         '404' => [
@@ -150,7 +154,7 @@ return [
             'description' => "Beklager, men siden du forespurte er ikke her!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Ugyldig parameter i forespørsel',
             'description' => '',
         ],
         '500' => [
@@ -178,7 +182,7 @@ return [
             'forgot' => "Jeg har glemt kontoinformasjonen min",
             'password' => 'passord',
             'title' => 'Logg på for å fortsette',
-            'username' => '',
+            'username' => 'brukernavn',
 
             'error' => [
                 'email' => "Brukernavn eller e-postadresse eksisterer ikke",

@@ -1,12 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJSON from './user-json';
+import Main from 'scores-show/main';
 
-export default interface Score {
-  id: string;
-  mode: string;
-  replay: boolean;
-  user: UserJSON;
-  user_id: number;
-}
+reactTurbolinks.registerPersistent('scores-show', Main, true, () => ({
+  score: osu.parseJson('json-show'),
+}));

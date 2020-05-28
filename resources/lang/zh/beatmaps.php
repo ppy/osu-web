@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论',
         'message_placeholder_locked' => '该谱面下的讨论已关闭。',
+        'message_placeholder_silenced' => "禁言时无法发布讨论。",
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
         'reply_placeholder' => '在此处输入您的回复',

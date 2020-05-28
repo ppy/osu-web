@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Admin',
         'authorise' => 'Autoriser',
-        'authorising' => '',
+        'authorising' => 'Autoriserer...',
         'back_to_previous' => 'Vend tilbage til tidligere position',
         'back_to_top' => 'Tilbage til toppen',
         'cancel' => 'Annullér',
@@ -37,6 +37,7 @@ return [
         'permalink' => 'permalink',
         'pin' => 'fastgør',
         'post' => 'Slå op',
+        'read_more' => '',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og Genåben',
         'reply_resolve' => 'Svar og Markér som Løst',

@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'انتهت :date',
+        'ended_no_date' => 'انتهت',
 
         'starts' => [
             '_' => 'يبدأ :date',

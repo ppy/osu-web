@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Assicurati che il tuo avatar aderisca alle :link.<br/>Questo significa che deve essere <strong>adatto a tutte le età</strong>. es. nessun contenuto di nudità, profanità o provocante.',
+            'rules' => 'Assicurati che la tua immagine di profilo aderisca alle :link.<br/>Questo significa che deve essere <strong>adatto a tutte le età</strong>. (vedi: niente nudità, profanità o contenuti provocanti)',
             'rules_link' => 'regole della comunità',
         ],
 
@@ -50,8 +50,8 @@ return [
 
     'notifications' => [
         'title' => 'Notifiche',
-        'topic_auto_subscribe' => 'attiva automaticamente le notifiche sui nuovi topic del forum che crei',
-        'beatmapset_discussion_qualified_problem' => 'ricevi notifiche per nuovi problemi sulle beatmap qualificate per le seguenti modalità',
+        'topic_auto_subscribe' => 'attiva le notifiche sui nuovi topic del forum che crei',
+        'beatmapset_discussion_qualified_problem' => 'ricevi notifiche per nuovi problemi sulle beatmap qualificate delle seguenti modalità',
 
         'mail' => [
             '_' => 'ricevi notifiche via mail per',
@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Opzioni',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'tipo di download predefinito per le beatmap',
+            'all' => 'con video, se disponibile',
+            'no_video' => 'senza video',
+            'direct' => 'apri in osu!direct',
         ],
     ],
 
@@ -82,7 +82,7 @@ return [
         'mouse' => 'mouse',
         'tablet' => 'tavoletta grafica',
         'title' => 'Stili di gioco',
-        'touch' => 'schermo touch',
+        'touch' => 'touchscreen',
     ],
 
     'privacy' => [

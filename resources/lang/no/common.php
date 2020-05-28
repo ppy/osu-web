@@ -15,13 +15,13 @@ return [
     ],
 
     'badges' => [
-        'new' => '',
+        'new' => 'NY',
     ],
 
     'buttons' => [
         'admin' => 'Admin',
-        'authorise' => '',
-        'authorising' => '',
+        'authorise' => 'Autoriser',
+        'authorising' => 'Autoriserer...',
         'back_to_previous' => 'Returner til forrige posisjon',
         'back_to_top' => 'Tilbake til toppen',
         'cancel' => 'Avbryt',
@@ -35,8 +35,9 @@ return [
         'expand' => 'utvid',
         'hide' => 'skjul',
         'permalink' => 'permalenke',
-        'pin' => '',
+        'pin' => 'fest',
         'post' => 'Del',
+        'read_more' => '',
         'reply' => 'Svar',
         'reply_reopen' => 'Svar og åpne igjen',
         'reply_resolve' => 'Svar og marker som løst',
@@ -48,10 +49,10 @@ return [
         'see_more' => 'se mer',
         'show' => 'vis',
         'show_deleted' => 'Vis slettede',
-        'show_less' => '',
+        'show_less' => 'vis færre',
         'show_more' => 'vis mer',
         'show_more_options' => 'vis flere valg',
-        'unpin' => '',
+        'unpin' => 'løsne',
         'update' => 'Oppdater',
         'upload_image' => 'last opp bilde',
 
@@ -70,11 +71,11 @@ return [
         'minute_short_unit' => 'm|m',
         'minutes' => '::count_delimited minutt|:count_delimited minutter',
         'months' => '::count_delimited måned|:count_delimited måneder',
-        'notifications' => '',
+        'notifications' => ':count_delimited varsling|:count_delimited varsler',
         'plus_others' => '+ :count_delimited annen!|+ :count_delimited andre!',
         'post' => ':count_delimited innlegg|:count_delimited innlegg',
         'second_short_unit' => 's|s',
-        'star_priority' => '',
+        'star_priority' => ':count_delimited stjerneprioritet:count_delimited stjerneprioriteringer',
         'update' => ':count_delimited oppdater|:count_delimited oppdateringer',
         'view' => ':count_delimited visning|:count_delimited visninger',
         'years' => ':count_delimited år|:count_delimited år',
@@ -138,7 +139,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Du er logget inn som :user. :logout_link.',
+        'logout_link' => 'Klikk her for å logge inn som en annen bruker',
     ],
 ];

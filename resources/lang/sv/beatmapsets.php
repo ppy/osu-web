@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'ladda ner',
+            'video' => 'ladda ner med video',
+            'no_video' => 'ladda ner utan video',
+            'direct' => 'öppna i osu!direkt',
         ],
     ],
 
@@ -42,46 +42,44 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'för att komma åt fler funktioner',
+                'top' => 'Logga in',
             ],
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'godkänd :timeago',
+            'loved' => 'älskad :timeago',
+            'qualified' => 'kvalificerat :timeago',
+            'ranked' => 'rankad :timeago',
+            'submitted' => 'skickad :timeago',
+            'updated' => 'senast uppdaterad :timeago',
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Du har för många favoriserade beatmaps! Var vänlig ta bort en favorit innan du fortsätter.',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Hypa denna map om du gillade att spela den för att hjälpa den att utvecklas till <strong>Rankad</strong> status.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Denna map är för närvarande :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'väntande',
+                    'qualified' => 'kvalificerad',
+                    'wip' => 'under utveckling',
                 ],
             ],
 
             'disqualify' => [
-                '_' => '',
-                'button_title' => '',
+                '_' => 'Om du hittar ett problem med denna beatmap, diskvalificera den :link.',
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'button_title' => '',
+                '_' => 'Om du hittar ett problem med denna beatmap, vänligen rapportera det :link för att varna laget.',
+                'button' => 'Rapportera problem',
                 'link' => 'här',
             ],
         ],
@@ -150,13 +148,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Rankad',
+            'approved' => 'Godkänd',
+            'loved' => 'Älskad',
+            'qualified' => 'Kvalificerad',
+            'wip' => 'Arbete pågår',
+            'pending' => 'Väntande',
+            'graveyard' => 'Kyrkogård',
         ],
     ],
 ];

@@ -10,7 +10,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'бібліотека',
     ],
 
     'voting' => [
@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Завершено :date',
+        'ended_no_date' => 'Закінчено',
 
         'starts' => [
             '_' => 'Розпочнеться :date',

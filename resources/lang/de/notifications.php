@@ -5,7 +5,7 @@
 
 return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
-    'mark_read' => '',
+    'mark_read' => 'Lösche :type',
     'none' => 'Keine Benachrichtigungen',
     'see_all' => 'alle Benachrichtigungen ansehen',
 

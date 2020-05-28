@@ -10,21 +10,21 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Bitte stelle sicher, dass sich dein Avatar an :link hält.<br/>Das heißt, es muss <strong>für alle Altersklassen geeignet</strong> sein. Z.B. keine Nacktheit, Obszönität oder anstößiger Inhalt.',
-            'rules_link' => 'die Community Regeln',
+            'rules' => 'Bitte stelle sicher, dass sich dein Avatar an :link hält.<br/>Das heißt, er muss <strong>für alle Altersklassen geeignet</strong> sein. Z.B. keine Nacktheit, Obszönität oder anstößiger Inhalt.',
+            'rules_link' => 'die Community-Regeln',
         ],
 
         'email' => [
-            'current' => 'Aktuelle E-Mail Adresse',
-            'new' => 'Neue E-Mail',
-            'new_confirmation' => 'E-Mail bestätigen',
+            'current' => 'aktuelle e-mail',
+            'new' => 'neue e-mail',
+            'new_confirmation' => 'e-mail bestätigen',
             'title' => 'E-Mail',
         ],
 
         'password' => [
             'current' => 'aktuelles passwort',
             'new' => 'neues passwort',
-            'new_confirmation' => 'Passwort bestätigen',
+            'new_confirmation' => 'passwort bestätigen',
             'title' => 'Passwort',
         ],
 
@@ -34,7 +34,7 @@ return [
             'user' => [
                 'user_discord' => 'discord',
                 'user_from' => 'aktueller standort',
-                'user_interests' => 'Interessen',
+                'user_interests' => 'interessen',
                 'user_msnm' => 'skype',
                 'user_occ' => 'beschäftigung',
                 'user_twitter' => 'twitter',
@@ -49,45 +49,45 @@ return [
     ],
 
     'notifications' => [
-        'title' => 'Nachrichten',
-        'topic_auto_subscribe' => 'aktiviere Nachrichten automatisch bei neue Forum Themen die du erstellst',
-        'beatmapset_discussion_qualified_problem' => 'erhalte Benachrichtigungen für neue Probleme auf qualifizierten Beatmaps von folgenden Modi',
+        'title' => 'Benachrichtigungen',
+        'topic_auto_subscribe' => 'automatisch benachrichtigungen zu neuen forenthreads, die du erstellst, aktivieren',
+        'beatmapset_discussion_qualified_problem' => 'erhalte benachrichtigungen für neue probleme auf qualifizierten beatmaps der folgenden modi',
 
         'mail' => [
-            '_' => 'E-Mail-Benachrichtigungen erhalten für',
-            'beatmapset:modding' => 'Beatmap-Modifizierung',
-            'forum_topic_reply' => 'Antwort auf ein Thema',
+            '_' => 'e-mail-benachrichtigungen erhalten für',
+            'beatmapset:modding' => 'beatmap-modding',
+            'forum_topic_reply' => 'antwort auf einen thread',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'autorisierte Geräte',
-        'own_clients' => 'eigene Geräte',
+        'authorized_clients' => 'autorisierte clients',
+        'own_clients' => 'eigene clients',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Optionen',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'standard-beatmap-download-typ',
+            'all' => 'mit video, falls verfügbar',
+            'no_video' => 'ohne video',
+            'direct' => 'in osu!direct öffnen',
         ],
     ],
 
     'playstyles' => [
-        'keyboard' => 'Tastatur',
-        'mouse' => 'Maus',
-        'tablet' => 'Tablet',
+        'keyboard' => 'tastatur',
+        'mouse' => 'maus',
+        'tablet' => 'tablet',
         'title' => 'Spielstil',
         'touch' => 'touch',
     ],
 
     'privacy' => [
-        'friends_only' => 'Blockiere Nachrichten von Benutzern, die nicht auf deiner Freundesliste sind',
-        'hide_online' => 'Online-Status verstecken',
+        'friends_only' => 'blockiere nachrichten von benutzern, die nicht auf deiner freundesliste sind',
+        'hide_online' => 'online-status verbergen',
         'title' => 'Privatsphäre',
     ],
 
@@ -109,11 +109,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Sie können diesen Tab/Fenster jetzt schließen',
-        'title' => 'Überprüfung wurde abgeschlossen',
+        'text' => 'Du kannst diesen Tab/dieses Fenster nun schließen',
+        'title' => 'Verifizierung abgeschlossen',
     ],
 
     'verification_invalid' => [
-        'title' => 'Ungültiger oder abgelaufener Bestätigungslink',
+        'title' => 'Ungültiger oder abgelaufener Verifizierungslink',
     ],
 ];

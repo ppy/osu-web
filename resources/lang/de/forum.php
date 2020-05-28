@@ -94,11 +94,11 @@ return [
             'submit' => 'Erstellen',
 
             'necropost' => [
-                'default' => 'Dieser Beitrag ist seit längerer Zeit inaktiv. Poste nur, wenn du einen wichtigen Grund dazu hast.',
+                'default' => 'Dieser Thread ist seit längerer Zeit inaktiv. Poste nur, wenn du einen wichtigen Grund dazu hast.',
 
                 'new_topic' => [
-                    '_' => "Dieser Beitrag ist seit längerer Zeit inaktiv. Wenn du keinen wichtigen Grund zum posten hast, dann :create hier einen neuen.",
-                    'create' => 'Erstelle einen neuen Beitrag',
+                    '_' => "Dieser Thread ist seit längerer Zeit inaktiv. Wenn du keinen wichtigen Grund zum Posten hast, :create stattdessen.",
+                    'create' => 'erstelle einen neuen Thread',
                 ],
             ],
 
@@ -236,10 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Dieser Thread ist gesperrt und erlaubt keine weiteren Antworten',
             'to_0' => 'Thread entsperren',
-            'to_0_confirm' => '',
+            'to_0_confirm' => 'Thread entsperren?',
             'to_0_done' => 'Thread wurde entsperrt',
             'to_1' => 'Thread sperren',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Thread sperren?',
             'to_1_done' => 'Thread wurde gesperrt',
         ],
 
@@ -248,14 +248,14 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Thread von den angepinnten Threads entfernen',
-            'to_0_confirm' => '',
+            'to_0' => 'Thread von den angepinnten Threads lösen',
+            'to_0_confirm' => 'Thread lösen?',
             'to_0_done' => 'Thread wurde von den angepinnten Threads entfernt',
             'to_1' => 'Thread anpinnen',
-            'to_1_confirm' => '',
+            'to_1_confirm' => 'Thread anpinnen?',
             'to_1_done' => 'Thread wurde angepinnt',
             'to_2' => 'Thread anpinnen und als Ankündigung markieren',
-            'to_2_confirm' => '',
+            'to_2_confirm' => 'Thread anpinnen und als Ankündigung markieren?',
             'to_2_done' => 'Thread wurde angepinnt und als Ankündigung markiert',
         ],
 
@@ -273,7 +273,7 @@ return [
                 'do' => 'Priorität hinzufügen',
 
                 'info' => [
-                    '_' => 'Dies ist ein :feature_request. Funktionsvorschläge können nur von :supporters abgestimmt werden.',
+                    '_' => 'Dies ist ein :feature_request. Über Funktionsvorschläge können nur :supporters abstimmen.',
                     'feature_request' => 'Funktionsvorschlag',
                     'supporters' => 'Unterstützer',
                 ],
@@ -310,8 +310,8 @@ return [
             'to_not_watching' => 'Kein Lesezeichen gesetzt',
             'to_watching' => 'Lesezeichen setzen',
             'to_watching_mail' => 'Lesezeichen setzen und benachrichtigt werden',
-            'tooltip_mail_disable' => 'Benachrichtigungen sind aktiviert. Klicken, zum deaktivieren',
-            'tooltip_mail_enable' => 'Benachrichtigungen sind deaktiviert. Klicken, zum aktivieren',
+            'tooltip_mail_disable' => 'Benachrichtigungen sind aktiviert. Klicken zum Deaktivieren',
+            'tooltip_mail_enable' => 'Benachrichtigungen sind deaktiviert. Klicken zum Aktivieren',
         ],
     ],
 ];

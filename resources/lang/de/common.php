@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => 'Admin',
         'authorise' => 'Autorisieren',
-        'authorising' => '',
+        'authorising' => 'Autorisieren...',
         'back_to_previous' => 'Zur vorherigen Position zurückkehren',
         'back_to_top' => 'Zum Seitenanfang',
         'cancel' => 'Abbrechen',
@@ -37,6 +37,7 @@ return [
         'permalink' => 'permalink',
         'pin' => 'anheften',
         'post' => 'Senden',
+        'read_more' => '',
         'reply' => 'Antworten',
         'reply_reopen' => 'Antworten und wiedereröffnen',
         'reply_resolve' => 'Antworten und lösen',

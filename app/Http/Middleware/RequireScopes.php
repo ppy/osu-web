@@ -26,7 +26,7 @@ class RequireScopes
      */
     public function handle(Request $request, Closure $next, ...$scopes)
     {
-        if (!AuthApi::skipAuth($request)) {
+        if (is_api_request() && !AuthApi::skipAuth($request)) {
             $token = optional($request->user())->token();
             if ($token === null || $token->revoked) {
                 throw new AuthorizationException();

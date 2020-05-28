@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - rytm jest tylko o *klik* stąd! Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!',
     ],
@@ -130,7 +134,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Nieprawidłowy parametr żądania',
             'description' => '',
         ],
         '404' => [
@@ -150,7 +154,7 @@ return [
             'description' => "Przepraszamy, ale poszukiwana strona nie istnieje!",
         ],
         '422' => [
-            'error' => 'Parametr żądania jest nieprawidłowy',
+            'error' => 'Nieprawidłowy parametr żądania',
             'description' => '',
         ],
         '500' => [

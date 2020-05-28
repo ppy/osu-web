@@ -5,16 +5,16 @@
 
 return [
     'page_description' => 'Utvalda artister på osu!',
-    'title' => 'Utvalda Artister',
+    'title' => 'Utvalda artister',
 
     'admin' => [
-        'hidden' => 'ARTIST ÄR FÖR NÄRVARANDE GÖMD',
+        'hidden' => 'ARTISTEN ÄR FÖR NÄRVARANDE GÖMD',
     ],
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Ladda ner Beatmap Mall',
-        'download-na' => 'Beatmap Mall är inte tillgänglig än',
+        'download' => 'Ladda ner Beatmapmall',
+        'download-na' => 'Beatmapmallen är inte tillgänglig ännu',
     ],
 
     'index' => [
@@ -23,13 +23,13 @@ return [
 
     'links' => [
         'osu' => 'osu! profil',
-        'site' => 'Officiell Hemsida',
+        'site' => 'Officiell hemsida',
     ],
 
     'songs' => [
         '_' => 'Låtar',
         'count' => ':count låt|:count låtar',
-        'exclusive' => 'osu! exklusiva',
+        'exclusive' => 'osu! exklusivt',
     ],
 
     'tracklist' => [

@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => '下載',
+            'video' => '下載並包含影片',
+            'no_video' => '下載並不包含影片',
+            'direct' => '在osu!direct中查看',
         ],
     ],
 
@@ -51,9 +51,9 @@ return [
             'approved' => '',
             'loved' => '',
             'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'ranked' => '於:timeago進榜',
+            'submitted' => '於:timeago提交',
+            'updated' => '上次更新於:timeago',
         ],
 
         'favourites' => [
@@ -75,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => '如果你認為此圖譜有問題，可將之取消提名：:link',
-                'button_title' => '取消提名已被Qualified的圖譜',
             ],
 
             'report' => [
                 '_' => '如果您發現此圖譜有問題，請在 :link 通知團隊。',
                 'button' => '回報問題',
-                'button_title' => '在 qualified 的圖譜上回報問題。',
                 'link' => '這裡',
             ],
         ],
@@ -100,11 +98,11 @@ return [
 
         'scoreboard' => [
             'achieved' => '在 :when 達成',
-            'country' => '國內排行榜',
+            'country' => '國內/區內排行榜',
             'friend' => '好友排行榜',
             'global' => '世界排行榜',
             'supporter-link' => '點擊 <a href=":link">這裡</a> 來查看你可以得到的精彩功能！',
-            'supporter-only' => '你需要成為贊助者才能查看國內與好友排名！',
+            'supporter-only' => '你需要成為贊助者才能查看國內/區內與好友排名！',
             'title' => '排行榜',
 
             'headers' => [

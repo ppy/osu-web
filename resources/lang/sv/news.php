@@ -13,8 +13,8 @@ return [
         ],
 
         'title' => [
-            '_' => 'Nyheter :info',
-            'info' => 'Framsida',
+            '_' => 'nyheter',
+            'info' => 'framsida',
         ],
     ],
 
@@ -27,22 +27,22 @@ return [
         ],
 
         'title' => [
-            '_' => 'Nyheter :info',
-            'info' => 'Inlägg',
+            '_' => 'nyheter',
+            'info' => 'inlägg',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Nyhetsarkiv',
     ],
 
     'store' => [
         'button' => 'Uppdatera',
-        'ok' => 'Lista uppdaterad.',
+        'ok' => 'Listning uppdaterad.',
     ],
 
     'update' => [
-        'button' => 'Uppdaterad',
+        'button' => 'Uppdatera',
         'ok' => 'Inlägg uppdaterat.',
     ],
 ];

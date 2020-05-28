@@ -61,7 +61,7 @@ export class Discussion extends React.PureComponent
     firstPost = @props.discussion.starting_post || @props.discussion.posts[0]
 
     user = @props.users[@props.discussion.user_id]
-    badge = if user.id == @props.beatmapset.user_id then mapperGroup else user.group_badge
+    badge = if user.id == @props.beatmapset.user_id then mapperGroup else user.groups[0]
 
     topClasses += " #{bn}--unread" unless _.includes(@props.readPostIds, firstPost.id) || @isOwner(firstPost) || @props.preview
 
@@ -313,7 +313,7 @@ export class Discussion extends React.PureComponent
 
   resolvedSystemPostId: =>
     if !@_resolvedSystemPostId?
-      systemPost = _.findLast(@props.discussion.posts, (post) -> post.system && post.message.type == 'resolved')
+      systemPost = _.findLast(@props.discussion.posts, (post) -> post? && post.system && post.message.type == 'resolved')
       @_resolvedSystemPostId = systemPost?.id ? -1
 
     return @_resolvedSystemPostId

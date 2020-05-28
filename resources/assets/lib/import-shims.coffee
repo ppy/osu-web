@@ -8,6 +8,7 @@ import Fade from 'fade'
 import Enchant from 'enchant'
 import ForumPoll from 'forum-poll'
 import * as laroute from 'laroute'
+import Localtime from 'localtime'
 import MobileToggle from 'mobile-toggle'
 import OsuAudio from 'osu-audio/main'
 import { StoreCheckout } from 'store-checkout'
@@ -28,6 +29,7 @@ window._exported = {
   Enchant
   ForumPoll
   GalleryContest
+  Localtime
   MobileToggle
   OsuAudio
   OsuUrlHelper

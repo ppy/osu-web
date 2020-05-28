@@ -8,8 +8,8 @@ return [
 
     'last_visit' => 'Nylig aktiv',
     'new' => 'Nylige',
-    'old' => '',
-    'rank' => '',
+    'old' => 'Gammel',
+    'rank' => 'Rangering',
     'top' => 'Mest likt',
     'username' => 'Brukernavn',
 

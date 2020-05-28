@@ -8,11 +8,11 @@ return [
         'new' => 'Sadece sana son girdiğinden beri ":title" beatmap\'inde yeni bir güncelleme olduğunu bildiriyoruz.',
         'subject' => '":title" beatmapi için yeni bir güncelleme',
         'unwatch' => 'Artık bu beatmap\'i izlemek istemiyorsan, yukarıdaki sayfada veya modlama izleme listesi sayfasında bulunan "İzlemeyi Bırak" bağlantısına tıklayabilirsin:',
-        'visit' => '',
+        'visit' => 'Tartışma sayfasını buradan ziyaret edin:',
     ],
 
     'common' => [
-        'closing' => '',
+        'closing' => 'Saygılarımızla,',
         'hello' => 'Selam :user,',
         'report' => 'Eğer bu değişim istemediğseniz, lütfen ACİLEN bu e-maile cevap yazın.',
     ],
@@ -26,22 +26,22 @@ return [
         'translation' => 'Metnin topluluk tarafından sağlanan bilgi amaçlı çevirisi aşağıdaki gibidir:',
 
         'benefit' => [
-            'gift' => '',
+            'gift' => 'Hediye ettikleriniz artık osu!direct ve diğer pek çok destekçi avantajlarından faydalanabilecek.',
             'self' => 'Şu andan itibaren osu!direct ve diğer başka destekçi avantajlarına :duration kadar erişim hakkın vardır.',
         ],
 
         'support' => [
             '_' => 'osu!\'ya karşı olan :support \'un için çokça teşekkür ederiz!.',
-            'first' => '',
-            'repeat' => '',
+            'first' => 'destek',
+            'repeat' => 'sürekli destek',
         ],
     ],
 
     'forum_new_reply' => [
         'new' => 'Sadece sana son girdiğinden beri ":title" sayfasında yeni bir cevap geldiğini bildiriyoruz.',
         'subject' => '[osu!] ":title" başlığına yeni cevap',
-        'unwatch' => '',
-        'visit' => '',
+        'unwatch' => 'Eğer bu konuyu daha fazla gözlemlemek istemiyorsanız, üstteki konunun en alt kısmındaki linkten, ya da forum abonelikleri yönetme sayfasında bulunan "Abonelikten Çık" butonuna tıklayabilirsiniz:',
+        'visit' => 'Bağlantıyı kullanarak en son yanıtı görüntüleyebilirsiniz:',
     ],
 
     'password_reset' => [
@@ -51,9 +51,9 @@ return [
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => '',
-        'processing' => '',
-        'questions' => "",
+        'prepare_shipping' => 'Ödemeniz tarafımıza ulaştı ve siparişinizi kargo için hazırlıyoruz. Gönderilmesi, sipariş adedine bağlı olarak, birkaç günü bulabilir. Siparişinizin sürecini, mevcut olduğunda takip detaylarıyla birlikte, buradan takip edebilirsiniz:',
+        'processing' => 'Ödemeniz tarafımıza ulaştı ve şuanda siparişinizi hazırlıyoruz. Siparişinizin sürecini buradan takip edebilirsiniz:',
+        'questions' => "Herhangi bir sorunuz varsa, bu e-postayı yanıtlamaktan çekinmeyin.",
         'shipping' => 'Teslimat',
         'subject' => 'osu!store siparişinizi aldık!',
         'thank_you' => 'osu!store siparişin için teşekkürler!',
@@ -64,20 +64,20 @@ return [
         'anonymous_gift' => 'Sana bu etiketi hediye eden kişi, anonim kalmayı seçebilir. Bu yüzden bu bildirimde ondan bahsetmiyoruz.',
         'anonymous_gift_maybe_not' => 'Ama muhtemelen kim olduğunu biliyorsun ;).',
         'duration' => 'Onun sayesinde, sonraki :duration boyunca osu!direct\'e ve diğer osu!supporter ayrıcalıklarına sahip olacaksın.',
-        'features' => '',
-        'gifted' => '',
+        'features' => 'Bu avantajlar hakkında daha fazla detaylı bilgiye buradan ulaşabilirsiniz:',
+        'gifted' => 'Birisi size az önce bir osu!supporter etiketi hediye etti!',
         'subject' => 'Size bir osu! Destekçisi etiketi verildi!',
     ],
 
     'user_email_updated' => [
         'changed_to' => 'Bu, osu! e-posta adresinin ":email" olarak değiştiğini bildiren bir doğrulama e-postasıdır.',
-        'check' => '',
+        'check' => 'Lütfen gelecekte osu! hesabınıza olan erişimin kaybolmasını önlemek için bu e-postayı yeni adresinizden aldığınıza emin olun.',
         'sent' => 'Güvenlik sebeplerinden ötürü, bu e-posta hem yeni hem de eski e-posta adresinde gönderildi.',
         'subject' => 'osu! e-posta değişikliği onayı',
     ],
 
     'user_force_reactivation' => [
-        'main' => '',
+        'main' => 'Son zamanlardaki şüpheli aktivitelerden ya da ÇOK zayıf bir şifresi olduğundan, hesabınızın ele geçirildiği şüpheleniliyor. Sonuç olarak, yeni bir şifre belirlemeniz gerekmektedir. Lütfen GÜVENLİ bir şifre seçtiğinizden emin olun. ',
         'perform_reset' => 'Sıfırlama işlemini şuradan gerçekleştirebilirsin: :url',
         'reason' => 'Sebep:',
         'subject' => 'osu! Hesabının Yeniden Doğrulanması Gerekli',
@@ -90,9 +90,9 @@ return [
 
     'user_verification' => [
         'code' => 'Doğrulama kodun:',
-        'code_hint' => '',
+        'code_hint' => 'Kodu boşluk bırakarak ya da bırakmadan girebilirsiniz.',
         'link' => 'Alternatif olarak, doğrulamayı bitirmek için bu bağlantıya da gidebilirsin:',
-        'report' => '',
+        'report' => 'Eğer siz böyle bir istemde bulunmadıysanız, hesabınız tehlikede olabileceğinden lütfen HEMEN YANITLAYIN. ',
         'subject' => 'osu! hesap doğrulama',
 
         'action_from' => [

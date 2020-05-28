@@ -19,8 +19,6 @@ return [
             'read' => 'Kimi takip ettiğinizi görebilir.',
         ],
 
-        'users' => [
-            'read' => 'Sizin adınıza herhangi bir kullanıcının herkese açık profilini görüntüleyebilir.',
-        ],
+        'public' => '',
     ],
 ];

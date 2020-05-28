@@ -18,7 +18,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'șters',
-        'none_found' => '',
+        'none_found' => 'Nicio discuție întâlnește criteriul acela de căutare.',
         'title' => 'Discuții despre beatmap',
 
         'form' => [
@@ -67,11 +67,11 @@ return [
         'go_to_parent' => 'Vezi review-ul utilizatorului',
         'go_to_child' => 'Vezi Discuția',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_block_type' => 'tip de block invalid',
+            'invalid_document' => 'recenzie invalidă',
+            'minimum_issues' => 'recezia trebuie să conțină un minimum de :count problemă|recenzia trebuie să conțină un minimum de :count probleme',
+            'missing_text' => 'block-ul e lipsit de text',
+            'too_many_blocks' => 'recenziile pot să conțină doar :count paragrafe/probleme|recenziile pot să conțină doar până la :count paragrafe/probleme',
         ],
     ],
 

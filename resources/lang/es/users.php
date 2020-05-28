@@ -51,7 +51,7 @@ return [
 
     'disabled' => [
         'title' => '¡Oh, oh! Parece que tu cuenta ha sido desactivada.',
-        'warning' => "En caso de que haya infringido una norma, tenga en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puede ponerse en contacto con nosotros si lo considera necesario. Tenga en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada dará lugar a una <strong>ampliación de este período de espera de un mes</strong>. Tenga en cuenta también que por <strong>cada cuenta que cree, estará infringiendo aún más las normas</strong>. ¡Le recomendamos encarecidamente que no siga este camino!",
+        'warning' => "En el caso de que haya roto una regla, tenga en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puede contactar con nosotros si lo considera necesario. Tenga en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada resultará en una <strong>extensión de este período de espera de un mes</strong>. Por favor, también tenga en cuenta que por <strong>cada cuenta que cree, estará violando más reglas</strong>. ¡Le sugerimos que no siga este camino!",
 
         'if_mistake' => [
             '_' => 'Si cree que se trata de un error, puede ponerse en contacto con nosotros (por :email o haciendo clic en el "?" en la esquina inferior derecha de esta página). Tenga en cuenta que siempre confiamos plenamente en nuestras acciones, ya que se basan en datos muy sólidos. Nos reservamos el derecho de ignorar su petición si consideramos que está siendo intencionadamente deshonesto.',
@@ -63,7 +63,7 @@ return [
             'opening' => 'Hay un serie de razones que pueden resultar en la desactivación de su cuenta:',
 
             'tos' => [
-                '_' => 'Ha infringido una o más de nuestras :community_rules o :tos.',
+                '_' => 'Ha roto una o más de nuestras :community_rules o :tos.',
                 'community_rules' => 'reglas de la comunidad',
                 'tos' => 'términos de servicio',
             ],
@@ -307,6 +307,7 @@ return [
                 'empty' => 'No hay records de rendimiento impresionantes aún. :(',
                 'not_ranked' => 'Sólo los mapas clasificados dan pp.',
                 'pp_weight' => 'valorado :percentage',
+                'view_details' => '',
                 'title' => 'Rangos',
 
                 'best' => [

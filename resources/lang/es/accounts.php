@@ -50,7 +50,7 @@ return [
 
     'notifications' => [
         'title' => 'Notificaciones',
-        'topic_auto_subscribe' => 'activa automáticamente las notificaciones en nuevos temas del foro que crees',
+        'topic_auto_subscribe' => 'activar automáticamente las notificaciones en nuevos temas del foro que crees',
         'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
 
         'mail' => [
@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Opciones',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'tipo de descarga de mapa predeterminado',
+            'all' => 'con vídeo si está disponible',
+            'no_video' => 'sin vídeo',
+            'direct' => 'abrir en osu!direct',
         ],
     ],
 
@@ -86,7 +86,7 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'bloquear los mensajes privados de usuarios que no están en tu lista de amigos',
+        'friends_only' => 'bloquear los mensajes privados de personas que no están en la lista de amigos',
         'hide_online' => 'mostrarse como desconectado',
         'title' => 'Privacidad',
     ],

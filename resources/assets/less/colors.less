@@ -70,68 +70,117 @@
 // osu!palette 2019v2-final-copy-last-FINAL
 // The default hue is osu! pink (333) and is injected into the body via master.blade.php as var(--base-hue) within :root
 // The section-to-colour mapping is done via section_to_hue_map() in helpers.php
-@osu-colour-p: hsl(var(--base-hue), 100%, 50%);
-@osu-colour-h1: hsl(var(--base-hue), 100%, 70%);
-@osu-colour-h2: hsl(var(--base-hue), 50%, 45%);
-@osu-colour-c1: hsl(var(--base-hue), 40%, 100%);
-@osu-colour-c2: hsl(var(--base-hue), 40%, 90%);
-@osu-colour-l1: hsl(var(--base-hue), 40%, 80%);
-@osu-colour-l2: hsl(var(--base-hue), 40%, 75%);
-@osu-colour-l3: hsl(var(--base-hue), 40%, 70%);
-@osu-colour-l4: hsl(var(--base-hue), 40%, 50%);
-@osu-colour-d1: hsl(var(--base-hue), 20%, 35%);
-@osu-colour-d2: hsl(var(--base-hue), 20%, 30%);
-@osu-colour-d3: hsl(var(--base-hue), 20%, 25%);
-@osu-colour-d4: hsl(var(--base-hue), 20%, 20%);
-@osu-colour-d5: hsl(var(--base-hue), 20%, 15%);
-@osu-colour-d6: hsl(var(--base-hue), 20%, 10%);
-@osu-colour-f1: hsl(var(--base-hue), 10%, 60%);
-@osu-colour-b1: hsl(var(--base-hue), 10%, 40%);
-@osu-colour-b2: hsl(var(--base-hue), 10%, 30%);
-@osu-colour-b3: hsl(var(--base-hue), 10%, 25%);
-@osu-colour-b4: hsl(var(--base-hue), 10%, 20%);
-@osu-colour-b5: hsl(var(--base-hue), 10%, 15%);
-@osu-colour-b6: hsl(var(--base-hue), 10%, 10%);
+:root {
+  @base-colours: {
+    // key: name
+    // value: saturation, lightness
+    p: 100%, 50%;
+    h1: 100%, 70%;
+    h2: 50%, 45%;
+    c1: 40%, 100%;
+    c2: 40%, 90%;
+    l1: 40%, 80%;
+    l2: 40%, 75%;
+    l3: 40%, 70%;
+    l4: 40%, 50%;
+    d1: 20%, 35%;
+    d2: 20%, 30%;
+    d3: 20%, 25%;
+    d4: 20%, 20%;
+    d5: 20%, 15%;
+    d6: 20%, 10%;
+    f1: 10%, 60%;
+    b1: 10%, 40%;
+    b2: 10%, 30%;
+    b3: 10%, 25%;
+    b4: 10%, 20%;
+    b5: 10%, 15%;
+    b6: 10%, 10%;
+  }
+
+  each(@base-colours, {
+    --hsl-@{key}: var(--base-hue), @value;
+  });
+}
+@osu-colour-p: hsl(var(--hsl-p));
+@osu-colour-h1: hsl(var(--hsl-h1));
+@osu-colour-h2: hsl(var(--hsl-h2));
+@osu-colour-c1: hsl(var(--hsl-c1));
+@osu-colour-c2: hsl(var(--hsl-c2));
+@osu-colour-l1: hsl(var(--hsl-l1));
+@osu-colour-l2: hsl(var(--hsl-l2));
+@osu-colour-l3: hsl(var(--hsl-l3));
+@osu-colour-l4: hsl(var(--hsl-l4));
+@osu-colour-d1: hsl(var(--hsl-d1));
+@osu-colour-d2: hsl(var(--hsl-d2));
+@osu-colour-d3: hsl(var(--hsl-d3));
+@osu-colour-d4: hsl(var(--hsl-d4));
+@osu-colour-d5: hsl(var(--hsl-d5));
+@osu-colour-d6: hsl(var(--hsl-d6));
+@osu-colour-f1: hsl(var(--hsl-f1));
+@osu-colour-b1: hsl(var(--hsl-b1));
+@osu-colour-b2: hsl(var(--hsl-b2));
+@osu-colour-b3: hsl(var(--hsl-b3));
+@osu-colour-b4: hsl(var(--hsl-b4));
+@osu-colour-b5: hsl(var(--hsl-b5));
+@osu-colour-b6: hsl(var(--hsl-b6));
 
 //
 // "Basic" Colour Theme (as of 2019)
 //
+:root {
+  @colours: {
+    // key: name
+    // value: hue
+    pink: 333;
+    purple: 255;
+    blue: 200;
+    green: 125;
+    lime: 90;
+    orange: 45;
+    red: 360;
+    darkorange: 20;
+  }
 
+  each(@colours, {
+    --colour-@{key}-hue: @value;
+    --hsl-@{key}-1: var(~"--colour-@{key}-hue"), 100%, 70%;
+    --hsl-@{key}-2: var(~"--colour-@{key}-hue"), 80%, 60%;
+    --hsl-@{key}-3: var(~"--colour-@{key}-hue"), 60%, 50%;
+  });
+}
 // osu!Pink
-@osu-colour-pink-hue: 333;
-@osu-colour-pink-1: hsl(@osu-colour-pink-hue, 100%, 70%);
-@osu-colour-pink-2: hsl(@osu-colour-pink-hue, 80%, 60%);
-@osu-colour-pink-3: hsl(@osu-colour-pink-hue, 60%, 50%);
+@osu-colour-pink-1: hsl(var(--hsl-pink-1));
+@osu-colour-pink-2: hsl(var(--hsl-pink-2));
+@osu-colour-pink-3: hsl(var(--hsl-pink-3));
 // Purple
-@osu-colour-purple-hue: 255;
-@osu-colour-purple-1: hsl(@osu-colour-purple-hue, 100%, 70%);
-@osu-colour-purple-2: hsl(@osu-colour-purple-hue, 80%, 60%);
-@osu-colour-purple-3: hsl(@osu-colour-purple-hue, 60%, 50%);
+@osu-colour-purple-1: hsl(var(--hsl-purple-1));
+@osu-colour-purple-2: hsl(var(--hsl-purple-2));
+@osu-colour-purple-3: hsl(var(--hsl-purple-3));
 // Blue
-@osu-colour-blue-hue: 200;
-@osu-colour-blue-1: hsl(@osu-colour-blue-hue, 100%, 70%);
-@osu-colour-blue-2: hsl(@osu-colour-blue-hue, 80%, 60%);
-@osu-colour-blue-3: hsl(@osu-colour-blue-hue, 60%, 50%);
+@osu-colour-blue-1: hsl(var(--hsl-blue-1));
+@osu-colour-blue-2: hsl(var(--hsl-blue-2));
+@osu-colour-blue-3: hsl(var(--hsl-blue-3));
 // Green
-@osu-colour-green-hue: 125;
-@osu-colour-green-1: hsl(@osu-colour-green-hue, 100%, 70%);
-@osu-colour-green-2: hsl(@osu-colour-green-hue, 80%, 60%);
-@osu-colour-green-3: hsl(@osu-colour-green-hue, 60%, 50%);
+@osu-colour-green-1: hsl(var(--hsl-green-1));
+@osu-colour-green-2: hsl(var(--hsl-green-2));
+@osu-colour-green-3: hsl(var(--hsl-green-3));
 // Lime
-@osu-colour-lime-hue: 90;
-@osu-colour-lime-1: hsl(@osu-colour-lime-hue, 100%, 70%);
-@osu-colour-lime-2: hsl(@osu-colour-lime-hue, 80%, 60%);
-@osu-colour-lime-3: hsl(@osu-colour-lime-hue, 60%, 50%);
+@osu-colour-lime-1: hsl(var(--hsl-lime-1));
+@osu-colour-lime-2: hsl(var(--hsl-lime-2));
+@osu-colour-lime-3: hsl(var(--hsl-lime-3));
 // Orange
-@osu-colour-orange-hue: 45;
-@osu-colour-orange-1: hsl(@osu-colour-orange-hue, 100%, 70%);
-@osu-colour-orange-2: hsl(@osu-colour-orange-hue, 80%, 60%);
-@osu-colour-orange-3: hsl(@osu-colour-orange-hue, 60%, 50%);
+@osu-colour-orange-1: hsl(var(--hsl-orange-1));
+@osu-colour-orange-2: hsl(var(--hsl-orange-2));
+@osu-colour-orange-3: hsl(var(--hsl-orange-3));
 // Red
-@osu-colour-red-hue: 360;
-@osu-colour-red-1: hsl(@osu-colour-red-hue, 100%, 70%);
-@osu-colour-red-2: hsl(@osu-colour-red-hue, 80%, 60%);
-@osu-colour-red-3: hsl(@osu-colour-red-hue, 60%, 50%);
+@osu-colour-red-1: hsl(var(--hsl-red-1));
+@osu-colour-red-2: hsl(var(--hsl-red-2));
+@osu-colour-red-3: hsl(var(--hsl-red-3));
+// Darkorange
+@osu-colour-darkorange-1: hsl(var(--hsl-darkorange-1));
+@osu-colour-darkorange-2: hsl(var(--hsl-darkorange-2));
+@osu-colour-darkorange-3: hsl(var(--hsl-darkorange-3));
 
 @pink-text: @pink-dark;
 @green-text: @green-darker;
@@ -144,3 +193,10 @@
 @link-gray-light-hover: #eee;
 
 @group-colour-default: #0087CA;
+
+@colour-rank-d: #ff5858;
+@colour-rank-c: #ea7948;
+@colour-rank-b: #d99d03;
+@colour-rank-a: #72c904;
+@colour-rank-s: #0096a2;
+@colour-rank-ss: #be0089;

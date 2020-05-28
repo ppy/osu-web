@@ -12,6 +12,7 @@ use App\Libraries\Search\PostSearchRequestParams;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
+use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
@@ -21,6 +22,7 @@ use App\Models\UserNotFound;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Illuminate\Cache\RateLimiter;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Request;
 
 class UsersController extends Controller
@@ -39,16 +41,14 @@ class UsersController extends Controller
 
         $this->middleware('throttle:60,10', ['only' => ['store']]);
 
-        if (is_api_request()) {
-            $this->middleware('require-scopes:identify', ['only' => ['me']]);
-            $this->middleware('require-scopes:users.read', ['only' => [
-                'beatmapsets',
-                'kudosu',
-                'recentActivity',
-                'scores',
-                'show',
-            ]]);
-        }
+        $this->middleware('require-scopes:identify', ['only' => ['me']]);
+        $this->middleware('require-scopes:public', ['only' => [
+            'beatmapsets',
+            'kudosu',
+            'recentActivity',
+            'scores',
+            'show',
+        ]]);
 
         $this->middleware(function ($request, $next) {
             $this->parsePaginationParams();
@@ -255,7 +255,7 @@ class UsersController extends Controller
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
-            'group_badge',
+            'groups',
             'loved_beatmapset_count',
             'monthly_playcounts',
             'page',
@@ -439,7 +439,10 @@ class UsersController extends Controller
                 case 'recentlyReceivedKudosu':
                     $transformer = 'KudosuHistory';
                     $query = $user->receivedKudosu()
-                        ->with('post', 'post.topic', 'giver', 'kudosuable')
+                        ->with('post', 'post.topic', 'giver')
+                        ->with(['kudosuable' => function (MorphTo $morphTo) {
+                            $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
+                        }])
                         ->orderBy('exchange_id', 'desc');
                     break;
 

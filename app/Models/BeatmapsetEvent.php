@@ -47,6 +47,9 @@ class BeatmapsetEvent extends Model
 
     const NOMINATION_RESET = 'nomination_reset';
 
+    const GENRE_EDIT = 'genre_edit';
+    const LANGUAGE_EDIT = 'language_edit';
+
     public static function log($type, $user, $object, $extraData = [])
     {
         if ($object instanceof BeatmapDiscussionPost) {
@@ -191,6 +194,9 @@ class BeatmapsetEvent extends Model
 
                     static::KUDOSU_GAIN,
                     static::KUDOSU_LOST,
+
+                    static::GENRE_EDIT,
+                    static::LANGUAGE_EDIT,
                 ],
                 'kudosuModeration' => [
                     static::KUDOSU_ALLOW,
@@ -228,6 +234,7 @@ class BeatmapsetEvent extends Model
 
     public function beatmapset()
     {
+        // FIXME: consistency with BeatmapDiscussion which includes deleted.
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 

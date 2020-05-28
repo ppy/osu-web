@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'ดาวน์โหลด',
+            'video' => 'ดาวน์โหลดพร้อมวิดีโอ',
+            'no_video' => 'ดาวน์โหลดโดยไม่มีวิดีโอ',
+            'direct' => 'เปิดใน osu!direct',
         ],
     ],
 
@@ -48,12 +48,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'อนุมัติ :timeago',
+            'loved' => 'loved เมื่อ :timeago',
+            'qualified' => 'ผ่านเกณฑ์ :timeago',
+            'ranked' => 'จัดอันดับแล้วเมื่อ :timeago',
+            'submitted' => 'ส่งเมื่อ :timeago',
+            'updated' => 'อัพเดทครั้งล่าสุดเมื่อ :timeago',
         ],
 
         'favourites' => [
@@ -75,14 +75,12 @@ return [
 
             'disqualify' => [
                 '_' => '',
-                'button_title' => '',
             ],
 
             'report' => [
                 '_' => '',
-                'button' => '',
-                'button_title' => '',
-                'link' => '',
+                'button' => 'รายงานปัญหา',
+                'link' => 'ที่นี่',
             ],
         ],
 
@@ -150,13 +148,13 @@ return [
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'จัดอันดับแล้ว',
+            'approved' => 'อนุมัติ',
+            'loved' => 'Loved',
+            'qualified' => 'ผ่านเกณฑ์',
+            'wip' => 'WIP',
+            'pending' => 'อยู่ระหว่างดำเนินการ',
+            'graveyard' => 'สุสาน',
         ],
     ],
 ];

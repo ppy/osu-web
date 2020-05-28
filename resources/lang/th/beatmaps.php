@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'ถูกปฏิเสธการให้ค่าชื่อเสียง',
         'message_placeholder_deleted_beatmap' => 'ระดับความยากนี้ถูกลบแล้วจึงไม่ควรถูกสนทนาถึง',
         'message_placeholder_locked' => 'การสนทนาสำหรับ beatmap นี้ถูกปิดใช้งาน',
+        'message_placeholder_silenced' => "ไม่สามารถโพสต์การสนทนาในขณะที่โดนใบ้",
         'message_type_select' => 'เลือกประเภทคอมเมนต์',
         'reply_notice' => 'กด Enter เพื่อตอบกลับ',
         'reply_placeholder' => 'พิมพ์คำตอบกลับที่นี่',

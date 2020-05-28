@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - 节奏跃然指上！内含来自「押忍！战斗应援团」、「精英节拍特工」、太鼓的以及 osu! 原创的游戏模式，以及为其设计的全功能谱面编辑器。',
     ],
@@ -130,7 +134,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => '请求参数无效',
             'description' => '',
         ],
         '404' => [

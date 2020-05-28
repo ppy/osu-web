@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - Rhythm is just a *click* away! Dengan berbagai mode permainan seperti Ouendan/EBA, Taiko, serta level editor yang berfungsi.',
     ],
@@ -57,8 +61,8 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmaps',
-            'artists' => 'featured artists',
+            '_' => 'beatmap',
+            'artists' => 'featured artist',
             'index' => 'daftar',
             'packs' => 'paket',
         ],
@@ -130,7 +134,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Parameter yang diminta tidak valid',
             'description' => '',
         ],
         '404' => [

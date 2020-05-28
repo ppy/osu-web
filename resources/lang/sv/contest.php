@@ -10,7 +10,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'listning',
     ],
 
     'voting' => [
@@ -24,7 +24,7 @@ return [
         'button' => [
             'add' => 'Rösta',
             'remove' => 'Ta bort röstning',
-            'used_up' => '',
+            'used_up' => 'Du har använt alla dina röster',
         ],
     ],
     'entry' => [
@@ -48,11 +48,12 @@ return [
     ],
     'vote' => [
         'list' => 'röster',
-        'count' => '',
-        'points' => '',
+        'count' => ':count_delimited rösta|:count_delimited röster ',
+        'points' => ':count_delimited poäng|:count_delimited poäng',
     ],
     'dates' => [
         'ended' => 'Avlutad :date',
+        'ended_no_date' => 'Avslutad',
 
         'starts' => [
             '_' => 'Startar :date',

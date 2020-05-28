@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - リズムはもう、その指先に！応援団や太鼓をモチーフにしたゲームモード、オリジナルのゲームモード、そしてレベルエディタも備えています。',
     ],
@@ -130,7 +134,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => '無効な要求パラメーター',
             'description' => '',
         ],
         '404' => [

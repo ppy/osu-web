@@ -4,11 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> получил достижение "<strong>:achievement</strong>"!',
+    'achievement' => '<strong><em>:user</em></strong> получил медаль «<strong>:achievement</strong>»!',
     'beatmap_playcount' => ':beatmap играл :count раз!',
     'beatmapset_approve' => ':beatmapset от <strong>:user</strong> была :approval!',
     'beatmapset_delete' => ':beatmapset был удалён.',
-    'beatmapset_revive' => ':beatmapset был восстановлен <strong>:user</strong>.',
+    'beatmapset_revive' => ':beatmapset была воскрешена из вечного сна <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> обновил карту "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> опубликовал карту ":beatmapset"',
     'empty' => "Этот пользователь не делал ничего заметного в последнее время!",

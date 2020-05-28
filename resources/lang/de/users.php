@@ -15,11 +15,11 @@ return [
         ],
 
         'events' => [
-            'title_recent' => 'Neuste Events',
+            'title_recent' => 'Neueste Events',
         ],
 
         'posts' => [
-            'title_recent' => 'Neuste Posts',
+            'title_recent' => 'Neueste Posts',
         ],
 
         'votes_received' => [
@@ -203,7 +203,7 @@ return [
                     'title' => 'Ranked & Approved Beatmaps',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps',
+                    'title' => 'Ausstehende Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -217,7 +217,7 @@ return [
                 'show_more' => 'mehr Events anzeigen',
             ],
             'historical' => [
-                'empty' => 'Keine Performance-Einträge. :(',
+                'empty' => 'Keine Einträge. :(',
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
@@ -226,7 +226,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'mal gespielt',
-                    'title' => 'Meist gespielte Beatmaps',
+                    'title' => 'Meistgespielte Beatmaps',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'genauigkeit: :percentage',
@@ -238,7 +238,7 @@ return [
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => 'Kudosu-Geschichte',
+                'recent_entries' => 'Kudosu-Verlauf',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu insgesamt',
 
@@ -283,7 +283,7 @@ return [
 
                 'total_info' => [
                     '_' => 'Basierend auf dem Beitrag, den der Benutzer zur Beatmap-Moderation geleistet hat. Weitere Informationen unter :link.',
-                    'link' => 'diese Seite',
+                    'link' => 'dieser Seite',
                 ],
             ],
             'me' => [
@@ -291,7 +291,7 @@ return [
             ],
             'medals' => [
                 'empty' => "Dieser Nutzer hat noch keine erhalten. ;_;",
-                'recent' => 'Neuste',
+                'recent' => 'Neueste',
                 'title' => 'Medaillen',
             ],
             'posts' => [
@@ -303,10 +303,11 @@ return [
                 'title' => 'Neulich',
             ],
             'top_ranks' => [
-                'download_replay' => 'Replay downloaden',
-                'empty' => 'Noch keine Performance-Rekorde. :(',
+                'download_replay' => 'Replay herunterladen',
+                'empty' => 'Noch keine Einträge großartiger Performances. :(',
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
                 'pp_weight' => ':percentage gewichtet',
+                'view_details' => '',
                 'title' => 'Ränge',
 
                 'best' => [
@@ -380,7 +381,7 @@ return [
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',
-            'country_simple' => 'Länder-Rangliste',
+            'country_simple' => 'Landesrangliste',
             'global' => 'Globaler Rang im Modus :mode',
             'global_simple' => 'Globale Rangliste',
         ],
@@ -390,17 +391,17 @@ return [
             'level_progress' => 'Fortschritt bis zum nächsten Level',
             'maximum_combo' => 'Höchste Combo',
             'medals' => 'Medaillen',
-            'play_count' => 'Play-Anzahl',
+            'play_count' => 'Anzahl Spiele',
             'play_time' => 'Gesamtspielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',
             'replays_watched_by_others' => 'Von anderen angeschaute Wiederholungen',
             'score_ranks' => 'Ränge durch Punkte',
-            'total_hits' => 'Total Hits',
+            'total_hits' => 'Anzahl Treffer',
             'total_score' => 'Gesamtpunktzahl',
             // modding stats
             'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
             'loved_beatmapset_count' => 'Loved Beatmaps',
-            'unranked_beatmapset_count' => 'Pending Beatmaps',
+            'unranked_beatmapset_count' => 'Ausstehende Beatmaps',
             'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
         ],
     ],
@@ -414,11 +415,11 @@ return [
         'saved' => 'User erstellt',
     ],
     'verify' => [
-        'title' => 'Accountbestätigung',
+        'title' => 'Accountverifizierung',
     ],
 
     'view_mode' => [
-        'brick' => '',
+        'brick' => 'Ziegelansicht',
         'card' => 'Kartenansicht',
         'list' => 'Listenansicht',
     ],

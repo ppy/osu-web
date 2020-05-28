@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'kudosu 획득이 불가능합니다.',
         'message_placeholder_deleted_beatmap' => '제거된 난이도이므로 더 이상의 토론이 불가능합니다.',
         'message_placeholder_locked' => '이 비트맵에 대한 토론이 비활성화되었습니다.',
+        'message_placeholder_silenced' => "침묵 상태에서는 토론 게시글을 게시할 수 없습니다.",
         'message_type_select' => '게시할 답글의 형식을 선택하세요',
         'reply_notice' => '답변을 보내려면 엔터를 누르세요.',
         'reply_placeholder' => '보내실 답변의 내용을 입력하세요.',

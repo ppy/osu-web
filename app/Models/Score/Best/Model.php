@@ -98,8 +98,6 @@ abstract class Model extends BaseModel
         }
 
         return with_db_fallback('mysql-readonly', function ($connection) use ($options) {
-            $alwaysAccurate = false;
-
             $query = static::on($connection)
                 ->where('beatmap_id', '=', $this->beatmap_id)
                 ->where(function ($query) {
@@ -114,10 +112,6 @@ abstract class Model extends BaseModel
 
             if (isset($options['type'])) {
                 $query->withType($options['type'], ['user' => $this->user]);
-
-                if ($options['type'] === 'country') {
-                    $alwaysAccurate = true;
-                }
             }
 
             if (isset($options['mods'])) {
@@ -126,17 +120,7 @@ abstract class Model extends BaseModel
 
             $countQuery = DB::raw('DISTINCT user_id');
 
-            if ($alwaysAccurate) {
-                return 1 + $query->visibleUsers()->default()->count($countQuery);
-            }
-
-            $rank = 1 + $query->count($countQuery);
-
-            if ($rank < config('osu.beatmaps.max-scores') * 3) {
-                return 1 + $query->visibleUsers()->default()->count($countQuery);
-            } else {
-                return $rank;
-            }
+            return 1 + $query->visibleUsers()->default()->count($countQuery);
         });
     }
 
@@ -304,6 +288,11 @@ abstract class Model extends BaseModel
         optional($this->replayFile())->delete();
 
         return $result;
+    }
+
+    public function getBestIdAttribute()
+    {
+        return $this->getKey();
     }
 
     protected function newReportableExtraParams(): array

@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'ممنوع من جمع كودوسو.',
         'message_placeholder_deleted_beatmap' => 'تم حذف هذه الصعوبة لذا لا يمكن مناقشتها بعد الان.',
         'message_placeholder_locked' => 'المناقشة لحزمة المراحل تم ايقافها.',
+        'message_placeholder_silenced' => "لا يمكن نشر مناقشه عندما تكون صامتاََ.",
         'message_type_select' => 'تحديد نوع التعليق',
         'reply_notice' => 'اضغط على ادخال للرد.',
         'reply_placeholder' => 'أدخل ردك هنا',

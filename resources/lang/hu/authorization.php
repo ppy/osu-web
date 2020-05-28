@@ -5,7 +5,7 @@
 
 return [
     'require_login' => 'Kérlek jelentkezz be a folytatáshoz.',
-    'require_verification' => '',
+    'require_verification' => 'Kérlek, hagyd jóvá a folytatáshoz.',
     'restricted' => "Felfüggesztett állapotban erre nem vagy képes.",
     'silenced' => "Némított állapotban erre nem vagy képes.",
     'unauthorized' => 'Hozzáférés megtagadva.',
@@ -40,13 +40,13 @@ return [
     'beatmap_discussion_post' => [
         'destroy' => [
             'not_owner' => 'Csak a saját posztjaidat tudod törölni.',
-            'resolved' => '',
+            'resolved' => 'Nem törölhetsz bejegyzést egy megbeszélt témában.',
             'system_generated' => 'Az automatikusan generált posztok nem törölhetőek.',
         ],
 
         'edit' => [
             'not_owner' => 'Csak a posztoló tudja szerkeszteni a posztot.',
-            'resolved' => '',
+            'resolved' => 'Nem szerkeszthetsz bejegyzést egy megbeszélt témában.',
             'system_generated' => 'Automatikusan generált posztot nem lehet szerkeszteni.',
         ],
 
@@ -144,7 +144,7 @@ return [
                 'not_owner' => 'Csak a szerző változtathatja a borítót.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Ez a fórum nem fogad téma fejléceket.',
             ],
         ],
 

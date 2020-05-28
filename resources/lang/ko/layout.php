@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - 리듬은 단순한 *클릭*만으로도 만들어질 수 있습니다! 응원단/리듬히어로, 태고와 이외 독자적인 게임플레이 모드, 완벽한 기능을 갖춘 맵 에디터까지 준비되어 있습니다.',
     ],
@@ -130,7 +134,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => '요청 매개변수가 올바르지 않습니다',
             'description' => '',
         ],
         '404' => [

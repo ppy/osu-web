@@ -10,7 +10,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'katalog',
     ],
 
     'voting' => [
@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => ':date tarihinde sona erdi',
+        'ended_no_date' => 'Sona erdi',
 
         'starts' => [
             '_' => 'Başlangıç :date',

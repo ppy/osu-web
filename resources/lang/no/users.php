@@ -50,29 +50,29 @@ return [
     ],
 
     'disabled' => [
-        'title' => '',
-        'warning' => "",
+        'title' => 'Oops! Det ser ut som kontoen din er deaktivert.',
+        'warning' => "I tilfelle du har brutt en regel, vær oppmerksom på at det vanligvis er en nedkjølingsperiode på en måned hvor vi ikke kommer til å vurdere noen amnestiforespørsler. Etter denne periodenm kan du fritt kontakte oss dersom du mener det er nødvendig. Vær oppmerksom på at å opprette nye kontoer etter du har hatt en allerede deaktivert vil resultere i enn <strong>utvidelse av denne en måneders nedkjølingsperioden</strong>. <strong>Du må også huske at med hver bruker du lager, bryter du reglene enda mer</strong>. Vi anbefaler på det sterkeste at du ikke gjør dette!",
 
         'if_mistake' => [
-            '_' => '',
-            'email' => '',
+            '_' => 'Hvis du mener dette er en feil, er du velkommer til å kontakte oss (via :email eller med å klikke på "?" i nedre-høyre hjørne av denne siden). Vær oppmerksom på at vi alltid er helt sikre på hva vi gjør, fordi de er basert på svært solide data. Vi forbeholder oss retten til å ignorere din forespørsel bor vi føle at du er bevisst uærlig.',
+            'email' => 'epost',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'Kontoen din anses å være kompromittert. Den kan være midlertidig deaktivert mens identiteten er bekreftet.',
+            'opening' => 'Det er flere grunner som kan resultere i at kontoen din er deaktivert:',
 
             'tos' => [
-                '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                '_' => 'Du har brutt en eller flere av våre :community_rules or :tos.',
+                'community_rules' => 'samfunnsregler',
+                'tos' => 'brukervilkår',
             ],
         ],
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Kontoen din har ikke blitt brukt på lang tid.",
         ],
     ],
 
@@ -80,10 +80,10 @@ return [
         '_' => 'Logg inn',
         'button' => 'Logg inn',
         'button_posting' => 'Logger inn...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'Innlogging med email er for tiden deaktivert. Vennligst bruk brukernavn i stedet.',
         'failed' => 'Feil innlogging',
         'forgot' => 'Glemt passordet ditt?',
-        'info' => '',
+        'info' => 'Vennligst logg inn for å fortsette',
         'locked_ip' => 'IP-adressen din er blokkert. Vennligst vent et par minutter.',
         'password' => 'Passord',
         'register' => "Har du ikke en osu!-konto? Lag en ny en",
@@ -165,7 +165,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Oppdatering er bare tilgjengelig for :link',
-                        'link' => '',
+                        'link' => 'osu!supportere',
                     ],
                 ],
             ],
@@ -207,14 +207,14 @@ return [
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Diskusjoner',
+                'title_longer' => 'Nylige diskusjoner',
+                'show_more' => 'se flere diskusjoner',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Hendelser',
+                'title_longer' => 'Nylige Hendelser',
+                'show_more' => 'se flere hendelser',
             ],
             'historical' => [
                 'empty' => 'Ingen prestasjoner :(',
@@ -282,7 +282,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
+                    '_' => 'Basert på hvor mye en bidro en bruker har gjort til beatmapmoderasjon. Se :link for mer informasjon.',
                     'link' => 'denne siden',
                 ],
             ],
@@ -296,8 +296,8 @@ return [
             ],
             'posts' => [
                 'title' => 'Innlegg',
-                'title_longer' => '',
-                'show_more' => '',
+                'title_longer' => 'Nylige Innlegg',
+                'show_more' => 'se flere innlegg',
             ],
             'recent_activity' => [
                 'title' => 'Nylige',
@@ -307,6 +307,7 @@ return [
                 'empty' => 'Ingen fantastiske prestasjoner på rekordlisten enda. :(',
                 'not_ranked' => 'Bare rangerte beatmaps gir pp.',
                 'pp_weight' => 'veid :percentage',
+                'view_details' => '',
                 'title' => 'Rangeringer',
 
                 'best' => [
@@ -317,8 +318,8 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
+                'given' => 'Stemmer Gitt (siste 3 måneder)',
+                'received' => 'Stemmer Mottatt (siste 3 måneder)',
                 'title' => 'Stemmer',
                 'title_longer' => 'Nylige stemmer',
                 'vote_count' => ':count_delimited stemme|:count_delimited stemmer',
@@ -400,8 +401,8 @@ return [
             // modding stats
             'ranked_and_approved_beatmapset_count' => 'Rangerte & Godkjente Beatmaps',
             'loved_beatmapset_count' => 'Elskede Beatmaps',
-            'unranked_beatmapset_count' => '',
-            'graveyard_beatmapset_count' => '',
+            'unranked_beatmapset_count' => 'Ventende Beatmaps',
+            'graveyard_beatmapset_count' => 'Gravlagte Beatmaps',
         ],
     ],
 
@@ -418,8 +419,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
-        'card' => '',
+        'brick' => 'Blokk-visning',
+        'card' => 'Bilde-visning',
         'list' => 'Listevisning',
     ],
 ];

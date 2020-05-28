@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Kudosu szerzéstől megtagadva.',
         'message_placeholder_deleted_beatmap' => 'Ez a nehézség törölve lett, ezért a beszélgetés nem lehetséges.',
         'message_placeholder_locked' => 'A beatmap megbeszélése meg lett tiltva.',
+        'message_placeholder_silenced' => "Nem posztolhatsz beszélgetést, amíg némítva vagy.",
         'message_type_select' => 'Komment-típus választása',
         'reply_notice' => 'Nyomj entert a válaszoláshoz.',
         'reply_placeholder' => 'Ide írd a válaszod',
@@ -70,14 +71,14 @@ return [
             'nomination_reset' => 'Nominálás Visszaállítása',
             'praise' => 'Dicséret',
             'problem' => 'Probléma',
-            'review' => '',
+            'review' => 'Összegzés',
             'suggestion' => 'Javaslat',
         ],
 
         'mode' => [
             'events' => 'Előzmények',
             'general' => 'Általános :scope',
-            'reviews' => '',
+            'reviews' => 'Összegzések',
             'timeline' => 'Idővonal',
             'scopes' => [
                 'general' => 'Ez a nehézség',
@@ -123,12 +124,12 @@ return [
 
         'votes' => [
             'none' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Nincsenek leértékelések',
+                'up' => 'Nincsenek felértékelések',
             ],
             'latest' => [
-                'down' => '',
-                'up' => '',
+                'down' => 'Legutóbbi leértékelések',
+                'up' => 'Legutóbbi felértékelések',
             ],
         ],
     ],
@@ -164,7 +165,7 @@ return [
         'nominate' => 'Nominálás',
         'nominate_confirm' => 'Nominálod ezt a beatmapot?',
         'nominated_by' => 'nominálva :users által',
-        'not_enough_hype' => "",
+        'not_enough_hype' => "Nincs elég hype.",
         'qualified' => 'Előreláthatólag :date-kor lesz rangsorolva, ha nem találnak benne problémát.',
         'qualified_soon' => 'Hamarosan rangsorolva lesz, ha nem találnak benne problémát.',
         'required_text' => 'Nominálások: :current/:required',

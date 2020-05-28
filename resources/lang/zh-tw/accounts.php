@@ -67,13 +67,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => '選項',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => '預設圖譜下載類型',
+            'all' => '包含影片',
+            'no_video' => '不包含影片',
+            'direct' => '在osu!direct中查看',
         ],
     ],
 

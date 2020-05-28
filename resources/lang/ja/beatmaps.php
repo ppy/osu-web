@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'kudosuの入手を拒否されました。',
         'message_placeholder_deleted_beatmap' => 'この難易度は削除された為これ以上ディスカッションに投稿できません。',
         'message_placeholder_locked' => 'このビートマップに関するディスカッションは無効になっています。',
+        'message_placeholder_silenced' => "サイレンス中はディスカッションへ投稿できません。",
         'message_type_select' => 'コメントタイプを選択',
         'reply_notice' => 'Enterキーを押して送信',
         'reply_placeholder' => 'ここに入力してください',

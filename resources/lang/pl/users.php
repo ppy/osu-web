@@ -307,6 +307,7 @@ return [
                 'empty' => 'Brak wyników. :(',
                 'not_ranked' => 'Tylko rankingowe beatmapy przyznają pp.',
                 'pp_weight' => 'ważone :percentage',
+                'view_details' => '',
                 'title' => 'Wyniki',
 
                 'best' => [
@@ -418,7 +419,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => 'Widok cegieł',
+        'brick' => 'Widok cegiełek',
         'card' => 'Widok kart',
         'list' => 'Widok listy',
     ],

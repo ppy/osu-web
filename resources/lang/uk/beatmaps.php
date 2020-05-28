@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Відмовлено в отриманні кудосу.',
         'message_placeholder_deleted_beatmap' => 'Ця складність була видалена і відгукуватися про неї не можна.',
         'message_placeholder_locked' => 'Обговорення цієї карти відключено.',
+        'message_placeholder_silenced' => "Не можна коментувати поки заглушений.",
         'message_type_select' => 'Вибрати тип коментаря',
         'reply_notice' => 'Натисніть Enter для відповіді.',
         'reply_placeholder' => 'Введіть відповідь тут',

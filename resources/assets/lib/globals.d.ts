@@ -26,7 +26,6 @@ declare var userVerification: any;
 
 // external (to typescript) classes
 declare var BeatmapsetFilter: any;
-declare var BeatmapHelper: BeatmapHelperInterface;
 declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
 declare var Timeout: any;
@@ -48,6 +47,7 @@ interface BeatmapDiscussionHelperClass {
   messageType: DiscussionMessageType;
   format(text: string, options?: any): string;
   formatTimestamp(value: number): string;
+  previewMessage(value: string): string;
   url(options: any, useCurrent?: boolean): string;
 }
 
@@ -86,10 +86,6 @@ interface OsuCommon {
   isDesktop(): boolean;
   isMobile(): boolean;
   updateQueryString(url: string | null, params: { [key: string]: string | undefined }): string;
-}
-
-interface BeatmapHelperInterface {
-  getDiffRating(rating: number): string;
 }
 
 interface ChangelogBuild {

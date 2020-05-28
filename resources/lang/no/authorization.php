@@ -12,7 +12,7 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Kan ikke angre spenning.',
+            'is_hype' => 'Kan ikke angre hyping.',
             'has_reply' => 'Kan ikke slette en diskusjon med svar',
         ],
         'nominate' => [
@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Bare beatmapeieren eller en nominator/QAT gruppemedlem kan publisere notater.',
+            'mapper_note_wrong_user' => 'Bare beatmapeieren eller en nominator/NAT gruppemedlem kan publisere notater.',
         ],
 
         'vote' => [

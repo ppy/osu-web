@@ -10,7 +10,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'lista',
     ],
 
     'voting' => [
@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Vége: :date',
+        'ended_no_date' => 'Befejezve',
 
         'starts' => [
             '_' => 'Kezdete: :date',

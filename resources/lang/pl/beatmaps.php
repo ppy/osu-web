@@ -21,6 +21,7 @@ return [
         'kudosu_denied' => 'Odmówiono uzyskania kudosu.',
         'message_placeholder_deleted_beatmap' => 'Ten poziom trudności został usunięty, więc nie można umieszczać w nim postów.',
         'message_placeholder_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało wyłączone.',
+        'message_placeholder_silenced' => "Nie możesz zamieścić dyskusji, kiedy jesteś wyciszony.",
         'message_type_select' => 'Wybierz typ komentarza',
         'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
         'reply_placeholder' => 'Napisz tutaj swoją odpowiedź',

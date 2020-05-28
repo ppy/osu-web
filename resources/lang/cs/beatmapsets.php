@@ -75,13 +75,11 @@ return [
 
             'disqualify' => [
                 '_' => '',
-                'button_title' => '',
             ],
 
             'report' => [
                 '_' => '',
                 'button' => 'Nahlásit problém',
-                'button_title' => '',
                 'link' => 'zde',
             ],
         ],

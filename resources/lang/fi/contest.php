@@ -53,6 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Loppui :date',
+        'ended_no_date' => '',
 
         'starts' => [
             '_' => 'Alkoi :date',
