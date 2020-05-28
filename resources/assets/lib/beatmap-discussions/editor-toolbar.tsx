@@ -4,7 +4,7 @@
 import * as _ from 'lodash';
 import { Portal } from 'portal';
 import * as React from 'react';
-import { Editor, Range } from 'slate';
+import { Editor, Node, Range } from 'slate';
 import { ReactEditor } from 'slate-react';
 import { isFormatActive, toggleFormat } from './editor-helpers';
 import { SlateContext } from './slate-context';
@@ -94,21 +94,34 @@ export class EditorToolbar extends React.Component {
 
     // we use setTimeout here as a workaround for incorrect bounds sometimes being returned for the selection range,
     // seemingly when called too soon after a scroll event
-    this.scrollTimer = Timeout.set(100, () => {
+    this.scrollTimer = Timeout.set(10, () => {
       if (!this.visible()) {
         tooltip.style.display = 'none';
         return;
       }
 
+      let selectionContainsBlock = false;
+      for (const p of Editor.positions(this.context, { at: this.context.selection, unit: 'block' })) {
+        const block = Node.parent(this.context, p.path);
+
+        if (block.type === 'embed') {
+          selectionContainsBlock = true;
+          break;
+        }
+      }
+
       const containerBounds = this.scrollContainer?.getBoundingClientRect();
       const containerTop = containerBounds?.top ?? 0;
       const containerBottom = containerBounds?.bottom;
+      // window.getSelection() presence is confirmed by the this.visible() check earlier
       const selectionBounds = window.getSelection()!.getRangeAt(0).getBoundingClientRect();
 
-      if (
+      const hidden =
+        selectionContainsBlock ||
         selectionBounds.top < containerTop ||
-        (containerBottom && selectionBounds.top > containerBottom)
-      ) {
+        (containerBottom && selectionBounds.top > containerBottom);
+
+      if (hidden) {
         tooltip.style.display = 'none';
       } else {
         tooltip.style.display = 'block';
