@@ -93,22 +93,10 @@ class PlaylistItem extends Model
 
     public function topScores()
     {
-        $scores = $this->highScores()->get();
-
-        // sort by total_score desc and then date asc if scores are equal
-        // no index on scores or timestamps
-        return $scores->sort(function ($a, $b) {
-            if ($a->total_score === $b->total_score) {
-                if ($a->updated_at->timestamp === $b->updated_at->timestamp) {
-                    // On the rare chance that both were submitted in the same second, default to submission order
-                    return $a->id < $b->id;
-                }
-
-                return $a->updated_at->timestamp < $b->updated_at->timestamp;
-            }
-
-            return $b->total_score - $a->total_score;
-        })->values();
+        return $this->highScores()
+            ->with('score')
+            ->orderBy('total_score', 'desc')
+            ->orderBy('score_id', 'asc');
     }
 
     private function validateRuleset()
