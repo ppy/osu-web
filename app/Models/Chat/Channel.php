@@ -215,6 +215,10 @@ class Channel extends Model
         ])->first();
 
         if ($userChannel) {
+            if (!$userChannel->isHidden()) {
+                return;
+            }
+
             $userChannel->update(['hidden' => false]);
         } else {
             $userChannel = new UserChannel();

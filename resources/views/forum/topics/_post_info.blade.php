@@ -39,13 +39,16 @@
         </span>
     @endif
 
-    @if ($user->groupBadge() !== null)
+    @php
+        $group = $user->visibleGroups()[0] ?? null;
+    @endphp
+    @if (isset($group))
         <div class="forum-post-info__row forum-post-info__row--group-badge">
             <div
                 class="user-group-badge user-group-badge--t-forum"
-                data-label="{{ $user->groupBadge()->short_name }}"
-                title="{{ $user->groupBadge()->group_name }}"
-                style="{!! css_group_colour($user->groupBadge()) !!}"
+                data-label="{{ $group->short_name }}"
+                title="{{ $group->group_name }}"
+                style="{!! css_group_colour($group) !!}"
             ></div>
         </div>
     @endif

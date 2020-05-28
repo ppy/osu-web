@@ -106,7 +106,7 @@ class HomeController extends Controller
             $result['user']['users'] = json_collection($searches['user']->data(), 'UserCompact', [
                 'country',
                 'cover',
-                'group_badge',
+                'groups',
                 'support_level',
             ]);
             $result['beatmapset']['beatmapsets'] = json_collection($searches['beatmapset']->data(), 'Beatmapset', ['beatmaps']);

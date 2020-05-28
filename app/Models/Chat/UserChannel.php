@@ -40,6 +40,12 @@ class UserChannel extends Model
         return $this->belongsTo(Channel::class, 'channel_id');
     }
 
+    // Laravel has own hidden property
+    public function isHidden()
+    {
+        return (bool) $this->getAttribute('hidden');
+    }
+
     public function markAsRead($messageId = null)
     {
         $maxId = get_int($messageId ?? Message::where('channel_id', $this->channel_id)->max('message_id'));
