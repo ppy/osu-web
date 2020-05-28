@@ -2,10 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import UserJSON from 'interfaces/user-json';
 import * as React from 'react';
-import { BeatmapsetJson } from '../beatmapsets/beatmapset-json';
-import BeatmapJsonExtended from '../interfaces/beatmap-json-extended';
-import UserJSON from '../interfaces/user-json';
 import Editor from './editor';
 
 interface Props {
