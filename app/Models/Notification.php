@@ -13,6 +13,7 @@ class Notification extends Model
     const BEATMAPSET_DISCUSSION_LOCK = 'beatmapset_discussion_lock';
     const BEATMAPSET_DISCUSSION_POST_NEW = 'beatmapset_discussion_post_new';
     const BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM = 'beatmapset_discussion_qualified_problem';
+    const BEATMAPSET_DISCUSSION_REVIEW_NEW = 'beatmapset_discussion_review_new';
     const BEATMAPSET_DISCUSSION_UNLOCK = 'beatmapset_discussion_unlock';
     const BEATMAPSET_DISQUALIFY = 'beatmapset_disqualify';
     const BEATMAPSET_LOVE = 'beatmapset_love';
@@ -29,6 +30,7 @@ class Notification extends Model
         self::BEATMAPSET_DISCUSSION_LOCK => 'beatmapset_discussion',
         self::BEATMAPSET_DISCUSSION_POST_NEW => 'beatmapset_discussion',
         self::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM => 'beatmapset_problem',
+        self::BEATMAPSET_DISCUSSION_REVIEW_NEW => 'beatmapset_discussion',
         self::BEATMAPSET_DISCUSSION_UNLOCK => 'beatmapset_discussion',
         self::BEATMAPSET_DISQUALIFY => 'beatmapset_state',
         self::BEATMAPSET_LOVE => 'beatmapset_state',

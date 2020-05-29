@@ -27,6 +27,7 @@ export const nameToCategory: CategoryMap = {
   beatmapset_discussion_lock: 'beatmapset_discussion',
   beatmapset_discussion_post_new: 'beatmapset_discussion',
   beatmapset_discussion_qualified_problem: 'beatmapset_problem',
+  beatmapset_discussion_review_new: 'beatmapset_discussion',
   beatmapset_discussion_unlock: 'beatmapset_discussion',
   beatmapset_disqualify: 'beatmapset_state',
   beatmapset_love: 'beatmapset_state',

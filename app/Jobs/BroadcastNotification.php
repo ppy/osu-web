@@ -7,6 +7,7 @@ namespace App\Jobs;
 
 use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
+use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Follow;
@@ -196,6 +197,26 @@ class BroadcastNotification implements ShouldQueue
         );
 
         $this->assignBeatmapsetDiscussionNotificationDetails();
+    }
+
+    private function onBeatmapsetDiscussionReviewNew()
+    {
+        $this->notifiable = $this->object->beatmapset;
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->notifiable);
+        $stats = BeatmapsetDiscussionReview::getStats(json_decode($this->object->startingPost->message, true));
+
+        $this->params['details'] = [
+            'title' => $this->notifiable->title,
+            'post_id' => $this->object->startingPost->getKey(),
+            'discussion_id' => $this->object->getKey(),
+            'beatmap_id' => $this->object->beatmap_id,
+            'cover_url' => $this->notifiable->coverURL('card'),
+            'embeds' => [
+                'suggestions' => $stats['suggestions'],
+                'problems' => $stats['problems'],
+                'praises' => $stats['praises'],
+            ]
+        ];
     }
 
     private function onBeatmapsetDisqualify()
