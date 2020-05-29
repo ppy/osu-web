@@ -61,7 +61,7 @@ export class Post extends React.PureComponent
     topClasses += " #{bn}--deleted" if @props.post.deleted_at?
     topClasses += " #{bn}--unread" if !@props.read
 
-    userBadge = if @isOwner() then mapperGroup else @props.user.group_badge
+    userGroup = if @isOwner() then mapperGroup else @props.user.groups[0]
 
     div
       className: topClasses
@@ -74,7 +74,7 @@ export class Post extends React.PureComponent
         if (!@props.hideUserCard)
           el UserCard,
             user: @props.user
-            badge: userBadge
+            group: userGroup
         @messageViewer()
         @messageEditor()
 

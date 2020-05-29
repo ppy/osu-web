@@ -19,21 +19,25 @@ class UserNotificationOption extends Model
 {
     use Validatable;
 
-    const VALID_NAMES = [
-        self::BEATMAPSET_MODDING,
-        self::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
-        self::FORUM_TOPIC_REPLY,
+    const BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS = [
+        Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+        Notification::BEATMAPSET_DISQUALIFY,
     ];
 
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
-    const BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM = Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM;
+    const DELIVERY_MODES = ['mail', 'push'];
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
-
-    const HAS_MAIL_NOTIFICATION = [self::BEATMAPSET_MODDING, self::FORUM_TOPIC_REPLY];
+    const HAS_DELIVERY_MODES = [self::BEATMAPSET_MODDING, self::FORUM_TOPIC_REPLY];
 
     protected $casts = [
         'details' => 'array',
     ];
+
+    public static function supportsNotifications(string $name)
+    {
+        return in_array($name, static::HAS_DELIVERY_MODES, true)
+            || in_array($name, static::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS, true);
+    }
 
     public function user()
     {
@@ -48,7 +52,7 @@ class UserNotificationOption extends Model
             $value = null;
         }
 
-        if ($this->name === static::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM) {
+        if (in_array($this->name, static::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS, true)) {
             if (is_array($value['modes'] ?? null)) {
                 $modes = array_filter($value['modes'], 'is_string');
                 $validModes = array_keys(Beatmap::MODES);
@@ -57,9 +61,11 @@ class UserNotificationOption extends Model
             }
         }
 
-        if ($this->hasMailNotification()) {
-            if (isset($value['mail'])) {
-                $details['mail'] = get_bool($value['mail'] ?? null);
+        if (in_array($this->name, static::HAS_DELIVERY_MODES, true)) {
+            foreach (static::DELIVERY_MODES as $mode) {
+                if (isset($value[$mode])) {
+                    $details[$mode] = get_bool($value[$mode] ?? null);
+                }
             }
         }
 
@@ -72,16 +78,11 @@ class UserNotificationOption extends Model
 
     public function setNameAttribute($value)
     {
-        if (!in_array($value, static::VALID_NAMES, true)) {
+        if (!(static::supportsNotifications($value))) {
             $value = null;
         }
 
         $this->attributes['name'] = $value;
-    }
-
-    public function hasMailNotification()
-    {
-        return in_array($this->name, static::HAS_MAIL_NOTIFICATION, true);
     }
 
     public function isValid()

@@ -13,7 +13,9 @@ use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
+use App\Models\UserNotificationOption;
 use Auth;
+use DB;
 use Mail;
 use Request;
 
@@ -169,20 +171,27 @@ class AccountController extends Controller
 
     public function updateNotificationOptions()
     {
-        $request = request();
-
-        $name = $request['name'] ?? null;
-        $params = get_params($request, 'user_notification_option', ['details:any']);
-
-        $option = auth()->user()->notificationOptions()->firstOrCreate(['name' => $name]);
-
-        if ($option->update($params)) {
-            return response(null, 204);
-        } else {
-            return response(['form_error' => [
-                'user_notification_option' => $option->validationErrors()->all(),
-            ]]);
+        $requestParams = request()->all()['user_notification_option'] ?? [];
+        if (!is_array($requestParams)) {
+            abort(422);
         }
+
+        DB::transaction(function () use ($requestParams) {
+            // FIXME: less queries
+            foreach ($requestParams as $key => $value) {
+                if (!UserNotificationOption::supportsNotifications($key)) {
+                    continue;
+                }
+
+                $params = get_params($value, null, ['details:any']);
+
+                $option = auth()->user()->notificationOptions()->firstOrNew(['name' => $key]);
+                // TODO: show correct field error.
+                $option->fill($params)->saveOrExplode();
+            }
+        });
+
+        return response(null, 204);
     }
 
     public function updateOptions()

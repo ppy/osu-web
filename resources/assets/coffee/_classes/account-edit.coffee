@@ -63,6 +63,15 @@ class @AccountEdit
     { value, prevValue }
 
 
+  getMultiValue: (form) ->
+    data = {}
+
+    for checkbox in form.querySelectorAll('.js-account-edit__input')
+      data[checkbox.name] = checkbox.checked
+
+    data
+
+
   saved: (el) =>
     el.dataset.accountEditState = 'saved'
 
@@ -81,20 +90,22 @@ class @AccountEdit
 
 
   update: (form) =>
-    { value, prevValue } = @getValue(form)
+    if form.dataset.accountEditType == 'multi'
+      data = @getMultiValue(form)
+    else
+      { value, prevValue } = @getValue(form)
 
-    return @clearState(form) if value == prevValue
-
-    form.dataset.lastValue = value
+      return @clearState(form) if value == prevValue
+      input = form.querySelector('.js-account-edit__input')
+      field = form.dataset.field ? input.name
+      form.dataset.lastValue = value
+      data = "#{field}": value
 
     url = form.dataset.url ? laroute.route('account.update')
-    input = form.querySelector('.js-account-edit__input')
-    field = form.dataset.field ? input.name
 
     form.updating = $.ajax url,
       method: 'PUT'
-      data:
-        "#{field}": value
+      data: data
 
     .done =>
       @saved form
