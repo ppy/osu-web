@@ -5,24 +5,28 @@
 
 namespace App\Jobs\Notifications;
 
-use App\Models\Beatmapset;
+use App\Models\BeatmapDiscussionPost;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 
-abstract class BeatmapsetNotification extends BroadcastNotification
+abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotification
 {
-    public function __construct(Beatmapset $object, ?User $source = null)
+    public function __construct(BeatmapDiscussionPost $object, ?User $source = null)
     {
         parent::__construct($object, $source);
 
-        $this->notifiable = $object;
+        $this->notifiable = $object->beatmapset;
     }
 
     public function getDetails(): array
     {
         return [
-            'title' => $this->object->title,
-            'cover_url' => $this->object->coverURL('card'),
+            'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
+            'title' => $this->notifiable->title,
+            'post_id' => $this->object->getKey(),
+            'discussion_id' => $this->object->beatmapDiscussion->getKey(),
+            'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
+            'cover_url' => $this->notifiable->coverURL('card'),
         ];
     }
 

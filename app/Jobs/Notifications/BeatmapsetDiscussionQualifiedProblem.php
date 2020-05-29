@@ -9,7 +9,7 @@ use App\Models\Beatmap;
 use App\Models\Notification;
 use App\Models\UserNotificationOption;
 
-class BeatmapsetDiscussionQualifiedProblem extends BeatmapsetNotification
+class BeatmapsetDiscussionQualifiedProblem extends BeatmapsetDiscussionPostNotification
 {
     public function getListentingUserIds(): array
     {

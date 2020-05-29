@@ -13,6 +13,8 @@ class BeatmapsetDisqualify extends BeatmapsetNotification
 {
     public function getListentingUserIds(): array
     {
+        $ids = parent::getListentingUserIds();
+
         $modes = $this->object->playmodes()->all();
         $modes = array_map(function ($modeInt) {
             return Beatmap::modeStr($modeInt);
@@ -23,19 +25,18 @@ class BeatmapsetDisqualify extends BeatmapsetNotification
             ->whereNotNull('details')
             ->get();
 
-        $ids = [];
-
         foreach ($notificationOptions as $notificationOption) {
             if (count(array_intersect($notificationOption->details['modes'] ?? [], $modes)) > 0) {
                 $ids[] = $notificationOption->user_id;
             }
         }
 
+        // FIXME: double filtering
         $ids = static::filterUserIdsForNotificationOption(
             $ids,
             UserNotificationOption::BEATMAPSET_MODDING
         );
 
-        return array_merge($ids, static::beatmapsetWatcherUserIds($this->object));
+        return $ids;
     }
 }

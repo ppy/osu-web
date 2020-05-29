@@ -5,6 +5,6 @@
 
 namespace App\Jobs\Notifications;
 
-class BeatmapsetResetNominations extends BeatmapsetNotification
+class BeatmapsetResetNominations extends BeatmapsetDiscussionPostNotification
 {
 }
