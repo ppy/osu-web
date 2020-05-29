@@ -11,18 +11,12 @@ use App\Models\User;
 
 class CommentNew extends BroadcastNotification
 {
-    public function __construct($object, ?User $source)
+    public function __construct($object, User $source)
     {
         parent::__construct($object, $source);
 
-        $this->notifiable = $object->commentable;
-
-        if ($this->notifiable === null) {
+        if ($this->object->commentable === null) {
             throw new InvalidNotificationException("comment_new: comment #{$this->object->getKey()} missing commentable");
-        }
-
-        if ($this->source === null) {
-            throw new InvalidNotificationException("comment_new: comment #{$this->object->getKey()} missing source");
         }
     }
 
@@ -42,5 +36,10 @@ class CommentNew extends BroadcastNotification
             ->where(['subtype' => 'comment'])
             ->pluck('user_id')
             ->all();
+    }
+
+    public function getNotifiable()
+    {
+        return $this->object->commentable;
     }
 }

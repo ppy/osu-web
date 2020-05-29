@@ -14,19 +14,17 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
     public function __construct(BeatmapDiscussionPost $object, ?User $source = null)
     {
         parent::__construct($object, $source);
-
-        $this->notifiable = $object->beatmapset;
     }
 
     public function getDetails(): array
     {
         return [
             'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
-            'title' => $this->notifiable->title,
+            'title' => $this->getNotifiable()->title,
             'post_id' => $this->object->getKey(),
             'discussion_id' => $this->object->beatmapDiscussion->getKey(),
             'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
-            'cover_url' => $this->notifiable->coverURL('card'),
+            'cover_url' => $this->getNotifiable()->coverURL('card'),
         ];
     }
 
@@ -36,5 +34,10 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
             $this->getNotifiable()->watches()->pluck('user_id')->all(),
             UserNotificationOption::BEATMAPSET_MODDING
         );
+    }
+
+    public function getNotifiable()
+    {
+        return $this->object->beatmapset;
     }
 }

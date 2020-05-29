@@ -10,11 +10,10 @@ use App\Models\User;
 
 class ChannelMessage extends BroadcastNotification
 {
-    public function __construct(Message $object, ?User $source)
+    public function __construct(Message $object, User $source)
     {
         parent::__construct($object, $source);
 
-        $this->notifiable = $this->object->channel;
         // TODO: null check?
         // $channel = Channel::findOrFail($this->object->channel_id);
     }
@@ -31,5 +30,10 @@ class ChannelMessage extends BroadcastNotification
     public function getListentingUserIds(): array
     {
         return $this->object->channel->users()->pluck('user_id')->all();
+    }
+
+    public function getNotifiable()
+    {
+        return $this->object->channel;
     }
 }

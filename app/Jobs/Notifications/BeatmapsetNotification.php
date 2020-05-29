@@ -14,8 +14,6 @@ abstract class BeatmapsetNotification extends BroadcastNotification
     public function __construct(Beatmapset $object, ?User $source = null)
     {
         parent::__construct($object, $source);
-
-        $this->notifiable = $object;
     }
 
     public function getDetails(): array

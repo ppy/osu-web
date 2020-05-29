@@ -23,7 +23,6 @@ abstract class BroadcastNotification implements ShouldQueue
     const CONTENT_TRUNCATE = 36;
 
     protected $name;
-    protected $notifiable;
     protected $object;
     protected $source;
 
@@ -77,7 +76,7 @@ abstract class BroadcastNotification implements ShouldQueue
 
     public function getNotifiable()
     {
-        return $this->notifiable ?? $this->object;
+        return $this->object;
     }
 
     /**

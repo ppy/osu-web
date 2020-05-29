@@ -11,11 +11,9 @@ use App\Models\UserNotificationOption;
 
 class ForumTopicReply extends BroadcastNotification
 {
-    public function __construct(Post $object, ?User $source)
+    public function __construct(Post $object, User $source)
     {
         parent::__construct($object, $source);
-
-        $this->notifiable = $this->object->topic;
     }
 
     public function getDetails(): array
@@ -43,5 +41,10 @@ class ForumTopicReply extends BroadcastNotification
             $userIds,
             UserNotificationOption::FORUM_TOPIC_REPLY
         );
+    }
+
+    public function getNotifiable()
+    {
+        return $this->object->topic;
     }
 }

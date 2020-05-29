@@ -10,14 +10,9 @@ use App\Models\User;
 
 class UserAchievementUnlock extends BroadcastNotification
 {
-    private $user;
-
-    public function __construct(Achievement $object, ?User $source)
+    public function __construct(Achievement $object, User $source)
     {
         parent::__construct($object, $source);
-
-        $this->notifiable = $source;
-        $this->user = $source;
     }
 
     public function getDetails(): array
@@ -28,13 +23,18 @@ class UserAchievementUnlock extends BroadcastNotification
             'cover_url' => $this->object->iconUrl(),
             'slug' => $this->object->slug,
             'title' => $this->object->name,
-            'user_id' => $this->user->getKey(),
+            'user_id' => $this->source->getKey(),
         ];
     }
 
     public function getListentingUserIds(): array
     {
-        return [$this->user->getKey()];
+        return [$this->source->getKey()];
+    }
+
+    public function getNotifiable()
+    {
+        return $this->source;
     }
 
     public function getReceiverIds(): array
