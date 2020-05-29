@@ -84,13 +84,17 @@ export class Comment extends React.PureComponent
       parent = store.comments.get(@props.comment.parentId)
       user = @userFor(@props.comment)
       meta = commentableMetaStore.get(@props.comment.commentableType, @props.comment.commentableId)
+
       # Only clip if there are at least CLIP_LINES + 2 lines to ensure there are enough contents
       # being clipped instead of just single lone line (or worse no more lines because of rounding up).
       longContent = @state.lines? && @state.lines.count >= CLIP_LINES + 2
 
       modifiers = @props.modifiers?[..] ? []
       modifiers.push 'top' if @props.depth == 0
-      modifiers.push 'clip' if @state.clipped && longContent
+
+      mainModifiers = []
+      mainModifiers.push 'deleted' if @props.comment.isDeleted
+      mainModifiers.push 'clip' if @state.clipped && longContent
 
       repliesClass = 'comment__replies'
       repliesClass += ' comment__replies--indented' if @props.depth < MAX_DEPTH
@@ -98,14 +102,15 @@ export class Comment extends React.PureComponent
 
       div
         className: osu.classWithModifiers 'comment', modifiers
-        style:
-          '--line-height': if @state.lines? then "#{@state.lines.lineHeight}px" else undefined
-          '--clip-lines': CLIP_LINES
 
         @renderRepliesToggle()
         @renderCommentableMeta(meta)
 
-        div className: "comment__main #{if @props.comment.isDeleted then 'comment__main--deleted' else ''}",
+        div
+          className: osu.classWithModifiers('comment__main', mainModifiers)
+          style:
+            '--line-height': if @state.lines? then "#{@state.lines.lineHeight}px" else undefined
+            '--clip-lines': CLIP_LINES
           if @props.comment.canHaveVote
             div className: 'comment__float-container comment__float-container--left hidden-xs',
               @renderVoteButton()
