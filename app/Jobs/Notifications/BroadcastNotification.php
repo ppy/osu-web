@@ -65,9 +65,9 @@ abstract class BroadcastNotification implements ShouldQueue
         $this->source = $source;
     }
 
-    abstract function getDetails(): array;
+    abstract public function getDetails(): array;
 
-    abstract function getListentingUserIds(): array;
+    abstract public function getListentingUserIds(): array;
 
     public function getName()
     {
