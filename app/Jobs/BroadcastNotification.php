@@ -215,7 +215,7 @@ class BroadcastNotification implements ShouldQueue
                 'suggestions' => $stats['suggestions'],
                 'problems' => $stats['problems'],
                 'praises' => $stats['praises'],
-            ]
+            ],
         ];
     }
 

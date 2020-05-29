@@ -246,7 +246,8 @@ class BeatmapsetDiscussionReview
         return $newDiscussion;
     }
 
-    public static function getStats(array $document) {
+    public static function getStats(array $document)
+    {
         $stats = [
             'praises' => 0,
             'suggestions' => 0,
@@ -262,7 +263,7 @@ class BeatmapsetDiscussionReview
 
         $embeds = BeatmapDiscussion::whereIn('id', $embedIds)->get();
         foreach ($embeds as $embed) {
-            switch($embed->message_type) {
+            switch ($embed->message_type) {
                 case 'praise':
                     $stats['praises']++;
                     break;
