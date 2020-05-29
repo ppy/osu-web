@@ -390,7 +390,10 @@ export default class Editor extends React.Component<Props, State> {
     const canDisqualify = currentUser.is_admin || currentUser.is_moderator || currentUser.is_full_bn;
     const willDisqualify = this.props.beatmapset.status === 'qualified' && docContainsProblem;
     const canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng;
-    const willReset = this.props.beatmapset.status === 'pending' && this.props.beatmapset.nominations.current > 0 && docContainsProblem;
+    const willReset =
+      this.props.beatmapset.status === 'pending' &&
+      this.props.beatmapset.nominations && this.props.beatmapset.nominations.current > 0 &&
+      docContainsProblem;
 
     let confirmed = true;
 
