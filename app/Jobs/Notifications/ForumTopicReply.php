@@ -47,4 +47,9 @@ class ForumTopicReply extends BroadcastNotification
     {
         return $this->object->topic;
     }
+
+    public function getTimestamp()
+    {
+        return $this->object->post_time;
+    }
 }

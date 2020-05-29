@@ -118,6 +118,11 @@ abstract class BroadcastNotification implements ShouldQueue
     {
         $params['details'] = $this->getDetails();
         $params['name'] = $this->name;
+
+        if (method_exists($this, 'getTimestamp')) {
+            $params['created_at'] = $this->getTimestamp();
+        }
+
         if ($this->source !== null) {
             $params['details']['username'] = $this->source;
         }
