@@ -4,17 +4,17 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => '',
+    '_' => 'Sortera efter',
 
-    'last_visit' => '',
-    'new' => '',
-    'old' => '',
-    'rank' => '',
-    'top' => '',
+    'last_visit' => 'Nyligen aktiva',
+    'new' => 'Nyligen',
+    'old' => 'Gammal',
+    'rank' => 'Rang',
+    'top' => 'Topp',
     'username' => 'Användarnamn',
 
     'forum_topics' => [
-        'new' => '',
-        'feature_votes' => '',
+        'new' => 'Senaste svar',
+        'feature_votes' => 'Stjärn-priotitet ',
     ],
 ];

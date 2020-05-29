@@ -13,20 +13,13 @@ const bn = 'beatmap-discussion-editor-toolbar';
 
 export class EditorToolbar extends React.Component {
   static contextType = SlateContext;
-  ref: React.RefObject<HTMLDivElement>;
+  ref = React.createRef<HTMLDivElement>();
   scrollContainer: HTMLElement | undefined;
   private scrollTimer: number | undefined;
-
-  constructor(props: {}) {
-    super(props);
-
-    this.ref = React.createRef();
-  }
+  private readonly throttledUpdate = _.throttle(this.updatePosition.bind(this), 100);
 
   componentDidMount() {
-    $(window).on('scroll.editor-toolbar', _.throttle(() => {
-      this.updatePosition();
-    }, 100));
+    $(window).on('scroll.editor-toolbar', this.throttledUpdate);
     this.updatePosition();
   }
 
@@ -37,8 +30,9 @@ export class EditorToolbar extends React.Component {
   componentWillUnmount() {
     $(window).off('.editor-toolbar');
     if (this.scrollContainer) {
-      $(this.scrollContainer).off('scroll');
+      $(this.scrollContainer).off('.editor-toolbar');
     }
+    this.throttledUpdate.cancel();
   }
 
   render(): React.ReactNode {
@@ -46,7 +40,22 @@ export class EditorToolbar extends React.Component {
       return null;
     }
 
-    const ToolbarButton = ({format}: { format: string }) => (
+    return (
+      <Portal>
+        <div
+          className={bn}
+          ref={this.ref}
+        >
+          {this.renderButton('bold')}
+          {this.renderButton('italic')}
+          <div className={`${bn}__popup-tail`}/>
+        </div>
+      </Portal>
+    );
+  }
+
+  renderButton(format: string) {
+    return (
       <button
         className={osu.classWithModifiers(`${bn}__button`, [isFormatActive(this.context, format) ? 'active' : ''])}
         // we use onMouseDown instead of onClick here so the popup remains visible after clicking
@@ -59,26 +68,11 @@ export class EditorToolbar extends React.Component {
         <i className={`fas fa-${format}`}/>
       </button>
     );
-
-    return (
-      <Portal>
-        <div
-          className={bn}
-          ref={this.ref}
-        >
-          <ToolbarButton format='bold'/>
-          <ToolbarButton format='italic'/>
-          <div className={`${bn}__popup-tail`}/>
-        </div>
-      </Portal>
-    );
   }
 
   setScrollContainer(container: HTMLElement) {
     this.scrollContainer = container;
-    $(this.scrollContainer).on('scroll', _.throttle(() => {
-      this.updatePosition();
-    }, 100));
+    $(this.scrollContainer).on('scroll.editor-toolbar', this.throttledUpdate);
   }
 
   updatePosition() {

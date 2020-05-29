@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title' => 'Beatmapdiskussionsröster',
+        'title' => 'Beatmap-diskussionsröster',
     ],
 
     'item' => [

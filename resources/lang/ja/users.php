@@ -307,6 +307,7 @@ return [
                 'empty' => 'まだ記録がありません！',
                 'not_ranked' => 'Rankedビートマップのみがppを与えます。',
                 'pp_weight' => '割合 :percentage',
+                'view_details' => '',
                 'title' => 'ランク',
 
                 'best' => [

@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as React from 'react';
 import { Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
@@ -10,18 +12,9 @@ import EditorIssueTypeSelector from './editor-issue-type-selector';
 import { SlateContext } from './slate-context';
 
 interface Props extends RenderElementProps {
-  // attributes taken from RenderElementProps, but extended with contentEditable
-  attributes: {
-    contentEditable?: boolean;
-    'data-slate-inline'?: true;
-    'data-slate-node': 'element';
-    'data-slate-void'?: true;
-    dir?: 'rtl';
-    ref: any;
-  };
-  beatmaps: Beatmap[];
-  beatmapset: Beatmapset;
-  currentBeatmap: Beatmap;
+  beatmaps: BeatmapJsonExtended[];
+  beatmapset: BeatmapsetJson;
+  currentBeatmap: BeatmapJsonExtended;
   currentDiscussions: BeatmapDiscussion[];
   discussionId?: number;
   editMode?: boolean;
@@ -39,7 +32,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   componentDidUpdate = () => {
     const path = this.path();
 
-    if (this.props.element.beatmapId !== 'all') {
+    if (this.props.element.beatmapId) {
       const content = this.props.element.children[0].text;
       const matches = content.match(BeatmapDiscussionHelper.TIMESTAMP_REGEX);
       let timestamp = null;
@@ -67,9 +60,12 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const bn = 'beatmap-discussion-review-post-embed-preview';
-    const attribs = this.props.attributes;
     const canEdit = this.editable();
     const classMods = canEdit ? [] : ['read-only'];
+    const timestampTooltipType = this.props.element.beatmapId ? 'diff' : 'all-diff';
+    const timestampTooltip = osu.trans(`beatmaps.discussions.review.embed.timestamp.${timestampTooltipType}`, {
+        type: osu.trans(`beatmaps.discussions.message_type.${this.props.element.discussionType}`),
+      });
 
     const deleteButton =
       (
@@ -89,7 +85,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         className='beatmap-discussion beatmap-discussion--preview'
         contentEditable={canEdit}
         suppressContentEditableWarning={true}
-        {...attribs}
+        {...this.props.attributes}
       >
         <div className='beatmap-discussion__discussion'>
           <div className={osu.classWithModifiers(bn, classMods)}>
@@ -103,6 +99,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 <div
                   className={`${bn}__timestamp`}
                   contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+                  title={canEdit ? timestampTooltip : ''}
                 >
                   {this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general')}
                 </div>
@@ -118,7 +115,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 <div
                   className={`${bn}__unsaved-indicator`}
                   contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-                  title={osu.trans('beatmaps.review.embed.unsaved')}
+                  title={osu.trans('beatmaps.discussions.review.embed.unsaved')}
                 >
                   <i className='fas fa-pencil-alt'/>
                 </div>

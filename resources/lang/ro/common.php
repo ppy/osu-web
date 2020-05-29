@@ -37,6 +37,7 @@ return [
         'permalink' => 'link permanent',
         'pin' => '',
         'post' => 'Postează',
+        'read_more' => '',
         'reply' => 'Răspunde',
         'reply_reopen' => 'Răspundeți și deschideți din nou',
         'reply_resolve' => 'Răspunde și rezolvă',

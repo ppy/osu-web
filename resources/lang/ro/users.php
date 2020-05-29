@@ -307,6 +307,7 @@ return [
                 'empty' => 'Nicio performanță uimitoare nu a fost înregistrată încă. :(',
                 'not_ranked' => 'Numai beatmaps clasate acordă pp.',
                 'pp_weight' => 'ponderat :percentage',
+                'view_details' => '',
                 'title' => 'Clasamente',
 
                 'best' => [

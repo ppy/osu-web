@@ -6,7 +6,7 @@
 return [
     'header' => [
         'title' => 'статус',
-        'description' => 'что вообще происходит, ребят?',
+        'description' => 'что вообще происходит, чел?',
     ],
 
     'incidents' => [

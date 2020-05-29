@@ -37,6 +37,7 @@ return [
         'permalink' => '静态链接',
         'pin' => '置顶',
         'post' => '发表',
+        'read_more' => '',
         'reply' => '回复',
         'reply_reopen' => '回复并重新打开',
         'reply_resolve' => '回复并标记为已解决',

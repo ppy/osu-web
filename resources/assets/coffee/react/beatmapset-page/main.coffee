@@ -11,6 +11,8 @@ import HeaderV4 from 'header-v4'
 import { PlaymodeTabs } from 'playmode-tabs'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
+import * as BeatmapHelper from 'utils/beatmap-helper'
+
 el = React.createElement
 
 export class Main extends React.Component
@@ -35,8 +37,8 @@ export class Main extends React.Component
         mode: optionsHash.playmode
 
       # fall back to the first mode that has beatmaps in this mapset
-      currentBeatmap ?= BeatmapHelper.default items: beatmaps[optionsHash.playmode]
-      currentBeatmap ?= BeatmapHelper.default group: beatmaps
+      currentBeatmap ?= BeatmapHelper.findDefault items: beatmaps[optionsHash.playmode]
+      currentBeatmap ?= BeatmapHelper.findDefault group: beatmaps
 
       @state =
         beatmapset: props.beatmapset
@@ -137,7 +139,7 @@ export class Main extends React.Component
     return if @state.currentBeatmap.mode == mode
 
     @setCurrentBeatmap null,
-      beatmap: BeatmapHelper.default items: @state.beatmaps[mode]
+      beatmap: BeatmapHelper.findDefault items: @state.beatmaps[mode]
 
 
   setHoveredBeatmap: (_e, hoveredBeatmap) =>

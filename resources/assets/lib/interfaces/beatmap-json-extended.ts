@@ -3,6 +3,10 @@
 
 import BeatmapJson from './beatmap-json';
 
+export function isValid(x: BeatmapJson | BeatmapJsonExtended): x is BeatmapJsonExtended {
+  return (x as BeatmapJsonExtended).accuracy != null;
+}
+
 // TODO: incomplete
 export default interface BeatmapJsonExtended extends BeatmapJson {
   accuracy: number;

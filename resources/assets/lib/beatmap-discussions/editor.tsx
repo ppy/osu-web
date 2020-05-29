@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
 import * as _ from 'lodash';
@@ -9,10 +11,12 @@ import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as S
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { Spinner } from 'spinner';
+import { sortWithMode } from 'utils/beatmap-helper';
 import EditorDiscussionComponent from './editor-discussion-component';
 import {
   serializeSlateDocument,
   slateDocumentContainsProblem,
+  slateDocumentIsEmpty,
   toggleFormat,
 } from './editor-helpers';
 import { EditorToolbar } from './editor-toolbar';
@@ -20,13 +24,13 @@ import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
 
 interface CacheInterface {
-  sortedBeatmaps?: Beatmap[];
+  sortedBeatmaps?: BeatmapJsonExtended[];
 }
 
 interface Props {
-  beatmaps: Record<number, Beatmap>;
-  beatmapset: Beatmapset;
-  currentBeatmap: Beatmap;
+  beatmaps: Record<number, BeatmapJsonExtended>;
+  beatmapset: BeatmapsetJson;
+  currentBeatmap: BeatmapJsonExtended;
   currentDiscussions: BeatmapDiscussion[];
   discussion?: BeatmapDiscussion;
   discussions: Record<number, BeatmapDiscussion>;
@@ -153,10 +157,10 @@ export default class Editor extends React.Component<Props, State> {
 
   insertBlock = (event: React.MouseEvent<HTMLElement>) => {
     const type = event.currentTarget.dataset.dtype;
-    const beatmapId = this.props.currentBeatmap ? this.props.currentBeatmap.id : this.props.beatmaps[this.props.beatmapset.beatmaps[0].id];
+    const beatmapId = this.props.currentBeatmap?.id;
 
     // find where to insert the new embed (relative to the dropdown menu)
-    const lastChild = $(event.currentTarget).closest(`.${this.bn}__block`)[0].lastChild;
+    const lastChild = event.currentTarget.closest(`.${this.bn}__block`)?.lastChild;
 
     if (!lastChild) {
       return;
@@ -223,10 +227,10 @@ export default class Editor extends React.Component<Props, State> {
     if (!this.props.editMode) {
       const content = JSON.stringify(value);
 
-      if (content !== JSON.stringify(this.emptyDocTemplate)) {
-        localStorage.setItem(this.localStorageKey, content);
-      } else {
+      if (slateDocumentIsEmpty(value)) {
         localStorage.removeItem(this.localStorageKey);
+      } else {
+        localStorage.setItem(this.localStorageKey, content);
       }
     }
 
@@ -402,7 +406,7 @@ export default class Editor extends React.Component<Props, State> {
 
   sortedBeatmaps = () => {
     if (this.cache.sortedBeatmaps == null) {
-      this.cache.sortedBeatmaps = BeatmapHelper.sortWithMode(_.values(this.props.beatmaps));
+      this.cache.sortedBeatmaps = sortWithMode(_.values(this.props.beatmaps));
     }
 
     return this.cache.sortedBeatmaps;

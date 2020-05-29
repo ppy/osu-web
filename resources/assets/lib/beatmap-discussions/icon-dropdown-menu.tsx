@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as _ from 'lodash';
+import { PopupMenuPersistent } from 'popup-menu-persistent';
 import * as React from 'react';
-import { PopupMenuPersistent } from '../popup-menu-persistent';
 import { SlateContext } from './slate-context';
 
 export interface MenuItem {

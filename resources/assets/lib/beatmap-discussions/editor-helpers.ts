@@ -6,6 +6,15 @@ import { Node as SlateNode } from 'slate';
 import { ReactEditor } from 'slate-react';
 import { BeatmapDiscussionReview, DocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 
+export const slateDocumentIsEmpty = (doc: SlateNode[]): boolean => {
+  return doc.length === 0 || (
+      doc.length === 1 &&
+      doc[0].type === 'paragraph' &&
+      doc[0].children.length === 1 &&
+      doc[0].children[0].text === ''
+    );
+};
+
 export const isFormatActive = (editor: ReactEditor, format: string) => {
   const [match] = Editor.nodes(editor, {
     match: (n) => n[format] === true,
@@ -94,6 +103,12 @@ export const serializeSlateDocument = (input: SlateNode[]) => {
         break;
     }
   });
+
+  // strip last block if it's empty (i.e. the placeholder that allows easier insertion at the end of a document)
+  const lastBlock = review[review.length - 1];
+  if (lastBlock.type === 'paragraph' && !osu.present(lastBlock.text)) {
+    review.pop();
+  }
 
   return JSON.stringify(review);
 };

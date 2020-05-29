@@ -5,7 +5,7 @@
 
 return [
     'country' => [
-        'filter' => '',
+        'filter' => 'ország szerinti szűrő',
     ],
 
     'type' => [
