@@ -10,6 +10,9 @@ import ClickToCopy from 'click-to-copy'
 import * as React from 'react'
 import { a, button, div, span } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
+import Editor from 'beatmap-discussions/editor'
+import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 
 el = React.createElement
 
@@ -24,6 +27,7 @@ export class Post extends React.PureComponent
     @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
     @xhr = {}
     @cache = {}
+    @reviewEditor = React.createRef()
 
     @state =
       editing: false
@@ -103,14 +107,30 @@ export class Post extends React.PureComponent
     canPost = !@state.posting && @validPost()
 
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
-      el TextareaAutosize,
-        disabled: @state.posting
-        className: "#{bn}__message #{bn}__message--editor"
-        onChange: @setMessage
-        onKeyDown: @handleKeyDown
-        value: @state.message
-        ref: @textarea
-      el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
+      if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+        el DiscussionsContext.Consumer, null,
+          (discussions) =>
+            el BeatmapsContext.Consumer, null,
+              (beatmaps) =>
+                el Editor,
+                  beatmapset: @props.beatmapset
+                  beatmaps: beatmaps
+                  document: @props.post.message
+                  discussion: @props.discussion
+                  discussions: discussions
+                  editMode: true
+                  editing: @state.editing
+                  ref: @reviewEditor
+      else
+        el React.Fragment, null,
+          el TextareaAutosize,
+            disabled: @state.posting
+            className: "#{bn}__message #{bn}__message--editor"
+            onChange: @setMessage
+            onKeyDown: @handleKeyDown
+            value: @state.message
+            ref: @textarea
+          el MessageLengthCounter, message: @state.message, isTimeline: @isTimeline()
 
       div className: "#{bn}__actions",
         div className: "#{bn}__actions-group"
@@ -259,7 +279,13 @@ export class Post extends React.PureComponent
 
 
   updatePost: =>
-    if @state.message == @props.post.message
+    messageContent = @state.message
+
+    if @props.discussion.message_type == 'review' && @props.type == 'discussion'
+      messageContent = @reviewEditor.current.serialize()
+      @setState message: messageContent
+
+    if messageContent == @props.post.message
       @setState editing: false
       return
 
@@ -270,7 +296,7 @@ export class Post extends React.PureComponent
       method: 'PUT'
       data:
         beatmap_discussion_post:
-          message: @state.message
+          message: messageContent
 
     .done (data) =>
       @setState editing: false

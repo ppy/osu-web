@@ -1,12 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-.beatmap-discussion-review-post {
-  &__block {
-    white-space: pre-wrap;
-  }
+import * as React from 'react';
+import { ReactEditor } from 'slate-react';
 
-  &__link {
-    .link-default();
-  }
-}
+export const SlateContext = React.createContext<ReactEditor | null>(null);

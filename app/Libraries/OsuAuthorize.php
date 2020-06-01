@@ -232,14 +232,19 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @param Beatmapset $beatmapset
      * @return string
      * @throws AuthorizationException
      */
-    public function checkBeatmapsetDiscussionReviewStore(?User $user): string
+    public function checkBeatmapsetDiscussionReviewStore(?User $user, Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
+
+        if ($beatmapset->discussion_locked) {
+            return 'beatmap_discussion_post.store.beatmapset_locked';
+        }
 
         return 'ok';
     }

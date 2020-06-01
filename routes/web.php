@@ -61,7 +61,6 @@ Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
     Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
         Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
     });
-    Route::post('beatmapsets/discussions/review', 'BeatmapDiscussionsController@review')->name('beatmap-discussions.review');
 
     Route::group(['namespace' => 'Beatmapsets'], function () {
         Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
@@ -69,6 +68,7 @@ Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
 });
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
+Route::post('beatmapsets/{beatmapset}/discussion/review', 'BeatmapDiscussionsController@review')->name('beatmapsets.discussion.review');
 Route::post('beatmapsets/{beatmapset}/discussion-lock', 'BeatmapsetsController@discussionLock')->name('beatmapsets.discussion-lock');
 Route::post('beatmapsets/{beatmapset}/discussion-unlock', 'BeatmapsetsController@discussionUnlock')->name('beatmapsets.discussion-unlock');
 Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
@@ -317,7 +317,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);
             });
-            Route::post('discussions/review', 'BeatmapDiscussionsController@review')->name('beatmap-discussions.review');
         });
 
         Route::apiResource('comments', 'CommentsController');
