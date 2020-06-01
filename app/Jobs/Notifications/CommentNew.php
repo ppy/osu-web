@@ -9,7 +9,7 @@ use App\Exceptions\InvalidNotificationException;
 use App\Models\Follow;
 use App\Models\User;
 
-class CommentNew extends BroadcastNotification
+class CommentNew extends BroadcastNotificationBase
 {
     public function __construct($object, User $source)
     {

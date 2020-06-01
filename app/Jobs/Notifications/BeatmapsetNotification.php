@@ -9,7 +9,7 @@ use App\Models\Beatmapset;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 
-abstract class BeatmapsetNotification extends BroadcastNotification
+abstract class BeatmapsetNotification extends BroadcastNotificationBase
 {
     public function __construct(Beatmapset $object, ?User $source = null)
     {

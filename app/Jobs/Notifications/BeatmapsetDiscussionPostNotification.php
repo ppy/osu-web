@@ -9,7 +9,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 
-abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotification
+abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificationBase
 {
     public function __construct(BeatmapDiscussionPost $object, ?User $source = null)
     {

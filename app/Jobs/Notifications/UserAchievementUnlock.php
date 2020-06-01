@@ -8,7 +8,7 @@ namespace App\Jobs\Notifications;
 use App\Models\Achievement;
 use App\Models\User;
 
-class UserAchievementUnlock extends BroadcastNotification
+class UserAchievementUnlock extends BroadcastNotificationBase
 {
     public function __construct(Achievement $object, User $source)
     {

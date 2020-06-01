@@ -16,7 +16,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
 
-abstract class BroadcastNotification implements ShouldQueue
+abstract class BroadcastNotificationBase implements ShouldQueue
 {
     use NotificationQueue, Queueable, SerializesModels;
 

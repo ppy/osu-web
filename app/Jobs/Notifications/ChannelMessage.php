@@ -8,7 +8,7 @@ namespace App\Jobs\Notifications;
 use App\Models\Chat\Message;
 use App\Models\User;
 
-class ChannelMessage extends BroadcastNotification
+class ChannelMessage extends BroadcastNotificationBase
 {
     public function __construct(Message $object, User $source)
     {

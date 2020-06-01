@@ -10,7 +10,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 
-class BeatmapsetDiscussionReviewNew extends BroadcastNotification
+class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
 {
     public function __construct(BeatmapDiscussion $object, User $source)
     {

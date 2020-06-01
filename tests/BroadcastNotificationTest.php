@@ -13,7 +13,7 @@ use App\Models\UserNotificationOption;
 use Event;
 use Queue;
 
-class BroadcastNotificationTest extends TestCase
+class BroadcastNotificationBaseTest extends TestCase
 {
     protected $sender;
 

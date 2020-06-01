@@ -52,7 +52,7 @@ function blade_safe($html)
 
 function broadcast_notification($name, ...$arguments)
 {
-    $class = App\Jobs\Notifications\BroadcastNotification::getNotificationClass($name);
+    $class = App\Jobs\Notifications\BroadcastNotificationBase::getNotificationClass($name);
 
     return (new $class(...$arguments))->dispatch();
 }

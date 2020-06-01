@@ -9,7 +9,7 @@ use App\Models\Forum\Post;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 
-class ForumTopicReply extends BroadcastNotification
+class ForumTopicReply extends BroadcastNotificationBase
 {
     public function __construct(Post $object, User $source)
     {
