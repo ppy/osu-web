@@ -3,6 +3,7 @@
 
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
+import BeatmapJson from '../interfaces/beatmap-json';
 
 interface BeatmapsetCovers {
   card: string;
@@ -11,8 +12,10 @@ interface BeatmapsetCovers {
   slimcover: string;
 }
 
+// TODO: incomplete
 export interface BeatmapsetJson {
   artist: string;
+  beatmaps?: BeatmapJson[];
   covers: BeatmapsetCovers;
   creator: string;
   genre: GenreJson;

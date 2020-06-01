@@ -59,6 +59,13 @@ $factory->state(Beatmapset::class, 'no_discussion', function () {
     return ['discussion_enabled' => false];
 });
 
+$factory->state(Beatmapset::class, 'qualified', function () {
+    return [
+        'approved' => Beatmapset::STATES['qualified'],
+        'queued_at' => now(),
+    ];
+});
+
 $factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App\Models\Beatmapset $beatmapset) {
     if (!$beatmapset->beatmaps()->save(
         factory(App\Models\Beatmap::class)->make()

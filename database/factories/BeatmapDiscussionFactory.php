@@ -23,15 +23,21 @@ $factory->define(BeatmapDiscussion::class, function (Faker\Generator $faker) use
 });
 
 $factory->defineAs(BeatmapDiscussion::class, 'timeline', function () {
-    return  [
+    return [
         'timestamp' => 0,
         'message_type' => 'problem',
     ];
 });
 
 $factory->defineAs(BeatmapDiscussion::class, 'general', function () {
-    return  [
+    return [
         'timestamp' => null,
         'message_type' => 'problem',
+    ];
+});
+
+$factory->defineAs(BeatmapDiscussion::class, 'review', function () {
+    return [
+        'message_type' => 'review',
     ];
 });

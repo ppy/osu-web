@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Jobs\NotifyBeatmapsetUpdate;
+use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
@@ -16,7 +17,6 @@ use App\Models\Notification;
 use Auth;
 use DB;
 use Illuminate\Pagination\Paginator;
-use Request;
 
 class BeatmapDiscussionPostsController extends Controller
 {
@@ -137,7 +137,7 @@ class BeatmapDiscussionPostsController extends Controller
 
         $notifyQualifiedProblem = false;
 
-        if ($discussion->beatmapset->isQualified() && $discussion->message_type === 'problem') {
+        if (!$disqualify && $discussion->beatmapset->isQualified() && $discussion->message_type === 'problem') {
             $openProblems = $discussion
                 ->beatmapset
                 ->beatmapDiscussions()
@@ -210,7 +210,18 @@ class BeatmapDiscussionPostsController extends Controller
 
         $params = get_params(request(), 'beatmap_discussion_post', ['message']);
         $params['last_editor_id'] = Auth::user()->user_id;
-        $post->fill($params)->saveOrExplode();
+
+        if ($post->beatmapDiscussion->message_type === 'review' && $post->isFirstPost()) {
+            // handle reviews (but not replies to the reviews)
+            try {
+                $document = json_decode($params['message'], true);
+                BeatmapsetDiscussionReview::update($post->beatmapDiscussion, $document, Auth::user());
+            } catch (\Exception $e) {
+                throw new ModelNotSavedException($e->getMessage());
+            }
+        } else {
+            $post->fill($params)->saveOrExplode();
+        }
 
         return $post->beatmapset->defaultDiscussionJson();
     }

@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Laravel\Passport\Token;
+use Queue;
 use ReflectionMethod;
 use ReflectionProperty;
 
@@ -129,5 +130,12 @@ class TestCase extends BaseTestCase
     protected function normalizeHTML($html)
     {
         return str_replace('<br />', "<br />\n", str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html))));
+    }
+
+    protected function runFakeQueue()
+    {
+        collect(Queue::pushedJobs())->flatten(1)->each(function ($job) {
+            $job['job']->handle();
+        });
     }
 }

@@ -1,0 +1,141 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-discussion-editor {
+  @_top: beatmap-discussion-editor;
+  @_side-padding: 15px;
+
+  display: flex;
+  background-color: @osu-colour-b4;
+  flex-direction: column;
+
+  .fancy-scrollbar();
+
+  &--edit-mode {
+    margin-bottom: 10px;
+  }
+
+  &__block {
+    &::before {
+      content: '';
+      position: absolute;
+      right: 100%;
+      width: @_side-padding;
+      display: block;
+      height: 100%;
+    }
+
+    .@{_top}--readonly & {
+        &:hover .@{_top}__hover-menu {
+          display: none;
+        }
+    }
+
+    &:hover .@{_top}__hover-menu {
+      display: block;
+    }
+
+    // Doing this instead of padding-bottom on input-area, because firefox: https://github.com/w3c/csswg-drafts/issues/129
+    &:last-of-type {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__hover-menu {
+    bottom: -10px;
+    display: none;
+    margin-left: -@_side-padding;
+    position: absolute;
+    user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+    .default-text-shadow();
+    z-index: @z-index--blackout-visible;
+  }
+
+  &__button-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: @_side-padding;
+    background: @osu-colour-b6;
+    border-radius: 0 0 @border-radius-base @border-radius-base;
+  }
+
+  &__content {
+    display: flex;
+    margin: 0 @_side-padding @_side-padding @_side-padding;
+    flex-direction: column;
+    color: white;
+    background: @osu-colour-b5;
+    .default-border-radius();
+
+    .@{_top}--edit-mode & {
+      margin: 0 -@_side-padding;
+      border: 2px solid hsl(200, 60%, 50%);
+    }
+  }
+
+  &__input-area {
+    .content-font();
+
+    max-height: 70vh;
+    overflow-y: auto;
+
+    padding: @_side-padding;
+
+    .@{_top}--edit-mode & {
+      max-height: unset;
+    }
+
+    .@{_top}--readonly & {
+      opacity: 0.5;
+    }
+  }
+
+  &__menu-content {
+    position: absolute;
+    display: none;
+    background: @osu-colour-b6;
+    z-index: @z-index--blackout-visible;
+    margin-left: 10px;
+    margin-top: -10px;
+    .default-border-radius();
+    .default-box-shadow();
+
+    .@{_top}__hover-menu:hover & {
+      display: flex;
+    }
+  }
+
+  &__menu-button {
+    .reset-input();
+    padding: 5px 10px;
+    color: @osu-colour-f1;
+    filter: grayscale(1);
+
+    &:hover {
+      filter: none;
+    }
+
+    &--paragraph:hover {
+      color: @osu-colour-c1;
+    }
+
+    &--praise:hover {
+      color: @beatmap-discussion--color-praise;
+    }
+
+    &--problem:hover {
+      color: @beatmap-discussion--color-problem;
+    }
+
+    &--suggestion:hover {
+      color: @beatmap-discussion--color-suggestion;
+    }
+  }
+
+  &__menu {
+    color: white;
+    font-size: 16px;
+  }
+}

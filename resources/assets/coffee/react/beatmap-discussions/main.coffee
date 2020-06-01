@@ -8,9 +8,10 @@ import { ModeSwitcher } from './mode-switcher'
 import { NewDiscussion } from './new-discussion'
 import { BackToTop } from 'back-to-top'
 import * as React from 'react'
-import { div } from 'react-dom-factories'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import { div } from 'react-dom-factories'
+import NewReview from 'beatmap-discussions/new-review'
 import * as BeatmapHelper from 'utils/beatmap-helper'
 
 el = React.createElement
@@ -127,24 +128,34 @@ export class Main extends React.PureComponent
       else
         div
           className: 'osu-layout__section osu-layout__section--extra'
-          # TODO: toggle to the review editor instead (when it exists)
-          if @state.currentMode != 'reviews'
-            el NewDiscussion,
-              beatmapset: @state.beatmapset
-              currentUser: @state.currentUser
-              currentBeatmap: @currentBeatmap()
-              currentDiscussions: @currentDiscussions()
-              innerRef: @newDiscussionRef
-              mode: @state.currentMode
-              pinned: @state.pinnedNewDiscussion
-              setPinned: @setPinnedNewDiscussion
-              stickTo: @modeSwitcherRef
-              autoFocus: @focusNewDiscussion
-
           el DiscussionsContext.Provider,
             value: @discussions()
             el BeatmapsContext.Provider,
               value: @beatmaps()
+
+              if @state.currentMode == 'reviews'
+                el NewReview,
+                  beatmapset: @state.beatmapset
+                  beatmaps: @beatmaps()
+                  currentBeatmap: @currentBeatmap()
+                  currentDiscussions: @currentDiscussions()
+                  currentUser: @state.currentUser
+                  pinned: @state.pinnedNewDiscussion
+                  setPinned: @setPinnedNewDiscussion
+                  stickTo: @modeSwitcherRef
+              else
+                el NewDiscussion,
+                  beatmapset: @state.beatmapset
+                  currentUser: @state.currentUser
+                  currentBeatmap: @currentBeatmap()
+                  currentDiscussions: @currentDiscussions()
+                  innerRef: @newDiscussionRef
+                  mode: @state.currentMode
+                  pinned: @state.pinnedNewDiscussion
+                  setPinned: @setPinnedNewDiscussion
+                  stickTo: @modeSwitcherRef
+                  autoFocus: @focusNewDiscussion
+
               el Discussions,
                 beatmapset: @state.beatmapset
                 currentBeatmap: @currentBeatmap()
