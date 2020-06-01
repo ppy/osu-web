@@ -10,7 +10,7 @@ export const modes: GameMode[] = ['osu', 'taiko', 'fruits', 'mania'];
 
 function isVisibleBeatmap(beatmap: BeatmapJson) {
   if (isBeatmapJsonExtended(beatmap)) {
-    return beatmap.deleted_at != null && !beatmap.convert;
+    return beatmap.deleted_at == null && !beatmap.convert;
   }
 
   return true;
