@@ -1,0 +1,48 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.icon-dropdown-menu {
+  align-items: center;
+  display: flex;
+  margin-right: 10px;
+  padding: 5px;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+
+  .default-border-radius();
+  .link-default();
+  .link-plain();
+  background-color: @osu-colour-b5;
+  overflow: hidden;
+
+  z-index: @z-index--blackout-visible;
+
+  &::after {
+    .fas();
+    .full-size();
+    background-color: osu-hsla(@osu-colour-b6, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    content: @fa-var-chevron-down;
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &--disabled {
+    background-color: transparent;
+    cursor: default;
+
+    &::after {
+      display: none;
+    }
+  }
+}

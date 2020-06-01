@@ -1,10 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { createElement as el, createRef, PureComponent } from 'react'
+import { createRef, PureComponent } from 'react'
 import { createPortal } from 'react-dom'
 import * as React from 'react'
-import { a, button, div, i } from 'react-dom-factories'
+import { button, div, i } from 'react-dom-factories'
 import { TooltipContext } from 'tooltip-context'
 import { Modal } from 'modal'
 
@@ -116,16 +116,19 @@ export class PopupMenu extends PureComponent
   render: =>
     @portal ?= document.createElement('div')
 
-    div
-      className: 'popup-menu'
-      ref: @menu
-      button
-        className: 'popup-menu__button'
-        type: 'button'
-        onClick: @toggle
-        i className: 'fas fa-ellipsis-v'
+    if @props.customRender
+      @props.customRender createPortal(@props.children(@dismiss), @portal), @menu, @toggle
+    else
+      div
+        className: 'popup-menu'
+        ref: @menu
+        button
+          className: 'popup-menu__button'
+          type: 'button'
+          onClick: @toggle
+          i className: 'fas fa-ellipsis-v'
 
-      createPortal @renderMenu(), @portal
+        createPortal @renderMenu(), @portal
 
 
   renderMenu: =>

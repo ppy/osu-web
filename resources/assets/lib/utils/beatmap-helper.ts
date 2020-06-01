@@ -90,3 +90,9 @@ export function sort<T extends BeatmapJson>(beatmaps: T[]): T[] {
 
   return _.orderBy(beatmaps, ['convert', 'difficulty_rating'], ['desc', 'asc']);
 }
+
+export function sortWithMode<T extends BeatmapJson>(beatmaps: T[]): T[] {
+  const grouped = group(beatmaps);
+
+  return _.flatten(modes.map((mode) => grouped[mode] || []));
+}

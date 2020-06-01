@@ -45,8 +45,10 @@ interface DiscussionMessageType {
 
 interface BeatmapDiscussionHelperClass {
   messageType: DiscussionMessageType;
+  TIMESTAMP_REGEX: RegExp;
   format(text: string, options?: any): string;
   formatTimestamp(value: number): string;
+  parseTimestamp(value: string): number | null;
   previewMessage(value: string): string;
   url(options: any, useCurrent?: boolean): string;
 }
@@ -115,6 +117,7 @@ interface BeatmapFailTimesArray {
 interface BeatmapDiscussion {
   beatmap_id: number | null;
   beatmapset_id: number;
+  id: number;
   message_type: string;
   parent_id: number | null;
   posts: BeatmapDiscussionPost[];

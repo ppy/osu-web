@@ -14,9 +14,11 @@ use DB;
 
 class BeatmapsetDiscussionReview
 {
+    const BLOCK_TEXT_LENGTH_LIMIT = 750;
+
     public static function create(Beatmapset $beatmapset, array $document, User $user)
     {
-        if (!$document || !is_array($document) || empty($document)) {
+        if (empty($document)) {
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
@@ -40,34 +42,29 @@ class BeatmapsetDiscussionReview
 
                 switch ($block['type']) {
                     case 'embed':
-                        $beatmapId = $block['beatmap_id'] ?? null;
-
-                        $discussion = new BeatmapDiscussion([
-                            'beatmapset_id' => $beatmapset->getKey(),
-                            'user_id' => $user->getKey(),
-                            'resolved' => false,
-                            'message_type' => $block['discussion_type'],
-                            'timestamp' => $block['timestamp'] ?? null,
-                            'beatmap_id' => $beatmapId,
-                        ]);
-                        $discussion->saveOrExplode();
-
-                        $postParams = [
-                            'user_id' => $user->getKey(),
-                            'message' => $message,
+                        $childId = self::createPost(
+                            $beatmapset->getKey(),
+                            $block['discussion_type'],
+                            $message,
+                            $user->getKey(),
+                            $block['beatmap_id'] ?? null,
+                            $block['timestamp'] ?? null
+                        )->getKey();
+                        $output[] = [
+                            'type' => 'embed',
+                            'discussion_id' => $childId,
                         ];
-                        $post = new BeatmapDiscussionPost($postParams);
-                        $post->beatmapDiscussion()->associate($discussion);
-                        $post->saveOrExplode();
-
-                        $issues[] = [
-                            'discussion' => $discussion->getKey(),
-                            'post' => $post->getKey(),
-                        ];
-                        $childIds[] = $discussion->getKey();
+                        $childIds[] = $childId;
                         break;
 
                     case 'paragraph':
+                        if (mb_strlen($block['text']) > static::BLOCK_TEXT_LENGTH_LIMIT) {
+                            throw new InvariantException(trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
+                        }
+                        $output[] = [
+                            'type' => 'paragraph',
+                            'text' => $block['text'],
+                        ];
                         break;
 
                     default:
@@ -87,48 +84,157 @@ class BeatmapsetDiscussionReview
                 throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
             }
 
-            // generate the post body now that the issues have been created
-            foreach ($document as $block) {
-                switch ($block['type']) {
-                    case 'paragraph':
-                        array_push($output, [
-                            'type' => 'paragraph',
-                            'text' => $block['text'],
-                        ]);
-                        break;
-
-                    case 'embed':
-                        array_push($output, [
-                            'type' => 'embed',
-                            'discussion_id' => array_shift($issues)['discussion'],
-                        ]);
-                        break;
-                }
-            }
-
-            // create the review post
-            $review = new BeatmapDiscussion([
-                'beatmapset_id' => $beatmapset->getKey(),
-                'user_id' => $user->getKey(),
-                'resolved' => false,
-                'message_type' => 'review',
-            ]);
-            $review->saveOrExplode();
-            $post = new BeatmapDiscussionPost([
-                'user_id' => $user->getKey(),
-                'message' => json_encode($output),
-            ]);
-            $post->beatmapDiscussion()->associate($review);
-            $post->saveOrExplode();
+            $review = self::createPost(
+                $beatmapset->getKey(),
+                'review',
+                json_encode($output),
+                $user->getKey()
+            );
 
             // associate children with parent
             BeatmapDiscussion::whereIn('id', $childIds)
                 ->update(['parent_id' => $review->getKey()]);
 
             DB::commit();
+
+            return $review;
         } catch (\Exception $e) {
             DB::rollBack();
             throw $e;
         }
+    }
+
+    // TODO: combine with create()?
+    public static function update(BeatmapDiscussion $discussion, array $document, User $user)
+    {
+        if (empty($document)) {
+            throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
+        }
+
+        $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id); // handle deleted beatmapsets
+        $post = $discussion->startingPost;
+
+        $output = [];
+        try {
+            DB::beginTransaction();
+
+            // iterate over the children to determine which embeds are new and which have been unlinked
+            $childIds = [];
+            $blockCount = 0;
+
+            foreach ($document as $block) {
+                if (!isset($block['type'])) {
+                    throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+                }
+
+                $message = get_string($block['text'] ?? null);
+                if ($message === null) {
+                    // skip empty message check if this is an existing embed
+                    if ($block['type'] !== 'embed' || !isset($block['discussion_id'])) {
+                        throw new InvariantException(trans('beatmap_discussions.review.validation.missing_text'));
+                    }
+                }
+
+                switch ($block['type']) {
+                    case 'embed':
+                        // if there's a discussion_id, this is an existing embed
+                        if (isset($block['discussion_id'])) {
+                            $childId = $block['discussion_id'];
+                        } else {
+                            // otherwise, create new discussion
+                            $childId = self::createPost(
+                                $beatmapset->getKey(),
+                                $block['discussion_type'],
+                                $message,
+                                $user->getKey(),
+                                $block['beatmap_id'] ?? null,
+                                $block['timestamp'] ?? null
+                            )->getKey();
+                        }
+
+                        $output[] = [
+                            'type' => 'embed',
+                            'discussion_id' => $childId,
+                        ];
+                        $childIds[] = $childId;
+                        break;
+
+                    case 'paragraph':
+                        if (mb_strlen($block['text']) > static::BLOCK_TEXT_LENGTH_LIMIT) {
+                            throw new InvariantException(trans('beatmap_discussions.review.validation.block_too_large', ['limit' => static::BLOCK_TEXT_LENGTH_LIMIT]));
+                        }
+                        $output[] = [
+                            'type' => 'paragraph',
+                            'text' => $block['text'],
+                        ];
+                        break;
+
+                    default:
+                        // invalid block type
+                        throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
+                }
+                $blockCount++;
+            }
+
+            $minIssues = config('osu.beatmapset.discussion_review_min_issues');
+            if (empty($childIds) || count($childIds) < $minIssues) {
+                throw new InvariantException(trans_choice('beatmap_discussions.review.validation.minimum_issues', $minIssues));
+            }
+
+            $maxBlocks = config('osu.beatmapset.discussion_review_max_blocks');
+            if ($blockCount > $maxBlocks) {
+                throw new InvariantException(trans_choice('beatmap_discussions.review.validation.too_many_blocks', $maxBlocks));
+            }
+
+            // ensure all referenced embeds belong to this discussion
+            $externalEmbeds = BeatmapDiscussion::whereIn('id', $childIds)->where('parent_id', '<>', $discussion->getKey())->count();
+            if ($externalEmbeds > 0) {
+                throw new InvariantException(trans('beatmap_discussions.review.validation.external_references'));
+            }
+
+            // update the review post
+            $post['message'] = json_encode($output);
+            $post['last_editor_id'] = $user->getKey();
+            $post->saveOrExplode();
+
+            // unlink any embeds that were removed from the review
+            BeatmapDiscussion::where('parent_id', $discussion->getKey())
+                ->whereNotIn('id', $childIds)
+                ->update(['parent_id' => null]);
+
+            // associate children with parent
+            BeatmapDiscussion::whereIn('id', $childIds)
+                ->update(['parent_id' => $discussion->getKey()]);
+
+            DB::commit();
+
+            return true;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    private static function createPost($beatmapsetId, $discussionType, $message, $userId, $beatmapId = null, $timestamp = null)
+    {
+        $newDiscussion = new BeatmapDiscussion([
+            'beatmapset_id' => $beatmapsetId,
+            'user_id' => $userId,
+            'resolved' => false,
+            'message_type' => $discussionType,
+            'timestamp' => $timestamp,
+            'beatmap_id' => $beatmapId,
+        ]);
+        $newDiscussion->saveOrExplode();
+
+        $postParams = [
+            'user_id' => $userId,
+            'message' => $message,
+        ];
+        $newPost = new BeatmapDiscussionPost($postParams);
+        $newPost->beatmapDiscussion()->associate($newDiscussion);
+        $newPost->saveOrExplode();
+
+        return $newDiscussion;
     }
 }
