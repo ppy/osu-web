@@ -13,6 +13,7 @@ import { ReportReportable } from 'report-reportable'
 import { ShowMoreLink } from 'show-more-link'
 import { Spinner } from 'spinner'
 import { UserAvatar } from 'user-avatar'
+import { estimateMinLines } from 'utils/estimate-min-lines'
 
 el = React.createElement
 
@@ -24,6 +25,7 @@ userStore = core.dataStore.userStore
 uiState = core.dataStore.uiState
 
 export class Comment extends React.PureComponent
+  CLIP_LINES = 7
   MAX_DEPTH = 6
 
   makePreviewElement = document.createElement('div')
@@ -55,14 +57,25 @@ export class Comment extends React.PureComponent
       expandReplies = children?.length > 0 && @props.depth < MAX_DEPTH
 
     @state =
+      clipped: true
       postingVote: false
       editing: false
       showNewReply: false
       expandReplies: expandReplies
+      lines: null
 
 
   componentWillUnmount: =>
     xhr?.abort() for own _name, xhr of @xhr
+
+
+  componentDidMount: =>
+    @setState lines: estimateMinLines(@props.comment.messageHtml)
+
+
+  componentDidUpdate: (prevProps) =>
+    if prevProps.comment.messageHtml != @props.comment.messageHtml
+      @setState lines: estimateMinLines(@props.comment.messageHtml)
 
 
   render: =>
@@ -72,8 +85,16 @@ export class Comment extends React.PureComponent
       user = @userFor(@props.comment)
       meta = commentableMetaStore.get(@props.comment.commentableType, @props.comment.commentableId)
 
+      # Only clip if there are at least CLIP_LINES + 2 lines to ensure there are enough contents
+      # being clipped instead of just single lone line (or worse no more lines because of rounding up).
+      longContent = @state.lines? && @state.lines.count >= CLIP_LINES + 2
+
       modifiers = @props.modifiers?[..] ? []
       modifiers.push 'top' if @props.depth == 0
+
+      mainModifiers = []
+      mainModifiers.push 'deleted' if @props.comment.isDeleted
+      mainModifiers.push 'clip' if @state.clipped && longContent
 
       repliesClass = 'comment__replies'
       repliesClass += ' comment__replies--indented' if @props.depth < MAX_DEPTH
@@ -85,7 +106,11 @@ export class Comment extends React.PureComponent
         @renderRepliesToggle()
         @renderCommentableMeta(meta)
 
-        div className: "comment__main #{if @props.comment.isDeleted then 'comment__main--deleted' else ''}",
+        div
+          className: osu.classWithModifiers('comment__main', mainModifiers)
+          style:
+            '--line-height': if @state.lines? then "#{@state.lines.lineHeight}px" else undefined
+            '--clip-lines': CLIP_LINES
           if @props.comment.canHaveVote
             div className: 'comment__float-container comment__float-container--left hidden-xs',
               @renderVoteButton()
@@ -122,10 +147,12 @@ export class Comment extends React.PureComponent
                   modifiers: @props.modifiers
                   close: @closeEdit
             else if @props.comment.messageHtml?
-              div
-                className: 'comment__message',
-                dangerouslySetInnerHTML:
-                  __html: @props.comment.messageHtml
+              el React.Fragment, null,
+                div
+                  className: 'comment__message',
+                  dangerouslySetInnerHTML:
+                    __html: @props.comment.messageHtml
+                @renderToggleClipButton() if longContent
 
             div className: 'comment__row comment__row--footer',
               if @props.comment.canHaveVote
@@ -307,6 +334,17 @@ export class Comment extends React.PureComponent
           className: 'comment__action'
           onClick: @restore
           osu.trans('common.buttons.restore')
+
+
+  renderToggleClipButton: =>
+    button
+      type: 'button'
+      className: 'comment__toggle-clip'
+      onClick: @toggleClip
+      if @state.clipped
+        osu.trans('common.buttons.read_more')
+      else
+        osu.trans('common.buttons.show_less')
 
 
   renderUserAvatar: (user) =>
@@ -524,3 +562,7 @@ export class Comment extends React.PureComponent
 
   toggleReplies: =>
     @setState expandReplies: !@state.expandReplies
+
+
+  toggleClip: =>
+    @setState clipped: !@state.clipped

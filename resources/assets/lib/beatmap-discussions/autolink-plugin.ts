@@ -27,8 +27,8 @@ export function autolinkPlugin() {
       children: [
         {type: 'text', value: url},
       ],
-      href: matched,
       type: 'link',
+      url: matched,
     });
   }
 

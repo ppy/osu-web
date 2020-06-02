@@ -12,7 +12,7 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Non è possibile annullare l\'hyping.',
+            'is_hype' => 'Non è possibile rimuovere l\'Hype.',
             'has_reply' => 'Impossibile eliminare una discussione con risposte',
         ],
         'nominate' => [

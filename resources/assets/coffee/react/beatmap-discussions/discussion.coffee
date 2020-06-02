@@ -61,7 +61,7 @@ export class Discussion extends React.PureComponent
     firstPost = @props.discussion.starting_post || @props.discussion.posts[0]
 
     user = @props.users[@props.discussion.user_id]
-    badge = if user.id == @props.beatmapset.user_id then mapperGroup else user.group_badge
+    group = if user.id == @props.beatmapset.user_id then mapperGroup else user.groups[0]
 
     topClasses += " #{bn}--unread" unless _.includes(@props.readPostIds, firstPost.id) || @isOwner(firstPost) || @props.preview
 
@@ -78,11 +78,11 @@ export class Discussion extends React.PureComponent
           div
             className: "#{bn}__top"
             style:
-              color: osu.groupColour(badge)
+              color: osu.groupColour(group)
             div className: "#{bn}__discussion-header",
               el UserCard,
                 user: user
-                badge: badge
+                group: group
                 hideStripe: true
             @postButtons() if !@props.preview
           div className: "#{bn}__review-wrapper",

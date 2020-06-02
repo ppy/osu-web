@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - จังหวะนั้นอยู่ห่างแค่คลิกเดียว! ด้วย Ouendan/EBA, Taiko และเกมโหมดดั้งเดิมอีกมากมาย พร้อมทั้งหน้าต่างแก้ไขที่ใช้งานได้อย่างสมบูรณ์',
     ],

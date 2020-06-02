@@ -24,9 +24,7 @@ class FriendsController extends Controller
             ],
         ]);
 
-        if (is_api_request()) {
-            $this->middleware('require-scopes:friends.read', ['only' => ['index']]);
-        }
+        $this->middleware('require-scopes:friends.read', ['only' => ['index']]);
 
         return parent::__construct();
     }
@@ -47,7 +45,7 @@ class FriendsController extends Controller
             'cover',
             'country',
             'current_mode_rank',
-            'group_badge',
+            'groups',
             'support_level',
         ]);
 

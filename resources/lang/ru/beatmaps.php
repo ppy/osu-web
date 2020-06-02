@@ -21,7 +21,7 @@ return [
         'kudosu_denied' => 'Отказано в получении кудосу.',
         'message_placeholder_deleted_beatmap' => 'Эта сложность была удалена, и поэтому обсуждать её больше нельзя.',
         'message_placeholder_locked' => 'Обсуждение этой карты было отключено.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "Запрещено публиковать обсуждение, пока вы заглушены.",
         'message_type_select' => 'Выбрать тип комментария',
         'reply_notice' => 'Нажмите Enter, чтобы ответить.',
         'reply_placeholder' => 'Введите тут ответ',

@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Bist du sicher, dass du dieses Gerät löschen willst?',
-        'confirm_reset' => 'Möchten Sie das Client-Secret wirklich zurücksetzen? Dadurch werden alle vorhandenen Tokens widerrufen.',
+        'confirm_reset' => 'Möchtest du das Client-Secret wirklich zurücksetzen? Dadurch werden alle vorhandenen Tokens widerrufen.',
         'new' => 'Neue OAuth-Anwendung',
         'none' => 'Keine Geräte',
 

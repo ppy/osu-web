@@ -37,6 +37,7 @@ return [
         'permalink' => 'ลิงก์ถาวร',
         'pin' => 'ปักหมุด',
         'post' => 'โพสต์',
+        'read_more' => '',
         'reply' => 'ตอบกลับ',
         'reply_reopen' => 'ตอบกลับ และเปิดใหม่',
         'reply_resolve' => 'ตอบกลับ และแก้ไข',

@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'indir',
+            'video' => 'video ile indir',
+            'no_video' => 'videosuz indir',
+            'direct' => 'osu!direct\'de aç',
         ],
     ],
 
@@ -78,9 +78,9 @@ return [
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Eğer bu beatmap ile ilgili bir sorun bulursanız, takımı uyarmak için lütfen :link üzerinden raporlayın.',
                 'button' => 'Sorun bildir',
-                'link' => '',
+                'link' => 'burası',
             ],
         ],
 

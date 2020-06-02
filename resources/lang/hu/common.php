@@ -20,8 +20,8 @@ return [
 
     'buttons' => [
         'admin' => 'Admin',
-        'authorise' => '',
-        'authorising' => '',
+        'authorise' => 'Engedélyezés',
+        'authorising' => 'Engedélyezés...',
         'back_to_previous' => 'Vissza az előző pozícióra',
         'back_to_top' => 'Vissza a lap tetejére',
         'cancel' => 'Mégse',
@@ -35,8 +35,9 @@ return [
         'expand' => 'kibont',
         'hide' => 'elrejtés',
         'permalink' => 'állandó hivatkozás',
-        'pin' => '',
+        'pin' => 'kitűzés',
         'post' => 'Küldés',
+        'read_more' => '',
         'reply' => 'Válasz',
         'reply_reopen' => 'Válaszolás és újranyitás',
         'reply_resolve' => 'Válaszolás és megoldás',
@@ -48,10 +49,10 @@ return [
         'see_more' => 'továbbiak mutatása',
         'show' => 'mutat',
         'show_deleted' => 'Töröltek megjelenítése',
-        'show_less' => '',
+        'show_less' => 'kevesebb mutatása',
         'show_more' => 'több megjelenítése',
         'show_more_options' => 'további opciók mutatása',
-        'unpin' => '',
+        'unpin' => 'rögzítés feloldása',
         'update' => 'Frissítés',
         'upload_image' => 'kép feltöltése',
 
@@ -70,8 +71,8 @@ return [
         'minute_short_unit' => 'p|p',
         'minutes' => ':count perc |:count percek',
         'months' => ':count hónap|:count hónap',
-        'notifications' => '',
-        'plus_others' => '',
+        'notifications' => ':count_delimited értesítés|:count_delimited értesítések',
+        'plus_others' => '+ :count_delimited más!|+ :count_delimited mások!',
         'post' => ':count_delimited poszt|:count_delimited posztok',
         'second_short_unit' => 'mp|mp',
         'star_priority' => ':count_delimited: csillag prioritás|:count_delimited csillag prioritások',
@@ -138,7 +139,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Bejelntkezve mint :user. :logout_link.',
+        'logout_link' => 'Kattints ide a bejelentkezéshez más felhasználóként',
     ],
 ];

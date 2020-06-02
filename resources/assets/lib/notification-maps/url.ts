@@ -38,6 +38,7 @@ export function urlSingular(item: Notification) {
       return route('beatmapsets.discussion', { beatmapset: item.objectId });
     case 'beatmapset_discussion_post_new':
     case 'beatmapset_discussion_qualified_problem':
+    case 'beatmapset_discussion_review_new':
       return BeatmapDiscussionHelper.url({
         beatmapId: item.details.beatmapId,
         beatmapsetId: item.objectId,

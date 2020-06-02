@@ -17,10 +17,10 @@ return [
 
     'panel' => [
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'завантажити',
+            'video' => 'завантажити з вiдео',
+            'no_video' => 'завантажити без вiдео',
+            'direct' => 'відкрити в osu!direct',
         ],
     ],
 

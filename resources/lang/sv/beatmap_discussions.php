@@ -6,14 +6,14 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Måste vara inloggad för att redigera.',
-            'system_generated' => 'System-genererade inlägg kan inte redigeras.',
-            'wrong_user' => 'Måste vara ägare av inlägget för att redigera.',
+            'null_user' => 'Måste vara inloggad för att kunna redigera.',
+            'system_generated' => 'Systemgenererade inlägg kan inte redigeras.',
+            'wrong_user' => 'Måste vara ägare till inlägget för att kunna redigera.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Inget har hänt... än.',
+        'empty' => 'Inget har hänt... ännu.',
     ],
 
     'index' => [
@@ -24,17 +24,17 @@ return [
         'form' => [
             '_' => 'Sök',
             'deleted' => 'Inkludera raderade diskussioner',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Visa bara olösta diskussioner',
             'types' => 'Typ av meddelande',
             'username' => 'Användarnamn',
 
             'beatmapset_status' => [
-                '_' => '',
+                '_' => 'Beatmap-status',
                 'all' => 'Alla',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                'disqualified' => 'Diskvalificerad',
+                'never_qualified' => 'Aldrig kvalificerad',
+                'qualified' => 'Kvalificerad',
+                'ranked' => 'Rankad',
             ],
 
             'user' => [
@@ -45,14 +45,14 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Skapad',
-        'deleted_at' => 'Borttagen',
+        'created_at' => 'Inläggningsdatum',
+        'deleted_at' => 'Raderingsdatum',
         'message_type' => 'Typ',
         'permalink' => 'Permalänk',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Inga av dessa inlägg har med mig att göra',
+        'confirm' => 'Inget av inläggen tar upp min oro',
         'notice' => 'Det finns inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera detta innan du lägger upp ett inlägg.',
     ],
 
@@ -64,31 +64,31 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'Visa granskningsinlägg',
+        'go_to_child' => 'Visa diskussion',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'invalid_block_type' => 'ogiltig blocktyp',
+            'invalid_document' => 'ogiltig granskning',
+            'minimum_issues' => 'granskningen måste innehålla minst :count problem|granskningen måste innehålla minst :count problem',
+            'missing_text' => 'blocket saknar text',
+            'too_many_blocks' => 'granskningarna måste endast innehålla :count stycke/problem granskningarna får endast innehålla upp till :count stycken/problem',
         ],
     ],
 
     'system' => [
         'resolved' => [
             'true' => 'Markerad som löst av :user',
-            'false' => 'Öppnad igen av :user',
+            'false' => 'Återöppnad av :user',
         ],
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'allmänt',
+        'general_all' => 'allmänt (alla)',
     ],
 
     'user_filter' => [
-        'everyone' => 'Alla',
-        'label' => 'Filtrera på användare',
+        'everyone' => 'Allihopa',
+        'label' => 'Filtrera efter användare',
     ],
 ];

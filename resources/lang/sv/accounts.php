@@ -5,19 +5,19 @@
 
 return [
     'edit' => [
-        'title_compact' => 'inställningar',
+        'title_compact' => 'kontoinställningar',
         'username' => 'användarnamn',
 
         'avatar' => [
-            'title' => 'Profilbild',
-            'rules' => '',
+            'title' => 'Avatar',
+            'rules' => 'Se till att din avatar följer :link.<br/>Det betyder att den måste vara <strong>lämplig för alla åldrar</strong>. dvs ingen nakenhet, svordomar eller suggestivt innehåll.',
             'rules_link' => 'gemenskapsreglerna',
         ],
 
         'email' => [
             'current' => 'nuvarande e-postadress',
             'new' => 'ny e-postadress',
-            'new_confirmation' => 'email bekräftelse',
+            'new_confirmation' => 'e-postbekräftelse',
             'title' => 'E-postadress',
         ],
 
@@ -50,30 +50,30 @@ return [
 
     'notifications' => [
         'title' => 'Aviseringar',
-        'topic_auto_subscribe' => '',
-        'beatmapset_discussion_qualified_problem' => '',
+        'topic_auto_subscribe' => 'aktivera aviseringar automatiskt på nya forumtrådar som du skapar ',
+        'beatmapset_discussion_qualified_problem' => 'ta emot meddelanden om nya problem på kvalificerade beatmaps över följande lägen',
 
         'mail' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
+            '_' => 'få e-postaviseringar för ',
+            'beatmapset:modding' => 'beatmap modding',
+            'forum_topic_reply' => 'tråd-svar',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
+        'authorized_clients' => 'auktoriserade klienter',
         'own_clients' => 'egna klienter',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Alternativ',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'standard beatmap nedladdningstyp',
+            'all' => 'med video om tillgängligt',
+            'no_video' => 'utan video',
+            'direct' => 'öppna i osu!direct',
         ],
     ],
 
@@ -81,13 +81,13 @@ return [
         'keyboard' => 'tangentbord',
         'mouse' => 'mus',
         'tablet' => 'platta',
-        'title' => 'Spelstil',
+        'title' => 'Spelsätt',
         'touch' => 'pekskärm',
     ],
 
     'privacy' => [
         'friends_only' => 'Blockera privata meddelanden från icke-vänner',
-        'hide_online' => '',
+        'hide_online' => 'dölj din online-närvaro',
         'title' => 'Sekretess',
     ],
 
@@ -110,10 +110,10 @@ return [
 
     'verification_completed' => [
         'text' => 'Du kan stänga detta fönstret nu',
-        'title' => 'Verifieringen har blivit slutförd',
+        'title' => 'Verifieringen har slutförts',
     ],
 
     'verification_invalid' => [
-        'title' => 'Ogiltig eller utgången verifieringslänk',
+        'title' => 'Ogiltig eller utgånget verifieringslänk',
     ],
 ];

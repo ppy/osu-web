@@ -60,7 +60,7 @@ return [
         'friends_only' => 'Der Benutzer blockiert alle Nachrichten von Personen, die nicht auf seiner Freundesliste sind.',
         'moderated' => 'Dieser Kanal wird derzeit moderiert.',
         'no_access' => 'Du hast kein Zugriff auf diesen Kanal.',
-        'restricted' => 'Du kannst keine Nachrichten senden während du stumm geschaltet oder gesperrt bist.',
+        'restricted' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet, eingeschränkt oder gebannt bist.',
     ],
 
     'comment' => [
@@ -110,7 +110,7 @@ return [
                 'user' => [
                     'require_login' => 'Zum Antworten bitte einloggen.',
                     'restricted' => "Man kann nicht antworten, während man restricted ist.",
-                    'silenced' => "Man kann nicht antworten, während man stummgeschaltet ist.",
+                    'silenced' => "Antworten nicht möglich, während du stummgeschaltet bist.",
                 ],
             ],
 
@@ -129,7 +129,7 @@ return [
                 'user' => [
                     'require_login' => 'Zum Abstimmen bitte einloggen.',
                     'restricted' => "Man kann nicht abstimmen, während man restricted ist.",
-                    'silenced' => "Man kann nicht abstimmen, während man stummgeschaltet ist.",
+                    'silenced' => "Abstimmen nicht möglich, während du stummgeschaltet bist.",
                 ],
             ],
 
@@ -158,7 +158,7 @@ return [
             'edit' => [
                 'locked' => 'Dieses Profil ist gesperrt.',
                 'not_owner' => 'Nur das eigene Profil kann bearbeitet werden.',
-                'require_supporter_tag' => 'Ein osu!supporter Tag ist erforderlich.',
+                'require_supporter_tag' => 'Ein osu!supporter-Tag ist erforderlich.',
             ],
         ],
     ],

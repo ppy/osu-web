@@ -26,7 +26,7 @@ class GroupsController extends Controller
             'cover',
             'country',
             'current_mode_rank',
-            'group_badge',
+            'groups',
             'support_level',
         ]);
 

@@ -5,16 +5,16 @@
 
 return [
     'index' => [
-        'title_page' => 'osu! Haberleri',
+        'title_page' => 'osu!haberler',
 
         'nav' => [
-            'newer' => 'En yeni gönderiler',
-            'older' => 'Eski gönderiler',
+            'newer' => 'Daha yeni gönderiler',
+            'older' => 'Daha eski gönderiler',
         ],
 
         'title' => [
             '_' => 'Haber :info',
-            'info' => 'Önsayfa',
+            'info' => 'anasayfa',
         ],
     ],
 
@@ -22,18 +22,18 @@ return [
         'by' => ':user tarafından',
 
         'nav' => [
-            'newer' => 'Yeni gönderiler',
-            'older' => 'Eski gönderiler',
+            'newer' => 'Daha yeni gönderi',
+            'older' => 'Daha eski gönderi',
         ],
 
         'title' => [
             '_' => 'Haber :info',
-            'info' => 'Mesajı Gönder',
+            'info' => 'gönder',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Haber Arşivi',
     ],
 
     'store' => [

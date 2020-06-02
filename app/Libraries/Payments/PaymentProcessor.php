@@ -131,6 +131,8 @@ abstract class PaymentProcessor implements \ArrayAccess
     {
         $type = $this->getNotificationType();
         switch ($type) {
+            case NotificationType::IGNORED:
+                return;
             case NotificationType::PAYMENT:
                 return $this->apply();
             case NotificationType::PENDING:

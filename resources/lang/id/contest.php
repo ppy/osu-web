@@ -53,7 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Selesai :date',
-        'ended_no_date' => '',
+        'ended_no_date' => 'Telah Berakhir',
 
         'starts' => [
             '_' => 'Mulai :date',

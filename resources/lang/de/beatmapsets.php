@@ -98,7 +98,7 @@ return [
 
         'scoreboard' => [
             'achieved' => 'erreicht :when',
-            'country' => 'Länderrangliste',
+            'country' => 'Landesrangliste',
             'friend' => 'Freundesrangliste',
             'global' => 'Globale Rangliste',
             'supporter-link' => '<a href=":link">Hier</a> klicken, um alle tollen Features zu entdecken!',

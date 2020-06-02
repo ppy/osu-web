@@ -28,15 +28,17 @@ class RankingController extends Controller
     {
         parent::__construct();
 
-        $mode = request('mode');
-        $type = request('type');
+        $this->middleware('require-scopes:public');
 
-        view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
-        view()->share('mode', $mode);
-        view()->share('type', $type);
-        view()->share('spotlight', null); // so variable capture in selector function doesn't die.
+        $this->middleware(function ($request, $next) {
+            $mode = request('mode');
+            $type = request('type');
 
-        $this->middleware(function ($request, $next) use ($mode, $type) {
+            view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
+            view()->share('mode', $mode);
+            view()->share('type', $type);
+            view()->share('spotlight', null); // so variable capture in selector function doesn't die.
+
             if ($mode === null) {
                 return ujs_redirect(route('rankings', ['mode' => default_mode(), 'type' => 'performance']));
             }

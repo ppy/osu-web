@@ -5,7 +5,7 @@
 
 return [
     'country' => [
-        'filter' => '國家/地區排名',
+        'filter' => '按國家/地區篩選',
     ],
 
     'type' => [
