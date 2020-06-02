@@ -86,7 +86,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
           {this.renderCountries()}
         </div>
 
-        {currentUser.id != null ? (
+        {currentUser.id != null && (
           <div className='ranking-filter__sort'>
             <Sort
               onSortSelected={this.handleSortSelected}
@@ -95,7 +95,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
               values={['all', 'friends']}
             />
           </div>
-        ) : null}
+        )}
       </div>
     );
   }
