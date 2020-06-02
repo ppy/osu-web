@@ -17,6 +17,7 @@ const allCountries = { id: null, text: osu.trans('rankings.countries.all') };
 export default class RankingFilter extends React.PureComponent<Props> {
   private countriesSorted?: Required<Country>[];
   private optionsCached?: Map<string | null, Option<string>>;
+  private prevCountries?: Required<Country>[];
 
   get countries() {
     if (this.props.countries == null) return [];
@@ -64,13 +65,6 @@ export default class RankingFilter extends React.PureComponent<Props> {
     return this.options.get(this.countryCode) ?? allCountries;
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>) {
-    if (prevProps.countries !== this.props.countries) {
-      this.countriesSorted = undefined;
-      this.optionsCached = undefined;
-    }
-  }
-
   handleOptionSelected = (option: Option) => {
     osu.navigate(osu.updateQueryString(null, { country: option.id, page: null }));
   }
@@ -80,6 +74,13 @@ export default class RankingFilter extends React.PureComponent<Props> {
   }
 
   render() {
+    // TODO: consider using memoize-one?
+    if (this.prevCountries !== this.props.countries) {
+      this.countriesSorted = undefined;
+      this.optionsCached = undefined;
+      this.prevCountries = this.props.countries;
+    }
+
     return (
       <div className='ranking-filter'>
         <div className='ranking-filter__countries'>
