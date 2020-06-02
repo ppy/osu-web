@@ -70,7 +70,6 @@ export default class RankingFilter extends React.PureComponent<Props> {
     osu.navigate(osu.updateQueryString(null, { country: option.id, page: null }));
   }
 
-  // TODO: rename component prop to onChange
   handleFilterChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     osu.navigate(osu.updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
   }
@@ -92,8 +91,8 @@ export default class RankingFilter extends React.PureComponent<Props> {
         {currentUser.id != null && (
           <div className='ranking-filter__sort'>
             <Sort
-              onSortSelected={this.handleFilterChange}
-              sortMode={this.filterMode ?? 'all'}
+              currentValue={this.filterMode ?? 'all'}
+              onChange={this.handleFilterChange}
               title={osu.trans('rankings.filter.title')}
               values={['all', 'friends']}
             />
