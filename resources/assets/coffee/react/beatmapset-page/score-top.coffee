@@ -28,7 +28,7 @@ export ScoreTop = (props) ->
 
         div className: "#{bn}__avatar",
           a
-            href: laroute.route 'users.show', user: props.score.user.id
+            href: route 'users.show', user: props.score.user.id
             className: "avatar"
             style:
               backgroundImage: osu.urlPresence(props.score.user.avatar_url)
@@ -37,7 +37,7 @@ export ScoreTop = (props) ->
           a
             className: "#{bn}__username js-usercard"
             'data-user-id': props.score.user.id
-            href: laroute.route 'users.show', user: props.score.user.id, mode: props.playmode
+            href: route 'users.show', user: props.score.user.id, mode: props.playmode
             props.score.user.username
 
           div
@@ -46,7 +46,7 @@ export ScoreTop = (props) ->
               __html: osu.trans('beatmapsets.show.scoreboard.achieved', when: osu.timeago(props.score.created_at))
 
           a
-            href: laroute.route 'rankings',
+            href: route 'rankings',
               mode: props.playmode
               country: props.score.user.country_code
               type: 'performance'
