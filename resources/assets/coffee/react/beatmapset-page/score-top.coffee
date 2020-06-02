@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { FlagCountry } from 'flag-country'
+import { route } from 'laroute'
 import { Mods } from 'mods'
 import * as React from 'react'
 import { div, a } from 'react-dom-factories'
@@ -15,11 +16,14 @@ export ScoreTop = (props) ->
 
   position = if props.position? then "##{props.position}" else '-'
 
-  div className: "#{bn} #{topClasses}",
+  div className: "clickable-row #{bn} #{topClasses}",
     div className: "#{bn}__section",
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--left",
         div className: "#{bn}__position",
-          div className: "#{bn}__position-number", position
+          a
+            className: "clickable-row-link #{bn}__position-number"
+            href: route('scores.show', mode: props.score.mode, score: props.score.best_id)
+            position
           div className: "score-rank score-rank--tiny score-rank--#{props.score.rank}"
 
         div className: "#{bn}__avatar",
