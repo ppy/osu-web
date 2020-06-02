@@ -37,7 +37,7 @@ export class SelectOptions extends PureComponent
       ref: @ref
       div
         className: "#{@bn}__select"
-        @renderItem
+        @renderSelectOption
           children: [
             div
               className: 'u-ellipsis-overflow'
@@ -59,7 +59,7 @@ export class SelectOptions extends PureComponent
 
 
   renderOption: (item) =>
-    @renderItem
+    @renderSelectOption
       children: [
         div
           className: 'u-ellipsis-overflow'
@@ -71,11 +71,11 @@ export class SelectOptions extends PureComponent
       onClick: (event) => @itemSelected(event, item)
 
 
-  renderItem: ({ children, item, onClick, selected = false }) ->
+  renderSelectOption: ({ children, item, onClick, selected = false }) ->
     cssClasses = "#{@bn}__item"
     cssClasses += " #{@bn}__item--selected" if selected
 
-    return @props.renderItem({ children, item, onClick, cssClasses }) if @props.renderItem?
+    return @props.renderSelectOption({ children, item, onClick, cssClasses }) if @props.renderSelectOption?
 
     a
       className: cssClasses

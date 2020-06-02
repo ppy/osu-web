@@ -108,7 +108,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
     return (
       <SelectOptions
         bn='ranking-select-options'
-        renderItem={this.renderOption}
+        renderSelectOption={this.renderOption}
         onItemSelected={this.handleCountryChange}
         options={[...this.options.values()]} // TODO: change to iterable
         selected={this.selectedOption}
