@@ -48,11 +48,12 @@ export default class RankingFilter extends React.PureComponent<Props> {
 
   get options() {
     if (this.optionsCached == null) {
-      this.optionsCached = new Map<string | null, Option<string>>();
+      // local assignment workaround for https://github.com/microsoft/TypeScript/issues/36436
+      const optionsCached = this.optionsCached = new Map<string | null, Option<string>>();
 
-      this.optionsCached.set(allCountries.id, allCountries);
+      optionsCached.set(allCountries.id, allCountries);
       this.countries.forEach((country) => {
-        this.optionsCached!.set(country.code, { id: country.code, text: country.name });
+        optionsCached.set(country.code, { id: country.code, text: country.name });
       });
     }
 
