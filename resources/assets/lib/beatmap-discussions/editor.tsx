@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import isHotkey from 'is-hotkey';
 import * as laroute from 'laroute';
 import * as _ from 'lodash';
@@ -9,11 +11,9 @@ import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as S
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { Spinner } from 'spinner';
-import { BeatmapsetJson } from '../beatmapsets/beatmapset-json';
-import BeatmapJsonExtended from '../interfaces/beatmap-json-extended';
-import { sortWithMode } from '../utils/beatmap-helper';
+import { sortWithMode } from 'utils/beatmap-helper';
 import EditorDiscussionComponent from './editor-discussion-component';
-import { serializeSlateDocument, toggleFormat } from './editor-helpers';
+import { serializeSlateDocument, slateDocumentIsEmpty, toggleFormat } from './editor-helpers';
 import { EditorToolbar } from './editor-toolbar';
 import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
@@ -222,10 +222,10 @@ export default class Editor extends React.Component<Props, State> {
     if (!this.props.editMode) {
       const content = JSON.stringify(value);
 
-      if (content !== JSON.stringify(this.emptyDocTemplate)) {
-        localStorage.setItem(this.localStorageKey, content);
-      } else {
+      if (slateDocumentIsEmpty(value)) {
         localStorage.removeItem(this.localStorageKey);
+      } else {
+        localStorage.setItem(this.localStorageKey, content);
       }
     }
 

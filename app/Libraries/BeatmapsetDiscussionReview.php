@@ -6,9 +6,11 @@
 namespace App\Libraries;
 
 use App\Exceptions\InvariantException;
+use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\Notification;
 use App\Models\User;
 use DB;
 
@@ -96,6 +98,12 @@ class BeatmapsetDiscussionReview
                 ->update(['parent_id' => $review->getKey()]);
 
             DB::commit();
+
+            broadcast_notification(Notification::BEATMAPSET_DISCUSSION_REVIEW_NEW, $review, $user);
+            (new NotifyBeatmapsetUpdate([
+                'user' => $user,
+                'beatmapset' => $beatmapset,
+            ]))->delayedDispatch();
 
             return $review;
         } catch (\Exception $e) {
@@ -236,5 +244,40 @@ class BeatmapsetDiscussionReview
         $newPost->saveOrExplode();
 
         return $newDiscussion;
+    }
+
+    public static function getStats(array $document)
+    {
+        $stats = [
+            'praises' => 0,
+            'suggestions' => 0,
+            'problems' => 0,
+        ];
+        $embedIds = [];
+
+        foreach ($document as $block) {
+            if ($block['type'] === 'embed') {
+                $embedIds[] = $block['discussion_id'];
+            }
+        }
+
+        $embeds = BeatmapDiscussion::whereIn('id', $embedIds)->get();
+        foreach ($embeds as $embed) {
+            switch ($embed->message_type) {
+                case 'praise':
+                    $stats['praises']++;
+                    break;
+
+                case 'suggestion':
+                    $stats['suggestions']++;
+                    break;
+
+                case 'problem':
+                    $stats['problems']++;
+                    break;
+            }
+        }
+
+        return $stats;
     }
 }

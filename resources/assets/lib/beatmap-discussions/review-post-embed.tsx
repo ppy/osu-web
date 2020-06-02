@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapIcon } from 'beatmap-icon';
 import * as React from 'react';
 import { FunctionComponent } from 'react';
-import { BeatmapIcon } from '../beatmap-icon';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
 

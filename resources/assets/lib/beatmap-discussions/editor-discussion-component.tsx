@@ -1,25 +1,17 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
+import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as React from 'react';
 import { Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
-import { BeatmapsetJson } from '../beatmapsets/beatmapset-json';
-import BeatmapJsonExtended from '../interfaces/beatmap-json-extended';
 import EditorBeatmapSelector from './editor-beatmap-selector';
 import EditorIssueTypeSelector from './editor-issue-type-selector';
 import { SlateContext } from './slate-context';
 
 interface Props extends RenderElementProps {
-  // attributes taken from RenderElementProps, but extended with contentEditable
-  attributes: {
-    'data-slate-inline'?: true;
-    'data-slate-node': 'element';
-    'data-slate-void'?: true;
-    dir?: 'rtl';
-    ref: any;
-  };
   beatmaps: BeatmapJsonExtended[];
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJsonExtended;
@@ -68,7 +60,6 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const bn = 'beatmap-discussion-review-post-embed-preview';
-    const attribs = this.props.attributes;
     const canEdit = this.editable();
     const classMods = canEdit ? [] : ['read-only'];
     const timestampTooltipType = this.props.element.beatmapId ? 'diff' : 'all-diff';
@@ -94,7 +85,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         className='beatmap-discussion beatmap-discussion--preview'
         contentEditable={canEdit}
         suppressContentEditableWarning={true}
-        {...attribs}
+        {...this.props.attributes}
       >
         <div className='beatmap-discussion__discussion'>
           <div className={osu.classWithModifiers(bn, classMods)}>

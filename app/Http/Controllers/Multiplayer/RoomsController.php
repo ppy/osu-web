@@ -46,6 +46,7 @@ class RoomsController extends BaseController
             [
                 'host.country',
                 'playlist.beatmap.beatmapset',
+                'playlist.beatmap.checksum',
             ]
         );
     }
@@ -101,6 +102,7 @@ class RoomsController extends BaseController
             [
                 'host.country',
                 'playlist.beatmap.beatmapset',
+                'playlist.beatmap.checksum',
                 'recent_participants',
             ]
         );
@@ -119,6 +121,7 @@ class RoomsController extends BaseController
                 [
                     'host.country',
                     'playlist.beatmap.beatmapset',
+                    'playlist.beatmap.checksum',
                     'recent_participants',
                 ]
             );

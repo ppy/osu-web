@@ -23,11 +23,10 @@ class ScoresController extends BaseController
     {
         $playlist = PlaylistItem::where('room_id', $roomId)->where('id', $playlistId)->firstOrFail();
 
-        return json_collection(
-            $playlist->topScores(),
-            'Multiplayer\RoomScore',
-            ['user.country']
-        );
+        $scores = json_collection($playlist->topScores()->get()->pluck('score'), 'Multiplayer\RoomScore', ['user.country']);
+        $total = $playlist->topScores()->count();
+
+        return compact('scores', 'total');
     }
 
     public function store($roomId, $playlistId)
