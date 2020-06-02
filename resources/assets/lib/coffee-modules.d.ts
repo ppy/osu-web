@@ -141,7 +141,7 @@ declare module 'select-options' {
     // TODO: this should be onOptionSelected instead.
     onItemSelected: (item: Option<T>) => void;
     options: Option<T>[];
-    renderSelectOption: (option: OptionRenderProps<T>) => React.ReactNode;
+    renderOption: (option: OptionRenderProps<T>) => React.ReactNode;
     selected: Option<T>;
   }
 

@@ -10,13 +10,13 @@ export class SpotlightSelectOptions extends PureComponent
   render: =>
     el SelectOptions,
       bn: 'spotlight-select-options'
-      renderSelectOption: @renderSelectOption
+      renderOption: @renderOption
       onItemSelected: @onItemSelected
       options: @props.options
       selected: @props.selected
 
 
-  renderSelectOption: ({ cssClasses, children, item, onClick }) =>
+  renderOption: ({ cssClasses, children, item, onClick }) =>
     a
       children: children
       className: cssClasses

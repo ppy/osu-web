@@ -24,7 +24,7 @@ export class UserFilter extends React.PureComponent
 
     el SelectOptions,
       bn: 'beatmap-discussions-user-filter'
-      renderSelectOption: @renderSelectOption
+      renderOption: @renderOption
       onItemSelected: @onItemSelected
       options: options
       selected: selected
@@ -36,7 +36,7 @@ export class UserFilter extends React.PureComponent
     text: user.username
 
 
-  renderSelectOption: ({ cssClasses, children, item, onClick }) =>
+  renderOption: ({ cssClasses, children, item, onClick }) =>
     group = if @isOwner(item) then mapperGroup else item.groups?[0]
     style = osu.groupColour(group)
 
