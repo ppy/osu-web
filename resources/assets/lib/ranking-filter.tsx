@@ -65,11 +65,13 @@ export default class RankingFilter extends React.PureComponent<Props> {
     return this.options.get(this.countryCode) ?? allCountries;
   }
 
-  handleOptionSelected = (option: Option) => {
+  // TODO: rename component prop to onChange
+  handleCountryChange = (option: Option) => {
     osu.navigate(osu.updateQueryString(null, { country: option.id, page: null }));
   }
 
-  handleSortSelected = (event: React.MouseEvent<HTMLButtonElement>) => {
+  // TODO: rename component prop to onChange
+  handleFilterChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     osu.navigate(osu.updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
   }
 
@@ -90,7 +92,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
         {currentUser.id != null && (
           <div className='ranking-filter__sort'>
             <Sort
-              onSortSelected={this.handleSortSelected}
+              onSortSelected={this.handleFilterChange}
               sortMode={this.filterMode ?? 'all'}
               title={osu.trans('rankings.filter.title')}
               values={['all', 'friends']}
@@ -108,7 +110,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
       <SelectOptions
         bn='ranking-select-options'
         renderItem={this.renderOption}
-        onItemSelected={this.handleOptionSelected}
+        onItemSelected={this.handleCountryChange}
         options={[...this.options.values()]} // TODO: change to iterable
         selected={this.selectedOption}
       />
