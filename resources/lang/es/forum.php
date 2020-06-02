@@ -275,7 +275,7 @@ return [
                 'info' => [
                     '_' => 'Esta es una :feature_request. Las solicitudes de características pueden ser votadas por :supporters.',
                     'feature_request' => 'solicitud de característica',
-                    'supporters' => 'colaboradores',
+                    'supporters' => 'supporters',
                 ],
 
                 'user' => [

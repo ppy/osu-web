@@ -14,18 +14,21 @@ class ScoresController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => [
+            'show',
+        ]]);
     }
 
     public function download($mode, $id)
     {
+        // don't limit downloading replays of restricted users for review purpose
         $score = ScoreBest::getClassByString($mode)
             ::where('score_id', $id)
             ->where('replay', true)
             ->firstOrFail();
 
         if (!is_api_request() && !from_app_url()) {
-            return ujs_redirect(route('beatmaps.show', ['beatmap' => $score->beatmap_id]));
+            return ujs_redirect(route('scores.show', ['score' => $id, 'mode' => $mode]));
         }
 
         $replayFile = $score->replayFile();
@@ -48,5 +51,25 @@ class ScoresController extends Controller
             log_error($e);
             abort(404);
         }
+    }
+
+    public function show($mode, $id)
+    {
+        $score = ScoreBest::getClassByString($mode)
+            ::whereHas('beatmap.beatmapset')
+            ->visibleUsers()
+            ->findOrFail($id);
+
+        return ext_view('scores.show', [
+            'score' => $score,
+            'scoreJson' => json_item($score, 'Score', [
+                'beatmap',
+                'beatmapset',
+                'rank_country',
+                'rank_global',
+                'user.cover',
+                'user.country',
+            ]),
+        ]);
     }
 }

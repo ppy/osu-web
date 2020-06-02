@@ -6,7 +6,7 @@
 return [
     'create' => [
         'download' => 'Klicka här för att ladda ner spelet och skapa ett konto',
-        'label' => '',
+        'label' => 'Låt oss först logga in på ditt konto!',
         'title' => 'Kontoinloggning',
     ],
 ];

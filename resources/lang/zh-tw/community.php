@@ -55,8 +55,8 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => '國家排行榜',
-                'description' => '在征服世界前先征服你的國家',
+                'title' => '國內/區內排行榜',
+                'description' => '在征服世界前，先征服你的國家（或地區）',
             ],
 
             'mod_filtering' => [

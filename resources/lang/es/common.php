@@ -37,6 +37,7 @@ return [
         'permalink' => 'enlace permanente',
         'pin' => 'fijar',
         'post' => 'Publicar',
+        'read_more' => '',
         'reply' => 'Responder',
         'reply_reopen' => 'Responder y reabrir',
         'reply_resolve' => 'Responder y resolver',

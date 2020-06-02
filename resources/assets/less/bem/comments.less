@@ -5,10 +5,12 @@
   @_top: comments;
   @_header-spacing: 20px;
 
+  --comments-bg-hsl: var(--hsl-b5);
+  --comments-fg: @osu-colour-c1;
   display: flex;
   flex-direction: column;
-  background-color: @osu-colour-b5;
-  color: white;
+  background-color: hsl(var(--comments-bg-hsl));
+  color: var(--comments-fg);
 
   @media @desktop {
     margin-bottom: 10px;
@@ -46,7 +48,8 @@
 
     &--pinned {
       margin-top: 20px;
-      background-color: @osu-colour-b4;
+      --comments-bg-hsl: var(--hsl-b4);
+      background-color: hsl(var(--comments-bg-hsl));
     }
   }
 

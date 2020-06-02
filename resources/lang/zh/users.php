@@ -307,6 +307,7 @@ return [
                 'empty' => '还没有上传过成绩。 :(',
                 'not_ranked' => '只有 ranked 谱面才能得到 pp。',
                 'pp_weight' => '权重：:percentage',
+                'view_details' => '',
                 'title' => '成绩',
 
                 'best' => [

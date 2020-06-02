@@ -2,14 +2,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .osu-page {
+  @_default-bg-hsl: var(--hsl-b5);
+  @_default-bg: hsl(@_default-bg-hsl);
+  @_default-fg: @osu-colour-c1;
+
   align-self: center;
   margin-left: auto;
   margin-right: auto;
   flex: none;
 
   .default {
-    background-color: @osu-colour-b5;
-    color: #fff;
+    background-color: @_default-bg;
+    color: @_default-fg;
     .default-box-shadow();
     margin-bottom: 10px;
   }
@@ -120,13 +124,21 @@
   }
 
   &--comment {
-    .default;
+    .default();
+    --comments-bg-hsl: @_default-bg-hsl;
+    --comments-fg: @_default-fg;
+    background-color: hsl(var(--comments-bg-hsl));
+    color: var(--comments-fg);
     padding: 10px 0 0;
     margin-bottom: 0;
   }
 
   &--comments {
-    .default;
+    .default();
+    --comments-bg-hsl: @_default-bg-hsl;
+    --comments-fg: @_default-fg;
+    background-color: hsl(var(--comments-bg-hsl));
+    color: var(--comments-fg);
     padding: 10px 0;
   }
 

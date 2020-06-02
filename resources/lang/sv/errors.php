@@ -20,11 +20,11 @@ return [
         'standard_converts_only' => 'Inga poäng är tillgängliga enligt begärt läge på denna beatmap svårighetsgrad.',
     ],
     'checkout' => [
-        'generic' => '',
+        'generic' => 'Ett fel inträffade när du förberedde din transaktion.',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Kunde inte få några resultat, försök igen senare.',
+        'operation_timeout_exception' => 'Sökning är för närvarande mer aktiv än vanligt, försök igen senare.',
     ],
 
     'logged_out' => 'Du har blivit utloggad. Var vänlig logga in och försök igen .',

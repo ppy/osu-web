@@ -37,7 +37,7 @@ return [
         'delayed_shipping' => '感謝您的訂購，由於近期湧入訂單過多，故該訂單恐將**延後1~2週的時間**',
         'old_cart' => '您的購物車已過期，請重試。',
         'pay' => '使用 Paypal 付款',
-        'title_compact' => '',
+        'title_compact' => '結帳',
 
         'has_pending' => [
             '_' => '客官您還有結帳還沒完成呢，點選 :link 查看他們',

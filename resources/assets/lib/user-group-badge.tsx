@@ -5,23 +5,23 @@ import GroupJSON from 'interfaces/group-json';
 import * as React from 'react';
 
 interface Props {
-  badge?: GroupJSON;
+  group?: GroupJSON;
   modifiers?: string[];
 }
 
-export default function UserGroupBadge({badge, modifiers}: Props) {
-  if (badge == null) {
+export default function UserGroupBadge({group, modifiers}: Props) {
+  if (group == null) {
     return null;
   }
 
-  const style = osu.groupColour(badge);
+  const style = osu.groupColour(group);
 
   return (
     <div
       className={osu.classWithModifiers('user-group-badge', modifiers)}
-      data-label={badge.short_name}
+      data-label={group.short_name}
       style={style}
-      title={badge.name}
+      title={group.name}
     />
   );
 }

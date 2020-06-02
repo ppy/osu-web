@@ -37,6 +37,7 @@ return [
         'permalink' => 'الرابط الدائم',
         'pin' => 'ثبّت',
         'post' => 'نشر',
+        'read_more' => '',
         'reply' => 'رد',
         'reply_reopen' => 'الرد وإعادة فتح',
         'reply_resolve' => 'الرد والاِصلاح',

@@ -192,7 +192,7 @@ Name          | Description
 --------------|-------------------------------
 identify      | Allows reading of the public profile of the authorizing user (`/me`).
 friends.read  | Allows reading of the authorizing user's friend list.
-users.read    | Allows reading of public user profiles on behalf of the authorizing user.
+public        | Allows reading of publicly available data on behalf of the authorizing user.
 
 `identify` is the default scope and always implicitly provided.
 

@@ -307,6 +307,7 @@ return [
                 'empty' => 'Még nem rendelkezik kiemelkedő eredménnyel. :(',
                 'not_ranked' => 'Kizárólag rangsorolt beatmap adhat pp-t.',
                 'pp_weight' => 'súlyozott :percentage',
+                'view_details' => '',
                 'title' => 'Rangok',
 
                 'best' => [

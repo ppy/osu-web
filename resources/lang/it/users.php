@@ -308,6 +308,7 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                 'empty' => 'Ancora nessuna prestazione impressionante. :(',
                 'not_ranked' => 'Solo le mappe classificate danno pp.',
                 'pp_weight' => 'valutata :percentage',
+                'view_details' => '',
                 'title' => 'Rank',
 
                 'best' => [

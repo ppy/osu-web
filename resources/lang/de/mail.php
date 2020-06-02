@@ -65,7 +65,7 @@ return [
         'anonymous_gift_maybe_not' => 'Aber Du weißt wahrscheinlich schon, wer es ist ;).',
         'duration' => 'Dank ihnen hast Du Zugriff auf osu!direct und andere osu!supporter-Vorteile für die nächsten :duration.',
         'features' => 'Weitere Details zu diesen Funktionen findest Du hier:',
-        'gifted' => 'Jemand hat Dir gerade ein osu!-Supporterabzeichen geschenkt!',
+        'gifted' => 'Jemand hat dir gerade ein osu!supporter-Tag geschenkt!',
         'subject' => 'Dir wurde ein osu!supporter-Tag geschenkt!',
     ],
 

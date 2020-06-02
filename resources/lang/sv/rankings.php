@@ -5,7 +5,7 @@
 
 return [
     'country' => [
-        'filter' => '',
+        'filter' => 'filtrerad efter land',
     ],
 
     'type' => [
@@ -17,7 +17,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Slutdatum',
-        'map_count' => '',
+        'map_count' => 'Antal Mappar Spelade',
         'participants' => 'Deltagare',
         'start_date' => 'Startdatum',
     ],

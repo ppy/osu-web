@@ -37,6 +37,7 @@ return [
         'permalink' => 'permalink',
         'pin' => 'fixar',
         'post' => 'Enviar',
+        'read_more' => '',
         'reply' => 'Responder',
         'reply_reopen' => 'Responder e Reabrir',
         'reply_resolve' => 'Responder e Resolver',

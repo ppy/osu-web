@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react'
-import { Mod } from 'mod'
+import Mod from 'mod'
 import { div, img } from 'react-dom-factories'
 el = React.createElement
 

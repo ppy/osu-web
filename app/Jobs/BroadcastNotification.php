@@ -7,6 +7,7 @@ namespace App\Jobs;
 
 use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
+use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Follow;
@@ -34,12 +35,32 @@ class BroadcastNotification implements ShouldQueue
     private $receiverIds;
     private $source;
 
-    private static function beatmapsetReceiverIds($beatmapset)
+    private static function beatmapsetWatcherUserIds($beatmapset)
     {
-        return $beatmapset
-            ->watches()
-            ->pluck('user_id')
-            ->all();
+        return static::filterUserIdsForNotificationOption(
+            $beatmapset->watches()->pluck('user_id')->all(),
+            UserNotificationOption::BEATMAPSET_MODDING
+        );
+    }
+
+    private static function filterUserIdsForNotificationOption(array $userIds, $optionName)
+    {
+        // FIXME: filtering all the ids could get quite large?
+        $notificationOptions = UserNotificationOption
+            ::whereIn('user_id', $userIds)
+            ->where(['name' => $optionName])
+            ->whereNotNull('details')
+            ->get()
+            ->keyBy('user_id');
+
+        $filteredUserIds = [];
+        foreach ($userIds as $userId) {
+            if ($notificationOptions[$userId]->details['push'] ?? true) {
+                $filteredUserIds[] = $userId;
+            }
+        }
+
+        return $filteredUserIds;
     }
 
     public function __construct(string $name, $object, ?User $source = null)
@@ -79,7 +100,8 @@ class BroadcastNotification implements ShouldQueue
             $this->receiverIds = $this->receiverIds->all();
         }
 
-        $this->receiverIds = array_values(array_diff($this->receiverIds, [optional($this->source)->getKey()]));
+        $this->receiverIds = array_values(array_unique(array_diff($this->receiverIds, [optional($this->source)->getKey()])));
+
         if (empty($this->receiverIds)) {
             return;
         }
@@ -115,7 +137,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetDiscussionLock()
     {
-        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -125,7 +147,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetDiscussionUnlock()
     {
-        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -136,7 +158,7 @@ class BroadcastNotification implements ShouldQueue
     private function onBeatmapsetDiscussionPostNew()
     {
         $this->notifiable = $this->object->beatmapset;
-        $this->receiverIds = static::beatmapsetReceiverIds($this->notifiable);
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->notifiable);
 
         $this->assignBeatmapsetDiscussionNotificationDetails();
     }
@@ -164,17 +186,65 @@ class BroadcastNotification implements ShouldQueue
             ->get();
 
         foreach ($notificationOptions as $notificationOption) {
-            if (count(array_intersect($notificationOption->details['modes'], $modes)) > 0) {
+            if (count(array_intersect($notificationOption->details['modes'] ?? [], $modes)) > 0) {
                 $this->receiverIds[] = $notificationOption->user_id;
             }
         }
 
+        $this->receiverIds = static::filterUserIdsForNotificationOption(
+            $this->receiverIds,
+            UserNotificationOption::BEATMAPSET_MODDING
+        );
+
         $this->assignBeatmapsetDiscussionNotificationDetails();
+    }
+
+    private function onBeatmapsetDiscussionReviewNew()
+    {
+        $this->notifiable = $this->object->beatmapset;
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->notifiable);
+        $stats = BeatmapsetDiscussionReview::getStats(json_decode($this->object->startingPost->message, true));
+
+        $this->params['details'] = [
+            'title' => $this->notifiable->title,
+            'post_id' => $this->object->startingPost->getKey(),
+            'discussion_id' => $this->object->getKey(),
+            'beatmap_id' => $this->object->beatmap_id,
+            'cover_url' => $this->notifiable->coverURL('card'),
+            'embeds' => [
+                'suggestions' => $stats['suggestions'],
+                'problems' => $stats['problems'],
+                'praises' => $stats['praises'],
+            ],
+        ];
     }
 
     private function onBeatmapsetDisqualify()
     {
-        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+        $modes = $this->object->playmodes()->all();
+        $modes = array_map(function ($modeInt) {
+            return Beatmap::modeStr($modeInt);
+        }, $modes);
+
+        $notificationOptions = UserNotificationOption
+            ::where(['name' => Notification::BEATMAPSET_DISQUALIFY])
+            ->whereNotNull('details')
+            ->get();
+
+        $this->receiverIds = [];
+
+        foreach ($notificationOptions as $notificationOption) {
+            if (count(array_intersect($notificationOption->details['modes'] ?? [], $modes)) > 0) {
+                $this->receiverIds[] = $notificationOption->user_id;
+            }
+        }
+
+        $this->receiverIds = static::filterUserIdsForNotificationOption(
+            $this->receiverIds,
+            UserNotificationOption::BEATMAPSET_MODDING
+        );
+
+        $this->receiverIds = array_merge($this->receiverIds, static::beatmapsetWatcherUserIds($this->object));
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -184,7 +254,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetLove()
     {
-        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -194,7 +264,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetNominate()
     {
-        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -204,7 +274,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetQualify()
     {
-        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -214,7 +284,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetRank()
     {
-        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -224,7 +294,7 @@ class BroadcastNotification implements ShouldQueue
 
     private function onBeatmapsetResetNominations()
     {
-        $this->receiverIds = static::beatmapsetReceiverIds($this->object);
+        $this->receiverIds = static::beatmapsetWatcherUserIds($this->object);
 
         $this->params['details'] = [
             'title' => $this->object->title,
@@ -281,6 +351,11 @@ class BroadcastNotification implements ShouldQueue
             ->where('user_id', '<>', $this->source->getKey())
             ->pluck('user_id')
             ->all();
+
+        $this->receiverIds = static::filterUserIdsForNotificationOption(
+            $this->receiverIds,
+            UserNotificationOption::FORUM_TOPIC_REPLY
+        );
 
         $this->params['details'] = [
             'title' => $this->notifiable->topic_title,

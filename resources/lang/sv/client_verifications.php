@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => '',
-        'logout' => '',
-        'text' => '',
-        'title' => '',
+        'home' => 'Gå till instrumentpanelen',
+        'logout' => 'Logga ut',
+        'text' => 'Du kan stänga detta fönstret nu',
+        'title' => 'osu! klientverifiering har slutförts',
     ],
 
     'create' => [
-        'confirm' => '',
-        'title' => '',
+        'confirm' => 'Klicka på knappen auktorisera nedan för att avsluta klientverifiering.',
+        'title' => 'osu! klientverifiering',
     ],
 ];

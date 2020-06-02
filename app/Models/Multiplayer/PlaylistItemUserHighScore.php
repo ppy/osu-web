@@ -16,6 +16,7 @@ use App\Models\Model;
  * @property int $playlist_item_id
  * @property float|null $pp
  * @property int $score_id
+ * @property RoomScore $score
  * @property int $total_score
  * @property \Carbon\Carbon $updated_at
  * @property int $user_id
@@ -23,4 +24,9 @@ use App\Models\Model;
 class PlaylistItemUserHighScore extends Model
 {
     protected $table = 'multiplayer_scores_high';
+
+    public function score()
+    {
+        return $this->belongsTo(RoomScore::class);
+    }
 }

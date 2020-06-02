@@ -38,6 +38,7 @@ export class ReviewPost extends React.Component<Props> {
           ]}
           key={osu.uuid()}
           source={source}
+          unwrapDisallowed={true}
           renderers={{
             link: (props) => <a className='beatmap-discussion-review-post__link' rel='nofollow' {...props}/>,
             paragraph: (props) => {
@@ -60,8 +61,8 @@ export class ReviewPost extends React.Component<Props> {
       doc.forEach((block) => {
         switch (block.type) {
           case 'paragraph':
-            // '&nbsp;  ' converts into a newline
-            docBlocks.push(this.paragraph(osu.presence(block.text) || '&nbsp;  '));
+            const content = block.text.trim() === '' ? '&nbsp;' : block.text;
+            docBlocks.push(this.paragraph(content));
             break;
           case 'embed':
             if (block.discussion_id) {
