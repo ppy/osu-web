@@ -4,8 +4,8 @@
 import * as React from 'react';
 
 interface Props {
-  modifiers?: string[];
   currentValue: string;
+  modifiers?: string[];
   title?: string;
   values: string[];
   onChange(event: React.MouseEvent<HTMLButtonElement>): void;
