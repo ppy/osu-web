@@ -55,7 +55,11 @@
 
     @if ($user->country !== null)
         <div class="forum-post-info__row forum-post-info__row--flag">
-            <a href="{{route('rankings', ['mode' => 'osu', 'type' => 'performance', 'country' => $user->country->getKey()])}}">
+            <a href="{{route('rankings', [
+                'mode' => default_mode(),
+                'type' => 'performance',
+                'country' => $user->country->getKey(),
+            ])}}">
                 <img
                     class="flag-country"
                     src="{{ flag_path($user->country->getKey()) }}"

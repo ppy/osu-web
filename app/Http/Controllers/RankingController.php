@@ -54,7 +54,7 @@ class RankingController extends Controller
             view()->share($this->params); // won't set null values
 
             if ($mode === null) {
-                return ujs_redirect(route('rankings', ['mode' => 'osu', 'type' => 'performance']));
+                return ujs_redirect(route('rankings', ['mode' => default_mode(), 'type' => 'performance']));
             }
 
             if (!Beatmap::isModeValid($mode)) {

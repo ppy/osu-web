@@ -31,7 +31,7 @@ export function findDefault<T extends BeatmapJson>(params: FindDefaultParams<T>)
 
   if (params.group == null) return null;
 
-  const findModes = params.mode == null ? modes : [params.mode];
+  const findModes = params.mode == null ? userModes() : [params.mode];
 
   for (const m of findModes) {
     const beatmap = findDefault({ items: params.group[m] });
@@ -49,7 +49,7 @@ interface FindParams<T> {
 }
 
 export function find<T extends BeatmapJson>(params: FindParams<T>): T | null {
-  const findModes = params.mode == null ? modes : [params.mode];
+  const findModes = params.mode == null ? userModes() : [params.mode];
 
   for (const m of findModes) {
     const item = (params.group[m] ?? []).find((i) => i.id === params.id);
@@ -95,4 +95,16 @@ export function sortWithMode<T extends BeatmapJson>(beatmaps: T[]): T[] {
   const grouped = group(beatmaps);
 
   return _.flatten(modes.map((mode) => grouped[mode] || []));
+}
+
+function userModes() {
+  const currentMode: GameMode | undefined = currentUser.playmode;
+  if (currentMode == null || !modes.includes(currentMode)) {
+    return modes;
+  }
+
+  const ret = _.without(modes, currentMode);
+  ret.unshift(currentMode);
+
+  return ret;
 }
