@@ -12,6 +12,20 @@ allUsers =
   text: osu.trans('beatmap_discussions.user_filter.everyone')
 
 export class UserFilter extends React.PureComponent
+  mapUserProperties: (user) ->
+    groups: user.groups
+    id: user.id
+    text: user.username
+
+
+  handleChange: (option) =>
+    $.publish 'beatmapsetDiscussions:update', selectedUserId: option.id
+
+
+  isOwner: (user) =>
+    user? && user.id == @props.ownerId
+
+
   render: =>
     options = [allUsers]
     for own _id, user of @props.users
@@ -30,12 +44,6 @@ export class UserFilter extends React.PureComponent
       selected: selected
 
 
-  mapUserProperties: (user) ->
-    groups: user.groups
-    id: user.id
-    text: user.username
-
-
   renderOption: ({ cssClasses, children, onClick, option }) =>
     group = if @isOwner(option) then mapperGroup else option.groups?[0]
     style = osu.groupColour(group)
@@ -47,11 +55,3 @@ export class UserFilter extends React.PureComponent
       onClick: onClick
       style: style
       children
-
-
-  isOwner: (user) =>
-    user? && user.id == @props.ownerId
-
-
-  handleChange: (option) =>
-    $.publish 'beatmapsetDiscussions:update', selectedUserId: option.id

@@ -7,6 +7,14 @@ import { a } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
 
 export class SpotlightSelectOptions extends PureComponent
+  handleChange: (option) =>
+    Turbolinks.visit @href(option.id)
+
+
+  href: (key) ->
+    window.osu.updateQueryString(null, spotlight: key)
+
+
   render: =>
     el SelectOptions,
       bn: 'spotlight-select-options'
@@ -23,11 +31,3 @@ export class SpotlightSelectOptions extends PureComponent
       href: @href(option?.id)
       key: option?.id
       onClick: onClick
-
-
-  href: (key) ->
-    window.osu.updateQueryString(null, spotlight: key)
-
-
-  handleChange: (option) =>
-    Turbolinks.visit @href(option.id)

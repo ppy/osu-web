@@ -28,6 +28,19 @@ export class SelectOptions extends PureComponent
     document.removeEventListener 'click', @hideSelector
 
 
+  # dismiss the selector if clicking anywhere outside of it.
+  hideSelector: (e) =>
+    @setState showingSelector: false if e.button == 0 && !(@ref.current in e.composedPath())
+
+
+  optionSelected: (event, option) =>
+    return if event.button != 0
+    event.preventDefault()
+
+    @setState showingSelector: false
+    @props.onChange?(option)
+
+
   render: =>
     classNames = "#{@bn}"
     classNames += " #{@bn}--selecting" if @state.showingSelector
@@ -57,21 +70,6 @@ export class SelectOptions extends PureComponent
         @renderOptions()
 
 
-  renderOptions: =>
-    for option in @props.options
-      do (option) =>
-        @renderOption
-          children: [
-            div
-              className: 'u-ellipsis-overflow'
-              key: option.id
-              option.text
-          ],
-          onClick: (event) => @optionSelected(event, option)
-          option: option
-          selected: @props.selected?.id == option.id
-
-
   renderOption: ({ children, onClick, option, selected = false }) =>
     cssClasses = "#{@bn}__option"
     cssClasses += " #{@bn}__option--selected" if selected
@@ -86,17 +84,19 @@ export class SelectOptions extends PureComponent
       children
 
 
-  # dismiss the selector if clicking anywhere outside of it.
-  hideSelector: (e) =>
-    @setState showingSelector: false if e.button == 0 && !(@ref.current in e.composedPath())
-
-
-  optionSelected: (event, option) =>
-    return if event.button != 0
-    event.preventDefault()
-
-    @setState showingSelector: false
-    @props.onChange?(option)
+  renderOptions: =>
+    for option in @props.options
+      do (option) =>
+        @renderOption
+          children: [
+            div
+              className: 'u-ellipsis-overflow'
+              key: option.id
+              option.text
+          ],
+          onClick: (event) => @optionSelected(event, option)
+          option: option
+          selected: @props.selected?.id == option.id
 
 
   toggleSelector: (event) =>
