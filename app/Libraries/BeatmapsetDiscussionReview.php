@@ -265,7 +265,8 @@ class BeatmapsetDiscussionReview
         return $newDiscussion;
     }
 
-    private static function resetOrDisqualify($beatmapset, $user, $problemDiscussion) {
+    private static function resetOrDisqualify($beatmapset, $user, $problemDiscussion)
+    {
         $resetNominations = $beatmapset->isPending() &&
             $beatmapset->hasNominations() &&
             priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can();
