@@ -116,14 +116,14 @@ export default class RankingFilter extends React.PureComponent<Props> {
     );
   }
 
-  renderOption(option: OptionRenderProps) {
+  renderOption(props: OptionRenderProps) {
     return (
       <a
-        children={option.children}
-        className={option.cssClasses}
-        href={osu.updateQueryString(null, { country: option.option.id, page: null })}
-        key={option.option.id ?? ''}
-        onClick={option.onClick}
+        children={props.children}
+        className={props.cssClasses}
+        href={osu.updateQueryString(null, { country: props.option.id, page: null })}
+        key={props.option.id ?? ''}
+        onClick={props.onClick}
       />
     );
   }

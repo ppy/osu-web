@@ -140,7 +140,7 @@ declare module 'select-options' {
     bn?: string;
     onChange: (option: Option<T>) => void;
     options: Option<T>[];
-    renderOption: (option: OptionRenderProps<T>) => React.ReactNode;
+    renderOption: (props: OptionRenderProps<T>) => React.ReactNode;
     selected: Option<T>;
   }
 
