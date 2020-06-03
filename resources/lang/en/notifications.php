@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'New post on ":title" by :username',
                 'beatmapset_discussion_post_new_compact' => 'New post by :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'New post by :username',
+                'beatmapset_discussion_review_new' => 'New review on ":title" by :username containing problems: :problems, suggestions: :suggestions, praises: :praises',
+                'beatmapset_discussion_review_new_compact' => 'New review by :username containing problems: :problems, suggestions: :suggestions, praises: :praises',
                 'beatmapset_discussion_unlock' => 'Discussion on ":title" has been unlocked',
                 'beatmapset_discussion_unlock_compact' => 'Discussion was unlocked',
             ],

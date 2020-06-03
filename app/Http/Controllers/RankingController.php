@@ -40,7 +40,7 @@ class RankingController extends Controller
             view()->share('spotlight', null); // so variable capture in selector function doesn't die.
 
             if ($mode === null) {
-                return ujs_redirect(route('rankings', ['mode' => 'osu', 'type' => 'performance']));
+                return ujs_redirect(route('rankings', ['mode' => default_mode(), 'type' => 'performance']));
             }
 
             if (!Beatmap::isModeValid($mode)) {

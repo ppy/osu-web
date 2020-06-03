@@ -14,7 +14,7 @@ export class UserCard extends React.PureComponent
 
     div
       className: osu.classWithModifiers(bn, additionalClasses)
-      style: osu.groupColour(@props.badge)
+      style: osu.groupColour(@props.group)
 
       div className: "#{bn}__avatar",
         a

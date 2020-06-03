@@ -3,8 +3,7 @@
 
 .beatmap-discussion-editor {
   @_top: beatmap-discussion-editor;
-  @_avatar-size: 45px;
-  @_side-padding: 20px;
+  @_side-padding: 15px;
 
   display: flex;
   background-color: @osu-colour-b4;
@@ -17,6 +16,15 @@
   }
 
   &__block {
+    &::before {
+      content: '';
+      position: absolute;
+      right: 100%;
+      width: @_side-padding;
+      display: block;
+      height: 100%;
+    }
+
     .@{_top}--readonly & {
         &:hover .@{_top}__hover-menu {
           display: none;
@@ -36,7 +44,7 @@
   &__hover-menu {
     bottom: -10px;
     display: none;
-    margin-left: -15px;
+    margin-left: -@_side-padding;
     position: absolute;
     user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
     .default-text-shadow();
@@ -48,21 +56,21 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 15px;
+    padding: @_side-padding;
     background: @osu-colour-b6;
     border-radius: 0 0 @border-radius-base @border-radius-base;
   }
 
   &__content {
     display: flex;
-    margin: 0 15px 15px 15px;
+    margin: 0 @_side-padding @_side-padding @_side-padding;
     flex-direction: column;
     color: white;
     background: @osu-colour-b5;
     .default-border-radius();
 
     .@{_top}--edit-mode & {
-      margin: 0 -15px;
+      margin: 0 -@_side-padding;
       border: 2px solid hsl(200, 60%, 50%);
     }
   }
@@ -73,7 +81,7 @@
     max-height: 70vh;
     overflow-y: auto;
 
-    padding: 15px;
+    padding: @_side-padding;
 
     .@{_top}--edit-mode & {
       max-height: unset;
