@@ -257,16 +257,13 @@ export default class Editor extends React.Component<Props, State> {
         this.xhr = $.ajax(route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
           data: {document: this.serialize()},
           method: 'POST',
-        });
-
-        this.xhr.then((data) => {
+        })
+        .done((data) => {
           $.publish('beatmapsetDiscussions:update', {beatmapset: data});
           this.resetInput();
         })
-          .always(() => {
-            this.setState({posting: false});
-          })
-          .catch(osu.ajaxError);
+        .fail(osu.ajaxError)
+        .always(() => this.setState({posting: false}));
       });
     }
   }
