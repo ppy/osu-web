@@ -25,7 +25,7 @@ class BeatmapsetDiscussionReview
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
-        $problemPost = null;
+        $problemDiscussion = null;
         $output = [];
         try {
             DB::beginTransaction();
@@ -45,7 +45,7 @@ class BeatmapsetDiscussionReview
 
                 switch ($block['type']) {
                     case 'embed':
-                        $embedPost = self::createPost(
+                        $embedDiscussion = self::createPost(
                             $beatmapset->getKey(),
                             $block['discussion_type'],
                             $message,
@@ -55,11 +55,11 @@ class BeatmapsetDiscussionReview
                         );
                         $output[] = [
                             'type' => 'embed',
-                            'discussion_id' => $embedPost->getKey(),
+                            'discussion_id' => $embedDiscussion->getKey(),
                         ];
-                        $childIds[] = $embedPost->getKey();
-                        if ($block['discussion_type'] === 'problem' && !$problemPost) {
-                            $problemPost = $embedPost;
+                        $childIds[] = $embedDiscussion->getKey();
+                        if ($block['discussion_type'] === 'problem' && !$problemDiscussion) {
+                            $problemDiscussion = $embedDiscussion;
                         }
                         break;
 
@@ -102,17 +102,23 @@ class BeatmapsetDiscussionReview
                 ->update(['parent_id' => $review->getKey()]);
 
             // handle disqualifications and the resetting of nominations
-            if ($problemPost) {
+            if ($problemDiscussion) {
                 $resetNominations = $beatmapset->isPending() &&
                     $beatmapset->hasNominations() &&
                     priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can();
 
                 if ($resetNominations) {
-                    BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $problemPost)->saveOrExplode();
+                    BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $problemDiscussion)->saveOrExplode();
+                    broadcast_notification(Notification::BEATMAPSET_RESET_NOMINATIONS, $beatmapset, $user);
                     $beatmapset->refreshCache();
                 } else {
                     if (priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
-                        $beatmapset->disqualify($user, $problemPost);
+                        $beatmapset->disqualify($user, $problemDiscussion);
+                        broadcast_notification(
+                            Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+                            $problemDiscussion->startingPost,
+                            $user
+                        );
                     }
                 }
             }

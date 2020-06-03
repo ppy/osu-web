@@ -5,14 +5,19 @@
 
 namespace Tests\Libraries;
 
+use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvariantException;
+use App\Jobs\BroadcastNotification;
 use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\Notification;
 use App\Models\User;
 use Faker;
+use Illuminate\Support\Facades\Event;
+use Queue;
 use Tests\TestCase;
 
 class BeatmapsetDiscussionReviewTest extends TestCase
@@ -214,6 +219,8 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'approved' => Beatmapset::STATES['qualified'],
         ]);
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $watchingUser = factory(User::class)->create();
+        $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
 
         BeatmapsetDiscussionReview::create($beatmapset,
             [
@@ -230,6 +237,13 @@ class BeatmapsetDiscussionReviewTest extends TestCase
 
         // ensure qualified beatmap has been reset to pending
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
+
+        // ensure a disqualification notification is dispatched
+        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
+            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
+        });
+        $this->runFakeQueue();
+        Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
 
     // valid document containing issue embeds should reset nominations (for GMT)
@@ -241,6 +255,10 @@ class BeatmapsetDiscussionReviewTest extends TestCase
             'approved' => Beatmapset::STATES['pending'],
         ]);
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $watchingUser = factory(User::class)->create();
+        $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
+
+        // ensure beatmapset has a nomination
         $beatmapset->nominate($gmtUser);
         $this->assertSame($beatmapset->nominations, 1);
 
@@ -261,6 +279,13 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
         // ensure nomination count has been reset
         $this->assertSame($beatmapset->nominations, 0);
+
+        // ensure a nomination reset notification is dispatched
+        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
+            return $job->getName() === Notification::BEATMAPSET_RESET_NOMINATIONS;
+        });
+        $this->runFakeQueue();
+        Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
 
     //endregion
@@ -491,6 +516,9 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        Queue::fake();
+        Event::fake();
 
         config()->set('osu.beatmapset.discussion_review_enabled', true);
         config()->set('osu.beatmapset.discussion_review_max_blocks', 4);
