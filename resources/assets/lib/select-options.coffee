@@ -96,7 +96,7 @@ export class SelectOptions extends PureComponent
     event.preventDefault()
 
     @setState showingSelector: false
-    @props.onItemSelected?(option)
+    @props.onChange?(option)
 
 
   toggleSelector: (event) =>

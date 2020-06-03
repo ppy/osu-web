@@ -138,8 +138,7 @@ declare module 'select-options' {
 
   interface Props<T> {
     bn?: string;
-    // TODO: this should be onOptionSelected instead.
-    onItemSelected: (item: Option<T>) => void;
+    onChange: (option: Option<T>) => void;
     options: Option<T>[];
     renderOption: (option: OptionRenderProps<T>) => React.ReactNode;
     selected: Option<T>;

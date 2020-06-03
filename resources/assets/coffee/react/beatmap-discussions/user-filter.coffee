@@ -25,7 +25,7 @@ export class UserFilter extends React.PureComponent
     el SelectOptions,
       bn: 'beatmap-discussions-user-filter'
       renderOption: @renderOption
-      onItemSelected: @onItemSelected
+      onChange: @handleChange
       options: options
       selected: selected
 
@@ -53,5 +53,5 @@ export class UserFilter extends React.PureComponent
     user? && user.id == @props.ownerId
 
 
-  onItemSelected: (item) ->
-    $.publish 'beatmapsetDiscussions:update', selectedUserId: item.id
+  handleChange: (option) =>
+    $.publish 'beatmapsetDiscussions:update', selectedUserId: option.id

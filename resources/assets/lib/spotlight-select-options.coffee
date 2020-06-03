@@ -11,7 +11,7 @@ export class SpotlightSelectOptions extends PureComponent
     el SelectOptions,
       bn: 'spotlight-select-options'
       renderOption: @renderOption
-      onItemSelected: @onItemSelected
+      onChange: @handleChange
       options: @props.options
       selected: @props.selected
 
@@ -29,5 +29,5 @@ export class SpotlightSelectOptions extends PureComponent
     window.osu.updateQueryString(null, spotlight: key)
 
 
-  onItemSelected: (item) =>
-    Turbolinks.visit @href(item.id)
+  handleChange: (option) =>
+    Turbolinks.visit @href(option.id)
