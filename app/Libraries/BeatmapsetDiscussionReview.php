@@ -103,24 +103,7 @@ class BeatmapsetDiscussionReview
 
             // handle disqualifications and the resetting of nominations
             if ($problemDiscussion) {
-                $resetNominations = $beatmapset->isPending() &&
-                    $beatmapset->hasNominations() &&
-                    priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can();
-
-                if ($resetNominations) {
-                    BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $problemDiscussion)->saveOrExplode();
-                    broadcast_notification(Notification::BEATMAPSET_RESET_NOMINATIONS, $beatmapset, $user);
-                    $beatmapset->refreshCache();
-                } else {
-                    if (priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
-                        $beatmapset->disqualify($user, $problemDiscussion);
-                        broadcast_notification(
-                            Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
-                            $problemDiscussion->startingPost,
-                            $user
-                        );
-                    }
-                }
+                self::resetOrDisqualify($beatmapset, $user, $problemDiscussion);
             }
 
             DB::commit();
@@ -148,6 +131,7 @@ class BeatmapsetDiscussionReview
         $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id); // handle deleted beatmapsets
         $post = $discussion->startingPost;
 
+        $problemDiscussion = null;
         $output = [];
         try {
             DB::beginTransaction();
@@ -176,14 +160,18 @@ class BeatmapsetDiscussionReview
                             $childId = $block['discussion_id'];
                         } else {
                             // otherwise, create new discussion
-                            $childId = self::createPost(
+                            $embedDiscussion = self::createPost(
                                 $beatmapset->getKey(),
                                 $block['discussion_type'],
                                 $message,
                                 $user->getKey(),
                                 $block['beatmap_id'] ?? null,
                                 $block['timestamp'] ?? null
-                            )->getKey();
+                            );
+                            $childId = $embedDiscussion->getKey();
+                            if ($block['discussion_type'] === 'problem' && !$problemDiscussion) {
+                                $problemDiscussion = $embedDiscussion;
+                            }
                         }
 
                         $output[] = [
@@ -240,6 +228,11 @@ class BeatmapsetDiscussionReview
             BeatmapDiscussion::whereIn('id', $childIds)
                 ->update(['parent_id' => $discussion->getKey()]);
 
+            // handle disqualifications and the resetting of nominations
+            if ($problemDiscussion) {
+                self::resetOrDisqualify($beatmapset, $user, $problemDiscussion);
+            }
+
             DB::commit();
 
             return true;
@@ -270,6 +263,27 @@ class BeatmapsetDiscussionReview
         $newPost->saveOrExplode();
 
         return $newDiscussion;
+    }
+
+    private static function resetOrDisqualify($beatmapset, $user, $problemDiscussion) {
+        $resetNominations = $beatmapset->isPending() &&
+            $beatmapset->hasNominations() &&
+            priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can();
+
+        if ($resetNominations) {
+            BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $problemDiscussion)->saveOrExplode();
+            broadcast_notification(Notification::BEATMAPSET_RESET_NOMINATIONS, $beatmapset, $user);
+            $beatmapset->refreshCache();
+        } else {
+            if (priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
+                $beatmapset->disqualify($user, $problemDiscussion);
+                broadcast_notification(
+                    Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+                    $problemDiscussion->startingPost,
+                    $user
+                );
+            }
+        }
     }
 
     public static function getStats(array $document)

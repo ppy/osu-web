@@ -399,6 +399,8 @@ export default class Editor extends React.Component<Props, State> {
     if (canReset && willReset) {
       return confirm(osu.trans('beatmaps.nominations.reset_confirm.nomination_reset'));
     }
+
+    return true;
   }
 
   sortedBeatmaps = () => {

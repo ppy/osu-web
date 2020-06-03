@@ -483,6 +483,90 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($linkedIssueCount + 1, BeatmapDiscussion::where('parent_id', $review->id)->count());
     }
 
+    public function testUpdateDocumentWithNewIssueShouldDisqualify()
+    {
+        $gmtUser = factory(User::class)->states('gmt')->create();
+        $beatmapset = factory(Beatmapset::class)->create([
+            'discussion_enabled' => true,
+            'approved' => Beatmapset::STATES['qualified'],
+        ]);
+        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $review = $this->setUpPraiseOnlyReview($beatmapset, $gmtUser);
+
+        // ensure qualified beatmap is qualified
+        $this->assertSame($beatmapset->approved, Beatmapset::STATES['qualified']);
+
+        // ensure we have a user watching, otherwise no notifications will be sent
+        $watchingUser = factory(User::class)->create();
+        $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
+
+        $document = json_decode($review->startingPost->message, true);
+        $document[] = [
+            'type' => 'embed',
+            'discussion_type' => 'problem',
+            'text' => 'whee',
+        ];
+
+        BeatmapsetDiscussionReview::update($review, $document, $gmtUser);
+
+        $beatmapset->refresh();
+
+        // ensure qualified beatmap has been reset to pending
+        $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
+
+        // ensure a disqualification notification is dispatched
+        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
+            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
+        });
+        $this->runFakeQueue();
+        Event::assertDispatched(NewPrivateNotificationEvent::class);
+    }
+
+    public function testUpdateDocumentWithNewIssueShouldResetNominations()
+    {
+        $gmtUser = factory(User::class)->states('gmt')->create();
+        $beatmapset = factory(Beatmapset::class)->create([
+            'discussion_enabled' => true,
+            'approved' => Beatmapset::STATES['pending'],
+        ]);
+        $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $review = $this->setUpPraiseOnlyReview($beatmapset, $gmtUser);
+
+        // ensure qualified beatmap is pending
+        $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
+
+        // ensure beatmapset has a nomination
+        $beatmapset->nominate($gmtUser);
+        $this->assertSame($beatmapset->nominations, 1);
+
+        // ensure we have a user watching, otherwise no notifications will be sent
+        $watchingUser = factory(User::class)->create();
+        $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
+
+        $document = json_decode($review->startingPost->message, true);
+        $document[] = [
+            'type' => 'embed',
+            'discussion_type' => 'problem',
+            'text' => 'whee',
+        ];
+
+        BeatmapsetDiscussionReview::update($review, $document, $gmtUser);
+
+        $beatmapset->refresh();
+
+        // ensure beatmap is still pending
+        $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
+        // ensure nomination count has been reset
+        $this->assertSame($beatmapset->nominations, 0);
+
+        // ensure a nomination reset notification is dispatched
+        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
+            return $job->getName() === Notification::BEATMAPSET_RESET_NOMINATIONS;
+        });
+        $this->runFakeQueue();
+        Event::assertDispatched(NewPrivateNotificationEvent::class);
+    }
+
     // removing/unlinking an embed from an existing issue
     public function testUpdateDocumentRemoveIssue()
     {
@@ -531,12 +615,12 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
     }
 
-    protected function setUpReview(): BeatmapDiscussion
+    protected function setUpReview($beatmapset = null): BeatmapDiscussion
     {
         $timestampedIssueText = '00:01:234 '.self::$faker->sentence();
         $issueText = self::$faker->sentence();
 
-        return BeatmapsetDiscussionReview::create($this->beatmapset,
+        return BeatmapsetDiscussionReview::create($beatmapset ? $beatmapset : $this->beatmapset,
             [
                 [
                     'type' => 'embed',
@@ -555,6 +639,22 @@ class BeatmapsetDiscussionReviewTest extends TestCase
                     'text' => 'this is some paragraph text',
                 ],
             ], $this->user);
+    }
+
+    protected function setUpPraiseOnlyReview($beatmapset = null, $user = null): BeatmapDiscussion
+    {
+        return BeatmapsetDiscussionReview::create($beatmapset ? $beatmapset : $this->beatmapset,
+            [
+                [
+                    'type' => 'embed',
+                    'discussion_type' => 'praise',
+                    'text' => self::$faker->sentence(),
+                ],
+                [
+                    'type' => 'paragraph',
+                    'text' => 'this is some paragraph text',
+                ],
+            ], $user ? $user : $this->user);
     }
 
     protected function updateReview($document)
