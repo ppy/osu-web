@@ -5,6 +5,7 @@ import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div } from 'react-dom-factories'
+import { Sort } from 'sort'
 
 el = React.createElement
 
@@ -12,25 +13,13 @@ uiState = core.dataStore.uiState
 
 export class CommentsSort extends React.PureComponent
   render: =>
-    div className: osu.classWithModifiers('sort', @props.modifiers),
-      div className: 'sort__items',
-        div className: 'sort__item sort__item--title', osu.trans('sort._')
-        @renderButton('new')
-        @renderButton('old')
-        @renderButton('top')
-
-
-  renderButton: (sort) =>
     el Observer, null, () =>
-      className = 'sort__item sort__item--button'
-      className += ' sort__item--active' if sort == (uiState.comments.loadingSort ? uiState.comments.currentSort)
-
-      button
-        className: className
-        'data-sort': sort
-        onClick: @setSort
-        osu.trans("sort.#{sort}")
+      el Sort,
+        modifiers: @props.modifiers
+        onSortSelected: @setSort
+        sortMode: uiState.comments.loadingSort ? uiState.comments.currentSort
+        values: ['new', 'old', 'top']
 
 
   setSort: (e) =>
-    $.publish 'comments:sort', sort: e.target.dataset.sort
+    $.publish 'comments:sort', sort: e.target.dataset.value
