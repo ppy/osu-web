@@ -36,14 +36,14 @@ export class UserFilter extends React.PureComponent
     text: user.username
 
 
-  renderOption: ({ cssClasses, children, item, onClick }) =>
-    group = if @isOwner(item) then mapperGroup else item.groups?[0]
+  renderOption: ({ cssClasses, children, onClick, option }) =>
+    group = if @isOwner(option) then mapperGroup else option.groups?[0]
     style = osu.groupColour(group)
 
     a
       className: cssClasses
-      href: BeatmapDiscussionHelper.url user: item?.id, true
-      key: item?.id
+      href: BeatmapDiscussionHelper.url user: option?.id, true
+      key: option?.id
       onClick: onClick
       style: style
       children

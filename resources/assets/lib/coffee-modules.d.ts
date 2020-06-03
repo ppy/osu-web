@@ -132,7 +132,7 @@ declare module 'select-options' {
   interface OptionRenderProps<T = string> {
     children: React.ReactNode[];
     cssClasses: string;
-    item: Option<T>;
+    option: Option<T>;
     onClick: (event: React.SyntheticEvent) => void;
   }
 

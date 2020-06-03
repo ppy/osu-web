@@ -49,8 +49,8 @@ export class SelectOptions extends PureComponent
               className: "#{@bn}__decoration",
               i className: "fas fa-chevron-down"
           ]
-          item: @props.selected
           onClick: @toggleSelector
+          option: @props.selected
 
       div
         className: "#{@bn}__selector"
@@ -66,21 +66,21 @@ export class SelectOptions extends PureComponent
             key: option.id
             option.text
         ],
-        item: option
+        onClick: (event) => @optionSelected(event, option)
+        option: option
         selected: @props.selected?.id == option.id
-        onClick: (event) => @itemSelected(event, option)
 
 
-  renderOption: ({ children, item, onClick, selected = false }) ->
+  renderOption: ({ children, onClick, option, selected = false }) =>
     cssClasses = "#{@bn}__option"
     cssClasses += " #{@bn}__option--selected" if selected
 
-    return @props.renderOption({ children, item, onClick, cssClasses }) if @props.renderOption?
+    return @props.renderOption({ children, cssClasses, onClick, option }) if @props.renderOption?
 
     a
       className: cssClasses
       href: '#'
-      key: item.id
+      key: option.id
       onClick: onClick
       children
 
@@ -90,12 +90,12 @@ export class SelectOptions extends PureComponent
     @setState showingSelector: false if e.button == 0 && !(@ref.current in e.composedPath())
 
 
-  itemSelected: (event, item) ->
+  optionSelected: (event, option) =>
     return if event.button != 0
     event.preventDefault()
 
     @setState showingSelector: false
-    @props.onItemSelected?(item)
+    @props.onItemSelected?(option)
 
 
   toggleSelector: (event) =>

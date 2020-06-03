@@ -121,8 +121,8 @@ export default class RankingFilter extends React.PureComponent<Props> {
       <a
         children={option.children}
         className={option.cssClasses}
-        href={osu.updateQueryString(null, { country: option.item.id, page: null })}
-        key={option.item.id ?? ''}
+        href={osu.updateQueryString(null, { country: option.option.id, page: null })}
+        key={option.option.id ?? ''}
         onClick={option.onClick}
       />
     );

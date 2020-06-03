@@ -16,12 +16,12 @@ export class SpotlightSelectOptions extends PureComponent
       selected: @props.selected
 
 
-  renderOption: ({ cssClasses, children, item, onClick }) =>
+  renderOption: ({ children, cssClasses, onClick, option }) =>
     a
       children: children
       className: cssClasses
-      href: @href(item?.id)
-      key: item?.id
+      href: @href(option?.id)
+      key: option?.id
       onClick: onClick
 
 
