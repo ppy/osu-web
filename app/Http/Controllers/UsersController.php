@@ -237,7 +237,9 @@ class UsersController extends Controller
         }
 
         if ((string) $user->user_id !== (string) $id) {
-            return ujs_redirect(route('users.show', ['user' => $user, 'mode' => $mode]));
+            $route = is_api_request() ? 'api.users.show' : 'users.show';
+
+            return ujs_redirect(route($route, compact('user', 'mode')));
         }
 
         $currentMode = $mode ?? $user->playmode;
