@@ -6,6 +6,7 @@
 namespace Tests\Controllers\Chat;
 
 use App\Models\Chat;
+use App\Models\Chat\Channel;
 use App\Models\User;
 use Faker;
 use Tests\TestCase;
@@ -34,6 +35,59 @@ class ChannelsControllerTest extends TestCase
             ->assertJsonFragment(['channel_id' => $this->publicChannel->channel_id])
             ->assertJsonMissing(['channel_id' => $this->privateChannel->channel_id])
             ->assertJsonMissing(['channel_id' => $this->pmChannel->channel_id]);
+    }
+
+    //endregion
+
+    //region POST /chat/channels - Create and join channel
+    public function testChannelStoreInvalid()
+    {
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('POST', route('api.chat.channels.store'), [
+            'type' => Channel::TYPES['public'],
+        ])->assertStatus(422);
+
+        $this->json('POST', route('api.chat.channels.store'), [
+            'type' => Channel::TYPES['pm'],
+        ])->assertStatus(422);
+    }
+
+    public function testChannelStorePM()
+    {
+        $initialChannels = Channel::count();
+
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('POST', route('api.chat.channels.store'), [
+            'target_id' => $this->anotherUser->getKey(),
+            'type' => Channel::TYPES['pm'],
+        ])->assertSuccessful()
+        ->assertJsonFragment([
+            'channel_id' => null,
+            'recent_messages' => [],
+        ]);
+
+        $this->assertSame($initialChannels, Channel::count());
+    }
+
+    public function testChannelStorePMUserLeft()
+    {
+        $channel = Channel::createPM($this->user, $this->anotherUser);
+        $channel->removeUser($this->user);
+
+        // sanity check
+        $this->assertFalse($channel->hasUser($this->user));
+
+        $this->actAsScopedUser($this->user, ['*']);
+        $this->json('POST', route('api.chat.channels.store'), [
+            'target_id' => $this->anotherUser->getKey(),
+            'type' => Channel::TYPES['pm'],
+        ])->assertSuccessful()
+        ->assertJsonFragment([
+            'channel_id' => $channel->getKey(),
+            'recent_messages' => [],
+        ]);
+
+        $this->assertTrue($channel->hasUser($this->user));
     }
 
     //endregion
