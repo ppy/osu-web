@@ -31,7 +31,7 @@ class ChatController extends Controller
 
             $channel = Channel::findPM($targetUser, Auth::user());
 
-            if ($channel !== null && !$channel->hasUser(Auth::user())) {
+            if ($channel !== null) {
                 $channel->addUser(Auth::user());
             }
         }
