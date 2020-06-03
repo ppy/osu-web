@@ -35,6 +35,14 @@ export class EditorToolbar extends React.Component {
     this.throttledUpdate.cancel();
   }
 
+  hide() {
+    const tooltip = this.ref.current;
+
+    if (tooltip) {
+      tooltip.style.display = 'none';
+    }
+  }
+
   render(): React.ReactNode {
     if (!this.context || !this.visible()) {
       return null;
@@ -89,17 +97,14 @@ export class EditorToolbar extends React.Component {
     // seemingly when called too soon after a scroll event
     this.scrollTimer = Timeout.set(10, () => {
       if (!this.visible()) {
-        tooltip.style.display = 'none';
-        return;
+        return this.hide();
       }
 
-      let selectionContainsBlock = false;
       for (const p of Editor.positions(this.context, { at: this.context.selection, unit: 'block' })) {
         const block = Node.parent(this.context, p.path);
 
         if (block.type === 'embed') {
-          selectionContainsBlock = true;
-          break;
+          return this.hide();
         }
       }
 
@@ -109,19 +114,17 @@ export class EditorToolbar extends React.Component {
       // window.getSelection() presence is confirmed by the this.visible() check earlier
       const selectionBounds = window.getSelection()!.getRangeAt(0).getBoundingClientRect();
 
-      const hidden =
-        selectionContainsBlock ||
+      const outsideContainer =
         selectionBounds.top < containerTop ||
         (containerBottom && selectionBounds.top > containerBottom);
 
-      if (hidden) {
-        tooltip.style.display = 'none';
+      if (outsideContainer) {
+        return this.hide();
       } else {
         tooltip.style.display = 'block';
         tooltip.style.left = `${selectionBounds.left + ((window.pageXOffset - tooltip.offsetWidth) / 2) + (selectionBounds.width / 2)}px`;
         tooltip.style.top = `${selectionBounds.top - tooltip.clientHeight - 10}px`;
       }
-
     });
   }
 
