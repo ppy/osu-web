@@ -4,7 +4,7 @@
 import * as _ from 'lodash';
 import { Portal } from 'portal';
 import * as React from 'react';
-import { Editor, Range } from 'slate';
+import { Editor, Node, Range } from 'slate';
 import { ReactEditor } from 'slate-react';
 import { isFormatActive, toggleFormat } from './editor-helpers';
 import { SlateContext } from './slate-context';
@@ -33,6 +33,14 @@ export class EditorToolbar extends React.Component {
       $(this.scrollContainer).off('.editor-toolbar');
     }
     this.throttledUpdate.cancel();
+  }
+
+  hide() {
+    const tooltip = this.ref.current;
+
+    if (tooltip) {
+      tooltip.style.display = 'none';
+    }
   }
 
   render(): React.ReactNode {
@@ -87,28 +95,36 @@ export class EditorToolbar extends React.Component {
 
     // we use setTimeout here as a workaround for incorrect bounds sometimes being returned for the selection range,
     // seemingly when called too soon after a scroll event
-    this.scrollTimer = Timeout.set(100, () => {
+    this.scrollTimer = Timeout.set(10, () => {
       if (!this.visible()) {
-        tooltip.style.display = 'none';
-        return;
+        return this.hide();
+      }
+
+      for (const p of Editor.positions(this.context, { at: this.context.selection, unit: 'block' })) {
+        const block = Node.parent(this.context, p.path);
+
+        if (block.type === 'embed') {
+          return this.hide();
+        }
       }
 
       const containerBounds = this.scrollContainer?.getBoundingClientRect();
       const containerTop = containerBounds?.top ?? 0;
       const containerBottom = containerBounds?.bottom;
+      // window.getSelection() presence is confirmed by the this.visible() check earlier
       const selectionBounds = window.getSelection()!.getRangeAt(0).getBoundingClientRect();
 
-      if (
+      const outsideContainer =
         selectionBounds.top < containerTop ||
-        (containerBottom && selectionBounds.top > containerBottom)
-      ) {
-        tooltip.style.display = 'none';
+        (containerBottom && selectionBounds.top > containerBottom);
+
+      if (outsideContainer) {
+        return this.hide();
       } else {
         tooltip.style.display = 'block';
         tooltip.style.left = `${selectionBounds.left + ((window.pageXOffset - tooltip.offsetWidth) / 2) + (selectionBounds.width / 2)}px`;
         tooltip.style.top = `${selectionBounds.top - tooltip.clientHeight - 10}px`;
       }
-
     });
   }
 
