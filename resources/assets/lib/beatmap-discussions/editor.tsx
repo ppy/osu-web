@@ -395,16 +395,13 @@ export default class Editor extends React.Component<Props, State> {
       this.props.beatmapset.nominations && this.props.beatmapset.nominations.current > 0 &&
       docContainsProblem;
 
-    let confirmed = true;
-
     if (canDisqualify && willDisqualify) {
-      confirmed = confirm(osu.trans('beatmaps.nominations.reset_confirm.disqualify'));
-    }
-    if (canReset && willReset) {
-      confirmed = confirm(osu.trans('beatmaps.nominations.reset_confirm.nomination_reset'));
+      return confirm(osu.trans('beatmaps.nominations.reset_confirm.disqualify'));
     }
 
-    return confirmed;
+    if (canReset && willReset) {
+      return confirm(osu.trans('beatmaps.nominations.reset_confirm.nomination_reset'));
+    }
   }
 
   sortedBeatmaps = () => {
