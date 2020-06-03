@@ -59,16 +59,17 @@ export class SelectOptions extends PureComponent
 
   renderOptions: =>
     for option in @props.options
-      @renderOption
-        children: [
-          div
-            className: 'u-ellipsis-overflow'
-            key: option.id
-            option.text
-        ],
-        onClick: (event) => @optionSelected(event, option)
-        option: option
-        selected: @props.selected?.id == option.id
+      do (option) =>
+        @renderOption
+          children: [
+            div
+              className: 'u-ellipsis-overflow'
+              key: option.id
+              option.text
+          ],
+          onClick: (event) => @optionSelected(event, option)
+          option: option
+          selected: @props.selected?.id == option.id
 
 
   renderOption: ({ children, onClick, option, selected = false }) =>
