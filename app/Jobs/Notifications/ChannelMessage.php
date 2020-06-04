@@ -6,11 +6,19 @@
 namespace App\Jobs\Notifications;
 
 use App\Models\Chat\Message;
+use App\Models\Notification;
 use App\Models\User;
 
 class ChannelMessage extends BroadcastNotificationBase
 {
     protected $message;
+
+    public static function getMailText(Notification $notification): string
+    {
+        $link = route('chat.index', $notification->notifiable_id);
+
+        return "new message from {$notification->details['username']} {$link}";
+    }
 
     public function __construct(Message $message, User $source)
     {

@@ -5,6 +5,8 @@
 
 namespace App\Mail;
 
+use App\Exceptions\InvalidNotificationException;
+use App\Jobs\Notifications\BroadcastNotificationBase;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -33,6 +35,17 @@ class UserNewNotifications extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->text('emails.user_new_notifications', ['notifications' => $this->notifications]);
+        $lines = [];
+        foreach ($this->notifications as $notification) {
+            try {
+                $class = BroadcastNotificationBase::getNotificationClassFromNotification($notification);
+                $lines[] = $class::getMailText($notification);
+            } catch (InvalidNotificationException $e) {
+                log_error($e);
+            }
+
+        }
+
+        return $this->text('emails.user_new_notifications', compact('lines'));
     }
 }

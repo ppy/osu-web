@@ -6,14 +6,23 @@
 namespace App\Jobs\Notifications;
 
 use App\Models\BeatmapDiscussionPost;
+use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
+
 
 abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificationBase
 {
     const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;
 
     protected $beatmapsetDiscussionPost;
+
+    public static function getMailText(Notification $notification): string
+    {
+        $link = route('beatmap-discussions.show', $notification->details['discussion_id']);
+
+        return "new post on beatmap {$notification->details['title']} {$link}";
+    }
 
     public function __construct(BeatmapDiscussionPost $beatmapsetDiscussionPost, ?User $source = null)
     {

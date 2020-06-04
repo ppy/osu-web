@@ -59,6 +59,13 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         return $filteredUserIds;
     }
 
+    public static function getNotificationClassFromNotification(Notification $notification)
+    {
+        return static::getNotificationClass($notification->name);
+    }
+
+    abstract public static function getMailText(Notification $notification): string;
+
     public function __construct(?User $source = null)
     {
         $this->name = snake_case(get_class_basename(get_class($this)));

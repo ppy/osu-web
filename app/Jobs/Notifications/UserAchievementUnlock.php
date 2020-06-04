@@ -6,11 +6,19 @@
 namespace App\Jobs\Notifications;
 
 use App\Models\Achievement;
+use App\Models\Notification;
 use App\Models\User;
 
 class UserAchievementUnlock extends BroadcastNotificationBase
 {
     protected $achievement;
+
+    public static function getMailText(Notification $notification): string
+    {
+        $link = route('users.show', $notification['details']->user_id);
+
+        return "new achievement unlocked {$notification->details['title']} by {$notification->details['username']} {$link}";
+    }
 
     public function __construct(Achievement $achievement, User $source)
     {
