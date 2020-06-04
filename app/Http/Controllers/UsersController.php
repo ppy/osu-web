@@ -122,7 +122,8 @@ class UsersController extends Controller
         }
 
         $params = get_params(request(), 'user', ['username', 'user_email', 'password']);
-        $country = Country::find(request_country());
+        $countryCode = request_country();
+        $country = Country::find($countryCode);
         $params['user_ip'] = $ip;
         $params['country_acronym'] = $country === null ? '' : $country->getKey();
 
@@ -146,10 +147,10 @@ class UsersController extends Controller
 
             if ($country === null) {
                 app('sentry')->getClient()->captureMessage(
-                    'User registered from unknown country',
+                    'User registered from unknown country: '.$countryCode,
                     null,
                     (new Scope)
-                        ->setExtra('country', request_country())
+                        ->setExtra('country', $countryCode)
                         ->setExtra('ip', $ip)
                         ->setExtra('user_id', $registration->user()->getKey())
                 );
