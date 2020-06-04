@@ -24,6 +24,7 @@ use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Request;
+use Sentry\State\Scope;
 
 class UsersController extends Controller
 {
@@ -142,6 +143,17 @@ class UsersController extends Controller
 
             $registration->save();
             app(RateLimiter::class)->hit($throttleKey, 600);
+
+            if ($country === null) {
+                app('sentry')->getClient()->captureMessage(
+                    'User registered from unknown country',
+                    null,
+                    (new Scope)
+                        ->setExtra('country', request_country())
+                        ->setExtra('ip', $ip)
+                        ->setExtra('user_id', $registration->user()->getKey())
+                );
+            }
 
             return $registration->user()->fresh()->defaultJson();
         } catch (ValidationException $e) {
