@@ -37,4 +37,24 @@ class Country extends Model
             ->orderBy('display', 'desc')
             ->orderBy('name');
     }
+
+    public function statisticsFruits()
+    {
+        return $this->hasOne(CountryStatistics::class, 'country_code')->where('mode', Beatmap::MODES['fruits']);
+    }
+
+    public function statisticsMania()
+    {
+        return $this->hasOne(CountryStatistics::class, 'country_code')->where('mode', Beatmap::MODES['mania']);
+    }
+
+    public function statisticsOsu()
+    {
+        return $this->hasOne(CountryStatistics::class, 'country_code')->where('mode', Beatmap::MODES['osu']);
+    }
+
+    public function statisticsTaiko()
+    {
+        return $this->hasOne(CountryStatistics::class, 'country_code')->where('mode', Beatmap::MODES['taiko']);
+    }
 }

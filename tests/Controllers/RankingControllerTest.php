@@ -7,7 +7,7 @@ namespace Tests\Controllers;
 
 use Tests\TestCase;
 
-class RankingsControllerTest extends TestCase
+class RankingControllerTest extends TestCase
 {
     public function testIndex()
     {
