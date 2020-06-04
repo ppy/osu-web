@@ -38,6 +38,7 @@ export class Main extends React.PureComponent
       @initialPage = page if page?
 
       @state =
+        beatmaps: props.beatmaps
         discussions: props.discussions
         events: props.events
         user: props.user
@@ -137,10 +138,7 @@ export class Main extends React.PureComponent
 
 
   beatmaps: =>
-    beatmaps = _.map(@discussions(), (d) => d.beatmap)
-                .filter((b) => b != undefined)
-
-    @cache.beatmaps ?= _.keyBy(beatmaps, 'id')
+    @cache.beatmaps ?= _.keyBy(this.state.beatmaps, 'id')
 
 
   render: =>
