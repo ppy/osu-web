@@ -50,7 +50,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     {
         $class = get_class_namespace(static::class).'\\'.studly_case($name);
 
-        if ($class === null) {
+        if (!class_exists($class)) {
             throw new InvalidNotificationException('Invalid event name: '.$name);
         }
 
