@@ -103,7 +103,7 @@ export class UserList extends React.PureComponent<Props> {
     );
   }
 
-  onSortSelected = (event: React.SyntheticEvent) => {
+  handleSortChange = (event: React.SyntheticEvent) => {
     const value = (event.currentTarget as HTMLElement).dataset.value;
     const url = osu.updateQueryString(null, { sort: value });
 
@@ -190,8 +190,8 @@ export class UserList extends React.PureComponent<Props> {
     return (
       <Sort
         modifiers={['user-list']}
-        onSortSelected={this.onSortSelected}
-        sortMode={this.state.sortMode}
+        onChange={this.handleSortChange}
+        currentValue={this.state.sortMode}
         values={sortModes}
       />
     );
