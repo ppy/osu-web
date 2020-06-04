@@ -18,8 +18,6 @@ class ForumTopicReply extends BroadcastNotificationBase
 
     public function getDetails(): array
     {
-        // TODO: $this->params['created_at'] = $this->object->post_time;
-
         return [
             'title' => $this->notifiable->topic_title,
             'post_id' => $this->object->getKey(),
