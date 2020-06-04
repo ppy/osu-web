@@ -7,7 +7,7 @@ class @BeatmapDiscussionHelper
   @DEFAULT_FILTER: 'total'
   @MAX_MESSAGE_PREVIEW_LENGTH: 100
   @MAX_LENGTH_TIMELINE: 750
-  @TIMESTAMP_REGEX: /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d[,|])*\d\))?)/
+  @TIMESTAMP_REGEX: /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/
 
   @MODES = ['events', 'general', 'generalAll', 'timeline', 'reviews']
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
