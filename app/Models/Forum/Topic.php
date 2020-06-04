@@ -419,6 +419,11 @@ class Topic extends Model implements AfterCommit
         $this->attributes['topic_last_poster_colour'] = ltrim($value, '#');
     }
 
+    public function setTopicTitleAttribute($value)
+    {
+        $this->attributes['topic_title'] = preg_replace('/(^\s+|\s+$)/u', '', $value);
+    }
+
     public function save(array $options = [])
     {
         if (!$this->isValid()) {
