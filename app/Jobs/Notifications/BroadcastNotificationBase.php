@@ -12,7 +12,6 @@ use App\Models\User;
 use App\Models\UserNotificationOption;
 use App\Traits\NotificationQueue;
 use DB;
-use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;

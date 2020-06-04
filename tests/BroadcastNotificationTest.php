@@ -16,7 +16,7 @@ use Event;
 use Queue;
 use ReflectionClass;
 
-class BroadcastNotificationBaseTest extends TestCase
+class BroadcastNotificationTest extends TestCase
 {
     protected $sender;
 

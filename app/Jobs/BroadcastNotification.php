@@ -5,7 +5,6 @@
 
 namespace App\Jobs;
 
-
 use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Traits\NotificationQueue;
 use Illuminate\Bus\Queueable;
