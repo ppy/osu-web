@@ -52,7 +52,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
         // TODO: handle InvalidNotificationException?
         if ($class === null) {
-            log_error(new Exception('Invalid event name: '.$this->name));
+            log_error(new Exception('Invalid event name: '.$name));
         }
 
         return $class;
