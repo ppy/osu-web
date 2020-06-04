@@ -32,7 +32,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   componentDidUpdate = () => {
     const path = this.path();
 
-    if (this.props.element.beatmapId && this.props.beatmaps[this.props.element.beatmapId]?.deleted_at === null) {
+    if (this.props.element.beatmapId) {
       const content = this.props.element.children[0].text;
       const matches = content.match(BeatmapDiscussionHelper.TIMESTAMP_REGEX);
       let timestamp = null;
@@ -44,7 +44,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
       Transforms.setNodes(this.context, {timestamp}, {at: path});
     } else {
-      Transforms.setNodes(this.context, {beatmapId: null, timestamp: null}, {at: path});
+      Transforms.setNodes(this.context, {timestamp: null}, {at: path});
     }
   }
 
