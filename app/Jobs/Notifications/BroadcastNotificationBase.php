@@ -6,6 +6,7 @@
 namespace App\Jobs\Notifications;
 
 use App\Events\NewPrivateNotificationEvent;
+use App\Exceptions\InvalidNotificationException;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
@@ -50,9 +51,8 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     {
         $class = get_class_namespace(static::class).'\\'.studly_case($name);
 
-        // TODO: handle InvalidNotificationException?
         if ($class === null) {
-            log_error(new Exception('Invalid event name: '.$name));
+            throw new InvalidNotificationException('Invalid event name: '.$name);
         }
 
         return $class;
