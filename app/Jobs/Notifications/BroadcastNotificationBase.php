@@ -66,7 +66,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     abstract public function getDetails(): array;
 
-    abstract public function getListentingUserIds(): array;
+    abstract public function getListeningUserIds(): array;
 
     public function getName()
     {
@@ -85,7 +85,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
      */
     public function getReceiverIds(): array
     {
-        return array_values(array_unique(array_diff($this->getListentingUserIds(), [optional($this->source)->getKey()])));
+        return array_values(array_unique(array_diff($this->getListeningUserIds(), [optional($this->source)->getKey()])));
     }
 
     public function getSource(): ?User

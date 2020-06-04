@@ -35,7 +35,7 @@ class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
         ];
     }
 
-    public function getListentingUserIds(): array
+    public function getListeningUserIds(): array
     {
         return static::filterUserIdsForNotificationOption(
             $this->getNotifiable()->watches()->pluck('user_id')->all(),

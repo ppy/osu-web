@@ -30,7 +30,7 @@ class CommentNew extends BroadcastNotificationBase
         ];
     }
 
-    public function getListentingUserIds(): array
+    public function getListeningUserIds(): array
     {
         return Follow::whereNotifiable($this->object->commentable)
             ->where(['subtype' => 'comment'])

@@ -11,9 +11,9 @@ use App\Models\UserNotificationOption;
 
 class BeatmapsetDisqualify extends BeatmapsetNotification
 {
-    public function getListentingUserIds(): array
+    public function getListeningUserIds(): array
     {
-        $ids = parent::getListentingUserIds();
+        $ids = parent::getListeningUserIds();
 
         $modes = $this->object->playmodes()->all();
         $modes = array_map(function ($modeInt) {

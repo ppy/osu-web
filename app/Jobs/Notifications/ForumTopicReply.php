@@ -25,7 +25,7 @@ class ForumTopicReply extends BroadcastNotificationBase
         ];
     }
 
-    public function getListentingUserIds(): array
+    public function getListeningUserIds(): array
     {
         $userIds = $this->object
             ->topic

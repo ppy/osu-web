@@ -27,7 +27,7 @@ class UserAchievementUnlock extends BroadcastNotificationBase
         ];
     }
 
-    public function getListentingUserIds(): array
+    public function getListeningUserIds(): array
     {
         return [$this->source->getKey()];
     }
@@ -39,6 +39,6 @@ class UserAchievementUnlock extends BroadcastNotificationBase
 
     public function getReceiverIds(): array
     {
-        return $this->getListentingUserIds();
+        return $this->getListeningUserIds();
     }
 }
