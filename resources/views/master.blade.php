@@ -20,19 +20,25 @@
         $titleTree[] = page_title();
     }
 
-    $title = implode(' · ', $titleTree);
-    // Titles ending with phrase containing "osu!" like "osu!store" don't need the suffix.
-    if (strpos(array_last($titleTree), 'osu!') === false) {
-        $title .= ' | osu!';
-    }
-
     $currentHue = $currentHue ?? section_to_hue_map($currentSection);
 @endphp
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#">
     <head>
         @include("layout.metadata")
-        <title>{{ $title }}</title>
+        <title>
+            @foreach ($titleTree as $titlePart)
+                {{ $titlePart }}
+                @if ($loop->last)
+                    {{-- Titles ending with phrase containing "osu!" like "osu!store" don't need the suffix. --}}
+                    @if (strpos($titlePart, 'osu!') === false)
+                        | osu!
+                    @endif
+                @else
+                    ·
+                @endif
+            @endforeach
+        </title>
     </head>
 
     <body
