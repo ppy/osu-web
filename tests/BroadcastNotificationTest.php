@@ -76,7 +76,7 @@ class BroadcastNotificationTest extends TestCase
         // TODO: move notification names to different class instead of filtering
         $constants = collect((new ReflectionClass(Notification::class))->getConstants())
             ->except(['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES', 'CREATED_AT', 'UPDATED_AT'])
-            ->keys();
+            ->values();
 
         return $constants->map(function ($name) {
             return [$name];
