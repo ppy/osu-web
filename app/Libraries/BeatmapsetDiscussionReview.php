@@ -283,24 +283,23 @@ class BeatmapsetDiscussionReview
             $beatmapset->hasNominations() &&
             priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can();
 
-        $disqualify = $beatmapset->isQualified() &&
-            priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can();
-
         if ($resetNominations) {
             BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $problemDiscussion)->saveOrExplode();
             broadcast_notification(Notification::BEATMAPSET_RESET_NOMINATIONS, $beatmapset, $user);
             $beatmapset->refreshCache();
         }
 
-        if ($disqualify) {
-            $beatmapset->disqualify($user, $problemDiscussion);
-        } else {
-            if ($priorOpenProblemCount === 0) {
-                broadcast_notification(
-                    Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
-                    $problemDiscussion->startingPost,
-                    $user
-                );
+        if ($beatmapset->isQualified()) {
+            if (priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
+                $beatmapset->disqualify($user, $problemDiscussion);
+            } else {
+                if ($priorOpenProblemCount === 0) {
+                    broadcast_notification(
+                        Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+                        $problemDiscussion->startingPost,
+                        $user
+                    );
+                }
             }
         }
     }
