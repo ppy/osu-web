@@ -41,6 +41,13 @@ class Channel extends Model
         'group' => 'GROUP',
     ];
 
+    public static function findPM($user1, $user2)
+    {
+        $channelName = static::getPMChannelName($user1, $user2);
+
+        return static::where('name', $channelName)->first();
+    }
+
     /**
      * @param User $user1
      * @param User $user2
