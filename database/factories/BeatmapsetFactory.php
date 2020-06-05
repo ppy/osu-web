@@ -41,7 +41,6 @@ $factory->define(Beatmapset::class, function (Faker\Generator $faker) {
         'language_id' => function () {
             return factory(App\Models\Language::class)->create()->language_id;
         },
-        'approved_date' => $faker->dateTime(),
         'submit_date' => $faker->dateTime(),
         'thread_id' => 0,
     ];

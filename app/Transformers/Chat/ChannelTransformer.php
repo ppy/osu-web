@@ -12,6 +12,7 @@ use App\Transformers\UserCompactTransformer;
 class ChannelTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'recent_messages',
         'users',
     ];
 
@@ -23,6 +24,15 @@ class ChannelTransformer extends TransformerAbstract
             'description' => $channel->description,
             'type' => $channel->type,
         ];
+    }
+
+    public function includeRecentMessages(Channel $channel)
+    {
+        $messages = $channel->exists
+            ? $channel->filteredMessages()->orderBy('message_id', 'desc')->limit(50)->get()
+            : [];
+
+        return $this->collection($messages, new MessageTransformer);
     }
 
     public function includeUsers(Channel $channel)
