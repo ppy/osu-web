@@ -124,7 +124,7 @@ export class Scoreboard extends React.PureComponent
       key: rank
       score: score
       position: rank
-      playmode: @props.beatmap.mode
+      beatmap: @props.beatmap
       countries: @props.countries
       modifiers: modifiers
       hitTypeMapping: @hitTypeMapping()
