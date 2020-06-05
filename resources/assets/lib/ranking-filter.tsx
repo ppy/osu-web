@@ -70,7 +70,6 @@ export default class RankingFilter extends React.PureComponent<Props> {
     osu.navigate(osu.updateQueryString(null, { country: option.id, page: null }));
   }
 
-  // TODO: rename component prop to onChange
   handleFilterChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     osu.navigate(osu.updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
   }
@@ -92,8 +91,8 @@ export default class RankingFilter extends React.PureComponent<Props> {
         {currentUser.id != null && (
           <div className='ranking-filter__sort'>
             <Sort
-              onSortSelected={this.handleFilterChange}
-              sortMode={this.filterMode ?? 'all'}
+              currentValue={this.filterMode ?? 'all'}
+              onChange={this.handleFilterChange}
               title={osu.trans('rankings.filter.title')}
               values={['all', 'friends']}
             />
@@ -109,22 +108,22 @@ export default class RankingFilter extends React.PureComponent<Props> {
     return (
       <SelectOptions
         bn='ranking-select-options'
-        renderItem={this.renderOption}
-        onItemSelected={this.handleCountryChange}
+        onChange={this.handleCountryChange}
         options={[...this.options.values()]} // TODO: change to iterable
+        renderOption={this.renderOption}
         selected={this.selectedOption}
       />
     );
   }
 
-  renderOption(option: OptionRenderProps) {
+  renderOption(props: OptionRenderProps) {
     return (
       <a
-        children={option.children}
-        className={option.cssClasses}
-        href={osu.updateQueryString(null, { country: option.item.id, page: null })}
-        key={option.item.id ?? ''}
-        onClick={option.onClick}
+        children={props.children}
+        className={props.cssClasses}
+        href={osu.updateQueryString(null, { country: props.option.id, page: null })}
+        key={props.option.id ?? ''}
+        onClick={props.onClick}
       />
     );
   }

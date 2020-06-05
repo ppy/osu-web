@@ -132,17 +132,15 @@ declare module 'select-options' {
   interface OptionRenderProps<T = string> {
     children: React.ReactNode[];
     cssClasses: string;
-    item: Option<T>;
     onClick: (event: React.SyntheticEvent) => void;
+    option: Option<T>;
   }
 
   interface Props<T> {
     bn?: string;
-    // TODO: this should be onOptionSelected instead.
-    onItemSelected: (item: Option<T>) => void;
+    onChange: (option: Option<T>) => void;
     options: Option<T>[];
-    // TODO: rename to renderOption.
-    renderItem: (option: OptionRenderProps<T>) => React.ReactNode;
+    renderOption: (props: OptionRenderProps<T>) => React.ReactNode;
     selected: Option<T>;
   }
 

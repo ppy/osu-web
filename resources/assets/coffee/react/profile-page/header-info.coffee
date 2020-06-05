@@ -36,7 +36,7 @@ export class HeaderInfo extends React.PureComponent
       div className: "#{bn}__details",
         h1
           className: "#{bn}__name"
-          span className: 'u-ellipsis-overflow', @props.user.username
+          span className: 'u-ellipsis-pre-overflow', @props.user.username
           div className: "#{bn}__previous-usernames", @previousUsernames()
         # hard space if no title
         span
