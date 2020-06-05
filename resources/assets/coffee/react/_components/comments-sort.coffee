@@ -12,14 +12,14 @@ el = React.createElement
 uiState = core.dataStore.uiState
 
 export class CommentsSort extends React.PureComponent
+  handleChange: (e) =>
+    $.publish 'comments:sort', sort: e.target.dataset.value
+
+
   render: =>
     el Observer, null, () =>
       el Sort,
+        currentValue: uiState.comments.loadingSort ? uiState.comments.currentSort
         modifiers: @props.modifiers
-        onSortSelected: @setSort
-        sortMode: uiState.comments.loadingSort ? uiState.comments.currentSort
+        onChange: @handleChange
         values: ['new', 'old', 'top']
-
-
-  setSort: (e) =>
-    $.publish 'comments:sort', sort: e.target.dataset.value

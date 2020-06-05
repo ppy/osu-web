@@ -14,6 +14,8 @@ export function urlGroup(item: Notification) {
       case 'news_post':
         return route('news.show', { news: item.objectId, key: 'id' });
     }
+  } else if (item.name === 'user_achievement_unlock') {
+    return userAchievementUrl(item);
   }
 
   switch (item.objectType) {
@@ -53,11 +55,15 @@ export function urlSingular(item: Notification) {
     case 'forum_topic_reply':
       return route('forum.posts.show', { post: item.details.postId });
     case 'user_achievement_unlock':
-      const params = {
-        mode: item.details.achievementMode ?? undefined,
-        user: item.details.userId,
-      };
-
-      return `${route('users.show', params)}#medals`;
+      return userAchievementUrl(item);
   }
+}
+
+function userAchievementUrl(item: Notification) {
+  const params = {
+    mode: item.details.achievementMode ?? undefined,
+    user: item.details.userId,
+  };
+
+  return `${route('users.show', params)}#medals`;
 }
