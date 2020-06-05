@@ -81,6 +81,11 @@ class Beatmap extends Model
         return array_search_null($int, static::MODES);
     }
 
+    public function baseMaxCombo()
+    {
+        return $this->difficultyAttribs()->noMods()->maxCombo();
+    }
+
     public function beatmapset()
     {
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id')->withTrashed();
@@ -216,6 +221,21 @@ class Beatmap extends Model
     public function isScoreable()
     {
         return $this->approved > 0;
+    }
+
+    public function maxCombo()
+    {
+        if ($this->relationLoaded('baseMaxCombo')) {
+            $maxCombo = $this->baseMaxCombo->firstWhere('mode', $this->playmode);
+        } else {
+            $maxCombo = $this->difficultyAttribs()
+                ->mode($this->playmode)
+                ->noMods()
+                ->maxCombo()
+                ->first();
+        }
+
+        return optional($maxCombo)->value;
     }
 
     public function status()
