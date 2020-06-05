@@ -104,9 +104,12 @@ export class Main extends React.PureComponent
         discussion = _.find discussions, id: newDiscussion.id
         discussions = _.reject discussions, id: newDiscussion.id
         newDiscussion = _.merge(discussion, newDiscussion)
-        # The discussion list shows discussions started by the current user, so it can be assumed that the first post is theirs
-        newDiscussion.starting_post = newDiscussion.posts[0]
-        discussions.push(newDiscussion)
+      else
+        # if this is a new discussion, it won't have beatmapset included ('cuz the parent is the beatmapset)
+        newDiscussion.beatmapset = beatmapset
+
+      newDiscussion.starting_post = newDiscussion.posts[0]
+      discussions.push(newDiscussion)
 
       _.each newDiscussion.posts, (newPost) ->
         if postIds.includes(newPost.id)
@@ -120,7 +123,7 @@ export class Main extends React.PureComponent
 
       users.push(newUser)
 
-    @cache.users = @cache.discussions = @cache.beatmaps = null
+    @cache.users = @cache.discussions = @cache.userDiscussions = @cache.beatmaps = null
     @setState
       discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.starting_post.created_at)))
       posts: _.reverse(_.sortBy(posts, (p) -> Date.parse(p.created_at)))
@@ -226,7 +229,7 @@ export class Main extends React.PureComponent
     switch name
       when 'discussions'
         props:
-          discussions: @state.discussions
+          discussions: @userDiscussions()
           user: @state.user
           users: @users()
         component: Discussions
@@ -371,6 +374,12 @@ export class Main extends React.PureComponent
         username: osu.trans 'users.deleted'
 
     @cache.users
+
+  userDiscussions: =>
+    if !@cache.userDiscussions
+      @cache.userDiscussions = _.filter @state.discussions, (d) => d.user_id == @state.user.id
+
+    @cache.userDiscussions
 
 
   ujsDiscussionUpdate: (_e, data) =>
