@@ -25,6 +25,7 @@ class BeatmapsetDiscussionReview
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
+        $priorOpenProblemCount = self::getOpenProblemCount($beatmapset);
         $problemDiscussion = null;
         $output = [];
         try {
@@ -103,7 +104,7 @@ class BeatmapsetDiscussionReview
 
             // handle disqualifications and the resetting of nominations
             if ($problemDiscussion) {
-                self::resetOrDisqualify($beatmapset, $user, $problemDiscussion);
+                self::resetOrDisqualify($beatmapset, $user, $problemDiscussion, $priorOpenProblemCount);
             }
 
             DB::commit();
@@ -131,6 +132,7 @@ class BeatmapsetDiscussionReview
         $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id); // handle deleted beatmapsets
         $post = $discussion->startingPost;
 
+        $priorOpenProblemCount = self::getOpenProblemCount($beatmapset);
         $problemDiscussion = null;
         $output = [];
         try {
@@ -230,7 +232,7 @@ class BeatmapsetDiscussionReview
 
             // handle disqualifications and the resetting of nominations
             if ($problemDiscussion) {
-                self::resetOrDisqualify($beatmapset, $user, $problemDiscussion);
+                self::resetOrDisqualify($beatmapset, $user, $problemDiscussion, $priorOpenProblemCount);
             }
 
             DB::commit();
@@ -265,19 +267,35 @@ class BeatmapsetDiscussionReview
         return $newDiscussion;
     }
 
-    private static function resetOrDisqualify($beatmapset, $user, $problemDiscussion)
+    private static function getOpenProblemCount($beatmapset)
+    {
+        return $beatmapset
+            ->beatmapDiscussions()
+            ->withoutTrashed()
+            ->ofType('problem')
+            ->where(['resolved' => false])
+            ->count();
+    }
+
+    private static function resetOrDisqualify($beatmapset, $user, $problemDiscussion, $priorOpenProblemCount)
     {
         $resetNominations = $beatmapset->isPending() &&
             $beatmapset->hasNominations() &&
             priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can();
 
+        $disqualify = $beatmapset->isQualified() &&
+            priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can();
+
         if ($resetNominations) {
             BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $problemDiscussion)->saveOrExplode();
             broadcast_notification(Notification::BEATMAPSET_RESET_NOMINATIONS, $beatmapset, $user);
             $beatmapset->refreshCache();
+        }
+
+        if ($disqualify) {
+            $beatmapset->disqualify($user, $problemDiscussion);
         } else {
-            if (priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
-                $beatmapset->disqualify($user, $problemDiscussion);
+            if ($priorOpenProblemCount == 0) {
                 broadcast_notification(
                     Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
                     $problemDiscussion->startingPost,
