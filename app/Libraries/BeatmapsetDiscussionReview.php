@@ -295,7 +295,7 @@ class BeatmapsetDiscussionReview
         if ($disqualify) {
             $beatmapset->disqualify($user, $problemDiscussion);
         } else {
-            if ($priorOpenProblemCount == 0) {
+            if ($priorOpenProblemCount === 0) {
                 broadcast_notification(
                     Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
                     $problemDiscussion->startingPost,
