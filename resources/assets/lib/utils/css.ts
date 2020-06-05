@@ -3,9 +3,7 @@
 
 import { forEach } from 'lodash';
 
-type Modifiers = (string | null | undefined)[] | Record<string, boolean | null | undefined>;
-
-export function classWithModifiers(className: string, modifiers?: Modifiers) {
+export function classWithModifiers(className: string, modifiers?: string[] | Record<string, boolean>) {
   let ret = className;
 
   if (modifiers != null) {
