@@ -43,14 +43,7 @@ class Chat
             $newChannel = $channel === null;
 
             if ($newChannel) {
-                $channel = Channel::create([
-                    'name' => Channel::getPMChannelName($target, $sender),
-                    'type' => Channel::TYPES['pm'],
-                    'description' => '', // description is not nullable
-                ]);
-
-                $channel->addUser($sender);
-                $channel->addUser($target);
+                $channel = Channel::createPM($target, $sender);
             } else {
                 $channel->addUser($sender);
             }
