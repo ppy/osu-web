@@ -23,7 +23,7 @@ class CommentNew extends BroadcastNotificationBase
 
     public static function getMailText(Notification $notification): string
     {
-        return trans("notifications.item.{$notification->notifiable_type}.comment.{$notification->name}", $notification->details);
+        return trans("notifications.item.{$notification->notifiable_type}.comment.{$notification->name}_compact", $notification->details);
     }
 
     public function __construct(Comment $comment, User $source)

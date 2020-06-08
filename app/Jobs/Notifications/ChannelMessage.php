@@ -20,7 +20,7 @@ class ChannelMessage extends BroadcastNotificationBase
 
     public static function getMailText(Notification $notification): string
     {
-        return trans("notifications.item.channel.channel.pm.{$notification->name}", $notification->details);
+        return trans("notifications.item.channel.channel.pm.{$notification->name}_compact", $notification->details);
     }
 
     public function __construct(Message $message, User $source)
