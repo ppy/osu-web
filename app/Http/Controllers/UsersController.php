@@ -206,6 +206,21 @@ class UsersController extends Controller
         return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
     }
 
+    /**
+     * @group Users
+     *
+     * Show user scores
+     *
+     * This endpoint returns the scores of specified user.
+     *
+     * @authenticated
+     *
+     * @urlParam user_id required Id of the user.
+     * @urlParam type required Score type. Must be one of these: `best`, `firsts`, `recent`.
+     *
+     * @queryParam include_fails Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0.
+     * @queryParam mode [GameMode](#gamemode) of the scores to be returned. Defaults to the specified `user_id`'s mode.
+     */
     public function scores($_userId, $type)
     {
         static $mapping = [
