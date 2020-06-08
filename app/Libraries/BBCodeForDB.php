@@ -230,11 +230,13 @@ class BBCodeForDB
 
                 if ($user === null) {
                     $name = $this->extraEscapes($m[1]);
+
                     return "[profile:{$this->uid}]{$name}[/profile:{$this->uid}]";
                 }
 
                 $url = $this->extraEscapes($user->url());
                 $name = $this->extraEscapes($user->username);
+
                 return "[url={$url}:{$this->uid}]{$name}[/url:{$this->uid}]";
             },
             $text
