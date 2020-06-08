@@ -31,6 +31,9 @@ export const toggleFormat = (editor: ReactEditor, format: string) => {
   );
 };
 
+export const slateDocumentContainsProblem = (input: SlateNode[]) =>
+  input.some((node) => node.type === 'embed' && node.discussionType === 'problem');
+
 export const serializeSlateDocument = (input: SlateNode[]) => {
   const review: BeatmapDiscussionReview = [];
 
@@ -46,12 +49,12 @@ export const serializeSlateDocument = (input: SlateNode[]) => {
         node.children.forEach((child: SlateNode) => {
           if (child.text !== '') {
             if (currentMarks.bold !== (child.bold ?? false)) {
-              currentMarks.bold = child.bold;
+              currentMarks.bold = child.bold ?? false;
               childOutput.push('**');
             }
 
             if (currentMarks.italic !== (child.italic ?? false)) {
-              currentMarks.italic = child.italic;
+              currentMarks.italic = child.italic ?? false;
               childOutput.push('*');
             }
           }
