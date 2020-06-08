@@ -181,7 +181,7 @@ class ChannelsController extends Controller
         }
 
         if (isset($channel)) {
-            return json_item($channel, 'Chat/Channel', ['recent_messages']);
+            return json_item($channel, 'Chat/Channel', ['recent_messages.sender']);
         } else {
             abort(422, 'unknown or missing type parameter');
         }
