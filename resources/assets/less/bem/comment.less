@@ -149,7 +149,7 @@
   &__message {
     margin: 2px 0;
 
-    .@{_top}--clip & {
+    .@{_top}__main--clip & {
       height: calc(var(--line-height) * var(--clip-lines));
       overflow: hidden;
 
@@ -161,7 +161,7 @@
         left: 0;
         width: 100%;
         height: calc(var(--line-height) * 3);
-        background-image: linear-gradient(to bottom, transparent, var(--comments-bg));
+        background-image: linear-gradient(to bottom, hsla(var(--comments-bg-hsl), 0), hsl(var(--comments-bg-hsl)));
         pointer-events: none;
       }
     }

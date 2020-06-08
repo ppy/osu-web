@@ -6,6 +6,7 @@
   ],
   "jsRules": true,
   "rules": {
+    "array-type": [true, "array"],
     "curly": [true, "ignore-same-line"],
     "eofline": true,
     "indent": [

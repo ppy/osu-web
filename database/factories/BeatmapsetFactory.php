@@ -41,7 +41,6 @@ $factory->define(Beatmapset::class, function (Faker\Generator $faker) {
         'language_id' => function () {
             return factory(App\Models\Language::class)->create()->language_id;
         },
-        'approved_date' => $faker->dateTime(),
         'submit_date' => $faker->dateTime(),
         'thread_id' => 0,
     ];
@@ -57,6 +56,16 @@ $factory->state(Beatmapset::class, 'inactive', function () {
 
 $factory->state(Beatmapset::class, 'no_discussion', function () {
     return ['discussion_enabled' => false];
+});
+
+$factory->state(Beatmapset::class, 'qualified', function () {
+    $approvedAt = now();
+
+    return [
+        'approved' => Beatmapset::STATES['qualified'],
+        'approved_date' => $approvedAt,
+        'queued_at' => $approvedAt,
+    ];
 });
 
 $factory->afterCreatingState(Beatmapset::class, 'with_discussion', function (App\Models\Beatmapset $beatmapset) {

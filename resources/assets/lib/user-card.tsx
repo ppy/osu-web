@@ -115,7 +115,7 @@ export class UserCard extends React.PureComponent<Props, State> {
             <div className='user-card__details'>
               {this.renderIcons()}
               <div className='user-card__username'>
-                <div className='u-ellipsis-overflow'>{this.user.username}</div>
+                <div className='u-ellipsis-pre-overflow'>{this.user.username}</div>
               </div>
               {this.renderListModeIcons()}
             </div>

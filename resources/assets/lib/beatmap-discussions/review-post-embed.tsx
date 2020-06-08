@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapIcon } from 'beatmap-icon';
 import * as React from 'react';
 import { FunctionComponent } from 'react';
-import { BeatmapIcon } from '../beatmap-icon';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
 
@@ -20,10 +20,10 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
   const discussion = discussions[data.discussion_id];
 
   if (!discussion) {
-    // this should never happen, but just in case...
+    // if a discussion has been deleted or is otherwise missing
     return (
-      <div className={bn}>
-        <div className={`${bn}__error`}>[DISCUSSION NOT LOADED]</div>
+      <div className={osu.classWithModifiers(bn, ['deleted'])}>
+        <div className={`${bn}__error`}>{osu.trans('beatmaps.discussions.review.embed.missing')}</div>
       </div>
     );
   }
@@ -38,6 +38,10 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
   const hasBeatmap = discussion.beatmap_id !== null;
   if (!hasBeatmap) {
     additionalClasses.push('general-all');
+  }
+
+  if (discussion.deleted_at) {
+    additionalClasses.push('deleted');
   }
 
   const messageTypeIcon = () => {

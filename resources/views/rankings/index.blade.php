@@ -44,23 +44,31 @@
 
     @yield('ranking-header')
 
-    @if (isset($country))
+    @if ($type !== 'country')
         <div class="osu-page osu-page--description">
-            <div class="ranking-country-filter">
-                {{ trans('rankings.country.filter') }}:
-                <div class="ranking-country-filter__item">
-                    <div class="ranking-country-filter__flag">
-                        @include('objects._country_flag', [
-                            'country_code' => $country['acronym'],
-                        ])
+            <div class="js-react--ranking-filter" data-type="{{ $type }}">
+                {{-- placeholder so the page doesn't shift after react initializes --}}
+                <div class="ranking-filter">
+                    <div class="ranking-filter__countries">
+                        @if ($type === 'performance')
+                            <div class="ranking-select-options">
+                                <div class="ranking-select-options__select">
+                                    <div class="ranking-select-options__option">{{ optional($country)->name ?? trans('rankings.countries.all') }}</div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
-                    {{ $country['name'] }}
-                    <a
-                        class="ranking-country-filter__remove"
-                        href="{{ route('rankings', compact('mode', 'type')) }}"
-                    >
-                        <i class="fas fa-times"></i>
-                    </a>
+                    @if (auth()->check())
+                        <div class="ranking-filter__sort">
+                            <div class="sort">
+                                <div class="sort__items">
+                                    <span class="sort__item sort__item--title">{{ trans('rankings.filter.title') }}</span>
+                                    <button class="sort__item sort__item--button">{{ trans('sort.all') }}</button>
+                                    <button class="sort__item sort__item--button">{{ trans('sort.friends')}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -90,4 +98,15 @@
             ])
         @endif
     </div>
+
+@endsection
+
+@section("script")
+    @parent
+
+    @if (isset($countries))
+        <script id="json-countries" type="application/json">
+            {!! json_encode($countries) !!}
+        </script>
+    @endif
 @endsection

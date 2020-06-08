@@ -58,8 +58,8 @@ export default class UserCardBrick extends React.PureComponent<Props, State> {
 
         <div
           className='user-card-brick__group-bar'
-          style={osu.groupColour(this.props.user.group_badge)}
-          title={this.props.user.group_badge?.name}
+          style={osu.groupColour(this.props.user.groups?.[0])}
+          title={this.props.user.groups?.[0]?.name}
         />
 
         <a className='user-card-brick__username' href={route('users.show', { user: this.props.user.id })}>

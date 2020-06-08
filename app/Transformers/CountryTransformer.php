@@ -9,7 +9,10 @@ use App\Models\Country;
 
 class CountryTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = ['ranking'];
+    protected $availableIncludes = [
+        'display',
+        'ranking',
+    ];
 
     public function transform(Country $country)
     {
@@ -19,15 +22,18 @@ class CountryTransformer extends TransformerAbstract
         ];
     }
 
+    public function includeDisplay(Country $country)
+    {
+        return $this->primitive($country->display);
+    }
+
     public function includeRanking(Country $country)
     {
-        return $this->item($country, function ($country) {
-            return [
-                'active_users' => $country->usercount,
-                'play_count' => $country->playcount,
-                'ranked_score' => $country->rankedscore,
-                'performance' => $country->pp,
-            ];
-        });
+        return $this->primitive([
+            'active_users' => $country->usercount,
+            'play_count' => $country->playcount,
+            'ranked_score' => $country->rankedscore,
+            'performance' => $country->pp,
+        ]);
     }
 }

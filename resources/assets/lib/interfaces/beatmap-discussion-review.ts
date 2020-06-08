@@ -14,7 +14,7 @@ export interface DocumentIssueEmbed extends DocumentBlock {
   beatmap_id: number | null;
   discussion_id?: number;
   discussion_type: 'praise' | 'problem' | 'suggestion';
-  timestamp: string;
+  timestamp: number | null;
   type: 'embed';
 }
 

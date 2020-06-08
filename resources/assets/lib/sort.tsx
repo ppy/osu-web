@@ -4,17 +4,18 @@
 import * as React from 'react';
 
 interface Props {
+  currentValue: string;
   modifiers?: string[];
-  sortMode: string;
+  title?: string;
   values: string[];
-  onSortSelected(event: React.MouseEvent): void;
+  onChange(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export class Sort extends React.PureComponent<Props> {
   render() {
     const items = this.props.values.map((value) => {
       let cssClasses = 'sort__item sort__item--button';
-      if (this.props.sortMode === value) {
+      if (this.props.currentValue === value) {
         cssClasses += ' sort__item--active';
       }
 
@@ -23,8 +24,9 @@ export class Sort extends React.PureComponent<Props> {
           className={cssClasses}
           data-value={value}
           key={value}
-          onClick={this.props.onSortSelected}
+          onClick={this.props.onChange}
         >
+          {/* FIXME: add icon support */}
           {value === 'rank'
             ? <span>
                 <i className={`fas fa-extra-mode-${currentUser.playmode ?? 'osu'}`} /> {osu.trans('sort.rank')}
@@ -38,7 +40,7 @@ export class Sort extends React.PureComponent<Props> {
     return (
       <div className={osu.classWithModifiers('sort', this.props.modifiers)}>
         <div className='sort__items'>
-          <span className='sort__item sort__item--title'>{osu.trans('sort._')}</span>
+          <span className='sort__item sort__item--title'>{this.props.title ?? osu.trans('sort._')}</span>
           {items}
         </div>
       </div>

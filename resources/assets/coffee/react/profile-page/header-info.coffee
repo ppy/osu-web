@@ -36,7 +36,7 @@ export class HeaderInfo extends React.PureComponent
       div className: "#{bn}__details",
         h1
           className: "#{bn}__name"
-          span className: 'u-ellipsis-overflow', @props.user.username
+          span className: 'u-ellipsis-pre-overflow', @props.user.username
           div className: "#{bn}__previous-usernames", @previousUsernames()
         # hard space if no title
         span
@@ -53,10 +53,11 @@ export class HeaderInfo extends React.PureComponent
                   span
                     key: i
                     className: 'fas fa-heart'
-            if @props.user.group_badge?
+            for group in @props.user.groups
               span
                 className: "#{bn}__icon"
-                el UserGroupBadge, badge: @props.user.group_badge, modifiers: ['profile-page']
+                key: group.id
+                el UserGroupBadge, group: group, modifiers: ['profile-page']
           div className: "#{bn}__icons #{bn}__icons--flag",
             if @props.user.country?.code?
               a
