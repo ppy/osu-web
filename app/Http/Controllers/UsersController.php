@@ -223,7 +223,12 @@ class UsersController extends Controller
             $perPage = $this->sanitizedLimitParam();
         }
 
-        $json = $this->getExtra($this->user, $page, ['mode' => $this->mode], $perPage, $this->offset);
+        $options = [
+            'mode' => $this->mode,
+            'includeFails' => get_bool(request('include_fails')) ?? false,
+        ];
+
+        $json = $this->getExtra($this->user, $page, $options, $perPage, $this->offset);
 
         return response($json, is_null($json['error'] ?? null) ? 200 : 504);
     }
@@ -479,6 +484,7 @@ class UsersController extends Controller
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scores($options['mode'], true)
+                        ->includeFails($options['includeFails'] ?? false)
                         ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
                     break;
             }
