@@ -20,9 +20,7 @@ class ChannelMessage extends BroadcastNotificationBase
 
     public static function getMailText(Notification $notification): string
     {
-        $link = static::getMailLink($notification);
-
-        return "new message from {$notification->details['username']} {$link}";
+        return trans("notifications.item.channel.channel.pm.{$notification->name}", $notification->details);
     }
 
     public function __construct(Message $message, User $source)

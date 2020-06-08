@@ -11,8 +11,6 @@ class BeatmapsetDiscussionLock extends BeatmapsetNotification
 {
     public static function getMailText(Notification $notification): string
     {
-        $link = static::getMailLink($notification);
-
-        return "Beatmapset has been locked {$link}";
+        return trans("notifications.item.beatmapset.beatmapset_discussion.{$notification->name}", $notification->details);
     }
 }

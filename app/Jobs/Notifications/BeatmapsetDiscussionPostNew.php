@@ -11,8 +11,6 @@ class BeatmapsetDiscussionPostNew extends BeatmapsetDiscussionPostNotification
 {
     public static function getMailText(Notification $notification): string
     {
-        $link = static::getMailLink($notification);
-
-        return "something happended on beatmap {$notification->details['title']} {$link}";
+        return trans("notifications.item.beatmapset.beatmapset_discussion.{$notification->name}", $notification->details);
     }
 }

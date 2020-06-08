@@ -17,15 +17,13 @@ class CommentNew extends BroadcastNotificationBase
 
     public static function getMailLink(Notification $notification): string
     {
-        return route('chat.index', $notification->notifiable_id);
+        // TODO: actual item commented on.
+        return route('comments.show', $notification->details['comment_id']);
     }
 
     public static function getMailText(Notification $notification): string
     {
-        // TODO: actual item commented on.
-        $link = route('comments.show', $notification->details['comment_id']);
-
-        return "new comment on {$notification->details['title']} by {$notification->details['username']} {$link}";
+        return trans("notifications.item.{$notification->notifiable_type}.comment.{$notification->name}", $notification->details);
     }
 
     public function __construct(Comment $comment, User $source)

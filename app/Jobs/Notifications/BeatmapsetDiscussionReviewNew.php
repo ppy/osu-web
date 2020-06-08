@@ -19,9 +19,7 @@ class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
 
     public static function getMailText(Notification $notification): string
     {
-        $link = route('beatmap-discussions.show', $notification->details['discussion_id']);
-
-        return "new review on beatmap {$notification->details['title']} {$link}";
+        return trans("notifications.item.beatmapset.beatmapset_discussion.{$notification->name}", $notification->details);
     }
 
     public function __construct(BeatmapDiscussion $beatmapsetDiscussion, User $source)

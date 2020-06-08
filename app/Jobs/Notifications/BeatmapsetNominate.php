@@ -11,9 +11,7 @@ class BeatmapsetNominate extends BeatmapsetNotification
 {
     public static function getMailText(Notification $notification): string
     {
-        $link = static::getMailLink($notification);
-
-        return "Beatmapset has been nominated {$link}";
+        return trans("notifications.item.beatmapset.beatmapset_state.{$notification->name}", $notification->details);
     }
 
 }

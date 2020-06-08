@@ -18,14 +18,12 @@ class ForumTopicReply extends BroadcastNotificationBase
 
     public static function getMailLink(Notification $notification): string
     {
-        return route('chat.index', $notification->notifiable_id);
+        return route('forum.posts.show', $notification['details']->post_id ?? 0);
     }
 
     public static function getMailText(Notification $notification): string
     {
-        $link = route('forum.posts.show', $notification['details']->post_id ?? 0);
-
-        return "new forum post in {$notification->details['title']} by {$notification->details['username']} {$link}";
+        return trans("notifications.item.forum_topic.forum_topic_reply.{$notification->name}", $notification->details);
     }
 
     public function __construct(Post $post, User $source)

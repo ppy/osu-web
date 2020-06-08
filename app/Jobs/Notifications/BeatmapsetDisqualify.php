@@ -13,9 +13,7 @@ class BeatmapsetDisqualify extends BeatmapsetNotification
 {
     public static function getMailText(Notification $notification): string
     {
-        $link = static::getMailLink($notification);
-
-        return "Beatmapset has been disqualified {$link}";
+        return trans("notifications.item.beatmapset.beatmapset_state.{$notification->name}", $notification->details);
     }
 
     public function getListeningUserIds(): array

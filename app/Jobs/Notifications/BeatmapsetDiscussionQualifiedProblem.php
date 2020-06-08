@@ -15,9 +15,7 @@ class BeatmapsetDiscussionQualifiedProblem extends BeatmapsetDiscussionPostNotif
 
     public static function getMailText(Notification $notification): string
     {
-        $link = static::getMailLink($notification);
-
-        return "something happended on beatmap {$notification->details['title']} {$link}";
+        return trans("notifications.item.beatmapset.beatmapset_problem.{$notification->name}", $notification->details);
     }
 
     public function getListeningUserIds(): array
