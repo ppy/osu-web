@@ -6,6 +6,7 @@
 namespace App\Libraries;
 
 use App\Models\Smiley;
+use App\Models\User;
 
 class BBCodeForDB
 {
@@ -225,9 +226,16 @@ class BBCodeForDB
         return preg_replace_callback(
             "#\[profile\](.+?)\[/profile\]#",
             function ($m) {
-                $name = $this->extraEscapes($m[1]);
+                $user = User::lookup($m[1], null, true);
 
-                return "[profile:{$this->uid}]{$name}[/profile:{$this->uid}]";
+                if ($user === null) {
+                    $name = $this->extraEscapes($m[1]);
+                    return "[profile:{$this->uid}]{$name}[/profile:{$this->uid}]";
+                }
+
+                $url = $this->extraEscapes($user->url());
+                $name = $this->extraEscapes($user->username);
+                return "[url={$url}:{$this->uid}]{$name}[/url:{$this->uid}]";
             },
             $text
         );
