@@ -496,6 +496,19 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     */
+    public function checkBeatmapsetAdvancedSearch(?User $user): string
+    {
+        if (!config('osu.beatmapset.guest_advanced_search')) {
+            $this->ensureLoggedIn($user);
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
      * @param Beatmapset $beatmapset
      * @return string
      * @throws AuthorizationException

@@ -2,12 +2,15 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $canAdvancedSearch = priv_check('BeatmapsetAdvancedSearch')->can();
+@endphp
 @extends('master', [
   'pageDescription' => trans('beatmapsets.index.title'),
 ])
 
 @section('content')
-  <div class="js-react--beatmaps"></div>
+  <div class="js-react--beatmaps" data-advanced-search="{{ (int) $canAdvancedSearch }}"></div>
   {{--
     this should content a server side react.js render which doesn't exist in hhvm
     because the only library for it, which is experimental, requires PHP extension
@@ -16,7 +19,7 @@
 @endsection
 
 {{-- empty sections so placeholders render for react to fill in --}}
-@if (auth()->check())
+@if ($canAdvancedSearch)
     @section('sticky-header-breadcrumbs')
     @endsection
 
