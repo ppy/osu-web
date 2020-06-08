@@ -5,6 +5,14 @@
 
 namespace App\Jobs\Notifications;
 
+use App\Models\Notification;
+
 class BeatmapsetRank extends BeatmapsetNotification
 {
+    public static function getMailText(Notification $notification): string
+    {
+        $link = static::getMailLink($notification);
+
+        return "Beatmapset has been ranked {$link}";
+    }
 }

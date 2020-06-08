@@ -16,6 +16,11 @@ class ForumTopicReply extends BroadcastNotificationBase
 
     protected $post;
 
+    public static function getMailLink(Notification $notification): string
+    {
+        return route('chat.index', $notification->notifiable_id);
+    }
+
     public static function getMailText(Notification $notification): string
     {
         $link = route('forum.posts.show', $notification['details']->post_id ?? 0);

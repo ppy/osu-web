@@ -11,6 +11,13 @@ use App\Models\UserNotificationOption;
 
 class BeatmapsetDisqualify extends BeatmapsetNotification
 {
+    public static function getMailText(Notification $notification): string
+    {
+        $link = static::getMailLink($notification);
+
+        return "Beatmapset has been disqualified {$link}";
+    }
+
     public function getListeningUserIds(): array
     {
         $ids = parent::getListeningUserIds();

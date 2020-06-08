@@ -5,6 +5,14 @@
 
 namespace App\Jobs\Notifications;
 
+use App\Models\Notification;
+
 class BeatmapsetQualify extends BeatmapsetNotification
 {
+    public static function getMailText(Notification $notification): string
+    {
+        $link = static::getMailLink($notification);
+
+        return "Beatmapset has been qualified {$link}";
+    }
 }

@@ -13,9 +13,14 @@ class ChannelMessage extends BroadcastNotificationBase
 {
     protected $message;
 
+    public static function getMailLink(Notification $notification): string
+    {
+        return route('chat.index', $notification->notifiable_id);
+    }
+
     public static function getMailText(Notification $notification): string
     {
-        $link = route('chat.index', $notification->notifiable_id);
+        $link = static::getMailLink($notification);
 
         return "new message from {$notification->details['username']} {$link}";
     }

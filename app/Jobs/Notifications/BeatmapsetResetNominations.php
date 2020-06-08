@@ -5,6 +5,14 @@
 
 namespace App\Jobs\Notifications;
 
+use App\Models\Notification;
+
 class BeatmapsetResetNominations extends BeatmapsetNotification
 {
+    public static function getMailText(Notification $notification): string
+    {
+        $link = static::getMailLink($notification);
+
+        return "something happended on beatmap {$notification->details['title']} {$link}";
+    }
 }
