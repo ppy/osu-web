@@ -59,9 +59,12 @@ $factory->state(Beatmapset::class, 'no_discussion', function () {
 });
 
 $factory->state(Beatmapset::class, 'qualified', function () {
+    $approvedAt = now();
+
     return [
         'approved' => Beatmapset::STATES['qualified'],
-        'queued_at' => now(),
+        'approved_date' => $approvedAt,
+        'queued_at' => $approvedAt,
     ];
 });
 

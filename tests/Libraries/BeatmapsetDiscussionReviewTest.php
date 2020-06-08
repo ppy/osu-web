@@ -214,10 +214,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
     public function testCreateDocumentDocumentValidWithIssuesShouldDisqualify()
     {
         $gmtUser = factory(User::class)->states('gmt')->create();
-        $beatmapset = factory(Beatmapset::class)->create([
-            'discussion_enabled' => true,
-            'approved' => Beatmapset::STATES['qualified'],
-        ]);
+        $beatmapset = factory(Beatmapset::class)->states('qualified')->create();
         $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
         $watchingUser = factory(User::class)->create();
         $beatmapset->watches()->create(['user_id' => $watchingUser->getKey()]);
