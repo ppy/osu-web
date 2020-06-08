@@ -7,27 +7,27 @@ import { a } from 'react-dom-factories'
 import { SelectOptions } from 'select-options'
 
 export class SpotlightSelectOptions extends PureComponent
-  render: =>
-    el SelectOptions,
-      bn: 'spotlight-select-options'
-      renderItem: @renderItem
-      onItemSelected: @onItemSelected
-      options: @props.options
-      selected: @props.selected
-
-
-  renderItem: ({ cssClasses, children, item, onClick }) =>
-    a
-      children: children
-      className: cssClasses
-      href: @href(item?.id)
-      key: item?.id
-      onClick: onClick
+  handleChange: (option) =>
+    Turbolinks.visit @href(option.id)
 
 
   href: (key) ->
     window.osu.updateQueryString(null, spotlight: key)
 
 
-  onItemSelected: (item) =>
-    Turbolinks.visit @href(item.id)
+  render: =>
+    el SelectOptions,
+      bn: 'spotlight-select-options'
+      renderOption: @renderOption
+      onChange: @handleChange
+      options: @props.options
+      selected: @props.selected
+
+
+  renderOption: ({ children, cssClasses, onClick, option }) =>
+    a
+      children: children
+      className: cssClasses
+      href: @href(option?.id)
+      key: option?.id
+      onClick: onClick

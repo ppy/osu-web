@@ -260,6 +260,17 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/chat/channels",
+        "method": "POST",
+        "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@store",
+        "middlewares": [
+            "auth-custom-api",
+            "require-scopes",
+            "auth"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/changelog/{stream}/{build}",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\ChangelogController@build",

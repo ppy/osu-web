@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Chat;
 
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
+use App\Models\User;
 use Auth;
 
 /**
@@ -119,6 +120,71 @@ class ChannelsController extends Controller
         $channel->removeUser(Auth::user());
 
         return response([], 204);
+    }
+
+    /**
+     * Create Channel
+     *
+     * This endpoint creates a new channel if doesn't exist and joins it.
+     * Currently only for rejoining existing PM channels which the user has left.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [ChatChannel](#chatchannel) with `recent_messages` attribute.
+     * Note that if there's no existing PM channel, most of the fields will be blank.
+     * In that case, [send a message](#create-new-pm) instead to create the channel.
+     *
+     * @authenticated
+     *
+     * @bodyParam type string required channel type (currently only supports "PM")
+     * @bodyParam target_id integer target user id for type PM
+     *
+     * @response {
+     *   "channel_id": 1,
+     *   "name": "#pm_1-2",
+     *   "description": "",
+     *   "type": "PM",
+     *   "recent_messages": [
+     *     {
+     *       "message_id": 1,
+     *       "sender_id": 1,
+     *       "channel_id": 1,
+     *       "timestamp": "2020-01-01T00:00:00+00:00",
+     *       "content": "Happy new year",
+     *       "is_action": false
+     *     }
+     *   ]
+     * }
+     */
+    public function store()
+    {
+        $params = request()->all();
+        $params['type'] = $params['type'] ?? null;
+
+        if ($params['type'] === Channel::TYPES['pm']) {
+            if (!isset($params['target_id'])) {
+                abort(422, 'missing target_id parameter');
+            }
+
+            $sender = auth()->user();
+            $target = User::findOrFail($params['target_id']);
+
+            priv_check('ChatStart', $target)->ensureCan();
+
+            $channel = Channel::findPM($sender, $target) ?? new Channel();
+
+            if ($channel->exists) {
+                $channel->addUser($sender);
+            }
+        }
+
+        if (isset($channel)) {
+            return json_item($channel, 'Chat/Channel', ['recent_messages']);
+        } else {
+            abort(422, 'unknown or missing type parameter');
+        }
     }
 
     /**

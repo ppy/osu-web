@@ -27,7 +27,7 @@ export default class ItemCompact extends React.Component<Props> {
         modifiers={['compact']}
         url={urlSingular(this.props.item)}
         withCategory={false}
-        withCoverImage={false}
+        withCoverImage={this.props.item.name === 'user_achievement_unlock'}
       />
     );
   }

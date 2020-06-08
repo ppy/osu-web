@@ -448,7 +448,7 @@ export default class Editor extends React.Component<Props, State> {
           }
 
           // clear invalid beatmapId references (for pasted embed content)
-          if (node.beatmapId && !this.props.beatmaps[node.beatmapId]) {
+          if (node.beatmapId && (!this.props.beatmaps[node.beatmapId] || this.props.beatmaps[node.beatmapId].deleted_at)) {
             Transforms.setNodes(editor, {beatmapId: null}, {at: path});
           }
         }

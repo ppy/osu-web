@@ -18,6 +18,7 @@ import NotificationWorker from 'notifications/worker'
 import QuickSearch from 'quick-search/main'
 import QuickSearchButton from 'quick-search-button'
 import QuickSearchWorker from 'quick-search/worker'
+import RankingFilter from 'ranking-filter'
 import { SpotlightSelectOptions } from 'spotlight-select-options'
 import { UserCard } from 'user-card'
 import { UserCardStore } from 'user-card-store'
@@ -97,6 +98,10 @@ reactTurbolinks.registerPersistent 'quick-search', QuickSearch, true, (el) ->
 
 reactTurbolinks.registerPersistent 'quick-search-button', QuickSearchButton, true, ->
   worker: quickSearchWorker
+
+reactTurbolinks.registerPersistent 'ranking-filter', RankingFilter, true, (el) ->
+  countries: osu.parseJson 'json-countries'
+  type: el.dataset.type
 
 reactTurbolinks.register 'user-card', UserCard, (el) ->
   modifiers: try JSON.parse(el.dataset.modifiers)
