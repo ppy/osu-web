@@ -5,12 +5,6 @@
 
 namespace App\Jobs\Notifications;
 
-use App\Models\Notification;
-
 class BeatmapsetResetNominations extends BeatmapsetNotification
 {
-    public static function getMailBaseKey(Notification $notification): string
-    {
-        return '???';
-    }
 }
