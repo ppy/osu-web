@@ -241,13 +241,4 @@ class BeatmapsetTest extends TestCase
         $this->fakeGenre = factory(Genre::class)->create();
         $this->fakeLanguage = factory(Language::class)->create();
     }
-
-    protected function tearDown(): void
-    {
-        Genre::find(Genre::UNSPECIFIED)->delete();
-        $this->fakeGenre->delete();
-        $this->fakeLanguage->delete();
-
-        parent::tearDown();
-    }
 }
