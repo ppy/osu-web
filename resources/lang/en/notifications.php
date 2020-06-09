@@ -133,4 +133,38 @@ return [
             ],
         ],
     ],
+
+    'mail' => [
+        'beatmapset' => [
+            'beatmapset_discussion' => 'A discussion was updated :title',
+
+            'beatmapset_problem' => 'new problem reported on :title',
+
+            'beatmapset_state' => 'state of :title has changed',
+
+            'comment' => 'new comment on :title',
+        ],
+
+        'channel' => [
+            'channel' => [
+                'pm' => 'You\'ve received a new message from :username',
+            ],
+        ],
+
+        'build' => [
+            'comment' => 'There are new comments on changelog :title',
+        ],
+
+        'news_post' => [
+            'comment' => 'There are new comments on :title',
+        ],
+
+        'forum_topic' => [
+            'forum_topic_reply' => 'There are new posts in :title',
+        ],
+
+        'user_achievement' => [
+            'user_achievement_unlock' => ':title was unlocked!',
+        ],
+    ]
 ];

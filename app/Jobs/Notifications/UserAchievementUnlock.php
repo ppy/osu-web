@@ -13,6 +13,11 @@ class UserAchievementUnlock extends BroadcastNotificationBase
 {
     protected $achievement;
 
+    public static function getMailBaseKey(Notification $notification): string
+    {
+        return 'user_achievement.user_achievement_unlock';
+    }
+
     public static function getMailLink(Notification $notification): string
     {
         return route('users.show', $notification['details']->user_id);

@@ -33,10 +33,16 @@ class UserNewNotifications extends Mailable implements ShouldQueue
 
     private function addKeyed(Notification $notification)
     {
-        $key = $notification->notifiable_type;
-        $id = $notification->notifiable_id;
+        try {
+            $class = BroadcastNotificationBase::getNotificationClassFromNotification($notification);
+            $key = 'notifications.mail.'.$class::getMailBaseKey($notification);
+            $link = $class::getMailLink($notification);
+            $id = "{$notification->notifiable_type}-{$notification->notifiable_id}";
 
-        $this->keyed[$key][$id][] = $notification;
+            $this->keyed[$key][$id] = $notification;
+        } catch (InvalidNotificationException $e) {
+            log_error($e);
+        }
     }
 
     /**
@@ -51,21 +57,14 @@ class UserNewNotifications extends Mailable implements ShouldQueue
         }
 
         $lines = [];
-        foreach ($this->keyed as $notifiableType => $notificationsByNotifiableId) {
-            foreach ($notificationsByNotifiableId as $notifiableId => $notifications) {
-                $lines[] = "Updates in {$notifiableType}#{$notifiableId}";
+        foreach ($this->keyed as $key => $groups) {
+            $lines[] = "Updates in {$key}";
 
-                foreach ($notifications as $notification) {
-                    try {
-                        $class = BroadcastNotificationBase::getNotificationClassFromNotification($notification);
-                        $lines[] = $class::getMailText($notification);
-                    } catch (InvalidNotificationException $e) {
-                        log_error($e);
-                    }
-                }
-
-                $lines[] = '';
+            foreach ($groups as $id => $message) {
+                $lines[] = $message;
             }
+
+            $lines[] = '';
         }
 
         return $this->text('emails.user_new_notifications', compact('lines'));

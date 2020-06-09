@@ -9,6 +9,11 @@ use App\Models\Notification;
 
 class BeatmapsetResetNominations extends BeatmapsetNotification
 {
+    public static function getMailBaseKey(Notification $notification): string
+    {
+        return '???';
+    }
+
     public static function getMailText(Notification $notification): string
     {
         return trans("notifications.item.beatmapset.beatmapset_state.{$notification->name}", $notification->details);

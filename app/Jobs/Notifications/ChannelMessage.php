@@ -13,6 +13,11 @@ class ChannelMessage extends BroadcastNotificationBase
 {
     protected $message;
 
+    public static function getMailBaseKey(Notification $notification): string
+    {
+        return 'channel.channel.pm';
+    }
+
     public static function getMailLink(Notification $notification): string
     {
         return route('chat.index', $notification->notifiable_id);

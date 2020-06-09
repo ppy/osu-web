@@ -16,6 +16,11 @@ class ForumTopicReply extends BroadcastNotificationBase
 
     protected $post;
 
+    public static function getMailBaseKey(Notification $notification): string
+    {
+        return 'forum_topic.forum_topic_reply';
+    }
+
     public static function getMailLink(Notification $notification): string
     {
         return route('forum.posts.show', $notification['details']->post_id ?? 0);
