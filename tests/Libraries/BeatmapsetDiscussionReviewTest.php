@@ -7,7 +7,6 @@ namespace Tests\Libraries;
 
 use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvariantException;
-use App\Jobs\BroadcastNotification;
 use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
