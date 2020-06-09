@@ -9,8 +9,4 @@ use App\Models\Notification;
 
 class BeatmapsetLove extends BeatmapsetNotification
 {
-    public static function getMailText(Notification $notification): string
-    {
-        return trans("notifications.item.beatmapset.beatmapset_state.{$notification->name}", $notification->details);
-    }
 }

@@ -13,9 +13,4 @@ class BeatmapsetDiscussionLock extends BeatmapsetNotification
     {
         return 'beatmapset.beatmapset_discussion';
     }
-
-    public static function getMailText(Notification $notification): string
-    {
-        return trans("notifications.item.beatmapset.beatmapset_discussion.{$notification->name}", $notification->details);
-    }
 }

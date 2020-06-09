@@ -26,11 +26,6 @@ class CommentNew extends BroadcastNotificationBase
         return route('comments.show', $notification->details['comment_id']);
     }
 
-    public static function getMailText(Notification $notification): string
-    {
-        return trans("notifications.item.{$notification->notifiable_type}.comment.{$notification->name}_compact", $notification->details);
-    }
-
     public function __construct(Comment $comment, User $source)
     {
         parent::__construct($source);

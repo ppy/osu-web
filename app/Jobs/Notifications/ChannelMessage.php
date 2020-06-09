@@ -23,11 +23,6 @@ class ChannelMessage extends BroadcastNotificationBase
         return route('chat.index', $notification->notifiable_id);
     }
 
-    public static function getMailText(Notification $notification): string
-    {
-        return trans("notifications.item.channel.channel.pm.{$notification->name}_compact", $notification->details);
-    }
-
     public function __construct(Message $message, User $source)
     {
         parent::__construct($source);

@@ -13,11 +13,6 @@ class BeatmapsetDiscussionQualifiedProblem extends BeatmapsetDiscussionPostNotif
 {
     const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;
 
-    public static function getMailText(Notification $notification): string
-    {
-        return trans("notifications.item.beatmapset.beatmapset_problem.{$notification->name}", $notification->details);
-    }
-
     public function getListeningUserIds(): array
     {
         $beatmap = $this->beatmapsetDiscussionPost->beatmap;

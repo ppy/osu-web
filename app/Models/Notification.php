@@ -97,42 +97,4 @@ class Notification extends Model
     {
         return $this->hasMany(UserNotification::class);
     }
-
-    public function getMailText()
-    {
-        // switch ($this->name) {
-        //     case static::BEATMAPSET_DISCUSSION_LOCK:
-        //         return;
-        //     case static::BEATMAPSET_DISCUSSION_POST_NEW:
-        //         return;
-        //     case static::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM:
-        //         return;
-        //     case static::BEATMAPSET_DISCUSSION_REVIEW_NEW:
-        //         return;
-        //     case static::BEATMAPSET_DISCUSSION_UNLOCK:
-        //         return;
-        //     case static::BEATMAPSET_DISQUALIFY:
-        //         return;
-        //     case static::BEATMAPSET_LOVE:
-        //         return;
-        //     case static::BEATMAPSET_NOMINATE:
-        //         return;
-        //     case static::BEATMAPSET_QUALIFY:
-        //         return;
-        //     case static::BEATMAPSET_RANK:
-        //         return;
-        //     case static::BEATMAPSET_RESET_NOMINATIONS:
-        //         return;
-        //     case static::CHANNEL_MESSAGE:
-        //         return;
-        //     case static::COMMENT_NEW:
-        //         return;
-        //     case static::FORUM_TOPIC_REPLY:
-        //         return;
-        //     case static::USER_ACHIEVEMENT_UNLOCK:
-        //         return;
-        // }
-
-        return $this->details['title'];
-    }
 }

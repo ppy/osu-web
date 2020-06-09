@@ -26,11 +26,6 @@ class ForumTopicReply extends BroadcastNotificationBase
         return route('forum.posts.show', $notification['details']->post_id ?? 0);
     }
 
-    public static function getMailText(Notification $notification): string
-    {
-        return trans("notifications.item.forum_topic.forum_topic_reply.{$notification->name}", $notification->details);
-    }
-
     public function __construct(Post $post, User $source)
     {
         parent::__construct($source);

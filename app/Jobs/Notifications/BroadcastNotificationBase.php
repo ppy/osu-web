@@ -66,8 +66,6 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     abstract public static function getMailBaseKey(Notification $notification): string;
 
-    abstract public static function getMailText(Notification $notification): string;
-
     public function __construct(?User $source = null)
     {
         $this->name = snake_case(get_class_basename(get_class($this)));

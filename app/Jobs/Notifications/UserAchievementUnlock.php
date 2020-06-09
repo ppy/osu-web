@@ -23,11 +23,6 @@ class UserAchievementUnlock extends BroadcastNotificationBase
         return route('users.show', $notification['details']->user_id);
     }
 
-    public static function getMailText(Notification $notification): string
-    {
-        return trans("notifications.item.user_achievement.user_achievement_unlock.{$notification->name}", $notification->details);
-    }
-
     public function __construct(Achievement $achievement, User $source)
     {
         parent::__construct($source);
