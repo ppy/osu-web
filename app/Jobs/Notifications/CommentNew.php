@@ -15,11 +15,6 @@ class CommentNew extends BroadcastNotificationBase
 {
     protected $comment;
 
-    public static function getMailBaseKey(Notification $notification): string
-    {
-        return "{$notification->notifiable_type}.comment";
-    }
-
     public static function getMailLink(Notification $notification): string
     {
         // TODO: actual item commented on.

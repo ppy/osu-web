@@ -17,11 +17,6 @@ class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
 
     protected $beatmapsetDiscussion;
 
-    public static function getMailBaseKey(Notification $notification): string
-    {
-        return 'beatmapset.beatmapset_discussion';
-    }
-
     public function __construct(BeatmapDiscussion $beatmapsetDiscussion, User $source)
     {
         parent::__construct($source);

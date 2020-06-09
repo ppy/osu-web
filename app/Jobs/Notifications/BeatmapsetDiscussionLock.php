@@ -9,8 +9,4 @@ use App\Models\Notification;
 
 class BeatmapsetDiscussionLock extends BeatmapsetNotification
 {
-    public static function getMailBaseKey(Notification $notification): string
-    {
-        return 'beatmapset.beatmapset_discussion';
-    }
 }
