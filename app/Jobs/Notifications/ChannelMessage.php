@@ -13,7 +13,7 @@ class ChannelMessage extends BroadcastNotificationBase
 {
     protected $message;
 
-    public static function getMailBaseKey(Notification $notification): string
+    public static function getBaseKey(Notification $notification): string
     {
         return 'channel.channel.pm';
     }

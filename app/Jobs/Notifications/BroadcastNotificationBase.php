@@ -28,6 +28,13 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     protected $name;
     protected $source;
 
+    public static function getBaseKey(Notification $notification): string
+    {
+        $category = Notification::nameToCategory($notification->name);
+
+        return "{$notification->notifiable_type}.{$category}";
+    }
+
     public static function getNotificationClass(string $name)
     {
         $class = get_class_namespace(static::class).'\\'.studly_case($name);
@@ -37,6 +44,11 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         }
 
         return $class;
+    }
+
+    public static function getNotificationClassFromNotification(Notification $notification)
+    {
+        return static::getNotificationClass($notification->name);
     }
 
     private static function filterUserIdsForNotificationOption(array $userIds)
@@ -57,18 +69,6 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         }
 
         return $filteredUserIds;
-    }
-
-    public static function getNotificationClassFromNotification(Notification $notification)
-    {
-        return static::getNotificationClass($notification->name);
-    }
-
-    public static function getMailBaseKey(Notification $notification): string
-    {
-        $category = Notification::nameToCategory($notification->name);
-
-        return "{$notification->notifiable_type}.{$category}";
     }
 
     public function __construct(?User $source = null)

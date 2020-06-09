@@ -35,7 +35,7 @@ class UserNewNotifications extends Mailable implements ShouldQueue
     {
         try {
             $class = BroadcastNotificationBase::getNotificationClassFromNotification($notification);
-            $baseKey = 'notifications.mail.'.$class::getMailBaseKey($notification);
+            $baseKey = 'notifications.mail.'.$class::getBaseKey($notification);
             $key = "{$baseKey}-{$notification->notifiable_type}-{$notification->notifiable_id}";
 
             if (isset($this->groups[$key])) {
