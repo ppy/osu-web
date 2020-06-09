@@ -120,10 +120,6 @@ abstract class BroadcastNotificationBase implements ShouldQueue
                 $notification->userNotifications()->create(['user_id' => $id]);
             }
         });
-
-        foreach ($this->receiverIds as $id) {
-            dispatch(new SendUserNotificationMail(User::find($id)));
-        }
     }
 
     public function makeNotification(): Notification
