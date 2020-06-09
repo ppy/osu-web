@@ -56,6 +56,12 @@ return [
         ],
     ],
 
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => 'You cannot change metadata of a nominated map. Contact a BN or NAT member if you think it is set incorrectly.',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Cannot message a user that is blocking you or that you have blocked.',
         'friends_only' => 'User is blocking messages from people not on their friends list.',
