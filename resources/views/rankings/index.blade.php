@@ -53,7 +53,7 @@
                         @if ($type === 'performance')
                             <div class="ranking-select-options">
                                 <div class="ranking-select-options__select">
-                                    <div class="ranking-select-options__item">{{ optional($country)->name ?? trans('rankings.countries.all') }}</div>
+                                    <div class="ranking-select-options__option">{{ optional($country)->name ?? trans('rankings.countries.all') }}</div>
                                 </div>
                             </div>
                         @endif

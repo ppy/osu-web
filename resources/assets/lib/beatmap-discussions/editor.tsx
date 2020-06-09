@@ -4,7 +4,7 @@
 import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import isHotkey from 'is-hotkey';
-import * as laroute from 'laroute';
+import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
@@ -13,7 +13,12 @@ import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, with
 import { Spinner } from 'spinner';
 import { sortWithMode } from 'utils/beatmap-helper';
 import EditorDiscussionComponent from './editor-discussion-component';
-import { serializeSlateDocument, slateDocumentIsEmpty, toggleFormat } from './editor-helpers';
+import {
+  serializeSlateDocument,
+  slateDocumentContainsProblem,
+  slateDocumentIsEmpty,
+  toggleFormat,
+} from './editor-helpers';
 import { EditorToolbar } from './editor-toolbar';
 import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
@@ -247,21 +252,20 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   post = () => {
-    this.setState({posting: true}, () => {
-      this.xhr = $.ajax(laroute.route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
-        data: { document: this.serialize() },
-        method: 'POST',
+    if (this.showConfirmationIfRequired()) {
+      this.setState({posting: true}, () => {
+        this.xhr = $.ajax(route('beatmapsets.discussion.review', {beatmapset: this.props.beatmapset.id}), {
+          data: {document: this.serialize()},
+          method: 'POST',
+        })
+        .done((data) => {
+          $.publish('beatmapsetDiscussions:update', {beatmapset: data});
+          this.resetInput();
+        })
+        .fail(osu.ajaxError)
+        .always(() => this.setState({posting: false}));
       });
-
-      this.xhr.then((data) => {
-        $.publish('beatmapsetDiscussions:update', {beatmapset: data});
-        this.resetInput();
-      })
-      .always(() => {
-        this.setState({posting: false});
-      })
-      .catch(osu.ajaxError);
-    });
+    }
   }
 
   render(): React.ReactNode {
@@ -377,6 +381,27 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   serialize = () => serializeSlateDocument(this.state.value);
+
+  showConfirmationIfRequired = () => {
+    const docContainsProblem = slateDocumentContainsProblem(this.state.value);
+    const canDisqualify = currentUser.is_admin || currentUser.is_moderator || currentUser.is_full_bn;
+    const willDisqualify = this.props.beatmapset.status === 'qualified' && docContainsProblem;
+    const canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng;
+    const willReset =
+      this.props.beatmapset.status === 'pending' &&
+      this.props.beatmapset.nominations && this.props.beatmapset.nominations.current > 0 &&
+      docContainsProblem;
+
+    if (canDisqualify && willDisqualify) {
+      return confirm(osu.trans('beatmaps.nominations.reset_confirm.disqualify'));
+    }
+
+    if (canReset && willReset) {
+      return confirm(osu.trans('beatmaps.nominations.reset_confirm.nomination_reset'));
+    }
+
+    return true;
+  }
 
   sortedBeatmaps = () => {
     if (this.cache.sortedBeatmaps == null) {

@@ -10,6 +10,22 @@ use Tests\TestCase;
 
 class TopicTest extends TestCase
 {
+    public function testTitleTrimOnAssignment()
+    {
+        $title = 'fine topic title';
+        $topic = new Topic(['topic_title' => " {$title} "]);
+        $this->assertSame($title, $topic->topic_title);
+
+        $topic->topic_title = '  ';
+        $this->assertSame('', $topic->topic_title);
+
+        $topic->topic_title = '		'; // tabs
+        $this->assertSame('', $topic->topic_title);
+
+        $topic->topic_title = '　　'; // double-width spaces
+        $this->assertSame('', $topic->topic_title);
+    }
+
     public function testIssueTags()
     {
         $topic = new Topic();

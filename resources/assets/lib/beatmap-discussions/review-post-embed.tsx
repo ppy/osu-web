@@ -22,7 +22,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
   if (!discussion) {
     // if a discussion has been deleted or is otherwise missing
     return (
-      <div className={osu.classWithModifiers(bn, ['missing'])}>
+      <div className={osu.classWithModifiers(bn, ['deleted'])}>
         <div className={`${bn}__error`}>{osu.trans('beatmaps.discussions.review.embed.missing')}</div>
       </div>
     );
@@ -38,6 +38,10 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
   const hasBeatmap = discussion.beatmap_id !== null;
   if (!hasBeatmap) {
     additionalClasses.push('general-all');
+  }
+
+  if (discussion.deleted_at) {
+    additionalClasses.push('deleted');
   }
 
   const messageTypeIcon = () => {
