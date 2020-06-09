@@ -17,7 +17,7 @@ class UserNewNotifications extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    private $keyed = [];
+    private $groups = [];
 
     private $notifications;
 
@@ -31,15 +31,21 @@ class UserNewNotifications extends Mailable implements ShouldQueue
         $this->notifications = $notifications;
     }
 
-    private function addKeyed(Notification $notification)
+    private function addToGroups(Notification $notification)
     {
         try {
             $class = BroadcastNotificationBase::getNotificationClassFromNotification($notification);
-            $key = 'notifications.mail.'.$class::getMailBaseKey($notification);
-            $link = $class::getMailLink($notification);
-            $id = "{$notification->notifiable_type}-{$notification->notifiable_id}";
+            $baseKey = 'notifications.mail.'.$class::getMailBaseKey($notification);
+            $key = "{$baseKey}-{$notification->notifiable_type}-{$notification->notifiable_id}";
 
-            $this->keyed[$key][$id] = $notification;
+            if (isset($this->groups[$key])) {
+                return;
+            }
+
+            $this->groups[$key] = [
+                'link' => $class::getMailLink($notification),
+                'text' => trans($baseKey, $notification->details),
+            ];
         } catch (InvalidNotificationException $e) {
             log_error($e);
         }
@@ -53,17 +59,13 @@ class UserNewNotifications extends Mailable implements ShouldQueue
     public function build()
     {
         foreach ($this->notifications as $notification) {
-            $this->addKeyed($notification);
+            $this->addToGroups($notification);
         }
 
         $lines = [];
-        foreach ($this->keyed as $key => $groups) {
-            $lines[] = "Updates in {$key}";
-
-            foreach ($groups as $id => $message) {
-                $lines[] = $message;
-            }
-
+        foreach ($this->groups as $key => $values) {
+            $lines[] = $values['text'];
+            $lines[] = $values['link'];
             $lines[] = '';
         }
 
