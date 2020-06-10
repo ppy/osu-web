@@ -154,7 +154,7 @@ export class Info extends React.Component
             onMouseUp: @handleClickEnd
             ref: @overlay
 
-            div className: 'beatmapset-description-editor__container osu-page',
+            div className: 'osu-page',
               el BbcodeEditor,
                 modifiers: ['beatmapset-description-editor']
                 disabled: @state.isBusy
