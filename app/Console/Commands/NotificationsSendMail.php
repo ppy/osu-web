@@ -7,6 +7,7 @@ namespace App\Console\Commands;
 
 use App\Mail\UserNewNotifications;
 use App\Models\Count;
+use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
 use Illuminate\Console\Command;
@@ -36,13 +37,24 @@ class NotificationsSendMail extends Command
     public function handle()
     {
         $fromId = Count::lastMailNotificationIdSent();
-        // TODO: need deterministic endpoint as well for consistency.
+        $toId = optional(Notification::last())->getKey();
 
-        $users = User::whereIn('user_id', UserNotification::where('notification_id', '>', $fromId)->groupBy('user_id')->select('user_id'))->get();
+        if ($toId === null) {
+            $this->warn('No notifications to send!');
 
-        $users->each(function ($user) use ($fromId) {
+            return;
+        }
+
+        $users = User::whereIn(
+            'user_id',
+            UserNotification::where('notification_id', '>', $fromId)->groupBy('user_id')->select('user_id')
+        )->get();
+
+        foreach ($users as $user) {
             // TODO: catch and log errors
-            Mail::to($user)->queue(new UserNewNotifications($user, $fromId));
-        });
+            Mail::to($user)->queue(new UserNewNotifications($user, $fromId, $toId));
+        }
+
+        // update last sent id
     }
 }

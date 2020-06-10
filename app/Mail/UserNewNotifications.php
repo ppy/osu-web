@@ -20,6 +20,7 @@ class UserNewNotifications extends Mailable implements ShouldQueue
 
     private $fromId;
     private $groups = [];
+    private $toId;
     private $user;
 
     /**
@@ -27,10 +28,11 @@ class UserNewNotifications extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user, int $fromId = 0)
+    public function __construct(User $user, int $fromId, int $toId)
     {
         $this->user = $user;
         $this->fromId = $fromId;
+        $this->toId = $toId;
     }
 
     private function addToGroups(Notification $notification)
@@ -62,6 +64,7 @@ class UserNewNotifications extends Mailable implements ShouldQueue
     {
         $notifications = $this->user->userNotifications()
             ->where('notification_id', '>', $this->fromId)
+            ->where('notification_id', '<=', $this->toId)
             ->with('notification.notifiable')
             ->get()
             ->pluck('notification');
