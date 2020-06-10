@@ -15,7 +15,7 @@ class UserAchievementUnlock extends BroadcastNotificationBase
 
     public static function getMailLink(Notification $notification): string
     {
-        return route('users.show', $notification['details']->user_id);
+        return route('users.show', $notification->details['user_id']);
     }
 
     public function __construct(Achievement $achievement, User $source)

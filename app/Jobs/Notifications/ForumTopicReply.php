@@ -18,7 +18,7 @@ class ForumTopicReply extends BroadcastNotificationBase
 
     public static function getMailLink(Notification $notification): string
     {
-        return route('forum.posts.show', $notification['details']->post_id ?? 0);
+        return route('forum.posts.show', $notification->details['post_id']);
     }
 
     public function __construct(Post $post, User $source)
