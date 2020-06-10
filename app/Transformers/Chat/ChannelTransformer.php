@@ -35,7 +35,8 @@ class ChannelTransformer extends TransformerAbstract
                 ->with('sender')
                 ->orderBy('message_id', 'desc')
                 ->limit(50)
-                ->get();
+                ->get()
+                ->reverse();
         } else {
             $messages = [];
         }

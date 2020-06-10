@@ -405,7 +405,9 @@ export default class Editor extends React.Component<Props, State> {
 
   sortedBeatmaps = () => {
     if (this.cache.sortedBeatmaps == null) {
-      this.cache.sortedBeatmaps = sortWithMode(_.values(this.props.beatmaps));
+      // filter to only include beatmaps from the current discussion's beatmapset (for the modding profile page)
+      const beatmaps = _.filter(this.props.beatmaps, {beatmapset_id: this.props.beatmapset.id});
+      this.cache.sortedBeatmaps = sortWithMode(beatmaps);
     }
 
     return this.cache.sortedBeatmaps;
