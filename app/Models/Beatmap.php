@@ -66,9 +66,18 @@ class Beatmap extends Model
         'mania' => 3,
     ];
 
+    const VARIANTS = [
+        'mania' => ['4k', '7k'],
+    ];
+
     public static function isModeValid(?string $mode)
     {
         return array_key_exists($mode, static::MODES);
+    }
+
+    public static function isVariantValid(?string $mode, ?string $variant)
+    {
+        return $variant === null || in_array($variant, static::VARIANTS[$mode] ?? [], true);
     }
 
     public static function modeInt($str)

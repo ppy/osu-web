@@ -5,6 +5,7 @@
 
 namespace App\Transformers;
 
+use App\Models\Beatmap;
 use App\Models\UserStatistics;
 
 class UserStatisticsTransformer extends TransformerAbstract
@@ -12,6 +13,7 @@ class UserStatisticsTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'rank',
         'user',
+        'variants',
     ];
 
     public function transform(UserStatistics\Model $stats = null)
@@ -68,5 +70,36 @@ class UserStatisticsTransformer extends TransformerAbstract
         }
 
         return $this->item($stats->user, new UserCompactTransformer);
+    }
+
+    public function includeVariants(UserStatistics\Model $stats = null)
+    {
+        if ($stats === null) {
+            return;
+        }
+
+        $mode = $stats->getMode();
+        $variants = Beatmap::VARIANTS[$mode] ?? null;
+
+        if ($variants === null) {
+            return;
+        }
+
+        $data = [];
+
+        foreach ($variants as $variant) {
+            $entry = UserStatistics\Model::getClass($mode, $variant)::where('user_id', $stats->user_id)->firstOrNew([]);
+
+            $data[] = [
+                'mode' => $mode,
+                'variant' => $variant,
+
+                'country_rank' => $entry->countryRank(),
+                'global_rank' => $entry->globalRank(),
+                'pp' => $entry->rank_score,
+            ];
+        }
+
+        return $this->primitive($data);
     }
 }

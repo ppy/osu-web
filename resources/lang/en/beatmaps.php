@@ -339,4 +339,11 @@ return [
         'playcount' => 'Playcount: :count',
         'favourites' => 'Favourites: :count',
     ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'All',
+        ],
+    ],
 ];
