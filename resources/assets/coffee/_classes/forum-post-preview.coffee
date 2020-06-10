@@ -1,16 +1,16 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @ForumPostPreview
+class @BbcodePreview
   constructor: ->
-    $(document).on 'click', '.js-forum-post-preview--show', @fetchPreview
-    $(document).on 'click', '.js-forum-post-preview--hide', @hidePreview
+    $(document).on 'click', '.js-bbcode-preview--show', @fetchPreview
+    $(document).on 'click', '.js-bbcode-preview--hide', @hidePreview
 
 
   fetchPreview: (e) =>
-    $form = $(e.target).parents('.js-forum-post-preview--form')
-    $preview = $form.find('.js-forum-post-preview--preview')
-    $body = $form.find('.js-forum-post-preview--body')
+    $form = $(e.target).parents('.js-bbcode-preview--form')
+    $preview = $form.find('.js-bbcode-preview--preview')
+    $body = $form.find('.js-bbcode-preview--body')
 
     text = $body.val()
     lastText = $body.attr('data-last-text')
@@ -39,13 +39,13 @@ class @ForumPostPreview
 
 
   showPreview: (e) =>
-    $(e.target).parents('.js-forum-post-preview--form').attr('data-state', 'preview')
+    $(e.target).parents('.js-bbcode-preview--form').attr('data-state', 'preview')
     osu.pageChange() # sync height of reply box
 
 
   hidePreview: (e) =>
-    $form = $(e.target).parents('.js-forum-post-preview--form')
+    $form = $(e.target).parents('.js-bbcode-preview--form')
     $form.attr('data-state', 'write')
     osu.pageChange() # sync height of reply box
 
-    $form.find('.js-forum-post-preview--body').focus()
+    $form.find('.js-bbcode-preview--body').focus()
