@@ -23,9 +23,9 @@ class AddUserStatsMania4k7k extends Migration
                 $table->integer('user_id')->unsigned()->nullable(false);
                 $table->mediumInteger('playcount')->nullable(false);
                 $table->mediumInteger('x_rank_count')->nullable(false);
-                $table->mediumInteger('xh_rank_count')->default(0);
+                $table->mediumInteger('xh_rank_count')->nullable()->default(0);
                 $table->mediumInteger('s_rank_count')->nullable(false);
-                $table->mediumInteger('sh_rank_count')->default(0);
+                $table->mediumInteger('sh_rank_count')->nullable()->default(0);
                 $table->mediumInteger('a_rank_count')->nullable(false);
                 $table->char('country_acronym', 2)->nullable(false)->default('');
                 $table->float('rank_score')->nullable(false);
