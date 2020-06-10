@@ -8,6 +8,7 @@ namespace App\Mail;
 use App\Exceptions\InvalidNotificationException;
 use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Models\Notification;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -17,18 +18,19 @@ class UserNewNotifications extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    private $fromId;
     private $groups = [];
-
-    private $notifications;
+    private $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($notifications)
+    public function __construct(User $user, int $fromId = 0)
     {
-        $this->notifications = $notifications;
+        $this->user = $user;
+        $this->fromId = $fromId;
     }
 
     private function addToGroups(Notification $notification)
@@ -58,7 +60,13 @@ class UserNewNotifications extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        foreach ($this->notifications as $notification) {
+        $notifications = $this->user->userNotifications()
+            ->where('notification_id', '>', $this->fromId)
+            ->with('notification.notifiable')
+            ->get()
+            ->pluck('notification');
+
+        foreach ($notifications as $notification) {
             $this->addToGroups($notification);
         }
 

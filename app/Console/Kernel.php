@@ -54,6 +54,8 @@ class Kernel extends ConsoleKernel
 
         Commands\MigrateFreshAllCommand::class,
 
+        Commands\NotificationsSendMail::class,
+
         Commands\OAuthDeleteExpiredTokens::class,
 
         Commands\RouteConvert::class,
@@ -88,6 +90,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('oauth:delete-expired-tokens')
             ->cron('14 1 * * *');
+
+        $schedule->command('notifications:send-mail')
+            ->everyTenMinutes();
     }
 
     protected function commands()

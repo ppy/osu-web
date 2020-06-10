@@ -25,4 +25,9 @@ class Count extends Model
     {
         return static::find('usercount')->count ?? 0;
     }
+
+    public static function lastMailNotificationIdSent()
+    {
+        return static::find('last_mail_notification_id_sent')->count ?? 0;
+    }
 }
