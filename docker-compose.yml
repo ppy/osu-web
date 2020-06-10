@@ -41,6 +41,7 @@ services:
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     environment:
+      action.auto_create_index: "false"
       discovery.type: single-node
   php:
     build:
