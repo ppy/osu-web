@@ -112,6 +112,8 @@ export default class BbcodeEditor extends React.Component
       className: 'js-bbcode-preview--hide btn-osu-big btn-osu-big--forum-secondary'
       disabled: @props.disabled
       osu.trans('forum.topic.create.preview_hide')
+
+
   renderPreviewShowButton: ->
     button
       type: 'button'
