@@ -92,7 +92,7 @@
                 @endif
 
                 @if ($withPreview)
-                    <div class="bbcode-editor__button bbcode-editor__button--write">
+                    <div class="bbcode-editor__button bbcode-editor__button--hide-on-write">
                         <button
                             type="button"
                             class="js-bbcode-preview--hide btn-osu-big btn-osu-big--forum-secondary"
@@ -102,7 +102,7 @@
                         </button>
                     </div>
 
-                    <div class="bbcode-editor__button bbcode-editor__button--preview">
+                    <div class="bbcode-editor__button bbcode-editor__button--hide-on-preview">
                         <button
                             type="button"
                             class="js-bbcode-preview--show btn-osu-big btn-osu-big--forum-secondary"

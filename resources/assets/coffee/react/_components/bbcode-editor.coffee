@@ -39,11 +39,11 @@ export default class BbcodeEditor extends React.Component
           div className: 'bbcode-editor__buttons bbcode-editor__buttons--actions',
             div className: 'bbcode-editor__button bbcode-editor__button--cancel',
               @actionButton @_cancel, osu.trans('common.buttons.cancel')
-            div className: 'bbcode-editor__button bbcode-editor__button--preview',
+            div className: 'bbcode-editor__button bbcode-editor__button--hide-on-preview',
               @actionButton @_reset, osu.trans('common.buttons.reset')
-            div className: 'bbcode-editor__button bbcode-editor__button--write',
+            div className: 'bbcode-editor__button bbcode-editor__button--hide-on-write',
               @renderPreviewHideButton()
-            div className: 'bbcode-editor__button bbcode-editor__button--preview',
+            div className: 'bbcode-editor__button bbcode-editor__button--hide-on-preview',
               @renderPreviewShowButton()
             div className: 'bbcode-editor__button',
               @actionButton @_save, osu.trans('common.buttons.save'), 'forum-primary'
