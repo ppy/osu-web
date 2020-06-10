@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BBCodeEditor } from 'bbcode-editor'
+import BbcodeEditor from 'bbcode-editor'
 import { Modal } from 'modal'
 import * as React from 'react'
 import { a, button, div, h3, span, i, textarea } from 'react-dom-factories'
@@ -155,7 +155,7 @@ export class Info extends React.Component
             ref: @overlay
 
             div className: 'beatmapset-description-editor__container osu-page',
-              el BBCodeEditor,
+              el BbcodeEditor,
                 modifiers: ['beatmapset-description-editor']
                 disabled: @state.isBusy
                 onChange: @onEditorChange
