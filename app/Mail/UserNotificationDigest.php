@@ -65,7 +65,7 @@ class UserNotificationDigest extends Mailable implements ShouldQueue
         $notifications = $this->user->userNotifications()
             ->where('notification_id', '>', $this->fromId)
             ->where('notification_id', '<=', $this->toId)
-            ->with('notification.notifiable')
+            ->with('notification')
             ->get()
             ->pluck('notification');
 
