@@ -1220,6 +1220,13 @@ function get_string($input)
     }
 }
 
+function get_string_split($input)
+{
+    return get_arr(explode("\r\n", get_string($input)), function ($item) {
+        return presence(trim_unicode($item));
+    });
+}
+
 function get_class_basename($className)
 {
     return substr($className, strrpos($className, '\\') + 1);
@@ -1291,7 +1298,7 @@ function get_param_value($input, $type)
         case 'string':
             return get_string($input);
         case 'string_split':
-            return get_arr(explode("\r\n", get_string($input)), 'trim_unicode');
+            return get_string_split($input);
         case 'string[]':
             return get_arr($input, 'get_string');
         case 'int[]':
