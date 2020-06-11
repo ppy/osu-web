@@ -11,7 +11,6 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 use App\Traits\NotificationQueue;
-use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -50,8 +49,16 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         return static::getNotificationClass($notification->name);
     }
 
-    private static function filterUserIdsForNotificationOption(array $userIds)
+    private static function applyNotificationOption(array $userIds)
     {
+        if (static::NOTIFICATION_OPTION_NAME === null) {
+            return [
+                'all' => $userIds,
+                'mail' => $userIds,
+                'push' => $userIds,
+            ];
+        }
+
         // FIXME: filtering all the ids could get quite large?
         $notificationOptions = UserNotificationOption
             ::whereIn('user_id', $userIds)
@@ -60,14 +67,21 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             ->get()
             ->keyBy('user_id');
 
-        $filteredUserIds = [];
         foreach ($userIds as $userId) {
-            if ($notificationOptions[$userId]->details['push'] ?? true) {
-                $filteredUserIds[] = $userId;
+            if ($notificationOptions[$userId]->details['mail'] ?? true) {
+                $enabled = true;
+                $mail[] = $userId;
             }
+
+            if ($notificationOptions[$userId]->details['push'] ?? true) {
+                $enabled = true;
+                $push[] = $userId;
+            }
+
+            isset($enabled) && $all[] = $userId;
         }
 
-        return $filteredUserIds;
+        return compact('all', 'mail', 'push');
     }
 
     public function __construct(?User $source = null)
@@ -104,24 +118,23 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     public function handle()
     {
-        $receiverIds = $this->getReceiverIds();
+        ['all' => $all, 'mail' => $mail, 'push' => $push] = static::applyNotificationOption($this->getReceiverIds());
 
-        if (static::NOTIFICATION_OPTION_NAME !== null) {
-            $receiverIds = static::filterUserIdsForNotificationOption($receiverIds);
-        }
-
-        if (empty($receiverIds)) {
+        if (empty($all)) {
             return;
         }
 
         $notification = $this->makeNotification();
         $notification->saveOrExplode();
 
-        event(new NewPrivateNotificationEvent($notification, $receiverIds));
+        event(new NewPrivateNotificationEvent($notification, $push));
 
-        DB::transaction(function () use ($notification, $receiverIds) {
-            foreach ($receiverIds as $id) {
-                $notification->userNotifications()->create(['user_id' => $id]);
+        $notification->getConnection()->transaction(function () use ($all, $push, $mail, $notification) {
+            foreach ($all as $id) {
+                $mask = 0;
+                in_array($id, $push, true) && $mask |= 1 << 0;
+                in_array($id, $mail, true) && $mask |= 1 << 1;
+                $notification->userNotifications()->create(['delivery' => $mask, 'user_id' => $id]);
             }
         });
     }
