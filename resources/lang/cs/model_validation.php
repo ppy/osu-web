@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute přesáhl maximální délku - může mít maximálně :limit znaků.',
     'wrong_confirmation' => 'Potvrzení se neshoduje.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Diskuze je uzamčená.',
         'first_post' => 'Počáteční příspěvek nelze odstranit.',
 

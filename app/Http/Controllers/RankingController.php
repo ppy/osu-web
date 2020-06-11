@@ -40,6 +40,7 @@ class RankingController extends Controller
                 'mode',
                 'spotlight:int', // will be overriden by spotlight object for view
                 'type',
+                'variant',
             ]);
 
             // these parts of the route are optional.
@@ -48,6 +49,7 @@ class RankingController extends Controller
 
             $this->params['filter'] = $this->params['filter'] ?? null;
             $this->friendsOnly = auth()->check() && $this->params['filter'] === 'friends';
+            $this->setVariantParam();
 
             view()->share('hasPager', !in_array($type, static::SPOTLIGHT_TYPES, true));
             view()->share('spotlight', null); // so variable capture in selector function doesn't die when spotlight is null.
@@ -125,7 +127,7 @@ class RankingController extends Controller
                     ->where('mode', $modeInt)
                     ->orderBy('performance', 'desc');
             } else {
-                $class = UserStatistics\Model::getClass($mode);
+                $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
                 $table = (new $class)->getTable();
                 $stats = $class
                     ::on($connection)
@@ -200,7 +202,12 @@ class RankingController extends Controller
                 $maxPages * static::PAGE_SIZE,
                 static::PAGE_SIZE,
                 $page,
-                ['path' => route('rankings', ['filter' => $this->params['filter'], 'mode' => $mode, 'type' => $type])]
+                ['path' => route('rankings', [
+                    'filter' => $this->params['filter'],
+                    'mode' => $mode,
+                    'type' => $type,
+                    'variant' => $this->params['variant'],
+                ])]
             );
 
             $countries = json_collection($this->getCountries($mode), 'Country', ['display']);
@@ -291,5 +298,18 @@ class RankingController extends Controller
             $this->country !== null ? $this->country->usercount : static::MAX_RESULTS,
             static::MAX_RESULTS
         );
+    }
+
+    private function setVariantParam()
+    {
+        $variant = presence($this->params['variant'] ?? null);
+        $type = $this->params['type'] ?? null;
+        $mode = $this->params['mode'] ?? null;
+
+        if ($type !== 'performance' || !Beatmap::isVariantValid($mode, $variant)) {
+            $variant = null;
+        }
+
+        $this->params['variant'] = $variant;
     }
 }

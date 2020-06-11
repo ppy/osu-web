@@ -9,6 +9,8 @@ use App\Exceptions\AuthorizationException;
 use App\Models\Beatmap;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
+use App\Models\Genre;
+use App\Models\Language;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
@@ -108,6 +110,20 @@ class BeatmapsetTest extends TestCase
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
     }
 
+    public function testNominateWithDefaultMetadata()
+    {
+        $beatmapset = $this->createBeatmapset([
+            'genre_id' => Genre::UNSPECIFIED,
+            // FIXME: 'language_id' => Language::UNSPECIFIED,
+        ]);
+        $nominator = factory(User::class)->create();
+        $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
+
+        $this->expectException(AuthorizationException::class);
+        $this->expectExceptionMessage(trans('authorization.beatmap_discussion.nominate.set_metadata'));
+        priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
+    }
+
     public function testRank()
     {
         $otherUser = factory(User::class)->create();
@@ -180,6 +196,8 @@ class BeatmapsetTest extends TestCase
             'discussion_enabled' => true,
             'approved' => Beatmapset::STATES['pending'],
             'download_disabled' => true,
+            'genre_id' => $this->fakeGenre->genre_id,
+            'language_id' => $this->fakeLanguage->language_id,
         ];
 
         if (!isset($params['user_id'])) {
@@ -213,5 +231,14 @@ class BeatmapsetTest extends TestCase
         for ($i = 0; $i < $count; $i++) {
             $beatmapset->nominate(factory(User::class)->create());
         }
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        factory(Genre::class)->create(['genre_id' => Genre::UNSPECIFIED]);
+        $this->fakeGenre = factory(Genre::class)->create();
+        $this->fakeLanguage = factory(Language::class)->create();
     }
 }

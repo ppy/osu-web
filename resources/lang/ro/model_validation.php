@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute depășește lungimea maximă - poate fi doar până la :limit de caractere.',
     'wrong_confirmation' => 'Confirmarea nu se potrivește.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Discuția este închisă.',
         'first_post' => 'Nu se poate șterge postarea de pornire.',
 

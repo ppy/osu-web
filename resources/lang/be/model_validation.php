@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute максімальная колькасць сімвалаў перавышана - абмежаванне на :limit сімвалаў.',
     'wrong_confirmation' => 'Пацверджання не супадае.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Абмеркаванне закрыта.',
         'first_post' => 'Нельга выдаліць пачатковы допіс.',
 
