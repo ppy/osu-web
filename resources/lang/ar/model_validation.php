@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute تجاوز الحد المطلوب - يمكن ان يصل حد :limit حروف فقط.',
     'wrong_confirmation' => 'التأكيد لا يتطابق.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'المناقشة مقفلة.',
         'first_post' => 'لا يمكن حذف منشور البداية.',
 

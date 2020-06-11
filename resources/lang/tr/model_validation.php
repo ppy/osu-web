@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute azami uzunluğu aştı - sadece :limit karakter olabilir.',
     'wrong_confirmation' => 'Doğrulama eşleşmiyor.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Tartışma kilitli.',
         'first_post' => 'Başlangıç yazısı silinemez.',
 
