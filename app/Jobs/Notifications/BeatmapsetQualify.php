@@ -5,8 +5,6 @@
 
 namespace App\Jobs\Notifications;
 
-use App\Models\Notification;
-
 class BeatmapsetQualify extends BeatmapsetNotification
 {
 }

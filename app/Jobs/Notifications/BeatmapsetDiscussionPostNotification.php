@@ -10,7 +10,6 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 
-
 abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificationBase
 {
     const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;

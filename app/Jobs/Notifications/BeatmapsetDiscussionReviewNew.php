@@ -7,7 +7,6 @@ namespace App\Jobs\Notifications;
 
 use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\BeatmapDiscussion;
-use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 
