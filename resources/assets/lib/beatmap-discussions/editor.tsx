@@ -14,6 +14,7 @@ import { Spinner } from 'spinner';
 import { sortWithMode } from 'utils/beatmap-helper';
 import EditorDiscussionComponent from './editor-discussion-component';
 import {
+  insideEmbed,
   serializeSlateDocument,
   slateDocumentContainsProblem,
   slateDocumentIsEmpty,
@@ -248,6 +249,11 @@ export default class Editor extends React.Component<Props, State> {
     } else if (isHotkey('mod+i', event)) {
       event.preventDefault();
       toggleFormat(this.slateEditor, 'italic');
+    } else if (isHotkey('shift+enter', event)) {
+      if (insideEmbed(this.slateEditor)) {
+        event.preventDefault();
+        this.slateEditor.insertText('\n');
+      }
     }
   }
 
