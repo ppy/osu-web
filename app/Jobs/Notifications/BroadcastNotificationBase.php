@@ -7,7 +7,6 @@ namespace App\Jobs\Notifications;
 
 use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
-use App\Jobs\SendUserNotificationMail;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
