@@ -353,6 +353,11 @@ function img2x(array $attributes)
     return tag('img', $attributes);
 }
 
+function trim_unicode(?string $value)
+{
+    return preg_replace('/(^\s+|\s+$)/u', '', $value);
+}
+
 function truncate(string $text, $limit = 100, $ellipsis = '...')
 {
     if (mb_strlen($text) > $limit) {
