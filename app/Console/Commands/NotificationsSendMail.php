@@ -5,7 +5,7 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\UserNewNotifications;
+use App\Mail\UserNotificationDigest;
 use App\Models\Count;
 use App\Models\Notification;
 use App\Models\User;
@@ -56,7 +56,7 @@ class NotificationsSendMail extends Command
 
         foreach ($users as $user) {
             // TODO: catch and log errors
-            Mail::to($user)->queue(new UserNewNotifications($user, $fromId, $toId));
+            Mail::to($user)->queue(new UserNotificationDigest($user, $fromId, $toId));
         }
 
         $lastIdRow->count = $toId;

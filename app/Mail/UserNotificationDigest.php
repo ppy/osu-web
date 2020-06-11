@@ -14,7 +14,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class UserNewNotifications extends Mailable implements ShouldQueue
+class UserNotificationDigest extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
