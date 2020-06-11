@@ -1295,7 +1295,7 @@ function get_param_value($input, $type)
         case 'string':
             return get_string($input);
         case 'string_split':
-            return get_arr(explode("\r\n", $input), 'get_string');
+            return array_filter(get_arr(explode("\r\n", $input), 'get_string'), 'trim_unicode');
             break;
         case 'string[]':
             return get_arr($input, 'get_string');
