@@ -428,7 +428,7 @@ class TopicsController extends Controller
 
     private function getPollParams()
     {
-        return get_params(request(), 'forum_topic_poll', [
+        $params = get_params(request(), 'forum_topic_poll', [
             'hide_results:bool',
             'length_days:int',
             'max_options:int',
@@ -436,6 +436,12 @@ class TopicsController extends Controller
             'title',
             'vote_change:bool',
         ]);
+
+        if (isset($params['options'])) {
+            $params['options'] = array_filter($params['options'], 'trim_unicode');
+        }
+
+        return $params;
     }
 
     private function groupFeatureVotes($topic)
