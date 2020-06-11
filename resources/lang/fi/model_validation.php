@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute ylittää maksimipituuden - voi olla enintään :limit merkkiä.',
     'wrong_confirmation' => 'Tarkistus ei täsmää.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Keskustelu on lukittu.',
         'first_post' => 'Aloitusviestiä ei voida poistaa.',
 

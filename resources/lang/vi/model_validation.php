@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute vượt quá độ dài cho phép - chỉ có thể lên đến :limit kí tự.',
     'wrong_confirmation' => 'Xác nhận không phù hợp.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Cuộc thảo luận đã bị khóa.',
         'first_post' => 'Không thể xóa bài đăng mở đầu.',
 
