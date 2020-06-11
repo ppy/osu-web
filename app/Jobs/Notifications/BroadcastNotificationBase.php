@@ -28,6 +28,17 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     protected $object;
     protected $source;
 
+    public static function getNotificationClass(string $name)
+    {
+        $class = get_class_namespace(static::class).'\\'.studly_case($name);
+
+        if (!class_exists($class)) {
+            throw new InvalidNotificationException('Invalid event name: '.$name);
+        }
+
+        return $class;
+    }
+
     private static function filterUserIdsForNotificationOption(array $userIds)
     {
         // FIXME: filtering all the ids could get quite large?
@@ -46,17 +57,6 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         }
 
         return $filteredUserIds;
-    }
-
-    public static function getNotificationClass(string $name)
-    {
-        $class = get_class_namespace(static::class).'\\'.studly_case($name);
-
-        if (!class_exists($class)) {
-            throw new InvalidNotificationException('Invalid event name: '.$name);
-        }
-
-        return $class;
     }
 
     public function __construct($object, ?User $source = null)
