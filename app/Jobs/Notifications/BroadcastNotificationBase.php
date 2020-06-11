@@ -22,16 +22,18 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     const CONTENT_TRUNCATE = 36;
 
+    const NOTIFICATION_OPTION_NAME = null;
+
     protected $name;
     protected $object;
     protected $source;
 
-    public static function filterUserIdsForNotificationOption(array $userIds, $optionName)
+    private static function filterUserIdsForNotificationOption(array $userIds)
     {
         // FIXME: filtering all the ids could get quite large?
         $notificationOptions = UserNotificationOption
             ::whereIn('user_id', $userIds)
-            ->where(['name' => $optionName])
+            ->where(['name' => static::NOTIFICATION_OPTION_NAME])
             ->whereNotNull('details')
             ->get()
             ->keyBy('user_id');
@@ -96,6 +98,10 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     public function handle()
     {
         $receiverIds = $this->getReceiverIds();
+
+        if (static::NOTIFICATION_OPTION_NAME !== null) {
+            $receiverIds = static::filterUserIdsForNotificationOption($receiverIds);
+        }
 
         if (empty($receiverIds)) {
             return;

@@ -11,6 +11,8 @@ use App\Models\UserNotificationOption;
 
 class ForumTopicReply extends BroadcastNotificationBase
 {
+    const NOTIFICATION_OPTION_NAME = UserNotificationOption::FORUM_TOPIC_REPLY;
+
     public function __construct(Post $object, User $source)
     {
         parent::__construct($object, $source);
@@ -27,18 +29,13 @@ class ForumTopicReply extends BroadcastNotificationBase
 
     public function getListeningUserIds(): array
     {
-        $userIds = $this->object
+        return $this->object
             ->topic
             ->watches()
             ->where('mail', true)
             ->where('user_id', '<>', $this->source->getKey())
             ->pluck('user_id')
             ->all();
-
-        return static::filterUserIdsForNotificationOption(
-            $userIds,
-            UserNotificationOption::FORUM_TOPIC_REPLY
-        );
     }
 
     public function getNotifiable()

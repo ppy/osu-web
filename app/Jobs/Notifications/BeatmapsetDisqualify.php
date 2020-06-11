@@ -31,12 +31,6 @@ class BeatmapsetDisqualify extends BeatmapsetNotification
             }
         }
 
-        // FIXME: double filtering
-        $ids = static::filterUserIdsForNotificationOption(
-            $ids,
-            UserNotificationOption::BEATMAPSET_MODDING
-        );
-
         return $ids;
     }
 }

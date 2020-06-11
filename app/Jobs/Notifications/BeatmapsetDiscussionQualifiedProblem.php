@@ -11,6 +11,8 @@ use App\Models\UserNotificationOption;
 
 class BeatmapsetDiscussionQualifiedProblem extends BeatmapsetDiscussionPostNotification
 {
+    const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;
+
     public function getListeningUserIds(): array
     {
         $beatmap = $this->object->beatmap;
@@ -38,9 +40,6 @@ class BeatmapsetDiscussionQualifiedProblem extends BeatmapsetDiscussionPostNotif
             }
         }
 
-        return static::filterUserIdsForNotificationOption(
-            $ids,
-            UserNotificationOption::BEATMAPSET_MODDING
-        );
+        return $ids;
     }
 }

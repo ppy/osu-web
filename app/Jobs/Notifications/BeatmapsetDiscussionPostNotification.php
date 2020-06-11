@@ -11,6 +11,8 @@ use App\Models\UserNotificationOption;
 
 abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificationBase
 {
+    const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;
+
     public function __construct(BeatmapDiscussionPost $object, ?User $source = null)
     {
         parent::__construct($object, $source);
@@ -30,10 +32,7 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
 
     public function getListeningUserIds(): array
     {
-        return static::filterUserIdsForNotificationOption(
-            $this->getNotifiable()->watches()->pluck('user_id')->all(),
-            UserNotificationOption::BEATMAPSET_MODDING
-        );
+        return $this->getNotifiable()->watches()->pluck('user_id')->all();
     }
 
     public function getNotifiable()
