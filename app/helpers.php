@@ -1282,27 +1282,20 @@ function get_param_value($input, $type)
             return $input;
         case 'bool':
             return get_bool($input);
-            break;
         case 'int':
             return get_int($input);
-            break;
         case 'file':
             return get_file($input);
-            break;
         case 'float':
             return get_float($input);
-            break;
         case 'string':
             return get_string($input);
         case 'string_split':
             return array_filter(get_arr(explode("\r\n", $input), 'get_string'), 'trim_unicode');
-            break;
         case 'string[]':
             return get_arr($input, 'get_string');
-            break;
         case 'int[]':
             return get_arr($input, 'get_int');
-            break;
         default:
             return presence((string) $input);
     }
