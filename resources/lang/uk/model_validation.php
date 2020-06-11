@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute перевищує максимальну кількість символів - можна використовувати тільки до :limit символів.',
     'wrong_confirmation' => 'Повтори не збігаються.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Обговорення закрито.',
         'first_post' => 'Неможливо видалити першу публікацію.',
 

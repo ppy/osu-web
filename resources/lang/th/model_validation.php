@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute เกินความยาวสูงสุด - สามารถใส่ได้ถึงแค่ :limit ตัวอักษร',
     'wrong_confirmation' => 'การยืนยันไม่ตรงกัน',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'การสนทนาได้ถูกล็อกไว้',
         'first_post' => 'ไม่สามารถลบโพสต์ที่เริ่มต้น',
 
