@@ -28,6 +28,10 @@ class Count extends Model
 
     public static function lastMailNotificationIdSent()
     {
-        return static::find('last_mail_notification_id_sent')->count ?? 0;
+        return static::find('last_mail_notification_id_sent')
+            ?? new static([
+                'count' => 0,
+                'name' => 'last_mail_notification_id_sent',
+            ]);
     }
 }

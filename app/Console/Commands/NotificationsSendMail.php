@@ -36,7 +36,9 @@ class NotificationsSendMail extends Command
      */
     public function handle()
     {
-        $fromId = get_int($this->option('from')) ?? Count::lastMailNotificationIdSent();
+        $lastIdRow = Count::lastMailNotificationIdSent();
+
+        $fromId = get_int($this->option('from')) ?? $lastIdRow->count;
         $toId = get_int($this->option('to')) ?? optional(Notification::last())->getKey();
 
         if ($toId === null) {
@@ -45,7 +47,7 @@ class NotificationsSendMail extends Command
             return;
         }
 
-        $this->line("Sending notifications from {$fromId} to {$toId}");
+        $this->line("Sending notifications > {$fromId} <= {$toId}");
 
         $users = User::whereIn(
             'user_id',
@@ -57,6 +59,7 @@ class NotificationsSendMail extends Command
             Mail::to($user)->queue(new UserNewNotifications($user, $fromId, $toId));
         }
 
-        // update last sent id
+        $lastIdRow->count = $toId;
+        $lastIdRow->save();
     }
 }
