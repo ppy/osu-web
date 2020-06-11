@@ -20,7 +20,7 @@ class NotificationsSendMail extends Command
      *
      * @var string
      */
-    protected $signature = 'notifications:send-mail';
+    protected $signature = 'notifications:send-mail {--from=} {--to=}';
 
     /**
      * The console command description.
@@ -36,14 +36,16 @@ class NotificationsSendMail extends Command
      */
     public function handle()
     {
-        $fromId = Count::lastMailNotificationIdSent();
-        $toId = optional(Notification::last())->getKey();
+        $fromId = get_int($this->option('from')) ?? Count::lastMailNotificationIdSent();
+        $toId = get_int($this->option('to')) ?? optional(Notification::last())->getKey();
 
         if ($toId === null) {
             $this->warn('No notifications to send!');
 
             return;
         }
+
+        $this->line("Sending notifications from {$fromId} to {$toId}");
 
         $users = User::whereIn(
             'user_id',
