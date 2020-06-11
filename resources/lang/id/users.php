@@ -307,6 +307,7 @@ return [
                 'empty' => 'Belum ada catatan performa yang mendapat peringkat pertama. :(',
                 'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
                 'pp_weight' => 'terbobotkan sejumlah :percentage',
+                'view_details' => '',
                 'title' => 'Peringkat',
 
                 'best' => [

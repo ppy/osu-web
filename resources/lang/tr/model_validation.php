@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Geçersiz :attribute belirtildi.',
     'not_negative' => ':attribute negatif olamaz.',
     'required' => ':attribute gereklidir.',
     'too_long' => ':attribute azami uzunluğu aştı - sadece :limit karakter olabilir.',
@@ -33,7 +33,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Bu beatmap şu anda tartışmaya kapalı ve gazlanamaz",
             'guest' => 'Destek oyu vermek için giriş yapmalısın.',
             'hyped' => 'Bu beatmap\'e zaten destek oyu kullandın.',
             'limit_exceeded' => 'Tüm destek oylarını kullandın.',
@@ -49,7 +49,7 @@ return [
 
     'comment' => [
         'deleted_parent' => 'Silinmiş yorumlara cevap verilemez.',
-        'top_only' => '',
+        'top_only' => 'Yorum cevabının sabitlenmesine izin verilmiyor.',
 
         'attributes' => [
             'message' => 'Mesaj',
@@ -108,7 +108,7 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
+            'too_many' => 'İzin verilen azami OAuth uygulama sayısı aşıldı.',
             'url' => 'Lütfen geçerli bir URL giriniz.',
 
             'attributes' => [

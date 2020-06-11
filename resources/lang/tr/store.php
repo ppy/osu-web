@@ -54,7 +54,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Ödemenizin bir eCheck olması nedeniyle, ödemenizin PayPal\'dan temizlenmesi için 10 ekstra günü göz önüne alın!',
-        'title_compact' => '',
+        'title_compact' => 'fatura',
 
         'status' => [
             'processing' => [

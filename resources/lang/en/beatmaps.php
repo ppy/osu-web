@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Type here to post to General (:version)',
             'generalAll' => 'Type here to post to General (All difficulties)',
+            'review' => 'Type here to post a review',
             'timeline' => 'Type here to post to Timeline (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'ctrl-c in edit mode and paste in your message to add a timestamp!',
             'title' => 'New Discussion',
             'unpin' => 'Unpin',
+        ],
+
+        'review' => [
+            'new' => 'New Review',
+            'embed' => [
+                'delete' => 'Delete',
+                'missing' => '[DISCUSSION DELETED]',
+                'unlink' => 'Unlink',
+                'unsaved' => 'Unsaved',
+                'timestamp' => [
+                    'all-diff' => 'Posts on "All difficulties" can\'t be timestamped.',
+                    'diff' => 'If this :type starts with a timestamp, it will be shown under Timeline.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'insert paragraph',
+                'praise' => 'insert praise',
+                'problem' => 'insert problem',
+                'suggestion' => 'insert suggestion',
+            ],
         ],
 
         'show' => [
@@ -317,5 +338,12 @@ return [
     'panel' => [
         'playcount' => 'Playcount: :count',
         'favourites' => 'Favourites: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'All',
+        ],
     ],
 ];

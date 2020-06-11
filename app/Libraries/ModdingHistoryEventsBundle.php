@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
@@ -25,7 +26,7 @@ class ModdingHistoryEventsBundle
     private $params;
     private $total;
     private $user;
-    private $withExtras = false;
+    private $withExtras = false; // TODO: change to includes list instead.
 
     public static function forProfile(User $user, array $searchParams)
     {
@@ -45,6 +46,8 @@ class ModdingHistoryEventsBundle
         $obj->searchParams = $searchParams;
         $obj->isModerator = priv_check('BeatmapDiscussionModerate')->can();
         $obj->isKudosuModerator = priv_check('BeatmapDiscussionAllowOrDenyKudosu')->can();
+
+        $obj->searchParams['is_moderator'] = $obj->isModerator;
 
         if (!$obj->isModerator) {
             $obj->searchParams['with_deleted'] = false;
@@ -80,30 +83,38 @@ class ModdingHistoryEventsBundle
     {
         return $this->memoize(__FUNCTION__, function () {
             $array = [
-                'discussions' => json_collection(
-                    $this->getDiscussions(),
-                    'BeatmapDiscussion',
-                    ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
-                ),
                 'events' => json_collection(
                     $this->getEvents(),
                     'BeatmapsetEvent',
                     ['discussion.starting_post', 'beatmapset.user']
                 ),
-                'posts' => json_collection(
-                    $this->getPosts(),
-                    'BeatmapDiscussionPost',
-                    ['beatmap_discussion.beatmapset']
-                ),
                 'users' => json_collection(
                     $this->getUsers(),
                     'UserCompact',
-                    ['group_badge']
+                    ['groups']
                 ),
             ];
 
             if ($this->withExtras) {
+                $array['beatmaps'] = json_collection(
+                    $this->getBeatmaps(),
+                    'Beatmap'
+                );
+
+                $array['discussions'] = json_collection(
+                    $this->getDiscussions(),
+                    'BeatmapDiscussion',
+                    ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
+                );
+
+                $array['posts'] = json_collection(
+                    $this->getPosts(),
+                    'BeatmapDiscussionPost',
+                    ['beatmap_discussion.beatmapset']
+                );
+
                 $array['votes'] = $this->getVotes();
+
                 $kudosu = $this->user
                     ->receivedKudosu()
                     ->with('post', 'post.topic', 'giver')
@@ -132,7 +143,7 @@ class ModdingHistoryEventsBundle
                         'badges',
                         'follower_count',
                         'graveyard_beatmapset_count',
-                        'group_badge',
+                        'groups',
                         'loved_beatmapset_count',
                         'previous_usernames',
                         'ranked_and_approved_beatmapset_count',
@@ -156,6 +167,22 @@ class ModdingHistoryEventsBundle
         return $this->memoized[$key];
     }
 
+    private function getBeatmaps()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            if (!$this->withExtras) {
+                return collect();
+            }
+
+            $beatmapsetId = $this->getDiscussions()
+                ->pluck('beatmapset_id')
+                ->unique()
+                ->toArray();
+
+            return Beatmap::whereIn('beatmapset_id', $beatmapsetId)->get();
+        });
+    }
+
     private function getDiscussions()
     {
         return $this->memoize(__FUNCTION__, function () {
@@ -165,6 +192,10 @@ class ModdingHistoryEventsBundle
                 'beatmapset',
                 'startingPost',
             ];
+
+            if (!$this->withExtras) {
+                return collect();
+            }
 
             $parents = BeatmapDiscussion::search($this->searchParams);
             $parents['query']->with($includes);
@@ -198,11 +229,13 @@ class ModdingHistoryEventsBundle
     {
         return $this->memoize(__FUNCTION__, function () {
             $events = BeatmapsetEvent::search($this->searchParams);
+            // beatmapset has global scopes with deleted_at and active but these are not indexed,
+            // which makes whereHas('beatmapset') unusable.
             $events['query'] = $events['query']->with([
                 'beatmapset.user',
                 'beatmapDiscussion.beatmapset',
                 'beatmapDiscussion.startingPost',
-            ])->whereHas('beatmapset');
+            ]);
 
             if ($this->isModerator) {
                 $events['query']->with(['beatmapset' => function ($query) {
@@ -221,6 +254,10 @@ class ModdingHistoryEventsBundle
     private function getPosts()
     {
         return $this->memoize(__FUNCTION__, function () {
+            if (!$this->withExtras) {
+                return collect();
+            }
+
             $posts = BeatmapDiscussionPost::search($this->searchParams);
             $posts['query']->with([
                 'beatmapDiscussion.beatmap',
@@ -249,16 +286,13 @@ class ModdingHistoryEventsBundle
                 $userIds[] = $discussion->startingPost->last_editor_id;
             }
 
-            $votesGiven = ($votes['given'] ?? collect())->pluck('user_id')->toArray();
-            $votesReceived = ($votes['received'] ?? collect())->pluck('user_id')->toArray();
-
             $userIds = array_merge(
                 $userIds,
                 $posts->pluck('user_id')->toArray(),
                 $posts->pluck('last_editor_id')->toArray(),
                 $events->pluck('user_id')->toArray(),
-                $votesGiven,
-                $votesReceived
+                $votes['given']->pluck('user_id')->toArray(),
+                $votes['received']->pluck('user_id')->toArray()
             );
 
             $userIds = array_values(array_filter(array_unique($userIds)));
@@ -275,13 +309,16 @@ class ModdingHistoryEventsBundle
     private function getVotes()
     {
         return $this->memoize(__FUNCTION__, function () {
-            if ($this->user !== null) {
+            if ($this->withExtras && $this->user !== null) {
                 return [
                     'given' => BeatmapDiscussionVote::recentlyGivenByUser($this->user->getKey()),
                     'received' => BeatmapDiscussionVote::recentlyReceivedByUser($this->user->getKey()),
                 ];
             } else {
-                return [];
+                return [
+                    'given' => collect(),
+                    'received' => collect(),
+                ];
             }
         });
     }

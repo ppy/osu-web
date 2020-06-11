@@ -12,7 +12,7 @@ export default interface UserJSON {
   cover: Cover;
   current_mode_rank?: number;
   default_group: string;
-  group_badge?: GroupJSON;
+  groups?: GroupJSON[];
   id: number;
   is_active: boolean;
   is_bot: boolean;

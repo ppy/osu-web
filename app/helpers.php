@@ -237,6 +237,11 @@ function db_unsigned_increment($column, $count)
     return DB::raw($value);
 }
 
+function default_mode()
+{
+    return optional(auth()->user())->playmode ?? 'osu';
+}
+
 function es_query_and_words($words)
 {
     $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
@@ -898,6 +903,7 @@ function lazy_load_image($url, $class = '', $alt = '')
 
 function nav_links()
 {
+    $defaultMode = default_mode();
     $links = [];
 
     $links['home'] = [
@@ -914,10 +920,10 @@ function nav_links()
         'packs' => route('packs.index'),
     ];
     $links['rankings'] = [
-        'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
-        'charts' => route('rankings', ['mode' => 'osu', 'type' => 'charts']),
-        'score' => route('rankings', ['mode' => 'osu', 'type' => 'score']),
-        'country' => route('rankings', ['mode' => 'osu', 'type' => 'country']),
+        'index' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
+        'charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
+        'score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
+        'country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
         'kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['community'] = [

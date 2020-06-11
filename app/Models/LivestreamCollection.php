@@ -6,12 +6,15 @@
 namespace App\Models;
 
 use Cache;
+use Exception;
+use GuzzleHttp\Client;
 
 class LivestreamCollection
 {
     const FEATURED_CACHE_KEY = 'featuredStream:arr:v2';
 
     private $streams;
+    private $token;
 
     public static function promote($id)
     {
@@ -59,31 +62,29 @@ class LivestreamCollection
 
     public function download($api)
     {
-        $url = "https://api.twitch.tv/helix/{$api}";
-        $clientId = config('osu.twitch_client_id');
-        $ch = curl_init();
+        $token = $this->token();
 
-        curl_setopt_array($ch, [
-            CURLOPT_HTTPHEADER => [
-                "Client-ID: {$clientId}",
-            ],
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_URL => $url,
-            CURLOPT_FAILONERROR => true,
-        ]);
+        if (empty($token)) {
+            log_error(new Exception('failed getting token'));
 
-        // TODO: error handling
-        $response = curl_exec($ch);
-
-        if (curl_errno($ch) === CURLE_OK) {
-            $return = json_decode($response, true);
-        } else {
-            $return = null;
+            return;
         }
 
-        curl_close($ch);
+        try {
+            $response = (new Client(['base_uri' => 'https://api.twitch.tv/helix/']))
+                ->request('GET', $api, ['headers' => [
+                    'Client-Id' => config('osu.twitch_client_id'),
+                    'Authorization' => "Bearer {$token['access_token']}",
+                ]])
+                ->getBody()
+                ->getContents();
+        } catch (Exception $e) {
+            log_error($e);
 
-        return $return;
+            return;
+        }
+
+        return json_decode($response, true);
     }
 
     public function featured()
@@ -97,5 +98,29 @@ class LivestreamCollection
                 }
             }
         }
+    }
+
+    public function token()
+    {
+        if ($this->token === null) {
+            try {
+                $response = (new Client(['base_uri' => 'https://id.twitch.tv']))
+                    ->request('POST', '/oauth2/token', ['query' => [
+                        'client_id' => config('osu.twitch_client_id'),
+                        'client_secret' => config('osu.twitch_client_secret'),
+                        'grant_type' => 'client_credentials',
+                    ]])
+                    ->getBody()
+                    ->getContents();
+
+                $this->token = json_decode($response, true);
+            } catch (Exception $e) {
+                log_error($e);
+
+                $this->token = [];
+            }
+        }
+
+        return $this->token;
     }
 }

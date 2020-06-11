@@ -4,6 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'audio' => [
+        'autoplay' => '',
+    ],
+
     'defaults' => [
         'page_description' => 'osu! - الأغنية قريبة *نقرة* واحدة فقط! مع Ouendan/EBA, تايكو واوضاع اللعب الأصلية, وكذلك مُعدل مستويات متكامل.',
     ],

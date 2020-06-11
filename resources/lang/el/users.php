@@ -307,6 +307,7 @@ return [
                 'empty' => 'Καμία εκπληκτική επίδοση ακόμα. :(',
                 'not_ranked' => 'Μόνο τα ranked beatmaps δίνουν pp.',
                 'pp_weight' => 'σταθμισμένo :percentage',
+                'view_details' => '',
                 'title' => 'Σκορ',
 
                 'best' => [

@@ -5,8 +5,8 @@
 
 return [
     'create' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Kattints ide a játék letöltéséhez és egy felhasználó létrehozásához',
+        'label' => 'Először is, jelentkezz be a fiókodba!',
+        'title' => 'Felhasználó Bejelentkezés',
     ],
 ];

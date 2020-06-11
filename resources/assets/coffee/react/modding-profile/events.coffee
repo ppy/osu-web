@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import Event from 'beatmap-discussions/event'
+import DiscussionEvents from 'beatmap-discussions/events'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
 el = React.createElement
@@ -16,15 +16,10 @@ export class Events extends React.Component
         else
           div className: 'beatmapset-events beatmapset-events--profile',
             [
-              for event in @props.events
-                if !event.beatmapset
-                  continue
-
-                div className: 'beatmapset-events__event', key: event.id,
-                  el Event,
-                    event: event
-                    mode: 'profile'
-                    users: @props.users
+              el DiscussionEvents,
+                events: @props.events
+                key: 'events'
+                users: @props.users
 
               a
                 className: 'modding-profile-list__show-more'

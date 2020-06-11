@@ -9,7 +9,6 @@ use App\Exceptions\API;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use ChaseConey\LaravelDatadogHelper\Datadog;
-use DB;
 
 class Chat
 {
@@ -38,27 +37,25 @@ class Chat
 
         priv_check_user($sender, 'ChatStart', $target)->ensureCan();
 
-        $channelName = Channel::getPMChannelName($target, $sender);
-        $channel = Channel::where('name', $channelName)->first();
+        return (new Channel)->getConnection()->transaction(function () use ($sender, $target, $message, $isAction) {
+            $channel = Channel::findPM($target, $sender);
 
-        if ($channel === null) {
-            $channel = DB::transaction(function () use ($sender, $target, $channelName) {
-                $channel = new Channel();
-                $channel->name = $channelName;
-                $channel->type = Channel::TYPES['pm'];
-                $channel->description = ''; // description is not nullable
-                $channel->save();
+            $newChannel = $channel === null;
 
+            if ($newChannel) {
+                $channel = Channel::createPM($target, $sender);
+            } else {
                 $channel->addUser($sender);
-                $channel->addUser($target);
+            }
 
-                return $channel;
-            });
+            $ret = static::sendMessage($sender, $channel, $message, $isAction);
 
-            Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
-        }
+            if ($newChannel) {
+                Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
+            }
 
-        return static::sendMessage($sender, $channel, $message, $isAction);
+            return $ret;
+        });
     }
 
     public static function sendMessage($sender, $channel, $message, $isAction)

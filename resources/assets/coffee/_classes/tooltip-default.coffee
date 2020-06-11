@@ -13,8 +13,9 @@ class @TooltipDefault
 
     title = el.getAttribute 'title'
     el.removeAttribute 'title'
+    htmlTitle = osu.presence(el.dataset.htmlTitle)
 
-    return if _.size(title) == 0
+    return if _.size(title) == 0 && !htmlTitle?
 
     isTime = el.classList.contains('js-timeago') || el.classList.contains('js-tooltip-time')
 
@@ -22,7 +23,7 @@ class @TooltipDefault
       if isTime
         @timeagoTip el, title
       else
-        $('<span>').text(title)
+        htmlTitle ? $('<span>').text(title)
 
     if el._tooltip
       $(el).qtip 'set', 'content.text': $content

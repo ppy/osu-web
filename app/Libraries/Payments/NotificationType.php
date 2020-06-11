@@ -7,6 +7,7 @@ namespace App\Libraries\Payments;
 
 class NotificationType
 {
+    const IGNORED = 'ignored';
     const PAYMENT = 'payment';
     const PENDING = 'pending';
     const REFUND = 'refund';

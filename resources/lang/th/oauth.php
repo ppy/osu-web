@@ -27,31 +27,31 @@ return [
     'client' => [
         'id' => 'ID ของไคลเอนต์',
         'name' => 'ชื่อแอปพลิเคชัน',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
+        'redirect' => 'Application Callback URL',
+        'reset' => 'รีเซ็ต Client Secret',
+        'reset_failed' => 'ไม่สามารถรีเซ็ต Client Secret',
         'secret' => 'รหัสลับไคลเอ็นต์',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'แสดง Client Secret',
+            'true' => 'ซ่อน Client Secret',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
+        'header' => 'ลงทะเบียนแอปพลิเคชัน OAuth ใหม่',
         'register' => 'ลงทะเบียนแอปพลิเคชั่น',
         'terms_of_use' => [
-            '_' => '',
+            '_' => 'โดยการใช้ API จะถือว่าคุณยอมรับ :link',
             'link' => 'ข้อกำหนดการใช้งาน',
         ],
     ],
 
     'own_clients' => [
         'confirm_delete' => 'คุณแน่ใจหรือว่าต้องการลบ Client นี้?',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_reset' => 'คุณแน่ใจหรือว่าต้องการรีเซ็ต Client Secret? การดำเนินการนี้จะยกเลิกโทเค็นที่มีอยู่ทั้งหมด',
+        'new' => 'แอปพลิเคชัน OAuth ใหม่',
+        'none' => 'ไม่มี Clients',
 
         'revoked' => [
             'false' => 'ลบ',

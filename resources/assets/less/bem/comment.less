@@ -13,7 +13,6 @@
 
   margin-top: @_spacing;
   font-size: @font-size--normal-2;
-  color: white;
   border-bottom: 0 solid @osu-colour-b6;
 
   &--top {
@@ -149,6 +148,23 @@
 
   &__message {
     margin: 2px 0;
+
+    .@{_top}__main--clip & {
+      height: calc(var(--line-height) * var(--clip-lines));
+      overflow: hidden;
+
+      &::after {
+        display: block;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: calc(var(--line-height) * 3);
+        background-image: linear-gradient(to bottom, hsla(var(--comments-bg-hsl), 0), hsl(var(--comments-bg-hsl)));
+        pointer-events: none;
+      }
+    }
   }
 
   &__owner-badge {
@@ -222,6 +238,16 @@
     &--replies {
       width: 100%;
     }
+  }
+
+  &__toggle-clip {
+    .reset-input();
+    width: max-content;
+    color: @osu-colour-l2;
+
+    .link-hover({
+      color: @osu-colour-l1;
+    });
   }
 
   &__top-show-replies {

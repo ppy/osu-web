@@ -45,6 +45,8 @@ class Beatmap extends Model
 {
     use SoftDeletes;
 
+    public $convert = false;
+
     protected $table = 'osu_beatmaps';
     protected $primaryKey = 'beatmap_id';
 
@@ -64,9 +66,18 @@ class Beatmap extends Model
         'mania' => 3,
     ];
 
+    const VARIANTS = [
+        'mania' => ['4k', '7k'],
+    ];
+
     public static function isModeValid(?string $mode)
     {
         return array_key_exists($mode, static::MODES);
+    }
+
+    public static function isVariantValid(?string $mode, ?string $variant)
+    {
+        return $variant === null || in_array($variant, static::VARIANTS[$mode] ?? [], true);
     }
 
     public static function modeInt($str)
@@ -106,6 +117,12 @@ class Beatmap extends Model
 
     public function getDifficultyratingAttribute($value)
     {
+        if ($this->convert) {
+            $difficulty = $this->difficulty->where('mode', $this->playmode)->where('mods', 0)->first();
+
+            $value = optional($difficulty)->diff_unified ?? 0;
+        }
+
         return round($value, 2);
     }
 

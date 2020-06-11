@@ -56,6 +56,8 @@ class Kernel extends ConsoleKernel
 
         Commands\OAuthDeleteExpiredTokens::class,
 
+        Commands\RouteConvert::class,
+
         Commands\UserBestScoresCheckCommand::class,
         Commands\UserRecalculateRankCounts::class,
     ];

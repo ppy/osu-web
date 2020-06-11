@@ -60,7 +60,7 @@ class SessionsController extends Controller
                 'user' => Auth::user()->defaultJson(),
             ];
         } else {
-            return error_popup($authError);
+            return error_popup($authError, 403);
         }
     }
 

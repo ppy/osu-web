@@ -20,19 +20,25 @@
         $titleTree[] = page_title();
     }
 
-    $title = implode(' · ', $titleTree);
-    // Titles ending with phrase containing "osu!" like "osu!store" don't need the suffix.
-    if (strpos(array_last($titleTree), 'osu!') === false) {
-        $title .= ' | osu!';
-    }
-
     $currentHue = $currentHue ?? section_to_hue_map($currentSection);
 @endphp
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#">
     <head>
         @include("layout.metadata")
-        <title>{{ $title }}</title>
+        <title>
+            @foreach ($titleTree as $titlePart)
+                {{ $titlePart }}
+                @if ($loop->last)
+                    {{-- Titles ending with phrase containing "osu!" like "osu!store" don't need the suffix. --}}
+                    @if (strpos($titlePart, 'osu!') === false)
+                        | osu!
+                    @endif
+                @else
+                    ·
+                @endif
+            @endforeach
+        </title>
     </head>
 
     <body
@@ -106,6 +112,15 @@
         <div id="main-player" class="audio-player-floating" data-turbolinks-permanent>
             <div class="js-audio--main"></div>
             <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
+        </div>
+        {{--
+            Components:
+            - lib/utils/estimate-min-lines.ts (main)
+            - less/bem/estimate-min-lines.less (styling)
+            - views/master.blade.php (placeholder)
+        --}}
+        <div id="estimate-min-lines" class="estimate-min-lines" data-turbolinks-permanent>
+            <div class="estimate-min-lines__content js-estimate-min-lines"></div>
         </div>
         @include("layout._global_variables")
         @include('layout._loading_overlay')

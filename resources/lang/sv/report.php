@@ -5,22 +5,22 @@
 
 return [
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmäl',
+        'title' => 'Anmäl :username s inlägg?',
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmäl',
+        'title' => 'Anmäl :username s kommentar?',
     ],
 
     'scores' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmäl poäng',
+        'title' => 'Anmäl :username s poäng?',
     ],
 
     'user' => [
-        'button' => '',
-        'title' => 'Rapportera :username?',
+        'button' => 'Anmäl',
+        'title' => 'Anmäl :username?',
     ],
 ];

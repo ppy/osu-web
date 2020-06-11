@@ -16,10 +16,15 @@
   .default-box-shadow();
   .default-border-radius();
 
+  &--deleted {
+    opacity: 0.5;
+  }
+
   &__error {
     flex: 1;
     margin: 10px;
     text-align: center;
+    color: @osu-colour-f1;
   }
 
   &__meta {

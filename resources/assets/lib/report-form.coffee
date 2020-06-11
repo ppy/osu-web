@@ -32,8 +32,8 @@ export class ReportForm extends PureComponent
       selectedReason: @options[0]
 
 
-  onItemSelected: (item) =>
-    @setState selectedReason: item
+  handleReasonChange: (option) =>
+    @setState selectedReason: option
 
 
   render: =>
@@ -81,7 +81,7 @@ export class ReportForm extends PureComponent
             el SelectOptions,
               blackout: false
               bn: "#{bn}-select-options"
-              onItemSelected: @onItemSelected
+              onChange: @handleReasonChange
               options: @options
               selected: @state.selectedReason
         ]

@@ -12,6 +12,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmapset',
+        'checksum',
         'scoresBest',
         'failtimes',
         'max_combo',
@@ -36,6 +37,11 @@ class BeatmapCompactTransformer extends TransformerAbstract
         return $beatmapset === null
             ? $this->primitive(null)
             : $this->item($beatmap->beatmapset, new $this->beatmapsetTransformer);
+    }
+
+    public function includeChecksum(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->checksum);
     }
 
     public function includeFailtimes(Beatmap $beatmap)

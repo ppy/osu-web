@@ -234,6 +234,7 @@ class BeatmapsetEvent extends Model
 
     public function beatmapset()
     {
+        // FIXME: consistency with BeatmapDiscussion which includes deleted.
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
