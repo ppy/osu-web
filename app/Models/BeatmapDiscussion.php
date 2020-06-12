@@ -687,14 +687,9 @@ class BeatmapDiscussion extends Model
     public function scopeOpenIssues($query)
     {
         return $query
-            ->withoutTrashed()
+            ->visible()
             ->whereIn('message_type', static::RESOLVABLE_TYPES)
-            ->where(function ($query) {
-                $query
-                    ->has('visibleBeatmap')
-                    ->orWhereNull('beatmap_id');
-            })
-            ->where('resolved', '=', false);
+            ->where(['resolved' => false]);
     }
 
     public function scopeOpenProblems($query)
