@@ -271,7 +271,7 @@ class BeatmapsetDiscussionReview
     {
         return $beatmapset
             ->beatmapDiscussions()
-            ->withoutTrashed()
+            ->visible()
             ->ofType('problem')
             ->where(['resolved' => false])
             ->count();
