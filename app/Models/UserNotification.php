@@ -88,6 +88,20 @@ class UserNotification extends Model
         }
     }
 
+    public function isMail()
+    {
+        static $mask = 1 << 1;
+
+        return $this->delivery & $mask === $mask;
+    }
+
+    public function isPush()
+    {
+        static $mask = 1 << 0;
+
+        return $this->delivery & $mask === $mask;
+    }
+
     public function notification()
     {
         return $this->belongsTo(Notification::class);
