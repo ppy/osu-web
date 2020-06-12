@@ -73,11 +73,9 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             foreach (UserNotification::DELIVERY_OFFSETS as $key => $offset) {
                 $enabled = $details[$key] ?? $defaults[$key];
                 $enabled && $delivery |= 1 << $offset;
-                $settings[$key] = $enabled;
             }
-            $settings['delivery'] = $delivery;
 
-            $receivers[$userId] = $settings;
+            $receivers[$userId] = $delivery;
         }
 
         return $receivers;
@@ -131,13 +129,15 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
         $pushReceiverIds = [];
         $notification->getConnection()->transaction(function () use (&$pushReceiverIds, $notification, $receivers) {
-            foreach ($receivers as $userId => $settings) {
-                $settings['push'] && $pushReceiverIds[] = $userId;
-                $notification->userNotifications()->create(['delivery' => $settings['delivery'], 'user_id' => $userId]);
+            foreach ($receivers as $userId => $delivery) {
+                $userNotification = $notification->userNotifications()->create(['delivery' => $delivery, 'user_id' => $userId]);
+                $userNotification->isPush() && $pushReceiverIds[] = $userId;
             }
         });
 
-        event(new NewPrivateNotificationEvent($notification, $pushReceiverIds));
+        if (!empty($pushReceiverIds)) {
+            event(new NewPrivateNotificationEvent($notification, $pushReceiverIds));
+        }
     }
 
     public function makeNotification(): Notification
