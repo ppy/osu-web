@@ -80,6 +80,29 @@ class BeatmapDiscussionPostTest extends TestCase
         $this->assertTrue($post->isValid());
     }
 
+    public function testScopeOpenProblems()
+    {
+        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
+        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $user = factory(User::class)->create();
+        $discussion = BeatmapDiscussion::create([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'beatmap_id' => $beatmap->getKey(),
+            'user_id' => $user->getKey(),
+            'message_type' => 'problem',
+        ]);
+        $discussion->beatmapDiscussionPosts()->create([
+            'user_id' => $user->getKey(),
+            'message' => 'This is a problem',
+        ]);
+
+        $this->assertSame(1, $beatmapset->beatmapDiscussions()->openProblems()->count());
+
+        $beatmap->update(['deleted_at' => now()]);
+
+        $this->assertSame(0, $beatmapset->beatmapDiscussions()->openProblems()->count());
+    }
+
     public function testSoftDeleteOrExplode()
     {
         $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
