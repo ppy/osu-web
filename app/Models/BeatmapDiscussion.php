@@ -697,6 +697,14 @@ class BeatmapDiscussion extends Model
             ->where('resolved', '=', false);
     }
 
+    public function scopeOpenProblems($query)
+    {
+        return $query
+            ->visible()
+            ->ofType('problem')
+            ->where(['resolved' => false]);
+    }
+
     public function scopeWithoutTrashed($query)
     {
         return $query->whereNull('deleted_at');

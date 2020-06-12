@@ -269,12 +269,7 @@ class BeatmapsetDiscussionReview
 
     private static function getOpenProblemCount($beatmapset)
     {
-        return $beatmapset
-            ->beatmapDiscussions()
-            ->visible()
-            ->ofType('problem')
-            ->where(['resolved' => false])
-            ->count();
+        return $beatmapset->beatmapDiscussions()->openProblems()->count();
     }
 
     private static function resetOrDisqualify($beatmapset, $user, $problemDiscussion, $priorOpenProblemCount)
