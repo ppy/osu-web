@@ -21,6 +21,11 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     const CONTENT_TRUNCATE = 36;
 
+    const OFFSETS = [
+        'push' => 0,
+        'mail' => 1,
+    ];
+
     const NOTIFICATION_OPTION_NAME = null;
 
     protected $name;
@@ -51,32 +56,32 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     private static function applyNotificationOption(array $userIds)
     {
-        if (static::NOTIFICATION_OPTION_NAME === null) {
-            foreach ($userIds as $userId) {
-                $receivers[$userId] = [
-                    'delivery' => 1 << 0 | 1 << 1,
-                    'mail' => true,
-                    'push' => true,
-                ];
-            }
+        static $defaults = ['mail' => true, 'push' => true];
+
+        if (static::NOTIFICATION_OPTION_NAME !== null) {
+            // FIXME: filtering all the ids could get quite large?
+            $notificationOptions = UserNotificationOption
+                ::whereIn('user_id', $userIds)
+                ->where(['name' => static::NOTIFICATION_OPTION_NAME])
+                ->whereNotNull('details')
+                ->get()
+                ->keyBy('user_id');
+        } else {
+            $notificationOptions = [];
         }
 
-        // FIXME: filtering all the ids could get quite large?
-        $notificationOptions = UserNotificationOption
-            ::whereIn('user_id', $userIds)
-            ->where(['name' => static::NOTIFICATION_OPTION_NAME])
-            ->whereNotNull('details')
-            ->get()
-            ->keyBy('user_id');
-
+        $receivers = [];
         foreach ($userIds as $userId) {
-            $mail = $notificationOptions[$userId]->details['mail'] ?? true;
-            $push = $notificationOptions[$userId]->details['push'] ?? true;
-
+            $details = optional($notificationOptions[$userId] ?? null)->details ?? $defaults;
             $delivery = 0;
-            $push && $delivery |= 1 << 0;
-            $mail && $delivery |= 1 << 1;
-            $receivers[$userId] = compact('delivery', 'mail', 'push');
+            foreach (static::OFFSETS as $key => $offset) {
+                $enabled = $details[$key] ?? $defaults[$key];
+                $enabled && $delivery |= 1 << $offset;
+                $settings[$key] = $enabled;
+            }
+            $settings['delivery'] = $delivery;
+
+            $receivers[$userId] = $settings;
         }
 
         return $receivers;
