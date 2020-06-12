@@ -90,11 +90,6 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         return array_values(array_unique(array_diff($this->getListeningUserIds(), [optional($this->source)->getKey()])));
     }
 
-    public function getSource(): ?User
-    {
-        return $this->source;
-    }
-
     public function handle()
     {
         $receiverIds = $this->getReceiverIds();
