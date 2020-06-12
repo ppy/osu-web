@@ -52,11 +52,13 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     private static function applyNotificationOption(array $userIds)
     {
         if (static::NOTIFICATION_OPTION_NAME === null) {
-            return [
-                'all' => $userIds,
-                'mail' => $userIds,
-                'push' => $userIds,
-            ];
+            foreach ($userIds as $userId) {
+                $receivers[$userId] = [
+                    'delivery' => 1 << 0 | 1 << 1,
+                    'mail' => true,
+                    'push' => true,
+                ];
+            }
         }
 
         // FIXME: filtering all the ids could get quite large?
@@ -68,20 +70,16 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             ->keyBy('user_id');
 
         foreach ($userIds as $userId) {
-            if ($notificationOptions[$userId]->details['mail'] ?? true) {
-                $enabled = true;
-                $mail[] = $userId;
-            }
+            $mail = $notificationOptions[$userId]->details['mail'] ?? true;
+            $push = $notificationOptions[$userId]->details['push'] ?? true;
 
-            if ($notificationOptions[$userId]->details['push'] ?? true) {
-                $enabled = true;
-                $push[] = $userId;
-            }
-
-            isset($enabled) && $all[] = $userId;
+            $delivery = 0;
+            $push && $delivery |= 1 << 0;
+            $mail && $delivery |= 1 << 1;
+            $receivers[$userId] = compact('delivery', 'mail', 'push');
         }
 
-        return compact('all', 'mail', 'push');
+        return $receivers;
     }
 
     public function __construct(?User $source = null)
@@ -118,25 +116,27 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     public function handle()
     {
-        ['all' => $all, 'mail' => $mail, 'push' => $push] = static::applyNotificationOption($this->getReceiverIds());
+        $receivers = static::applyNotificationOption($this->getReceiverIds());
 
-        if (empty($all)) {
+        if (empty($receivers)) {
             return;
         }
 
         $notification = $this->makeNotification();
         $notification->saveOrExplode();
 
-        event(new NewPrivateNotificationEvent($notification, $push));
+        // client should now be able to handle push notifications that come in after notification has been loaded,
+        // so, it should be fine to create the user notifications first.
 
-        $notification->getConnection()->transaction(function () use ($all, $push, $mail, $notification) {
-            foreach ($all as $id) {
-                $mask = 0;
-                in_array($id, $push, true) && $mask |= 1 << 0;
-                in_array($id, $mail, true) && $mask |= 1 << 1;
-                $notification->userNotifications()->create(['delivery' => $mask, 'user_id' => $id]);
+        $pushReceiverIds = [];
+        $notification->getConnection()->transaction(function () use (&$pushReceiverIds, $notification, $receivers) {
+            foreach ($receivers as $userId => $settings) {
+                $settings['push'] && $pushReceiverIds[] = $userId;
+                $notification->userNotifications()->create(['delivery' => $settings['delivery'], 'user_id' => $userId]);
             }
         });
+
+        event(new NewPrivateNotificationEvent($notification, $pushReceiverIds));
     }
 
     public function makeNotification(): Notification
