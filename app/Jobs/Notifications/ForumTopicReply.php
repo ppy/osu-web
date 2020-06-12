@@ -21,9 +21,9 @@ class ForumTopicReply extends BroadcastNotificationBase
     public function getDetails(): array
     {
         return [
-            'title' => $this->notifiable->topic_title,
+            'title' => $this->getNotifiable()->topic_title,
             'post_id' => $this->object->getKey(),
-            'cover_url' => optional($this->notifiable->cover)->fileUrl(),
+            'cover_url' => optional($this->getNotifiable()->cover)->fileUrl(),
         ];
     }
 
