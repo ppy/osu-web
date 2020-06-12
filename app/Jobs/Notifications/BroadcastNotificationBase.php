@@ -9,6 +9,7 @@ use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvalidNotificationException;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserNotification;
 use App\Models\UserNotificationOption;
 use App\Traits\NotificationQueue;
 use Illuminate\Bus\Queueable;
@@ -20,11 +21,6 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     use NotificationQueue, Queueable, SerializesModels;
 
     const CONTENT_TRUNCATE = 36;
-
-    const OFFSETS = [
-        'push' => 0,
-        'mail' => 1,
-    ];
 
     const NOTIFICATION_OPTION_NAME = null;
 
@@ -74,7 +70,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         foreach ($userIds as $userId) {
             $details = optional($notificationOptions[$userId] ?? null)->details ?? $defaults;
             $delivery = 0;
-            foreach (static::OFFSETS as $key => $offset) {
+            foreach (UserNotification::DELIVERY_OFFSETS as $key => $offset) {
                 $enabled = $details[$key] ?? $defaults[$key];
                 $enabled && $delivery |= 1 << $offset;
                 $settings[$key] = $enabled;

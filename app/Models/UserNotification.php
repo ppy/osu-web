@@ -11,6 +11,11 @@ use DB;
 
 class UserNotification extends Model
 {
+    const DELIVERY_OFFSETS = [
+        'push' => 0,
+        'mail' => 1,
+    ];
+
     protected $casts = [
         'is_read' => 'boolean',
     ];
@@ -90,14 +95,14 @@ class UserNotification extends Model
 
     public function isMail()
     {
-        static $mask = 1 << 1;
+        static $mask = 1 << self::DELIVERY_OFFSETS['mail'];
 
         return $this->delivery & $mask === $mask;
     }
 
     public function isPush()
     {
-        static $mask = 1 << 0;
+        static $mask = 1 << self::DELIVERY_OFFSETS['push'];
 
         return $this->delivery & $mask === $mask;
     }
