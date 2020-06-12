@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute의 최대 길이를 초과 했습니다 - :limit자 까지만 쓸 수 있습니다.',
     'wrong_confirmation' => '확인란이 일치하지 않습니다.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => '토론이 잠겨있습니다.',
         'first_post' => '시작글은 삭제할 수 없습니다.',
 
