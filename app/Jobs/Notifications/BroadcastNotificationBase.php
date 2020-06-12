@@ -90,6 +90,11 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         return array_values(array_unique(array_diff($this->getListeningUserIds(), [optional($this->source)->getKey()])));
     }
 
+    public function getTimestamp()
+    {
+        return now();
+    }
+
     public function handle()
     {
         $receiverIds = $this->getReceiverIds();
@@ -116,12 +121,9 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     public function makeNotification(): Notification
     {
+        $params['created_at'] = $this->getTimestamp();
         $params['details'] = $this->getDetails();
         $params['name'] = $this->name;
-
-        if (method_exists($this, 'getTimestamp')) {
-            $params['created_at'] = $this->getTimestamp();
-        }
 
         if ($this->source !== null) {
             $params['details']['username'] = $this->source->username;
