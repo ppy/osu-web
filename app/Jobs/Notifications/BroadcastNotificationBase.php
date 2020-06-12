@@ -124,7 +124,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         }
 
         if ($this->source !== null) {
-            $params['details']['username'] = $this->source;
+            $params['details']['username'] = $this->source->username;
         }
 
         $notification = new Notification($params);
