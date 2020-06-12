@@ -50,7 +50,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         return static::getNotificationClass($notification->name);
     }
 
-    private static function applyNotificationOption(array $userIds)
+    private static function applyDeliverySettings(array $userIds)
     {
         static $defaults = ['mail' => true, 'push' => true];
 
@@ -66,7 +66,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             $notificationOptions = [];
         }
 
-        $receivers = [];
+        $deliverySettings = [];
         foreach ($userIds as $userId) {
             $details = optional($notificationOptions[$userId] ?? null)->details ?? $defaults;
             $delivery = 0;
@@ -75,10 +75,10 @@ abstract class BroadcastNotificationBase implements ShouldQueue
                 $enabled && $delivery |= 1 << $offset;
             }
 
-            $receivers[$userId] = $delivery;
+            $deliverySettings[$userId] = $delivery;
         }
 
-        return $receivers;
+        return $deliverySettings;
     }
 
     public function __construct(?User $source = null)
@@ -115,9 +115,9 @@ abstract class BroadcastNotificationBase implements ShouldQueue
 
     public function handle()
     {
-        $receivers = static::applyNotificationOption($this->getReceiverIds());
+        $deliverySettings = static::applyDeliverySettings($this->getReceiverIds());
 
-        if (empty($receivers)) {
+        if (empty($deliverySettings)) {
             return;
         }
 
@@ -128,8 +128,8 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         // so, it should be fine to create the user notifications first.
 
         $pushReceiverIds = [];
-        $notification->getConnection()->transaction(function () use (&$pushReceiverIds, $notification, $receivers) {
-            foreach ($receivers as $userId => $delivery) {
+        $notification->getConnection()->transaction(function () use ($deliverySettings, $notification, &$pushReceiverIds) {
+            foreach ($deliverySettings as $userId => $delivery) {
                 $userNotification = $notification->userNotifications()->create(['delivery' => $delivery, 'user_id' => $userId]);
                 $userNotification->isPush() && $pushReceiverIds[] = $userId;
             }
