@@ -70,6 +70,7 @@ class MiscSeeder extends Seeder
                 ['language_id' => 11, 'name' => 'Italian', 'display_order' => 5],
                 ['language_id' => 12, 'name' => 'Russian', 'display_order' => 10],
                 ['language_id' => 13, 'name' => 'Polish', 'display_order' => 11],
+                ['language_id' => 14, 'name' => 'Unspecified', 'display_order' => 14],
             ]);
             $any_language = \App\Models\Language::find(99);
             $any_language->language_id = 0;

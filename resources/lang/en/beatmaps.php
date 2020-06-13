@@ -320,6 +320,7 @@ return [
         'polish' => 'Polish',
         'instrumental' => 'Instrumental',
         'other' => 'Other',
+        'unspecified' => 'Unspecified',
     ],
     'played' => [
         'any' => 'Any',
