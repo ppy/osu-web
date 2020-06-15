@@ -79,16 +79,21 @@ export const serializeSlateDocument = (input: SlateNode[]) => {
         break;
 
       case 'embed':
-        const doc: DocumentIssueEmbed = {
-          beatmap_id: node.beatmapId,
-          discussion_type: node.discussionType,
-          text: node.children[0].text,
-          timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp) : null,
-          type: 'embed',
-        };
+        let doc: DocumentIssueEmbed;
 
         if (node.discussionId) {
-          doc.discussion_id = node.discussionId;
+          doc = {
+            discussion_id: node.discussionId,
+            type: 'embed',
+          };
+        } else {
+          doc = {
+            beatmap_id: node.beatmapId,
+            discussion_type: node.discussionType,
+            text: node.children[0].text,
+            timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp) : null,
+            type: 'embed',
+          };
         }
 
         review.push(doc);
