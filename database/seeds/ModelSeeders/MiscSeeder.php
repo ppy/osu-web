@@ -44,6 +44,10 @@ class MiscSeeder extends Seeder
                 // genre_id 8 doesnt exist
                 ['genre_id' => 9, 'name' => 'Hip Hop'],
                 ['genre_id' => 10, 'name' => 'Electronic'],
+                ['genre_id' => 11, 'name' => 'Metal'],
+                ['genre_id' => 12, 'name' => 'Classical'],
+                ['genre_id' => 13, 'name' => 'Folk'],
+                ['genre_id' => 14, 'name' => 'Jazz'],
             ]);
             $any_genre = \App\Models\Genre::find(99);
             $any_genre->genre_id = 0;
@@ -53,17 +57,20 @@ class MiscSeeder extends Seeder
             //LANGUAGES
             DB::table('osu_languages')->insert([
                 ['language_id' => 99, 'name' => 'Any', 'display_order' => 0],
-                ['language_id' => 1, 'name' => 'Other', 'display_order' => 11],
+                ['language_id' => 1, 'name' => 'Other', 'display_order' => 13],
                 ['language_id' => 2, 'name' => 'English', 'display_order' => 1],
                 ['language_id' => 3, 'name' => 'Japanese', 'display_order' => 6],
                 ['language_id' => 4, 'name' => 'Chinese', 'display_order' => 2],
-                ['language_id' => 5, 'name' => 'Instrumental', 'display_order' => 10],
+                ['language_id' => 5, 'name' => 'Instrumental', 'display_order' => 12],
                 ['language_id' => 6, 'name' => 'Korean', 'display_order' => 7],
                 ['language_id' => 7, 'name' => 'French', 'display_order' => 3],
                 ['language_id' => 8, 'name' => 'German', 'display_order' => 4],
                 ['language_id' => 9, 'name' => 'Swedish', 'display_order' => 9],
                 ['language_id' => 10, 'name' => 'Spanish', 'display_order' => 8],
                 ['language_id' => 11, 'name' => 'Italian', 'display_order' => 5],
+                ['language_id' => 12, 'name' => 'Russian', 'display_order' => 10],
+                ['language_id' => 13, 'name' => 'Polish', 'display_order' => 11],
+                ['language_id' => 14, 'name' => 'Unspecified', 'display_order' => 14],
             ]);
             $any_language = \App\Models\Language::find(99);
             $any_language->language_id = 0;
