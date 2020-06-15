@@ -1,8 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { Editor, Text, Transforms } from 'slate';
-import { Node as SlateNode } from 'slate';
+import { Editor, Node as SlateNode, Range as SlateRange, Text, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 import { BeatmapDiscussionReview, DocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 
@@ -13,6 +12,16 @@ export const slateDocumentIsEmpty = (doc: SlateNode[]): boolean => {
       doc[0].children.length === 1 &&
       doc[0].children[0].text === ''
     );
+};
+
+export const insideEmbed = (editor: ReactEditor) => {
+  if (editor.selection) {
+    const parent = SlateNode.parent(editor, SlateRange.start(editor.selection).path);
+
+    return parent.type === 'embed';
+  }
+
+  return false;
 };
 
 export const isFormatActive = (editor: ReactEditor, format: string) => {
