@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute heeft de maximum lengte overschreden - kan enkel tot :limit karakters gebruiken.',
     'wrong_confirmation' => 'Bevestiging komt niet overeen.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Discussie is vergrendeld.',
         'first_post' => 'Je kan de startpost niet verwijderen.',
 

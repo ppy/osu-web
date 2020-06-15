@@ -284,6 +284,10 @@ export class Post extends React.PureComponent
     if @props.discussion.message_type == 'review' && @props.type == 'discussion'
       messageContent = @reviewEditor.current.serialize()
 
+      if _.isEqual(JSON.parse(@props.post.message), JSON.parse(messageContent))
+        @setState editing: false
+        return
+
       return if !@reviewEditor.current.showConfirmationIfRequired()
 
       @setState message: messageContent

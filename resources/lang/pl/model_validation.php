@@ -10,7 +10,7 @@ return [
     'too_long' => 'Atrybut „:attribute” przekroczył maksymalną liczbę znaków - możliwe jest użycie tylko :limit znaków.',
     'wrong_confirmation' => 'Potwierdzenie się nie zgadza.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Dyskusja została zablokowana.',
         'first_post' => 'Nie możesz usunąć posta rozpoczynającego.',
 

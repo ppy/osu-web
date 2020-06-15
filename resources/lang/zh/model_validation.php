@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute 超出最大长度——最多允许 :limit 个字符。',
     'wrong_confirmation' => '确认信息不匹配。',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => '讨论被锁定。',
         'first_post' => '无法删除第一个讨论。',
 

@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute overskrider maksimal længde - kan højest være op til :limit karakterer.',
     'wrong_confirmation' => 'Bekræftelseskoden matchede ikke.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Diskussion er låst.',
         'first_post' => 'Kan ikke slette det startende opslag.',
 

@@ -66,9 +66,18 @@ class Beatmap extends Model
         'mania' => 3,
     ];
 
+    const VARIANTS = [
+        'mania' => ['4k', '7k'],
+    ];
+
     public static function isModeValid(?string $mode)
     {
         return array_key_exists($mode, static::MODES);
+    }
+
+    public static function isVariantValid(?string $mode, ?string $variant)
+    {
+        return $variant === null || in_array($variant, static::VARIANTS[$mode] ?? [], true);
     }
 
     public static function modeInt($str)
@@ -79,6 +88,11 @@ class Beatmap extends Model
     public static function modeStr($int)
     {
         return array_search_null($int, static::MODES);
+    }
+
+    public function baseMaxCombo()
+    {
+        return $this->difficultyAttribs()->noMods()->maxCombo();
     }
 
     public function beatmapset()
@@ -216,6 +230,21 @@ class Beatmap extends Model
     public function isScoreable()
     {
         return $this->approved > 0;
+    }
+
+    public function maxCombo()
+    {
+        if ($this->relationLoaded('baseMaxCombo')) {
+            $maxCombo = $this->baseMaxCombo->firstWhere('mode', $this->playmode);
+        } else {
+            $maxCombo = $this->difficultyAttribs()
+                ->mode($this->playmode)
+                ->noMods()
+                ->maxCombo()
+                ->first();
+        }
+
+        return optional($maxCombo)->value;
     }
 
     public function status()

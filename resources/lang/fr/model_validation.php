@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute dépasse la longeur maximale - elle est de :limit caractères.',
     'wrong_confirmation' => 'La confirmation ne correspond pas.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'La discussion est verrouillée.',
         'first_post' => 'Impossible de supprimer le post de départ.',
 
