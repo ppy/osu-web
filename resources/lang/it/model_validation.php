@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute ha superato la lunghezza massima - può essere solo fino a :limit caratteri.',
     'wrong_confirmation' => 'La conferma non corrisponde.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'La discussione è chiusa.',
         'first_post' => 'Non puoi cancellare il post iniziale.',
 

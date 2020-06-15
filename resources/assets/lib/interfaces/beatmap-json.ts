@@ -6,6 +6,7 @@ import GameMode from './game-mode';
 export default interface BeatmapJson {
   difficulty_rating: number;
   id: number;
+  max_combo?: number;
   mode: GameMode;
   version: string;
 }
