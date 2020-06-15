@@ -18,7 +18,7 @@ class Language extends Model
     protected $primaryKey = 'language_id';
     public $timestamps = false;
 
-    const UNSPECIFIED = 14;
+    const UNSPECIFIED = 1;
 
     public function newQuery($excludeDeleted = true)
     {
