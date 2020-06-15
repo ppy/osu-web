@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute elérte a maximális hosszt - csak :limit karakter hosszú lehet.',
     'wrong_confirmation' => 'A megerősítés nem egyezik.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'A megbeszélés zárolva van.',
         'first_post' => 'Nem lehet a kezdő posztot törölni.',
 

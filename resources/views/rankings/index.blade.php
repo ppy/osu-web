@@ -28,6 +28,14 @@
             'url' => $selectorParams['route']($mode, $tab),
         ];
     }
+
+    if ($type === 'performance') {
+        $variants = App\Models\Beatmap::VARIANTS[$mode] ?? null;
+
+        if ($variants !== null) {
+            array_unshift($variants, 'all');
+        }
+    }
 @endphp
 
 @extends('master', ['titlePrepend' => trans("rankings.type.{$type}")])
@@ -46,10 +54,15 @@
 
     @if ($type !== 'country')
         <div class="osu-page osu-page--description">
-            <div class="js-react--ranking-filter" data-type="{{ $type }}">
+            <div
+                class="js-react--ranking-filter"
+                data-type="{{ $type }}"
+                data-game-mode="{{ $mode }}"
+                data-variants="{{ json_encode($variants ?? null) }}"
+            >
                 {{-- placeholder so the page doesn't shift after react initializes --}}
                 <div class="ranking-filter">
-                    <div class="ranking-filter__countries">
+                    <div class="ranking-filter__item ranking-filter__item--full">
                         @if ($type === 'performance')
                             <div class="ranking-select-options">
                                 <div class="ranking-select-options__select">
@@ -59,12 +72,26 @@
                         @endif
                     </div>
                     @if (auth()->check())
-                        <div class="ranking-filter__sort">
+                        <div class="ranking-filter__item">
                             <div class="sort">
                                 <div class="sort__items">
                                     <span class="sort__item sort__item--title">{{ trans('rankings.filter.title') }}</span>
                                     <button class="sort__item sort__item--button">{{ trans('sort.all') }}</button>
                                     <button class="sort__item sort__item--button">{{ trans('sort.friends')}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    @if (isset($variants))
+                        <div class="ranking-filter__item">
+                            <div class="sort">
+                                <div class="sort__items">
+                                    <span class="sort__item sort__item--title">{{ trans('rankings.filter.variant.title') }}</span>
+                                    @foreach ($variants as $v)
+                                        <button class="sort__item sort__item--button">
+                                            {{ trans("beatmaps.variant.{$mode}.{$v}") }}
+                                        </button>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

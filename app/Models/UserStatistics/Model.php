@@ -68,13 +68,19 @@ abstract class Model extends BaseModel
         return $this->count300 + $this->count100 + $this->count50;
     }
 
-    public static function getClass($modeStr)
+    public static function getClass($modeStr, $variant = null)
     {
         if (!Beatmap::isModeValid($modeStr)) {
             throw new ClassNotFoundException();
         }
 
-        return get_class_namespace(static::class).'\\'.studly_case($modeStr);
+        if (!Beatmap::isVariantValid($modeStr, $variant)) {
+            throw new ClassNotFoundException();
+        }
+
+        $variant = $variant === null ? '' : "_{$variant}";
+
+        return get_class_namespace(static::class).'\\'.studly_case("{$modeStr}{$variant}");
     }
 
     public static function getMode(): string

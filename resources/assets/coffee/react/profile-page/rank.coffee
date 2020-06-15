@@ -3,15 +3,29 @@
 
 import * as React from 'react'
 import { ValueDisplay } from 'value-display'
+import { div } from 'react-dom-factories'
 el = React.createElement
 
 
 export Rank = ({type, stats, modifiers}) ->
+  variantTooltip = []
+
+  for variant in stats.variants ? []
+    continue unless variant["#{type}_rank"]?
+
+    name = osu.trans("beatmaps.variant.#{variant.mode}.#{variant.variant}")
+    value = "##{osu.formatNumber(variant["#{type}_rank"])}"
+
+    variantTooltip.push("<div>#{name}: #{value}</div>")
+
   el ValueDisplay,
     modifiers: modifiers
     label: osu.trans("users.show.rank.#{type}_simple")
     value:
-      if stats.rank[type]?
-        "##{osu.formatNumber(stats.rank[type])}"
-      else
-        '-'
+      div
+        title: ''
+        "data-html-title": variantTooltip.join('')
+        if stats.rank[type]?
+          "##{osu.formatNumber(stats.rank[type])}"
+        else
+          '-'

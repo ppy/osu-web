@@ -41,6 +41,30 @@ class Channel extends Model
         'group' => 'GROUP',
     ];
 
+    public static function createPM($user1, $user2)
+    {
+        $channel = new static([
+            'name' => static::getPMChannelName($user1, $user2),
+            'type' => static::TYPES['pm'],
+            'description' => '', // description is not nullable
+        ]);
+
+        $channel->getConnection()->transaction(function () use ($channel, $user1, $user2) {
+            $channel->save();
+            $channel->addUser($user1);
+            $channel->addUser($user2);
+        });
+
+        return $channel;
+    }
+
+    public static function findPM($user1, $user2)
+    {
+        $channelName = static::getPMChannelName($user1, $user2);
+
+        return static::where('name', $channelName)->first();
+    }
+
     /**
      * @param User $user1
      * @param User $user2

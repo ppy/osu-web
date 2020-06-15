@@ -119,6 +119,7 @@ interface BeatmapFailTimesArray {
 interface BeatmapDiscussion {
   beatmap_id: number | null;
   beatmapset_id: number;
+  deleted_at: string | null;
   id: number;
   message_type: string;
   parent_id: number | null;
