@@ -6,12 +6,13 @@
 namespace App\Jobs\Notifications;
 
 use App\Exceptions\InvalidNotificationException;
+use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\User;
 
 class CommentNew extends BroadcastNotificationBase
 {
-    public function __construct($object, User $source)
+    public function __construct(Comment $object, User $source)
     {
         parent::__construct($object, $source);
 
