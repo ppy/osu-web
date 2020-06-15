@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import GameMode from 'interfaces/game-mode';
 import * as React from 'react';
 import { Option, OptionRenderProps, SelectOptions } from 'select-options';
 import { Sort } from 'sort';
@@ -9,7 +10,9 @@ type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
 
 interface Props {
   countries?: Required<Country>[];
+  gameMode: GameMode;
   type: RankingTypes;
+  variants?: string[];
 }
 
 const allCountries = { id: null, text: osu.trans('rankings.countries.all') };
@@ -43,6 +46,10 @@ export default class RankingFilter extends React.PureComponent<Props> {
     return new URL(window.location.href).searchParams.get('country');
   }
 
+  get currentVariant() {
+    return new URL(window.location.href).searchParams.get('variant');
+  }
+
   get filterMode() {
     return new URL(window.location.href).searchParams.get('filter');
   }
@@ -74,6 +81,10 @@ export default class RankingFilter extends React.PureComponent<Props> {
     osu.navigate(osu.updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
   }
 
+  handleVariantChange = (event: React.MouseEvent<HTMLButtonElement>) => {
+    osu.navigate(osu.updateQueryString(null, { variant: event.currentTarget.dataset.value, page: null }));
+  }
+
   render() {
     // TODO: consider using memoize-one?
     if (this.prevCountries !== this.props.countries) {
@@ -84,18 +95,24 @@ export default class RankingFilter extends React.PureComponent<Props> {
 
     return (
       <div className='ranking-filter'>
-        <div className='ranking-filter__countries'>
+        <div className='ranking-filter__item ranking-filter__item--full'>
           {this.renderCountries()}
         </div>
 
         {currentUser.id != null && (
-          <div className='ranking-filter__sort'>
+          <div className='ranking-filter__item'>
             <Sort
               currentValue={this.filterMode ?? 'all'}
               onChange={this.handleFilterChange}
               title={osu.trans('rankings.filter.title')}
               values={['all', 'friends']}
             />
+          </div>
+        )}
+
+        {this.props.variants != null && (
+          <div className='ranking-filter__item'>
+            {this.renderVariants()}
           </div>
         )}
       </div>
@@ -124,6 +141,20 @@ export default class RankingFilter extends React.PureComponent<Props> {
         href={osu.updateQueryString(null, { country: props.option.id, page: null })}
         key={props.option.id ?? ''}
         onClick={props.onClick}
+      />
+    );
+  }
+
+  renderVariants() {
+    if (this.props.variants == null) return null;
+
+    return (
+      <Sort
+        currentValue={this.currentVariant ?? 'all'}
+        onChange={this.handleVariantChange}
+        title={osu.trans('rankings.filter.variant.title')}
+        transPrefix={`beatmaps.variant.${this.props.gameMode}.`}
+        values={this.props.variants}
       />
     );
   }

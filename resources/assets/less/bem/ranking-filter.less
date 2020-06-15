@@ -2,11 +2,28 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .ranking-filter {
-  display: grid;
-  grid-gap: 10px;
-  align-items: center;
+  --gutter: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: calc(var(--gutter) * -1);
 
   @media @desktop {
-    grid-template-columns: 1fr auto;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__item {
+    padding: var(--gutter);
+    flex: 1;
+
+    @media @desktop {
+      flex: none;
+    }
+
+    &--full {
+      @media @desktop {
+        flex: 1;
+      }
+    }
   }
 }

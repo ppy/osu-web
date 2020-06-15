@@ -24,7 +24,7 @@ return [
     'too_long' => ':attribute presiahol maximálnu dĺžku - môže mať maximálne :limit znakov.',
     'wrong_confirmation' => 'Potvrdenie sa nezhoduje.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Diskusia je uzamknutá.',
         'first_post' => 'Počiatočný príspevok sa nedá odstrániť.',
     ],

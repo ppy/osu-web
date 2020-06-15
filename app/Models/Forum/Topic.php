@@ -421,7 +421,7 @@ class Topic extends Model implements AfterCommit
 
     public function setTopicTitleAttribute($value)
     {
-        $this->attributes['topic_title'] = preg_replace('/(^\s+|\s+$)/u', '', $value);
+        $this->attributes['topic_title'] = trim_unicode($value);
     }
 
     public function save(array $options = [])
