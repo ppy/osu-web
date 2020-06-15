@@ -57,7 +57,7 @@ class MiscSeeder extends Seeder
             //LANGUAGES
             DB::table('osu_languages')->insert([
                 ['language_id' => 99, 'name' => 'Any', 'display_order' => 0],
-                ['language_id' => 1, 'name' => 'Other', 'display_order' => 13],
+                ['language_id' => 1, 'name' => 'Unspecified', 'display_order' => 14],
                 ['language_id' => 2, 'name' => 'English', 'display_order' => 1],
                 ['language_id' => 3, 'name' => 'Japanese', 'display_order' => 6],
                 ['language_id' => 4, 'name' => 'Chinese', 'display_order' => 2],
@@ -70,7 +70,7 @@ class MiscSeeder extends Seeder
                 ['language_id' => 11, 'name' => 'Italian', 'display_order' => 5],
                 ['language_id' => 12, 'name' => 'Russian', 'display_order' => 10],
                 ['language_id' => 13, 'name' => 'Polish', 'display_order' => 11],
-                ['language_id' => 14, 'name' => 'Unspecified', 'display_order' => 14],
+                ['language_id' => 14, 'name' => 'Other', 'display_order' => 13],
             ]);
             $any_language = \App\Models\Language::find(99);
             $any_language->language_id = 0;
