@@ -15,7 +15,7 @@ class BeatmapsetDisqualify extends BeatmapsetNotification
     {
         $ids = parent::getListeningUserIds();
 
-        $modes = $this->object->playmodes()->all();
+        $modes = $this->beatmapset->playmodes()->all();
         $modes = array_map(function ($modeInt) {
             return Beatmap::modeStr($modeInt);
         }, $modes);

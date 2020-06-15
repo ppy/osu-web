@@ -12,28 +12,32 @@ use App\Models\User;
 
 class CommentNew extends BroadcastNotificationBase
 {
-    public function __construct(Comment $object, User $source)
-    {
-        parent::__construct($object, $source);
+    protected $comment;
 
-        if ($this->object->commentable === null) {
-            throw new InvalidNotificationException("comment_new: comment #{$this->object->getKey()} missing commentable");
+    public function __construct(Comment $comment, User $source)
+    {
+        parent::__construct($source);
+
+        $this->comment = $comment;
+
+        if ($this->comment->commentable === null) {
+            throw new InvalidNotificationException("comment_new: comment #{$this->comment->getKey()} missing commentable");
         }
     }
 
     public function getDetails(): array
     {
         return [
-            'comment_id' => $this->object->getKey(),
-            'title' => $this->object->commentable->commentableTitle(),
-            'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
-            'cover_url' => $this->object->commentable->notificationCover(),
+            'comment_id' => $this->comment->getKey(),
+            'title' => $this->comment->commentable->commentableTitle(),
+            'content' => truncate($this->comment->message, static::CONTENT_TRUNCATE),
+            'cover_url' => $this->comment->commentable->notificationCover(),
         ];
     }
 
     public function getListeningUserIds(): array
     {
-        return Follow::whereNotifiable($this->object->commentable)
+        return Follow::whereNotifiable($this->comment->commentable)
             ->where(['subtype' => 'comment'])
             ->pluck('user_id')
             ->all();
@@ -41,6 +45,6 @@ class CommentNew extends BroadcastNotificationBase
 
     public function getNotifiable()
     {
-        return $this->object->commentable;
+        return $this->comment->commentable;
     }
 }

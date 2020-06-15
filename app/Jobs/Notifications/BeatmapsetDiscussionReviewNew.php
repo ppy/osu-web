@@ -14,21 +14,26 @@ class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
 {
     const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;
 
-    public function __construct(BeatmapDiscussion $object, User $source)
+    protected $beatmapsetDiscussion;
+
+    public function __construct(BeatmapDiscussion $beatmapsetDiscussion, User $source)
     {
-        parent::__construct($object, $source);
+        parent::__construct($source);
+
+        $this->beatmapsetDiscussion = $beatmapsetDiscussion;
     }
 
     public function getDetails(): array
     {
-        $stats = BeatmapsetDiscussionReview::getStats(json_decode($this->object->startingPost->message, true));
+        $beatmapset = $this->beatmapsetDiscussion->beatmapset;
+        $stats = BeatmapsetDiscussionReview::getStats(json_decode($this->beatmapsetDiscussion->startingPost->message, true));
 
         return [
-            'title' => $this->getNotifiable()->title,
-            'post_id' => $this->object->startingPost->getKey(),
-            'discussion_id' => $this->object->getKey(),
-            'beatmap_id' => $this->object->beatmap_id,
-            'cover_url' => $this->getNotifiable()->coverURL('card'),
+            'title' => $beatmapset->title,
+            'post_id' => $this->beatmapsetDiscussion->startingPost->getKey(),
+            'discussion_id' => $this->beatmapsetDiscussion->getKey(),
+            'beatmap_id' => $this->beatmapsetDiscussion->beatmap_id,
+            'cover_url' => $beatmapset->coverURL('card'),
             'embeds' => [
                 'suggestions' => $stats['suggestions'],
                 'problems' => $stats['problems'],
@@ -39,11 +44,11 @@ class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
 
     public function getListeningUserIds(): array
     {
-        return $this->getNotifiable()->watches()->pluck('user_id')->all();
+        return $this->beatmapsetDiscussion->beatmapset->watches()->pluck('user_id')->all();
     }
 
     public function getNotifiable()
     {
-        return $this->object->beatmapset;
+        return $this->beatmapsetDiscussion->beatmapset;
     }
 }

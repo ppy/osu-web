@@ -13,23 +13,27 @@ class ForumTopicReply extends BroadcastNotificationBase
 {
     const NOTIFICATION_OPTION_NAME = UserNotificationOption::FORUM_TOPIC_REPLY;
 
-    public function __construct(Post $object, User $source)
+    protected $post;
+
+    public function __construct(Post $post, User $source)
     {
-        parent::__construct($object, $source);
+        parent::__construct($source);
+
+        $this->post = $post;
     }
 
     public function getDetails(): array
     {
         return [
-            'title' => $this->getNotifiable()->topic_title,
-            'post_id' => $this->object->getKey(),
-            'cover_url' => optional($this->getNotifiable()->cover)->fileUrl(),
+            'title' => $this->post->topic->topic_title,
+            'post_id' => $this->post->getKey(),
+            'cover_url' => optional($this->post->topic->cover)->fileUrl(),
         ];
     }
 
     public function getListeningUserIds(): array
     {
-        return $this->object
+        return $this->post
             ->topic
             ->watches()
             ->where('mail', true)
@@ -40,11 +44,11 @@ class ForumTopicReply extends BroadcastNotificationBase
 
     public function getNotifiable()
     {
-        return $this->object->topic;
+        return $this->post->topic;
     }
 
     public function getTimestamp()
     {
-        return $this->object->post_time;
+        return $this->post->post_time;
     }
 }

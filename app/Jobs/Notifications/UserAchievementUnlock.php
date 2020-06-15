@@ -10,19 +10,23 @@ use App\Models\User;
 
 class UserAchievementUnlock extends BroadcastNotificationBase
 {
-    public function __construct(Achievement $object, User $source)
+    protected $achievement;
+
+    public function __construct(Achievement $achievement, User $source)
     {
-        parent::__construct($object, $source);
+        parent::__construct($source);
+
+        $this->achievement = $achievement;
     }
 
     public function getDetails(): array
     {
         return [
-            'achievement_id' => $this->object->getKey(),
-            'achievement_mode' => $this->object->mode,
-            'cover_url' => $this->object->iconUrl(),
-            'slug' => $this->object->slug,
-            'title' => $this->object->name,
+            'achievement_id' => $this->achievement->getKey(),
+            'achievement_mode' => $this->achievement->mode,
+            'cover_url' => $this->achievement->iconUrl(),
+            'slug' => $this->achievement->slug,
+            'title' => $this->achievement->name,
             'user_id' => $this->source->getKey(),
         ];
     }

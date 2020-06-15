@@ -15,10 +15,10 @@ class BeatmapsetDiscussionQualifiedProblem extends BeatmapsetDiscussionPostNotif
 
     public function getListeningUserIds(): array
     {
-        $beatmap = $this->object->beatmap;
+        $beatmap = $this->beatmapsetDiscussionPost->beatmap;
 
         if ($beatmap === null) {
-            $modes = $this->object->beatmapset->playmodes()->all();
+            $modes = $this->beatmapsetDiscussionPost->beatmapset->playmodes()->all();
         } else {
             $modes = [$beatmap->playmode];
         }

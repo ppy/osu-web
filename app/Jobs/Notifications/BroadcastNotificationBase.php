@@ -25,7 +25,6 @@ abstract class BroadcastNotificationBase implements ShouldQueue
     const NOTIFICATION_OPTION_NAME = null;
 
     protected $name;
-    protected $object;
     protected $source;
 
     public static function getNotificationClass(string $name)
@@ -59,10 +58,9 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         return $filteredUserIds;
     }
 
-    public function __construct($object, ?User $source = null)
+    public function __construct(?User $source = null)
     {
         $this->name = snake_case(get_class_basename(get_class($this)));
-        $this->object = $object;
         $this->source = $source;
     }
 
@@ -75,10 +73,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         return $this->name;
     }
 
-    public function getNotifiable()
-    {
-        return $this->object;
-    }
+    abstract public function getNotifiable();
 
     /**
      * In most cases this is a deduplicated list that excludes the user id that

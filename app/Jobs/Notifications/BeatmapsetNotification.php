@@ -13,21 +13,30 @@ abstract class BeatmapsetNotification extends BroadcastNotificationBase
 {
     const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;
 
-    public function __construct(Beatmapset $object, ?User $source = null)
+    protected $beatmapset;
+
+    public function __construct(Beatmapset $beatmapset, ?User $source = null)
     {
-        parent::__construct($object, $source);
+        parent::__construct($source);
+
+        $this->beatmapset = $beatmapset;
     }
 
     public function getDetails(): array
     {
         return [
-            'title' => $this->object->title,
-            'cover_url' => $this->object->coverURL('card'),
+            'title' => $this->beatmapset->title,
+            'cover_url' => $this->beatmapset->coverURL('card'),
         ];
     }
 
     public function getListeningUserIds(): array
     {
-        return $this->getNotifiable()->watches()->pluck('user_id')->all();
+        return $this->beatmapset->watches()->pluck('user_id')->all();
+    }
+
+    public function getNotifiable()
+    {
+        return $this->beatmapset;
     }
 }

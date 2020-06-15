@@ -10,30 +10,31 @@ use App\Models\User;
 
 class ChannelMessage extends BroadcastNotificationBase
 {
-    public function __construct(Message $object, User $source)
-    {
-        parent::__construct($object, $source);
+    protected $message;
 
-        // TODO: null check?
-        // $channel = Channel::findOrFail($this->object->channel_id);
+    public function __construct(Message $message, User $source)
+    {
+        parent::__construct($source);
+
+        $this->message = $message;
     }
 
     public function getDetails(): array
     {
         return [
-            'title' => truncate($this->object->content, static::CONTENT_TRUNCATE),
-            'type' => strtolower($this->object->channel->type),
+            'title' => truncate($this->message->content, static::CONTENT_TRUNCATE),
+            'type' => strtolower($this->message->channel->type),
             'cover_url' => $this->source->user_avatar,
         ];
     }
 
     public function getListeningUserIds(): array
     {
-        return $this->object->channel->users()->pluck('user_id')->all();
+        return $this->message->channel->users()->pluck('user_id')->all();
     }
 
     public function getNotifiable()
     {
-        return $this->object->channel;
+        return $this->message->channel;
     }
 }

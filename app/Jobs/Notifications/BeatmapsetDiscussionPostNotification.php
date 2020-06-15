@@ -13,30 +13,37 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
 {
     const NOTIFICATION_OPTION_NAME = UserNotificationOption::BEATMAPSET_MODDING;
 
-    public function __construct(BeatmapDiscussionPost $object, ?User $source = null)
+    protected $beatmapsetDiscussionPost;
+
+    public function __construct(BeatmapDiscussionPost $beatmapsetDiscussionPost, ?User $source = null)
     {
-        parent::__construct($object, $source);
+        parent::__construct($source);
+
+        $this->beatmapsetDiscussionPost = $beatmapsetDiscussionPost;
     }
 
     public function getDetails(): array
     {
+        $beatmapset = $this->beatmapsetDiscussionPost->beatmapset;
+        $discussion = $this->beatmapsetDiscussionPost->beatmapDiscussion;
+
         return [
-            'content' => truncate($this->object->message, static::CONTENT_TRUNCATE),
-            'title' => $this->getNotifiable()->title,
-            'post_id' => $this->object->getKey(),
-            'discussion_id' => $this->object->beatmapDiscussion->getKey(),
-            'beatmap_id' => $this->object->beatmapDiscussion->beatmap_id,
-            'cover_url' => $this->getNotifiable()->coverURL('card'),
+            'content' => truncate($this->beatmapsetDiscussionPost->message, static::CONTENT_TRUNCATE),
+            'title' => $beatmapset->title,
+            'post_id' => $this->beatmapsetDiscussionPost->getKey(),
+            'discussion_id' => $discussion->getKey(),
+            'beatmap_id' => $discussion->beatmap_id,
+            'cover_url' => $beatmapset->coverURL('card'),
         ];
     }
 
     public function getListeningUserIds(): array
     {
-        return $this->getNotifiable()->watches()->pluck('user_id')->all();
+        return $this->beatmapsetDiscussionPost->beatmapset->watches()->pluck('user_id')->all();
     }
 
     public function getNotifiable()
     {
-        return $this->object->beatmapset;
+        return $this->beatmapsetDiscussionPost->beatmapset;
     }
 }
