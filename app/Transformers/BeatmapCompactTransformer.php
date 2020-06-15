@@ -68,13 +68,7 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
     public function includeMaxCombo(Beatmap $beatmap)
     {
-        $maxCombo = $beatmap->difficultyAttribs()
-            ->mode($beatmap->playmode)
-            ->noMods()
-            ->maxCombo()
-            ->first();
-
-        return $this->primitive(optional($maxCombo)->value);
+        return $this->primitive($beatmap->maxCombo());
     }
 
     public function includeScoresBest(Beatmap $beatmap)
