@@ -121,7 +121,7 @@ class LocaleMeta
             'flag' => 'TR',
         ],
         'uk' => [
-            'name' => 'українська мова',
+            'name' => 'Українська мова',
             'flag' => 'UA',
         ],
         'vi' => [
