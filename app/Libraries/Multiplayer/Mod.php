@@ -160,10 +160,12 @@ class Mod
         self::WIND_UP => [
             'initial_rate' => 'float',
             'final_rate' => 'float',
+            'adjust_pitch' => 'bool',
         ],
         self::WIND_DOWN => [
             'initial_rate' => 'float',
             'final_rate' => 'float',
+            'adjust_pitch' => 'bool',
         ],
     ];
 
