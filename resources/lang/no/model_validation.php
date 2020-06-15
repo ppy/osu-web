@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute overskrider maksimumslengden - kan bare være opp til :limit tegn.',
     'wrong_confirmation' => 'Bekreftelsen stemmer ikke.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Diskusjonen er låst.',
         'first_post' => 'Kan ikke slette det første innlegget.',
 

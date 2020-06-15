@@ -299,6 +299,7 @@ class UsersController extends Controller
             "rankHistory:mode({$currentMode})",
             'replays_watched_counts',
             'statistics.rank',
+            'statistics.variants',
             'support_level',
             'unranked_beatmapset_count',
             'user_achievements',

@@ -241,7 +241,7 @@
 
 
   urlPresence: (url) ->
-    if osu.present(url) then "url(#{url})" else null
+    if osu.present(url) then "url(#{encodeURI(url)})" else null
 
 
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->

@@ -101,7 +101,9 @@ reactTurbolinks.registerPersistent 'quick-search-button', QuickSearchButton, tru
 
 reactTurbolinks.registerPersistent 'ranking-filter', RankingFilter, true, (el) ->
   countries: osu.parseJson 'json-countries'
+  gameMode: el.dataset.gameMode
   type: el.dataset.type
+  variants: try JSON.parse(el.dataset.variants)
 
 reactTurbolinks.register 'user-card', UserCard, (el) ->
   modifiers: try JSON.parse(el.dataset.modifiers)

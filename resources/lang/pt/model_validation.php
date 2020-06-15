@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute limite máximo excedido - só pode ser até :limit caracteres.',
     'wrong_confirmation' => 'A confirmação não corresponde.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'A discussão está bloqueada.',
         'first_post' => 'Não é possível eliminar uma publicação inicial.',
 

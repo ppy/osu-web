@@ -12,31 +12,47 @@ use Tests\TestCase;
 
 class ModelTest extends TestCase
 {
-    public function testGetClass()
+    /**
+     * @dataProvider validModes
+     */
+    public function testGetClass($mode, $variant)
     {
-        $modes = array_keys(Beatmap::MODES);
-        foreach ($modes as $mode) {
-            $class = Model::getClass($mode);
-            $this->assertInstanceOf(Model::class, new $class);
-        }
+        $class = Model::getClass($mode, $variant);
+        $this->assertInstanceOf(Model::class, new $class);
     }
 
     /**
-     * @dataProvider modes
+     * @dataProvider invalidModes
      */
-    public function testGetClassByThrowsExceptionIfModeDoesNotExist($mode)
+    public function testGetClassByThrowsExceptionIfModeDoesNotExist($mode, $variant)
     {
         $this->expectException(ClassNotFoundException::class);
-        Model::getClass($mode);
+        Model::getClass($mode, $variant);
     }
 
-    public function modes()
+    public function invalidModes()
     {
         return [
-            ['does'],
-            ['not exist'],
-            ['not_real'],
-            ['best\\_osu'],
+            ['does', null],
+            ['not exist', null],
+            ['not_real', null],
+            ['best\\_osu', null],
+            ['osu', '4k'],
         ];
+    }
+
+    public function validModes()
+    {
+        $modes = [];
+
+        foreach (Beatmap::MODES as $mode => $_modeInt) {
+            $modes[] = [$mode, null];
+
+            foreach (Beatmap::VARIANTS[$mode] ?? [] as $variant) {
+                $modes[] = [$mode, $variant];
+            }
+        }
+
+        return $modes;
     }
 }
