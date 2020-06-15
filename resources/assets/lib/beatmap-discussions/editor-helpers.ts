@@ -40,8 +40,8 @@ export const toggleFormat = (editor: ReactEditor, format: string) => {
   );
 };
 
-export const slateDocumentContainsProblem = (input: SlateNode[]) =>
-  input.some((node) => node.type === 'embed' && node.discussionType === 'problem');
+export const slateDocumentContainsNewProblem = (input: SlateNode[]) =>
+  input.some((node) => node.type === 'embed' && node.discussionType === 'problem' && !node.discussionId);
 
 export const serializeSlateDocument = (input: SlateNode[]) => {
   const review: BeatmapDiscussionReview = [];
@@ -88,16 +88,21 @@ export const serializeSlateDocument = (input: SlateNode[]) => {
         break;
 
       case 'embed':
-        const doc: DocumentIssueEmbed = {
-          beatmap_id: node.beatmapId,
-          discussion_type: node.discussionType,
-          text: node.children[0].text,
-          timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp) : null,
-          type: 'embed',
-        };
+        let doc: DocumentIssueEmbed;
 
         if (node.discussionId) {
-          doc.discussion_id = node.discussionId;
+          doc = {
+            discussion_id: node.discussionId,
+            type: 'embed',
+          };
+        } else {
+          doc = {
+            beatmap_id: node.beatmapId,
+            discussion_type: node.discussionType,
+            text: node.children[0].text,
+            timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp) : null,
+            type: 'embed',
+          };
         }
 
         review.push(doc);

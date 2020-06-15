@@ -74,11 +74,13 @@ export class DetailBar extends React.PureComponent
               div className: "bar__text",
                 "#{@props.stats.level.progress}%"
 
-        div className: "#{bn}__entry #{if @props.expanded then 'visible-xs' else ''}",
-          el Rank, type: 'global', stats: @props.stats
+        if !@props.expanded
+          el React.Fragment, null,
+            div className: "#{bn}__entry hidden-xs",
+              el Rank, type: 'global', stats: @props.stats
 
-        div className: "#{bn}__entry #{if @props.expanded then 'visible-xs' else ''}",
-          el Rank, type: 'country', stats: @props.stats
+            div className: "#{bn}__entry hidden-xs",
+              el Rank, type: 'country', stats: @props.stats
 
         div className: "#{bn}__entry #{bn}__entry--level",
           div

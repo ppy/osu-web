@@ -16,7 +16,7 @@ import EditorDiscussionComponent from './editor-discussion-component';
 import {
   insideEmbed,
   serializeSlateDocument,
-  slateDocumentContainsProblem,
+  slateDocumentContainsNewProblem,
   slateDocumentIsEmpty,
   toggleFormat,
 } from './editor-helpers';
@@ -389,7 +389,7 @@ export default class Editor extends React.Component<Props, State> {
   serialize = () => serializeSlateDocument(this.state.value);
 
   showConfirmationIfRequired = () => {
-    const docContainsProblem = slateDocumentContainsProblem(this.state.value);
+    const docContainsProblem = slateDocumentContainsNewProblem(this.state.value);
     const canDisqualify = currentUser.is_admin || currentUser.is_moderator || currentUser.is_full_bn;
     const willDisqualify = this.props.beatmapset.status === 'qualified' && docContainsProblem;
     const canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng;
