@@ -93,18 +93,18 @@ class UserNotification extends Model
         }
     }
 
-    public function isMail()
+    public function isMail(): bool
     {
         static $mask = 1 << self::DELIVERY_OFFSETS['mail'];
 
-        return $this->delivery & $mask === $mask;
+        return ($this->delivery & $mask) === $mask;
     }
 
-    public function isPush()
+    public function isPush(): bool
     {
         static $mask = 1 << self::DELIVERY_OFFSETS['push'];
 
-        return $this->delivery & $mask === $mask;
+        return ($this->delivery & $mask) === $mask;
     }
 
     public function notification()
