@@ -91,7 +91,6 @@ class Beatmap extends Model
         return array_search_null($int, static::MODES);
     }
 
-
     public function baseMaxCombo()
     {
         return $this->difficultyAttribs()->noMods()->maxCombo();
