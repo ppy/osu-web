@@ -258,11 +258,15 @@ class Beatmap extends Model
             return $this->max_combo;
         }
 
-        $maxCombo = $this->difficultyAttribs()
-            ->mode($this->playmode)
-            ->noMods()
-            ->maxCombo()
-            ->first();
+        if ($this->relationLoaded('baseMaxCombo')) {
+            $maxCombo = $this->baseMaxCombo->firstWhere('mode', $this->playmode);
+        } else {
+            $maxCombo = $this->difficultyAttribs()
+                ->mode($this->playmode)
+                ->noMods()
+                ->maxCombo()
+                ->first();
+        }
 
         return optional($maxCombo)->value;
     }
