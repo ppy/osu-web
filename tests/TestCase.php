@@ -127,6 +127,14 @@ class TestCase extends BaseTestCase
         return $property->getValue($obj);
     }
 
+    protected function invokeSetProperty($obj, string $name, $value)
+    {
+        $property = new ReflectionProperty($obj, $name);
+        $property->setAccessible(true);
+
+        $property->setValue($obj, $value);
+    }
+
     protected function normalizeHTML($html)
     {
         return str_replace('<br />', "<br />\n", str_replace("\n", '', preg_replace("/>\s*</s", '><', trim($html))));
@@ -137,5 +145,9 @@ class TestCase extends BaseTestCase
         collect(Queue::pushedJobs())->flatten(1)->each(function ($job) {
             $job['job']->handle();
         });
+
+        // clear queue jobs after running
+        // FIXME: this won't work if a job queues another job and you want to run that job.
+        $this->invokeSetProperty(app('queue'), 'jobs', []);
     }
 }

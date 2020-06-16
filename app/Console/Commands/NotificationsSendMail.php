@@ -5,13 +5,12 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\UserNotificationDigest;
+use App\Jobs\UserNotificationDigest;
 use App\Models\Count;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
 use Illuminate\Console\Command;
-use Mail;
 
 class NotificationsSendMail extends Command
 {
@@ -55,8 +54,7 @@ class NotificationsSendMail extends Command
         )->get();
 
         foreach ($users as $user) {
-            // TODO: catch and log errors
-            Mail::to($user)->queue(new UserNotificationDigest($user, $fromId, $toId));
+            dispatch(new UserNotificationDigest($user, $fromId, $toId));
         }
 
         $lastIdRow->count = $toId;

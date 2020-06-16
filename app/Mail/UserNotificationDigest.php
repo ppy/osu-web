@@ -8,31 +8,23 @@ namespace App\Mail;
 use App\Exceptions\InvalidNotificationException;
 use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Models\Notification;
-use App\Models\User;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
 
-class UserNotificationDigest extends Mailable implements ShouldQueue
+// Not queueable to avoid trap of too many serialize/unserialize.
+// Paired with App\Jobs\UserNotificationDigest
+class UserNotificationDigest extends Mailable
 {
-    use Queueable, SerializesModels;
-
-    private $fromId;
     private $groups = [];
-    private $toId;
-    private $user;
+    private $notifications;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, int $fromId, int $toId)
+    public function __construct(array $notifications)
     {
-        $this->user = $user;
-        $this->fromId = $fromId;
-        $this->toId = $toId;
+        $this->notifications = $notifications;
     }
 
     private function addToGroups(Notification $notification)
@@ -62,17 +54,7 @@ class UserNotificationDigest extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        $notifications = $this->user->userNotifications()
-            ->where('notification_id', '>', $this->fromId)
-            ->where('notification_id', '<=', $this->toId)
-            ->with('notification')
-            ->get()
-            ->filter(function ($userNotification) {
-                return $userNotification->isMail();
-            })
-            ->pluck('notification');
-
-        foreach ($notifications as $notification) {
+        foreach ($this->notifications as $notification) {
             $this->addToGroups($notification);
         }
 
