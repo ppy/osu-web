@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute превишена максимална дължина - може да бъде само до :limit символа.',
     'wrong_confirmation' => 'Потвърждението не съвпада.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Дискусията е заключена.',
         'first_post' => 'Не можете да изтриете началната публикация.',
 

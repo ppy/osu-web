@@ -10,7 +10,7 @@ return [
     'too_long' => ':attributeの使用文字数の制限を超えています。上限は:limit文字です。',
     'wrong_confirmation' => '認証が一致しません。',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'ディスカッションはロックされています。',
         'first_post' => '最初の投稿は削除できません。',
 

@@ -241,8 +241,12 @@ class Post extends Model implements AfterCommit
     {
         $this->validationErrors()->reset();
 
-        if (!$this->skipBodyPresenceCheck && !present($this->post_text)) {
-            $this->validationErrors()->add('post_text', 'required');
+        if (!$this->skipBodyPresenceCheck) {
+            if (trim_unicode($this->post_text) === '') {
+                $this->validationErrors()->add('post_text', 'required');
+            } elseif (trim_unicode(BBCodeFromDB::removeBlockQuotes($this->post_text)) === '') {
+                $this->validationErrors()->add('base', '.only_quote');
+            }
         }
 
         if ($this->isDirty('post_text') && mb_strlen($this->body_raw) > config('osu.forum.max_post_length')) {
@@ -256,10 +260,6 @@ class Post extends Model implements AfterCommit
 
                 return false;
             }
-        }
-
-        if (empty(trim(BBCodeFromDB::removeBlockQuotes($this->post_text)))) {
-            $this->validationErrors()->add('base', '.only_quote');
         }
 
         return $this->validationErrors()->isEmpty();

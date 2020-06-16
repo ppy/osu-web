@@ -14,6 +14,9 @@ namespace App\Models;
  */
 class BeatmapDifficultyAttrib extends Model
 {
+    const NO_MODS = 0;
+    const MAX_COMBO = 9;
+
     protected $table = 'osu_beatmap_difficulty_attribs';
     protected $primaryKey = null;
 
@@ -26,11 +29,11 @@ class BeatmapDifficultyAttrib extends Model
 
     public function scopeMaxCombo($query)
     {
-        return $query->where('attrib_id', 9);
+        return $query->where('attrib_id', static::MAX_COMBO);
     }
 
     public function scopeNoMods($query)
     {
-        return $query->where('mods', 0);
+        return $query->where('mods', static::NO_MODS);
     }
 }

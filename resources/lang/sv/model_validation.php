@@ -10,7 +10,7 @@ return [
     'too_long' => ':attribute överskred maximal längd - kan endast vara upp till :limit tecken.',
     'wrong_confirmation' => 'Bekräftelse matchar inte.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Diskussion är låst.',
         'first_post' => 'Kan inte radera ursprungs inlägg.',
 

@@ -10,7 +10,7 @@ return [
     'too_long' => 'το :attribute υπερβαίνει το μέγιστο όριο χαρακτήρων - μπορεί να είναι μέχρι :limit χαρακτήρες.',
     'wrong_confirmation' => 'Η βεβαίωση δεν ταιριάζει.',
 
-    'beatmap_discussion_post' => [
+    'beatmapset_discussion_post' => [
         'discussion_locked' => 'Η συζήτηση έχει κλειδωθεί.',
         'first_post' => 'Το αρχικό post δε μπορεί να διαγραφεί.',
 

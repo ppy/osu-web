@@ -359,6 +359,11 @@ function img2x(array $attributes)
     return tag('img', $attributes);
 }
 
+function trim_unicode(?string $value)
+{
+    return preg_replace('/(^\s+|\s+$)/u', '', $value);
+}
+
 function truncate(string $text, $limit = 100, $ellipsis = '...')
 {
     if (mb_strlen($text) > $limit) {
@@ -1221,6 +1226,13 @@ function get_string($input)
     }
 }
 
+function get_string_split($input)
+{
+    return get_arr(explode("\r\n", get_string($input)), function ($item) {
+        return presence(trim_unicode($item));
+    });
+}
+
 function get_class_basename($className)
 {
     return substr($className, strrpos($className, '\\') + 1);
@@ -1283,27 +1295,20 @@ function get_param_value($input, $type)
             return $input;
         case 'bool':
             return get_bool($input);
-            break;
         case 'int':
             return get_int($input);
-            break;
         case 'file':
             return get_file($input);
-            break;
         case 'float':
             return get_float($input);
-            break;
         case 'string':
             return get_string($input);
         case 'string_split':
-            return get_arr(explode("\r\n", $input), 'get_string');
-            break;
+            return get_string_split($input);
         case 'string[]':
             return get_arr($input, 'get_string');
-            break;
         case 'int[]':
             return get_arr($input, 'get_int');
-            break;
         default:
             return presence((string) $input);
     }

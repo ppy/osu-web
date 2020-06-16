@@ -57,7 +57,6 @@ abstract class Model extends BaseModel
     public function scopeDefault($query)
     {
         return $query
-            ->where('rank', '<>', 'F')
             ->whereHas('beatmap')
             ->orderBy('score_id', 'desc');
     }
@@ -65,6 +64,15 @@ abstract class Model extends BaseModel
     public function scopeForUser($query, User $user)
     {
         return $query->where('user_id', $user->user_id);
+    }
+
+    public function scopeIncludeFails($query, bool $include = false)
+    {
+        if ($include) {
+            return $query;
+        }
+
+        return $query->where('rank', '<>', 'F');
     }
 
     public function scopeVisibleUsers($query)
