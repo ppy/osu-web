@@ -24,12 +24,14 @@ export class Portal extends PureComponent<Props> {
   componentDidMount() {
     this.addPortal();
 
-    $(document).on(`turbolinks:before-cache.${this.uuid}`, () => {
-      this.removePortal();
-    });
+    $(document).on(`turbolinks:before-cache.${this.uuid}`, this.removePortal);
   }
 
-  componentWillUnmount = () => $(document).off(`turbolinks:before-cache.${this.uuid}`);
+  componentWillUnmount = () => {
+    this.removePortal();
+
+    $(document).off(`turbolinks:before-cache.${this.uuid}`);
+  }
 
   removePortal = () => document.body.removeChild(this.container);
 
