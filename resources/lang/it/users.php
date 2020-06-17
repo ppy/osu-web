@@ -160,7 +160,7 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                     'button' => 'Carica immagine',
                     'dropzone' => 'Trascina qui per caricarla',
                     'dropzone_info' => 'Puoi anche trascinare qui l\'immagine per caricarla',
-                    'size_info' => 'L\'immagine di copertina dovrebbe essere 2800x620',
+                    'size_info' => 'L\'immagine di copertina dovrebbe essere 2400x620',
                     'too_large' => 'Il file caricato è troppo grande.',
                     'unsupported_format' => 'Formato non supportato.',
 
@@ -308,7 +308,7 @@ href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
                 'empty' => 'Ancora nessuna prestazione impressionante. :(',
                 'not_ranked' => 'Solo le mappe classificate danno pp.',
                 'pp_weight' => 'valutata :percentage',
-                'view_details' => '',
+                'view_details' => 'Visualizza Dettagli',
                 'title' => 'Rank',
 
                 'best' => [

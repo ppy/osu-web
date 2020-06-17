@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => '다음 트랙 자동 재생',
     ],
 
     'defaults' => [

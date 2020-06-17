@@ -19,6 +19,6 @@ return [
             'read' => 'Zie wie u volgt.',
         ],
 
-        'public' => '',
+        'public' => 'Openbare gegevens lezen namens jou.',
     ],
 ];

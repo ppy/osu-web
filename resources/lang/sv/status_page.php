@@ -6,38 +6,38 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'vad händer mina bekanta?',
+        'description' => 'vad händer grabben?',
     ],
 
     'incidents' => [
-        'title' => 'Aktiva Incidenter',
+        'title' => 'Aktiva incidenter',
         'automated' => 'automatiserad',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Användare Online de senaste 24 timmarna',
-            'score' => 'Poäng Inlämningar de senaste 24 timmarna',
+            'users' => 'Online-användare under de senaste 24 timmarna',
+            'score' => 'Poäng inlämningar under de senaste 24 timmarna',
         ],
-        'current' => 'Nuvarande Användare Online',
-        'score' => 'Poäng Inlämningar per Sekund',
+        'current' => 'Nuvarande online-användare',
+        'score' => 'Poäng inlämningar per sekund',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Senaste Incidenter',
+            'title' => 'Senaste incidenter',
             'state' => [
                 'resolved' => 'Löst',
-                'resolving' => 'Skickar förfrågan',
+                'resolving' => 'Löser',
                 'unknown' => 'Okänd',
             ],
         ],
 
         'uptime' => [
-            'title' => 'Upptid',
+            'title' => 'Drifttid',
             'graphs' => [
                 'server' => 'server',
-                'web' => 'web',
+                'web' => 'webb',
             ],
         ],
 

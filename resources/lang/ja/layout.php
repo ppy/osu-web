@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => '次のトラックを自動的に再生',
     ],
 
     'defaults' => [

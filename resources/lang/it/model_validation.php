@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute ha superato la lunghezza massima - può essere solo fino a :limit caratteri.',
     'wrong_confirmation' => 'La conferma non corrisponde.',
 
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'La discussione è chiusa.',
-        'first_post' => 'Non puoi cancellare il post iniziale.',
-
-        'attributes' => [
-            'message' => 'Il messaggio',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Il timestamp è specificato ma manca la beatmap.',
         'beatmapset_no_hype' => "La beatmap non può essere promossa.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Il timestamp specificato è oltre la lunghezza della beatmap.',
             'negative' => "Il timestamp non può essere negativo.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => '',
+        'first_post' => '',
+
+        'attributes' => [
+            'message' => '',
         ],
     ],
 

@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'Visualizza il post della recensione',
         'go_to_child' => 'Visualizza discussione',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => 'tipo di blocco non valido',
             'invalid_document' => 'recensione non valida',
             'minimum_issues' => 'la recensione deve contenere almeno :count problema|la recensione deve contenere almeno :count problemi',

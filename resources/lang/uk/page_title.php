@@ -110,7 +110,7 @@ return [
             '_' => 'рейтинг',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'продуктивність',
         ],
         'store_controller' => [
             '_' => 'osu!store',

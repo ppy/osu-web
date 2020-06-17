@@ -6,6 +6,8 @@
 return [
     '_' => '排序',
 
+    'all' => '',
+    'friends' => '',
     'last_visit' => '最近活躍',
     'new' => '最新',
     'old' => '最舊',

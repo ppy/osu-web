@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Mainkan lagu berikutnya secara otomatis',
     ],
 
     'defaults' => [

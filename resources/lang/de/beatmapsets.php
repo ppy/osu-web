@@ -61,7 +61,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Wenn du es genossen hast diese Karte zu spielen, dann hype diese Karte, um beim Fortschritt zum <strong>Ranked</strong>-Status beizutragen.',
+            'action' => 'Wenn du es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
 
             'current' => [
                 '_' => 'Die Map ist zurzeit :status.',
@@ -93,7 +93,7 @@ return [
             'source' => 'Quelle',
             'success-rate' => 'Erfolgsrate',
             'tags' => 'Tags',
-            'unranked' => 'Unranked beatmap',
+            'unranked' => 'Unranked Beatmap',
         ],
 
         'scoreboard' => [

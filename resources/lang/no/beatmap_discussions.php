@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'Vis Tilbakemeldingsinnlegg',
         'go_to_child' => 'Vis diskusjon',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => 'ugyldig blokktype',
             'invalid_document' => 'ugyldig anmeldelse',
             'minimum_issues' => 'anmeldelsen må minst inneholde et minimum av :count saker|anmeldelsen må minst inneholde et minimum av :count saker',

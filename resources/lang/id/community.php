@@ -96,7 +96,7 @@ return [
 
             'speedy_downloads' => [
                 'title' => 'Unduh Lebih Cepat',
-                'description' => 'Pembatasan pengunduhan yang lebih toleran, terutama saat menggunakan osu!direct.',
+                'description' => 'Pembatasan jumlah unduhan yang lebih lengang, terutama saat menggunakan osu!direct.',
             ],
 
             'change_username' => [

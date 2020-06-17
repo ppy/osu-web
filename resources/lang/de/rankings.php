@@ -4,15 +4,23 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'gefiltered nach Land',
+    'countries' => [
+        'all' => 'Alle',
+    ],
+
+    'filter' => [
+        'title' => 'Anzeigen',
+
+        'variant' => [
+            'title' => '',
+        ],
     ],
 
     'type' => [
-        'performance' => 'Performance',
-        'charts' => 'Charts',
-        'score' => 'Punktzahl',
-        'country' => 'Länder',
+        'performance' => 'performance',
+        'charts' => 'charts',
+        'score' => 'punktzahl',
+        'country' => 'länder',
     ],
 
     'spotlight' => [

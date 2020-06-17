@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'ricevi notifiche per nuovi problemi sulle beatmap qualificate delle seguenti modalità',
+        'beatmapset_disqualify' => 'ricevi notifiche quando per quando le beatmap delle seguenti modalità vengono squalificate',
         'title' => 'Notifiche',
         'topic_auto_subscribe' => 'attiva le notifiche sui nuovi topic del forum che crei',
-        'beatmapset_discussion_qualified_problem' => 'ricevi notifiche per nuovi problemi sulle beatmap qualificate delle seguenti modalità',
 
-        'mail' => [
-            '_' => 'ricevi notifiche via mail per',
-            'beatmapset:modding' => 'modding delle beatmap',
-            'forum_topic_reply' => 'risposte ai topic',
+        'options' => [
+            '_' => 'opzioni di notifica',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+            'mail' => 'mail',
+            'push' => 'push',
         ],
     ],
 

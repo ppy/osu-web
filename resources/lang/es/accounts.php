@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
+        'beatmapset_disqualify' => 'recibir notificaciones para cuando se descalifiquen los mapas de los siguientes modos',
         'title' => 'Notificaciones',
         'topic_auto_subscribe' => 'activar automáticamente las notificaciones en nuevos temas del foro que crees',
-        'beatmapset_discussion_qualified_problem' => 'recibir notificaciones de nuevos problemas en mapas calificados de los siguientes modos',
 
-        'mail' => [
-            '_' => 'recibir notificaciones de correo para',
+        'options' => [
+            '_' => 'opciones de entrega',
             'beatmapset:modding' => 'modding de mapas',
             'forum_topic_reply' => 'respuestas a temas',
+            'mail' => 'correo electrónico',
+            'push' => 'inserción',
         ],
     ],
 

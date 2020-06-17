@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute elérte a maximális hosszt - csak :limit karakter hosszú lehet.',
     'wrong_confirmation' => 'A megerősítés nem egyezik.',
 
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'A megbeszélés zárolva van.',
-        'first_post' => 'Nem lehet a kezdő posztot törölni.',
-
-        'attributes' => [
-            'message' => 'Az üzenet',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Időbélyeg meg van adva, de a beatmap hiányzik.',
         'beatmapset_no_hype' => "A beatmap-et nem lehet hype-olni.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'A megadott időbélyeg későbbi mint a beatmap hossza.',
             'negative' => "Időbélyeg nem lehet negatív.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => '',
+        'first_post' => '',
+
+        'attributes' => [
+            'message' => '',
         ],
     ],
 

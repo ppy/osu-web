@@ -7,7 +7,7 @@ return [
     'deleted' => 'eliminado',
     'deleted_count' => ':count_delimited comentario eliminado|:count_delimited comentarios eliminados',
     'edited' => 'editado :timeago por :user',
-    'pinned' => 'fijado',
+    'pinned' => 'anclado',
     'empty' => 'Todavía no hay comentarios.',
     'load_replies' => 'cargar respuestas',
     'replies_count' => ':count_delimited respuesta|:count_delimited respuestas',

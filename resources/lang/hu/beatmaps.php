@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Írj ide az Általános (:version) részlegbe való posztoláshoz',
             'generalAll' => 'Ide írj az Általánosba posztoláshoz (Összes nehézség)',
+            'review' => '',
             'timeline' => 'Írj ide az Idővonalra (:version) való posztoláshoz',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'Időbélyeg hozzáadásához nyomj ctrl-c billentyűkombinációt szerkesztő módban, majd illeszd be az üzenetedbe!',
             'title' => 'Új beszélgetés indítása',
             'unpin' => 'Rögzítés feloldása',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Kortárs',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronikus',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Koreai',
         'spanish' => 'Spanyol',
         'swedish' => 'Svéd',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Instrumentális',
         'other' => 'Egyéb',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Bármelyik',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Játékszám: :count',
         'favourites' => 'Kedvencek: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

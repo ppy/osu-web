@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => ':username 发布了主题为“:title”新的帖子',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主题',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 发布了新的帖子',
+                'beatmapset_discussion_review_new' => '来自 :username 在“:title”上发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
+                'beatmapset_discussion_review_new_compact' => '来自 :username 发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
                 'beatmapset_discussion_unlock' => '谱面 :title 已被解锁以供讨论。',
                 'beatmapset_discussion_unlock_compact' => '评论已解锁',
             ],

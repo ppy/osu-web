@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nyt opslag på ":title" af :username',
                 'beatmapset_discussion_post_new_compact' => 'Nyt oplsag af :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nyt oplsag af :username',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'Diskussion på ":title" er blevet åbnet',
                 'beatmapset_discussion_unlock_compact' => 'Diskussion er blevet åbnet',
             ],

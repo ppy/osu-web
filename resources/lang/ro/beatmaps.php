@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Scrie aici pentru a posta în General (:version)',
             'generalAll' => 'Scrie aici pentru a posta în General (toate dificultățile)',
+            'review' => '',
             'timeline' => 'Scrie aici pentru a posta în Cronologie (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'ctrl-c în modul de editare și lipește-ți mesajul pentru a adăuga un marcaj de timp!',
             'title' => 'Discuție nouă',
             'unpin' => 'DeFixează',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Noutate',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Coreeană',
         'spanish' => 'Spaniolă',
         'swedish' => 'Suedeză',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Instrumental',
         'other' => 'Altul',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Oricare',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Numărul de jocuri :count',
         'favourites' => 'Favorite :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

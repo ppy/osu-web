@@ -4,20 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => ':attribute ที่ท่านเลือก ไม่ถูกต้อง',
     'not_negative' => ':attribute เป็นค่าลบไม่ได้',
     'required' => 'ต้องมี :attribute',
     'too_long' => ':attribute เกินความยาวสูงสุด - สามารถใส่ได้ถึงแค่ :limit ตัวอักษร',
     'wrong_confirmation' => 'การยืนยันไม่ตรงกัน',
-
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'การสนทนาได้ถูกล็อกไว้',
-        'first_post' => 'ไม่สามารถลบโพสต์ที่เริ่มต้น',
-
-        'attributes' => [
-            'message' => 'ข้อความ',
-        ],
-    ],
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'ช่วงเวลาได้ถูกกำหนดไว้แต่ไม่พบ Beatmap',
@@ -29,11 +20,11 @@ return [
 
         'attributes' => [
             'message_type' => 'ประเภทของข้อความ',
-            'timestamp' => '',
+            'timestamp' => 'ประทับเวลา',
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "บีทแมพนี้ถูกจำกัดสิทธิในการสนทนา และ สิทธิในการ Hype",
             'guest' => 'ต้องเข้าสู่ระบบก่อนถึงจะ hype ได้',
             'hyped' => 'คุณได้ hype Beatmap นี้ไปแล้ว',
             'limit_exceeded' => 'คุณใช้จำนวน hype หมดแล้ว',
@@ -47,17 +38,26 @@ return [
         ],
     ],
 
-    'comment' => [
-        'deleted_parent' => 'ไม่อนุญาตให้ตอบกลับในคอมเม้นต์ที่ถูกลบไปแล้ว',
-        'top_only' => '',
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'การสนทนาได้ถูกจำกัดสิทธิ์ไว้',
+        'first_post' => 'ไม่สามารถลบข้อความตั้งต้นได้',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'ข้อความ',
+        ],
+    ],
+
+    'comment' => [
+        'deleted_parent' => 'ไม่อนุญาตให้ตอบกลับในคอมเม้นต์ที่ถูกลบไปแล้ว',
+        'top_only' => 'ไม่อนุญาตให้มีการปักหมุดข้อความตอบกลับ',
+
+        'attributes' => [
+            'message' => 'ข้อความนั้น',
         ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => ':attribute ที่ท่านเลือก ไม่ถูกต้อง',
     ],
 
     'forum' => [
@@ -76,7 +76,7 @@ return [
             'only_quote' => 'การตอบกลับของคุณมีแค่คำพูด',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'เนื้อหา',
             ],
         ],
 
@@ -108,12 +108,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
+            'too_many' => 'OAuth applications เกินขีดจำกัดที่ทางเราอนุญาต',
             'url' => 'กรุณาใส่ URL ที่ถูกต้อง',
 
             'attributes' => [
                 'name' => 'ชื่อแอปพลิเคชัน',
-                'redirect' => '',
+                'redirect' => 'URL เรียกกลับของแอปพลิเคชั่น',
             ],
         ],
     ],
@@ -160,7 +160,7 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason ไม่สามารถใช้ได้กับการรายงานประเภทนี้',
         'self' => "เดี๋ยว คุณรายงานตัวเองไม่ได้",
     ],
 

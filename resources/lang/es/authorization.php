@@ -12,7 +12,7 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'No puedes deshacer el hyping.',
+            'is_hype' => 'No se puede deshacer el hyping.',
             'has_reply' => 'No se puede eliminar una discusión con respuestas',
         ],
         'nominate' => [
@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Debe ser un nominador completo para nominar sets de mapas con más de un modo de juego.',
             'incorrect_state' => 'Error al realizar esa acción, intenta actualizando la página.',
             'owner' => "No puedes nominar tu propio mapa.",
+            'set_metadata' => 'Debe establecer el género y el idioma antes de nominar.',
         ],
         'resolve' => [
             'not_owner' => 'Solo el creador del tema y el dueño del mapa pueden resolver una discusión.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Este mapa está bloqueado para discusión.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => 'No puedes cambiar los metadatos de un mapa nominado. Contacta con un miembro de los BN o del NAT si crees que están establecidos incorrectamente.',
         ],
     ],
 

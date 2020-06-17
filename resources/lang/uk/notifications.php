@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Новий пост в ":title" вiд :username',
                 'beatmapset_discussion_post_new_compact' => 'Нова публікація від :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Нова публікація від :username',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'Карта ":title" розблокована для обговорень.',
                 'beatmapset_discussion_unlock_compact' => 'Обговорення відкрито',
             ],

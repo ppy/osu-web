@@ -18,7 +18,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'ถูกลบไปแล้ว',
-        'none_found' => '',
+        'none_found' => 'ไม่พบบทสนทนาตามเกณฑ์ที่ท่านเลือก',
         'title' => 'การสนทนาเกี่ยวกับ Beatmap',
 
         'form' => [
@@ -67,11 +67,13 @@ return [
         'go_to_parent' => 'ดูโพสต์รีวิว',
         'go_to_child' => 'ดูการสนทนา',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'block_too_large' => 'แต่ละบล็อกเก็บอักขระได้แค่ :limit อักขระ',
+            'external_references' => 'บทวิจารณ์มีความเชื่อมโยงไปยังปัญหาที่ไม่เกี่ยวข้องกับบทวิจารณ์นี้โดยตรง',
+            'invalid_block_type' => 'ชนิดของบล็อกไม่ถูกต้อง',
+            'invalid_document' => 'บทวิจารณ์ไม่ถูกต้อง',
+            'minimum_issues' => 'บทวิจารณ์ต้องมีปัญหาอย่างน้อย :count ปัญหา|บทวิจารณ์ต้องมีปัญหาอย่างน้อย :count ปัญหา',
+            'missing_text' => 'บล็อกไม่มีข้อความ',
+            'too_many_blocks' => 'บทวิจารณ์จำกัดให้มีแค่ :count ย่อหน้าต่อปัญหา|บทวิจารณ์จำกัดให้มีแค่ :count ย่อหน้าต่อหลายปัญหา',
         ],
     ],
 
@@ -83,8 +85,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'หมวดทั่วไป',
+        'general_all' => 'หมวดทั่วไป (รวม)',
     ],
 
     'user_filter' => [

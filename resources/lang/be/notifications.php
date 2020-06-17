@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => 'Новы допіс ад :username',
                 'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'Бітмапа ":title" разблакава для абмеркавання.',
                 'beatmapset_discussion_unlock_compact' => 'Абмеркаванне было адкрыта',
             ],

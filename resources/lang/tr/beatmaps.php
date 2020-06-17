@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Genel\'e yazmak için burayı kullanın (:version)',
             'generalAll' => 'Genel\'e yazmak için burayı kullanın (tüm zorluklar)',
+            'review' => '',
             'timeline' => 'Timeline\'a yazmak için burayı kullanın (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'bir zaman damgası eklemek için editörde ctrl-c\'ye basıp mesajınıza yapıştırın!',
             'title' => 'Yeni Tartışma',
             'unpin' => 'Sabitlemeyi kaldır',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronik',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Korece',
         'spanish' => 'İspanyolca',
         'swedish' => 'İsveççe',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Enstrümental',
         'other' => 'Diğer',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Hepsi',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Oynanma sayısı',
         'favourites' => 'Favoriler',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

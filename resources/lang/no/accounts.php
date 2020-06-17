@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'motta varsler for nye problemer på kvalifiserte beatmaps av følgende moduser',
+        'beatmapset_disqualify' => '',
         'title' => 'Varsler',
         'topic_auto_subscribe' => 'aktiver automatiske varslinger på nye forum emner som du lager',
-        'beatmapset_discussion_qualified_problem' => 'motta varsler for nye problemer på kvalifiserte beatmaps av følgende moduser',
 
-        'mail' => [
-            '_' => 'motta epost notifikasjoner for ',
-            'beatmapset:modding' => 'beatmap modding',
-            'forum_topic_reply' => 'svar emne',
+        'options' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+            'mail' => '',
+            'push' => '',
         ],
     ],
 
