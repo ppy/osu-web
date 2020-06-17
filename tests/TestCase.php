@@ -5,6 +5,7 @@
 
 namespace Tests;
 
+use App\Models\Beatmapset;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -109,6 +110,19 @@ class TestCase extends BaseTestCase
         return array_map(function ($file) use ($path, $suffix) {
             return [basename($file, $suffix), $path];
         }, glob("{$path}/*{$suffix}"));
+    }
+
+    protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
+    {
+        return [
+            'beatmapset_id' => $beatmapset->getKey(),
+            'beatmap_discussion' => [
+                'message_type' => $messageType,
+            ],
+            'beatmap_discussion_post' => [
+                'message' => 'Hello',
+            ],
+        ];
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])

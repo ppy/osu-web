@@ -46,21 +46,9 @@ class BroadcastNotificationTest extends TestCase
         ]);
         $beatmapset->watches()->create(['user_id' => $user->getKey()]);
 
-        $this->beatmapDiscussion = $beatmapset->beatmapDiscussions()->first();
-
-        $params = [
-            'beatmapset_id' => $beatmapset->getKey(),
-            'beatmap_discussion' => [
-                'message_type' => 'praise',
-            ],
-            'beatmap_discussion_post' => [
-                'message' => 'Hello',
-            ],
-        ];
-
         $this
             ->actingAsVerified($this->sender)
-            ->post(route('beatmap-discussion-posts.store'), $params)
+            ->post(route('beatmap-discussion-posts.store'), $this->makeBeatmapsetDiscussionPostParams($beatmapset, 'praise'))
             ->assertStatus(200);
 
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
