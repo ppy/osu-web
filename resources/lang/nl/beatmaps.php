@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Typ hier om in General te posten (:version)',
             'generalAll' => 'Typ hier om in General te posten (Alle moeilijkheden)',
+            'review' => 'Typ hier om een recensie te plaatsen',
             'timeline' => 'Typ hier om naar de tijdlijn te posten (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'ctrl+c in de bewerkmodus en plak in je bericht om een tijdstip toe te voegen!',
             'title' => 'Nieuwe Discussie',
             'unpin' => 'Losmaken',
+        ],
+
+        'review' => [
+            'new' => 'Nieuwe Recensie',
+            'embed' => [
+                'delete' => 'Verwijderen',
+                'missing' => '[DISCUSSIE VERWIJDERD]',
+                'unlink' => 'Ontkoppelen',
+                'unsaved' => 'Niet-opgeslagen',
+                'timestamp' => [
+                    'all-diff' => 'Posts op "All difficulties" kunnen niet worden getimestamped.',
+                    'diff' => 'Als :type begint met een tijdstempel, dan wordt deze getoond onder de tijdlijn.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'paragraaf invoegen',
+                'praise' => 'praise toevoegen',
+                'problem' => 'probleem toevoegen',
+                'suggestion' => 'suggestie toevoegen',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Koreaans',
         'spanish' => 'Spaans',
         'swedish' => 'Zweeds',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Instrumentaal',
         'other' => 'Anders',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Alles',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Speelaantal :count',
         'favourites' => 'Favorieten: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Alles',
+        ],
     ],
 ];

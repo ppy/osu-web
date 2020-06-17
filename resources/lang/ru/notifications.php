@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Новый пост в ":title" от :username',
                 'beatmapset_discussion_post_new_compact' => 'Новый пост от :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Новый пост от :username',
+                'beatmapset_discussion_review_new' => 'Новый отзыв на ":title" от :username, содержащий проблемы: :problems, предложения: :suggestions, похвалы: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Новый отзыв от :username, содержащий проблемы: :problems, предложения: :suggestions, похвалы: :praises',
                 'beatmapset_discussion_unlock' => 'Карта ":title" разблокирована для обсуждений.',
                 'beatmapset_discussion_unlock_compact' => 'Обсуждение было разблокировано',
             ],

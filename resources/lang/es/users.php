@@ -141,7 +141,7 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Se unió en :date',
-        'lastvisit' => 'Visto por última vez :date',
+        'lastvisit' => 'Última conexión :date',
         'lastvisit_online' => 'Actualmente en línea',
         'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
         'origin_country' => 'De :country',
@@ -217,7 +217,7 @@ return [
                 'show_more' => 'ver más eventos',
             ],
             'historical' => [
-                'empty' => 'Sin récords de rendimiento. :(',
+                'empty' => 'No hay registros de rendimiento. :(',
                 'title' => 'Histórico',
 
                 'monthly_playcounts' => [
@@ -304,10 +304,10 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Descargar Repetición',
-                'empty' => 'No hay records de rendimiento impresionantes aún. :(',
+                'empty' => 'Aún no hay registros de rendimiento impresionantes. :(',
                 'not_ranked' => 'Sólo los mapas clasificados dan pp.',
                 'pp_weight' => 'valorado :percentage',
-                'view_details' => '',
+                'view_details' => 'Ver detalles',
                 'title' => 'Rangos',
 
                 'best' => [
@@ -376,7 +376,7 @@ return [
             ],
         ],
         'post_count' => [
-            '_' => 'Contribuyó en :link',
+            '_' => 'Contribuyó con :link',
             'count' => ':count publicación en el foro|:count publicaciones en el foro',
         ],
         'rank' => [

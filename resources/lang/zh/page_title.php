@@ -110,7 +110,7 @@ return [
             '_' => '排名',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => '表现',
         ],
         'store_controller' => [
             '_' => 'osu! 商店',

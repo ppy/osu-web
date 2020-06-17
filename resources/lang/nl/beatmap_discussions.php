@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'Bekijk Review Post',
         'go_to_child' => 'Bekijk discussie',
         'validation' => [
+            'block_too_large' => 'elk blok mag maximaal :limit tekens bevatten',
+            'external_references' => 'review bevat verwijzingen naar kwesties die niet tot deze beoordeling behoren',
             'invalid_block_type' => 'ongeldige bloktype',
             'invalid_document' => 'ongeldige beoordeling',
             'minimum_issues' => 'beoordeling moet een minimum van :count issue|review moeten een minimum :count issues bevatten',

@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_disqualify' => '',
         'title' => 'Известия',
         'topic_auto_subscribe' => '',
-        'beatmapset_discussion_qualified_problem' => '',
 
-        'mail' => [
+        'options' => [
             '_' => '',
             'beatmapset:modding' => '',
             'forum_topic_reply' => '',
+            'mail' => '',
+            'push' => '',
         ],
     ],
 

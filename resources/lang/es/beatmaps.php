@@ -32,7 +32,7 @@ return [
         'title' => 'Discusiones',
 
         'collapse' => [
-            'all-collapse' => 'Desplegar todo',
+            'all-collapse' => 'Contraer todo',
             'all-expand' => 'Expandir todo',
         ],
 
@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Escribe aquí para publicar en General (:version)',
             'generalAll' => 'Escribe aquí para publicar en General (Todas las dificultades)',
+            'review' => 'Escriba aquí para publicar una revisión',
             'timeline' => 'Escribe aquí para publicar en la Línea de tiempo (:version)',
         ],
 
@@ -87,11 +88,31 @@ return [
         ],
 
         'new' => [
-            'pin' => 'Fijar',
+            'pin' => 'Anclar',
             'timestamp' => 'Marca de tiempo',
             'timestamp_missing' => '¡Usa Ctrl+C en el modo de edición y pega tu mensaje para agregar una marca de tiempo!',
             'title' => 'Nueva Discusión',
-            'unpin' => 'Dejar de fijar',
+            'unpin' => 'Desanclar',
+        ],
+
+        'review' => [
+            'new' => 'Nueva revisión',
+            'embed' => [
+                'delete' => 'Eliminar',
+                'missing' => '[DISCUSIÓN ELIMINADA]',
+                'unlink' => 'Desvincular',
+                'unsaved' => 'No guardado',
+                'timestamp' => [
+                    'all-diff' => 'Las publicaciones en "Todas las dificultades" no pueden tener marcas de tiempo.',
+                    'diff' => 'Si el comentario de :type empieza con una marca de tiempo, se mostrará en la Línea de tiempo.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'insertar párrafo',
+                'praise' => 'insertar elogio',
+                'problem' => 'insertar problema',
+                'suggestion' => 'insertar sugerencia',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novedad',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electrónica',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '4K',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Coreano',
         'spanish' => 'Español',
         'swedish' => 'Sueco',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Instrumental',
         'other' => 'Otro',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Cualquiera',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Veces jugado: :count',
         'favourites' => 'Favoritos: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Todas',
+        ],
     ],
 ];

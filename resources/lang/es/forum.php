@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'pinned_topics' => 'Temas Fijados',
+    'pinned_topics' => 'Temas anclados',
     'slogan' => "es peligroso jugar solo.",
     'subforums' => 'Subforos',
     'title' => 'Foros',
@@ -156,7 +156,7 @@ return [
         ],
 
         'create' => [
-            'create_poll' => 'Creación de encuestas',
+            'create_poll' => 'Creación de encuesta',
 
             'preview' => 'Vista previa',
 
@@ -170,7 +170,7 @@ return [
                 'hide_results_info' => 'Solo se mostrarán después de que finalice la encuesta.',
                 'length' => 'Duración de la encuesta',
                 'length_days_suffix' => 'días',
-                'length_info' => 'Deja en blanco para una encuesta sin fin',
+                'length_info' => 'Dejar en blanco para una encuesta sin fecha límite.',
                 'max_options' => 'Opciones por usuario',
                 'max_options_info' => 'Este es el número de opciones que un usuario puede seleccionar al votar.',
                 'options' => 'Opciones',
@@ -248,15 +248,15 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Dejar de fijar tema',
-            'to_0_confirm' => '¿Dejar de fijar tema?',
-            'to_0_done' => 'El tema ya no está fijado',
-            'to_1' => 'Fijar tema',
-            'to_1_confirm' => '¿Fijar tema?',
-            'to_1_done' => 'El tema ya ha sido fijado',
-            'to_2' => 'Fijar tema y marcar como anuncio',
-            'to_2_confirm' => '¿Fijar tema y marcar como anuncio?',
-            'to_2_done' => 'El tema ya ha sido fijado y marcado como anuncio',
+            'to_0' => 'Desanclar tema',
+            'to_0_confirm' => '¿Desanclar tema?',
+            'to_0_done' => 'El tema ya no está anclado',
+            'to_1' => 'Anclar tema',
+            'to_1_confirm' => '¿Anclar tema?',
+            'to_1_done' => 'El tema ha sido anclado',
+            'to_2' => 'Anclar tema y marcar como anuncio',
+            'to_2_confirm' => '¿Anclar tema y marcar como anuncio?',
+            'to_2_done' => 'El tema ha sido anclado y marcado como anuncio',
         ],
 
         'moderate_toggle_deleted' => [

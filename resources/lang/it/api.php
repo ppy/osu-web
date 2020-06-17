@@ -19,6 +19,6 @@ return [
             'read' => 'Vedere chi stai seguendo.',
         ],
 
-        'public' => '',
+        'public' => 'Leggere dati pubblici a nome tuo.',
     ],
 ];

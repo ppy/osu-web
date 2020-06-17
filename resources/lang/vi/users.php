@@ -159,7 +159,7 @@ return [
                     'button' => 'Tải ảnh lên',
                     'dropzone' => 'Thả vào đây để tải lên',
                     'dropzone_info' => 'Bạn cũng có thể thả hình ảnh vào đây để tải lên',
-                    'size_info' => 'Kích cỡ ảnh bìa nên là 2800x620',
+                    'size_info' => 'Kích cỡ ảnh bìa nên là 2400x620',
                     'too_large' => 'Tệp đã tải lên quá lơn.',
                     'unsupported_format' => 'Định dạng không được hỗ trợ.',
 

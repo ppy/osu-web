@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'ta emot meddelanden om nya problem på kvalificerade beatmaps över följande lägen',
+        'beatmapset_disqualify' => 'ta emot aviseringar när beatmaps för följande lägen diskvalificeras',
         'title' => 'Aviseringar',
         'topic_auto_subscribe' => 'aktivera aviseringar automatiskt på nya forumtrådar som du skapar ',
-        'beatmapset_discussion_qualified_problem' => 'ta emot meddelanden om nya problem på kvalificerade beatmaps över följande lägen',
 
-        'mail' => [
-            '_' => 'få e-postaviseringar för ',
+        'options' => [
+            '_' => 'leveransalternativ',
             'beatmapset:modding' => 'beatmap modding',
-            'forum_topic_reply' => 'tråd-svar',
+            'forum_topic_reply' => 'ämnessvar',
+            'mail' => 'mail',
+            'push' => 'push',
         ],
     ],
 

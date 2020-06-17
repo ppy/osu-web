@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'Rezensionsbeitrag anzeigen',
         'go_to_child' => 'Diskussion anzeigen',
         'validation' => [
+            'block_too_large' => 'jeder block darf höchstens :limit zeichen enthalten',
+            'external_references' => 'rezension enthält verweise auf probleme, die nicht zu dieser rezension gehören',
             'invalid_block_type' => 'ungültiger Block-Typ',
             'invalid_document' => 'ungültige Rezension',
             'minimum_issues' => 'Rezension muss ein Minimum von :count Problem beinhalten|Rezensionen müssen ein Minimum von :count Problemen beinhalten',

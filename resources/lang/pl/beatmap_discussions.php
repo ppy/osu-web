@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'Zobacz recenzję',
         'go_to_child' => 'Zobacz dyskusję',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => 'nieprawidłowy typ bloku',
             'invalid_document' => 'nieprawidłowa recenzja',
             'minimum_issues' => 'recenzja musi zawierać przynajmniej :count problem|recenzja musi zawierać przynajmniej :count problemy|recenzja musi zawierać przynajmniej :count problemów',

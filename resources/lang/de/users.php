@@ -159,7 +159,7 @@ return [
                     'button' => 'Bild hochladen',
                     'dropzone' => 'Zum Hochladen hier ablegen',
                     'dropzone_info' => 'Du kannst das Bild auch hier ablegen, um es hochzuladen',
-                    'size_info' => 'Banner sollte 2800x620 groß sein',
+                    'size_info' => 'Banner sollte 2400x620 groß sein',
                     'too_large' => 'Datei ist zu groß.',
                     'unsupported_format' => 'Format wird nicht unterstützt.',
 
@@ -307,7 +307,7 @@ return [
                 'empty' => 'Noch keine Einträge großartiger Performances. :(',
                 'not_ranked' => 'Nur Ranked Beatmaps geben PP.',
                 'pp_weight' => ':percentage gewichtet',
-                'view_details' => '',
+                'view_details' => 'Details anzeigen',
                 'title' => 'Ränge',
 
                 'best' => [

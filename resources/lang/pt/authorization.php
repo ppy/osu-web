@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Tens que ser um nomeador por completo para nomear grupos de beatmaps com mais de um modo de jogo.',
             'incorrect_state' => 'Erro ao executar essa ação, tenta recarregar a página.',
             'owner' => "Não é possível nomeares o teu próprio beatmap.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Só quem começou um segmento de mensagens ou o proprietário do beatmap é que consegue resolver uma discussão.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Este beatmap está bloqueado para discussão.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 

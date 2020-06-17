@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'منشور جديد على ":title" من قبل :username',
                 'beatmapset_discussion_post_new_compact' => 'منشور جديد بواسطة :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'منشور جديد بواسطة :username',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'تم فتح قفل مناقشة على ":title"',
                 'beatmapset_discussion_unlock_compact' => 'تم الغاء قفل المناقشة',
             ],

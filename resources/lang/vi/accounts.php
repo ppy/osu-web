@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_disqualify' => '',
         'title' => 'Thông báo',
         'topic_auto_subscribe' => 'tự động nhận thông báo cho các topic bạn tạo trong forum',
-        'beatmapset_discussion_qualified_problem' => '',
 
-        'mail' => [
+        'options' => [
             '_' => '',
             'beatmapset:modding' => '',
             'forum_topic_reply' => '',
+            'mail' => '',
+            'push' => '',
         ],
     ],
 

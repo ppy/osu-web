@@ -159,7 +159,7 @@ return [
                     'button' => 'Nahrát obrázek',
                     'dropzone' => 'Přetáhni sem pro nahrání',
                     'dropzone_info' => 'Můžeš také přetánout sem pro nahrání',
-                    'size_info' => 'Velikost záhlaví by měla být 2800x620',
+                    'size_info' => 'Velikost záhlaví by měla být 2400x620',
                     'too_large' => 'Nahraný soubor je příliš velký.',
                     'unsupported_format' => 'Nepodporovaný formát.',
 

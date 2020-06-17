@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => 'Új poszt :username által: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Új poszt :username által',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => '',
                 'beatmapset_discussion_unlock_compact' => '',
             ],

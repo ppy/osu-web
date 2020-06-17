@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Trebuie să fi un nominator complet pentru a nominaliza beatmap-uri care au mai mult de un singur mod de joc.',
             'incorrect_state' => 'S-a produs o eroare la efectuarea acestei acțiuni, încearcă să reîmprospătezi pagina.',
             'owner' => "Nu îți poți nominaliza propriul beatmap.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Numai cel ce a început subiectul sau proprietarul acestui beatmap pot rezolva o discuție.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Acest beatmap este blocat pentru discuții.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 

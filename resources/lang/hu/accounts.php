@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'Értesítések kérése minősített beatmapok problémáival kapcsolatban a következő módokból',
+        'beatmapset_disqualify' => '',
         'title' => 'Értesítések',
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
-        'beatmapset_discussion_qualified_problem' => 'Értesítések kérése minősített beatmapok problémáival kapcsolatban a következő módokból',
 
-        'mail' => [
-            '_' => 'e-mail értesítések kérése',
-            'beatmapset:modding' => 'beatmap modolás',
-            'forum_topic_reply' => 'Válasz a témára',
+        'options' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+            'mail' => '',
+            'push' => '',
         ],
     ],
 

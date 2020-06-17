@@ -13,12 +13,12 @@ return [
     ],
 
     'scopes' => [
-        'identify' => 'Kenali diri Anda dan baca profil publik Anda.',
+        'identify' => 'Mengenali diri Anda dan membaca profil publik Anda.',
 
         'friends' => [
-            'read' => 'Lihat siapa saja yang Anda ikuti.',
+            'read' => 'Melihat siapa saja yang Anda ikuti.',
         ],
 
-        'public' => '',
+        'public' => 'Membaca data-data yang bersifat publik atas nama akun Anda.',
     ],
 ];

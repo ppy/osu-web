@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'Voir l\'avis',
         'go_to_child' => 'Voir la discussion',
         'validation' => [
+            'block_too_large' => 'chaque bloc peut contenir jusqu\'à :limit caractères',
+            'external_references' => 'la revue contient des références à des problèmes qui n\'appartiennent pas à cette revue',
             'invalid_block_type' => 'type de bloc invalide',
             'invalid_document' => 'revue invalide',
             'minimum_issues' => 'la revue doit contenir un minimum de :count problèmes|la revue doit contenir un minimum de :count problèmes',
