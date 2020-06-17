@@ -39,8 +39,8 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Diskussion är låst.',
-        'first_post' => 'Kan inte radera ursprungs inlägg.',
+        'discussion_locked' => 'Diskussionen är låst.',
+        'first_post' => 'Kan inte radera startinlägget.',
 
         'attributes' => [
             'message' => 'Meddelandet',
