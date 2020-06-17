@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Pastikan avatar Anda mematuhi :link.<br/> Hal ini berarti konten harus <strong>cocok untuk segala usia</strong>. mis. tidak menampilkan ketelanjangan, kata-kata kotor atau sugestif.',
+            'rules' => 'Pastikan avatar Anda mematuhi :link. yang berlaku.<br/>  Dengan kata lain, avatar Anda harus <strong>cocok untuk segala usia</strong> tanpa kandungan unsur-unsur yang tidak sepantasnya seperti perkataan-perkataan yang menghina atau konten-konten yang bersifat sugestif.',
             'rules_link' => 'peraturan komunitas',
         ],
 
@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'terima notifikasi ketika terdapat suatu masalah baru pada beatmap yang berstatus Qualified pada mode',
+        'beatmapset_disqualify' => 'terima notifikasi ketika terdapat beatmap yang didiskualifikasi pada mode',
         'title' => 'Notifikasi',
         'topic_auto_subscribe' => 'hidupkan notifikasi secara otomatis di topik forum baru yang Anda buat',
-        'beatmapset_discussion_qualified_problem' => 'terima pemberitahuan untuk masalah baru pada qualified beatmap dari mode berikut',
 
-        'mail' => [
-            '_' => 'terima pemberitahuan email tentang',
+        'options' => [
+            '_' => 'kirimkan notifikasi melalui',
             'beatmapset:modding' => 'modding beatmap',
             'forum_topic_reply' => 'balasan pada topik',
+            'mail' => 'email',
+            'push' => 'web',
         ],
     ],
 

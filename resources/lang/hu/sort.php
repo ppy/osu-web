@@ -6,6 +6,8 @@
 return [
     '_' => 'Rendezés',
 
+    'all' => '',
+    'friends' => '',
     'last_visit' => 'Legutóbb aktív volt',
     'new' => 'Legutóbbi',
     'old' => 'Régi',

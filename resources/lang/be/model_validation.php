@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute максімальная колькасць сімвалаў перавышана - абмежаванне на :limit сімвалаў.',
     'wrong_confirmation' => 'Пацверджання не супадае.',
 
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Абмеркаванне закрыта.',
-        'first_post' => 'Нельга выдаліць пачатковы допіс.',
-
-        'attributes' => [
-            'message' => 'Паведамленне',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Пазнака часу вызначана, але бітмапа не знойдзена.',
         'beatmapset_no_hype' => "Бітмапа не можа быць хайпанутай.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Вызначаная пазнака часу вышэй за даўжыню бітмапы.',
             'negative' => "Пазнака часу не можа быць адмоўнай.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => '',
+        'first_post' => '',
+
+        'attributes' => [
+            'message' => '',
         ],
     ],
 

@@ -159,7 +159,7 @@ return [
                     'button' => 'Kép feltöltése',
                     'dropzone' => 'Húzd ide a feltöltendő fájlokat',
                     'dropzone_info' => 'Feltöltéshez ide is dobhatod a képed',
-                    'size_info' => 'A borítónak 2800x620-asnak kellene lennie',
+                    'size_info' => 'A borítónak 2400x620-asnak kellene lennie',
                     'too_large' => 'A feltöltött fájl túl nagy.',
                     'unsupported_format' => 'Nem támogatott formátum.',
 

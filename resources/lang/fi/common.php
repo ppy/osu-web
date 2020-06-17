@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Takaisin ylös',
         'cancel' => 'Peruuta',
         'change' => 'vaihda',
+        'clear' => '',
         'click_to_copy' => 'kopioi leikepöydälle',
         'click_to_copy_copied' => 'kopioitu leikepöydälle!',
         'close' => 'Sulje',

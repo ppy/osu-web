@@ -92,7 +92,7 @@ return [
         'username' => 'Nama Pengguna',
 
         'beta' => [
-            'main' => 'Akses beta saat ini dibatasi untuk pengguna istimewa.',
+            'main' => 'Akses beta saat ini hanya terbuka kepada pengguna-pengguna tertentu.',
             'small' => '(osu!supporter akan segera masuk)',
         ],
     ],
@@ -132,7 +132,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Akun Anda telah dibatasi!',
-        'message' => 'Selama dibatasi, Anda tidak dapat berinteraksi dengan pengguna lain dan skor hanya akan terlihat oleh Anda. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. Jika Anda ingin mengajukan banding atas pembatasan Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
+        'message' => 'Selama akun Anda berada dalam pembatasan, Anda tidak dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang tidak melakukan pelanggaran terhadap aturan-aturan yang berlaku. Jika Anda ingin mengajukan banding atas pembatasan Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
     ],
     'show' => [
         'age' => ':age tahun',
@@ -159,7 +159,7 @@ return [
                     'button' => 'Unggah gambar',
                     'dropzone' => 'Letakkan di sini untuk mengunggah',
                     'dropzone_info' => 'Anda juga dapat meletakkan gambar Anda di sini untuk mengunggah.',
-                    'size_info' => 'Ukuran gambar sampul yang optimal selayaknya adalah 2800x620',
+                    'size_info' => 'Ukuran gambar sampul yang optimal selayaknya adalah 2400x620',
                     'too_large' => 'File yang diunggah terlalu besar.',
                     'unsupported_format' => 'Format tidak didukung.',
 
@@ -307,7 +307,7 @@ return [
                 'empty' => 'Belum ada catatan performa yang mendapat peringkat pertama. :(',
                 'not_ranked' => 'Hanya beatmap Ranked yang dapat memberikan pp.',
                 'pp_weight' => 'terbobotkan sejumlah :percentage',
-                'view_details' => '',
+                'view_details' => 'Lihat Rincian',
                 'title' => 'Peringkat',
 
                 'best' => [
@@ -371,7 +371,7 @@ return [
             'placeholder' => 'Ketik konten laman di sini',
 
             'restriction_info' => [
-                '_' => 'Kamu harus menjadi seorang :link untuk menggunakan fitur ini.',
+                '_' => 'Anda harus memiliki :link untuk dapat menggunakan fitur ini.',
                 'link' => 'osu!supporter',
             ],
         ],

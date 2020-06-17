@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'Побачити відгук',
         'go_to_child' => 'Побачити обговорення',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => 'недопустимий тип блоку',
             'invalid_document' => 'недопустимий відгук',
             'minimum_issues' => 'відгук повинен містити як мінімум :count проблему | відгук повинен містити як мінімум :count проблеми | відгук повинен містити як мінімум :count проблем

@@ -159,7 +159,7 @@ return [
                     'button' => 'Mettre en ligne l\'image',
                     'dropzone' => 'Déplacez ici pour uploader',
                     'dropzone_info' => 'Vous pouvez aussi glisser-déposer l\'image ici pour la mettre en ligne',
-                    'size_info' => 'La taille de la bannière devrait être de 2800x620',
+                    'size_info' => 'La taille de la bannière devrait être de 2400x620',
                     'too_large' => 'Le fichier est trop volumineux.',
                     'unsupported_format' => 'Format non supporté.',
 
@@ -307,7 +307,7 @@ return [
                 'empty' => 'Pas de première place. :(',
                 'not_ranked' => 'Seules les beatmaps classées accordent des pp.',
                 'pp_weight' => 'pondéré :percentage',
-                'view_details' => '',
+                'view_details' => 'Voir les détails',
                 'title' => 'Classements',
 
                 'best' => [

@@ -5,26 +5,26 @@
 
 return [
     'box' => [
-        'sent' => 'Ett email har skickats till :mail med en verifieringskod. Skriv in koden.',
+        'sent' => 'Ett e-postmeddelande har skickats till :mail med en verifieringskod. Ange koden.',
         'title' => 'Kontobekräftelse',
-        'verifying' => 'Verifierar...',
+        'verifying' => 'Bekräftar...',
         'issuing' => 'Skickar ny kod...',
 
         'info' => [
-            'check_spam' => "Dubbelkolla skräpposten ifall du inte kan hitta emailet.",
-            'recover' => "Om du inte har tillgång till din email eller har glömt vad du använde, var vänlig följ :link.",
-            'recover_link' => 'email återställning processen här',
+            'check_spam' => "Se till att kolla skräpposten ifall du inte kan hitta e-postmeddelandet.",
+            'recover' => "Om du inte kan komma åt din e-post eller har glömd vilken du använde, vänligen följ :link. ",
+            'recover_link' => 'e-poståterställningsprocess här ',
             'reissue' => 'Du kan också :reissue_link eller :logout_link.',
-            'reissue_link' => 'begär en ny kod',
+            'reissue_link' => 'begära en ny kod',
             'logout_link' => 'logga ut',
         ],
     ],
 
     'errors' => [
-        'expired' => 'Verifieringskoden har utgått, ett nytt bekräftelsemail har skickats.',
-        'incorrect_key' => 'Felaktig verifieringskod.',
-        'retries_exceeded' => 'Felaktig verifieringskod. Försöksgräns uppnådd, ett nytt bekräftelsemail har skickats.',
-        'reissued' => 'Verifieringskod återutfärdad, ett nytt bekräftelsemail har skickats.',
-        'unknown' => 'Ett okänt problem uppstod, ett nytt bekräftelsemail har skickats.',
+        'expired' => 'Verifieringskoden har löpt ut, ett nytt bekräftelsemejl har skickats.',
+        'incorrect_key' => 'Felaktig bekräftelsekod.',
+        'retries_exceeded' => 'Felaktig bekräftelsekod. Försöksgränsen har uppnåtts, ett nytt bekräftelsemejl har skickats.',
+        'reissued' => 'Verifieringskoden återutfärdades, ett nytt bekräftelsemejl har skickats.',
+        'unknown' => 'Ett okänt problem uppstod, ett nytt bekräftelsemejl har skickats.',
     ],
 ];

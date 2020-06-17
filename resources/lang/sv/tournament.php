@@ -17,22 +17,22 @@ return [
         ],
 
         'state' => [
-            'current' => 'Aktiva Turneringar',
-            'previous' => 'Tidigare Turneringar',
+            'current' => 'Aktiva turneringar',
+            'previous' => 'Tidigare turneringar',
         ],
     ],
 
     'show' => [
         'banner' => 'Stöd ditt lag',
-        'entered' => 'Du är registrerad för denna turnering.<br><br>Vänligen notera att detta <b>inte</b> betyder att du har blivit tilldelad ett lag.<br><br>Ytterligare instruktioner kommer att skickas till dig via e-post när datumet för turneringen närmar sig, så var vänlig att kontrollera att din e-postadress för ditt osu!-konto är korrekt!',
+        'entered' => 'Du är registrerad för denna turnering.<br><br>Vänligen notera att detta <b>inte</b> betyder att du har blivit tilldelad till ett lag.<br><br>Ytterligare instruktioner kommer att skickas till dig via e-post när datumet för turneringen närmar sig, så var vänlig att kontrollera att din e-postadress för ditt osu!-konto är korrekt!',
         'info_page' => 'Informationssida',
         'login_to_register' => 'Var vänlig :login för att visa registreringsdetaljer!',
         'not_yet_entered' => 'Du är inte registrerad för denna turnering.',
         'rank_too_low' => 'Tyvärr, du uppfyller inte rangkriterierna för denna turneringen!',
-        'registration_ends' => 'Registrering stänger :date',
+        'registration_ends' => 'Registreringar stänger :date',
 
         'button' => [
-            'cancel' => 'Avbryt Registrering',
+            'cancel' => 'Avbryt registrering',
             'register' => 'Skriv upp mig!',
         ],
 
@@ -42,7 +42,7 @@ return [
         ],
 
         'state' => [
-            'before_registration' => 'Registrering för denna turnering har inte öppnats ännu.',
+            'before_registration' => 'Registreringen till denna turnering har ännu inte öppnats.',
             'ended' => 'Denna turnering har avslutats. Kontrollera informationssidan för resultaten.',
             'registration_closed' => 'Registrering för denna turnering har stängts. Kontrollera informationssidan för de senaste uppdateringarna.',
             'running' => 'Denna turnering pågår för närvarande. Kontrollera informationssidan för mer information.',

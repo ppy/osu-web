@@ -110,7 +110,7 @@ return [
             '_' => 'classificação',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'desempenho',
         ],
         'store_controller' => [
             '_' => 'osu!store',

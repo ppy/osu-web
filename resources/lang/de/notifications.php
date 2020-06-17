@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Neuer Beitrag auf ":title" von :username',
                 'beatmapset_discussion_post_new_compact' => 'Neuer Beitrag von :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Neuer Beitrag von :username',
+                'beatmapset_discussion_review_new' => 'Neue Rezension zu ":title" von :username mit Problemen: :problems, Vorschlägen: :suggestions, Lob: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Neue Rezension von :username mit Problemen: :problems, Vorschlägen: :suggestions, Lob: :praises',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" wurde zur Diskussion freigegeben.',
                 'beatmapset_discussion_unlock_compact' => 'Die Diskussion ist freigegeben',
             ],

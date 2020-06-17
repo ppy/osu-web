@@ -11,7 +11,7 @@ return [
         'issuing' => 'Distribuendo il nuovo codice...',
 
         'info' => [
-            'check_spam' => "Assicurati di controllare la tua cartella spam se nn riesci a trovare la email.",
+            'check_spam' => "Assicurati di controllare la tua cartella spam se non riesci a trovare la email.",
             'recover' => "Se non riesci ad accedere alla tua email o hai dimenticato quale hai usato, per favore segui il :link.",
             'recover_link' => 'processo di recupero email qui',
             'reissue' => 'Puoi anche :reissue_link oppure :logout_link.',

@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Tilbage til toppen',
         'cancel' => 'Annullér',
         'change' => 'ændr',
+        'clear' => '',
         'click_to_copy' => 'klik for at kopiere til udklipsholderen',
         'click_to_copy_copied' => 'kopieret til udklipsholderen!',
         'close' => 'Luk',

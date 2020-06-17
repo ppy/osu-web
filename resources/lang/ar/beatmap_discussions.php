@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'مشاهدة منشور المراجعة',
         'go_to_child' => 'مشاهدة المناقشة',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => 'نوع كتلة غير صالح',
             'invalid_document' => 'مراجعة غير صالحة',
             'minimum_issues' => 'ألمراجعة يجب ان تحوي :count مشكلة على الأقل|المراجعة يجب ان تحوي :count مشاكل على الأقل',

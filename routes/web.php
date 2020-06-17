@@ -313,6 +313,7 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
+            Route::apiResource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
             // TODO: move other beatmapset routes here
             Route::group(['namespace' => 'Beatmapsets'], function () {
                 Route::apiResource('{beatmapset}/favourites', 'FavouritesController', ['only' => ['store']]);

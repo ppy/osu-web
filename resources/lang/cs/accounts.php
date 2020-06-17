@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_disqualify' => '',
         'title' => 'Oznámení',
         'topic_auto_subscribe' => 'automaticky povolit oznámení o nových tématech fóra, které vytvoříte',
-        'beatmapset_discussion_qualified_problem' => '',
 
-        'mail' => [
+        'options' => [
             '_' => '',
             'beatmapset:modding' => '',
-            'forum_topic_reply' => 'odpoveď témata',
+            'forum_topic_reply' => '',
+            'mail' => '',
+            'push' => '',
         ],
     ],
 
@@ -67,13 +70,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Možnosti',
 
         'beatmapset_download' => [
             '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 's videem, je-li k dispozici',
+            'no_video' => 'bez videa',
+            'direct' => 'otevřít v osu!direct',
         ],
     ],
 

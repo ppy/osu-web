@@ -159,7 +159,7 @@ return [
                     'button' => '上傳圖片',
                     'dropzone' => '拖動到此處以上傳',
                     'dropzone_info' => '您也可以將圖片拉到此處上傳',
-                    'size_info' => '圖片尺寸應為2800x620',
+                    'size_info' => '圖片尺寸應為2400x620',
                     'too_large' => '上傳的圖片檔案過大.',
                     'unsupported_format' => '不支援的檔案格式.',
 

@@ -10,15 +10,6 @@ return [
     'too_long' => 'Atrybut „:attribute” przekroczył maksymalną liczbę znaków - możliwe jest użycie tylko :limit znaków.',
     'wrong_confirmation' => 'Potwierdzenie się nie zgadza.',
 
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Dyskusja została zablokowana.',
-        'first_post' => 'Nie możesz usunąć posta rozpoczynającego.',
-
-        'attributes' => [
-            'message' => 'Wiadomość',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Został ustawiony znacznik czasu, ale nie odnaleziono beatmapy.',
         'beatmapset_no_hype' => "Nie możesz nagłośnić tej beatmapy.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Określony znacznik czasu przekracza długość beatmapy.',
             'negative' => "Znacznik czasu nie może być ujemny.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => '',
+        'first_post' => '',
+
+        'attributes' => [
+            'message' => '',
         ],
     ],
 

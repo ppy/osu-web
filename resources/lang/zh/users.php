@@ -159,7 +159,7 @@ return [
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'size_info' => '图片大小最好是 2800x620 像素',
+                    'size_info' => '图片大小最好是 2400x620 像素',
                     'too_large' => '上传的图片过大。',
                     'unsupported_format' => '不支持的格式。',
 
@@ -307,7 +307,7 @@ return [
                 'empty' => '还没有上传过成绩。 :(',
                 'not_ranked' => '只有 ranked 谱面才能得到 pp。',
                 'pp_weight' => '权重：:percentage',
-                'view_details' => '',
+                'view_details' => '查看详情',
                 'title' => '成绩',
 
                 'best' => [

@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Birden fazla oyun modu olan beatmap setlerini oylamak için tam bir nominatör olmanız gerekmektedir.',
             'incorrect_state' => 'Bu işlemi gerçekleştirirken hata oluştu, sayfayı yenilemeyi deneyin.',
             'owner' => "Kendi beatmapinizi aday gösteremezsiniz.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Yalnızca başlık sahibi ile beatmap sahibi bir tartışmayı sonlandırabilir.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Bu beatmap tartışma için kilitlenmiş.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 

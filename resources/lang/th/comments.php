@@ -10,7 +10,7 @@ return [
     'pinned' => 'ปักหมุดแล้ว',
     'empty' => 'ยังไม่มีความคิดเห็นเลย',
     'load_replies' => 'โหลดข้อความตอบกลับ',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited ข้อความตอบกลับ|:count_delimited ข้อความตอบกลับ',
     'title' => 'ความคิดเห็น',
 
     'commentable_name' => [

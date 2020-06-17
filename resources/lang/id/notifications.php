@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Postingan baru di ":title" oleh :username',
                 'beatmapset_discussion_post_new_compact' => 'Postingan baru dari :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Postingan baru oleh :username',
+                'beatmapset_discussion_review_new' => 'Terdapat ulasan baru pada ":title" oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Terdapat ulasan baru oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
                 'beatmapset_discussion_unlock' => 'Diskusi untuk beatmap ":title" telah dibuka kembali.',
                 'beatmapset_discussion_unlock_compact' => 'Diskusi beatmap telah dibuka',
             ],

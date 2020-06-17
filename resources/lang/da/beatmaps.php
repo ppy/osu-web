@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Skriv her for at lave et opslag til General (:version)',
             'generalAll' => 'Skriv her for at lave et opslag til General (All difficulties)',
+            'review' => '',
             'timeline' => 'Skriv her for at lave et opslag til Tidslinjen (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'Tryk ctrl-c i edit mode og indsæt i din besked for at tilføje tidsstempel!',
             'title' => 'Ny diskussion',
             'unpin' => 'Frigør',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronisk',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '4K',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Koreansk',
         'spanish' => 'Spansk',
         'swedish' => 'Svensk',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Instrumentalt',
         'other' => 'Andet',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Vilkårlig',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Antal Forsøg :count',
         'favourites' => 'Favoritter :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

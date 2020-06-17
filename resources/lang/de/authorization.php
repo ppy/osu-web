@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Du musst ein Nominator sein um Beatmap-Sets mit mehr als einem Spielmodus zu nominieren.',
             'incorrect_state' => 'Beim Ausführen dieser Aktion ist ein Fehler aufgetreten. Bitte Seite neu laden.',
             'owner' => "Eigene Beatmaps können nicht nominiert werden.",
+            'set_metadata' => 'Vor der Nominierung müssen Genre und Sprache festgelegt werden.',
         ],
         'resolve' => [
             'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion beilegen.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Diese Beatmap Diskussion ist gesperrt.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => 'Du kannst die Metadaten einer nominierten Map nicht ändern. Wenn du glaubst, dass sie falsch sind, wende dich an ein BN- oder NAT-Mitglied.',
         ],
     ],
 
@@ -102,7 +109,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Bitte bearbeite deinen letzten Post, statt erneut zu posten.',
+                'double_post' => 'Bitte bearbeite deinen letzten Beitrag, anstatt ihn erneut zu posten.',
                 'locked' => 'Auf gesperrte Threads kann nicht geantwortet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'no_permission' => 'Keine Berechtigung zum Antworten.',

@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'İnceleme paylaşımını görüntüle',
         'go_to_child' => 'Tartışmayı görüntüle',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => 'geçersiz blok türü',
             'invalid_document' => 'geçersiz gözden geçirme',
             'minimum_issues' => 'gözden geçirme asgari :count sayıda sorun içermelidir|gözden geçirme asgari :count sayıda sorun içermelidir',

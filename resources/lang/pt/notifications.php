@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nova publicação em ":title" por :username',
                 'beatmapset_discussion_post_new_compact' => 'Nova publicação por :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nova publicação por :username',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'A discussão em ":title" foi aberta',
                 'beatmapset_discussion_unlock_compact' => 'A discussão foi aberta',
             ],

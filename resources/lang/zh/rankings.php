@@ -4,8 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => '按国家/地区筛选',
+    'countries' => [
+        'all' => '全部',
+    ],
+
+    'filter' => [
+        'title' => '显示:',
+
+        'variant' => [
+            'title' => '筛选',
+        ],
     ],
 
     'type' => [

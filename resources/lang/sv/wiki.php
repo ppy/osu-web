@@ -6,7 +6,7 @@
 return [
     'show' => [
         'fallback_translation' => 'Den begärda sidan är inte översatt till det valda språket (:language). Visar den Engelska versionen.',
-        'incomplete_or_outdated' => 'Innehållet på denna sidan är ofullständigt eller föråldrat. Om du har möjlighet att hjälpa till, vänligen överväg att uppdatera artikeln!',
+        'incomplete_or_outdated' => 'Innehållet på denna sidan är ofullständigt eller föråldrat. Om du har möjligheten att hjälpa till, vänligen överväg att uppdatera artikeln!',
         'missing' => 'Begärd sida kunde ej hittas.',
         'missing_title' => 'Hittades inte',
         'missing_translation' => 'Den begärda sidan kunde inte hittas för nuvarande valt språk.',
@@ -21,7 +21,7 @@ return [
 
         'translation' => [
             'legal' => 'Den här översättningen tillhandahålls endast för bekvämlighets skull. Originalet :default är den enda juridiskt bindande versionen av denna text.',
-            'outdated' => 'Denna sidan innehåller en utdaterad översättning av det ursprungliga innehållet. Vänligen se :default för den mest precisa informationen (och överväg att uppdatera översättningen om du har möjlighet att hjälpa till)!',
+            'outdated' => 'Denna sidan innehåller en föråldrad översättning av det ursprungliga innehållet. Vänligen se :default för den mest exakta informationen (och överväg att uppdatera översättningen om du har möjligheten att hjälpa till)!',
 
             'default' => 'Engelsk version',
         ],
