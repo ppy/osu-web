@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'admin' => [
@@ -25,6 +10,7 @@ return [
 
     'cart' => [
         'checkout' => 'Platba',
+        'info' => '',
         'more_goodies' => 'Chcem sa ešte pozrieť na viac dobrôt než dokončím objednávku',
         'shipping_fees' => 'poplatky za dopravu',
         'title' => 'Nákupný Košík',
@@ -51,6 +37,7 @@ return [
         'delayed_shipping' => 'Momentálne sme zaplavení objednávkami! Svoju objednávku môžeš zadať, ale prosím počítaj s **dodatočným 1-2 tyždennym oneskorením** zatial čo dokončíme existujúce objednávky.',
         'old_cart' => 'Obsah tvojho košíka sa zdá byť zastaralý a preto bol znovu načítaný, skus to prosím znovu.',
         'pay' => 'Platba cez PayPal',
+        'title_compact' => '',
 
         'has_pending' => [
             '_' => 'Nemáte dokončené platby, kliknite :link aby ste si ich mohli pozrieť.',
@@ -67,6 +54,8 @@ return [
 
     'invoice' => [
         'echeck_delay' => '',
+        'title_compact' => '',
+
         'status' => [
             'processing' => [
                 'title' => 'Vaša platba ešte nebola potvrdená!',
@@ -79,17 +68,12 @@ return [
         ],
     ],
 
-    'mail' => [
-        'payment_completed' => [
-            'subject' => 'Obdržali sme tvoju osu!store objednávku!',
-        ],
-    ],
-
     'order' => [
         'paid_on' => '',
 
         'invoice' => 'Zobraziť faktúru',
         'no_orders' => 'Žiadne objednávky na zobrazenie.',
+        'resume' => '',
 
         'item' => [
             'display_name' => [
@@ -113,8 +97,8 @@ return [
             'checkout' => 'Pripravuje sa',
             'delivered' => 'Objednávka doručená',
             'paid' => 'Zaplatené',
-            'processing' => '',
-            'shipped' => '',
+            'processing' => 'Čaká sa na potvrdenie',
+            'shipped' => 'Na ceste',
         ],
     ],
 
@@ -150,5 +134,9 @@ return [
             '_' => 'Pre zmenu uživatelského mena sa musíš :link!',
             'link_text' => 'prihlásený',
         ],
+    ],
+
+    'xsolla' => [
+        'distributor' => '',
     ],
 ];

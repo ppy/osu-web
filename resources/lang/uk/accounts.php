@@ -50,16 +50,16 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'отримувати повідомлення про нові проблеми кваліфікованих карт для наступних режимів',
-        'beatmapset_disqualify' => '',
+        'beatmapset_disqualify' => 'отримувати повідомлення коли карти наступних модов дискваліфіковані',
         'title' => 'Сповіщення',
         'topic_auto_subscribe' => 'автоматично вмикати сповіщення для тем на форумі, коли ви їх створюєте',
 
         'options' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
-            'push' => '',
+            '_' => 'способи доставки',
+            'beatmapset:modding' => 'моддінг карт',
+            'forum_topic_reply' => 'відповідь темі',
+            'mail' => 'пошта',
+            'push' => 'push',
         ],
     ],
 
