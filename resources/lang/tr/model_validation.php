@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Tartışma kilitli.',
+        'first_post' => 'Başlangıç yazısı silinemez.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Mesaj',
         ],
     ],
 

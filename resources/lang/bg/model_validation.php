@@ -39,8 +39,8 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Дискусията е заключена.',
+        'first_post' => 'Не можете да изтриете началната публикация.',
 
         'attributes' => [
             'message' => '',

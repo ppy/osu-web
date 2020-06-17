@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Dyskusja została zablokowana.',
+        'first_post' => 'Nie możesz usunąć posta rozpoczynającego.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Wiadomość',
         ],
     ],
 

@@ -24,11 +24,6 @@ return [
     'too_long' => ':attribute presiahol maximálnu dĺžku - môže mať maximálne :limit znakov.',
     'wrong_confirmation' => 'Potvrdenie sa nezhoduje.',
 
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Diskusia je uzamknutá.',
-        'first_post' => 'Počiatočný príspevok sa nedá odstrániť.',
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Časová sekvencia je špecifikovaná, ale chýba beatmapa.',
         'beatmapset_no_hype' => "Táto beatmapa nemôže byť nadchnutá.",
@@ -49,6 +44,11 @@ return [
             'exceeds_beatmapset_length' => 'Upresnená sekvencia času presahuje dĺžku beatmapy.',
             'negative' => "Časová sekvencia nemôže byť záporná.",
         ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Diskusia je uzamknutá.',
+        'first_post' => 'Počiatočný príspevok sa nedá odstrániť.',
     ],
 
     'comment' => [

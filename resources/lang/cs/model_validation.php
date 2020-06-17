@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Diskuze je uzamčená.',
+        'first_post' => 'Počáteční příspěvek nelze odstranit.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Zpráva',
         ],
     ],
 

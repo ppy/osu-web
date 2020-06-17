@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Обговорення закрито.',
+        'first_post' => 'Неможливо видалити першу публікацію.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Повідомлення',
         ],
     ],
 

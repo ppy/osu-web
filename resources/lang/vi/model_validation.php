@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Cuộc thảo luận đã bị khóa.',
+        'first_post' => 'Không thể xóa bài đăng mở đầu.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Tin nhắn',
         ],
     ],
 

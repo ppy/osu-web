@@ -39,8 +39,8 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Η συζήτηση έχει κλειδωθεί.',
+        'first_post' => 'Το αρχικό post δε μπορεί να διαγραφεί.',
 
         'attributes' => [
             'message' => '',

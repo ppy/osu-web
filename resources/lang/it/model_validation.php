@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'La discussione è chiusa.',
+        'first_post' => 'Non puoi cancellare il post iniziale.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Il messaggio',
         ],
     ],
 

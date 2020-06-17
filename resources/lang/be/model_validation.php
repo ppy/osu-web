@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Абмеркаванне закрыта.',
+        'first_post' => 'Нельга выдаліць пачатковы допіс.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Паведамленне',
         ],
     ],
 
