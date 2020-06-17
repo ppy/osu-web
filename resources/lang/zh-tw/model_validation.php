@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => '討論被鎖定。',
+        'first_post' => '無法刪除第一個討論。',
 
         'attributes' => [
-            'message' => '',
+            'message' => '訊息',
         ],
     ],
 

@@ -1,33 +1,13 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'not_negative' => ':attribute nemôže byť negatívny.',
     'required' => ':attribute je vyžadovaný.',
     'too_long' => ':attribute presiahol maximálnu dĺžku - môže mať maximálne :limit znakov.',
     'wrong_confirmation' => 'Potvrdenie sa nezhoduje.',
-
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Diskusia je uzamknutá.',
-        'first_post' => 'Počiatočný príspevok sa nedá odstrániť.',
-    ],
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Časová sekvencia je špecifikovaná, ale chýba beatmapa.',
@@ -51,8 +31,17 @@ return [
         ],
     ],
 
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Diskusia je uzamknutá.',
+        'first_post' => 'Počiatočný príspevok sa nedá odstrániť.',
+    ],
+
     'comment' => [
         'deleted_parent' => 'Odpovedať na odstránený komentár nie je povolené.',
+
+        'attributes' => [
+            'message' => 'Správa',
+        ],
     ],
 
     'forum' => [
@@ -86,6 +75,14 @@ return [
         ],
     ],
 
+    'oauth' => [
+        'client' => [
+            'attributes' => [
+                'name' => 'Názov aplikácie',
+            ],
+        ],
+    ],
+
     'user' => [
         'contains_username' => 'Heslo nemôže obsahovať užívateľské meno.',
         'email_already_used' => 'E-mailová adresa už bola použitá.',
@@ -110,6 +107,12 @@ return [
         'wrong_password_confirmation' => 'Zadané heslá sa nezhodujú.',
         'too_long' => 'Prekročila sa maximálna dĺžka - maximálna dĺžka je :limit znakov.',
 
+        'attributes' => [
+            'username' => 'Meno Uživateľa',
+            'user_email' => 'E-mailová adrEsa',
+            'password' => 'Heslo',
+        ],
+
         'change_username' => [
             'supporter_required' => [
                 '_' => 'Musíš mať :link pre zmenu mena!',
@@ -121,5 +124,13 @@ return [
 
     'user_report' => [
         'self' => "",
+    ],
+
+    'store' => [
+        'order_item' => [
+            'attributes' => [
+                'cost' => 'Cena',
+            ],
+        ],
     ],
 ];
