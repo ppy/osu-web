@@ -112,6 +112,11 @@ class UserNotification extends Model
         return $this->belongsTo(Notification::class);
     }
 
+    public function scopeHasMailDelivery($query)
+    {
+        return $query->whereRaw("delivery & b'10'");
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

@@ -48,9 +48,15 @@ class NotificationsSendMail extends Command
 
         $this->line("Sending notifications > {$fromId} <= {$toId}");
 
+        $userIds = UserNotification::hasMailDelivery()
+            ->where('notification_id', '>', $fromId)
+            ->where('notification_id', '<=', $toId)
+            ->groupBy('user_id')
+            ->select('user_id');
+
         $users = User::whereIn(
             'user_id',
-            UserNotification::where('notification_id', '>', $fromId)->groupBy('user_id')->select('user_id')
+            $userIds
         )->get();
 
         foreach ($users as $user) {

@@ -6,6 +6,7 @@
 namespace App\Jobs;
 
 use App\Mail\UserNotificationDigest as UserNotificationDigestMail;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -29,15 +30,13 @@ class UserNotificationDigest implements ShouldQueue
 
     public function handle()
     {
-        $notifications = $this->user->userNotifications()
-            ->where('notification_id', '>', $this->fromId)
-            ->where('notification_id', '<=', $this->toId)
-            ->with('notification')
-            ->get()
-            ->filter(function ($userNotification) {
-                return $userNotification->isMail();
+        $notifications = Notification
+            ::whereHas('userNotifications', function ($q) {
+                $q->where('user_id', $this->user->getKey())->hasMailDelivery();
             })
-            ->pluck('notification')
+            ->where('id', '>', $this->fromId)
+            ->where('id', '<=', $this->toId)
+            ->get()
             ->all();
 
         if (empty($notifications)) {
