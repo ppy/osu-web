@@ -14,7 +14,7 @@ class AddDeliveryToUserNotifications extends Migration
     public function up()
     {
         Schema::table('user_notifications', function (Blueprint $table) {
-            $table->unsignedTinyInteger('delivery')->default(0)->after('is_read');
+            $table->unsignedTinyInteger('delivery')->default(1)->after('is_read');
         });
     }
 
