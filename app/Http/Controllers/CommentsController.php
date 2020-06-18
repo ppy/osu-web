@@ -7,7 +7,6 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\CommentBundle;
-use App\Libraries\CommentBundleParams;
 use App\Libraries\MorphMap;
 use App\Models\Comment;
 use App\Models\Log;
@@ -93,7 +92,7 @@ class CommentsController extends Controller
             $commentable = $class::findOrFail($id);
         }
 
-        $params['sort'] = $params['sort'] ?? CommentBundleParams::DEFAULT_SORT;
+        $params['sort'] = $params['sort'] ?? Comment::DEFAULT_SORT;
         $commentBundle = new CommentBundle(
             $commentable ?? null,
             ['params' => $params]
