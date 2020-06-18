@@ -21,7 +21,7 @@ use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Genre;
 use App\Models\Language;
-use App\Models\Multiplayer\Match;
+use App\Models\Match\Match;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;

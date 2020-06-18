@@ -5,7 +5,7 @@
 
 namespace App\Transformers\Multiplayer;
 
-use App\Models\Multiplayer\Event;
+use App\Models\Match\Event;
 use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
 

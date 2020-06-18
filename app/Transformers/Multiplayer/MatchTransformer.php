@@ -5,7 +5,7 @@
 
 namespace App\Transformers\Multiplayer;
 
-use App\Models\Multiplayer\Match;
+use App\Models\Match\Match;
 use App\Transformers\TransformerAbstract;
 
 class MatchTransformer extends TransformerAbstract

@@ -5,7 +5,7 @@
 
 namespace App\Transformers\Multiplayer;
 
-use App\Models\Multiplayer\Game;
+use App\Models\Match\Game;
 use App\Transformers\BeatmapCompactTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\TransformerAbstract;

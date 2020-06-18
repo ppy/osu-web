@@ -5,7 +5,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Multiplayer\Match;
+use App\Models\Match\Match;
 use App\Models\User;
 use App\Transformers\Multiplayer\EventTransformer;
 use App\Transformers\Multiplayer\MatchTransformer;
