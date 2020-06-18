@@ -60,13 +60,11 @@ class ScoreTransformer extends TransformerAbstract
 
     public function includeMatch($score)
     {
-        return $this->item($score, function ($score) {
-            return [
-                'slot' => $score->slot,
-                'team' => $score->team,
-                'pass' => $score->pass,
-            ];
-        });
+        return $this->primitive([
+            'slot' => $score->slot,
+            'team' => $score->team,
+            'pass' => $score->pass,
+        ]);
     }
 
     public function includeRankCountry($score)
