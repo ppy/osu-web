@@ -118,8 +118,8 @@ export class Content extends React.PureComponent
       return scores if !game.end_time?
 
       for score in game.scores
-        continue if !score.multiplayer.pass
-        scores[score.multiplayer.team] += score.score
+        continue if !score.match.pass
+        scores[score.match.team] += score.score
 
       @scoresCache[eventIndex] = scores
 

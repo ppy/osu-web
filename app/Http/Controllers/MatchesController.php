@@ -7,8 +7,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Match\Match;
 use App\Models\User;
-use App\Transformers\Multiplayer\EventTransformer;
-use App\Transformers\Multiplayer\MatchTransformer;
+use App\Transformers\Match\EventTransformer;
+use App\Transformers\Match\MatchTransformer;
 use App\Transformers\UserCompactTransformer;
 
 class MatchesController extends Controller
@@ -92,7 +92,7 @@ class MatchesController extends Controller
         $events = json_collection(
             $events,
             new EventTransformer,
-            ['game.beatmap.beatmapset', 'game.scores.multiplayer']
+            ['game.beatmap.beatmapset', 'game.scores.match']
         );
 
         return [

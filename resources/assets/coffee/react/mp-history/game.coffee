@@ -20,7 +20,7 @@ export class Game extends React.Component
     difference = Math.abs @props.teamScores.blue - @props.teamScores.red
 
     scores = game.scores.map (m) ->
-      m.teamRank = if m.multiplayer.team == winningTeam then 1 else 2
+      m.teamRank = if m.match.team == winningTeam then 1 else 2
       m
 
     scores = _.orderBy scores, ['teamRank', 'score'], ['asc', 'desc']
@@ -37,7 +37,7 @@ export class Game extends React.Component
             score: m
             mode: game.mode
             users: @props.users
-            key: m.multiplayer.slot
+            key: m.match.slot
 
       if showTeams && @props.event.game.end_time
         div {},

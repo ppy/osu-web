@@ -18,7 +18,7 @@ class ScoreTransformer extends TransformerAbstract
         'rank_global',
         'weight',
         'user',
-        'multiplayer',
+        'match',
     ];
 
     public function transform($score)
@@ -58,7 +58,7 @@ class ScoreTransformer extends TransformerAbstract
         return $ret;
     }
 
-    public function includeMultiplayer($score)
+    public function includeMatch($score)
     {
         return $this->item($score, function ($score) {
             return [
