@@ -34,6 +34,8 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         return "{$notification->notifiable_type}.{$category}";
     }
 
+    abstract public static function getMailLink(Notification $notification): string;
+
     public static function getNotificationClass(string $name)
     {
         $class = get_class_namespace(static::class).'\\'.studly_case($name);

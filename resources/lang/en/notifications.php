@@ -163,8 +163,8 @@ return [
             'forum_topic_reply' => 'There are new posts in :title',
         ],
 
-        'user_achievement' => [
+        'user' => [
             'user_achievement_unlock' => ':title was unlocked!',
         ],
-    ]
+    ],
 ];

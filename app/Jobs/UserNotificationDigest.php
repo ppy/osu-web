@@ -44,6 +44,6 @@ class UserNotificationDigest implements ShouldQueue
         }
 
         // TODO: catch and log errors?
-        Mail::to($this->user)->sendNow(new UserNotificationDigestMail($notifications));
+        Mail::to($this->user)->sendNow(new UserNotificationDigestMail($notifications, $this->user));
     }
 }

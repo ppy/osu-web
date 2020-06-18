@@ -8,6 +8,7 @@ namespace App\Mail;
 use App\Exceptions\InvalidNotificationException;
 use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Models\Notification;
+use App\Models\User;
 use Illuminate\Mail\Mailable;
 
 // Not queueable to avoid trap of too many serialize/unserialize.
@@ -22,8 +23,9 @@ class UserNotificationDigest extends Mailable
      *
      * @return void
      */
-    public function __construct(array $notifications)
+    public function __construct(array $notifications, User $user)
     {
+        $this->user = $user;
         $this->notifications = $notifications;
     }
 
@@ -38,9 +40,14 @@ class UserNotificationDigest extends Mailable
                 return;
             }
 
+            // remove anything not a string because trans doesn't like it.
+            $details = array_filter($notification->details ?? [], function ($value) {
+                return is_string($value);
+            });
+
             $this->groups[$key] = [
                 'link' => $class::getMailLink($notification),
-                'text' => trans($baseKey, $notification->details),
+                'text' => trans($baseKey, $details),
             ];
         } catch (InvalidNotificationException $e) {
             log_error($e);
@@ -65,6 +72,8 @@ class UserNotificationDigest extends Mailable
             $lines[] = '';
         }
 
-        return $this->text('emails.user_new_notifications', compact('lines'));
+        $user = $this->user;
+
+        return $this->text('emails.user_notification_digest', compact('lines', 'user'));
     }
 }
