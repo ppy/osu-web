@@ -1310,7 +1310,7 @@ function get_param_value($input, $type)
         case 'int[]':
             return get_arr($input, 'get_int');
         default:
-            return presence((string) $input);
+            return presence(get_string($input));
     }
 }
 
