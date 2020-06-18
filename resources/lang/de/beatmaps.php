@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Hier tippen um auf General zu posten (:version)',
             'generalAll' => 'Hier tippen um auf General zu posten (Alle Schwierigkeitsstufen)',
+            'review' => 'Tippe hier, um eine Rezension zu posten',
             'timeline' => 'Hier tippen um auf die Timeline zu posten (:version)',
         ],
 
@@ -69,7 +70,7 @@ return [
             'hype' => 'Hype!',
             'mapper_note' => 'Anmerkung',
             'nomination_reset' => 'Nominierung zurücksetzen',
-            'praise' => 'Loben',
+            'praise' => 'Lob',
             'problem' => 'Problem',
             'review' => 'Bewertung',
             'suggestion' => 'Vorschlag',
@@ -77,7 +78,7 @@ return [
 
         'mode' => [
             'events' => 'Verlauf',
-            'general' => 'Allgemein',
+            'general' => 'Allgemein :scope',
             'reviews' => 'Rezensionen',
             'timeline' => 'Timeline',
             'scopes' => [
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'Strg-C im Editor und in deine Nachricht einfügen, um eine Timestamp hinzuzufügen!',
             'title' => 'Neue Diskussion',
             'unpin' => 'Lösen',
+        ],
+
+        'review' => [
+            'new' => 'Neue Rezension',
+            'embed' => [
+                'delete' => 'Löschen',
+                'missing' => '[DISKUSSION GELÖSCHT]',
+                'unlink' => 'Verknüpfung aufheben',
+                'unsaved' => 'Nicht gespeichert',
+                'timestamp' => [
+                    'all-diff' => 'Beiträge zu "Alle Schwierigkeitsstufen" können nicht mit einem Zeitstempel versehen werden.',
+                    'diff' => 'Falls dieser/dieses :type mit einem Zeitstempel beginnt, wird er/es unter Timeline angezeigt.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'absatz einfügen',
+                'praise' => 'lob einfügen',
+                'problem' => 'problem einfügen',
+                'suggestion' => 'vorschlag einfügen',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip-Hop',
         'electronic' => 'Electronic',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '4K',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Koreanisch',
         'spanish' => 'Spanisch',
         'swedish' => 'Schwedisch',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Instrumental',
         'other' => 'Andere',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Alle',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Anzahl der Spiele: :count',
         'favourites' => 'Favoriten: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Alle',
+        ],
     ],
 ];

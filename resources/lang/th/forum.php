@@ -28,7 +28,7 @@ return [
         'latest_post' => 'โพสต์ล่าสุด',
 
         'index' => [
-            'title' => '',
+            'title' => 'หน้าแรกของบอร์ด',
         ],
 
         'topics' => [
@@ -62,7 +62,7 @@ return [
 
         'info' => [
             'post_count' => ':count_delimited โพสต์|:count_delimited โพสต์',
-            'topic_starter' => '',
+            'topic_starter' => 'ผู้เริ่มกระทู้',
         ],
     ],
 

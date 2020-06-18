@@ -110,7 +110,7 @@ return [
             '_' => 'ranking',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'wynik',
         ],
         'store_controller' => [
             '_' => 'sklep osu!',

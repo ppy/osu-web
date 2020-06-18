@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Обратно към началото',
         'cancel' => 'Отмяна',
         'change' => 'промяна',
+        'clear' => '',
         'click_to_copy' => 'щракнете, за да копирате в клипборда',
         'click_to_copy_copied' => 'копиранo в клипборда!',
         'close' => '',

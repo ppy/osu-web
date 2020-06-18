@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Skriv her for å legge til på Generelt (:version)',
             'generalAll' => 'Skriv her for å legge til på Generelt (Alle vanskelighetsgrader)',
+            'review' => '',
             'timeline' => 'Skriv her for å legg til på tidslinjen (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'trykk Ctrl+C i redigeringsmodus og lim inn for å legge til et tidsstempel!',
             'title' => 'Ny Diskusjon',
             'unpin' => 'Løsne',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronisk',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Koreansk',
         'spanish' => 'Spansk',
         'swedish' => 'Svensk',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Instrumental',
         'other' => 'Andre',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Alle',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Spillforsøk: :count',
         'favourites' => 'Favoritter: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

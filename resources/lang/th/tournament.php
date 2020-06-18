@@ -37,8 +37,8 @@ return [
         ],
 
         'period' => [
-            'end' => '',
-            'start' => '',
+            'end' => 'สิ้นสุด',
+            'start' => 'เริ่ม',
         ],
 
         'state' => [

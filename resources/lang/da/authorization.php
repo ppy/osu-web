@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Du skal være en fuld nominator for at kunne nominere beatmap sæt med mere end en spiltilstand.',
             'incorrect_state' => 'Fejl i udføringen af handlingen, prøv at genindlæse siden.',
             'owner' => "Kan ikke nominere din egen beatmap.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Kun den oprindelige ejer af tråden og beatmap-ejeren kan løse en diskussion.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Dette beatmap er låst for diskussion.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 

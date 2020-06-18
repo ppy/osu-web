@@ -63,7 +63,7 @@ class ScoresController extends Controller
         return ext_view('scores.show', [
             'score' => $score,
             'scoreJson' => json_item($score, 'Score', [
-                'beatmap',
+                'beatmap.max_combo',
                 'beatmapset',
                 'rank_country',
                 'rank_global',

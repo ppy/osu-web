@@ -53,7 +53,7 @@ return [
     ],
     'dates' => [
         'ended' => 'สิ้นสุดเมื่อวันที่ :date',
-        'ended_no_date' => '',
+        'ended_no_date' => 'จบแล้ว',
 
         'starts' => [
             '_' => 'เริ่ม :date',

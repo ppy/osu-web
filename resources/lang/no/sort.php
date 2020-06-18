@@ -6,6 +6,8 @@
 return [
     '_' => 'Sorter etter',
 
+    'all' => '',
+    'friends' => '',
     'last_visit' => 'Nylig aktiv',
     'new' => 'Nylige',
     'old' => 'Gammel',

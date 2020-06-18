@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute overskrider maksimal længde - kan højest være op til :limit karakterer.',
     'wrong_confirmation' => 'Bekræftelseskoden matchede ikke.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Diskussion er låst.',
-        'first_post' => 'Kan ikke slette det startende opslag.',
-
-        'attributes' => [
-            'message' => 'Beskeden',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Tidsstempel er angivet, men beatmap mangler.',
         'beatmapset_no_hype' => "Beatmappet kan ikke hypes.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Det angivne tidsstempel er længere end længden af beatmappet.',
             'negative' => "Tidsstempel kan ikke være negativt.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Diskussion er låst.',
+        'first_post' => 'Kan ikke slette det startende opslag.',
+
+        'attributes' => [
+            'message' => 'Beskeden',
         ],
     ],
 

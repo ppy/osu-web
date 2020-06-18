@@ -110,7 +110,7 @@ return [
             '_' => 'ranglijst',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'prestatie',
         ],
         'store_controller' => [
             '_' => 'osu!store',

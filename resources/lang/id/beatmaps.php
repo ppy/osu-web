@@ -48,8 +48,8 @@ return [
             ],
 
             'prompt' => [
-                'lock' => 'Alasan untuk membuka kunci',
-                'unlock' => 'Apakah Anda yakin untuk membuka kunci?',
+                'lock' => 'Alasan penguncian',
+                'unlock' => 'Apakah Anda yakin untuk membuka kembali topik diskusi ini?',
             ],
         ],
 
@@ -59,9 +59,10 @@ return [
         ],
 
         'message_placeholder' => [
-            'general' => 'Ketik disini untuk posting ke General (:version)',
-            'generalAll' => 'Ketik disini untuk posting ke General (Semua tingkat kesulitan)',
-            'timeline' => 'Ketik disini untuk posting ke Timeline (:version)',
+            'general' => 'Ketik di sini untuk membuka topik bahasan baru pada Umum (:version)',
+            'generalAll' => 'Ketik di sini untuk membuka topik bahasan baru pada Umum (Semua tingkat kesulitan)',
+            'review' => 'Ketik di sini untuk memulai ulasan baru',
+            'timeline' => 'Ketik di sini untuk membuka topik bahasan baru pada Linimasa (:version)',
         ],
 
         'message_type' => [
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'Salin (ctrl+c) keterangan waktu yang spesifik dari editor dan tempelkan (ctrl+v) pada boks yang tersedia untuk menambahkan keterangan waktu!',
             'title' => 'Diskusi Baru',
             'unpin' => 'Lepas sematan',
+        ],
+
+        'review' => [
+            'new' => 'Ulasan Baru',
+            'embed' => [
+                'delete' => 'Hapus',
+                'missing' => '[TOPIK DISKUSI DIHAPUS]',
+                'unlink' => 'Hapus Tautan',
+                'unsaved' => 'Belum Tersimpan',
+                'timestamp' => [
+                    'all-diff' => 'Anda tidak dapat membubuhkan keterangan waktu pada topik bahasan yang tertuju pada "Umum (Semua tingkat kesulitan)".',
+                    'diff' => 'Apabila terdapat keterangan waktu pada :type ini, topik bahasan yang bersangkutan akan muncul pada Linimasa.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'sisipkan paragraf baru',
+                'praise' => 'sisipkan pujian',
+                'problem' => 'sisipkan masalah',
+                'suggestion' => 'sisipkan saran',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '4K',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Korea',
         'spanish' => 'Spanyol',
         'swedish' => 'Swedia',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Instrumental',
         'other' => 'Lainnya',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Semua',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Jumlah dimainkan: :count',
         'favourites' => 'Jumlah favorit: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Semua',
+        ],
     ],
 ];

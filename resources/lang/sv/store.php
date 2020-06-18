@@ -59,7 +59,7 @@ return [
         'status' => [
             'processing' => [
                 'title' => 'Din betalning har ännu inte bekräftats!',
-                'line_1' => 'Om du redan har betalt, kan vi fortfarande vänta på att få bekräftelse på din betalning. Vänligen uppdatera denna sida om en minut eller två!',
+                'line_1' => 'Om du redan har betalat, kan vi fortfarande vänta på att få bekräftelse på din betalning. Vänligen uppdatera denna sida om en minut eller två!',
                 'line_2' => [
                     '_' => 'Om du stötte på ett problem i kassan, :link',
                     'link_text' => 'klicka här för att återuppta din transaktion',
@@ -71,7 +71,7 @@ return [
     'order' => [
         'paid_on' => 'Beställning slutförd :date',
 
-        'invoice' => 'Visa Faktura',
+        'invoice' => 'Visa faktura',
         'no_orders' => 'Inga beställningar att visa.',
         'resume' => 'Återuppta transaktionen',
 
@@ -96,7 +96,7 @@ return [
             'cancelled' => 'Avbruten',
             'checkout' => 'Förbereder',
             'delivered' => 'Levererad',
-            'paid' => 'Betald',
+            'paid' => 'Betalt',
             'processing' => 'Väntar på bekräftelse',
             'shipped' => 'Skickad',
         ],
@@ -106,7 +106,7 @@ return [
         'name' => 'Namn',
 
         'stock' => [
-            'out' => 'Slut i lager :(. Kolla igen snart.',
+            'out' => 'Detta föremål är för närvarande slut. Kom tillbaka senare!',
             'out_with_alternative' => 'Denna typ är för närvarande slut i lager :(. Testa andra typer eller kolla igen snart.',
         ],
 

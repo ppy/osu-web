@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Quay lại đầu trang',
         'cancel' => 'Hủy',
         'change' => 'đổi',
+        'clear' => '',
         'click_to_copy' => 'click để sao chép vào bộ nhớ tạm',
         'click_to_copy_copied' => 'đã sao chép vào bộ nhớ tạm!',
         'close' => 'Đóng',

@@ -6,6 +6,8 @@
 return [
     '_' => 'Sắp xếp theo',
 
+    'all' => '',
+    'friends' => '',
     'last_visit' => 'Hoạt động gần nhất',
     'new' => 'Gần đây',
     'old' => 'Cũ',

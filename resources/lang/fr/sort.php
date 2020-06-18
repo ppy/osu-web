@@ -6,6 +6,8 @@
 return [
     '_' => 'Trier par',
 
+    'all' => 'Tous',
+    'friends' => 'Amis',
     'last_visit' => 'Récemment actif',
     'new' => 'Récent',
     'old' => 'Ancien',

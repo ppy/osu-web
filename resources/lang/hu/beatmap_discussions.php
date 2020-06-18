@@ -67,6 +67,8 @@ return [
         'go_to_parent' => '',
         'go_to_child' => 'Megbeszélés megtekintése',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => 'érévnytelen értékelés',
             'minimum_issues' => '',

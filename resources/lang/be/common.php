@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Вярнуцца ў пачатак',
         'cancel' => 'Скасаваць',
         'change' => 'змяніць',
+        'clear' => '',
         'click_to_copy' => 'націсніце, каб скапіяваць',
         'click_to_copy_copied' => 'скапіявана!',
         'close' => '',

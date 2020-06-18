@@ -6,6 +6,8 @@ import { route } from 'laroute'
 import { Mods } from 'mods'
 import * as React from 'react'
 import { div, a } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 bn = 'beatmap-score-top'
 
@@ -37,7 +39,7 @@ export ScoreTop = (props) ->
           a
             className: "#{bn}__username js-usercard"
             'data-user-id': props.score.user.id
-            href: route 'users.show', user: props.score.user.id, mode: props.playmode
+            href: route 'users.show', user: props.score.user.id, mode: props.beatmap.playmode
             props.score.user.username
 
           div
@@ -47,7 +49,7 @@ export ScoreTop = (props) ->
 
           a
             href: route 'rankings',
-              mode: props.playmode
+              mode: props.beatmap.playmode
               country: props.score.user.country_code
               type: 'performance'
             el FlagCountry,
@@ -66,13 +68,13 @@ export ScoreTop = (props) ->
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
               osu.trans 'beatmapsets.show.scoreboard.headers.accuracy'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score",
+            div className: classWithModifiers("#{bn}__stat-value", score: true, perfect: props.score.accuracy == 1),
               "#{osu.formatNumber(props.score.accuracy * 100, 2)}%"
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
               osu.trans 'beatmapsets.show.scoreboard.headers.combo'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score",
+            div className: classWithModifiers("#{bn}__stat-value", score: true, perfect: props.score.max_combo == props.beatmap.max_combo),
               "#{osu.formatNumber(props.score.max_combo)}x"
 
         div className: "#{bn}__stats #{bn}__stats--wrappable",

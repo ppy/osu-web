@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => '你必须是一位完整提名者，以提名包含多个游戏模式的谱面。',
             'incorrect_state' => '操作出错了，请尝试刷新页面。',
             'owner' => "不能提名自己的谱面。",
+            'set_metadata' => '您必须在提名之前设置类型和语言。',
         ],
         'resolve' => [
             'not_owner' => '只有楼主和谱面所有者才能标记为已解决。',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => '该谱面因需要探讨而被锁定。',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '您不能更改已提名的谱面信息。如果您认为其不正确，请联系 BN 或 NAT 进行更改。',
         ],
     ],
 

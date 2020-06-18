@@ -12,7 +12,7 @@ return [
             'instructions' => 'klikněte na srdíčko pro přesměrování do osu!store',
         ],
         'why-support' => [
-            'title' => '',
+            'title' => 'Proč bych měl podpořit osu!? Kam jdou peníze?',
 
             'team' => [
                 'title' => 'Podpořit tým',
