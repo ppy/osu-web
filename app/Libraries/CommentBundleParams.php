@@ -28,7 +28,7 @@ class CommentBundleParams
         $this->cursor = null;
         $this->limit = static::DEFAULT_LIMIT;
         $this->page = static::DEFAULT_PAGE;
-        $this->sort = optional($user)->profileCustomization()->comments_sort;
+        $this->sort = optional($user)->profileCustomization()->comments_sort ?? null;
 
         $this->setAll($params);
     }
