@@ -7,8 +7,10 @@ namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
+use App\Libraries\DbCursorHelper;
 use App\Libraries\Multiplayer\Mod;
 use App\Models\Multiplayer\PlaylistItem;
+use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
 use Carbon\Carbon;
 
@@ -21,19 +23,53 @@ class ScoresController extends BaseController
 
     public function index($roomId, $playlistId)
     {
+        static $includes = ['user.country', 'user.cover'];
+
         $playlist = PlaylistItem::where('room_id', $roomId)->where('id', $playlistId)->firstOrFail();
-
-        $scores = json_collection($playlist
-            ->topScores()
-            ->with(['score.user.userProfileCustomization', 'score.user.country'])
-            ->get()
-            ->pluck('score'),
-            'Multiplayer\Score',
-            ['user.country', 'user.cover']
+        $params = request()->all();
+        $cursorHelper = new DbCursorHelper(
+            PlaylistItemUserHighScore::SORTS,
+            PlaylistItemUserHighScore::DEFAULT_SORT,
+            get_string($params['sort'] ?? null)
         );
-        $total = $playlist->topScores()->count();
 
-        return compact('scores', 'total');
+        $sort = $cursorHelper->getSort();
+        $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
+        $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
+
+        $highScoresQuery = $playlist
+            ->highScores()
+            ->cursorSort($sort, $cursor)
+            ->with(['score.user.userProfileCustomization', 'score.user.country'])
+            ->limit($limit + 1); // an extra to check for pagination
+
+        $highScores = $highScoresQuery->get();
+        $hasMore = count($highScores) === $limit + 1;
+        if ($hasMore) {
+            $highScores->pop();
+        }
+        $scoresJson = json_collection($highScores->pluck('score'),
+            'Multiplayer\Score',
+            $includes
+        );
+        $total = $playlist->highScores()->count();
+
+        $user = auth()->user();
+
+        if ($user !== null) {
+            $userScore = optional($playlist->highScores()->where('user_id', $user->getKey()))->score;
+
+            if ($userScore !== null) {
+                $userScoreJson = json_item($userScore, 'Multiplayer\Score', $includes);
+            }
+        }
+
+        return [
+            'scores' => $scoresJson,
+            'total' => $total,
+            'user_score' => $userScoreJson ?? null,
+            'cursor' => $hasMore ? $cursorHelper->next($highScores) : null,
+        ];
     }
 
     public function store($roomId, $playlistId)
