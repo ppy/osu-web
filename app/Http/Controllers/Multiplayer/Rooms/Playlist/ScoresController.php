@@ -65,7 +65,7 @@ class ScoresController extends BaseController
         try {
             $score = $room->completePlay(
                 $roomScore,
-                $this->extractRoomScoreParams(request()->all(), $playlistItem)
+                $this->extractScoreParams(request()->all(), $playlistItem)
             );
 
             return json_item(
@@ -78,7 +78,7 @@ class ScoresController extends BaseController
         }
     }
 
-    private function extractRoomScoreParams(array $params, PlaylistItem $playlistItem)
+    private function extractScoreParams(array $params, PlaylistItem $playlistItem)
     {
         $mods = Mod::parseInputArray(
             $params['mods'] ?? [],
