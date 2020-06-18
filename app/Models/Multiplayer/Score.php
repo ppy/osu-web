@@ -36,7 +36,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property User $user
  * @property int $user_id
  */
-class RoomScore extends Model
+class Score extends Model
 {
     use SoftDeletes;
 

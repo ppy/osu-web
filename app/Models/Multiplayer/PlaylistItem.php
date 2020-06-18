@@ -22,7 +22,7 @@ use App\Models\Model;
  * @property Room $room
  * @property int $room_id
  * @property int|null $ruleset_id
- * @property \Illuminate\Database\Eloquent\Collection $scores RoomScore
+ * @property \Illuminate\Database\Eloquent\Collection $scores Score
  * @property \Carbon\Carbon|null $updated_at
  */
 class PlaylistItem extends Model
@@ -88,7 +88,7 @@ class PlaylistItem extends Model
 
     public function scores()
     {
-        return $this->hasMany(RoomScore::class);
+        return $this->hasMany(Score::class);
     }
 
     public function topScores()

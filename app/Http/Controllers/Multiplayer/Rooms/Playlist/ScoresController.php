@@ -28,7 +28,7 @@ class ScoresController extends BaseController
             ->with(['score.user.userProfileCustomization', 'score.user.country'])
             ->get()
             ->pluck('score'),
-            'Multiplayer\RoomScore',
+            'Multiplayer\Score',
             ['user.country', 'user.cover']
         );
         $total = $playlist->topScores()->count();
@@ -44,7 +44,7 @@ class ScoresController extends BaseController
 
         return json_item(
             $score,
-            'Multiplayer\RoomScore'
+            'Multiplayer\Score'
         );
     }
 
@@ -70,7 +70,7 @@ class ScoresController extends BaseController
 
             return json_item(
                 $score,
-                'Multiplayer\RoomScore',
+                'Multiplayer\Score',
                 ['user.country']
             );
         } catch (InvariantException $e) {

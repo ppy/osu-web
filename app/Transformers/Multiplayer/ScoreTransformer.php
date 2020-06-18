@@ -5,17 +5,17 @@
 
 namespace App\Transformers\Multiplayer;
 
-use App\Models\Multiplayer\RoomScore;
+use App\Models\Multiplayer\Score;
 use App\Transformers\TransformerAbstract;
 use App\Transformers\UserCompactTransformer;
 
-class RoomScoreTransformer extends TransformerAbstract
+class ScoreTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'user',
     ];
 
-    public function transform(RoomScore $score)
+    public function transform(Score $score)
     {
         return [
             'id' => $score->id,
@@ -36,7 +36,7 @@ class RoomScoreTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeUser(RoomScore $score)
+    public function includeUser(Score $score)
     {
         return $this->item(
             $score->user,
