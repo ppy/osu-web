@@ -159,7 +159,7 @@ return [
                     'button' => '画像のアップロード',
                     'dropzone' => 'ここにドロップしてアップロード',
                     'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
-                    'size_info' => '推奨の画像サイズは2800x620です',
+                    'size_info' => '推奨の画像サイズは2400x620です',
                     'too_large' => 'アップロードファイルが大きすぎます。',
                     'unsupported_format' => 'サポートされていないフォーマットです。',
 
@@ -307,7 +307,7 @@ return [
                 'empty' => 'まだ記録がありません！',
                 'not_ranked' => 'Rankedビートマップのみがppを与えます。',
                 'pp_weight' => '割合 :percentage',
-                'view_details' => '',
+                'view_details' => '詳細の表示',
                 'title' => 'ランク',
 
                 'best' => [

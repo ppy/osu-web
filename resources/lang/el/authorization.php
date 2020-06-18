@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Πρέπει να είστε ένας πλήρης nominator για να κάνετε nominate beatmap sets με περισσότερα από ένα game mode.',
             'incorrect_state' => 'Σφάλμα κατά την εκτέλεση αυτής της ενέργειας, δοκιμάστε να ανανεώσετε τη σελίδα.',
             'owner' => "Δεν μπορείτε να κάνετε nominate το δικό σας beatmap.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Μόνο οι δημιουργοί του thread και του beatmap μπορούν να επιλύσουν τη συζήτηση.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Αυτό το beatmap είναι κλειδωμένο προς συζήτηση.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 

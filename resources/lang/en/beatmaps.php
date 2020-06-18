@@ -275,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
+        'metal' => 'Metal',
+        'classical' => 'Classical',
+        'folk' => 'Folk',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -312,8 +316,11 @@ return [
         'korean' => 'Korean',
         'spanish' => 'Spanish',
         'swedish' => 'Swedish',
+        'russian' => 'Russian',
+        'polish' => 'Polish',
         'instrumental' => 'Instrumental',
         'other' => 'Other',
+        'unspecified' => 'Unspecified',
     ],
     'played' => [
         'any' => 'Any',

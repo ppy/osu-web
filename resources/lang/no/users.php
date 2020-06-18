@@ -159,7 +159,7 @@ return [
                     'button' => 'Last opp bilde',
                     'dropzone' => 'Slipp her for å laste opp',
                     'dropzone_info' => 'Du kan også slippe bildet ditt her for å laste det opp',
-                    'size_info' => 'Størrelsen på banneret bør være 2800x620',
+                    'size_info' => 'Størrelsen på banneret bør være 2400x620',
                     'too_large' => 'Den opplastede filen er for stor.',
                     'unsupported_format' => 'Formatet støttes ikke.',
 

@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Devi essere un nominatore completo per nominare dei set di beatmap con più di una modalità di gioco.',
             'incorrect_state' => 'Errore nell\'eseguire questa azione, prova a ricaricare la pagina.',
             'owner' => "Non puoi nominare la tua beatmap.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Solo l\'autore del topic e il creatore della mappa possono risolvere una discussione.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Questa beatmap è bloccata per la discussione.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 

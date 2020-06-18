@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute överskred maximal längd - kan endast vara upp till :limit tecken.',
     'wrong_confirmation' => 'Bekräftelse matchar inte.',
 
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Diskussion är låst.',
-        'first_post' => 'Kan inte radera ursprungs inlägg.',
-
-        'attributes' => [
-            'message' => 'Meddelandet',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Tidsstämpel är angiven men beatmap saknas.',
         'beatmapset_no_hype' => "Denna beatmap kan inte hypas.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Angivna tidsstämpeln är bortom längden på beatmapen.',
             'negative' => "Tidsstämpel kan inte vara negativ.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Diskussionen är låst.',
+        'first_post' => 'Kan inte radera startinlägget.',
+
+        'attributes' => [
+            'message' => 'Meddelandet',
         ],
     ],
 

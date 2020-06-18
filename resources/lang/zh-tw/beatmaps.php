@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => '在此處輸入以發佈至整體 (:version)',
             'generalAll' => '在此處輸入以發佈至整體 (所有難度)',
+            'review' => '',
             'timeline' => '在此處輸入以發佈至時間軸 (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => '在編輯模式下按 Ctrl+C 並至您輸入的對話框中按 Ctrl+V 以加入時間戳！',
             'title' => '新的討論',
             'unpin' => '取消釘選',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '刪除',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => '新奇',
         'hip-hop' => '嘻哈',
         'electronic' => '電音',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '4K',
@@ -291,8 +316,11 @@ return [
         'korean' => '韓語',
         'spanish' => '西班牙語',
         'swedish' => '瑞典語',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => '樂器演奏',
         'other' => '其他',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => '所有',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => '遊玩次數：:count',
         'favourites' => '收藏次數：:count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '全部',
+        ],
     ],
 ];

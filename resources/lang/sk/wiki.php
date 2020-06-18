@@ -1,30 +1,16 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'show' => [
         'fallback_translation' => 'Vyžadovaná stránka ešte nebola preložená do vybraného jazyka (:language). Zobrazuje Anglickú verziu.',
-        'languages' => 'Jazyky',
+        'incomplete_or_outdated' => 'Táto stránka je nedorobené alebo zastaraná. Ak chcete, môžete pomôcť s aktualizáciou článku!',
         'missing' => 'Požadovanú stránku ":keyword" sa nepodarilo nájsť.',
         'missing_title' => 'Nenašlo Sa',
         'missing_translation' => 'Požadovaná stránka nebola nájdená vo zvolenom jazyku.',
+        'needs_cleanup_or_rewrite' => 'Táto stránka nespĺňa štandardy osu! wiki a potrebuje byť vylepšená alebo prepísané. Ak chcete, môžete pomôcť s aktualizáciou článku!',
         'search' => 'Prehliadať existujúce stránky pre :link.',
         'toc' => 'Obsah',
 

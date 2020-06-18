@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute azami uzunluğu aştı - sadece :limit karakter olabilir.',
     'wrong_confirmation' => 'Doğrulama eşleşmiyor.',
 
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Tartışma kilitli.',
-        'first_post' => 'Başlangıç yazısı silinemez.',
-
-        'attributes' => [
-            'message' => 'Mesaj',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Zaman damgası belirtildi, ancak beatmap eksik.',
         'beatmapset_no_hype' => "Bu beatmap'e destek oyu verilemez.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Belirtilen zaman damgası beatmap\'in uzunluğunu aşmakta.',
             'negative' => "Zaman damgası negatif olamaz.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Tartışma kilitli.',
+        'first_post' => 'Başlangıç yazısı silinemez.',
+
+        'attributes' => [
+            'message' => 'Mesaj',
         ],
     ],
 

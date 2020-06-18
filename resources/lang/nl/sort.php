@@ -6,6 +6,8 @@
 return [
     '_' => 'Sorteer op',
 
+    'all' => 'Alles',
+    'friends' => 'Vrienden',
     'last_visit' => 'Onlangs actief',
     'new' => 'Recent',
     'old' => 'Oud',

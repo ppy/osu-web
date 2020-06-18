@@ -4,8 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'фільтрувати по країні',
+    'countries' => [
+        'all' => 'Усі',
+    ],
+
+    'filter' => [
+        'title' => 'Показати',
+
+        'variant' => [
+            'title' => 'Варіант',
+        ],
     ],
 
     'type' => [

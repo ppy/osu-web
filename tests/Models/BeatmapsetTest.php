@@ -114,7 +114,7 @@ class BeatmapsetTest extends TestCase
     {
         $beatmapset = $this->createBeatmapset([
             'genre_id' => Genre::UNSPECIFIED,
-            // FIXME: 'language_id' => Language::UNSPECIFIED,
+            'language_id' => Language::UNSPECIFIED,
         ]);
         $nominator = factory(User::class)->create();
         $nominator->userGroups()->create(['group_id' => app('groups')->byIdentifier('bng')->getKey()]);
@@ -238,6 +238,7 @@ class BeatmapsetTest extends TestCase
         parent::setUp();
 
         factory(Genre::class)->create(['genre_id' => Genre::UNSPECIFIED]);
+        factory(Language::class)->create(['language_id' => Language::UNSPECIFIED]);
         $this->fakeGenre = factory(Genre::class)->create();
         $this->fakeLanguage = factory(Language::class)->create();
     }

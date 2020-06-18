@@ -21,7 +21,7 @@ return [
         'kudosu_denied' => 'Estás recusado de obter kudosu.',
         'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi eliminada por isso poderá não ser mais discutida.',
         'message_placeholder_locked' => 'A discussão para este beatmap foi desativada.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_silenced' => "Não é possível publicar uma discussão enquanto estiveres silenciado.",
         'message_type_select' => 'Selecionar tipo de comentário',
         'reply_notice' => 'Prime ENTER para responder.',
         'reply_placeholder' => 'Escreve a tua resposta aqui',
@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Escreve aqui para publicar em Geral (:version)',
             'generalAll' => 'Escreve aqui para publicar em Geral (Todas as dificuldades)',
+            'review' => '',
             'timeline' => 'Escreve aqui para publicar na Cronologia (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'faz ctrl-c no modo de edição e cola na tua mensagem para adicionares uma marca de tempo!',
             'title' => 'Nova discussão',
             'unpin' => 'Desafixar',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Inovação',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Eletrónica',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Coreano',
         'spanish' => 'Espanhol',
         'swedish' => 'Sueco',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Instrumental',
         'other' => 'Outro',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Qualquer',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Partidas jogadas: :count',
         'favourites' => 'Favoritos: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

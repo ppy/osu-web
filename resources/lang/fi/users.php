@@ -159,7 +159,7 @@ return [
                     'button' => 'Lataa kuva',
                     'dropzone' => 'Pudota tiedosto tähän ladataksesi',
                     'dropzone_info' => 'Voit myös lähettää kuvan pudottamalla sen tähän',
-                    'size_info' => 'Kansikuvan kuuluisi olla 2800x620 pikseliä',
+                    'size_info' => 'Kansikuvan kuuluisi olla 2400x620 pikseliä',
                     'too_large' => 'Lähetetty tiedosto on liian iso.',
                     'unsupported_format' => 'Tiedostomuotoa ei tueta.',
 

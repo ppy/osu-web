@@ -159,7 +159,7 @@ return [
                     'button' => 'Carregar imagem',
                     'dropzone' => 'Larga aqui para carregar',
                     'dropzone_info' => 'Também podes largar aqui a tua imagem para carregá-la',
-                    'size_info' => 'O tamanho da capa deverá ter 2800x620',
+                    'size_info' => 'O tamanho da capa deverá ter 2400x620',
                     'too_large' => 'O ficheiro carregado é demasiado grande.',
                     'unsupported_format' => 'Formato não suportado.',
 
@@ -307,7 +307,7 @@ return [
                 'empty' => 'Nenhum registo de desempenhos espectaculares ainda :(',
                 'not_ranked' => 'Somente beatmaps classificados é que dão pp.',
                 'pp_weight' => ':percentage ponderada',
-                'view_details' => '',
+                'view_details' => 'Ver detalhes',
                 'title' => 'Classificações',
 
                 'best' => [

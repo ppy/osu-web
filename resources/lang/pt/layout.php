@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Reproduzir a próxima faixa automaticamente',
     ],
 
     'defaults' => [

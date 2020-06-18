@@ -6,6 +6,8 @@
 return [
     '_' => 'Sortera efter',
 
+    'all' => 'Alla',
+    'friends' => 'Vänner',
     'last_visit' => 'Nyligen aktiva',
     'new' => 'Nyligen',
     'old' => 'Gammal',
@@ -15,6 +17,6 @@ return [
 
     'forum_topics' => [
         'new' => 'Senaste svar',
-        'feature_votes' => 'Stjärn-priotitet ',
+        'feature_votes' => 'Stjärnprioritet',
     ],
 ];

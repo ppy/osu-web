@@ -7,7 +7,9 @@ namespace Tests\Libraries;
 
 use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\InvariantException;
-use App\Jobs\BroadcastNotification;
+use App\Jobs\Notifications\BeatmapsetDiscussionQualifiedProblem;
+use App\Jobs\Notifications\BeatmapsetDisqualify;
+use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Libraries\BeatmapsetDiscussionReview;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -236,9 +238,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
 
         // ensure a disqualification notification is dispatched
-        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
-        });
+        Queue::assertPushed(BeatmapsetDisqualify::class);
         $this->runFakeQueue();
         Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
@@ -278,9 +278,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($beatmapset->nominations, 0);
 
         // ensure a nomination reset notification is dispatched
-        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return $job->getName() === Notification::BEATMAPSET_RESET_NOMINATIONS;
-        });
+        Queue::assertPushed(BeatmapsetResetNominations::class);
         $this->runFakeQueue();
         Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
@@ -314,9 +312,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['qualified']);
 
         // ensure a new problem notification is dispatched
-        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return $job->getName() === Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM;
-        });
+        Queue::assertPushed(BeatmapsetDiscussionQualifiedProblem::class);
         $this->runFakeQueue();
         Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
@@ -545,9 +541,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['pending']);
 
         // ensure a disqualification notification is dispatched
-        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
-        });
+        Queue::assertPushed(BeatmapsetDisqualify::class);
         $this->runFakeQueue();
         Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
@@ -590,9 +584,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($beatmapset->nominations, 0);
 
         // ensure a nomination reset notification is dispatched
-        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return $job->getName() === Notification::BEATMAPSET_RESET_NOMINATIONS;
-        });
+        Queue::assertPushed(BeatmapsetResetNominations::class);
         $this->runFakeQueue();
         Event::assertDispatched(NewPrivateNotificationEvent::class);
     }
@@ -628,9 +620,7 @@ class BeatmapsetDiscussionReviewTest extends TestCase
         $this->assertSame($beatmapset->approved, Beatmapset::STATES['qualified']);
 
         // ensure a new problem notification is dispatched
-        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return $job->getName() === Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM;
-        });
+        Queue::assertPushed(BeatmapsetDiscussionQualifiedProblem::class);
         $this->runFakeQueue();
         Event::assertDispatched(NewPrivateNotificationEvent::class);
     }

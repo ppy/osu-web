@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute depășește lungimea maximă - poate fi doar până la :limit de caractere.',
     'wrong_confirmation' => 'Confirmarea nu se potrivește.',
 
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Discuția este închisă.',
-        'first_post' => 'Nu se poate șterge postarea de pornire.',
-
-        'attributes' => [
-            'message' => 'Mesajul',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Marcajul de timp este specificat dar beatmapul lipsește.',
         'beatmapset_no_hype' => "Acest beatmap nu poate fi hyped.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Marcajul de timp specificat este dincolo de lungimea beatmapului.',
             'negative' => "Marcajul de timp nu poate fi negativ.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Discuția este închisă.',
+        'first_post' => 'Nu se poate șterge postarea de pornire.',
+
+        'attributes' => [
+            'message' => 'Mesajul',
         ],
     ],
 

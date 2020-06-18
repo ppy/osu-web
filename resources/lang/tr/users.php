@@ -159,7 +159,7 @@ return [
                     'button' => 'Resim yükle',
                     'dropzone' => 'Yüklemek için dosyayı bırak',
                     'dropzone_info' => 'Yüklemek için resmi buraya da bırakabilirsiniz',
-                    'size_info' => 'Kapak boyutu 2800x620 olmalı',
+                    'size_info' => 'Kapak boyutu 2400x620 olmalı',
                     'too_large' => 'Yüklenen dosya boyutu çok büyük.',
                     'unsupported_format' => 'Desteklenmeyen biçim.',
 
@@ -307,7 +307,7 @@ return [
                 'empty' => 'Henüz kayda değer bir performans kaydı yok. :(',
                 'not_ranked' => 'Sadece dereceli beatmapler pp verir.',
                 'pp_weight' => 'ağırlıklı: yüzde',
-                'view_details' => '',
+                'view_details' => 'Ayrıntıları Göster',
                 'title' => 'Dereceler',
 
                 'best' => [

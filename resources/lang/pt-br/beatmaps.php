@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Digite aqui para publicar em Geral (:version)',
             'generalAll' => 'Digite aqui para publicar em Geral (Todas as dificuldades)',
+            'review' => 'Digite aqui para postar uma revisão',
             'timeline' => 'Digite aqui para publicar em Linha do Tempo (:version)',
         ],
 
@@ -88,10 +89,30 @@ return [
 
         'new' => [
             'pin' => 'Fixar',
-            'timestamp' => 'Timestamp',
+            'timestamp' => 'Marcação de tempo',
             'timestamp_missing' => 'ctrl-c no editor e ctrl-v na sua mensagem para adicionar uma timestamp!',
             'title' => 'Nova Discussão',
             'unpin' => 'Desafixar',
+        ],
+
+        'review' => [
+            'new' => 'Nova Revisão',
+            'embed' => [
+                'delete' => 'Excluir',
+                'missing' => '[DISCUSSÃO EXCLUÍDA]',
+                'unlink' => 'Desvincular',
+                'unsaved' => 'Não salvo',
+                'timestamp' => [
+                    'all-diff' => 'As postagens em "Todas as dificuldades" não podem ser temporizadas.',
+                    'diff' => 'Se este :type começa com marcação de tempo, será mostrado na Linha do Tempo.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'inserir parágrafo',
+                'praise' => 'inserir elogio',
+                'problem' => 'inserir problema',
+                'suggestion' => 'inserir sugestão',
+            ],
         ],
 
         'show' => [
@@ -208,7 +229,7 @@ return [
                 'difficulty' => 'Dificuldade',
                 'favourites' => 'Favoritos',
                 'updated' => 'Atualizado',
-                'ranked' => 'Ranqueado',
+                'ranked' => 'Ranqueados',
                 'rating' => 'Avaliação',
                 'plays' => 'Vezes jogadas',
                 'relevance' => 'Relevância',
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '4K',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Coreano',
         'spanish' => 'Espanhol',
         'swedish' => 'Sueco',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Instrumental',
         'other' => 'Outro',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Todos',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Vezes jogadas :count',
         'favourites' => 'Favoritos :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Todos',
+        ],
     ],
 ];

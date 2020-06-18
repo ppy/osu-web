@@ -26,6 +26,7 @@ return [
         'back_to_top' => '返回頂部',
         'cancel' => '取消',
         'change' => '變更',
+        'clear' => '',
         'click_to_copy' => '點擊以複製到剪貼簿',
         'click_to_copy_copied' => '已複製到剪貼簿！',
         'close' => '關閉',

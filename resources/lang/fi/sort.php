@@ -6,6 +6,8 @@
 return [
     '_' => 'Lajittele',
 
+    'all' => '',
+    'friends' => '',
     'last_visit' => 'Äskettäin aktiivinen',
     'new' => 'Viimeisin',
     'old' => 'Vanha',

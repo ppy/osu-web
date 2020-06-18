@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => ':username による「:title」への新しい投稿',
                 'beatmapset_discussion_post_new_compact' => ':username による新しい投稿: 「:content」',
                 'beatmapset_discussion_post_new_compact_empty' => ':username による新しい投稿',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'ビートマップ「:title」ディスカッションのためにロック解除されました。',
                 'beatmapset_discussion_unlock_compact' => 'ディスカッションはアンロックされました。',
             ],

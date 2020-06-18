@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute превишена максимална дължина - може да бъде само до :limit символа.',
     'wrong_confirmation' => 'Потвърждението не съвпада.',
 
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Дискусията е заключена.',
-        'first_post' => 'Не можете да изтриете началната публикация.',
-
-        'attributes' => [
-            'message' => '',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Времевата отметка е зададена, но бийтмапа липсва.',
         'beatmapset_no_hype' => "Този бийтмап не може да бъде надъхван.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Указаната времева отметка е извън дължината на бийтмапа.',
             'negative' => "Времевите отметки не могат да бъдат отрицателни.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Дискусията е заключена.',
+        'first_post' => 'Не можете да изтриете началната публикация.',
+
+        'attributes' => [
+            'message' => '',
         ],
     ],
 

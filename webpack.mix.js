@@ -14,71 +14,115 @@ const TerserPlugin = require('terser-webpack-plugin');
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
 const glob = require('glob');
-let min = '', reactMin = 'development';
+let min = '';
+let reactMin = 'development';
 if (mix.inProduction()) {
   min = '.min';
-  reactMin = 'production.min'
+  reactMin = 'production.min';
 }
 
-const reactComponentSet = function (name) {
+const reactComponentSet = function(name) {
     return [[`resources/assets/coffee/react/${name}.coffee`], `js/react/${name}.js`];
-}
+};
 
-const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
+const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
                          || process.env.PAYMENT_SANDBOX === 'false'
-                         || !process.env.PAYMENT_SANDBOX)
+                         || !process.env.PAYMENT_SANDBOX);
 
 // relative from root?
-const node_root = 'node_modules';
+const nodeRoot = 'node_modules';
 
 const vendor = [
-  path.join(node_root, 'clipboard-polyfill/build/clipboard-polyfill.js'),
-  path.join(node_root, `url-polyfill/url-polyfill${min}.js`),
-  path.join(node_root, 'turbolinks/dist/turbolinks.js'),
-  path.join(node_root, `jquery/dist/jquery${min}.js`),
-  path.join(node_root, 'jquery-ujs/src/rails.js'),
-  path.join(node_root, `qtip2/dist/jquery.qtip${min}.js`),
-  path.join(node_root, 'jquery.scrollto/jquery.scrollTo.js'),
-  path.join(node_root, 'jquery-ui/ui/data.js'),
-  path.join(node_root, 'jquery-ui/ui/scroll-parent.js'),
-  path.join(node_root, 'jquery-ui/ui/widget.js'),
-  path.join(node_root, 'jquery-ui/ui/widgets/mouse.js'),
-  path.join(node_root, 'jquery-ui/ui/widgets/slider.js'),
-  path.join(node_root, 'jquery-ui/ui/widgets/sortable.js'),
-  path.join(node_root, 'jquery-ui/ui/keycode.js'),
-  path.join(node_root, 'timeago/jquery.timeago.js'),
-  path.join(node_root, 'blueimp-file-upload/js/jquery.fileupload.js'),
-  path.join(node_root, 'bootstrap/dist/js/bootstrap.js'),
-  path.join(node_root, 'lodash/lodash.js'),
-  path.join(node_root, 'layzr.js/dist/layzr.js'),
-  path.join(node_root, `react/umd/react.${reactMin}.js`),
-  path.join(node_root, 'react-dom-factories/index.js'),
-  path.join(node_root, `react-dom/umd/react-dom.${reactMin}.js`),
-  path.join(node_root, `prop-types/prop-types${min}.js`),
-  path.join(node_root, 'photoswipe/dist/photoswipe.js'),
-  path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
-  path.join(node_root, `d3/dist/d3${min}.js`),
-  path.join(node_root, 'moment/moment.js'),
-  path.join(node_root, 'js-cookie/src/js.cookie.js'),
-  path.join(node_root, `imagesloaded/imagesloaded.pkgd${min}.js`),
+  path.join(nodeRoot, 'clipboard-polyfill/build/clipboard-polyfill.js'),
+  path.join(nodeRoot, `url-polyfill/url-polyfill${min}.js`),
+  path.join(nodeRoot, 'turbolinks/dist/turbolinks.js'),
+  path.join(nodeRoot, `jquery/dist/jquery${min}.js`),
+  path.join(nodeRoot, 'jquery-ujs/src/rails.js'),
+  path.join(nodeRoot, `qtip2/dist/jquery.qtip${min}.js`),
+  path.join(nodeRoot, 'jquery.scrollto/jquery.scrollTo.js'),
+  path.join(nodeRoot, 'jquery-ui/ui/data.js'),
+  path.join(nodeRoot, 'jquery-ui/ui/scroll-parent.js'),
+  path.join(nodeRoot, 'jquery-ui/ui/widget.js'),
+  path.join(nodeRoot, 'jquery-ui/ui/widgets/mouse.js'),
+  path.join(nodeRoot, 'jquery-ui/ui/widgets/slider.js'),
+  path.join(nodeRoot, 'jquery-ui/ui/widgets/sortable.js'),
+  path.join(nodeRoot, 'jquery-ui/ui/keycode.js'),
+  path.join(nodeRoot, 'timeago/jquery.timeago.js'),
+  path.join(nodeRoot, 'blueimp-file-upload/js/jquery.fileupload.js'),
+  path.join(nodeRoot, 'bootstrap/dist/js/bootstrap.js'),
+  path.join(nodeRoot, 'lodash/lodash.js'),
+  path.join(nodeRoot, 'layzr.js/dist/layzr.js'),
+  path.join(nodeRoot, `react/umd/react.${reactMin}.js`),
+  path.join(nodeRoot, 'react-dom-factories/index.js'),
+  path.join(nodeRoot, `react-dom/umd/react-dom.${reactMin}.js`),
+  path.join(nodeRoot, `prop-types/prop-types${min}.js`),
+  path.join(nodeRoot, 'photoswipe/dist/photoswipe.js'),
+  path.join(nodeRoot, 'photoswipe/dist/photoswipe-ui-default.js'),
+  path.join(nodeRoot, `d3/dist/d3${min}.js`),
+  path.join(nodeRoot, 'moment/moment.js'),
+  path.join(nodeRoot, 'js-cookie/src/js.cookie.js'),
+  path.join(nodeRoot, `imagesloaded/imagesloaded.pkgd${min}.js`),
 ];
 
-vendor.forEach(function (script) {
+vendor.forEach(function(script) {
   if (!fs.existsSync(script)) {
     throw new Error(`${script} doesn't exist`);
   }
 });
 
-
 let webpackConfig = {
   externals: {
-    "d3": "d3",
-    "lodash": "_",
-    "moment": "moment",
-    "prop-types": "PropTypes",
-    "react": "React",
-    "react-dom": "ReactDOM",
-    "react-dom-factories": "ReactDOMFactories",
+    'd3': 'd3',
+    'lodash': '_',
+    'moment': 'moment',
+    'prop-types': 'PropTypes',
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+    'react-dom-factories': 'ReactDOMFactories',
+  },
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        exclude: /(node_modules)/,
+        loader: 'import-glob-loader',
+        test: /\.(js|coffee)$/,
+      },
+      {
+        // loader for preexisting global coffeescript
+        exclude: [
+          path.resolve(__dirname, 'resources/assets/coffee/react'),
+        ],
+        include: [
+          path.resolve(__dirname, 'resources/assets/coffee'),
+        ],
+        test: /\.coffee$/,
+        use: ['imports-loader?this=>window', 'coffee-loader'],
+      },
+      {
+        // loader for import-based coffeescript
+        include: [
+          path.resolve(__dirname, 'resources/assets/coffee/react'),
+          path.resolve(__dirname, 'resources/assets/lib'),
+        ],
+        test: /\.coffee$/,
+        use: ['coffee-loader'],
+      },
+    ],
+  },
+  optimization: {
+    runtimeChunk: {
+      name: '/js/commons',
+    },
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          chunks: 'initial',
+          minChunks: 2,
+          name: '/js/commons',
+        },
+      },
+    },
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -86,66 +130,22 @@ let webpackConfig = {
       'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
       'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
       'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
-    })
+    }),
   ],
-  optimization: {
-    runtimeChunk: {
-      name: "/js/commons",
-    },
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          name: "/js/commons",
-          chunks: "initial",
-          minChunks: 2,
-        }
-      }
-    }
-  },
   resolve: {
     alias: {
       'ziggy': path.resolve(__dirname, 'resources/assets/js/ziggy.js'),
       'ziggy-route': path.resolve(__dirname, 'vendor/tightenco/ziggy/dist/js/route.js'),
     },
+    extensions: ['*', '.js', '.coffee', '.ts'],
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
       path.resolve(__dirname, 'resources/assets/lib'),
       path.resolve(__dirname, 'resources/assets/coffee/react/_components'),
       path.resolve(__dirname, 'node_modules'),
     ],
-    extensions: ['*', '.js', '.coffee', '.ts'],
-    plugins: [new TsconfigPathsPlugin()]
+    plugins: [new TsconfigPathsPlugin()],
   },
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.(js|coffee)$/,
-        loader: 'import-glob-loader',
-        exclude: /(node_modules)/,
-      },
-      {
-        // loader for preexisting global coffeescript
-        test: /\.coffee$/,
-        include: [
-          path.resolve(__dirname, "resources/assets/coffee"),
-        ],
-        exclude: [
-          path.resolve(__dirname, "resources/assets/coffee/react"),
-        ],
-        use: ['imports-loader?this=>window', 'coffee-loader']
-      },
-      {
-        // loader for import-based coffeescript
-        test: /\.coffee$/,
-        include: [
-          path.resolve(__dirname, "resources/assets/coffee/react"),
-          path.resolve(__dirname, "resources/assets/lib"),
-        ],
-        use: ['coffee-loader']
-      }
-    ]
-  }
 };
 
 if (mix.inProduction()) {
@@ -153,28 +153,28 @@ if (mix.inProduction()) {
     new TerserPlugin({
       sourceMap: true,
       terserOptions: {
-        safari10: true
-      }
+        safari10: true,
+      },
     }),
   ];
 }
 
-if (process.env.SENTRY_RELEASE == 1) {
-  webpackConfig['plugins'].push(
+if (process.env.SENTRY_RELEASE === '1') {
+  webpackConfig.plugins.push(
     new SentryPlugin({
+      apiKey: process.env.SENTRY_API_KEY,
       organisation: process.env.SENTRY_ORG,
       project: process.env.SENTRY_PROJ,
-      apiKey: process.env.SENTRY_API_KEY,
 
       deleteAfterCompile: true,
       exclude: /\.css(\.map)?$/,
-      release: function() {
-        return process.env.GIT_SHA
-      },
       filenameTransform: function(filename) {
-        return '~' + filename
-      }
-    })
+        return '~' + filename;
+      },
+      release: function() {
+        return process.env.GIT_SHA;
+      },
+    }),
   );
 }
 
@@ -182,7 +182,7 @@ mix
 .webpackConfig(webpackConfig)
 .sourceMaps(true, 'source-map', 'source-map')
 .js([
-  'resources/assets/app.js'
+  'resources/assets/app.js',
 ], 'js/app.js')
 .js(...reactComponentSet('artist-page'))
 .js(...reactComponentSet('beatmap-discussions'))
