@@ -29,7 +29,7 @@ export class Score extends React.Component
               user.username
 
             if !@props.score.match.pass
-              span className: 'mp-history-player-score__failed', osu.trans 'multiplayer.match.failed'
+              span className: 'mp-history-player-score__failed', osu.trans 'matches.match.failed'
 
           a
             href: laroute.route 'rankings',
@@ -58,7 +58,7 @@ export class Score extends React.Component
                   osu.formatNumber(@props.score.score)
 
               div className: "mp-history-player-score__stat mp-history-player-score__stat--#{m}", key: m,
-                span className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--small', osu.trans "multiplayer.match.score.stats.#{m}"
+                span className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--small', osu.trans "matches.match.score.stats.#{m}"
                 span className: "mp-history-player-score__stat-number mp-history-player-score__stat-number--#{modifier}", value
 
           div className: 'mp-history-player-score__stat-row',
