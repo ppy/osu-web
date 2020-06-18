@@ -48,8 +48,11 @@ class NotificationsSendMail extends Command
 
         $this->line("Sending notifications > {$fromId} <= {$toId}");
 
-        $userIds = UserNotification::hasMailDelivery()
-            ->where('notification_id', '>', $fromId)
+        // TODO: this query needs more investigation with larger dataset
+        // on whether an index over (notification_id, delivery) would actually be useful;
+        // currently getting inconsistent results...
+        $userIds = UserNotification
+            ::where('notification_id', '>', $fromId)
             ->where('notification_id', '<=', $toId)
             ->groupBy('user_id')
             ->select('user_id');
