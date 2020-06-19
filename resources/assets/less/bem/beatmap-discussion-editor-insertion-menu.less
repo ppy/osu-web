@@ -1,0 +1,75 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-discussion-editor-insertion-menu {
+  @_top: beatmap-discussion-editor-insertion-menu;
+  z-index: 1000;
+  position: fixed;
+  will-change: opacity;
+  transition: opacity ease-in 200ms;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+
+  &::before {
+    content: '';
+    background: @osu-colour-b3;
+    position: absolute;
+    left: 25%;
+    top: 9px;
+    width: 50%;
+    height: 3px;
+    .default-box-shadow();
+    .default-border-radius();
+  }
+
+  &__content {
+    align-items: center;
+    background: @osu-colour-b6;
+    border-radius: 20px;
+    display: flex;
+    font-size: 12px;
+    justify-content: center;
+    text-align: center;
+    width: 100px;
+    height: 20px;
+    color: @osu-colour-f1;
+    will-change: width, height;
+    transition: ease-in-out 100ms;
+    pointer-events: auto;
+
+    overflow: hidden;
+    .default-box-shadow();
+
+    &:hover {
+      width: 150px;
+      height: 30px;
+      margin-top: -5px;
+    }
+
+    &:hover .@{_top}__menu-content {
+      display: block;
+      margin: 0;
+    }
+
+    &:hover > .fas {
+      opacity: 0;
+    }
+  }
+
+  &__menu-content {
+    position: absolute;
+    display: none;
+    background: @osu-colour-b6;
+    z-index: @z-index--blackout-visible;
+    margin-left: 10px;
+    margin-top: -10px;
+    .default-border-radius();
+    .default-box-shadow();
+
+    .@{_top}__hover-menu:hover & {
+      display: flex;
+    }
+  }
+}

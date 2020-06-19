@@ -20,6 +20,7 @@ import {
   slateDocumentIsEmpty,
   toggleFormat,
 } from './editor-helpers';
+import { EditorInsertionMenu } from './editor-insertion-menu';
 import { EditorToolbar } from './editor-toolbar';
 import { parseFromJson } from './review-document';
 import { SlateContext } from './slate-context';
@@ -58,11 +59,11 @@ export default class Editor extends React.Component<Props, State> {
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
   emptyDocTemplate = [{children: [{text: ''}], type: 'paragraph'}];
+  insertMenuRef: React.RefObject<EditorInsertionMenu>;
   localStorageKey: string;
   scrollContainerRef: React.RefObject<HTMLDivElement>;
   slateEditor: ReactEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
-
   private xhr?: JQueryXHR;
 
   constructor(props: Props) {
@@ -71,6 +72,7 @@ export default class Editor extends React.Component<Props, State> {
     this.slateEditor = this.withNormalization(withHistory(withReact(createEditor())));
     this.scrollContainerRef = React.createRef();
     this.toolbarRef = React.createRef();
+    this.insertMenuRef = React.createRef();
 
     let initialValue = this.emptyDocTemplate;
     this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
@@ -94,23 +96,19 @@ export default class Editor extends React.Component<Props, State> {
   blockWrapper = (children: JSX.Element) => {
     return (
       <div className={`${this.bn}__block`}>
-        <div className={`${this.bn}__hover-menu`} contentEditable={false}>
-          <i className='fas fa-plus-circle' />
-          <div className={`${this.bn}__menu-content`}>
-            {this.insertButton('suggestion')}
-            {this.insertButton('problem')}
-            {this.insertButton('praise')}
-            {this.insertButton('paragraph')}
-          </div>
-        </div>
         {children}
       </div>
     );
   }
 
   componentDidMount() {
-    if (this.scrollContainerRef.current && this.toolbarRef.current) {
-      this.toolbarRef.current.setScrollContainer(this.scrollContainerRef.current);
+    if (this.scrollContainerRef.current) {
+      if (this.toolbarRef.current) {
+        this.toolbarRef.current.setScrollContainer(this.scrollContainerRef.current);
+      }
+      if (this.insertMenuRef.current) {
+        this.insertMenuRef.current.setScrollContainer(this.scrollContainerRef.current);
+      }
     }
   }
 
@@ -156,74 +154,6 @@ export default class Editor extends React.Component<Props, State> {
     return ranges;
   }
 
-  insertBlock = (event: React.MouseEvent<HTMLElement>) => {
-    const type = event.currentTarget.dataset.dtype;
-    const beatmapId = this.props.currentBeatmap?.id;
-
-    // find where to insert the new embed (relative to the dropdown menu)
-    const lastChild = event.currentTarget.closest(`.${this.bn}__block`)?.lastChild;
-
-    if (!lastChild) {
-      return;
-    }
-
-    // convert from dom node to document path
-    const node = ReactEditor.toSlateNode(this.slateEditor, lastChild);
-    const path = ReactEditor.findPath(this.slateEditor, node);
-    const at = SlateEditor.end(this.slateEditor, path);
-    let insertNode;
-
-    switch (type) {
-      case 'suggestion': case 'problem': case 'praise':
-        insertNode = {
-          beatmapId,
-          children: [{text: ''}],
-          discussionType: type,
-          type: 'embed',
-        };
-        break;
-      case 'paragraph':
-        insertNode = {
-          children: [{text: ''}],
-          type: 'paragraph',
-        };
-        break;
-    }
-
-    if (!insertNode) {
-      return;
-    }
-
-    Transforms.insertNodes(this.slateEditor, insertNode, { at });
-  }
-
-  insertButton = (type: string) => {
-    let icon = 'fas fa-question';
-
-    switch (type) {
-      case 'praise':
-      case 'problem':
-      case 'suggestion':
-        icon = BeatmapDiscussionHelper.messageType.icon[type];
-        break;
-      case 'paragraph':
-        icon = 'fas fa-indent';
-        break;
-    }
-
-    return (
-      <button
-        type='button'
-        className={`${this.bn}__menu-button ${this.bn}__menu-button--${type}`}
-        data-dtype={type}
-        onClick={this.insertBlock}
-        title={osu.trans(`beatmaps.discussions.review.insert-block.${type}`)}
-      >
-        <i className={icon}/>
-      </button>
-    );
-  }
-
   onChange = (value: SlateNode[]) => {
     if (!this.props.editMode) {
       const content = JSON.stringify(value);
@@ -239,10 +169,13 @@ export default class Editor extends React.Component<Props, State> {
 
     if (ReactEditor.isFocused(this.slateEditor) && this.props.onFocus) {
       this.props.onFocus();
+      // this.hideInsertMenu();
     }
   }
 
   onKeyDown = (event: KeyboardEvent) => {
+    // this.hideInsertMenu();
+
     if (isHotkey('mod+b', event)) {
       event.preventDefault();
       toggleFormat(this.slateEditor, 'bold');
@@ -292,6 +225,7 @@ export default class Editor extends React.Component<Props, State> {
             >
               <div ref={this.scrollContainerRef} className={`${editorClass}__input-area`}>
                 <EditorToolbar ref={this.toolbarRef} />
+                <EditorInsertionMenu currentBeatmap={this.props.currentBeatmap} ref={this.insertMenuRef} />
                 <Editable
                   decorate={this.decorateTimestamps}
                   onKeyDown={this.onKeyDown}
