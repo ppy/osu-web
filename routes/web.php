@@ -416,7 +416,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['auth-custom-a
 });
 
 // Callbacks for legacy systems to interact with
-Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
+Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], function () {
     Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
     Route::post('index-beatmapset/{beatmapset}', 'LegacyInterOpController@indexBeatmapset');
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
@@ -429,6 +429,7 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
     Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
+    Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
