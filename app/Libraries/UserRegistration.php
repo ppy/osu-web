@@ -19,6 +19,10 @@ class UserRegistration
 
     public function __construct($params)
     {
+        $group = $params['group'] ?? 'default';
+        $params['group_id'] = app('groups')->byIdentifier($group)->getKey();
+        unset($params['group']);
+
         $this->user = new User(array_merge([
             'user_permissions' => '',
             'user_interests' => '',
@@ -56,7 +60,7 @@ class UserRegistration
                     throw new ValidationException($this->user->validationErrors());
                 }
 
-                $groupAttrs = ['group_id' => app('groups')->byIdentifier('default')->getKey()];
+                $groupAttrs = ['group_id' => $this->user->group_id];
                 if (!$this->user->userGroups()->create($groupAttrs)) {
                     // mystery failure
                     throw new ModelNotSavedException('failed saving model');
