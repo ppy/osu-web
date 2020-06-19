@@ -11,6 +11,8 @@ use App\Models\User;
 
 class UserAchievementUnlock extends BroadcastNotificationBase
 {
+    const NOTIFICATION_OPTION_NAME = Notification::USER_ACHIEVEMENT_UNLOCK;
+
     protected $achievement;
 
     public static function getBaseKey(Notification $notification): string

@@ -17,6 +17,7 @@ use Event;
 use Mail;
 use Queue;
 use ReflectionClass;
+use Symfony\Component\Finder\Finder;
 
 class BroadcastNotificationTest extends TestCase
 {
@@ -28,6 +29,17 @@ class BroadcastNotificationTest extends TestCase
     public function testAllNotificationNamesHaveNotificationClasses($name)
     {
         $this->assertNotNull(BroadcastNotificationBase::getNotificationClass($name));
+    }
+
+    /**
+     * @dataProvider notificationJobClassesDataProvider
+     */
+    public function testNotificationOptionNameHasDeliveryModes($class)
+    {
+        $predicate = $class::NOTIFICATION_OPTION_NAME === null
+        || in_array($class::NOTIFICATION_OPTION_NAME, UserNotificationOption::HAS_DELIVERY_MODES, true);
+
+        $this->assertTrue($predicate, "NOTIFICATION_OPTION_NAME for {$class} must be null or in UserNotificationOption::HAS_DELIVERY_MODES");
     }
 
     /**
@@ -70,6 +82,20 @@ class BroadcastNotificationTest extends TestCase
         } else {
             Mail::assertNotSent(UserNotificationDigest::class);
         }
+    }
+
+    public function notificationJobClassesDataProvider()
+    {
+        $this->refreshApplication();
+
+        $path = app()->path('Jobs/Notifications');
+        $files = Finder::create()->files()->in($path)->sortByName();
+        foreach ($files as $file) {
+            $baseName = $file->getBasename(".{$file->getExtension()}");
+            $classes[] = ["\\App\\Jobs\\Notifications\\{$baseName}"];
+        }
+
+        return $classes;
     }
 
     public function notificationNamesDataProvider()

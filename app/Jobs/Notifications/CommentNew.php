@@ -13,6 +13,8 @@ use App\Models\User;
 
 class CommentNew extends BroadcastNotificationBase
 {
+    const NOTIFICATION_OPTION_NAME = Notification::COMMENT_NEW;
+
     protected $comment;
 
     public static function getMailLink(Notification $notification): string
