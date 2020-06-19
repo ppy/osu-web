@@ -57,10 +57,10 @@ class ScoresController extends BaseController
         $user = auth()->user();
 
         if ($user !== null) {
-            $userScore = optional($playlist->highScores()->where('user_id', $user->getKey()))->score;
+            $userHighScore = $playlist->highScores()->where('user_id', $user->getKey())->first();
 
-            if ($userScore !== null) {
-                $userScoreJson = json_item($userScore, 'Multiplayer\Score', $includes);
+            if ($userHighScore !== null) {
+                $userScoreJson = json_item($userHighScore->score, 'Multiplayer\Score', $includes);
             }
         }
 
