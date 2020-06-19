@@ -45,6 +45,11 @@ class UserNotificationDigest extends Mailable
                 return is_string($value);
             });
 
+            if ($this->user->getKey() === $notification->source_user_id
+                && trans_exists("{$baseKey}_self", app()->getLocale())) {
+                $baseKey = "{$baseKey}_self";
+            }
+
             $this->groups[$key] = [
                 'link' => $class::getMailLink($notification),
                 'text' => trans($baseKey, $details),
@@ -65,15 +70,9 @@ class UserNotificationDigest extends Mailable
             $this->addToGroups($notification);
         }
 
-        $lines = [];
-        foreach ($this->groups as $key => $values) {
-            $lines[] = $values['text'];
-            $lines[] = $values['link'];
-            $lines[] = '';
-        }
-
+        $groups = array_values($this->groups);
         $user = $this->user;
 
-        return $this->text('emails.user_notification_digest', compact('lines', 'user'));
+        return $this->text('emails.user_notification_digest', compact('groups', 'user'));
     }
 }

@@ -164,7 +164,8 @@ return [
         ],
 
         'user' => [
-            'user_achievement_unlock' => ':title was unlocked!',
+            'user_achievement_unlock' => ':username has unlocked a new medal!',
+            'user_achievement_unlock_self' => 'You\'ve unlocked a new medal!',
         ],
     ],
 ];

@@ -4,8 +4,10 @@
 --}}
 {!! trans('mail.common.hello', ['user' => $user->username]) !!}
 
-@foreach ($lines as $line)
-{{ $line }}
+@foreach ($groups as $group)
+{{ $group['text'] }}
+{{ $group['link'] }}
+
 @endforeach
 
 @include('emails._signature')
