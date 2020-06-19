@@ -98,11 +98,16 @@ class UserRegistration
     {
         $isValid = true;
 
-        foreach (['username', 'user_email', 'password'] as $attribute) {
+        foreach (['username', 'user_email'] as $attribute) {
             if (!present($this->user->$attribute)) {
                 $this->user->validationErrors()->add($attribute, 'required');
                 $isValid = false;
             }
+        }
+
+        if (!present($this->user->password) && !present($this->user->user_password)) {
+            $this->user->validationErrors()->add('password', 'required');
+            $isValid = false;
         }
 
         return $isValid;
