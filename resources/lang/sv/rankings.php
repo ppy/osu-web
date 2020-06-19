@@ -4,8 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'filtrerad efter land',
+    'countries' => [
+        'all' => 'Alla',
+    ],
+
+    'filter' => [
+        'title' => 'Visa',
+
+        'variant' => [
+            'title' => 'Variant',
+        ],
     ],
 
     'type' => [
@@ -29,7 +37,7 @@ return [
         'play_count' => 'Antal Gånger Spelat',
         'performance' => 'Prestanda',
         'total_score' => 'Total Poäng',
-        'ranked_score' => 'Rankad Poäng',
+        'ranked_score' => 'Rankad poäng',
         'average_score' => 'Snittpoäng',
         'average_performance' => 'Snittprestanda',
         'ss' => '',

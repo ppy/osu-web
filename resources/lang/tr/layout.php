@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Sıradaki parçayı otomatik oynat',
     ],
 
     'defaults' => [

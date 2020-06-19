@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'แพ็คคอลเล็คชั่นของเพลงที่อยู่ในประเภทเดียวกัน',
-        'nav_title' => '',
+        'nav_title' => 'รายการ',
         'title' => 'แพ็คเกจ Beatmap',
 
         'blurb' => [

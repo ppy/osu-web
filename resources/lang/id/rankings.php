@@ -4,8 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'disortir berdasarkan negara',
+    'countries' => [
+        'all' => 'Semua',
+    ],
+
+    'filter' => [
+        'title' => 'Tampilkan',
+
+        'variant' => [
+            'title' => 'Varian',
+        ],
     ],
 
     'type' => [

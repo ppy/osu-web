@@ -4,8 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'filtrador por país',
+    'countries' => [
+        'all' => 'Todos',
+    ],
+
+    'filter' => [
+        'title' => 'Exibir',
+
+        'variant' => [
+            'title' => 'Variante',
+        ],
     ],
 
     'type' => [

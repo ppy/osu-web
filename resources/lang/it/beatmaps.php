@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Scrivi qui per postare in Generale (:version)',
             'generalAll' => 'Scrivi qui per postare in Generale (Tutte le difficoltà)',
+            'review' => 'Scrivi qui per postare una recensione',
             'timeline' => 'Scrivi qui per postare nella Linea Temporale (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'fai ctrl-c nell\'editor ed incolla nel tuo messaggio per aggiungere un timestamp!',
             'title' => 'Nuova Discussione',
             'unpin' => 'Non fissare',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'inserisci paragrafo',
+                'praise' => 'inserisci elogio',
+                'problem' => 'inserisci problema',
+                'suggestion' => 'inserisci suggerimento',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novità',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elettronica',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '4K',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Coreano',
         'spanish' => 'Spagnolo',
         'swedish' => 'Svedese',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Strumentale',
         'other' => 'Altro',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Qualsiasi',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Numero partite: :count',
         'favourites' => 'Preferiti: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Tutte',
+        ],
     ],
 ];

@@ -67,6 +67,8 @@ return [
         'go_to_parent' => '평가 글 보기',
         'go_to_child' => '토론 글 보기',
         'validation' => [
+            'block_too_large' => '각 문단은 최대 :limit자까지 입력할 수 있습니다.',
+            'external_references' => '이 리뷰는 관련 없는 이슈 참조를 포함하고 있습니다.',
             'invalid_block_type' => '잘못된 블럭 종류',
             'invalid_document' => '잘못된 리뷰',
             'minimum_issues' => '리뷰는 최소한 :count개의 이슈를 포함해야 합니다',

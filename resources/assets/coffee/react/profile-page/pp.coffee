@@ -3,11 +3,27 @@
 
 import * as React from 'react'
 import { ValueDisplay } from 'value-display'
+import { div } from 'react-dom-factories'
 el = React.createElement
 
+formatNumber = (value) -> osu.formatNumber(Math.round(value))
 
 export Pp = ({stats}) ->
+  variantTooltip = []
+
+  for variant in stats.variants ? []
+    continue unless variant.pp > 0
+
+    name = osu.trans("beatmaps.variant.#{variant.mode}.#{variant.variant}")
+    value = formatNumber(variant.pp)
+
+    variantTooltip.push("<div>#{name}: #{value}</div>")
+
   el ValueDisplay,
     modifiers: ['pp']
     label: 'pp'
-    value: osu.formatNumber(Math.round(stats.pp))
+    value:
+      div
+        title: ''
+        "data-html-title": variantTooltip.join('')
+        formatNumber(stats.pp)

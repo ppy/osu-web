@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο General (:version)',
             'generalAll' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο General (όλες τις δυσκολίες)',
+            'review' => '',
             'timeline' => 'Πληκτρολογήστε εδώ για να δημοσιεύσετε στο Χρονολόγιο (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'Ctrl + C στη λειτουργία τροποποίησης και επικολλήστε στο μήνυμα σας για να προσθέσετε μία χρονική σήμανση!',
             'title' => 'Νέα Συζήτηση',
             'unpin' => 'Ξεκαρφίτσωμα',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Σύγχρονο',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Ηλεκτρονική Μουσική',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Κορεάτικα',
         'spanish' => 'Ισπανικά',
         'swedish' => 'Σουηδικά',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'Ορχηστρικό',
         'other' => 'Άλλο',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'Οποιοδήποτε',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Φορές που παίχτηκε: :count',
         'favourites' => 'Αγαπημένα: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

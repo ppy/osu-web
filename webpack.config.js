@@ -45,7 +45,7 @@ const watches = [
     path: langDir,
     type: 'dir',
   },
-]
+];
 
 function buildConfig() {
   require(Mix.paths.mix());
@@ -67,7 +67,7 @@ function configPromise(env, argv) {
     if (!argv.watch) {
       watches.forEach((watched) => {
         watched.callback();
-      })
+      });
 
       return resolve(buildConfig());
     }
@@ -75,7 +75,7 @@ function configPromise(env, argv) {
     const wp = new Watchpack(options);
     wp.watch(
       watches.filter(x => x.type === 'file').map(x => x.path),
-      watches.filter(x => x.type === 'dir').map(x => x.path)
+      watches.filter(x => x.type === 'dir').map(x => x.path),
     ); // files and directories are different arguments.
 
     // directory watchers cause change events on start, file watchers don't;
@@ -83,7 +83,7 @@ function configPromise(env, argv) {
     watches.filter(x => x.type === 'file').forEach((watched) => {
       watched.callback();
       watched.ranOnce = true;
-    })
+    });
 
     wp.on('aggregated', (changes, removals) => {
       watches.forEach((watched) => {

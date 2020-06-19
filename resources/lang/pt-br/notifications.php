@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nova publicação em ":title" de :username',
                 'beatmapset_discussion_post_new_compact' => 'Nova publicação de :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nova publicação de :username',
+                'beatmapset_discussion_review_new' => 'Nova revisão em ":title" por :username contendo problemas: :problems, sugestões: :suggestions, elogios: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Nova revisão por :username contendo problemas: :problems, sugestões: :suggestions, elogios: :praises',
                 'beatmapset_discussion_unlock' => 'A discussão do beatmap ":title" foi destrancada.',
                 'beatmapset_discussion_unlock_compact' => 'A discussão foi destrancada',
             ],

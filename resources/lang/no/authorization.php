@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Du må være en full nominator for å nominere beatmapsets med mer enn en spillmodus.',
             'incorrect_state' => 'Feil under utføringen av denne handlingen, prøv å oppdatere siden.',
             'owner' => "Du kan ikke nominere din egen beatmap.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Bare personen som startet tråden og beatmapeieren kan markere en diskusjon som løst.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Dette beatmappet har blitt låst for diskusjon.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 

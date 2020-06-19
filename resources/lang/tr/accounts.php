@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
+        'beatmapset_disqualify' => '',
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'bu beatmap için oluşturduğunuz yeni forum konularında bildirimleri otomatik olarak etkinleştirin',
-        'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
 
-        'mail' => [
-            '_' => 'Bunun için bildirim al',
-            'beatmapset:modding' => 'beatmap modding',
-            'forum_topic_reply' => 'Konuya cevap ver',
+        'options' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+            'mail' => '',
+            'push' => '',
         ],
     ],
 

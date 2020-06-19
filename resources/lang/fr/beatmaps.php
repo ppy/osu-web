@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Écrivez ici pour poster dans Général (:version)',
             'generalAll' => 'Écrivez ici pour poster dans Général (Toutes les difficultés)',
+            'review' => 'Tapez ici pour poster un commentaire',
             'timeline' => 'Écrivez ici pour poster dans la Chronologie (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'ctrl-c en mode édition et collez votre message pour ajouter un horodatage !',
             'title' => 'Nouvelle Discussion',
             'unpin' => 'Ne plus épingler',
+        ],
+
+        'review' => [
+            'new' => 'Nouveau commentaire',
+            'embed' => [
+                'delete' => 'Supprimer',
+                'missing' => '[DISCUSSION SUPPRIMÉE]',
+                'unlink' => 'Dissocier',
+                'unsaved' => 'Non sauvegardé',
+                'timestamp' => [
+                    'all-diff' => 'Les messages sur "Toutes les difficultés" ne peuvent pas être horodatés.',
+                    'diff' => 'Si :type commence par un horodatage, il sera affiché sous la chronologie des revues.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'insérer un paragraphe',
+                'praise' => 'insérer une louange',
+                'problem' => 'insérer un problème',
+                'suggestion' => 'insérer une suggestion',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
+        'metal' => 'Métal',
+        'classical' => 'Classique',
+        'folk' => 'Folk',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Coréen',
         'spanish' => 'Espagnol',
         'swedish' => 'Suédois',
+        'russian' => 'Russe',
+        'polish' => 'Polonais',
         'instrumental' => 'Instrumentale',
         'other' => 'Autre',
+        'unspecified' => 'Non spécifié',
     ],
     'played' => [
         'any' => 'Toutes',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Nombre de joueurs : :count',
         'favourites' => 'Favorites : :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Tous',
+        ],
     ],
 ];

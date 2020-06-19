@@ -19,6 +19,6 @@ return [
             'read' => 'Se vem du följer.',
         ],
 
-        'public' => '',
+        'public' => 'Läs offentlig data för dina vägnar',
     ],
 ];

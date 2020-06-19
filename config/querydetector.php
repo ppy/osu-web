@@ -57,7 +57,6 @@ return [
      */
     'output' => [
         \BeyondCode\QueryDetector\Outputs\Log::class,
-        \BeyondCode\QueryDetector\Outputs\Alert::class,
         \BeyondCode\QueryDetector\Outputs\Clockwork::class,
     ],
 ];

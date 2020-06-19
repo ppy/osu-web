@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute перевищує максимальну кількість символів - можна використовувати тільки до :limit символів.',
     'wrong_confirmation' => 'Повтори не збігаються.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Обговорення закрито.',
-        'first_post' => 'Неможливо видалити першу публікацію.',
-
-        'attributes' => [
-            'message' => 'Повідомлення',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Часова відмітка вказана, але карту не знайдено.',
         'beatmapset_no_hype' => "До карти не можна застосувати функції хайпу.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Зазначена часова мітка виходить за рамки довжини карти.',
             'negative' => "Часова мітка не може бути від'ємною.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Обговорення закрито.',
+        'first_post' => 'Неможливо видалити першу публікацію.',
+
+        'attributes' => [
+            'message' => 'Повідомлення',
         ],
     ],
 

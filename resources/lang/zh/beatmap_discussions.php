@@ -67,6 +67,8 @@ return [
         'go_to_parent' => '查看审阅帖',
         'go_to_child' => '查看讨论',
         'validation' => [
+            'block_too_large' => '每块只能包含最多 :limit 个字符',
+            'external_references' => '审阅包含不属于此审阅的 issues 的引用',
             'invalid_block_type' => '板块类型无效',
             'invalid_document' => '审阅无效',
             'minimum_issues' => '审阅时必须提出最少 :count 个 issue |审阅时必须提出最少 :count 个 issue',

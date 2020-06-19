@@ -79,8 +79,8 @@ return [
             'macos' => 'untuk macOS',
             'linux' => 'untuk Linux',
         ],
-        'mirror' => 'alternatif',
-        'macos-fallback' => 'pengguna macOS',
+        'mirror' => 'tautan alternatif',
+        'macos-fallback' => 'osu! untuk pengguna macOS',
         'steps' => [
             'register' => [
                 'title' => 'buat akun',

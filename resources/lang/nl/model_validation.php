@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute heeft de maximum lengte overschreden - kan enkel tot :limit karakters gebruiken.',
     'wrong_confirmation' => 'Bevestiging komt niet overeen.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Discussie is vergrendeld.',
-        'first_post' => 'Je kan de startpost niet verwijderen.',
-
-        'attributes' => [
-            'message' => 'Het bericht',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Tijdstip is opgegeven, maar beatmap ontbreekt.',
         'beatmapset_no_hype' => "Beatmap kan niet worden gehyped.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Opgegeven tijdstip is later dan het einde van de beatmap.',
             'negative' => "Tijdstip kan niet negatief zijn.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Discussie is vergrendeld.',
+        'first_post' => 'Kan startbericht niet verwijderen.',
+
+        'attributes' => [
+            'message' => 'Het bericht',
         ],
     ],
 

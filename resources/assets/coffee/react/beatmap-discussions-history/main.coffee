@@ -20,6 +20,7 @@ export class Main extends React.PureComponent
       @state =
         discussions: props.discussions
         users: props.users
+        relatedBeatmaps: props.relatedBeatmaps
         relatedDiscussions: props.relatedDiscussions
 
 
@@ -81,10 +82,7 @@ export class Main extends React.PureComponent
   beatmaps: =>
     return @cache.beatmaps if @cache.beatmaps?
 
-    beatmaps = _.map(@discussions(), (d) => d.beatmap)
-                .filter((b) => b != undefined)
-
-    @cache.beatmaps = _.keyBy(beatmaps, 'id')
+    @cache.beatmaps = _.keyBy(this.props.relatedBeatmaps, 'id')
 
 
   saveStateToContainer: =>

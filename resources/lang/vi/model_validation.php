@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute vượt quá độ dài cho phép - chỉ có thể lên đến :limit kí tự.',
     'wrong_confirmation' => 'Xác nhận không phù hợp.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Cuộc thảo luận đã bị khóa.',
-        'first_post' => 'Không thể xóa bài đăng mở đầu.',
-
-        'attributes' => [
-            'message' => 'Tin nhắn',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Mốc thời gian đã chỉ định nhưng không có beatmap.',
         'beatmapset_no_hype' => "Không thể hype beatmap này được.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Mốc thời gian đã chọn vượt quá độ dài beatmap.',
             'negative' => "Mốc thời gian không thể âm.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Cuộc thảo luận đã bị khóa.',
+        'first_post' => 'Không thể xóa bài đăng mở đầu.',
+
+        'attributes' => [
+            'message' => 'Tin nhắn',
         ],
     ],
 

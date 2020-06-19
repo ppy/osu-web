@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'Lihat Ulasan',
         'go_to_child' => 'Lihat Topik Diskusi',
         'validation' => [
+            'block_too_large' => 'masing-masing poin yang diulas terbatas pada :limit karakter',
+            'external_references' => 'ulasan ini mengandung satu atau lebih poin yang mengacu pada isu-isu yang tidak berasal dari beatmap ini',
             'invalid_block_type' => 'tipe blok tidak sah',
             'invalid_document' => 'kajian tidak sah',
             'minimum_issues' => 'kajian harus tersusun atas setidaknya :count isu|kajian harus tersusun atas setidaknya :count isu',

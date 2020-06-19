@@ -29,6 +29,8 @@
     max-width: 100%;
 
     .@{_top}--comment& {
+      object-fit: contain;
+      min-height: 1em;
       max-height: 6em;
     }
   }
@@ -75,11 +77,19 @@
   &__figure-container {
     margin: @_paragraph-space 0;
     text-align: center;
+
+    .@{_top}--comment & {
+      text-align: inherit;
+    }
   }
 
   &__figure-image {
     display: block;
     margin: 0 auto;
+
+    .@{_top}--comment & {
+      margin: 0;
+    }
   }
 
   &__header {
