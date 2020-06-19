@@ -37,13 +37,13 @@ class ScoresController extends BaseController
         $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
 
-        $highScoresQuery = $playlist
+        $highScores = $playlist
             ->highScores()
             ->cursorSort($sort, $cursor)
             ->with(['score.user.userProfileCustomization', 'score.user.country'])
-            ->limit($limit + 1); // an extra to check for pagination
+            ->limit($limit + 1) // an extra to check for pagination
+            ->get();
 
-        $highScores = $highScoresQuery->get();
         $hasMore = count($highScores) === $limit + 1;
         if ($hasMore) {
             $highScores->pop();
