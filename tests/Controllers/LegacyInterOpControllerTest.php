@@ -19,7 +19,7 @@ class LegacyInterOpControllerTest extends TestCase
         $userAchievements = $user->userAchievements()->count();
         $notifications = $user->userNotifications()->count();
 
-        $url = route('lio.user-achievement', [$user->getKey(), $achievement->getKey(), 1, 'timestamp' => time()]);
+        $url = route('interop.user-achievement', [$user->getKey(), $achievement->getKey(), 1, 'timestamp' => time()]);
 
         $this
             ->withHeaders([
