@@ -26,11 +26,11 @@ class PlaylistItemUserHighScore extends Model
     const SORTS = [
         'score_desc' => [
             ['column' => 'total_score', 'order' => 'DESC'],
-            ['column' => 'id', 'order' => 'ASC'],
+            ['column' => 'score_id', 'order' => 'ASC'],
         ],
         'score_asc' => [
             ['column' => 'total_score', 'order' => 'ASC'],
-            ['column' => 'id', 'order' => 'DESC'],
+            ['column' => 'score_id', 'order' => 'DESC'],
         ],
     ];
 
