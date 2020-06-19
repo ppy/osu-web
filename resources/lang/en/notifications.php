@@ -136,13 +136,12 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'A discussion was updated :title',
-
-            'beatmapset_problem' => 'new problem reported on :title',
-
-            'beatmapset_state' => 'state of :title has changed',
-
-            'comment' => 'new comment on :title',
+            'beatmapset_discussion' => 'The discussion on ":title" has new updates:',
+            'beatmapset_discussion_lock' => 'The discussion on ":title" has been locked',
+            'beatmapset_discussion_unlock' => 'The discussion on ":title" has been unlocked',
+            'beatmapset_problem' => 'A new problem reported was reported on ":title"',
+            'beatmapset_state' => 'The state of ":title" has changed:',
+            'comment' => '":title" has new comments:',
         ],
 
         'channel' => [
@@ -152,20 +151,22 @@ return [
         ],
 
         'build' => [
-            'comment' => 'There are new comments on changelog :title',
+            'comment' => '":title" has new comments:',
         ],
 
         'news_post' => [
-            'comment' => 'There are new comments on :title',
+            'comment' => '":title" has new comments:',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'There are new posts in :title',
+            'forum_topic_reply' => 'There are new replies in ":title"',
         ],
 
-        'user' => [
+        'user_achievement' => [
             'user_achievement_unlock' => ':username has unlocked a new medal!',
+            'user_achievement_unlock_mode' => ':username has unlocked a new :achievement_mode medal!',
             'user_achievement_unlock_self' => 'You\'ve unlocked a new medal!',
+            'user_achievement_unlock_mode_self' => 'You\'ve unlocked a new :achievement_mode medal!',
         ],
     ],
 ];

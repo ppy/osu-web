@@ -19,7 +19,7 @@ class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
 
     public static function getMailLink(Notification $notification): string
     {
-        return route('beatmap-discussions.show', $notification->details['discussion_id']);
+        return route('beatmapsets.discussion', ['beatmapset' => $notification->notifiable_id]);
     }
 
     public function __construct(BeatmapDiscussion $beatmapsetDiscussion, User $source)

@@ -18,7 +18,8 @@ class ForumTopicReply extends BroadcastNotificationBase
 
     public static function getMailLink(Notification $notification): string
     {
-        return route('forum.posts.show', $notification->details['post_id']);
+        // link to start=unread since all updates get collapsed into one line.
+        return route('forum.topics.show', ['start' => 'unread', 'topic' => $notification->notifiable_id]);
     }
 
     public function __construct(Post $post, User $source)

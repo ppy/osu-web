@@ -4,9 +4,11 @@
 --}}
 {!! trans('mail.common.hello', ['user' => $user->username]) !!}
 
+{!! trans('mail.user_notification_digest.new') !!}
+
 @foreach ($groups as $group)
-{{ $group['text'] }}
-{{ $group['link'] }}
+{!! $group['text'] !!}
+{!! $group['link'] !!}
 
 @endforeach
 

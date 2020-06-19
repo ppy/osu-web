@@ -13,6 +13,20 @@ class UserAchievementUnlock extends BroadcastNotificationBase
 {
     protected $achievement;
 
+    public static function getBaseKey(Notification $notification): string
+    {
+        return isset($notification->details['achievement_mode'])
+            ? 'user_achievement.user_achievement_unlock_mode'
+            : 'user_achievement.user_achievement_unlock';
+    }
+
+    public static function getMailGroupingKey(Notification $notification): string
+    {
+        $base = parent::getMailGroupingKey($notification);
+
+        return "{$base}-{$notification->details['achievement_mode']}-{$notification->source_user_id}";
+    }
+
     public static function getMailLink(Notification $notification): string
     {
         return route('users.show', [

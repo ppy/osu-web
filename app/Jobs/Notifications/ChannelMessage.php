@@ -20,7 +20,8 @@ class ChannelMessage extends BroadcastNotificationBase
 
     public static function getMailLink(Notification $notification): string
     {
-        return route('chat.index', $notification->notifiable_id);
+        // TODO: probably should enable linking to a channel directly...
+        return route('chat.index', ['sendto' => $notification->source_user_id]);
     }
 
     public function __construct(Message $message, User $source)

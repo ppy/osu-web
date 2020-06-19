@@ -34,7 +34,7 @@ class UserNotificationDigest extends Mailable
         try {
             $class = BroadcastNotificationBase::getNotificationClassFromNotification($notification);
             $baseKey = 'notifications.mail.'.$class::getBaseKey($notification);
-            $key = "{$baseKey}-{$notification->notifiable_type}-{$notification->notifiable_id}";
+            $key = $class::getMailGroupingKey($notification);
 
             if (isset($this->groups[$key])) {
                 return;
