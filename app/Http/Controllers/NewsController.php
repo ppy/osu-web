@@ -35,6 +35,7 @@ class NewsController extends Controller
         $postsJson = [
             'news_posts' => json_collection($posts, 'NewsPost', ['preview']),
             'search' => $search['params'],
+            'cursor' => $search['cursorHelper']->next($posts),
         ];
 
         if (is_json_request()) {

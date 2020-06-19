@@ -1309,6 +1309,8 @@ function get_param_value($input, $type)
             return get_arr($input, 'get_string');
         case 'int[]':
             return get_arr($input, 'get_int');
+        case 'time':
+            return parse_time_to_carbon($input);
         default:
             return presence(get_string($input));
     }
