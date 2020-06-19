@@ -1196,7 +1196,7 @@ function get_bool($string)
  */
 function get_float($string)
 {
-    if (present($string)) {
+    if (is_scalar($string)) {
         return (float) $string;
     }
 }
@@ -1207,7 +1207,7 @@ function get_float($string)
  */
 function get_int($string)
 {
-    if (present($string)) {
+    if (is_scalar($string)) {
         return (int) $string;
     }
 }
@@ -1221,8 +1221,8 @@ function get_file($input)
 
 function get_string($input)
 {
-    if (is_string($input)) {
-        return $input;
+    if (is_scalar($input)) {
+        return (string) $input;
     }
 }
 
