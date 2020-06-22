@@ -5,7 +5,6 @@
 
 namespace Tests\Controllers\Multiplayer\Rooms\Playlist;
 
-use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Score;
 use App\Models\User;
 use Tests\TestCase;
