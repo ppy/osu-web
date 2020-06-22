@@ -74,7 +74,7 @@ class ScoresController extends BaseController
     public function show($roomId, $playlistId, $id)
     {
         $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
-        $playlistItem = $room->playlist()->findOrFail($playlistId) ?? abort(404, 'Invalid playlist id');
+        $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
         $score = $playlistItem->scores()->findOrFail($id);
 
         return json_item(
