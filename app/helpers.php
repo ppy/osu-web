@@ -231,10 +231,8 @@ function datadog_timing(callable $callable, $stat, array $tag = null)
         clock()->endEvent($uid);
     }
 
-    if (config('datadog-helper.enabled')) {
-        $duration = microtime(true) - $start;
-        Datadog::microtiming($stat, $duration, 1, $tag);
-    }
+    $duration = microtime(true) - $start;
+    Datadog::microtiming($stat, $duration, 1, $tag);
 
     return $result;
 }
