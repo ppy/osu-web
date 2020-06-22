@@ -18,6 +18,7 @@ class ScoreTransformer extends TransformerAbstract
     const BASE_INCLUDES = ['user.country', 'user.cover'];
 
     protected $availableIncludes = [
+        'position',
         'scores_around',
         'user',
     ];
@@ -41,6 +42,11 @@ class ScoreTransformer extends TransformerAbstract
             'started_at' => json_time($score->started_at),
             'ended_at' => json_time($score->ended_at),
         ];
+    }
+
+    public function includePosition(Score $score)
+    {
+        return $this->primitive($score->userRank());
     }
 
     public function includeScoresAround(Score $score)

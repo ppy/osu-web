@@ -80,7 +80,7 @@ class ScoresController extends BaseController
         return json_item(
             $score,
             'Multiplayer\Score',
-            ['scores_around', ...ScoreTransformer::BASE_INCLUDES]
+            ['position', 'scores_around', ...ScoreTransformer::BASE_INCLUDES]
         );
     }
 
@@ -119,7 +119,7 @@ class ScoresController extends BaseController
             return json_item(
                 $score,
                 'Multiplayer\Score',
-                ['scores_around', ...ScoreTransformer::BASE_INCLUDES]
+                ['position', 'scores_around', ...ScoreTransformer::BASE_INCLUDES]
             );
         } catch (InvariantException $e) {
             return error_popup($e->getMessage(), $e->getStatusCode());
