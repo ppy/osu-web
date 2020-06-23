@@ -23,7 +23,6 @@ class ScoresController extends BaseController
     }
 
     /**
-     *
      * @group Multiplayer
      *
      * Get Scores
@@ -96,7 +95,6 @@ class ScoresController extends BaseController
     }
 
     /**
-     *
      * @group Multiplayer
      *
      * Get a Score
