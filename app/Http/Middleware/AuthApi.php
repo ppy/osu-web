@@ -35,6 +35,13 @@ class AuthApi
             return $next($request);
         }
 
-        return app(Authenticate::class)->handle($request, $next, 'api');
+        $user = auth()->user();
+        if ($user !== null) {
+            \Log::debug("authenticate {$user->getKey()}");
+            return app(Authenticate::class)->handle($request, $next, 'api');
+        } else {
+            \Log::debug("no user");
+            return $next($request);
+        }
     }
 }

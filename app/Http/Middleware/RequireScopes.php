@@ -28,6 +28,26 @@ class RequireScopes extends CheckCredentials
     /**
      * {@inheritdoc}
      */
+    protected function validate($psr, $scopes)
+    {
+        $token = $this->repository->find($psr->getAttribute('oauth_access_token_id'));
+
+        $this->validateCredentials($token);
+
+        $this->validateScopes($token, $scopes);
+
+        request()->attributes->set('oauthToken', $token);
+
+        $user = $token->user;
+        \Log::debug('token user_id: '.optional($user)->getKey().' auth_id: '.auth()->id());
+        if (optional($user)->getKey() !== auth()->id()) {
+            throw new \Exception('something gone horribly wrong');
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function validateCredentials($token)
     {
         if ($token === null || $token->revoked) {
