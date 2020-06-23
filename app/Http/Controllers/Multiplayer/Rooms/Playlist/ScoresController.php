@@ -22,6 +22,29 @@ class ScoresController extends BaseController
         $this->middleware('auth');
     }
 
+    /**
+     *
+     * @group Multiplayer
+     *
+     * Get Scores
+     *
+     * Returns a list of scores for specified playlist item.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [MultiplayerScores](#multiplayerscores) object.
+     *
+     * @authenticated
+     *
+     * @urlParam room required Id of the room.
+     * @urlParam playlist required Id of the playlist item.
+     *
+     * @queryParam limit Number of scores to be returned.
+     * @queryParam sort [MultiplayerScoresSort](#multiplayerscoressort) parameter.
+     * @queryParam cursor [MultiplayerScoresCursor](#multiplayerscorescursor) parameter.
+     */
     public function index($roomId, $playlistId)
     {
         $playlist = PlaylistItem::where('room_id', $roomId)->where('id', $playlistId)->firstOrFail();
@@ -72,6 +95,26 @@ class ScoresController extends BaseController
         ];
     }
 
+    /**
+     *
+     * @group Multiplayer
+     *
+     * Get a Score
+     *
+     * Returns detail of specified score.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [MultiplayerScore](#multiplayerscore) object.
+     *
+     * @authenticated
+     *
+     * @urlParam room required Id of the room.
+     * @urlParam playlist required Id of the playlist item.
+     * @urlParam score required Id of the score.
+     */
     public function show($roomId, $playlistId, $id)
     {
         $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
