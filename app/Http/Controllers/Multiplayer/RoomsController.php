@@ -14,6 +14,7 @@ class RoomsController extends BaseController
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('require-scopes:public', ['only' => ['index', 'leaderboard', 'public']]);
     }
 
     public function index()
