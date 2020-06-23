@@ -13,6 +13,8 @@ use Laravel\Passport\Http\Middleware\CheckCredentials;
 
 class RequireScopes extends CheckCredentials
 {
+    const REQUEST_OAUTH_TOKEN_KEY = 'oauthToken';
+
     /**
      * {@inheritdoc}
      */
@@ -22,6 +24,8 @@ class RequireScopes extends CheckCredentials
             return $next($request);
         }
 
+        // TODO: also stop validating request every time.
+
         return parent::handle($request, $next, ...$scopes);
     }
 
@@ -30,13 +34,19 @@ class RequireScopes extends CheckCredentials
      */
     protected function validate($psr, $scopes)
     {
-        $token = $this->repository->find($psr->getAttribute('oauth_access_token_id'));
+        $request = request();
+        if (!$request->attributes->has(static::REQUEST_OAUTH_TOKEN_KEY)) {
+            $request->attributes->set(
+                static::REQUEST_OAUTH_TOKEN_KEY,
+                $this->repository->find($psr->getAttribute('oauth_access_token_id'))
+            );
+        }
+
+        $token = $request->attributes->get(static::REQUEST_OAUTH_TOKEN_KEY);
 
         $this->validateCredentials($token);
 
         $this->validateScopes($token, $scopes);
-
-        request()->attributes->set('oauthToken', $token);
 
         $user = $token->user;
         \Log::debug('token user_id: '.optional($user)->getKey().' auth_id: '.auth()->id());
