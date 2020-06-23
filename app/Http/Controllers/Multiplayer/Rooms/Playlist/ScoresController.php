@@ -64,10 +64,11 @@ class ScoresController extends BaseController
         }
 
         return [
+            'cursor' => $hasMore ? $cursorHelper->next($highScores) : null,
+            'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
             'scores' => $scoresJson,
             'total' => $total,
             'user_score' => $userScoreJson ?? null,
-            'cursor' => $hasMore ? $cursorHelper->next($highScores) : null,
         ];
     }
 
