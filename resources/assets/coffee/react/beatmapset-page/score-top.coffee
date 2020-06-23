@@ -39,7 +39,7 @@ export ScoreTop = (props) ->
           a
             className: "#{bn}__username js-usercard"
             'data-user-id': props.score.user.id
-            href: route 'users.show', user: props.score.user.id, mode: props.beatmap.playmode
+            href: route 'users.show', user: props.score.user.id, mode: props.score.mode
             props.score.user.username
 
           div
@@ -49,7 +49,7 @@ export ScoreTop = (props) ->
 
           a
             href: route 'rankings',
-              mode: props.beatmap.playmode
+              mode: props.score.mode
               country: props.score.user.country_code
               type: 'performance'
             el FlagCountry,
