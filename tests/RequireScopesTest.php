@@ -5,9 +5,9 @@
 
 namespace Tests;
 
-use App\Exceptions\AuthorizationException;
 use App\Http\Middleware\RequireScopes;
 use App\Models\User;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Routing\Route;
 use Laravel\Passport\Exceptions\MissingScopeException;
 use Request;
@@ -17,17 +17,12 @@ class RequireScopesTest extends TestCase
     protected $next;
     protected $request;
 
-    public function testSingleton()
-    {
-        $this->assertSame(app(RequireScopes::class), app(RequireScopes::class));
-    }
-
     public function testNullUser()
     {
         $this->setRequest();
         $this->setUser(null);
 
-        $this->expectException(AuthorizationException::class);
+        $this->expectException(AuthenticationException::class);
         app(RequireScopes::class)->handle($this->request, $this->next);
     }
 
@@ -180,6 +175,7 @@ class RequireScopesTest extends TestCase
     protected function setRequest(?array $scopes = null, $request = null)
     {
         $this->request = $request ?? Request::create('/api/_fake', 'GET');
+
         $this->next = static function () {
             // just an empty closure.
         };

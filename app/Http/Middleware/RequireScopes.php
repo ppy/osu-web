@@ -5,8 +5,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Exceptions\AuthorizationException;
 use Closure;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\Http\Middleware\CheckCredentials;
@@ -31,7 +31,7 @@ class RequireScopes extends CheckCredentials
     protected function validateCredentials($token)
     {
         if ($token === null || $token->revoked) {
-            throw new AuthorizationException();
+            throw new AuthenticationException();
         }
     }
 

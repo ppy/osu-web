@@ -250,7 +250,7 @@ class ClientTest extends TestCase
         $token->refresh();
         $this->actAsUserWithToken($user, $token);
 
-        $this->get(route('api.me'))->assertForbidden();
+        $this->get(route('api.me'))->assertUnauthorized();
     }
 
     protected function setUp(): void

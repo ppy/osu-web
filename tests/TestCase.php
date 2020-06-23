@@ -5,10 +5,13 @@
 
 namespace Tests;
 
+use App\Models\OAuth\Client;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Laravel\Passport\Token;
+use League\OAuth2\Server\ResourceServer;
+use Mockery;
 use Queue;
 use ReflectionMethod;
 use ReflectionProperty;
@@ -50,21 +53,27 @@ class TestCase extends BaseTestCase
 
     protected function actAsScopedUser(?User $user, array $scopes = ['*'], $driver = 'api')
     {
-        $guard = app('auth')->guard($driver);
-        if ($user !== null) {
-            $guard->setUser($user);
+        // create valid token
+        $client = factory(Client::class)->create();
+        $token = $client->tokens()->create([
+            'id' => uniqid(),
+            'revoked' => false,
+            'scopes' => $scopes,
+            'user_id' => optional($user)->getKey(),
+        ]);
 
-            $token = Token::unguarded(function () use ($scopes, $user) {
-                return new Token([
-                    'scopes' => $scopes,
-                    'user_id' => $user->user_id,
-                ]);
+        // mock the minimal number of things.
+        $mock = Mockery::mock(ResourceServer::class);
+        $mock->shouldReceive('validateAuthenticatedRequest')
+            ->andReturnUsing(function ($request) use ($token) {
+                return $request->withAttribute('oauth_client_id', $token->client->id)
+                    ->withAttribute('oauth_access_token_id', $token->id)
+                    ->withAttribute('oauth_scopes', $token->scopes);
             });
 
-            $user->withAccessToken($token);
-        }
+        app()->instance(ResourceServer::class, $mock);
 
-        app('auth')->shouldUse($driver);
+        $this->actAsUserWithToken($user, $token, $driver);
     }
 
     protected function actAsUser(?User $user, ?bool $verified = null, $driver = null)
@@ -80,11 +89,15 @@ class TestCase extends BaseTestCase
         }
     }
 
-    protected function actAsUserWithToken(User $user, Token $token, $driver = 'api')
+    protected function actAsUserWithToken(?User $user, Token $token, $driver = 'api')
     {
         $guard = app('auth')->guard($driver);
-        $guard->setUser($user);
-        $user->withAccessToken($token);
+        if ($user !== null) {
+            // guard doesn't accept null user.
+            $guard->setUser($user);
+            $user->withAccessToken($token);
+        }
+
         app('auth')->shouldUse($driver);
     }
 
