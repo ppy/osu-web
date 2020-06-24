@@ -21,8 +21,11 @@ export class EditorInsertionMenu extends React.Component<Props> {
   bn = 'beatmap-discussion-editor-insertion-menu';
   hideInsertMenuTimer?: number;
   insertRef: React.RefObject<HTMLDivElement>;
+  mouseOver = false;
   scrollContainer: HTMLElement | undefined;
-  private readonly throttledMouseHover = _.throttle(this.mouseHover.bind(this), 10);
+  throttledMouseEnter = _.throttle(this.menuMouseEnter.bind(this), 10);
+  throttledMouseExit = _.throttle(this.menuMouseLeave.bind(this), 10);
+  throttledMouseHover = _.throttle(this.scrollContainerMouseMove.bind(this), 10);
 
   constructor(props: Props) {
     super(props);
@@ -30,9 +33,19 @@ export class EditorInsertionMenu extends React.Component<Props> {
     this.insertRef = React.createRef();
   }
 
+  componentDidMount() {
+    if (this.insertRef.current) {
+      $(this.insertRef.current).on('mouseenter.editor-insert-menu', this.throttledMouseEnter);
+      $(this.insertRef.current).on('mouseleave.editor-insert-menu', this.throttledMouseExit);
+    }
+  }
+
   componentWillUnmount() {
     if (this.scrollContainer) {
-      $(this.scrollContainer).off('.editor-toolbar');
+      $(this.scrollContainer).off('.editor-insert-menu');
+    }
+    if (this.insertRef.current) {
+      $(this.insertRef.current).off('.editor-insert-menu');
     }
   }
 
@@ -61,8 +74,8 @@ export class EditorInsertionMenu extends React.Component<Props> {
     return container.children[0].children[blockOffset];
   }
 
-  hideInsertMenu() {
-    if (!this.insertRef.current) {
+  hideMenu() {
+    if (!this.insertRef.current || this.mouseOver) {
       return;
     }
 
@@ -137,7 +150,39 @@ export class EditorInsertionMenu extends React.Component<Props> {
     );
   }
 
-  mouseHover(event: JQuery.MouseMoveEvent) {
+  menuMouseEnter() {
+    this.mouseOver = true;
+  }
+
+  menuMouseLeave() {
+    this.mouseOver = false;
+    this.startHideTimer();
+  }
+
+  render() {
+    return (
+        <Portal>
+          <div
+            className={`${this.bn}`}
+            ref={this.insertRef}
+          >
+            <div
+              className={`${this.bn}__content`}
+            >
+              <i className='fas fa-plus' />
+              <div className={`${this.bn}__menu-content`}>
+                {this.insertButton('suggestion')}
+                {this.insertButton('problem')}
+                {this.insertButton('praise')}
+                {this.insertButton('paragraph')}
+              </div>
+            </div>
+          </div>
+        </Portal>
+    );
+  }
+
+  scrollContainerMouseMove(event: JQuery.MouseMoveEvent) {
     const block = event.target.closest(`.${editorClass}__block`);
 
     if (
@@ -167,41 +212,28 @@ export class EditorInsertionMenu extends React.Component<Props> {
       this.insertRef.current.style.top = `${blockRect.top - 10}px`;
     }
 
-    this.insertRef.current.style.opacity = '1';
+    this.showMenu();
 
     if (this.hideInsertMenuTimer) {
       Timeout.clear(this.hideInsertMenuTimer);
     }
 
-    this.hideInsertMenuTimer = Timeout.set(2000, this.hideInsertMenu.bind(this));
-  }
-
-  render() {
-    return (
-        <Portal>
-          <div
-            className={`${this.bn}`}
-            ref={this.insertRef}
-          >
-            <div
-              className={`${this.bn}__content`}
-            >
-              <i className='fas fa-plus' />
-              <div className={`${this.bn}__menu-content`}>
-                {this.insertButton('suggestion')}
-                {this.insertButton('problem')}
-                {this.insertButton('praise')}
-                {this.insertButton('paragraph')}
-              </div>
-            </div>
-          </div>
-        </Portal>
-    );
+    this.startHideTimer();
   }
 
   setScrollContainer(container: HTMLElement) {
     this.scrollContainer = container;
-    $(this.scrollContainer).on('mousemove.editor-toolbar', this.throttledMouseHover);
+    $(this.scrollContainer).on('mousemove.editor-insert-menu', this.throttledMouseHover);
+  }
+
+  showMenu() {
+    if (this.insertRef.current) {
+      this.insertRef.current.style.opacity = '1';
+    }
+  }
+
+  startHideTimer() {
+    this.hideInsertMenuTimer = Timeout.set(2000, this.hideMenu.bind(this));
   }
 
 }

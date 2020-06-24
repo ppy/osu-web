@@ -90,21 +90,6 @@
     }
   }
 
-  &__menu-content {
-    position: absolute;
-    display: none;
-    background: @osu-colour-b6;
-    z-index: @z-index--blackout-visible;
-    margin-left: 10px;
-    margin-top: -10px;
-    .default-border-radius();
-    .default-box-shadow();
-
-    .@{_top}__hover-menu:hover & {
-      display: flex;
-    }
-  }
-
   &__menu-button {
     .reset-input();
     padding: 5px 10px;
