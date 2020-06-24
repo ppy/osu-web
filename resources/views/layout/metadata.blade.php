@@ -27,7 +27,7 @@
     @endif
 @endif
 
-@if (isset($noindex))
+@if ($noindex ?? false)
     <meta name="robots" content="noindex">
 @endif
 
