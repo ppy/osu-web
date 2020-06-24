@@ -27,6 +27,10 @@
     @endif
 @endif
 
+@if (isset($noindex))
+    <meta name="robots" content="noindex">
+@endif
+
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
