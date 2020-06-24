@@ -47,7 +47,7 @@ trait EsIndexableModel
 
     public function esIndexDocument(array $options = [])
     {
-        if (method_exists($this, 'esShouldIndex') && !$this->esShouldIndex()) {
+        if (!$this->esShouldIndex()) {
             return $this->esDeleteDocument($options);
         }
 
@@ -60,6 +60,11 @@ trait EsIndexableModel
         ], $options);
 
         return Es::getClient()->index($document);
+    }
+
+    public function esShouldIndex()
+    {
+        return true;
     }
 
     public static function esIndexIntoNew($batchSize = 1000, $name = null, callable $progress = null)
@@ -80,13 +85,12 @@ trait EsIndexableModel
     public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], callable $progress = null)
     {
         $dummy = new static();
-        $isSoftDeleting = method_exists($dummy, 'getDeletedAtColumn');
         $startTime = time();
 
         $baseQuery = static::esIndexingQuery()->where($dummy->getKeyName(), '>', $fromId);
         $count = 0;
 
-        $baseQuery->chunkById($batchSize, function ($models) use ($options, $isSoftDeleting, &$count, $progress) {
+        $baseQuery->chunkById($batchSize, function ($models) use ($options, &$count, $progress) {
             $actions = [];
 
             foreach ($models as $model) {
@@ -97,7 +101,7 @@ trait EsIndexableModel
                     'routing' => $model->esRouting(),
                 ];
 
-                if ($isSoftDeleting && $model->trashed()) {
+                if (!$model->esShouldIndex()) {
                     $actions[] = ['delete' => $metadata];
                 } else {
                     // index requires action and metadata followed by data on the next line.

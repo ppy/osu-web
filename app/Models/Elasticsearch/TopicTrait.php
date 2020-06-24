@@ -48,7 +48,7 @@ trait TopicTrait
     {
         $forumIds = Forum::on('mysql')->where('enable_indexing', 1)->pluck('forum_id');
 
-        return static::on('mysql')->withoutGlobalScopes()->whereIn('forum_id', $forumIds);
+        return static::on('mysql')->withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum');
     }
 
     public static function esSchemaFile()
@@ -56,15 +56,15 @@ trait TopicTrait
         return Post::esSchemaFile();
     }
 
-    public static function esType()
-    {
-        return Post::esType();
-    }
-
     public function esShouldIndex()
     {
         return $this->forum->enable_indexing
             && !$this->trashed()
             && $this->topic_moved_id === 0;
+    }
+
+    public static function esType()
+    {
+        return Post::esType();
     }
 }

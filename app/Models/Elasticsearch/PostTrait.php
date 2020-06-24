@@ -55,7 +55,7 @@ trait PostTrait
     {
         $forumIds = Forum::on('mysql')->where('enable_indexing', 1)->pluck('forum_id');
 
-        return static::on('mysql')->withoutGlobalScopes()->whereIn('forum_id', $forumIds);
+        return static::on('mysql')->withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum');
     }
 
     public static function esSchemaFile()

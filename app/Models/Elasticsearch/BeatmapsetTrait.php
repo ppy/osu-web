@@ -22,11 +22,6 @@ trait BeatmapsetTrait
         );
     }
 
-    public function esShouldIndex()
-    {
-        return !$this->trashed() && !present($this->download_disabled_url);
-    }
-
     public static function esIndexName()
     {
         return config('osu.elasticsearch.prefix').'beatmaps';
@@ -46,6 +41,11 @@ trait BeatmapsetTrait
     public static function esSchemaFile()
     {
         return config_path('schemas/beatmaps.json');
+    }
+
+    public function esShouldIndex()
+    {
+        return !$this->trashed() && !present($this->download_disabled_url);
     }
 
     public static function esType()
