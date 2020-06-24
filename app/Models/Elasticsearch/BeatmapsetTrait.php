@@ -24,7 +24,7 @@ trait BeatmapsetTrait
 
     public function esShouldIndex()
     {
-        return !$this->trashed();
+        return !$this->trashed() && !present($this->download_disabled_url);
     }
 
     public static function esIndexName()
