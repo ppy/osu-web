@@ -5,6 +5,7 @@
 
 namespace Tests;
 
+use App\Http\Middleware\RequireScopes;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -97,6 +98,8 @@ class TestCase extends BaseTestCase
             $guard->setUser($user);
             $user->withAccessToken($token);
         }
+
+        request()->attributes->set(RequireScopes::REQUEST_OAUTH_TOKEN_KEY, $token);
 
         app('auth')->shouldUse($driver);
     }
