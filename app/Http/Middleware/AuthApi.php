@@ -28,22 +28,10 @@ class AuthApi
 
     public function handle(Request $request, Closure $next)
     {
-        // setting auth causes token lookup on next user resolve.
         auth()->shouldUse('api');
+
         optional(auth()->user())->markSessionVerified();
 
-        if (static::skipAuth($request)) {
-            return $next($request);
-        }
-
-        $user = auth()->user();
-        if ($user !== null) {
-            \Log::debug("authenticate {$user->getKey()}");
-            // authenticate does another token lookup.
-            return app(Authenticate::class)->handle($request, $next, 'api');
-        } else {
-            \Log::debug("no user");
-            return $next($request);
-        }
+        return $next($request);
     }
 }
