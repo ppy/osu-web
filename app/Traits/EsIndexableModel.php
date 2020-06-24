@@ -78,8 +78,6 @@ trait EsIndexableModel
         Log::info(static::class." Indexed {$count} records in {$duration} s.");
     }
 
-    abstract public function toEsJson();
-
     /**
      * The value for routing.
      * Override to provide a routing value; null by default.
@@ -130,4 +128,6 @@ trait EsIndexableModel
     {
         return $this->getKey();
     }
+
+    abstract public function toEsJson();
 }
