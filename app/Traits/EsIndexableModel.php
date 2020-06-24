@@ -14,59 +14,6 @@ trait EsIndexableModel
 
     abstract public static function esIndexingQuery();
 
-    abstract public function toEsJson();
-
-    /**
-     * The value for routing.
-     * Override to provide a routing value; null by default.
-     *
-     * @return string|null
-     */
-    public function esRouting()
-    {
-        // null will be omitted when used as routing.
-    }
-
-    public function getEsId()
-    {
-        return $this->getKey();
-    }
-
-    public function esDeleteDocument(array $options = [])
-    {
-        $document = array_merge([
-            'index' => static::esIndexName(),
-            'type' => static::esType(),
-            'routing' => $this->esRouting(),
-            'id' => $this->getEsId(),
-            'client' => ['ignore' => 404],
-        ], $options);
-
-        return Es::getClient()->delete($document);
-    }
-
-    public function esIndexDocument(array $options = [])
-    {
-        if (!$this->esShouldIndex()) {
-            return $this->esDeleteDocument($options);
-        }
-
-        $document = array_merge([
-            'index' => static::esIndexName(),
-            'type' => static::esType(),
-            'routing' => $this->esRouting(),
-            'id' => $this->getEsId(),
-            'body' => $this->toEsJson(),
-        ], $options);
-
-        return Es::getClient()->index($document);
-    }
-
-    public function esShouldIndex()
-    {
-        return true;
-    }
-
     public static function esIndexIntoNew($batchSize = 1000, $name = null, callable $progress = null)
     {
         $newIndex = $name ?? static::esIndexName().'_'.time();
@@ -129,5 +76,58 @@ trait EsIndexableModel
 
         $duration = time() - $startTime;
         Log::info(static::class." Indexed {$count} records in {$duration} s.");
+    }
+
+    abstract public function toEsJson();
+
+    /**
+     * The value for routing.
+     * Override to provide a routing value; null by default.
+     *
+     * @return string|null
+     */
+    public function esRouting()
+    {
+        // null will be omitted when used as routing.
+    }
+
+    public function esDeleteDocument(array $options = [])
+    {
+        $document = array_merge([
+            'index' => static::esIndexName(),
+            'type' => static::esType(),
+            'routing' => $this->esRouting(),
+            'id' => $this->getEsId(),
+            'client' => ['ignore' => 404],
+        ], $options);
+
+        return Es::getClient()->delete($document);
+    }
+
+    public function esIndexDocument(array $options = [])
+    {
+        if (!$this->esShouldIndex()) {
+            return $this->esDeleteDocument($options);
+        }
+
+        $document = array_merge([
+            'index' => static::esIndexName(),
+            'type' => static::esType(),
+            'routing' => $this->esRouting(),
+            'id' => $this->getEsId(),
+            'body' => $this->toEsJson(),
+        ], $options);
+
+        return Es::getClient()->index($document);
+    }
+
+    public function esShouldIndex()
+    {
+        return true;
+    }
+
+    public function getEsId()
+    {
+        return $this->getKey();
     }
 }

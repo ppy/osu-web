@@ -30,7 +30,6 @@ trait TopicTrait
         return Post::esSchemaFile();
     }
 
-
     public static function esType()
     {
         return Post::esType();
@@ -40,6 +39,13 @@ trait TopicTrait
     {
         // Post and Topic should have the same routing for relationships to work.
         return $this->topic_id;
+    }
+
+    public function esShouldIndex()
+    {
+        return $this->forum->enable_indexing
+            && !$this->trashed()
+            && $this->topic_moved_id === 0;
     }
 
     public function getEsId()
@@ -60,12 +66,5 @@ trait TopicTrait
         ];
 
         return $values;
-    }
-
-    public function esShouldIndex()
-    {
-        return $this->forum->enable_indexing
-            && !$this->trashed()
-            && $this->topic_moved_id === 0;
     }
 }
