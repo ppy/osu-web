@@ -524,9 +524,12 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}",
@@ -535,9 +538,12 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/seasonal-backgrounds",
