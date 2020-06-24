@@ -13,6 +13,29 @@ trait TopicTrait
 {
     use EsIndexableModel;
 
+    public static function esIndexName()
+    {
+        return Post::esIndexName();
+    }
+
+    public static function esIndexingQuery()
+    {
+        $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
+
+        return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum');
+    }
+
+    public static function esSchemaFile()
+    {
+        return Post::esSchemaFile();
+    }
+
+
+    public static function esType()
+    {
+        return Post::esType();
+    }
+
     public function esRouting()
     {
         // Post and Topic should have the same routing for relationships to work.
@@ -39,32 +62,10 @@ trait TopicTrait
         return $values;
     }
 
-    public static function esIndexName()
-    {
-        return Post::esIndexName();
-    }
-
-    public static function esIndexingQuery()
-    {
-        $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
-
-        return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum');
-    }
-
-    public static function esSchemaFile()
-    {
-        return Post::esSchemaFile();
-    }
-
     public function esShouldIndex()
     {
         return $this->forum->enable_indexing
             && !$this->trashed()
             && $this->topic_moved_id === 0;
-    }
-
-    public static function esType()
-    {
-        return Post::esType();
     }
 }

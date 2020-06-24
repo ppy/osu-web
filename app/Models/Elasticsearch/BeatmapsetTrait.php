@@ -13,15 +13,6 @@ trait BeatmapsetTrait
 {
     use EsIndexableModel;
 
-    public function toEsJson()
-    {
-        return array_merge(
-            $this->esBeatmapsetValues(),
-            ['beatmaps' => $this->esBeatmapsValues()],
-            ['difficulties' => $this->esDifficultiesValues()]
-        );
-    }
-
     public static function esIndexName()
     {
         return config('osu.elasticsearch.prefix').'beatmaps';
@@ -50,6 +41,15 @@ trait BeatmapsetTrait
     public static function esType()
     {
         return 'beatmaps';
+    }
+
+    public function toEsJson()
+    {
+        return array_merge(
+            $this->esBeatmapsetValues(),
+            ['beatmaps' => $this->esBeatmapsValues()],
+            ['difficulties' => $this->esDifficultiesValues()]
+        );
     }
 
     private function esBeatmapsetValues()

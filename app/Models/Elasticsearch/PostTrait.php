@@ -13,10 +13,37 @@ trait PostTrait
 {
     use EsIndexableModel;
 
+    public static function esIndexName()
+    {
+        return config('osu.elasticsearch.prefix').'posts';
+    }
+
+    public static function esIndexingQuery()
+    {
+        $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
+
+        return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum');
+    }
+
+    public static function esSchemaFile()
+    {
+        return config_path('schemas/posts.json');
+    }
+
+    public static function esType()
+    {
+        return 'posts';
+    }
+
     public function esRouting()
     {
         // Post and Topic should have the same routing for relationships to work.
         return $this->topic_id;
+    }
+
+    public function esShouldIndex()
+    {
+        return $this->forum->enable_indexing && !$this->trashed();
     }
 
     public function getEsId()
@@ -44,32 +71,5 @@ trait PostTrait
         ];
 
         return $values;
-    }
-
-    public static function esIndexName()
-    {
-        return config('osu.elasticsearch.prefix').'posts';
-    }
-
-    public static function esIndexingQuery()
-    {
-        $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
-
-        return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds)->with('forum');
-    }
-
-    public static function esSchemaFile()
-    {
-        return config_path('schemas/posts.json');
-    }
-
-    public static function esType()
-    {
-        return 'posts';
-    }
-
-    public function esShouldIndex()
-    {
-        return $this->forum->enable_indexing && !$this->trashed();
     }
 }
