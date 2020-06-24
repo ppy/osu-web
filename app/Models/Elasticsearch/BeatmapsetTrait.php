@@ -29,8 +29,7 @@ trait BeatmapsetTrait
 
     public static function esIndexingQuery()
     {
-        return static::on('mysql')
-            ->withoutGlobalScopes()
+        return static::withoutGlobalScopes()
             ->active()
             ->with('beatmaps') // note that the with query will run with the default scopes.
             ->with(['beatmaps.difficulty' => function ($query) {

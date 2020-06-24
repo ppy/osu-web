@@ -66,8 +66,7 @@ trait UserTrait
         $columns = array_keys((new static())->esFilterFields());
         array_unshift($columns, 'user_id');
 
-        return static::on('mysql')
-            ->withoutGlobalScopes()
+        return static::withoutGlobalScopes()
             ->with('usernameChangeHistoryPublic')
             ->select($columns);
     }
