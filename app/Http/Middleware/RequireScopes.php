@@ -10,10 +10,17 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Laravel\Passport\Exceptions\MissingScopeException;
 use Laravel\Passport\Http\Middleware\CheckCredentials;
+use League\OAuth2\Server\Exception\OAuthServerException;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
+use Zend\Diactoros\ResponseFactory;
+use Zend\Diactoros\ServerRequestFactory;
+use Zend\Diactoros\StreamFactory;
+use Zend\Diactoros\UploadedFileFactory;
 
 class RequireScopes extends CheckCredentials
 {
     const REQUEST_OAUTH_TOKEN_KEY = 'oauthToken';
+    const REQUEST_VALIDATED_PSR_KEY = 'oauthPsrRequest';
 
     /**
      * {@inheritdoc}
@@ -24,9 +31,37 @@ class RequireScopes extends CheckCredentials
             return $next($request);
         }
 
+        $psr = $this->validateRequest($request);
+
+        $this->validate($psr, $scopes);
+
+        return $next($request);
+
         // TODO: also stop validating request every time.
 
-        return parent::handle($request, $next, ...$scopes);
+        // return parent::handle($request, $next, ...$scopes);
+    }
+
+    protected function validateRequest($request)
+    {
+        if (!$request->attributes->has(static::REQUEST_VALIDATED_PSR_KEY)) {
+            $psr = (new PsrHttpFactory(
+                new ServerRequestFactory,
+                new StreamFactory,
+                new UploadedFileFactory,
+                new ResponseFactory
+            ))->createRequest($request);
+
+            try {
+                \Log::debug('validateRequest');
+                $psr = $this->server->validateAuthenticatedRequest($psr);
+                $request->attributes->set(static::REQUEST_VALIDATED_PSR_KEY, $psr);
+            } catch (OAuthServerException $e) {
+                throw new AuthenticationException;
+            }
+        }
+
+        return $request->attributes->get(static::REQUEST_VALIDATED_PSR_KEY);
     }
 
     /**
