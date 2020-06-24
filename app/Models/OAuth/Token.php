@@ -9,15 +9,21 @@ use Laravel\Passport\Token as PassportToken;
 
 class Token extends PassportToken
 {
-    public function user()
+    public function isClientCredentials()
     {
-        $provider = config('auth.guards.api.provider');
-
-        return $this->belongsTo(config('auth.providers.'.$provider.'.model'), 'user_id');
+        // explicitly no user_id.
+        return $this->user_id === null;
     }
 
     public function refreshToken()
     {
         return $this->hasOne(RefreshToken::class, 'access_token_id');
+    }
+
+    public function user()
+    {
+        $provider = config('auth.guards.api.provider');
+
+        return $this->belongsTo(config('auth.providers.'.$provider.'.model'), 'user_id');
     }
 }

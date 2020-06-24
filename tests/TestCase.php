@@ -52,7 +52,7 @@ class TestCase extends BaseTestCase
         });
     }
 
-    protected function actAsScopedUser(?User $user, array $scopes = ['*'], $driver = 'api')
+    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], $driver = 'api')
     {
         // create valid token
         $client = factory(Client::class)->create();
@@ -64,6 +64,7 @@ class TestCase extends BaseTestCase
         ]);
 
         // mock the minimal number of things.
+        // this skips the need to form a request with all the headers.
         $mock = Mockery::mock(ResourceServer::class);
         $mock->shouldReceive('validateAuthenticatedRequest')
             ->andReturnUsing(function ($request) use ($token) {
@@ -99,6 +100,7 @@ class TestCase extends BaseTestCase
             $user->withAccessToken($token);
         }
 
+        // TODO: this seems like a bad idea? need to add a test that checks token validation works.
         request()->attributes->set(RequireScopes::REQUEST_OAUTH_TOKEN_KEY, $token);
 
         app('auth')->shouldUse($driver);

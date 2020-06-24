@@ -16,14 +16,38 @@ class RequireScopesTest extends TestCase
 {
     protected $next;
     protected $request;
+    protected $user;
 
-    public function testNullUser()
+    /**
+     * @dataProvider clientCredentialsDataProvider
+     */
+    public function testClientCredentials($scopes, $expectedException)
+    {
+        $this->setRequest(['public']);
+        $this->setUser(null, $scopes);
+
+        if ($expectedException !== null) {
+            $this->expectException($expectedException);
+        }
+
+        app(RequireScopes::class)->handle($this->request, $this->next);
+        $this->assertTrue(oauth_token()->isClientCredentials());
+    }
+
+    /**
+     * @dataProvider clientCredentialsWhenAllScopeRequiredDataProvider
+     */
+    public function testClientCredentialsWhenAllScopeRequired($scopes, $expectedException)
     {
         $this->setRequest();
-        $this->setUser(null);
+        $this->setUser(null, $scopes);
 
-        $this->expectException(AuthenticationException::class);
+        if ($expectedException !== null) {
+            $this->expectException($expectedException);
+        }
+
         app(RequireScopes::class)->handle($this->request, $this->next);
+        $this->assertTrue(oauth_token()->isClientCredentials());
     }
 
     public function testNoScopes()
@@ -31,7 +55,7 @@ class RequireScopesTest extends TestCase
         $userScopes = [];
 
         $this->setRequest();
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next);
@@ -42,7 +66,7 @@ class RequireScopesTest extends TestCase
         $userScopes = ['*'];
 
         $this->setRequest();
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next);
         $this->assertTrue(true);
@@ -54,7 +78,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setRequest($requireScopes);
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
@@ -66,7 +90,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setRequest($requireScopes);
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -78,7 +102,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setRequest($requireScopes);
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
@@ -90,7 +114,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setRequest($requireScopes);
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -102,7 +126,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setRequest($requireScopes);
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -114,7 +138,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setRequest($requireScopes);
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
@@ -125,7 +149,7 @@ class RequireScopesTest extends TestCase
         $userScopes = ['identify'];
 
         $this->setRequest();
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, $this->next);
@@ -137,7 +161,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setRequest($requireScopes);
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         app(RequireScopes::class)->handle($this->request, function () use ($requireScopes) {
             app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
@@ -152,7 +176,7 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setRequest($requireScopes);
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         $this->expectException(MissingScopeException::class);
         app(RequireScopes::class)->handle($this->request, function () use ($requireScopes) {
@@ -166,10 +190,30 @@ class RequireScopesTest extends TestCase
         $requireScopes = ['identify'];
 
         $this->setRequest($requireScopes, Request::create('/api/v2/changelog', 'GET'));
-        $this->setUser($userScopes);
+        $this->setUser($this->user, $userScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         $this->assertTrue(true);
+    }
+
+    public function clientCredentialsDataProvider()
+    {
+        return [
+            'null is not a valid scope' => [null, MissingScopeException::class],
+            'empty scope should fail' => [[], MissingScopeException::class],
+            'public' => [['public'], null],
+            'all scope is not allowed' => [['*'], AuthenticationException::class],
+        ];
+    }
+
+    public function clientCredentialsWhenAllScopeRequiredDataProvider()
+    {
+        return [
+            'null is not a valid scope' => [null, MissingScopeException::class],
+            'empty scope should fail' => [[], MissingScopeException::class],
+            'public' => [['public'], MissingScopeException::class],
+            'all scope is not allowed' => [['*'], AuthenticationException::class],
+        ];
     }
 
     protected function setRequest(?array $scopes = null, $request = null)
@@ -196,16 +240,21 @@ class RequireScopesTest extends TestCase
         });
     }
 
-    protected function setUser(?array $scopes = null)
+    protected function setUp(): void
     {
-        $user = $scopes !== null ? factory(User::class)->create() : null;
+        parent::setUp();
 
+        // nearly all the tests in the class need a user, so might as well set it up here.
+        $this->user = factory(User::class)->create();
+    }
+
+    protected function setUser(?User $user, ?array $scopes = null)
+    {
         $this->request->setUserResolver(function () use ($user) {
             return $user;
         });
 
-        if ($user !== null) {
-            $this->actAsScopedUser($user, $scopes);
-        }
+        // TODO: should there be a test against null scopes?
+        $this->actAsScopedUser($user, $scopes);
     }
 }

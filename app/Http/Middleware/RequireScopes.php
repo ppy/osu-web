@@ -95,7 +95,9 @@ class RequireScopes extends CheckCredentials
      */
     protected function validateCredentials($token)
     {
-        if ($token === null || $token->revoked) {
+        if ($token === null
+            || $token->revoked
+            || $token->isClientCredentials() && $token->scopes === ['*']) {
             throw new AuthenticationException();
         }
     }
