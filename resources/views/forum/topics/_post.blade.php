@@ -19,6 +19,13 @@
     }
 
     $user = $post->userNormalized();
+    $group = isset($topic) && $user->isModeratorForForum($topic->forum)
+        ? (object)[
+            'colour' => 'hsl(200, 60%, 50%)',
+            'group_name' => "{$topic->forum->forum_name} Forum Moderator",
+            'short_name' => 'MOD',
+        ]
+        : ($user->visibleGroups()[0] ?? null);
 ?>
 <div
     class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} forum-post"

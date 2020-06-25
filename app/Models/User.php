@@ -864,6 +864,11 @@ class User extends Model implements AuthenticatableContract, HasLocalePreference
         return in_array($group->getKey(), $this->groupIds(), true) && $this->token() === null;
     }
 
+    public function isModeratorForForum(Forum\Forum $forum): bool
+    {
+        return $forum->moderator_groups !== null && !empty(array_intersect($this->groupIds(), $forum->moderator_groups));
+    }
+
     public function badges()
     {
         return $this->hasMany(UserBadge::class);

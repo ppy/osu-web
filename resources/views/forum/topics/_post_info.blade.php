@@ -39,9 +39,6 @@
         </span>
     @endif
 
-    @php
-        $group = $user->visibleGroups()[0] ?? null;
-    @endphp
     @if (isset($group))
         <div class="forum-post-info__row forum-post-info__row--group-badge">
             <div
