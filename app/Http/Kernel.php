@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
         'api' => [
             Middleware\DisableSessionCookiesForAPI::class,
             Middleware\StartSession::class,
+            Middleware\AuthApi::class,
             Middleware\SetLocale::class,
             Middleware\CheckUserBanStatus::class,
         ],
@@ -52,7 +53,6 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'auth-custom-api' => Middleware\AuthApi::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
         'guest' => Middleware\RedirectIfAuthenticated::class,

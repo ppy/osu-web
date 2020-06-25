@@ -330,8 +330,8 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 // API
-// auth-custom-api and require-scopes are not in the api group at the moment to reduce the number of things that need immediate fixing.
-Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'auth-custom-api', 'require-scopes']], function () {
+// require-scopes is not in the api group at the moment to reduce the number of things that need immediate fixing.
+Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'beatmapsets.', 'prefix' => 'beatmapsets'], function () {
             Route::apiResource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
