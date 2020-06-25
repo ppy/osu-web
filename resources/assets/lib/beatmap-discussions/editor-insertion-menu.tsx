@@ -24,11 +24,12 @@ export class EditorInsertionMenu extends React.Component<Props> {
   menuPos: string | undefined;
   mouseOver = false;
   scrollContainer: HTMLElement | undefined;
-  throttledContainerMouseExit = _.throttle(this.hideMenu.bind(this), 10);
+  // setTimeout delay is to prevent flashing when hovering the menu (the portal is not inside the container, so it fires a mouseleave)
+  throttledContainerMouseExit = _.throttle(() => { setTimeout(this.hideMenu.bind(this), 100); }, 10);
   throttledContainerMouseMove = _.throttle(this.containerMouseMove.bind(this), 10);
   throttledMenuMouseEnter = _.throttle(this.menuMouseEnter.bind(this), 10);
   throttledMenuMouseExit = _.throttle(this.menuMouseLeave.bind(this), 10);
-  throttledScroll = _.throttle(this.updatePosition.bind(this), 100);
+  throttledScroll = _.throttle(this.hideMenu.bind(this), 10);
 
   constructor(props: Props) {
     super(props);
