@@ -15,7 +15,6 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class, // not like we ever use it...
         Middleware\DatadogMetrics::class,
     ];
 
