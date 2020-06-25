@@ -3,14 +3,12 @@
 
 .beatmap-discussion-editor-insertion-menu {
   @_top: beatmap-discussion-editor-insertion-menu;
-  z-index: 1000;
+  display: none;
+  z-index: @z-index--blackout-visible;
   position: fixed;
-  will-change: opacity;
-  transition: opacity ease-in 200ms;
   width: 100%;
-  display: flex;
   justify-content: center;
-  pointer-events: none;
+  pointer-events: none; // as to not impede text-selection/etc within the editor itself
 
   &::before {
     content: '';
@@ -24,7 +22,7 @@
     .default-border-radius();
   }
 
-  &__content {
+  &__body {
     align-items: center;
     background: @osu-colour-b6;
     border-radius: 20px;
@@ -47,29 +45,19 @@
       height: 30px;
       margin-top: -5px;
     }
-
-    &:hover .@{_top}__menu-content {
-      display: block;
-      margin: 0;
-    }
-
-    &:hover > .fas {
-      opacity: 0;
-    }
   }
 
-  &__menu-content {
+  &__buttons {
     position: absolute;
-    display: none;
     background: @osu-colour-b6;
-    z-index: @z-index--blackout-visible;
-    margin-left: 10px;
-    margin-top: -10px;
+    width: 150%;
+    opacity: 0;
+    transition: opacity ease-in-out 100ms;
     .default-border-radius();
     .default-box-shadow();
 
-    .@{_top}__hover-menu:hover & {
-      display: flex;
+    .@{_top}__body:hover & {
+      opacity: 1;
     }
   }
 }

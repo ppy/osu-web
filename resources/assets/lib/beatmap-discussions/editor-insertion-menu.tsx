@@ -3,7 +3,7 @@
 
 import * as _ from 'lodash';
 import * as React from 'react';
-import { Editor as SlateEditor, Range, Transforms } from 'slate';
+import { Editor as SlateEditor, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 import BeatmapJsonExtended from '../interfaces/beatmap-json-extended';
 import { Portal } from '../portal';
@@ -23,9 +23,9 @@ export class EditorInsertionMenu extends React.Component<Props> {
   insertRef: React.RefObject<HTMLDivElement>;
   mouseOver = false;
   scrollContainer: HTMLElement | undefined;
-  throttledMouseEnter = _.throttle(this.menuMouseEnter.bind(this), 10);
-  throttledMouseExit = _.throttle(this.menuMouseLeave.bind(this), 10);
-  throttledMouseHover = _.throttle(this.scrollContainerMouseMove.bind(this), 10);
+  throttledContainerMouseMove = _.throttle(this.containerMouseMove.bind(this), 10);
+  throttledMenuMouseEnter = _.throttle(this.menuMouseEnter.bind(this), 10);
+  throttledMenuMouseExit = _.throttle(this.menuMouseLeave.bind(this), 10);
 
   constructor(props: Props) {
     super(props);
@@ -35,9 +35,15 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
   componentDidMount() {
     if (this.insertRef.current) {
-      $(this.insertRef.current).on('mouseenter.editor-insert-menu', this.throttledMouseEnter);
-      $(this.insertRef.current).on('mouseleave.editor-insert-menu', this.throttledMouseExit);
+      $(this.insertRef.current).on('mouseenter.editor-insert-menu', this.throttledMenuMouseEnter);
+      $(this.insertRef.current).on('mouseleave.editor-insert-menu', this.throttledMenuMouseExit);
     }
+  }
+
+  // updates cascade from our parent (slate editor), i.e. `componentDidUpdate` gets called on editor changes (typing/selection changes/etc)
+  componentDidUpdate() {
+    this.mouseOver = false;
+    this.hideMenu();
   }
 
   componentWillUnmount() {
@@ -47,6 +53,36 @@ export class EditorInsertionMenu extends React.Component<Props> {
     if (this.insertRef.current) {
       $(this.insertRef.current).off('.editor-insert-menu');
     }
+  }
+
+  containerMouseMove(event: JQuery.MouseMoveEvent) {
+    const block = event.target.closest(`.${editorClass}__block`);
+
+    if (
+      !block ||
+      !this.insertRef.current ||
+      !event.originalEvent ||
+      event.originalEvent.buttons > 0 // don't show while dragging
+    ) {
+      return;
+    }
+
+    const blockRect = block.getBoundingClientRect();
+    const cursorPos = {
+      x: event.originalEvent.clientX,
+      y: event.originalEvent.clientY,
+    };
+
+    if ((cursorPos?.y - blockRect.top) > (blockRect.height / 2)) {
+      // show menu below hovered block
+      this.insertRef.current.style.top = `${blockRect.top + blockRect.height - 10}px`;
+    } else {
+      // show menu above hovered block
+      this.insertRef.current.style.top = `${blockRect.top - 10}px`;
+    }
+
+    this.showMenu();
+    this.startHideTimer();
   }
 
   getBlockFromInsertMarker() {
@@ -79,7 +115,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
       return;
     }
 
-    this.insertRef.current.style.opacity = '0';
+    this.insertRef.current.style.display = 'none';
   }
 
   insertBlock = (event: React.MouseEvent<HTMLElement>) => {
@@ -166,11 +202,9 @@ export class EditorInsertionMenu extends React.Component<Props> {
             className={`${this.bn}`}
             ref={this.insertRef}
           >
-            <div
-              className={`${this.bn}__content`}
-            >
+            <div className={`${this.bn}__body`}>
               <i className='fas fa-plus' />
-              <div className={`${this.bn}__menu-content`}>
+              <div className={`${this.bn}__buttons`}>
                 {this.insertButton('suggestion')}
                 {this.insertButton('problem')}
                 {this.insertButton('praise')}
@@ -182,57 +216,22 @@ export class EditorInsertionMenu extends React.Component<Props> {
     );
   }
 
-  scrollContainerMouseMove(event: JQuery.MouseMoveEvent) {
-    const block = event.target.closest(`.${editorClass}__block`);
-
-    if (
-      !block ||
-      !this.insertRef.current ||
-      (this.context.selection && !Range.isCollapsed(this.context.selection))
-    ) {
-      return;
-    }
-
-    const blockRect = block.getBoundingClientRect();
-
-    if (!event.originalEvent) {
-      return;
-    }
-
-    const cursorPos = {
-      x: event.originalEvent.clientX,
-      y: event.originalEvent.clientY,
-    };
-
-    if ((cursorPos?.y - blockRect.top) > (blockRect.height / 2)) {
-      // show below
-      this.insertRef.current.style.top = `${blockRect.top + blockRect.height - 10}px`;
-    } else {
-      // show above
-      this.insertRef.current.style.top = `${blockRect.top - 10}px`;
-    }
-
-    this.showMenu();
-
-    if (this.hideInsertMenuTimer) {
-      Timeout.clear(this.hideInsertMenuTimer);
-    }
-
-    this.startHideTimer();
-  }
-
   setScrollContainer(container: HTMLElement) {
     this.scrollContainer = container;
-    $(this.scrollContainer).on('mousemove.editor-insert-menu', this.throttledMouseHover);
+    $(this.scrollContainer).on('mousemove.editor-insert-menu', this.throttledContainerMouseMove);
   }
 
   showMenu() {
     if (this.insertRef.current) {
-      this.insertRef.current.style.opacity = '1';
+      this.insertRef.current.style.display = 'flex';
     }
   }
 
   startHideTimer() {
+    if (this.hideInsertMenuTimer) {
+      Timeout.clear(this.hideInsertMenuTimer);
+    }
+
     this.hideInsertMenuTimer = Timeout.set(2000, this.hideMenu.bind(this));
   }
 

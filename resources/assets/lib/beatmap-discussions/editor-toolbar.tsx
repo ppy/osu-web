@@ -23,6 +23,7 @@ export class EditorToolbar extends React.Component {
     this.updatePosition();
   }
 
+  // updates cascade from our parent (slate editor), i.e. `componentDidUpdate` gets called on editor changes (typing/selection changes/etc)
   componentDidUpdate() {
     this.updatePosition();
   }
