@@ -17,15 +17,18 @@ interface Props {
 
 export class EditorInsertionMenu extends React.Component<Props> {
   static contextType = SlateContext;
-
   bn = 'beatmap-discussion-editor-insertion-menu';
   hideInsertMenuTimer?: number;
+  hoveredBlock: HTMLElement | undefined;
   insertRef: React.RefObject<HTMLDivElement>;
+  menuPos: string | undefined;
   mouseOver = false;
   scrollContainer: HTMLElement | undefined;
+  throttledContainerMouseExit = _.throttle(this.hideMenu.bind(this), 10);
   throttledContainerMouseMove = _.throttle(this.containerMouseMove.bind(this), 10);
   throttledMenuMouseEnter = _.throttle(this.menuMouseEnter.bind(this), 10);
   throttledMenuMouseExit = _.throttle(this.menuMouseLeave.bind(this), 10);
+  throttledScroll = _.throttle(this.updatePosition.bind(this), 100);
 
   constructor(props: Props) {
     super(props);
@@ -38,6 +41,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
       $(this.insertRef.current).on('mouseenter.editor-insert-menu', this.throttledMenuMouseEnter);
       $(this.insertRef.current).on('mouseleave.editor-insert-menu', this.throttledMenuMouseExit);
     }
+    $(window).on('scroll.editor-insert-menu', this.throttledScroll);
   }
 
   // updates cascade from our parent (slate editor), i.e. `componentDidUpdate` gets called on editor changes (typing/selection changes/etc)
@@ -47,6 +51,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
   }
 
   componentWillUnmount() {
+    $(window).off('.editor-insert-menu');
     if (this.scrollContainer) {
       $(this.scrollContainer).off('.editor-insert-menu');
     }
@@ -64,9 +69,11 @@ export class EditorInsertionMenu extends React.Component<Props> {
       !event.originalEvent ||
       event.originalEvent.buttons > 0 // don't show while dragging
     ) {
+      this.hoveredBlock = undefined;
       return;
     }
 
+    this.hoveredBlock = block;
     const blockRect = block.getBoundingClientRect();
     const cursorPos = {
       x: event.originalEvent.clientX,
@@ -75,12 +82,13 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
     if ((cursorPos?.y - blockRect.top) > (blockRect.height / 2)) {
       // show menu below hovered block
-      this.insertRef.current.style.top = `${blockRect.top + blockRect.height - 10}px`;
+      this.menuPos = 'below';
     } else {
       // show menu above hovered block
-      this.insertRef.current.style.top = `${blockRect.top - 10}px`;
+      this.menuPos = 'above';
     }
 
+    this.updatePosition();
     this.showMenu();
     this.startHideTimer();
   }
@@ -219,6 +227,8 @@ export class EditorInsertionMenu extends React.Component<Props> {
   setScrollContainer(container: HTMLElement) {
     this.scrollContainer = container;
     $(this.scrollContainer).on('mousemove.editor-insert-menu', this.throttledContainerMouseMove);
+    $(this.scrollContainer).on('mouseleave.editor-insert-menu', this.throttledContainerMouseExit);
+    $(this.scrollContainer).on('scroll.editor-insert-menu', this.throttledScroll);
   }
 
   showMenu() {
@@ -233,6 +243,29 @@ export class EditorInsertionMenu extends React.Component<Props> {
     }
 
     this.hideInsertMenuTimer = Timeout.set(2000, this.hideMenu.bind(this));
+  }
+
+  updatePosition() {
+    if (!this.scrollContainer || !this.hoveredBlock || !this.insertRef.current) {
+      return;
+    }
+
+    const blockRect = this.hoveredBlock.getBoundingClientRect();
+    const containerBounds = this.scrollContainer.getBoundingClientRect();
+
+    const outsideContainer =
+      blockRect.top < containerBounds.top ||
+      (blockRect.top > containerBounds.bottom);
+
+    if (outsideContainer) {
+      return this.hideMenu();
+    }
+
+    if (this.menuPos === 'above') {
+      this.insertRef.current.style.top = `${blockRect.top - 10}px`;
+    } else if (this.menuPos === 'below') {
+      this.insertRef.current.style.top = `${blockRect.top + blockRect.height - 10}px`;
+    }
   }
 
 }
