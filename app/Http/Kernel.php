@@ -15,26 +15,31 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        Middleware\StripCookies::class,
-        Middleware\DisableSessionCookiesForAPI::class,
-        Middleware\EncryptCookies::class,
-        \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-        Middleware\StartSession::class,
-        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        Middleware\VerifyCsrfToken::class,
-        Middleware\SetLocale::class,
-        Middleware\AutologinFromLegacyCookie::class,
-        Middleware\UpdateUserLastvisit::class,
-        Middleware\VerifyUserAlways::class,
-        Middleware\CheckUserBanStatus::class,
-        Middleware\TurbolinksSupport::class,
+        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class, // not like we ever use it...
         Middleware\DatadogMetrics::class,
     ];
 
     protected $middlewareGroups = [
-        'api' => [],
-        'web' => [],
+        'api' => [
+            Middleware\DisableSessionCookiesForAPI::class,
+            Middleware\StartSession::class,
+            Middleware\SetLocale::class,
+            Middleware\CheckUserBanStatus::class,
+        ],
+        'web' => [
+            Middleware\StripCookies::class,
+            Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            Middleware\VerifyCsrfToken::class,
+            Middleware\SetLocale::class,
+            Middleware\AutologinFromLegacyCookie::class,
+            Middleware\UpdateUserLastvisit::class,
+            Middleware\VerifyUserAlways::class,
+            Middleware\CheckUserBanStatus::class,
+            Middleware\TurbolinksSupport::class,
+        ],
         'lio' => [
             Middleware\LegacyInterOpAuth::class,
         ],
