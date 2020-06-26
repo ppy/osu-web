@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nueva publicación en ":title" por :username',
                 'beatmapset_discussion_post_new_compact' => 'Nueva publicación por :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nueva publicación por :username',
+                'beatmapset_discussion_review_new' => 'Nueva revisión en ":title" por :username que contiene problemas: :problems, sugerencias: :suggestions, elogios: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Nueva revisión por :username que contiene problemas: :problems, sugerencias: :suggestions, elogios: :praises',
                 'beatmapset_discussion_unlock' => 'La discusión en ":title" se ha desbloqueado',
                 'beatmapset_discussion_unlock_compact' => 'La discusión se ha desbloqueado',
             ],

@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Hledat',
             'deleted' => 'Zahrnout smazané diskuze',
-            'only_unresolved' => '',
+            'only_unresolved' => 'Ukaž pouze nerozluštěné diskuze',
             'types' => 'Typy zpráv',
             'username' => 'Uživatelské jméno',
 
@@ -32,7 +32,7 @@ return [
                 '_' => 'Stav Beatmapy',
                 'all' => 'Všechny',
                 'disqualified' => 'Diskvalifikovaný',
-                'never_qualified' => '',
+                'never_qualified' => 'Nikdy nekvalifikované',
                 'qualified' => 'Kvalifikovaný',
                 'ranked' => 'Hodnocené',
             ],
@@ -64,14 +64,16 @@ return [
     ],
 
     'review' => [
-        'go_to_parent' => '',
+        'go_to_parent' => 'Zobrazit příspěvek recenze',
         'go_to_child' => 'Zobrazit diskuzi',
         'validation' => [
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'block_too_large' => '',
+            'external_references' => '',
+            'invalid_block_type' => 'neplatný typ bloku',
+            'invalid_document' => 'neplatná recenze',
+            'minimum_issues' => 'recenze musí obsahovat minimálně :count problém|recenze musí obsahovat minimálně :count problémů',
+            'missing_text' => 'bloku chybí text',
+            'too_many_blocks' => 'recenze mohou obsahovat pouze :count odstavec/problém|recenze mohou obsahovat pouze :count odstavců/problémů',
         ],
     ],
 
@@ -84,7 +86,7 @@ return [
 
     'timestamp_display' => [
         'general' => 'obecné',
-        'general_all' => '',
+        'general_all' => 'obecné (všechny)',
     ],
 
     'user_filter' => [

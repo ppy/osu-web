@@ -52,8 +52,8 @@ return [
             'loved' => 'iubit :timeago',
             'qualified' => 'calificat :timeago',
             'ranked' => 'clasat :timeago',
-            'submitted' => '',
-            'updated' => '',
+            'submitted' => 'postat :timeago',
+            'updated' => 'ultima dată actualizat :timeago',
         ],
 
         'favourites' => [

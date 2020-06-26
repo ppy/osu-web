@@ -110,7 +110,7 @@ return [
             '_' => 'peringkat',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'performa',
         ],
         'store_controller' => [
             '_' => 'osu!store',

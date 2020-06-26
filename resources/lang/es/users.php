@@ -50,7 +50,7 @@ return [
     ],
 
     'disabled' => [
-        'title' => '¡Oh, oh! Parece que tu cuenta ha sido desactivada.',
+        'title' => '¡Oh, oh! Parece que su cuenta ha sido desactivada.',
         'warning' => "En el caso de que haya roto una regla, tenga en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puede contactar con nosotros si lo considera necesario. Tenga en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada resultará en una <strong>extensión de este período de espera de un mes</strong>. Por favor, también tenga en cuenta que por <strong>cada cuenta que cree, estará violando más reglas</strong>. ¡Le sugerimos que no siga este camino!",
 
         'if_mistake' => [
@@ -141,7 +141,7 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Se unió en :date',
-        'lastvisit' => 'Visto por última vez :date',
+        'lastvisit' => 'Última conexión :date',
         'lastvisit_online' => 'Actualmente en línea',
         'missingtext' => '¡Es posible que hayas cometido un error tipográfico! (o el usuario puede haber sido baneado)',
         'origin_country' => 'De :country',
@@ -217,7 +217,7 @@ return [
                 'show_more' => 'ver más eventos',
             ],
             'historical' => [
-                'empty' => 'Sin récords de rendimiento. :(',
+                'empty' => 'No hay registros de rendimiento. :(',
                 'title' => 'Histórico',
 
                 'monthly_playcounts' => [
@@ -304,10 +304,10 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Descargar Repetición',
-                'empty' => 'No hay records de rendimiento impresionantes aún. :(',
+                'empty' => 'Aún no hay registros de rendimiento impresionantes. :(',
                 'not_ranked' => 'Sólo los mapas clasificados dan pp.',
                 'pp_weight' => 'valorado :percentage',
-                'view_details' => '',
+                'view_details' => 'Ver detalles',
                 'title' => 'Rangos',
 
                 'best' => [
@@ -376,7 +376,7 @@ return [
             ],
         ],
         'post_count' => [
-            '_' => 'Contribuyó en :link',
+            '_' => 'Contribuyó con :link',
             'count' => ':count publicación en el foro|:count publicaciones en el foro',
         ],
         'rank' => [
@@ -419,8 +419,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => 'Vista de bloques',
-        'card' => 'Vista de tarjetas',
-        'list' => 'Visualizar en lista',
+        'brick' => 'Vista de bloque',
+        'card' => 'Vista de tarjeta',
+        'list' => 'Vista de lista',
     ],
 ];

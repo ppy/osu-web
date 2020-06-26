@@ -110,7 +110,7 @@ return [
             '_' => 'ランキング',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'パフォーマンス',
         ],
         'store_controller' => [
             '_' => 'osu!ストア',

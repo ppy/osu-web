@@ -61,7 +61,7 @@ return [
 
             'mod_filtering' => [
                 'title' => 'Filter Berdasarkan Mod',
-                'description' => 'Ingin mencari orang yang memainkan suatu map dengan HDHR? Tidak masalah!',
+                'description' => 'Ingin mencari tahu siapa-siapa saja yang memainkan suatu map dengan HDHR? Tidak masalah!',
             ],
 
             'auto_downloads' => [
@@ -96,7 +96,7 @@ return [
 
             'speedy_downloads' => [
                 'title' => 'Unduh Lebih Cepat',
-                'description' => 'Pembatasan pengunduhan yang lebih toleran, terutama saat menggunakan osu!direct.',
+                'description' => 'Pembatasan jumlah unduhan yang lebih lengang, terutama saat menggunakan osu!direct.',
             ],
 
             'change_username' => [
@@ -111,7 +111,7 @@ return [
 
             'feature_votes' => [
                 'title' => 'Hak Suara Ekstra',
-                'description' => 'Hak suara tambahan bagi Anda pada forum Feature Requests (2 suara per bulan).',
+                'description' => 'Hak suara tambahan yang dapat Anda dipergunakan pada sub-forum Feature Requests. (2 suara per bulan)',
             ],
 
             'sort_options' => [

@@ -110,7 +110,7 @@ return [
             '_' => 'sıralama',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'performans',
         ],
         'store_controller' => [
             '_' => 'osu!store',

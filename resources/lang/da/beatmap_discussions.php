@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'Vis Anmeldelses-opslag',
         'go_to_child' => 'Vis Diskussion',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => 'ugyldig block type',
             'invalid_document' => 'ugyldig vurdering',
             'minimum_issues' => 'vurdering skal som minimum indeholde :count fejl|vurdering skal som minimum indholde :count fejl',

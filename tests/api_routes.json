@@ -1,5 +1,31 @@
 [
     {
+        "uri": "api/v2/beatmapsets/events",
+        "method": "GET",
+        "controller": "App\\Http\\Controllers\\BeatmapsetEventsController@index",
+        "middlewares": [
+            "auth-custom-api",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/beatmapsets/events",
+        "method": "HEAD",
+        "controller": "App\\Http\\Controllers\\BeatmapsetEventsController@index",
+        "middlewares": [
+            "auth-custom-api",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/beatmapsets/{beatmapset}/favourites",
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Beatmapsets\\FavouritesController@store",
@@ -337,9 +363,12 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{mode?}",
@@ -348,9 +377,12 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}/users/{user}",
@@ -381,9 +413,12 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}/leaderboard",
@@ -392,9 +427,12 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores",
@@ -403,9 +441,12 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores",
@@ -414,9 +455,12 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores",
@@ -480,9 +524,12 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}",
@@ -491,9 +538,12 @@
         "middlewares": [
             "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/seasonal-backgrounds",

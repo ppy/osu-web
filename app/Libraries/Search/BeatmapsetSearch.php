@@ -89,7 +89,12 @@ class BeatmapsetSearch extends RecordSearch
 
     public function records()
     {
-        return $this->response()->records()->with('beatmaps')->get();
+        return $this
+            ->response()
+            ->records()
+            ->with(['beatmaps' => function ($q) {
+                return $q->withMaxCombo();
+            }])->get();
     }
 
     private function addBlacklistFilter($query)
@@ -228,8 +233,10 @@ class BeatmapsetSearch extends RecordSearch
                 $query->must(['match' => ['approved' => Beatmapset::STATES['graveyard']]]);
                 break;
             case 'mine':
-                $maps = model_pluck($this->params->user->beatmapsets(), 'beatmapset_id');
-                $query->must(['ids' => ['type' => 'beatmaps', 'values' => $maps]]);
+                if ($this->params->user !== null) {
+                    $maps = model_pluck($this->params->user->beatmapsets(), 'beatmapset_id');
+                }
+                $query->must(['ids' => ['type' => 'beatmaps', 'values' => $maps ?? []]]);
                 break;
             default: // null, etc
                 $query->should([

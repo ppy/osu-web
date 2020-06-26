@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nový příspěvek v ":title" od :username',
                 'beatmapset_discussion_post_new_compact' => 'Nový příspěvek od :username ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nový příspěvek od :username',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'Diskuze ":title" byla odemčena',
                 'beatmapset_discussion_unlock_compact' => 'Diskuze byla odemčena',
             ],

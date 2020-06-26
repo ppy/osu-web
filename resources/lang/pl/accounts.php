@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
+        'beatmapset_disqualify' => 'otrzymuj powiadomienia o dyskwalifikacjach beatmap następujących trybów',
         'title' => 'Powiadomienia',
         'topic_auto_subscribe' => 'automatycznie włączaj powiadomienia dla twoich wątków na forum',
-        'beatmapset_discussion_qualified_problem' => 'otrzymuj powiadomienia o nowych problemach z zakwalifikowanymi beatmapami dla następujących trybów',
 
-        'mail' => [
-            '_' => 'otrzymuj powiadomienia e-mail dla',
-            'beatmapset:modding' => 'dyskusji beatmap',
-            'forum_topic_reply' => 'odpowiedzi w wątkach',
+        'options' => [
+            '_' => 'opcje dostarczania',
+            'beatmapset:modding' => 'dyskusje beatmap',
+            'forum_topic_reply' => 'odpowiedzi do wątków',
+            'mail' => 'e-mail',
+            'push' => 'push',
         ],
     ],
 

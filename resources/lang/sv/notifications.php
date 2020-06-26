@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nytt inlägg på ":title" av :username',
                 'beatmapset_discussion_post_new_compact' => 'Nytt inlägg på ":username" av :content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nytt inlägg av :username',
+                'beatmapset_discussion_review_new' => 'Ny recension av ":title" av:username som innehåller problem: :problems, förslag: :suggestions, beröm: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Ny recension av :username som innehåller problem: :problems, förslag: :suggestions, beröm: :praises',
                 'beatmapset_discussion_unlock' => 'Diskussion om ":title" har låsts upp',
                 'beatmapset_discussion_unlock_compact' => 'Diskussionen var upplåst',
             ],

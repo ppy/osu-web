@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute ylittää maksimipituuden - voi olla enintään :limit merkkiä.',
     'wrong_confirmation' => 'Tarkistus ei täsmää.',
 
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Keskustelu on lukittu.',
-        'first_post' => 'Aloitusviestiä ei voida poistaa.',
-
-        'attributes' => [
-            'message' => '',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Aikaleima on määritelty, mutta beatmap puuttuu.',
         'beatmapset_no_hype' => "Beatmappia ei voi hurrata.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Määritelty aikaleima on beatmapin pituuden ulkopuolella.',
             'negative' => "Aikaleima ei voi olla negatiivinen.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Keskustelu on lukittu.',
+        'first_post' => 'Aloitusviestiä ei voida poistaa.',
+
+        'attributes' => [
+            'message' => '',
         ],
     ],
 

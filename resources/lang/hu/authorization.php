@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Teljes jogú nominátornak kell lenned a több játékmódot tartalmazó beatmapszettek nominálásához.',
             'incorrect_state' => 'Hiba történt a művelet végrehajtása közben, próbáld frissíteni az oldalt.',
             'owner' => "Saját beatmap-et nem lehet ajánlani.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Csak a poszt szerzője és a beatmap készítője tudja megoldottnak jelölni az adott problémát.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Ez a beatmap megbeszélés miatt zárolva.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 

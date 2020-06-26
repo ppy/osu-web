@@ -6,6 +6,8 @@
 return [
     '_' => 'Sortir',
 
+    'all' => 'Semua',
+    'friends' => 'Teman',
     'last_visit' => 'Baru-baru ini aktif',
     'new' => 'Komentar Terbaru',
     'old' => 'Komentar Terlama',

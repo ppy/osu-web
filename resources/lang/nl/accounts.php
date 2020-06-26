@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'ontvang meldingen voor nieuw probleem op gekwalificeerde beatmaps van de volgende modes',
+        'beatmapset_disqualify' => 'ontvang meldingen voor wanneer beatmaps van de volgende modes zijn gediskwalificeerd',
         'title' => 'Meldingen',
         'topic_auto_subscribe' => 'automatisch meldingen inschakelen op nieuwe forum onderwerpen die u maakt',
-        'beatmapset_discussion_qualified_problem' => 'ontvang meldingen voor nieuw probleem op gekwalificeerde beatmaps van de volgende modes',
 
-        'mail' => [
-            '_' => 'e-mailnotificaties ontvangen voor',
+        'options' => [
+            '_' => 'verzend methodes',
             'beatmapset:modding' => 'beatmap modding',
             'forum_topic_reply' => 'topic antwoord',
+            'mail' => 'e-mail',
+            'push' => 'push',
         ],
     ],
 

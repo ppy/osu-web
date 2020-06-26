@@ -20,7 +20,8 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Genre;
-use App\Models\Multiplayer\Match;
+use App\Models\Language;
+use App\Models\Match\Match;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -497,6 +498,19 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     */
+    public function checkBeatmapsetAdvancedSearch(?User $user): string
+    {
+        if (!config('osu.beatmapset.guest_advanced_search')) {
+            $this->ensureLoggedIn($user);
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
      * @param Beatmapset $beatmapset
      * @return string
      * @throws AuthorizationException
@@ -557,9 +571,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        // FIXME: This should also be checking for an unset language, but the default language setting is
-        //        "Other", which is correctly used on some maps. See https://github.com/ppy/osu-web/issues/6019
-        if ($beatmapset->genre_id === Genre::UNSPECIFIED) {
+        if ($beatmapset->genre_id === Genre::UNSPECIFIED || $beatmapset->language_id === Language::UNSPECIFIED) {
             return $prefix.'set_metadata';
         }
 

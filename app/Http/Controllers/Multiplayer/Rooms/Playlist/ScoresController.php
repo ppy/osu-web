@@ -17,13 +17,21 @@ class ScoresController extends BaseController
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('require-scopes:public', ['only' => ['index']]);
     }
 
     public function index($roomId, $playlistId)
     {
         $playlist = PlaylistItem::where('room_id', $roomId)->where('id', $playlistId)->firstOrFail();
 
-        $scores = json_collection($playlist->topScores()->get()->pluck('score'), 'Multiplayer\RoomScore', ['user.country']);
+        $scores = json_collection($playlist
+            ->topScores()
+            ->with(['score.user.userProfileCustomization', 'score.user.country'])
+            ->get()
+            ->pluck('score'),
+            'Multiplayer\Score',
+            ['user.country', 'user.cover']
+        );
         $total = $playlist->topScores()->count();
 
         return compact('scores', 'total');
@@ -37,7 +45,7 @@ class ScoresController extends BaseController
 
         return json_item(
             $score,
-            'Multiplayer\RoomScore'
+            'Multiplayer\Score'
         );
     }
 
@@ -58,12 +66,12 @@ class ScoresController extends BaseController
         try {
             $score = $room->completePlay(
                 $roomScore,
-                $this->extractRoomScoreParams(request()->all(), $playlistItem)
+                $this->extractScoreParams(request()->all(), $playlistItem)
             );
 
             return json_item(
                 $score,
-                'Multiplayer\RoomScore',
+                'Multiplayer\Score',
                 ['user.country']
             );
         } catch (InvariantException $e) {
@@ -71,7 +79,7 @@ class ScoresController extends BaseController
         }
     }
 
-    private function extractRoomScoreParams(array $params, PlaylistItem $playlistItem)
+    private function extractScoreParams(array $params, PlaylistItem $playlistItem)
     {
         $mods = Mod::parseInputArray(
             $params['mods'] ?? [],

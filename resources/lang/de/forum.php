@@ -44,13 +44,13 @@ return [
 
     'post' => [
         'confirm_destroy' => 'Post entfernen?',
-        'confirm_restore' => 'Post wiederherstellen?',
+        'confirm_restore' => 'Beitrag wirklich wiederherstellen?',
         'edited' => 'Zuletzt von :user :when bearbeitet, insgesamt :count Mal bearbeitet.',
         'posted_at' => 'erstellt :when',
 
         'actions' => [
             'destroy' => 'Post löschen',
-            'restore' => 'Post wiederherstellen',
+            'restore' => 'Beitrag wiederherstellen',
             'edit' => 'Post bearbeiten',
         ],
 
@@ -67,7 +67,7 @@ return [
     ],
 
     'search' => [
-        'go_to_post' => 'Gehe zu Post',
+        'go_to_post' => 'Gehe zu Beitrag',
         'post_number_input' => 'postnummer hier eingeben',
         'total_posts' => 'Insgesamt :posts_count Posts',
     ],

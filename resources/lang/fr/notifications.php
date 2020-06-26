@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nouveau message sur ":title" par :username',
                 'beatmapset_discussion_post_new_compact' => 'Nouveau message par :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nouveau message par :username',
+                'beatmapset_discussion_review_new' => 'Nouvelle revue sur ":title" par :username contenant des problèmes: :problems, suggestions: :suggestions, louanges : :praises',
+                'beatmapset_discussion_review_new_compact' => 'Nouvelle revue par :username contenant des problèmes: :problems, suggestions: :suggestions, louanges : :praises',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" a été déverrouillée pour la discussion.',
                 'beatmapset_discussion_unlock_compact' => 'La discussion a été débloquée',
             ],

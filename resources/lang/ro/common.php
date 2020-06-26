@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Înapoi sus',
         'cancel' => 'Anulează',
         'change' => 'modifică',
+        'clear' => '',
         'click_to_copy' => 'faceți clic pentru a copia în clipboard',
         'click_to_copy_copied' => 'copiat în clipboard!',
         'close' => 'Închide',

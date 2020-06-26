@@ -50,9 +50,15 @@ function blade_safe($html)
     return new Illuminate\Support\HtmlString($html);
 }
 
-function broadcast_notification(...$arguments)
+function broadcast_notification($name, ...$arguments)
 {
-    return (new App\Jobs\BroadcastNotification(...$arguments))->dispatch();
+    try {
+        $class = App\Jobs\Notifications\BroadcastNotificationBase::getNotificationClass($name);
+
+        return (new $class(...$arguments))->dispatch();
+    } catch (App\Exceptions\InvalidNotificationException $e) {
+        log_error($e);
+    }
 }
 
 /**
@@ -205,22 +211,28 @@ function css_var_2x(string $key, string $url)
 
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
-    $uid = uniqid($stat);
-    // spaces used so clockwork doesn't run across the whole screen.
-    $description = $stat
-                   .' '.($tag['type'] ?? null)
-                   .' '.($tag['index'] ?? null);
+    $withClockwork = app('clockwork.support')->isEnabled();
+
+    if ($withClockwork) {
+        $uid = uniqid($stat);
+        // spaces used so clockwork doesn't run across the whole screen.
+        $description = $stat
+                       .' '.($tag['type'] ?? null)
+                       .' '.($tag['index'] ?? null);
+
+        clock()->startEvent($uid, $description);
+    }
 
     $start = microtime(true);
 
-    clock()->startEvent($uid, $description);
     $result = $callable();
-    clock()->endEvent($uid);
 
-    if (config('datadog-helper.enabled')) {
-        $duration = microtime(true) - $start;
-        Datadog::microtiming($stat, $duration, 1, $tag);
+    if ($withClockwork) {
+        clock()->endEvent($uid);
     }
+
+    $duration = microtime(true) - $start;
+    Datadog::microtiming($stat, $duration, 1, $tag);
 
     return $result;
 }
@@ -1304,7 +1316,7 @@ function get_param_value($input, $type)
         case 'int[]':
             return get_arr($input, 'get_int');
         default:
-            return presence((string) $input);
+            return presence(get_string($input));
     }
 }
 

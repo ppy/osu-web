@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => '自动播放下一曲目',
     ],
 
     'defaults' => [
@@ -192,7 +192,7 @@ return [
 
         'register' => [
             'download' => '下载',
-            'info' => '点击下方的注册按钮以成为 osu! 大家庭中的一员！',
+            'info' => '立刻下载 osu! 并且注册帐号吧！',
             'title' => "没有账号？",
         ],
     ],

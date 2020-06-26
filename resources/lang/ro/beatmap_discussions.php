@@ -67,6 +67,8 @@ return [
         'go_to_parent' => 'Vezi review-ul utilizatorului',
         'go_to_child' => 'Vezi Discuția',
         'validation' => [
+            'block_too_large' => 'fiecare bloc poate conține până la :limit caractere',
+            'external_references' => 'recenzia conține referințe la probleme care nu aparțin la această revizuire',
             'invalid_block_type' => 'tip de block invalid',
             'invalid_document' => 'recenzie invalidă',
             'minimum_issues' => 'recezia trebuie să conțină un minimum de :count problemă|recenzia trebuie să conțină un minimum de :count probleme',

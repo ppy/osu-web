@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute melebihi batas maksimum - hanya bisa hingga :limit karakter.',
     'wrong_confirmation' => 'Konfirmasi tidak cocok.',
 
-    'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Diskusi terkunci',
-        'first_post' => 'Tidak dapat menghapus postingan awal.',
-
-        'attributes' => [
-            'message' => 'Isi pesan',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Keterangan waktu telah ditentukan tetapi beatmap tidak ada.',
         'beatmapset_no_hype' => "Beatmap tidak dapat dihype.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Keterangan waktu yang ditentukan melebihi panjang beatmap.',
             'negative' => "Keterangan waktu tidak bisa bernilai negatif.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Topik diskusi ini terkunci.',
+        'first_post' => 'Tidak dapat menghapus postingan awal.',
+
+        'attributes' => [
+            'message' => 'Pesan',
         ],
     ],
 
