@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as _ from 'lodash';
+import { Portal } from 'portal';
 import * as React from 'react';
-import { Editor as SlateEditor, Transforms } from 'slate';
+import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
-import BeatmapJsonExtended from '../interfaces/beatmap-json-extended';
-import { Portal } from '../portal';
 import { SlateContext } from './slate-context';
 
 const editorClass = 'beatmap-discussion-editor';
@@ -80,11 +80,10 @@ export class EditorInsertionMenu extends React.Component<Props> {
       y: event.originalEvent.clientY,
     };
 
+    // If we're past the half-way point of the block's height then put the menu below the block, otherwise put it above
     if ((cursorPos?.y - blockRect.top) > (blockRect.height / 2)) {
-      // show menu below hovered block
       this.menuPos = 'below';
     } else {
-      // show menu above hovered block
       this.menuPos = 'above';
     }
 
@@ -132,24 +131,41 @@ export class EditorInsertionMenu extends React.Component<Props> {
   }
 
   insertBlock = (event: React.MouseEvent<HTMLElement>) => {
-    const type = event.currentTarget.dataset.dtype;
-    const beatmapId = this.props.currentBeatmap?.id;
-
-    // find where to insert the new embed (relative to the menu)
+    const e: ReactEditor = this.context;
     const lastChild = this.getBlockFromInsertMarker()?.lastChild;
 
     if (!lastChild) {
       return;
     }
 
-    // convert from dom node to document path
-    const node = ReactEditor.toSlateNode(this.context, lastChild);
-    const path = ReactEditor.findPath(this.context, node);
-    const at = SlateEditor.start(this.context, path);
-    let insertNode;
+    let node = ReactEditor.toSlateNode(e, lastChild);
+    let at: Point;
+
+    // TODO: This is a workaround for Slate incorrectly inserting nodes _after_ an empty element instead of _before_.
+    //  Either due to a bug in SlateEditor.end() or with how our 'embed' blocks are implemented... maybe we should
+    //  look at converting the embeds to voids at some point?
+    if (SlateElement.isElement(node) && SlateEditor.isEmpty(e, node)) {
+      const previousBlock = lastChild.parentElement!.previousSibling;
+
+      if (previousBlock) {
+        node = ReactEditor.toSlateNode(e, (previousBlock.lastChild as Node));
+        at = SlateEditor.end(e, ReactEditor.findPath(e, node));
+      } else {
+        // inserting block at start of review/document
+        at = {path: [], offset: 0};
+      }
+    } else {
+      at = SlateEditor.start(e, ReactEditor.findPath(e, node));
+    }
+
+    let insertNode: SlateNode | undefined;
+    const type = event.currentTarget.dataset.dtype;
+    const beatmapId = this.props.currentBeatmap?.id;
 
     switch (type) {
-      case 'suggestion': case 'problem': case 'praise':
+      case 'suggestion':
+      case 'problem':
+      case 'praise':
         insertNode = {
           beatmapId,
           children: [{text: ''}],
@@ -169,7 +185,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
       return;
     }
 
-    Transforms.insertNodes(this.context, insertNode, { at });
+    Transforms.insertNodes(e, insertNode, { at });
   }
 
   insertButton = (type: string) => {
