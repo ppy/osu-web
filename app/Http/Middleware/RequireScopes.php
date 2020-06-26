@@ -51,10 +51,6 @@ class RequireScopes extends CheckCredentials
         $this->validate($psr, $scopes);
 
         return $next($request);
-
-        // TODO: also stop validating request every time.
-
-        // return parent::handle($request, $next, ...$scopes);
     }
 
     protected function validateRequest($request)
@@ -68,7 +64,6 @@ class RequireScopes extends CheckCredentials
             ))->createRequest($request);
 
             try {
-                \Log::debug('validateRequest');
                 $psr = $this->server->validateAuthenticatedRequest($psr);
                 $request->attributes->set(static::REQUEST_VALIDATED_PSR_KEY, $psr);
             } catch (OAuthServerException $e) {
@@ -98,9 +93,7 @@ class RequireScopes extends CheckCredentials
 
         $this->validateScopes($token, $scopes);
 
-        $user = $token->user;
-        \Log::debug('token user_id: '.optional($user)->getKey().' auth_id: '.auth()->id());
-        if (optional($user)->getKey() !== auth()->id()) {
+        if (optional($token->user)->getKey() !== auth()->id()) {
             throw new \Exception('something gone horribly wrong');
         }
     }
