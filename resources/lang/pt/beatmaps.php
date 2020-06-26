@@ -96,10 +96,11 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => 'Nova Análise',
             'embed' => [
-                'delete' => '',
-                'missing' => '',
+                'delete' => 'Apagar',
+                'missing' => '[DISCUSSÃO ELIMINADA]
+',
                 'unlink' => '',
                 'unsaved' => '',
                 'timestamp' => [
@@ -275,10 +276,10 @@ return [
         'novelty' => 'Inovação',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Eletrónica',
-        'metal' => '',
-        'classical' => '',
-        'folk' => '',
-        'jazz' => '',
+        'metal' => 'Metal',
+        'classical' => 'Clássica',
+        'folk' => 'Música popular',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '',
@@ -316,11 +317,11 @@ return [
         'korean' => 'Coreano',
         'spanish' => 'Espanhol',
         'swedish' => 'Sueco',
-        'russian' => '',
-        'polish' => '',
+        'russian' => 'Russa',
+        'polish' => 'Polaca',
         'instrumental' => 'Instrumental',
         'other' => 'Outro',
-        'unspecified' => '',
+        'unspecified' => 'Não especificada',
     ],
     'played' => [
         'any' => 'Qualquer',
@@ -348,9 +349,9 @@ return [
     ],
     'variant' => [
         'mania' => [
-            '4k' => '',
-            '7k' => '',
-            'all' => '',
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Todos',
         ],
     ],
 ];

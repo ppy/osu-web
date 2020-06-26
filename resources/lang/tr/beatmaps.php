@@ -61,7 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Genel\'e yazmak için burayı kullanın (:version)',
             'generalAll' => 'Genel\'e yazmak için burayı kullanın (tüm zorluklar)',
-            'review' => '',
+            'review' => 'İnceleme göndermek için buraya yazın',
             'timeline' => 'Timeline\'a yazmak için burayı kullanın (:version)',
         ],
 
@@ -96,22 +96,22 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => 'Yeni İnceleme',
             'embed' => [
-                'delete' => '',
-                'missing' => '',
-                'unlink' => '',
-                'unsaved' => '',
+                'delete' => 'Sil',
+                'missing' => '[TARTIŞMA SİLİNDİ]',
+                'unlink' => 'Bağlantıyı kaldır',
+                'unsaved' => 'Kaydedilmemiş',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => '"Tüm zorluklar" kısmındaki gönderilere zaman damgası yerleştirilemez.',
+                    'diff' => 'Eğer bu :type bir zaman damgasıyla başlıyorsa, Zaman çizgisi altında gösterilecektir.',
                 ],
             ],
             'insert-block' => [
-                'paragraph' => '',
-                'praise' => '',
-                'problem' => '',
-                'suggestion' => '',
+                'paragraph' => 'paragraf ekle',
+                'praise' => 'övgü ekle',
+                'problem' => 'sorun ekle',
+                'suggestion' => 'öneri ekle',
             ],
         ],
 
@@ -275,10 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronik',
-        'metal' => '',
-        'classical' => '',
-        'folk' => '',
-        'jazz' => '',
+        'metal' => 'Metal',
+        'classical' => 'Klasik',
+        'folk' => 'Folk',
+        'jazz' => 'Caz',
     ],
     'mods' => [
         '4K' => '',
@@ -316,11 +316,11 @@ return [
         'korean' => 'Korece',
         'spanish' => 'İspanyolca',
         'swedish' => 'İsveççe',
-        'russian' => '',
-        'polish' => '',
+        'russian' => 'Rusça',
+        'polish' => 'Lehçe',
         'instrumental' => 'Enstrümental',
         'other' => 'Diğer',
-        'unspecified' => '',
+        'unspecified' => 'Belirtilmemiş',
     ],
     'played' => [
         'any' => 'Hepsi',
@@ -348,9 +348,9 @@ return [
     ],
     'variant' => [
         'mania' => [
-            '4k' => '',
-            '7k' => '',
-            'all' => '',
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Tümü',
         ],
     ],
 ];
