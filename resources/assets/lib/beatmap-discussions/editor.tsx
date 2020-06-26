@@ -169,13 +169,10 @@ export default class Editor extends React.Component<Props, State> {
 
     if (ReactEditor.isFocused(this.slateEditor) && this.props.onFocus) {
       this.props.onFocus();
-      // this.hideInsertMenu();
     }
   }
 
   onKeyDown = (event: KeyboardEvent) => {
-    // this.hideInsertMenu();
-
     if (isHotkey('mod+b', event)) {
       event.preventDefault();
       toggleFormat(this.slateEditor, 'bold');
