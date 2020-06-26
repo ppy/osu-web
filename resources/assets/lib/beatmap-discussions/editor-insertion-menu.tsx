@@ -29,7 +29,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
   throttledContainerMouseMove = _.throttle(this.containerMouseMove.bind(this), 10);
   throttledMenuMouseEnter = _.throttle(this.menuMouseEnter.bind(this), 10);
   throttledMenuMouseExit = _.throttle(this.menuMouseLeave.bind(this), 10);
-  throttledScroll = _.throttle(this.hideMenu.bind(this), 10);
+  throttledScroll = _.throttle(this.forceHideMenu.bind(this), 10);
 
   constructor(props: Props) {
     super(props);
@@ -47,8 +47,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
   // updates cascade from our parent (slate editor), i.e. `componentDidUpdate` gets called on editor changes (typing/selection changes/etc)
   componentDidUpdate() {
-    this.mouseOver = false;
-    this.hideMenu();
+    this.forceHideMenu();
   }
 
   componentWillUnmount() {
@@ -94,14 +93,19 @@ export class EditorInsertionMenu extends React.Component<Props> {
     this.startHideTimer();
   }
 
+  forceHideMenu() {
+    this.mouseOver = false;
+    this.hideMenu();
+  }
+
   getBlockFromInsertMarker() {
     const container = this.scrollContainer;
-    const insertBar = this.insertRef.current;
-    if (!container || !insertBar) {
+    const insertMarker = this.insertRef.current;
+    if (!container || !insertMarker) {
       return;
     }
 
-    const y = insertBar.getBoundingClientRect().y + (insertBar.getBoundingClientRect().height / 2);
+    const y = insertMarker.getBoundingClientRect().y + (insertMarker.getBoundingClientRect().height / 2);
 
     let blockOffset = -1;
     for (const child of container.children[0].children) {
@@ -131,7 +135,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
     const type = event.currentTarget.dataset.dtype;
     const beatmapId = this.props.currentBeatmap?.id;
 
-    // find where to insert the new embed (relative to the dropdown menu)
+    // find where to insert the new embed (relative to the menu)
     const lastChild = this.getBlockFromInsertMarker()?.lastChild;
 
     if (!lastChild) {
@@ -259,7 +263,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
       (blockRect.top > containerBounds.bottom);
 
     if (outsideContainer) {
-      return this.hideMenu();
+      return this.forceHideMenu();
     }
 
     if (this.menuPos === 'above') {
