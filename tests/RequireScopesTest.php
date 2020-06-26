@@ -19,7 +19,7 @@ class RequireScopesTest extends TestCase
     protected $user;
 
     /**
-     * @dataProvider clientCredentialsDataProvider
+     * @dataProvider clientCredentialsTestDataProvider
      */
     public function testClientCredentials($scopes, $expectedException)
     {
@@ -35,7 +35,7 @@ class RequireScopesTest extends TestCase
     }
 
     /**
-     * @dataProvider clientCredentialsWhenAllScopeRequiredDataProvider
+     * @dataProvider clientCredentialsTestWhenAllScopeRequiredDataProvider
      */
     public function testClientCredentialsWhenAllScopeRequired($scopes, $expectedException)
     {
@@ -50,111 +50,6 @@ class RequireScopesTest extends TestCase
         $this->assertTrue(oauth_token()->isClientCredentials());
     }
 
-    public function testNoScopes()
-    {
-        $userScopes = [];
-
-        $this->setRequest();
-        $this->setUser($this->user, $userScopes);
-
-        $this->expectException(MissingScopeException::class);
-        app(RequireScopes::class)->handle($this->request, $this->next);
-    }
-
-    public function testAllScopes()
-    {
-        $userScopes = ['*'];
-
-        $this->setRequest();
-        $this->setUser($this->user, $userScopes);
-
-        app(RequireScopes::class)->handle($this->request, $this->next);
-        $this->assertTrue(true);
-    }
-
-    public function testHasTheRequiredScope()
-    {
-        $userScopes = ['identify'];
-        $requireScopes = ['identify'];
-
-        $this->setRequest($requireScopes);
-        $this->setUser($this->user, $userScopes);
-
-        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
-        $this->assertTrue(true);
-    }
-
-    public function testDoesNotHaveTheRequiredScope()
-    {
-        $userScopes = ['somethingelse'];
-        $requireScopes = ['identify'];
-
-        $this->setRequest($requireScopes);
-        $this->setUser($this->user, $userScopes);
-
-        $this->expectException(MissingScopeException::class);
-        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
-    }
-
-    public function testRequiresSpecificScopeAndAllScopeGiven()
-    {
-        $userScopes = ['*'];
-        $requireScopes = ['identify'];
-
-        $this->setRequest($requireScopes);
-        $this->setUser($this->user, $userScopes);
-
-        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
-        $this->assertTrue(true);
-    }
-
-    public function testRequiresSpecificScopeAndNoScopeGiven()
-    {
-        $userScopes = [];
-        $requireScopes = ['identify'];
-
-        $this->setRequest($requireScopes);
-        $this->setUser($this->user, $userScopes);
-
-        $this->expectException(MissingScopeException::class);
-        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
-    }
-
-    public function testRequiresSpecificScopeAndMultipleNonMatchingScopesGiven()
-    {
-        $userScopes = ['somethingelse', 'alsonotright', 'nope'];
-        $requireScopes = ['identify'];
-
-        $this->setRequest($requireScopes);
-        $this->setUser($this->user, $userScopes);
-
-        $this->expectException(MissingScopeException::class);
-        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
-    }
-
-    public function testRequiresSpecificScopeAndMultipleScopesGiven()
-    {
-        $userScopes = ['somethingelse', 'identify', 'nope'];
-        $requireScopes = ['identify'];
-
-        $this->setRequest($requireScopes);
-        $this->setUser($this->user, $userScopes);
-
-        app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
-        $this->assertTrue(true);
-    }
-
-    public function testBlankRequireShouldDenyRegularScopes()
-    {
-        $userScopes = ['identify'];
-
-        $this->setRequest();
-        $this->setUser($this->user, $userScopes);
-
-        $this->expectException(MissingScopeException::class);
-        app(RequireScopes::class)->handle($this->request, $this->next);
-    }
-
     public function testRequireScopesLayered()
     {
         $userScopes = ['identify'];
@@ -167,7 +62,7 @@ class RequireScopesTest extends TestCase
             app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
         });
 
-        $this->assertTrue(true);
+        $this->assertTrue(!oauth_token()->isClientCredentials());
     }
 
     public function testRequireScopesLayeredNoPermission()
@@ -193,10 +88,31 @@ class RequireScopesTest extends TestCase
         $this->setUser($this->user, $userScopes);
 
         app(RequireScopes::class)->handle($this->request, $this->next, ...$requireScopes);
-        $this->assertTrue(true);
+        $this->assertTrue(!oauth_token()->isClientCredentials());
     }
 
-    public function clientCredentialsDataProvider()
+    /**
+     * @dataProvider userScopesTestDataProvider
+     */
+    public function testUserScopes($requiredScopes, $userScopes, $expectedException)
+    {
+        $this->setRequest($requiredScopes);
+        $this->setUser($this->user, $userScopes);
+
+        if ($expectedException !== null) {
+            $this->expectException($expectedException);
+        }
+
+        if ($requiredScopes === null) {
+            app(RequireScopes::class)->handle($this->request, $this->next);
+        } else {
+            app(RequireScopes::class)->handle($this->request, $this->next, ...$requiredScopes);
+        }
+
+        $this->assertTrue(!oauth_token()->isClientCredentials());
+    }
+
+    public function clientCredentialsTestDataProvider()
     {
         return [
             'null is not a valid scope' => [null, MissingScopeException::class],
@@ -206,13 +122,30 @@ class RequireScopesTest extends TestCase
         ];
     }
 
-    public function clientCredentialsWhenAllScopeRequiredDataProvider()
+    public function clientCredentialsTestWhenAllScopeRequiredDataProvider()
     {
         return [
             'null is not a valid scope' => [null, MissingScopeException::class],
             'empty scope should fail' => [[], MissingScopeException::class],
             'public' => [['public'], MissingScopeException::class],
             'all scope is not allowed' => [['*'], AuthenticationException::class],
+        ];
+    }
+
+    public function userScopesTestDataProvider()
+    {
+        return [
+            'null is not a valid scope' => [null, null, MissingScopeException::class],
+            'No scopes' => [null, [], MissingScopeException::class],
+            'All scopes' => [null, ['*'], null],
+            'Has the required scope' => [['identify'], ['identify'], null],
+            'Does not have the required scope' => [['identify'], ['somethingelse'], MissingScopeException::class],
+            'Requires specific scope and all scope' => [['identify'], ['*'], null],
+            'Requires specific scope and no scope' => [['identify'], [], MissingScopeException::class],
+            'Requires specific scope and multiple non-matching scopes' => [['identify'], ['somethingelse', 'alsonotright', 'nope'], MissingScopeException::class],
+            'Requires specific scope and multiple scopes' => [['identify'], ['somethingelse', 'identify', 'nope'], null],
+            'Blank require should deny regular scopes' => [null, ['identify'], MissingScopeException::class],
+
         ];
     }
 
