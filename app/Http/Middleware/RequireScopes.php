@@ -22,12 +22,27 @@ class RequireScopes extends CheckCredentials
     const REQUEST_OAUTH_TOKEN_KEY = 'oauthToken';
     const REQUEST_VALIDATED_PSR_KEY = 'oauthPsrRequest';
 
+    const NO_TOKEN_REQUIRED = [
+        'api/v2/changelog/',
+        'api/v2/comments/',
+        'api/v2/seasonal-backgrounds/',
+        'api/v2/wiki/',
+    ];
+
+    // TODO: this should be definable per-controller or action.
+    public static function noTokenRequired($request)
+    {
+        $path = "{$request->decodedPath()}/";
+
+        return $request->isMethod('GET') && starts_with($path, static::NO_TOKEN_REQUIRED);
+    }
+
     /**
      * {@inheritdoc}
      */
     public function handle($request, Closure $next, ...$scopes)
     {
-        if (!is_api_request() || AuthApi::skipAuth($request)) {
+        if (!is_api_request() || static::noTokenRequired($request)) {
             return $next($request);
         }
 

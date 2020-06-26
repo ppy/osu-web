@@ -6,6 +6,7 @@
 namespace Tests;
 
 use App\Http\Middleware\AuthApi;
+use App\Http\Middleware\RequireScopes;
 use App\Libraries\RouteScopesHelper;
 use App\Models\Build;
 use App\Models\Changelog;
@@ -62,7 +63,7 @@ class RouteScopesTest extends TestCase
 
         $status = $this->call($method, $url)->getStatusCode();
 
-        if ($method === 'GET' && starts_with(ltrim($url, '/').'/', AuthApi::SKIP_GET)) {
+        if ($method === 'GET' && starts_with(ltrim($url, '/').'/', RequireScopes::NO_TOKEN_REQUIRED)) {
             $this->assertTrue(in_array($status, [200, 302, 404], true));
         } elseif (in_array('require-scopes', $middlewares, true)) {
             $this->assertSame(401, $status);
