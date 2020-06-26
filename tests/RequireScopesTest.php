@@ -34,6 +34,15 @@ class RequireScopesTest extends TestCase
         $this->assertTrue(oauth_token()->isClientCredentials());
     }
 
+    public function testClientCredentialsIsGuest()
+    {
+        $this->setRequest(['public']);
+        $this->setUser(null, ['public']);
+
+        app(RequireScopes::class)->handle($this->request, $this->next);
+        $this->assertNull(auth()->user());
+    }
+
     /**
      * @dataProvider clientCredentialsTestWhenAllScopeRequiredDataProvider
      */
