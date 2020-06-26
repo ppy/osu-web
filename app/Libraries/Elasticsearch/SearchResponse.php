@@ -5,6 +5,8 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use App\Models\Beatmapset;
+
 class SearchResponse implements \ArrayAccess, \Countable, \Iterator
 {
     /**
@@ -110,6 +112,11 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
 
         $key = (new $this->recordType)->getKeyName();
         $ids = $this->ids($this->idField);
+
+        // FIXME: temporary workaround to query beatmapsets from readonly database
+        if ($this->recordType === Beatmapset::class) {
+            return $this->recordType::on('mysql-readonly')->whereIn($key, $ids)->orderByField($key, $ids);
+        }
 
         return $this->recordType::whereIn($key, $ids)->orderByField($key, $ids);
     }
