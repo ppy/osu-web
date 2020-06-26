@@ -5,7 +5,6 @@
 
 namespace Tests;
 
-use App\Http\Middleware\AuthApi;
 use App\Http\Middleware\RequireScopes;
 use App\Libraries\RouteScopesHelper;
 use App\Models\Build;

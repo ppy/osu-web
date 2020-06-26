@@ -5,7 +5,7 @@
 
 namespace Tests;
 
-use App\Http\Middleware\RequireScopes;
+use App\Http\Middleware\AuthApi;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -52,6 +52,15 @@ class TestCase extends BaseTestCase
         });
     }
 
+    /**
+     * Act as a User with OAuth scope permissions.
+     * This is for tests that will run the request middleware stack.
+     *
+     * @param User|null $user User to act as, or null for guest.
+     * @param array|null $scopes OAuth token scopes.
+     * @param string $driver Auth driver to use.
+     * @return void
+     */
     protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], $driver = 'api')
     {
         // create valid token
@@ -75,7 +84,7 @@ class TestCase extends BaseTestCase
 
         app()->instance(ResourceServer::class, $mock);
 
-        $this->actAsUserWithToken($user, $token, $driver);
+        $this->actAsUserWithToken($token, $driver);
     }
 
     protected function actAsUser(?User $user, ?bool $verified = null, $driver = null)
@@ -91,17 +100,28 @@ class TestCase extends BaseTestCase
         }
     }
 
-    protected function actAsUserWithToken(?User $user, Token $token, $driver = 'api')
+    /**
+     * This is for tests that will skip the request middleware stack.
+     *
+     * @param Token $token OAuth token.
+     * @param string $driver Auth driver to use.
+     * @return void
+     */
+    protected function actAsUserWithToken(Token $token, $driver = 'api')
     {
         $guard = app('auth')->guard($driver);
+        $user = $token->user;
+
         if ($user !== null) {
             // guard doesn't accept null user.
             $guard->setUser($user);
             $user->withAccessToken($token);
         }
 
-        // TODO: this seems like a bad idea? need to add a test that checks token validation works.
-        request()->attributes->set(RequireScopes::REQUEST_OAUTH_TOKEN_KEY, $token);
+        // This is for test that do not make actual requests;
+        // tests that make requests will override this value with a new one
+        // and the token gets resolved in middleware.
+        request()->attributes->set(AuthApi::REQUEST_OAUTH_TOKEN_KEY, $token);
 
         app('auth')->shouldUse($driver);
     }

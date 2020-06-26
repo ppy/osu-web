@@ -248,7 +248,7 @@ class ClientTest extends TestCase
 
         $this->client->resetSecret();
         $token->refresh();
-        $this->actAsUserWithToken($user, $token);
+        $this->actAsUserWithToken($token);
 
         $this->get(route('api.me'))->assertUnauthorized();
     }

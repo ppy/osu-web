@@ -6,7 +6,6 @@
 namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
-use App\Http\Middleware\RequireScopes;
 use App\Http\Middleware\StartSession;
 use App\Libraries\Groups;
 use App\Libraries\MorphMap;

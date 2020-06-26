@@ -9,19 +9,9 @@ use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Laravel\Passport\Exceptions\MissingScopeException;
-use Laravel\Passport\Http\Middleware\CheckCredentials;
-use League\OAuth2\Server\Exception\OAuthServerException;
-use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
-use Zend\Diactoros\ResponseFactory;
-use Zend\Diactoros\ServerRequestFactory;
-use Zend\Diactoros\StreamFactory;
-use Zend\Diactoros\UploadedFileFactory;
 
-class RequireScopes extends CheckCredentials
+class RequireScopes
 {
-    const REQUEST_OAUTH_TOKEN_KEY = 'oauthToken';
-    const REQUEST_VALIDATED_PSR_KEY = 'oauthPsrRequest';
-
     const NO_TOKEN_REQUIRED = [
         'api/v2/changelog/',
         'api/v2/comments/',
@@ -37,84 +27,27 @@ class RequireScopes extends CheckCredentials
         return $request->isMethod('GET') && starts_with($path, static::NO_TOKEN_REQUIRED);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function handle($request, Closure $next, ...$scopes)
     {
         if (!is_api_request() || static::noTokenRequired($request)) {
             return $next($request);
         }
 
-        $psr = $this->validateRequest($request);
-
-        $this->validate($psr, $scopes);
+        $this->validateScopes(oauth_token(), $scopes);
 
         return $next($request);
     }
 
-    protected function validateRequest($request)
-    {
-        if (!$request->attributes->has(static::REQUEST_VALIDATED_PSR_KEY)) {
-            $psr = (new PsrHttpFactory(
-                new ServerRequestFactory,
-                new StreamFactory,
-                new UploadedFileFactory,
-                new ResponseFactory
-            ))->createRequest($request);
-
-            try {
-                $psr = $this->server->validateAuthenticatedRequest($psr);
-                $request->attributes->set(static::REQUEST_VALIDATED_PSR_KEY, $psr);
-            } catch (OAuthServerException $e) {
-                throw new AuthenticationException;
-            }
-        }
-
-        return $request->attributes->get(static::REQUEST_VALIDATED_PSR_KEY);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function validate($psr, $scopes)
-    {
-        $request = request();
-        if (!$request->attributes->has(static::REQUEST_OAUTH_TOKEN_KEY)) {
-            $request->attributes->set(
-                static::REQUEST_OAUTH_TOKEN_KEY,
-                $this->repository->find($psr->getAttribute('oauth_access_token_id'))
-            );
-        }
-
-        $token = $request->attributes->get(static::REQUEST_OAUTH_TOKEN_KEY);
-
-        $this->validateCredentials($token);
-
-        $this->validateScopes($token, $scopes);
-
-        if (optional($token->user)->getKey() !== auth()->id()) {
-            throw new \Exception('something gone horribly wrong');
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function validateCredentials($token)
-    {
-        if ($token === null
-            || $token->revoked
-            || $token->isClientCredentials() && $token->scopes === ['*']) {
-            throw new AuthenticationException();
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function validateScopes($token, $scopes)
     {
+        if ($token === null) {
+            throw new AuthenticationException();
+        }
+
+        if ($token->isClientCredentials() && $token->scopes === ['*']) {
+            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
+        }
+
         if (empty($token->scopes)) {
             throw new MissingScopeException([], 'Tokens without scopes are not valid.');
         }

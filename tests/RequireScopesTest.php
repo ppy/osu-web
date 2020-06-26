@@ -6,8 +6,8 @@
 namespace Tests;
 
 use App\Http\Middleware\RequireScopes;
+use App\Models\OAuth\Token;
 use App\Models\User;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Routing\Route;
 use Laravel\Passport\Exceptions\MissingScopeException;
 use Request;
@@ -127,7 +127,7 @@ class RequireScopesTest extends TestCase
             'null is not a valid scope' => [null, MissingScopeException::class],
             'empty scope should fail' => [[], MissingScopeException::class],
             'public' => [['public'], null],
-            'all scope is not allowed' => [['*'], AuthenticationException::class],
+            'all scope is not allowed' => [['*'], MissingScopeException::class],
         ];
     }
 
@@ -137,7 +137,7 @@ class RequireScopesTest extends TestCase
             'null is not a valid scope' => [null, MissingScopeException::class],
             'empty scope should fail' => [[], MissingScopeException::class],
             'public' => [['public'], MissingScopeException::class],
-            'all scope is not allowed' => [['*'], AuthenticationException::class],
+            'all scope is not allowed' => [['*'], MissingScopeException::class],
         ];
     }
 
@@ -192,11 +192,12 @@ class RequireScopesTest extends TestCase
 
     protected function setUser(?User $user, ?array $scopes = null)
     {
-        $this->request->setUserResolver(function () use ($user) {
-            return $user;
-        });
+        $token = new Token([
+            'id' => 'notsaved',
+            'scopes' => $scopes,
+            'user_id' => optional($user)->getKey(),
+        ]);
 
-        // TODO: should there be a test against null scopes?
-        $this->actAsScopedUser($user, $scopes);
+        $this->actAsUserWithToken($token);
     }
 }
