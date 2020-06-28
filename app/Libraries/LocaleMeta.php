@@ -41,7 +41,7 @@ class LocaleMeta
             'flag' => 'GB',
         ],
         'es' => [
-            'name' => 'Español',
+            'name' => 'español',
             'flag' => 'ES',
         ],
         'fi' => [
