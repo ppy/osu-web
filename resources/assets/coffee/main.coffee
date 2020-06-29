@@ -76,7 +76,7 @@ $(document).on 'turbolinks:load', ->
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
-@forumTopicReply ?= new ForumTopicReply({ @forum, @forumPostPreview, @stickyFooter })
+@forumTopicReply ?= new ForumTopicReply({ @bbcodePreview, @forum, @stickyFooter })
 @nav2 ?= new Nav2(@clickMenu)
 @osuEnchant ?= new _exported.Enchant(@, @turbolinksReload)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)
