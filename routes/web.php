@@ -311,6 +311,23 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::get('/home', 'HomeController@index')->name('home');
+
+    route_redirect('/', 'home');
+
+    // redirects go here
+    route_redirect('forum/p/{post}', 'forum.posts.show');
+    route_redirect('po/{post}', 'forum.posts.show');
+    route_redirect('forum/t/{topic}', 'forum.topics.show');
+    route_redirect('forum/{forum}', 'forum.forums.show');
+    // redirects to beatmapset anyways so there's no point
+    // in having an another redirect on top of that
+    Route::get('b/{beatmap}', 'BeatmapsController@show')->name('redirect:beatmaps.show');
+    route_redirect('g/{group}', 'groups.show');
+    route_redirect('s/{beatmapset}', 'beatmapsets.show');
+    route_redirect('u/{user}', 'users.show');
+    route_redirect('forum', 'forum.forums.index');
+    route_redirect('mp/{match}', 'matches.show');
+    route_redirect('wiki/{page?}', 'wiki.show')->where('page', '.+');
 });
 
 // API
@@ -435,23 +452,6 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
 });
-
-route_redirect('/', 'home');
-
-// redirects go here
-route_redirect('forum/p/{post}', 'forum.posts.show');
-route_redirect('po/{post}', 'forum.posts.show');
-route_redirect('forum/t/{topic}', 'forum.topics.show');
-route_redirect('forum/{forum}', 'forum.forums.show');
-// redirects to beatmapset anyways so there's no point
-// in having an another redirect on top of that
-Route::get('b/{beatmap}', 'BeatmapsController@show')->name('redirect:beatmaps.show');
-route_redirect('g/{group}', 'groups.show');
-route_redirect('s/{beatmapset}', 'beatmapsets.show');
-route_redirect('u/{user}', 'users.show');
-route_redirect('forum', 'forum.forums.index');
-route_redirect('mp/{match}', 'matches.show');
-route_redirect('wiki/{page?}', 'wiki.show')->where('page', '.+');
 
 // status
 if (Config::get('app.env') === 'production') {
