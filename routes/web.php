@@ -310,22 +310,6 @@ Route::group(['middleware' => ['web']], function () {
         });
     });
 
-    // Callbacks for legacy systems to interact with
-    Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
-        Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
-        Route::post('index-beatmapset/{beatmapset}', 'LegacyInterOpController@indexBeatmapset');
-        Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
-        Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
-        Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
-        Route::post('user-send-message', 'LegacyInterOpController@userSendMessage');
-        Route::post('user-batch-mark-channel-as-read', 'LegacyInterOpController@userBatchMarkChannelAsRead');
-        Route::post('user-batch-send-message', 'LegacyInterOpController@userBatchSendMessage');
-        Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
-        Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
-        Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
-        Route::get('/news', 'LegacyInterOpController@news');
-    });
-
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
@@ -434,6 +418,22 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
 
         Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     });
+});
+
+// Callbacks for legacy systems to interact with
+Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
+    Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
+    Route::post('index-beatmapset/{beatmapset}', 'LegacyInterOpController@indexBeatmapset');
+    Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
+    Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
+    Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
+    Route::post('user-send-message', 'LegacyInterOpController@userSendMessage');
+    Route::post('user-batch-mark-channel-as-read', 'LegacyInterOpController@userBatchMarkChannelAsRead');
+    Route::post('user-batch-send-message', 'LegacyInterOpController@userBatchSendMessage');
+    Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
+    Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
+    Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
+    Route::get('/news', 'LegacyInterOpController@news');
 });
 
 route_redirect('/', 'home');
