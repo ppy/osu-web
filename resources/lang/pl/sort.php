@@ -6,6 +6,8 @@
 return [
     '_' => 'Sortuj wg',
 
+    'all' => 'Wszyscy',
+    'friends' => 'Znajomi',
     'last_visit' => 'Ostatnio aktywni',
     'new' => 'Najnowsze',
     'old' => 'Najstarsze',

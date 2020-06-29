@@ -7,7 +7,7 @@ namespace Tests\Models\Multiplayer;
 
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Room;
-use App\Models\Multiplayer\RoomScore;
+use App\Models\Multiplayer\Score;
 use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\User;
 use Tests\TestCase;
@@ -34,7 +34,7 @@ class UserScoreAggregateTest extends TestCase
         $playlistItem = $this->playlistItem();
         $agg = UserScoreAggregate::new($user, $this->room);
 
-        $score = factory(RoomScore::class)
+        $score = factory(Score::class)
             ->create([
                 'room_id' => $this->room->getKey(),
                 'playlist_item_id' => $playlistItem->getKey(),
@@ -55,7 +55,7 @@ class UserScoreAggregateTest extends TestCase
         $agg = UserScoreAggregate::new($user, $this->room);
 
         $agg->addScore(
-            factory(RoomScore::class)
+            factory(Score::class)
                 ->states('completed', 'failed')
                 ->create([
                     'room_id' => $this->room->getKey(),
@@ -65,7 +65,7 @@ class UserScoreAggregateTest extends TestCase
         );
 
         $agg->addScore(
-            factory(RoomScore::class)
+            factory(Score::class)
                 ->states('completed', 'passed')
                 ->create([
                     'room_id' => $this->room->getKey(),
@@ -86,7 +86,7 @@ class UserScoreAggregateTest extends TestCase
         $playlistItem = $this->playlistItem();
         $agg = UserScoreAggregate::new($user, $this->room);
 
-        $agg->addScore(factory(RoomScore::class)
+        $agg->addScore(factory(Score::class)
             ->states('completed', 'passed')
             ->create([
                 'room_id' => $this->room->getKey(),
@@ -109,7 +109,7 @@ class UserScoreAggregateTest extends TestCase
 
         $agg = UserScoreAggregate::new($user, $this->room);
         $agg->addScore(
-            factory(RoomScore::class)
+            factory(Score::class)
             ->create([
                 'room_id' => $this->room->getKey(),
                 'playlist_item_id' => $playlistItem->getKey(),
@@ -121,7 +121,7 @@ class UserScoreAggregateTest extends TestCase
         );
 
         $agg->addScore(
-            factory(RoomScore::class)
+            factory(Score::class)
             ->states('completed', 'failed')
             ->create([
                 'room_id' => $this->room->getKey(),
@@ -134,7 +134,7 @@ class UserScoreAggregateTest extends TestCase
         );
 
         $agg->addScore(
-            factory(RoomScore::class)
+            factory(Score::class)
             ->states('completed', 'passed')
             ->create([
                 'room_id' => $this->room->getKey(),
@@ -147,7 +147,7 @@ class UserScoreAggregateTest extends TestCase
         );
 
         $agg->addScore(
-            factory(RoomScore::class)
+            factory(Score::class)
             ->states('completed', 'passed')
             ->create([
                 'room_id' => $this->room->getKey(),

@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => '',
                 'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'Η συζήτηση για το beatmap ":title" ξεκλειδώθηκε.',
                 'beatmapset_discussion_unlock_compact' => '',
             ],

@@ -110,7 +110,7 @@ return [
             '_' => 'التصنيف',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'الأداء',
         ],
         'store_controller' => [
             '_' => 'متجر!osu',

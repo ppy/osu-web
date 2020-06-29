@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Bài đăng mới trên ":title" bởi :username',
                 'beatmapset_discussion_post_new_compact' => 'Bài đăng mới bởi :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Bài đăng mới bởi :username',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'Cuộc thảo luận trên ":title" đã được mở khóa',
                 'beatmapset_discussion_unlock_compact' => 'Cuộc thảo luận đã được mở khóa',
             ],

@@ -10,6 +10,10 @@ return [
 
     'filter' => [
         'title' => 'Show',
+
+        'variant' => [
+            'title' => 'Variant',
+        ],
     ],
 
     'type' => [

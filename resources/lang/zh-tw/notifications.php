@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => ':username發布了主題為:title的新貼文',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主題',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 的新主題',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => '討論於 ":title" 已解鎖',
                 'beatmapset_discussion_unlock_compact' => '討論已被解鎖',
             ],

@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Kirjoita tähän lähettääksesi viestin Yleiseen (:version)',
             'generalAll' => 'Kirjoita tähän lähettääksesi viestin Yleiseen (Kaikki vaikeustasot)',
+            'review' => '',
             'timeline' => 'Kirjoita tähän lähettääksesi viestin Aikajanalle (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'Paina ctrl-c editointitilassa ja liitä viestiisi lisätäksesi aikaleiman!',
             'title' => 'Uusi keskustelu',
             'unpin' => 'Poista kiinnitys',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Epätavallinen',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektroninen',
+        'metal' => 'Metalli',
+        'classical' => 'Klassinen',
+        'folk' => 'Kansanmusiikki',
+        'jazz' => 'Jatsi',
     ],
     'mods' => [
         '4K' => '',
@@ -291,8 +316,11 @@ return [
         'korean' => 'korea',
         'spanish' => 'espanja',
         'swedish' => 'ruotsi',
+        'russian' => 'Venäläinen',
+        'polish' => 'Puolalainen',
         'instrumental' => 'Instrumentaalinen',
         'other' => 'Muu',
+        'unspecified' => 'Täsmentämätön',
     ],
     'played' => [
         'any' => 'Kaikki',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Pelikerrat :count',
         'favourites' => 'Suosikit :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

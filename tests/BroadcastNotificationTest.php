@@ -6,16 +6,27 @@
 namespace Tests;
 
 use App\Events\NewPrivateNotificationEvent;
-use App\Jobs\BroadcastNotification;
+use App\Jobs\Notifications\BeatmapsetDiscussionPostNew;
+use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Models\Beatmapset;
+use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 use Event;
 use Queue;
+use ReflectionClass;
 
 class BroadcastNotificationTest extends TestCase
 {
     protected $sender;
+
+    /**
+     * @dataProvider notificationNamesDataProvider
+     */
+    public function testAllNotificationNamesHaveNotificationClasses($name)
+    {
+        $this->assertNotNull(BroadcastNotificationBase::getNotificationClass($name));
+    }
 
     /**
      * @dataProvider sendNotificationDataProvider
@@ -50,7 +61,7 @@ class BroadcastNotificationTest extends TestCase
             ->post(route('beatmap-discussion-posts.store'), $params)
             ->assertStatus(200);
 
-        Queue::assertPushed(BroadcastNotification::class);
+        Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
         $this->runFakeQueue();
 
         if ($enabled) {
@@ -58,6 +69,18 @@ class BroadcastNotificationTest extends TestCase
         } else {
             Event::assertNotDispatched(NewPrivateNotificationEvent::class);
         }
+    }
+
+    public function notificationNamesDataProvider()
+    {
+        // TODO: move notification names to different class instead of filtering
+        $constants = collect((new ReflectionClass(Notification::class))->getConstants())
+            ->except(['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES', 'CREATED_AT', 'UPDATED_AT'])
+            ->values();
+
+        return $constants->map(function ($name) {
+            return [$name];
+        });
     }
 
     public function sendNotificationDataProvider()

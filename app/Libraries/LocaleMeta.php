@@ -41,7 +41,7 @@ class LocaleMeta
             'flag' => 'GB',
         ],
         'es' => [
-            'name' => 'Español',
+            'name' => 'español',
             'flag' => 'ES',
         ],
         'fi' => [
@@ -121,7 +121,7 @@ class LocaleMeta
             'flag' => 'TR',
         ],
         'uk' => [
-            'name' => 'українська мова',
+            'name' => 'Українська мова',
             'flag' => 'UA',
         ],
         'vi' => [

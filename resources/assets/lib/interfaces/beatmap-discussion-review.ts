@@ -10,13 +10,20 @@ export interface DocumentParagraph extends DocumentBlock {
   type: 'paragraph';
 }
 
-export interface DocumentIssueEmbed extends DocumentBlock {
+export interface PersistedDocumentIssueEmbed {
+  discussion_id: number;
+  type: 'embed';
+}
+
+export interface NewDocumentIssueEmbed extends DocumentBlock {
   beatmap_id: number | null;
-  discussion_id?: number;
   discussion_type: 'praise' | 'problem' | 'suggestion';
   timestamp: number | null;
   type: 'embed';
 }
 
+export type DocumentIssueEmbed = NewDocumentIssueEmbed | PersistedDocumentIssueEmbed;
 export type BeatmapReviewBlock = DocumentIssueEmbed | DocumentParagraph;
 export type BeatmapDiscussionReview = BeatmapReviewBlock[];
+export type PersistedBeatmapReviewBlock = DocumentParagraph | PersistedDocumentIssueEmbed;
+export type PersistedBeatmapDiscussionReview = PersistedBeatmapReviewBlock[];

@@ -51,9 +51,9 @@ return [
             'approved' => ':timeago 전 approved 됨',
             'loved' => ':timeago 전 loved 됨',
             'qualified' => ':timeago 전 qualified 됨',
-            'ranked' => ':timeago 전 ranked 됨',
-            'submitted' => ':timeago 전 제출됨',
-            'updated' => ':timeago 전에 마지막으로 수정됨',
+            'ranked' => ':timeago ranked 됨',
+            'submitted' => ':timeago 제출됨',
+            'updated' => ':timeago 마지막으로 수정됨',
         ],
 
         'favourites' => [
@@ -61,7 +61,7 @@ return [
         ],
 
         'hype' => [
-            'action' => '이 맵을 즐기셨다면 홍보해서 <strong>Ranked</strong> 상태가 될 수 있게 도와주세요.',
+            'action' => '이 맵을 즐기셨다면 Hype를 통해 이 맵이 <strong>Ranked</strong> 상태가 될 수 있도록 도와주세요.',
 
             'current' => [
                 '_' => '이 맵은 현재 :status 상태입니다.',

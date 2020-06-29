@@ -159,7 +159,7 @@ return [
                     'button' => 'Upload billede',
                     'dropzone' => 'Smid her for at uploade',
                     'dropzone_info' => 'Du kan også smide dit billede her for at uploade',
-                    'size_info' => 'Coverbilledet burde være 2800x620',
+                    'size_info' => 'Coverbilledet burde være 2400x620',
                     'too_large' => 'Den uploadede fil er for stor.',
                     'unsupported_format' => 'Ikke-understøttet format.',
 

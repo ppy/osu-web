@@ -158,13 +158,13 @@ return [
                     'broken_file' => '이미지 처리 실패. 업로드하려는 이미지를 확인하시고 다시 시도해주세요.',
                     'button' => '이미지 업로드',
                     'dropzone' => '업로드하려면 여기에 끌어놓으세요',
-                    'dropzone_info' => '이쪽에 이미지를 끌어놓아 업로드할수도 있습니다',
-                    'size_info' => '표지 크기는 2800x620 이여야 합니다',
+                    'dropzone_info' => '여기에 이미지를 끌어놓아 업로드할 수도 있습니다.',
+                    'size_info' => '표지 크기는 2400x640 이여야 합니다.',
                     'too_large' => '업로드된 파일이 너무 큽니다.',
                     'unsupported_format' => '지원되지 않는 확장자입니다.',
 
                     'restriction_info' => [
-                        '_' => '업로드는 :link만 가능합니다',
+                        '_' => '업로드는 :link만 가능합니다.',
                         'link' => 'osu! 서포터',
                     ],
                 ],
@@ -307,7 +307,7 @@ return [
                 'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
                 'not_ranked' => '랭크된 비트맵만 pp를 줍니다.',
                 'pp_weight' => '가중치 :percentage',
-                'view_details' => '',
+                'view_details' => '자세히 보기',
                 'title' => '랭크',
 
                 'best' => [
@@ -326,7 +326,7 @@ return [
             ],
             'account_standing' => [
                 'title' => '계정 상태',
-                'bad_standing' => "<strong>:username</strong>님의 계정이 룰을 위반하였습니다 :(",
+                'bad_standing' => "<strong>:username</strong> 님이 규칙을 위반하셨습니다. :(",
                 'remaining_silence' => '<strong>:username</strong> 님은 :duration 후에 말할 수 있습니다.',
 
                 'recent_infringements' => [

@@ -62,7 +62,7 @@ return [
     |
     */
 
-    'storage' => env('CLOCKWORK_STORAGE', 'files'),
+    'storage' => env('CLOCKWORK_STORAGE', 'sql'),
 
     'storage_files_path' => env('CLOCKWORK_STORAGE_FILES_PATH', storage_path('clockwork')),
 

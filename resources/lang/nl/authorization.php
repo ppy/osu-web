@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Je moet een volledige nominator zijn om beatmap sets met meer dan één spelmodus te nomineren.',
             'incorrect_state' => 'Fout tijdens het uitvoeren van deze actie, probeer de pagina te herladen.',
             'owner' => "Je kan je eigen beatmap niet nomineren.",
+            'set_metadata' => 'Je moet eerst het genre en de taal instellen voor je de nominatie invoert.',
         ],
         'resolve' => [
             'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Deze beatmap is vergrendeld voor discussie.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => 'U kunt metagegevens van een nominale kaart niet wijzigen. Neem contact op met een BN of NAT lid als u denkt dat deze onjuist is ingesteld.',
         ],
     ],
 

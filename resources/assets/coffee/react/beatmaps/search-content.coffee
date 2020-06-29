@@ -77,7 +77,7 @@ export class SearchContent extends React.Component
         div
           className: 'osu-layout__row osu-layout__row--page-compact'
           div className: listCssClasses,
-            if currentUser.id?
+            if controller.advancedSearch
               div
                 className: 'beatmapsets__sort'
                 el SearchSort,

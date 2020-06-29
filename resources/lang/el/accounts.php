@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_disqualify' => '',
         'title' => 'Ειδοποιήσεις',
         'topic_auto_subscribe' => 'αυτόματη ενεργοποίηση ειδοποιήσεων για τα νέα θέματα που δημιουργείτε στο φόρουμ',
-        'beatmapset_discussion_qualified_problem' => '',
 
-        'mail' => [
+        'options' => [
             '_' => '',
             'beatmapset:modding' => '',
             'forum_topic_reply' => '',
+            'mail' => '',
+            'push' => '',
         ],
     ],
 

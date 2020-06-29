@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => '일반(:version)에 게시할 답글 내용을 입력하세요.',
             'generalAll' => '일반(모든 난이도)에 게시할 답글 내용을 입력하세요.',
+            'review' => '여기에 입력하여 리뷰를 남길 수 있습니다.',
             'timeline' => '타임라인(:version)에 게시할 답글 내용을 입력하세요.',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => '비트맵 편집 모드에서 Ctrl-C를 눌러 복사하고 이 곳에 붙여넣어 타임스탬프를 추가할 수 있습니다!',
             'title' => '새 토론',
             'unpin' => '고정 해제',
+        ],
+
+        'review' => [
+            'new' => '새 리뷰 남기기',
+            'embed' => [
+                'delete' => '삭제',
+                'missing' => '[토론 삭제됨]',
+                'unlink' => '링크 해제',
+                'unsaved' => '저장되지 않음',
+                'timestamp' => [
+                    'all-diff' => '"모든 난이도"의 게시글에는 시간을 달 수 없습니다.',
+                    'diff' => '만약 이 :type 이(가) 시각으로 시작한다면 타임라인 아래에 보여집니다.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '단락 삽입',
+                'praise' => '칭찬 삽입',
+                'problem' => '문제 삽입',
+                'suggestion' => '제안 삽입',
+            ],
         ],
 
         'show' => [
@@ -235,7 +256,7 @@ return [
         'any' => '모두',
         'approved' => 'Approved',
         'favourites' => '즐겨찾기',
-        'graveyard' => 'Graveyard',
+        'graveyard' => '무덤에 감',
         'leaderboard' => '리더보드 있음',
         'loved' => 'Loved',
         'mine' => '내 비트맵',
@@ -254,6 +275,10 @@ return [
         'novelty' => '이색적인 장르',
         'hip-hop' => '힙합',
         'electronic' => '일렉트로닉',
+        'metal' => '메탈',
+        'classical' => '클래식',
+        'folk' => '포크',
+        'jazz' => '재즈',
     ],
     'mods' => [
         '4K' => '4키',
@@ -291,8 +316,11 @@ return [
         'korean' => '한국어',
         'spanish' => '스페인어',
         'swedish' => '스웨덴어',
+        'russian' => '러시아어',
+        'polish' => '폴란드어',
         'instrumental' => 'Instrumental',
         'other' => '기타',
+        'unspecified' => '미지정',
     ],
     'played' => [
         'any' => '모두',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => '플레이 횟수: :count',
         'favourites' => '즐겨찾기 수: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => '전체',
+        ],
     ],
 ];

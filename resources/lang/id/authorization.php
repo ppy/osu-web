@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Anda harus berstatus sebagai nominator penuh (full nominator) untuk dapat menominasikan set beatmap yang mencakup lebih dari satu mode permainan.',
             'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang laman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
+            'set_metadata' => 'Anda harus terlebih dahulu mengatur aliran dan bahasa sebelum beatmap ini dapat dinominasikan.',
         ],
         'resolve' => [
             'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
@@ -55,12 +56,18 @@ return [
         ],
     ],
 
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => 'Anda tidak dapat mengubah pengaturan metadata pada beatmap yang telah dinominasikan sebelumnya. Harap hubungi BN atau NAT apabila Anda merasa ada suatu hal yang perlu diubah.',
+        ],
+    ],
+
     'chat' => [
         'blocked' => 'Tidak dapat mengirim pesan kepada pengguna yang memblokir Anda atau pengguna yang Anda blokir.',
         'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak ada dalam daftar teman pengguna.',
         'moderated' => 'Channel itu sedang dalam pengelolaan.',
         'no_access' => 'Anda tidak memiliki akses ke channel ini.',
-        'restricted' => 'Anda tidak dapat mengirim pesan ketika sedang dibungkam, dibatasi atau dibann.',
+        'restricted' => 'Anda tidak dapat mengirim pesan ketika sedang dibungkam, dibatasi atau diban.',
     ],
 
     'comment' => [
@@ -109,7 +116,7 @@ return [
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk membalas.',
-                    'restricted' => "Tidak dapat membalas saat status dibatasi aktif.",
+                    'restricted' => "Anda tidak dapat mengirimkan balasan ketika akun Anda sedang dibatasi.",
                     'silenced' => "Tidak dapat membalas saat dibungkam.",
                 ],
             ],
@@ -128,7 +135,7 @@ return [
 
                 'user' => [
                     'require_login' => 'Silakan masuk untuk memberikan suara.',
-                    'restricted' => "Tidak dapat memberikan suara saat status dibatasi aktif.",
+                    'restricted' => "Anda tidak dapat memberikan suara ketika akun Anda sedang dibatasi.",
                     'silenced' => "Tidak dapat memberikan suara saat dibungkam.",
                 ],
             ],

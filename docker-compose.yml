@@ -6,6 +6,7 @@ x-env: &x-env
   COMPOSER_HOME: /data/osuweb/.docker/.composer
   DB_HOST: db
   ES_HOST: elasticsearch:9200
+  ES_SCORES_HOST: elasticsearch:9200
   HOME: /data/osuweb/.docker
   NOTIFICATION_REDIS_HOST: redis
   REDIS_HOST: redis
@@ -41,6 +42,7 @@ services:
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     environment:
+      action.auto_create_index: "false"
       discovery.type: single-node
   php:
     build:

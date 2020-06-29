@@ -17,10 +17,6 @@ class VerifyUserAlways extends VerifyUser
 
     public function requiresVerification($request)
     {
-        if (is_api_request()) {
-            return false;
-        }
-
         $user = auth()->user();
 
         if ($user === null) {

@@ -4,8 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => '국가별로 필터링 됨',
+    'countries' => [
+        'all' => '모두',
+    ],
+
+    'filter' => [
+        'title' => '보기',
+
+        'variant' => [
+            'title' => '변형',
+        ],
     ],
 
     'type' => [

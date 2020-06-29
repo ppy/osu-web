@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของ Qualified beatmaps กับโหมดต่อไปนี้',
+        'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีทแมพในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
         'title' => 'การแจ้งเตือน',
         'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
-        'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของ Qualified beatmaps กับโหมดต่อไปนี้',
 
-        'mail' => [
-            '_' => 'รับการแจ้งเตือนทางอีเมล',
-            'beatmapset:modding' => 'beatmap modding',
-            'forum_topic_reply' => 'ตอบหัวข้อ',
+        'options' => [
+            '_' => 'วิธีการรับการแจ้งเตือน',
+            'beatmapset:modding' => 'การวิจารณ์บีทแมพ',
+            'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
+            'mail' => 'อีเมล',
+            'push' => 'ส่งการแจ้งเตือน',
         ],
     ],
 
@@ -70,7 +73,7 @@ return [
         'title' => 'ตัวเลือก',
 
         'beatmapset_download' => [
-            '_' => 'ประเภทการดาวน์โหลด Beatmap เริ่มต้น',
+            '_' => 'ประเภทของบีทแมพที่ต้องการตั้งค่าเป็นตัวเลือกพื้นฐานสําหรับทุกดาวน์โหลด',
             'all' => 'พร้อมวิดีโอ ถ้าใช้ได้',
             'no_video' => 'โดยที่ไม่มีวิดีโอ',
             'direct' => 'เปิดใน osu!direct',

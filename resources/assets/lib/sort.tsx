@@ -7,11 +7,16 @@ interface Props {
   currentValue: string;
   modifiers?: string[];
   title?: string;
+  transPrefix: string;
   values: string[];
   onChange(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export class Sort extends React.PureComponent<Props> {
+  static readonly defaultProps = {
+    transPrefix: 'sort.',
+  };
+
   render() {
     const items = this.props.values.map((value) => {
       let cssClasses = 'sort__item sort__item--button';
@@ -31,7 +36,7 @@ export class Sort extends React.PureComponent<Props> {
             ? <span>
                 <i className={`fas fa-extra-mode-${currentUser.playmode ?? 'osu'}`} /> {osu.trans('sort.rank')}
               </span>
-            : osu.trans(`sort.${value}`)
+            : osu.trans(`${this.props.transPrefix}${value}`)
           }
         </button>
       );

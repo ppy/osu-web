@@ -5,7 +5,7 @@ import * as markdown from 'remark-parse';
 import { Node as SlateNode } from 'slate';
 import * as unified from 'unified';
 import { Node as UnistNode } from 'unist';
-import { BeatmapDiscussionReview } from '../interfaces/beatmap-discussion-review';
+import { BeatmapDiscussionReview, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
 interface ParsedDocumentNode extends UnistNode {
@@ -60,9 +60,10 @@ export function parseFromJson(json: string, discussions: Record<number, BeatmapD
         break;
       case 'embed':
         // embed
-        const discussion = block.discussion_id && discussions[block.discussion_id];
+        const existingEmbedBlock = block as PersistedDocumentIssueEmbed;
+        const discussion = existingEmbedBlock.discussion_id && discussions[existingEmbedBlock.discussion_id];
         if (!discussion) {
-          console.error('unknown/external discussion referenced', block.discussion_id);
+          console.error('unknown/external discussion referenced', existingEmbedBlock.discussion_id);
           break;
         }
         doc.push({

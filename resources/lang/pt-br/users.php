@@ -197,7 +197,7 @@ return [
                     'title' => 'Beatmaps no Cemitério',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps Amados',
+                    'title' => 'Loved Beatmaps',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps Ranqueados & Aprovados',
@@ -307,7 +307,7 @@ return [
                 'empty' => 'Nenhuma performance incrível ainda. :(',
                 'not_ranked' => 'Apenas beatmaps ranqueados dão pp.',
                 'pp_weight' => 'ajustado :percentage',
-                'view_details' => '',
+                'view_details' => 'Ver Detalhes',
                 'title' => 'Classificações',
 
                 'best' => [
@@ -351,7 +351,7 @@ return [
             'discord' => 'Discord',
             'interests' => 'Interesses',
             'lastfm' => 'Last.fm',
-            'location' => 'Local atual',
+            'location' => 'Local Atual',
             'occupation' => 'Ocupação',
             'skype' => 'Skype',
             'twitter' => 'Twitter',
@@ -400,7 +400,7 @@ return [
             'total_score' => 'Pontuação Total',
             // modding stats
             'ranked_and_approved_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
-            'loved_beatmapset_count' => 'Beatmaps Amados',
+            'loved_beatmapset_count' => 'Loved Beatmaps',
             'unranked_beatmapset_count' => 'Beatmaps Pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no Cemitério',
         ],

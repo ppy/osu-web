@@ -51,7 +51,7 @@ return [
             'approved' => 'aprovado há :timeago',
             'loved' => 'loved há :timeago',
             'qualified' => 'qualificado há :timeago',
-            'ranked' => 'classificado há :timeago',
+            'ranked' => 'ranqueado há :timeago',
             'submitted' => 'submetido há :timeago',
             'updated' => 'atualizado há :timeago',
         ],

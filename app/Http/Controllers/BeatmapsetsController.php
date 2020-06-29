@@ -73,6 +73,8 @@ class BeatmapsetsController extends Controller
                 $languages = [];
             }
 
+            $noindex = !$beatmapset->esShouldIndex();
+
             return ext_view('beatmapsets.show', compact(
                 'beatmapset',
                 'commentBundle',
@@ -80,6 +82,7 @@ class BeatmapsetsController extends Controller
                 'genres',
                 'hasDiscussion',
                 'languages',
+                'noindex',
                 'set'
             ));
         }
@@ -287,7 +290,7 @@ class BeatmapsetsController extends Controller
             'beatmapsets' => json_collection(
                 $records,
                 new BeatmapsetTransformer,
-                'beatmaps'
+                'beatmaps.max_combo'
             ),
             'cursor' => $search->getSortCursor(),
             'recommended_difficulty' => $params->getRecommendedDifficulty(),
@@ -299,6 +302,7 @@ class BeatmapsetsController extends Controller
     private function showJson($beatmapset)
     {
         $beatmapset->load([
+            'beatmaps.baseMaxCombo',
             'beatmaps.difficulty',
             'beatmaps.failtimes',
             'genre',

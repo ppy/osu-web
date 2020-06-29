@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nieuw bericht op ":title" door :username',
                 'beatmapset_discussion_post_new_compact' => 'Nieuw bericht door :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nieuw bericht door :username',
+                'beatmapset_discussion_review_new' => 'Nieuwe beoordeling op ":title" door :username die problemen bevat: :problems, suggesties: :suggestions, prijzen: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Nieuwe beoordeling door :username die problemen bevat: :problems, suggesties: :suggestions, prijzen: :praises',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" is ontgrendeld voor discussie.',
                 'beatmapset_discussion_unlock_compact' => 'Discussie is ontgrendeld',
             ],
