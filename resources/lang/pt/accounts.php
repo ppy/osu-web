@@ -55,10 +55,10 @@ return [
         'topic_auto_subscribe' => 'ativar automaticamente as notificações em novos tópicos de fórum que tenhas criado',
 
         'options' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
+            '_' => 'opções de envio',
+            'beatmapset:modding' => 'modificações de beatmaps',
+            'forum_topic_reply' => 'resposta a um tópico',
+            'mail' => 'correio',
             'push' => '',
         ],
     ],

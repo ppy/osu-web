@@ -57,9 +57,9 @@ return [
         'options' => [
             '_' => 'opțiuni de livrare',
             'beatmapset:modding' => 'modatul de beatmap',
-            'forum_topic_reply' => '',
-            'mail' => '',
-            'push' => '',
+            'forum_topic_reply' => 'răspuns topic',
+            'mail' => 'mail',
+            'push' => 'push',
         ],
     ],
 
