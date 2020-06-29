@@ -37,6 +37,7 @@ $(document).on 'turbolinks:load', ->
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
 @accountEditBlocklist ?= new AccountEditBlocklist
+@bbcodePreview ?= new BbcodePreview
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
@@ -50,7 +51,6 @@ $(document).on 'turbolinks:load', ->
 @forumAutoClick ?= new ForumAutoClick
 @forumCover ?= new ForumCover
 @forumPoll ?= new _exported.ForumPoll(@)
-@forumPostPreview ?= new ForumPostPreview
 @forumTopicTitle ?= new ForumTopicTitle
 @forumTopicWatchAjax ?= new ForumTopicWatchAjax
 @gallery ?= new Gallery
@@ -76,7 +76,7 @@ $(document).on 'turbolinks:load', ->
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
-@forumTopicReply ?= new ForumTopicReply({ @forum, @forumPostPreview, @stickyFooter })
+@forumTopicReply ?= new ForumTopicReply({ @bbcodePreview, @forum, @stickyFooter })
 @nav2 ?= new Nav2(@clickMenu)
 @osuEnchant ?= new _exported.Enchant(@, @turbolinksReload)
 @twitchPlayer ?= new TwitchPlayer(@turbolinksReload)

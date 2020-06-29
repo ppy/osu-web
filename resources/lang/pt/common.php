@@ -26,7 +26,7 @@ return [
         'back_to_top' => 'Voltar ao topo',
         'cancel' => 'Cancelar',
         'change' => 'mudar',
-        'clear' => '',
+        'clear' => 'Limpar',
         'click_to_copy' => 'clica para copiar para o bloco de notas',
         'click_to_copy_copied' => 'copiado para o bloco de notas!',
         'close' => 'Fechar',

@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.12
 
 RUN apk update && \
     apk add --no-cache \
@@ -15,12 +15,13 @@ RUN apk update && \
     php7-intl \
     php7-json \
     php7-mbstring \
-    php7-mcrypt \
     php7-mysqli \
     php7-pdo_mysql \
+    php7-pdo_sqlite \
     php7-phar \
     php7-redis \
     php7-session \
+    php7-sockets \
     php7-simplexml \
     php7-sqlite3 \
     php7-tokenizer \

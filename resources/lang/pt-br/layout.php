@@ -181,7 +181,7 @@ return [
         'login' => [
             'forgot' => "Esqueci as minhas credenciais",
             'password' => 'senha',
-            'title' => 'Inicie a sessão para continuar',
+            'title' => 'Conecte-se para continuar',
             'username' => 'nome de usuário',
 
             'error' => [

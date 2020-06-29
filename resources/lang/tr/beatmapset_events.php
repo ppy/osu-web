@@ -22,7 +22,7 @@ return [
         'kudosu_gain' => ':discussion tartışması sahibi :user kudosu için yeterli oy topladı.',
         'kudosu_lost' => ':discussion tartışması sahibi :user oy kaybetti ve aldığı kudosu kaldırıldı.',
         'kudosu_recalculate' => ':discussion tartışmasının aldığı kudosu tekrar hesaplandı.',
-        'language_edit' => 'Dil :old dan :new ile değiştirildi.',
+        'language_edit' => 'Dil :old\'dan :new\'e değiştirildi.',
         'love' => ':user tarafından sevildi',
         'nominate' => ':user tarafından aday gösterildi.',
         'nomination_reset' => 'Yeni sorun :discussion (:text) bir adaylık sıfırlamasını tetikledi.',

@@ -67,8 +67,8 @@ return [
         'go_to_parent' => 'İnceleme paylaşımını görüntüle',
         'go_to_child' => 'Tartışmayı görüntüle',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
+            'block_too_large' => 'her blok en fazla :limit karakter içerebilir',
+            'external_references' => 'inceleme, bu incelemeye ait olmayan sorunlara referanslar içeriyor',
             'invalid_block_type' => 'geçersiz blok türü',
             'invalid_document' => 'geçersiz gözden geçirme',
             'minimum_issues' => 'gözden geçirme asgari :count sayıda sorun içermelidir|gözden geçirme asgari :count sayıda sorun içermelidir',
