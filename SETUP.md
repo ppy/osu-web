@@ -57,15 +57,44 @@ At this point you should be able to access the site via whatever webserver you c
 ## 2\. Using Docker
 
 - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/).
-- Export required environment variable `UID` (`export UID`).
-
-  - Make sure to do this before using any of docker-compose commands.
-  - Alternatively add the command to shell initialisation file like `~/.profile` or `~/.zshrc`.
-
+- Run `docker/development/prepare.sh`.
+- Adjust `.env` if needed.
 - Run `docker-compose up` in the main directory.
+- Run migration (see reset the database section below)
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
-- To run any of the below commands, make sure you are in the docker container: `docker-compose exec php sh`.
+- To run any of the below commands, make sure you are in the docker container: `docker-compose run php`.
+  - To run artisan commands, run using `docker-compose run php artisan`.
+
+
+### Testing
+
+To run test, first copy `.env.testing.example` to `.env.testing` and `.env.dusk.local.example` to `.env.dusk.local`.
+Make sure to set `ES_INDEX_PREFIX` and all the databases to something other than production.
+
+Once the env files are set, database for testing will need to be setup:
+
+```
+docker-compose run -e APP_ENV=testing php artisan migrate:fresh --yes
+```
+
+Once setup, you can run either php test:
+
+```
+docker-compose run -e APP_ENV=testing php bin/phpunit
+```
+
+Or browser test:
+
+```
+docker-compose run php artisan dusk --verbose
+```
+
+Or javascript test:
+
+```
+docker-compose run php yarnpkg karma start --single-run --browsers ChromeHeadless
+```
 
 # Development
 
@@ -87,7 +116,7 @@ Using Laravel's [Mix](https://laravel.com/docs/6.x/mix).
 $ yarn run development
 ```
 
-Note that if you use the bundled docker-compose setup, yarn/webpack will be already run in watch mode, and you will only need to run the `lang:js` and `ziggy:generate` artisan commands whenever you need to regenerate these helper files.
+Note that if you use the bundled docker-compose setup, yarn/webpack will be already run in watch mode.
 
 ## Reset the database + seeding sample data
 
