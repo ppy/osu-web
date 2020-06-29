@@ -91,12 +91,7 @@ class BeatmapDiscussionPost extends Model
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
-            // using visible() is too slow when combined with orderBy(...)
-            $query
-                ->withoutTrashed()
-                ->whereHas('beatmapDiscussion', function ($discussionQuery) {
-                    $discussionQuery->withoutTrashed();
-                });
+            $query->withoutTrashed();
         }
 
         if (!($rawParams['is_moderator'] ?? false)) {
