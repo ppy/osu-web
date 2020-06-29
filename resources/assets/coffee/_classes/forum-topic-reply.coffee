@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 class @ForumTopicReply
-  constructor: ({ @forum, @forumPostPreview, @stickyFooter }) ->
+  constructor: ({ @bbcodePreview, @forum, @stickyFooter }) ->
     @container = document.getElementsByClassName('js-forum-topic-reply--container')
     @box = document.getElementsByClassName('js-forum-topic-reply')
     @block = document.getElementsByClassName('js-forum-topic-reply--block')
@@ -106,7 +106,7 @@ class @ForumTopicReply
     @deactivate()
     input.value = ''
     @setState 'text', ''
-    @forumPostPreview.hidePreview(target: input)
+    @bbcodePreview.hidePreview(target: input)
 
     $newPost = $(data)
 

@@ -5,10 +5,10 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':title\'da :username [:version]',
 
         'beatmap' => [
-            'by' => 'tarafından :artist',
+            'by' => ':artist tarafından',
         ],
 
         'player' => [

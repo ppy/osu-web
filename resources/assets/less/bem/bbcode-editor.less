@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-.forum-post-edit {
-  @_top: forum-post-edit;
+.bbcode-editor {
+  @_top: bbcode-editor;
 
   .fancy-scrollbar();
   flex: 1;
@@ -16,6 +16,19 @@
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: @osu-colour-b2;
+  }
+
+  &--beatmapset-description-editor {
+    .default-gutter-v2();
+    padding-top: 15px;
+    padding-bottom: $padding-top;
+    background-color: hsl(var(--hsl-b2));
+    border-radius: @border-radius-large;
+  }
+
+  &--profile-page {
+    padding-right: var(--gutter);
+    padding-bottom: var(--padding);
   }
 
   &__body {
@@ -57,14 +70,14 @@
       }
     }
 
-    &--preview {
+    &--hide-on-preview {
       .@{_top}[data-state=loading-preview] &,
       .@{_top}[data-state=preview] & {
         display: none;
       }
     }
 
-    &--write {
+    &--hide-on-write {
       .@{_top}[data-state=write] & {
         display: none;
       }

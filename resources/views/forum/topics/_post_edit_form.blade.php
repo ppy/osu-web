@@ -8,25 +8,25 @@
 @endphp
 <div
     class="
-        forum-post-edit
-        forum-post-edit--{{ $type }}
+        bbcode-editor
+        bbcode-editor--{{ $type }}
         {{ $type === 'reply' ? 'js-forum-topic-reply--block' : '' }}
-        {{ $withPreview ? 'js-forum-post-preview--form' : '' }}
+        {{ $withPreview ? 'js-bbcode-preview--form' : '' }}
     "
     data-state="write"
 >
     @if ($type === 'reply')
-        <div class="forum-post-edit__header">
-            <h2 class="forum-post-edit__title">
+        <div class="bbcode-editor__header">
+            <h2 class="bbcode-editor__title">
                 {{ trans('forum.post.create.title.reply') }}
             </h2>
         </div>
     @endif
 
-    <div class="{{ $type === 'reply' ? 'js-forum-reply-write' : '' }} forum-post-edit__content">
+    <div class="{{ $type === 'reply' ? 'js-forum-reply-write' : '' }} bbcode-editor__content">
         @if ($type === 'create')
             <input
-                class="forum-post-edit__input-title"
+                class="bbcode-editor__input-title"
                 placeholder="{{ trans("forum.topic.create.placeholder.title") }}"
                 name="title"
             />
@@ -34,9 +34,9 @@
 
         <textarea
             class="
-                forum-post-edit__body
+                bbcode-editor__body
                 js-ujs-submit-disable
-                js-forum-post-preview--body
+                js-bbcode-preview--body
                 {{ $type === 'create' ? 'js-post-preview--auto' : '' }}
                 {{ $type === 'reply' ? 'js-forum-topic-reply--input' : '' }}
                 {{ in_array($type, ['edit', 'reply'], true) ? 'js-quick-submit' : '' }}
@@ -52,25 +52,25 @@
         >{{ $content ?? '' }}</textarea>
 
         @if ($withPreview)
-            <div class="forum-post-edit__preview">
+            <div class="bbcode-editor__preview">
                 <div class="
                     forum-post-content
-                    js-forum-post-preview--preview
+                    js-bbcode-preview--preview
                     {{ $type === 'reply' ? 'forum-post-content--reply-preview' : '' }}
                 "></div>
             </div>
         @endif
 
-        <div class="forum-post-edit__buttons-bar">
-            <div class="forum-post-edit__buttons forum-post-edit__buttons--toolbar">
+        <div class="bbcode-editor__buttons-bar">
+            <div class="bbcode-editor__buttons bbcode-editor__buttons--toolbar">
                 @if ($enabled)
                     @include('forum._post_toolbar')
                 @endif
             </div>
 
-            <div class="forum-post-edit__buttons forum-post-edit__buttons--actions">
+            <div class="bbcode-editor__buttons bbcode-editor__buttons--actions">
                 @if ($type === 'edit')
-                    <div class="forum-post-edit__button forum-post-edit__button--cancel">
+                    <div class="bbcode-editor__button bbcode-editor__button--cancel">
                         <button
                             type="button"
                             class="js-ujs-submit-disable js-edit-post-cancel btn-osu-big btn-osu-big--forum-secondary"
@@ -81,7 +81,7 @@
                 @endif
 
                 @if ($type === 'reply')
-                    <div class="forum-post-edit__button forum-post-edit__button--deactivate">
+                    <div class="bbcode-editor__button bbcode-editor__button--deactivate">
                         <button
                             type="button"
                             class="js-forum-topic-reply--deactivate btn-osu-big btn-osu-big--forum-secondary"
@@ -92,20 +92,20 @@
                 @endif
 
                 @if ($withPreview)
-                    <div class="forum-post-edit__button forum-post-edit__button--write">
+                    <div class="bbcode-editor__button bbcode-editor__button--hide-on-write">
                         <button
                             type="button"
-                            class="js-forum-post-preview--hide btn-osu-big btn-osu-big--forum-secondary"
+                            class="js-bbcode-preview--hide btn-osu-big btn-osu-big--forum-secondary"
                             {{ $enabled ? '' : 'disabled' }}
                         >
                             {{ trans('forum.topic.create.preview_hide') }}
                         </button>
                     </div>
 
-                    <div class="forum-post-edit__button forum-post-edit__button--preview">
+                    <div class="bbcode-editor__button bbcode-editor__button--hide-on-preview">
                         <button
                             type="button"
-                            class="js-forum-post-preview--show btn-osu-big btn-osu-big--forum-secondary"
+                            class="js-bbcode-preview--show btn-osu-big btn-osu-big--forum-secondary"
                             {{ $enabled ? '' : 'disabled' }}
                         >
                             {{ trans('forum.topic.create.preview') }}
@@ -113,7 +113,7 @@
                     </div>
                 @endif
 
-                <div class="forum-post-edit__button">
+                <div class="bbcode-editor__button">
                     <button
                         class="btn-osu-big btn-osu-big--forum-primary"
                         type="submit"

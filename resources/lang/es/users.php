@@ -50,7 +50,7 @@ return [
     ],
 
     'disabled' => [
-        'title' => '¡Oh, oh! Parece que tu cuenta ha sido desactivada.',
+        'title' => '¡Oh, oh! Parece que su cuenta ha sido desactivada.',
         'warning' => "En el caso de que haya roto una regla, tenga en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puede contactar con nosotros si lo considera necesario. Tenga en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada resultará en una <strong>extensión de este período de espera de un mes</strong>. Por favor, también tenga en cuenta que por <strong>cada cuenta que cree, estará violando más reglas</strong>. ¡Le sugerimos que no siga este camino!",
 
         'if_mistake' => [
@@ -419,8 +419,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => 'Vista de bloques',
-        'card' => 'Vista de tarjetas',
-        'list' => 'Visualizar en lista',
+        'brick' => 'Vista de bloque',
+        'card' => 'Vista de tarjeta',
+        'list' => 'Vista de lista',
     ],
 ];

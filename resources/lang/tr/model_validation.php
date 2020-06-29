@@ -113,7 +113,7 @@ return [
 
             'attributes' => [
                 'name' => 'Uygulama Adı',
-                'redirect' => '',
+                'redirect' => 'Uygulama Geri Çağırma URL\'si',
             ],
         ],
     ],

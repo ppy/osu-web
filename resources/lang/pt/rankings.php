@@ -5,14 +5,15 @@
 
 return [
     'countries' => [
-        'all' => '',
+        'all' => 'Todos
+',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Mostrar',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Variante',
         ],
     ],
 

@@ -73,6 +73,8 @@ class BeatmapsetsController extends Controller
                 $languages = [];
             }
 
+            $noindex = !$beatmapset->esShouldIndex();
+
             return ext_view('beatmapsets.show', compact(
                 'beatmapset',
                 'commentBundle',
@@ -80,6 +82,7 @@ class BeatmapsetsController extends Controller
                 'genres',
                 'hasDiscussion',
                 'languages',
+                'noindex',
                 'set'
             ));
         }
