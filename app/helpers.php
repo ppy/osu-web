@@ -436,7 +436,10 @@ function log_error($exception)
 
 function logout()
 {
-    auth()->logout();
+    $guard = auth()->guard();
+    if ($guard instanceof Illuminate\Contracts\Auth\StatefulGuard) {
+        $guard->logout();
+    }
 
     // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
     foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
@@ -489,6 +492,17 @@ function osu_url($key)
 function pack_str($str)
 {
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
+}
+
+function pagination($params)
+{
+    $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 5, 50);
+    $page = max(get_int($params['page'] ?? null) ?? 1, 1);
+
+    $offset = max_offset($page, $limit);
+    $page = 1 + $offset / $limit;
+
+    return compact('limit', 'page', 'offset');
 }
 
 function param_string_simple($value)
