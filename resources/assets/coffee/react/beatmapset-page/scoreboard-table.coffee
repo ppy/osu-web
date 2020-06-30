@@ -51,7 +51,6 @@ export class ScoreboardTable extends React.PureComponent
                 el ScoreboardTableRow,
                   activated: @state.activeKey == index
                   beatmap: @props.beatmap
-                  countries: @props.countries
                   hitTypeMapping: @props.hitTypeMapping
                   index: index
                   score: score

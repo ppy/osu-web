@@ -21,7 +21,7 @@ use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Genre;
 use App\Models\Language;
-use App\Models\Multiplayer\Match;
+use App\Models\Match\Match;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -491,6 +491,19 @@ class OsuAuthorize
 
         if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
             return 'beatmap_discussion_post.store.beatmapset_locked';
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @return string
+     */
+    public function checkBeatmapsetAdvancedSearch(?User $user): string
+    {
+        if (!config('osu.beatmapset.guest_advanced_search')) {
+            $this->ensureLoggedIn($user);
         }
 
         return 'ok';

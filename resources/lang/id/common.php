@@ -58,8 +58,8 @@ return [
         'upload_image' => 'unggah gambar',
 
         'watch' => [
-            'to_0' => 'Batal Ikuti',
-            'to_1' => 'Ikuti',
+            'to_0' => 'Batalkan Pengamatan',
+            'to_1' => 'Amati',
         ],
     ],
 

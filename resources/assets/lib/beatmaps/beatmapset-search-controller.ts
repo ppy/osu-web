@@ -20,6 +20,7 @@ export interface SearchStatus {
 }
 
 export class BeatmapsetSearchController {
+  @observable advancedSearch = false;
   // the list that gets displayed while new searches are loading.
   @observable currentResultSet = new ResultSet();
   @observable filters!: BeatmapsetSearchFilters;

@@ -3,9 +3,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Transformers\Multiplayer;
+namespace App\Transformers\Match;
 
-use App\Models\Multiplayer\Match;
+use App\Models\Match\Match;
 use App\Transformers\TransformerAbstract;
 
 class MatchTransformer extends TransformerAbstract

@@ -91,7 +91,7 @@ export class Content extends React.PureComponent
             div className: 'mp-history-content__spinner',
               div
                 className: 'mp-history-content__spinner-label'
-                osu.trans 'multiplayer.match.in_progress_spinner_label'
+                osu.trans 'matches.match.in_progress_spinner_label'
               el Spinner
           else if @props.loadingNext
             el Spinner
@@ -118,8 +118,8 @@ export class Content extends React.PureComponent
       return scores if !game.end_time?
 
       for score in game.scores
-        continue if !score.multiplayer.pass
-        scores[score.multiplayer.team] += score.score
+        continue if !score.match.pass
+        scores[score.match.team] += score.score
 
       @scoresCache[eventIndex] = scores
 

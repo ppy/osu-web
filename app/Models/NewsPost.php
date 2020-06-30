@@ -364,7 +364,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public function title()
     {
-        return $this->page['header']['title'];
+        return $this->page['header']['title'] ?? 'Title-less news post';
     }
 
     public function url()

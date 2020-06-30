@@ -3,7 +3,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-$factory->define(App\Models\Multiplayer\RoomScore::class, function (Faker\Generator $faker) {
+use App\Models\Multiplayer\Score;
+
+$factory->define(Score::class, function (Faker\Generator $faker) {
     return  [
         'playlist_item_id' => function () {
             return factory(App\Models\Multiplayer\PlaylistItem::class)->create()->getKey();
@@ -21,25 +23,25 @@ $factory->define(App\Models\Multiplayer\RoomScore::class, function (Faker\Genera
     ];
 });
 
-$factory->state(App\Models\Multiplayer\RoomScore::class, 'completed', function (Faker\Generator $faker) {
+$factory->state(Score::class, 'completed', function (Faker\Generator $faker) {
     return [
         'ended_at' => Carbon\Carbon::now(),
     ];
 });
 
-$factory->state(App\Models\Multiplayer\RoomScore::class, 'passed', function (Faker\Generator $faker) {
+$factory->state(Score::class, 'passed', function (Faker\Generator $faker) {
     return [
         'passed' => true,
     ];
 });
 
-$factory->state(App\Models\Multiplayer\RoomScore::class, 'failed', function (Faker\Generator $faker) {
+$factory->state(Score::class, 'failed', function (Faker\Generator $faker) {
     return [
         'passed' => false,
     ];
 });
 
-$factory->state(App\Models\Multiplayer\RoomScore::class, 'scoreless', function (Faker\Generator $faker) {
+$factory->state(Score::class, 'scoreless', function (Faker\Generator $faker) {
     return [
         'total_score' => 0,
     ];

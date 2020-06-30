@@ -12,14 +12,14 @@ return [
         'blurb' => [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
             'instruction' => [
-                '_' => "Pemasangan: Setelah paket beatmap diunduh, ekstrak .rar ke direktori osu! Songs.
-                    Semua lagu masih dalam bentuk .zip dan/atau .osz di dalam paket, osu! akan mengekstrak beatmap dengan sendirinya saat Anda masuk ke mode Play.
-                    :scary ekstrak zip/osz sendiri,
-                    atau beatmap akan ditampilkan secara tidak benar di dalam osu! dan tidak akan berfungsi dengan baik.",
+                '_' => "Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak file .rar yang tersedia ke dalam folder Songs pada direktori osu! Anda.
+                    Seluruh beatmap yang terkandung di dalam paket yang Anda unduh telah disediakan dalam bentuk .zip dan/atau .osz, di mana osu! akan kemudian memproses berkas-berkas yang terkait dengan sendirinya ketika Anda masuk ke dalam mode Play.
+                    :scary ekstrak .zip/.osz yang ada secara manual,
+                    karena ada kemungkinan berkas-berkas beatmap yang bersangkutan nantinya tidak akan dapat dimuat oleh osu! dan dimainkan sebagaimana semestinya.",
                 'scary' => 'JANGAN',
             ],
             'note' => [
-                '_' => 'Mohon diingat bahwa sangat disarankan bagi Anda untuk :scary, mengingat map-map yang berasal dari era yang lebih lama pada umumnya cenderung memiliki kualitas yang jauh lebih rendah daripada map-map yang berasal dari era yang lebih modern.',
+                '_' => 'Mohon diingat bahwa sangat disarankan bagi Anda untuk :scary, mengingat map-map yang terdahulu (lebih lama) pada umumnya cenderung memiliki kualitas yang jauh lebih rendah dibanding map-map terbaru.',
                 'scary' => 'mengunduh paket dari yang terbaru ke yang paling lama',
             ],
         ],
@@ -28,8 +28,8 @@ return [
     'show' => [
         'download' => 'Unduh',
         'item' => [
-            'cleared' => 'telah diselesaikan',
-            'not_cleared' => 'belum diselesaikan',
+            'cleared' => 'telah dimainkan',
+            'not_cleared' => 'belum dimainkan',
         ],
     ],
 
@@ -37,7 +37,7 @@ return [
         'artist' => 'Artis/Album',
         'chart' => 'Spotlights',
         'standard' => 'Standar',
-        'theme' => 'Tema',
+        'theme' => 'Tematik',
     ],
 
     'require_login' => [

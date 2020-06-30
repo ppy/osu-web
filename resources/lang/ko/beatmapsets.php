@@ -51,7 +51,7 @@ return [
             'approved' => ':timeago 전 approved 됨',
             'loved' => ':timeago 전 loved 됨',
             'qualified' => ':timeago 전 qualified 됨',
-            'ranked' => ':timeago 전 ranked 됨',
+            'ranked' => ':timeago ranked 됨',
             'submitted' => ':timeago 제출됨',
             'updated' => ':timeago 마지막으로 수정됨',
         ],
