@@ -5,5 +5,4 @@ import { Main } from './beatmapset-page/main'
 
 reactTurbolinks.registerPersistent 'beatmapset-page', Main, true, (target) ->
   beatmapset: osu.parseJson('json-beatmapset')
-  countries: _.keyBy osu.parseJson('json-countries'), 'code'
   container: target
