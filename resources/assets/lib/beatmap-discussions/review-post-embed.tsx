@@ -89,7 +89,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
         <div className={`${bn}__link`}>
           <a
               href={BeatmapDiscussionHelper.url({discussion})}
-              className={`${bn}__link-text`}
+              className={`${bn}__link-text js-beatmap-discussion--jump`}
               title={osu.trans('beatmap_discussions.review.go_to_child')}
           >
               <i className='fas fa-external-link-alt'/>

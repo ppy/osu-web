@@ -49,9 +49,9 @@ return [
 
         'details_date' => [
             'approved' => 'aprovado há :timeago',
-            'loved' => 'amado há :timeago',
+            'loved' => 'loved há :timeago',
             'qualified' => 'qualificado há :timeago',
-            'ranked' => 'classificado há :timeago',
+            'ranked' => 'ranqueado há :timeago',
             'submitted' => 'submetido há :timeago',
             'updated' => 'atualizado há :timeago',
         ],
@@ -150,7 +150,7 @@ return [
         'status' => [
             'ranked' => 'Ranqueado',
             'approved' => 'Aprovado',
-            'loved' => 'Amado',
+            'loved' => 'Loved',
             'qualified' => 'Qualificado',
             'wip' => 'Em Progresso',
             'pending' => 'Pendente',

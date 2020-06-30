@@ -1,43 +1,43 @@
 [
     {
-        "uri": "api/v2/beatmapsets/{beatmapset}/favourites",
-        "method": "POST",
-        "controller": "App\\Http\\Controllers\\Beatmapsets\\FavouritesController@store",
-        "middlewares": [
-            "auth-custom-api",
-            "require-scopes",
-            "auth"
-        ],
-        "scopes": []
-    },
-    {
         "uri": "api/v2/beatmapsets/events",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\BeatmapsetEventsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
-        "scopes": ["public"]
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/beatmapsets/events",
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\BeatmapsetEventsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
-        "scopes": ["public"]
+        "scopes": [
+            "public"
+        ]
+    },
+    {
+        "uri": "api/v2/beatmapsets/{beatmapset}/favourites",
+        "method": "POST",
+        "controller": "App\\Http\\Controllers\\Beatmapsets\\FavouritesController@store",
+        "middlewares": [
+            "require-scopes",
+            "auth"
+        ],
+        "scopes": []
     },
     {
         "uri": "api/v2/comments",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\CommentsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -47,7 +47,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\CommentsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -57,7 +56,6 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\CommentsController@store",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -68,7 +66,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\CommentsController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -78,7 +75,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\CommentsController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -88,7 +84,6 @@
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\CommentsController@update",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -99,7 +94,6 @@
         "method": "PATCH",
         "controller": "App\\Http\\Controllers\\CommentsController@update",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -110,7 +104,6 @@
         "method": "DELETE",
         "controller": "App\\Http\\Controllers\\CommentsController@destroy",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -121,7 +114,6 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\CommentsController@voteStore",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -132,7 +124,6 @@
         "method": "DELETE",
         "controller": "App\\Http\\Controllers\\CommentsController@voteDestroy",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -143,7 +134,6 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Chat\\ChatController@newConversation",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -154,7 +144,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Chat\\ChatController@updates",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -165,7 +154,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Chat\\ChatController@updates",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -176,7 +164,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Chat\\ChatController@presence",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -187,7 +174,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Chat\\ChatController@presence",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -198,7 +184,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Chat\\Channels\\MessagesController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -209,7 +194,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Chat\\Channels\\MessagesController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -220,7 +204,6 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Chat\\Channels\\MessagesController@store",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -231,7 +214,6 @@
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@join",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -242,7 +224,6 @@
         "method": "DELETE",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@part",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -253,7 +234,6 @@
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@markAsRead",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -264,7 +244,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -275,7 +254,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -286,7 +264,6 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Chat\\ChannelsController@store",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -297,7 +274,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\ChangelogController@build",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -307,7 +283,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\ChangelogController@build",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -317,7 +292,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\ChangelogController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -327,7 +301,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\ChangelogController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -337,7 +310,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\ChangelogController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -347,7 +319,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\ChangelogController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -357,29 +328,32 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{mode?}",
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}/users/{user}",
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@join",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -390,7 +364,6 @@
         "method": "DELETE",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@part",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -401,44 +374,52 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@leaderboard",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}/leaderboard",
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@leaderboard",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores",
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores/{score}",
@@ -467,7 +448,6 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@store",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -478,7 +458,6 @@
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@update",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -489,7 +468,6 @@
         "method": "PATCH",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@update",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -500,7 +478,6 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\ReportsController@store",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -511,7 +488,6 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@store",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -522,29 +498,32 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/rooms/{room}",
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
-            "auth"
+            "auth",
+            "require-scopes:public"
         ],
-        "scopes": []
+        "scopes": [
+            "public"
+        ]
     },
     {
         "uri": "api/v2/seasonal-backgrounds",
         "method": "GET",
         "controller": "App\\Http\\Controllers\\SeasonalBackgroundsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -554,7 +533,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\SeasonalBackgroundsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -564,7 +542,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\ScoresController@download",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -575,7 +552,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\ScoresController@download",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -586,7 +562,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -599,7 +574,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\BeatmapsController@scores",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -612,7 +586,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@lookup",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -625,7 +598,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@lookup",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -638,7 +610,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -651,7 +622,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -664,7 +634,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@search",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -677,7 +646,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@search",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -690,7 +658,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsetsController@lookup",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -703,7 +670,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\API\\BeatmapsetsController@lookup",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -716,7 +682,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@download",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -726,7 +691,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@download",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -736,7 +700,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -749,7 +712,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\BeatmapsetsController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -762,7 +724,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\FriendsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth",
             "require-scopes:friends.read"
@@ -776,7 +737,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\FriendsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth",
             "require-scopes:friends.read"
@@ -790,7 +750,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@me",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:identify"
         ],
@@ -803,7 +762,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@me",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:identify"
         ],
@@ -816,7 +774,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\HomeController@downloadQuotaCheck",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -827,7 +784,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\HomeController@downloadQuotaCheck",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -838,7 +794,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\NewsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -851,7 +806,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\NewsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -864,7 +818,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\NewsController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -877,7 +830,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\NewsController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -890,7 +842,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\NotificationsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -901,7 +852,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\NotificationsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -912,7 +862,6 @@
         "method": "POST",
         "controller": "App\\Http\\Controllers\\NotificationsController@markRead",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "auth"
         ],
@@ -923,7 +872,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\RankingController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -936,7 +884,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\RankingController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -949,7 +896,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\SpotlightsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -962,7 +908,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\SpotlightsController@index",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -975,7 +920,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@kudosu",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -988,7 +932,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@kudosu",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1001,7 +944,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@scores",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1014,7 +956,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@scores",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1027,7 +968,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@beatmapsets",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1040,7 +980,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@beatmapsets",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1053,7 +992,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@recentActivity",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1066,7 +1004,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@recentActivity",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1079,7 +1016,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\UsersController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1092,7 +1028,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\UsersController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes",
             "require-scopes:public"
         ],
@@ -1105,7 +1040,6 @@
         "method": "GET",
         "controller": "App\\Http\\Controllers\\WikiController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []
@@ -1115,7 +1049,6 @@
         "method": "HEAD",
         "controller": "App\\Http\\Controllers\\WikiController@show",
         "middlewares": [
-            "auth-custom-api",
             "require-scopes"
         ],
         "scopes": []

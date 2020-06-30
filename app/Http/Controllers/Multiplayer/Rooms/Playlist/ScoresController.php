@@ -20,6 +20,7 @@ class ScoresController extends BaseController
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('require-scopes:public', ['only' => ['index']]);
     }
 
     /**
