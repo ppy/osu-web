@@ -5,7 +5,6 @@
 
 namespace App\Models;
 
-use App\Libraries\CommentBundleParams;
 use App\Libraries\ProfileCover;
 
 /**
@@ -137,12 +136,12 @@ class UserProfileCustomization extends Model
 
     public function getCommentsSortAttribute()
     {
-        return $this->options['comments_sort'] ?? CommentBundleParams::DEFAULT_SORT;
+        return $this->options['comments_sort'] ?? Comment::DEFAULT_SORT;
     }
 
     public function setCommentsSortAttribute($value)
     {
-        if ($value !== null && !in_array($value, array_keys(CommentBundleParams::SORTS), true)) {
+        if ($value !== null && array_key_exists($value, Comment::SORTS)) {
             $value = null;
         }
 
