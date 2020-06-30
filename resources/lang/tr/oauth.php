@@ -28,13 +28,13 @@ return [
         'id' => 'İstemci ID',
         'name' => 'Uygulama Adı',
         'redirect' => 'Uygulama Geri Çağırma URL\'si',
-        'reset' => '',
-        'reset_failed' => '',
+        'reset' => 'İstemci gizli anahtarını sıfırla',
+        'reset_failed' => 'İstemci gizli anahtarı sıfırlanamadı',
         'secret' => 'İstemci Anahtarı',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'İstemci gizli anahtarını göster',
+            'true' => 'İstemci gizli anahtarını gizle',
         ],
     ],
 
@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Bu istemciyi silmek istediğinize emin misiniz?',
-        'confirm_reset' => '',
+        'confirm_reset' => 'İstemci gizli anahtarını sıfırlamak istediğinizden emin misiniz? Bu mevcut tüm tokenları kaldıracak.',
         'new' => 'Yeni OAuth uygulaması',
         'none' => 'İstemci yok',
 

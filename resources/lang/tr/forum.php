@@ -61,7 +61,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => ': sınırlandırılmış mesaj sayısı |: sınırlandırılmış mesaj sayıları',
+            'post_count' => ':count_delimited gönderi',
             'topic_starter' => 'Konu Başlığı',
         ],
     ],
@@ -156,7 +156,7 @@ return [
         ],
 
         'create' => [
-            'create_poll' => 'Anket oluşturma',
+            'create_poll' => 'Anket Oluşturma',
 
             'preview' => 'Yazı önizleme',
 
