@@ -310,23 +310,24 @@ Route::group(['middleware' => ['web']], function () {
         });
     });
 
-    // Callbacks for legacy systems to interact with
-    Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
-        Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
-        Route::post('index-beatmapset/{beatmapset}', 'LegacyInterOpController@indexBeatmapset');
-        Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
-        Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
-        Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
-        Route::post('user-send-message', 'LegacyInterOpController@userSendMessage');
-        Route::post('user-batch-mark-channel-as-read', 'LegacyInterOpController@userBatchMarkChannelAsRead');
-        Route::post('user-batch-send-message', 'LegacyInterOpController@userBatchSendMessage');
-        Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
-        Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
-        Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
-        Route::get('/news', 'LegacyInterOpController@news');
-    });
-
     Route::get('/home', 'HomeController@index')->name('home');
+
+    route_redirect('/', 'home');
+
+    // redirects go here
+    route_redirect('forum/p/{post}', 'forum.posts.show');
+    route_redirect('po/{post}', 'forum.posts.show');
+    route_redirect('forum/t/{topic}', 'forum.topics.show');
+    route_redirect('forum/{forum}', 'forum.forums.show');
+    // redirects to beatmapset anyways so there's no point
+    // in having an another redirect on top of that
+    Route::get('b/{beatmap}', 'BeatmapsController@show')->name('redirect:beatmaps.show');
+    route_redirect('g/{group}', 'groups.show');
+    route_redirect('s/{beatmapset}', 'beatmapsets.show');
+    route_redirect('u/{user}', 'users.show');
+    route_redirect('forum', 'forum.forums.index');
+    route_redirect('mp/{match}', 'matches.show');
+    route_redirect('wiki/{page?}', 'wiki.show')->where('page', '.+');
 });
 
 // API
@@ -436,22 +437,21 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
     });
 });
 
-route_redirect('/', 'home');
-
-// redirects go here
-route_redirect('forum/p/{post}', 'forum.posts.show');
-route_redirect('po/{post}', 'forum.posts.show');
-route_redirect('forum/t/{topic}', 'forum.topics.show');
-route_redirect('forum/{forum}', 'forum.forums.show');
-// redirects to beatmapset anyways so there's no point
-// in having an another redirect on top of that
-Route::get('b/{beatmap}', 'BeatmapsController@show')->name('redirect:beatmaps.show');
-route_redirect('g/{group}', 'groups.show');
-route_redirect('s/{beatmapset}', 'beatmapsets.show');
-route_redirect('u/{user}', 'users.show');
-route_redirect('forum', 'forum.forums.index');
-route_redirect('mp/{match}', 'matches.show');
-route_redirect('wiki/{page?}', 'wiki.show')->where('page', '.+');
+// Callbacks for legacy systems to interact with
+Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
+    Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
+    Route::post('index-beatmapset/{beatmapset}', 'LegacyInterOpController@indexBeatmapset');
+    Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
+    Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('lio.user-achievement');
+    Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
+    Route::post('user-send-message', 'LegacyInterOpController@userSendMessage');
+    Route::post('user-batch-mark-channel-as-read', 'LegacyInterOpController@userBatchMarkChannelAsRead');
+    Route::post('user-batch-send-message', 'LegacyInterOpController@userBatchSendMessage');
+    Route::delete('/user-sessions/{user}', 'LegacyInterOpController@userSessionsDestroy');
+    Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
+    Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
+    Route::get('/news', 'LegacyInterOpController@news');
+});
 
 // status
 if (Config::get('app.env') === 'production') {
