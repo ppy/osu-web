@@ -122,3 +122,27 @@ declare module 'report-form' {
 
   class ReportForm extends React.PureComponent<ReportFormProps, any> {}
 }
+
+declare module 'select-options' {
+  interface Option<T = string> {
+    id: T | null;
+    text: string;
+  }
+
+  interface OptionRenderProps<T = string> {
+    children: React.ReactNode[];
+    cssClasses: string;
+    onClick: (event: React.SyntheticEvent) => void;
+    option: Option<T>;
+  }
+
+  interface Props<T> {
+    bn?: string;
+    onChange: (option: Option<T>) => void;
+    options: Option<T>[];
+    renderOption: (props: OptionRenderProps<T>) => React.ReactNode;
+    selected: Option<T>;
+  }
+
+  class SelectOptions<T = string> extends React.PureComponent<Props<T>> {}
+}

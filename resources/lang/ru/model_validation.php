@@ -10,15 +10,6 @@ return [
     'too_long' => ':attribute превышает максимальное количество символов - можно использовать только до :limit characters символов.',
     'wrong_confirmation' => 'Повторы не совпадают.',
 
-    'beatmap_discussion_post' => [
-        'discussion_locked' => 'Обсуждение закрыто.',
-        'first_post' => 'Невозможно удалить первую публикацию.',
-
-        'attributes' => [
-            'message' => 'Сообщение',
-        ],
-    ],
-
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Временная отметка указана, но карта не найдена.',
         'beatmapset_no_hype' => "К карте нельзя применить функции хайпа.",
@@ -44,6 +35,15 @@ return [
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Указанная временная отметка выходит за рамки её длины.',
             'negative' => "Временная отметка не может быть отрицательной.",
+        ],
+    ],
+
+    'beatmapset_discussion_post' => [
+        'discussion_locked' => 'Обсуждение закрыто.',
+        'first_post' => 'Невозможно удалить первую публикацию.',
+
+        'attributes' => [
+            'message' => 'Сообщение',
         ],
     ],
 

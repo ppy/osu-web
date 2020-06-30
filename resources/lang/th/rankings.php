@@ -4,8 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'คัดกรองตามประเทศ',
+    'countries' => [
+        'all' => 'ทั่วโลก',
+    ],
+
+    'filter' => [
+        'title' => 'แสดง',
+
+        'variant' => [
+            'title' => 'ประเภท',
+        ],
     ],
 
     'type' => [

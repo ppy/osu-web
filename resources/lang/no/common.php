@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Tilbake til toppen',
         'cancel' => 'Avbryt',
         'change' => 'endre',
+        'clear' => '',
         'click_to_copy' => 'klikk for å kopiere til utklippstavlen',
         'click_to_copy_copied' => 'kopiert til utklippstavle!',
         'close' => 'Lukk',

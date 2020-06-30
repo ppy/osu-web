@@ -87,7 +87,7 @@ interface OsuCommon {
   formatNumber(num: null, precision?: number, options?: Intl.NumberFormatOptions, locale?: string): null;
   isDesktop(): boolean;
   isMobile(): boolean;
-  updateQueryString(url: string | null, params: { [key: string]: string | undefined }): string;
+  updateQueryString(url: string | null, params: { [key: string]: string | null | undefined }): string;
 }
 
 interface ChangelogBuild {
@@ -97,9 +97,11 @@ interface ChangelogBuild {
   version: string;
 }
 
+// FIXME: make importable
 interface Country {
-  code?: string;
-  name?: string;
+  code: string;
+  display?: number;
+  name: string;
 }
 
 interface Cover {
@@ -117,6 +119,7 @@ interface BeatmapFailTimesArray {
 interface BeatmapDiscussion {
   beatmap_id: number | null;
   beatmapset_id: number;
+  deleted_at: string | null;
   id: number;
   message_type: string;
   parent_id: number | null;

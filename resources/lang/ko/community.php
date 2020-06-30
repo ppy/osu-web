@@ -9,7 +9,7 @@ return [
             'title' => '납득했습니다! :D',
             'support' => 'osu! 지원하기',
             'gift' => '아니면 osu!를 지원하여 다른 플레이어에게 선물할 수도 있습니다.',
-            'instructions' => '하트 버튼을 누르면 osu!상점으로 이동합니다.',
+            'instructions' => '하트 버튼을 누르면 osu!store로 이동합니다.',
         ],
         'why-support' => [
             'title' => '왜 osu! 를 지원해야하죠? 제 돈은 어디로 가나요?',

@@ -1,22 +1,7 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
     'pinned_topics' => 'Pripnuté témy',
@@ -25,6 +10,8 @@ return [
     'title' => 'osu! fóra',
 
     'covers' => [
+        'edit' => 'Upraviť obal',
+
         'create' => [
             '_' => 'Pridať titulný obrázok',
             'button' => 'Nahrať obrázok',
@@ -37,11 +24,13 @@ return [
         ],
     ],
 
-    'email' => [
-        'new_reply' => '[osu!] Nová odpoveď na tému ":title"',
-    ],
-
     'forums' => [
+        'latest_post' => 'Posledný príspevok',
+
+        'index' => [
+            'title' => '',
+        ],
+
         'topics' => [
             'empty' => 'Žiadne témy!',
         ],
@@ -53,18 +42,10 @@ return [
         'busy' => 'Označujem ako prečítané...',
     ],
 
-    'poll' => [
-        'edit_warning' => 'Zmena hlasovania odstráni momentálne výsledky!',
-
-        'actions' => [
-            'edit' => 'Upraviť hlasovanie',
-        ],
-    ],
-
     'post' => [
         'confirm_destroy' => 'Naozaj chceš tento príspevok odstrániť?',
         'confirm_restore' => 'Naozaj chceš tento príspevok obnoviť?',
-        'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count_delimited.',
+        'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count.',
         'posted_at' => 'publikované :when',
 
         'actions' => [
@@ -73,8 +54,15 @@ return [
             'edit' => 'Upraviť príspevok',
         ],
 
+        'create' => [
+            'title' => [
+                'reply' => 'Nová odpoveď',
+            ],
+        ],
+
         'info' => [
             'post_count' => '',
+            'topic_starter' => '',
         ],
     ],
 
@@ -98,6 +86,7 @@ return [
         'started_by_verbose' => 'začaté použivateľom :user',
 
         'create' => [
+            'close' => 'Zavrieť',
             'preview' => 'Náhlad',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
@@ -135,9 +124,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Sledované príspevky',
             'title_compact' => 'sledované fóra',
-            'title_main' => 'Sledované <strong>príspevky</strong>',
 
             'box' => [
                 'total' => 'Počet sledovaných tém',
@@ -179,6 +166,8 @@ return [
             ],
 
             'poll' => [
+                'hide_results' => '',
+                'hide_results_info' => '',
                 'length' => 'Spustit anketu na dobu',
                 'length_days_suffix' => 'dni',
                 'length_info' => 'Ponechaj prázdne pre dobu neurčitú',
@@ -247,8 +236,10 @@ return [
         'lock' => [
             'is_locked' => 'Táto téma je uzamknutá a nedá sa na ňu odpovedať',
             'to_0' => 'Odomknúť tému',
+            'to_0_confirm' => 'Odomknúť tému?',
             'to_0_done' => 'Téma bola odomknutá',
             'to_1' => 'Uzamknúť tému',
+            'to_1_confirm' => 'Uzamknúť tému?',
             'to_1_done' => 'Téma bola uzamknutá',
         ],
 
@@ -258,11 +249,19 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Odopnúť tému',
+            'to_0_confirm' => 'Odopnúť tému?',
             'to_0_done' => 'Téma bola odopnutá',
             'to_1' => 'Pripnúť tému',
+            'to_1_confirm' => 'Pripnúť tému?',
             'to_1_done' => 'Téma bola pripnutá',
             'to_2' => 'Pripni tému a označ ako oznámenie',
+            'to_2_confirm' => '',
             'to_2_done' => 'Téma bola pripnutá a označená ako oznámenie',
+        ],
+
+        'moderate_toggle_deleted' => [
+            'show' => '',
+            'hide' => '',
         ],
 
         'show' => [
@@ -287,11 +286,21 @@ return [
             ],
 
             'poll' => [
+                'edit' => '',
+                'edit_warning' => '',
                 'vote' => 'Hlasovať',
+
+                'button' => [
+                    'change_vote' => '',
+                    'edit' => '',
+                    'view_results' => '',
+                    'vote' => 'Hlasovať',
+                ],
 
                 'detail' => [
                     'end_time' => 'Hlasovanie skončí za :time',
                     'ended' => 'Hlasovanie skončilo :time',
+                    'results_hidden' => '',
                     'total' => 'Celkových hlasov: :count',
                 ],
             ],

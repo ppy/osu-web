@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Skriv här för att posta till General (:version)',
             'generalAll' => 'Skriv här för att posta till General (Alla svårighetsgrader)',
+            'review' => 'Skriv här för att posta en recension',
             'timeline' => 'Skriv här för att posta till Tidslinjen (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'Tryck ctrl-c i redigeringsläget och klistra in ditt meddelande för att lägga till en tidsstämpel!',
             'title' => 'Ny Diskussion',
             'unpin' => 'Lossa',
+        ],
+
+        'review' => [
+            'new' => 'Ny Recension',
+            'embed' => [
+                'delete' => 'Radera',
+                'missing' => '[DISKUSSION RADERAD]',
+                'unlink' => 'Ta bort länk',
+                'unsaved' => 'Ej sparad',
+                'timestamp' => [
+                    'all-diff' => 'Inlägg med "Alla svårighetsgrader" kan inte tidsstämplas.',
+                    'diff' => 'Om denna :type börjar med en tidsstämpel, visas den under Tidslinje.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'infoga paragraf',
+                'praise' => 'infoga beröm',
+                'problem' => 'infoga problem',
+                'suggestion' => 'infoga förslag',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elektronisk',
+        'metal' => 'Metal',
+        'classical' => 'Klassisk',
+        'folk' => 'Folk',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '4K',
@@ -291,8 +316,11 @@ return [
         'korean' => 'Koreanska',
         'spanish' => 'Spanska',
         'swedish' => 'Svenska',
+        'russian' => 'Ryska',
+        'polish' => 'Polska',
         'instrumental' => 'Instrumental',
         'other' => 'Annat',
+        'unspecified' => 'Ospecificerat',
     ],
     'played' => [
         'any' => 'Alla',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'Antal spelade: :count',
         'favourites' => 'Favoriter: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'Alla',
+        ],
     ],
 ];

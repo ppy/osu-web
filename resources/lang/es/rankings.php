@@ -4,8 +4,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'country' => [
-        'filter' => 'filtrado por país',
+    'countries' => [
+        'all' => 'Todos',
+    ],
+
+    'filter' => [
+        'title' => 'Mostrar',
+
+        'variant' => [
+            'title' => 'Variante',
+        ],
     ],
 
     'type' => [
@@ -16,10 +24,10 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => 'Fecha de fin',
+        'end_date' => 'Fecha de finalización',
         'map_count' => 'Recuento de mapas',
         'participants' => 'Participantes',
-        'start_date' => 'Fecha de Inicio',
+        'start_date' => 'Fecha de inicio',
     ],
 
     'stat' => [

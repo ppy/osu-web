@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => '一般（:version）への投稿をここに入力',
             'generalAll' => '一般 （全ての難易度）への投稿をここに入力',
+            'review' => '',
             'timeline' => 'タイムライン（:version）へ投稿するにはここに入力',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'ゲーム内のEdit画面でCtrl+Cを押してメッセージに張り付けるとタイムスタンプになります！',
             'title' => '新しいディスカッション',
             'unpin' => 'ピン解除',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => '',
+                'suggestion' => '',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'ノベルティ',
         'hip-hop' => 'ヒップホップ',
         'electronic' => 'エレクトロニック',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '4K',
@@ -291,8 +316,11 @@ return [
         'korean' => '韓国語',
         'spanish' => 'スペイン語',
         'swedish' => 'スウェーデン語',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => '楽器',
         'other' => 'その他',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => '全て',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'プレイ回数：:count',
         'favourites' => 'お気に入り：:count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
     ],
 ];

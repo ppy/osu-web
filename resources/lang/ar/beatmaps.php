@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'اكتب هنا للنشر في العام (:version)',
             'generalAll' => 'اكتب هنا للنشر في العام (جميع الصعوبات)',
+            'review' => '',
             'timeline' => 'اكتب هنا للنشر في الخط الزمني (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => 'ctrl-c في وضع التعديل والصق الرسالة هنا لأدخال طابع زمني!',
             'title' => 'مناقشة جديدة',
             'unpin' => 'إزالة التثبيت',
+        ],
+
+        'review' => [
+            'new' => '',
+            'embed' => [
+                'delete' => '',
+                'missing' => '',
+                'unlink' => '',
+                'unsaved' => '',
+                'timestamp' => [
+                    'all-diff' => '',
+                    'diff' => '',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '',
+                'praise' => '',
+                'problem' => 'إدراج مشكلة',
+                'suggestion' => 'إدراج اقتراح',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => 'الابداع',
         'hip-hop' => 'هيب هوب',
         'electronic' => 'إلكتروني',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
     ],
     'mods' => [
         '4K' => '',
@@ -291,8 +316,11 @@ return [
         'korean' => 'كورية',
         'spanish' => 'إسبانية',
         'swedish' => 'سويدية',
+        'russian' => '',
+        'polish' => '',
         'instrumental' => 'آلة موسيقية',
         'other' => 'أخرى',
+        'unspecified' => '',
     ],
     'played' => [
         'any' => 'الكل',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => 'مرات اللعب: :count',
         'favourites' => 'التفضيلات: :count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => 'الكل',
+        ],
     ],
 ];

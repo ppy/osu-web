@@ -61,6 +61,7 @@ return [
         'message_placeholder' => [
             'general' => '在此处输入以发布到常规 (:version)',
             'generalAll' => '在此处输入以发布到常规 (所有难度)',
+            'review' => '在此处输入以发布审阅',
             'timeline' => '在此处输入以发布到时间轴 (:version)',
         ],
 
@@ -92,6 +93,26 @@ return [
             'timestamp_missing' => '在编辑模式下按 Ctrl+C 然后在您的输入框中粘贴以添加时间戳！',
             'title' => '新的讨论',
             'unpin' => '取消置顶',
+        ],
+
+        'review' => [
+            'new' => '新的审阅',
+            'embed' => [
+                'delete' => '删除',
+                'missing' => '[该讨论已删除]',
+                'unlink' => '取消链接',
+                'unsaved' => '尚未保存',
+                'timestamp' => [
+                    'all-diff' => '你不能在“所有难度”中发布时间戳。',
+                    'diff' => '如果此 :type 以时间戳开头，它将显示在时间轴下。',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => '插入段落',
+                'praise' => '插入赞',
+                'problem' => '插入问题',
+                'suggestion' => '加入建议',
+            ],
         ],
 
         'show' => [
@@ -254,6 +275,10 @@ return [
         'novelty' => '新奇',
         'hip-hop' => '嘻哈',
         'electronic' => '电子',
+        'metal' => '金属',
+        'classical' => '古典',
+        'folk' => '民谣',
+        'jazz' => '爵士',
     ],
     'mods' => [
         '4K' => '4K',
@@ -291,8 +316,11 @@ return [
         'korean' => '韩语',
         'spanish' => '西班牙语',
         'swedish' => '瑞典语',
+        'russian' => '俄语',
+        'polish' => '波兰语',
         'instrumental' => '器乐',
         'other' => '其他',
+        'unspecified' => '未指定',
     ],
     'played' => [
         'any' => '任意',
@@ -317,5 +345,12 @@ return [
     'panel' => [
         'playcount' => '游戏次数：:count',
         'favourites' => '收藏次数：:count',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => '全部',
+        ],
     ],
 ];

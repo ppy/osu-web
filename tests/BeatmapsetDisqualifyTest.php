@@ -6,7 +6,7 @@
 namespace Tests;
 
 use App\Events\NewPrivateNotificationEvent;
-use App\Jobs\BroadcastNotification;
+use App\Jobs\Notifications\BeatmapsetDisqualify;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Notification;
@@ -33,9 +33,7 @@ class BeatmapsetDisqualifyTest extends TestCase
 
         $this->disqualify()->assertStatus(200);
 
-        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
-        });
+        Queue::assertPushed(BeatmapsetDisqualify::class);
 
         $this->runFakeQueue();
 
@@ -58,9 +56,7 @@ class BeatmapsetDisqualifyTest extends TestCase
 
         $this->disqualify()->assertStatus(200);
 
-        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
-        });
+        Queue::assertPushed(BeatmapsetDisqualify::class);
 
         $this->runFakeQueue();
 
@@ -83,9 +79,7 @@ class BeatmapsetDisqualifyTest extends TestCase
         $this->disqualify()->assertStatus(200);
 
         if ($pushEnabled) {
-            Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-                return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
-            });
+            Queue::assertPushed(BeatmapsetDisqualify::class);
 
             $this->runFakeQueue();
 
@@ -95,9 +89,7 @@ class BeatmapsetDisqualifyTest extends TestCase
             });
         } else {
             // We want to assert the job was queued but because there should be no receivers, there won't be a notification generated.
-            Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-                return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
-            });
+            Queue::assertPushed(BeatmapsetDisqualify::class);
 
             $this->runFakeQueue();
 
@@ -113,9 +105,7 @@ class BeatmapsetDisqualifyTest extends TestCase
 
         $this->disqualify()->assertStatus(200);
 
-        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
-        });
+        Queue::assertPushed(BeatmapsetDisqualify::class);
 
         $this->runFakeQueue();
 
@@ -129,9 +119,7 @@ class BeatmapsetDisqualifyTest extends TestCase
     {
         $this->disqualify()->assertStatus(200);
 
-        Queue::assertPushed(BroadcastNotification::class, function (BroadcastNotification $job) {
-            return $job->getName() === Notification::BEATMAPSET_DISQUALIFY;
-        });
+        Queue::assertPushed(BeatmapsetDisqualify::class);
 
         $this->runFakeQueue();
 

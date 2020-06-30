@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Грати наступну пісню автоматично',
     ],
 
     'defaults' => [

@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
+        'beatmapset_discussion_qualified_problem' => 'атрымліваць апавяшчэнні аб новых праблемах кваліфікаваных мап наступных рэжымаў',
+        'beatmapset_disqualify' => '',
         'title' => 'Апавяшчэнні',
         'topic_auto_subscribe' => 'аўтаматычна ўключаць апавяшчэнні для вашых тэм з форума',
-        'beatmapset_discussion_qualified_problem' => 'атрымліваць апавяшчэнні аб новых праблемах кваліфікаваных мап наступных рэжымаў',
 
-        'mail' => [
-            '_' => 'атрымліваць паштовыя апавяшчэнні для',
-            'beatmapset:modding' => 'модынг бітмап',
-            'forum_topic_reply' => 'адказ тэмы',
+        'options' => [
+            '_' => '',
+            'beatmapset:modding' => '',
+            'forum_topic_reply' => '',
+            'mail' => '',
+            'push' => '',
         ],
     ],
 

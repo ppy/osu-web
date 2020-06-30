@@ -241,7 +241,7 @@
 
 
   urlPresence: (url) ->
-    if osu.present(url) then "url(#{url})" else null
+    if osu.present(url) then "url(#{encodeURI(url)})" else null
 
 
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
@@ -369,7 +369,10 @@
   updateQueryString: (url, params) ->
     urlObj = new URL(url ? window.location.href, document.location.origin)
     for own key, value of params
-      urlObj.searchParams.set(key, value)
+      if value?
+        urlObj.searchParams.set(key, value)
+      else
+        urlObj.searchParams.delete(key)
 
     return urlObj.href
 

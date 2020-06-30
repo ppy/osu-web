@@ -19,7 +19,9 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
-use App\Models\Multiplayer\Match;
+use App\Models\Genre;
+use App\Models\Language;
+use App\Models\Match\Match;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -496,6 +498,19 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     */
+    public function checkBeatmapsetAdvancedSearch(?User $user): string
+    {
+        if (!config('osu.beatmapset.guest_advanced_search')) {
+            $this->ensureLoggedIn($user);
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
      * @param Beatmapset $beatmapset
      * @return string
      * @throws AuthorizationException
@@ -552,12 +567,16 @@ class OsuAuthorize
             return $prefix.'incorrect_state';
         }
 
-        if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
-            return $prefix.'exhausted';
-        }
-
         if ($user->getKey() === $beatmapset->user_id) {
             return $prefix.'owner';
+        }
+
+        if ($beatmapset->genre_id === Genre::UNSPECIFIED || $beatmapset->language_id === Language::UNSPECIFIED) {
+            return $prefix.'set_metadata';
+        }
+
+        if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
+            return $prefix.'exhausted';
         }
 
         if ($user->isLimitedBN()) {
@@ -707,21 +726,38 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        if ($user->isProjectLoved() && $beatmapset->isLoved()) {
+            return 'ok';
+        }
+
+        static $bnEditable = [
+            Beatmapset::STATES['wip'],
+            Beatmapset::STATES['pending'],
+            Beatmapset::STATES['qualified'],
+        ];
         static $ownerEditable = [
             Beatmapset::STATES['graveyard'],
             Beatmapset::STATES['wip'],
             Beatmapset::STATES['pending'],
         ];
 
-        if ($user->isModerator()) {
+        if ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
             return 'ok';
         }
 
-        if ($user->getKey() === $beatmapset->user_id && in_array($beatmapset->approved, $ownerEditable, true)) {
-            return 'ok';
+        if ($user->getKey() !== $beatmapset->user_id || !in_array($beatmapset->approved, $ownerEditable, true)) {
+            return 'unauthorized';
         }
 
-        return 'unauthorized';
+        if ($beatmapset->hasNominations()) {
+            return 'beatmapset.metadata.nominated';
+        }
+
+        return 'ok';
     }
 
     /**

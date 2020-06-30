@@ -67,6 +67,8 @@ return [
         'go_to_parent' => '',
         'go_to_child' => 'Xem cuộc thảo luận',
         'validation' => [
+            'block_too_large' => '',
+            'external_references' => '',
             'invalid_block_type' => '',
             'invalid_document' => '',
             'minimum_issues' => '',

@@ -16,7 +16,7 @@ use App\Models\Model;
  * @property int $playlist_item_id
  * @property float|null $pp
  * @property int $score_id
- * @property RoomScore $score
+ * @property Score $score
  * @property int $total_score
  * @property \Carbon\Carbon $updated_at
  * @property int $user_id
@@ -27,6 +27,6 @@ class PlaylistItemUserHighScore extends Model
 
     public function score()
     {
-        return $this->belongsTo(RoomScore::class);
+        return $this->belongsTo(Score::class);
     }
 }

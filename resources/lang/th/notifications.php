@@ -5,7 +5,7 @@
 
 return [
     'all_read' => 'อ่านการแจ้งเตือนทั้งหมดแล้ว!',
-    'mark_read' => '',
+    'mark_read' => 'ล้าง :type',
     'none' => 'ไม่มีการแจ้งเตือนใดๆ',
     'see_all' => 'ดูการแจ้งเตือนทั้งหมด',
 
@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'โพสใหม่ บน :title โดย :username',
                 'beatmapset_discussion_post_new_compact' => 'โพสต์ใหม่โดย :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'โพสใหม่โดย :username',
+                'beatmapset_discussion_review_new' => 'รีวิวใหม่บน ":title" โดย :username มีปัญหาอยู่ :problems ปัญหา, คำแนะนำอยู่ :suggestions คำแนะนำ, คำชม :praises คำชม  ',
+                'beatmapset_discussion_review_new_compact' => 'รีวิวโดย :username มีปัญหาอยู่ :problems ปัญหา, คำแนะนำอยู่ :suggestions คำแนะนำ, คำชม :praises คำชม  ',
                 'beatmapset_discussion_unlock' => 'Beatmap ":title" ได้ถูกเปิดการใช้งานในการสนทนาแล้ว',
                 'beatmapset_discussion_unlock_compact' => 'การสนทนาได้ถูกปลดล๊อค',
             ],

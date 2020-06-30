@@ -24,6 +24,7 @@ use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Request;
+use Sentry\State\Scope;
 
 class UsersController extends Controller
 {
@@ -121,7 +122,8 @@ class UsersController extends Controller
         }
 
         $params = get_params(request(), 'user', ['username', 'user_email', 'password']);
-        $country = Country::find(request_country());
+        $countryCode = request_country();
+        $country = Country::find($countryCode);
         $params['user_ip'] = $ip;
         $params['country_acronym'] = $country === null ? '' : $country->getKey();
 
@@ -142,6 +144,17 @@ class UsersController extends Controller
 
             $registration->save();
             app(RateLimiter::class)->hit($throttleKey, 600);
+
+            if ($country === null) {
+                app('sentry')->getClient()->captureMessage(
+                    'User registered from unknown country: '.$countryCode,
+                    null,
+                    (new Scope)
+                        ->setExtra('country', $countryCode)
+                        ->setExtra('ip', $ip)
+                        ->setExtra('user_id', $registration->user()->getKey())
+                );
+            }
 
             return $registration->user()->fresh()->defaultJson();
         } catch (ValidationException $e) {
@@ -193,6 +206,21 @@ class UsersController extends Controller
         return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
     }
 
+    /**
+     * @group Users
+     *
+     * Show user scores
+     *
+     * This endpoint returns the scores of specified user.
+     *
+     * @authenticated
+     *
+     * @urlParam user_id required Id of the user.
+     * @urlParam type required Score type. Must be one of these: `best`, `firsts`, `recent`.
+     *
+     * @queryParam include_fails Only for recent scores, include scores of failed plays. Set to 1 to include them. Defaults to 0.
+     * @queryParam mode [GameMode](#gamemode) of the scores to be returned. Defaults to the specified `user_id`'s mode.
+     */
     public function scores($_userId, $type)
     {
         static $mapping = [
@@ -210,7 +238,12 @@ class UsersController extends Controller
             $perPage = $this->sanitizedLimitParam();
         }
 
-        $json = $this->getExtra($this->user, $page, ['mode' => $this->mode], $perPage, $this->offset);
+        $options = [
+            'mode' => $this->mode,
+            'includeFails' => get_bool(request('include_fails')) ?? false,
+        ];
+
+        $json = $this->getExtra($this->user, $page, $options, $perPage, $this->offset);
 
         return response($json, is_null($json['error'] ?? null) ? 200 : 504);
     }
@@ -237,7 +270,9 @@ class UsersController extends Controller
         }
 
         if ((string) $user->user_id !== (string) $id) {
-            return ujs_redirect(route('users.show', ['user' => $user, 'mode' => $mode]));
+            $route = is_api_request() ? 'api.users.show' : 'users.show';
+
+            return ujs_redirect(route($route, compact('user', 'mode')));
         }
 
         $currentMode = $mode ?? $user->playmode;
@@ -264,6 +299,7 @@ class UsersController extends Controller
             "rankHistory:mode({$currentMode})",
             'replays_watched_counts',
             'statistics.rank',
+            'statistics.variants',
             'support_level',
             'unranked_beatmapset_count',
             'user_achievements',
@@ -464,6 +500,7 @@ class UsersController extends Controller
                     $transformer = 'Score';
                     $includes = ['beatmap', 'beatmapset', 'user'];
                     $query = $user->scores($options['mode'], true)
+                        ->includeFails($options['includeFails'] ?? false)
                         ->with('beatmap', 'beatmap.beatmapset', 'best', 'user');
                     break;
             }

@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => '他のビートマップをアップロード',
-                'description' => '一度に保持できるRankedされていないビートマップ数は、基準値とRankedされたビートマップの追加ボーナス値から計算されます。<br/><br/>通常これは4つで、Rankedされたビートマップごとに1つ追加されます。（最大2）サポーターになると、8つになりRankedされるごとに1つ追加されます。（最大12）',
+                'description' => '一度に保持できるRankedされていないビートマップ数は、基準値とRankedされたビートマップの追加ボーナス値から計算されます。<br/><br/>通常これは:baseつで、Rankedされたビートマップごとに:bonusつ追加されます。（最大 :bonus_max）サポーターになると、:supporter_baseつになりRankedされるごとに:supporter_bonusつ追加されます。（最大 :supporter_bonus_max）',
             ],
             'friend_filtering' => [
                 'title' => 'フレンドリーダーボード',

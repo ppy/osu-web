@@ -25,6 +25,9 @@
   }
 
   &__position-number {
+    .link-white();
+    .link-plain();
+    display: block;
     padding-bottom: 5px;
   }
 
@@ -87,6 +90,10 @@
     margin-top: 4px;
 
     line-height: 0.9;
+
+    &--perfect {
+      color: hsl(@beatmap-score--hsl-perfect);
+    }
 
     &--smaller {
       font-size: 16px;

@@ -262,13 +262,11 @@ abstract class Search extends HasSearch implements Queryable
             app('sentry')->captureException($e);
         }
 
-        if (config('datadog-helper.enabled')) {
-            Datadog::increment(
-                config('datadog-helper.prefix_web').'.search.errors',
-                1,
-                $tags
-            );
-        }
+        Datadog::increment(
+            config('datadog-helper.prefix_web').'.search.errors',
+            1,
+            $tags
+        );
     }
 
     private function isSearchWindowExceeded()

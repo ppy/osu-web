@@ -49,14 +49,17 @@ return [
     ],
 
     'notifications' => [
-        'title' => 'Ilmoitukset',
-        'topic_auto_subscribe' => '',
         'beatmapset_discussion_qualified_problem' => '',
+        'beatmapset_disqualify' => '',
+        'title' => 'Ilmoitukset',
+        'topic_auto_subscribe' => 'automaattisesti salli ilmoitukset uusille foorumiaiheille jotka luot',
 
-        'mail' => [
+        'options' => [
             '_' => '',
             'beatmapset:modding' => '',
             'forum_topic_reply' => '',
+            'mail' => '',
+            'push' => '',
         ],
     ],
 
@@ -67,13 +70,13 @@ return [
     ],
 
     'options' => [
-        'title' => '',
+        'title' => 'Asetukset',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'no_video' => '',
-            'direct' => '',
+            '_' => 'oletus beatmap-lataus tyyppi',
+            'all' => 'videon kanssa jos saatavilla',
+            'no_video' => 'ilman videota',
+            'direct' => 'avaa osu!directissä',
         ],
     ],
 
@@ -110,10 +113,11 @@ return [
 
     'verification_completed' => [
         'text' => 'Tämän välilehden/ikkunan voi nyt sulkea',
-        'title' => '',
+        'title' => 'Vahvistaminen on valmis',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Kelvoton tai vanhentunut vahvistuslinkki
+',
     ],
 ];

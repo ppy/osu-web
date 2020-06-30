@@ -1,0 +1,29 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.ranking-filter {
+  --gutter: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: calc(var(--gutter) * -1);
+
+  @media @desktop {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__item {
+    padding: var(--gutter);
+    flex: 1;
+
+    @media @desktop {
+      flex: none;
+    }
+
+    &--full {
+      @media @desktop {
+        flex: 1;
+      }
+    }
+  }
+}

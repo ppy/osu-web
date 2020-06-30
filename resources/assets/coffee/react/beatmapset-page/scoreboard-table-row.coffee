@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { FlagCountry } from 'flag-country'
+import { route } from 'laroute'
 import { Mods } from 'mods'
 import { PlayDetailMenu } from 'play-detail-menu'
 import * as React from 'react'
@@ -21,9 +22,13 @@ export class ScoreboardTableRow extends React.PureComponent
     cell = "#{bn}__cell"
 
     tr
-      className: osu.classWithModifiers("#{bn}__body-row", classMods),
+      className: "clickable-row #{osu.classWithModifiers("#{bn}__body-row", classMods)}",
 
-      td className: osu.classWithModifiers(cell, ['rank']), "##{index+1}"
+      td className: osu.classWithModifiers(cell, ['rank']),
+        a
+          className: "clickable-row-link #{bn}__rank"
+          href: route('scores.show', mode: score.mode, score: score.best_id)
+          "##{index+1}"
 
       td className: osu.classWithModifiers(cell, ["grade"]),
         div className: "score-rank score-rank--tiny score-rank--#{score.rank}"
@@ -42,7 +47,7 @@ export class ScoreboardTableRow extends React.PureComponent
               country: score.user.country_code
               type: 'performance'
             el FlagCountry,
-              country: @props.countries[score.user.country_code]
+              country: score.user.country
               modifiers: ['scoreboard', 'small-box']
 
       td className: cell,

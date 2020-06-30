@@ -5,18 +5,18 @@
 
 return [
     'all_read' => 'Semua notifikasi telah dibaca!',
-    'mark_read' => 'Hilangkan semua notifikasi terkait :type',
+    'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'lihat semua notifikasi',
 
     'filters' => [
-        '_' => 'semua',
-        'user' => 'profil',
-        'beatmapset' => 'beatmap',
-        'forum_topic' => 'forum',
-        'news_post' => 'berita',
-        'build' => 'build',
-        'channel' => 'chat',
+        '_' => 'semua notifikasi',
+        'user' => 'semua notifikasi profil',
+        'beatmapset' => 'semua notifikasi beatmap',
+        'forum_topic' => 'semua notifikasi forum',
+        'news_post' => 'semua notifikasi berita',
+        'build' => 'semua notifikasi build',
+        'channel' => 'semua notifikasi chat',
     ],
 
     'item' => [
@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Postingan baru di ":title" oleh :username',
                 'beatmapset_discussion_post_new_compact' => 'Postingan baru dari :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Postingan baru oleh :username',
+                'beatmapset_discussion_review_new' => 'Terdapat ulasan baru pada ":title" oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Terdapat ulasan baru oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
                 'beatmapset_discussion_unlock' => 'Diskusi untuk beatmap ":title" telah dibuka kembali.',
                 'beatmapset_discussion_unlock_compact' => 'Diskusi beatmap telah dibuka',
             ],
@@ -86,7 +88,7 @@ return [
             'comment' => [
                 '_' => 'Komentar baru',
 
-                'comment_new' => ':username berkomentar ":content" di topik ":title"',
+                'comment_new' => ':username berkomentar ":content" pada topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
             ],
         ],
@@ -97,7 +99,7 @@ return [
             'comment' => [
                 '_' => 'Komentar baru',
 
-                'comment_new' => ':username berkomentar ":content" di topik ":title"',
+                'comment_new' => ':username berkomentar ":content" pada topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
             ],
         ],
@@ -113,7 +115,7 @@ return [
         ],
 
         'legacy_pm' => [
-            '_' => 'PM Forum Lawas',
+            '_' => 'Forum PM',
 
             'legacy_pm' => [
                 '_' => '',

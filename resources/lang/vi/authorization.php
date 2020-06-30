@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Bạn phải là người đề cử beatmap để đề cử các set beatmap có nhiều hơn một chế độ chơi.',
             'incorrect_state' => 'Có lỗi khi thực hiện, hãy thử tải lại trang.',
             'owner' => "Bạn không thể đề cử beatmap của bạn.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể đánh dấu cuộc thảo luận là đã được giải quyết.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Thảo luận bị khóa cho beatmap này.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 

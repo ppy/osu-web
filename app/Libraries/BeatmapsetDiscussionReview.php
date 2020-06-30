@@ -10,6 +10,7 @@ use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\Notification;
 use App\Models\User;
 use DB;
@@ -24,6 +25,8 @@ class BeatmapsetDiscussionReview
             throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_document'));
         }
 
+        $priorOpenProblemCount = self::getOpenProblemCount($beatmapset);
+        $problemDiscussion = null;
         $output = [];
         try {
             DB::beginTransaction();
@@ -31,7 +34,6 @@ class BeatmapsetDiscussionReview
             // create the issues for the embeds first
             $childIds = [];
             $blockCount = 0;
-
             foreach ($document as $block) {
                 if (!isset($block['type'])) {
                     throw new InvariantException(trans('beatmap_discussions.review.validation.invalid_block_type'));
@@ -44,19 +46,22 @@ class BeatmapsetDiscussionReview
 
                 switch ($block['type']) {
                     case 'embed':
-                        $childId = self::createPost(
+                        $embedDiscussion = self::createPost(
                             $beatmapset->getKey(),
                             $block['discussion_type'],
                             $message,
                             $user->getKey(),
                             $block['beatmap_id'] ?? null,
                             $block['timestamp'] ?? null
-                        )->getKey();
+                        );
                         $output[] = [
                             'type' => 'embed',
-                            'discussion_id' => $childId,
+                            'discussion_id' => $embedDiscussion->getKey(),
                         ];
-                        $childIds[] = $childId;
+                        $childIds[] = $embedDiscussion->getKey();
+                        if ($block['discussion_type'] === 'problem' && !$problemDiscussion) {
+                            $problemDiscussion = $embedDiscussion;
+                        }
                         break;
 
                     case 'paragraph':
@@ -97,6 +102,11 @@ class BeatmapsetDiscussionReview
             BeatmapDiscussion::whereIn('id', $childIds)
                 ->update(['parent_id' => $review->getKey()]);
 
+            // handle disqualifications and the resetting of nominations
+            if ($problemDiscussion) {
+                self::resetOrDisqualify($beatmapset, $user, $problemDiscussion, $priorOpenProblemCount);
+            }
+
             DB::commit();
 
             broadcast_notification(Notification::BEATMAPSET_DISCUSSION_REVIEW_NEW, $review, $user);
@@ -122,6 +132,8 @@ class BeatmapsetDiscussionReview
         $beatmapset = Beatmapset::findOrFail($discussion->beatmapset_id); // handle deleted beatmapsets
         $post = $discussion->startingPost;
 
+        $priorOpenProblemCount = self::getOpenProblemCount($beatmapset);
+        $problemDiscussion = null;
         $output = [];
         try {
             DB::beginTransaction();
@@ -150,14 +162,18 @@ class BeatmapsetDiscussionReview
                             $childId = $block['discussion_id'];
                         } else {
                             // otherwise, create new discussion
-                            $childId = self::createPost(
+                            $embedDiscussion = self::createPost(
                                 $beatmapset->getKey(),
                                 $block['discussion_type'],
                                 $message,
                                 $user->getKey(),
                                 $block['beatmap_id'] ?? null,
                                 $block['timestamp'] ?? null
-                            )->getKey();
+                            );
+                            $childId = $embedDiscussion->getKey();
+                            if ($block['discussion_type'] === 'problem' && !$problemDiscussion) {
+                                $problemDiscussion = $embedDiscussion;
+                            }
                         }
 
                         $output[] = [
@@ -214,6 +230,11 @@ class BeatmapsetDiscussionReview
             BeatmapDiscussion::whereIn('id', $childIds)
                 ->update(['parent_id' => $discussion->getKey()]);
 
+            // handle disqualifications and the resetting of nominations
+            if ($problemDiscussion) {
+                self::resetOrDisqualify($beatmapset, $user, $problemDiscussion, $priorOpenProblemCount);
+            }
+
             DB::commit();
 
             return true;
@@ -244,6 +265,38 @@ class BeatmapsetDiscussionReview
         $newPost->saveOrExplode();
 
         return $newDiscussion;
+    }
+
+    private static function getOpenProblemCount($beatmapset)
+    {
+        return $beatmapset->beatmapDiscussions()->openProblems()->count();
+    }
+
+    private static function resetOrDisqualify($beatmapset, $user, $problemDiscussion, $priorOpenProblemCount)
+    {
+        $resetNominations = $beatmapset->isPending() &&
+            $beatmapset->hasNominations() &&
+            priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can();
+
+        if ($resetNominations) {
+            BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, $user, $problemDiscussion)->saveOrExplode();
+            broadcast_notification(Notification::BEATMAPSET_RESET_NOMINATIONS, $beatmapset, $user);
+            $beatmapset->refreshCache();
+        }
+
+        if ($beatmapset->isQualified()) {
+            if (priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
+                $beatmapset->disqualify($user, $problemDiscussion);
+            } else {
+                if ($priorOpenProblemCount === 0) {
+                    broadcast_notification(
+                        Notification::BEATMAPSET_DISCUSSION_QUALIFIED_PROBLEM,
+                        $problemDiscussion->startingPost,
+                        $user
+                    );
+                }
+            }
+        }
     }
 
     public static function getStats(array $document)

@@ -21,6 +21,7 @@ return [
             'full_bn_required_hybrid' => 'Vous devez être un candidat à part entière pour nominer des ensembles de beatmap avec plus d\'un mode de jeu.',
             'incorrect_state' => 'Une erreur est survenue lors de l’exécution de cette action, essayez d’actualiser la page.',
             'owner' => "Vous ne pouvez pas nominer votre propre beatmap.",
+            'set_metadata' => 'Vous devez définir le genre et la langue avant de proposer une candidature.',
         ],
         'resolve' => [
             'not_owner' => 'Seuls l\'auteur du post d\'origine de la discussion et le créateur de la beatmap peuvent voir ce sujet.',
@@ -52,6 +53,12 @@ return [
 
         'store' => [
             'beatmapset_locked' => 'Cette beatmap est verrouillée pour la discussion.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => 'Vous ne pouvez pas modifier les métadonnées d\'une map nominée. Contactez un membre du BN ou du NAT si vous pensez qu\'elles sont mal définies.',
         ],
     ],
 

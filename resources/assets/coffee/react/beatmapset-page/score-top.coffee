@@ -2,9 +2,12 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { FlagCountry } from 'flag-country'
+import { route } from 'laroute'
 import { Mods } from 'mods'
 import * as React from 'react'
 import { div, a } from 'react-dom-factories'
+import { classWithModifiers } from 'utils/css'
+
 el = React.createElement
 bn = 'beatmap-score-top'
 
@@ -15,16 +18,19 @@ export ScoreTop = (props) ->
 
   position = if props.position? then "##{props.position}" else '-'
 
-  div className: "#{bn} #{topClasses}",
+  div className: "clickable-row #{bn} #{topClasses}",
     div className: "#{bn}__section",
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--left",
         div className: "#{bn}__position",
-          div className: "#{bn}__position-number", position
+          a
+            className: "clickable-row-link #{bn}__position-number"
+            href: route('scores.show', mode: props.score.mode, score: props.score.best_id)
+            position
           div className: "score-rank score-rank--tiny score-rank--#{props.score.rank}"
 
         div className: "#{bn}__avatar",
           a
-            href: laroute.route 'users.show', user: props.score.user.id
+            href: route 'users.show', user: props.score.user.id
             className: "avatar"
             style:
               backgroundImage: osu.urlPresence(props.score.user.avatar_url)
@@ -33,7 +39,7 @@ export ScoreTop = (props) ->
           a
             className: "#{bn}__username js-usercard"
             'data-user-id': props.score.user.id
-            href: laroute.route 'users.show', user: props.score.user.id, mode: props.playmode
+            href: route 'users.show', user: props.score.user.id, mode: props.score.mode
             props.score.user.username
 
           div
@@ -42,12 +48,12 @@ export ScoreTop = (props) ->
               __html: osu.trans('beatmapsets.show.scoreboard.achieved', when: osu.timeago(props.score.created_at))
 
           a
-            href: laroute.route 'rankings',
-              mode: props.playmode
+            href: route 'rankings',
+              mode: props.score.mode
               country: props.score.user.country_code
               type: 'performance'
             el FlagCountry,
-              country: props.countries[props.score.user.country_code]
+              country: props.score.user.country
               modifiers: ['scoreboard', 'small-box']
 
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--right",
@@ -62,13 +68,13 @@ export ScoreTop = (props) ->
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
               osu.trans 'beatmapsets.show.scoreboard.headers.accuracy'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score",
+            div className: classWithModifiers("#{bn}__stat-value", score: true, perfect: props.score.accuracy == 1),
               "#{osu.formatNumber(props.score.accuracy * 100, 2)}%"
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
               osu.trans 'beatmapsets.show.scoreboard.headers.combo'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score",
+            div className: classWithModifiers("#{bn}__stat-value", score: true, perfect: props.score.max_combo == props.beatmap.max_combo),
               "#{osu.formatNumber(props.score.max_combo)}x"
 
         div className: "#{bn}__stats #{bn}__stats--wrappable",

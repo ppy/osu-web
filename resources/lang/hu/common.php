@@ -26,6 +26,7 @@ return [
         'back_to_top' => 'Vissza a lap tetejére',
         'cancel' => 'Mégse',
         'change' => 'változtat',
+        'clear' => '',
         'click_to_copy' => 'kattints ide a vágólapra helyezéshez',
         'click_to_copy_copied' => 'vágólapra helyezve!',
         'close' => 'Bezárás',

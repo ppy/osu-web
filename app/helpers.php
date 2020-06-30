@@ -50,9 +50,15 @@ function blade_safe($html)
     return new Illuminate\Support\HtmlString($html);
 }
 
-function broadcast_notification(...$arguments)
+function broadcast_notification($name, ...$arguments)
 {
-    return (new App\Jobs\BroadcastNotification(...$arguments))->dispatch();
+    try {
+        $class = App\Jobs\Notifications\BroadcastNotificationBase::getNotificationClass($name);
+
+        return (new $class(...$arguments))->dispatch();
+    } catch (App\Exceptions\InvalidNotificationException $e) {
+        log_error($e);
+    }
 }
 
 /**
@@ -205,22 +211,28 @@ function css_var_2x(string $key, string $url)
 
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
-    $uid = uniqid($stat);
-    // spaces used so clockwork doesn't run across the whole screen.
-    $description = $stat
-                   .' '.($tag['type'] ?? null)
-                   .' '.($tag['index'] ?? null);
+    $withClockwork = app('clockwork.support')->isEnabled();
+
+    if ($withClockwork) {
+        $uid = uniqid($stat);
+        // spaces used so clockwork doesn't run across the whole screen.
+        $description = $stat
+                       .' '.($tag['type'] ?? null)
+                       .' '.($tag['index'] ?? null);
+
+        clock()->startEvent($uid, $description);
+    }
 
     $start = microtime(true);
 
-    clock()->startEvent($uid, $description);
     $result = $callable();
-    clock()->endEvent($uid);
 
-    if (config('datadog-helper.enabled')) {
-        $duration = microtime(true) - $start;
-        Datadog::microtiming($stat, $duration, 1, $tag);
+    if ($withClockwork) {
+        clock()->endEvent($uid);
     }
+
+    $duration = microtime(true) - $start;
+    Datadog::microtiming($stat, $duration, 1, $tag);
 
     return $result;
 }
@@ -235,6 +247,11 @@ function db_unsigned_increment($column, $count)
     }
 
     return DB::raw($value);
+}
+
+function default_mode()
+{
+    return optional(auth()->user())->playmode ?? 'osu';
 }
 
 function es_query_and_words($words)
@@ -348,6 +365,11 @@ function img2x(array $attributes)
     return tag('img', $attributes);
 }
 
+function trim_unicode(?string $value)
+{
+    return preg_replace('/(^\s+|\s+$)/u', '', $value);
+}
+
 function truncate(string $text, $limit = 100, $ellipsis = '...')
 {
     if (mb_strlen($text) > $limit) {
@@ -414,7 +436,10 @@ function log_error($exception)
 
 function logout()
 {
-    auth()->logout();
+    $guard = auth()->guard();
+    if ($guard instanceof Illuminate\Contracts\Auth\StatefulGuard) {
+        $guard->logout();
+    }
 
     // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
     foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
@@ -467,6 +492,17 @@ function osu_url($key)
 function pack_str($str)
 {
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
+}
+
+function pagination($params)
+{
+    $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 5, 50);
+    $page = max(get_int($params['page'] ?? null) ?? 1, 1);
+
+    $offset = max_offset($page, $limit);
+    $page = 1 + $offset / $limit;
+
+    return compact('limit', 'page', 'offset');
 }
 
 function param_string_simple($value)
@@ -898,6 +934,7 @@ function lazy_load_image($url, $class = '', $alt = '')
 
 function nav_links()
 {
+    $defaultMode = default_mode();
     $links = [];
 
     $links['home'] = [
@@ -914,10 +951,10 @@ function nav_links()
         'packs' => route('packs.index'),
     ];
     $links['rankings'] = [
-        'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
-        'charts' => route('rankings', ['mode' => 'osu', 'type' => 'charts']),
-        'score' => route('rankings', ['mode' => 'osu', 'type' => 'score']),
-        'country' => route('rankings', ['mode' => 'osu', 'type' => 'country']),
+        'index' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
+        'charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
+        'score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
+        'country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
         'kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['community'] = [
@@ -1179,7 +1216,7 @@ function get_bool($string)
  */
 function get_float($string)
 {
-    if (present($string)) {
+    if (is_scalar($string)) {
         return (float) $string;
     }
 }
@@ -1190,7 +1227,7 @@ function get_float($string)
  */
 function get_int($string)
 {
-    if (present($string)) {
+    if (is_scalar($string)) {
         return (int) $string;
     }
 }
@@ -1204,9 +1241,16 @@ function get_file($input)
 
 function get_string($input)
 {
-    if (is_string($input)) {
-        return $input;
+    if (is_scalar($input)) {
+        return (string) $input;
     }
+}
+
+function get_string_split($input)
+{
+    return get_arr(explode("\r\n", get_string($input)), function ($item) {
+        return presence(trim_unicode($item));
+    });
 }
 
 function get_class_basename($className)
@@ -1271,29 +1315,24 @@ function get_param_value($input, $type)
             return $input;
         case 'bool':
             return get_bool($input);
-            break;
         case 'int':
             return get_int($input);
-            break;
         case 'file':
             return get_file($input);
-            break;
         case 'float':
             return get_float($input);
-            break;
         case 'string':
             return get_string($input);
         case 'string_split':
-            return get_arr(explode("\r\n", $input), 'get_string');
-            break;
+            return get_string_split($input);
         case 'string[]':
             return get_arr($input, 'get_string');
-            break;
         case 'int[]':
             return get_arr($input, 'get_int');
-            break;
+        case 'time':
+            return parse_time_to_carbon($input);
         default:
-            return presence((string) $input);
+            return presence(get_string($input));
     }
 }
 

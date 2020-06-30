@@ -32,6 +32,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nytt innlegg ved ":title" av :username',
                 'beatmapset_discussion_post_new_compact' => 'Nytt innlegg av :username',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nytt innlegg av :username',
+                'beatmapset_discussion_review_new' => '',
+                'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => 'Beatmappen ":title" har blitt låst opp for diskusjon.',
                 'beatmapset_discussion_unlock_compact' => 'Diskusjon var ulåst',
             ],

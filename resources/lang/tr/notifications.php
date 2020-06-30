@@ -31,6 +31,8 @@ return [
                 'beatmapset_discussion_post_new_empty' => ':title için :username tarafından gönderi',
                 'beatmapset_discussion_post_new_compact' => ':username tarafından yeni gönderi',
                 'beatmapset_discussion_post_new_compact_empty' => ':username tarafından yeni gönderi',
+                'beatmapset_discussion_review_new' => '":title" için :username tarafından yeni inceleme, :problems sorun, :suggestions öneri, :praises övgü içeriyor',
+                'beatmapset_discussion_review_new_compact' => ':username tarafından yeni inceleme, :problems sorun, :suggestions öneri, :praises övgü içeriyor',
                 'beatmapset_discussion_unlock' => '":title" beatmapinin kilidi tartışmak için açıldı.',
                 'beatmapset_discussion_unlock_compact' => 'Tartışmanın kilidi açılmış',
             ],
