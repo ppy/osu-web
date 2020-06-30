@@ -436,7 +436,10 @@ function log_error($exception)
 
 function logout()
 {
-    auth()->logout();
+    $guard = auth()->guard();
+    if ($guard instanceof Illuminate\Contracts\Auth\StatefulGuard) {
+        $guard->logout();
+    }
 
     // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
     foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
