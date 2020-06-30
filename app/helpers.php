@@ -491,6 +491,17 @@ function pack_str($str)
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
 }
 
+function pagination($params)
+{
+    $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 5, 50);
+    $page = max(get_int($params['page'] ?? null) ?? 1, 1);
+
+    $offset = max_offset($page, $limit);
+    $page = 1 + $offset / $limit;
+
+    return compact('limit', 'page', 'offset');
+}
+
 function param_string_simple($value)
 {
     if (is_array($value)) {
