@@ -62,7 +62,7 @@ class BeatmapsetsController extends Controller
             return $set;
         } else {
             $commentBundle = CommentBundle::forEmbed($beatmapset);
-            $countries = json_collection(Country::all(), new CountryTransformer);
+            $countries = json_collection(Country::select(['name', 'acronym'])->get(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
             if (priv_check('BeatmapsetMetadataEdit', $beatmapset)->can()) {
