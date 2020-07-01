@@ -114,7 +114,7 @@ class UserNotification extends Model
 
     public function scopeHasMailDelivery($query)
     {
-        return $query->whereRaw("delivery & b'10'");
+        return $query->where('delivery', '&', (1 << static::DELIVERY_OFFSETS['mail']));
     }
 
     public function user()

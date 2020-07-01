@@ -21,6 +21,22 @@ class UserNotificationTest extends TestCase
         $this->assertSame($result, $userNotification->$method());
     }
 
+    public function testScopeHasMailDelivery()
+    {
+        for ($i = 0; $i < 4; $i++) {
+            UserNotification::create([
+                'delivery' => $i,
+                'notification_id' => 1,
+                'user_id' => $i
+            ]);
+        }
+
+        $userNotifications = UserNotification::hasMailDelivery()->get();
+        $userNotifications->each(function ($userNotification) {
+            $this->assertTrue($userNotification->isMail(), "delivery mask {$userNotification->delivery} failed");
+        });
+    }
+
     public function deliveryMaskDataProvider()
     {
         return [
