@@ -66,6 +66,7 @@ class TestCase extends BaseTestCase
         // create valid token
         $client = factory(Client::class)->create();
         $token = $client->tokens()->create([
+            'expires_at' => now()->addDays(1),
             'id' => uniqid(),
             'revoked' => false,
             'scopes' => $scopes,
@@ -79,7 +80,7 @@ class TestCase extends BaseTestCase
             ->andReturnUsing(function ($request) use ($token) {
                 return $request->withAttribute('oauth_client_id', $token->client->id)
                     ->withAttribute('oauth_access_token_id', $token->id)
-                    ->withAttribute('oauth_scopes', $token->scopes);
+                    ->withAttribute('oauth_user_id', $token->user_id);
             });
 
         app()->instance(ResourceServer::class, $mock);

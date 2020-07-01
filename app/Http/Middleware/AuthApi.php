@@ -5,9 +5,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
-use Laravel\Passport\TokenRepository;
+use Laravel\Passport\ClientRepository;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\ResourceServer;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
@@ -20,13 +21,13 @@ class AuthApi
 {
     const REQUEST_OAUTH_TOKEN_KEY = 'oauth_token';
 
+    protected $clients;
     protected $server;
-    protected $repository;
 
-    public function __construct(ResourceServer $server, TokenRepository $repository)
+    public function __construct(ResourceServer $server, ClientRepository $clients)
     {
+        $this->clients = $clients;
         $this->server = $server;
-        $this->repository = $repository;
     }
 
     public function handle($request, Closure $next)
@@ -36,9 +37,7 @@ class AuthApi
         // FIXME: should assign token even if not required.
         if (!RequireScopes::noTokenRequired($request)) {
             $psr = $this->validateRequest($request);
-
             $token = $this->validTokenFromRequest($psr);
-
             $request->attributes->set(static::REQUEST_OAUTH_TOKEN_KEY, $token);
         }
 
@@ -65,13 +64,28 @@ class AuthApi
 
     private function validTokenFromRequest($psr)
     {
-        $token = $this->repository->find($psr->getAttribute('oauth_access_token_id'));
+        $psrClientId = $psr->getAttribute('oauth_client_id');
+        $psrUserId = get_int($psr->getAttribute('oauth_user_id'));
+        $psrTokenId = $psr->getAttribute('oauth_access_token_id');
 
-        if ($token === null
-            || $token->revoked
-            || optional($token->user)->getKey() !== auth()->id()
-        ) {
+        $client = $this->clients->findActive($psrClientId);
+        if ($client === null) {
+            throw new AuthenticationException('invalid client');
+        }
+
+        $token = $client->tokens()->where('revoked', false)->where('expires_at', '>', now())->find($psrTokenId);
+        if ($token === null) {
+            throw new AuthenticationException('invalid token');
+        }
+
+        $user = $psrUserId !== null ? User::find($psrUserId) : null;
+        if (optional($user)->getKey() !== $token->user_id) {
             throw new AuthenticationException;
+        }
+
+        if ($user !== null) {
+            auth()->setUser($user);
+            $user->withAccessToken($token);
         }
 
         return $token;
