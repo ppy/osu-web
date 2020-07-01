@@ -17,7 +17,7 @@ class ChannelMessage extends BroadcastNotificationBase
 
     public static function getBaseKey(Notification $notification): string
     {
-        return 'channel.channel.pm';
+        return "channel.channel.{$notification->details['type']}";
     }
 
     public static function getMailLink(Notification $notification): string
