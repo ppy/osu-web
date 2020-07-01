@@ -19,7 +19,7 @@ class NotificationsSendMail extends Command
      *
      * @var string
      */
-    protected $signature = 'notifications:send-mail {--from=} {--to=}';
+    protected $signature = 'notifications:send-mail {--chunk-size=} {--from=} {--to=}';
 
     /**
      * The console command description.
@@ -40,6 +40,8 @@ class NotificationsSendMail extends Command
         $fromId = get_int($this->option('from')) ?? $lastIdRow->count;
         $toId = get_int($this->option('to')) ?? optional(Notification::last())->getKey();
 
+        $chunkSize = get_int($this->option('chunk-size')) ?? 100;
+
         if ($toId === null) {
             $this->warn('No notifications to send!');
 
@@ -55,15 +57,13 @@ class NotificationsSendMail extends Command
             ::where('notification_id', '>', $fromId)
             ->where('notification_id', '<=', $toId)
             ->groupBy('user_id')
-            ->select('user_id');
+            ->pluck('user_id');
 
-        $users = User::whereIn(
-            'user_id',
-            $userIds
-        )->get();
-
-        foreach ($users as $user) {
-            dispatch(new UserNotificationDigest($user, $fromId, $toId));
+        foreach ($userIds->chunk($chunkSize) as $chunk) {
+            $users = User::whereIn('user_id', $chunk)->get();
+            foreach ($users as $user) {
+                dispatch(new UserNotificationDigest($user, $fromId, $toId));
+            }
         }
 
         $lastIdRow->count = $toId;
