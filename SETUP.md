@@ -81,7 +81,7 @@ docker-compose run -e APP_ENV=testing php artisan migrate:fresh --yes
 Once setup, you can run either php test:
 
 ```
-docker-compose run -e APP_ENV=testing php bin/phpunit
+docker-compose run php bin/phpunit
 ```
 
 Or browser test:
