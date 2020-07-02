@@ -57,13 +57,11 @@ At this point you should be able to access the site via whatever webserver you c
 ## 2\. Using Docker
 
 - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/).
-- Run `docker/development/prepare.sh`.
-- Adjust `.env` if needed.
-- Run `docker-compose up` in the main directory.
+- Run `bin/docker_dev.sh`.
 - Run migration (see reset the database section below)
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
-- To run any of the below commands, make sure you are in the docker container: `docker-compose run php`.
+- To run any of the below commands, make sure you are using the docker container: `docker-compose run php`.
   - To run artisan commands, run using `docker-compose run php artisan`.
 
 
@@ -94,6 +92,55 @@ Or javascript test:
 
 ```
 docker-compose run php test js
+```
+
+### Docker hints
+
+#### Services
+
+There are multiple services involved:
+
+- php: main service for php server. Also serves as entry point for doing other stuff like testing etc
+- assets: builds assets. It sometimes behaves weirdly in which case try restarting it
+- job: runs queued job
+- schedule: runs scheduled job every 5 minutes
+- notification-server: main service for notification websocket server
+- notification-server-dusk: notification server to be used by browser test
+- db: database server. Can be skipped by commenting it out and setting a different database instance
+- redis: cache and session server. Can be skipped just like db service
+- elasticsearch: search database. Can be skipped just like db service
+- nginx: proxies php and notification-server(-dusk) so they can be accessed under same host
+
+#### Modifying environment (`.env`, `.env.dusk.local`) files
+
+Sometimes a restart of notification-server and notification-server-dusk will be needed when changing those files.
+
+#### Example commands
+
+See if anything has stopped:
+
+```
+docker-compose ps
+```
+
+Start docker in background:
+
+```
+bin/docker_dev.sh -d
+# alternatively
+# docker-compose up -d
+```
+
+Start single docker service:
+
+```
+docker-compose start <servicename>
+```
+
+Restart single docker service:
+
+```
+docker-compose restart <servicename>
 ```
 
 # Development
