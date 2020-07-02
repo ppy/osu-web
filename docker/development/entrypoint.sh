@@ -26,12 +26,12 @@ _run() {
 
 # commands
 _job() {
-    _rexec /app/artisan :listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
+    _rexec /app/artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
 }
 
 _schedule() {
     while sleep 300; do
-        _run /app/artisan schedule &
+        _run /app/artisan schedule:run &
         echo 'Sleeping for 5 minutes'
     done
 }
