@@ -108,7 +108,9 @@ return [
             'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
         ],
     ],
-    'git-sha' => env('GIT_SHA', 'unknown-version'),
+    'git-sha' => presence(env('GIT_SHA'))
+        ?? (file_exists(__DIR__.'/../version') ? trim(file_get_contents(__DIR__.'/../version')) : null)
+        ?? 'unknown-version',
     'landing' => [
         'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
     ],

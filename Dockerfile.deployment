@@ -45,6 +45,10 @@ ARG SHOPIFY_STOREFRONT_TOKEN
 RUN yarnpkg production
 
 RUN rm -rf node_modules
+
+ARG GIT_SHA
+RUN printf "%s" "$GIT_SHA" > version
+
 RUN useradd osuweb
 RUN chown -R osuweb bootstrap/cache storage /var/lib/nginx
 USER osuweb
