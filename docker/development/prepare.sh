@@ -16,8 +16,6 @@ _run_dusk() {
     docker-compose run -e APP_ENV=dusk.local php "$@"
 }
 
-docker-compose build php
-
 genkey=0
 if [ ! -f .env ]; then
     echo "Copying default env file"
