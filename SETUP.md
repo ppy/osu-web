@@ -81,19 +81,19 @@ docker-compose run -e APP_ENV=testing php artisan migrate:fresh --yes
 Once setup, you can run either php test:
 
 ```
-docker-compose run php bin/phpunit
+docker-compose run php test phpunit
 ```
 
 Or browser test:
 
 ```
-docker-compose run php artisan dusk --verbose
+docker-compose run php test browser
 ```
 
 Or javascript test:
 
 ```
-docker-compose run php yarnpkg karma start --single-run --browsers ChromeHeadless
+docker-compose run php test js
 ```
 
 # Development

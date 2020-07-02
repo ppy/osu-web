@@ -40,6 +40,20 @@ _serve() {
     exec php-fpm7.4 -y docker/development/php-fpm.conf
 }
 
+_test() {
+    command=phpunit
+    if [ "$#" -gt 0 ]; then
+        command="$1"
+        unshift
+    fi
+
+    case "$command" in
+        browser) _rexec ./artisan dusk --verbose "$@";;
+        js) _rexec yarnpkg karma start --single-run --browsers ChromeHeadless "$@";;
+        phpunit) _rexec ./bin/phpunit "$@";;
+    esac
+}
+
 _watch() {
     _run yarnpkg
     _rexec yarnpkg watch
@@ -47,6 +61,6 @@ _watch() {
 
 case "$command" in
     artisan) _rexec /app/artisan "$@";;
-    job|schedule|serve|watch) "_$command";;
+    job|schedule|serve|test|watch) "_$command" "$@";;
     *) _rexec "$command" "$@";;
 esac
