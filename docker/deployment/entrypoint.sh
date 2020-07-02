@@ -6,7 +6,7 @@ if [ "$#" -lt 0 ]; then
     shift
 fi
 
-php() {
+_php() {
     /app/artisan config:cache
     /app/artisan route:cache
     exec php-fpm7.4 -y /app/docker/deployment/php-fpm.conf
@@ -15,6 +15,6 @@ php() {
 case "$command" in
     artisan) exec /app/artisan "$@";;
     assets) exec nginx -c /app/docker/deployment/nginx-assets.conf "$@";;
-    php) php;;
+    php) _php;;
     *) exec "$command" "$@";;
 esac
