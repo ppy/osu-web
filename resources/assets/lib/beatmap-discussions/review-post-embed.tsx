@@ -100,6 +100,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
           <div className={`${bn}__timestamp`}>
             {timestamp()}
           </div>
+          <div className={`${bn}__stripe`} />
           {parentLink()}
         </div>
         <div className={`${bn}__stripe`} />

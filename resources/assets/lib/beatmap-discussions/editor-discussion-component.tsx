@@ -80,6 +80,19 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         </button>
       );
 
+    const unsavedIndicator =
+      this.props.editMode && canEdit ?
+        (
+          <div
+            className={`${bn}__unsaved-indicator`}
+            contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+            title={osu.trans('beatmaps.discussions.review.embed.unsaved')}
+          >
+            <i className='fas fa-pencil-alt'/>
+          </div>
+        )
+      : null;
+
     return (
       <div
         className='beatmap-discussion beatmap-discussion--preview'
@@ -103,6 +116,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                   {this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general')}
                 </span>
               </div>
+              {unsavedIndicator}
             </div>
             <div
               contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
@@ -111,15 +125,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
             <div className={`${bn}__message-container`}>
               <div className='beatmapset-discussion-message'>{this.props.children}</div>
             </div>
-            {this.props.editMode && canEdit &&
-              <div
-                className={`${bn}__unsaved-indicator`}
-                contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-                title={osu.trans('beatmaps.discussions.review.embed.unsaved')}
-              >
-                <i className='fas fa-pencil-alt'/>
-              </div>
-            }
+            {unsavedIndicator}
           </div>
         </div>
         {deleteButton}
