@@ -49,6 +49,4 @@ if [ ! -f storage/oauth-public.key ]; then
     _run artisan passport:keys
 fi
 
-_run composer install
-
 echo "Preparation completed. Adjust .env file if needed and run 'docker-compose up' followed by running migration."
