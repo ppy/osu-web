@@ -49,7 +49,7 @@ RUN rm -rf node_modules
 ARG GIT_SHA
 RUN printf "%s" "$GIT_SHA" > version
 
-RUN useradd osuweb
+RUN useradd -m osuweb
 RUN chown -R osuweb bootstrap/cache storage /var/lib/nginx
 USER osuweb
 ENV LOG_CHANNEL stderr
