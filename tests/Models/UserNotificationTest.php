@@ -15,15 +15,22 @@ class UserNotificationTest extends TestCase
      *
      * @dataProvider deliveryMaskDataProvider
      */
-    public function testDeliveryMasks($mask, $method, $result)
+    public function testDeliveryMasks($mask, $type, $result)
     {
         $userNotification = new UserNotification(['delivery' => $mask]);
-        $this->assertSame($result, $userNotification->$method());
+        $this->assertSame($result, $userNotification->isDelivery($type));
     }
 
+    /**
+     * Didn't accidentally break scope sanity test
+     */
     public function testScopeHasMailDelivery()
     {
-        for ($i = 0; $i < 4; $i++) {
+        $values = array_values(UserNotification::DELIVERY_OFFSETS);
+        rsort($values);
+        $max = 2 ** ($values[0] + 1);
+
+        for ($i = 0; $i < $max; $i++) {
             UserNotification::create([
                 'delivery' => $i,
                 'notification_id' => 1,
@@ -32,25 +39,27 @@ class UserNotificationTest extends TestCase
         }
 
         $userNotifications = UserNotification::hasMailDelivery()->get();
-        $userNotifications->each(function ($userNotification) {
-            $this->assertTrue($userNotification->isMail(), "delivery mask {$userNotification->delivery} failed");
-        });
+        $this->assertTrue(
+            $userNotifications->reduce(function ($carry, $userNotification) {
+                return $carry && $userNotification->isMail();
+            }, true)
+        );
     }
 
     public function deliveryMaskDataProvider()
     {
         return [
-            [0, 'isMail', false],
-            [0, 'isPush', false],
+            [0, 'mail', false],
+            [0, 'push', false],
 
-            [1, 'isMail', false],
-            [1, 'isPush', true],
+            [1, 'mail', false],
+            [1, 'push', true],
 
-            [2, 'isMail', true],
-            [2, 'isPush', false],
+            [2, 'mail', true],
+            [2, 'push', false],
 
-            [3, 'isMail', true],
-            [3, 'isPush', true],
+            [3, 'mail', true],
+            [3, 'push', true],
         ];
     }
 }

@@ -20,6 +20,11 @@ class UserNotification extends Model
         'is_read' => 'boolean',
     ];
 
+    public static function deliveryMask(string $type): int
+    {
+        return 1 << self::DELIVERY_OFFSETS[$type];
+    }
+
     public static function markAsReadByIds(User $user, array $params)
     {
         $ids = [];
@@ -93,18 +98,21 @@ class UserNotification extends Model
         }
     }
 
-    public function isMail(): bool
+    public function isDelivery(string $type): bool
     {
-        static $mask = 1 << self::DELIVERY_OFFSETS['mail'];
+        $mask = static::deliveryMask($type);
 
         return ($this->delivery & $mask) === $mask;
     }
 
+    public function isMail(): bool
+    {
+        return $this->isDelivery('mail');
+    }
+
     public function isPush(): bool
     {
-        static $mask = 1 << self::DELIVERY_OFFSETS['push'];
-
-        return ($this->delivery & $mask) === $mask;
+        return $this->isDelivery('push');
     }
 
     public function notification()
@@ -114,7 +122,7 @@ class UserNotification extends Model
 
     public function scopeHasMailDelivery($query)
     {
-        return $query->where('delivery', '&', (1 << static::DELIVERY_OFFSETS['mail']));
+        return $query->where('delivery', '&', static::deliveryMask('mail'));
     }
 
     public function user()
