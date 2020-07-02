@@ -3,9 +3,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace App\Transformers\Multiplayer;
+namespace App\Transformers\Match;
 
-use App\Models\Multiplayer\Game;
+use App\Models\Match\Game;
 use App\Transformers\BeatmapCompactTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\TransformerAbstract;

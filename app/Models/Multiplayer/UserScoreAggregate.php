@@ -23,7 +23,7 @@ class UserScoreAggregate extends RoomUserHighScore
 {
     public $isNew = false;
 
-    public static function getPlaylistItemUserHighScore(RoomScore $score)
+    public static function getPlaylistItemUserHighScore(Score $score)
     {
         return PlaylistItemUserHighScore::firstOrNew([
             'playlist_item_id' => $score->playlist_item_id,
@@ -31,7 +31,7 @@ class UserScoreAggregate extends RoomUserHighScore
         ]);
     }
 
-    public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, RoomScore $score)
+    public static function updatePlaylistItemUserHighScore(PlaylistItemUserHighScore $highScore, Score $score)
     {
         if (!$score->passed) {
             return;
@@ -66,7 +66,7 @@ class UserScoreAggregate extends RoomUserHighScore
         return $obj;
     }
 
-    public function addScore(RoomScore $score)
+    public function addScore(Score $score)
     {
         return $this->getConnection()->transaction(function () use ($score) {
             if (!$score->isCompleted()) {
@@ -96,7 +96,7 @@ class UserScoreAggregate extends RoomUserHighScore
 
     public function getScores()
     {
-        return RoomScore
+        return Score
             ::where('room_id', $this->room_id)
             ->where('user_id', $this->user_id)
             ->get();
@@ -133,7 +133,7 @@ class UserScoreAggregate extends RoomUserHighScore
         $this->increment('attempts');
     }
 
-    private function updateUserTotal(RoomScore $current, PlaylistItemUserHighScore $prev)
+    private function updateUserTotal(Score $current, PlaylistItemUserHighScore $prev)
     {
         if ($current->passed) {
             if ($prev->exists) {

@@ -65,12 +65,14 @@ class BeatmapDiscussion extends Model
 
     public static function search($rawParams = [])
     {
+        $pagination = pagination($rawParams);
+
         $params = [
-            'limit' => clamp(get_int($rawParams['limit'] ?? null) ?? 20, 5, 50),
-            'page' => max(get_int($rawParams['page'] ?? null) ?? 1, 1),
+            'limit' => $pagination['limit'],
+            'page' => $pagination['page'],
         ];
 
-        $query = static::limit($params['limit'])->offset(max_offset($params['page'], $params['limit']));
+        $query = static::limit($params['limit'])->offset($pagination['offset']);
 
         if (present($rawParams['user'] ?? null)) {
             $params['user'] = $rawParams['user'];
@@ -687,14 +689,17 @@ class BeatmapDiscussion extends Model
     public function scopeOpenIssues($query)
     {
         return $query
-            ->withoutTrashed()
+            ->visible()
             ->whereIn('message_type', static::RESOLVABLE_TYPES)
-            ->where(function ($query) {
-                $query
-                    ->has('visibleBeatmap')
-                    ->orWhereNull('beatmap_id');
-            })
-            ->where('resolved', '=', false);
+            ->where(['resolved' => false]);
+    }
+
+    public function scopeOpenProblems($query)
+    {
+        return $query
+            ->visible()
+            ->ofType('problem')
+            ->where(['resolved' => false]);
     }
 
     public function scopeWithoutTrashed($query)

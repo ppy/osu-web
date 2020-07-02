@@ -13,20 +13,6 @@ trait BeatmapsetTrait
 {
     use EsIndexableModel;
 
-    public function toEsJson()
-    {
-        return array_merge(
-            $this->esBeatmapsetValues(),
-            ['beatmaps' => $this->esBeatmapsValues()],
-            ['difficulties' => $this->esDifficultiesValues()]
-        );
-    }
-
-    public function esShouldIndex()
-    {
-        return !$this->trashed();
-    }
-
     public static function esIndexName()
     {
         return config('osu.elasticsearch.prefix').'beatmaps';
@@ -34,8 +20,7 @@ trait BeatmapsetTrait
 
     public static function esIndexingQuery()
     {
-        return static::on('mysql')
-            ->withoutGlobalScopes()
+        return static::withoutGlobalScopes()
             ->active()
             ->with('beatmaps') // note that the with query will run with the default scopes.
             ->with(['beatmaps.difficulty' => function ($query) {
@@ -51,6 +36,20 @@ trait BeatmapsetTrait
     public static function esType()
     {
         return 'beatmaps';
+    }
+
+    public function esShouldIndex()
+    {
+        return !$this->trashed() && !present($this->download_disabled_url);
+    }
+
+    public function toEsJson()
+    {
+        return array_merge(
+            $this->esBeatmapsetValues(),
+            ['beatmaps' => $this->esBeatmapsValues()],
+            ['difficulties' => $this->esDifficultiesValues()]
+        );
     }
 
     private function esBeatmapsetValues()

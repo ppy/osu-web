@@ -3,9 +3,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+use App\Models\Match\Game;
 use Carbon\Carbon;
 
-$factory->define(App\Models\Multiplayer\Game::class, function (Faker\Generator $faker) {
+$factory->define(Game::class, function (Faker\Generator $faker) {
     $beatmap = App\Models\Beatmap::inRandomOrder()->first();
 
     return [
@@ -17,13 +18,13 @@ $factory->define(App\Models\Multiplayer\Game::class, function (Faker\Generator $
     ];
 });
 
-$factory->state(App\Models\Multiplayer\Game::class, 'in_progress', function (Faker\Generator $faker) {
+$factory->state(Game::class, 'in_progress', function (Faker\Generator $faker) {
     return [
         'end_time' => null,
     ];
 });
 
-$factory->state(App\Models\Multiplayer\Game::class, 'complete', function (Faker\Generator $faker) {
+$factory->state(Game::class, 'complete', function (Faker\Generator $faker) {
     return [
         'end_time' => Carbon::now(),
     ];

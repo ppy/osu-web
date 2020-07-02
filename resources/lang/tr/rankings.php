@@ -5,14 +5,14 @@
 
 return [
     'countries' => [
-        'all' => '',
+        'all' => 'Hepsi',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Göster',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Tür',
         ],
     ],
 

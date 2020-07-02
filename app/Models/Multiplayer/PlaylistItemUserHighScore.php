@@ -16,17 +16,30 @@ use App\Models\Model;
  * @property int $playlist_item_id
  * @property float|null $pp
  * @property int $score_id
- * @property RoomScore $score
+ * @property Score $score
  * @property int $total_score
  * @property \Carbon\Carbon $updated_at
  * @property int $user_id
  */
 class PlaylistItemUserHighScore extends Model
 {
+    const SORTS = [
+        'score_desc' => [
+            ['column' => 'total_score', 'order' => 'DESC'],
+            ['column' => 'score_id', 'order' => 'ASC'],
+        ],
+        'score_asc' => [
+            ['column' => 'total_score', 'order' => 'ASC'],
+            ['column' => 'score_id', 'order' => 'DESC'],
+        ],
+    ];
+
+    const DEFAULT_SORT = 'score_desc';
+
     protected $table = 'multiplayer_scores_high';
 
     public function score()
     {
-        return $this->belongsTo(RoomScore::class);
+        return $this->belongsTo(Score::class);
     }
 }

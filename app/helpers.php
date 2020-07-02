@@ -211,22 +211,28 @@ function css_var_2x(string $key, string $url)
 
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
-    $uid = uniqid($stat);
-    // spaces used so clockwork doesn't run across the whole screen.
-    $description = $stat
-                   .' '.($tag['type'] ?? null)
-                   .' '.($tag['index'] ?? null);
+    $withClockwork = app('clockwork.support')->isEnabled();
+
+    if ($withClockwork) {
+        $uid = uniqid($stat);
+        // spaces used so clockwork doesn't run across the whole screen.
+        $description = $stat
+                       .' '.($tag['type'] ?? null)
+                       .' '.($tag['index'] ?? null);
+
+        clock()->startEvent($uid, $description);
+    }
 
     $start = microtime(true);
 
-    clock()->startEvent($uid, $description);
     $result = $callable();
-    clock()->endEvent($uid);
 
-    if (config('datadog-helper.enabled')) {
-        $duration = microtime(true) - $start;
-        Datadog::microtiming($stat, $duration, 1, $tag);
+    if ($withClockwork) {
+        clock()->endEvent($uid);
     }
+
+    $duration = microtime(true) - $start;
+    Datadog::microtiming($stat, $duration, 1, $tag);
 
     return $result;
 }
@@ -430,7 +436,10 @@ function log_error($exception)
 
 function logout()
 {
-    auth()->logout();
+    $guard = auth()->guard();
+    if ($guard instanceof Illuminate\Contracts\Auth\StatefulGuard) {
+        $guard->logout();
+    }
 
     // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
     foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
@@ -483,6 +492,17 @@ function osu_url($key)
 function pack_str($str)
 {
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
+}
+
+function pagination($params)
+{
+    $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 5, 50);
+    $page = max(get_int($params['page'] ?? null) ?? 1, 1);
+
+    $offset = max_offset($page, $limit);
+    $page = 1 + $offset / $limit;
+
+    return compact('limit', 'page', 'offset');
 }
 
 function param_string_simple($value)
@@ -1196,7 +1216,7 @@ function get_bool($string)
  */
 function get_float($string)
 {
-    if (present($string)) {
+    if (is_scalar($string)) {
         return (float) $string;
     }
 }
@@ -1207,7 +1227,7 @@ function get_float($string)
  */
 function get_int($string)
 {
-    if (present($string)) {
+    if (is_scalar($string)) {
         return (int) $string;
     }
 }
@@ -1221,8 +1241,8 @@ function get_file($input)
 
 function get_string($input)
 {
-    if (is_string($input)) {
-        return $input;
+    if (is_scalar($input)) {
+        return (string) $input;
     }
 }
 
@@ -1309,6 +1329,8 @@ function get_param_value($input, $type)
             return get_arr($input, 'get_string');
         case 'int[]':
             return get_arr($input, 'get_int');
+        case 'time':
+            return parse_time_to_carbon($input);
         default:
             return presence(get_string($input));
     }
