@@ -4,7 +4,21 @@
 .beatmap-discussion-review-post-embed-preview {
   @_top: beatmap-discussion-review-post-embed-preview;
 
-  padding: 10px 15px;
+  padding: 5px 10px;
+  flex: 1;
+  min-width: 0;
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+  background-color: @osu-colour-b4;
+  overflow: hidden;
+
+  .default-box-shadow();
+  .default-border-radius();
+
+  &--lighter {
+    background-color: @osu-colour-b2;
+  }
 
   &__content {
     display: flex;
@@ -23,44 +37,88 @@
     margin-left: 10px;
     color: @osu-colour-f1;
     opacity: 0.5;
-    margin-top: 15px;
+    margin-top: 5px;
 
     &:hover {
       opacity: 1;
     }
   }
 
+  &__link {
+    padding: 5px;
+
+    .@{_top}__selectors > & {
+      @media @desktop {
+        display: none;
+      }
+    }
+
+    .@{_top}__content > & {
+      @media @mobile {
+        display: none;
+      }
+    }
+  }
+
+  &__link-text {
+    color: @osu-colour-f1;
+
+    .link-plain();
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+  }
+
   &__message-container {
     flex: 1;
     word-break: break-word;
+    margin: 5px 0;
+  }
 
-    @media @desktop {
-      align-self: center;
-    }
-
-    @media @mobile {
-      margin-top: 5px;
-    }
+  &__missing {
+    flex: 1;
+    margin: 10px;
+    text-align: center;
+    color: @osu-colour-f1;
   }
 
   &__selectors {
     align-items: center;
     display: flex;
     user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+
+    @media @desktop {
+      width: 130px;
+    }
+
+    @media @mobile {
+      width: 100%;
+    }
   }
 
   &__stripe {
     background-color: @osu-colour-b5;
     border-radius: 5px;
     display: flex;
-    height: 32px;
-    margin: 0 10px;
+    margin: 0 15px;
     padding: 0;
     user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
     width: 2px;
+    align-self: stretch;
 
     @media @mobile {
       display: none;
+    }
+
+    .@{_top}--lighter & {
+      background-color: @osu-colour-b4;
+    }
+
+    .@{_top}--praise & {
+      background-color: @osu-colour-blue-3;
+    }
+    .@{_top}--resolved & {
+      background-color: @osu-colour-lime-3;
     }
   }
 
@@ -68,7 +126,7 @@
     color: @osu-colour-f1;
     font-size: 9px;
     user-select: none; // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-    width: 45px;
+    flex-grow: 1;
   }
 
   &__unsaved-indicator {

@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
-  const bn = 'beatmap-discussion-review-post-embed';
+  const bn = 'beatmap-discussion-review-post-embed-preview';
   const discussions = React.useContext(DiscussionsContext);
   const beatmaps = React.useContext(BeatmapsContext);
   const discussion = discussions[data.discussion_id];
@@ -22,13 +22,13 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
   if (!discussion) {
     // if a discussion has been deleted or is otherwise missing
     return (
-      <div className={osu.classWithModifiers(bn, ['deleted'])}>
-        <div className={`${bn}__error`}>{osu.trans('beatmaps.discussions.review.embed.missing')}</div>
+      <div className={osu.classWithModifiers(bn, ['deleted', 'lighter'])}>
+        <div className={`${bn}__missing`}>{osu.trans('beatmaps.discussions.review.embed.missing')}</div>
       </div>
     );
   }
 
-  const additionalClasses = [];
+  const additionalClasses = ['lighter'];
   if (discussion.message_type === 'praise') {
     additionalClasses.push('praise');
   } else if (discussion.resolved) {
@@ -56,7 +56,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
         {
           discussion.timestamp !== null
             ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
-            : osu.trans(`beatmap_discussions.timestamp_display.${hasBeatmap ? 'general' : 'general_all'}`)
+            : osu.trans(`beatmap_discussions.timestamp_display.general`)
         }
       </div>
     );
@@ -64,38 +64,52 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
 
   return (
     <div className={osu.classWithModifiers(bn, additionalClasses)}>
-      <div className={`${bn}__meta`}>
-        <div className={`${bn}__icon`}>
-          {/* if there's no associated beatmap, show the issue type icon here... otherwise show it below */}
+      <div className={`${bn}__content`}>
+        <div className={`${bn}__selectors`}>
+          <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>
             {discussion.beatmap_id &&
               <BeatmapIcon
                 beatmap={beatmaps[discussion.beatmap_id]}
               />
             }
             {!discussion.beatmap_id &&
-              messageTypeIcon()
+              <i className='fas fa-fw fa-star-of-life' />
             }
-        </div>
-        <div>
-          {discussion.beatmap_id &&
-            messageTypeIcon()
+          </div>
+          <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>
+            {messageTypeIcon()}
+          </div>
+          <div className={`${bn}__timestamp`}>
+            {timestamp()}
+          </div>
+          {discussion.parent_id &&
+            <div className={`${bn}__link`}>
+              <a
+                  href={BeatmapDiscussionHelper.url({discussion})}
+                  className={`${bn}__link-text js-beatmap-discussion--jump`}
+                  title={osu.trans('beatmap_discussions.review.go_to_child')}
+              >
+                  <i className='fas fa-external-link-alt'/>
+              </a>
+            </div>
           }
-          {timestamp()}
         </div>
+        <div className={`${bn}__stripe`} />
+        <div className={`${bn}__message-container`}>
+          <div className={`${bn}__body`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format((discussion.starting_post || discussion.posts[0]).message)}} />
+        </div>
+        {discussion.parent_id &&
+          <div className={`${bn}__link`}>
+            <a
+                href={BeatmapDiscussionHelper.url({discussion})}
+                className={`${bn}__link-text js-beatmap-discussion--jump`}
+                title={osu.trans('beatmap_discussions.review.go_to_child')}
+            >
+                <i className='fas fa-external-link-alt'/>
+            </a>
+          </div>
+        }
       </div>
-      <div className={`${bn}__stripe`} />
-      <div className={`${bn}__body`} dangerouslySetInnerHTML={{__html: BeatmapDiscussionHelper.format((discussion.starting_post || discussion.posts[0]).message)}} />
-      {discussion.parent_id &&
-        <div className={`${bn}__link`}>
-          <a
-              href={BeatmapDiscussionHelper.url({discussion})}
-              className={`${bn}__link-text js-beatmap-discussion--jump`}
-              title={osu.trans('beatmap_discussions.review.go_to_child')}
-          >
-              <i className='fas fa-external-link-alt'/>
-          </a>
-        </div>
-      }
     </div>
   );
 };
