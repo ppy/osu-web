@@ -33,7 +33,11 @@ export class Portal extends PureComponent<Props> {
     $(document).off(`turbolinks:before-cache.${this.uuid}`);
   }
 
-  removePortal = () => document.body.removeChild(this.container);
+  removePortal = () => {
+    if (this.container.parentElement === document.body) {
+      document.body.removeChild(this.container);
+    }
+  }
 
   render = () => createPortal(this.props.children, this.container);
 }
