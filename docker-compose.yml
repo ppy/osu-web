@@ -24,7 +24,10 @@ services:
   php:
     <<: *x-web
     shm_size: '2gb' # for chromium
-    privileged: true # also for chromium, sandbox option
+    # For running sandboxed chromium (default) with minimal privileges.
+    # reference: https://ndportmann.com/chrome-in-docker/
+    security_opt:
+      - seccomp=docker/development/chromium-seccomp.json
 
   assets:
     <<: *x-web
