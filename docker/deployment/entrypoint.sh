@@ -1,7 +1,7 @@
 #!/bin/sh
 
 command=php
-if [ "$#" -lt 0 ]; then
+if [ "$#" -gt 0 ]; then
     command="$1"
     shift
 fi
