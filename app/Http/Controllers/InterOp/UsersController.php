@@ -26,7 +26,7 @@ class UsersController extends Controller
                 abort(404, "Can't find User specified in source_user_id");
             }
 
-            if (!isset($params['user_email'])) {
+            if (!isset($params['user_email']) && isset($params['username'])) {
                 $sourceEmailParts = explode('@', $sourceUser->user_email);
                 $params['user_email'] = "{$sourceEmailParts[0]}+{$params['username']}@{$sourceEmailParts[1]}";
             }

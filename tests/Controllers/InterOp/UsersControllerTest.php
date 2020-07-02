@@ -67,4 +67,22 @@ class UsersControllerTest extends TestCase
         $this->assertStringContainsString("+${username}@", $user->user_email);
         $this->assertTrue($user->isGroup(app('groups')->byIdentifier($group)));
     }
+
+    public function testStoreUserCopyMissingUsername()
+    {
+        $country = factory(Country::class)->create();
+        $sourceUser = factory(User::class)->create(['country_acronym' => $country->getKey(), 'user_ip' => '127.0.0.1']);
+
+        $previousCount = User::count();
+        $url = route('interop.users.store', ['timestamp' => time()]);
+
+        $this
+            ->withHeaders([
+                'X-LIO-Signature' => $this->interOpSignature($url),
+            ])->json('POST', $url, [
+                'source_user_id' => $sourceUser->getKey(),
+            ])->assertStatus(422);
+
+        $this->assertSame($previousCount, User::count());
+    }
 }
