@@ -67,7 +67,7 @@ class RoomTransformer extends TransformerAbstract
     {
         return $this->collection(
             $room->scores()->completed()->get(),
-            new RoomScoreTransformer
+            new ScoreTransformer
         );
     }
 }

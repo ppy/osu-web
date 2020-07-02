@@ -61,7 +61,7 @@ return [
 
             'mod_filtering' => [
                 'title' => 'Filter Berdasarkan Mod',
-                'description' => 'Ingin mencari orang yang memainkan suatu map dengan HDHR? Tidak masalah!',
+                'description' => 'Ingin mencari tahu siapa-siapa saja yang memainkan suatu map dengan HDHR? Tidak masalah!',
             ],
 
             'auto_downloads' => [
@@ -111,7 +111,7 @@ return [
 
             'feature_votes' => [
                 'title' => 'Hak Suara Ekstra',
-                'description' => 'Hak suara tambahan bagi Anda pada forum Feature Requests (2 suara per bulan).',
+                'description' => 'Hak suara tambahan yang dapat Anda dipergunakan pada sub-forum Feature Requests. (2 suara per bulan)',
             ],
 
             'sort_options' => [

@@ -1,13 +1,13 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { BBCodeEditor } from 'bbcode-editor'
+import BbcodeEditor from 'bbcode-editor'
 import * as React from 'react'
 el = React.createElement
 
 export class UserPageEditor extends React.PureComponent
   render: =>
-    el BBCodeEditor,
+    el BbcodeEditor,
       modifiers: ['profile-page']
       rawValue: @props.userPage.raw
       placeholder: osu.trans('users.show.page.placeholder')

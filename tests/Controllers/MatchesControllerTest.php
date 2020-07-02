@@ -5,8 +5,8 @@
 
 namespace Tests\Controllers;
 
-use App\Models\Multiplayer\Event;
-use App\Models\Multiplayer\Match;
+use App\Models\Match\Event;
+use App\Models\Match\Match;
 use App\Models\User;
 use Tests\TestCase;
 

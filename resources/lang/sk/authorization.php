@@ -1,24 +1,15 @@
 <?php
 
-/**
- *    Copyright (c) ppy Pty Ltd <contact@ppy.sh>.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
 return [
+    'require_login' => 'Prosím, prihláste sa, aby ste mohli pokračovať.',
+    'require_verification' => 'Prosím overte pre pokračovanie.',
+    'restricted' => "Toto nemôžete robiť, kým ste umlčaný.",
+    'silenced' => "Toto nemôžete robiť, kým ste umlčaný.",
+    'unauthorized' => 'Prístup zamietnutý.',
+
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Hype nejde vziať späť.',
@@ -26,8 +17,11 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Dosiahli ste limit nominácii pre tento deň, prosím, skúste to znovu zajtra.',
+            'full_bn_required' => 'Musíte byť plný nominátor aby ste mohli kvalifikovať túto nomináciu.',
+            'full_bn_required_hybrid' => 'Musíte byť plný nominátor pre nominovanie setov beatmáp pre viacej ako jeden herný mód.',
             'incorrect_state' => 'Nastala chyba pri vykonávaní tejto činnosti, skús obnoviť túto stránku.',
             'owner' => "Nemôžete nominovať vlastnú beatmapu.",
+            'set_metadata' => '',
         ],
         'resolve' => [
             'not_owner' => 'Iba tvorca diskusie a majiteľ beatmapy môže označiť diskusiu za vyriešenú.',
@@ -45,9 +39,26 @@ return [
     ],
 
     'beatmap_discussion_post' => [
-        'edit' => [
+        'destroy' => [
+            'not_owner' => 'Iba vy môžete odstrániť vaše vlastné príspevky.',
+            'resolved' => 'Nemôžete vymazať príspevky vyriešenej diskusie.',
             'system_generated' => 'Automaticky generovaný príspevok nie je možné upravovať.',
+        ],
+
+        'edit' => [
             'not_owner' => 'Príspevok môže upravovať iba autor.',
+            'resolved' => 'Nemôžete upravovať príspevky vyriešenej diskusie.',
+            'system_generated' => 'Automaticky generovaný príspevok nie je možné upravovať.',
+        ],
+
+        'store' => [
+            'beatmapset_locked' => 'Táto beatmapa má zamknutú diskusiu.',
+        ],
+    ],
+
+    'beatmapset' => [
+        'metadata' => [
+            'nominated' => '',
         ],
     ],
 
@@ -119,6 +130,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'K danému fóru je požadovaný prístup.',
                 'over' => 'Hlasovanie bolo ukončené, hlasovať nie je naďalej možné.',
+                'play_more' => 'Musíte hrať viacej pred tým ako môžete hlasovať na fórach.',
                 'voted' => 'Zmena hlasu nie je povolená.',
 
                 'user' => [
@@ -138,20 +150,15 @@ return [
                 'uneditable' => 'Neplatné pozadie.',
                 'not_owner' => 'Iba autor môže upravovať pozadie.',
             ],
+            'store' => [
+                'forum_not_allowed' => 'Toto fórum neakceptuje potlače na témy.',
+            ],
         ],
 
         'view' => [
             'admin_only' => 'Iba administrátor môže vidieť toto fórum.',
         ],
     ],
-
-    'require_login' => 'Prosím, prihláste sa, aby ste mohli pokračovať.',
-
-    'unauthorized' => 'Prístup zamietnutý.',
-
-    'silenced' => "Toto nemôžete robiť, kým ste umlčaný.",
-
-    'restricted' => "Toto nemôžete robiť, kým ste umlčaný.",
 
     'user' => [
         'page' => [

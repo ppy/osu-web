@@ -57,14 +57,14 @@ export class SearchPanel extends React.Component
 
         div
           className: 'osu-page osu-page--beatmapsets-search-header'
-          if currentUser.id?
+          if controller.advancedSearch
             @renderUser()
           else
             @renderGuest()
 
 
   renderBreadcrumbs: =>
-    return null unless currentUser.id?
+    return null unless controller.advancedSearch
 
     # TODO: replace with component that takes an array of {name, link}.
     ol className: 'sticky-header-breadcrumbs',
@@ -80,7 +80,7 @@ export class SearchPanel extends React.Component
 
 
   renderStickyContent: =>
-    return null unless currentUser.id?
+    return null unless controller.advancedSearch
 
     div
       className: 'beatmapsets-search beatmapsets-search--sticky'
