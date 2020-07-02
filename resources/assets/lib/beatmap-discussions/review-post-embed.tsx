@@ -45,8 +45,9 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
   }
 
   const messageTypeIcon = () => {
+    const type = discussion.message_type;
     return (
-      <div className={`beatmap-discussion-message-type beatmap-discussion-message-type--${discussion.message_type}`}><i className={BeatmapDiscussionHelper.messageType.icon[discussion.message_type]} /></div>
+      <div className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={BeatmapDiscussionHelper.messageType.icon[type]} title={osu.trans(`beatmaps.discussions.message_type.${type}`)} /></div>
     );
   };
 
@@ -91,7 +92,7 @@ export const ReviewPostEmbed: FunctionComponent<Props> = ({data}) => {
               />
             }
             {!discussion.beatmap_id &&
-              <i className='fas fa-fw fa-star-of-life' />
+              <i className='fas fa-fw fa-star-of-life' title={osu.trans('beatmaps.discussions.mode.scopes.generalAll')} />
             }
           </div>
           <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>
