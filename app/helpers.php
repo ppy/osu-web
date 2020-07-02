@@ -436,7 +436,10 @@ function log_error($exception)
 
 function logout()
 {
-    auth()->logout();
+    $guard = auth()->guard();
+    if ($guard instanceof Illuminate\Contracts\Auth\StatefulGuard) {
+        $guard->logout();
+    }
 
     // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
     foreach (['phpbb3_2cjk5_sid', 'phpbb3_2cjk5_sid_check'] as $key) {
@@ -489,6 +492,17 @@ function osu_url($key)
 function pack_str($str)
 {
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
+}
+
+function pagination($params)
+{
+    $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 5, 50);
+    $page = max(get_int($params['page'] ?? null) ?? 1, 1);
+
+    $offset = max_offset($page, $limit);
+    $page = 1 + $offset / $limit;
+
+    return compact('limit', 'page', 'offset');
 }
 
 function param_string_simple($value)
@@ -743,6 +757,17 @@ function js_localtime($date)
     $formatted = json_time($date);
 
     return "<time class='js-localtime' datetime='{$formatted}'>{$formatted}</time>";
+}
+
+function page_description($extra)
+{
+    $parts = ['osu!', page_title()];
+
+    if (present($extra)) {
+        $parts[] = $extra;
+    }
+
+    return blade_safe(implode(' » ', array_map('e', $parts)));
 }
 
 function page_title()
@@ -1202,7 +1227,7 @@ function get_bool($string)
  */
 function get_float($string)
 {
-    if (present($string)) {
+    if (is_scalar($string)) {
         return (float) $string;
     }
 }
@@ -1213,7 +1238,7 @@ function get_float($string)
  */
 function get_int($string)
 {
-    if (present($string)) {
+    if (is_scalar($string)) {
         return (int) $string;
     }
 }
@@ -1227,8 +1252,8 @@ function get_file($input)
 
 function get_string($input)
 {
-    if (is_string($input)) {
-        return $input;
+    if (is_scalar($input)) {
+        return (string) $input;
     }
 }
 
@@ -1315,6 +1340,8 @@ function get_param_value($input, $type)
             return get_arr($input, 'get_string');
         case 'int[]':
             return get_arr($input, 'get_int');
+        case 'time':
+            return parse_time_to_carbon($input);
         default:
             return presence(get_string($input));
     }

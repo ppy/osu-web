@@ -53,7 +53,7 @@ export ScoreTop = (props) ->
               country: props.score.user.country_code
               type: 'performance'
             el FlagCountry,
-              country: props.countries[props.score.user.country_code]
+              country: props.score.user.country
               modifiers: ['scoreboard', 'small-box']
 
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--right",

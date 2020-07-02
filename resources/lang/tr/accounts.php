@@ -50,16 +50,16 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
-        'beatmapset_disqualify' => '',
+        'beatmapset_disqualify' => 'belirtilen modlardaki beatmapler diskalifiye olduğunda bildirim al',
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'bu beatmap için oluşturduğunuz yeni forum konularında bildirimleri otomatik olarak etkinleştirin',
 
         'options' => [
-            '_' => '',
-            'beatmapset:modding' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
-            'push' => '',
+            '_' => 'bildirim seçenekleri',
+            'beatmapset:modding' => 'beatmap modlama',
+            'forum_topic_reply' => 'konu yanıtı',
+            'mail' => 'posta',
+            'push' => 'anlık',
         ],
     ],
 

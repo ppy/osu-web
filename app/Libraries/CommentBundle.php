@@ -112,6 +112,7 @@ class CommentBundle
             'user_follow' => $this->getUserFollow(),
             'users' => json_collection($this->getUsers($comments->concat($allComments)), 'UserCompact'),
             'sort' => $this->params->sort,
+            'cursor' => $this->params->cursorHelper->next($comments),
         ];
 
         if ($this->params->parentId === 0 || $this->params->parentId === null) {
@@ -148,8 +149,7 @@ class CommentBundle
 
     private function getComments($query, $isChildren = true, $pinnedOnly = false)
     {
-        $sort = $pinnedOnly ? CommentBundleParams::SORTS['new'] : $this->params->sortDbOptions();
-        $sorted = false;
+        $sort = $pinnedOnly ? Comment::SORTS['new'] : $this->params->cursorHelper->getSort();
         $queryLimit = $this->params->limit;
 
         if (!$isChildren) {
@@ -158,38 +158,17 @@ class CommentBundle
             }
 
             $queryLimit++;
-            $queryCursor = [];
-            $hasValidCursor = true;
+            $cursor = $this->params->cursor;
 
-            foreach ($sort as $column => $order) {
-                $key = $column === 'votes_count_cache' ? 'votesCount' : camel_case($column);
-                $value = $this->params->cursor[$key];
-                if (isset($value)) {
-                    $queryCursor[] = compact('column', 'order', 'value');
-                } else {
-                    $hasValidCursor = false;
-                    break;
-                }
-            }
-
-            if ($hasValidCursor) {
-                $query->cursorWhere($queryCursor);
-                $sorted = true;
-            } else {
+            if ($cursor === null) {
                 $query->offset(max_offset($this->params->page, $this->params->limit));
             }
         }
 
-        $query->with('commentable');
+        $query->with('commentable')->cursorSort($sort, $cursor ?? null);
 
         if (!$this->includeDeleted) {
             $query->whereNull('deleted_at');
-        }
-
-        if (!$sorted) {
-            foreach ($sort as $column => $order) {
-                $query->orderBy($column, $order);
-            }
         }
 
         if (!$pinnedOnly) {
