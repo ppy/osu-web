@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Currently online',
         'missingtext' => 'You might have made a typo! (or the user may have been banned)',
         'origin_country' => 'From :country',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'previous_usernames' => 'formerly known as',
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
