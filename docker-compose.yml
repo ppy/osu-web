@@ -42,8 +42,7 @@ services:
     command: ['schedule']
 
   notification-server:
-    build:
-      context: ./notification-server
+    image: pppy/osu-notification-server
     depends_on:
       - redis
       - db
@@ -54,8 +53,7 @@ services:
       <<: *x-env
 
   notification-server-dusk:
-    build:
-      context: ./notification-server
+    image: pppy/osu-notification-server
     depends_on:
       - redis
       - db

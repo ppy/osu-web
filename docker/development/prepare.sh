@@ -16,11 +16,6 @@ _run_dusk() {
     docker-compose run -e APP_ENV=dusk.local php "$@"
 }
 
-if [ ! -d notification-server ]; then
-    echo "Checking out notification-server"
-    git clone https://github.com/ppy/osu-notification-server notification-server
-fi
-
 docker-compose build php
 
 genkey=0
