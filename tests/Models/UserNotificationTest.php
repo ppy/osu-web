@@ -34,7 +34,7 @@ class UserNotificationTest extends TestCase
             UserNotification::create([
                 'delivery' => $i,
                 'notification_id' => 1,
-                'user_id' => $i
+                'user_id' => $i,
             ]);
         }
 
