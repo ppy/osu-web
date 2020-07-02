@@ -13,6 +13,10 @@ There are several build arguments required:
 - `SHOPIFY_STOREFRONT_TOKEN`
 - `GIT_SHA` (build version. Something like `"$(date "+%Y%m%d-%H%M%S")-$(git rev-parse HEAD | cut -c1-7)"` should work)
 
+## Updating image
+
+Run build with `--pull --no-cache` parameters to ensure latest image and packages are used.
+
 ## Configuration files
 
 There are three main configuration files which should be mounted to the container:
