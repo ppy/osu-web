@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $name
  * @property int $participant_count
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
- * @property \Illuminate\Database\Eloquent\Collection $scores RoomScore
+ * @property \Illuminate\Database\Eloquent\Collection $scores Score
  * @property \Carbon\Carbon $starts_at
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
@@ -56,7 +56,7 @@ class Room extends Model
 
     public function scores()
     {
-        return $this->hasMany(RoomScore::class);
+        return $this->hasMany(Score::class);
     }
 
     public function userHighScores()
@@ -82,7 +82,7 @@ class Room extends Model
             'id',
             // SoftDelete scope is ignored, fixed in 5.8:
             // https://github.com/laravel/framework/pull/26198
-            RoomScore::withoutTrashed()->where('user_id', $user->getKey())->select('room_id')
+            Score::withoutTrashed()->where('user_id', $user->getKey())->select('room_id')
         );
     }
 
@@ -110,13 +110,13 @@ class Room extends Model
     public function calculateMissingTopScores()
     {
         // just run through all the users, UserScoreAggregate::new will calculate and persist if necessary.
-        $users = User::whereIn('user_id', RoomScore::where('room_id', $this->getKey())->select('user_id'));
+        $users = User::whereIn('user_id', Score::where('room_id', $this->getKey())->select('user_id'));
         $users->each(function ($user) {
             UserScoreAggregate::new($user, $this);
         });
     }
 
-    public function completePlay(RoomScore $score, array $params)
+    public function completePlay(Score $score, array $params)
     {
         priv_check_user($score->user, 'MultiplayerScoreSubmit')->ensureCan();
 
@@ -218,7 +218,7 @@ class Room extends Model
 
             $agg->updateUserAttempts();
 
-            return RoomScore::start([
+            return Score::start([
                 'user_id' => $user->getKey(),
                 'room_id' => $this->getKey(),
                 'playlist_item_id' => $playlistItem->getKey(),
@@ -230,7 +230,7 @@ class Room extends Model
     public function topScores()
     {
         $userIdsQuery = User::default()
-            ->whereIn('user_id', RoomScore::where('room_id', $this->getKey())->select('user_id'))
+            ->whereIn('user_id', Score::where('room_id', $this->getKey())->select('user_id'))
             ->select('user_id');
 
         return UserScoreAggregate::where('room_id', $this->getKey())

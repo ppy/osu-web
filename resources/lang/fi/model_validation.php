@@ -39,8 +39,8 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Keskustelu on lukittu.',
+        'first_post' => 'Aloitusviestiä ei voida poistaa.',
 
         'attributes' => [
             'message' => '',

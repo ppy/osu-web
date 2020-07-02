@@ -5,14 +5,14 @@
 
 return [
     'countries' => [
-        'all' => '',
+        'all' => 'Усі',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Показати',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Варіант',
         ],
     ],
 

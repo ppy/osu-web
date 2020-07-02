@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'A megbeszélés zárolva van.',
+        'first_post' => 'Nem lehet a kezdő posztot törölni.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Az üzenet',
         ],
     ],
 

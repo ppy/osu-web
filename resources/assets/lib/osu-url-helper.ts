@@ -21,6 +21,7 @@ export default class OsuUrlHelper {
     'session',
     'store',
     'users',
+    'wiki',
   ].join('|');
 
   static beatmapDownloadDirect(id: string | number): string {

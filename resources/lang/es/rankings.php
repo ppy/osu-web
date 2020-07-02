@@ -24,10 +24,10 @@ return [
     ],
 
     'spotlight' => [
-        'end_date' => 'Fecha de fin',
+        'end_date' => 'Fecha de finalización',
         'map_count' => 'Recuento de mapas',
         'participants' => 'Participantes',
-        'start_date' => 'Fecha de Inicio',
+        'start_date' => 'Fecha de inicio',
     ],
 
     'stat' => [

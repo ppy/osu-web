@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Discuția este închisă.',
+        'first_post' => 'Nu se poate șterge postarea de pornire.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Mesajul',
         ],
     ],
 

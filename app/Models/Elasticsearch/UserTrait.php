@@ -13,6 +13,31 @@ trait UserTrait
 {
     use EsIndexableModel;
 
+    public static function esIndexName()
+    {
+        return config('osu.elasticsearch.prefix').'users';
+    }
+
+    public static function esIndexingQuery()
+    {
+        $columns = array_keys((new static())->esFilterFields());
+        array_unshift($columns, 'user_id');
+
+        return static::withoutGlobalScopes()
+            ->with('usernameChangeHistoryPublic')
+            ->select($columns);
+    }
+
+    public static function esSchemaFile()
+    {
+        return config_path('schemas/users.json');
+    }
+
+    public static function esType()
+    {
+        return 'users';
+    }
+
     public function toEsJson()
     {
         $mappings = $this->esFilterFields();
@@ -54,31 +79,5 @@ trait UserTrait
         }
 
         return array_intersect_key(static::esMappings(), $columnMap);
-    }
-
-    public static function esIndexName()
-    {
-        return config('osu.elasticsearch.prefix').'users';
-    }
-
-    public static function esIndexingQuery()
-    {
-        $columns = array_keys((new static())->esFilterFields());
-        array_unshift($columns, 'user_id');
-
-        return static::on('mysql')
-            ->withoutGlobalScopes()
-            ->with('usernameChangeHistoryPublic')
-            ->select($columns);
-    }
-
-    public static function esSchemaFile()
-    {
-        return config_path('schemas/users.json');
-    }
-
-    public static function esType()
-    {
-        return 'users';
     }
 }

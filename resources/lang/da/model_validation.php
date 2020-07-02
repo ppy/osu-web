@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Diskussion er låst.',
+        'first_post' => 'Kan ikke slette det startende opslag.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Beskeden',
         ],
     ],
 

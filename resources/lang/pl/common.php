@@ -26,7 +26,7 @@ return [
         'back_to_top' => 'Powrót na górę',
         'cancel' => 'Anuluj',
         'change' => 'zmień',
-        'clear' => '',
+        'clear' => 'Wyczyść',
         'click_to_copy' => 'kliknij, aby skopiować',
         'click_to_copy_copied' => 'skopiowano do schowka!',
         'close' => 'Zamknij',

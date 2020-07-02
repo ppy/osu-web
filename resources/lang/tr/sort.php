@@ -6,8 +6,8 @@
 return [
     '_' => 'Şuna göre sırala',
 
-    'all' => '',
-    'friends' => '',
+    'all' => 'Hepsi',
+    'friends' => 'Arkadaşlar',
     'last_visit' => 'Son zamanlarda aktif',
     'new' => 'En son yüklenen',
     'old' => 'Eski',

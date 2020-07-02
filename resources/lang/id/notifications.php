@@ -5,18 +5,18 @@
 
 return [
     'all_read' => 'Semua notifikasi telah dibaca!',
-    'mark_read' => 'Hilangkan semua notifikasi terkait :type',
+    'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'lihat semua notifikasi',
 
     'filters' => [
-        '_' => 'semua',
-        'user' => 'profil',
-        'beatmapset' => 'beatmap',
-        'forum_topic' => 'forum',
-        'news_post' => 'berita',
-        'build' => 'build',
-        'channel' => 'chat',
+        '_' => 'semua notifikasi',
+        'user' => 'semua notifikasi profil',
+        'beatmapset' => 'semua notifikasi beatmap',
+        'forum_topic' => 'semua notifikasi forum',
+        'news_post' => 'semua notifikasi berita',
+        'build' => 'semua notifikasi build',
+        'channel' => 'semua notifikasi chat',
     ],
 
     'item' => [
@@ -88,7 +88,7 @@ return [
             'comment' => [
                 '_' => 'Komentar baru',
 
-                'comment_new' => ':username berkomentar ":content" di topik ":title"',
+                'comment_new' => ':username berkomentar ":content" pada topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
             ],
         ],
@@ -99,7 +99,7 @@ return [
             'comment' => [
                 '_' => 'Komentar baru',
 
-                'comment_new' => ':username berkomentar ":content" di topik ":title"',
+                'comment_new' => ':username berkomentar ":content" pada topik ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
             ],
         ],
@@ -115,7 +115,7 @@ return [
         ],
 
         'legacy_pm' => [
-            '_' => 'PM Forum Lawas',
+            '_' => 'Forum PM',
 
             'legacy_pm' => [
                 '_' => '',

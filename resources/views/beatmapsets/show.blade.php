@@ -26,10 +26,6 @@
         {!! json_encode($set) !!}
     </script>
 
-    <script id="json-countries" type="application/json">
-        {!! json_encode($countries) !!}
-    </script>
-
     <script id="json-comments-beatmapset-{{ $beatmapset->getKey() }}" type="application/json">
         {!! json_encode($commentBundle->toArray()) !!}
     </script>

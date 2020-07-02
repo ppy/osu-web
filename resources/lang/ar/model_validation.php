@@ -39,11 +39,11 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'المناقشة مقفلة.',
+        'first_post' => 'لا يمكن حذف منشور البداية.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'الرسالة',
         ],
     ],
 

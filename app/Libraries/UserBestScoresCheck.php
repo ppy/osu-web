@@ -40,7 +40,7 @@ class UserBestScoresCheck
     {
         $clazz = Best\Model::getClassByString($mode);
 
-        $esIds = $this->user->beatmapBestScoreIds($mode, 100);
+        $esIds = $this->user->beatmapBestScoreIds($mode, 2000);
         $dbIds = $clazz::default()->whereIn('score_id', $esIds)->pluck('score_id')->all();
 
         return array_values(array_diff($esIds, $dbIds));

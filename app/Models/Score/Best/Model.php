@@ -100,15 +100,10 @@ abstract class Model extends BaseModel
         return with_db_fallback('mysql-readonly', function ($connection) use ($options) {
             $query = static::on($connection)
                 ->where('beatmap_id', '=', $this->beatmap_id)
-                ->where(function ($query) {
-                    $query
-                        ->where('score', '>', $this->score)
-                        ->orWhere(function ($query2) {
-                            $query2
-                                ->where('score', '=', $this->score)
-                                ->where('score_id', '<', $this->getKey());
-                        });
-                });
+                ->cursorWhere([
+                    ['column' => 'score', 'order' => 'ASC', 'value' => $this->score],
+                    ['column' => 'score_id', 'order' => 'DESC', 'value' => $this->getKey()],
+                ]);
 
             if (isset($options['type'])) {
                 $query->withType($options['type'], ['user' => $this->user]);
