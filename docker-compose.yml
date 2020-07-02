@@ -32,7 +32,11 @@ services:
 
   job:
     <<: *x-web
-    command: ['artisan', 'queue:listen', '--queue=notification,default,beatmap_high,beatmap_default,store-notifications', '--tries=3', '--timeout=1000']
+    command: ['job']
+
+  schedule:
+    <<: *x-web
+    command: ['schedule']
 
   notification-server:
     build:

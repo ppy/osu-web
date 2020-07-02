@@ -15,12 +15,25 @@ gid="$(stat -c "%g" /app)"
 usermod -u "$uid" -d /app/.docker osuweb > /dev/null
 groupmod -g "$gid" osuweb > /dev/null
 
+# helper functions
 _rexec() {
     exec gosu osuweb "$@"
 }
 
 _run() {
     gosu osuweb "$@"
+}
+
+# commands
+_job() {
+    _rexec /app/artisan :listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
+}
+
+_schedule() {
+    while sleep 300; do
+        _run /app/artisan schedule &
+        echo 'Sleeping for 5 minutes'
+    done
 }
 
 _serve() {
@@ -34,7 +47,6 @@ _watch() {
 
 case "$command" in
     artisan) _rexec /app/artisan "$@";;
-    serve) _serve;;
-    watch) _watch;;
+    job|schedule|serve|watch) "_$command";;
     *) _rexec "$command" "$@";;
 esac
