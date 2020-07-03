@@ -72,6 +72,7 @@ class ScoreTransformer extends TransformerAbstract
             $highScores = PlaylistItemUserHighScore
                 ::cursorSort($sort, $cursor)
                 ->with(static::BASE_PRELOAD)
+                ->where('playlist_item_id', $score->playlist_item_id)
                 ->where('user_id', '<>', $score->user_id)
                 ->limit($limit + 1)
                 ->get();
