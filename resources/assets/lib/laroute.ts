@@ -9,6 +9,12 @@ interface Attributes {
   [key: string]: string | number | null | undefined;
 }
 
+// ensure correct url
+Ziggy.baseUrl = `${document.location.origin}/`;
+Ziggy.baseProtocol = document.location.protocol.slice(0, -1);
+Ziggy.baseDomain = document.location.hostname;
+Ziggy.basePort = +document.location.port || false; // either port number of false if empty (converted to 0)
+
 export function route(name: string, params?: Attributes | null, absolute?: boolean) {
   if (params == null) {
     params = {};
