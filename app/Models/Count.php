@@ -28,9 +28,6 @@ class Count extends Model
 
     public static function lastMailNotificationIdSent()
     {
-        $obj = static::firstOrNew(['name' => 'last_mail_notification_id_sent']);
-        $obj->count ??= 0;
-
-        return $obj;
+        return static::firstOrNew(['name' => 'last_mail_notification_id_sent'], ['count' => 0]);
     }
 }
