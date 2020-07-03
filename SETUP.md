@@ -143,6 +143,16 @@ Restart single docker service:
 docker-compose restart <servicename>
 ```
 
+#### Direct database access
+
+Using own mysql client, connect to port 3306 or `MYSQL_EXTERNAL_PORT` if set when starting up docker.
+
+Alternatively, there's mysql client installed in php service:
+
+```
+docker-compose run php mysql
+```
+
 # Development
 
 ## Creating your initial user

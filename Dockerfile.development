@@ -9,6 +9,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     jhead \
     libglib2.0-0 \
     libnss3 \
+    mysql-client \
     php-fpm \
     php-common \
     php-curl \

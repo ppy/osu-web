@@ -49,4 +49,9 @@ if [ ! -f storage/oauth-public.key ]; then
     _run artisan passport:keys
 fi
 
+if [ ! -f .docker/.my.cnf ]; then
+    echo "Copying default mysql client config"
+    cp .docker/.my.cnf.example .docker/.my.cnf
+fi
+
 echo "Preparation completed. Adjust .env file if needed and run 'docker-compose up' followed by running migration."
