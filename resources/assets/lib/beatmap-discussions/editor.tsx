@@ -97,6 +97,17 @@ export default class Editor extends React.Component<Props, State> {
     };
   }
 
+  blockCount = (theme?: string) => {
+    return (
+      <CircularProgress
+        current={this.state.blockCount}
+        max={this.context.max_blocks}
+        theme={theme}
+        tooltip={osu.trans('beatmap_discussions.review.block_count', {used: this.state.blockCount, max: this.context.max_blocks})}
+      />
+    );
+  }
+
   blockWrapper = (children: JSX.Element) => {
     return (
       <div className={`${this.bn}__block`}>
@@ -311,6 +322,11 @@ export default class Editor extends React.Component<Props, State> {
                   placeholder={osu.trans('beatmaps.discussions.message_placeholder.review')}
                 />
               </div>
+              {this.props.editMode &&
+                <div className={`${editorClass}__inner-block-count`}>
+                  {this.blockCount('lighter')}
+                </div>
+              }
               { !this.props.editMode &&
                 <div className={`${editorClass}__button-bar`}>
                   <button
@@ -323,11 +339,7 @@ export default class Editor extends React.Component<Props, State> {
                   </button>
                   <div>
                     <span className={`${editorClass}__block-count`}>
-                      <CircularProgress
-                        current={this.state.blockCount}
-                        max={this.context.max_blocks}
-                        tooltip={osu.trans('beatmap_discussions.review.block_count', {used: this.state.blockCount, max: this.context.max_blocks})}
-                      />
+                      {this.blockCount()}
                     </span>
                     <button
                       className='btn-osu-big btn-osu-big--forum-primary'
@@ -443,8 +455,11 @@ export default class Editor extends React.Component<Props, State> {
       return;
     }
 
+    const value = this.props.editing ? parseFromJson(this.props.document, this.props.discussions) : [];
+
     this.setState({
-      value: this.props.editing ? parseFromJson(this.props.document, this.props.discussions) : [],
+      blockCount: blockCount(value),
+      value,
     });
   }
 

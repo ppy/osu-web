@@ -6,6 +6,7 @@ import * as React from 'react';
 interface Props {
   current: number;
   max: number;
+  theme?: string;
   tooltip?: string;
 }
 
@@ -26,6 +27,10 @@ export class CircularProgress extends React.PureComponent<Props, any> {
       mods.push('over');
     } else if (percentage >= 0.75) {
       mods.push('warn');
+    }
+
+    if (this.props.theme) {
+      mods.push(this.props.theme);
     }
 
     return (
