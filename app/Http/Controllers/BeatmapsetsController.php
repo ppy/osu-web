@@ -115,7 +115,10 @@ class BeatmapsetsController extends Controller
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultDiscussionJson(),
-            'reviews_enabled' => config('osu.beatmapset.discussion_review_enabled'),
+            'reviews_config' => [
+                'enabled' => config('osu.beatmapset.discussion_review_enabled'),
+                'max_blocks' => config('osu.beatmapset.discussion_review_max_blocks'),
+            ],
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
