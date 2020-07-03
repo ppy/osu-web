@@ -1227,7 +1227,7 @@ function get_bool($string)
  */
 function get_float($string)
 {
-    if (is_scalar($string)) {
+    if (present($string) && is_scalar($string)) {
         return (float) $string;
     }
 }
@@ -1238,7 +1238,7 @@ function get_float($string)
  */
 function get_int($string)
 {
-    if (is_scalar($string)) {
+    if (present($string) && is_scalar($string)) {
         return (int) $string;
     }
 }
