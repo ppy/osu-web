@@ -41,6 +41,10 @@ services:
     <<: *x-web
     command: ['schedule']
 
+  migrator:
+    <<: *x-web
+    command: ['migrate']
+
   notification-server:
     image: pppy/osu-notification-server
     depends_on:

@@ -10,6 +10,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libglib2.0-0 \
     libnss3 \
     mysql-client \
+    netcat-openbsd \
     php-fpm \
     php-common \
     php-curl \

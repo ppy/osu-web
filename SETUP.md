@@ -58,7 +58,6 @@ At this point you should be able to access the site via whatever webserver you c
 
 - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/).
 - Run `bin/docker_dev.sh`.
-- Run migration (see reset the database section below)
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
 - To run any of the below commands, make sure you are using the docker container: `docker-compose run php`.
@@ -104,6 +103,7 @@ There are multiple services involved:
 - assets: builds assets. It sometimes behaves weirdly in which case try restarting it
 - job: runs queued job
 - schedule: runs scheduled job every 5 minutes
+- migrator: prepare database and elasticsearch (service should exit with status 0 after finishing its task)
 - notification-server: main service for notification websocket server
 - notification-server-dusk: notification server to be used by browser test
 - db: database server. Can be skipped by commenting it out and setting a different database instance

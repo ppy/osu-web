@@ -29,6 +29,10 @@ _job() {
     _rexec /app/artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
 }
 
+_migrate() {
+    _rexec /app/bin/wait_for.sh db:3306 -- /app/artisan migrate:fresh-or-run
+}
+
 _schedule() {
     while sleep 300; do
         _run /app/artisan schedule:run &
@@ -61,6 +65,6 @@ _watch() {
 
 case "$command" in
     artisan) _rexec /app/artisan "$@";;
-    job|schedule|serve|test|watch) "_$command" "$@";;
+    job|migrate|schedule|serve|test|watch) "_$command" "$@";;
     *) _rexec "$command" "$@";;
 esac
