@@ -72,7 +72,7 @@ export class ScoreboardTableRow extends React.PureComponent
 
       td className: cell, _.round score.pp
 
-      td className: cell,
+      td className: osu.classWithModifiers(cell, ['time']),
         el ScoreboardTime,
           dateTime: score.created_at
 
