@@ -453,12 +453,3 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 });
-
-// status
-if (Config::get('app.env') === 'production') {
-    Route::group(['domain' => 'stat.ppy.sh'], function () {
-        Route::get('/', 'StatusController@getMain')->name('status.index');
-    });
-} else {
-    Route::get('/status', 'StatusController@getMain')->name('status.index');
-}

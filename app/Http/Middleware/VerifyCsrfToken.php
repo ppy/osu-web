@@ -17,16 +17,26 @@ class VerifyCsrfToken extends BaseVerifier
         'oauth/access_token',
     ];
 
+    protected $abort = [
+        'session',
+    ];
+
     public function handle($request, Closure $next)
     {
         try {
             return parent::handle($request, $next);
         } catch (TokenMismatchException $_e) {
-            $request->session()->flush();
-            Auth::logout();
-            $request->attributes->set('skip_session', true);
+            if (starts_with($request->decodedPath(), $this->abort)) {
+                $request->attributes->set('status_code_extra', 'invalid_csrf');
 
-            return $next($request);
+                abort(403, 'Reload page and try again');
+            } else {
+                $request->session()->flush();
+                Auth::logout();
+                $request->attributes->set('skip_session', true);
+
+                return $next($request);
+            }
         }
     }
 }

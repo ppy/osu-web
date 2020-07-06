@@ -195,7 +195,6 @@ mix
 .js(...reactComponentSet('mp-history'))
 .js(...reactComponentSet('modding-profile'))
 .js(...reactComponentSet('profile-page'))
-.js(...reactComponentSet('status-page'))
 .js(...reactComponentSet('admin/contest'))
 .js(...reactComponentSet('contest-entry'))
 .js(...reactComponentSet('contest-voting'))
