@@ -8,6 +8,7 @@ import { BigButton } from 'big-button'
 import * as React from 'react'
 import { div, span, a, img, ol, li, i } from 'react-dom-factories'
 import { UserAvatar } from 'user-avatar'
+import { getTitle } from 'utils/beatmap-helper'
 el = React.createElement
 
 export class Header extends React.Component
@@ -114,8 +115,8 @@ export class Header extends React.Component
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
-            href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
-            @props.beatmapset.title
+            href: laroute.route 'beatmapsets.index', q: getTitle(@props.beatmapset)
+            getTitle(@props.beatmapset)
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--artist'
