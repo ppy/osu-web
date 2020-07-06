@@ -27,6 +27,8 @@ class VerifyCsrfToken extends BaseVerifier
             return parent::handle($request, $next);
         } catch (TokenMismatchException $_e) {
             if (starts_with($request->decodedPath(), $this->abort)) {
+                $request->attributes->set('status_code_extra', 'invalid_csrf');
+
                 abort(403, 'Reload page and try again');
             } else {
                 $request->session()->flush();
