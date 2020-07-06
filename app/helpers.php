@@ -759,6 +759,17 @@ function js_localtime($date)
     return "<time class='js-localtime' datetime='{$formatted}'>{$formatted}</time>";
 }
 
+function page_description($extra)
+{
+    $parts = ['osu!', page_title()];
+
+    if (present($extra)) {
+        $parts[] = $extra;
+    }
+
+    return blade_safe(implode(' » ', array_map('e', $parts)));
+}
+
 function page_title()
 {
     $currentRoute = app('route-section')->getCurrent();
@@ -1216,7 +1227,7 @@ function get_bool($string)
  */
 function get_float($string)
 {
-    if (is_scalar($string)) {
+    if (present($string) && is_scalar($string)) {
         return (float) $string;
     }
 }
@@ -1227,7 +1238,7 @@ function get_float($string)
  */
 function get_int($string)
 {
-    if (is_scalar($string)) {
+    if (present($string) && is_scalar($string)) {
         return (int) $string;
     }
 }
