@@ -71,6 +71,8 @@ export class ScoreboardTableRow extends React.PureComponent
 
       td className: cell, _.round score.pp
 
+      td className: cell, @local(score.created_at)
+
       td className: osu.classWithModifiers(cell, ['mods']),
         el Mods, modifiers: ['scoreboard'], mods: score.mods
 
@@ -78,3 +80,30 @@ export class ScoreboardTableRow extends React.PureComponent
         if hasMenu(score)
           el PlayDetailMenu,
             { score }
+
+
+  local: (time) =>
+    localMoment = moment(time)
+    previousLocale = moment.locale()
+    moment.locale('scoreboard', {
+        relativeTime: {
+          future: '',
+          past: '%s',
+          s: '1 sec',
+          m: '1 min',
+          mm: '%d min',
+          h: '1 hr',
+          hh: '%d hr',
+          d: '1 d',
+          dd: '%d d',
+          M: '1 M',
+          MM: '%d M',
+          y: '1 y',
+          yy: '%d y'
+      }
+    })
+    localMoment.locale('scoreboard')
+    time = localMoment.fromNow()
+    moment.locale(previousLocale)
+
+    time
