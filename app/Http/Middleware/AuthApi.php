@@ -34,14 +34,13 @@ class AuthApi
     {
         auth()->shouldUse('api');
 
-        try {
+        if ($request->bearerToken() !== null) {
             $psr = $this->validateRequest($request);
             $token = $this->validTokenFromRequest($psr);
             $request->attributes->set(static::REQUEST_OAUTH_TOKEN_KEY, $token);
-        } catch (AuthenticationException $ex) {
-            // FIXME: flow control with exceptions for a common scenario, A++;
+        } else {
             if (!RequireScopes::noTokenRequired($request)) {
-                throw $ex;
+                throw new AuthenticationException;
             }
         }
 

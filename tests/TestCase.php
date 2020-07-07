@@ -61,7 +61,7 @@ class TestCase extends BaseTestCase
      * @param string $driver Auth driver to use.
      * @return void
      */
-    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], $driver = 'api')
+    protected function actAsScopedUser(?User $user, ?array $scopes = ['*'], $driver = null)
     {
         // create valid token
         $client = factory(Client::class)->create();
@@ -84,6 +84,7 @@ class TestCase extends BaseTestCase
             });
 
         app()->instance(ResourceServer::class, $mock);
+        $this->withHeader('Authorization', 'Bearer tests_using_this_do_not_verify_this_header_because_of_the_mock');
 
         $this->actAsUserWithToken($token, $driver);
     }
@@ -108,7 +109,7 @@ class TestCase extends BaseTestCase
      * @param string $driver Auth driver to use.
      * @return void
      */
-    protected function actAsUserWithToken(Token $token, $driver = 'api')
+    protected function actAsUserWithToken(Token $token, $driver = null)
     {
         $guard = app('auth')->guard($driver);
         $user = $token->user;
