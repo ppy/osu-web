@@ -73,20 +73,45 @@ class RoomsController extends BaseController
         return response([], 204);
     }
 
-    public function show($roomId)
+    public function show($id)
     {
-        return json_item(
-            Room::findOrFail($roomId)
-                ->load('host.country')
-                ->load('playlist.beatmap.beatmapset'),
-            'Multiplayer\Room',
-            [
-                'host.country',
-                'playlist.beatmap.beatmapset',
-                'playlist.beatmap.checksum',
-                'recent_participants',
-            ]
-        );
+        if ($id === 'latest') {
+            $room = Room::where('category', 'spotlight')->last();
+
+            if ($room === null) {
+                abort(404);
+            }
+        } else {
+            $room = Room::findOrFail($id);
+        }
+
+        if (is_api_request()) {
+            return json_item(
+                $room
+                    ->load('host.country')
+                    ->load('playlist.beatmap.beatmapset'),
+                'Multiplayer\Room',
+                [
+                    'host.country',
+                    'playlist.beatmap.beatmapset',
+                    'playlist.beatmap.checksum',
+                    'recent_participants',
+                ]
+            );
+        }
+
+        $beatmaps = $room->playlist()->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
+        $beatmapsets = $beatmaps->pluck('beatmapset');
+        $highScores = $room->userHighScores()->with('user.country')->orderBy('total_score', 'DESC')->limit(50)->get();
+        $spotlightRooms = Room::where('category', 'spotlight')->orderBy('id', 'DESC')->get();
+
+        return ext_view('multiplayer.rooms.show', [
+            'beatmaps' => $beatmaps,
+            'beatmapsets' => $beatmapsets,
+            'room' => $room,
+            'rooms' => $spotlightRooms,
+            'scores' => $highScores,
+        ]);
     }
 
     public function store()
