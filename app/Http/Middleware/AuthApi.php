@@ -32,7 +32,9 @@ class AuthApi
 
     public function handle($request, Closure $next)
     {
-        auth()->shouldUse('api');
+        // FIXME:
+        // default session guard is used. This really works by coincidence with cookies disabled
+        // since session user resolution will fail, but it'll still keep repeatedly attempting to resolve it.
 
         if ($request->bearerToken() !== null) {
             $psr = $this->validateRequest($request);
