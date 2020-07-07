@@ -729,6 +729,7 @@
         "controller": "App\\Http\\Controllers\\UsersController@me",
         "middlewares": [
             "require-scopes",
+            "auth",
             "require-scopes:identify"
         ],
         "scopes": [
@@ -741,6 +742,7 @@
         "controller": "App\\Http\\Controllers\\UsersController@me",
         "middlewares": [
             "require-scopes",
+            "auth",
             "require-scopes:identify"
         ],
         "scopes": [
