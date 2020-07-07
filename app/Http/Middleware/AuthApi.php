@@ -34,11 +34,15 @@ class AuthApi
     {
         auth()->shouldUse('api');
 
-        // FIXME: should assign token even if not required.
-        if (!RequireScopes::noTokenRequired($request)) {
+        try {
             $psr = $this->validateRequest($request);
             $token = $this->validTokenFromRequest($psr);
             $request->attributes->set(static::REQUEST_OAUTH_TOKEN_KEY, $token);
+        } catch (AuthenticationException $ex) {
+            // FIXME: flow control with exceptions for a common scenario, A++;
+            if (!RequireScopes::noTokenRequired($request)) {
+                throw $ex;
+            }
         }
 
         return $next($request);
