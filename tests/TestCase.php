@@ -151,6 +151,11 @@ class TestCase extends BaseTestCase
         }, glob("{$path}/*{$suffix}"));
     }
 
+    protected function interOpSignature($url)
+    {
+        return hash_hmac('sha1', $url, config('osu.legacy.shared_interop_secret'));
+    }
+
     protected function invokeMethod($obj, string $name, array $params = [])
     {
         $method = new ReflectionMethod($obj, $name);

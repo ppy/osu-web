@@ -2,7 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 declare module 'ziggy' {
-  export const Ziggy: {};
+  interface ZiggyClass {
+    baseDomain: string;
+    basePort: number | false;
+    baseProtocol: string;
+    baseUrl: string;
+  }
+
+  export const Ziggy: ZiggyClass;
 }
 
 declare module 'ziggy-route' {

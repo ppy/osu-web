@@ -764,6 +764,17 @@ function js_localtime($date)
     return "<time class='js-localtime' datetime='{$formatted}'>{$formatted}</time>";
 }
 
+function page_description($extra)
+{
+    $parts = ['osu!', page_title()];
+
+    if (present($extra)) {
+        $parts[] = $extra;
+    }
+
+    return blade_safe(implode(' » ', array_map('e', $parts)));
+}
+
 function page_title()
 {
     $currentRoute = app('route-section')->getCurrent();
@@ -1221,7 +1232,7 @@ function get_bool($string)
  */
 function get_float($string)
 {
-    if (present($string)) {
+    if (present($string) && is_scalar($string)) {
         return (float) $string;
     }
 }
@@ -1232,7 +1243,7 @@ function get_float($string)
  */
 function get_int($string)
 {
-    if (present($string)) {
+    if (present($string) && is_scalar($string)) {
         return (int) $string;
     }
 }
@@ -1246,8 +1257,8 @@ function get_file($input)
 
 function get_string($input)
 {
-    if (is_string($input)) {
-        return $input;
+    if (is_scalar($input)) {
+        return (string) $input;
     }
 }
 
@@ -1334,6 +1345,8 @@ function get_param_value($input, $type)
             return get_arr($input, 'get_string');
         case 'int[]':
             return get_arr($input, 'get_int');
+        case 'time':
+            return parse_time_to_carbon($input);
         default:
             return presence(get_string($input));
     }

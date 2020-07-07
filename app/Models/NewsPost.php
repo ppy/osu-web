@@ -7,6 +7,7 @@ namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Commentable;
+use App\Libraries\DbCursorHelper;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
 use App\Traits\CommentableDefaults;
@@ -35,6 +36,15 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     const DASHBOARD_LIMIT = 8;
     const LANDING_LIMIT = 4;
 
+    const SORTS = [
+        'published_desc' => [
+            ['column' => 'published_at', 'order' => 'DESC', 'type' => 'time'],
+            ['column' => 'id', 'order' => 'DESC'],
+        ],
+    ];
+
+    const DEFAULT_SORT = 'published_desc';
+
     protected $casts = [
         'page' => 'array',
     ];
@@ -61,27 +71,21 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
 
-        // implies default sorting.
-        $cursor['id'] = get_int($params['cursor']['id'] ?? null);
-        $cursor['published_at'] = parse_time_to_carbon($params['cursor']['published_at'] ?? null);
-
-        if ($cursor['id'] !== null && $cursor['published_at'] !== null) {
-            $query->cursorWhere([
-                ['column' => 'published_at', 'order' => 'DESC', 'value' => $cursor['published_at']],
-                ['column' => 'id', 'order' => 'DESC', 'value' => $cursor['id']],
-            ]);
-        } else {
-            $query->orderBy('published_at', 'DESC')->orderBy('id', 'DESC');
-        }
+        $cursorHelper = new DbCursorHelper(static::SORTS, static::DEFAULT_SORT);
+        $sort = $cursorHelper->getSort();
+        $cursorRaw = $params['cursor'] ?? null;
+        $cursor = $cursorHelper->prepare($cursorRaw);
+        $query->cursorSort($sort, $cursor);
 
         $query->year(get_int($params['year'] ?? null));
 
         $query->limit($limit);
 
         return [
+            'cursorHelper' => $cursorHelper,
             'query' => $query,
             'params' => [
-                'cursor' => $cursor,
+                'cursor' => $cursor === null ? null : $cursorRaw,
                 'limit' => $limit,
             ],
         ];
@@ -166,7 +170,13 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     public function author()
     {
         if (!isset($this->page['header']['author']) && !isset($this->page['author'])) {
-            $authorLine = array_last(explode("\n", trim(strip_tags($this->bodyHtml()))));
+            $authorLine = html_entity_decode_better(
+                array_last(
+                    explode("\n", trim(
+                        strip_tags($this->bodyHtml())
+                    ))
+                )
+            );
 
             if (preg_match('/^[—–][^—–]/', $authorLine) === false) {
                 $author = 'osu!news Team';
