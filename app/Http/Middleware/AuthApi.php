@@ -41,8 +41,6 @@ class AuthApi
             $request->attributes->set(static::REQUEST_OAUTH_TOKEN_KEY, $token);
         }
 
-        optional(auth()->user())->markSessionVerified();
-
         return $next($request);
     }
 
@@ -86,6 +84,7 @@ class AuthApi
         if ($user !== null) {
             auth()->setUser($user);
             $user->withAccessToken($token);
+            $user->markSessionVerified();
         }
 
         return $token;
