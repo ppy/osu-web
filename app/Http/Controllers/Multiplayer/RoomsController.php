@@ -13,7 +13,7 @@ class RoomsController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'show']);
         $this->middleware('require-scopes:public', ['only' => ['index', 'leaderboard', 'show']]);
     }
 
