@@ -548,6 +548,64 @@ mania  | osu!mania
 osu    | osu!standard
 taiko  | osu!taiko
 
+## MultiplayerScore
+
+Score data.
+
+Field              | Type                       | Description
+-------------------|----------------------------|-------------------
+`id`               | `number`                   |  |
+`user_id`          | `number`                   |  |
+`room_id`          | `number`                   |  |
+`playlist_item_id` | `number`                   |  |
+`beatmap_id`       | `number`                   |  |
+`rank`             | `rank`                     |  |
+`total_score`      | `number`                   |  |
+`accuracy`         | `number`                   |  |
+`max_combo`        | `number`                   |  |
+`mods`             | `Mod[]`                    |  |
+`statistics`       | `Statistics`               |  |
+`passed`           | `bool`                     |  |
+`position`         | `number?`                  |  |
+`scores_around`    | `MultiplayerScoresAround?` | Scores around the specified score.
+`user`             | `User`                     |  |
+
+## MultiplayerScores
+
+An object which contains scores and related data for fetching next page of the result.
+
+Field        | Type                      | Description
+-------------|---------------------------|--------------------------------------------------------------
+`cursor`     | `MultiplayerScoresCursor` | To be used to fetch the next page.
+`params`     | `object`                  | To be used to fetch the next page.
+`scores`     | `MultiplayerScore[]`      |  |
+`total`      | `number?`                 | Index only. Total scores of the specified playlist item.
+`user_score` | `MultiplayerScore?`       | Index only. Score of the accessing user if exists.
+
+## MultiplayerScoresAround
+
+Field    | Type                | Description
+---------|---------------------|------------
+`higher` | `MultiplayerScores` |  |
+`lower`  | `MultiplayerScores` |  |
+
+## MultiplayerScoresCursor
+
+An object which contains pointer for fetching further results of a request. It depends on the sort option.
+
+Field         | Type     | Description
+--------------|----------|---------------------------------------------------------------------------
+`score_id`    | `number` | Last score id of current result (`scores_asc`, `scores_desc`).
+`total_score` | `number` | Last score's total score of current result (`scores_asc`, `scores_desc`).
+
+## MultiplayerScoresSort
+
+Sort option for multiplayer scores index.
+
+Name          | Descriprion
+------------- | ----------------------------
+`scores_asc`  | Sort by scores, ascending.
+`scores_desc` | Sort by scores, descending.
 
 ## Ranking Response
 ```json

@@ -55,6 +55,11 @@ class DbCursorHelper
         return $ret;
     }
 
+    public function prepareNext($items)
+    {
+        return $this->prepare($this->next($items));
+    }
+
     public function next($items)
     {
         if (count($items) === 0) {

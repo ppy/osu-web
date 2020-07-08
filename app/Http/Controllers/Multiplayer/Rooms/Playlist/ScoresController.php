@@ -12,6 +12,7 @@ use App\Libraries\Multiplayer\Mod;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
+use App\Transformers\Multiplayer\ScoreTransformer;
 use Carbon\Carbon;
 
 class ScoresController extends BaseController
@@ -22,10 +23,30 @@ class ScoresController extends BaseController
         $this->middleware('require-scopes:public', ['only' => ['index']]);
     }
 
+    /**
+     * @group Multiplayer
+     *
+     * Get Scores
+     *
+     * Returns a list of scores for specified playlist item.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [MultiplayerScores](#multiplayerscores) object.
+     *
+     * @authenticated
+     *
+     * @urlParam room required Id of the room.
+     * @urlParam playlist required Id of the playlist item.
+     *
+     * @queryParam limit Number of scores to be returned.
+     * @queryParam sort [MultiplayerScoresSort](#multiplayerscoressort) parameter.
+     * @queryParam cursor [MultiplayerScoresCursor](#multiplayerscorescursor) parameter.
+     */
     public function index($roomId, $playlistId)
     {
-        static $includes = ['user.country', 'user.cover'];
-
         $playlist = PlaylistItem::where('room_id', $roomId)->where('id', $playlistId)->firstOrFail();
         $params = request()->all();
         $cursorHelper = new DbCursorHelper(
@@ -41,7 +62,7 @@ class ScoresController extends BaseController
         $highScores = $playlist
             ->highScores()
             ->cursorSort($sort, $cursor)
-            ->with(['score.user.userProfileCustomization', 'score.user.country'])
+            ->with(ScoreTransformer::BASE_PRELOAD)
             ->limit($limit + 1) // an extra to check for pagination
             ->get();
 
@@ -51,7 +72,7 @@ class ScoresController extends BaseController
         }
         $scoresJson = json_collection($highScores->pluck('score'),
             'Multiplayer\Score',
-            $includes
+            ScoreTransformer::BASE_INCLUDES
         );
         $total = $playlist->highScores()->count();
 
@@ -61,16 +82,49 @@ class ScoresController extends BaseController
             $userHighScore = $playlist->highScores()->where('user_id', $user->getKey())->first();
 
             if ($userHighScore !== null) {
-                $userScoreJson = json_item($userHighScore->score, 'Multiplayer\Score', $includes);
+                $userScoreJson = json_item($userHighScore->score, 'Multiplayer\Score', ScoreTransformer::BASE_INCLUDES);
             }
         }
 
         return [
+            'cursor' => $hasMore ? $cursorHelper->next($highScores) : null,
+            'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
             'scores' => $scoresJson,
             'total' => $total,
             'user_score' => $userScoreJson ?? null,
-            'cursor' => $hasMore ? $cursorHelper->next($highScores) : null,
         ];
+    }
+
+    /**
+     * @group Multiplayer
+     *
+     * Get a Score
+     *
+     * Returns detail of specified score.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [MultiplayerScore](#multiplayerscore) object.
+     *
+     * @authenticated
+     *
+     * @urlParam room required Id of the room.
+     * @urlParam playlist required Id of the playlist item.
+     * @urlParam score required Id of the score.
+     */
+    public function show($roomId, $playlistId, $id)
+    {
+        $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
+        $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
+        $score = $playlistItem->scores()->findOrFail($id);
+
+        return json_item(
+            $score,
+            'Multiplayer\Score',
+            ['position', 'scores_around', ...ScoreTransformer::BASE_INCLUDES]
+        );
     }
 
     public function store($roomId, $playlistId)
@@ -108,7 +162,7 @@ class ScoresController extends BaseController
             return json_item(
                 $score,
                 'Multiplayer\Score',
-                ['user.country']
+                ['position', 'scores_around', ...ScoreTransformer::BASE_INCLUDES]
             );
         } catch (InvariantException $e) {
             return error_popup($e->getMessage(), $e->getStatusCode());
