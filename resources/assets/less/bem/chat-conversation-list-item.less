@@ -13,19 +13,19 @@
 
   @media @desktop {
     &:hover {
-      background: linear-gradient(to right, @osu-colour-b5 5%, @osu-colour-b3 33%, @osu-colour-b3 100%);
+      background: linear-gradient(to right, @osu-colour-b5 20px, @osu-colour-b3 33%, @osu-colour-b3 100%);
     }
   }
 
   @media @mobile {
-    margin-left: 0px;
-    padding-left: 0px;
+    margin-left: 0;
+    padding-left: 0;
     flex-shrink: 0;
   }
 
   &--selected {
     color: white;
-    background: linear-gradient(to right, @osu-colour-b5 5%, @osu-colour-b4 33%, @osu-colour-b4 100%);
+    background: linear-gradient(to right, @osu-colour-b5 20px, @osu-colour-b4 33%, @osu-colour-b4 100%);
     @media @mobile {
       background: @osu-colour-b4;
     }
@@ -41,8 +41,11 @@
     }
 
     @media @desktop {
+      position: absolute;
       opacity: 0;
-      margin-left: -10px;
+      background-color: @osu-colour-b5;
+      height: 100%;
+      margin-left: -11px;
       .@{top}:hover & {
         opacity: 1;
       }
@@ -63,41 +66,32 @@
     align-items: center;
     align-self: stretch;
     flex: 1;
+    margin-left: 11px;
   }
 
   &__unread-indicator {
+    position: absolute;
     background: @green;
     width: 2px;
     height: 10px;
     border-radius: 1px;
     pointer-events: none;
 
-    opacity: 0;
-    .@{top}--unread & {
-      opacity: 1;
-      &::after {
-        opacity: 0.5;
-        .full-size();
-        border-radius: 1px;
-        content: '';
-        box-shadow: 0 0 5px lighten(@green, 10%);
-        animation: glow-pulse 2s infinite;
-      }
+    &::after {
+      opacity: 0.5;
+      .full-size();
+      border-radius: 1px;
+      content: '';
+      box-shadow: 0 0 5px lighten(@green, 10%);
+      animation: glow-pulse 2s infinite;
     }
 
     @media @desktop {
-      margin-left: -10px;
-      margin-right: 10px;
-      .@{top}:hover & {
-        opacity: 0;
-      }
+      margin-left: -1px; // offset is width of unread-indicator - 1px for some reason?
     }
 
     @media @mobile {
-      .@{top}--unread & {
-        margin-left: 5px;
-        margin-right: 0px;
-      }
+      margin-left: 5px;
     }
   }
 
@@ -136,7 +130,7 @@
     flex-shrink: 0;
 
     @media @mobile {
-      margin: 0px 5px;
+      margin: 0 5px;
     }
   }
 }
