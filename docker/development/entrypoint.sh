@@ -48,7 +48,7 @@ _test() {
     command=phpunit
     if [ "$#" -gt 0 ]; then
         command="$1"
-        unshift
+        shift
     fi
 
     case "$command" in
