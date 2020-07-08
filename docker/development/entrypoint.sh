@@ -26,16 +26,16 @@ _run() {
 
 # commands
 _job() {
-    _rexec /app/artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
+    _rexec php /app/artisan queue:listen --queue=notification,default,beatmap_high,beatmap_default,store-notifications --tries=3 --timeout=1000
 }
 
 _migrate() {
-    _rexec /app/bin/wait_for.sh db:3306 -- /app/artisan migrate:fresh-or-run
+    _rexec /app/bin/wait_for.sh db:3306 -- php /app/artisan migrate:fresh-or-run
 }
 
 _schedule() {
     while sleep 300; do
-        _run /app/artisan schedule:run &
+        _run php /app/artisan schedule:run &
         echo 'Sleeping for 5 minutes'
     done
 }
@@ -52,7 +52,7 @@ _test() {
     fi
 
     case "$command" in
-        browser) _rexec ./artisan dusk --verbose "$@";;
+        browser) _rexec php /app/artisan dusk --verbose "$@";;
         js) _rexec yarnpkg karma start --single-run --browsers ChromeHeadless "$@";;
         phpunit) _rexec ./bin/phpunit "$@";;
     esac
