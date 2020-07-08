@@ -49,14 +49,39 @@
   &__buttons {
     position: absolute;
     background: @osu-colour-b6;
-    width: 150%;
+    white-space: nowrap;
     opacity: 0;
     transition: opacity ease-in-out 100ms;
-    .default-border-radius();
-    .default-box-shadow();
 
     .@{_top}__body:hover & {
       opacity: 1;
+    }
+  }
+
+  &__menu-button {
+    .reset-input();
+    padding: 5px 10px;
+    color: @osu-colour-f1;
+    filter: grayscale(1);
+
+    &:hover {
+      filter: none;
+    }
+
+    &--paragraph:hover {
+      color: @osu-colour-c1;
+    }
+
+    &--praise:hover {
+      color: @beatmap-discussion--color-praise;
+    }
+
+    &--problem:hover {
+      color: @beatmap-discussion--color-problem;
+    }
+
+    &--suggestion:hover {
+      color: @beatmap-discussion--color-suggestion;
     }
   }
 }
