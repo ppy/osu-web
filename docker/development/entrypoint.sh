@@ -12,8 +12,8 @@ fi
 uid="$(stat -c "%u" /app)"
 gid="$(stat -c "%g" /app)"
 
-usermod -u "$uid" -d /app/.docker osuweb > /dev/null
-groupmod -g "$gid" osuweb > /dev/null
+usermod -u "$uid" -o -d /app/.docker osuweb > /dev/null
+groupmod -g "$gid" -o osuweb > /dev/null
 
 # helper functions
 _rexec() {
