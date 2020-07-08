@@ -136,10 +136,11 @@ export class EditorInsertionMenu extends React.Component<Props> {
     let node = ReactEditor.toSlateNode(ed, slateNodeElement);
     let at: Point;
 
-    // TODO: This is a workaround for Slate incorrectly inserting nodes _after_ an empty element instead of _before_.
-    //  Either due to a bug in SlateEditor.end() or with how our 'embed' blocks are implemented... maybe we should
-    //  look at converting the embeds to voids at some point?
-    if (SlateElement.isElement(node) && SlateEditor.isEmpty(ed, node)) {
+    // TODO: This is a workaround for Slate incorrectly inserting nodes _after_ an empty element instead of _before_. Possibly a bug in SlateEditor.end()?
+    if (
+      (SlateText.isText(node) && node.text === '') ||
+      (SlateElement.isElement(node) && SlateEditor.isEmpty(ed, node))
+    ) {
       const previousBlock = slateNodeElement.parentElement!.previousSibling;
 
       if (previousBlock) {
