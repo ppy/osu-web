@@ -20,7 +20,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
   bn = 'beatmap-discussion-editor-insertion-menu';
   hideInsertMenuTimer?: number;
   hoveredBlock: HTMLElement | undefined;
-  insertRef: React.RefObject<HTMLDivElement>;
+  insertRef: React.RefObject<HTMLDivElement> = React.createRef();
   menuPos: string | undefined;
   mouseOver = false;
   scrollContainer: HTMLElement | undefined;
@@ -30,12 +30,6 @@ export class EditorInsertionMenu extends React.Component<Props> {
   throttledMenuMouseEnter = _.throttle(this.menuMouseEnter.bind(this), 10);
   throttledMenuMouseExit = _.throttle(this.menuMouseLeave.bind(this), 10);
   throttledScroll = _.throttle(this.forceHideMenu.bind(this), 10);
-
-  constructor(props: Props) {
-    super(props);
-
-    this.insertRef = React.createRef();
-  }
 
   componentDidMount() {
     if (this.insertRef.current) {
@@ -81,7 +75,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
     };
 
     // If we're past the half-way point of the block's height then put the menu below the block, otherwise put it above
-    if ((cursorPos?.y - blockRect.top) > (blockRect.height / 2)) {
+    if (cursorPos?.y > blockRect.top + (blockRect.height / 2)) {
       this.menuPos = 'below';
     } else {
       this.menuPos = 'above';
@@ -131,35 +125,35 @@ export class EditorInsertionMenu extends React.Component<Props> {
   }
 
   insertBlock = (event: React.MouseEvent<HTMLElement>) => {
-    const e: ReactEditor = this.context;
-    const lastChild = this.getBlockFromInsertMarker()?.lastChild;
+    const ed: ReactEditor = this.context;
+    const slateNodeElement = this.getBlockFromInsertMarker()?.lastChild;
 
-    if (!lastChild) {
+    if (!slateNodeElement) {
       return;
     }
 
-    let node = ReactEditor.toSlateNode(e, lastChild);
+    let node = ReactEditor.toSlateNode(ed, slateNodeElement);
     let at: Point;
 
     // TODO: This is a workaround for Slate incorrectly inserting nodes _after_ an empty element instead of _before_.
     //  Either due to a bug in SlateEditor.end() or with how our 'embed' blocks are implemented... maybe we should
     //  look at converting the embeds to voids at some point?
-    if (SlateElement.isElement(node) && SlateEditor.isEmpty(e, node)) {
-      const previousBlock = lastChild.parentElement!.previousSibling;
+    if (SlateElement.isElement(node) && SlateEditor.isEmpty(ed, node)) {
+      const previousBlock = slateNodeElement.parentElement!.previousSibling;
 
       if (previousBlock) {
-        node = ReactEditor.toSlateNode(e, (previousBlock.lastChild as Node));
-        at = SlateEditor.end(e, ReactEditor.findPath(e, node));
+        node = ReactEditor.toSlateNode(ed, (previousBlock.lastChild as Node));
+        at = SlateEditor.end(ed, ReactEditor.findPath(ed, node));
       } else {
         // inserting block at start of review/document
         at = {path: [], offset: 0};
       }
     } else {
-      at = SlateEditor.start(e, ReactEditor.findPath(e, node));
+      at = SlateEditor.start(ed, ReactEditor.findPath(ed, node));
     }
 
     let insertNode: SlateNode | undefined;
-    const type = event.currentTarget.dataset.dtype;
+    const type = event.currentTarget.dataset.discussionType;
     const beatmapId = this.props.currentBeatmap?.id;
 
     switch (type) {
@@ -185,7 +179,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
       return;
     }
 
-    Transforms.insertNodes(e, insertNode, { at });
+    Transforms.insertNodes(ed, insertNode, { at });
   }
 
   insertButton = (type: string) => {
@@ -206,7 +200,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
       <button
         type='button'
         className={`${this.bn}__menu-button ${this.bn}__menu-button--${type}`}
-        data-dtype={type}
+        data-discussion-type={type}
         onClick={this.insertBlock}
         title={osu.trans(`beatmaps.discussions.review.insert-block.${type}`)}
       >
