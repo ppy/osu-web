@@ -122,9 +122,6 @@ export default class Editor extends React.Component<Props, State> {
     if (this.xhr) {
       this.xhr.abort();
     }
-    if (this.scrollContainerRef.current) {
-      $(this.scrollContainerRef.current).off('scroll');
-    }
   }
 
   componentWillUpdate(): void {

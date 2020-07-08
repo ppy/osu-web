@@ -17,9 +17,10 @@ export class EditorToolbar extends React.Component {
   scrollContainer: HTMLElement | undefined;
   private scrollTimer: number | undefined;
   private readonly throttledUpdate = _.throttle(this.updatePosition.bind(this), 100);
+  private readonly uuid: string = osu.uuid();
 
   componentDidMount() {
-    $(window).on('scroll.editor-toolbar', this.throttledUpdate);
+    $(window).on(`scroll.${this.uuid}`, this.throttledUpdate);
     this.updatePosition();
   }
 
@@ -29,9 +30,9 @@ export class EditorToolbar extends React.Component {
   }
 
   componentWillUnmount() {
-    $(window).off('.editor-toolbar');
+    $(window).off(`.${this.uuid}`);
     if (this.scrollContainer) {
-      $(this.scrollContainer).off('.editor-toolbar');
+      $(this.scrollContainer).off(`.${this.uuid}`);
     }
     this.throttledUpdate.cancel();
   }
@@ -80,8 +81,11 @@ export class EditorToolbar extends React.Component {
   }
 
   setScrollContainer(container: HTMLElement) {
+    if (this.scrollContainer) {
+      $(this.scrollContainer).off(`.${this.uuid}`);
+    }
     this.scrollContainer = container;
-    $(this.scrollContainer).on('scroll.editor-toolbar', this.throttledUpdate);
+    $(this.scrollContainer).on(`scroll.${this.uuid}`, this.throttledUpdate);
   }
 
   updatePosition() {
