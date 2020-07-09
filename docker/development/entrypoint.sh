@@ -64,7 +64,7 @@ _watch() {
 }
 
 case "$command" in
-    artisan) _rexec /app/artisan "$@";;
+    artisan) _rexec php /app/artisan "$@";;
     job|migrate|schedule|serve|test|watch) "_$command" "$@";;
     *) _rexec "$command" "$@";;
 esac
