@@ -7,7 +7,7 @@ import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
-import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
+import { createEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { Spinner } from 'spinner';
