@@ -76,6 +76,13 @@ On Windows, the files inside Linux system can be found in Explorer from `\\wsl$`
 
 Default user home directory can be found inside `home` → `<username>`.
 
+Due to difference in file permission and line endings, adjustments on git may be needed. Run these in the repository directory:
+
+```
+git config core.eol lf
+git config core.filemode false
+```
+
 ---
 
 
