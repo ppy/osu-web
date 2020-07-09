@@ -176,6 +176,11 @@ function cleanup_cookies()
 
     $hostParts = explode('.', $host);
 
+    // don't do anything for single word domain
+    if (count($hostParts) === 1) {
+        return;
+    }
+
     while (count($hostParts) > 1) {
         array_shift($hostParts);
         $domains[] = implode('.', $hostParts);
