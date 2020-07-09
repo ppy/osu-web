@@ -54,7 +54,7 @@ _test() {
     case "$command" in
         browser) _rexec php /app/artisan dusk --verbose "$@";;
         js) _rexec yarnpkg karma start --single-run --browsers ChromeHeadless "$@";;
-        phpunit) _rexec ./bin/phpunit "$@";;
+        phpunit) _rexec ./bin/phpunit.sh "$@";;
     esac
 }
 
