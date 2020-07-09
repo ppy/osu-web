@@ -5,11 +5,9 @@ import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
 import * as _ from 'lodash';
 import { Portal } from 'portal';
 import * as React from 'react';
-import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Transforms } from 'slate';
+import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Text as SlateText, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 import { SlateContext } from './slate-context';
-
-const editorClass = 'beatmap-discussion-editor';
 
 interface Props {
   currentBeatmap: BeatmapJsonExtended;
@@ -20,8 +18,8 @@ export class EditorInsertionMenu extends React.Component<Props> {
   bn = 'beatmap-discussion-editor-insertion-menu';
   hideInsertMenuTimer?: number;
   hoveredBlock: HTMLElement | undefined;
+  insertPosition: 'above' | 'below' | undefined;
   insertRef: React.RefObject<HTMLDivElement> = React.createRef();
-  menuPos: string | undefined;
   mouseOver = false;
   scrollContainer: HTMLElement | undefined;
   // setTimeout delay is to prevent flashing when hovering the menu (the portal is not inside the container, so it fires a mouseleave)
@@ -56,30 +54,39 @@ export class EditorInsertionMenu extends React.Component<Props> {
   }
 
   containerMouseMove(event: JQuery.MouseMoveEvent) {
-    const block = event.target.closest(`.${editorClass}__block`);
-
-    if (
-      !block ||
-      !this.insertRef.current ||
-      !event.originalEvent ||
-      event.originalEvent.buttons > 0 // don't show while dragging
-    ) {
-      this.hoveredBlock = undefined;
+    if (!event.originalEvent) {
       return;
     }
 
-    this.hoveredBlock = block;
-    const blockRect = block.getBoundingClientRect();
-    const cursorPos = {
-      x: event.originalEvent.clientX,
-      y: event.originalEvent.clientY,
-    };
+    const y = event.originalEvent.clientY;
+    const container = this.scrollContainer!;
+    const children = container.children[0].children;
+
+    let blockOffset = 0;
+    for (const child of children) {
+      if (y < child.getBoundingClientRect().top) {
+        if (blockOffset > 0) {
+          const prevBlock = children[blockOffset - 1];
+          if (y < prevBlock.getBoundingClientRect().top + (prevBlock.getBoundingClientRect().height / 2)) {
+            blockOffset--;
+          }
+        }
+        break;
+      }
+
+      if (blockOffset < children.length - 1) {
+        blockOffset++;
+      }
+    }
+
+    this.hoveredBlock = children[blockOffset] as HTMLElement;
+    const blockRect = this.hoveredBlock.getBoundingClientRect();
 
     // If we're past the half-way point of the block's height then put the menu below the block, otherwise put it above
-    if (cursorPos?.y > blockRect.top + (blockRect.height / 2)) {
-      this.menuPos = 'below';
+    if (y > blockRect.top + (blockRect.height / 2)) {
+      this.insertPosition = 'below';
     } else {
-      this.menuPos = 'above';
+      this.insertPosition = 'above';
     }
 
     this.updatePosition();
@@ -92,31 +99,6 @@ export class EditorInsertionMenu extends React.Component<Props> {
     this.hideMenu();
   }
 
-  getBlockFromInsertMarker() {
-    const container = this.scrollContainer;
-    const insertMarker = this.insertRef.current;
-    if (!container || !insertMarker) {
-      return;
-    }
-
-    const y = insertMarker.getBoundingClientRect().y + (insertMarker.getBoundingClientRect().height / 2);
-
-    let blockOffset = -1;
-    for (const child of container.children[0].children) {
-      if (y < child.getBoundingClientRect().top) {
-        const prevBlock = container.children[0].children[blockOffset];
-        if (y > prevBlock.getBoundingClientRect().top + (prevBlock.getBoundingClientRect().height / 2)) {
-          blockOffset++;
-        }
-
-        break;
-      }
-      blockOffset++;
-    }
-
-    return container.children[0].children[blockOffset];
-  }
-
   hideMenu() {
     if (!this.insertRef.current || this.mouseOver) {
       return;
@@ -127,37 +109,11 @@ export class EditorInsertionMenu extends React.Component<Props> {
 
   insertBlock = (event: React.MouseEvent<HTMLElement>) => {
     const ed: ReactEditor = this.context;
-    const slateNodeElement = this.getBlockFromInsertMarker()?.lastChild;
-
-    if (!slateNodeElement) {
-      return;
-    }
-
-    let node = ReactEditor.toSlateNode(ed, slateNodeElement);
-    let at: Point;
-
-    // TODO: This is a workaround for Slate incorrectly inserting nodes _after_ an empty element instead of _before_. Possibly a bug in SlateEditor.end()?
-    if (
-      (SlateText.isText(node) && node.text === '') ||
-      (SlateElement.isElement(node) && SlateEditor.isEmpty(ed, node))
-    ) {
-      const previousBlock = slateNodeElement.parentElement!.previousSibling;
-
-      if (previousBlock) {
-        node = ReactEditor.toSlateNode(ed, (previousBlock.lastChild as Node));
-        at = SlateEditor.end(ed, ReactEditor.findPath(ed, node));
-      } else {
-        // inserting block at start of review/document
-        at = {path: [], offset: 0};
-      }
-    } else {
-      at = SlateEditor.start(ed, ReactEditor.findPath(ed, node));
-    }
-
-    let insertNode: SlateNode | undefined;
+    const slateNodeElement = this.hoveredBlock?.lastChild;
     const type = event.currentTarget.dataset.discussionType;
     const beatmapId = this.props.currentBeatmap?.id;
 
+    let insertNode: SlateNode | undefined;
     switch (type) {
       case 'suggestion':
       case 'problem':
@@ -177,11 +133,45 @@ export class EditorInsertionMenu extends React.Component<Props> {
         break;
     }
 
-    if (!insertNode) {
+    if (!insertNode || !slateNodeElement) {
       return;
     }
 
-    Transforms.insertNodes(ed, insertNode, { at });
+    let node = ReactEditor.toSlateNode(ed, slateNodeElement);
+    let insertAt: Point;
+    if (
+      (SlateText.isText(node) && node.text === '') ||
+      (SlateElement.isElement(node) && SlateEditor.isEmpty(ed, node))
+    ) {
+      // TODO: This horrible mess is a workaround for Slate incorrectly inserting nodes at the wrong place when
+      //  inserting relative to empty blocks/paragraphs.
+      if (this.insertPosition === 'above') {
+        const previousBlock = slateNodeElement.parentElement!.previousSibling;
+        if (previousBlock) {
+          node = ReactEditor.toSlateNode(ed, (previousBlock.lastChild as Node));
+          insertAt = SlateEditor.end(ed, ReactEditor.findPath(ed, node));
+        } else {
+          // if there's no previous block, that means we're at the start of the review/document, so insert there.
+          insertAt = {path: [], offset: 0};
+        }
+      } else {
+        const nextBlock = slateNodeElement.parentElement!.nextSibling;
+        if (nextBlock) {
+          node = ReactEditor.toSlateNode(ed, (nextBlock.lastChild as Node));
+          insertAt = SlateEditor.start(ed, ReactEditor.findPath(ed, node));
+        } else {
+          // if there's no next block, that means we're at the end of the review/document, so insert there.
+          insertAt = SlateEditor.end(ed, []);
+        }
+      }
+    } else {
+      const path = ReactEditor.findPath(ed, node);
+      insertAt = this.insertPosition === 'above' ?
+        SlateEditor.start(ed, path) :
+        SlateEditor.end(ed, path);
+    }
+
+    Transforms.insertNodes(ed, insertNode, { at: insertAt });
   }
 
   insertButton = (type: string) => {
@@ -284,9 +274,9 @@ export class EditorInsertionMenu extends React.Component<Props> {
     this.insertRef.current.style.left = `${containerBounds.left + 100}px`;
     this.insertRef.current.style.width = `${containerBounds.width - 200}px`;
 
-    if (this.menuPos === 'above') {
+    if (this.insertPosition === 'above') {
       this.insertRef.current.style.top = `${blockRect.top - 10}px`;
-    } else if (this.menuPos === 'below') {
+    } else if (this.insertPosition === 'below') {
       this.insertRef.current.style.top = `${blockRect.top + blockRect.height - 10}px`;
     }
   }
