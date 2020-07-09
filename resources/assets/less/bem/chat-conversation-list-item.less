@@ -3,6 +3,7 @@
 
 .chat-conversation-list-item {
   @edge-margin: 10px; // margin between elements and side of list container.
+  @indicator-width: 2px;
   @tile-margin: 10px; // gap for the indicator and close button.
   @top: chat-conversation-list-item;
 
@@ -71,12 +72,16 @@
     align-self: stretch;
     flex: 1;
     margin-left: @tile-margin;
+
+    @media @mobile {
+      margin-left: @indicator-width * 2;
+    }
   }
 
   &__unread-indicator {
     position: absolute;
     background: @green;
-    width: 2px;
+    width: @indicator-width;
     height: 10px;
     border-radius: 1px;
     pointer-events: none;
@@ -99,7 +104,7 @@
     }
 
     @media @mobile {
-      margin-left: 5px;
+      margin-left: @indicator-width;
     }
   }
 
