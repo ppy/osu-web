@@ -12,11 +12,11 @@ if [ ! -f artisan ]; then
 fi
 
 _run() {
-    docker-compose run php "$@"
+    docker-compose run --rm php "$@"
 }
 
 _run_dusk() {
-    docker-compose run -e APP_ENV=dusk.local php "$@"
+    docker-compose run --rm -e APP_ENV=dusk.local php "$@"
 }
 
 genkey=0

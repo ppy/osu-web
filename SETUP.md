@@ -66,8 +66,8 @@ At this point you should be able to access the site via whatever webserver you c
 - Run `bin/docker_dev.sh`.
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
-- To run any of the below commands, make sure you are using the docker container: `docker-compose run php`.
-  - To run artisan commands, run using `docker-compose run php artisan`.
+- To run any of the below commands, make sure you are using the docker container: `docker-compose run --rm php`.
+  - To run artisan commands, run using `docker-compose run --rm php artisan`.
 
 ---
 **Note**
@@ -87,25 +87,25 @@ Make sure to set `ES_INDEX_PREFIX` and all the databases to something other than
 Once the env files are set, database for testing will need to be setup:
 
 ```
-docker-compose run -e APP_ENV=testing php artisan migrate:fresh --yes
+docker-compose run --rm -e APP_ENV=testing php artisan migrate:fresh --yes
 ```
 
 Once setup, you can run either php test:
 
 ```
-docker-compose run php test phpunit
+docker-compose run --rm php test phpunit
 ```
 
 Or browser test:
 
 ```
-docker-compose run php test browser
+docker-compose run --rm php test browser
 ```
 
 Or javascript test:
 
 ```
-docker-compose run php test js
+docker-compose run --rm php test js
 ```
 
 ### Docker hints
@@ -165,7 +165,7 @@ Using own mysql client, connect to port 3306 or `MYSQL_EXTERNAL_PORT` if set whe
 Alternatively, there's mysql client installed in php service:
 
 ```
-docker-compose run php mysql
+docker-compose run --rm php mysql
 ```
 
 # Development
