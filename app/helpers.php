@@ -171,7 +171,7 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
 
 function cleanup_cookies()
 {
-    $host = request()->getHttpHost();
+    $host = request()->getHost();
     $domains = [$host, ''];
 
     $hostParts = explode('.', $host);
