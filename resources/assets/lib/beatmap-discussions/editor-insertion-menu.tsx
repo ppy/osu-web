@@ -271,8 +271,8 @@ export class EditorInsertionMenu extends React.Component<Props> {
       return this.forceHideMenu();
     }
 
-    this.insertRef.current.style.left = `${containerBounds.left + 100}px`;
-    this.insertRef.current.style.width = `${containerBounds.width - 200}px`;
+    this.insertRef.current.style.left = `${containerBounds.left + 15}px`;
+    this.insertRef.current.style.width = `${containerBounds.width - 30}px`;
 
     if (this.insertPosition === 'above') {
       this.insertRef.current.style.top = `${blockRect.top - 10}px`;
