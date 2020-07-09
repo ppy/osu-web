@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 export YARN_CACHE_FOLDER=/app/.docker/.yarn
 export COMPOSER_HOME=/app/.docker/.composer
 

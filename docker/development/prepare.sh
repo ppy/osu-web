@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 scriptdir="$(dirname "$0")"
 cd "$scriptdir/../.."
 
