@@ -58,14 +58,25 @@ At this point you should be able to access the site via whatever webserver you c
 
 - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/) (on Windows, it's already part of Docker install).
 - Install [git](https://git-scm.com).
-- Open terminal (or git bash on Windows).
-  - Also on windows, run `git config --global core.longpaths true`.
+- If using Windows, make sure it's running at least build 2004 and install Ubuntu (or another Linux distro of choice) from Windows Store. Additionally:
+  - Make sure it's running WSL2 (convert it if it's still using WSL1).
+  - Open Docker settings, go to Resources → WSL Integration → Enable integration with additional distros (enable for the installed distro).
+- Open terminal (or Linux console on Windows).
 - Clone this repository.
 - Run `bin/docker_dev.sh`.
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
 - To run any of the below commands, make sure you are using the docker container: `docker-compose run php`.
   - To run artisan commands, run using `docker-compose run php artisan`.
+
+---
+**Note**
+
+On Windows, the files inside Linux system can be found in Explorer from `\\wsl$` location.
+
+Default user home directory can be found inside `home` → `<username>`.
+
+---
 
 
 ### Testing
