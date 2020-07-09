@@ -44,6 +44,11 @@ if [ ! -f .env.dusk.local ]; then
     _run_dusk artisan key:generate
 fi
 
+if [ -d storage/oauth-public.key ]; then
+    echo "oauth-public.key is a directory. Removing it"
+    rmdir storage/oauth-public.key
+fi
+
 if [ ! -f storage/oauth-public.key ]; then
     echo "Generating passport key pair"
     _run artisan passport:keys
