@@ -60,7 +60,7 @@ class Room extends Model
 
         switch ($mode) {
             case 'ended':
-                $query->ended()->orderBy('ends_at', 'desc');
+                $query->ended();
                 $sort = 'ended';
                 break;
             case 'participated':
