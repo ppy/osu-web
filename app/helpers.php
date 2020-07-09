@@ -172,7 +172,11 @@ function class_with_modifiers(string $className, ?array $modifiers = null)
 function cleanup_cookies()
 {
     $host = request()->getHost();
-    $domains = [$host, ''];
+
+    // don't do anything for ip address access
+    if (filter_var($host, FILTER_VALIDATE_IP) !== false) {
+        return;
+    }
 
     $hostParts = explode('.', $host);
 
@@ -180,6 +184,8 @@ function cleanup_cookies()
     if (count($hostParts) === 1) {
         return;
     }
+
+    $domains = [$host, ''];
 
     while (count($hostParts) > 1) {
         array_shift($hostParts);
