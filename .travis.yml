@@ -85,7 +85,7 @@ jobs:
       script:
         - yarn
         - yarn lint
-        - ./bin/update-licence -nf
+        - ./bin/update_licence.sh -nf
 
     - name: karma
       env:
