@@ -46,9 +46,9 @@
     @media @desktop {
       position: absolute;
       opacity: 0;
-      background-color: @osu-colour-b5;
       height: 100%;
       margin-left: -@tile-margin;
+
       .@{top}:hover & {
         opacity: 1;
       }
@@ -56,6 +56,7 @@
 
     @media @mobile {
       display: none;
+
       .@{top}--selected & {
         display: block;
         margin-left: 5px;
@@ -91,6 +92,10 @@
 
     @media @desktop {
       margin-left: -$width;
+
+      .@{top}:hover & {
+        opacity: 0;
+      }
     }
 
     @media @mobile {
@@ -104,6 +109,7 @@
 
     @media @mobile {
       display: none;
+
       .@{top}--selected & {
         display: block;
         padding-right: @tile-margin;
