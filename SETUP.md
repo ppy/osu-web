@@ -56,7 +56,11 @@ At this point you should be able to access the site via whatever webserver you c
 
 ## 2\. Using Docker
 
-- First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/).
+- First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/) (on Windows, it's already part of Docker install).
+- Install [git](https://git-scm.com).
+- Open terminal (or git bash on Windows).
+  - Also on windows, run `git config --global core.longpaths true`.
+- Clone this repository.
 - Run `bin/docker_dev.sh`.
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
