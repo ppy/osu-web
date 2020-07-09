@@ -477,7 +477,6 @@
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@show",
         "middlewares": [
             "require-scopes",
-            "auth",
             "require-scopes:public"
         ],
         "scopes": [
@@ -490,7 +489,6 @@
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@show",
         "middlewares": [
             "require-scopes",
-            "auth",
             "require-scopes:public"
         ],
         "scopes": [
