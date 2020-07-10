@@ -7,7 +7,7 @@
 # 2. Add 'js-sticky-header' class to a marker element that should cause the sticky to show.
 class @StickyHeader
   constructor: ->
-    @debouncedOnScroll = _.debounce @onScroll, 100
+    @debouncedOnScroll = _.debounce @onScroll, 20
     @header = document.getElementsByClassName('js-pinned-header')
     @marker = document.getElementsByClassName('js-sticky-header')
     @pinnedSticky = document.getElementsByClassName('js-pinned-header-sticky')
@@ -36,6 +36,7 @@ class @StickyHeader
 
 
   onScroll: =>
+    console.log('scroll')
     @pin()
     @stickOrUnstick()
 
