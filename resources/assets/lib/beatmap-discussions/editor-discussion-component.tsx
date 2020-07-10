@@ -26,7 +26,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   componentDidMount = () => {
     // reset timestamp to null on clone
-    if (this.props.element.children[0].text === '') {
+    if (this.editable()) {
       Transforms.setNodes(this.context, {timestamp: null}, {at: this.path()});
     }
   }
