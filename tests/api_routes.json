@@ -433,6 +433,26 @@
     },
     {
         "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores/{score}",
+        "method": "GET",
+        "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@show",
+        "middlewares": [
+            "require-scopes",
+            "auth"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores/{score}",
+        "method": "HEAD",
+        "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@show",
+        "middlewares": [
+            "require-scopes",
+            "auth"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores/{score}",
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@update",
         "middlewares": [
