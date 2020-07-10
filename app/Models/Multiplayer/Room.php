@@ -250,7 +250,8 @@ class Room extends Model
             }
         });
 
-        return $this;
+        // to load db-level default attributes
+        return $this->fresh();
     }
 
     public function startPlay(User $user, PlaylistItem $playlistItem)
