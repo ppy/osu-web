@@ -6,6 +6,7 @@
 namespace App\Models\Multiplayer;
 
 use App\Exceptions\InvariantException;
+use App\Libraries\DbCursorHelper;
 use App\Models\Chat\Channel;
 use App\Models\Model;
 use App\Models\User;
@@ -33,11 +34,64 @@ class Room extends Model
 {
     use SoftDeletes;
 
+    const SORTS = [
+        'ended' => [
+            ['column' => 'ends_at', 'order' => 'desc', 'type' => 'time'],
+            ['column' => 'id', 'order' => 'desc', 'type' => 'int'],
+        ],
+        'created' => [
+            ['column' => 'id', 'order' => 'desc', 'type' => 'int'],
+        ],
+    ];
+
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
     protected $attributes = [
         'participant_count' => 0,
     ];
+
+    public static function search($params, $preloads = null, $includes = null)
+    {
+        $query = static::query();
+
+        $mode = presence(get_string($params['mode'] ?? null));
+        $user = $params['user'];
+        $sort = 'created';
+
+        switch ($mode) {
+            case 'ended':
+                $query->ended();
+                $sort = 'ended';
+                break;
+            case 'participated':
+                $query->hasParticipated($user);
+                break;
+            case 'owned':
+                $query->startedBy($user);
+                break;
+            default:
+                $query->active();
+        }
+
+        $category = presence(get_string($params['category'] ?? null)) ?? 'any';
+        if ($category !== 'any') {
+            $query->where('category', $category);
+        }
+
+        $cursorHelper = new DbCursorHelper(static::SORTS, $sort);
+        $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
+
+        $query->cursorSort($cursorHelper->getSort(), $cursor);
+
+        foreach ($preloads ?? [] as $preload) {
+            $query->with($preload);
+        }
+
+        $limit = clamp(get_int($params['limit'] ?? 250), 1, 250);
+        $query->limit($limit);
+
+        return json_collection($query->get(), 'Multiplayer\Room', $includes ?? []);
+    }
 
     public function channel()
     {

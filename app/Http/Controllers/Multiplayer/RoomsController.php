@@ -19,31 +19,11 @@ class RoomsController extends BaseController
 
     public function index()
     {
-        $rooms = Room::query();
-        $limit = clamp(get_int(request('limit')) ?? 250, 1, 250);
+        $params = request()->all();
+        $params['user'] = auth()->user();
 
-        $mode = request('mode');
-        if ($mode === 'ended') {
-            $rooms->ended()->orderBy('ends_at', 'desc');
-        } else {
-            if ($mode === 'participated') {
-                // TODO: should probably do some kind of caching on this.
-                $rooms->hasParticipated(auth()->user());
-            } elseif ($mode === 'owned') {
-                $rooms->startedBy(auth()->user());
-            } else {
-                $rooms->active();
-            }
-
-            $rooms->orderBy('id', 'desc');
-        }
-
-        return json_collection(
-            $rooms
-                ->with('host.country')
-                ->with('playlist.beatmap.beatmapset')
-                ->paginate($limit),
-            'Multiplayer\Room',
+        return Room::search($params,
+            ['host.country', 'playlist.beatmap.beatmapset'],
             [
                 'host.country',
                 'playlist.beatmap.beatmapset',
