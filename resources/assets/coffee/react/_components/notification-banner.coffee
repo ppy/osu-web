@@ -38,8 +38,7 @@ export class NotificationBanner extends React.PureComponent
 
 
   removePortalContainer: =>
-    if @portalContainer.offsetParent?
-      notificationBanners[0].removeChild @portalContainer
+    @portalContainer.remove()
 
 
   createPortalContainer: =>
