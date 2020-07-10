@@ -36,7 +36,6 @@ class @StickyHeader
 
 
   onScroll: =>
-    console.log('scroll')
     @pin()
     @stickOrUnstick()
 
