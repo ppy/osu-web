@@ -73,11 +73,8 @@ class Room extends Model
                 $query->active();
         }
 
-        $category = presence(get_string($params['category'] ?? null));
-
-        if ($category !== null) {
-            $query->where('category', $category);
-        }
+        $category = presence(get_string($params['category'] ?? null)) ?? 'normal';
+        $query->where('category', $category);
 
         $cursorHelper = new DbCursorHelper(static::SORTS, $sort);
         $cursor = $cursorHelper->prepare($params['cursor'] ?? null);
