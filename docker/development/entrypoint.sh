@@ -62,7 +62,7 @@ _test() {
 }
 
 _watch() {
-    _run yarnpkg
+    _run yarnpkg --network-timeout 100000
     _rexec yarnpkg watch
 }
 
