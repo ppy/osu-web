@@ -73,7 +73,7 @@ export function parseFromJson(json: string, discussions: Record<number, BeatmapD
           }],
           discussionId: discussion.id,
           discussionType: discussion.message_type,
-          timestamp: discussion.timestamp,
+          timestamp: discussion.timestamp ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp) : null,
           type: 'embed',
         });
         break;
