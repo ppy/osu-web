@@ -17,10 +17,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'performance',
         'charts' => 'spotlights',
-        'score' => 'score',
         'country' => 'country',
+        'multiplayer' => 'multiplayer',
+        'performance' => 'performance',
+        'score' => 'score',
     ],
 
     'spotlight' => [

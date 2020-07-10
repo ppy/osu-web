@@ -966,6 +966,7 @@ function nav_links()
         'charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
         'score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
         'country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
+        'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
         'kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['community'] = [
