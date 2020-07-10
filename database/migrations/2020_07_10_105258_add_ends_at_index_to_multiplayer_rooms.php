@@ -29,7 +29,7 @@ class AddEndsAtIndexToMultiplayerRooms extends Migration
     public function down()
     {
         Schema::table('multiplayer_rooms', function (Blueprint $table) {
-            $table->dropIndex('ends_at');
+            $table->dropIndex(['ends_at']);
         });
     }
 }
