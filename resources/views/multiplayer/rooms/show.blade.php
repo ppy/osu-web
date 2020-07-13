@@ -10,7 +10,7 @@
     'country' => null,
     'hasFilter' => false,
     'hasMode' => false,
-    'hasPager' => false,
+    'hasPager' => true,
     'spotlight' => null,
     'titlePrepend' => trans('rankings.type.multiplayer').': '.$room->name,
     'type' => 'multiplayer',

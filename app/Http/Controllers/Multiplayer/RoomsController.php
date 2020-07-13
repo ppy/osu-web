@@ -102,7 +102,7 @@ class RoomsController extends BaseController
 
         $beatmaps = $room->playlist()->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
         $beatmapsets = $beatmaps->pluck('beatmapset');
-        $highScores = $room->topScores()->limit(50)->get();
+        $highScores = $room->topScores()->paginate(50);
         $spotlightRooms = Room::where('category', 'spotlight')->orderBy('id', 'DESC')->get();
 
         return ext_view('multiplayer.rooms.show', [
