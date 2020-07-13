@@ -28,11 +28,6 @@ class RoomUserHighScore extends Model
 {
     protected $table = 'multiplayer_rooms_high';
 
-    public function averageAccuracy()
-    {
-        return $this->completed > 0 ? $this->accuracy / $this->completed : 0;
-    }
-
     public function room()
     {
         return $this->belongsTo(Room::class);
