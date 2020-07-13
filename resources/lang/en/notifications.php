@@ -136,37 +136,37 @@ return [
 
     'mail' => [
         'beatmapset' => [
-            'beatmapset_discussion' => 'The discussion on ":title" has new updates:',
-            'beatmapset_discussion_lock' => 'The discussion on ":title" has been locked:',
-            'beatmapset_discussion_unlock' => 'The discussion on ":title" has been unlocked:',
-            'beatmapset_problem' => 'A new problem reported was reported on ":title":',
-            'beatmapset_state' => 'The state of ":title" has changed:',
-            'comment' => '":title" has new comments:',
+            'beatmapset_discussion' => 'The discussion on ":title" has new updates',
+            'beatmapset_discussion_lock' => 'The discussion on ":title" has been locked',
+            'beatmapset_discussion_unlock' => 'The discussion on ":title" has been unlocked',
+            'beatmapset_problem' => 'A new problem reported was reported on ":title"',
+            'beatmapset_state' => 'The state of ":title" has changed',
+            'comment' => '":title" has new comments',
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => 'You\'ve received a new message from :username:',
+                'pm' => 'You\'ve received a new message from :username',
             ],
         ],
 
         'build' => [
-            'comment' => '":title" has new comments:',
+            'comment' => '":title" has new comments',
         ],
 
         'news_post' => [
-            'comment' => '":title" has new comments:',
+            'comment' => '":title" has new comments',
         ],
 
         'forum_topic' => [
-            'forum_topic_reply' => 'There are new replies in ":title":',
+            'forum_topic_reply' => 'There are new replies in ":title"',
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => ':username has unlocked a new medal!:',
-            'user_achievement_unlock_mode' => ':username has unlocked a new :achievement_mode medal!:',
-            'user_achievement_unlock_self' => 'You\'ve unlocked a new medal!:',
-            'user_achievement_unlock_mode_self' => 'You\'ve unlocked a new :achievement_mode medal!:',
+            'user_achievement_unlock' => ':username has unlocked a new medal!',
+            'user_achievement_unlock_mode' => ':username has unlocked a new :achievement_mode medal!',
+            'user_achievement_unlock_self' => 'You\'ve unlocked a new medal!',
+            'user_achievement_unlock_mode_self' => 'You\'ve unlocked a new :achievement_mode medal!',
         ],
     ],
 ];

@@ -7,7 +7,7 @@
 {!! trans('mail.user_notification_digest.new') !!}
 
 @foreach ($groups as $group)
-{!! $group['text'] !!}
+{!! $group['text'] !!}:
 {!! $group['link'] !!}
 
 @endforeach
