@@ -27,6 +27,18 @@ class NotificationsSendMailTest extends TestCase
         Mail::assertNotSent(UserNotificationDigest::class);
     }
 
+    public function testLastNotificationIdSentDoesNotGoBackwards()
+    {
+        $to = Notification::orderBy('id', 'desc')->first()->getKey();
+        $lastId = Count::lastMailNotificationIdSent();
+        $lastId->count = $to + 10;
+        $lastId->save();
+
+        $this->artisan('notifications:send-mail', ['--from' => 0, '--to' => $to]);
+        Mail::assertSent(UserNotificationDigest::class, 1);
+        $this->assertSame($to + 10, Count::lastMailNotificationIdSent()->count);
+    }
+
     public function testSendsMailAndUpdatesCounter()
     {
         $this->artisan('notifications:send-mail');

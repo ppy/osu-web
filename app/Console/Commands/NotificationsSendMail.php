@@ -66,7 +66,9 @@ class NotificationsSendMail extends Command
             }
         }
 
-        $lastIdRow->count = $toId;
-        $lastIdRow->save();
+        if ($toId > $lastIdRow->count) {
+            $lastIdRow->count = $toId;
+            $lastIdRow->save();
+        }
     }
 }
