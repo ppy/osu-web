@@ -44,7 +44,7 @@
                     {{ format_percentage($score->averageAccuracy() * 100) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                    {{ i18n_number_format($score->completed) }}
+                    {{ i18n_number_format($score->attempts) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--focused">
                     {!! suffixed_number_format_tag($score->total_score) !!}
