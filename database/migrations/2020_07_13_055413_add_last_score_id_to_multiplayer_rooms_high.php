@@ -31,7 +31,9 @@ class AddLastScoreIdToMultiplayerRoomsHigh extends Migration
                     pi.room_id = multiplayer_rooms_high.room_id
                     AND sh.user_id = multiplayer_rooms_high.user_id
             )
-            WHERE attempts > 0
+            WHERE
+                completed > 0
+                AND last_score_id IS NULL
         ');
     }
 
