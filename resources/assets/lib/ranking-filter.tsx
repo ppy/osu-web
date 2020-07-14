@@ -96,15 +96,21 @@ export default class RankingFilter extends React.PureComponent<Props> {
     return (
       <div className='ranking-filter'>
         <div className='ranking-filter__item ranking-filter__item--full'>
+          <div className='ranking-filter__item--title'>
+            {osu.trans('rankings.countries.title')}
+          </div>
           {this.renderCountries()}
         </div>
 
         {currentUser.id != null && (
           <div className='ranking-filter__item'>
+            <div className='ranking-filter__item--title'>
+              {osu.trans('rankings.filter.title')}
+            </div>
             <Sort
               currentValue={this.filterMode ?? 'all'}
               onChange={this.handleFilterChange}
-              title={osu.trans('rankings.filter.title')}
+              title=''
               values={['all', 'friends']}
             />
           </div>
@@ -112,6 +118,9 @@ export default class RankingFilter extends React.PureComponent<Props> {
 
         {this.props.variants != null && (
           <div className='ranking-filter__item'>
+            <div className='ranking-filter__item--title'>
+              {osu.trans('rankings.filter.variant.title')}
+            </div>
             {this.renderVariants()}
           </div>
         )}
@@ -152,7 +161,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
       <Sort
         currentValue={this.currentVariant ?? 'all'}
         onChange={this.handleVariantChange}
-        title={osu.trans('rankings.filter.variant.title')}
+        title=''
         transPrefix={`beatmaps.variant.${this.props.gameMode}.`}
         values={this.props.variants}
       />
