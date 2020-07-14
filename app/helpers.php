@@ -478,6 +478,11 @@ function mysql_escape_like($string)
     return addcslashes($string, '%_\\');
 }
 
+function oauth_token(): ?App\Models\OAuth\Token
+{
+    return request()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
+}
+
 function osu_url($key)
 {
     $url = config("osu.urls.{$key}");
