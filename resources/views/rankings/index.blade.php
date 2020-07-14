@@ -7,6 +7,10 @@
         'type' => $type,
         'mode' => $mode,
         'route' => function($routeMode, $routeType) use ($country, $spotlight) {
+            if ($routeType === 'multiplayer') {
+                return route('multiplayer.rooms.show', ['room' => 'latest']);
+            }
+
             if ($routeType === 'country') {
                 return route('rankings', ['mode' => $routeMode, 'type' => $routeType]);
             }
@@ -21,7 +25,7 @@
     ];
 
     $links = [];
-    foreach (['performance', 'charts', 'score', 'country'] as $tab) {
+    foreach (['performance', 'charts', 'score', 'country', 'multiplayer'] as $tab) {
         $links[] = [
             'active' => $tab === $type,
             'title' => trans("rankings.type.{$tab}"),
@@ -36,23 +40,28 @@
             array_unshift($variants, 'all');
         }
     }
+
+    $hasMode = $hasMode ?? true;
+    $hasFilter = $hasFilter ?? true;
 @endphp
 
-@extends('master', ['titlePrepend' => trans("rankings.type.{$type}")])
+@extends('master', ['titlePrepend' => $titlePrepend ?? trans("rankings.type.{$type}")])
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
         'links' => $links,
         'theme' => 'rankings',
     ]])
-        @slot('titleAppend')
-            @include('rankings._mode_selector', $selectorParams)
-        @endslot
+        @if ($hasMode)
+            @slot('titleAppend')
+                @include('rankings._mode_selector', $selectorParams)
+            @endslot
+        @endif
     @endcomponent
 
     @yield('ranking-header')
 
-    @if ($type !== 'country')
+    @if ($hasFilter)
         <div class="osu-page osu-page--description">
             <div
                 class="js-react--ranking-filter"

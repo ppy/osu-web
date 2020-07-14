@@ -112,6 +112,10 @@ class RouteSection
         ],
         'multiplayer' => [
             '_' => 'multiplayer',
+
+            'rooms_controller' => [
+                '_' => 'rankings',
+            ],
         ],
         'multiplayer_rooms_playlist' => [
             '_' => 'multiplayer',

@@ -28,13 +28,13 @@ class RoomUserHighScore extends Model
 {
     protected $table = 'multiplayer_rooms_high';
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
     public function room()
     {
         return $this->belongsTo(Room::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
