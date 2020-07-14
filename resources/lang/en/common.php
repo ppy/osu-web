@@ -128,6 +128,21 @@ return [
         'count_miss' => 'Miss',
     ],
 
+    'scoreboard_time' => [
+        'd' => '%d d',
+        'dd' => '%d d',
+        'h' => '%d hr',
+        'hh' => '%d hr',
+        'M' => '%d mo',
+        'm' => '%d min',
+        'MM' => '%d mo',
+        'mm' => '%d min',
+        'past' => '%s',
+        's' => '%d sec',
+        'y' => '%d yr',
+        'yy' => '%d yr',
+    ],
+
     'time' => [
         'days_ago' => ':count_delimited day ago|:count_delimited days ago',
         'hours_ago' => ':count_delimited hour ago|:count_delimited hours ago',
