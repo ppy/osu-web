@@ -40,6 +40,7 @@ export class ScoreboardTable extends React.PureComponent
                 th key: stat[0], className: "#{bn}__header #{bn}__header--hitstat", stat[0]
               th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
               th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
+              th className: "#{bn}__header #{bn}__header--time", osu.trans('beatmapsets.show.scoreboard.headers.time')
               th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
               th className: "#{bn}__header #{bn}__header--popup-menu"
 
