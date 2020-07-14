@@ -31,7 +31,12 @@
     .link-plain();
     font-weight: bold;
     color: white;
-    margin: 5px 10px;
+    margin: 0 10px;
+
+    @media @mobile {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
 
     &:hover, &:focus, &:active {
       color: @osu-colour-l1;
