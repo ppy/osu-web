@@ -22,6 +22,7 @@ import { MessageJSON } from './chat-api-responses';
 @dispatchListener
 export default class ChatOrchestrator implements DispatchListener {
   private api: ChatAPI;
+  private markingAsRead: Record<number, number> = {};
   private windowIsActive: boolean = true;
 
   constructor(private rootDataStore: RootDataStore) {
@@ -157,28 +158,38 @@ export default class ChatOrchestrator implements DispatchListener {
   }
 
   markAsRead(channelId: number) {
+    if (this.markingAsRead[channelId] != null) {
+      return;
+    }
+
+    // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
     const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
-    const lastReadId = channel.lastMessageId;
 
     if (!channel.isUnread) {
       return;
     }
 
-    // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
-    const lastSentMessage = channel.messages[channel.messages.length - 1];
-    if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
-      channel.lastReadId = lastReadId;
+    this.markingAsRead[channelId] = window.setTimeout(() => {
+      const lastReadId = channel.lastMessageId;
 
-      return;
-    }
-
-    this.api.markAsRead(channel.channelId, lastReadId)
-      .then(() => {
+      const lastSentMessage = channel.messages[channel.messages.length - 1];
+      if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
         channel.lastReadId = lastReadId;
-      })
-      .catch((err) => {
-        console.debug('markAsRead error', err);
-      });
+
+        return;
+      }
+
+      this.api.markAsRead(channel.channelId, lastReadId)
+        .then(() => {
+          channel.lastReadId = lastReadId;
+        })
+        .catch((err) => {
+          console.debug('markAsRead error', err);
+        })
+        .finally(() => {
+          delete this.markingAsRead[channelId];
+        });
+    }, 1000);
   }
 
   private handleChatChannelPartAction(action: ChatChannelPartAction) {
