@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .ranking-filter {
+  @top: ranking-filter;
   --gutter: 10px;
   display: flex;
   flex-direction: column;
@@ -13,22 +14,37 @@
   }
 
   &__item {
-    padding: var(--gutter);
+    padding: 5px var(--gutter);
     flex: 1;
+    display: flex;
+    align-items: center;
 
     @media @desktop {
       flex: none;
+      display: block;
     }
 
     &--title {
-      padding: 10px;
       font-weight: bold;
       text-transform: uppercase;
+      font-size: @font-size--normal-2;
+
+      @media @desktop {
+        margin-bottom: 10px;
+        padding: 0 10px;
+      }
     }
 
     &--full {
+      display: block;
+
       @media @desktop {
         flex: 1;
+      }
+
+      .@{top}__item--title {
+        padding: 0;
+        margin-bottom: 10px;
       }
     }
   }
