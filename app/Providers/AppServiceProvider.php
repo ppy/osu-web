@@ -6,7 +6,6 @@
 namespace App\Providers;
 
 use App\Hashing\OsuHashManager;
-use App\Http\Middleware\RequireScopes;
 use App\Http\Middleware\StartSession;
 use App\Libraries\Groups;
 use App\Libraries\MorphMap;
@@ -82,10 +81,6 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('OsuAuthorize', function () {
             return new OsuAuthorize();
-        });
-
-        $this->app->singleton(RequireScopes::class, function () {
-            return new RequireScopes;
         });
 
         $this->app->singleton('route-section', function () {

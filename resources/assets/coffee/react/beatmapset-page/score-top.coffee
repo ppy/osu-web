@@ -6,6 +6,7 @@ import { route } from 'laroute'
 import { Mods } from 'mods'
 import * as React from 'react'
 import { div, a } from 'react-dom-factories'
+import ScoreboardTime from 'scoreboard-time'
 import { classWithModifiers } from 'utils/css'
 
 el = React.createElement
@@ -98,6 +99,13 @@ export ScoreTop = (props) ->
               osu.trans 'beatmapsets.show.scoreboard.headers.pp'
             div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
               _.round props.score.pp
+
+          div className: "#{bn}__stat",
+            div className: "#{bn}__stat-header",
+              osu.trans 'beatmapsets.show.scoreboard.headers.time'
+            div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
+              el ScoreboardTime,
+                dateTime: props.score.created_at
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--mods",
