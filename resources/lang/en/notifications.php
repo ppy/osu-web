@@ -141,7 +141,7 @@ return [
             'beatmapset_discussion_unlock' => 'The discussion on ":title" has been unlocked',
             'beatmapset_problem' => 'A new problem reported was reported on ":title"',
             'beatmapset_state' => 'The state of ":title" has changed',
-            'comment' => '":title" has new comments',
+            'comment' => ' Beatmap ":title" has new comments',
         ],
 
         'channel' => [
@@ -151,11 +151,11 @@ return [
         ],
 
         'build' => [
-            'comment' => '":title" has new comments',
+            'comment' => 'Changelog ":title" has new comments',
         ],
 
         'news_post' => [
-            'comment' => '":title" has new comments',
+            'comment' => 'News ":title" has new comments',
         ],
 
         'forum_topic' => [
