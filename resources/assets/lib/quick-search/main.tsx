@@ -77,7 +77,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   }
 
   private count(mode: ResultMode) {
-    if (this.props.worker.searchResult === null) {
+    if (this.props.worker.searchResult === null || this.props.worker.searchResult[mode] === undefined) {
       return 0;
     }
 
@@ -107,7 +107,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   }
 
   private renderBeatmapsets() {
-    if (this.props.worker.searchResult == null) {
+    if (this.props.worker.searchResult === null || this.props.worker.searchResult.beatmapset === undefined) {
       return null;
     }
 
