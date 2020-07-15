@@ -1515,7 +1515,8 @@ class OsuAuthorize
 
     public function checkIsNotOAuth(?User $user): string
     {
-        if (optional($user)->token() === null) {
+        // TODO: add test that asserts oauth_token is always set if user()->token() exists.
+        if (oauth_token() === null) {
             return 'ok';
         }
 

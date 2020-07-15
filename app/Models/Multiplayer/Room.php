@@ -284,16 +284,13 @@ class Room extends Model
 
     public function topScores()
     {
-        $userIdsQuery = User::default()
-            ->whereIn('user_id', Score::where('room_id', $this->getKey())->select('user_id'))
-            ->select('user_id');
-
         return UserScoreAggregate::where('room_id', $this->getKey())
             ->where('completed', '>', 0)
-            ->whereIn('user_id', $userIdsQuery)
-            ->orderBy('total_score', 'desc')
-            ->orderBy('updated_at', 'asc')
-            ->orderBy('id', 'asc')
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->orderBy('total_score', 'DESC')
+            ->orderBy('last_score_id', 'ASC')
             ->with('user.country');
     }
 

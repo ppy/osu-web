@@ -22,7 +22,7 @@
         @foreach ($scores as $index => $score)
             <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
                 <td class="ranking-page-table__column ranking-page-table__column--rank">
-                    #{{ $index + 1 }}
+                    #{{ $scores->firstItem() + $index }}
                 </td>
                 <td class="ranking-page-table__column">
                     <div class="ranking-page-table__user-link">
@@ -44,7 +44,7 @@
                     {{ format_percentage($score->averageAccuracy() * 100) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                    {{ i18n_number_format($score->completed) }}
+                    {{ i18n_number_format($score->attempts) }}
                 </td>
                 <td class="ranking-page-table__column ranking-page-table__column--focused">
                     {!! suffixed_number_format_tag($score->total_score) !!}
