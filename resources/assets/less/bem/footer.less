@@ -24,6 +24,7 @@
     margin-bottom: 5px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   &__link {
@@ -31,6 +32,11 @@
     font-weight: bold;
     color: white;
     margin: 0 10px;
+
+    @media @mobile {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
 
     &:hover, &:focus, &:active {
       color: @osu-colour-l1;
