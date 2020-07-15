@@ -125,6 +125,11 @@ class UserNotification extends Model
         return $query->where('delivery', '&', static::deliveryMask('mail'));
     }
 
+    public function scopeHasPushDelivery($query)
+    {
+        return $query->where('delivery', '&', static::deliveryMask('push'));
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
