@@ -100,7 +100,7 @@ export class ReactTurbolinks
 
     return if !newVisit || @scrolled
 
-    targetId = document.location.hash.substr(1)
+    targetId = decodeURIComponent document.location.hash.substr(1)
 
     return if targetId == ''
 

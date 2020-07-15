@@ -121,7 +121,8 @@ export default class Worker {
   }
 
   @action search() {
-    if (this.query.length === 0) {
+    const query = this.query.trim();
+    if (query.length === 0) {
       this.reset();
 
       return;
@@ -129,7 +130,7 @@ export default class Worker {
 
     this.searching = true;
 
-    this.xhr = $.get(route('quick-search'), { query: this.query })
+    this.xhr = $.get(route('quick-search'), { query })
     .done(action((searchResult: SearchResult) => {
       this.searchResult = searchResult;
       this.selected = null;

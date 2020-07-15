@@ -478,6 +478,11 @@ function mysql_escape_like($string)
     return addcslashes($string, '%_\\');
 }
 
+function oauth_token(): ?App\Models\OAuth\Token
+{
+    return request()->attributes->get(App\Http\Middleware\AuthApi::REQUEST_OAUTH_TOKEN_KEY);
+}
+
 function osu_url($key)
 {
     $url = config("osu.urls.{$key}");
@@ -494,9 +499,9 @@ function pack_str($str)
     return pack('ccH*', 0x0b, strlen($str), bin2hex($str));
 }
 
-function pagination($params)
+function pagination($params, $defaults = null)
 {
-    $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 5, 50);
+    $limit = clamp(get_int($params['limit'] ?? null) ?? $defaults['limit'] ?? 20, 5, 50);
     $page = max(get_int($params['page'] ?? null) ?? 1, 1);
 
     $offset = max_offset($page, $limit);
@@ -966,6 +971,7 @@ function nav_links()
         'charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
         'score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
         'country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
+        'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
         'kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['community'] = [
