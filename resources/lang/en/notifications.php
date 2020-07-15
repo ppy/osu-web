@@ -163,10 +163,8 @@ return [
         ],
 
         'user_achievement' => [
-            'user_achievement_unlock' => ':username has unlocked a new medal!',
-            'user_achievement_unlock_mode' => ':username has unlocked a new :achievement_mode medal!',
-            'user_achievement_unlock_self' => 'You\'ve unlocked a new medal!',
-            'user_achievement_unlock_mode_self' => 'You\'ve unlocked a new :achievement_mode medal!',
+            'user_achievement_unlock' => ':username has unlocked a new medal, ":title"!',
+            'user_achievement_unlock_self' => 'You\'ve unlocked a new medal, ":title"!',
         ],
     ],
 ];
