@@ -1095,7 +1095,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable
             return presence($this->title_unicode) ?? $this->title;
         }
 
-
         return $this->title;
     }
 
