@@ -1088,6 +1088,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
+    public function getDisplayTitle()
+    {
+        $showOriginal = auth()->user()->userProfileCustomization->options['beatmapset_title_show_original'] ?? false;
+        if ($showOriginal) {
+            return presence($this->title_unicode) ?? $this->title;
+        }
+
+
+        return $this->title;
+    }
+
     public function getPost()
     {
         $topic = Forum\Topic::find($this->thread_id);
