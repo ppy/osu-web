@@ -79,9 +79,9 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         foreach ($userIds as $userId) {
             $details = optional($notificationOptions[$userId] ?? null)->details ?? $defaults;
             $delivery = 0;
-            foreach (UserNotification::DELIVERY_OFFSETS as $key => $offset) {
-                if ($details[$key] ?? $defaults[$key]) {
-                    $delivery |= 1 << $offset;
+            foreach (UserNotification::DELIVERY_OFFSETS as $type => $_offset) {
+                if ($details[$type] ?? $defaults[$type]) {
+                    $delivery |= UserNotification::deliveryMask($type);
                 }
             }
 
