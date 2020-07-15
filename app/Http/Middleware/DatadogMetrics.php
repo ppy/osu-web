@@ -29,6 +29,7 @@ class DatadogMetrics extends LaravelDatadogMiddleware
             'namespace' => 'error',
             'section' => 'error',
             'status_code' => $response->getStatusCode(),
+            'status_code_extra' => $request->attributes->get('status_code_extra'),
         ];
 
         $tags = array_merge($tags, app('route-section')->getCurrent());

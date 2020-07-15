@@ -208,6 +208,10 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('legal/{page}', 'LegalController@show')->name('legal');
 
+    Route::group(['prefix' => 'multiplayer', 'as' => 'multiplayer.', 'namespace' => 'Multiplayer'], function () {
+        Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
+    });
+
     Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], function () {
         Route::resource('authorized-clients', 'AuthorizedClientsController', ['only' => ['destroy']]);
         Route::resource('clients', 'ClientsController', ['except' => ['create', 'edit', 'show']]);
@@ -368,7 +372,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
             Route::delete('{room}/users/{user}', 'Multiplayer\RoomsController@part')->name('part');
             Route::get('{room}/leaderboard', 'Multiplayer\RoomsController@leaderboard');
             Route::group(['as' => 'playlist.', 'prefix' => '{room}/playlist'], function () {
-                Route::apiResource('{playlist}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['index', 'store', 'update']]);
+                Route::apiResource('{playlist}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['index', 'show', 'store', 'update']]);
             });
         });
 
@@ -453,12 +457,3 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 });
-
-// status
-if (Config::get('app.env') === 'production') {
-    Route::group(['domain' => 'stat.ppy.sh'], function () {
-        Route::get('/', 'StatusController@getMain')->name('status.index');
-    });
-} else {
-    Route::get('/status', 'StatusController@getMain')->name('status.index');
-}

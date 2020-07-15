@@ -433,6 +433,26 @@
     },
     {
         "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores/{score}",
+        "method": "GET",
+        "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@show",
+        "middlewares": [
+            "require-scopes",
+            "auth"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores/{score}",
+        "method": "HEAD",
+        "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@show",
+        "middlewares": [
+            "require-scopes",
+            "auth"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/rooms/{room}/playlist/{playlist}/scores/{score}",
         "method": "PUT",
         "controller": "App\\Http\\Controllers\\Multiplayer\\Rooms\\Playlist\\ScoresController@update",
         "middlewares": [
@@ -477,7 +497,6 @@
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@show",
         "middlewares": [
             "require-scopes",
-            "auth",
             "require-scopes:public"
         ],
         "scopes": [
@@ -490,7 +509,6 @@
         "controller": "App\\Http\\Controllers\\Multiplayer\\RoomsController@show",
         "middlewares": [
             "require-scopes",
-            "auth",
             "require-scopes:public"
         ],
         "scopes": [
@@ -729,6 +747,7 @@
         "controller": "App\\Http\\Controllers\\UsersController@me",
         "middlewares": [
             "require-scopes",
+            "auth",
             "require-scopes:identify"
         ],
         "scopes": [
@@ -741,6 +760,7 @@
         "controller": "App\\Http\\Controllers\\UsersController@me",
         "middlewares": [
             "require-scopes",
+            "auth",
             "require-scopes:identify"
         ],
         "scopes": [

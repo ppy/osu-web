@@ -4,7 +4,7 @@
 --}}
 @extends('master', [
     'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
-    'pageDescription' => trans('users.show.page_description', ['username' => $user->username]),
+    'pageDescription' => page_description($user->username),
 ])
 
 @section('content')

@@ -170,7 +170,13 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     public function author()
     {
         if (!isset($this->page['header']['author']) && !isset($this->page['author'])) {
-            $authorLine = array_last(explode("\n", trim(strip_tags($this->bodyHtml()))));
+            $authorLine = html_entity_decode_better(
+                array_last(
+                    explode("\n", trim(
+                        strip_tags($this->bodyHtml())
+                    ))
+                )
+            );
 
             if (preg_match('/^[—–][^—–]/', $authorLine) === false) {
                 $author = 'osu!news Team';
