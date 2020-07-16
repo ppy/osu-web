@@ -5,7 +5,7 @@
 @php
     $title = trans('scores.show.title', [
         'username' => $score->user->username,
-        'title' => $score->beatmap->beatmapset->getDisplayTitle(),
+        'title' => $score->beatmap->beatmapset->getDisplayTitle(auth()->user()),
         'version' => $score->beatmap->version,
     ]);
 @endphp
