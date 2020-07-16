@@ -98,6 +98,8 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             $receiverIds = static::filterUserIdsForNotificationOption($receiverIds);
         }
 
+        $receiverIds = static::excludeBotUserIds($receiverIds);
+
         if (empty($receiverIds)) {
             return;
         }
@@ -131,5 +133,14 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         }
 
         return $notification;
+    }
+
+    private static function excludeBotUserIds(array $userIds)
+    {
+        return User
+            ::whereIn('user_id', $userIds)
+            ->where('group_id', '<>', app('groups')->byIdentifier('bot')->getKey())
+            ->pluck('user_id')
+            ->all();
     }
 }
