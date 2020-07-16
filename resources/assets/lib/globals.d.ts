@@ -12,8 +12,6 @@ interface ProcessEnv {
 
 declare var process: Process;
 
-declare var window: Window;
-
 // TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
 declare var Turbolinks: TurbolinksStatic;
 

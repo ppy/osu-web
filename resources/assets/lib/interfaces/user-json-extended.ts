@@ -8,4 +8,6 @@ export default interface UserJSONExtended extends UserJSON {
   is_admin: boolean;
   is_moderator: boolean;
   unread_pm_count?: number;
+  // FIXME: currentUser should have own type so this is not optional.
+  user_preferences?: Record<string, any>;
 }

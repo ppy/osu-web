@@ -9,6 +9,7 @@ import { categoryFromName, categoryGroupKey } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
+import core from 'osu-core-singleton';
 
 export default class Notification implements NotificationReadable {
   createdAtJson?: string;
@@ -64,7 +65,7 @@ export default class Notification implements NotificationReadable {
   }
 
   @computed get title() {
-    if (currentUser?.user_preferences?.beatmapset_title_show_original) {
+    if (core.currentUser?.user_preferences?.beatmapset_title_show_original) {
       return osu.presence(this.details.titleUnicode) ?? this.details.title;
     }
 

@@ -5,13 +5,14 @@ import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controlle
 import ChatOrchestrator from 'chat/chat-orchestrator';
 import ChatWorker from 'chat/chat-worker';
 import UserJSON from 'interfaces/user-json';
+import UserJSONExtended from 'interfaces/user-json-extended';
 import RootDataStore from 'stores/root-data-store';
 import UserLoginObserver from 'user-login-observer';
 import WindowFocusObserver from './window-focus-observer';
 
 declare global {
   interface Window {
-    currentUser: UserJSON;
+    currentUser: UserJSONExtended;
   }
 }
 
@@ -48,7 +49,7 @@ export default class OsuCore {
     $.subscribe('user:update', this.setUser);
   }
 
-  get currentUser() {
+  get currentUser(): UserJSONExtended {
     return window.currentUser;
   }
 
