@@ -1,13 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import * as React from "react";
+import * as React from 'react';
 
 interface Props {
   currentValue: string;
   modifiers?: string[];
-  title?: string;
   showTitle?: boolean;
+  title?: string;
   transPrefix: string;
   values: string[];
   onChange(event: React.MouseEvent<HTMLButtonElement>): void;
@@ -16,7 +16,7 @@ interface Props {
 export class Sort extends React.PureComponent<Props> {
   static readonly defaultProps = {
     showTitle: true,
-    transPrefix: "sort."
+    transPrefix: 'sort.',
   };
 
   render() {
@@ -45,10 +45,10 @@ export class Sort extends React.PureComponent<Props> {
     });
 
     return (
-      <div className={osu.classWithModifiers("sort", this.props.modifiers)}>
-        <div className="sort__items">
+      <div className={osu.classWithModifiers('sort', this.props.modifiers)}>
+        <div className='sort__items'>
           {this.props.showTitle && (
-            <span className="sort__item sort__item--title">{this.props.title ?? osu.trans("sort._")}</span>
+            <span className='sort__item sort__item--title'>{this.props.title ?? osu.trans('sort._')}</span>
           )}
           {items}
         </div>
