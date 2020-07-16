@@ -17,12 +17,15 @@
 
   display: flex;
   justify-content: space-around;
+  --image-width: @mod-width-normal;
 
   &--profile-page {
     width: auto;
     padding: 0;
     flex-wrap: wrap;
     justify-content: flex-start;
+    font-size: @mod-height-normal;
+    --image-width: auto;
   }
 
   &--scoreboard {
@@ -73,7 +76,7 @@
   }
 
   &__mod-image {
-    min-width: @mod-width-normal;
+    min-width: var(--image-width);
 
     .@{top}--scoreboard & {
       min-width: 25px;
