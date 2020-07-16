@@ -96,9 +96,6 @@ export default class RankingFilter extends React.PureComponent<Props> {
     return (
       <div className='ranking-filter'>
         <div className='ranking-filter__item ranking-filter__item--full'>
-          <div className='ranking-filter__item--title'>
-            {osu.trans('rankings.countries.title')}
-          </div>
           {this.renderCountries()}
         </div>
 
@@ -132,13 +129,18 @@ export default class RankingFilter extends React.PureComponent<Props> {
     if (this.props.type !== 'performance') return null;
 
     return (
-      <SelectOptions
-        bn='ranking-select-options'
-        onChange={this.handleCountryChange}
-        options={[...this.options.values()]} // TODO: change to iterable
-        renderOption={this.renderOption}
-        selected={this.selectedOption}
-      />
+      <>
+        <div className='ranking-filter__item--title'>
+          {osu.trans('rankings.countries.title')}
+        </div>
+        <SelectOptions
+          bn='ranking-select-options'
+          onChange={this.handleCountryChange}
+          options={[...this.options.values()]} // TODO: change to iterable
+          renderOption={this.renderOption}
+          selected={this.selectedOption}
+        />
+      </>
     );
   }
 
