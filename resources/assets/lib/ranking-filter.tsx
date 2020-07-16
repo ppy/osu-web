@@ -110,7 +110,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
             <Sort
               currentValue={this.filterMode ?? 'all'}
               onChange={this.handleFilterChange}
-              title=''
+              showTitle={false}
               values={['all', 'friends']}
             />
           </div>
@@ -161,7 +161,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
       <Sort
         currentValue={this.currentVariant ?? 'all'}
         onChange={this.handleVariantChange}
-        title=''
+        showTitle={false}
         transPrefix={`beatmaps.variant.${this.props.gameMode}.`}
         values={this.props.variants}
       />
