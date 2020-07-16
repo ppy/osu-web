@@ -4,6 +4,7 @@
 import NotificationJson from 'interfaces/notification-json';
 import { camelCase, forEach } from 'lodash';
 import { computed, observable } from 'mobx';
+import NotificationDetails, { newEmptyNotificationDetails } from 'models/notification-details';
 import { categoryFromName, categoryGroupKey } from 'notification-maps/category';
 import { displayType } from 'notification-maps/type';
 import { NotificationIdentity } from 'notifications/notification-identity';
@@ -11,7 +12,7 @@ import NotificationReadable from 'notifications/notification-readable';
 
 export default class Notification implements NotificationReadable {
   createdAtJson?: string;
-  details?: any;
+  details: NotificationDetails = newEmptyNotificationDetails();
   @observable isMarkingAsRead = false;
   @observable isRead = false;
   name?: string;
@@ -46,7 +47,7 @@ export default class Notification implements NotificationReadable {
   @computed get messageGroup() {
     if (this.objectType === 'channel') {
       const replacements = {
-        title: this.details.title,
+        title: this.title,
         username: this.details.username,
       };
 
@@ -55,11 +56,19 @@ export default class Notification implements NotificationReadable {
       return osu.trans(key, replacements);
     }
 
-    return this.details.title;
+    return this.title;
   }
 
   @computed get stackId() {
     return `${this.objectType}-${this.objectId}-${this.category}`;
+  }
+
+  @computed get title() {
+    if (currentUser?.user_preferences?.beatmapset_title_show_original) {
+      return osu.presence(this.details.titleUnicode) ?? this.details.title;
+    }
+
+    return this.details.title;
   }
 
   constructor(readonly id: number, readonly objectType: string) {}
@@ -76,7 +85,7 @@ export default class Notification implements NotificationReadable {
     this.objectId = json.object_id;
     this.sourceUserId = json.source_user_id;
 
-    this.details = {};
+    this.details = newEmptyNotificationDetails();
 
     if (typeof json.details === 'object') {
       forEach(json.details, (value, key) => {
