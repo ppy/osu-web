@@ -6,7 +6,7 @@
   --gutter: 10px;
   display: flex;
   flex-direction: column;
-  margin: calc(var(--gutter) * -1);
+  margin: calc(var(--gutter) / 2 * -1) calc(var(--gutter) * -1);
 
   @media @desktop {
     flex-direction: row;
@@ -14,7 +14,7 @@
   }
 
   &__item {
-    padding: 5px var(--gutter);
+    padding: calc(var(--gutter) / 2) var(--gutter);
     flex: 1;
     display: flex;
     align-items: center;
@@ -27,11 +27,15 @@
     &--title {
       font-weight: bold;
       text-transform: uppercase;
-      font-size: @font-size--normal-2;
+      font-size: @font-size--normal;
+      margin-right: 15px;
 
       @media @desktop {
         margin-bottom: 10px;
-        padding: 0 10px;
+      }
+
+      .@{top}__item--full & {
+        margin-bottom: 10px;
       }
     }
 
@@ -40,11 +44,6 @@
 
       @media @desktop {
         flex: 1;
-      }
-
-      .@{top}__item--title {
-        padding: 0;
-        margin-bottom: 10px;
       }
     }
   }
