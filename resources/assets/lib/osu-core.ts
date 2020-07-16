@@ -49,7 +49,7 @@ export default class OsuCore {
     $.subscribe('user:update', this.setUser);
   }
 
-  get currentUser(): UserJSONExtended {
+  get currentUser() {
     return window.currentUser;
   }
 

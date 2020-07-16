@@ -18,7 +18,7 @@ declare var Turbolinks: TurbolinksStatic;
 // our helpers
 declare var tooltipDefault: TooltipDefault;
 declare var osu: OsuCommon;
-declare var currentUser: any;
+declare var currentUser: import('interfaces/user-json-extended').default;
 declare var reactTurbolinks: any;
 declare var userVerification: any;
 
