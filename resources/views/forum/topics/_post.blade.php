@@ -32,7 +32,7 @@
     data-post-id="{{ $post->getKey() }}"
     data-post-position="{{ $options["postPosition"] }}"
 >
-    @include('forum.topics._post_info', compact('user'))
+    @include('forum.topics._post_info', compact('user', 'group'))
 
     <div class="forum-post__body js-forum-post-edit--container">
         <div class="forum-post__content forum-post__content--header">
