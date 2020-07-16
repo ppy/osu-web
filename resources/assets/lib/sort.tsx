@@ -7,7 +7,7 @@ interface Props {
   currentValue: string;
   modifiers?: string[];
   title?: string;
-  showTitle: boolean;
+  showTitle?: boolean;
   transPrefix: string;
   values: string[];
   onChange(event: React.MouseEvent<HTMLButtonElement>): void;
