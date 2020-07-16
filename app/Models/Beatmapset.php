@@ -1090,8 +1090,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable
 
     public function getDisplayTitle(?User $user)
     {
-        $showOriginal = $user->userProfileCustomization->options['beatmapset_title_show_original'] ?? false;
-        if ($showOriginal) {
+        $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization;
+        if ($profileCustomization->beatmapset_title_show_original) {
             return presence($this->title_unicode) ?? $this->title;
         }
 
