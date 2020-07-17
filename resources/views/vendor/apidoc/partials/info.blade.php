@@ -44,12 +44,16 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 # Authentication
 
 osu!api uses OAuth2 to grant access to the API. Your [account settings]({{ route('account.edit').'#oauth' }}) page will show your registered OAuth applications, and all the OAuth applications you have granted permissions to.
+The API supports the following grant types:
+- [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/)
+- [Client Credentials Grant](https://oauth.net/2/grant-types/client-credentials/)
 
-Only the [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/) type is currently supported for public use.
 
-Before you can use the osu!api, you will need to:
+Before you can use the osu!api, you will need to
 1. have registered an OAuth Application.
-2. authorize users for your application.
+2. acquire an access token by either:
+  - authorizing users for your application;
+  - requesting Client Credentials token.
 
 
 ## Registering an OAuth application
@@ -66,7 +70,7 @@ Application Callback URL | The URL in your application where users will be sent 
 Your new OAuth application will have a `Client ID` and `Client Secret`; the `Client Secret` is like a password for your OAuth application, it should be kept private and **do not share it with anyone else**.
 
 
-## Authorize users for your application
+## Authorization Code Grant
 
 The flow to authorize users for your application is:
 1. Requesting authorization from users
@@ -152,6 +156,60 @@ token_type    | string | The type of token, this should always be `Bearer`.
 expires_in    | number | The number of seconds the token will be valid for.
 access_token  | string | The access token.
 refresh_token | string | The refresh token.
+
+
+## Client Credentials Grant
+
+The client credential flow provide a way for developers to get access tokens without user permissions; as such, these tokens are considered as guest users.
+
+Example for requesting Client Credentials token:
+
+```javascript
+fetch("{!! route('oauth.passport.token') !!}", {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        "grant_type": "client_credentials",
+        "client_id": 1,
+        "client_secret": "secret",
+        "scope": "public"
+    })
+})
+.then(response => {
+    return response.json();
+});
+```
+
+`POST {!! route('oauth.passport.token') !!}`
+
+Parameters
+
+Name          | Type   | Description
+--------------|--------|-------------------------------
+client_id     | number |  The Client ID you received when you [registered]({{ route('account.edit').'#new-oauth-application' }})
+client_secret | string | The client secret of your application.
+grant_type    | string | This must always be `client_credentials`
+scope         | string | Must be `public`; other scopes have no meaningful effect.
+
+
+```json
+{
+    "token_type": "Bearer",
+    "expires_in": 86400,
+    "access_token": "verylongstring",
+}
+```
+
+Successful requests will be issued an access token:
+
+Name          | Type   | Description
+--------------|--------|-----------------------------
+token_type    | string | The type of token, this should always be `Bearer`.
+expires_in    | number | The number of seconds the token will be valid for.
+access_token  | string | The access token.
 
 
 ## Using the access token to access the API
