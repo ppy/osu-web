@@ -3,12 +3,12 @@
 
 import GroupJSON from 'interfaces/group-json';
 
-const mapperGroup: GroupJSON = {
+const mapperGroup: Readonly<GroupJSON> = Object.freeze({
   colour: 'hsl(200, 60%, 50%)',
   id: -1,
   identifier: 'mapper',
   name: 'Beatmap Mapper',
   short_name: 'MAP',
-};
+});
 
 export default mapperGroup;
