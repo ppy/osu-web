@@ -18,12 +18,6 @@ interface State {
   backgroundLoaded: boolean;
 }
 
-interface UserRelationJson {
-  mutual: boolean;
-  relation_type: 'friend' | 'block';
-  target_id: number;
-}
-
 export default class UserCardBrick extends React.PureComponent<Props, State> {
   static readonly contextType = UserCardTypeContext;
 
