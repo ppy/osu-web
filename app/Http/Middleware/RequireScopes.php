@@ -44,7 +44,7 @@ class RequireScopes
             throw new AuthenticationException();
         }
 
-        if ($token->isClientCredentials() && $token->scopes === ['*']) {
+        if ($token->isClientCredentials() && in_array('*', $token->scopes, true)) {
             throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
         }
 
