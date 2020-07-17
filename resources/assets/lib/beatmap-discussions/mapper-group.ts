@@ -6,6 +6,7 @@ import GroupJSON from 'interfaces/group-json';
 const mapperGroup: GroupJSON = {
   colour: 'hsl(200, 60%, 50%)',
   id: -1,
+  identifier: 'mapper',
   name: 'Beatmap Mapper',
   short_name: 'MAP',
 };

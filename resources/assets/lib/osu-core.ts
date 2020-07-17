@@ -4,15 +4,15 @@
 import { BeatmapsetSearchController } from 'beatmaps/beatmapset-search-controller';
 import ChatOrchestrator from 'chat/chat-orchestrator';
 import ChatWorker from 'chat/chat-worker';
+import CurrentUser from 'interfaces/current-user';
 import UserJSON from 'interfaces/user-json';
-import UserJSONExtended from 'interfaces/user-json-extended';
 import RootDataStore from 'stores/root-data-store';
 import UserLoginObserver from 'user-login-observer';
 import WindowFocusObserver from './window-focus-observer';
 
 declare global {
   interface Window {
-    currentUser: UserJSONExtended;
+    currentUser: CurrentUser;
   }
 }
 
