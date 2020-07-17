@@ -1,13 +1,20 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserJSON from './user-json';
+import GameMode from 'interfaces/game-mode';
+import UserJSON from 'interfaces/user-json';
 
 export default interface UserJSONExtended extends UserJSON {
-  follower_count?: number;
+  country: Country;
+  cover: Cover;
   is_admin: boolean;
+  is_bng: boolean;
+  is_full_bn: boolean;
+  is_gmt: boolean;
+  is_limited_bn: boolean;
   is_moderator: boolean;
-  unread_pm_count?: number;
-  // FIXME: currentUser should have own type so this is not optional.
-  user_preferences?: Record<string, any>;
+  is_nat: boolean;
+  is_restricted: boolean;
+  is_silenced: boolean;
+  playmode?: GameMode;
 }
