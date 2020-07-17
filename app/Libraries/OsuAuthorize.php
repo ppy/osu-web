@@ -502,7 +502,7 @@ class OsuAuthorize
      */
     public function checkBeatmapsetAdvancedSearch(?User $user): string
     {
-        if (!config('osu.beatmapset.guest_advanced_search')) {
+        if (oauth_token() === null && !config('osu.beatmapset.guest_advanced_search')) {
             $this->ensureLoggedIn($user);
         }
 
