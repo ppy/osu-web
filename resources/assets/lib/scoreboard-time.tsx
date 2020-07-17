@@ -13,6 +13,8 @@ let isLocaleConfigured = false;
 function setupScoreboardLocale() {
   if (isLocaleConfigured) return;
 
+  const previousLocale = moment.locale();
+
   moment.defineLocale('scoreboard', {
     // tslint complains that M should be before m. And m should be before M.
     // tslint:disable: object-literal-sort-keys
@@ -33,6 +35,8 @@ function setupScoreboardLocale() {
     },
     // tslint:enable: object-literal-sort-keys
   });
+
+  moment.locale(previousLocale);
 
   isLocaleConfigured = true;
 }
