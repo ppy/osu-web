@@ -111,4 +111,4 @@ export ScoreTop = (props) ->
             div className: "#{bn}__stat-header #{bn}__stat-header--mods",
               osu.trans 'beatmapsets.show.scoreboard.headers.mods'
             div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
-              el Mods, modifiers: ['scoreboard'], mods: props.score.mods
+              el Mods, modModifiers: ['dynamic'], modifiers: ['scoreboard'], mods: props.score.mods
