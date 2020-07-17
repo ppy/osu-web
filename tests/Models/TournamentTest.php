@@ -23,7 +23,7 @@ class TournamentTest extends TestCase
             'rank_max' => 100,
         ]);
 
-        $stats = $user->statisticsOsu()->firstOrCreate([
+        $stats = $user->statisticsOsu()->create([
             'rank_score_index' => $tournament->rank_max + 1,
             'rank_score' => 1,
         ]);
@@ -47,7 +47,7 @@ class TournamentTest extends TestCase
             'rank_max' => 100,
         ]);
 
-        $user->statisticsMania()->firstOrCreate([
+        $user->statisticsMania()->create([
             'rank_score_index' => $tournament->rank_max,
             'rank_score' => 1,
         ]);
@@ -56,7 +56,8 @@ class TournamentTest extends TestCase
 
         $stats = UserStatistics\Model
             ::getClass('mania', $playModeVariant)
-            ::firstOrCreate(['user_id' => $user->getKey()], [
+            ::create([
+                'user_id' => $user->getKey(),
                 'rank_score_index' => $tournament->rank_max + 1,
                 'rank_score' => 1,
             ]);
