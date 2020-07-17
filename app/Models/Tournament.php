@@ -99,8 +99,7 @@ class Tournament extends Model
 
         $userRank = UserStatistics\Model
             ::getClass($this->playModeStr(), $this->play_mode_variant)
-            ::where('user_id', $user->getKey())
-            ->firstOrNew([])
+            ::firstOrNew(['user_id' => $user->getKey()])
             ->globalRank();
 
         if ($this->rank_min !== null && ($userRank === null || $this->rank_min > $userRank)) {
