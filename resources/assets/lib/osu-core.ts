@@ -50,7 +50,8 @@ export default class OsuCore {
   }
 
   get currentUser() {
-    return window.currentUser;
+    // FIXME: id is  not nullable but guest user does not have id.
+    return window.currentUser.id != null ? window.currentUser : null;
   }
 
   private setUser = (event: JQuery.Event, user: UserJSON) => {
