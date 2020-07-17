@@ -20,6 +20,7 @@ abstract class Model extends BaseModel
     protected $primaryKey = 'user_id';
 
     public $timestamps = false;
+    public $incrementing = false;
 
     const UPDATED_AT = 'last_update';
 
