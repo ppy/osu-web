@@ -150,7 +150,7 @@ class ScoresController extends BaseController
     {
         $room = Room::find($roomId) ?? abort(404, 'Invalid room id');
         $playlistItem = $room->playlist()->find($playlistId) ?? abort(404, 'Invalid playlist id');
-        $score = $playlistItem->highScores()->where('user_id', $userId)->firstOrFail()->score;
+        $score = $playlistItem->highScores()->where('user_id', $userId)->firstOrFail()->score ?? abort(404);
 
         return json_item(
             $score,
