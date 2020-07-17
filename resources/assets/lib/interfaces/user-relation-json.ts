@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default interface UserRelationJson {
-  mutual: number | null;
+  mutual: boolean;
   relation_type: 'block' | 'friend';
   target_id: number;
 }
