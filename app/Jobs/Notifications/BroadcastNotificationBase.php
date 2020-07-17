@@ -47,7 +47,7 @@ abstract class BroadcastNotificationBase implements ShouldQueue
             ->pluck('user_id')
             ->all();
 
-        return array_diff($userIds, $botUserIds);
+        return array_values(array_diff($userIds, $botUserIds));
     }
 
     private static function filterUserIdsForNotificationOption(array $userIds)
