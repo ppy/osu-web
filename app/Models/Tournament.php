@@ -97,18 +97,17 @@ class Tournament extends Model
             return false;
         }
 
-        $stats = UserStatistics\Model
+        $userRank = UserStatistics\Model
             ::getClass($this->playModeStr(), $this->play_mode_variant)
             ::where('user_id', $user->getKey())
-            ->firstOrNew([]);
+            ->firstOrNew([])
+            ->globalRank();
 
-        $userRank = $stats->globalRank();
-
-        if ($this->rank_min !== null && ($userRank === null || $this->rank_min > $stats->rank_score_index)) {
+        if ($this->rank_min !== null && ($userRank === null || $this->rank_min > $userRank)) {
             return false;
         }
 
-        if ($this->rank_max !== null && ($userRank === null || $this->rank_max < $stats->rank_score_index)) {
+        if ($this->rank_max !== null && ($userRank === null || $this->rank_max < $userRank)) {
             return false;
         }
 
