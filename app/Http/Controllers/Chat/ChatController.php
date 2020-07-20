@@ -121,7 +121,7 @@ class ChatController extends Controller
             abort(422);
         }
 
-        $presence = self::presence();
+        $presence = $this->presence();
 
         $since = $params['since'];
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
