@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Зараз у сетцы',
         'missingtext' => 'Магчыма, вы памыліліся! (або карыстальнік заблакаваны)',
         'origin_country' => 'Адкуль: :country',
-        'page_description' => 'osu! - Усё, што вы хацелі ведаць пра :username!',
         'previous_usernames' => 'таксама вядомы як',
         'plays_with' => 'Гуляе з :devices',
         'title' => "Профіль :username",

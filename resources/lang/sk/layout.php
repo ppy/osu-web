@@ -96,6 +96,7 @@ return [
             'country' => 'krajina',
             'index' => 'výkon',
             'kudosu' => 'kudosu',
+            'multiplayer' => '',
             'score' => 'skóre',
         ],
         'store' => [

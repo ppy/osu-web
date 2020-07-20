@@ -115,6 +115,7 @@ return [
                 'rank' => 'Sijoitus',
                 'score_total' => 'Kokonaispisteet',
                 'score' => 'Pisteet',
+                'time' => '',
             ],
 
             'no_scores' => [

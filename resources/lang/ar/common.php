@@ -26,7 +26,7 @@ return [
         'back_to_top' => 'العودة إلى الأعلى',
         'cancel' => 'إلغاء',
         'change' => 'تغيير',
-        'clear' => '',
+        'clear' => 'محو',
         'click_to_copy' => 'انقر للنسخ إلى الحافظة',
         'click_to_copy_copied' => 'نُسِخَ إلى الحافظة!',
         'close' => 'إغلاق',
@@ -126,6 +126,21 @@ return [
         'count_geki' => '',
         'count_katu' => '٢٠٠',
         'count_miss' => 'اِخفاق',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
     ],
 
     'time' => [

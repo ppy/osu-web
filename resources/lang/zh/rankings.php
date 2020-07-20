@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => '全部',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => '表现',
         'charts' => '月赛',
-        'score' => '总分',
         'country' => '国家和地区',
+        'multiplayer' => '',
+        'performance' => '表现',
+        'score' => '总分',
     ],
 
     'spotlight' => [

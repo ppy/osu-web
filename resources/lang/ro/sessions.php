@@ -5,8 +5,8 @@
 
 return [
     'create' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Fă click aici pentru a descărca jocul și de a crea un cont',
+        'label' => 'Mai întâi, conectează-te în contul tău!',
+        'title' => 'Conectare cont',
     ],
 ];

@@ -146,7 +146,6 @@ return [
         'lastvisit_online' => 'ออนไลน์ในขณะนี้',
         'missingtext' => 'พิมพ์ผิดหรือเปล่า? (ไม่ก็ผู้ใช้โดนแบน)',
         'origin_country' => 'มาจาก :country',
-        'page_description' => 'osu! - ทุกสิ่งทุกอย่างที่คุณอยากรู้เกี่ยวกับ :username!',
         'previous_usernames' => 'เคยมีชื่อว่า',
         'plays_with' => 'เล่นด้วย :devices',
         'title' => ":username's โปรไฟล์",

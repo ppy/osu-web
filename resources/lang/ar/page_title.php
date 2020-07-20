@@ -126,6 +126,11 @@ return [
             '_' => 'قاعدة المعارف',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'متجر!osu',
     ],

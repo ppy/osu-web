@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => '現在オンライン',
         'missingtext' => '打ち間違いがないか確認してください！（ユーザーが削除されている可能性もあります）',
         'origin_country' => '所在国 :country',
-        'page_description' => 'osu! - :usernameについていろいろ！',
         'previous_usernames' => '以前の名前',
         'plays_with' => '使用デバイス :devices',
         'title' => ":usernameのプロフィール",

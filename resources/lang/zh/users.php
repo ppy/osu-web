@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => '当前在线',
         'missingtext' => '未找到用户！（或者该用户已经被 ban）',
         'origin_country' => '来自 :country',
-        'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
         'previous_usernames' => '曾用名',
         'plays_with' => '惯用 :devices',
         'title' => ":username 的个人资料",
