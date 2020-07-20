@@ -115,6 +115,7 @@ return [
                 'rank' => '排行榜',
                 'score_total' => '總分',
                 'score' => '得分',
+                'time' => '',
             ],
 
             'no_scores' => [

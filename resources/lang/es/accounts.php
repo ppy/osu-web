@@ -59,7 +59,7 @@ return [
             'beatmapset:modding' => 'modding de mapas',
             'forum_topic_reply' => 'respuestas a temas',
             'mail' => 'correo electrónico',
-            'push' => 'inserción',
+            'push' => 'push',
         ],
     ],
 
@@ -97,7 +97,7 @@ return [
     'security' => [
         'current_session' => 'actual',
         'end_session' => 'Cerrar sesión',
-        'end_session_confirmation' => 'Esto cerrará inmediatamente su sesión en ese dispositivo. ¿Esta seguro?',
+        'end_session_confirmation' => 'Esto cerrará inmediatamente su sesión en ese dispositivo. ¿Está seguro?',
         'last_active' => 'Última vez activo:',
         'title' => 'Seguridad',
         'web_sessions' => 'sesiones web',

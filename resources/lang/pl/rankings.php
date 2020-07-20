@@ -6,10 +6,11 @@
 return [
     'countries' => [
         'all' => 'Wszystkie',
+        'title' => '',
     ],
 
     'filter' => [
-        'title' => 'Pokazuj',
+        'title' => 'Pokaż',
 
         'variant' => [
             'title' => 'Typ',
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'globalny',
         'charts' => 'wyróżnionych',
-        'score' => 'punktowy',
         'country' => 'krajowy',
+        'multiplayer' => '',
+        'performance' => 'globalny',
+        'score' => 'punktowy',
     ],
 
     'spotlight' => [

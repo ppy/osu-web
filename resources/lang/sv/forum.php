@@ -249,13 +249,13 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'Ta bort nålat ämne',
-            'to_0_confirm' => 'Ofäst ämnet?',
+            'to_0_confirm' => 'Lossa ämnet?',
             'to_0_done' => 'Nål på ämne har tagits bort',
             'to_1' => 'Nåla ämne',
             'to_1_confirm' => 'Fäst ämnet?',
             'to_1_done' => 'Ämne har blivit nålat',
             'to_2' => 'Nåla ämne och markera som meddelande',
-            'to_2_confirm' => 'Fäst ämnet och markera den som meddelande?',
+            'to_2_confirm' => 'Fäst ämnet och markera det som meddelande?',
             'to_2_done' => 'Ämne har blivit nålat och markerat som meddelande',
         ],
 

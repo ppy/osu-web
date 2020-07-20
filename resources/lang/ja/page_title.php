@@ -126,6 +126,11 @@ return [
             '_' => 'ナレッジベース',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'osu!ストア',
     ],

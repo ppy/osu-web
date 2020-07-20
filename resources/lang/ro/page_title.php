@@ -5,133 +5,138 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '500' => '',
-            '503' => '',
+            '400' => 'cerere invalidă',
+            '404' => 'lipsește',
+            '403' => 'interzis',
+            '401' => 'neautorizat',
+            '401-verification' => 'verificare cont',
+            '405' => 'lipsește',
+            '422' => 'cerere invalidă',
+            '500' => 'ceva s-a stricat',
+            '503' => 'mentenanță',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'forum',
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'tablou de bord',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'tablou de bord',
+            'verify_link' => 'verificare cont',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'featured artists',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'discuție postări beatmap',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'discuții beatmap',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'pachete beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'voturi la discuția beatmap',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'istoria beatmap',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'tablou de bord',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'discuție beatmap',
+            'index' => 'listarea beatmap',
+            'show' => 'beatmap info',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'log de schimbare',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'chat',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'comentarii',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'concursuri',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'tablou de bord',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'grupuri',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'descarcă',
+            'index' => 'tablou de bord',
+            'search' => 'caută',
+            'support_the_game' => 'sprijină jocul',
+            'testflight' => 'test de zbor',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'informație',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'transmisiuni în direct',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'potriviri',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'noutăți',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'istorie notificări',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'resetează parola',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'clasament',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'performanță',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'osu!magazin',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'turnee',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'info jucător',
+            'disabled' => 'observație',
         ],
         'wiki_controller' => [
+            '_' => 'bază de cunoștințe',
+        ],
+    ],
+    'multiplayer' => [
+        'rooms_controller' => [
             '_' => '',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'osu!magazin',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'info modder',
         ],
     ],
 ];

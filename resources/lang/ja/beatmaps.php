@@ -61,7 +61,7 @@ return [
         'message_placeholder' => [
             'general' => '一般（:version）への投稿をここに入力',
             'generalAll' => '一般 （全ての難易度）への投稿をここに入力',
-            'review' => '',
+            'review' => 'レビューを投稿するにはここに入力してください',
             'timeline' => 'タイムライン（:version）へ投稿するにはここに入力',
         ],
 
@@ -96,22 +96,22 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => '新しいレビュー',
             'embed' => [
-                'delete' => '',
-                'missing' => '',
-                'unlink' => '',
-                'unsaved' => '',
+                'delete' => '削除',
+                'missing' => '[削除されたディスカッション]',
+                'unlink' => 'リンク解除',
+                'unsaved' => '未保存',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => '「全ての難易度」に関する投稿はタイムスタンプできません。',
+                    'diff' => 'この:typeがタイムスタンプで始まる場合、タイムラインの下に表示されます。',
                 ],
             ],
             'insert-block' => [
-                'paragraph' => '',
-                'praise' => '',
-                'problem' => '',
-                'suggestion' => '',
+                'paragraph' => '段落の挿入',
+                'praise' => '称賛を挿入',
+                'problem' => '問題の挿入',
+                'suggestion' => '提案を挿入',
             ],
         ],
 
@@ -275,10 +275,10 @@ return [
         'novelty' => 'ノベルティ',
         'hip-hop' => 'ヒップホップ',
         'electronic' => 'エレクトロニック',
-        'metal' => '',
-        'classical' => '',
-        'folk' => '',
-        'jazz' => '',
+        'metal' => 'メタル',
+        'classical' => 'クラシカル',
+        'folk' => 'フォーク',
+        'jazz' => 'ジャズ',
     ],
     'mods' => [
         '4K' => '4K',
@@ -316,11 +316,11 @@ return [
         'korean' => '韓国語',
         'spanish' => 'スペイン語',
         'swedish' => 'スウェーデン語',
-        'russian' => '',
-        'polish' => '',
+        'russian' => 'ロシア語',
+        'polish' => 'ポーランド語',
         'instrumental' => '楽器',
         'other' => 'その他',
-        'unspecified' => '',
+        'unspecified' => '未分類',
     ],
     'played' => [
         'any' => '全て',
@@ -348,9 +348,9 @@ return [
     ],
     'variant' => [
         'mania' => [
-            '4k' => '',
-            '7k' => '',
-            'all' => '',
+            '4k' => '4K',
+            '7k' => '7K',
+            'all' => '全て',
         ],
     ],
 ];

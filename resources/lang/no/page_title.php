@@ -126,6 +126,11 @@ return [
             '_' => 'kunnskapsbase',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'osu!butikken',
     ],

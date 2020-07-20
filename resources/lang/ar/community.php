@@ -141,9 +141,9 @@ return [
         'supporter_status' => [
             'contribution' => 'شكراََ لك للدعم الذي قدمتهُ حتى الان! لقد ساهمت بجموع :dollars لـ :tags اِشارات اشتريتها!',
             'gifted' => ":giftedTags من اِشاراتك التي اشتريتها قد قدمت كهدية (كمجموع :giftedDollars من الهداية التي قدمتها), كم انت كريم!",
-            'not_yet' => "ليس لديك اِشارة داعم!osu حتى الان :(",
-            'valid_until' => 'شارة مؤيد!osu خاصتك نافذة لغاية :date!',
-            'was_valid_until' => 'شارة مؤيد!osu خاصتك كانت نافذة لغاية :date.',
+            'not_yet' => "ليس لديك شارة osu!supporter حتى الان :(",
+            'valid_until' => 'شارة osu!supporter خاصتك نافذة لغاية :date!',
+            'was_valid_until' => 'شارة osu!supporter خاصتك كانت نافذة لغاية :date.',
         ],
     ],
 ];

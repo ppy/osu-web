@@ -8,7 +8,7 @@ return [
         'download' => '지금 바로 다운로드하기',
         'online' => '<strong>:players</strong>명이 현재 접속 중이며, <strong>:games</strong>개의 게임이 개설되어 있습니다.',
         'peak' => '최다 동시 접속자 수: :count명',
-        'players' => '<strong>:count</strong>명이 가입되어 있고,',
+        'players' => '<strong>:count</strong>명이 가입되어 있고',
         'title' => '환영합니다',
         'see_more_news' => '소식 더 보기',
 

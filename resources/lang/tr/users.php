@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Şu an çevrimiçi',
         'missingtext' => 'Yazım hatası yapmış olabilirsin! (veya bu kullanıcı banlanmış olabilir)',
         'origin_country' => 'Ülke: :country',
-        'page_description' => 'osu! - :username hakkında bilmek istediğiniz her şey!',
         'previous_usernames' => 'nâm-ı diğer',
         'plays_with' => ':devices ile oynuyor',
         'title' => ":username kullanıcısının profili",
