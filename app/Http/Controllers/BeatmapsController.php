@@ -82,7 +82,7 @@ class BeatmapsController extends Controller
                 if (isset($score)) {
                     $results['userScore'] = [
                         'position' => $score->userRank(compact('type', 'mods')),
-                        'score' => json_item($score, 'Score', ['user', 'user.country']),
+                        'score' => json_item($score, 'Score', ['user', 'user.country', 'user.cover']),
                     ];
                 }
 
