@@ -17,7 +17,7 @@ class BeatmapsController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('require-scopes:public');
+        // $this->middleware('require-scopes:public');
     }
 
     public function show($id)
@@ -76,13 +76,13 @@ class BeatmapsController extends Controller
                 }
 
                 $results = [
-                    'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country']),
+                    'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
                 ];
 
                 if (isset($score)) {
                     $results['userScore'] = [
                         'position' => $score->userRank(compact('type', 'mods')),
-                        'score' => json_item($score, 'Score', ['user', 'user.country', 'user.cover']),
+                        'score' => json_item($score, 'Score', ['user', 'user.country']),
                     ];
                 }
 
