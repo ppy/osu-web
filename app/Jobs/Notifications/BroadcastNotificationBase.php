@@ -38,6 +38,18 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         return $class;
     }
 
+    private static function excludeBotUserIds(array $userIds)
+    {
+        // smaller return size from database compared to "group_id <> bot"
+        $botUserIds = User
+            ::whereIn('user_id', $userIds)
+            ->where('group_id', app('groups')->byIdentifier('bot')->getKey())
+            ->pluck('user_id')
+            ->all();
+
+        return array_values(array_diff($userIds, $botUserIds));
+    }
+
     private static function filterUserIdsForNotificationOption(array $userIds)
     {
         // FIXME: filtering all the ids could get quite large?
@@ -97,6 +109,8 @@ abstract class BroadcastNotificationBase implements ShouldQueue
         if (static::NOTIFICATION_OPTION_NAME !== null) {
             $receiverIds = static::filterUserIdsForNotificationOption($receiverIds);
         }
+
+        $receiverIds = static::excludeBotUserIds($receiverIds);
 
         if (empty($receiverIds)) {
             return;

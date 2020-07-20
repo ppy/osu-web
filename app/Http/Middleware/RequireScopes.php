@@ -44,12 +44,12 @@ class RequireScopes
             throw new AuthenticationException();
         }
 
-        if ($token->isClientCredentials() && $token->scopes === ['*']) {
-            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
-        }
-
         if (empty($token->scopes)) {
             throw new MissingScopeException([], 'Tokens without scopes are not valid.');
+        }
+
+        if ($token->isClientCredentials() && in_array('*', $token->scopes, true)) {
+            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
         }
 
         if (!$this->requestHasScopedMiddleware(request())) {
