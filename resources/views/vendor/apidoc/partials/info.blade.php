@@ -43,11 +43,11 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 # Authentication
 
-osu!api uses OAuth2 to grant access to the API. Your [account settings]({{ route('account.edit').'#oauth' }}) page will show your registered OAuth applications, and all the OAuth applications you have granted permissions to.
+osu!api uses OAuth2 to grant access to the API. More information about applications you have registered and granted permissions to can be found [here](#managing-an-oauth-application).
+
 The API supports the following grant types:
 - [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/)
 - [Client Credentials Grant](https://oauth.net/2/grant-types/client-credentials/)
-
 
 Before you can use the osu!api, you will need to
 1. have registered an OAuth Application.
@@ -253,6 +253,16 @@ friends.read  | Allows reading of the authorizing user's friend list.
 public        | Allows reading of publicly available data on behalf of the authorizing user.
 
 `identify` is the default scope and always implicitly provided.
+
+
+## Managing an OAuth application
+
+Your [account settings]({{ route('account.edit').'#oauth' }}) page will show your registered OAuth applications, and all the OAuth applications you have granted permissions to.
+
+### Reset Client Secret
+
+You can generate a new `Client Secret` by choosing to "Reset client secret", however, this will disable all access tokens issued for the application.
+
 
 # Changelog
 
