@@ -147,7 +147,7 @@ class ChatController extends Controller
             return response([], 204);
         }
 
-        $response = [
+        return [
             'presence' => $presence,
             'messages' => json_collection(
                 $messages,
@@ -155,8 +155,6 @@ class ChatController extends Controller
                 ['sender']
             ),
         ];
-
-        return $response;
     }
 
     /**
