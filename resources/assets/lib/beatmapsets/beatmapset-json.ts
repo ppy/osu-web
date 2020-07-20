@@ -33,5 +33,6 @@ export interface BeatmapsetJson {
   nominations?: BeatmapsetNominations;
   status: BeatmapsetStatus;
   title: string;
+  title_unicode: string | null;
   user_id: number;
 }

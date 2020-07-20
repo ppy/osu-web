@@ -134,6 +134,20 @@ class UserProfileCustomization extends Model
         $this->setOption('beatmapset_download', $value);
     }
 
+    public function getBeatmapsetTitleShowOriginalAttribute()
+    {
+        return $this->options['beatmapset_title_show_original'] ?? false;
+    }
+
+    public function setBeatmapsetTitleShowOriginalAttribute($value)
+    {
+        if (!is_bool($value)) {
+            $value = null;
+        }
+
+        $this->setOption('beatmapset_title_show_original', $value);
+    }
+
     public function getCommentsSortAttribute()
     {
         return $this->options['comments_sort'] ?? Comment::DEFAULT_SORT;
