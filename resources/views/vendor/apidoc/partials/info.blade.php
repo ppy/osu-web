@@ -252,7 +252,7 @@ identify      | Allows reading of the public profile of the authorizing user (`/
 friends.read  | Allows reading of the authorizing user's friend list.
 public        | Allows reading of publicly available data on behalf of the authorizing user.
 
-`identify` is the default scope and always implicitly provided.
+`identify` is the default scope for the [Authorization Code Grant](#authorization-code-grant) and always implicitly provided. The [Client Credentials Grant](#client-credentials-grant) does not currently have any default scopes.
 
 
 ## Managing an OAuth application
