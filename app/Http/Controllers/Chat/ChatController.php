@@ -143,7 +143,7 @@ class ChatController extends Controller
 
         $messages = $messages->get()->reverse();
 
-        if ($messages->isEmpty() || $since >= $messages->last()->message_id) {
+        if ($messages->isEmpty()) {
             return response([], 204);
         }
 
