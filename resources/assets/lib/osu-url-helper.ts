@@ -16,6 +16,7 @@ export default class OsuUrlHelper {
     'help',
     'home',
     'legal',
+    'multiplayer',
     'oauth',
     'rankings',
     'session',

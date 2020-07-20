@@ -155,7 +155,7 @@ class UserProfileCustomization extends Model
 
     public function setCommentsSortAttribute($value)
     {
-        if ($value !== null && array_key_exists($value, Comment::SORTS)) {
+        if ($value !== null && !array_key_exists($value, Comment::SORTS)) {
             $value = null;
         }
 
