@@ -82,7 +82,7 @@ export class PlayDetail extends PureComponent
                   percentage: "#{osu.formatNumber(Math.round(score.weight.percentage))}%"
         div
           className: "#{bn}__score-detail #{bn}__score-detail--mods"
-          el Mods, mods: score.mods, modifiers: ['profile-page']
+          el Mods, mods: score.mods, modifiers: ['profile-page'], modModifiers: ['dynamic']
 
         div
           className: "#{bn}__pp"

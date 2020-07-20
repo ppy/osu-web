@@ -6,7 +6,7 @@ import Mod from 'mod'
 import { div, img } from 'react-dom-factories'
 el = React.createElement
 
-export Mods = ({modifiers = [], mods = []}) ->
+export Mods = ({modModifiers = [], modifiers = [], mods = []}) ->
     blockClass = 'mods'
     blockClass += " mods--#{mod}" for mod in modifiers
 
@@ -17,4 +17,4 @@ export Mods = ({modifiers = [], mods = []}) ->
           className: 'mods__mod'
           div
             className: 'mods__mod-image'
-            el Mod, mod: mod
+            el Mod, mod: mod, modifiers: modModifiers
