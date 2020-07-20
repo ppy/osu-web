@@ -10,9 +10,13 @@
   background-repeat: no-repeat;
 
   &--dynamic {
-    position: relative;
+    position: static;
     height: 1em;
     width: (@mod-width / @mod-height * $height);
+  }
+
+  &--V2 {
+    display: none;
   }
 
   .all(@name, @filename) {

@@ -77,7 +77,7 @@ export class ScoreboardTableRow extends React.PureComponent
           dateTime: score.created_at
 
       td className: osu.classWithModifiers(cell, ['mods']),
-        el Mods, modifiers: ['scoreboard'], mods: score.mods
+        el Mods, modModifiers: ['dynamic'], modifiers: ['scoreboard'], mods: score.mods
 
       td className: "#{bn}__popup-menu",
         if hasMenu(score)

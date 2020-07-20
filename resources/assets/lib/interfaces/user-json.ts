@@ -5,13 +5,12 @@ import GroupJSON from './group-json';
 
 export default interface UserJSON {
   avatar_url: string;
-  blocks?: any[];
-
   country?: Country;
   country_code: string; // TODO: country object?
-  cover: Cover;
+  cover?: Cover;
   current_mode_rank?: number;
   default_group: string;
+  follower_count?: number;
   groups?: GroupJSON[];
   id: number;
   is_active: boolean;
