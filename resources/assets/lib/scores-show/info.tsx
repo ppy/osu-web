@@ -48,7 +48,7 @@ export default function Info(props: Props) {
       <div className='score-info__item score-info__item--buttons'>
         {score.replay && (
           <a
-            href={route('scores.download', { mode: score.mode, score: score.id })}
+            href={route('scores.download', { mode: score.mode, score: score.best_id })}
             className='btn-osu-big btn-osu-big--rounded'
           >
             {osu.trans('users.show.extra.top_ranks.download_replay')}
