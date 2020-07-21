@@ -61,7 +61,7 @@ return [
         'message_placeholder' => [
             'general' => 'Scrivi qui per postare in Generale (:version)',
             'generalAll' => 'Scrivi qui per postare in Generale (Tutte le difficoltà)',
-            'review' => 'Scrivi qui per postare una recensione',
+            'review' => 'Scrivi qui per postare una revisione',
             'timeline' => 'Scrivi qui per postare nella Linea Temporale (:version)',
         ],
 
@@ -72,14 +72,14 @@ return [
             'nomination_reset' => 'Resetta Nomina',
             'praise' => 'Elogio',
             'problem' => 'Problema',
-            'review' => 'Recensione',
+            'review' => 'Revisione',
             'suggestion' => 'Suggerimento',
         ],
 
         'mode' => [
             'events' => 'Cronologia',
             'general' => ':scope Generale',
-            'reviews' => 'Recensioni',
+            'reviews' => 'Revisioni',
             'timeline' => 'Linea Temporale',
             'scopes' => [
                 'general' => 'Questa difficoltà',
@@ -96,15 +96,15 @@ return [
         ],
 
         'review' => [
-            'new' => '',
+            'new' => 'Nuova revisione',
             'embed' => [
-                'delete' => '',
-                'missing' => '',
-                'unlink' => '',
-                'unsaved' => '',
+                'delete' => 'Elimina',
+                'missing' => '[DISCUSSIONE ELIMINATA]',
+                'unlink' => 'Dissocia',
+                'unsaved' => 'Non salvato',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => 'I post su "Tutte le difficoltà" non possono avere un timestamp.',
+                    'diff' => 'Se questo :type inizia con un timestamp, sarà mostrato nella Timeline.',
                 ],
             ],
             'insert-block' => [

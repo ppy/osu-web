@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => 'Все',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'по производительности',
         'charts' => 'по чартам',
-        'score' => 'по очкам',
         'country' => 'по странам',
+        'multiplayer' => '',
+        'performance' => 'по производительности',
+        'score' => 'по очкам',
     ],
 
     'spotlight' => [

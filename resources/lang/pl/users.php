@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Obecnie online',
         'missingtext' => 'Wprowadzona nazwa użytkownika jest błędna lub użytkownik został zablokowany',
         'origin_country' => 'Pochodzi z :country',
-        'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
         'previous_usernames' => 'poprzednie nazwy użytkownika',
         'plays_with' => 'Gra za pomocą :devices',
         'title' => "Profil :username",

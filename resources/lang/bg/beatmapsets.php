@@ -115,6 +115,7 @@ return [
                 'rank' => 'Ранг',
                 'score_total' => 'Общ брой точки',
                 'score' => 'Точки',
+                'time' => '',
             ],
 
             'no_scores' => [

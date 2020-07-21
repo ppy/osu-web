@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Práve teraz',
         'missingtext' => 'Možno si spravil chybu! (alebo je hľadaný používateľ zabanovaný)',
         'origin_country' => 'Štát :country',
-        'page_description' => 'osu! - Všetko čo ste kedy chceli vedieť o :username!',
         'previous_usernames' => 'v minulosti známy ako',
         'plays_with' => 'Hrá s :devices',
         'title' => "profil používateľa :username",

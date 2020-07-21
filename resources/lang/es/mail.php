@@ -21,7 +21,7 @@ return [
         'benefit_more' => '¡Además, con el tiempo aparecerán nuevos beneficios para supporter!',
         'feedback' => "Si tienes alguna pregunta o comentarios, no dudes en responder a este correo; ¡Te responderé lo antes posible!",
         'keep_free' => 'Es gracias a personas como usted que osu! es capaz de mantener el juego y la comunidad funcionando sin ningún tipo de anuncios ni pagos forzados.',
-        'keep_running' => '¡Tu apoyo mantiene a osu! funcionando durante :minutes! Puede que no parezca mucho, pero todo suma :).',
+        'keep_running' => '¡Su apoyo mantiene a osu! funcionando durante :minutes! Puede que no parezca mucho, pero todo suma :).',
         'subject' => 'Gracias, osu! te <3',
         'translation' => 'Se muestra a continuación una traducción proporcionada por la comunidad con fines informativos:',
 
@@ -53,10 +53,10 @@ return [
     'store_payment_completed' => [
         'prepare_shipping' => 'Hemos recibido su pago y estamos preparando su orden para el envío. Puede tardar unos días en enviarse, dependiendo de la cantidad de pedidos. Puede seguir el progreso de su orden aquí, incluyendo los detalles de seguimiento cuando estén disponibles:',
         'processing' => 'Hemos recibido su pago y estamos procesando su orden. Puede seguir el progreso de su orden aquí:',
-        'questions' => "Si tienes alguna pregunta, no dudes en responder a este correo electrónico.",
+        'questions' => "Si tiene alguna pregunta, no dude en responder a este correo electrónico.",
         'shipping' => 'Envío',
-        'subject' => '¡Hemos recibido tu orden de la osu!store!',
-        'thank_you' => '¡Gracias por tu orden de la osu!store!',
+        'subject' => '¡Hemos recibido su orden de la osu!store!',
+        'thank_you' => '¡Gracias por su pedido de la osu!store!',
         'total' => 'Total',
     ],
 
@@ -65,8 +65,8 @@ return [
         'anonymous_gift_maybe_not' => 'Pero es probable que ya sepas quién es ;).',
         'duration' => 'Gracias a esa persona, usted tiene acceso a osu!direct y a otros beneficios de osu!supporter durante :duration.',
         'features' => 'Puede encontrar más detalles sobre estas características aquí:',
-        'gifted' => '¡Alguien te acaba de regalar un tag de osu!supporter!',
-        'subject' => '¡Te han regalado un tag de osu!supporter!',
+        'gifted' => '¡Alguien le acaba de regalar un tag de osu!supporter!',
+        'subject' => '¡Le han regalado un tag de osu!supporter!',
     ],
 
     'user_email_updated' => [

@@ -50,16 +50,16 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => '次のモードのQualifiedビートマップで新しい問題の通知を受け取る',
-        'beatmapset_disqualify' => '次のモードの譜面が Disqualified されたときに通知を受け取る',
+        'beatmapset_disqualify' => '以下のモードのビートマップがDisqualifiedになった場合に通知を受け取る',
         'title' => '通知',
         'topic_auto_subscribe' => '作成した新しいフォーラムトピックに関する通知を自動的に有効にします',
 
         'options' => [
-            '_' => '送信先',
-            'beatmapset:modding' => '',
+            '_' => '配送設定',
+            'beatmapset:modding' => 'ビートマップmodding',
             'forum_topic_reply' => 'トピックへの返信',
             'mail' => 'メール',
-            'push' => 'プッシュ',
+            'push' => 'プッシュ通知',
         ],
     ],
 

@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Momenteel online',
         'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
         'origin_country' => 'Uit :country',
-        'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
         'previous_usernames' => 'vroeger bekend als',
         'plays_with' => 'Speelt met :devices',
         'title' => "Profiel van :username",

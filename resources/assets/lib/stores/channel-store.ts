@@ -87,7 +87,7 @@ export default class ChannelStore extends Store {
   }
 
   findPM(userId: number): Channel | null {
-    if (userId === core.currentUser.id) {
+    if (userId === core.currentUser?.id) {
       return null;
     }
 
