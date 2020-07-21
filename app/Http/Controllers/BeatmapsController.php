@@ -67,7 +67,7 @@ class BeatmapsController extends Controller
                 $query = $model
                     ->default()
                     ->where('beatmap_id', $beatmap->getKey())
-                    ->with(['beatmap', 'user.country'])
+                    ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
                     ->withMods($mods)
                     ->withType($type, compact('user'));
 
@@ -76,13 +76,13 @@ class BeatmapsController extends Controller
                 }
 
                 $results = [
-                    'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country']),
+                    'scores' => json_collection($query->visibleUsers()->forListing(), 'Score', ['beatmap', 'user', 'user.country', 'user.cover']),
                 ];
 
                 if (isset($score)) {
                     $results['userScore'] = [
                         'position' => $score->userRank(compact('type', 'mods')),
-                        'score' => json_item($score, 'Score', ['user', 'user.country']),
+                        'score' => json_item($score, 'Score', ['user', 'user.country', 'user.cover']),
                     ];
                 }
 
