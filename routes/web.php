@@ -372,6 +372,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', 'requir
             Route::delete('{room}/users/{user}', 'Multiplayer\RoomsController@part')->name('part');
             Route::get('{room}/leaderboard', 'Multiplayer\RoomsController@leaderboard');
             Route::group(['as' => 'playlist.', 'prefix' => '{room}/playlist'], function () {
+                Route::get('{playlist}/scores/users/{user}', 'Multiplayer\Rooms\Playlist\ScoresController@showUser');
                 Route::apiResource('{playlist}/scores', 'Multiplayer\Rooms\Playlist\ScoresController', ['only' => ['index', 'show', 'store', 'update']]);
             });
         });
@@ -457,3 +458,5 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 });
+
+Route::fallback('FallbackController@index');

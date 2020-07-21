@@ -126,6 +126,11 @@ return [
             '_' => '知识库',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => 'osu! 商店',
     ],

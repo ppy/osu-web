@@ -73,6 +73,9 @@
                 <div class="ranking-filter">
                     <div class="ranking-filter__item ranking-filter__item--full">
                         @if ($type === 'performance')
+                            <div class="ranking-filter__item--title">
+                                {{ trans('rankings.countries.title') }}
+                            </div>
                             <div class="ranking-select-options">
                                 <div class="ranking-select-options__select">
                                     <div class="ranking-select-options__option">{{ optional($country)->name ?? trans('rankings.countries.all') }}</div>
@@ -82,9 +85,11 @@
                     </div>
                     @if (auth()->check())
                         <div class="ranking-filter__item">
+                            <div class="ranking-filter__item--title">
+                                {{ trans('rankings.filter.title') }}
+                            </div>
                             <div class="sort">
                                 <div class="sort__items">
-                                    <span class="sort__item sort__item--title">{{ trans('rankings.filter.title') }}</span>
                                     <button class="sort__item sort__item--button">{{ trans('sort.all') }}</button>
                                     <button class="sort__item sort__item--button">{{ trans('sort.friends')}}</button>
                                 </div>
@@ -93,9 +98,11 @@
                     @endif
                     @if (isset($variants))
                         <div class="ranking-filter__item">
+                            <div class="ranking-filter__item--title">
+                                {{ trans('rankings.filter.variant.title') }}
+                            </div>
                             <div class="sort">
                                 <div class="sort__items">
-                                    <span class="sort__item sort__item--title">{{ trans('rankings.filter.variant.title') }}</span>
                                     @foreach ($variants as $v)
                                         <button class="sort__item sort__item--button">
                                             {{ trans("beatmaps.variant.{$mode}.{$v}") }}

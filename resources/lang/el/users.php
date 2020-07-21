@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => '',
         'missingtext' => 'Ίσως να κάνατε κάποιο ορθογραφικό λάθος! (ή ο χρήστης είναι banned)',
         'origin_country' => 'Από :country',
-        'page_description' => 'osu! - Όλα όσα θέλεις να ξέρεις για τον :username!',
         'previous_usernames' => 'προηγουμένως γνωστός ως',
         'plays_with' => 'Παίζει με :devices',
         'title' => "Το προφίλ του :username",

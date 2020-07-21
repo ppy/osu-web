@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Pålogget for øyeblikket',
         'missingtext' => 'Du begikk muligens en skrivefeil! (eller så kan brukeren ha blitt utestengt)',
         'origin_country' => 'Fra :country',
-        'page_description' => 'osu! - Alt du noensinne måtte ønske å vite om :username!',
         'previous_usernames' => 'tidligere kjent som',
         'plays_with' => 'Spiller med :devices',
         'title' => "Profilen til :username",

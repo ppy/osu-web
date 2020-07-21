@@ -122,7 +122,7 @@ return [
     'supporter_tag' => [
         'gift' => 'اهدِه الى لاعب',
         'require_login' => [
-            '_' => 'يجب ان تكون :link لتحصل على شارة مؤيد!osu!',
+            '_' => 'يجب ان تكون :link لتحصل على شارة osu!supporter!',
             'link_text' => 'مُسَجَل',
         ],
     ],

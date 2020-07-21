@@ -128,6 +128,21 @@ return [
         'count_miss' => 'Пропуски',
     ],
 
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
+    ],
+
     'time' => [
         'days_ago' => 'преди :count ден|преди :count дни',
         'hours_ago' => 'преди :count час|преди :count часа',

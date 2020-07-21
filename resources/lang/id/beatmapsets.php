@@ -115,6 +115,7 @@ return [
                 'rank' => 'Peringkat',
                 'score_total' => 'Jumlah Skor',
                 'score' => 'Skor',
+                'time' => '',
             ],
 
             'no_scores' => [

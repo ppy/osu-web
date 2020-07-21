@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import { isValid as isBeatmapJsonExtended } from 'interfaces/beatmap-json-extended';
 import GameMode from 'interfaces/game-mode';
@@ -67,6 +68,15 @@ export function getDiffRating(rating: number) {
   if (rating < 5.3) return 'insane';
   if (rating < 6.5) return 'expert';
   return 'expert-plus';
+}
+
+// TODO: should make a Beatmapset proxy object or something
+export function getTitle(beatmapset: BeatmapsetJson) {
+  if (currentUser?.user_preferences?.beatmapset_title_show_original) {
+    return osu.presence(beatmapset.title_unicode) ?? beatmapset.title;
+  }
+
+  return beatmapset.title;
 }
 
 export function group<T extends BeatmapJson>(beatmaps: T[]): Partial<Record<GameMode, T[]>> {

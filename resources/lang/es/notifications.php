@@ -57,8 +57,8 @@ return [
                 'beatmapset_qualify_compact' => 'El mapa ingresó a la cola de clasificación',
                 'beatmapset_rank' => '":title" ha sido clasificado',
                 'beatmapset_rank_compact' => 'El mapa fue clasificado',
-                'beatmapset_reset_nominations' => 'La nominación de ":title" ha sido reiniciada',
-                'beatmapset_reset_nominations_compact' => 'La nominación fue reiniciada',
+                'beatmapset_reset_nominations' => 'La nominación de ":title" ha sido restablecida',
+                'beatmapset_reset_nominations_compact' => 'La nominación fue restablecida',
             ],
 
             'comment' => [

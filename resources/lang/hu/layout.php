@@ -96,6 +96,7 @@ return [
             'country' => 'ország',
             'index' => 'teljesítmény',
             'kudosu' => 'kudosu',
+            'multiplayer' => '',
             'score' => 'pontszám',
         ],
         'store' => [

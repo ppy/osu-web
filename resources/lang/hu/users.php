@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Jelenleg elérhető',
         'missingtext' => 'Véletlenül elüthettél valamit! (vagy a felhasználó tiltva van)',
         'origin_country' => 'Innen: :country',
-        'page_description' => 'osu! - Minden amit valaha tudni akartál :username-ról!',
         'previous_usernames' => 'korábbi nevén',
         'plays_with' => 'Ezekkel játszik: :devices',
         'title' => ":username profilja",

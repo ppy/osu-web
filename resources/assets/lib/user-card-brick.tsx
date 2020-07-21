@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserJSON from 'interfaces/user-json';
+import UserRelationJson from 'interfaces/user-relation-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
@@ -16,12 +17,6 @@ interface Props {
 
 interface State {
   backgroundLoaded: boolean;
-}
-
-interface UserRelationJson {
-  mutual: boolean;
-  relation_type: 'friend' | 'block';
-  target_id: number;
 }
 
 export default class UserCardBrick extends React.PureComponent<Props, State> {

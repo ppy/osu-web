@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => 'ทั่วโลก',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'ประสิทธิภาพ',
         'charts' => 'สปอตไลต์',
-        'score' => 'คะแนน',
         'country' => 'ประเทศ',
+        'multiplayer' => '',
+        'performance' => 'ประสิทธิภาพ',
+        'score' => 'คะแนน',
     ],
 
     'spotlight' => [
