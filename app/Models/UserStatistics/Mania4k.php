@@ -34,7 +34,6 @@ class Mania4k extends Model
     public $countMiss;
     public $exit_count;
     public $fail_count;
-    public $hit_accuracy;
     public $level;
     public $max_combo;
     public $rank;
