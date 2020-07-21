@@ -5,52 +5,65 @@
 
 namespace App\Http\Middleware;
 
-use App\Exceptions\AuthorizationException;
 use Closure;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Laravel\Passport\Exceptions\MissingScopeException;
 
 class RequireScopes
 {
-    /** @var bool|null */
-    private $requestHasScopedMiddleware;
+    const NO_TOKEN_REQUIRED = [
+        'api/v2/changelog/',
+        'api/v2/comments/',
+        'api/v2/seasonal-backgrounds/',
+        'api/v2/wiki/',
+    ];
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param Request $request
-     * @param Closure $next
-     * @param string[] ...$scopes
-     *
-     * @return mixed
-     */
-    public function handle(Request $request, Closure $next, ...$scopes)
+    // TODO: this should be definable per-controller or action.
+    public static function noTokenRequired($request)
     {
-        if (is_api_request() && !AuthApi::skipAuth($request)) {
-            $token = optional($request->user())->token();
-            if ($token === null || $token->revoked) {
-                throw new AuthorizationException();
-            }
+        $path = "{$request->decodedPath()}/";
 
-            if (empty($token->scopes)) {
-                throw new MissingScopeException([], 'Tokens without scopes are not valid.');
-            }
+        return $request->isMethod('GET') && starts_with($path, static::NO_TOKEN_REQUIRED);
+    }
 
-            if (!$this->requestHasScopedMiddleware($request)) {
-                // use a non-existent scope; only '*' should pass.
-                if (!$token->can('invalid')) {
-                    throw new MissingScopeException();
-                }
-            } else {
-                foreach ($scopes as $scope) {
-                    if (!$token->can($scope)) {
-                        throw new MissingScopeException([$scope], 'A required scope is missing.');
-                    }
+    public function handle($request, Closure $next, ...$scopes)
+    {
+        if (!is_api_request() || static::noTokenRequired($request)) {
+            return $next($request);
+        }
+
+        $this->validateScopes(oauth_token(), $scopes);
+
+        return $next($request);
+    }
+
+    protected function validateScopes($token, $scopes)
+    {
+        if ($token === null) {
+            throw new AuthenticationException();
+        }
+
+        if (empty($token->scopes)) {
+            throw new MissingScopeException([], 'Tokens without scopes are not valid.');
+        }
+
+        if ($token->isClientCredentials() && in_array('*', $token->scopes, true)) {
+            throw new MissingScopeException(['*'], '* is not allowed with Client Credentials');
+        }
+
+        if (!$this->requestHasScopedMiddleware(request())) {
+            // use a non-existent scope; only '*' should pass.
+            if (!$token->can('invalid')) {
+                throw new MissingScopeException();
+            }
+        } else {
+            foreach ($scopes as $scope) {
+                if (!$token->can($scope)) {
+                    throw new MissingScopeException([$scope], 'A required scope is missing.');
                 }
             }
         }
-
-        return $next($request);
     }
 
     /**
@@ -62,11 +75,13 @@ class RequireScopes
      */
     private function requestHasScopedMiddleware(Request $request): bool
     {
-        if ($this->requestHasScopedMiddleware === null) {
-            $this->requestHasScopedMiddleware = $this->containsScoped($request);
+        $value = $request->attributes->get('requestHasScopedMiddleware');
+        if ($value === null) {
+            $value = $this->containsScoped($request);
+            $request->attributes->set('requestHasScopedMiddleware', $value);
         }
 
-        return $this->requestHasScopedMiddleware;
+        return $value;
     }
 
     private function containsScoped(Request $request)

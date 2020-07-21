@@ -85,7 +85,7 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '常规（当前难度）',
+        'general' => '常规',
         'general_all' => '常规（所有难度）',
     ],
 

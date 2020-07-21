@@ -128,6 +128,21 @@ return [
         'count_miss' => 'Промахи',
     ],
 
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
+    ],
+
     'time' => [
         'days_ago' => ':count_delimited днів назад|:count_delimited день назад',
         'hours_ago' => ':count_delimited годин назад',

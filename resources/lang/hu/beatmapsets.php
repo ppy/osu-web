@@ -115,6 +115,7 @@ return [
                 'rank' => 'Rang',
                 'score_total' => 'Összpontszám',
                 'score' => 'Pontszám',
+                'time' => '',
             ],
 
             'no_scores' => [

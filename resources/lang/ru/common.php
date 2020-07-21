@@ -128,6 +128,21 @@ return [
         'count_miss' => 'Промах',
     ],
 
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
+    ],
+
     'time' => [
         'days_ago' => ':count день назад|:count дня назад|:count дней назад',
         'hours_ago' => ':count час назад|:count часа назад|:count часов назад',
