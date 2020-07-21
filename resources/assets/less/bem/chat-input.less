@@ -26,11 +26,13 @@
     .reset-input();
     .default-border-radius();
     .default-box-shadow();
-    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     background: @osu-colour-b6;
     padding: 10px;
     margin-right: 10px;
     font-family: @font-content;
+    flex: 1;
 
     &::placeholder {
       color: @osu-colour-f1;
