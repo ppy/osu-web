@@ -26,7 +26,7 @@ return [
         'back_to_top' => 'トップに戻る',
         'cancel' => 'キャンセル',
         'change' => '変更',
-        'clear' => '',
+        'clear' => '消去',
         'click_to_copy' => 'クリックしてクリップボードにコピー',
         'click_to_copy_copied' => 'クリップボードにコピーされました！',
         'close' => '閉じる',
@@ -126,6 +126,21 @@ return [
         'count_geki' => 'MAX',
         'count_katu' => '200',
         'count_miss' => 'Miss',
+    ],
+
+    'scoreboard_time' => [
+        'd' => '',
+        'dd' => '',
+        'h' => '',
+        'hh' => '',
+        'M' => '',
+        'm' => '',
+        'MM' => '',
+        'mm' => '',
+        'past' => '',
+        's' => '',
+        'y' => '',
+        'yy' => '',
     ],
 
     'time' => [

@@ -115,6 +115,7 @@ return [
                 'rank' => 'Rang',
                 'score_total' => 'Score total',
                 'score' => 'Score',
+                'time' => '',
             ],
 
             'no_scores' => [

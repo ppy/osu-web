@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Зараз в мережі',
         'missingtext' => 'Можливо, ви зробили помилку! (Або гравець заблокований)',
         'origin_country' => 'Проживає в :country',
-        'page_description' => 'osu! - Все, що ви хотіли знати про :username!',
         'previous_usernames' => 'також відомий як',
         'plays_with' => 'Грає з :devices',
         'title' => "профіль :username",

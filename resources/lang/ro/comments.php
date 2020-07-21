@@ -7,10 +7,10 @@ return [
     'deleted' => 'șters',
     'deleted_count' => ':count_delimited comentariu șters|:count_delimited comentariu șters',
     'edited' => 'editat :timeago de :user',
-    'pinned' => '',
+    'pinned' => 'fixat',
     'empty' => 'Niciun comentariu încă.',
     'load_replies' => 'încarcă răspunsurile',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited răspuns|:count_delimited răspunsuri',
     'title' => 'Comentarii',
 
     'commentable_name' => [

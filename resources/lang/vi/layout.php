@@ -96,6 +96,7 @@ return [
             'country' => 'quốc gia',
             'index' => 'performance',
             'kudosu' => 'kudosu',
+            'multiplayer' => '',
             'score' => 'điểm',
         ],
         'store' => [

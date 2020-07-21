@@ -30,7 +30,7 @@ export class Main extends React.PureComponent<Props> {
     return (
       <div className='osu-layout osu-layout--full'>
         <HeaderV4
-          backgroundImage={this.props.user.cover.url}
+          backgroundImage={this.props.user.cover?.url}
           links={Main.links}
           theme='home'
         />

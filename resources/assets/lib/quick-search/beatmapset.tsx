@@ -5,6 +5,7 @@ import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import { Img2x } from 'img2x';
 import { route } from 'laroute';
 import * as React from 'react';
+import { getTitle } from 'utils/beatmap-helper';
 
 export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset: BeatmapsetJson, modifiers?: string[] }) {
   const url = route('beatmapsets.show', { beatmapset: beatmapset.id });
@@ -16,7 +17,7 @@ export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset:
       </div>
       <div className='beatmapset-search-card__details'>
         <div className='beatmapset-search-card__title'>
-          {`${beatmapset.title} `}
+          {`${getTitle(beatmapset)} `}
           <span className='beatmapset-search-card__title-artist'>
             {osu.trans('users.show.extra.beatmaps.by_artist', { artist: beatmapset.artist })}
           </span>

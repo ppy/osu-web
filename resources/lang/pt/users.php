@@ -145,7 +145,6 @@ return [
         'lastvisit_online' => 'Atualmente online',
         'missingtext' => 'Poderás ter escrito mal! (ou o utilizador poderá ter sido banido)',
         'origin_country' => 'De :country',
-        'page_description' => 'osu! - Tudo o que sempre quiseste saber sobre :username!',
         'previous_usernames' => 'antigamente conhecido como',
         'plays_with' => 'Joga com :devices',
         'title' => "Perfil de :username",

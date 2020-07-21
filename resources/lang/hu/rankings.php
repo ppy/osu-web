@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => '',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Teljesítmény',
         'charts' => 'Reflektorfény',
-        'score' => 'Pontszám',
         'country' => 'Ország',
+        'multiplayer' => '',
+        'performance' => 'Teljesítmény',
+        'score' => 'Pontszám',
     ],
 
     'spotlight' => [

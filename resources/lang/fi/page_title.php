@@ -126,6 +126,11 @@ return [
             '_' => '',
         ],
     ],
+    'multiplayer' => [
+        'rooms_controller' => [
+            '_' => '',
+        ],
+    ],
     'store' => [
         '_' => '',
     ],

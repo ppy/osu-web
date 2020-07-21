@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => '',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Изпълнение',
         'charts' => 'В светлината на прожектора',
-        'score' => 'Резултат',
         'country' => 'Държава',
+        'multiplayer' => '',
+        'performance' => 'Изпълнение',
+        'score' => 'Резултат',
     ],
 
     'spotlight' => [

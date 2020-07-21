@@ -4,6 +4,7 @@
 export default interface GroupJSON {
   colour: string;
   id: number;
+  identifier: string;
   name: string;
   short_name: string;
 }

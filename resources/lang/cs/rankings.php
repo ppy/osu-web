@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => '',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Výkon',
         'charts' => 'Výběry',
-        'score' => 'Skóre',
         'country' => 'Stát',
+        'multiplayer' => '',
+        'performance' => 'Výkon',
+        'score' => 'Skóre',
     ],
 
     'spotlight' => [
