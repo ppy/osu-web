@@ -160,7 +160,7 @@ refresh_token | string | The refresh token.
 
 ## Client Credentials Grant
 
-The client credential flow provide a way for developers to get access tokens without user permissions; as such, these tokens are considered as guest users.
+The client credential flow provides a way for developers to get access tokens that do not have associated user permissions; as such, these tokens are considered as guest users.
 
 Example for requesting Client Credentials token:
 
