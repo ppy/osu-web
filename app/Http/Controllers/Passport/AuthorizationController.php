@@ -34,6 +34,8 @@ class AuthorizationController extends PassportAuthorizationController
                               ClientRepository $clients,
                               TokenRepository $tokens)
     {
+        abort_if(!present(trim($request['redirect_uri'])), 400, trans('model_validation.required', ['attribute' => 'redirect_uri']));
+
         if (!auth()->check()) {
             $cancelUrl = presence(request('redirect_uri'));
 

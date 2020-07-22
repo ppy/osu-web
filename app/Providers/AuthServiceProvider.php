@@ -5,6 +5,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Passport\ApproveAuthorizationController;
 use App\Http\Controllers\Passport\AuthorizationController;
 use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
@@ -49,6 +50,9 @@ class AuthServiceProvider extends ServiceProvider
             Route::get('authorize', AuthorizationController::class.'@authorize')
                 ->middleware(['web', 'verify-user'])
                 ->name('authorizations.authorize');
+
+            Route::post('authorize', ApproveAuthorizationController::class.'@approve')
+                ->middleware(['web', 'auth']);
         });
 
         Passport::tokensCan([
