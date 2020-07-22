@@ -2,7 +2,8 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react'
-import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
+import { a, div, h2, h3, img, p, small, span, strong } from 'react-dom-factories'
+import { StringWithComponent } from 'string-with-component'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 el = React.createElement
 
@@ -40,18 +41,27 @@ export class BeatmapPlaycount extends React.PureComponent
             className: "#{bn}__info-row u-ellipsis-overflow"
             span
               className: "#{bn}__artist"
-              dangerouslySetInnerHTML:
-                __html: osu.trans('users.show.extra.beatmaps.by_artist', artist: "<strong>#{_.escape(getArtist(beatmapset))}</strong>")
+              el StringWithComponent,
+                pattern: osu.trans 'users.show.extra.beatmaps.by_artist'
+                mappings:
+                  ':artist':
+                    strong
+                      key: 'artist'
+                      _.escape(getArtist(beatmapset))
             ' ' # separator for overflow tooltip
             span
               className: "#{bn}__mapper"
-              dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmapsets.show.details.mapped_by',
-                  mapper: laroute.link_to_route 'users.show',
-                    beatmapset.creator
-                    { user: beatmapset.user_id }
-                    class: "#{bn}__mapper-link js-usercard"
-                    'data-user-id': beatmapset.user_id
+              el StringWithComponent,
+                pattern: osu.trans 'beatmapsets.show.details.mapped_by'
+                mappings:
+                  ':mapper':
+                    a
+                      className: "#{bn}__mapper-link js-usercard"
+                      'data-user-id': beatmapset.user_id
+                      href: laroute.route('users.show', user: beatmapset.user_id)
+                      key: 'mapper'
+                      beatmapset.creator
+
         div
           className: "#{bn}__detail-count"
           @renderPlaycountText()
