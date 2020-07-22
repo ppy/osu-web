@@ -6,6 +6,7 @@ import * as React from 'react';
 interface Props {
   current: number;
   max: number;
+  onlyShowAsWarning?: boolean;
   theme?: string;
   tooltip?: string;
 }
@@ -18,6 +19,11 @@ export class CircularProgress extends React.PureComponent<Props, any> {
     const percentage = Math.min(1, this.props.current / this.props.max);
     const rotation = `${360 * percentage}deg`;
     const mods = [];
+    const warnThreshold = 0.75;
+
+    if (this.props.onlyShowAsWarning && percentage < warnThreshold) {
+      return null;
+    }
 
     if (percentage > 0.5) {
       mods.push('over50');
@@ -25,7 +31,7 @@ export class CircularProgress extends React.PureComponent<Props, any> {
 
     if (percentage === 1) {
       mods.push('over');
-    } else if (percentage >= 0.75) {
+    } else if (percentage >= warnThreshold) {
       mods.push('warn');
     }
 

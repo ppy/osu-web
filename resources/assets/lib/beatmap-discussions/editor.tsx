@@ -97,17 +97,6 @@ export default class Editor extends React.Component<Props, State> {
     };
   }
 
-  blockCount = (theme?: string) => {
-    return (
-      <CircularProgress
-        current={this.state.blockCount}
-        max={this.context.max_blocks}
-        theme={theme}
-        tooltip={osu.trans('beatmap_discussions.review.block_count', {used: this.state.blockCount, max: this.context.max_blocks})}
-      />
-    );
-  }
-
   blockWrapper = (children: JSX.Element) => {
     return (
       <div className={`${this.bn}__block`}>
@@ -324,7 +313,7 @@ export default class Editor extends React.Component<Props, State> {
               </div>
               {this.props.editMode &&
                 <div className={`${editorClass}__inner-block-count`}>
-                  {this.blockCount('lighter')}
+                  {this.renderBlockCount('lighter')}
                 </div>
               }
               { !this.props.editMode &&
@@ -339,7 +328,7 @@ export default class Editor extends React.Component<Props, State> {
                   </button>
                   <div>
                     <span className={`${editorClass}__block-count`}>
-                      {this.blockCount()}
+                      {this.renderBlockCount()}
                     </span>
                     <button
                       className='btn-osu-big btn-osu-big--forum-primary'
@@ -356,6 +345,18 @@ export default class Editor extends React.Component<Props, State> {
           </SlateContext.Provider>
         </div>
       </div>
+    );
+  }
+
+  renderBlockCount = (theme?: string) => {
+    return (
+      <CircularProgress
+        current={this.state.blockCount}
+        max={this.context.max_blocks}
+        onlyShowAsWarning={true}
+        theme={theme}
+        tooltip={osu.trans('beatmap_discussions.review.block_count', {used: this.state.blockCount, max: this.context.max_blocks})}
+      />
     );
   }
 
