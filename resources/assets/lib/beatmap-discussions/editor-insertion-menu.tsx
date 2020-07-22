@@ -80,10 +80,10 @@ export class EditorInsertionMenu extends React.Component<Props> {
     }
 
     this.hoveredBlock = children[blockOffset] as HTMLElement;
-    const blockRect = this.hoveredBlock.getBoundingClientRect();
+    const blockBounds = this.hoveredBlock.getBoundingClientRect();
 
     // If we're past the half-way point of the block's height then put the menu below the block, otherwise put it above
-    if (y > blockRect.top + (blockRect.height / 2)) {
+    if (y > blockBounds.top + (blockBounds.height / 2)) {
       this.insertPosition = 'below';
     } else {
       this.insertPosition = 'above';
@@ -260,16 +260,16 @@ export class EditorInsertionMenu extends React.Component<Props> {
       return;
     }
 
-    const blockRect = this.hoveredBlock.getBoundingClientRect();
+    const blockBounds = this.hoveredBlock.getBoundingClientRect();
     const containerBounds = this.scrollContainer.getBoundingClientRect();
 
     this.insertRef.current.style.left = `${containerBounds.left + 15}px`;
     this.insertRef.current.style.width = `${containerBounds.width - 30}px`;
 
     if (this.insertPosition === 'above') {
-      this.insertRef.current.style.top = `${blockRect.top - 10}px`;
+      this.insertRef.current.style.top = `${blockBounds.top - 10}px`;
     } else if (this.insertPosition === 'below') {
-      this.insertRef.current.style.top = `${blockRect.top + blockRect.height - 10}px`;
+      this.insertRef.current.style.top = `${blockBounds.top + blockBounds.height - 10}px`;
     }
   }
 
