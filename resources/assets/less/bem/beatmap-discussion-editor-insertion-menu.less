@@ -44,6 +44,12 @@
       height: 30px;
       margin-top: -5px;
     }
+
+    @media @mobile {
+      width: 150px;
+      height: 30px;
+      margin-top: -5px;
+    }
   }
 
   &__buttons {
@@ -54,6 +60,10 @@
     transition: opacity ease-in-out 100ms;
 
     .@{_top}__body:hover & {
+      opacity: 1;
+    }
+
+    @media @mobile {
       opacity: 1;
     }
   }
