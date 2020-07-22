@@ -263,14 +263,6 @@ export class EditorInsertionMenu extends React.Component<Props> {
     const blockRect = this.hoveredBlock.getBoundingClientRect();
     const containerBounds = this.scrollContainer.getBoundingClientRect();
 
-    const outsideContainer =
-      blockRect.top < containerBounds.top ||
-      (blockRect.top > containerBounds.bottom);
-
-    if (outsideContainer) {
-      return this.forceHideMenu();
-    }
-
     this.insertRef.current.style.left = `${containerBounds.left + 15}px`;
     this.insertRef.current.style.width = `${containerBounds.width - 30}px`;
 
