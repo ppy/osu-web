@@ -146,18 +146,18 @@ export class EditorInsertionMenu extends React.Component<Props> {
       // TODO: This horrible mess is a workaround for Slate incorrectly inserting nodes at the wrong place when
       //  inserting relative to empty blocks/paragraphs.
       if (this.insertPosition === 'above') {
-        const previousBlock = slateNodeElement.parentElement!.previousSibling;
-        if (previousBlock) {
-          node = ReactEditor.toSlateNode(ed, (previousBlock.lastChild as Node));
+        const previousSlateElement = this.hoveredBlock?.previousSibling?.lastChild;
+        if (previousSlateElement != null) {
+          node = ReactEditor.toSlateNode(ed, previousSlateElement);
           insertAt = SlateEditor.end(ed, ReactEditor.findPath(ed, node));
         } else {
           // if there's no previous block, that means we're at the start of the review/document, so insert there.
           insertAt = {path: [], offset: 0};
         }
       } else {
-        const nextBlock = slateNodeElement.parentElement!.nextSibling;
-        if (nextBlock) {
-          node = ReactEditor.toSlateNode(ed, (nextBlock.lastChild as Node));
+        const nextSlateElement = this.hoveredBlock?.previousSibling?.lastChild;
+        if (nextSlateElement != null) {
+          node = ReactEditor.toSlateNode(ed, nextSlateElement);
           insertAt = SlateEditor.start(ed, ReactEditor.findPath(ed, node));
         } else {
           // if there's no next block, that means we're at the end of the review/document, so insert there.
