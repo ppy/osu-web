@@ -199,6 +199,9 @@ class CommentsController extends Controller
         }
 
         broadcast_notification(Notification::COMMENT_NEW, $comment, $user);
+        if ($comment->parent_id !== null) {
+            broadcast_notification(Notification::COMMENT_REPLY, $comment, $user);
+        }
 
         return CommentBundle::forComment($comment)->toArray();
     }

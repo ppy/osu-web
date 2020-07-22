@@ -23,6 +23,7 @@ class Notification extends Model
     const BEATMAPSET_RESET_NOMINATIONS = 'beatmapset_reset_nominations';
     const CHANNEL_MESSAGE = 'channel_message';
     const COMMENT_NEW = 'comment_new';
+    const COMMENT_REPLY = 'comment_reply';
     const FORUM_TOPIC_REPLY = 'forum_topic_reply';
     const USER_ACHIEVEMENT_UNLOCK = 'user_achievement_unlock';
 
@@ -40,6 +41,7 @@ class Notification extends Model
         self::BEATMAPSET_RESET_NOMINATIONS => 'beatmapset_state',
         self::CHANNEL_MESSAGE => 'channel',
         self::COMMENT_NEW => 'comment',
+        self::COMMENT_REPLY => 'comment',
         self::FORUM_TOPIC_REPLY => 'forum_topic_reply',
         self::USER_ACHIEVEMENT_UNLOCK => 'user_achievement_unlock',
     ];
