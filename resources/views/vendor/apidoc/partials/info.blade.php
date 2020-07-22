@@ -43,7 +43,7 @@ v1      | _legacy api provided by the old site, will be deprecated soon_
 
 # Authentication
 
-osu!api uses OAuth2 to grant access to the API. More information about applications you have registered and granted permissions to can be found [here](#managing-an-oauth-application).
+osu!api uses OAuth2 to grant access to the API. More information about applications you have registered and granted permissions to can be found [here](#managing-oauth-applications).
 
 The API supports the following grant types:
 - [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/)
@@ -189,7 +189,7 @@ Parameters
 
 Name          | Type   | Description
 --------------|--------|-------------------------------
-client_id     | number |  The Client ID you received when you [registered]({{ route('account.edit').'#new-oauth-application' }})
+client_id     | number | The Client ID you received when you [registered]({{ route('account.edit').'#new-oauth-application' }})
 client_secret | string | The client secret of your application.
 grant_type    | string | This must always be `client_credentials`
 scope         | string | Must be `public`; other scopes have no meaningful effect.
@@ -255,7 +255,7 @@ public        | Allows reading of publicly available data on behalf of the autho
 `identify` is the default scope for the [Authorization Code Grant](#authorization-code-grant) and always implicitly provided. The [Client Credentials Grant](#client-credentials-grant) does not currently have any default scopes.
 
 
-## Managing an OAuth application
+## Managing OAuth applications
 
 Your [account settings]({{ route('account.edit').'#oauth' }}) page will show your registered OAuth applications, and all the OAuth applications you have granted permissions to.
 
