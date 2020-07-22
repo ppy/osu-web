@@ -162,16 +162,21 @@ export default class ChatOrchestrator implements DispatchListener {
       return;
     }
 
-    // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
     const channel = this.rootDataStore.channelStore.getOrCreate(channelId);
 
     if (!channel.isUnread) {
       return;
     }
 
-    this.markingAsRead[channelId] = window.setTimeout(() => {
+    const currentTimeout = window.setTimeout(() => {
+      // allow next debounce to be queued again
+      if (this.markingAsRead[channelId] === currentTimeout) {
+        delete this.markingAsRead[channelId];
+      }
+
       const lastReadId = channel.lastMessageId;
 
+      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
       const lastSentMessage = channel.messages[channel.messages.length - 1];
       if (lastSentMessage && lastSentMessage.sender.id === window.currentUser.id) {
         channel.lastReadId = lastReadId;
@@ -185,11 +190,10 @@ export default class ChatOrchestrator implements DispatchListener {
         })
         .catch((err) => {
           console.debug('markAsRead error', err);
-        })
-        .finally(() => {
-          delete this.markingAsRead[channelId];
         });
     }, 1000);
+
+    this.markingAsRead[channelId] = currentTimeout;
   }
 
   private handleChatChannelPartAction(action: ChatChannelPartAction) {
