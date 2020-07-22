@@ -9,6 +9,7 @@ import {
   ChatPresenceUpdateAction,
 } from 'actions/chat-actions';
 import DispatcherAction from 'actions/dispatcher-action';
+import UserSilenceAction from 'actions/user-silence-action';
 import { WindowBlurAction, WindowFocusAction } from 'actions/window-focus-actions';
 import { dispatch, dispatchListener } from 'app-dispatcher';
 import DispatchListener from 'dispatch-listener';
@@ -48,7 +49,10 @@ export default class ChatWorker implements DispatchListener {
     }
     this.updateXHR = true;
 
-    this.api.getUpdates(this.rootDataStore.channelStore.maxMessageId)
+    const maxMessageId = this.rootDataStore.channelStore.maxMessageId;
+    const lastHistoryId = this.rootDataStore.channelStore.lastHistoryId;
+
+    this.api.getUpdates(maxMessageId, lastHistoryId)
       .then((updateJson) => {
         this.updateXHR = false;
         if (this.pollingEnabled) {
@@ -65,6 +69,23 @@ export default class ChatWorker implements DispatchListener {
             newMessage.sender = this.rootDataStore.userStore.getOrCreate(message.sender_id, message.sender);
             dispatch(new ChatMessageAddAction(newMessage));
           });
+
+          let newHistoryId: number | null = null;
+          const silencedUserIds = new Set<number>();
+          updateJson.silences.forEach((silence) => {
+            silencedUserIds.add(silence.user_id);
+
+            if (newHistoryId == null) {
+              newHistoryId = silence.id;
+            } else {
+              if (silence.id > newHistoryId) {
+                newHistoryId = silence.id;
+              }
+            }
+          });
+
+          dispatch(new UserSilenceAction(silencedUserIds));
+          this.rootDataStore.channelStore.lastHistoryId = newHistoryId;
 
           dispatch(new ChatPresenceUpdateAction(updateJson.presence));
         });
