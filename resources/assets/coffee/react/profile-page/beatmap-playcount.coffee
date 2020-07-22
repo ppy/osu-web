@@ -4,6 +4,7 @@
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span, strong } from 'react-dom-factories'
 import { StringWithComponent } from 'string-with-component'
+import { UserLink } from 'user-link'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
 el = React.createElement
 
@@ -55,12 +56,13 @@ export class BeatmapPlaycount extends React.PureComponent
                 pattern: osu.trans 'beatmapsets.show.details.mapped_by'
                 mappings:
                   ':mapper':
-                    a
-                      className: "#{bn}__mapper-link js-usercard"
-                      'data-user-id': beatmapset.user_id
-                      href: laroute.route('users.show', user: beatmapset.user_id)
+                    span
+                      className: "#{bn}__mapper-link"
                       key: 'mapper'
-                      beatmapset.creator
+                      el UserLink,
+                        user:
+                          id: beatmapset.user_id
+                          username: beatmapset.creator
 
         div
           className: "#{bn}__detail-count"
