@@ -56,13 +56,12 @@ export class BeatmapPlaycount extends React.PureComponent
                 pattern: osu.trans 'beatmapsets.show.details.mapped_by'
                 mappings:
                   ':mapper':
-                    span
+                    el UserLink,
                       className: "#{bn}__mapper-link"
                       key: 'mapper'
-                      el UserLink,
-                        user:
-                          id: beatmapset.user_id
-                          username: beatmapset.creator
+                      user:
+                        id: beatmapset.user_id
+                        username: beatmapset.creator
 
         div
           className: "#{bn}__detail-count"
