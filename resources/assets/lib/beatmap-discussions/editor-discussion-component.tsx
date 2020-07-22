@@ -32,6 +32,10 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   componentDidUpdate = () => {
+    if (!this.editable()) {
+      return;
+    }
+
     const path = this.path();
 
     if (this.props.element.beatmapId) {
