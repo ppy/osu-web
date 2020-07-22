@@ -5,6 +5,7 @@ import { Mods } from 'mods'
 import * as React from 'react'
 import { div, a, span, h1, h2 } from 'react-dom-factories'
 import TimeWithTooltip from 'time-with-tooltip'
+import { getArtist, getTitle } from 'utils/beatmap-helper'
 
 el = React.createElement
 
@@ -13,7 +14,7 @@ timeFormat = 'LTS'
 export class GameHeader extends React.Component
 
   render: ->
-    title = @props.beatmapset.title
+    title = getTitle(@props.beatmapset)
     title += " [#{@props.beatmap.version}]" if @props.beatmap.version
 
     a
@@ -40,7 +41,7 @@ export class GameHeader extends React.Component
       div className: 'mp-history-game__metadata-box',
         h1 className: 'mp-history-game__metadata mp-history-game__metadata--title',
           title
-        h2 className: 'mp-history-game__metadata mp-history-game__metadata--artist', @props.beatmapset.artist
+        h2 className: 'mp-history-game__metadata mp-history-game__metadata--artist', getArtist(@props.beatmapset)
 
       div className: 'mp-history-game__mods-box',
         el Mods,

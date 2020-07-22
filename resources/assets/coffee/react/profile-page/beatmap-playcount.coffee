@@ -3,6 +3,7 @@
 
 import * as React from 'react'
 import { a, div, h2, h3, img, p, small, span } from 'react-dom-factories'
+import { getArtist, getTitle } from 'utils/beatmap-helper'
 el = React.createElement
 
 bn = 'beatmap-playcount'
@@ -31,16 +32,16 @@ export class BeatmapPlaycount extends React.PureComponent
             a
               className: "#{bn}__title"
               href: beatmapUrl
-              "#{beatmapset.title} [#{beatmap.version}] "
+              "#{getTitle(beatmapset)} [#{beatmap.version}] "
               span
                 className: "#{bn}__title-artist"
-                osu.trans('users.show.extra.beatmaps.by_artist', artist: beatmapset.artist)
+                osu.trans('users.show.extra.beatmaps.by_artist', artist: getArtist(beatmapset))
           div
             className: "#{bn}__info-row u-ellipsis-overflow"
             span
               className: "#{bn}__artist"
               dangerouslySetInnerHTML:
-                __html: osu.trans('users.show.extra.beatmaps.by_artist', artist: "<strong>#{_.escape(beatmapset.artist)}</strong>")
+                __html: osu.trans('users.show.extra.beatmaps.by_artist', artist: "<strong>#{_.escape(getArtist(beatmapset))}</strong>")
             ' ' # separator for overflow tooltip
             span
               className: "#{bn}__mapper"
