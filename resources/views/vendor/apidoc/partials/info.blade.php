@@ -67,6 +67,9 @@ Name                     | Description
 Application Name         | This is the name that will be visible to users of your application. The name of your application cannot be changed.
 Application Callback URL | The URL in your application where users will be sent after authorization.
 
+The `Application Callback URL` is required when for using [Authorization Codes](#authorization-code-grant).
+This may be left blank if you are only using [Client Credentials Grants](#client-credentials-grant).
+
 Your new OAuth application will have a `Client ID` and `Client Secret`; the `Client Secret` is like a password for your OAuth application, it should be kept private and **do not share it with anyone else**.
 
 
