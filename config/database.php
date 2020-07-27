@@ -60,12 +60,6 @@ return [
             'database' => env('DB_DATABASE', 'osu'),
         ]),
 
-        // slave copy of 'mysql'
-        'mysql-readonly' => array_merge($mysqlDefaults, [
-            'host' => env('DB_HOST_READONLY', env('DB_HOST', 'localhost')),
-            'database' => env('DB_DATABASE_READONLY', env('DB_DATABASE', 'osu')),
-        ]),
-
         'mysql-mp' => array_merge($mysqlDefaults, [
             'database' => env('DB_DATABASE_MP', 'osu_mp'),
         ]),
