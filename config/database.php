@@ -17,7 +17,22 @@ $mysqlDefaults = [
     'charset' => 'utf8mb4',
     'collation' => 'utf8mb4_0900_ai_ci',
     'prefix' => '',
-    'strict' => true,
+    /*
+     * This should match latest sane default[1].
+     * It's set manually here because ProxySQL only supports protocol version 5.x[2] and
+     * Laravel sends obsolete SQL mode[3] if set to strict mode and detect older server version.
+     * [1] https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html
+     * [2] https://github.com/sysown/proxysql/issues/2021
+     * [3] https://github.com/laravel/framework/blob/36fdbd4c6a35d689384eebd4c33477a6b444d883/src/Illuminate/Database/Connectors/MySqlConnector.php#L183
+     */
+    'modes' => [
+        'ONLY_FULL_GROUP_BY',
+        'STRICT_TRANS_TABLES',
+        'NO_ZERO_IN_DATE',
+        'NO_ZERO_DATE',
+        'ERROR_FOR_DIVISION_BY_ZERO',
+        'NO_ENGINE_SUBSTITUTION',
+    ],
     'options' => [
         PDO::ATTR_PERSISTENT => true,
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
