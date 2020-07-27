@@ -458,3 +458,5 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::get('/news', 'LegacyInterOpController@news');
     Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 });
+
+Route::fallback('FallbackController@index');

@@ -118,102 +118,99 @@ class RankingController extends Controller
             return $this->spotlight($mode);
         }
 
-        return with_db_fallback('mysql-readonly', function ($connection) use ($mode, $type) {
-            $modeInt = Beatmap::modeInt($mode);
+        $modeInt = Beatmap::modeInt($mode);
 
-            if ($type === 'country') {
-                $stats = CountryStatistics::where('display', 1)
-                    ->with('country')
-                    ->where('mode', $modeInt)
-                    ->orderBy('performance', 'desc');
-            } else {
-                $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
-                $table = (new $class)->getTable();
-                $stats = $class
-                    ::on($connection)
-                    ->with(['user', 'user.country'])
-                    ->whereHas('user', function ($userQuery) {
-                        $userQuery->default();
-                    });
+        if ($type === 'country') {
+            $stats = CountryStatistics::where('display', 1)
+                ->with('country')
+                ->where('mode', $modeInt)
+                ->orderBy('performance', 'desc');
+        } else {
+            $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
+            $table = (new $class)->getTable();
+            $stats = $class
+                ::with(['user', 'user.country'])
+                ->whereHas('user', function ($userQuery) {
+                    $userQuery->default();
+                });
 
-                if ($type === 'performance') {
-                    if ($this->country !== null) {
-                        $stats->where('country_acronym', $this->country['acronym']);
-                        // preferrable to rank_score when filtering by country.
-                        // On a few countries the default index is slightly better but much worse on the rest.
-                        $forceIndex = 'country_acronym_2';
-                    } else {
-                        // force to order by rank_score instead of sucking down entire users table first.
-                        $forceIndex = 'rank_score';
-                    }
-
-                    $stats->orderBy('rank_score', 'desc');
-                } else { // 'score'
-                    $stats->orderBy('ranked_score', 'desc');
-                    // force to order by ranked_score instead of sucking down entire users table first.
-                    $forceIndex = 'ranked_score';
+            if ($type === 'performance') {
+                if ($this->country !== null) {
+                    $stats->where('country_acronym', $this->country['acronym']);
+                    // preferrable to rank_score when filtering by country.
+                    // On a few countries the default index is slightly better but much worse on the rest.
+                    $forceIndex = 'country_acronym_2';
+                } else {
+                    // force to order by rank_score instead of sucking down entire users table first.
+                    $forceIndex = 'rank_score';
                 }
 
-                if ($this->friendsOnly) {
-                    $stats->friendsOf(auth()->user());
-                    // still uses temporary table and filesort but over a more limited number of rows.
-                    $forceIndex = null;
-                }
-
-                if (isset($forceIndex)) {
-                    $stats->from(DB::raw("{$table} FORCE INDEX ($forceIndex)"));
-                }
-
-                if (is_api_request()) {
-                    $stats->with(['user.userProfileCustomization']);
-                }
+                $stats->orderBy('rank_score', 'desc');
+            } else { // 'score'
+                $stats->orderBy('ranked_score', 'desc');
+                // force to order by ranked_score instead of sucking down entire users table first.
+                $forceIndex = 'ranked_score';
             }
 
-            $maxResults = $this->friendsOnly ? $stats->count() : $this->maxResults($modeInt);
-            $maxPages = ceil($maxResults / static::PAGE_SIZE);
-            // TODO: less repeatedly getting params out of request.
-            $page = clamp(get_int(request('cursor.page') ?? request('page')), 1, $maxPages);
+            if ($this->friendsOnly) {
+                $stats->friendsOf(auth()->user());
+                // still uses temporary table and filesort but over a more limited number of rows.
+                $forceIndex = null;
+            }
 
-            $stats = $stats->limit(static::PAGE_SIZE)
-                ->offset(static::PAGE_SIZE * ($page - 1))
-                ->get();
+            if (isset($forceIndex)) {
+                $stats->from(DB::raw("{$table} FORCE INDEX ($forceIndex)"));
+            }
 
             if (is_api_request()) {
-                switch ($type) {
-                    case 'country':
-                        $ranking = json_collection($stats, 'CountryStatistics', ['country']);
-                        break;
+                $stats->with(['user.userProfileCustomization']);
+            }
+        }
 
-                    default:
-                        $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
-                        break;
-                }
+        $maxResults = $this->friendsOnly ? $stats->count() : $this->maxResults($modeInt);
+        $maxPages = ceil($maxResults / static::PAGE_SIZE);
+        // TODO: less repeatedly getting params out of request.
+        $page = clamp(get_int(request('cursor.page') ?? request('page')), 1, $maxPages);
 
-                return [
-                    // TODO: switch to offset?
-                    'cursor' => empty($ranking) || ($page >= $maxPages) ? null : ['page' => $page + 1],
-                    'ranking' => $ranking,
-                    'total' => $maxResults,
-                ];
+        $stats = $stats->limit(static::PAGE_SIZE)
+            ->offset(static::PAGE_SIZE * ($page - 1))
+            ->get();
+
+        if (is_api_request()) {
+            switch ($type) {
+                case 'country':
+                    $ranking = json_collection($stats, 'CountryStatistics', ['country']);
+                    break;
+
+                default:
+                    $ranking = json_collection($stats, 'UserStatistics', ['user', 'user.cover', 'user.country']);
+                    break;
             }
 
-            $scores = new LengthAwarePaginator(
-                $stats,
-                $maxPages * static::PAGE_SIZE,
-                static::PAGE_SIZE,
-                $page,
-                ['path' => route('rankings', [
-                    'filter' => $this->params['filter'],
-                    'mode' => $mode,
-                    'type' => $type,
-                    'variant' => $this->params['variant'],
-                ])]
-            );
+            return [
+                // TODO: switch to offset?
+                'cursor' => empty($ranking) || ($page >= $maxPages) ? null : ['page' => $page + 1],
+                'ranking' => $ranking,
+                'total' => $maxResults,
+            ];
+        }
 
-            $countries = json_collection($this->getCountries($mode), 'Country', ['display']);
+        $scores = new LengthAwarePaginator(
+            $stats,
+            $maxPages * static::PAGE_SIZE,
+            static::PAGE_SIZE,
+            $page,
+            ['path' => route('rankings', [
+                'filter' => $this->params['filter'],
+                'mode' => $mode,
+                'type' => $type,
+                'variant' => $this->params['variant'],
+            ])]
+        );
 
-            return ext_view("rankings.{$type}", compact('countries', 'scores'));
-        });
+        $countries = json_collection($this->getCountries($mode), 'Country', ['display']);
+
+        return ext_view("rankings.{$type}", compact('countries', 'scores'));
     }
 
     public function spotlight($mode)
