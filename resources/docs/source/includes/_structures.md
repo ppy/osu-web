@@ -595,17 +595,17 @@ An object which contains pointer for fetching further results of a request. It d
 
 Field         | Type     | Description
 --------------|----------|---------------------------------------------------------------------------
-`score_id`    | `number` | Last score id of current result (`scores_asc`, `scores_desc`).
-`total_score` | `number` | Last score's total score of current result (`scores_asc`, `scores_desc`).
+`score_id`    | `number` | Last score id of current result (`score_asc`, `score_desc`).
+`total_score` | `number` | Last score's total score of current result (`score_asc`, `score_desc`).
 
 ## MultiplayerScoresSort
 
 Sort option for multiplayer scores index.
 
-Name          | Descriprion
-------------- | ----------------------------
-`scores_asc`  | Sort by scores, ascending.
-`scores_desc` | Sort by scores, descending.
+Name         | Descriprion
+------------ | ----------------------------
+`score_asc`  | Sort by scores, ascending.
+`score_desc` | Sort by scores, descending.
 
 ## Ranking Response
 ```json
