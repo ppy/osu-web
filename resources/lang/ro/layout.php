@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Redă următorul track în mod automat',
     ],
 
     'defaults' => [
@@ -32,13 +32,13 @@ return [
 
         'help' => [
             'index' => 'index',
-            'sitemap' => '',
+            'sitemap' => 'Harta site-ului',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'coș',
+            'orders' => 'istoric comenzi',
+            'products' => 'produse',
         ],
 
         'tournaments' => [
@@ -96,6 +96,7 @@ return [
             'country' => 'țară',
             'index' => 'performanță',
             'kudosu' => 'kudosu',
+            'multiplayer' => '',
             'score' => 'scor',
         ],
         'store' => [
@@ -120,7 +121,7 @@ return [
             'forum' => 'Forumuri',
             'livestreams' => 'Transmisiuni în direct',
             'report' => 'Raportează o problemă',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Legalitate & Statut',
@@ -134,7 +135,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Cerere în parametrii invalizi',
             'description' => '',
         ],
         '404' => [
@@ -154,7 +155,7 @@ return [
             'description' => "Ne pare rău, dar pagina solicitată nu este aici!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Cerere în parametrii invalizi',
             'description' => '',
         ],
         '500' => [

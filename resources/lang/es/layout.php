@@ -96,6 +96,7 @@ return [
             'country' => 'país',
             'index' => 'rendimiento',
             'kudosu' => 'kudosu',
+            'multiplayer' => '',
             'score' => 'puntuación',
         ],
         'store' => [
@@ -123,7 +124,7 @@ return [
             'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => 'Estatus Legal',
+            '_' => 'Legal y Estado',
             'copyright' => 'Derechos de autor (DMCA)',
             'privacy' => 'Privacidad',
             'server_status' => 'Estado del Servidor',
@@ -207,7 +208,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => '¡Escribe para buscar!',
+        'initial' => '¡Escriba para buscar!',
         'retry' => 'Búsqueda fallida. Haz clic aquí para reintentar.',
     ],
 ];

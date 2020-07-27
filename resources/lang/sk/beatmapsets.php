@@ -115,6 +115,7 @@ return [
                 'rank' => 'Hodnotenie',
                 'score_total' => 'Celkové skóre',
                 'score' => 'Skóre',
+                'time' => '',
             ],
 
             'no_scores' => [

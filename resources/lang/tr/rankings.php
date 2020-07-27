@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => 'Hepsi',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Performans',
         'charts' => 'Öne Çıkanlar',
-        'score' => 'Skor',
         'country' => 'Ülke',
+        'multiplayer' => '',
+        'performance' => 'Performans',
+        'score' => 'Skor',
     ],
 
     'spotlight' => [

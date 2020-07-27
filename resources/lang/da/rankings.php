@@ -6,6 +6,7 @@
 return [
     'countries' => [
         'all' => '',
+        'title' => '',
     ],
 
     'filter' => [
@@ -17,10 +18,11 @@ return [
     ],
 
     'type' => [
-        'performance' => 'Præstation',
         'charts' => 'Baner',
-        'score' => 'Score',
         'country' => 'Land',
+        'multiplayer' => '',
+        'performance' => 'Præstation',
+        'score' => 'Score',
     ],
 
     'spotlight' => [

@@ -67,7 +67,7 @@ return [
         'go_to_parent' => 'Zobacz recenzję',
         'go_to_child' => 'Zobacz dyskusję',
         'validation' => [
-            'block_too_large' => 'blok może zawierać maksymalnie :limit znaków',
+            'block_too_large' => 'każdy blok może zawierać do :limit znaków',
             'external_references' => 'recenzja zawiera odniesienia do problemów, które do niej nie należą',
             'invalid_block_type' => 'nieprawidłowy typ bloku',
             'invalid_document' => 'nieprawidłowa recenzja',

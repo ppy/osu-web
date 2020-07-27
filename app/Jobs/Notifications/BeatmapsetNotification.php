@@ -26,6 +26,7 @@ abstract class BeatmapsetNotification extends BroadcastNotificationBase
     {
         return [
             'title' => $this->beatmapset->title,
+            'title_unicode' => $this->beatmapset->title_unicode,
             'cover_url' => $this->beatmapset->coverURL('card'),
         ];
     }

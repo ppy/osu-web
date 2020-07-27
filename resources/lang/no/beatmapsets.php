@@ -115,6 +115,7 @@ return [
                 'rank' => 'Rang',
                 'score_total' => 'Total Poengsum',
                 'score' => 'Poengsum',
+                'time' => '',
             ],
 
             'no_scores' => [
