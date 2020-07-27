@@ -333,6 +333,7 @@ class TopicsController extends Controller
     public function store(HttpRequest $request)
     {
         $forum = Forum::findOrFail($request->get('forum_id'));
+        $user = auth()->user();
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
@@ -346,9 +347,9 @@ class TopicsController extends Controller
 
         $params = [
             'title' => $request->get('title'),
-            'user' => Auth::user(),
+            'user' => $user,
             'body' => $request->get('body'),
-            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
+            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), $user),
         ];
 
         try {
@@ -357,15 +358,13 @@ class TopicsController extends Controller
             return error_popup($e->getMessage());
         }
 
-        if (Auth::user()->user_notify || $forum->isHelpForum()) {
-            TopicWatch::setState($topic, Auth::user(), 'watching_mail');
+        if ($user->user_notify || $forum->isHelpForum()) {
+            TopicWatch::setState($topic, $user, 'watching_mail');
         }
 
-        ForumUpdateNotifier::onNew([
-            'topic' => $topic,
-            'post' => $topic->posts->last(),
-            'user' => Auth::user(),
-        ]);
+        $post = $topic->posts->last();
+        $post->markRead($user);
+        ForumUpdateNotifier::onNew(['topic' => $topic, 'post' => $post, 'user' => $user]);
 
         return ujs_redirect(route('forum.topics.show', $topic));
     }
